@@ -1,16 +1,13 @@
 [package]
-name = "type-sitter"
+name = "type-sitter-gen"
 version = "0.1.0"
 authors = ["Jakob Hain <jakobeha@fastmail.com>"]
 description = "generate typed wrappers for tree-sitter grammars from node-types.json and queries"
 license = "MIT OR Apache-2.0"
 repository = "https://github.com/Jakobeha/type-sitter/"
 categories = ["parsing", "compilers"]
-keywords = ["tree-sitter"]
+keywords = ["type-sitter", "tree-sitter"]
 edition = "2021"
-
-[lib]
-proc-macro = true
 
 [dependencies]
 convert_case = "0.6.0"
@@ -19,10 +16,3 @@ quote = "1.0.26"
 serde = { version = "1.0.160", features = ["derive"] }
 serde_json = "1.0.96"
 syn = "2.0.15"
-
-[dev-dependencies]
-type-sitter-lib = { path = "type-sitter-lib" }
-tree-sitter-json = "0.19.0"
-tree-sitter-cpp = "0.20.0"
-tree-sitter-rust = "0.20.3"
-tree-sitter-typescript = "0.20.2"
