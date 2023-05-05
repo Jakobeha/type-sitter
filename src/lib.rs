@@ -3,14 +3,13 @@
 use std::path::PathBuf;
 use syn::{parse_macro_input, LitStr};
 
-mod generate;
+mod r#impl;
 /// From https://github.com/serde-rs/json/issues/404#issuecomment-892957228
 mod deserialize_json_array_as_stream;
 mod error;
 mod node_types;
 mod print;
-
-pub use generate::generate;;
+mod make_valid;
 
 /// Generate AST wrappers for the language specified by the input path, which must point to its
 /// `node-types.json`.
@@ -28,7 +27,6 @@ pub use generate::generate;;
 /// ```
 #[proc_macro]
 pub fn generate(item: proc_macro::TokenStream) -> proc_macro::TokenStream {
-    generate::generate(PathBuf::from(parse_macro_input!(item as LitStr).value()))
-        .unwrap_or_else(syn::Error::to_compile_error).into()
-
+    r#impl::generate(PathBuf::from(parse_macro_input!(item as LitStr).value()))
+        .unwrap_or_else(|err| err.to_compile_error()).into()
 }

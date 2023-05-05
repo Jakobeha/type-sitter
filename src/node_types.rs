@@ -1,6 +1,7 @@
 use std::collections::HashMap;
 use serde::Deserialize;
 use convert_case::{Casing, Case};
+use crate::make_valid::make_valid;
 
 #[derive(Deserialize)]
 pub struct NodeType {
@@ -47,17 +48,12 @@ pub struct NodeName {
 
 impl From<String> for NodeName {
     fn from(sexp_name: String) -> Self {
-        let (is_implicit, snake_name) = match value.starts_with("_") {
-            false => (false, &value[..]),
-            true => (true, &value[1..])
+        let (is_implicit, snake_name) = match sexp_name.starts_with("_") {
+            false => (false, &sexp_name[..]),
+            true => (true, &sexp_name[1..])
         };
-        let rust_method_name = replace_punctuation(snake_name);
+        let rust_method_name = make_valid(snake_name);
         let rust_type_name = rust_method_name.to_case(Case::UpperCamel);
         Self { sexp_name, rust_type_name, rust_method_name, is_implicit }
     }
-}
-
-/// Replace punctuation with names (e.g. '&' -> 'And')
-pub fn replace_punctuation(str: &str) -> String {
-
 }

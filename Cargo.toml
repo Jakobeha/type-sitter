@@ -16,6 +16,13 @@ proc-macro = true
 convert_case = "0.6.0"
 proc-macro2 = "1.0.56"
 quote = "1.0.26"
-serde = "1.0.160"
+serde = { version = "1.0.160", features = ["derive"] }
 serde_json = "1.0.96"
 syn = "2.0.15"
+
+[dev-dependencies]
+type-sitter-lib = { path = "type-sitter-lib" }
+tree-sitter-json = "0.19.0"
+tree-sitter-cpp = "0.20.0"
+tree-sitter-rust = "0.20.3"
+tree-sitter-typescript = "0.20.2"
