@@ -1,19 +1,19 @@
 use std::borrow::Cow;
-use proc_macro2::{Span, TokenStream};
+use proc_macro2::TokenStream;
 use quote::quote;
-use syn::{Ident, LitStr};
 use crate::node_types::{Children, NodeName, NodeType, NodeTypeKind, Type};
+use crate::mk_syntax::{ident, lit_str};
 
 impl NodeType {
     pub fn print(&self) -> TokenStream {
-        let NodeName { rust_type_name, rust_method_name: _, sexp_name, is_implicit } = &self.name;
-        let ident = Ident::new(rust_type_name, Span::call_site());
-        let sexp_name_literal = LitStr::new(sexp_name, Span::call_site());
+        let NodeName { rust_type_name, sexp_name, is_implicit } = &self.name;
+        let ident = ident!(rust_type_name, "node kind converted into a rust type name (this is a library error, please report)");
+        let sexp_name_literal = lit_str(sexp_name);
         // let named = self.named;
         match &self.kind {
             NodeTypeKind::Supertype { subtypes } => {
                 if !is_implicit {
-                    panic!("Node types with subtypes must be implicit (start with \"_\")")
+                    panic!("Node types with subtypes must be implicit (start with \"_\"): _{}", sexp_name)
                 }
 
                 let variants = subtypes.iter().map(Type::print_variant);
@@ -51,10 +51,10 @@ impl NodeType {
             }
             NodeTypeKind::Regular { fields, children } => {
                 if *is_implicit {
-                    panic!("Node types without subtypes must not be implicit (not start with \"_\")")
+                    panic!("Node types without subtypes must not be implicit (not start with \"_\"): _{}", sexp_name)
                 }
                 let field_accessors = fields.iter().map(|(name, field)| {
-                    let name_sexp_literal = LitStr::new(name, Span::call_site());
+                    let name_sexp_literal = lit_str(name);
                     field.print(
                         (
                             Cow::Owned(format!("{}s", name)),
@@ -130,7 +130,7 @@ impl Children {
         child_i: Option<(Cow<'_, str>, TokenStream, TokenStream)>
     ) -> TokenStream {
         if self.multiple {
-            let ident = Ident::new(&children_name, Span::call_site());
+            let ident = ident!(&children_name, "node field name converted into a rust method name (this is a library error, please report)");
             let nonempty_doc = if self.required {
                 quote! { #[doc = "This is guaranteed to return at least one child"] }
             } else {
@@ -145,7 +145,7 @@ impl Children {
                 }
             };
             let child_i_fn = child_i.map(|(child_i_name, child_i_doc, child_i_body)| {
-                let child_i_ident = Ident::new(&child_i_name, Span::call_site());
+                let child_i_ident = ident!(&child_i_name, "node field name converted into a rust method name (this is a library error, please report)");
                 quote! {
                     #[doc = #child_i_doc]
                     pub fn #child_i_ident(&self, i: usize) -> Option<tree_sitter_lib::NodeResult<'tree, #child_type>> {
@@ -158,7 +158,7 @@ impl Children {
                 #child_i_fn
             }
         } else {
-            let ident = Ident::new(&child_name, Span::call_site());
+            let ident = ident!(&child_name, "node field name converted into a rust method name (this is a library error, please report)");
             let mut child_type = Type::print_sum_type(&self.types);
             child_type = quote! { tree_sitter_lib::NodeResult<'tree, #child_type> };
             if self.required {
@@ -183,27 +183,27 @@ impl Type {
     }
 
     fn print_type(&self) -> TokenStream {
-        let ident = Ident::new(&self.name.rust_type_name, Span::call_site());
+        let ident = ident!(&self.name.rust_type_name, "node kind converted into a rust type name (this is a library error, please report)");
         quote! { #ident<'tree> }
     }
 
     fn print_variant(&self) -> TokenStream {
-        let ident = Ident::new(&self.name.rust_type_name, Span::call_site());
+        let ident = ident!(&self.name.rust_type_name, "node kind converted into a rust type name (this is a library error, please report)");
         quote! {
             #ident(#ident<'tree>),
         }
     }
 
     fn print_from_case(&self) -> TokenStream {
-        let ident = Ident::new(&self.name.rust_type_name, Span::call_site());
-        let sexp_name_literal = LitStr::new(&self.name.sexp_name, Span::call_site());
+        let ident = ident!(&self.name.rust_type_name, "node kind converted into a rust type name (this is a library error, please report)");
+        let sexp_name_literal = lit_str(&self.name.sexp_name);
         quote! {
             #sexp_name_literal => Ok(Self::#ident(#ident(node))),
         }
     }
 
     fn print_node_case(&self) -> TokenStream {
-        let ident = Ident::new(&self.name.rust_type_name, Span::call_site());
+        let ident = ident!(&self.name.rust_type_name, "node kind converted into a rust type name (this is a library error, please report)");
         quote! {
             Self::#ident(x) => x.node(),
         }

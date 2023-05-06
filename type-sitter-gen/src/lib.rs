@@ -4,8 +4,8 @@ use std::fs::File;
 use std::io::BufReader;
 use std::path::{Path, PathBuf};
 
-use proc_macro2::{TokenStream, Span};
-use syn::Ident;
+use proc_macro2::TokenStream;
+use mk_syntax::ident;
 use quote::quote;
 
 use crate::deserialize_json_array_as_stream::iter_json_array;
@@ -18,6 +18,7 @@ mod error;
 mod node_types;
 mod print;
 mod make_valid;
+mod mk_syntax;
 
 /// Generate source code (tokens) for typed AST node wrappers for the language specified by the
 /// input path, which must point to its `node-types.json`.
@@ -80,7 +81,7 @@ pub fn generate_queries_from_dir(path: impl AsRef<Path>) -> Result<TokenStream, 
         let entry_path = entry.path();
         if entry.metadata()?.is_dir() || entry_path.ends_with(".scm") {
             let entry_name = entry_path.file_stem().unwrap().to_string_lossy();
-            let entry_ident = Ident::new(&entry_name, Span::call_site());
+            let entry_ident = ident!(&entry_name, "query filename");
             let entry_code = generate_queries(entry_path)?;
             queries.extend(quote! {
                 pub mod #entry_ident {

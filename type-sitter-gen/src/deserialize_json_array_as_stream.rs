@@ -55,5 +55,9 @@ pub fn iter_json_array<T: DeserializeOwned, R: Read>(
     mut reader: R,
 ) -> impl Iterator<Item = Result<T, io::Error>> {
     let mut at_start = false;
-    std::iter::from_fn(move || yield_next_obj(&mut reader, &mut at_start).transpose())
+    (0..).map_while(move |i| {
+        yield_next_obj(&mut reader, &mut at_start)
+            .map_err(|e| io::Error::new(e.kind(), format!("element #{}: {}", i, e)))
+            .transpose()
+    })
 }

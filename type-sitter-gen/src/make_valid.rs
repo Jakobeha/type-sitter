@@ -14,7 +14,9 @@ const PUNCTUATION_TABLE: [(char, &'static str); 35] = [
 /// a valid identifier.
 pub fn make_valid(str: &str) -> String {
     let mut result = String::with_capacity(str.len());
-    if str.is_empty() || str.starts_with(|c: char| c.is_numeric()) {
+    if str.is_empty() {
+        result.push_str("__");
+    } else if str.starts_with(|c: char| c.is_numeric()) || str.eq_ignore_ascii_case("self") || str.eq_ignore_ascii_case("super") {
         result.push('_');
     }
     for char in str.chars() {
@@ -24,5 +26,6 @@ pub fn make_valid(str: &str) -> String {
             None => result.push(char)
         }
     }
+    // eprintln!("make_valid({:?}) = {:?}", str, result);
     result
 }
