@@ -1,6 +1,6 @@
-use std::collections::HashMap;
 use serde::Deserialize;
 use convert_case::{Casing, Case};
+use indexmap::IndexMap;
 use crate::make_valid::make_valid;
 
 #[derive(Deserialize)]
@@ -17,7 +17,7 @@ pub enum NodeTypeKind {
     Supertype { subtypes: Vec<NodeName> },
     Regular {
         #[serde(default)]
-        fields: HashMap<String, Children>,
+        fields: IndexMap<String, Children>,
         #[serde(default)]
         children: Option<Children>,
     }

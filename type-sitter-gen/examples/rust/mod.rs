@@ -725,18 +725,18 @@ impl<'tree> tree_sitter_lib::TypedNode<'tree> for AssignmentExpression<'tree> {
     }
 }
 impl<'tree> AssignmentExpression<'tree> {
-    #[doc = concat!("Get the field `", "right", "`")]
-    pub fn right(&self) -> tree_sitter_lib::NodeResult<'tree, Expression<'tree>> {
-        self.0
-            .child_by_field_name("right")
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
     #[doc = concat!("Get the field `", "left", "`")]
     pub fn left(&self) -> tree_sitter_lib::NodeResult<'tree, Expression<'tree>> {
         self.0
             .child_by_field_name("left")
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
+    #[doc = concat!("Get the field `", "right", "`")]
+    pub fn right(&self) -> tree_sitter_lib::NodeResult<'tree, Expression<'tree>> {
+        self.0
+            .child_by_field_name("right")
             .expect(
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
@@ -766,12 +766,6 @@ impl<'tree> tree_sitter_lib::TypedNode<'tree> for AssociatedType<'tree> {
     }
 }
 impl<'tree> AssociatedType<'tree> {
-    #[doc = concat!("Get the field `", "type_parameters", "`")]
-    pub fn type_parameters(
-        &self,
-    ) -> Option<tree_sitter_lib::NodeResult<'tree, TypeParameters<'tree>>> {
-        self.0.child_by_field_name("type_parameters")
-    }
     #[doc = concat!("Get the field `", "bounds", "`")]
     pub fn bounds(
         &self,
@@ -785,6 +779,12 @@ impl<'tree> AssociatedType<'tree> {
             .expect(
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
+    }
+    #[doc = concat!("Get the field `", "type_parameters", "`")]
+    pub fn type_parameters(
+        &self,
+    ) -> Option<tree_sitter_lib::NodeResult<'tree, TypeParameters<'tree>>> {
+        self.0.child_by_field_name("type_parameters")
     }
 }
 #[doc = concat!("Typed node `", "async_block", "`")]
@@ -844,17 +844,17 @@ impl<'tree> tree_sitter_lib::TypedNode<'tree> for Attribute<'tree> {
     }
 }
 impl<'tree> Attribute<'tree> {
-    #[doc = concat!("Get the field `", "value", "`")]
-    pub fn value(
-        &self,
-    ) -> Option<tree_sitter_lib::NodeResult<'tree, Expression<'tree>>> {
-        self.0.child_by_field_name("value")
-    }
     #[doc = concat!("Get the field `", "arguments", "`")]
     pub fn arguments(
         &self,
     ) -> Option<tree_sitter_lib::NodeResult<'tree, TokenTree<'tree>>> {
         self.0.child_by_field_name("arguments")
+    }
+    #[doc = concat!("Get the field `", "value", "`")]
+    pub fn value(
+        &self,
+    ) -> Option<tree_sitter_lib::NodeResult<'tree, Expression<'tree>>> {
+        self.0.child_by_field_name("value")
     }
     ///Get the node's child
     pub fn child(
@@ -1000,6 +1000,14 @@ impl<'tree> tree_sitter_lib::TypedNode<'tree> for BinaryExpression<'tree> {
     }
 }
 impl<'tree> BinaryExpression<'tree> {
+    #[doc = concat!("Get the field `", "left", "`")]
+    pub fn left(&self) -> tree_sitter_lib::NodeResult<'tree, Expression<'tree>> {
+        self.0
+            .child_by_field_name("left")
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
     #[doc = concat!("Get the field `", "operator", "`")]
     pub fn operator(
         &self,
@@ -1028,14 +1036,6 @@ impl<'tree> BinaryExpression<'tree> {
     > {
         self.0
             .child_by_field_name("operator")
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
-    #[doc = concat!("Get the field `", "left", "`")]
-    pub fn left(&self) -> tree_sitter_lib::NodeResult<'tree, Expression<'tree>> {
-        self.0
-            .child_by_field_name("left")
             .expect(
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
@@ -1436,12 +1436,6 @@ impl<'tree> tree_sitter_lib::TypedNode<'tree> for ClosureExpression<'tree> {
     }
 }
 impl<'tree> ClosureExpression<'tree> {
-    #[doc = concat!("Get the field `", "return_type", "`")]
-    pub fn return_type(
-        &self,
-    ) -> Option<tree_sitter_lib::NodeResult<'tree, Type<'tree>>> {
-        self.0.child_by_field_name("return_type")
-    }
     #[doc = concat!("Get the field `", "body", "`")]
     pub fn body(&self) -> tree_sitter_lib::NodeResult<'tree, Expression<'tree>> {
         self.0
@@ -1459,6 +1453,12 @@ impl<'tree> ClosureExpression<'tree> {
             .expect(
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
+    }
+    #[doc = concat!("Get the field `", "return_type", "`")]
+    pub fn return_type(
+        &self,
+    ) -> Option<tree_sitter_lib::NodeResult<'tree, Type<'tree>>> {
+        self.0.child_by_field_name("return_type")
     }
 }
 #[doc = concat!("Typed node `", "closure_parameters", "`")]
@@ -1548,6 +1548,14 @@ impl<'tree> tree_sitter_lib::TypedNode<'tree> for CompoundAssignmentExpr<'tree> 
     }
 }
 impl<'tree> CompoundAssignmentExpr<'tree> {
+    #[doc = concat!("Get the field `", "left", "`")]
+    pub fn left(&self) -> tree_sitter_lib::NodeResult<'tree, Expression<'tree>> {
+        self.0
+            .child_by_field_name("left")
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
     #[doc = concat!("Get the field `", "operator", "`")]
     pub fn operator(
         &self,
@@ -1576,14 +1584,6 @@ impl<'tree> CompoundAssignmentExpr<'tree> {
     pub fn right(&self) -> tree_sitter_lib::NodeResult<'tree, Expression<'tree>> {
         self.0
             .child_by_field_name("right")
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
-    #[doc = concat!("Get the field `", "left", "`")]
-    pub fn left(&self) -> tree_sitter_lib::NodeResult<'tree, Expression<'tree>> {
-        self.0
-            .child_by_field_name("left")
             .expect(
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
@@ -1646,6 +1646,14 @@ impl<'tree> tree_sitter_lib::TypedNode<'tree> for ConstItem<'tree> {
     }
 }
 impl<'tree> ConstItem<'tree> {
+    #[doc = concat!("Get the field `", "name", "`")]
+    pub fn name(&self) -> tree_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
+        self.0
+            .child_by_field_name("name")
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
     #[doc = concat!("Get the field `", "type", "`")]
     pub fn r#type(&self) -> tree_sitter_lib::NodeResult<'tree, Type<'tree>> {
         self.0
@@ -1659,14 +1667,6 @@ impl<'tree> ConstItem<'tree> {
         &self,
     ) -> Option<tree_sitter_lib::NodeResult<'tree, Expression<'tree>>> {
         self.0.child_by_field_name("value")
-    }
-    #[doc = concat!("Get the field `", "name", "`")]
-    pub fn name(&self) -> tree_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
-        self.0
-            .child_by_field_name("name")
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
     }
     ///Get the node's child
     pub fn child(
@@ -1699,18 +1699,18 @@ impl<'tree> tree_sitter_lib::TypedNode<'tree> for ConstParameter<'tree> {
     }
 }
 impl<'tree> ConstParameter<'tree> {
-    #[doc = concat!("Get the field `", "type", "`")]
-    pub fn r#type(&self) -> tree_sitter_lib::NodeResult<'tree, Type<'tree>> {
-        self.0
-            .child_by_field_name("type")
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
     #[doc = concat!("Get the field `", "name", "`")]
     pub fn name(&self) -> tree_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
         self.0
             .child_by_field_name("name")
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
+    #[doc = concat!("Get the field `", "type", "`")]
+    pub fn r#type(&self) -> tree_sitter_lib::NodeResult<'tree, Type<'tree>> {
+        self.0
+            .child_by_field_name("type")
             .expect(
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
@@ -1740,6 +1740,14 @@ impl<'tree> tree_sitter_lib::TypedNode<'tree> for ConstrainedTypeParameter<'tree
     }
 }
 impl<'tree> ConstrainedTypeParameter<'tree> {
+    #[doc = concat!("Get the field `", "bounds", "`")]
+    pub fn bounds(&self) -> tree_sitter_lib::NodeResult<'tree, TraitBounds<'tree>> {
+        self.0
+            .child_by_field_name("bounds")
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
     #[doc = concat!("Get the field `", "left", "`")]
     pub fn left(
         &self,
@@ -1749,14 +1757,6 @@ impl<'tree> ConstrainedTypeParameter<'tree> {
     > {
         self.0
             .child_by_field_name("left")
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
-    #[doc = concat!("Get the field `", "bounds", "`")]
-    pub fn bounds(&self) -> tree_sitter_lib::NodeResult<'tree, TraitBounds<'tree>> {
-        self.0
-            .child_by_field_name("bounds")
             .expect(
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
@@ -2078,12 +2078,6 @@ impl<'tree> tree_sitter_lib::TypedNode<'tree> for EnumVariant<'tree> {
     }
 }
 impl<'tree> EnumVariant<'tree> {
-    #[doc = concat!("Get the field `", "value", "`")]
-    pub fn value(
-        &self,
-    ) -> Option<tree_sitter_lib::NodeResult<'tree, Expression<'tree>>> {
-        self.0.child_by_field_name("value")
-    }
     #[doc = concat!("Get the field `", "body", "`")]
     pub fn body(
         &self,
@@ -2105,6 +2099,12 @@ impl<'tree> EnumVariant<'tree> {
             .expect(
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
+    }
+    #[doc = concat!("Get the field `", "value", "`")]
+    pub fn value(
+        &self,
+    ) -> Option<tree_sitter_lib::NodeResult<'tree, Expression<'tree>>> {
+        self.0.child_by_field_name("value")
     }
     ///Get the node's child
     pub fn child(
@@ -2233,6 +2233,12 @@ impl<'tree> tree_sitter_lib::TypedNode<'tree> for ExternCrateDeclaration<'tree> 
     }
 }
 impl<'tree> ExternCrateDeclaration<'tree> {
+    #[doc = concat!("Get the field `", "alias", "`")]
+    pub fn alias(
+        &self,
+    ) -> Option<tree_sitter_lib::NodeResult<'tree, Identifier<'tree>>> {
+        self.0.child_by_field_name("alias")
+    }
     #[doc = concat!("Get the field `", "name", "`")]
     pub fn name(&self) -> tree_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
         self.0
@@ -2240,12 +2246,6 @@ impl<'tree> ExternCrateDeclaration<'tree> {
             .expect(
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
-    }
-    #[doc = concat!("Get the field `", "alias", "`")]
-    pub fn alias(
-        &self,
-    ) -> Option<tree_sitter_lib::NodeResult<'tree, Identifier<'tree>>> {
-        self.0.child_by_field_name("alias")
     }
     ///Get the node's children
     ///This is guaranteed to return at least one child
@@ -2342,18 +2342,18 @@ impl<'tree> tree_sitter_lib::TypedNode<'tree> for FieldDeclaration<'tree> {
     }
 }
 impl<'tree> FieldDeclaration<'tree> {
-    #[doc = concat!("Get the field `", "type", "`")]
-    pub fn r#type(&self) -> tree_sitter_lib::NodeResult<'tree, Type<'tree>> {
-        self.0
-            .child_by_field_name("type")
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
     #[doc = concat!("Get the field `", "name", "`")]
     pub fn name(&self) -> tree_sitter_lib::NodeResult<'tree, FieldIdentifier<'tree>> {
         self.0
             .child_by_field_name("name")
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
+    #[doc = concat!("Get the field `", "type", "`")]
+    pub fn r#type(&self) -> tree_sitter_lib::NodeResult<'tree, Type<'tree>> {
+        self.0
+            .child_by_field_name("type")
             .expect(
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
@@ -2458,14 +2458,6 @@ impl<'tree> tree_sitter_lib::TypedNode<'tree> for FieldExpression<'tree> {
     }
 }
 impl<'tree> FieldExpression<'tree> {
-    #[doc = concat!("Get the field `", "value", "`")]
-    pub fn value(&self) -> tree_sitter_lib::NodeResult<'tree, Expression<'tree>> {
-        self.0
-            .child_by_field_name("value")
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
     #[doc = concat!("Get the field `", "field", "`")]
     pub fn field(
         &self,
@@ -2475,6 +2467,14 @@ impl<'tree> FieldExpression<'tree> {
     > {
         self.0
             .child_by_field_name("field")
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
+    #[doc = concat!("Get the field `", "value", "`")]
+    pub fn value(&self) -> tree_sitter_lib::NodeResult<'tree, Expression<'tree>> {
+        self.0
+            .child_by_field_name("value")
             .expect(
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
@@ -2504,18 +2504,18 @@ impl<'tree> tree_sitter_lib::TypedNode<'tree> for FieldInitializer<'tree> {
     }
 }
 impl<'tree> FieldInitializer<'tree> {
-    #[doc = concat!("Get the field `", "value", "`")]
-    pub fn value(&self) -> tree_sitter_lib::NodeResult<'tree, Expression<'tree>> {
-        self.0
-            .child_by_field_name("value")
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
     #[doc = concat!("Get the field `", "name", "`")]
     pub fn name(&self) -> tree_sitter_lib::NodeResult<'tree, FieldIdentifier<'tree>> {
         self.0
             .child_by_field_name("name")
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
+    #[doc = concat!("Get the field `", "value", "`")]
+    pub fn value(&self) -> tree_sitter_lib::NodeResult<'tree, Expression<'tree>> {
+        self.0
+            .child_by_field_name("value")
             .expect(
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
@@ -2691,18 +2691,18 @@ impl<'tree> ForExpression<'tree> {
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
     }
-    #[doc = concat!("Get the field `", "value", "`")]
-    pub fn value(&self) -> tree_sitter_lib::NodeResult<'tree, Expression<'tree>> {
-        self.0
-            .child_by_field_name("value")
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
     #[doc = concat!("Get the field `", "pattern", "`")]
     pub fn pattern(&self) -> tree_sitter_lib::NodeResult<'tree, Pattern<'tree>> {
         self.0
             .child_by_field_name("pattern")
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
+    #[doc = concat!("Get the field `", "value", "`")]
+    pub fn value(&self) -> tree_sitter_lib::NodeResult<'tree, Expression<'tree>> {
+        self.0
+            .child_by_field_name("value")
             .expect(
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
@@ -2876,14 +2876,6 @@ impl<'tree> tree_sitter_lib::TypedNode<'tree> for FunctionItem<'tree> {
     }
 }
 impl<'tree> FunctionItem<'tree> {
-    #[doc = concat!("Get the field `", "parameters", "`")]
-    pub fn parameters(&self) -> tree_sitter_lib::NodeResult<'tree, Parameters<'tree>> {
-        self.0
-            .child_by_field_name("parameters")
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
     #[doc = concat!("Get the field `", "body", "`")]
     pub fn body(&self) -> tree_sitter_lib::NodeResult<'tree, Block<'tree>> {
         self.0
@@ -2905,17 +2897,25 @@ impl<'tree> FunctionItem<'tree> {
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
     }
-    #[doc = concat!("Get the field `", "type_parameters", "`")]
-    pub fn type_parameters(
-        &self,
-    ) -> Option<tree_sitter_lib::NodeResult<'tree, TypeParameters<'tree>>> {
-        self.0.child_by_field_name("type_parameters")
+    #[doc = concat!("Get the field `", "parameters", "`")]
+    pub fn parameters(&self) -> tree_sitter_lib::NodeResult<'tree, Parameters<'tree>> {
+        self.0
+            .child_by_field_name("parameters")
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
     }
     #[doc = concat!("Get the field `", "return_type", "`")]
     pub fn return_type(
         &self,
     ) -> Option<tree_sitter_lib::NodeResult<'tree, Type<'tree>>> {
         self.0.child_by_field_name("return_type")
+    }
+    #[doc = concat!("Get the field `", "type_parameters", "`")]
+    pub fn type_parameters(
+        &self,
+    ) -> Option<tree_sitter_lib::NodeResult<'tree, TypeParameters<'tree>>> {
+        self.0.child_by_field_name("type_parameters")
     }
     ///Get the node's children
     pub fn children(
@@ -3137,12 +3137,6 @@ impl<'tree> tree_sitter_lib::TypedNode<'tree> for FunctionType<'tree> {
     }
 }
 impl<'tree> FunctionType<'tree> {
-    #[doc = concat!("Get the field `", "return_type", "`")]
-    pub fn return_type(
-        &self,
-    ) -> Option<tree_sitter_lib::NodeResult<'tree, Type<'tree>>> {
-        self.0.child_by_field_name("return_type")
-    }
     #[doc = concat!("Get the field `", "parameters", "`")]
     pub fn parameters(&self) -> tree_sitter_lib::NodeResult<'tree, Parameters<'tree>> {
         self.0
@@ -3150,6 +3144,12 @@ impl<'tree> FunctionType<'tree> {
             .expect(
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
+    }
+    #[doc = concat!("Get the field `", "return_type", "`")]
+    pub fn return_type(
+        &self,
+    ) -> Option<tree_sitter_lib::NodeResult<'tree, Type<'tree>>> {
+        self.0.child_by_field_name("return_type")
     }
     #[doc = concat!("Get the field `", "trait", "`")]
     pub fn r#trait(
@@ -3234,16 +3234,6 @@ impl<'tree> tree_sitter_lib::TypedNode<'tree> for GenericFunction<'tree> {
     }
 }
 impl<'tree> GenericFunction<'tree> {
-    #[doc = concat!("Get the field `", "type_arguments", "`")]
-    pub fn type_arguments(
-        &self,
-    ) -> tree_sitter_lib::NodeResult<'tree, TypeArguments<'tree>> {
-        self.0
-            .child_by_field_name("type_arguments")
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
     #[doc = concat!("Get the field `", "function", "`")]
     pub fn function(
         &self,
@@ -3257,6 +3247,16 @@ impl<'tree> GenericFunction<'tree> {
     > {
         self.0
             .child_by_field_name("function")
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
+    #[doc = concat!("Get the field `", "type_arguments", "`")]
+    pub fn type_arguments(
+        &self,
+    ) -> tree_sitter_lib::NodeResult<'tree, TypeArguments<'tree>> {
+        self.0
+            .child_by_field_name("type_arguments")
             .expect(
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
@@ -3286,16 +3286,6 @@ impl<'tree> tree_sitter_lib::TypedNode<'tree> for GenericType<'tree> {
     }
 }
 impl<'tree> GenericType<'tree> {
-    #[doc = concat!("Get the field `", "type_arguments", "`")]
-    pub fn type_arguments(
-        &self,
-    ) -> tree_sitter_lib::NodeResult<'tree, TypeArguments<'tree>> {
-        self.0
-            .child_by_field_name("type_arguments")
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
     #[doc = concat!("Get the field `", "type", "`")]
     pub fn r#type(
         &self,
@@ -3309,6 +3299,16 @@ impl<'tree> GenericType<'tree> {
     > {
         self.0
             .child_by_field_name("type")
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
+    #[doc = concat!("Get the field `", "type_arguments", "`")]
+    pub fn type_arguments(
+        &self,
+    ) -> tree_sitter_lib::NodeResult<'tree, TypeArguments<'tree>> {
+        self.0
+            .child_by_field_name("type_arguments")
             .expect(
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
@@ -3432,13 +3432,11 @@ impl<'tree> tree_sitter_lib::TypedNode<'tree> for IfExpression<'tree> {
     }
 }
 impl<'tree> IfExpression<'tree> {
-    #[doc = concat!("Get the field `", "consequence", "`")]
-    pub fn consequence(&self) -> tree_sitter_lib::NodeResult<'tree, Block<'tree>> {
-        self.0
-            .child_by_field_name("consequence")
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
+    #[doc = concat!("Get the field `", "alternative", "`")]
+    pub fn alternative(
+        &self,
+    ) -> Option<tree_sitter_lib::NodeResult<'tree, ElseClause<'tree>>> {
+        self.0.child_by_field_name("alternative")
     }
     #[doc = concat!("Get the field `", "condition", "`")]
     pub fn condition(
@@ -3457,11 +3455,13 @@ impl<'tree> IfExpression<'tree> {
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
     }
-    #[doc = concat!("Get the field `", "alternative", "`")]
-    pub fn alternative(
-        &self,
-    ) -> Option<tree_sitter_lib::NodeResult<'tree, ElseClause<'tree>>> {
-        self.0.child_by_field_name("alternative")
+    #[doc = concat!("Get the field `", "consequence", "`")]
+    pub fn consequence(&self) -> tree_sitter_lib::NodeResult<'tree, Block<'tree>> {
+        self.0
+            .child_by_field_name("consequence")
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
     }
 }
 #[doc = concat!("Typed node `", "impl_item", "`")]
@@ -3488,11 +3488,11 @@ impl<'tree> tree_sitter_lib::TypedNode<'tree> for ImplItem<'tree> {
     }
 }
 impl<'tree> ImplItem<'tree> {
-    #[doc = concat!("Get the field `", "type_parameters", "`")]
-    pub fn type_parameters(
+    #[doc = concat!("Get the field `", "body", "`")]
+    pub fn body(
         &self,
-    ) -> Option<tree_sitter_lib::NodeResult<'tree, TypeParameters<'tree>>> {
-        self.0.child_by_field_name("type_parameters")
+    ) -> Option<tree_sitter_lib::NodeResult<'tree, DeclarationList<'tree>>> {
+        self.0.child_by_field_name("body")
     }
     #[doc = concat!("Get the field `", "trait", "`")]
     pub fn r#trait(
@@ -3509,12 +3509,6 @@ impl<'tree> ImplItem<'tree> {
     > {
         self.0.child_by_field_name("trait")
     }
-    #[doc = concat!("Get the field `", "body", "`")]
-    pub fn body(
-        &self,
-    ) -> Option<tree_sitter_lib::NodeResult<'tree, DeclarationList<'tree>>> {
-        self.0.child_by_field_name("body")
-    }
     #[doc = concat!("Get the field `", "type", "`")]
     pub fn r#type(&self) -> tree_sitter_lib::NodeResult<'tree, Type<'tree>> {
         self.0
@@ -3522,6 +3516,12 @@ impl<'tree> ImplItem<'tree> {
             .expect(
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
+    }
+    #[doc = concat!("Get the field `", "type_parameters", "`")]
+    pub fn type_parameters(
+        &self,
+    ) -> Option<tree_sitter_lib::NodeResult<'tree, TypeParameters<'tree>>> {
+        self.0.child_by_field_name("type_parameters")
     }
     ///Get the node's child
     pub fn child(
@@ -3732,10 +3732,6 @@ impl<'tree> tree_sitter_lib::TypedNode<'tree> for LetDeclaration<'tree> {
     }
 }
 impl<'tree> LetDeclaration<'tree> {
-    #[doc = concat!("Get the field `", "type", "`")]
-    pub fn r#type(&self) -> Option<tree_sitter_lib::NodeResult<'tree, Type<'tree>>> {
-        self.0.child_by_field_name("type")
-    }
     #[doc = concat!("Get the field `", "alternative", "`")]
     pub fn alternative(
         &self,
@@ -3749,6 +3745,10 @@ impl<'tree> LetDeclaration<'tree> {
             .expect(
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
+    }
+    #[doc = concat!("Get the field `", "type", "`")]
+    pub fn r#type(&self) -> Option<tree_sitter_lib::NodeResult<'tree, Type<'tree>>> {
+        self.0.child_by_field_name("type")
     }
     #[doc = concat!("Get the field `", "value", "`")]
     pub fn value(
@@ -3983,18 +3983,18 @@ impl<'tree> tree_sitter_lib::TypedNode<'tree> for MacroRule<'tree> {
     }
 }
 impl<'tree> MacroRule<'tree> {
-    #[doc = concat!("Get the field `", "right", "`")]
-    pub fn right(&self) -> tree_sitter_lib::NodeResult<'tree, TokenTree<'tree>> {
-        self.0
-            .child_by_field_name("right")
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
     #[doc = concat!("Get the field `", "left", "`")]
     pub fn left(&self) -> tree_sitter_lib::NodeResult<'tree, TokenTreePattern<'tree>> {
         self.0
             .child_by_field_name("left")
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
+    #[doc = concat!("Get the field `", "right", "`")]
+    pub fn right(&self) -> tree_sitter_lib::NodeResult<'tree, TokenTree<'tree>> {
+        self.0
+            .child_by_field_name("right")
             .expect(
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
@@ -4024,18 +4024,18 @@ impl<'tree> tree_sitter_lib::TypedNode<'tree> for MatchArm<'tree> {
     }
 }
 impl<'tree> MatchArm<'tree> {
-    #[doc = concat!("Get the field `", "value", "`")]
-    pub fn value(&self) -> tree_sitter_lib::NodeResult<'tree, Expression<'tree>> {
-        self.0
-            .child_by_field_name("value")
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
     #[doc = concat!("Get the field `", "pattern", "`")]
     pub fn pattern(&self) -> tree_sitter_lib::NodeResult<'tree, MatchPattern<'tree>> {
         self.0
             .child_by_field_name("pattern")
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
+    #[doc = concat!("Get the field `", "value", "`")]
+    pub fn value(&self) -> tree_sitter_lib::NodeResult<'tree, Expression<'tree>> {
+        self.0
+            .child_by_field_name("value")
             .expect(
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
@@ -4207,6 +4207,12 @@ impl<'tree> tree_sitter_lib::TypedNode<'tree> for ModItem<'tree> {
     }
 }
 impl<'tree> ModItem<'tree> {
+    #[doc = concat!("Get the field `", "body", "`")]
+    pub fn body(
+        &self,
+    ) -> Option<tree_sitter_lib::NodeResult<'tree, DeclarationList<'tree>>> {
+        self.0.child_by_field_name("body")
+    }
     #[doc = concat!("Get the field `", "name", "`")]
     pub fn name(&self) -> tree_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
         self.0
@@ -4214,12 +4220,6 @@ impl<'tree> ModItem<'tree> {
             .expect(
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
-    }
-    #[doc = concat!("Get the field `", "body", "`")]
-    pub fn body(
-        &self,
-    ) -> Option<tree_sitter_lib::NodeResult<'tree, DeclarationList<'tree>>> {
-        self.0.child_by_field_name("body")
     }
     ///Get the node's child
     pub fn child(
@@ -4354,6 +4354,14 @@ impl<'tree> tree_sitter_lib::TypedNode<'tree> for OptionalTypeParameter<'tree> {
     }
 }
 impl<'tree> OptionalTypeParameter<'tree> {
+    #[doc = concat!("Get the field `", "default_type", "`")]
+    pub fn default_type(&self) -> tree_sitter_lib::NodeResult<'tree, Type<'tree>> {
+        self.0
+            .child_by_field_name("default_type")
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
     #[doc = concat!("Get the field `", "name", "`")]
     pub fn name(
         &self,
@@ -4366,14 +4374,6 @@ impl<'tree> OptionalTypeParameter<'tree> {
     > {
         self.0
             .child_by_field_name("name")
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
-    #[doc = concat!("Get the field `", "default_type", "`")]
-    pub fn default_type(&self) -> tree_sitter_lib::NodeResult<'tree, Type<'tree>> {
-        self.0
-            .child_by_field_name("default_type")
             .expect(
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
@@ -4726,18 +4726,18 @@ impl<'tree> tree_sitter_lib::TypedNode<'tree> for QualifiedType<'tree> {
     }
 }
 impl<'tree> QualifiedType<'tree> {
-    #[doc = concat!("Get the field `", "type", "`")]
-    pub fn r#type(&self) -> tree_sitter_lib::NodeResult<'tree, Type<'tree>> {
-        self.0
-            .child_by_field_name("type")
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
     #[doc = concat!("Get the field `", "alias", "`")]
     pub fn alias(&self) -> tree_sitter_lib::NodeResult<'tree, Type<'tree>> {
         self.0
             .child_by_field_name("alias")
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
+    #[doc = concat!("Get the field `", "type", "`")]
+    pub fn r#type(&self) -> tree_sitter_lib::NodeResult<'tree, Type<'tree>> {
+        self.0
+            .child_by_field_name("type")
             .expect(
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
@@ -5244,6 +5244,14 @@ impl<'tree> tree_sitter_lib::TypedNode<'tree> for ScopedTypeIdentifier<'tree> {
     }
 }
 impl<'tree> ScopedTypeIdentifier<'tree> {
+    #[doc = concat!("Get the field `", "name", "`")]
+    pub fn name(&self) -> tree_sitter_lib::NodeResult<'tree, TypeIdentifier<'tree>> {
+        self.0
+            .child_by_field_name("name")
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
     #[doc = concat!("Get the field `", "path", "`")]
     pub fn path(
         &self,
@@ -5263,14 +5271,6 @@ impl<'tree> ScopedTypeIdentifier<'tree> {
         >,
     > {
         self.0.child_by_field_name("path")
-    }
-    #[doc = concat!("Get the field `", "name", "`")]
-    pub fn name(&self) -> tree_sitter_lib::NodeResult<'tree, TypeIdentifier<'tree>> {
-        self.0
-            .child_by_field_name("name")
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
     }
 }
 #[doc = concat!("Typed node `", "scoped_use_list", "`")]
@@ -5594,12 +5594,6 @@ impl<'tree> tree_sitter_lib::TypedNode<'tree> for StaticItem<'tree> {
     }
 }
 impl<'tree> StaticItem<'tree> {
-    #[doc = concat!("Get the field `", "value", "`")]
-    pub fn value(
-        &self,
-    ) -> Option<tree_sitter_lib::NodeResult<'tree, Expression<'tree>>> {
-        self.0.child_by_field_name("value")
-    }
     #[doc = concat!("Get the field `", "name", "`")]
     pub fn name(&self) -> tree_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
         self.0
@@ -5615,6 +5609,12 @@ impl<'tree> StaticItem<'tree> {
             .expect(
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
+    }
+    #[doc = concat!("Get the field `", "value", "`")]
+    pub fn value(
+        &self,
+    ) -> Option<tree_sitter_lib::NodeResult<'tree, Expression<'tree>>> {
+        self.0.child_by_field_name("value")
     }
     ///Get the node's children
     pub fn children(
@@ -6501,11 +6501,11 @@ impl<'tree> TraitItem<'tree> {
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
     }
-    #[doc = concat!("Get the field `", "type_parameters", "`")]
-    pub fn type_parameters(
+    #[doc = concat!("Get the field `", "bounds", "`")]
+    pub fn bounds(
         &self,
-    ) -> Option<tree_sitter_lib::NodeResult<'tree, TypeParameters<'tree>>> {
-        self.0.child_by_field_name("type_parameters")
+    ) -> Option<tree_sitter_lib::NodeResult<'tree, TraitBounds<'tree>>> {
+        self.0.child_by_field_name("bounds")
     }
     #[doc = concat!("Get the field `", "name", "`")]
     pub fn name(&self) -> tree_sitter_lib::NodeResult<'tree, TypeIdentifier<'tree>> {
@@ -6515,11 +6515,11 @@ impl<'tree> TraitItem<'tree> {
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
     }
-    #[doc = concat!("Get the field `", "bounds", "`")]
-    pub fn bounds(
+    #[doc = concat!("Get the field `", "type_parameters", "`")]
+    pub fn type_parameters(
         &self,
-    ) -> Option<tree_sitter_lib::NodeResult<'tree, TraitBounds<'tree>>> {
-        self.0.child_by_field_name("bounds")
+    ) -> Option<tree_sitter_lib::NodeResult<'tree, TypeParameters<'tree>>> {
+        self.0.child_by_field_name("type_parameters")
     }
     ///Get the node's children
     pub fn children(
@@ -6900,18 +6900,18 @@ impl<'tree> tree_sitter_lib::TypedNode<'tree> for TypeBinding<'tree> {
     }
 }
 impl<'tree> TypeBinding<'tree> {
-    #[doc = concat!("Get the field `", "type", "`")]
-    pub fn r#type(&self) -> tree_sitter_lib::NodeResult<'tree, Type<'tree>> {
-        self.0
-            .child_by_field_name("type")
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
     #[doc = concat!("Get the field `", "name", "`")]
     pub fn name(&self) -> tree_sitter_lib::NodeResult<'tree, TypeIdentifier<'tree>> {
         self.0
             .child_by_field_name("name")
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
+    #[doc = concat!("Get the field `", "type", "`")]
+    pub fn r#type(&self) -> tree_sitter_lib::NodeResult<'tree, Type<'tree>> {
+        self.0
+            .child_by_field_name("type")
             .expect(
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
@@ -6988,18 +6988,18 @@ impl<'tree> tree_sitter_lib::TypedNode<'tree> for TypeItem<'tree> {
     }
 }
 impl<'tree> TypeItem<'tree> {
-    #[doc = concat!("Get the field `", "type", "`")]
-    pub fn r#type(&self) -> tree_sitter_lib::NodeResult<'tree, Type<'tree>> {
-        self.0
-            .child_by_field_name("type")
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
     #[doc = concat!("Get the field `", "name", "`")]
     pub fn name(&self) -> tree_sitter_lib::NodeResult<'tree, TypeIdentifier<'tree>> {
         self.0
             .child_by_field_name("name")
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
+    #[doc = concat!("Get the field `", "type", "`")]
+    pub fn r#type(&self) -> tree_sitter_lib::NodeResult<'tree, Type<'tree>> {
+        self.0
+            .child_by_field_name("type")
             .expect(
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
@@ -7170,12 +7170,6 @@ impl<'tree> UnionItem<'tree> {
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
     }
-    #[doc = concat!("Get the field `", "type_parameters", "`")]
-    pub fn type_parameters(
-        &self,
-    ) -> Option<tree_sitter_lib::NodeResult<'tree, TypeParameters<'tree>>> {
-        self.0.child_by_field_name("type_parameters")
-    }
     #[doc = concat!("Get the field `", "name", "`")]
     pub fn name(&self) -> tree_sitter_lib::NodeResult<'tree, TypeIdentifier<'tree>> {
         self.0
@@ -7183,6 +7177,12 @@ impl<'tree> UnionItem<'tree> {
             .expect(
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
+    }
+    #[doc = concat!("Get the field `", "type_parameters", "`")]
+    pub fn type_parameters(
+        &self,
+    ) -> Option<tree_sitter_lib::NodeResult<'tree, TypeParameters<'tree>>> {
+        self.0.child_by_field_name("type_parameters")
     }
     ///Get the node's children
     pub fn children(
@@ -7752,6 +7752,14 @@ impl<'tree> tree_sitter_lib::TypedNode<'tree> for WhileExpression<'tree> {
     }
 }
 impl<'tree> WhileExpression<'tree> {
+    #[doc = concat!("Get the field `", "body", "`")]
+    pub fn body(&self) -> tree_sitter_lib::NodeResult<'tree, Block<'tree>> {
+        self.0
+            .child_by_field_name("body")
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
     #[doc = concat!("Get the field `", "condition", "`")]
     pub fn condition(
         &self,
@@ -7765,14 +7773,6 @@ impl<'tree> WhileExpression<'tree> {
     > {
         self.0
             .child_by_field_name("condition")
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
-    #[doc = concat!("Get the field `", "body", "`")]
-    pub fn body(&self) -> tree_sitter_lib::NodeResult<'tree, Block<'tree>> {
-        self.0
-            .child_by_field_name("body")
             .expect(
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
