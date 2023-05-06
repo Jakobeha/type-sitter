@@ -18,5 +18,4 @@ serde_json = "1.0.96"
 syn = "2.0.15"
 
 [dev-dependencies]
-rust-format = { version = "0.3.4", features = ["token_stream"] }
-lazy_static = "1.4.0"
+prettyplease = "0.2.4"

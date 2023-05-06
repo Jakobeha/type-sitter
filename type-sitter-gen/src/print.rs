@@ -141,7 +141,7 @@ impl Children {
                 #[doc = #children_doc]
                 #nonempty_doc
                 pub fn #ident(&self, c: &mut tree_sitter::TreeCursor<'tree>) -> impl Iterator<Item = tree_sitter_lib::NodeResult<'tree, #child_type>> {
-                    #children_body.map(#child_type::try_from)
+                    #children_body.map(<#child_type as TryFrom<_>>::try_from)
                 }
             };
             let child_i_fn = child_i.map(|(child_i_name, child_i_doc, child_i_body)| {
@@ -149,7 +149,7 @@ impl Children {
                 quote! {
                     #[doc = #child_i_doc]
                     pub fn #child_i_ident(&self, i: usize) -> Option<tree_sitter_lib::NodeResult<'tree, #child_type>> {
-                        #child_i_body.map(#child_type::try_from)
+                        #child_i_body.map(<#child_type as TryFrom<_>>::try_from)
                     }
                 }
             });
@@ -178,8 +178,17 @@ impl Children {
 
 impl Type {
     fn print_sum_type(types: &[Type]) -> TokenStream {
-        let types = types.iter().map(Type::print_type);
-        quote! { tree_sitter_lib::Either![#(#types),*] }
+        match types.len() {
+            0 => quote! { tree_sitter_lib::either_n::Void },
+            1 => {
+                let type_ = Type::print_type(&types[0]);
+                quote! { #type_ }
+            },
+            _ => {
+                let types = types.iter().map(Type::print_type);
+                quote! { tree_sitter_lib::Either![#(#types),*] }
+            }
+        }
     }
 
     fn print_type(&self) -> TokenStream {
