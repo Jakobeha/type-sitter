@@ -1,0 +1,8 @@
+[workspace]
+
+members = [
+    "type-sitter-lib",
+    "type-sitter-gen",
+    "type-sitter-cli",
+    "type-sitter-proc",
+]
