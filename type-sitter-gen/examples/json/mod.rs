@@ -1,5 +1,7 @@
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[doc = concat!("Typed node `", "_value", "`")]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+#[automatically_derived]
 pub enum Value<'tree> {
     Array(Array<'tree>),
     False(False<'tree>),
@@ -42,8 +44,10 @@ impl<'tree> tree_sitter_lib::TypedNode<'tree> for Value<'tree> {
         }
     }
 }
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[doc = concat!("Typed node `", "array", "`")]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+#[automatically_derived]
 pub struct Array<'tree>(tree_sitter::Node<'tree>);
 impl<'tree> TryFrom<TSNode<'tree>> for Array<'tree> {
     type Error = tree_sitter_lib::IncorrectKind<'tree>;
@@ -79,8 +83,10 @@ impl<'tree> Array<'tree> {
         self.0.child(i).map(<Value<'tree> as TryFrom<_>>::try_from)
     }
 }
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[doc = concat!("Typed node `", "document", "`")]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+#[automatically_derived]
 pub struct Document<'tree>(tree_sitter::Node<'tree>);
 impl<'tree> TryFrom<TSNode<'tree>> for Document<'tree> {
     type Error = tree_sitter_lib::IncorrectKind<'tree>;
@@ -116,8 +122,10 @@ impl<'tree> Document<'tree> {
         self.0.child(i).map(<Value<'tree> as TryFrom<_>>::try_from)
     }
 }
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[doc = concat!("Typed node `", "object", "`")]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+#[automatically_derived]
 pub struct Object<'tree>(tree_sitter::Node<'tree>);
 impl<'tree> TryFrom<TSNode<'tree>> for Object<'tree> {
     type Error = tree_sitter_lib::IncorrectKind<'tree>;
@@ -153,8 +161,10 @@ impl<'tree> Object<'tree> {
         self.0.child(i).map(<Pair<'tree> as TryFrom<_>>::try_from)
     }
 }
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[doc = concat!("Typed node `", "pair", "`")]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+#[automatically_derived]
 pub struct Pair<'tree>(tree_sitter::Node<'tree>);
 impl<'tree> TryFrom<TSNode<'tree>> for Pair<'tree> {
     type Error = tree_sitter_lib::IncorrectKind<'tree>;
@@ -175,6 +185,19 @@ impl<'tree> tree_sitter_lib::TypedNode<'tree> for Pair<'tree> {
     }
 }
 impl<'tree> Pair<'tree> {
+    #[doc = concat!("Get the field `", "key", "`")]
+    pub fn key(
+        &self,
+    ) -> tree_sitter_lib::NodeResult<
+        'tree,
+        tree_sitter_lib::either_n::Either2<Number<'tree>, String<'tree>>,
+    > {
+        self.0
+            .child_by_field_name("key")
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
     #[doc = concat!("Get the field `", "value", "`")]
     pub fn value(&self) -> tree_sitter_lib::NodeResult<'tree, Value<'tree>> {
         self.0
@@ -183,22 +206,11 @@ impl<'tree> Pair<'tree> {
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
     }
-    #[doc = concat!("Get the field `", "key", "`")]
-    pub fn key(
-        &self,
-    ) -> tree_sitter_lib::NodeResult<
-        'tree,
-        tree_sitter_lib::Either![Number < 'tree >, String < 'tree >],
-    > {
-        self.0
-            .child_by_field_name("key")
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
 }
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[doc = concat!("Typed node `", "string", "`")]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+#[automatically_derived]
 pub struct String<'tree>(tree_sitter::Node<'tree>);
 impl<'tree> TryFrom<TSNode<'tree>> for String<'tree> {
     type Error = tree_sitter_lib::IncorrectKind<'tree>;
@@ -226,8 +238,10 @@ impl<'tree> String<'tree> {
         self.0.child(0)
     }
 }
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[doc = concat!("Typed node `", "string_content", "`")]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+#[automatically_derived]
 pub struct StringContent<'tree>(tree_sitter::Node<'tree>);
 impl<'tree> TryFrom<TSNode<'tree>> for StringContent<'tree> {
     type Error = tree_sitter_lib::IncorrectKind<'tree>;
@@ -265,8 +279,10 @@ impl<'tree> StringContent<'tree> {
         self.0.child(i).map(<EscapeSequence<'tree> as TryFrom<_>>::try_from)
     }
 }
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[doc = concat!("Typed node `", "\"", "`")]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+#[automatically_derived]
 pub struct DoubleQuote<'tree>(tree_sitter::Node<'tree>);
 impl<'tree> TryFrom<TSNode<'tree>> for DoubleQuote<'tree> {
     type Error = tree_sitter_lib::IncorrectKind<'tree>;
@@ -287,8 +303,10 @@ impl<'tree> tree_sitter_lib::TypedNode<'tree> for DoubleQuote<'tree> {
     }
 }
 impl<'tree> DoubleQuote<'tree> {}
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[doc = concat!("Typed node `", ",", "`")]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+#[automatically_derived]
 pub struct Comma<'tree>(tree_sitter::Node<'tree>);
 impl<'tree> TryFrom<TSNode<'tree>> for Comma<'tree> {
     type Error = tree_sitter_lib::IncorrectKind<'tree>;
@@ -309,8 +327,10 @@ impl<'tree> tree_sitter_lib::TypedNode<'tree> for Comma<'tree> {
     }
 }
 impl<'tree> Comma<'tree> {}
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[doc = concat!("Typed node `", ":", "`")]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+#[automatically_derived]
 pub struct Colon<'tree>(tree_sitter::Node<'tree>);
 impl<'tree> TryFrom<TSNode<'tree>> for Colon<'tree> {
     type Error = tree_sitter_lib::IncorrectKind<'tree>;
@@ -331,8 +351,10 @@ impl<'tree> tree_sitter_lib::TypedNode<'tree> for Colon<'tree> {
     }
 }
 impl<'tree> Colon<'tree> {}
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[doc = concat!("Typed node `", "[", "`")]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+#[automatically_derived]
 pub struct LBracket<'tree>(tree_sitter::Node<'tree>);
 impl<'tree> TryFrom<TSNode<'tree>> for LBracket<'tree> {
     type Error = tree_sitter_lib::IncorrectKind<'tree>;
@@ -353,8 +375,10 @@ impl<'tree> tree_sitter_lib::TypedNode<'tree> for LBracket<'tree> {
     }
 }
 impl<'tree> LBracket<'tree> {}
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[doc = concat!("Typed node `", "]", "`")]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+#[automatically_derived]
 pub struct RBracket<'tree>(tree_sitter::Node<'tree>);
 impl<'tree> TryFrom<TSNode<'tree>> for RBracket<'tree> {
     type Error = tree_sitter_lib::IncorrectKind<'tree>;
@@ -375,8 +399,10 @@ impl<'tree> tree_sitter_lib::TypedNode<'tree> for RBracket<'tree> {
     }
 }
 impl<'tree> RBracket<'tree> {}
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[doc = concat!("Typed node `", "comment", "`")]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+#[automatically_derived]
 pub struct Comment<'tree>(tree_sitter::Node<'tree>);
 impl<'tree> TryFrom<TSNode<'tree>> for Comment<'tree> {
     type Error = tree_sitter_lib::IncorrectKind<'tree>;
@@ -397,8 +423,10 @@ impl<'tree> tree_sitter_lib::TypedNode<'tree> for Comment<'tree> {
     }
 }
 impl<'tree> Comment<'tree> {}
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[doc = concat!("Typed node `", "escape_sequence", "`")]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+#[automatically_derived]
 pub struct EscapeSequence<'tree>(tree_sitter::Node<'tree>);
 impl<'tree> TryFrom<TSNode<'tree>> for EscapeSequence<'tree> {
     type Error = tree_sitter_lib::IncorrectKind<'tree>;
@@ -419,8 +447,10 @@ impl<'tree> tree_sitter_lib::TypedNode<'tree> for EscapeSequence<'tree> {
     }
 }
 impl<'tree> EscapeSequence<'tree> {}
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[doc = concat!("Typed node `", "false", "`")]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+#[automatically_derived]
 pub struct False<'tree>(tree_sitter::Node<'tree>);
 impl<'tree> TryFrom<TSNode<'tree>> for False<'tree> {
     type Error = tree_sitter_lib::IncorrectKind<'tree>;
@@ -441,8 +471,10 @@ impl<'tree> tree_sitter_lib::TypedNode<'tree> for False<'tree> {
     }
 }
 impl<'tree> False<'tree> {}
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[doc = concat!("Typed node `", "null", "`")]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+#[automatically_derived]
 pub struct Null<'tree>(tree_sitter::Node<'tree>);
 impl<'tree> TryFrom<TSNode<'tree>> for Null<'tree> {
     type Error = tree_sitter_lib::IncorrectKind<'tree>;
@@ -463,8 +495,10 @@ impl<'tree> tree_sitter_lib::TypedNode<'tree> for Null<'tree> {
     }
 }
 impl<'tree> Null<'tree> {}
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[doc = concat!("Typed node `", "number", "`")]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+#[automatically_derived]
 pub struct Number<'tree>(tree_sitter::Node<'tree>);
 impl<'tree> TryFrom<TSNode<'tree>> for Number<'tree> {
     type Error = tree_sitter_lib::IncorrectKind<'tree>;
@@ -485,8 +519,10 @@ impl<'tree> tree_sitter_lib::TypedNode<'tree> for Number<'tree> {
     }
 }
 impl<'tree> Number<'tree> {}
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[doc = concat!("Typed node `", "true", "`")]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+#[automatically_derived]
 pub struct True<'tree>(tree_sitter::Node<'tree>);
 impl<'tree> TryFrom<TSNode<'tree>> for True<'tree> {
     type Error = tree_sitter_lib::IncorrectKind<'tree>;
@@ -507,8 +543,10 @@ impl<'tree> tree_sitter_lib::TypedNode<'tree> for True<'tree> {
     }
 }
 impl<'tree> True<'tree> {}
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[doc = concat!("Typed node `", "{", "`")]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+#[automatically_derived]
 pub struct LBrace<'tree>(tree_sitter::Node<'tree>);
 impl<'tree> TryFrom<TSNode<'tree>> for LBrace<'tree> {
     type Error = tree_sitter_lib::IncorrectKind<'tree>;
@@ -529,8 +567,10 @@ impl<'tree> tree_sitter_lib::TypedNode<'tree> for LBrace<'tree> {
     }
 }
 impl<'tree> LBrace<'tree> {}
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[doc = concat!("Typed node `", "}", "`")]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+#[automatically_derived]
 pub struct RBrace<'tree>(tree_sitter::Node<'tree>);
 impl<'tree> TryFrom<TSNode<'tree>> for RBrace<'tree> {
     type Error = tree_sitter_lib::IncorrectKind<'tree>;

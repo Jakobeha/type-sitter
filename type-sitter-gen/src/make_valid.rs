@@ -2,7 +2,7 @@ use std::fmt::Write;
 
 const PUNCTUATION_TABLE: [(char, &'static str); 35] = [
     ('&', "And"), ('|', "Or"), ('!', "Not"), ('=', "Eq"), ('<', "Lt"),
-    ('>', "Gt"), ('+', "Add"), ('-', "_"), ('*', "Mul"), ('/', "Div"),
+    ('>', "Gt"), ('+', "Add"), ('-', "Sub"), ('*', "Mul"), ('/', "Div"),
     ('~', "BitNot"), ('%', "Mod"), ('^', "BitXor"), ('?', "Question"), (':', "Colon"),
     ('.', "Dot"), (',', "Comma"), (';', "Semicolon"), ('(', "LParen"), (')', "RParen"),
     ('[', "LBracket"), (']', "RBracket"), ('{', "LBrace"), ('}', "RBrace"), ('\\', "Backslash"),

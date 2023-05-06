@@ -1,7 +1,7 @@
 use std::borrow::Cow;
 use proc_macro2::TokenStream;
 use quote::quote;
-use crate::node_types::{Children, NodeName, NodeType, NodeTypeKind, Type};
+use crate::node_types::{Children, NodeName, NodeType, NodeTypeKind};
 use crate::mk_syntax::{ident, lit_str};
 
 impl NodeType {
@@ -16,12 +16,14 @@ impl NodeType {
                     panic!("Node types with subtypes must be implicit (start with \"_\"): _{}", sexp_name)
                 }
 
-                let variants = subtypes.iter().map(Type::print_variant);
-                let from_cases = subtypes.iter().map(Type::print_from_case);
-                let node_cases = subtypes.iter().map(Type::print_node_case);
+                let variants = subtypes.iter().map(NodeName::print_variant);
+                let from_cases = subtypes.iter().map(NodeName::print_from_case);
+                let node_cases = subtypes.iter().map(NodeName::print_node_case);
                 quote! {
-                    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
                     #[doc = concat!("Typed node `", #sexp_name, "`")]
+                    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+                    #[allow(non_camel_case_types)]
+                    #[automatically_derived]
                     pub enum #ident<'tree> {
                         #(#variants)*
                     }
@@ -87,8 +89,10 @@ impl NodeType {
                     ))
                 ));
                 quote! {
-                    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
                     #[doc = concat!("Typed node `", #sexp_name, "`")]
+                    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+                    #[allow(non_camel_case_types)]
+                    #[automatically_derived]
                     pub struct #ident<'tree>(tree_sitter::Node<'tree>);
 
                     impl<'tree> TryFrom<TSNode<'tree>> for #ident<'tree> {
@@ -136,7 +140,7 @@ impl Children {
             } else {
                 quote! {}
             };
-            let child_type = Type::print_sum_type(&self.types);
+            let child_type = NodeName::print_sum_type(&self.types);
             let children_fn = quote! {
                 #[doc = #children_doc]
                 #nonempty_doc
@@ -159,7 +163,7 @@ impl Children {
             }
         } else {
             let ident = ident!(&child_name, "node field name converted into a rust method name (this is a library error, please report)");
-            let mut child_type = Type::print_sum_type(&self.types);
+            let mut child_type = NodeName::print_sum_type(&self.types);
             child_type = quote! { tree_sitter_lib::NodeResult<'tree, #child_type> };
             if self.required {
                 child_body = quote! { #child_body.expect("tree-sitter node missing its required child, there should at least be a MISSING node in its place") };
@@ -176,43 +180,50 @@ impl Children {
     }
 }
 
-impl Type {
-    fn print_sum_type(types: &[Type]) -> TokenStream {
+impl NodeName {
+    fn print_sum_type(types: &[NodeName]) -> TokenStream {
         match types.len() {
             0 => quote! { tree_sitter_lib::either_n::Void },
             1 => {
-                let type_ = Type::print_type(&types[0]);
+                let type_ = NodeName::print_type(&types[0]);
                 quote! { #type_ }
             },
+            // 26 is the largest EitherN type, otherwise it gets split into an either of eithers
+            n if n <= 26 => {
+                let types = types.iter().map(NodeName::print_type);
+                #[allow(non_snake_case)]
+                let EitherN = ident!(&format!("Either{}", n), "<won't fail>");
+                quote! { tree_sitter_lib::either_n::#EitherN<#(#types),*> }
+            }
             _ => {
-                let types = types.iter().map(Type::print_type);
+                let types = types.iter().map(NodeName::print_type);
                 quote! { tree_sitter_lib::Either![#(#types),*] }
             }
         }
     }
 
     fn print_type(&self) -> TokenStream {
-        let ident = ident!(&self.name.rust_type_name, "node kind converted into a rust type name (this is a library error, please report)");
+        let ident = ident!(&self.rust_type_name, "node kind converted into a rust type name (this is a library error, please report)");
         quote! { #ident<'tree> }
     }
 
     fn print_variant(&self) -> TokenStream {
-        let ident = ident!(&self.name.rust_type_name, "node kind converted into a rust type name (this is a library error, please report)");
+        let ident = ident!(&self.rust_type_name, "node kind converted into a rust type name (this is a library error, please report)");
         quote! {
             #ident(#ident<'tree>),
         }
     }
 
     fn print_from_case(&self) -> TokenStream {
-        let ident = ident!(&self.name.rust_type_name, "node kind converted into a rust type name (this is a library error, please report)");
-        let sexp_name_literal = lit_str(&self.name.sexp_name);
+        let ident = ident!(&self.rust_type_name, "node kind converted into a rust type name (this is a library error, please report)");
+        let sexp_name_literal = lit_str(&self.sexp_name);
         quote! {
             #sexp_name_literal => Ok(Self::#ident(#ident(node))),
         }
     }
 
     fn print_node_case(&self) -> TokenStream {
-        let ident = ident!(&self.name.rust_type_name, "node kind converted into a rust type name (this is a library error, please report)");
+        let ident = ident!(&self.rust_type_name, "node kind converted into a rust type name (this is a library error, please report)");
         quote! {
             Self::#ident(x) => x.node(),
         }
