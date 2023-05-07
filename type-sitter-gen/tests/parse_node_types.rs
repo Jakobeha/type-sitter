@@ -1,8 +1,8 @@
-use std::fs::{read_to_string, write};
+use std::fs::{create_dir, read_to_string, write};
 use std::path::Path;
 use std::str::FromStr;
 use proc_macro2::TokenStream;
-use type_sitter_gen::generate_nodes;
+use type_sitter_gen::{generate_nodes, type_sitter_lib_wrapper};
 use pretty_assertions::assert_eq;
 
 #[test]
@@ -18,9 +18,12 @@ pub fn test_parse_node_types_rust() {
 pub fn test_parse_node_types(lang: &str) {
     let input_path = Path::new(env!("CARGO_MANIFEST_DIR")).join(format!("../vendor/tree-sitter-{}", lang));
     let expected_path = Path::new(env!("CARGO_MANIFEST_DIR")).join(format!("../type-sitter-lib/tests/{}", lang));
+    if !expected_path.exists() {
+        create_dir(&expected_path).expect("Failed to create expected directory");
+    }
     let input_node_types_path = input_path.join("src/node-types.json");
     let expected_node_types_path = expected_path.join("mod.rs");
-    let node_types_code = generate_nodes(input_node_types_path).expect("Failed to generate nodes");
+    let node_types_code = generate_nodes(input_node_types_path, &type_sitter_lib_wrapper()).expect("Failed to generate nodes");
 
     if !expected_node_types_path.exists() {
         write(&expected_node_types_path, pretty_print(&node_types_code)).expect("Failed to create expected node types file");

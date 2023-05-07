@@ -1,14 +1,15 @@
 #![doc = include_str!("../README.md")]
 
+use std::convert::Infallible;
 use std::str::Utf8Error;
-use tree_sitter::Node;
-pub use either_n::*;
+#[cfg(feature = "tree-sitter-wrapper")]
+use tree_sitter_wrapper::{Bitmask, InputEdit, Node, Point, Range, TreeCursor};
+#[cfg(not(feature = "tree-sitter-wrapper"))]
+use tree_sitter::{InputEdit, Node, Point, Range, TreeCursor};
 pub use extra_or::*;
 pub use incorrect_kind::*;
 pub use unwrap_and_flatten_multi::*;
 
-/// Tagged unions of arbitrary size
-mod either_n;
 /// Many typed node accessors can return an extra node instead of what is positionally-expected,
 /// this create has the type to wrap those.
 mod extra_or;
@@ -16,6 +17,13 @@ mod extra_or;
 mod incorrect_kind;
 /// Unwrapping multiple `Try`-types at once
 mod unwrap_and_flatten_multi;
+/// Wrapper on tree-sitter's data-structures which provides convenience methods and functionality
+/// in exchange for slightly worse performance and mandatory unicode support.
+#[cfg(feature = "tree-sitter-wrapper")]
+pub mod tree_sitter_wrapper;
+
+/// Never type (for the weird case when there is an accessor that can't return anything)
+pub type Never = Infallible;
 
 /// Typed node wrapper
 pub trait TypedNode<'tree>: TryFrom<Node<'tree>, Error=IncorrectKind<'tree>> {
@@ -24,6 +32,8 @@ pub trait TypedNode<'tree>: TryFrom<Node<'tree>, Error=IncorrectKind<'tree>> {
     const KIND: &'static str;
     /// The wrapped node
     fn node(&self) -> &Node<'tree>;
+    /// The wrapped node (mutable reference, rarely needed)
+    fn node_mut(&mut self) -> &mut Node<'tree>;
     /// Assume that the node is the correct type and wrap. UB if the node is incorrect type
     #[inline]
     unsafe fn from_node_unchecked(node: Node<'tree>) -> Self {
@@ -31,21 +41,47 @@ pub trait TypedNode<'tree>: TryFrom<Node<'tree>, Error=IncorrectKind<'tree>> {
     }
 
     // region [Node] delegate
+    /// See [Node::text]
+    #[cfg(feature = "tree-sitter-wrapper")]
+    fn text(&self) -> &'tree str {
+        self.node().text()
+    }
+
+    /// See [Node::mark]
+    #[cfg(feature = "tree-sitter-wrapper")]
+    fn mark(&self, mark: Bitmask) -> Bitmask {
+        self.node().mark(mark)
+    }
+
+    /// See [Node::unmark]
+    #[cfg(feature = "tree-sitter-wrapper")]
+    fn unmark(&self, mark: Bitmask) -> Bitmask {
+        self.node().unmark(mark)
+    }
+
+    /// See [Node::get_mark]
+    #[cfg(feature = "tree-sitter-wrapper")]
+    fn get_mark(&self) -> Bitmask {
+        self.node().get_mark()
+    }
+
     /// See [Node::utf8_text]
     #[inline]
+    #[cfg(not(feature = "tree-sitter-wrapper"))]
     fn utf8_text<'a>(&self, source: &'a [u8]) -> Result<&'a str, Utf8Error> {
         self.node().utf8_text(source)
     }
 
     /// See [Node::utf16_text]
     #[inline]
+    #[cfg(not(feature = "tree-sitter-wrapper"))]
     fn utf16_text<'a>(&self, source: &'a [u16]) -> &'a [u16] {
         self.node().utf16_text(source)
     }
 
     /// See [Node::walk]
     #[inline]
-    fn walk(&self) -> tree_sitter::TreeCursor<'tree> {
+    fn walk(&self) -> TreeCursor<'tree> {
         self.node().walk()
     }
 
@@ -117,19 +153,19 @@ pub trait TypedNode<'tree>: TryFrom<Node<'tree>, Error=IncorrectKind<'tree>> {
 
     /// See [Node::start_position]
     #[inline]
-    fn start_position(&self) -> tree_sitter::Point {
+    fn start_position(&self) -> Point {
         self.node().start_position()
     }
 
     /// See [Node::end_position]
     #[inline]
-    fn end_position(&self) -> tree_sitter::Point {
+    fn end_position(&self) -> Point {
         self.node().end_position()
     }
 
     /// See [Node::range]
     #[inline]
-    fn range(&self) -> tree_sitter::Range {
+    fn range(&self) -> Range {
         self.node().range()
     }
 
@@ -137,6 +173,12 @@ pub trait TypedNode<'tree>: TryFrom<Node<'tree>, Error=IncorrectKind<'tree>> {
     #[inline]
     fn byte_range(&self) -> std::ops::Range<usize> {
         self.node().byte_range()
+    }
+
+    /// See [Node::edit]
+    #[inline]
+    fn edit(&mut self, edit: &InputEdit) {
+        self.node_mut().edit(edit)
     }
     // endregion
 }

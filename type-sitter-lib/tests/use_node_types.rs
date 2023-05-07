@@ -1,15 +1,16 @@
+#![cfg(feature = "tree-sitter-wrapper")]
+
 mod json;
 mod rust;
 
 use std::fs::read_to_string;
 use std::path::Path;
-use tree_sitter::Parser;
+use type_sitter_lib::tree_sitter_wrapper::Parser;
 use type_sitter_lib::{Either2, TypedNode};
 
 #[test]
 pub fn test_use_node_types_rust() {
-    let mut parser = Parser::new();
-    parser.set_language(tree_sitter_rust::language()).unwrap();
+    let mut parser = Parser::new(tree_sitter_rust::language()).unwrap();
     let code_path = Path::new(env!("CARGO_MANIFEST_DIR")).join("../vendor/tree-sitter-rust/bindings/rust/lib.rs");
     let code_str = read_to_string(code_path).expect("Failed to read code");
     let code_ast = parser.parse(&code_str, None).expect("Failed to parse code");

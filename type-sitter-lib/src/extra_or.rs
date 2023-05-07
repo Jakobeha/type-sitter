@@ -1,4 +1,7 @@
 use std::fmt::Debug;
+#[cfg(feature = "tree-sitter-wrapper")]
+use crate::tree_sitter_wrapper::Node;
+#[cfg(not(feature = "tree-sitter-wrapper"))]
 use tree_sitter::Node;
 use crate::{IncorrectKind, TypedNode};
 
@@ -95,6 +98,14 @@ impl<'tree, T: TypedNode<'tree>> TypedNode<'tree> for ExtraOr<'tree, T> {
         match self {
             ExtraOr::Extra(node) => node,
             ExtraOr::Regular(value) => value.node()
+        }
+    }
+
+    #[inline]
+    fn node_mut(&mut self) -> &mut Node<'tree> {
+        match self {
+            ExtraOr::Extra(node) => node,
+            ExtraOr::Regular(value) => value.node_mut()
         }
     }
 
