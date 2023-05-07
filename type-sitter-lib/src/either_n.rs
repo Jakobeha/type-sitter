@@ -44,12 +44,53 @@ macro_rules! Either {
 }
 
 macro_rules! impl_either {
+    /*(impl 1 $name:ident ($($T:ident),+) $T0:ident) => {
+    };
+    (impl $name:ident ($($T:ident),+) ()) => {};
+    (impl $name:ident ($($T:ident),+) ($T0:ident, $($Ts:ident),*)) => {
+        impl_either!(impl 1 $name ($($T),+) $T0);
+        impl_either!(impl $name ($($T),+) ($($Ts),*));
+    };*/
     ($name:ident, $num:literal, $($T:ident),+) => {
         #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
         #[doc = concat!("A tagged union of ", stringify!($num), " types")]
         pub enum $name<$($T),+> {
             $($T($T)),+
         }
+
+        impl<'tree, $($T: $crate::TypedNode<'tree>),+> TryFrom<tree_sitter::Node<'tree>> for $name<$($T),+> {
+            type Error = $crate::IncorrectKind<'tree>;
+
+            #[inline]
+            fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+                $(
+                if let Ok(value) = $T::try_from(node) {
+                    return Ok($name::$T(value))
+                }
+                )+
+                Err($crate::IncorrectKind {
+                    node,
+                    kind: <Self as $crate::TypedNode<'tree>>::KIND
+                })
+            }
+        }
+
+        impl<'tree, $($T: $crate::TypedNode<'tree>),+> $crate::TypedNode<'tree> for $name<$($T),+> {
+            const KIND: &'static str = concat!("{Either<", stringify!($($T),+), ">}");
+            /* const KIND: &'static str = {
+                $( const $T: &'static str = $T::KIND; )+
+                const_format::concatcp!(" | ", $($T, " | "),+)
+            }; */
+
+            #[inline]
+            fn node(&self) -> &tree_sitter::Node<'tree> {
+                match self {
+                    $($name::$T(value) => value.node()),+
+                }
+            }
+        }
+
+        // impl_either!(impl $name ($($T),+) ($($T),+));
     };
 }
 

@@ -12,4 +12,6 @@ edition = "2021"
 
 [dependencies]
 tree-sitter = "0.20.10"
-nonempty = "0.8.1"
+
+[dev-dependencies]
+tree-sitter-rust = { path = "../vendor/tree-sitter-rust" }

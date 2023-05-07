@@ -17,7 +17,7 @@ pub fn test_parse_node_types_rust() {
 
 pub fn test_parse_node_types(lang: &str) {
     let input_path = Path::new(env!("CARGO_MANIFEST_DIR")).join(format!("../vendor/tree-sitter-{}", lang));
-    let expected_path = Path::new(env!("CARGO_MANIFEST_DIR")).join(format!("examples/{}", lang));
+    let expected_path = Path::new(env!("CARGO_MANIFEST_DIR")).join(format!("../type-sitter-lib/tests/{}", lang));
     let input_node_types_path = input_path.join("src/node-types.json");
     let expected_node_types_path = expected_path.join("mod.rs");
     let node_types_code = generate_nodes(input_node_types_path).expect("Failed to generate nodes");

@@ -23,26 +23,31 @@ impl NodeType {
                     #[doc = concat!("Typed node `", #sexp_name, "`")]
                     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
                     #[allow(non_camel_case_types)]
-                    #[automatically_derived]
                     pub enum #ident<'tree> {
                         #(#variants)*
                     }
 
-                    impl<'tree> TryFrom<TSNode<'tree>> for #ident<'tree> {
-                        type Error = tree_sitter_lib::IncorrectKind<'tree>;
+                    #[automatically_derived]
+                    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for #ident<'tree> {
+                        type Error = type_sitter_lib::IncorrectKind<'tree>;
 
-                        fn try_from(node: TSNode<'tree>) -> Result<Self, Self::Error> {
+                        #[inline]
+                        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
                             match node.kind() {
                                 #(#from_cases)*
-                                _ => Err(tree_sitter_lib::IncorrectKind {
+                                _ => Err(type_sitter_lib::IncorrectKind {
                                     node,
-                                    kind: #sexp_name_literal,
+                                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
                                 })
                             }
                         }
                     }
 
-                    impl<'tree> tree_sitter_lib::TypedNode<'tree> for #ident<'tree> {
+                    #[automatically_derived]
+                    impl<'tree> type_sitter_lib::TypedNode<'tree> for #ident<'tree> {
+                        const KIND: &'static str = #sexp_name_literal;
+
+                        #[inline]
                         fn node(&self) -> &tree_sitter::Node<'tree> {
                             match self {
                                 #(#node_cases)*
@@ -61,7 +66,7 @@ impl NodeType {
                         (
                             Cow::Owned(format!("{}s", name)),
                             quote!(concat!("Get the field `", #name_sexp_literal, "`")),
-                            quote! { self.0.children_by_field_name(#name_sexp_literal, &mut c) }
+                            quote! { self.0.children_by_field_name(#name_sexp_literal, c) }
                         ),
                         (
                             Cow::Borrowed(name),
@@ -75,7 +80,7 @@ impl NodeType {
                     (
                         Cow::Borrowed("children"),
                         quote!("Get the node's children"),
-                        quote! { self.0.children(&mut c) }
+                        quote! { self.0.children(c) }
                     ),
                     (
                         Cow::Borrowed("child"),
@@ -92,30 +97,41 @@ impl NodeType {
                     #[doc = concat!("Typed node `", #sexp_name, "`")]
                     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
                     #[allow(non_camel_case_types)]
-                    #[automatically_derived]
                     pub struct #ident<'tree>(tree_sitter::Node<'tree>);
 
-                    impl<'tree> TryFrom<TSNode<'tree>> for #ident<'tree> {
-                        type Error = tree_sitter_lib::IncorrectKind<'tree>;
+                    #[automatically_derived]
+                    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for #ident<'tree> {
+                        type Error = type_sitter_lib::IncorrectKind<'tree>;
 
-                        fn try_from(node: TSNode<'tree>) -> Result<Self, Self::Error> {
+                        #[inline]
+                        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
                             if node.kind() == #sexp_name_literal {
                                 Ok(Self(node))
                             } else {
-                                Err(tree_sitter_lib::IncorrectKind {
+                                Err(type_sitter_lib::IncorrectKind {
                                     node,
-                                    kind: #sexp_name_literal,
+                                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
                                 })
                             }
                         }
                     }
 
-                    impl<'tree> tree_sitter_lib::TypedNode<'tree> for #ident<'tree> {
+                    #[automatically_derived]
+                    impl<'tree> type_sitter_lib::TypedNode<'tree> for #ident<'tree> {
+                        const KIND: &'static str = #sexp_name_literal;
+
+                        #[inline]
                         fn node(&self) -> &tree_sitter::Node<'tree> {
                             &self.0
                         }
+
+                        #[inline]
+                        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+                            Self(node)
+                        }
                     }
 
+                    #[automatically_derived]
                     impl<'tree> #ident<'tree> {
                         #(#field_accessors)*
                         #child_accessor
@@ -144,7 +160,9 @@ impl Children {
             let children_fn = quote! {
                 #[doc = #children_doc]
                 #nonempty_doc
-                pub fn #ident(&self, c: &mut tree_sitter::TreeCursor<'tree>) -> impl Iterator<Item = tree_sitter_lib::NodeResult<'tree, #child_type>> {
+                #[allow(dead_code)]
+                #[inline]
+                pub fn #ident<'a>(&'a self, c: &'a mut tree_sitter::TreeCursor<'tree>) -> impl Iterator<Item = type_sitter_lib::NodeResult<'tree, #child_type>> + 'a {
                     #children_body.map(<#child_type as TryFrom<_>>::try_from)
                 }
             };
@@ -152,7 +170,9 @@ impl Children {
                 let child_i_ident = ident!(&child_i_name, "node field name converted into a rust method name (this is a library error, please report)");
                 quote! {
                     #[doc = #child_i_doc]
-                    pub fn #child_i_ident(&self, i: usize) -> Option<tree_sitter_lib::NodeResult<'tree, #child_type>> {
+                    #[allow(dead_code)]
+                    #[inline]
+                    pub fn #child_i_ident(&self, i: usize) -> Option<type_sitter_lib::NodeResult<'tree, #child_type>> {
                         #child_i_body.map(<#child_type as TryFrom<_>>::try_from)
                     }
                 }
@@ -164,7 +184,8 @@ impl Children {
         } else {
             let ident = ident!(&child_name, "node field name converted into a rust method name (this is a library error, please report)");
             let mut child_type = NodeName::print_sum_type(&self.types);
-            child_type = quote! { tree_sitter_lib::NodeResult<'tree, #child_type> };
+            child_body = quote! { #child_body.map(<#child_type as TryFrom<_>>::try_from) };
+            child_type = quote! { type_sitter_lib::NodeResult<'tree, #child_type> };
             if self.required {
                 child_body = quote! { #child_body.expect("tree-sitter node missing its required child, there should at least be a MISSING node in its place") };
             } else {
@@ -172,6 +193,8 @@ impl Children {
             }
             quote! {
                 #[doc = #child_doc]
+                #[allow(dead_code)]
+                #[inline]
                 pub fn #ident(&self) -> #child_type {
                     #child_body
                 }
@@ -183,7 +206,7 @@ impl Children {
 impl NodeName {
     fn print_sum_type(types: &[NodeName]) -> TokenStream {
         match types.len() {
-            0 => quote! { tree_sitter_lib::either_n::Void },
+            0 => quote! { type_sitter_lib::either_n::Void },
             1 => {
                 let type_ = NodeName::print_type(&types[0]);
                 quote! { #type_ }
@@ -193,11 +216,11 @@ impl NodeName {
                 let types = types.iter().map(NodeName::print_type);
                 #[allow(non_snake_case)]
                 let EitherN = ident!(&format!("Either{}", n), "<won't fail>");
-                quote! { tree_sitter_lib::either_n::#EitherN<#(#types),*> }
+                quote! { type_sitter_lib::either_n::#EitherN<#(#types),*> }
             }
             _ => {
                 let types = types.iter().map(NodeName::print_type);
-                quote! { tree_sitter_lib::Either![#(#types),*] }
+                quote! { type_sitter_lib::Either![#(#types),*] }
             }
         }
     }
@@ -218,7 +241,7 @@ impl NodeName {
         let ident = ident!(&self.rust_type_name, "node kind converted into a rust type name (this is a library error, please report)");
         let sexp_name_literal = lit_str(&self.sexp_name);
         quote! {
-            #sexp_name_literal => Ok(Self::#ident(#ident(node))),
+            #sexp_name_literal => Ok(unsafe { Self::#ident(<#ident as type_sitter_lib::TypedNode<'tree>>::from_node_unchecked(node)) }),
         }
     }
 
