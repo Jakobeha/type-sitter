@@ -9,6 +9,7 @@ use std::process::exit;
 use clap::{Parser, ValueEnum};
 
 use thiserror::Error;
+use type_sitter_gen::{tree_sitter, type_sitter_lib_wrapper};
 
 /// CLI arguments
 #[derive(Parser, Debug)]
@@ -17,9 +18,12 @@ struct Args {
     /// Type of input to process. By default, will infer based on the first input path
     #[arg(short = 't', value_enum)]
     input_type: Option<InputType>,
-    /// Output directory. Defaults to "generated_src/"
-    #[arg(short = 'o', default_value = "generated_src")]
+    /// Output directory. Defaults to "src/type_sitter_generated"
+    #[arg(short = 'o', default_value = "src/type_sitter_generated")]
     output_dir: PathBuf,
+    /// Generate code which uses tree-sitter-wrapper instead of native tree-sitter
+    #[arg(long = "use-wrapper")]
+    use_wrapper: bool,
     /// Path to node-types.json, query file, query folder, or tree-sitter language root
     path: PathBuf,
     /// Path to more node-types.json, query file, query folder, or tree-sitter language root
@@ -119,7 +123,7 @@ fn run(args: Args) -> Result<()> {
     // Process
     let mut had_some_failures = false;
     for path in paths {
-        if let Err(err) = process(&path, input_type, &args.output_dir) {
+        if let Err(err) = process(&path, input_type, &args.output_dir, args.use_wrapper) {
             eprintln!("Error processing {}: {}", path.display(), err);
             had_some_failures = true;
         }
@@ -147,15 +151,19 @@ fn is_dir_of_only_rust_files(dir: &Path) -> bool {
     })
 }
 
-fn process(input_path: &Path, input_type: InputType, output_dir: &Path) -> Result<()> {
+fn process(input_path: &Path, input_type: InputType, output_dir: &Path, use_wrapper: bool) -> Result<()> {
     let output_name = input_type.output_name(input_path);
     let output_path = output_dir.join(output_name);
+    let tree_sitter = match use_wrapper {
+        false => tree_sitter(),
+        true => type_sitter_lib_wrapper()
+    };
     match input_type {
         InputType::NodeTypes => {
-            write(&output_path, type_sitter_gen::generate_nodes(input_path)?)?
+            write(&output_path, type_sitter_gen::generate_nodes(input_path, &tree_sitter)?)?
         }
         InputType::QueryFile => {
-            write(&output_path, type_sitter_gen::generate_queries_from_file(input_path)?)?;
+            write(&output_path, type_sitter_gen::generate_queries_from_file(input_path, &tree_sitter)?)?;
         }
         InputType::QueryFolder => {
             create_dir(&output_path)?;
@@ -163,16 +171,16 @@ fn process(input_path: &Path, input_type: InputType, output_dir: &Path) -> Resul
                 let entry = entry?;
                 let input_path = entry.path();
                 if input_path.ends_with(".scm") {
-                    process(&input_path, InputType::QueryFile, &output_path)
+                    process(&input_path, InputType::QueryFile, &output_path, use_wrapper)
                         .map_err(|e| e.nested(entry.file_name().to_string_lossy()))?;
                 }
             }
         }
         InputType::LanguageRoot => {
             create_dir(&output_path)?;
-            process(&input_path.join("src/node-types.json"), InputType::NodeTypes, &output_path)
+            process(&input_path.join("src/node-types.json"), InputType::NodeTypes, &output_path, use_wrapper)
                 .map_err(|e| e.nested("node types"))?;
-            process(&input_path.join("queries"), InputType::QueryFolder, &output_path)?;
+            process(&input_path.join("queries"), InputType::QueryFolder, &output_path, use_wrapper)?;
         }
     }
     Ok(())
