@@ -73,14 +73,14 @@ impl Children {
             } else {
                 quote! {}
             };
-            let mut child_type = NodeName::print_sum_name(&self.types, tree_sitter, anon_unions);
+            let mut child_type = NodeName::print_sum_type(&self.types, tree_sitter, anon_unions);
             child_type = quote! { type_sitter_lib::ExtraOr<'tree, #child_type> };
             let children_fn = quote! {
                 #[doc = #children_doc]
                 #nonempty_doc
                 #[allow(dead_code)]
                 #[inline]
-                pub fn #ident<'a>(&'a self, c: &'a mut #tree_sitter::TreeCursor<'tree>) -> impl Iterator<Item = type_sitter_lib::NodeResult<'tree, #child_type>> + 'a {
+                pub fn #ident<'a>(&self, c: &'a mut #tree_sitter::TreeCursor<'tree>) -> impl Iterator<Item = type_sitter_lib::NodeResult<'tree, #child_type>> + 'a {
                     #children_body.map(<#child_type as TryFrom<_>>::try_from)
                 }
             };
@@ -101,7 +101,7 @@ impl Children {
             }
         } else {
             let ident = ident!(&child_name, "node field name converted into a rust method name (this is a library error, please report)");
-            let mut child_type = NodeName::print_sum_name(&self.types, tree_sitter, anon_unions);
+            let mut child_type = NodeName::print_sum_type(&self.types, tree_sitter, anon_unions);
             child_body = quote! { #child_body.map(<#child_type as TryFrom<_>>::try_from) };
             child_type = quote! { type_sitter_lib::NodeResult<'tree, #child_type> };
             if self.required {
@@ -235,7 +235,7 @@ impl NodeName {
         let variant_accessors = subtypes.iter().map(NodeName::print_variant_accessor);
         let from_cases = subtypes.iter().map(NodeName::print_from_case);
         let node_cases = subtypes.iter().map(NodeName::print_node_case);
-        let node_cases2 = subtypes.iter().map(NodeName::print_node_case);
+        let node_mut_cases = subtypes.iter().map(NodeName::print_node_mut_case);
         quote! {
             #[doc = #doc]
             #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -279,14 +279,14 @@ impl NodeName {
                 #[inline]
                 fn node_mut(&mut self) -> &mut #tree_sitter::Node<'tree> {
                     match self {
-                        #(#node_cases2)*
+                        #(#node_mut_cases)*
                     }
                 }
             }
         }
     }
 
-    fn print_sum_name(
+    fn print_sum_type(
         names: &[NodeName],
         tree_sitter: &Path,
         anon_unions: &mut AnonUnions
@@ -314,31 +314,37 @@ impl NodeName {
                     );
                     anon_unions.insert(anon_union_id, definition);
                 }
-                quote! { #anon_union_name }
+                quote! { anon_unions::#anon_union_name }
             }
         }
     }
 
     fn print_type(&self) -> TokenStream {
         let ident = ident!(&self.rust_type_name, "node kind converted into a rust type name (this is a library error, please report)");
-        quote! { #ident<'tree> }
+        if self.is_named {
+            quote! { #ident<'tree> }
+        } else {
+            quote! { unnamed::#ident<'tree> }
+        }
     }
 
     fn print_variant_definition(&self) -> TokenStream {
         let ident = ident!(&self.rust_type_name, "node kind converted into a rust type name (this is a library error, please report)");
+        let type_ = self.print_type();
         quote! {
-            #ident(#ident<'tree>),
+            #ident(#type_),
         }
     }
     fn print_variant_accessor(&self) -> TokenStream {
         let ident = ident!(&self.rust_type_name, "node kind converted into a rust type name (this is a library error, please report)");
+        let type_ = self.print_type();
         let method = ident!(&self.rust_method_name, "node kind converted into a rust type name (this is a library error, please report)");
         let sexp_name = lit_str(&self.sexp_name);
         quote! {
             #[doc = concat!("Returns the node if it is of kind `", #sexp_name, "`, otherwise returns None")]
             #[inline]
             #[allow(unused, non_snake_case)]
-            pub fn #method(self) -> Option<#ident<'tree>> {
+            pub fn #method(self) -> Option<#type_> {
                 match self {
                     Self::#ident(x) => Some(x),
                     _ => None,
@@ -349,9 +355,10 @@ impl NodeName {
 
     fn print_from_case(&self) -> TokenStream {
         let ident = ident!(&self.rust_type_name, "node kind converted into a rust type name (this is a library error, please report)");
+        let type_ = self.print_type();
         let kind = lit_str(&self.sexp_name);
         quote! {
-            #kind => Ok(unsafe { Self::#ident(<#ident as type_sitter_lib::TypedNode<'tree>>::from_node_unchecked(node)) }),
+            #kind => Ok(unsafe { Self::#ident(<#type_ as type_sitter_lib::TypedNode<'tree>>::from_node_unchecked(node)) }),
         }
     }
 
@@ -359,6 +366,13 @@ impl NodeName {
         let ident = ident!(&self.rust_type_name, "node kind converted into a rust type name (this is a library error, please report)");
         quote! {
             Self::#ident(x) => x.node(),
+        }
+    }
+
+    fn print_node_mut_case(&self) -> TokenStream {
+        let ident = ident!(&self.rust_type_name, "node kind converted into a rust type name (this is a library error, please report)");
+        quote! {
+            Self::#ident(x) => x.node_mut(),
         }
     }
 }
@@ -369,7 +383,9 @@ macro_rules! modularize {
             quote!()
         } else {
             quote! {
-                mod $module {
+                pub mod $module {
+                    #[allow(unused_imports)]
+                    use super::*;
                     #$module
                 }
             }

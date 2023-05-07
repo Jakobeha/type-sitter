@@ -1,9 +1,10 @@
 #![doc = include_str!("../README.md")]
 
 use std::convert::Infallible;
-use std::str::Utf8Error;
 #[cfg(feature = "tree-sitter-wrapper")]
 use tree_sitter_wrapper::{Bitmask, InputEdit, Node, Point, Range, TreeCursor};
+#[cfg(not(feature = "tree-sitter-wrapper"))]
+use std::str::Utf8Error;
 #[cfg(not(feature = "tree-sitter-wrapper"))]
 use tree_sitter::{InputEdit, Node, Point, Range, TreeCursor};
 pub use extra_or::*;
@@ -91,16 +92,16 @@ pub trait TypedNode<'tree>: TryFrom<Node<'tree>, Error=IncorrectKind<'tree>> {
         self.node().parent()
     }
 
-    /// See [Node::next_sibling]
+    /// See [Node::next_named_sibling]
     #[inline]
-    fn next_sibling(&self) -> Option<Node<'tree>> {
-        self.node().next_sibling()
+    fn next_named_sibling(&self) -> Option<Node<'tree>> {
+        self.node().next_named_sibling()
     }
 
-    /// See [Node::prev_sibling]
+    /// See [Node::prev_named_sibling]
     #[inline]
-    fn prev_sibling(&self) -> Option<Node<'tree>> {
-        self.node().prev_sibling()
+    fn prev_named_sibling(&self) -> Option<Node<'tree>> {
+        self.node().prev_named_sibling()
     }
 
     /// See [Node::named_child_count]

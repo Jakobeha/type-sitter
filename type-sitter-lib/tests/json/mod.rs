@@ -101,7 +101,9 @@ impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Value
             "array" => {
                 Ok(unsafe {
                     Self::Array(
-                        <Array as type_sitter_lib::TypedNode<
+                        <Array<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -110,7 +112,9 @@ impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Value
             "false" => {
                 Ok(unsafe {
                     Self::False(
-                        <False as type_sitter_lib::TypedNode<
+                        <False<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -119,7 +123,9 @@ impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Value
             "null" => {
                 Ok(unsafe {
                     Self::Null(
-                        <Null as type_sitter_lib::TypedNode<
+                        <Null<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -128,7 +134,9 @@ impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Value
             "number" => {
                 Ok(unsafe {
                     Self::Number(
-                        <Number as type_sitter_lib::TypedNode<
+                        <Number<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -137,7 +145,9 @@ impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Value
             "object" => {
                 Ok(unsafe {
                     Self::Object(
-                        <Object as type_sitter_lib::TypedNode<
+                        <Object<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -146,7 +156,9 @@ impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Value
             "string" => {
                 Ok(unsafe {
                     Self::String(
-                        <String as type_sitter_lib::TypedNode<
+                        <String<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -155,7 +167,9 @@ impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Value
             "true" => {
                 Ok(unsafe {
                     Self::True(
-                        <True as type_sitter_lib::TypedNode<
+                        <True<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -188,13 +202,13 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Value<'tree> {
     #[inline]
     fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         match self {
-            Self::Array(x) => x.node(),
-            Self::False(x) => x.node(),
-            Self::Null(x) => x.node(),
-            Self::Number(x) => x.node(),
-            Self::Object(x) => x.node(),
-            Self::String(x) => x.node(),
-            Self::True(x) => x.node(),
+            Self::Array(x) => x.node_mut(),
+            Self::False(x) => x.node_mut(),
+            Self::Null(x) => x.node_mut(),
+            Self::Number(x) => x.node_mut(),
+            Self::Object(x) => x.node_mut(),
+            Self::String(x) => x.node_mut(),
+            Self::True(x) => x.node_mut(),
         }
     }
 }
@@ -208,7 +222,7 @@ impl<'tree> Array<'tree> {
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
-        &'a self,
+        &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
@@ -279,7 +293,7 @@ impl<'tree> Document<'tree> {
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
-        &'a self,
+        &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
@@ -351,7 +365,7 @@ impl<'tree> Object<'tree> {
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
-        &'a self,
+        &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
@@ -422,10 +436,10 @@ impl<'tree> Pair<'tree> {
     #[doc = concat!("Get the field `", "key", "`")]
     #[allow(dead_code)]
     #[inline]
-    pub fn key(&self) -> type_sitter_lib::NodeResult<'tree, Number_String> {
+    pub fn key(&self) -> type_sitter_lib::NodeResult<'tree, anon_unions::Number_String> {
         self.0
             .child_by_field_name("key")
-            .map(<Number_String as TryFrom<_>>::try_from)
+            .map(<anon_unions::Number_String as TryFrom<_>>::try_from)
             .expect(
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
@@ -538,7 +552,7 @@ impl<'tree> StringContent<'tree> {
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
-        &'a self,
+        &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
@@ -862,7 +876,9 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for True<'tree> {
         Self(node)
     }
 }
-mod unnamed {
+pub mod unnamed {
+    #[allow(unused_imports)]
+    use super::*;
     #[doc = concat!("Typed node `", "\"", "`")]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
@@ -1172,7 +1188,9 @@ mod unnamed {
         }
     }
 }
-mod anon_unions {
+pub mod anon_unions {
+    #[allow(unused_imports)]
+    use super::*;
     #[doc = concat!("one of `", "{number | string}", "`")]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
@@ -1217,7 +1235,9 @@ mod anon_unions {
                 "number" => {
                     Ok(unsafe {
                         Self::Number(
-                            <Number as type_sitter_lib::TypedNode<
+                            <Number<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -1226,7 +1246,9 @@ mod anon_unions {
                 "string" => {
                     Ok(unsafe {
                         Self::String(
-                            <String as type_sitter_lib::TypedNode<
+                            <String<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -1256,8 +1278,8 @@ mod anon_unions {
             &mut self,
         ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
-                Self::Number(x) => x.node(),
-                Self::String(x) => x.node(),
+                Self::Number(x) => x.node_mut(),
+                Self::String(x) => x.node_mut(),
             }
         }
     }

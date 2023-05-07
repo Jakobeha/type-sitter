@@ -200,21 +200,21 @@ impl Parser {
 
     /// Parse a file. See [tree_sitter::Parser::parse]
     #[inline]
-    pub fn parse_file(&mut self, path: &Path) -> Result<Tree, TreeParseError> {
-        self.parse_bytes(std::fs::read(path)?)
+    pub fn parse_file(&mut self, path: &Path, old_tree: Option<&Tree>) -> Result<Tree, TreeParseError> {
+        self.parse_bytes(std::fs::read(path)?, old_tree)
     }
 
     /// Parse a string. See [tree_sitter::Parser::parse]
     #[inline]
-    pub fn parse_string(&mut self, text: String) -> Result<Tree, TreeParseError> {
-        self.parse_bytes(text.into_bytes())
+    pub fn parse_string(&mut self, text: String, old_tree: Option<&Tree>) -> Result<Tree, TreeParseError> {
+        self.parse_bytes(text.into_bytes(), old_tree)
     }
 
     /// Parse a byte string. See [tree_sitter::Parser::parse]. Note that the wrappers expect and
     /// assume UTF-8, so this will fail if the text is not valid UTF-8.
     #[inline]
-    pub fn parse_bytes(&mut self, byte_text: Vec<u8>) -> Result<Tree, TreeParseError> {
-        let tree = self.0.parse(&byte_text, None).ok_or(TreeParseError::ParsingFailed)?;
+    pub fn parse_bytes(&mut self, byte_text: Vec<u8>, old_tree: Option<&Tree>) -> Result<Tree, TreeParseError> {
+        let tree = self.0.parse(&byte_text, old_tree.map(|t| &t.tree)).ok_or(TreeParseError::ParsingFailed)?;
         Ok(Tree::new(tree, byte_text)?)
     }
 }
@@ -392,13 +392,13 @@ impl<'tree> Node<'tree> {
 
     /// Get the row and column where this node starts.
     #[inline]
-    pub fn start_point(&self) -> Point {
+    pub fn start_position(&self) -> Point {
         Point(self.node.start_position())
     }
 
     /// Get the row and column where this node ends.
     #[inline]
-    pub fn end_point(&self) -> Point {
+    pub fn end_position(&self) -> Point {
         Point(self.node.end_position())
     }
 
@@ -433,14 +433,16 @@ impl<'tree> Node<'tree> {
 
     /// Get the node's named and unnamed children. See [tree_sitter::Node::children]
     #[inline]
-    pub fn all_children<'a>(&'a self, cursor: &'a mut TreeCursor<'tree>) -> impl Iterator<Item = Node<'tree>> + 'a {
-        self.node.children(&mut cursor.cursor).map(move |node| Node::new(node, self.tree))
+    pub fn all_children<'a>(&self, cursor: &'a mut TreeCursor<'tree>) -> impl ExactSizeIterator<Item = Node<'tree>> + 'a {
+        let tree = self.tree;
+        self.node.children(&mut cursor.cursor).map(move |node| Node::new(node, tree))
     }
 
     /// Get the node's named children. See [tree_sitter::Node::named_children]
     #[inline]
-    pub fn named_children<'a>(&'a self, cursor: &'a mut TreeCursor<'tree>) -> impl Iterator<Item = Node<'tree>> + 'a {
-        self.node.named_children(&mut cursor.cursor).map(move |node| Node::new(node, self.tree))
+    pub fn named_children<'a>(&self, cursor: &'a mut TreeCursor<'tree>) -> impl ExactSizeIterator<Item = Node<'tree>> + 'a {
+        let tree = self.tree;
+        self.node.named_children(&mut cursor.cursor).map(move |node| Node::new(node, tree))
     }
 
     /// Get the number of named and unnamed children.
@@ -523,7 +525,7 @@ impl<'tree> Node<'tree> {
     /// Get the node's children of the given kind, named or unnamed. The cursor is used to iterate
     /// the node's immediate children.
     #[inline]
-    pub fn children_of_kind<'a>(&'a self, kind: &'static str, cursor: &'a mut TreeCursor<'tree>) -> impl Iterator<Item = Node<'tree>> + 'a {
+    pub fn children_of_kind<'a>(&self, kind: &'a str, cursor: &'a mut TreeCursor<'tree>) -> impl Iterator<Item = Node<'tree>> + 'a {
         self.node.named_children(&mut cursor.cursor)
             .filter(move |node| node.kind() == kind)
             .map(|node| Node::new(node, self.tree))
@@ -556,6 +558,12 @@ impl<'tree> Node<'tree> {
     #[inline]
     pub fn walk(&self) -> TreeCursor<'tree> {
         TreeCursor::new(self.node.walk(), self.tree, false)
+    }
+
+    /// Print the node as an s-expression
+    #[inline]
+    pub fn to_sexp(&self) -> String {
+        self.node.to_sexp()
     }
 
     /// Get a raw pointer to this node (remove the 'tree lifetime).
@@ -1258,7 +1266,7 @@ impl<'a> Display for DisplayTree<'a> {
             }
 
             let mut has_marked_child = false;
-            let mut state2 = c2.goto_preorder(state2);
+            state2 = c2.goto_preorder(state2);
             if matches!(state2, TraversalState::Down) {
                 let mut depth = 1;
                 while depth > 0 {

@@ -1,3 +1,6 @@
+#[cfg(feature = "tree-sitter-wrapper")]
+use crate::tree_sitter_wrapper::Node;
+#[cfg(not(feature = "tree-sitter-wrapper"))]
 use tree_sitter::Node;
 
 /// Result of attempting to wrap a node

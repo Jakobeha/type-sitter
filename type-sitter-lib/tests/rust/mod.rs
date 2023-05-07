@@ -282,7 +282,9 @@ for DeclarationStatement<'tree> {
             "associated_type" => {
                 Ok(unsafe {
                     Self::AssociatedType(
-                        <AssociatedType as type_sitter_lib::TypedNode<
+                        <AssociatedType<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -291,7 +293,9 @@ for DeclarationStatement<'tree> {
             "attribute_item" => {
                 Ok(unsafe {
                     Self::AttributeItem(
-                        <AttributeItem as type_sitter_lib::TypedNode<
+                        <AttributeItem<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -300,7 +304,9 @@ for DeclarationStatement<'tree> {
             "const_item" => {
                 Ok(unsafe {
                     Self::ConstItem(
-                        <ConstItem as type_sitter_lib::TypedNode<
+                        <ConstItem<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -309,7 +315,9 @@ for DeclarationStatement<'tree> {
             "empty_statement" => {
                 Ok(unsafe {
                     Self::EmptyStatement(
-                        <EmptyStatement as type_sitter_lib::TypedNode<
+                        <EmptyStatement<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -318,7 +326,9 @@ for DeclarationStatement<'tree> {
             "enum_item" => {
                 Ok(unsafe {
                     Self::EnumItem(
-                        <EnumItem as type_sitter_lib::TypedNode<
+                        <EnumItem<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -327,7 +337,9 @@ for DeclarationStatement<'tree> {
             "extern_crate_declaration" => {
                 Ok(unsafe {
                     Self::ExternCrateDeclaration(
-                        <ExternCrateDeclaration as type_sitter_lib::TypedNode<
+                        <ExternCrateDeclaration<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -336,7 +348,9 @@ for DeclarationStatement<'tree> {
             "foreign_mod_item" => {
                 Ok(unsafe {
                     Self::ForeignModItem(
-                        <ForeignModItem as type_sitter_lib::TypedNode<
+                        <ForeignModItem<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -345,7 +359,9 @@ for DeclarationStatement<'tree> {
             "function_item" => {
                 Ok(unsafe {
                     Self::FunctionItem(
-                        <FunctionItem as type_sitter_lib::TypedNode<
+                        <FunctionItem<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -354,7 +370,9 @@ for DeclarationStatement<'tree> {
             "function_signature_item" => {
                 Ok(unsafe {
                     Self::FunctionSignatureItem(
-                        <FunctionSignatureItem as type_sitter_lib::TypedNode<
+                        <FunctionSignatureItem<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -363,7 +381,9 @@ for DeclarationStatement<'tree> {
             "impl_item" => {
                 Ok(unsafe {
                     Self::ImplItem(
-                        <ImplItem as type_sitter_lib::TypedNode<
+                        <ImplItem<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -372,7 +392,9 @@ for DeclarationStatement<'tree> {
             "inner_attribute_item" => {
                 Ok(unsafe {
                     Self::InnerAttributeItem(
-                        <InnerAttributeItem as type_sitter_lib::TypedNode<
+                        <InnerAttributeItem<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -381,7 +403,9 @@ for DeclarationStatement<'tree> {
             "let_declaration" => {
                 Ok(unsafe {
                     Self::LetDeclaration(
-                        <LetDeclaration as type_sitter_lib::TypedNode<
+                        <LetDeclaration<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -390,7 +414,9 @@ for DeclarationStatement<'tree> {
             "macro_definition" => {
                 Ok(unsafe {
                     Self::MacroDefinition(
-                        <MacroDefinition as type_sitter_lib::TypedNode<
+                        <MacroDefinition<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -399,7 +425,9 @@ for DeclarationStatement<'tree> {
             "macro_invocation" => {
                 Ok(unsafe {
                     Self::MacroInvocation(
-                        <MacroInvocation as type_sitter_lib::TypedNode<
+                        <MacroInvocation<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -408,7 +436,9 @@ for DeclarationStatement<'tree> {
             "mod_item" => {
                 Ok(unsafe {
                     Self::ModItem(
-                        <ModItem as type_sitter_lib::TypedNode<
+                        <ModItem<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -417,7 +447,9 @@ for DeclarationStatement<'tree> {
             "static_item" => {
                 Ok(unsafe {
                     Self::StaticItem(
-                        <StaticItem as type_sitter_lib::TypedNode<
+                        <StaticItem<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -426,7 +458,9 @@ for DeclarationStatement<'tree> {
             "struct_item" => {
                 Ok(unsafe {
                     Self::StructItem(
-                        <StructItem as type_sitter_lib::TypedNode<
+                        <StructItem<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -435,7 +469,9 @@ for DeclarationStatement<'tree> {
             "trait_item" => {
                 Ok(unsafe {
                     Self::TraitItem(
-                        <TraitItem as type_sitter_lib::TypedNode<
+                        <TraitItem<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -444,7 +480,9 @@ for DeclarationStatement<'tree> {
             "type_item" => {
                 Ok(unsafe {
                     Self::TypeItem(
-                        <TypeItem as type_sitter_lib::TypedNode<
+                        <TypeItem<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -453,7 +491,9 @@ for DeclarationStatement<'tree> {
             "union_item" => {
                 Ok(unsafe {
                     Self::UnionItem(
-                        <UnionItem as type_sitter_lib::TypedNode<
+                        <UnionItem<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -462,7 +502,9 @@ for DeclarationStatement<'tree> {
             "use_declaration" => {
                 Ok(unsafe {
                     Self::UseDeclaration(
-                        <UseDeclaration as type_sitter_lib::TypedNode<
+                        <UseDeclaration<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -509,27 +551,27 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for DeclarationStatement<'tree> {
     #[inline]
     fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         match self {
-            Self::AssociatedType(x) => x.node(),
-            Self::AttributeItem(x) => x.node(),
-            Self::ConstItem(x) => x.node(),
-            Self::EmptyStatement(x) => x.node(),
-            Self::EnumItem(x) => x.node(),
-            Self::ExternCrateDeclaration(x) => x.node(),
-            Self::ForeignModItem(x) => x.node(),
-            Self::FunctionItem(x) => x.node(),
-            Self::FunctionSignatureItem(x) => x.node(),
-            Self::ImplItem(x) => x.node(),
-            Self::InnerAttributeItem(x) => x.node(),
-            Self::LetDeclaration(x) => x.node(),
-            Self::MacroDefinition(x) => x.node(),
-            Self::MacroInvocation(x) => x.node(),
-            Self::ModItem(x) => x.node(),
-            Self::StaticItem(x) => x.node(),
-            Self::StructItem(x) => x.node(),
-            Self::TraitItem(x) => x.node(),
-            Self::TypeItem(x) => x.node(),
-            Self::UnionItem(x) => x.node(),
-            Self::UseDeclaration(x) => x.node(),
+            Self::AssociatedType(x) => x.node_mut(),
+            Self::AttributeItem(x) => x.node_mut(),
+            Self::ConstItem(x) => x.node_mut(),
+            Self::EmptyStatement(x) => x.node_mut(),
+            Self::EnumItem(x) => x.node_mut(),
+            Self::ExternCrateDeclaration(x) => x.node_mut(),
+            Self::ForeignModItem(x) => x.node_mut(),
+            Self::FunctionItem(x) => x.node_mut(),
+            Self::FunctionSignatureItem(x) => x.node_mut(),
+            Self::ImplItem(x) => x.node_mut(),
+            Self::InnerAttributeItem(x) => x.node_mut(),
+            Self::LetDeclaration(x) => x.node_mut(),
+            Self::MacroDefinition(x) => x.node_mut(),
+            Self::MacroInvocation(x) => x.node_mut(),
+            Self::ModItem(x) => x.node_mut(),
+            Self::StaticItem(x) => x.node_mut(),
+            Self::StructItem(x) => x.node_mut(),
+            Self::TraitItem(x) => x.node_mut(),
+            Self::TypeItem(x) => x.node_mut(),
+            Self::UnionItem(x) => x.node_mut(),
+            Self::UseDeclaration(x) => x.node_mut(),
         }
     }
 }
@@ -1041,7 +1083,9 @@ for Expression<'tree> {
             "_literal" => {
                 Ok(unsafe {
                     Self::Literal(
-                        <Literal as type_sitter_lib::TypedNode<
+                        <Literal<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -1050,7 +1094,9 @@ for Expression<'tree> {
             "array_expression" => {
                 Ok(unsafe {
                     Self::ArrayExpression(
-                        <ArrayExpression as type_sitter_lib::TypedNode<
+                        <ArrayExpression<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -1059,7 +1105,9 @@ for Expression<'tree> {
             "assignment_expression" => {
                 Ok(unsafe {
                     Self::AssignmentExpression(
-                        <AssignmentExpression as type_sitter_lib::TypedNode<
+                        <AssignmentExpression<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -1068,7 +1116,9 @@ for Expression<'tree> {
             "async_block" => {
                 Ok(unsafe {
                     Self::AsyncBlock(
-                        <AsyncBlock as type_sitter_lib::TypedNode<
+                        <AsyncBlock<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -1077,7 +1127,9 @@ for Expression<'tree> {
             "await_expression" => {
                 Ok(unsafe {
                     Self::AwaitExpression(
-                        <AwaitExpression as type_sitter_lib::TypedNode<
+                        <AwaitExpression<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -1086,7 +1138,9 @@ for Expression<'tree> {
             "binary_expression" => {
                 Ok(unsafe {
                     Self::BinaryExpression(
-                        <BinaryExpression as type_sitter_lib::TypedNode<
+                        <BinaryExpression<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -1095,7 +1149,9 @@ for Expression<'tree> {
             "block" => {
                 Ok(unsafe {
                     Self::Block(
-                        <Block as type_sitter_lib::TypedNode<
+                        <Block<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -1104,7 +1160,9 @@ for Expression<'tree> {
             "break_expression" => {
                 Ok(unsafe {
                     Self::BreakExpression(
-                        <BreakExpression as type_sitter_lib::TypedNode<
+                        <BreakExpression<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -1113,7 +1171,9 @@ for Expression<'tree> {
             "call_expression" => {
                 Ok(unsafe {
                     Self::CallExpression(
-                        <CallExpression as type_sitter_lib::TypedNode<
+                        <CallExpression<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -1122,7 +1182,9 @@ for Expression<'tree> {
             "closure_expression" => {
                 Ok(unsafe {
                     Self::ClosureExpression(
-                        <ClosureExpression as type_sitter_lib::TypedNode<
+                        <ClosureExpression<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -1131,7 +1193,9 @@ for Expression<'tree> {
             "compound_assignment_expr" => {
                 Ok(unsafe {
                     Self::CompoundAssignmentExpr(
-                        <CompoundAssignmentExpr as type_sitter_lib::TypedNode<
+                        <CompoundAssignmentExpr<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -1140,7 +1204,9 @@ for Expression<'tree> {
             "const_block" => {
                 Ok(unsafe {
                     Self::ConstBlock(
-                        <ConstBlock as type_sitter_lib::TypedNode<
+                        <ConstBlock<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -1149,7 +1215,9 @@ for Expression<'tree> {
             "continue_expression" => {
                 Ok(unsafe {
                     Self::ContinueExpression(
-                        <ContinueExpression as type_sitter_lib::TypedNode<
+                        <ContinueExpression<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -1158,7 +1226,9 @@ for Expression<'tree> {
             "field_expression" => {
                 Ok(unsafe {
                     Self::FieldExpression(
-                        <FieldExpression as type_sitter_lib::TypedNode<
+                        <FieldExpression<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -1167,7 +1237,9 @@ for Expression<'tree> {
             "for_expression" => {
                 Ok(unsafe {
                     Self::ForExpression(
-                        <ForExpression as type_sitter_lib::TypedNode<
+                        <ForExpression<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -1176,7 +1248,9 @@ for Expression<'tree> {
             "generic_function" => {
                 Ok(unsafe {
                     Self::GenericFunction(
-                        <GenericFunction as type_sitter_lib::TypedNode<
+                        <GenericFunction<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -1185,7 +1259,9 @@ for Expression<'tree> {
             "identifier" => {
                 Ok(unsafe {
                     Self::Identifier(
-                        <Identifier as type_sitter_lib::TypedNode<
+                        <Identifier<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -1194,7 +1270,9 @@ for Expression<'tree> {
             "if_expression" => {
                 Ok(unsafe {
                     Self::IfExpression(
-                        <IfExpression as type_sitter_lib::TypedNode<
+                        <IfExpression<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -1203,7 +1281,9 @@ for Expression<'tree> {
             "index_expression" => {
                 Ok(unsafe {
                     Self::IndexExpression(
-                        <IndexExpression as type_sitter_lib::TypedNode<
+                        <IndexExpression<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -1212,7 +1292,9 @@ for Expression<'tree> {
             "loop_expression" => {
                 Ok(unsafe {
                     Self::LoopExpression(
-                        <LoopExpression as type_sitter_lib::TypedNode<
+                        <LoopExpression<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -1221,7 +1303,9 @@ for Expression<'tree> {
             "macro_invocation" => {
                 Ok(unsafe {
                     Self::MacroInvocation(
-                        <MacroInvocation as type_sitter_lib::TypedNode<
+                        <MacroInvocation<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -1230,7 +1314,9 @@ for Expression<'tree> {
             "match_expression" => {
                 Ok(unsafe {
                     Self::MatchExpression(
-                        <MatchExpression as type_sitter_lib::TypedNode<
+                        <MatchExpression<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -1239,7 +1325,9 @@ for Expression<'tree> {
             "metavariable" => {
                 Ok(unsafe {
                     Self::Metavariable(
-                        <Metavariable as type_sitter_lib::TypedNode<
+                        <Metavariable<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -1248,7 +1336,9 @@ for Expression<'tree> {
             "parenthesized_expression" => {
                 Ok(unsafe {
                     Self::ParenthesizedExpression(
-                        <ParenthesizedExpression as type_sitter_lib::TypedNode<
+                        <ParenthesizedExpression<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -1257,7 +1347,9 @@ for Expression<'tree> {
             "range_expression" => {
                 Ok(unsafe {
                     Self::RangeExpression(
-                        <RangeExpression as type_sitter_lib::TypedNode<
+                        <RangeExpression<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -1266,7 +1358,9 @@ for Expression<'tree> {
             "reference_expression" => {
                 Ok(unsafe {
                     Self::ReferenceExpression(
-                        <ReferenceExpression as type_sitter_lib::TypedNode<
+                        <ReferenceExpression<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -1275,7 +1369,9 @@ for Expression<'tree> {
             "return_expression" => {
                 Ok(unsafe {
                     Self::ReturnExpression(
-                        <ReturnExpression as type_sitter_lib::TypedNode<
+                        <ReturnExpression<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -1284,7 +1380,9 @@ for Expression<'tree> {
             "scoped_identifier" => {
                 Ok(unsafe {
                     Self::ScopedIdentifier(
-                        <ScopedIdentifier as type_sitter_lib::TypedNode<
+                        <ScopedIdentifier<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -1293,7 +1391,9 @@ for Expression<'tree> {
             "self" => {
                 Ok(unsafe {
                     Self::_Self(
-                        <_Self as type_sitter_lib::TypedNode<
+                        <_Self<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -1302,7 +1402,9 @@ for Expression<'tree> {
             "struct_expression" => {
                 Ok(unsafe {
                     Self::StructExpression(
-                        <StructExpression as type_sitter_lib::TypedNode<
+                        <StructExpression<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -1311,7 +1413,9 @@ for Expression<'tree> {
             "try_expression" => {
                 Ok(unsafe {
                     Self::TryExpression(
-                        <TryExpression as type_sitter_lib::TypedNode<
+                        <TryExpression<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -1320,7 +1424,9 @@ for Expression<'tree> {
             "tuple_expression" => {
                 Ok(unsafe {
                     Self::TupleExpression(
-                        <TupleExpression as type_sitter_lib::TypedNode<
+                        <TupleExpression<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -1329,7 +1435,9 @@ for Expression<'tree> {
             "type_cast_expression" => {
                 Ok(unsafe {
                     Self::TypeCastExpression(
-                        <TypeCastExpression as type_sitter_lib::TypedNode<
+                        <TypeCastExpression<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -1338,7 +1446,9 @@ for Expression<'tree> {
             "unary_expression" => {
                 Ok(unsafe {
                     Self::UnaryExpression(
-                        <UnaryExpression as type_sitter_lib::TypedNode<
+                        <UnaryExpression<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -1347,7 +1457,9 @@ for Expression<'tree> {
             "unit_expression" => {
                 Ok(unsafe {
                     Self::UnitExpression(
-                        <UnitExpression as type_sitter_lib::TypedNode<
+                        <UnitExpression<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -1356,7 +1468,9 @@ for Expression<'tree> {
             "unsafe_block" => {
                 Ok(unsafe {
                     Self::UnsafeBlock(
-                        <UnsafeBlock as type_sitter_lib::TypedNode<
+                        <UnsafeBlock<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -1365,7 +1479,9 @@ for Expression<'tree> {
             "while_expression" => {
                 Ok(unsafe {
                     Self::WhileExpression(
-                        <WhileExpression as type_sitter_lib::TypedNode<
+                        <WhileExpression<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -1374,7 +1490,9 @@ for Expression<'tree> {
             "yield_expression" => {
                 Ok(unsafe {
                     Self::YieldExpression(
-                        <YieldExpression as type_sitter_lib::TypedNode<
+                        <YieldExpression<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -1438,44 +1556,44 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Expression<'tree> {
     #[inline]
     fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         match self {
-            Self::Literal(x) => x.node(),
-            Self::ArrayExpression(x) => x.node(),
-            Self::AssignmentExpression(x) => x.node(),
-            Self::AsyncBlock(x) => x.node(),
-            Self::AwaitExpression(x) => x.node(),
-            Self::BinaryExpression(x) => x.node(),
-            Self::Block(x) => x.node(),
-            Self::BreakExpression(x) => x.node(),
-            Self::CallExpression(x) => x.node(),
-            Self::ClosureExpression(x) => x.node(),
-            Self::CompoundAssignmentExpr(x) => x.node(),
-            Self::ConstBlock(x) => x.node(),
-            Self::ContinueExpression(x) => x.node(),
-            Self::FieldExpression(x) => x.node(),
-            Self::ForExpression(x) => x.node(),
-            Self::GenericFunction(x) => x.node(),
-            Self::Identifier(x) => x.node(),
-            Self::IfExpression(x) => x.node(),
-            Self::IndexExpression(x) => x.node(),
-            Self::LoopExpression(x) => x.node(),
-            Self::MacroInvocation(x) => x.node(),
-            Self::MatchExpression(x) => x.node(),
-            Self::Metavariable(x) => x.node(),
-            Self::ParenthesizedExpression(x) => x.node(),
-            Self::RangeExpression(x) => x.node(),
-            Self::ReferenceExpression(x) => x.node(),
-            Self::ReturnExpression(x) => x.node(),
-            Self::ScopedIdentifier(x) => x.node(),
-            Self::_Self(x) => x.node(),
-            Self::StructExpression(x) => x.node(),
-            Self::TryExpression(x) => x.node(),
-            Self::TupleExpression(x) => x.node(),
-            Self::TypeCastExpression(x) => x.node(),
-            Self::UnaryExpression(x) => x.node(),
-            Self::UnitExpression(x) => x.node(),
-            Self::UnsafeBlock(x) => x.node(),
-            Self::WhileExpression(x) => x.node(),
-            Self::YieldExpression(x) => x.node(),
+            Self::Literal(x) => x.node_mut(),
+            Self::ArrayExpression(x) => x.node_mut(),
+            Self::AssignmentExpression(x) => x.node_mut(),
+            Self::AsyncBlock(x) => x.node_mut(),
+            Self::AwaitExpression(x) => x.node_mut(),
+            Self::BinaryExpression(x) => x.node_mut(),
+            Self::Block(x) => x.node_mut(),
+            Self::BreakExpression(x) => x.node_mut(),
+            Self::CallExpression(x) => x.node_mut(),
+            Self::ClosureExpression(x) => x.node_mut(),
+            Self::CompoundAssignmentExpr(x) => x.node_mut(),
+            Self::ConstBlock(x) => x.node_mut(),
+            Self::ContinueExpression(x) => x.node_mut(),
+            Self::FieldExpression(x) => x.node_mut(),
+            Self::ForExpression(x) => x.node_mut(),
+            Self::GenericFunction(x) => x.node_mut(),
+            Self::Identifier(x) => x.node_mut(),
+            Self::IfExpression(x) => x.node_mut(),
+            Self::IndexExpression(x) => x.node_mut(),
+            Self::LoopExpression(x) => x.node_mut(),
+            Self::MacroInvocation(x) => x.node_mut(),
+            Self::MatchExpression(x) => x.node_mut(),
+            Self::Metavariable(x) => x.node_mut(),
+            Self::ParenthesizedExpression(x) => x.node_mut(),
+            Self::RangeExpression(x) => x.node_mut(),
+            Self::ReferenceExpression(x) => x.node_mut(),
+            Self::ReturnExpression(x) => x.node_mut(),
+            Self::ScopedIdentifier(x) => x.node_mut(),
+            Self::_Self(x) => x.node_mut(),
+            Self::StructExpression(x) => x.node_mut(),
+            Self::TryExpression(x) => x.node_mut(),
+            Self::TupleExpression(x) => x.node_mut(),
+            Self::TypeCastExpression(x) => x.node_mut(),
+            Self::UnaryExpression(x) => x.node_mut(),
+            Self::UnitExpression(x) => x.node_mut(),
+            Self::UnsafeBlock(x) => x.node_mut(),
+            Self::WhileExpression(x) => x.node_mut(),
+            Self::YieldExpression(x) => x.node_mut(),
         }
     }
 }
@@ -1577,7 +1695,9 @@ for Literal<'tree> {
             "boolean_literal" => {
                 Ok(unsafe {
                     Self::BooleanLiteral(
-                        <BooleanLiteral as type_sitter_lib::TypedNode<
+                        <BooleanLiteral<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -1586,7 +1706,9 @@ for Literal<'tree> {
             "char_literal" => {
                 Ok(unsafe {
                     Self::CharLiteral(
-                        <CharLiteral as type_sitter_lib::TypedNode<
+                        <CharLiteral<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -1595,7 +1717,9 @@ for Literal<'tree> {
             "float_literal" => {
                 Ok(unsafe {
                     Self::FloatLiteral(
-                        <FloatLiteral as type_sitter_lib::TypedNode<
+                        <FloatLiteral<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -1604,7 +1728,9 @@ for Literal<'tree> {
             "integer_literal" => {
                 Ok(unsafe {
                     Self::IntegerLiteral(
-                        <IntegerLiteral as type_sitter_lib::TypedNode<
+                        <IntegerLiteral<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -1613,7 +1739,9 @@ for Literal<'tree> {
             "raw_string_literal" => {
                 Ok(unsafe {
                     Self::RawStringLiteral(
-                        <RawStringLiteral as type_sitter_lib::TypedNode<
+                        <RawStringLiteral<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -1622,7 +1750,9 @@ for Literal<'tree> {
             "string_literal" => {
                 Ok(unsafe {
                     Self::StringLiteral(
-                        <StringLiteral as type_sitter_lib::TypedNode<
+                        <StringLiteral<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -1654,12 +1784,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Literal<'tree> {
     #[inline]
     fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         match self {
-            Self::BooleanLiteral(x) => x.node(),
-            Self::CharLiteral(x) => x.node(),
-            Self::FloatLiteral(x) => x.node(),
-            Self::IntegerLiteral(x) => x.node(),
-            Self::RawStringLiteral(x) => x.node(),
-            Self::StringLiteral(x) => x.node(),
+            Self::BooleanLiteral(x) => x.node_mut(),
+            Self::CharLiteral(x) => x.node_mut(),
+            Self::FloatLiteral(x) => x.node_mut(),
+            Self::IntegerLiteral(x) => x.node_mut(),
+            Self::RawStringLiteral(x) => x.node_mut(),
+            Self::StringLiteral(x) => x.node_mut(),
         }
     }
 }
@@ -1774,7 +1904,9 @@ for LiteralPattern<'tree> {
             "boolean_literal" => {
                 Ok(unsafe {
                     Self::BooleanLiteral(
-                        <BooleanLiteral as type_sitter_lib::TypedNode<
+                        <BooleanLiteral<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -1783,7 +1915,9 @@ for LiteralPattern<'tree> {
             "char_literal" => {
                 Ok(unsafe {
                     Self::CharLiteral(
-                        <CharLiteral as type_sitter_lib::TypedNode<
+                        <CharLiteral<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -1792,7 +1926,9 @@ for LiteralPattern<'tree> {
             "float_literal" => {
                 Ok(unsafe {
                     Self::FloatLiteral(
-                        <FloatLiteral as type_sitter_lib::TypedNode<
+                        <FloatLiteral<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -1801,7 +1937,9 @@ for LiteralPattern<'tree> {
             "integer_literal" => {
                 Ok(unsafe {
                     Self::IntegerLiteral(
-                        <IntegerLiteral as type_sitter_lib::TypedNode<
+                        <IntegerLiteral<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -1810,7 +1948,9 @@ for LiteralPattern<'tree> {
             "negative_literal" => {
                 Ok(unsafe {
                     Self::NegativeLiteral(
-                        <NegativeLiteral as type_sitter_lib::TypedNode<
+                        <NegativeLiteral<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -1819,7 +1959,9 @@ for LiteralPattern<'tree> {
             "raw_string_literal" => {
                 Ok(unsafe {
                     Self::RawStringLiteral(
-                        <RawStringLiteral as type_sitter_lib::TypedNode<
+                        <RawStringLiteral<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -1828,7 +1970,9 @@ for LiteralPattern<'tree> {
             "string_literal" => {
                 Ok(unsafe {
                     Self::StringLiteral(
-                        <StringLiteral as type_sitter_lib::TypedNode<
+                        <StringLiteral<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -1861,13 +2005,13 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for LiteralPattern<'tree> {
     #[inline]
     fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         match self {
-            Self::BooleanLiteral(x) => x.node(),
-            Self::CharLiteral(x) => x.node(),
-            Self::FloatLiteral(x) => x.node(),
-            Self::IntegerLiteral(x) => x.node(),
-            Self::NegativeLiteral(x) => x.node(),
-            Self::RawStringLiteral(x) => x.node(),
-            Self::StringLiteral(x) => x.node(),
+            Self::BooleanLiteral(x) => x.node_mut(),
+            Self::CharLiteral(x) => x.node_mut(),
+            Self::FloatLiteral(x) => x.node_mut(),
+            Self::IntegerLiteral(x) => x.node_mut(),
+            Self::NegativeLiteral(x) => x.node_mut(),
+            Self::RawStringLiteral(x) => x.node_mut(),
+            Self::StringLiteral(x) => x.node_mut(),
         }
     }
 }
@@ -1875,7 +2019,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for LiteralPattern<'tree> {
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub enum Pattern<'tree> {
-    Underscore(Underscore<'tree>),
+    Underscore(unnamed::Underscore<'tree>),
     LiteralPattern(LiteralPattern<'tree>),
     CapturedPattern(CapturedPattern<'tree>),
     ConstBlock(ConstBlock<'tree>),
@@ -1900,7 +2044,7 @@ impl<'tree> Pattern<'tree> {
     )]
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn underscore(self) -> Option<Underscore<'tree>> {
+    pub fn underscore(self) -> Option<unnamed::Underscore<'tree>> {
         match self {
             Self::Underscore(x) => Some(x),
             _ => None,
@@ -2106,7 +2250,9 @@ for Pattern<'tree> {
             "_" => {
                 Ok(unsafe {
                     Self::Underscore(
-                        <Underscore as type_sitter_lib::TypedNode<
+                        <unnamed::Underscore<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -2115,7 +2261,9 @@ for Pattern<'tree> {
             "_literal_pattern" => {
                 Ok(unsafe {
                     Self::LiteralPattern(
-                        <LiteralPattern as type_sitter_lib::TypedNode<
+                        <LiteralPattern<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -2124,7 +2272,9 @@ for Pattern<'tree> {
             "captured_pattern" => {
                 Ok(unsafe {
                     Self::CapturedPattern(
-                        <CapturedPattern as type_sitter_lib::TypedNode<
+                        <CapturedPattern<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -2133,7 +2283,9 @@ for Pattern<'tree> {
             "const_block" => {
                 Ok(unsafe {
                     Self::ConstBlock(
-                        <ConstBlock as type_sitter_lib::TypedNode<
+                        <ConstBlock<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -2142,7 +2294,9 @@ for Pattern<'tree> {
             "identifier" => {
                 Ok(unsafe {
                     Self::Identifier(
-                        <Identifier as type_sitter_lib::TypedNode<
+                        <Identifier<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -2151,7 +2305,9 @@ for Pattern<'tree> {
             "macro_invocation" => {
                 Ok(unsafe {
                     Self::MacroInvocation(
-                        <MacroInvocation as type_sitter_lib::TypedNode<
+                        <MacroInvocation<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -2160,7 +2316,9 @@ for Pattern<'tree> {
             "mut_pattern" => {
                 Ok(unsafe {
                     Self::MutPattern(
-                        <MutPattern as type_sitter_lib::TypedNode<
+                        <MutPattern<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -2169,7 +2327,9 @@ for Pattern<'tree> {
             "or_pattern" => {
                 Ok(unsafe {
                     Self::OrPattern(
-                        <OrPattern as type_sitter_lib::TypedNode<
+                        <OrPattern<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -2178,7 +2338,9 @@ for Pattern<'tree> {
             "range_pattern" => {
                 Ok(unsafe {
                     Self::RangePattern(
-                        <RangePattern as type_sitter_lib::TypedNode<
+                        <RangePattern<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -2187,7 +2349,9 @@ for Pattern<'tree> {
             "ref_pattern" => {
                 Ok(unsafe {
                     Self::RefPattern(
-                        <RefPattern as type_sitter_lib::TypedNode<
+                        <RefPattern<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -2196,7 +2360,9 @@ for Pattern<'tree> {
             "reference_pattern" => {
                 Ok(unsafe {
                     Self::ReferencePattern(
-                        <ReferencePattern as type_sitter_lib::TypedNode<
+                        <ReferencePattern<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -2205,7 +2371,9 @@ for Pattern<'tree> {
             "remaining_field_pattern" => {
                 Ok(unsafe {
                     Self::RemainingFieldPattern(
-                        <RemainingFieldPattern as type_sitter_lib::TypedNode<
+                        <RemainingFieldPattern<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -2214,7 +2382,9 @@ for Pattern<'tree> {
             "scoped_identifier" => {
                 Ok(unsafe {
                     Self::ScopedIdentifier(
-                        <ScopedIdentifier as type_sitter_lib::TypedNode<
+                        <ScopedIdentifier<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -2223,7 +2393,9 @@ for Pattern<'tree> {
             "slice_pattern" => {
                 Ok(unsafe {
                     Self::SlicePattern(
-                        <SlicePattern as type_sitter_lib::TypedNode<
+                        <SlicePattern<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -2232,7 +2404,9 @@ for Pattern<'tree> {
             "struct_pattern" => {
                 Ok(unsafe {
                     Self::StructPattern(
-                        <StructPattern as type_sitter_lib::TypedNode<
+                        <StructPattern<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -2241,7 +2415,9 @@ for Pattern<'tree> {
             "tuple_pattern" => {
                 Ok(unsafe {
                     Self::TuplePattern(
-                        <TuplePattern as type_sitter_lib::TypedNode<
+                        <TuplePattern<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -2250,7 +2426,9 @@ for Pattern<'tree> {
             "tuple_struct_pattern" => {
                 Ok(unsafe {
                     Self::TupleStructPattern(
-                        <TupleStructPattern as type_sitter_lib::TypedNode<
+                        <TupleStructPattern<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -2293,23 +2471,23 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Pattern<'tree> {
     #[inline]
     fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         match self {
-            Self::Underscore(x) => x.node(),
-            Self::LiteralPattern(x) => x.node(),
-            Self::CapturedPattern(x) => x.node(),
-            Self::ConstBlock(x) => x.node(),
-            Self::Identifier(x) => x.node(),
-            Self::MacroInvocation(x) => x.node(),
-            Self::MutPattern(x) => x.node(),
-            Self::OrPattern(x) => x.node(),
-            Self::RangePattern(x) => x.node(),
-            Self::RefPattern(x) => x.node(),
-            Self::ReferencePattern(x) => x.node(),
-            Self::RemainingFieldPattern(x) => x.node(),
-            Self::ScopedIdentifier(x) => x.node(),
-            Self::SlicePattern(x) => x.node(),
-            Self::StructPattern(x) => x.node(),
-            Self::TuplePattern(x) => x.node(),
-            Self::TupleStructPattern(x) => x.node(),
+            Self::Underscore(x) => x.node_mut(),
+            Self::LiteralPattern(x) => x.node_mut(),
+            Self::CapturedPattern(x) => x.node_mut(),
+            Self::ConstBlock(x) => x.node_mut(),
+            Self::Identifier(x) => x.node_mut(),
+            Self::MacroInvocation(x) => x.node_mut(),
+            Self::MutPattern(x) => x.node_mut(),
+            Self::OrPattern(x) => x.node_mut(),
+            Self::RangePattern(x) => x.node_mut(),
+            Self::RefPattern(x) => x.node_mut(),
+            Self::ReferencePattern(x) => x.node_mut(),
+            Self::RemainingFieldPattern(x) => x.node_mut(),
+            Self::ScopedIdentifier(x) => x.node_mut(),
+            Self::SlicePattern(x) => x.node_mut(),
+            Self::StructPattern(x) => x.node_mut(),
+            Self::TuplePattern(x) => x.node_mut(),
+            Self::TupleStructPattern(x) => x.node_mut(),
         }
     }
 }
@@ -2536,7 +2714,9 @@ impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Type<
             "abstract_type" => {
                 Ok(unsafe {
                     Self::AbstractType(
-                        <AbstractType as type_sitter_lib::TypedNode<
+                        <AbstractType<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -2545,7 +2725,9 @@ impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Type<
             "array_type" => {
                 Ok(unsafe {
                     Self::ArrayType(
-                        <ArrayType as type_sitter_lib::TypedNode<
+                        <ArrayType<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -2554,7 +2736,9 @@ impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Type<
             "bounded_type" => {
                 Ok(unsafe {
                     Self::BoundedType(
-                        <BoundedType as type_sitter_lib::TypedNode<
+                        <BoundedType<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -2563,7 +2747,9 @@ impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Type<
             "dynamic_type" => {
                 Ok(unsafe {
                     Self::DynamicType(
-                        <DynamicType as type_sitter_lib::TypedNode<
+                        <DynamicType<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -2572,7 +2758,9 @@ impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Type<
             "empty_type" => {
                 Ok(unsafe {
                     Self::EmptyType(
-                        <EmptyType as type_sitter_lib::TypedNode<
+                        <EmptyType<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -2581,7 +2769,9 @@ impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Type<
             "function_type" => {
                 Ok(unsafe {
                     Self::FunctionType(
-                        <FunctionType as type_sitter_lib::TypedNode<
+                        <FunctionType<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -2590,7 +2780,9 @@ impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Type<
             "generic_type" => {
                 Ok(unsafe {
                     Self::GenericType(
-                        <GenericType as type_sitter_lib::TypedNode<
+                        <GenericType<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -2599,7 +2791,9 @@ impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Type<
             "macro_invocation" => {
                 Ok(unsafe {
                     Self::MacroInvocation(
-                        <MacroInvocation as type_sitter_lib::TypedNode<
+                        <MacroInvocation<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -2608,7 +2802,9 @@ impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Type<
             "metavariable" => {
                 Ok(unsafe {
                     Self::Metavariable(
-                        <Metavariable as type_sitter_lib::TypedNode<
+                        <Metavariable<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -2617,7 +2813,9 @@ impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Type<
             "pointer_type" => {
                 Ok(unsafe {
                     Self::PointerType(
-                        <PointerType as type_sitter_lib::TypedNode<
+                        <PointerType<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -2626,7 +2824,9 @@ impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Type<
             "primitive_type" => {
                 Ok(unsafe {
                     Self::PrimitiveType(
-                        <PrimitiveType as type_sitter_lib::TypedNode<
+                        <PrimitiveType<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -2635,7 +2835,9 @@ impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Type<
             "reference_type" => {
                 Ok(unsafe {
                     Self::ReferenceType(
-                        <ReferenceType as type_sitter_lib::TypedNode<
+                        <ReferenceType<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -2644,7 +2846,9 @@ impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Type<
             "scoped_type_identifier" => {
                 Ok(unsafe {
                     Self::ScopedTypeIdentifier(
-                        <ScopedTypeIdentifier as type_sitter_lib::TypedNode<
+                        <ScopedTypeIdentifier<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -2653,7 +2857,9 @@ impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Type<
             "tuple_type" => {
                 Ok(unsafe {
                     Self::TupleType(
-                        <TupleType as type_sitter_lib::TypedNode<
+                        <TupleType<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -2662,7 +2868,9 @@ impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Type<
             "type_identifier" => {
                 Ok(unsafe {
                     Self::TypeIdentifier(
-                        <TypeIdentifier as type_sitter_lib::TypedNode<
+                        <TypeIdentifier<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -2671,7 +2879,9 @@ impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Type<
             "unit_type" => {
                 Ok(unsafe {
                     Self::UnitType(
-                        <UnitType as type_sitter_lib::TypedNode<
+                        <UnitType<
+                            'tree,
+                        > as type_sitter_lib::TypedNode<
                             'tree,
                         >>::from_node_unchecked(node),
                     )
@@ -2713,22 +2923,22 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Type<'tree> {
     #[inline]
     fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         match self {
-            Self::AbstractType(x) => x.node(),
-            Self::ArrayType(x) => x.node(),
-            Self::BoundedType(x) => x.node(),
-            Self::DynamicType(x) => x.node(),
-            Self::EmptyType(x) => x.node(),
-            Self::FunctionType(x) => x.node(),
-            Self::GenericType(x) => x.node(),
-            Self::MacroInvocation(x) => x.node(),
-            Self::Metavariable(x) => x.node(),
-            Self::PointerType(x) => x.node(),
-            Self::PrimitiveType(x) => x.node(),
-            Self::ReferenceType(x) => x.node(),
-            Self::ScopedTypeIdentifier(x) => x.node(),
-            Self::TupleType(x) => x.node(),
-            Self::TypeIdentifier(x) => x.node(),
-            Self::UnitType(x) => x.node(),
+            Self::AbstractType(x) => x.node_mut(),
+            Self::ArrayType(x) => x.node_mut(),
+            Self::BoundedType(x) => x.node_mut(),
+            Self::DynamicType(x) => x.node_mut(),
+            Self::EmptyType(x) => x.node_mut(),
+            Self::FunctionType(x) => x.node_mut(),
+            Self::GenericType(x) => x.node_mut(),
+            Self::MacroInvocation(x) => x.node_mut(),
+            Self::Metavariable(x) => x.node_mut(),
+            Self::PointerType(x) => x.node_mut(),
+            Self::PrimitiveType(x) => x.node_mut(),
+            Self::ReferenceType(x) => x.node_mut(),
+            Self::ScopedTypeIdentifier(x) => x.node_mut(),
+            Self::TupleType(x) => x.node_mut(),
+            Self::TypeIdentifier(x) => x.node_mut(),
+            Self::UnitType(x) => x.node_mut(),
         }
     }
 }
@@ -2745,12 +2955,12 @@ impl<'tree> AbstractType<'tree> {
         &self,
     ) -> type_sitter_lib::NodeResult<
         'tree,
-        FunctionType_GenericType_ScopedTypeIdentifier_TypeIdentifier,
+        anon_unions::FunctionType_GenericType_ScopedTypeIdentifier_TypeIdentifier,
     > {
         self.0
             .child_by_field_name("trait")
             .map(
-                <FunctionType_GenericType_ScopedTypeIdentifier_TypeIdentifier as TryFrom<
+                <anon_unions::FunctionType_GenericType_ScopedTypeIdentifier_TypeIdentifier as TryFrom<
                     _,
                 >>::try_from,
             )
@@ -2805,12 +3015,12 @@ impl<'tree> Arguments<'tree> {
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
-        &'a self,
+        &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, Expression_AttributeItem>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::Expression_AttributeItem>,
         >,
     > + 'a {
         self.0
@@ -2818,7 +3028,7 @@ impl<'tree> Arguments<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    Expression_AttributeItem,
+                    anon_unions::Expression_AttributeItem,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -2831,7 +3041,7 @@ impl<'tree> Arguments<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, Expression_AttributeItem>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::Expression_AttributeItem>,
         >,
     > {
         self.0
@@ -2839,7 +3049,7 @@ impl<'tree> Arguments<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    Expression_AttributeItem,
+                    anon_unions::Expression_AttributeItem,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -2900,12 +3110,12 @@ impl<'tree> ArrayExpression<'tree> {
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
-        &'a self,
+        &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, Expression_AttributeItem>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::Expression_AttributeItem>,
         >,
     > + 'a {
         self.0
@@ -2913,7 +3123,7 @@ impl<'tree> ArrayExpression<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    Expression_AttributeItem,
+                    anon_unions::Expression_AttributeItem,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -2926,7 +3136,7 @@ impl<'tree> ArrayExpression<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, Expression_AttributeItem>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::Expression_AttributeItem>,
         >,
     > {
         self.0
@@ -2934,7 +3144,7 @@ impl<'tree> ArrayExpression<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    Expression_AttributeItem,
+                    anon_unions::Expression_AttributeItem,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -3267,12 +3477,12 @@ impl<'tree> Attribute<'tree> {
         &self,
     ) -> type_sitter_lib::NodeResult<
         'tree,
-        Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super,
+        anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super,
     > {
         self.0
             .named_child(0)
             .map(
-                <Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super as TryFrom<
+                <anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super as TryFrom<
                     _,
                 >>::try_from,
             )
@@ -3505,12 +3715,12 @@ impl<'tree> BinaryExpression<'tree> {
         &self,
     ) -> type_sitter_lib::NodeResult<
         'tree,
-        NotEq_Mod_And_AndAnd_Mul_Add_Sub_Div_Lt_LtLt_LtEq_EqEq_Gt_GtEq_GtGt_BitXor_Or_OrOr,
+        anon_unions::NotEq_Mod_And_AndAnd_Mul_Add_Sub_Div_Lt_LtLt_LtEq_EqEq_Gt_GtEq_GtGt_BitXor_Or_OrOr,
     > {
         self.0
             .child_by_field_name("operator")
             .map(
-                <NotEq_Mod_And_AndAnd_Mul_Add_Sub_Div_Lt_LtLt_LtEq_EqEq_Gt_GtEq_GtGt_BitXor_Or_OrOr as TryFrom<
+                <anon_unions::NotEq_Mod_And_AndAnd_Mul_Add_Sub_Div_Lt_LtLt_LtEq_EqEq_Gt_GtEq_GtGt_BitXor_Or_OrOr as TryFrom<
                     _,
                 >>::try_from,
             )
@@ -3576,14 +3786,14 @@ impl<'tree> Block<'tree> {
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
-        &'a self,
+        &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                DeclarationStatement_Expression_ExpressionStatement,
+                anon_unions::DeclarationStatement_Expression_ExpressionStatement,
             >,
         >,
     > + 'a {
@@ -3592,7 +3802,7 @@ impl<'tree> Block<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    DeclarationStatement_Expression_ExpressionStatement,
+                    anon_unions::DeclarationStatement_Expression_ExpressionStatement,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -3607,7 +3817,7 @@ impl<'tree> Block<'tree> {
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                DeclarationStatement_Expression_ExpressionStatement,
+                anon_unions::DeclarationStatement_Expression_ExpressionStatement,
             >,
         >,
     > {
@@ -3616,7 +3826,7 @@ impl<'tree> Block<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    DeclarationStatement_Expression_ExpressionStatement,
+                    anon_unions::DeclarationStatement_Expression_ExpressionStatement,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -3709,18 +3919,21 @@ impl<'tree> BoundedType<'tree> {
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
-        &'a self,
+        &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, Type_Lifetime>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::Type_Lifetime>,
         >,
     > + 'a {
         self.0
             .named_children(c)
             .map(
-                <type_sitter_lib::ExtraOr<'tree, Type_Lifetime> as TryFrom<_>>::try_from,
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    anon_unions::Type_Lifetime,
+                > as TryFrom<_>>::try_from,
             )
     }
     ///Get the node's named child #i
@@ -3732,13 +3945,16 @@ impl<'tree> BoundedType<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, Type_Lifetime>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::Type_Lifetime>,
         >,
     > {
         self.0
             .named_child(i)
             .map(
-                <type_sitter_lib::ExtraOr<'tree, Type_Lifetime> as TryFrom<_>>::try_from,
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    anon_unions::Type_Lifetime,
+                > as TryFrom<_>>::try_from,
             )
     }
 }
@@ -3787,10 +4003,12 @@ impl<'tree> BracketedType<'tree> {
     ///Get the node's only named child
     #[allow(dead_code)]
     #[inline]
-    pub fn child(&self) -> type_sitter_lib::NodeResult<'tree, Type_QualifiedType> {
+    pub fn child(
+        &self,
+    ) -> type_sitter_lib::NodeResult<'tree, anon_unions::Type_QualifiedType> {
         self.0
             .named_child(0)
-            .map(<Type_QualifiedType as TryFrom<_>>::try_from)
+            .map(<anon_unions::Type_QualifiedType as TryFrom<_>>::try_from)
             .expect(
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
@@ -3842,12 +4060,12 @@ impl<'tree> BreakExpression<'tree> {
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
-        &'a self,
+        &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, Expression_LoopLabel>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::Expression_LoopLabel>,
         >,
     > + 'a {
         self.0
@@ -3855,7 +4073,7 @@ impl<'tree> BreakExpression<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    Expression_LoopLabel,
+                    anon_unions::Expression_LoopLabel,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -3868,7 +4086,7 @@ impl<'tree> BreakExpression<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, Expression_LoopLabel>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::Expression_LoopLabel>,
         >,
     > {
         self.0
@@ -3876,7 +4094,7 @@ impl<'tree> BreakExpression<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    Expression_LoopLabel,
+                    anon_unions::Expression_LoopLabel,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -3941,12 +4159,12 @@ impl<'tree> CallExpression<'tree> {
         &self,
     ) -> type_sitter_lib::NodeResult<
         'tree,
-        Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier__Self_StructExpression_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression,
+        anon_unions::Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier__Self_StructExpression_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression,
     > {
         self.0
             .child_by_field_name("function")
             .map(
-                <Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier__Self_StructExpression_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression as TryFrom<
+                <anon_unions::Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier__Self_StructExpression_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression as TryFrom<
                     _,
                 >>::try_from,
             )
@@ -4002,7 +4220,7 @@ impl<'tree> CapturedPattern<'tree> {
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
-        &'a self,
+        &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
@@ -4158,12 +4376,12 @@ impl<'tree> ClosureParameters<'tree> {
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
-        &'a self,
+        &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, Pattern_Parameter>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::Pattern_Parameter>,
         >,
     > + 'a {
         self.0
@@ -4171,7 +4389,7 @@ impl<'tree> ClosureParameters<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    Pattern_Parameter,
+                    anon_unions::Pattern_Parameter,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -4184,7 +4402,7 @@ impl<'tree> ClosureParameters<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, Pattern_Parameter>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::Pattern_Parameter>,
         >,
     > {
         self.0
@@ -4192,7 +4410,7 @@ impl<'tree> ClosureParameters<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    Pattern_Parameter,
+                    anon_unions::Pattern_Parameter,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -4259,12 +4477,12 @@ impl<'tree> CompoundAssignmentExpr<'tree> {
         &self,
     ) -> type_sitter_lib::NodeResult<
         'tree,
-        ModEq_AndEq_MulEq_AddEq_SubEq_DivEq_LtLtEq_GtGtEq_BitXorEq_OrEq,
+        anon_unions::ModEq_AndEq_MulEq_AddEq_SubEq_DivEq_LtLtEq_GtGtEq_BitXorEq_OrEq,
     > {
         self.0
             .child_by_field_name("operator")
             .map(
-                <ModEq_AndEq_MulEq_AddEq_SubEq_DivEq_LtLtEq_GtGtEq_BitXorEq_OrEq as TryFrom<
+                <anon_unions::ModEq_AndEq_MulEq_AddEq_SubEq_DivEq_LtLtEq_GtGtEq_BitXorEq_OrEq as TryFrom<
                     _,
                 >>::try_from,
             )
@@ -4544,10 +4762,12 @@ impl<'tree> ConstrainedTypeParameter<'tree> {
     #[doc = concat!("Get the field `", "left", "`")]
     #[allow(dead_code)]
     #[inline]
-    pub fn left(&self) -> type_sitter_lib::NodeResult<'tree, Lifetime_TypeIdentifier> {
+    pub fn left(
+        &self,
+    ) -> type_sitter_lib::NodeResult<'tree, anon_unions::Lifetime_TypeIdentifier> {
         self.0
             .child_by_field_name("left")
-            .map(<Lifetime_TypeIdentifier as TryFrom<_>>::try_from)
+            .map(<anon_unions::Lifetime_TypeIdentifier as TryFrom<_>>::try_from)
             .expect(
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
@@ -4648,7 +4868,7 @@ impl<'tree> DeclarationList<'tree> {
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
-        &'a self,
+        &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
@@ -4736,12 +4956,12 @@ impl<'tree> DynamicType<'tree> {
         &self,
     ) -> type_sitter_lib::NodeResult<
         'tree,
-        FunctionType_GenericType_ScopedTypeIdentifier_TypeIdentifier,
+        anon_unions::FunctionType_GenericType_ScopedTypeIdentifier_TypeIdentifier,
     > {
         self.0
             .child_by_field_name("trait")
             .map(
-                <FunctionType_GenericType_ScopedTypeIdentifier_TypeIdentifier as TryFrom<
+                <anon_unions::FunctionType_GenericType_ScopedTypeIdentifier_TypeIdentifier as TryFrom<
                     _,
                 >>::try_from,
             )
@@ -4795,10 +5015,12 @@ impl<'tree> ElseClause<'tree> {
     ///Get the node's only named child
     #[allow(dead_code)]
     #[inline]
-    pub fn child(&self) -> type_sitter_lib::NodeResult<'tree, Block_IfExpression> {
+    pub fn child(
+        &self,
+    ) -> type_sitter_lib::NodeResult<'tree, anon_unions::Block_IfExpression> {
         self.0
             .named_child(0)
-            .map(<Block_IfExpression as TryFrom<_>>::try_from)
+            .map(<anon_unions::Block_IfExpression as TryFrom<_>>::try_from)
             .expect(
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
@@ -4966,12 +5188,12 @@ impl<'tree> EnumItem<'tree> {
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
-        &'a self,
+        &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, VisibilityModifier_WhereClause>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::VisibilityModifier_WhereClause>,
         >,
     > + 'a {
         self.0
@@ -4979,7 +5201,7 @@ impl<'tree> EnumItem<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    VisibilityModifier_WhereClause,
+                    anon_unions::VisibilityModifier_WhereClause,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -4992,7 +5214,7 @@ impl<'tree> EnumItem<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, VisibilityModifier_WhereClause>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::VisibilityModifier_WhereClause>,
         >,
     > {
         self.0
@@ -5000,7 +5222,7 @@ impl<'tree> EnumItem<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    VisibilityModifier_WhereClause,
+                    anon_unions::VisibilityModifier_WhereClause,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -5055,13 +5277,13 @@ impl<'tree> EnumVariant<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            FieldDeclarationList_OrderedFieldDeclarationList,
+            anon_unions::FieldDeclarationList_OrderedFieldDeclarationList,
         >,
     > {
         self.0
             .child_by_field_name("body")
             .map(
-                <FieldDeclarationList_OrderedFieldDeclarationList as TryFrom<
+                <anon_unions::FieldDeclarationList_OrderedFieldDeclarationList as TryFrom<
                     _,
                 >>::try_from,
             )
@@ -5142,12 +5364,12 @@ impl<'tree> EnumVariantList<'tree> {
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
-        &'a self,
+        &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, AttributeItem_EnumVariant>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::AttributeItem_EnumVariant>,
         >,
     > + 'a {
         self.0
@@ -5155,7 +5377,7 @@ impl<'tree> EnumVariantList<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    AttributeItem_EnumVariant,
+                    anon_unions::AttributeItem_EnumVariant,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -5168,7 +5390,7 @@ impl<'tree> EnumVariantList<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, AttributeItem_EnumVariant>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::AttributeItem_EnumVariant>,
         >,
     > {
         self.0
@@ -5176,7 +5398,7 @@ impl<'tree> EnumVariantList<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    AttributeItem_EnumVariant,
+                    anon_unions::AttributeItem_EnumVariant,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -5305,12 +5527,12 @@ impl<'tree> ExternCrateDeclaration<'tree> {
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
-        &'a self,
+        &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, Crate_VisibilityModifier>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::Crate_VisibilityModifier>,
         >,
     > + 'a {
         self.0
@@ -5318,7 +5540,7 @@ impl<'tree> ExternCrateDeclaration<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    Crate_VisibilityModifier,
+                    anon_unions::Crate_VisibilityModifier,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -5331,7 +5553,7 @@ impl<'tree> ExternCrateDeclaration<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, Crate_VisibilityModifier>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::Crate_VisibilityModifier>,
         >,
     > {
         self.0
@@ -5339,7 +5561,7 @@ impl<'tree> ExternCrateDeclaration<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    Crate_VisibilityModifier,
+                    anon_unions::Crate_VisibilityModifier,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -5516,12 +5738,12 @@ impl<'tree> FieldDeclarationList<'tree> {
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
-        &'a self,
+        &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, AttributeItem_FieldDeclaration>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::AttributeItem_FieldDeclaration>,
         >,
     > + 'a {
         self.0
@@ -5529,7 +5751,7 @@ impl<'tree> FieldDeclarationList<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    AttributeItem_FieldDeclaration,
+                    anon_unions::AttributeItem_FieldDeclaration,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -5542,7 +5764,7 @@ impl<'tree> FieldDeclarationList<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, AttributeItem_FieldDeclaration>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::AttributeItem_FieldDeclaration>,
         >,
     > {
         self.0
@@ -5550,7 +5772,7 @@ impl<'tree> FieldDeclarationList<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    AttributeItem_FieldDeclaration,
+                    anon_unions::AttributeItem_FieldDeclaration,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -5602,10 +5824,13 @@ impl<'tree> FieldExpression<'tree> {
     #[inline]
     pub fn field(
         &self,
-    ) -> type_sitter_lib::NodeResult<'tree, FieldIdentifier_IntegerLiteral> {
+    ) -> type_sitter_lib::NodeResult<
+        'tree,
+        anon_unions::FieldIdentifier_IntegerLiteral,
+    > {
         self.0
             .child_by_field_name("field")
-            .map(<FieldIdentifier_IntegerLiteral as TryFrom<_>>::try_from)
+            .map(<anon_unions::FieldIdentifier_IntegerLiteral as TryFrom<_>>::try_from)
             .expect(
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
@@ -5690,7 +5915,7 @@ impl<'tree> FieldInitializer<'tree> {
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
-        &'a self,
+        &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
@@ -5777,14 +6002,14 @@ impl<'tree> FieldInitializerList<'tree> {
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
-        &'a self,
+        &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                BaseFieldInitializer_FieldInitializer_ShorthandFieldInitializer,
+                anon_unions::BaseFieldInitializer_FieldInitializer_ShorthandFieldInitializer,
             >,
         >,
     > + 'a {
@@ -5793,7 +6018,7 @@ impl<'tree> FieldInitializerList<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    BaseFieldInitializer_FieldInitializer_ShorthandFieldInitializer,
+                    anon_unions::BaseFieldInitializer_FieldInitializer_ShorthandFieldInitializer,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -5808,7 +6033,7 @@ impl<'tree> FieldInitializerList<'tree> {
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                BaseFieldInitializer_FieldInitializer_ShorthandFieldInitializer,
+                anon_unions::BaseFieldInitializer_FieldInitializer_ShorthandFieldInitializer,
             >,
         >,
     > {
@@ -5817,7 +6042,7 @@ impl<'tree> FieldInitializerList<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    BaseFieldInitializer_FieldInitializer_ShorthandFieldInitializer,
+                    anon_unions::BaseFieldInitializer_FieldInitializer_ShorthandFieldInitializer,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -5869,10 +6094,17 @@ impl<'tree> FieldPattern<'tree> {
     #[inline]
     pub fn name(
         &self,
-    ) -> type_sitter_lib::NodeResult<'tree, FieldIdentifier_ShorthandFieldIdentifier> {
+    ) -> type_sitter_lib::NodeResult<
+        'tree,
+        anon_unions::FieldIdentifier_ShorthandFieldIdentifier,
+    > {
         self.0
             .child_by_field_name("name")
-            .map(<FieldIdentifier_ShorthandFieldIdentifier as TryFrom<_>>::try_from)
+            .map(
+                <anon_unions::FieldIdentifier_ShorthandFieldIdentifier as TryFrom<
+                    _,
+                >>::try_from,
+            )
             .expect(
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
@@ -6023,7 +6255,7 @@ impl<'tree> ForLifetimes<'tree> {
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
-        &'a self,
+        &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
@@ -6119,12 +6351,15 @@ impl<'tree> ForeignModItem<'tree> {
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
-        &'a self,
+        &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, ExternModifier_VisibilityModifier>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::ExternModifier_VisibilityModifier,
+            >,
         >,
     > + 'a {
         self.0
@@ -6132,7 +6367,7 @@ impl<'tree> ForeignModItem<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    ExternModifier_VisibilityModifier,
+                    anon_unions::ExternModifier_VisibilityModifier,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -6145,7 +6380,10 @@ impl<'tree> ForeignModItem<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, ExternModifier_VisibilityModifier>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::ExternModifier_VisibilityModifier,
+            >,
         >,
     > {
         self.0
@@ -6153,7 +6391,7 @@ impl<'tree> ForeignModItem<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    ExternModifier_VisibilityModifier,
+                    anon_unions::ExternModifier_VisibilityModifier,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -6256,10 +6494,12 @@ impl<'tree> FunctionItem<'tree> {
     #[doc = concat!("Get the field `", "name", "`")]
     #[allow(dead_code)]
     #[inline]
-    pub fn name(&self) -> type_sitter_lib::NodeResult<'tree, Identifier_Metavariable> {
+    pub fn name(
+        &self,
+    ) -> type_sitter_lib::NodeResult<'tree, anon_unions::Identifier_Metavariable> {
         self.0
             .child_by_field_name("name")
-            .map(<Identifier_Metavariable as TryFrom<_>>::try_from)
+            .map(<anon_unions::Identifier_Metavariable as TryFrom<_>>::try_from)
             .expect(
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
@@ -6299,14 +6539,14 @@ impl<'tree> FunctionItem<'tree> {
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
-        &'a self,
+        &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                FunctionModifiers_VisibilityModifier_WhereClause,
+                anon_unions::FunctionModifiers_VisibilityModifier_WhereClause,
             >,
         >,
     > + 'a {
@@ -6315,7 +6555,7 @@ impl<'tree> FunctionItem<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    FunctionModifiers_VisibilityModifier_WhereClause,
+                    anon_unions::FunctionModifiers_VisibilityModifier_WhereClause,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -6330,7 +6570,7 @@ impl<'tree> FunctionItem<'tree> {
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                FunctionModifiers_VisibilityModifier_WhereClause,
+                anon_unions::FunctionModifiers_VisibilityModifier_WhereClause,
             >,
         >,
     > {
@@ -6339,7 +6579,7 @@ impl<'tree> FunctionItem<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    FunctionModifiers_VisibilityModifier_WhereClause,
+                    anon_unions::FunctionModifiers_VisibilityModifier_WhereClause,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -6390,7 +6630,7 @@ impl<'tree> FunctionModifiers<'tree> {
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
-        &'a self,
+        &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
@@ -6476,10 +6716,12 @@ impl<'tree> FunctionSignatureItem<'tree> {
     #[doc = concat!("Get the field `", "name", "`")]
     #[allow(dead_code)]
     #[inline]
-    pub fn name(&self) -> type_sitter_lib::NodeResult<'tree, Identifier_Metavariable> {
+    pub fn name(
+        &self,
+    ) -> type_sitter_lib::NodeResult<'tree, anon_unions::Identifier_Metavariable> {
         self.0
             .child_by_field_name("name")
-            .map(<Identifier_Metavariable as TryFrom<_>>::try_from)
+            .map(<anon_unions::Identifier_Metavariable as TryFrom<_>>::try_from)
             .expect(
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
@@ -6519,14 +6761,14 @@ impl<'tree> FunctionSignatureItem<'tree> {
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
-        &'a self,
+        &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                FunctionModifiers_VisibilityModifier_WhereClause,
+                anon_unions::FunctionModifiers_VisibilityModifier_WhereClause,
             >,
         >,
     > + 'a {
@@ -6535,7 +6777,7 @@ impl<'tree> FunctionSignatureItem<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    FunctionModifiers_VisibilityModifier_WhereClause,
+                    anon_unions::FunctionModifiers_VisibilityModifier_WhereClause,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -6550,7 +6792,7 @@ impl<'tree> FunctionSignatureItem<'tree> {
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                FunctionModifiers_VisibilityModifier_WhereClause,
+                anon_unions::FunctionModifiers_VisibilityModifier_WhereClause,
             >,
         >,
     > {
@@ -6559,7 +6801,7 @@ impl<'tree> FunctionSignatureItem<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    FunctionModifiers_VisibilityModifier_WhereClause,
+                    anon_unions::FunctionModifiers_VisibilityModifier_WhereClause,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -6633,22 +6875,29 @@ impl<'tree> FunctionType<'tree> {
     pub fn r#trait(
         &self,
     ) -> Option<
-        type_sitter_lib::NodeResult<'tree, ScopedTypeIdentifier_TypeIdentifier>,
+        type_sitter_lib::NodeResult<
+            'tree,
+            anon_unions::ScopedTypeIdentifier_TypeIdentifier,
+        >,
     > {
         self.0
             .child_by_field_name("trait")
-            .map(<ScopedTypeIdentifier_TypeIdentifier as TryFrom<_>>::try_from)
+            .map(
+                <anon_unions::ScopedTypeIdentifier_TypeIdentifier as TryFrom<
+                    _,
+                >>::try_from,
+            )
     }
     ///Get the node's named children
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
-        &'a self,
+        &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, ForLifetimes_FunctionModifiers>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::ForLifetimes_FunctionModifiers>,
         >,
     > + 'a {
         self.0
@@ -6656,7 +6905,7 @@ impl<'tree> FunctionType<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    ForLifetimes_FunctionModifiers,
+                    anon_unions::ForLifetimes_FunctionModifiers,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -6669,7 +6918,7 @@ impl<'tree> FunctionType<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, ForLifetimes_FunctionModifiers>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::ForLifetimes_FunctionModifiers>,
         >,
     > {
         self.0
@@ -6677,7 +6926,7 @@ impl<'tree> FunctionType<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    ForLifetimes_FunctionModifiers,
+                    anon_unions::ForLifetimes_FunctionModifiers,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -6731,11 +6980,15 @@ impl<'tree> GenericFunction<'tree> {
         &self,
     ) -> type_sitter_lib::NodeResult<
         'tree,
-        FieldExpression_Identifier_ScopedIdentifier,
+        anon_unions::FieldExpression_Identifier_ScopedIdentifier,
     > {
         self.0
             .child_by_field_name("function")
-            .map(<FieldExpression_Identifier_ScopedIdentifier as TryFrom<_>>::try_from)
+            .map(
+                <anon_unions::FieldExpression_Identifier_ScopedIdentifier as TryFrom<
+                    _,
+                >>::try_from,
+            )
             .expect(
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
@@ -6803,12 +7056,12 @@ impl<'tree> GenericType<'tree> {
         &self,
     ) -> type_sitter_lib::NodeResult<
         'tree,
-        ScopedIdentifier_ScopedTypeIdentifier_TypeIdentifier,
+        anon_unions::ScopedIdentifier_ScopedTypeIdentifier_TypeIdentifier,
     > {
         self.0
             .child_by_field_name("type")
             .map(
-                <ScopedIdentifier_ScopedTypeIdentifier_TypeIdentifier as TryFrom<
+                <anon_unions::ScopedIdentifier_ScopedTypeIdentifier_TypeIdentifier as TryFrom<
                     _,
                 >>::try_from,
             )
@@ -6879,10 +7132,13 @@ impl<'tree> GenericTypeWithTurbofish<'tree> {
     #[inline]
     pub fn r#type(
         &self,
-    ) -> type_sitter_lib::NodeResult<'tree, ScopedIdentifier_TypeIdentifier> {
+    ) -> type_sitter_lib::NodeResult<
+        'tree,
+        anon_unions::ScopedIdentifier_TypeIdentifier,
+    > {
         self.0
             .child_by_field_name("type")
-            .map(<ScopedIdentifier_TypeIdentifier as TryFrom<_>>::try_from)
+            .map(<anon_unions::ScopedIdentifier_TypeIdentifier as TryFrom<_>>::try_from)
             .expect(
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
@@ -7027,10 +7283,13 @@ impl<'tree> IfExpression<'tree> {
     #[inline]
     pub fn condition(
         &self,
-    ) -> type_sitter_lib::NodeResult<'tree, Expression_LetChain_LetCondition> {
+    ) -> type_sitter_lib::NodeResult<
+        'tree,
+        anon_unions::Expression_LetChain_LetCondition,
+    > {
         self.0
             .child_by_field_name("condition")
-            .map(<Expression_LetChain_LetCondition as TryFrom<_>>::try_from)
+            .map(<anon_unions::Expression_LetChain_LetCondition as TryFrom<_>>::try_from)
             .expect(
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
@@ -7107,13 +7366,15 @@ impl<'tree> ImplItem<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            GenericType_ScopedTypeIdentifier_TypeIdentifier,
+            anon_unions::GenericType_ScopedTypeIdentifier_TypeIdentifier,
         >,
     > {
         self.0
             .child_by_field_name("trait")
             .map(
-                <GenericType_ScopedTypeIdentifier_TypeIdentifier as TryFrom<_>>::try_from,
+                <anon_unions::GenericType_ScopedTypeIdentifier_TypeIdentifier as TryFrom<
+                    _,
+                >>::try_from,
             )
     }
     #[doc = concat!("Get the field `", "type", "`")]
@@ -7193,7 +7454,7 @@ impl<'tree> IndexExpression<'tree> {
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
-        &'a self,
+        &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
@@ -7333,12 +7594,12 @@ impl<'tree> LetChain<'tree> {
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
-        &'a self,
+        &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, Expression_LetCondition>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::Expression_LetCondition>,
         >,
     > + 'a {
         self.0
@@ -7346,7 +7607,7 @@ impl<'tree> LetChain<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    Expression_LetCondition,
+                    anon_unions::Expression_LetCondition,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -7359,7 +7620,7 @@ impl<'tree> LetChain<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, Expression_LetCondition>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::Expression_LetCondition>,
         >,
     > {
         self.0
@@ -7367,7 +7628,7 @@ impl<'tree> LetChain<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    Expression_LetCondition,
+                    anon_unions::Expression_LetCondition,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -7750,7 +8011,7 @@ impl<'tree> MacroDefinition<'tree> {
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
-        &'a self,
+        &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
@@ -7836,10 +8097,10 @@ impl<'tree> MacroInvocation<'tree> {
     #[inline]
     pub fn r#macro(
         &self,
-    ) -> type_sitter_lib::NodeResult<'tree, Identifier_ScopedIdentifier> {
+    ) -> type_sitter_lib::NodeResult<'tree, anon_unions::Identifier_ScopedIdentifier> {
         self.0
             .child_by_field_name("macro")
-            .map(<Identifier_ScopedIdentifier as TryFrom<_>>::try_from)
+            .map(<anon_unions::Identifier_ScopedIdentifier as TryFrom<_>>::try_from)
             .expect(
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
@@ -7989,7 +8250,7 @@ impl<'tree> MatchArm<'tree> {
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
-        &'a self,
+        &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
@@ -8074,7 +8335,7 @@ impl<'tree> MatchBlock<'tree> {
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
-        &'a self,
+        &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
@@ -8225,10 +8486,12 @@ impl<'tree> MatchPattern<'tree> {
     #[inline]
     pub fn condition(
         &self,
-    ) -> Option<type_sitter_lib::NodeResult<'tree, Expression_LetChain_LetCondition>> {
+    ) -> Option<
+        type_sitter_lib::NodeResult<'tree, anon_unions::Expression_LetChain_LetCondition>,
+    > {
         self.0
             .child_by_field_name("condition")
-            .map(<Expression_LetChain_LetCondition as TryFrom<_>>::try_from)
+            .map(<anon_unions::Expression_LetChain_LetCondition as TryFrom<_>>::try_from)
     }
     ///Get the node's only named child
     #[allow(dead_code)]
@@ -8361,12 +8624,12 @@ impl<'tree> MutPattern<'tree> {
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
-        &'a self,
+        &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, Pattern_MutableSpecifier>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::Pattern_MutableSpecifier>,
         >,
     > + 'a {
         self.0
@@ -8374,7 +8637,7 @@ impl<'tree> MutPattern<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    Pattern_MutableSpecifier,
+                    anon_unions::Pattern_MutableSpecifier,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -8387,7 +8650,7 @@ impl<'tree> MutPattern<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, Pattern_MutableSpecifier>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::Pattern_MutableSpecifier>,
         >,
     > {
         self.0
@@ -8395,7 +8658,7 @@ impl<'tree> MutPattern<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    Pattern_MutableSpecifier,
+                    anon_unions::Pattern_MutableSpecifier,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -8447,10 +8710,10 @@ impl<'tree> NegativeLiteral<'tree> {
     #[inline]
     pub fn child(
         &self,
-    ) -> type_sitter_lib::NodeResult<'tree, FloatLiteral_IntegerLiteral> {
+    ) -> type_sitter_lib::NodeResult<'tree, anon_unions::FloatLiteral_IntegerLiteral> {
         self.0
             .named_child(0)
-            .map(<FloatLiteral_IntegerLiteral as TryFrom<_>>::try_from)
+            .map(<anon_unions::FloatLiteral_IntegerLiteral as TryFrom<_>>::try_from)
             .expect(
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
@@ -8516,10 +8779,17 @@ impl<'tree> OptionalTypeParameter<'tree> {
     #[inline]
     pub fn name(
         &self,
-    ) -> type_sitter_lib::NodeResult<'tree, ConstrainedTypeParameter_TypeIdentifier> {
+    ) -> type_sitter_lib::NodeResult<
+        'tree,
+        anon_unions::ConstrainedTypeParameter_TypeIdentifier,
+    > {
         self.0
             .child_by_field_name("name")
-            .map(<ConstrainedTypeParameter_TypeIdentifier as TryFrom<_>>::try_from)
+            .map(
+                <anon_unions::ConstrainedTypeParameter_TypeIdentifier as TryFrom<
+                    _,
+                >>::try_from,
+            )
             .expect(
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
@@ -8572,7 +8842,7 @@ impl<'tree> OrPattern<'tree> {
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
-        &'a self,
+        &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
@@ -8653,7 +8923,7 @@ impl<'tree> OrderedFieldDeclarationList<'tree> {
     #[allow(dead_code)]
     #[inline]
     pub fn types<'a>(
-        &'a self,
+        &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
@@ -8669,12 +8939,15 @@ impl<'tree> OrderedFieldDeclarationList<'tree> {
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
-        &'a self,
+        &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, AttributeItem_VisibilityModifier>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::AttributeItem_VisibilityModifier,
+            >,
         >,
     > + 'a {
         self.0
@@ -8682,7 +8955,7 @@ impl<'tree> OrderedFieldDeclarationList<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    AttributeItem_VisibilityModifier,
+                    anon_unions::AttributeItem_VisibilityModifier,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -8695,7 +8968,10 @@ impl<'tree> OrderedFieldDeclarationList<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, AttributeItem_VisibilityModifier>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::AttributeItem_VisibilityModifier,
+            >,
         >,
     > {
         self.0
@@ -8703,7 +8979,7 @@ impl<'tree> OrderedFieldDeclarationList<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    AttributeItem_VisibilityModifier,
+                    anon_unions::AttributeItem_VisibilityModifier,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -8753,10 +9029,12 @@ impl<'tree> Parameter<'tree> {
     #[doc = concat!("Get the field `", "pattern", "`")]
     #[allow(dead_code)]
     #[inline]
-    pub fn pattern(&self) -> type_sitter_lib::NodeResult<'tree, Pattern__Self> {
+    pub fn pattern(
+        &self,
+    ) -> type_sitter_lib::NodeResult<'tree, anon_unions::Pattern__Self> {
         self.0
             .child_by_field_name("pattern")
-            .map(<Pattern__Self as TryFrom<_>>::try_from)
+            .map(<anon_unions::Pattern__Self as TryFrom<_>>::try_from)
             .expect(
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
@@ -8827,14 +9105,14 @@ impl<'tree> Parameters<'tree> {
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
-        &'a self,
+        &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                Type_AttributeItem_Parameter_SelfParameter_VariadicParameter,
+                anon_unions::Type_AttributeItem_Parameter_SelfParameter_VariadicParameter,
             >,
         >,
     > + 'a {
@@ -8843,7 +9121,7 @@ impl<'tree> Parameters<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    Type_AttributeItem_Parameter_SelfParameter_VariadicParameter,
+                    anon_unions::Type_AttributeItem_Parameter_SelfParameter_VariadicParameter,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -8858,7 +9136,7 @@ impl<'tree> Parameters<'tree> {
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                Type_AttributeItem_Parameter_SelfParameter_VariadicParameter,
+                anon_unions::Type_AttributeItem_Parameter_SelfParameter_VariadicParameter,
             >,
         >,
     > {
@@ -8867,7 +9145,7 @@ impl<'tree> Parameters<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    Type_AttributeItem_Parameter_SelfParameter_VariadicParameter,
+                    anon_unions::Type_AttributeItem_Parameter_SelfParameter_VariadicParameter,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -9101,7 +9379,7 @@ impl<'tree> RangeExpression<'tree> {
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
-        &'a self,
+        &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
@@ -9187,14 +9465,14 @@ impl<'tree> RangePattern<'tree> {
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
-        &'a self,
+        &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                LiteralPattern_Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super,
+                anon_unions::LiteralPattern_Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super,
             >,
         >,
     > + 'a {
@@ -9203,7 +9481,7 @@ impl<'tree> RangePattern<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    LiteralPattern_Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super,
+                    anon_unions::LiteralPattern_Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -9218,7 +9496,7 @@ impl<'tree> RangePattern<'tree> {
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                LiteralPattern_Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super,
+                anon_unions::LiteralPattern_Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super,
             >,
         >,
     > {
@@ -9227,7 +9505,7 @@ impl<'tree> RangePattern<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    LiteralPattern_Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super,
+                    anon_unions::LiteralPattern_Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -9395,12 +9673,12 @@ impl<'tree> ReferencePattern<'tree> {
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
-        &'a self,
+        &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, Pattern_MutableSpecifier>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::Pattern_MutableSpecifier>,
         >,
     > + 'a {
         self.0
@@ -9408,7 +9686,7 @@ impl<'tree> ReferencePattern<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    Pattern_MutableSpecifier,
+                    anon_unions::Pattern_MutableSpecifier,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -9421,7 +9699,7 @@ impl<'tree> ReferencePattern<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, Pattern_MutableSpecifier>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::Pattern_MutableSpecifier>,
         >,
     > {
         self.0
@@ -9429,7 +9707,7 @@ impl<'tree> ReferencePattern<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    Pattern_MutableSpecifier,
+                    anon_unions::Pattern_MutableSpecifier,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -9491,12 +9769,12 @@ impl<'tree> ReferenceType<'tree> {
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
-        &'a self,
+        &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, Lifetime_MutableSpecifier>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::Lifetime_MutableSpecifier>,
         >,
     > + 'a {
         self.0
@@ -9504,7 +9782,7 @@ impl<'tree> ReferenceType<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    Lifetime_MutableSpecifier,
+                    anon_unions::Lifetime_MutableSpecifier,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -9517,7 +9795,7 @@ impl<'tree> ReferenceType<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, Lifetime_MutableSpecifier>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::Lifetime_MutableSpecifier>,
         >,
     > {
         self.0
@@ -9525,7 +9803,7 @@ impl<'tree> ReferenceType<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    Lifetime_MutableSpecifier,
+                    anon_unions::Lifetime_MutableSpecifier,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -9740,13 +10018,13 @@ impl<'tree> ScopedIdentifier<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            BracketedType_Crate_GenericType_Identifier_Metavariable_ScopedIdentifier__Self_Super,
+            anon_unions::BracketedType_Crate_GenericType_Identifier_Metavariable_ScopedIdentifier__Self_Super,
         >,
     > {
         self.0
             .child_by_field_name("path")
             .map(
-                <BracketedType_Crate_GenericType_Identifier_Metavariable_ScopedIdentifier__Self_Super as TryFrom<
+                <anon_unions::BracketedType_Crate_GenericType_Identifier_Metavariable_ScopedIdentifier__Self_Super as TryFrom<
                     _,
                 >>::try_from,
             )
@@ -9815,13 +10093,13 @@ impl<'tree> ScopedTypeIdentifier<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            BracketedType_Crate_GenericType_Identifier_Metavariable_ScopedIdentifier__Self_Super,
+            anon_unions::BracketedType_Crate_GenericType_Identifier_Metavariable_ScopedIdentifier__Self_Super,
         >,
     > {
         self.0
             .child_by_field_name("path")
             .map(
-                <BracketedType_Crate_GenericType_Identifier_Metavariable_ScopedIdentifier__Self_Super as TryFrom<
+                <anon_unions::BracketedType_Crate_GenericType_Identifier_Metavariable_ScopedIdentifier__Self_Super as TryFrom<
                     _,
                 >>::try_from,
             )
@@ -9888,13 +10166,13 @@ impl<'tree> ScopedUseList<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super,
+            anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super,
         >,
     > {
         self.0
             .child_by_field_name("path")
             .map(
-                <Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super as TryFrom<
+                <anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super as TryFrom<
                     _,
                 >>::try_from,
             )
@@ -9947,12 +10225,12 @@ impl<'tree> SelfParameter<'tree> {
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
-        &'a self,
+        &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, Lifetime_MutableSpecifier__Self>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::Lifetime_MutableSpecifier__Self>,
         >,
     > + 'a {
         self.0
@@ -9960,7 +10238,7 @@ impl<'tree> SelfParameter<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    Lifetime_MutableSpecifier__Self,
+                    anon_unions::Lifetime_MutableSpecifier__Self,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -9973,7 +10251,7 @@ impl<'tree> SelfParameter<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, Lifetime_MutableSpecifier__Self>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::Lifetime_MutableSpecifier__Self>,
         >,
     > {
         self.0
@@ -9981,7 +10259,7 @@ impl<'tree> SelfParameter<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    Lifetime_MutableSpecifier__Self,
+                    anon_unions::Lifetime_MutableSpecifier__Self,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -10035,12 +10313,12 @@ impl<'tree> ShorthandFieldInitializer<'tree> {
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
-        &'a self,
+        &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, AttributeItem_Identifier>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::AttributeItem_Identifier>,
         >,
     > + 'a {
         self.0
@@ -10048,7 +10326,7 @@ impl<'tree> ShorthandFieldInitializer<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    AttributeItem_Identifier,
+                    anon_unions::AttributeItem_Identifier,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -10061,7 +10339,7 @@ impl<'tree> ShorthandFieldInitializer<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, AttributeItem_Identifier>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::AttributeItem_Identifier>,
         >,
     > {
         self.0
@@ -10069,7 +10347,7 @@ impl<'tree> ShorthandFieldInitializer<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    AttributeItem_Identifier,
+                    anon_unions::AttributeItem_Identifier,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -10120,7 +10398,7 @@ impl<'tree> SlicePattern<'tree> {
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
-        &'a self,
+        &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
@@ -10199,12 +10477,15 @@ impl<'tree> SourceFile<'tree> {
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
-        &'a self,
+        &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, DeclarationStatement_ExpressionStatement>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::DeclarationStatement_ExpressionStatement,
+            >,
         >,
     > + 'a {
         self.0
@@ -10212,7 +10493,7 @@ impl<'tree> SourceFile<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    DeclarationStatement_ExpressionStatement,
+                    anon_unions::DeclarationStatement_ExpressionStatement,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -10225,7 +10506,10 @@ impl<'tree> SourceFile<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, DeclarationStatement_ExpressionStatement>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::DeclarationStatement_ExpressionStatement,
+            >,
         >,
     > {
         self.0
@@ -10233,7 +10517,7 @@ impl<'tree> SourceFile<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    DeclarationStatement_ExpressionStatement,
+                    anon_unions::DeclarationStatement_ExpressionStatement,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -10316,12 +10600,15 @@ impl<'tree> StaticItem<'tree> {
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
-        &'a self,
+        &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, MutableSpecifier_VisibilityModifier>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::MutableSpecifier_VisibilityModifier,
+            >,
         >,
     > + 'a {
         self.0
@@ -10329,7 +10616,7 @@ impl<'tree> StaticItem<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    MutableSpecifier_VisibilityModifier,
+                    anon_unions::MutableSpecifier_VisibilityModifier,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -10342,7 +10629,10 @@ impl<'tree> StaticItem<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, MutableSpecifier_VisibilityModifier>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::MutableSpecifier_VisibilityModifier,
+            >,
         >,
     > {
         self.0
@@ -10350,7 +10640,7 @@ impl<'tree> StaticItem<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    MutableSpecifier_VisibilityModifier,
+                    anon_unions::MutableSpecifier_VisibilityModifier,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -10401,7 +10691,7 @@ impl<'tree> StringLiteral<'tree> {
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
-        &'a self,
+        &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
@@ -10502,12 +10792,12 @@ impl<'tree> StructExpression<'tree> {
         &self,
     ) -> type_sitter_lib::NodeResult<
         'tree,
-        GenericTypeWithTurbofish_ScopedTypeIdentifier_TypeIdentifier,
+        anon_unions::GenericTypeWithTurbofish_ScopedTypeIdentifier_TypeIdentifier,
     > {
         self.0
             .child_by_field_name("name")
             .map(
-                <GenericTypeWithTurbofish_ScopedTypeIdentifier_TypeIdentifier as TryFrom<
+                <anon_unions::GenericTypeWithTurbofish_ScopedTypeIdentifier_TypeIdentifier as TryFrom<
                     _,
                 >>::try_from,
             )
@@ -10566,13 +10856,13 @@ impl<'tree> StructItem<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            FieldDeclarationList_OrderedFieldDeclarationList,
+            anon_unions::FieldDeclarationList_OrderedFieldDeclarationList,
         >,
     > {
         self.0
             .child_by_field_name("body")
             .map(
-                <FieldDeclarationList_OrderedFieldDeclarationList as TryFrom<
+                <anon_unions::FieldDeclarationList_OrderedFieldDeclarationList as TryFrom<
                     _,
                 >>::try_from,
             )
@@ -10602,12 +10892,12 @@ impl<'tree> StructItem<'tree> {
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
-        &'a self,
+        &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, VisibilityModifier_WhereClause>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::VisibilityModifier_WhereClause>,
         >,
     > + 'a {
         self.0
@@ -10615,7 +10905,7 @@ impl<'tree> StructItem<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    VisibilityModifier_WhereClause,
+                    anon_unions::VisibilityModifier_WhereClause,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -10628,7 +10918,7 @@ impl<'tree> StructItem<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, VisibilityModifier_WhereClause>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::VisibilityModifier_WhereClause>,
         >,
     > {
         self.0
@@ -10636,7 +10926,7 @@ impl<'tree> StructItem<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    VisibilityModifier_WhereClause,
+                    anon_unions::VisibilityModifier_WhereClause,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -10688,10 +10978,17 @@ impl<'tree> StructPattern<'tree> {
     #[inline]
     pub fn r#type(
         &self,
-    ) -> type_sitter_lib::NodeResult<'tree, ScopedTypeIdentifier_TypeIdentifier> {
+    ) -> type_sitter_lib::NodeResult<
+        'tree,
+        anon_unions::ScopedTypeIdentifier_TypeIdentifier,
+    > {
         self.0
             .child_by_field_name("type")
-            .map(<ScopedTypeIdentifier_TypeIdentifier as TryFrom<_>>::try_from)
+            .map(
+                <anon_unions::ScopedTypeIdentifier_TypeIdentifier as TryFrom<
+                    _,
+                >>::try_from,
+            )
             .expect(
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
@@ -10700,12 +10997,15 @@ impl<'tree> StructPattern<'tree> {
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
-        &'a self,
+        &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, FieldPattern_RemainingFieldPattern>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::FieldPattern_RemainingFieldPattern,
+            >,
         >,
     > + 'a {
         self.0
@@ -10713,7 +11013,7 @@ impl<'tree> StructPattern<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    FieldPattern_RemainingFieldPattern,
+                    anon_unions::FieldPattern_RemainingFieldPattern,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -10726,7 +11026,10 @@ impl<'tree> StructPattern<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, FieldPattern_RemainingFieldPattern>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::FieldPattern_RemainingFieldPattern,
+            >,
         >,
     > {
         self.0
@@ -10734,7 +11037,7 @@ impl<'tree> StructPattern<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    FieldPattern_RemainingFieldPattern,
+                    anon_unions::FieldPattern_RemainingFieldPattern,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -10852,14 +11155,14 @@ impl<'tree> TokenRepetition<'tree> {
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
-        &'a self,
+        &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenRepetition_TokenTree,
+                anon_unions::Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenRepetition_TokenTree,
             >,
         >,
     > + 'a {
@@ -10868,7 +11171,7 @@ impl<'tree> TokenRepetition<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenRepetition_TokenTree,
+                    anon_unions::Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenRepetition_TokenTree,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -10883,7 +11186,7 @@ impl<'tree> TokenRepetition<'tree> {
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenRepetition_TokenTree,
+                anon_unions::Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenRepetition_TokenTree,
             >,
         >,
     > {
@@ -10892,7 +11195,7 @@ impl<'tree> TokenRepetition<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenRepetition_TokenTree,
+                    anon_unions::Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenRepetition_TokenTree,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -10945,14 +11248,14 @@ impl<'tree> TokenRepetitionPattern<'tree> {
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
-        &'a self,
+        &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern,
+                anon_unions::Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern,
             >,
         >,
     > + 'a {
@@ -10961,7 +11264,7 @@ impl<'tree> TokenRepetitionPattern<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern,
+                    anon_unions::Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -10976,7 +11279,7 @@ impl<'tree> TokenRepetitionPattern<'tree> {
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern,
+                anon_unions::Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern,
             >,
         >,
     > {
@@ -10985,7 +11288,7 @@ impl<'tree> TokenRepetitionPattern<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern,
+                    anon_unions::Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -11036,14 +11339,14 @@ impl<'tree> TokenTree<'tree> {
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
-        &'a self,
+        &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenRepetition_TokenTree,
+                anon_unions::Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenRepetition_TokenTree,
             >,
         >,
     > + 'a {
@@ -11052,7 +11355,7 @@ impl<'tree> TokenTree<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenRepetition_TokenTree,
+                    anon_unions::Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenRepetition_TokenTree,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -11067,7 +11370,7 @@ impl<'tree> TokenTree<'tree> {
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenRepetition_TokenTree,
+                anon_unions::Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenRepetition_TokenTree,
             >,
         >,
     > {
@@ -11076,7 +11379,7 @@ impl<'tree> TokenTree<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenRepetition_TokenTree,
+                    anon_unions::Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenRepetition_TokenTree,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -11127,14 +11430,14 @@ impl<'tree> TokenTreePattern<'tree> {
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
-        &'a self,
+        &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern,
+                anon_unions::Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern,
             >,
         >,
     > + 'a {
@@ -11143,7 +11446,7 @@ impl<'tree> TokenTreePattern<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern,
+                    anon_unions::Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -11158,7 +11461,7 @@ impl<'tree> TokenTreePattern<'tree> {
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern,
+                anon_unions::Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern,
             >,
         >,
     > {
@@ -11167,7 +11470,7 @@ impl<'tree> TokenTreePattern<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern,
+                    anon_unions::Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -11219,14 +11522,14 @@ impl<'tree> TraitBounds<'tree> {
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
-        &'a self,
+        &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                Type_HigherRankedTraitBound_Lifetime_RemovedTraitBound,
+                anon_unions::Type_HigherRankedTraitBound_Lifetime_RemovedTraitBound,
             >,
         >,
     > + 'a {
@@ -11235,7 +11538,7 @@ impl<'tree> TraitBounds<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    Type_HigherRankedTraitBound_Lifetime_RemovedTraitBound,
+                    anon_unions::Type_HigherRankedTraitBound_Lifetime_RemovedTraitBound,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -11250,7 +11553,7 @@ impl<'tree> TraitBounds<'tree> {
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                Type_HigherRankedTraitBound_Lifetime_RemovedTraitBound,
+                anon_unions::Type_HigherRankedTraitBound_Lifetime_RemovedTraitBound,
             >,
         >,
     > {
@@ -11259,7 +11562,7 @@ impl<'tree> TraitBounds<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    Type_HigherRankedTraitBound_Lifetime_RemovedTraitBound,
+                    anon_unions::Type_HigherRankedTraitBound_Lifetime_RemovedTraitBound,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -11352,12 +11655,12 @@ impl<'tree> TraitItem<'tree> {
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
-        &'a self,
+        &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, VisibilityModifier_WhereClause>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::VisibilityModifier_WhereClause>,
         >,
     > + 'a {
         self.0
@@ -11365,7 +11668,7 @@ impl<'tree> TraitItem<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    VisibilityModifier_WhereClause,
+                    anon_unions::VisibilityModifier_WhereClause,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -11378,7 +11681,7 @@ impl<'tree> TraitItem<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, VisibilityModifier_WhereClause>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::VisibilityModifier_WhereClause>,
         >,
     > {
         self.0
@@ -11386,7 +11689,7 @@ impl<'tree> TraitItem<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    VisibilityModifier_WhereClause,
+                    anon_unions::VisibilityModifier_WhereClause,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -11492,12 +11795,12 @@ impl<'tree> TupleExpression<'tree> {
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
-        &'a self,
+        &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, Expression_AttributeItem>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::Expression_AttributeItem>,
         >,
     > + 'a {
         self.0
@@ -11505,7 +11808,7 @@ impl<'tree> TupleExpression<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    Expression_AttributeItem,
+                    anon_unions::Expression_AttributeItem,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -11518,7 +11821,7 @@ impl<'tree> TupleExpression<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, Expression_AttributeItem>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::Expression_AttributeItem>,
         >,
     > {
         self.0
@@ -11526,7 +11829,7 @@ impl<'tree> TupleExpression<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    Expression_AttributeItem,
+                    anon_unions::Expression_AttributeItem,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -11577,7 +11880,7 @@ impl<'tree> TuplePattern<'tree> {
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
-        &'a self,
+        &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
@@ -11657,10 +11960,10 @@ impl<'tree> TupleStructPattern<'tree> {
     #[inline]
     pub fn r#type(
         &self,
-    ) -> type_sitter_lib::NodeResult<'tree, Identifier_ScopedIdentifier> {
+    ) -> type_sitter_lib::NodeResult<'tree, anon_unions::Identifier_ScopedIdentifier> {
         self.0
             .child_by_field_name("type")
-            .map(<Identifier_ScopedIdentifier as TryFrom<_>>::try_from)
+            .map(<anon_unions::Identifier_ScopedIdentifier as TryFrom<_>>::try_from)
             .expect(
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
@@ -11669,7 +11972,7 @@ impl<'tree> TupleStructPattern<'tree> {
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
-        &'a self,
+        &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
@@ -11749,7 +12052,7 @@ impl<'tree> TupleType<'tree> {
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
-        &'a self,
+        &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
@@ -11822,12 +12125,15 @@ impl<'tree> TypeArguments<'tree> {
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
-        &'a self,
+        &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, Literal_Type_Block_Lifetime_TypeBinding>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::Literal_Type_Block_Lifetime_TypeBinding,
+            >,
         >,
     > + 'a {
         self.0
@@ -11835,7 +12141,7 @@ impl<'tree> TypeArguments<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    Literal_Type_Block_Lifetime_TypeBinding,
+                    anon_unions::Literal_Type_Block_Lifetime_TypeBinding,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -11848,7 +12154,10 @@ impl<'tree> TypeArguments<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, Literal_Type_Block_Lifetime_TypeBinding>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::Literal_Type_Block_Lifetime_TypeBinding,
+            >,
         >,
     > {
         self.0
@@ -11856,7 +12165,7 @@ impl<'tree> TypeArguments<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    Literal_Type_Block_Lifetime_TypeBinding,
+                    anon_unions::Literal_Type_Block_Lifetime_TypeBinding,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -12131,14 +12440,14 @@ impl<'tree> TypeParameters<'tree> {
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
-        &'a self,
+        &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                ConstParameter_ConstrainedTypeParameter_Lifetime_Metavariable_OptionalTypeParameter_TypeIdentifier,
+                anon_unions::ConstParameter_ConstrainedTypeParameter_Lifetime_Metavariable_OptionalTypeParameter_TypeIdentifier,
             >,
         >,
     > + 'a {
@@ -12147,7 +12456,7 @@ impl<'tree> TypeParameters<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    ConstParameter_ConstrainedTypeParameter_Lifetime_Metavariable_OptionalTypeParameter_TypeIdentifier,
+                    anon_unions::ConstParameter_ConstrainedTypeParameter_Lifetime_Metavariable_OptionalTypeParameter_TypeIdentifier,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -12162,7 +12471,7 @@ impl<'tree> TypeParameters<'tree> {
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                ConstParameter_ConstrainedTypeParameter_Lifetime_Metavariable_OptionalTypeParameter_TypeIdentifier,
+                anon_unions::ConstParameter_ConstrainedTypeParameter_Lifetime_Metavariable_OptionalTypeParameter_TypeIdentifier,
             >,
         >,
     > {
@@ -12171,7 +12480,7 @@ impl<'tree> TypeParameters<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    ConstParameter_ConstrainedTypeParameter_Lifetime_Metavariable_OptionalTypeParameter_TypeIdentifier,
+                    anon_unions::ConstParameter_ConstrainedTypeParameter_Lifetime_Metavariable_OptionalTypeParameter_TypeIdentifier,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -12310,12 +12619,12 @@ impl<'tree> UnionItem<'tree> {
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
-        &'a self,
+        &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, VisibilityModifier_WhereClause>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::VisibilityModifier_WhereClause>,
         >,
     > + 'a {
         self.0
@@ -12323,7 +12632,7 @@ impl<'tree> UnionItem<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    VisibilityModifier_WhereClause,
+                    anon_unions::VisibilityModifier_WhereClause,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -12336,7 +12645,7 @@ impl<'tree> UnionItem<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, VisibilityModifier_WhereClause>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::VisibilityModifier_WhereClause>,
         >,
     > {
         self.0
@@ -12344,7 +12653,7 @@ impl<'tree> UnionItem<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    VisibilityModifier_WhereClause,
+                    anon_unions::VisibilityModifier_WhereClause,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -12547,12 +12856,12 @@ impl<'tree> UseAsClause<'tree> {
         &self,
     ) -> type_sitter_lib::NodeResult<
         'tree,
-        Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super,
+        anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super,
     > {
         self.0
             .child_by_field_name("path")
             .map(
-                <Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super as TryFrom<
+                <anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super as TryFrom<
                     _,
                 >>::try_from,
             )
@@ -12610,12 +12919,12 @@ impl<'tree> UseDeclaration<'tree> {
         &self,
     ) -> type_sitter_lib::NodeResult<
         'tree,
-        Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard,
+        anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard,
     > {
         self.0
             .child_by_field_name("argument")
             .map(
-                <Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard as TryFrom<
+                <anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard as TryFrom<
                     _,
                 >>::try_from,
             )
@@ -12678,14 +12987,14 @@ impl<'tree> UseList<'tree> {
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
-        &'a self,
+        &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard,
+                anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard,
             >,
         >,
     > + 'a {
@@ -12694,7 +13003,7 @@ impl<'tree> UseList<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard,
+                    anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -12709,7 +13018,7 @@ impl<'tree> UseList<'tree> {
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard,
+                anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard,
             >,
         >,
     > {
@@ -12718,7 +13027,7 @@ impl<'tree> UseList<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard,
+                    anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -12773,13 +13082,13 @@ impl<'tree> UseWildcard<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super,
+            anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super,
         >,
     > {
         self.0
             .named_child(0)
             .map(
-                <Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super as TryFrom<
+                <anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super as TryFrom<
                     _,
                 >>::try_from,
             )
@@ -12877,13 +13186,13 @@ impl<'tree> VisibilityModifier<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super,
+            anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super,
         >,
     > {
         self.0
             .named_child(0)
             .map(
-                <Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super as TryFrom<
+                <anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super as TryFrom<
                     _,
                 >>::try_from,
             )
@@ -12936,7 +13245,7 @@ impl<'tree> WhereClause<'tree> {
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
-        &'a self,
+        &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
@@ -13035,12 +13344,12 @@ impl<'tree> WherePredicate<'tree> {
         &self,
     ) -> type_sitter_lib::NodeResult<
         'tree,
-        ArrayType_GenericType_HigherRankedTraitBound_Lifetime_PointerType_PrimitiveType_ReferenceType_ScopedTypeIdentifier_TupleType_TypeIdentifier,
+        anon_unions::ArrayType_GenericType_HigherRankedTraitBound_Lifetime_PointerType_PrimitiveType_ReferenceType_ScopedTypeIdentifier_TupleType_TypeIdentifier,
     > {
         self.0
             .child_by_field_name("left")
             .map(
-                <ArrayType_GenericType_HigherRankedTraitBound_Lifetime_PointerType_PrimitiveType_ReferenceType_ScopedTypeIdentifier_TupleType_TypeIdentifier as TryFrom<
+                <anon_unions::ArrayType_GenericType_HigherRankedTraitBound_Lifetime_PointerType_PrimitiveType_ReferenceType_ScopedTypeIdentifier_TupleType_TypeIdentifier as TryFrom<
                     _,
                 >>::try_from,
             )
@@ -13107,10 +13416,13 @@ impl<'tree> WhileExpression<'tree> {
     #[inline]
     pub fn condition(
         &self,
-    ) -> type_sitter_lib::NodeResult<'tree, Expression_LetChain_LetCondition> {
+    ) -> type_sitter_lib::NodeResult<
+        'tree,
+        anon_unions::Expression_LetChain_LetCondition,
+    > {
         self.0
             .child_by_field_name("condition")
-            .map(<Expression_LetChain_LetCondition as TryFrom<_>>::try_from)
+            .map(<anon_unions::Expression_LetChain_LetCondition as TryFrom<_>>::try_from)
             .expect(
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
@@ -13922,7 +14234,9 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TypeIdentifier<'tree> {
         Self(node)
     }
 }
-mod unnamed {
+pub mod unnamed {
+    #[allow(unused_imports)]
+    use super::*;
     #[doc = concat!("Typed node `", "!", "`")]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
@@ -18456,7 +18770,9 @@ mod unnamed {
         }
     }
 }
-mod anon_unions {
+pub mod anon_unions {
+    #[allow(unused_imports)]
+    use super::*;
     #[doc = concat!(
         "one of `",
         "{function_type | generic_type | scoped_type_identifier | type_identifier}", "`"
@@ -18532,7 +18848,9 @@ mod anon_unions {
                 "function_type" => {
                     Ok(unsafe {
                         Self::FunctionType(
-                            <FunctionType as type_sitter_lib::TypedNode<
+                            <FunctionType<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -18541,7 +18859,9 @@ mod anon_unions {
                 "generic_type" => {
                     Ok(unsafe {
                         Self::GenericType(
-                            <GenericType as type_sitter_lib::TypedNode<
+                            <GenericType<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -18550,7 +18870,9 @@ mod anon_unions {
                 "scoped_type_identifier" => {
                     Ok(unsafe {
                         Self::ScopedTypeIdentifier(
-                            <ScopedTypeIdentifier as type_sitter_lib::TypedNode<
+                            <ScopedTypeIdentifier<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -18559,7 +18881,9 @@ mod anon_unions {
                 "type_identifier" => {
                     Ok(unsafe {
                         Self::TypeIdentifier(
-                            <TypeIdentifier as type_sitter_lib::TypedNode<
+                            <TypeIdentifier<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -18592,10 +18916,10 @@ mod anon_unions {
             &mut self,
         ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
-                Self::FunctionType(x) => x.node(),
-                Self::GenericType(x) => x.node(),
-                Self::ScopedTypeIdentifier(x) => x.node(),
-                Self::TypeIdentifier(x) => x.node(),
+                Self::FunctionType(x) => x.node_mut(),
+                Self::GenericType(x) => x.node_mut(),
+                Self::ScopedTypeIdentifier(x) => x.node_mut(),
+                Self::TypeIdentifier(x) => x.node_mut(),
             }
         }
     }
@@ -18645,7 +18969,9 @@ mod anon_unions {
                 "_expression" => {
                     Ok(unsafe {
                         Self::Expression(
-                            <Expression as type_sitter_lib::TypedNode<
+                            <Expression<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -18654,7 +18980,9 @@ mod anon_unions {
                 "attribute_item" => {
                     Ok(unsafe {
                         Self::AttributeItem(
-                            <AttributeItem as type_sitter_lib::TypedNode<
+                            <AttributeItem<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -18684,8 +19012,8 @@ mod anon_unions {
             &mut self,
         ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
-                Self::Expression(x) => x.node(),
-                Self::AttributeItem(x) => x.node(),
+                Self::Expression(x) => x.node_mut(),
+                Self::AttributeItem(x) => x.node_mut(),
             }
         }
     }
@@ -18787,7 +19115,9 @@ mod anon_unions {
                 "crate" => {
                     Ok(unsafe {
                         Self::Crate(
-                            <Crate as type_sitter_lib::TypedNode<
+                            <Crate<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -18796,7 +19126,9 @@ mod anon_unions {
                 "identifier" => {
                     Ok(unsafe {
                         Self::Identifier(
-                            <Identifier as type_sitter_lib::TypedNode<
+                            <Identifier<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -18805,7 +19137,9 @@ mod anon_unions {
                 "metavariable" => {
                     Ok(unsafe {
                         Self::Metavariable(
-                            <Metavariable as type_sitter_lib::TypedNode<
+                            <Metavariable<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -18814,7 +19148,9 @@ mod anon_unions {
                 "scoped_identifier" => {
                     Ok(unsafe {
                         Self::ScopedIdentifier(
-                            <ScopedIdentifier as type_sitter_lib::TypedNode<
+                            <ScopedIdentifier<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -18823,7 +19159,9 @@ mod anon_unions {
                 "self" => {
                     Ok(unsafe {
                         Self::_Self(
-                            <_Self as type_sitter_lib::TypedNode<
+                            <_Self<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -18832,7 +19170,9 @@ mod anon_unions {
                 "super" => {
                     Ok(unsafe {
                         Self::Super(
-                            <Super as type_sitter_lib::TypedNode<
+                            <Super<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -18867,12 +19207,12 @@ mod anon_unions {
             &mut self,
         ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
-                Self::Crate(x) => x.node(),
-                Self::Identifier(x) => x.node(),
-                Self::Metavariable(x) => x.node(),
-                Self::ScopedIdentifier(x) => x.node(),
-                Self::_Self(x) => x.node(),
-                Self::Super(x) => x.node(),
+                Self::Crate(x) => x.node_mut(),
+                Self::Identifier(x) => x.node_mut(),
+                Self::Metavariable(x) => x.node_mut(),
+                Self::ScopedIdentifier(x) => x.node_mut(),
+                Self::_Self(x) => x.node_mut(),
+                Self::Super(x) => x.node_mut(),
             }
         }
     }
@@ -18886,24 +19226,24 @@ mod anon_unions {
     pub enum NotEq_Mod_And_AndAnd_Mul_Add_Sub_Div_Lt_LtLt_LtEq_EqEq_Gt_GtEq_GtGt_BitXor_Or_OrOr<
         'tree,
     > {
-        NotEq(NotEq<'tree>),
-        Mod(Mod<'tree>),
-        And(And<'tree>),
-        AndAnd(AndAnd<'tree>),
-        Mul(Mul<'tree>),
-        Add(Add<'tree>),
-        Sub(Sub<'tree>),
-        Div(Div<'tree>),
-        Lt(Lt<'tree>),
-        LtLt(LtLt<'tree>),
-        LtEq(LtEq<'tree>),
-        EqEq(EqEq<'tree>),
-        Gt(Gt<'tree>),
-        GtEq(GtEq<'tree>),
-        GtGt(GtGt<'tree>),
-        BitXor(BitXor<'tree>),
-        Or(Or<'tree>),
-        OrOr(OrOr<'tree>),
+        NotEq(unnamed::NotEq<'tree>),
+        Mod(unnamed::Mod<'tree>),
+        And(unnamed::And<'tree>),
+        AndAnd(unnamed::AndAnd<'tree>),
+        Mul(unnamed::Mul<'tree>),
+        Add(unnamed::Add<'tree>),
+        Sub(unnamed::Sub<'tree>),
+        Div(unnamed::Div<'tree>),
+        Lt(unnamed::Lt<'tree>),
+        LtLt(unnamed::LtLt<'tree>),
+        LtEq(unnamed::LtEq<'tree>),
+        EqEq(unnamed::EqEq<'tree>),
+        Gt(unnamed::Gt<'tree>),
+        GtEq(unnamed::GtEq<'tree>),
+        GtGt(unnamed::GtGt<'tree>),
+        BitXor(unnamed::BitXor<'tree>),
+        Or(unnamed::Or<'tree>),
+        OrOr(unnamed::OrOr<'tree>),
     }
     #[automatically_derived]
     impl<
@@ -18916,7 +19256,7 @@ mod anon_unions {
         )]
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn not_eq(self) -> Option<NotEq<'tree>> {
+        pub fn not_eq(self) -> Option<unnamed::NotEq<'tree>> {
             match self {
                 Self::NotEq(x) => Some(x),
                 _ => None,
@@ -18927,7 +19267,7 @@ mod anon_unions {
         )]
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn r#mod(self) -> Option<Mod<'tree>> {
+        pub fn r#mod(self) -> Option<unnamed::Mod<'tree>> {
             match self {
                 Self::Mod(x) => Some(x),
                 _ => None,
@@ -18938,7 +19278,7 @@ mod anon_unions {
         )]
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn and(self) -> Option<And<'tree>> {
+        pub fn and(self) -> Option<unnamed::And<'tree>> {
             match self {
                 Self::And(x) => Some(x),
                 _ => None,
@@ -18949,7 +19289,7 @@ mod anon_unions {
         )]
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn and_and(self) -> Option<AndAnd<'tree>> {
+        pub fn and_and(self) -> Option<unnamed::AndAnd<'tree>> {
             match self {
                 Self::AndAnd(x) => Some(x),
                 _ => None,
@@ -18960,7 +19300,7 @@ mod anon_unions {
         )]
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn mul(self) -> Option<Mul<'tree>> {
+        pub fn mul(self) -> Option<unnamed::Mul<'tree>> {
             match self {
                 Self::Mul(x) => Some(x),
                 _ => None,
@@ -18971,7 +19311,7 @@ mod anon_unions {
         )]
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn add(self) -> Option<Add<'tree>> {
+        pub fn add(self) -> Option<unnamed::Add<'tree>> {
             match self {
                 Self::Add(x) => Some(x),
                 _ => None,
@@ -18982,7 +19322,7 @@ mod anon_unions {
         )]
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn sub(self) -> Option<Sub<'tree>> {
+        pub fn sub(self) -> Option<unnamed::Sub<'tree>> {
             match self {
                 Self::Sub(x) => Some(x),
                 _ => None,
@@ -18993,7 +19333,7 @@ mod anon_unions {
         )]
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn div(self) -> Option<Div<'tree>> {
+        pub fn div(self) -> Option<unnamed::Div<'tree>> {
             match self {
                 Self::Div(x) => Some(x),
                 _ => None,
@@ -19004,7 +19344,7 @@ mod anon_unions {
         )]
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn lt(self) -> Option<Lt<'tree>> {
+        pub fn lt(self) -> Option<unnamed::Lt<'tree>> {
             match self {
                 Self::Lt(x) => Some(x),
                 _ => None,
@@ -19015,7 +19355,7 @@ mod anon_unions {
         )]
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn lt_lt(self) -> Option<LtLt<'tree>> {
+        pub fn lt_lt(self) -> Option<unnamed::LtLt<'tree>> {
             match self {
                 Self::LtLt(x) => Some(x),
                 _ => None,
@@ -19026,7 +19366,7 @@ mod anon_unions {
         )]
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn lt_eq(self) -> Option<LtEq<'tree>> {
+        pub fn lt_eq(self) -> Option<unnamed::LtEq<'tree>> {
             match self {
                 Self::LtEq(x) => Some(x),
                 _ => None,
@@ -19037,7 +19377,7 @@ mod anon_unions {
         )]
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn eq_eq(self) -> Option<EqEq<'tree>> {
+        pub fn eq_eq(self) -> Option<unnamed::EqEq<'tree>> {
             match self {
                 Self::EqEq(x) => Some(x),
                 _ => None,
@@ -19048,7 +19388,7 @@ mod anon_unions {
         )]
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn gt(self) -> Option<Gt<'tree>> {
+        pub fn gt(self) -> Option<unnamed::Gt<'tree>> {
             match self {
                 Self::Gt(x) => Some(x),
                 _ => None,
@@ -19059,7 +19399,7 @@ mod anon_unions {
         )]
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn gt_eq(self) -> Option<GtEq<'tree>> {
+        pub fn gt_eq(self) -> Option<unnamed::GtEq<'tree>> {
             match self {
                 Self::GtEq(x) => Some(x),
                 _ => None,
@@ -19070,7 +19410,7 @@ mod anon_unions {
         )]
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn gt_gt(self) -> Option<GtGt<'tree>> {
+        pub fn gt_gt(self) -> Option<unnamed::GtGt<'tree>> {
             match self {
                 Self::GtGt(x) => Some(x),
                 _ => None,
@@ -19081,7 +19421,7 @@ mod anon_unions {
         )]
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn bit_xor(self) -> Option<BitXor<'tree>> {
+        pub fn bit_xor(self) -> Option<unnamed::BitXor<'tree>> {
             match self {
                 Self::BitXor(x) => Some(x),
                 _ => None,
@@ -19092,7 +19432,7 @@ mod anon_unions {
         )]
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn or(self) -> Option<Or<'tree>> {
+        pub fn or(self) -> Option<unnamed::Or<'tree>> {
             match self {
                 Self::Or(x) => Some(x),
                 _ => None,
@@ -19103,7 +19443,7 @@ mod anon_unions {
         )]
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn or_or(self) -> Option<OrOr<'tree>> {
+        pub fn or_or(self) -> Option<unnamed::OrOr<'tree>> {
             match self {
                 Self::OrOr(x) => Some(x),
                 _ => None,
@@ -19124,7 +19464,9 @@ mod anon_unions {
                 "!=" => {
                     Ok(unsafe {
                         Self::NotEq(
-                            <NotEq as type_sitter_lib::TypedNode<
+                            <unnamed::NotEq<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -19133,7 +19475,9 @@ mod anon_unions {
                 "%" => {
                     Ok(unsafe {
                         Self::Mod(
-                            <Mod as type_sitter_lib::TypedNode<
+                            <unnamed::Mod<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -19142,7 +19486,9 @@ mod anon_unions {
                 "&" => {
                     Ok(unsafe {
                         Self::And(
-                            <And as type_sitter_lib::TypedNode<
+                            <unnamed::And<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -19151,7 +19497,9 @@ mod anon_unions {
                 "&&" => {
                     Ok(unsafe {
                         Self::AndAnd(
-                            <AndAnd as type_sitter_lib::TypedNode<
+                            <unnamed::AndAnd<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -19160,7 +19508,9 @@ mod anon_unions {
                 "*" => {
                     Ok(unsafe {
                         Self::Mul(
-                            <Mul as type_sitter_lib::TypedNode<
+                            <unnamed::Mul<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -19169,7 +19519,9 @@ mod anon_unions {
                 "+" => {
                     Ok(unsafe {
                         Self::Add(
-                            <Add as type_sitter_lib::TypedNode<
+                            <unnamed::Add<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -19178,7 +19530,9 @@ mod anon_unions {
                 "-" => {
                     Ok(unsafe {
                         Self::Sub(
-                            <Sub as type_sitter_lib::TypedNode<
+                            <unnamed::Sub<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -19187,7 +19541,9 @@ mod anon_unions {
                 "/" => {
                     Ok(unsafe {
                         Self::Div(
-                            <Div as type_sitter_lib::TypedNode<
+                            <unnamed::Div<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -19196,7 +19552,9 @@ mod anon_unions {
                 "<" => {
                     Ok(unsafe {
                         Self::Lt(
-                            <Lt as type_sitter_lib::TypedNode<
+                            <unnamed::Lt<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -19205,7 +19563,9 @@ mod anon_unions {
                 "<<" => {
                     Ok(unsafe {
                         Self::LtLt(
-                            <LtLt as type_sitter_lib::TypedNode<
+                            <unnamed::LtLt<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -19214,7 +19574,9 @@ mod anon_unions {
                 "<=" => {
                     Ok(unsafe {
                         Self::LtEq(
-                            <LtEq as type_sitter_lib::TypedNode<
+                            <unnamed::LtEq<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -19223,7 +19585,9 @@ mod anon_unions {
                 "==" => {
                     Ok(unsafe {
                         Self::EqEq(
-                            <EqEq as type_sitter_lib::TypedNode<
+                            <unnamed::EqEq<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -19232,7 +19596,9 @@ mod anon_unions {
                 ">" => {
                     Ok(unsafe {
                         Self::Gt(
-                            <Gt as type_sitter_lib::TypedNode<
+                            <unnamed::Gt<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -19241,7 +19607,9 @@ mod anon_unions {
                 ">=" => {
                     Ok(unsafe {
                         Self::GtEq(
-                            <GtEq as type_sitter_lib::TypedNode<
+                            <unnamed::GtEq<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -19250,7 +19618,9 @@ mod anon_unions {
                 ">>" => {
                     Ok(unsafe {
                         Self::GtGt(
-                            <GtGt as type_sitter_lib::TypedNode<
+                            <unnamed::GtGt<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -19259,7 +19629,9 @@ mod anon_unions {
                 "^" => {
                     Ok(unsafe {
                         Self::BitXor(
-                            <BitXor as type_sitter_lib::TypedNode<
+                            <unnamed::BitXor<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -19268,7 +19640,9 @@ mod anon_unions {
                 "|" => {
                     Ok(unsafe {
                         Self::Or(
-                            <Or as type_sitter_lib::TypedNode<
+                            <unnamed::Or<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -19277,7 +19651,9 @@ mod anon_unions {
                 "||" => {
                     Ok(unsafe {
                         Self::OrOr(
-                            <OrOr as type_sitter_lib::TypedNode<
+                            <unnamed::OrOr<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -19326,24 +19702,24 @@ mod anon_unions {
             &mut self,
         ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
-                Self::NotEq(x) => x.node(),
-                Self::Mod(x) => x.node(),
-                Self::And(x) => x.node(),
-                Self::AndAnd(x) => x.node(),
-                Self::Mul(x) => x.node(),
-                Self::Add(x) => x.node(),
-                Self::Sub(x) => x.node(),
-                Self::Div(x) => x.node(),
-                Self::Lt(x) => x.node(),
-                Self::LtLt(x) => x.node(),
-                Self::LtEq(x) => x.node(),
-                Self::EqEq(x) => x.node(),
-                Self::Gt(x) => x.node(),
-                Self::GtEq(x) => x.node(),
-                Self::GtGt(x) => x.node(),
-                Self::BitXor(x) => x.node(),
-                Self::Or(x) => x.node(),
-                Self::OrOr(x) => x.node(),
+                Self::NotEq(x) => x.node_mut(),
+                Self::Mod(x) => x.node_mut(),
+                Self::And(x) => x.node_mut(),
+                Self::AndAnd(x) => x.node_mut(),
+                Self::Mul(x) => x.node_mut(),
+                Self::Add(x) => x.node_mut(),
+                Self::Sub(x) => x.node_mut(),
+                Self::Div(x) => x.node_mut(),
+                Self::Lt(x) => x.node_mut(),
+                Self::LtLt(x) => x.node_mut(),
+                Self::LtEq(x) => x.node_mut(),
+                Self::EqEq(x) => x.node_mut(),
+                Self::Gt(x) => x.node_mut(),
+                Self::GtEq(x) => x.node_mut(),
+                Self::GtGt(x) => x.node_mut(),
+                Self::BitXor(x) => x.node_mut(),
+                Self::Or(x) => x.node_mut(),
+                Self::OrOr(x) => x.node_mut(),
             }
         }
     }
@@ -19408,7 +19784,9 @@ mod anon_unions {
                 "_declaration_statement" => {
                     Ok(unsafe {
                         Self::DeclarationStatement(
-                            <DeclarationStatement as type_sitter_lib::TypedNode<
+                            <DeclarationStatement<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -19417,7 +19795,9 @@ mod anon_unions {
                 "_expression" => {
                     Ok(unsafe {
                         Self::Expression(
-                            <Expression as type_sitter_lib::TypedNode<
+                            <Expression<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -19426,7 +19806,9 @@ mod anon_unions {
                 "expression_statement" => {
                     Ok(unsafe {
                         Self::ExpressionStatement(
-                            <ExpressionStatement as type_sitter_lib::TypedNode<
+                            <ExpressionStatement<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -19458,9 +19840,9 @@ mod anon_unions {
             &mut self,
         ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
-                Self::DeclarationStatement(x) => x.node(),
-                Self::Expression(x) => x.node(),
-                Self::ExpressionStatement(x) => x.node(),
+                Self::DeclarationStatement(x) => x.node_mut(),
+                Self::Expression(x) => x.node_mut(),
+                Self::ExpressionStatement(x) => x.node_mut(),
             }
         }
     }
@@ -19509,7 +19891,9 @@ mod anon_unions {
                 "_type" => {
                     Ok(unsafe {
                         Self::Type(
-                            <Type as type_sitter_lib::TypedNode<
+                            <Type<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -19518,7 +19902,9 @@ mod anon_unions {
                 "lifetime" => {
                     Ok(unsafe {
                         Self::Lifetime(
-                            <Lifetime as type_sitter_lib::TypedNode<
+                            <Lifetime<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -19548,8 +19934,8 @@ mod anon_unions {
             &mut self,
         ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
-                Self::Type(x) => x.node(),
-                Self::Lifetime(x) => x.node(),
+                Self::Type(x) => x.node_mut(),
+                Self::Lifetime(x) => x.node_mut(),
             }
         }
     }
@@ -19598,7 +19984,9 @@ mod anon_unions {
                 "_type" => {
                     Ok(unsafe {
                         Self::Type(
-                            <Type as type_sitter_lib::TypedNode<
+                            <Type<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -19607,7 +19995,9 @@ mod anon_unions {
                 "qualified_type" => {
                     Ok(unsafe {
                         Self::QualifiedType(
-                            <QualifiedType as type_sitter_lib::TypedNode<
+                            <QualifiedType<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -19637,8 +20027,8 @@ mod anon_unions {
             &mut self,
         ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
-                Self::Type(x) => x.node(),
-                Self::QualifiedType(x) => x.node(),
+                Self::Type(x) => x.node_mut(),
+                Self::QualifiedType(x) => x.node_mut(),
             }
         }
     }
@@ -19688,7 +20078,9 @@ mod anon_unions {
                 "_expression" => {
                     Ok(unsafe {
                         Self::Expression(
-                            <Expression as type_sitter_lib::TypedNode<
+                            <Expression<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -19697,7 +20089,9 @@ mod anon_unions {
                 "loop_label" => {
                     Ok(unsafe {
                         Self::LoopLabel(
-                            <LoopLabel as type_sitter_lib::TypedNode<
+                            <LoopLabel<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -19727,8 +20121,8 @@ mod anon_unions {
             &mut self,
         ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
-                Self::Expression(x) => x.node(),
-                Self::LoopLabel(x) => x.node(),
+                Self::Expression(x) => x.node_mut(),
+                Self::LoopLabel(x) => x.node_mut(),
             }
         }
     }
@@ -20243,7 +20637,9 @@ mod anon_unions {
                 "_literal" => {
                     Ok(unsafe {
                         Self::Literal(
-                            <Literal as type_sitter_lib::TypedNode<
+                            <Literal<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -20252,7 +20648,9 @@ mod anon_unions {
                 "array_expression" => {
                     Ok(unsafe {
                         Self::ArrayExpression(
-                            <ArrayExpression as type_sitter_lib::TypedNode<
+                            <ArrayExpression<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -20261,7 +20659,9 @@ mod anon_unions {
                 "assignment_expression" => {
                     Ok(unsafe {
                         Self::AssignmentExpression(
-                            <AssignmentExpression as type_sitter_lib::TypedNode<
+                            <AssignmentExpression<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -20270,7 +20670,9 @@ mod anon_unions {
                 "async_block" => {
                     Ok(unsafe {
                         Self::AsyncBlock(
-                            <AsyncBlock as type_sitter_lib::TypedNode<
+                            <AsyncBlock<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -20279,7 +20681,9 @@ mod anon_unions {
                 "await_expression" => {
                     Ok(unsafe {
                         Self::AwaitExpression(
-                            <AwaitExpression as type_sitter_lib::TypedNode<
+                            <AwaitExpression<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -20288,7 +20692,9 @@ mod anon_unions {
                 "binary_expression" => {
                     Ok(unsafe {
                         Self::BinaryExpression(
-                            <BinaryExpression as type_sitter_lib::TypedNode<
+                            <BinaryExpression<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -20297,7 +20703,9 @@ mod anon_unions {
                 "block" => {
                     Ok(unsafe {
                         Self::Block(
-                            <Block as type_sitter_lib::TypedNode<
+                            <Block<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -20306,7 +20714,9 @@ mod anon_unions {
                 "break_expression" => {
                     Ok(unsafe {
                         Self::BreakExpression(
-                            <BreakExpression as type_sitter_lib::TypedNode<
+                            <BreakExpression<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -20315,7 +20725,9 @@ mod anon_unions {
                 "call_expression" => {
                     Ok(unsafe {
                         Self::CallExpression(
-                            <CallExpression as type_sitter_lib::TypedNode<
+                            <CallExpression<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -20324,7 +20736,9 @@ mod anon_unions {
                 "closure_expression" => {
                     Ok(unsafe {
                         Self::ClosureExpression(
-                            <ClosureExpression as type_sitter_lib::TypedNode<
+                            <ClosureExpression<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -20333,7 +20747,9 @@ mod anon_unions {
                 "compound_assignment_expr" => {
                     Ok(unsafe {
                         Self::CompoundAssignmentExpr(
-                            <CompoundAssignmentExpr as type_sitter_lib::TypedNode<
+                            <CompoundAssignmentExpr<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -20342,7 +20758,9 @@ mod anon_unions {
                 "const_block" => {
                     Ok(unsafe {
                         Self::ConstBlock(
-                            <ConstBlock as type_sitter_lib::TypedNode<
+                            <ConstBlock<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -20351,7 +20769,9 @@ mod anon_unions {
                 "continue_expression" => {
                     Ok(unsafe {
                         Self::ContinueExpression(
-                            <ContinueExpression as type_sitter_lib::TypedNode<
+                            <ContinueExpression<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -20360,7 +20780,9 @@ mod anon_unions {
                 "field_expression" => {
                     Ok(unsafe {
                         Self::FieldExpression(
-                            <FieldExpression as type_sitter_lib::TypedNode<
+                            <FieldExpression<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -20369,7 +20791,9 @@ mod anon_unions {
                 "for_expression" => {
                     Ok(unsafe {
                         Self::ForExpression(
-                            <ForExpression as type_sitter_lib::TypedNode<
+                            <ForExpression<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -20378,7 +20802,9 @@ mod anon_unions {
                 "generic_function" => {
                     Ok(unsafe {
                         Self::GenericFunction(
-                            <GenericFunction as type_sitter_lib::TypedNode<
+                            <GenericFunction<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -20387,7 +20813,9 @@ mod anon_unions {
                 "identifier" => {
                     Ok(unsafe {
                         Self::Identifier(
-                            <Identifier as type_sitter_lib::TypedNode<
+                            <Identifier<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -20396,7 +20824,9 @@ mod anon_unions {
                 "if_expression" => {
                     Ok(unsafe {
                         Self::IfExpression(
-                            <IfExpression as type_sitter_lib::TypedNode<
+                            <IfExpression<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -20405,7 +20835,9 @@ mod anon_unions {
                 "index_expression" => {
                     Ok(unsafe {
                         Self::IndexExpression(
-                            <IndexExpression as type_sitter_lib::TypedNode<
+                            <IndexExpression<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -20414,7 +20846,9 @@ mod anon_unions {
                 "loop_expression" => {
                     Ok(unsafe {
                         Self::LoopExpression(
-                            <LoopExpression as type_sitter_lib::TypedNode<
+                            <LoopExpression<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -20423,7 +20857,9 @@ mod anon_unions {
                 "macro_invocation" => {
                     Ok(unsafe {
                         Self::MacroInvocation(
-                            <MacroInvocation as type_sitter_lib::TypedNode<
+                            <MacroInvocation<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -20432,7 +20868,9 @@ mod anon_unions {
                 "match_expression" => {
                     Ok(unsafe {
                         Self::MatchExpression(
-                            <MatchExpression as type_sitter_lib::TypedNode<
+                            <MatchExpression<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -20441,7 +20879,9 @@ mod anon_unions {
                 "metavariable" => {
                     Ok(unsafe {
                         Self::Metavariable(
-                            <Metavariable as type_sitter_lib::TypedNode<
+                            <Metavariable<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -20450,7 +20890,9 @@ mod anon_unions {
                 "parenthesized_expression" => {
                     Ok(unsafe {
                         Self::ParenthesizedExpression(
-                            <ParenthesizedExpression as type_sitter_lib::TypedNode<
+                            <ParenthesizedExpression<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -20459,7 +20901,9 @@ mod anon_unions {
                 "reference_expression" => {
                     Ok(unsafe {
                         Self::ReferenceExpression(
-                            <ReferenceExpression as type_sitter_lib::TypedNode<
+                            <ReferenceExpression<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -20468,7 +20912,9 @@ mod anon_unions {
                 "return_expression" => {
                     Ok(unsafe {
                         Self::ReturnExpression(
-                            <ReturnExpression as type_sitter_lib::TypedNode<
+                            <ReturnExpression<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -20477,7 +20923,9 @@ mod anon_unions {
                 "scoped_identifier" => {
                     Ok(unsafe {
                         Self::ScopedIdentifier(
-                            <ScopedIdentifier as type_sitter_lib::TypedNode<
+                            <ScopedIdentifier<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -20486,7 +20934,9 @@ mod anon_unions {
                 "self" => {
                     Ok(unsafe {
                         Self::_Self(
-                            <_Self as type_sitter_lib::TypedNode<
+                            <_Self<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -20495,7 +20945,9 @@ mod anon_unions {
                 "struct_expression" => {
                     Ok(unsafe {
                         Self::StructExpression(
-                            <StructExpression as type_sitter_lib::TypedNode<
+                            <StructExpression<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -20504,7 +20956,9 @@ mod anon_unions {
                 "try_expression" => {
                     Ok(unsafe {
                         Self::TryExpression(
-                            <TryExpression as type_sitter_lib::TypedNode<
+                            <TryExpression<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -20513,7 +20967,9 @@ mod anon_unions {
                 "tuple_expression" => {
                     Ok(unsafe {
                         Self::TupleExpression(
-                            <TupleExpression as type_sitter_lib::TypedNode<
+                            <TupleExpression<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -20522,7 +20978,9 @@ mod anon_unions {
                 "type_cast_expression" => {
                     Ok(unsafe {
                         Self::TypeCastExpression(
-                            <TypeCastExpression as type_sitter_lib::TypedNode<
+                            <TypeCastExpression<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -20531,7 +20989,9 @@ mod anon_unions {
                 "unary_expression" => {
                     Ok(unsafe {
                         Self::UnaryExpression(
-                            <UnaryExpression as type_sitter_lib::TypedNode<
+                            <UnaryExpression<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -20540,7 +21000,9 @@ mod anon_unions {
                 "unit_expression" => {
                     Ok(unsafe {
                         Self::UnitExpression(
-                            <UnitExpression as type_sitter_lib::TypedNode<
+                            <UnitExpression<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -20549,7 +21011,9 @@ mod anon_unions {
                 "unsafe_block" => {
                     Ok(unsafe {
                         Self::UnsafeBlock(
-                            <UnsafeBlock as type_sitter_lib::TypedNode<
+                            <UnsafeBlock<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -20558,7 +21022,9 @@ mod anon_unions {
                 "while_expression" => {
                     Ok(unsafe {
                         Self::WhileExpression(
-                            <WhileExpression as type_sitter_lib::TypedNode<
+                            <WhileExpression<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -20567,7 +21033,9 @@ mod anon_unions {
                 "yield_expression" => {
                     Ok(unsafe {
                         Self::YieldExpression(
-                            <YieldExpression as type_sitter_lib::TypedNode<
+                            <YieldExpression<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -20635,43 +21103,43 @@ mod anon_unions {
             &mut self,
         ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
-                Self::Literal(x) => x.node(),
-                Self::ArrayExpression(x) => x.node(),
-                Self::AssignmentExpression(x) => x.node(),
-                Self::AsyncBlock(x) => x.node(),
-                Self::AwaitExpression(x) => x.node(),
-                Self::BinaryExpression(x) => x.node(),
-                Self::Block(x) => x.node(),
-                Self::BreakExpression(x) => x.node(),
-                Self::CallExpression(x) => x.node(),
-                Self::ClosureExpression(x) => x.node(),
-                Self::CompoundAssignmentExpr(x) => x.node(),
-                Self::ConstBlock(x) => x.node(),
-                Self::ContinueExpression(x) => x.node(),
-                Self::FieldExpression(x) => x.node(),
-                Self::ForExpression(x) => x.node(),
-                Self::GenericFunction(x) => x.node(),
-                Self::Identifier(x) => x.node(),
-                Self::IfExpression(x) => x.node(),
-                Self::IndexExpression(x) => x.node(),
-                Self::LoopExpression(x) => x.node(),
-                Self::MacroInvocation(x) => x.node(),
-                Self::MatchExpression(x) => x.node(),
-                Self::Metavariable(x) => x.node(),
-                Self::ParenthesizedExpression(x) => x.node(),
-                Self::ReferenceExpression(x) => x.node(),
-                Self::ReturnExpression(x) => x.node(),
-                Self::ScopedIdentifier(x) => x.node(),
-                Self::_Self(x) => x.node(),
-                Self::StructExpression(x) => x.node(),
-                Self::TryExpression(x) => x.node(),
-                Self::TupleExpression(x) => x.node(),
-                Self::TypeCastExpression(x) => x.node(),
-                Self::UnaryExpression(x) => x.node(),
-                Self::UnitExpression(x) => x.node(),
-                Self::UnsafeBlock(x) => x.node(),
-                Self::WhileExpression(x) => x.node(),
-                Self::YieldExpression(x) => x.node(),
+                Self::Literal(x) => x.node_mut(),
+                Self::ArrayExpression(x) => x.node_mut(),
+                Self::AssignmentExpression(x) => x.node_mut(),
+                Self::AsyncBlock(x) => x.node_mut(),
+                Self::AwaitExpression(x) => x.node_mut(),
+                Self::BinaryExpression(x) => x.node_mut(),
+                Self::Block(x) => x.node_mut(),
+                Self::BreakExpression(x) => x.node_mut(),
+                Self::CallExpression(x) => x.node_mut(),
+                Self::ClosureExpression(x) => x.node_mut(),
+                Self::CompoundAssignmentExpr(x) => x.node_mut(),
+                Self::ConstBlock(x) => x.node_mut(),
+                Self::ContinueExpression(x) => x.node_mut(),
+                Self::FieldExpression(x) => x.node_mut(),
+                Self::ForExpression(x) => x.node_mut(),
+                Self::GenericFunction(x) => x.node_mut(),
+                Self::Identifier(x) => x.node_mut(),
+                Self::IfExpression(x) => x.node_mut(),
+                Self::IndexExpression(x) => x.node_mut(),
+                Self::LoopExpression(x) => x.node_mut(),
+                Self::MacroInvocation(x) => x.node_mut(),
+                Self::MatchExpression(x) => x.node_mut(),
+                Self::Metavariable(x) => x.node_mut(),
+                Self::ParenthesizedExpression(x) => x.node_mut(),
+                Self::ReferenceExpression(x) => x.node_mut(),
+                Self::ReturnExpression(x) => x.node_mut(),
+                Self::ScopedIdentifier(x) => x.node_mut(),
+                Self::_Self(x) => x.node_mut(),
+                Self::StructExpression(x) => x.node_mut(),
+                Self::TryExpression(x) => x.node_mut(),
+                Self::TupleExpression(x) => x.node_mut(),
+                Self::TypeCastExpression(x) => x.node_mut(),
+                Self::UnaryExpression(x) => x.node_mut(),
+                Self::UnitExpression(x) => x.node_mut(),
+                Self::UnsafeBlock(x) => x.node_mut(),
+                Self::WhileExpression(x) => x.node_mut(),
+                Self::YieldExpression(x) => x.node_mut(),
             }
         }
     }
@@ -20721,7 +21189,9 @@ mod anon_unions {
                 "_pattern" => {
                     Ok(unsafe {
                         Self::Pattern(
-                            <Pattern as type_sitter_lib::TypedNode<
+                            <Pattern<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -20730,7 +21200,9 @@ mod anon_unions {
                 "parameter" => {
                     Ok(unsafe {
                         Self::Parameter(
-                            <Parameter as type_sitter_lib::TypedNode<
+                            <Parameter<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -20760,8 +21232,8 @@ mod anon_unions {
             &mut self,
         ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
-                Self::Pattern(x) => x.node(),
-                Self::Parameter(x) => x.node(),
+                Self::Pattern(x) => x.node_mut(),
+                Self::Parameter(x) => x.node_mut(),
             }
         }
     }
@@ -20771,16 +21243,16 @@ mod anon_unions {
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum ModEq_AndEq_MulEq_AddEq_SubEq_DivEq_LtLtEq_GtGtEq_BitXorEq_OrEq<'tree> {
-        ModEq(ModEq<'tree>),
-        AndEq(AndEq<'tree>),
-        MulEq(MulEq<'tree>),
-        AddEq(AddEq<'tree>),
-        SubEq(SubEq<'tree>),
-        DivEq(DivEq<'tree>),
-        LtLtEq(LtLtEq<'tree>),
-        GtGtEq(GtGtEq<'tree>),
-        BitXorEq(BitXorEq<'tree>),
-        OrEq(OrEq<'tree>),
+        ModEq(unnamed::ModEq<'tree>),
+        AndEq(unnamed::AndEq<'tree>),
+        MulEq(unnamed::MulEq<'tree>),
+        AddEq(unnamed::AddEq<'tree>),
+        SubEq(unnamed::SubEq<'tree>),
+        DivEq(unnamed::DivEq<'tree>),
+        LtLtEq(unnamed::LtLtEq<'tree>),
+        GtGtEq(unnamed::GtGtEq<'tree>),
+        BitXorEq(unnamed::BitXorEq<'tree>),
+        OrEq(unnamed::OrEq<'tree>),
     }
     #[automatically_derived]
     impl<'tree> ModEq_AndEq_MulEq_AddEq_SubEq_DivEq_LtLtEq_GtGtEq_BitXorEq_OrEq<'tree> {
@@ -20789,7 +21261,7 @@ mod anon_unions {
         )]
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn mod_eq(self) -> Option<ModEq<'tree>> {
+        pub fn mod_eq(self) -> Option<unnamed::ModEq<'tree>> {
             match self {
                 Self::ModEq(x) => Some(x),
                 _ => None,
@@ -20800,7 +21272,7 @@ mod anon_unions {
         )]
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn and_eq(self) -> Option<AndEq<'tree>> {
+        pub fn and_eq(self) -> Option<unnamed::AndEq<'tree>> {
             match self {
                 Self::AndEq(x) => Some(x),
                 _ => None,
@@ -20811,7 +21283,7 @@ mod anon_unions {
         )]
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn mul_eq(self) -> Option<MulEq<'tree>> {
+        pub fn mul_eq(self) -> Option<unnamed::MulEq<'tree>> {
             match self {
                 Self::MulEq(x) => Some(x),
                 _ => None,
@@ -20822,7 +21294,7 @@ mod anon_unions {
         )]
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn add_eq(self) -> Option<AddEq<'tree>> {
+        pub fn add_eq(self) -> Option<unnamed::AddEq<'tree>> {
             match self {
                 Self::AddEq(x) => Some(x),
                 _ => None,
@@ -20833,7 +21305,7 @@ mod anon_unions {
         )]
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn sub_eq(self) -> Option<SubEq<'tree>> {
+        pub fn sub_eq(self) -> Option<unnamed::SubEq<'tree>> {
             match self {
                 Self::SubEq(x) => Some(x),
                 _ => None,
@@ -20844,7 +21316,7 @@ mod anon_unions {
         )]
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn div_eq(self) -> Option<DivEq<'tree>> {
+        pub fn div_eq(self) -> Option<unnamed::DivEq<'tree>> {
             match self {
                 Self::DivEq(x) => Some(x),
                 _ => None,
@@ -20855,7 +21327,7 @@ mod anon_unions {
         )]
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn lt_lt_eq(self) -> Option<LtLtEq<'tree>> {
+        pub fn lt_lt_eq(self) -> Option<unnamed::LtLtEq<'tree>> {
             match self {
                 Self::LtLtEq(x) => Some(x),
                 _ => None,
@@ -20866,7 +21338,7 @@ mod anon_unions {
         )]
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn gt_gt_eq(self) -> Option<GtGtEq<'tree>> {
+        pub fn gt_gt_eq(self) -> Option<unnamed::GtGtEq<'tree>> {
             match self {
                 Self::GtGtEq(x) => Some(x),
                 _ => None,
@@ -20877,7 +21349,7 @@ mod anon_unions {
         )]
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn bit_xor_eq(self) -> Option<BitXorEq<'tree>> {
+        pub fn bit_xor_eq(self) -> Option<unnamed::BitXorEq<'tree>> {
             match self {
                 Self::BitXorEq(x) => Some(x),
                 _ => None,
@@ -20888,7 +21360,7 @@ mod anon_unions {
         )]
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn or_eq(self) -> Option<OrEq<'tree>> {
+        pub fn or_eq(self) -> Option<unnamed::OrEq<'tree>> {
             match self {
                 Self::OrEq(x) => Some(x),
                 _ => None,
@@ -20907,7 +21379,9 @@ mod anon_unions {
                 "%=" => {
                     Ok(unsafe {
                         Self::ModEq(
-                            <ModEq as type_sitter_lib::TypedNode<
+                            <unnamed::ModEq<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -20916,7 +21390,9 @@ mod anon_unions {
                 "&=" => {
                     Ok(unsafe {
                         Self::AndEq(
-                            <AndEq as type_sitter_lib::TypedNode<
+                            <unnamed::AndEq<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -20925,7 +21401,9 @@ mod anon_unions {
                 "*=" => {
                     Ok(unsafe {
                         Self::MulEq(
-                            <MulEq as type_sitter_lib::TypedNode<
+                            <unnamed::MulEq<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -20934,7 +21412,9 @@ mod anon_unions {
                 "+=" => {
                     Ok(unsafe {
                         Self::AddEq(
-                            <AddEq as type_sitter_lib::TypedNode<
+                            <unnamed::AddEq<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -20943,7 +21423,9 @@ mod anon_unions {
                 "-=" => {
                     Ok(unsafe {
                         Self::SubEq(
-                            <SubEq as type_sitter_lib::TypedNode<
+                            <unnamed::SubEq<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -20952,7 +21434,9 @@ mod anon_unions {
                 "/=" => {
                     Ok(unsafe {
                         Self::DivEq(
-                            <DivEq as type_sitter_lib::TypedNode<
+                            <unnamed::DivEq<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -20961,7 +21445,9 @@ mod anon_unions {
                 "<<=" => {
                     Ok(unsafe {
                         Self::LtLtEq(
-                            <LtLtEq as type_sitter_lib::TypedNode<
+                            <unnamed::LtLtEq<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -20970,7 +21456,9 @@ mod anon_unions {
                 ">>=" => {
                     Ok(unsafe {
                         Self::GtGtEq(
-                            <GtGtEq as type_sitter_lib::TypedNode<
+                            <unnamed::GtGtEq<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -20979,7 +21467,9 @@ mod anon_unions {
                 "^=" => {
                     Ok(unsafe {
                         Self::BitXorEq(
-                            <BitXorEq as type_sitter_lib::TypedNode<
+                            <unnamed::BitXorEq<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -20988,7 +21478,9 @@ mod anon_unions {
                 "|=" => {
                     Ok(unsafe {
                         Self::OrEq(
-                            <OrEq as type_sitter_lib::TypedNode<
+                            <unnamed::OrEq<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -21027,16 +21519,16 @@ mod anon_unions {
             &mut self,
         ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
-                Self::ModEq(x) => x.node(),
-                Self::AndEq(x) => x.node(),
-                Self::MulEq(x) => x.node(),
-                Self::AddEq(x) => x.node(),
-                Self::SubEq(x) => x.node(),
-                Self::DivEq(x) => x.node(),
-                Self::LtLtEq(x) => x.node(),
-                Self::GtGtEq(x) => x.node(),
-                Self::BitXorEq(x) => x.node(),
-                Self::OrEq(x) => x.node(),
+                Self::ModEq(x) => x.node_mut(),
+                Self::AndEq(x) => x.node_mut(),
+                Self::MulEq(x) => x.node_mut(),
+                Self::AddEq(x) => x.node_mut(),
+                Self::SubEq(x) => x.node_mut(),
+                Self::DivEq(x) => x.node_mut(),
+                Self::LtLtEq(x) => x.node_mut(),
+                Self::GtGtEq(x) => x.node_mut(),
+                Self::BitXorEq(x) => x.node_mut(),
+                Self::OrEq(x) => x.node_mut(),
             }
         }
     }
@@ -21086,7 +21578,9 @@ mod anon_unions {
                 "lifetime" => {
                     Ok(unsafe {
                         Self::Lifetime(
-                            <Lifetime as type_sitter_lib::TypedNode<
+                            <Lifetime<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -21095,7 +21589,9 @@ mod anon_unions {
                 "type_identifier" => {
                     Ok(unsafe {
                         Self::TypeIdentifier(
-                            <TypeIdentifier as type_sitter_lib::TypedNode<
+                            <TypeIdentifier<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -21125,8 +21621,8 @@ mod anon_unions {
             &mut self,
         ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
-                Self::Lifetime(x) => x.node(),
-                Self::TypeIdentifier(x) => x.node(),
+                Self::Lifetime(x) => x.node_mut(),
+                Self::TypeIdentifier(x) => x.node_mut(),
             }
         }
     }
@@ -21175,7 +21671,9 @@ mod anon_unions {
                 "block" => {
                     Ok(unsafe {
                         Self::Block(
-                            <Block as type_sitter_lib::TypedNode<
+                            <Block<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -21184,7 +21682,9 @@ mod anon_unions {
                 "if_expression" => {
                     Ok(unsafe {
                         Self::IfExpression(
-                            <IfExpression as type_sitter_lib::TypedNode<
+                            <IfExpression<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -21214,8 +21714,8 @@ mod anon_unions {
             &mut self,
         ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
-                Self::Block(x) => x.node(),
-                Self::IfExpression(x) => x.node(),
+                Self::Block(x) => x.node_mut(),
+                Self::IfExpression(x) => x.node_mut(),
             }
         }
     }
@@ -21265,7 +21765,9 @@ mod anon_unions {
                 "visibility_modifier" => {
                     Ok(unsafe {
                         Self::VisibilityModifier(
-                            <VisibilityModifier as type_sitter_lib::TypedNode<
+                            <VisibilityModifier<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -21274,7 +21776,9 @@ mod anon_unions {
                 "where_clause" => {
                     Ok(unsafe {
                         Self::WhereClause(
-                            <WhereClause as type_sitter_lib::TypedNode<
+                            <WhereClause<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -21305,8 +21809,8 @@ mod anon_unions {
             &mut self,
         ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
-                Self::VisibilityModifier(x) => x.node(),
-                Self::WhereClause(x) => x.node(),
+                Self::VisibilityModifier(x) => x.node_mut(),
+                Self::WhereClause(x) => x.node_mut(),
             }
         }
     }
@@ -21360,7 +21864,9 @@ mod anon_unions {
                 "field_declaration_list" => {
                     Ok(unsafe {
                         Self::FieldDeclarationList(
-                            <FieldDeclarationList as type_sitter_lib::TypedNode<
+                            <FieldDeclarationList<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -21369,7 +21875,9 @@ mod anon_unions {
                 "ordered_field_declaration_list" => {
                     Ok(unsafe {
                         Self::OrderedFieldDeclarationList(
-                            <OrderedFieldDeclarationList as type_sitter_lib::TypedNode<
+                            <OrderedFieldDeclarationList<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -21400,8 +21908,8 @@ mod anon_unions {
             &mut self,
         ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
-                Self::FieldDeclarationList(x) => x.node(),
-                Self::OrderedFieldDeclarationList(x) => x.node(),
+                Self::FieldDeclarationList(x) => x.node_mut(),
+                Self::OrderedFieldDeclarationList(x) => x.node_mut(),
             }
         }
     }
@@ -21451,7 +21959,9 @@ mod anon_unions {
                 "attribute_item" => {
                     Ok(unsafe {
                         Self::AttributeItem(
-                            <AttributeItem as type_sitter_lib::TypedNode<
+                            <AttributeItem<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -21460,7 +21970,9 @@ mod anon_unions {
                 "enum_variant" => {
                     Ok(unsafe {
                         Self::EnumVariant(
-                            <EnumVariant as type_sitter_lib::TypedNode<
+                            <EnumVariant<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -21490,8 +22002,8 @@ mod anon_unions {
             &mut self,
         ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
-                Self::AttributeItem(x) => x.node(),
-                Self::EnumVariant(x) => x.node(),
+                Self::AttributeItem(x) => x.node_mut(),
+                Self::EnumVariant(x) => x.node_mut(),
             }
         }
     }
@@ -21540,7 +22052,9 @@ mod anon_unions {
                 "crate" => {
                     Ok(unsafe {
                         Self::Crate(
-                            <Crate as type_sitter_lib::TypedNode<
+                            <Crate<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -21549,7 +22063,9 @@ mod anon_unions {
                 "visibility_modifier" => {
                     Ok(unsafe {
                         Self::VisibilityModifier(
-                            <VisibilityModifier as type_sitter_lib::TypedNode<
+                            <VisibilityModifier<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -21579,8 +22095,8 @@ mod anon_unions {
             &mut self,
         ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
-                Self::Crate(x) => x.node(),
-                Self::VisibilityModifier(x) => x.node(),
+                Self::Crate(x) => x.node_mut(),
+                Self::VisibilityModifier(x) => x.node_mut(),
             }
         }
     }
@@ -21630,7 +22146,9 @@ mod anon_unions {
                 "attribute_item" => {
                     Ok(unsafe {
                         Self::AttributeItem(
-                            <AttributeItem as type_sitter_lib::TypedNode<
+                            <AttributeItem<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -21639,7 +22157,9 @@ mod anon_unions {
                 "field_declaration" => {
                     Ok(unsafe {
                         Self::FieldDeclaration(
-                            <FieldDeclaration as type_sitter_lib::TypedNode<
+                            <FieldDeclaration<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -21670,8 +22190,8 @@ mod anon_unions {
             &mut self,
         ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
-                Self::AttributeItem(x) => x.node(),
-                Self::FieldDeclaration(x) => x.node(),
+                Self::AttributeItem(x) => x.node_mut(),
+                Self::FieldDeclaration(x) => x.node_mut(),
             }
         }
     }
@@ -21721,7 +22241,9 @@ mod anon_unions {
                 "field_identifier" => {
                     Ok(unsafe {
                         Self::FieldIdentifier(
-                            <FieldIdentifier as type_sitter_lib::TypedNode<
+                            <FieldIdentifier<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -21730,7 +22252,9 @@ mod anon_unions {
                 "integer_literal" => {
                     Ok(unsafe {
                         Self::IntegerLiteral(
-                            <IntegerLiteral as type_sitter_lib::TypedNode<
+                            <IntegerLiteral<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -21761,8 +22285,8 @@ mod anon_unions {
             &mut self,
         ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
-                Self::FieldIdentifier(x) => x.node(),
-                Self::IntegerLiteral(x) => x.node(),
+                Self::FieldIdentifier(x) => x.node_mut(),
+                Self::IntegerLiteral(x) => x.node_mut(),
             }
         }
     }
@@ -21830,7 +22354,9 @@ mod anon_unions {
                 "base_field_initializer" => {
                     Ok(unsafe {
                         Self::BaseFieldInitializer(
-                            <BaseFieldInitializer as type_sitter_lib::TypedNode<
+                            <BaseFieldInitializer<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -21839,7 +22365,9 @@ mod anon_unions {
                 "field_initializer" => {
                     Ok(unsafe {
                         Self::FieldInitializer(
-                            <FieldInitializer as type_sitter_lib::TypedNode<
+                            <FieldInitializer<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -21848,7 +22376,9 @@ mod anon_unions {
                 "shorthand_field_initializer" => {
                     Ok(unsafe {
                         Self::ShorthandFieldInitializer(
-                            <ShorthandFieldInitializer as type_sitter_lib::TypedNode<
+                            <ShorthandFieldInitializer<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -21880,9 +22410,9 @@ mod anon_unions {
             &mut self,
         ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
-                Self::BaseFieldInitializer(x) => x.node(),
-                Self::FieldInitializer(x) => x.node(),
-                Self::ShorthandFieldInitializer(x) => x.node(),
+                Self::BaseFieldInitializer(x) => x.node_mut(),
+                Self::FieldInitializer(x) => x.node_mut(),
+                Self::ShorthandFieldInitializer(x) => x.node_mut(),
             }
         }
     }
@@ -21934,7 +22464,9 @@ mod anon_unions {
                 "field_identifier" => {
                     Ok(unsafe {
                         Self::FieldIdentifier(
-                            <FieldIdentifier as type_sitter_lib::TypedNode<
+                            <FieldIdentifier<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -21943,7 +22475,9 @@ mod anon_unions {
                 "shorthand_field_identifier" => {
                     Ok(unsafe {
                         Self::ShorthandFieldIdentifier(
-                            <ShorthandFieldIdentifier as type_sitter_lib::TypedNode<
+                            <ShorthandFieldIdentifier<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -21974,8 +22508,8 @@ mod anon_unions {
             &mut self,
         ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
-                Self::FieldIdentifier(x) => x.node(),
-                Self::ShorthandFieldIdentifier(x) => x.node(),
+                Self::FieldIdentifier(x) => x.node_mut(),
+                Self::ShorthandFieldIdentifier(x) => x.node_mut(),
             }
         }
     }
@@ -22025,7 +22559,9 @@ mod anon_unions {
                 "extern_modifier" => {
                     Ok(unsafe {
                         Self::ExternModifier(
-                            <ExternModifier as type_sitter_lib::TypedNode<
+                            <ExternModifier<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -22034,7 +22570,9 @@ mod anon_unions {
                 "visibility_modifier" => {
                     Ok(unsafe {
                         Self::VisibilityModifier(
-                            <VisibilityModifier as type_sitter_lib::TypedNode<
+                            <VisibilityModifier<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -22065,8 +22603,8 @@ mod anon_unions {
             &mut self,
         ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
-                Self::ExternModifier(x) => x.node(),
-                Self::VisibilityModifier(x) => x.node(),
+                Self::ExternModifier(x) => x.node_mut(),
+                Self::VisibilityModifier(x) => x.node_mut(),
             }
         }
     }
@@ -22131,7 +22669,9 @@ mod anon_unions {
                 "function_modifiers" => {
                     Ok(unsafe {
                         Self::FunctionModifiers(
-                            <FunctionModifiers as type_sitter_lib::TypedNode<
+                            <FunctionModifiers<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -22140,7 +22680,9 @@ mod anon_unions {
                 "visibility_modifier" => {
                     Ok(unsafe {
                         Self::VisibilityModifier(
-                            <VisibilityModifier as type_sitter_lib::TypedNode<
+                            <VisibilityModifier<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -22149,7 +22691,9 @@ mod anon_unions {
                 "where_clause" => {
                     Ok(unsafe {
                         Self::WhereClause(
-                            <WhereClause as type_sitter_lib::TypedNode<
+                            <WhereClause<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -22181,9 +22725,9 @@ mod anon_unions {
             &mut self,
         ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
-                Self::FunctionModifiers(x) => x.node(),
-                Self::VisibilityModifier(x) => x.node(),
-                Self::WhereClause(x) => x.node(),
+                Self::FunctionModifiers(x) => x.node_mut(),
+                Self::VisibilityModifier(x) => x.node_mut(),
+                Self::WhereClause(x) => x.node_mut(),
             }
         }
     }
@@ -22233,7 +22777,9 @@ mod anon_unions {
                 "identifier" => {
                     Ok(unsafe {
                         Self::Identifier(
-                            <Identifier as type_sitter_lib::TypedNode<
+                            <Identifier<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -22242,7 +22788,9 @@ mod anon_unions {
                 "metavariable" => {
                     Ok(unsafe {
                         Self::Metavariable(
-                            <Metavariable as type_sitter_lib::TypedNode<
+                            <Metavariable<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -22272,8 +22820,8 @@ mod anon_unions {
             &mut self,
         ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
-                Self::Identifier(x) => x.node(),
-                Self::Metavariable(x) => x.node(),
+                Self::Identifier(x) => x.node_mut(),
+                Self::Metavariable(x) => x.node_mut(),
             }
         }
     }
@@ -22323,7 +22871,9 @@ mod anon_unions {
                 "for_lifetimes" => {
                     Ok(unsafe {
                         Self::ForLifetimes(
-                            <ForLifetimes as type_sitter_lib::TypedNode<
+                            <ForLifetimes<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -22332,7 +22882,9 @@ mod anon_unions {
                 "function_modifiers" => {
                     Ok(unsafe {
                         Self::FunctionModifiers(
-                            <FunctionModifiers as type_sitter_lib::TypedNode<
+                            <FunctionModifiers<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -22363,8 +22915,8 @@ mod anon_unions {
             &mut self,
         ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
-                Self::ForLifetimes(x) => x.node(),
-                Self::FunctionModifiers(x) => x.node(),
+                Self::ForLifetimes(x) => x.node_mut(),
+                Self::FunctionModifiers(x) => x.node_mut(),
             }
         }
     }
@@ -22414,7 +22966,9 @@ mod anon_unions {
                 "scoped_type_identifier" => {
                     Ok(unsafe {
                         Self::ScopedTypeIdentifier(
-                            <ScopedTypeIdentifier as type_sitter_lib::TypedNode<
+                            <ScopedTypeIdentifier<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -22423,7 +22977,9 @@ mod anon_unions {
                 "type_identifier" => {
                     Ok(unsafe {
                         Self::TypeIdentifier(
-                            <TypeIdentifier as type_sitter_lib::TypedNode<
+                            <TypeIdentifier<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -22454,8 +23010,8 @@ mod anon_unions {
             &mut self,
         ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
-                Self::ScopedTypeIdentifier(x) => x.node(),
-                Self::TypeIdentifier(x) => x.node(),
+                Self::ScopedTypeIdentifier(x) => x.node_mut(),
+                Self::TypeIdentifier(x) => x.node_mut(),
             }
         }
     }
@@ -22520,7 +23076,9 @@ mod anon_unions {
                 "field_expression" => {
                     Ok(unsafe {
                         Self::FieldExpression(
-                            <FieldExpression as type_sitter_lib::TypedNode<
+                            <FieldExpression<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -22529,7 +23087,9 @@ mod anon_unions {
                 "identifier" => {
                     Ok(unsafe {
                         Self::Identifier(
-                            <Identifier as type_sitter_lib::TypedNode<
+                            <Identifier<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -22538,7 +23098,9 @@ mod anon_unions {
                 "scoped_identifier" => {
                     Ok(unsafe {
                         Self::ScopedIdentifier(
-                            <ScopedIdentifier as type_sitter_lib::TypedNode<
+                            <ScopedIdentifier<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -22570,9 +23132,9 @@ mod anon_unions {
             &mut self,
         ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
-                Self::FieldExpression(x) => x.node(),
-                Self::Identifier(x) => x.node(),
-                Self::ScopedIdentifier(x) => x.node(),
+                Self::FieldExpression(x) => x.node_mut(),
+                Self::Identifier(x) => x.node_mut(),
+                Self::ScopedIdentifier(x) => x.node_mut(),
             }
         }
     }
@@ -22637,7 +23199,9 @@ mod anon_unions {
                 "scoped_identifier" => {
                     Ok(unsafe {
                         Self::ScopedIdentifier(
-                            <ScopedIdentifier as type_sitter_lib::TypedNode<
+                            <ScopedIdentifier<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -22646,7 +23210,9 @@ mod anon_unions {
                 "scoped_type_identifier" => {
                     Ok(unsafe {
                         Self::ScopedTypeIdentifier(
-                            <ScopedTypeIdentifier as type_sitter_lib::TypedNode<
+                            <ScopedTypeIdentifier<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -22655,7 +23221,9 @@ mod anon_unions {
                 "type_identifier" => {
                     Ok(unsafe {
                         Self::TypeIdentifier(
-                            <TypeIdentifier as type_sitter_lib::TypedNode<
+                            <TypeIdentifier<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -22687,9 +23255,9 @@ mod anon_unions {
             &mut self,
         ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
-                Self::ScopedIdentifier(x) => x.node(),
-                Self::ScopedTypeIdentifier(x) => x.node(),
-                Self::TypeIdentifier(x) => x.node(),
+                Self::ScopedIdentifier(x) => x.node_mut(),
+                Self::ScopedTypeIdentifier(x) => x.node_mut(),
+                Self::TypeIdentifier(x) => x.node_mut(),
             }
         }
     }
@@ -22739,7 +23307,9 @@ mod anon_unions {
                 "scoped_identifier" => {
                     Ok(unsafe {
                         Self::ScopedIdentifier(
-                            <ScopedIdentifier as type_sitter_lib::TypedNode<
+                            <ScopedIdentifier<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -22748,7 +23318,9 @@ mod anon_unions {
                 "type_identifier" => {
                     Ok(unsafe {
                         Self::TypeIdentifier(
-                            <TypeIdentifier as type_sitter_lib::TypedNode<
+                            <TypeIdentifier<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -22779,8 +23351,8 @@ mod anon_unions {
             &mut self,
         ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
-                Self::ScopedIdentifier(x) => x.node(),
-                Self::TypeIdentifier(x) => x.node(),
+                Self::ScopedIdentifier(x) => x.node_mut(),
+                Self::TypeIdentifier(x) => x.node_mut(),
             }
         }
     }
@@ -22843,7 +23415,9 @@ mod anon_unions {
                 "_expression" => {
                     Ok(unsafe {
                         Self::Expression(
-                            <Expression as type_sitter_lib::TypedNode<
+                            <Expression<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -22852,7 +23426,9 @@ mod anon_unions {
                 "let_chain" => {
                     Ok(unsafe {
                         Self::LetChain(
-                            <LetChain as type_sitter_lib::TypedNode<
+                            <LetChain<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -22861,7 +23437,9 @@ mod anon_unions {
                 "let_condition" => {
                     Ok(unsafe {
                         Self::LetCondition(
-                            <LetCondition as type_sitter_lib::TypedNode<
+                            <LetCondition<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -22893,9 +23471,9 @@ mod anon_unions {
             &mut self,
         ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
-                Self::Expression(x) => x.node(),
-                Self::LetChain(x) => x.node(),
-                Self::LetCondition(x) => x.node(),
+                Self::Expression(x) => x.node_mut(),
+                Self::LetChain(x) => x.node_mut(),
+                Self::LetCondition(x) => x.node_mut(),
             }
         }
     }
@@ -22960,7 +23538,9 @@ mod anon_unions {
                 "generic_type" => {
                     Ok(unsafe {
                         Self::GenericType(
-                            <GenericType as type_sitter_lib::TypedNode<
+                            <GenericType<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -22969,7 +23549,9 @@ mod anon_unions {
                 "scoped_type_identifier" => {
                     Ok(unsafe {
                         Self::ScopedTypeIdentifier(
-                            <ScopedTypeIdentifier as type_sitter_lib::TypedNode<
+                            <ScopedTypeIdentifier<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -22978,7 +23560,9 @@ mod anon_unions {
                 "type_identifier" => {
                     Ok(unsafe {
                         Self::TypeIdentifier(
-                            <TypeIdentifier as type_sitter_lib::TypedNode<
+                            <TypeIdentifier<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -23010,9 +23594,9 @@ mod anon_unions {
             &mut self,
         ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
-                Self::GenericType(x) => x.node(),
-                Self::ScopedTypeIdentifier(x) => x.node(),
-                Self::TypeIdentifier(x) => x.node(),
+                Self::GenericType(x) => x.node_mut(),
+                Self::ScopedTypeIdentifier(x) => x.node_mut(),
+                Self::TypeIdentifier(x) => x.node_mut(),
             }
         }
     }
@@ -23062,7 +23646,9 @@ mod anon_unions {
                 "_expression" => {
                     Ok(unsafe {
                         Self::Expression(
-                            <Expression as type_sitter_lib::TypedNode<
+                            <Expression<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -23071,7 +23657,9 @@ mod anon_unions {
                 "let_condition" => {
                     Ok(unsafe {
                         Self::LetCondition(
-                            <LetCondition as type_sitter_lib::TypedNode<
+                            <LetCondition<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -23101,8 +23689,8 @@ mod anon_unions {
             &mut self,
         ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
-                Self::Expression(x) => x.node(),
-                Self::LetCondition(x) => x.node(),
+                Self::Expression(x) => x.node_mut(),
+                Self::LetCondition(x) => x.node_mut(),
             }
         }
     }
@@ -23152,7 +23740,9 @@ mod anon_unions {
                 "identifier" => {
                     Ok(unsafe {
                         Self::Identifier(
-                            <Identifier as type_sitter_lib::TypedNode<
+                            <Identifier<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -23161,7 +23751,9 @@ mod anon_unions {
                 "scoped_identifier" => {
                     Ok(unsafe {
                         Self::ScopedIdentifier(
-                            <ScopedIdentifier as type_sitter_lib::TypedNode<
+                            <ScopedIdentifier<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -23192,8 +23784,8 @@ mod anon_unions {
             &mut self,
         ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
-                Self::Identifier(x) => x.node(),
-                Self::ScopedIdentifier(x) => x.node(),
+                Self::Identifier(x) => x.node_mut(),
+                Self::ScopedIdentifier(x) => x.node_mut(),
             }
         }
     }
@@ -23243,7 +23835,9 @@ mod anon_unions {
                 "_pattern" => {
                     Ok(unsafe {
                         Self::Pattern(
-                            <Pattern as type_sitter_lib::TypedNode<
+                            <Pattern<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -23252,7 +23846,9 @@ mod anon_unions {
                 "mutable_specifier" => {
                     Ok(unsafe {
                         Self::MutableSpecifier(
-                            <MutableSpecifier as type_sitter_lib::TypedNode<
+                            <MutableSpecifier<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -23282,8 +23878,8 @@ mod anon_unions {
             &mut self,
         ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
-                Self::Pattern(x) => x.node(),
-                Self::MutableSpecifier(x) => x.node(),
+                Self::Pattern(x) => x.node_mut(),
+                Self::MutableSpecifier(x) => x.node_mut(),
             }
         }
     }
@@ -23333,7 +23929,9 @@ mod anon_unions {
                 "float_literal" => {
                     Ok(unsafe {
                         Self::FloatLiteral(
-                            <FloatLiteral as type_sitter_lib::TypedNode<
+                            <FloatLiteral<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -23342,7 +23940,9 @@ mod anon_unions {
                 "integer_literal" => {
                     Ok(unsafe {
                         Self::IntegerLiteral(
-                            <IntegerLiteral as type_sitter_lib::TypedNode<
+                            <IntegerLiteral<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -23373,8 +23973,8 @@ mod anon_unions {
             &mut self,
         ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
-                Self::FloatLiteral(x) => x.node(),
-                Self::IntegerLiteral(x) => x.node(),
+                Self::FloatLiteral(x) => x.node_mut(),
+                Self::IntegerLiteral(x) => x.node_mut(),
             }
         }
     }
@@ -23426,7 +24026,9 @@ mod anon_unions {
                 "constrained_type_parameter" => {
                     Ok(unsafe {
                         Self::ConstrainedTypeParameter(
-                            <ConstrainedTypeParameter as type_sitter_lib::TypedNode<
+                            <ConstrainedTypeParameter<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -23435,7 +24037,9 @@ mod anon_unions {
                 "type_identifier" => {
                     Ok(unsafe {
                         Self::TypeIdentifier(
-                            <TypeIdentifier as type_sitter_lib::TypedNode<
+                            <TypeIdentifier<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -23466,8 +24070,8 @@ mod anon_unions {
             &mut self,
         ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
-                Self::ConstrainedTypeParameter(x) => x.node(),
-                Self::TypeIdentifier(x) => x.node(),
+                Self::ConstrainedTypeParameter(x) => x.node_mut(),
+                Self::TypeIdentifier(x) => x.node_mut(),
             }
         }
     }
@@ -23517,7 +24121,9 @@ mod anon_unions {
                 "attribute_item" => {
                     Ok(unsafe {
                         Self::AttributeItem(
-                            <AttributeItem as type_sitter_lib::TypedNode<
+                            <AttributeItem<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -23526,7 +24132,9 @@ mod anon_unions {
                 "visibility_modifier" => {
                     Ok(unsafe {
                         Self::VisibilityModifier(
-                            <VisibilityModifier as type_sitter_lib::TypedNode<
+                            <VisibilityModifier<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -23557,8 +24165,8 @@ mod anon_unions {
             &mut self,
         ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
-                Self::AttributeItem(x) => x.node(),
-                Self::VisibilityModifier(x) => x.node(),
+                Self::AttributeItem(x) => x.node_mut(),
+                Self::VisibilityModifier(x) => x.node_mut(),
             }
         }
     }
@@ -23607,7 +24215,9 @@ mod anon_unions {
                 "_pattern" => {
                     Ok(unsafe {
                         Self::Pattern(
-                            <Pattern as type_sitter_lib::TypedNode<
+                            <Pattern<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -23616,7 +24226,9 @@ mod anon_unions {
                 "self" => {
                     Ok(unsafe {
                         Self::_Self(
-                            <_Self as type_sitter_lib::TypedNode<
+                            <_Self<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -23646,8 +24258,8 @@ mod anon_unions {
             &mut self,
         ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
-                Self::Pattern(x) => x.node(),
-                Self::_Self(x) => x.node(),
+                Self::Pattern(x) => x.node_mut(),
+                Self::_Self(x) => x.node_mut(),
             }
         }
     }
@@ -23738,7 +24350,9 @@ mod anon_unions {
                 "_type" => {
                     Ok(unsafe {
                         Self::Type(
-                            <Type as type_sitter_lib::TypedNode<
+                            <Type<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -23747,7 +24361,9 @@ mod anon_unions {
                 "attribute_item" => {
                     Ok(unsafe {
                         Self::AttributeItem(
-                            <AttributeItem as type_sitter_lib::TypedNode<
+                            <AttributeItem<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -23756,7 +24372,9 @@ mod anon_unions {
                 "parameter" => {
                     Ok(unsafe {
                         Self::Parameter(
-                            <Parameter as type_sitter_lib::TypedNode<
+                            <Parameter<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -23765,7 +24383,9 @@ mod anon_unions {
                 "self_parameter" => {
                     Ok(unsafe {
                         Self::SelfParameter(
-                            <SelfParameter as type_sitter_lib::TypedNode<
+                            <SelfParameter<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -23774,7 +24394,9 @@ mod anon_unions {
                 "variadic_parameter" => {
                     Ok(unsafe {
                         Self::VariadicParameter(
-                            <VariadicParameter as type_sitter_lib::TypedNode<
+                            <VariadicParameter<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -23808,11 +24430,11 @@ mod anon_unions {
             &mut self,
         ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
-                Self::Type(x) => x.node(),
-                Self::AttributeItem(x) => x.node(),
-                Self::Parameter(x) => x.node(),
-                Self::SelfParameter(x) => x.node(),
-                Self::VariadicParameter(x) => x.node(),
+                Self::Type(x) => x.node_mut(),
+                Self::AttributeItem(x) => x.node_mut(),
+                Self::Parameter(x) => x.node_mut(),
+                Self::SelfParameter(x) => x.node_mut(),
+                Self::VariadicParameter(x) => x.node_mut(),
             }
         }
     }
@@ -23934,7 +24556,9 @@ mod anon_unions {
                 "_literal_pattern" => {
                     Ok(unsafe {
                         Self::LiteralPattern(
-                            <LiteralPattern as type_sitter_lib::TypedNode<
+                            <LiteralPattern<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -23943,7 +24567,9 @@ mod anon_unions {
                 "crate" => {
                     Ok(unsafe {
                         Self::Crate(
-                            <Crate as type_sitter_lib::TypedNode<
+                            <Crate<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -23952,7 +24578,9 @@ mod anon_unions {
                 "identifier" => {
                     Ok(unsafe {
                         Self::Identifier(
-                            <Identifier as type_sitter_lib::TypedNode<
+                            <Identifier<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -23961,7 +24589,9 @@ mod anon_unions {
                 "metavariable" => {
                     Ok(unsafe {
                         Self::Metavariable(
-                            <Metavariable as type_sitter_lib::TypedNode<
+                            <Metavariable<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -23970,7 +24600,9 @@ mod anon_unions {
                 "scoped_identifier" => {
                     Ok(unsafe {
                         Self::ScopedIdentifier(
-                            <ScopedIdentifier as type_sitter_lib::TypedNode<
+                            <ScopedIdentifier<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -23979,7 +24611,9 @@ mod anon_unions {
                 "self" => {
                     Ok(unsafe {
                         Self::_Self(
-                            <_Self as type_sitter_lib::TypedNode<
+                            <_Self<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -23988,7 +24622,9 @@ mod anon_unions {
                 "super" => {
                     Ok(unsafe {
                         Self::Super(
-                            <Super as type_sitter_lib::TypedNode<
+                            <Super<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -24026,13 +24662,13 @@ mod anon_unions {
             &mut self,
         ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
-                Self::LiteralPattern(x) => x.node(),
-                Self::Crate(x) => x.node(),
-                Self::Identifier(x) => x.node(),
-                Self::Metavariable(x) => x.node(),
-                Self::ScopedIdentifier(x) => x.node(),
-                Self::_Self(x) => x.node(),
-                Self::Super(x) => x.node(),
+                Self::LiteralPattern(x) => x.node_mut(),
+                Self::Crate(x) => x.node_mut(),
+                Self::Identifier(x) => x.node_mut(),
+                Self::Metavariable(x) => x.node_mut(),
+                Self::ScopedIdentifier(x) => x.node_mut(),
+                Self::_Self(x) => x.node_mut(),
+                Self::Super(x) => x.node_mut(),
             }
         }
     }
@@ -24082,7 +24718,9 @@ mod anon_unions {
                 "lifetime" => {
                     Ok(unsafe {
                         Self::Lifetime(
-                            <Lifetime as type_sitter_lib::TypedNode<
+                            <Lifetime<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -24091,7 +24729,9 @@ mod anon_unions {
                 "mutable_specifier" => {
                     Ok(unsafe {
                         Self::MutableSpecifier(
-                            <MutableSpecifier as type_sitter_lib::TypedNode<
+                            <MutableSpecifier<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -24121,8 +24761,8 @@ mod anon_unions {
             &mut self,
         ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
-                Self::Lifetime(x) => x.node(),
-                Self::MutableSpecifier(x) => x.node(),
+                Self::Lifetime(x) => x.node_mut(),
+                Self::MutableSpecifier(x) => x.node_mut(),
             }
         }
     }
@@ -24259,7 +24899,9 @@ mod anon_unions {
                 "bracketed_type" => {
                     Ok(unsafe {
                         Self::BracketedType(
-                            <BracketedType as type_sitter_lib::TypedNode<
+                            <BracketedType<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -24268,7 +24910,9 @@ mod anon_unions {
                 "crate" => {
                     Ok(unsafe {
                         Self::Crate(
-                            <Crate as type_sitter_lib::TypedNode<
+                            <Crate<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -24277,7 +24921,9 @@ mod anon_unions {
                 "generic_type" => {
                     Ok(unsafe {
                         Self::GenericType(
-                            <GenericType as type_sitter_lib::TypedNode<
+                            <GenericType<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -24286,7 +24932,9 @@ mod anon_unions {
                 "identifier" => {
                     Ok(unsafe {
                         Self::Identifier(
-                            <Identifier as type_sitter_lib::TypedNode<
+                            <Identifier<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -24295,7 +24943,9 @@ mod anon_unions {
                 "metavariable" => {
                     Ok(unsafe {
                         Self::Metavariable(
-                            <Metavariable as type_sitter_lib::TypedNode<
+                            <Metavariable<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -24304,7 +24954,9 @@ mod anon_unions {
                 "scoped_identifier" => {
                     Ok(unsafe {
                         Self::ScopedIdentifier(
-                            <ScopedIdentifier as type_sitter_lib::TypedNode<
+                            <ScopedIdentifier<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -24313,7 +24965,9 @@ mod anon_unions {
                 "self" => {
                     Ok(unsafe {
                         Self::_Self(
-                            <_Self as type_sitter_lib::TypedNode<
+                            <_Self<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -24322,7 +24976,9 @@ mod anon_unions {
                 "super" => {
                     Ok(unsafe {
                         Self::Super(
-                            <Super as type_sitter_lib::TypedNode<
+                            <Super<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -24361,14 +25017,14 @@ mod anon_unions {
             &mut self,
         ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
-                Self::BracketedType(x) => x.node(),
-                Self::Crate(x) => x.node(),
-                Self::GenericType(x) => x.node(),
-                Self::Identifier(x) => x.node(),
-                Self::Metavariable(x) => x.node(),
-                Self::ScopedIdentifier(x) => x.node(),
-                Self::_Self(x) => x.node(),
-                Self::Super(x) => x.node(),
+                Self::BracketedType(x) => x.node_mut(),
+                Self::Crate(x) => x.node_mut(),
+                Self::GenericType(x) => x.node_mut(),
+                Self::Identifier(x) => x.node_mut(),
+                Self::Metavariable(x) => x.node_mut(),
+                Self::ScopedIdentifier(x) => x.node_mut(),
+                Self::_Self(x) => x.node_mut(),
+                Self::Super(x) => x.node_mut(),
             }
         }
     }
@@ -24430,7 +25086,9 @@ mod anon_unions {
                 "lifetime" => {
                     Ok(unsafe {
                         Self::Lifetime(
-                            <Lifetime as type_sitter_lib::TypedNode<
+                            <Lifetime<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -24439,7 +25097,9 @@ mod anon_unions {
                 "mutable_specifier" => {
                     Ok(unsafe {
                         Self::MutableSpecifier(
-                            <MutableSpecifier as type_sitter_lib::TypedNode<
+                            <MutableSpecifier<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -24448,7 +25108,9 @@ mod anon_unions {
                 "self" => {
                     Ok(unsafe {
                         Self::_Self(
-                            <_Self as type_sitter_lib::TypedNode<
+                            <_Self<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -24480,9 +25142,9 @@ mod anon_unions {
             &mut self,
         ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
-                Self::Lifetime(x) => x.node(),
-                Self::MutableSpecifier(x) => x.node(),
-                Self::_Self(x) => x.node(),
+                Self::Lifetime(x) => x.node_mut(),
+                Self::MutableSpecifier(x) => x.node_mut(),
+                Self::_Self(x) => x.node_mut(),
             }
         }
     }
@@ -24532,7 +25194,9 @@ mod anon_unions {
                 "attribute_item" => {
                     Ok(unsafe {
                         Self::AttributeItem(
-                            <AttributeItem as type_sitter_lib::TypedNode<
+                            <AttributeItem<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -24541,7 +25205,9 @@ mod anon_unions {
                 "identifier" => {
                     Ok(unsafe {
                         Self::Identifier(
-                            <Identifier as type_sitter_lib::TypedNode<
+                            <Identifier<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -24571,8 +25237,8 @@ mod anon_unions {
             &mut self,
         ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
-                Self::AttributeItem(x) => x.node(),
-                Self::Identifier(x) => x.node(),
+                Self::AttributeItem(x) => x.node_mut(),
+                Self::Identifier(x) => x.node_mut(),
             }
         }
     }
@@ -24622,7 +25288,9 @@ mod anon_unions {
                 "_declaration_statement" => {
                     Ok(unsafe {
                         Self::DeclarationStatement(
-                            <DeclarationStatement as type_sitter_lib::TypedNode<
+                            <DeclarationStatement<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -24631,7 +25299,9 @@ mod anon_unions {
                 "expression_statement" => {
                     Ok(unsafe {
                         Self::ExpressionStatement(
-                            <ExpressionStatement as type_sitter_lib::TypedNode<
+                            <ExpressionStatement<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -24662,8 +25332,8 @@ mod anon_unions {
             &mut self,
         ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
-                Self::DeclarationStatement(x) => x.node(),
-                Self::ExpressionStatement(x) => x.node(),
+                Self::DeclarationStatement(x) => x.node_mut(),
+                Self::ExpressionStatement(x) => x.node_mut(),
             }
         }
     }
@@ -24713,7 +25383,9 @@ mod anon_unions {
                 "mutable_specifier" => {
                     Ok(unsafe {
                         Self::MutableSpecifier(
-                            <MutableSpecifier as type_sitter_lib::TypedNode<
+                            <MutableSpecifier<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -24722,7 +25394,9 @@ mod anon_unions {
                 "visibility_modifier" => {
                     Ok(unsafe {
                         Self::VisibilityModifier(
-                            <VisibilityModifier as type_sitter_lib::TypedNode<
+                            <VisibilityModifier<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -24753,8 +25427,8 @@ mod anon_unions {
             &mut self,
         ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
-                Self::MutableSpecifier(x) => x.node(),
-                Self::VisibilityModifier(x) => x.node(),
+                Self::MutableSpecifier(x) => x.node_mut(),
+                Self::VisibilityModifier(x) => x.node_mut(),
             }
         }
     }
@@ -24822,7 +25496,9 @@ mod anon_unions {
                 "generic_type_with_turbofish" => {
                     Ok(unsafe {
                         Self::GenericTypeWithTurbofish(
-                            <GenericTypeWithTurbofish as type_sitter_lib::TypedNode<
+                            <GenericTypeWithTurbofish<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -24831,7 +25507,9 @@ mod anon_unions {
                 "scoped_type_identifier" => {
                     Ok(unsafe {
                         Self::ScopedTypeIdentifier(
-                            <ScopedTypeIdentifier as type_sitter_lib::TypedNode<
+                            <ScopedTypeIdentifier<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -24840,7 +25518,9 @@ mod anon_unions {
                 "type_identifier" => {
                     Ok(unsafe {
                         Self::TypeIdentifier(
-                            <TypeIdentifier as type_sitter_lib::TypedNode<
+                            <TypeIdentifier<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -24872,9 +25552,9 @@ mod anon_unions {
             &mut self,
         ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
-                Self::GenericTypeWithTurbofish(x) => x.node(),
-                Self::ScopedTypeIdentifier(x) => x.node(),
-                Self::TypeIdentifier(x) => x.node(),
+                Self::GenericTypeWithTurbofish(x) => x.node_mut(),
+                Self::ScopedTypeIdentifier(x) => x.node_mut(),
+                Self::TypeIdentifier(x) => x.node_mut(),
             }
         }
     }
@@ -24924,7 +25604,9 @@ mod anon_unions {
                 "field_pattern" => {
                     Ok(unsafe {
                         Self::FieldPattern(
-                            <FieldPattern as type_sitter_lib::TypedNode<
+                            <FieldPattern<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -24933,7 +25615,9 @@ mod anon_unions {
                 "remaining_field_pattern" => {
                     Ok(unsafe {
                         Self::RemainingFieldPattern(
-                            <RemainingFieldPattern as type_sitter_lib::TypedNode<
+                            <RemainingFieldPattern<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -24964,8 +25648,8 @@ mod anon_unions {
             &mut self,
         ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
-                Self::FieldPattern(x) => x.node(),
-                Self::RemainingFieldPattern(x) => x.node(),
+                Self::FieldPattern(x) => x.node_mut(),
+                Self::RemainingFieldPattern(x) => x.node_mut(),
             }
         }
     }
@@ -25128,7 +25812,9 @@ mod anon_unions {
                 "_literal" => {
                     Ok(unsafe {
                         Self::Literal(
-                            <Literal as type_sitter_lib::TypedNode<
+                            <Literal<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -25137,7 +25823,9 @@ mod anon_unions {
                 "crate" => {
                     Ok(unsafe {
                         Self::Crate(
-                            <Crate as type_sitter_lib::TypedNode<
+                            <Crate<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -25146,7 +25834,9 @@ mod anon_unions {
                 "identifier" => {
                     Ok(unsafe {
                         Self::Identifier(
-                            <Identifier as type_sitter_lib::TypedNode<
+                            <Identifier<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -25155,7 +25845,9 @@ mod anon_unions {
                 "metavariable" => {
                     Ok(unsafe {
                         Self::Metavariable(
-                            <Metavariable as type_sitter_lib::TypedNode<
+                            <Metavariable<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -25164,7 +25856,9 @@ mod anon_unions {
                 "mutable_specifier" => {
                     Ok(unsafe {
                         Self::MutableSpecifier(
-                            <MutableSpecifier as type_sitter_lib::TypedNode<
+                            <MutableSpecifier<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -25173,7 +25867,9 @@ mod anon_unions {
                 "primitive_type" => {
                     Ok(unsafe {
                         Self::PrimitiveType(
-                            <PrimitiveType as type_sitter_lib::TypedNode<
+                            <PrimitiveType<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -25182,7 +25878,9 @@ mod anon_unions {
                 "self" => {
                     Ok(unsafe {
                         Self::_Self(
-                            <_Self as type_sitter_lib::TypedNode<
+                            <_Self<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -25191,7 +25889,9 @@ mod anon_unions {
                 "super" => {
                     Ok(unsafe {
                         Self::Super(
-                            <Super as type_sitter_lib::TypedNode<
+                            <Super<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -25200,7 +25900,9 @@ mod anon_unions {
                 "token_repetition" => {
                     Ok(unsafe {
                         Self::TokenRepetition(
-                            <TokenRepetition as type_sitter_lib::TypedNode<
+                            <TokenRepetition<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -25209,7 +25911,9 @@ mod anon_unions {
                 "token_tree" => {
                     Ok(unsafe {
                         Self::TokenTree(
-                            <TokenTree as type_sitter_lib::TypedNode<
+                            <TokenTree<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -25250,16 +25954,16 @@ mod anon_unions {
             &mut self,
         ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
-                Self::Literal(x) => x.node(),
-                Self::Crate(x) => x.node(),
-                Self::Identifier(x) => x.node(),
-                Self::Metavariable(x) => x.node(),
-                Self::MutableSpecifier(x) => x.node(),
-                Self::PrimitiveType(x) => x.node(),
-                Self::_Self(x) => x.node(),
-                Self::Super(x) => x.node(),
-                Self::TokenRepetition(x) => x.node(),
-                Self::TokenTree(x) => x.node(),
+                Self::Literal(x) => x.node_mut(),
+                Self::Crate(x) => x.node_mut(),
+                Self::Identifier(x) => x.node_mut(),
+                Self::Metavariable(x) => x.node_mut(),
+                Self::MutableSpecifier(x) => x.node_mut(),
+                Self::PrimitiveType(x) => x.node_mut(),
+                Self::_Self(x) => x.node_mut(),
+                Self::Super(x) => x.node_mut(),
+                Self::TokenRepetition(x) => x.node_mut(),
+                Self::TokenTree(x) => x.node_mut(),
             }
         }
     }
@@ -25435,7 +26139,9 @@ mod anon_unions {
                 "_literal" => {
                     Ok(unsafe {
                         Self::Literal(
-                            <Literal as type_sitter_lib::TypedNode<
+                            <Literal<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -25444,7 +26150,9 @@ mod anon_unions {
                 "crate" => {
                     Ok(unsafe {
                         Self::Crate(
-                            <Crate as type_sitter_lib::TypedNode<
+                            <Crate<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -25453,7 +26161,9 @@ mod anon_unions {
                 "identifier" => {
                     Ok(unsafe {
                         Self::Identifier(
-                            <Identifier as type_sitter_lib::TypedNode<
+                            <Identifier<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -25462,7 +26172,9 @@ mod anon_unions {
                 "metavariable" => {
                     Ok(unsafe {
                         Self::Metavariable(
-                            <Metavariable as type_sitter_lib::TypedNode<
+                            <Metavariable<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -25471,7 +26183,9 @@ mod anon_unions {
                 "mutable_specifier" => {
                     Ok(unsafe {
                         Self::MutableSpecifier(
-                            <MutableSpecifier as type_sitter_lib::TypedNode<
+                            <MutableSpecifier<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -25480,7 +26194,9 @@ mod anon_unions {
                 "primitive_type" => {
                     Ok(unsafe {
                         Self::PrimitiveType(
-                            <PrimitiveType as type_sitter_lib::TypedNode<
+                            <PrimitiveType<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -25489,7 +26205,9 @@ mod anon_unions {
                 "self" => {
                     Ok(unsafe {
                         Self::_Self(
-                            <_Self as type_sitter_lib::TypedNode<
+                            <_Self<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -25498,7 +26216,9 @@ mod anon_unions {
                 "super" => {
                     Ok(unsafe {
                         Self::Super(
-                            <Super as type_sitter_lib::TypedNode<
+                            <Super<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -25507,7 +26227,9 @@ mod anon_unions {
                 "token_binding_pattern" => {
                     Ok(unsafe {
                         Self::TokenBindingPattern(
-                            <TokenBindingPattern as type_sitter_lib::TypedNode<
+                            <TokenBindingPattern<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -25516,7 +26238,9 @@ mod anon_unions {
                 "token_repetition_pattern" => {
                     Ok(unsafe {
                         Self::TokenRepetitionPattern(
-                            <TokenRepetitionPattern as type_sitter_lib::TypedNode<
+                            <TokenRepetitionPattern<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -25525,7 +26249,9 @@ mod anon_unions {
                 "token_tree_pattern" => {
                     Ok(unsafe {
                         Self::TokenTreePattern(
-                            <TokenTreePattern as type_sitter_lib::TypedNode<
+                            <TokenTreePattern<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -25567,17 +26293,17 @@ mod anon_unions {
             &mut self,
         ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
-                Self::Literal(x) => x.node(),
-                Self::Crate(x) => x.node(),
-                Self::Identifier(x) => x.node(),
-                Self::Metavariable(x) => x.node(),
-                Self::MutableSpecifier(x) => x.node(),
-                Self::PrimitiveType(x) => x.node(),
-                Self::_Self(x) => x.node(),
-                Self::Super(x) => x.node(),
-                Self::TokenBindingPattern(x) => x.node(),
-                Self::TokenRepetitionPattern(x) => x.node(),
-                Self::TokenTreePattern(x) => x.node(),
+                Self::Literal(x) => x.node_mut(),
+                Self::Crate(x) => x.node_mut(),
+                Self::Identifier(x) => x.node_mut(),
+                Self::Metavariable(x) => x.node_mut(),
+                Self::MutableSpecifier(x) => x.node_mut(),
+                Self::PrimitiveType(x) => x.node_mut(),
+                Self::_Self(x) => x.node_mut(),
+                Self::Super(x) => x.node_mut(),
+                Self::TokenBindingPattern(x) => x.node_mut(),
+                Self::TokenRepetitionPattern(x) => x.node_mut(),
+                Self::TokenTreePattern(x) => x.node_mut(),
             }
         }
     }
@@ -25655,7 +26381,9 @@ mod anon_unions {
                 "_type" => {
                     Ok(unsafe {
                         Self::Type(
-                            <Type as type_sitter_lib::TypedNode<
+                            <Type<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -25664,7 +26392,9 @@ mod anon_unions {
                 "higher_ranked_trait_bound" => {
                     Ok(unsafe {
                         Self::HigherRankedTraitBound(
-                            <HigherRankedTraitBound as type_sitter_lib::TypedNode<
+                            <HigherRankedTraitBound<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -25673,7 +26403,9 @@ mod anon_unions {
                 "lifetime" => {
                     Ok(unsafe {
                         Self::Lifetime(
-                            <Lifetime as type_sitter_lib::TypedNode<
+                            <Lifetime<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -25682,7 +26414,9 @@ mod anon_unions {
                 "removed_trait_bound" => {
                     Ok(unsafe {
                         Self::RemovedTraitBound(
-                            <RemovedTraitBound as type_sitter_lib::TypedNode<
+                            <RemovedTraitBound<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -25715,10 +26449,10 @@ mod anon_unions {
             &mut self,
         ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
-                Self::Type(x) => x.node(),
-                Self::HigherRankedTraitBound(x) => x.node(),
-                Self::Lifetime(x) => x.node(),
-                Self::RemovedTraitBound(x) => x.node(),
+                Self::Type(x) => x.node_mut(),
+                Self::HigherRankedTraitBound(x) => x.node_mut(),
+                Self::Lifetime(x) => x.node_mut(),
+                Self::RemovedTraitBound(x) => x.node_mut(),
             }
         }
     }
@@ -25807,7 +26541,9 @@ mod anon_unions {
                 "_literal" => {
                     Ok(unsafe {
                         Self::Literal(
-                            <Literal as type_sitter_lib::TypedNode<
+                            <Literal<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -25816,7 +26552,9 @@ mod anon_unions {
                 "_type" => {
                     Ok(unsafe {
                         Self::Type(
-                            <Type as type_sitter_lib::TypedNode<
+                            <Type<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -25825,7 +26563,9 @@ mod anon_unions {
                 "block" => {
                     Ok(unsafe {
                         Self::Block(
-                            <Block as type_sitter_lib::TypedNode<
+                            <Block<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -25834,7 +26574,9 @@ mod anon_unions {
                 "lifetime" => {
                     Ok(unsafe {
                         Self::Lifetime(
-                            <Lifetime as type_sitter_lib::TypedNode<
+                            <Lifetime<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -25843,7 +26585,9 @@ mod anon_unions {
                 "type_binding" => {
                     Ok(unsafe {
                         Self::TypeBinding(
-                            <TypeBinding as type_sitter_lib::TypedNode<
+                            <TypeBinding<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -25877,11 +26621,11 @@ mod anon_unions {
             &mut self,
         ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
-                Self::Literal(x) => x.node(),
-                Self::Type(x) => x.node(),
-                Self::Block(x) => x.node(),
-                Self::Lifetime(x) => x.node(),
-                Self::TypeBinding(x) => x.node(),
+                Self::Literal(x) => x.node_mut(),
+                Self::Type(x) => x.node_mut(),
+                Self::Block(x) => x.node_mut(),
+                Self::Lifetime(x) => x.node_mut(),
+                Self::TypeBinding(x) => x.node_mut(),
             }
         }
     }
@@ -25997,7 +26741,9 @@ mod anon_unions {
                 "const_parameter" => {
                     Ok(unsafe {
                         Self::ConstParameter(
-                            <ConstParameter as type_sitter_lib::TypedNode<
+                            <ConstParameter<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -26006,7 +26752,9 @@ mod anon_unions {
                 "constrained_type_parameter" => {
                     Ok(unsafe {
                         Self::ConstrainedTypeParameter(
-                            <ConstrainedTypeParameter as type_sitter_lib::TypedNode<
+                            <ConstrainedTypeParameter<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -26015,7 +26763,9 @@ mod anon_unions {
                 "lifetime" => {
                     Ok(unsafe {
                         Self::Lifetime(
-                            <Lifetime as type_sitter_lib::TypedNode<
+                            <Lifetime<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -26024,7 +26774,9 @@ mod anon_unions {
                 "metavariable" => {
                     Ok(unsafe {
                         Self::Metavariable(
-                            <Metavariable as type_sitter_lib::TypedNode<
+                            <Metavariable<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -26033,7 +26785,9 @@ mod anon_unions {
                 "optional_type_parameter" => {
                     Ok(unsafe {
                         Self::OptionalTypeParameter(
-                            <OptionalTypeParameter as type_sitter_lib::TypedNode<
+                            <OptionalTypeParameter<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -26042,7 +26796,9 @@ mod anon_unions {
                 "type_identifier" => {
                     Ok(unsafe {
                         Self::TypeIdentifier(
-                            <TypeIdentifier as type_sitter_lib::TypedNode<
+                            <TypeIdentifier<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -26079,12 +26835,12 @@ mod anon_unions {
             &mut self,
         ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
-                Self::ConstParameter(x) => x.node(),
-                Self::ConstrainedTypeParameter(x) => x.node(),
-                Self::Lifetime(x) => x.node(),
-                Self::Metavariable(x) => x.node(),
-                Self::OptionalTypeParameter(x) => x.node(),
-                Self::TypeIdentifier(x) => x.node(),
+                Self::ConstParameter(x) => x.node_mut(),
+                Self::ConstrainedTypeParameter(x) => x.node_mut(),
+                Self::Lifetime(x) => x.node_mut(),
+                Self::Metavariable(x) => x.node_mut(),
+                Self::OptionalTypeParameter(x) => x.node_mut(),
+                Self::TypeIdentifier(x) => x.node_mut(),
             }
         }
     }
@@ -26247,7 +27003,9 @@ mod anon_unions {
                 "crate" => {
                     Ok(unsafe {
                         Self::Crate(
-                            <Crate as type_sitter_lib::TypedNode<
+                            <Crate<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -26256,7 +27014,9 @@ mod anon_unions {
                 "identifier" => {
                     Ok(unsafe {
                         Self::Identifier(
-                            <Identifier as type_sitter_lib::TypedNode<
+                            <Identifier<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -26265,7 +27025,9 @@ mod anon_unions {
                 "metavariable" => {
                     Ok(unsafe {
                         Self::Metavariable(
-                            <Metavariable as type_sitter_lib::TypedNode<
+                            <Metavariable<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -26274,7 +27036,9 @@ mod anon_unions {
                 "scoped_identifier" => {
                     Ok(unsafe {
                         Self::ScopedIdentifier(
-                            <ScopedIdentifier as type_sitter_lib::TypedNode<
+                            <ScopedIdentifier<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -26283,7 +27047,9 @@ mod anon_unions {
                 "scoped_use_list" => {
                     Ok(unsafe {
                         Self::ScopedUseList(
-                            <ScopedUseList as type_sitter_lib::TypedNode<
+                            <ScopedUseList<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -26292,7 +27058,9 @@ mod anon_unions {
                 "self" => {
                     Ok(unsafe {
                         Self::_Self(
-                            <_Self as type_sitter_lib::TypedNode<
+                            <_Self<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -26301,7 +27069,9 @@ mod anon_unions {
                 "super" => {
                     Ok(unsafe {
                         Self::Super(
-                            <Super as type_sitter_lib::TypedNode<
+                            <Super<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -26310,7 +27080,9 @@ mod anon_unions {
                 "use_as_clause" => {
                     Ok(unsafe {
                         Self::UseAsClause(
-                            <UseAsClause as type_sitter_lib::TypedNode<
+                            <UseAsClause<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -26319,7 +27091,9 @@ mod anon_unions {
                 "use_list" => {
                     Ok(unsafe {
                         Self::UseList(
-                            <UseList as type_sitter_lib::TypedNode<
+                            <UseList<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -26328,7 +27102,9 @@ mod anon_unions {
                 "use_wildcard" => {
                     Ok(unsafe {
                         Self::UseWildcard(
-                            <UseWildcard as type_sitter_lib::TypedNode<
+                            <UseWildcard<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -26369,16 +27145,16 @@ mod anon_unions {
             &mut self,
         ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
-                Self::Crate(x) => x.node(),
-                Self::Identifier(x) => x.node(),
-                Self::Metavariable(x) => x.node(),
-                Self::ScopedIdentifier(x) => x.node(),
-                Self::ScopedUseList(x) => x.node(),
-                Self::_Self(x) => x.node(),
-                Self::Super(x) => x.node(),
-                Self::UseAsClause(x) => x.node(),
-                Self::UseList(x) => x.node(),
-                Self::UseWildcard(x) => x.node(),
+                Self::Crate(x) => x.node_mut(),
+                Self::Identifier(x) => x.node_mut(),
+                Self::Metavariable(x) => x.node_mut(),
+                Self::ScopedIdentifier(x) => x.node_mut(),
+                Self::ScopedUseList(x) => x.node_mut(),
+                Self::_Self(x) => x.node_mut(),
+                Self::Super(x) => x.node_mut(),
+                Self::UseAsClause(x) => x.node_mut(),
+                Self::UseList(x) => x.node_mut(),
+                Self::UseWildcard(x) => x.node_mut(),
             }
         }
     }
@@ -26544,7 +27320,9 @@ mod anon_unions {
                 "array_type" => {
                     Ok(unsafe {
                         Self::ArrayType(
-                            <ArrayType as type_sitter_lib::TypedNode<
+                            <ArrayType<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -26553,7 +27331,9 @@ mod anon_unions {
                 "generic_type" => {
                     Ok(unsafe {
                         Self::GenericType(
-                            <GenericType as type_sitter_lib::TypedNode<
+                            <GenericType<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -26562,7 +27342,9 @@ mod anon_unions {
                 "higher_ranked_trait_bound" => {
                     Ok(unsafe {
                         Self::HigherRankedTraitBound(
-                            <HigherRankedTraitBound as type_sitter_lib::TypedNode<
+                            <HigherRankedTraitBound<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -26571,7 +27353,9 @@ mod anon_unions {
                 "lifetime" => {
                     Ok(unsafe {
                         Self::Lifetime(
-                            <Lifetime as type_sitter_lib::TypedNode<
+                            <Lifetime<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -26580,7 +27364,9 @@ mod anon_unions {
                 "pointer_type" => {
                     Ok(unsafe {
                         Self::PointerType(
-                            <PointerType as type_sitter_lib::TypedNode<
+                            <PointerType<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -26589,7 +27375,9 @@ mod anon_unions {
                 "primitive_type" => {
                     Ok(unsafe {
                         Self::PrimitiveType(
-                            <PrimitiveType as type_sitter_lib::TypedNode<
+                            <PrimitiveType<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -26598,7 +27386,9 @@ mod anon_unions {
                 "reference_type" => {
                     Ok(unsafe {
                         Self::ReferenceType(
-                            <ReferenceType as type_sitter_lib::TypedNode<
+                            <ReferenceType<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -26607,7 +27397,9 @@ mod anon_unions {
                 "scoped_type_identifier" => {
                     Ok(unsafe {
                         Self::ScopedTypeIdentifier(
-                            <ScopedTypeIdentifier as type_sitter_lib::TypedNode<
+                            <ScopedTypeIdentifier<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -26616,7 +27408,9 @@ mod anon_unions {
                 "tuple_type" => {
                     Ok(unsafe {
                         Self::TupleType(
-                            <TupleType as type_sitter_lib::TypedNode<
+                            <TupleType<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -26625,7 +27419,9 @@ mod anon_unions {
                 "type_identifier" => {
                     Ok(unsafe {
                         Self::TypeIdentifier(
-                            <TypeIdentifier as type_sitter_lib::TypedNode<
+                            <TypeIdentifier<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
                                 'tree,
                             >>::from_node_unchecked(node),
                         )
@@ -26666,16 +27462,16 @@ mod anon_unions {
             &mut self,
         ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
-                Self::ArrayType(x) => x.node(),
-                Self::GenericType(x) => x.node(),
-                Self::HigherRankedTraitBound(x) => x.node(),
-                Self::Lifetime(x) => x.node(),
-                Self::PointerType(x) => x.node(),
-                Self::PrimitiveType(x) => x.node(),
-                Self::ReferenceType(x) => x.node(),
-                Self::ScopedTypeIdentifier(x) => x.node(),
-                Self::TupleType(x) => x.node(),
-                Self::TypeIdentifier(x) => x.node(),
+                Self::ArrayType(x) => x.node_mut(),
+                Self::GenericType(x) => x.node_mut(),
+                Self::HigherRankedTraitBound(x) => x.node_mut(),
+                Self::Lifetime(x) => x.node_mut(),
+                Self::PointerType(x) => x.node_mut(),
+                Self::PrimitiveType(x) => x.node_mut(),
+                Self::ReferenceType(x) => x.node_mut(),
+                Self::ScopedTypeIdentifier(x) => x.node_mut(),
+                Self::TupleType(x) => x.node_mut(),
+                Self::TypeIdentifier(x) => x.node_mut(),
             }
         }
     }

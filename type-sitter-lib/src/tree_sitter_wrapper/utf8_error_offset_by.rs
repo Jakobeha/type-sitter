@@ -4,6 +4,7 @@ pub(crate) trait Utf8ErrorOffsetBy {
     fn offset_by(self, offset: usize) -> Self;
 }
 
+#[allow(dead_code)]
 struct _Utf8Error {
     valid_up_to: usize,
     error_len: Option<u8>,
