@@ -1,3 +1,3 @@
 # type-sitter-lib: type-sitter code for generated / downstream code
 
-See [type-sitter](../README.md) for more information. type-sitter is a proc-macro so it executes during "macro time" AKA "phase 1". This means that downstream code can't depend on any of its data-structures or functions. This crate contains those which downstream code can depend on.
+See [type-sitter](https://github.com/Jakobeha/type-sitter#readme) for more information. This is the library code generated from type-sitter depends on. It also contains the `tree-sitter-wrapper` feature, which provides a lightweight general-purpose wrapper over tree-sitter nodes: these wrappers have convenience functions like getting a node's text as a `&str` and assigning arbitrary bitmasks ("marks") to each node, at the cost of slightly lower performance.
