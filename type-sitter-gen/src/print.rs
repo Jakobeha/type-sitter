@@ -6,7 +6,7 @@ use crate::mk_syntax::{ident, lit_str};
 
 impl NodeType {
     pub fn print(&self) -> TokenStream {
-        let NodeName { rust_type_name, sexp_name, is_implicit } = &self.name;
+        let NodeName { sexp_name, rust_type_name, rust_method_name: _, is_implicit } = &self.name;
         let ident = ident!(rust_type_name, "node kind converted into a rust type name (this is a library error, please report)");
         let sexp_name_literal = lit_str(sexp_name);
         // let named = self.named;
@@ -17,6 +17,7 @@ impl NodeType {
                 }
 
                 let variants = subtypes.iter().map(NodeName::print_variant);
+                let variant_accessors = subtypes.iter().map(NodeName::print_variant_accessor);
                 let from_cases = subtypes.iter().map(NodeName::print_from_case);
                 let node_cases = subtypes.iter().map(NodeName::print_node_case);
                 quote! {
@@ -25,6 +26,11 @@ impl NodeType {
                     #[allow(non_camel_case_types)]
                     pub enum #ident<'tree> {
                         #(#variants)*
+                    }
+
+                    #[automatically_derived]
+                    impl<'tree> #ident<'tree> {
+                        #(#variant_accessors)*
                     }
 
                     #[automatically_derived]
@@ -76,21 +82,21 @@ impl NodeType {
                         None
                     )
                 });
-                let child_accessor = children.as_ref().map(|children| children.print(
+                let children_accessors = children.as_ref().map(|children| children.print(
                     (
                         Cow::Borrowed("children"),
-                        quote!("Get the node's children"),
-                        quote! { self.0.children(c) }
+                        quote!("Get the node's named children"),
+                        quote! { self.0.named_children(c) }
                     ),
                     (
                         Cow::Borrowed("child"),
-                        quote!("Get the node's child"),
-                        quote! { self.0.child(0) }
+                        quote!("Get the node's only named child"),
+                        quote! { self.0.named_child(0) }
                     ),
                     Some((
                         Cow::Borrowed("child"),
-                        quote!("Get the node's child #i"),
-                        quote! { self.0.child(i) }
+                        quote!("Get the node's named child #i"),
+                        quote! { self.0.named_child(i) }
                     ))
                 ));
                 quote! {
@@ -98,6 +104,12 @@ impl NodeType {
                     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
                     #[allow(non_camel_case_types)]
                     pub struct #ident<'tree>(tree_sitter::Node<'tree>);
+
+                    #[automatically_derived]
+                    impl<'tree> #ident<'tree> {
+                        #(#field_accessors)*
+                        #children_accessors
+                    }
 
                     #[automatically_derived]
                     impl<'tree> TryFrom<tree_sitter::Node<'tree>> for #ident<'tree> {
@@ -130,12 +142,6 @@ impl NodeType {
                             Self(node)
                         }
                     }
-
-                    #[automatically_derived]
-                    impl<'tree> #ident<'tree> {
-                        #(#field_accessors)*
-                        #child_accessor
-                    }
                 }
             }
         }
@@ -147,7 +153,7 @@ impl Children {
         &self,
         (children_name, children_doc, children_body): (Cow<'_, str>, TokenStream, TokenStream),
         (child_name, child_doc, mut child_body): (Cow<'_, str>, TokenStream, TokenStream),
-        child_i: Option<(Cow<'_, str>, TokenStream, TokenStream)>
+        child_i: Option<(Cow<'_, str>, TokenStream, TokenStream)>,
     ) -> TokenStream {
         if self.multiple {
             let ident = ident!(&children_name, "node field name converted into a rust method name (this is a library error, please report)");
@@ -156,7 +162,8 @@ impl Children {
             } else {
                 quote! {}
             };
-            let child_type = NodeName::print_sum_type(&self.types);
+            let mut child_type = NodeName::print_sum_type(&self.types);
+            child_type = quote! { type_sitter_lib::ExtraOr<'tree, #child_type> };
             let children_fn = quote! {
                 #[doc = #children_doc]
                 #nonempty_doc
@@ -206,7 +213,7 @@ impl Children {
 impl NodeName {
     fn print_sum_type(types: &[NodeName]) -> TokenStream {
         match types.len() {
-            0 => quote! { type_sitter_lib::either_n::Void },
+            0 => quote! { type_sitter_lib::Void },
             1 => {
                 let type_ = NodeName::print_type(&types[0]);
                 quote! { #type_ }
@@ -216,7 +223,7 @@ impl NodeName {
                 let types = types.iter().map(NodeName::print_type);
                 #[allow(non_snake_case)]
                 let EitherN = ident!(&format!("Either{}", n), "<won't fail>");
-                quote! { type_sitter_lib::either_n::#EitherN<#(#types),*> }
+                quote! { type_sitter_lib::#EitherN<#(#types),*> }
             }
             _ => {
                 let types = types.iter().map(NodeName::print_type);
@@ -234,6 +241,22 @@ impl NodeName {
         let ident = ident!(&self.rust_type_name, "node kind converted into a rust type name (this is a library error, please report)");
         quote! {
             #ident(#ident<'tree>),
+        }
+    }
+    fn print_variant_accessor(&self) -> TokenStream {
+        let ident = ident!(&self.rust_type_name, "node kind converted into a rust type name (this is a library error, please report)");
+        let method = ident!(&self.rust_method_name, "node kind converted into a rust type name (this is a library error, please report)");
+        let sexp_name = lit_str(&self.sexp_name);
+        quote! {
+            #[doc = concat!("Returns the node if it is of kind `", #sexp_name, "`, otherwise returns None")]
+            #[inline]
+            #[allow(unused, non_snake_case)]
+            pub fn #method(self) -> Option<#ident<'tree>> {
+                match self {
+                    Self::#ident(x) => Some(x),
+                    _ => None,
+                }
+            }
         }
     }
 

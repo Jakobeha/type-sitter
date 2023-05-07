@@ -25,6 +25,252 @@ pub enum DeclarationStatement<'tree> {
     UseDeclaration(UseDeclaration<'tree>),
 }
 #[automatically_derived]
+impl<'tree> DeclarationStatement<'tree> {
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "associated_type",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn associated_type(self) -> Option<AssociatedType<'tree>> {
+        match self {
+            Self::AssociatedType(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "attribute_item",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn attribute_item(self) -> Option<AttributeItem<'tree>> {
+        match self {
+            Self::AttributeItem(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "const_item", "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn const_item(self) -> Option<ConstItem<'tree>> {
+        match self {
+            Self::ConstItem(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "empty_statement",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn empty_statement(self) -> Option<EmptyStatement<'tree>> {
+        match self {
+            Self::EmptyStatement(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "enum_item", "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn enum_item(self) -> Option<EnumItem<'tree>> {
+        match self {
+            Self::EnumItem(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "extern_crate_declaration",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn extern_crate_declaration(self) -> Option<ExternCrateDeclaration<'tree>> {
+        match self {
+            Self::ExternCrateDeclaration(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "foreign_mod_item",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn foreign_mod_item(self) -> Option<ForeignModItem<'tree>> {
+        match self {
+            Self::ForeignModItem(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "function_item",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn function_item(self) -> Option<FunctionItem<'tree>> {
+        match self {
+            Self::FunctionItem(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "function_signature_item",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn function_signature_item(self) -> Option<FunctionSignatureItem<'tree>> {
+        match self {
+            Self::FunctionSignatureItem(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "impl_item", "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn impl_item(self) -> Option<ImplItem<'tree>> {
+        match self {
+            Self::ImplItem(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "inner_attribute_item",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn inner_attribute_item(self) -> Option<InnerAttributeItem<'tree>> {
+        match self {
+            Self::InnerAttributeItem(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "let_declaration",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn let_declaration(self) -> Option<LetDeclaration<'tree>> {
+        match self {
+            Self::LetDeclaration(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "macro_definition",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn macro_definition(self) -> Option<MacroDefinition<'tree>> {
+        match self {
+            Self::MacroDefinition(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "macro_invocation",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn macro_invocation(self) -> Option<MacroInvocation<'tree>> {
+        match self {
+            Self::MacroInvocation(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "mod_item", "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn mod_item(self) -> Option<ModItem<'tree>> {
+        match self {
+            Self::ModItem(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "static_item", "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn static_item(self) -> Option<StaticItem<'tree>> {
+        match self {
+            Self::StaticItem(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "struct_item", "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn struct_item(self) -> Option<StructItem<'tree>> {
+        match self {
+            Self::StructItem(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "trait_item", "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn trait_item(self) -> Option<TraitItem<'tree>> {
+        match self {
+            Self::TraitItem(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "type_item", "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn type_item(self) -> Option<TypeItem<'tree>> {
+        match self {
+            Self::TypeItem(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "union_item", "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn union_item(self) -> Option<UnionItem<'tree>> {
+        match self {
+            Self::UnionItem(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "use_declaration",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn use_declaration(self) -> Option<UseDeclaration<'tree>> {
+        match self {
+            Self::UseDeclaration(x) => Some(x),
+            _ => None,
+        }
+    }
+}
+#[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for DeclarationStatement<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
@@ -300,6 +546,459 @@ pub enum Expression<'tree> {
     UnsafeBlock(UnsafeBlock<'tree>),
     WhileExpression(WhileExpression<'tree>),
     YieldExpression(YieldExpression<'tree>),
+}
+#[automatically_derived]
+impl<'tree> Expression<'tree> {
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "_literal", "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn literal(self) -> Option<Literal<'tree>> {
+        match self {
+            Self::Literal(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "array_expression",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn array_expression(self) -> Option<ArrayExpression<'tree>> {
+        match self {
+            Self::ArrayExpression(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "assignment_expression",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn assignment_expression(self) -> Option<AssignmentExpression<'tree>> {
+        match self {
+            Self::AssignmentExpression(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "async_block", "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn async_block(self) -> Option<AsyncBlock<'tree>> {
+        match self {
+            Self::AsyncBlock(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "await_expression",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn await_expression(self) -> Option<AwaitExpression<'tree>> {
+        match self {
+            Self::AwaitExpression(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "binary_expression",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn binary_expression(self) -> Option<BinaryExpression<'tree>> {
+        match self {
+            Self::BinaryExpression(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "block", "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn block(self) -> Option<Block<'tree>> {
+        match self {
+            Self::Block(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "break_expression",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn break_expression(self) -> Option<BreakExpression<'tree>> {
+        match self {
+            Self::BreakExpression(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "call_expression",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn call_expression(self) -> Option<CallExpression<'tree>> {
+        match self {
+            Self::CallExpression(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "closure_expression",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn closure_expression(self) -> Option<ClosureExpression<'tree>> {
+        match self {
+            Self::ClosureExpression(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "compound_assignment_expr",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn compound_assignment_expr(self) -> Option<CompoundAssignmentExpr<'tree>> {
+        match self {
+            Self::CompoundAssignmentExpr(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "const_block", "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn const_block(self) -> Option<ConstBlock<'tree>> {
+        match self {
+            Self::ConstBlock(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "continue_expression",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn continue_expression(self) -> Option<ContinueExpression<'tree>> {
+        match self {
+            Self::ContinueExpression(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "field_expression",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn field_expression(self) -> Option<FieldExpression<'tree>> {
+        match self {
+            Self::FieldExpression(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "for_expression",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn for_expression(self) -> Option<ForExpression<'tree>> {
+        match self {
+            Self::ForExpression(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "generic_function",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn generic_function(self) -> Option<GenericFunction<'tree>> {
+        match self {
+            Self::GenericFunction(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "identifier", "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn identifier(self) -> Option<Identifier<'tree>> {
+        match self {
+            Self::Identifier(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "if_expression",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn if_expression(self) -> Option<IfExpression<'tree>> {
+        match self {
+            Self::IfExpression(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "index_expression",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn index_expression(self) -> Option<IndexExpression<'tree>> {
+        match self {
+            Self::IndexExpression(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "loop_expression",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn loop_expression(self) -> Option<LoopExpression<'tree>> {
+        match self {
+            Self::LoopExpression(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "macro_invocation",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn macro_invocation(self) -> Option<MacroInvocation<'tree>> {
+        match self {
+            Self::MacroInvocation(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "match_expression",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn match_expression(self) -> Option<MatchExpression<'tree>> {
+        match self {
+            Self::MatchExpression(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "metavariable",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn metavariable(self) -> Option<Metavariable<'tree>> {
+        match self {
+            Self::Metavariable(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "parenthesized_expression",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn parenthesized_expression(self) -> Option<ParenthesizedExpression<'tree>> {
+        match self {
+            Self::ParenthesizedExpression(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "range_expression",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn range_expression(self) -> Option<RangeExpression<'tree>> {
+        match self {
+            Self::RangeExpression(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "reference_expression",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn reference_expression(self) -> Option<ReferenceExpression<'tree>> {
+        match self {
+            Self::ReferenceExpression(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "return_expression",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn return_expression(self) -> Option<ReturnExpression<'tree>> {
+        match self {
+            Self::ReturnExpression(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "scoped_identifier",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn scoped_identifier(self) -> Option<ScopedIdentifier<'tree>> {
+        match self {
+            Self::ScopedIdentifier(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "self", "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn _self(self) -> Option<_Self<'tree>> {
+        match self {
+            Self::_Self(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "struct_expression",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn struct_expression(self) -> Option<StructExpression<'tree>> {
+        match self {
+            Self::StructExpression(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "try_expression",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn try_expression(self) -> Option<TryExpression<'tree>> {
+        match self {
+            Self::TryExpression(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "tuple_expression",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn tuple_expression(self) -> Option<TupleExpression<'tree>> {
+        match self {
+            Self::TupleExpression(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "type_cast_expression",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn type_cast_expression(self) -> Option<TypeCastExpression<'tree>> {
+        match self {
+            Self::TypeCastExpression(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "unary_expression",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn unary_expression(self) -> Option<UnaryExpression<'tree>> {
+        match self {
+            Self::UnaryExpression(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "unit_expression",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn unit_expression(self) -> Option<UnitExpression<'tree>> {
+        match self {
+            Self::UnitExpression(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "unsafe_block",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn unsafe_block(self) -> Option<UnsafeBlock<'tree>> {
+        match self {
+            Self::UnsafeBlock(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "while_expression",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn while_expression(self) -> Option<WhileExpression<'tree>> {
+        match self {
+            Self::WhileExpression(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "yield_expression",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn yield_expression(self) -> Option<YieldExpression<'tree>> {
+        match self {
+            Self::YieldExpression(x) => Some(x),
+            _ => None,
+        }
+    }
 }
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Expression<'tree> {
@@ -717,6 +1416,81 @@ pub enum Literal<'tree> {
     StringLiteral(StringLiteral<'tree>),
 }
 #[automatically_derived]
+impl<'tree> Literal<'tree> {
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "boolean_literal",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn boolean_literal(self) -> Option<BooleanLiteral<'tree>> {
+        match self {
+            Self::BooleanLiteral(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "char_literal",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn char_literal(self) -> Option<CharLiteral<'tree>> {
+        match self {
+            Self::CharLiteral(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "float_literal",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn float_literal(self) -> Option<FloatLiteral<'tree>> {
+        match self {
+            Self::FloatLiteral(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "integer_literal",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn integer_literal(self) -> Option<IntegerLiteral<'tree>> {
+        match self {
+            Self::IntegerLiteral(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "raw_string_literal",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn raw_string_literal(self) -> Option<RawStringLiteral<'tree>> {
+        match self {
+            Self::RawStringLiteral(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "string_literal",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn string_literal(self) -> Option<StringLiteral<'tree>> {
+        match self {
+            Self::StringLiteral(x) => Some(x),
+            _ => None,
+        }
+    }
+}
+#[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Literal<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
@@ -811,6 +1585,93 @@ pub enum LiteralPattern<'tree> {
     NegativeLiteral(NegativeLiteral<'tree>),
     RawStringLiteral(RawStringLiteral<'tree>),
     StringLiteral(StringLiteral<'tree>),
+}
+#[automatically_derived]
+impl<'tree> LiteralPattern<'tree> {
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "boolean_literal",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn boolean_literal(self) -> Option<BooleanLiteral<'tree>> {
+        match self {
+            Self::BooleanLiteral(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "char_literal",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn char_literal(self) -> Option<CharLiteral<'tree>> {
+        match self {
+            Self::CharLiteral(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "float_literal",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn float_literal(self) -> Option<FloatLiteral<'tree>> {
+        match self {
+            Self::FloatLiteral(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "integer_literal",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn integer_literal(self) -> Option<IntegerLiteral<'tree>> {
+        match self {
+            Self::IntegerLiteral(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "negative_literal",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn negative_literal(self) -> Option<NegativeLiteral<'tree>> {
+        match self {
+            Self::NegativeLiteral(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "raw_string_literal",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn raw_string_literal(self) -> Option<RawStringLiteral<'tree>> {
+        match self {
+            Self::RawStringLiteral(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "string_literal",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn string_literal(self) -> Option<StringLiteral<'tree>> {
+        match self {
+            Self::StringLiteral(x) => Some(x),
+            _ => None,
+        }
+    }
 }
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for LiteralPattern<'tree> {
@@ -927,6 +1788,207 @@ pub enum Pattern<'tree> {
     StructPattern(StructPattern<'tree>),
     TuplePattern(TuplePattern<'tree>),
     TupleStructPattern(TupleStructPattern<'tree>),
+}
+#[automatically_derived]
+impl<'tree> Pattern<'tree> {
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "_", "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn __(self) -> Option<__<'tree>> {
+        match self {
+            Self::__(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "_literal_pattern",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn literal_pattern(self) -> Option<LiteralPattern<'tree>> {
+        match self {
+            Self::LiteralPattern(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "captured_pattern",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn captured_pattern(self) -> Option<CapturedPattern<'tree>> {
+        match self {
+            Self::CapturedPattern(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "const_block", "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn const_block(self) -> Option<ConstBlock<'tree>> {
+        match self {
+            Self::ConstBlock(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "identifier", "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn identifier(self) -> Option<Identifier<'tree>> {
+        match self {
+            Self::Identifier(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "macro_invocation",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn macro_invocation(self) -> Option<MacroInvocation<'tree>> {
+        match self {
+            Self::MacroInvocation(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "mut_pattern", "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn mut_pattern(self) -> Option<MutPattern<'tree>> {
+        match self {
+            Self::MutPattern(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "or_pattern", "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn or_pattern(self) -> Option<OrPattern<'tree>> {
+        match self {
+            Self::OrPattern(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "range_pattern",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn range_pattern(self) -> Option<RangePattern<'tree>> {
+        match self {
+            Self::RangePattern(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "ref_pattern", "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn ref_pattern(self) -> Option<RefPattern<'tree>> {
+        match self {
+            Self::RefPattern(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "reference_pattern",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn reference_pattern(self) -> Option<ReferencePattern<'tree>> {
+        match self {
+            Self::ReferencePattern(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "remaining_field_pattern",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn remaining_field_pattern(self) -> Option<RemainingFieldPattern<'tree>> {
+        match self {
+            Self::RemainingFieldPattern(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "scoped_identifier",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn scoped_identifier(self) -> Option<ScopedIdentifier<'tree>> {
+        match self {
+            Self::ScopedIdentifier(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "slice_pattern",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn slice_pattern(self) -> Option<SlicePattern<'tree>> {
+        match self {
+            Self::SlicePattern(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "struct_pattern",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn struct_pattern(self) -> Option<StructPattern<'tree>> {
+        match self {
+            Self::StructPattern(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "tuple_pattern",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn tuple_pattern(self) -> Option<TuplePattern<'tree>> {
+        match self {
+            Self::TuplePattern(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "tuple_struct_pattern",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn tuple_struct_pattern(self) -> Option<TupleStructPattern<'tree>> {
+        match self {
+            Self::TupleStructPattern(x) => Some(x),
+            _ => None,
+        }
+    }
 }
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Pattern<'tree> {
@@ -1144,6 +2206,197 @@ pub enum Type<'tree> {
     UnitType(UnitType<'tree>),
 }
 #[automatically_derived]
+impl<'tree> Type<'tree> {
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "abstract_type",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn abstract_type(self) -> Option<AbstractType<'tree>> {
+        match self {
+            Self::AbstractType(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "array_type", "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn array_type(self) -> Option<ArrayType<'tree>> {
+        match self {
+            Self::ArrayType(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "bounded_type",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn bounded_type(self) -> Option<BoundedType<'tree>> {
+        match self {
+            Self::BoundedType(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "dynamic_type",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn dynamic_type(self) -> Option<DynamicType<'tree>> {
+        match self {
+            Self::DynamicType(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "empty_type", "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn empty_type(self) -> Option<EmptyType<'tree>> {
+        match self {
+            Self::EmptyType(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "function_type",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn function_type(self) -> Option<FunctionType<'tree>> {
+        match self {
+            Self::FunctionType(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "generic_type",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn generic_type(self) -> Option<GenericType<'tree>> {
+        match self {
+            Self::GenericType(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "macro_invocation",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn macro_invocation(self) -> Option<MacroInvocation<'tree>> {
+        match self {
+            Self::MacroInvocation(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "metavariable",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn metavariable(self) -> Option<Metavariable<'tree>> {
+        match self {
+            Self::Metavariable(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "pointer_type",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn pointer_type(self) -> Option<PointerType<'tree>> {
+        match self {
+            Self::PointerType(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "primitive_type",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn primitive_type(self) -> Option<PrimitiveType<'tree>> {
+        match self {
+            Self::PrimitiveType(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "reference_type",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn reference_type(self) -> Option<ReferenceType<'tree>> {
+        match self {
+            Self::ReferenceType(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "scoped_type_identifier",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn scoped_type_identifier(self) -> Option<ScopedTypeIdentifier<'tree>> {
+        match self {
+            Self::ScopedTypeIdentifier(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "tuple_type", "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn tuple_type(self) -> Option<TupleType<'tree>> {
+        match self {
+            Self::TupleType(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "type_identifier",
+        "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn type_identifier(self) -> Option<TypeIdentifier<'tree>> {
+        match self {
+            Self::TypeIdentifier(x) => Some(x),
+            _ => None,
+        }
+    }
+    #[doc = concat!(
+        "Returns the node if it is of kind `", "unit_type", "`, otherwise returns None"
+    )]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn unit_type(self) -> Option<UnitType<'tree>> {
+        match self {
+            Self::UnitType(x) => Some(x),
+            _ => None,
+        }
+    }
+}
+#[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Type<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
@@ -1332,6 +2585,37 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Type<'tree> {
 #[allow(non_camel_case_types)]
 pub struct AbstractType<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
+impl<'tree> AbstractType<'tree> {
+    #[doc = concat!("Get the field `", "trait", "`")]
+    #[allow(dead_code)]
+    #[inline]
+    pub fn r#trait(
+        &self,
+    ) -> type_sitter_lib::NodeResult<
+        'tree,
+        type_sitter_lib::Either4<
+            FunctionType<'tree>,
+            GenericType<'tree>,
+            ScopedTypeIdentifier<'tree>,
+            TypeIdentifier<'tree>,
+        >,
+    > {
+        self.0
+            .child_by_field_name("trait")
+            .map(
+                <type_sitter_lib::Either4<
+                    FunctionType<'tree>,
+                    GenericType<'tree>,
+                    ScopedTypeIdentifier<'tree>,
+                    TypeIdentifier<'tree>,
+                > as TryFrom<_>>::try_from,
+            )
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
+}
+#[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for AbstractType<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
@@ -1358,41 +2642,61 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for AbstractType<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> AbstractType<'tree> {
-    #[doc = concat!("Get the field `", "trait", "`")]
-    #[allow(dead_code)]
-    #[inline]
-    pub fn r#trait(
-        &self,
-    ) -> type_sitter_lib::NodeResult<
-        'tree,
-        type_sitter_lib::either_n::Either4<
-            FunctionType<'tree>,
-            GenericType<'tree>,
-            ScopedTypeIdentifier<'tree>,
-            TypeIdentifier<'tree>,
-        >,
-    > {
-        self.0
-            .child_by_field_name("trait")
-            .map(
-                <type_sitter_lib::either_n::Either4<
-                    FunctionType<'tree>,
-                    GenericType<'tree>,
-                    ScopedTypeIdentifier<'tree>,
-                    TypeIdentifier<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
-}
 #[doc = concat!("Typed node `", "arguments", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct Arguments<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> Arguments<'tree> {
+    ///Get the node's named children
+    #[allow(dead_code)]
+    #[inline]
+    pub fn children<'a>(
+        &'a self,
+        c: &'a mut tree_sitter::TreeCursor<'tree>,
+    ) -> impl Iterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either2<Expression<'tree>, AttributeItem<'tree>>,
+            >,
+        >,
+    > + 'a {
+        self.0
+            .named_children(c)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either2<Expression<'tree>, AttributeItem<'tree>>,
+                > as TryFrom<_>>::try_from,
+            )
+    }
+    ///Get the node's named child #i
+    #[allow(dead_code)]
+    #[inline]
+    pub fn child(
+        &self,
+        i: usize,
+    ) -> Option<
+        type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either2<Expression<'tree>, AttributeItem<'tree>>,
+            >,
+        >,
+    > {
+        self.0
+            .named_child(i)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either2<Expression<'tree>, AttributeItem<'tree>>,
+                > as TryFrom<_>>::try_from,
+            )
+    }
+}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Arguments<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -1420,9 +2724,23 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Arguments<'tree> {
         Self(node)
     }
 }
+#[doc = concat!("Typed node `", "array_expression", "`")]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+pub struct ArrayExpression<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
-impl<'tree> Arguments<'tree> {
-    ///Get the node's children
+impl<'tree> ArrayExpression<'tree> {
+    #[doc = concat!("Get the field `", "length", "`")]
+    #[allow(dead_code)]
+    #[inline]
+    pub fn length(
+        &self,
+    ) -> Option<type_sitter_lib::NodeResult<'tree, Expression<'tree>>> {
+        self.0
+            .child_by_field_name("length")
+            .map(<Expression<'tree> as TryFrom<_>>::try_from)
+    }
+    ///Get the node's named children
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
@@ -1431,19 +2749,22 @@ impl<'tree> Arguments<'tree> {
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::either_n::Either2<Expression<'tree>, AttributeItem<'tree>>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either2<Expression<'tree>, AttributeItem<'tree>>,
+            >,
         >,
     > + 'a {
         self.0
-            .children(c)
+            .named_children(c)
             .map(
-                <type_sitter_lib::either_n::Either2<
-                    Expression<'tree>,
-                    AttributeItem<'tree>,
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either2<Expression<'tree>, AttributeItem<'tree>>,
                 > as TryFrom<_>>::try_from,
             )
     }
-    ///Get the node's child #i
+    ///Get the node's named child #i
     #[allow(dead_code)]
     #[inline]
     pub fn child(
@@ -1452,23 +2773,22 @@ impl<'tree> Arguments<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::either_n::Either2<Expression<'tree>, AttributeItem<'tree>>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either2<Expression<'tree>, AttributeItem<'tree>>,
+            >,
         >,
     > {
         self.0
-            .child(i)
+            .named_child(i)
             .map(
-                <type_sitter_lib::either_n::Either2<
-                    Expression<'tree>,
-                    AttributeItem<'tree>,
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either2<Expression<'tree>, AttributeItem<'tree>>,
                 > as TryFrom<_>>::try_from,
             )
     }
 }
-#[doc = concat!("Typed node `", "array_expression", "`")]
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-#[allow(non_camel_case_types)]
-pub struct ArrayExpression<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ArrayExpression<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -1496,8 +2816,23 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ArrayExpression<'tree> {
         Self(node)
     }
 }
+#[doc = concat!("Typed node `", "array_type", "`")]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+pub struct ArrayType<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
-impl<'tree> ArrayExpression<'tree> {
+impl<'tree> ArrayType<'tree> {
+    #[doc = concat!("Get the field `", "element", "`")]
+    #[allow(dead_code)]
+    #[inline]
+    pub fn element(&self) -> type_sitter_lib::NodeResult<'tree, Type<'tree>> {
+        self.0
+            .child_by_field_name("element")
+            .map(<Type<'tree> as TryFrom<_>>::try_from)
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
     #[doc = concat!("Get the field `", "length", "`")]
     #[allow(dead_code)]
     #[inline]
@@ -1508,53 +2843,7 @@ impl<'tree> ArrayExpression<'tree> {
             .child_by_field_name("length")
             .map(<Expression<'tree> as TryFrom<_>>::try_from)
     }
-    ///Get the node's children
-    #[allow(dead_code)]
-    #[inline]
-    pub fn children<'a>(
-        &'a self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
-    ) -> impl Iterator<
-        Item = type_sitter_lib::NodeResult<
-            'tree,
-            type_sitter_lib::either_n::Either2<Expression<'tree>, AttributeItem<'tree>>,
-        >,
-    > + 'a {
-        self.0
-            .children(c)
-            .map(
-                <type_sitter_lib::either_n::Either2<
-                    Expression<'tree>,
-                    AttributeItem<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
-    }
-    ///Get the node's child #i
-    #[allow(dead_code)]
-    #[inline]
-    pub fn child(
-        &self,
-        i: usize,
-    ) -> Option<
-        type_sitter_lib::NodeResult<
-            'tree,
-            type_sitter_lib::either_n::Either2<Expression<'tree>, AttributeItem<'tree>>,
-        >,
-    > {
-        self.0
-            .child(i)
-            .map(
-                <type_sitter_lib::either_n::Either2<
-                    Expression<'tree>,
-                    AttributeItem<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
-    }
 }
-#[doc = concat!("Typed node `", "array_type", "`")]
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-#[allow(non_camel_case_types)]
-pub struct ArrayType<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ArrayType<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -1582,34 +2871,35 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ArrayType<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> ArrayType<'tree> {
-    #[doc = concat!("Get the field `", "element", "`")]
-    #[allow(dead_code)]
-    #[inline]
-    pub fn element(&self) -> type_sitter_lib::NodeResult<'tree, Type<'tree>> {
-        self.0
-            .child_by_field_name("element")
-            .map(<Type<'tree> as TryFrom<_>>::try_from)
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
-    #[doc = concat!("Get the field `", "length", "`")]
-    #[allow(dead_code)]
-    #[inline]
-    pub fn length(
-        &self,
-    ) -> Option<type_sitter_lib::NodeResult<'tree, Expression<'tree>>> {
-        self.0
-            .child_by_field_name("length")
-            .map(<Expression<'tree> as TryFrom<_>>::try_from)
-    }
-}
 #[doc = concat!("Typed node `", "assignment_expression", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct AssignmentExpression<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> AssignmentExpression<'tree> {
+    #[doc = concat!("Get the field `", "left", "`")]
+    #[allow(dead_code)]
+    #[inline]
+    pub fn left(&self) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
+        self.0
+            .child_by_field_name("left")
+            .map(<Expression<'tree> as TryFrom<_>>::try_from)
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
+    #[doc = concat!("Get the field `", "right", "`")]
+    #[allow(dead_code)]
+    #[inline]
+    pub fn right(&self) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
+        self.0
+            .child_by_field_name("right")
+            .map(<Expression<'tree> as TryFrom<_>>::try_from)
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
+}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for AssignmentExpression<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -1637,62 +2927,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for AssignmentExpression<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> AssignmentExpression<'tree> {
-    #[doc = concat!("Get the field `", "left", "`")]
-    #[allow(dead_code)]
-    #[inline]
-    pub fn left(&self) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
-        self.0
-            .child_by_field_name("left")
-            .map(<Expression<'tree> as TryFrom<_>>::try_from)
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
-    #[doc = concat!("Get the field `", "right", "`")]
-    #[allow(dead_code)]
-    #[inline]
-    pub fn right(&self) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
-        self.0
-            .child_by_field_name("right")
-            .map(<Expression<'tree> as TryFrom<_>>::try_from)
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
-}
 #[doc = concat!("Typed node `", "associated_type", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct AssociatedType<'tree>(tree_sitter::Node<'tree>);
-#[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for AssociatedType<'tree> {
-    type Error = type_sitter_lib::IncorrectKind<'tree>;
-    #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
-        if node.kind() == "associated_type" {
-            Ok(Self(node))
-        } else {
-            Err(type_sitter_lib::IncorrectKind {
-                node,
-                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-            })
-        }
-    }
-}
-#[automatically_derived]
-impl<'tree> type_sitter_lib::TypedNode<'tree> for AssociatedType<'tree> {
-    const KIND: &'static str = "associated_type";
-    #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
-        &self.0
-    }
-    #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
-        Self(node)
-    }
-}
 #[automatically_derived]
 impl<'tree> AssociatedType<'tree> {
     #[doc = concat!("Get the field `", "bounds", "`")]
@@ -1727,10 +2965,51 @@ impl<'tree> AssociatedType<'tree> {
             .map(<TypeParameters<'tree> as TryFrom<_>>::try_from)
     }
 }
+#[automatically_derived]
+impl<'tree> TryFrom<tree_sitter::Node<'tree>> for AssociatedType<'tree> {
+    type Error = type_sitter_lib::IncorrectKind<'tree>;
+    #[inline]
+    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        if node.kind() == "associated_type" {
+            Ok(Self(node))
+        } else {
+            Err(type_sitter_lib::IncorrectKind {
+                node,
+                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+            })
+        }
+    }
+}
+#[automatically_derived]
+impl<'tree> type_sitter_lib::TypedNode<'tree> for AssociatedType<'tree> {
+    const KIND: &'static str = "associated_type";
+    #[inline]
+    fn node(&self) -> &tree_sitter::Node<'tree> {
+        &self.0
+    }
+    #[inline]
+    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        Self(node)
+    }
+}
 #[doc = concat!("Typed node `", "async_block", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct AsyncBlock<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> AsyncBlock<'tree> {
+    ///Get the node's only named child
+    #[allow(dead_code)]
+    #[inline]
+    pub fn child(&self) -> type_sitter_lib::NodeResult<'tree, Block<'tree>> {
+        self.0
+            .named_child(0)
+            .map(<Block<'tree> as TryFrom<_>>::try_from)
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
+}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for AsyncBlock<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -1758,24 +3037,65 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for AsyncBlock<'tree> {
         Self(node)
     }
 }
+#[doc = concat!("Typed node `", "attribute", "`")]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+pub struct Attribute<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
-impl<'tree> AsyncBlock<'tree> {
-    ///Get the node's child
+impl<'tree> Attribute<'tree> {
+    #[doc = concat!("Get the field `", "arguments", "`")]
     #[allow(dead_code)]
     #[inline]
-    pub fn child(&self) -> type_sitter_lib::NodeResult<'tree, Block<'tree>> {
+    pub fn arguments(
+        &self,
+    ) -> Option<type_sitter_lib::NodeResult<'tree, TokenTree<'tree>>> {
         self.0
-            .child(0)
-            .map(<Block<'tree> as TryFrom<_>>::try_from)
+            .child_by_field_name("arguments")
+            .map(<TokenTree<'tree> as TryFrom<_>>::try_from)
+    }
+    #[doc = concat!("Get the field `", "value", "`")]
+    #[allow(dead_code)]
+    #[inline]
+    pub fn value(
+        &self,
+    ) -> Option<type_sitter_lib::NodeResult<'tree, Expression<'tree>>> {
+        self.0
+            .child_by_field_name("value")
+            .map(<Expression<'tree> as TryFrom<_>>::try_from)
+    }
+    ///Get the node's only named child
+    #[allow(dead_code)]
+    #[inline]
+    pub fn child(
+        &self,
+    ) -> type_sitter_lib::NodeResult<
+        'tree,
+        type_sitter_lib::Either6<
+            Crate<'tree>,
+            Identifier<'tree>,
+            Metavariable<'tree>,
+            ScopedIdentifier<'tree>,
+            _Self<'tree>,
+            _Super<'tree>,
+        >,
+    > {
+        self.0
+            .named_child(0)
+            .map(
+                <type_sitter_lib::Either6<
+                    Crate<'tree>,
+                    Identifier<'tree>,
+                    Metavariable<'tree>,
+                    ScopedIdentifier<'tree>,
+                    _Self<'tree>,
+                    _Super<'tree>,
+                > as TryFrom<_>>::try_from,
+            )
             .expect(
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
     }
 }
-#[doc = concat!("Typed node `", "attribute", "`")]
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-#[allow(non_camel_case_types)]
-pub struct Attribute<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Attribute<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -1803,65 +3123,24 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Attribute<'tree> {
         Self(node)
     }
 }
+#[doc = concat!("Typed node `", "attribute_item", "`")]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+pub struct AttributeItem<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
-impl<'tree> Attribute<'tree> {
-    #[doc = concat!("Get the field `", "arguments", "`")]
+impl<'tree> AttributeItem<'tree> {
+    ///Get the node's only named child
     #[allow(dead_code)]
     #[inline]
-    pub fn arguments(
-        &self,
-    ) -> Option<type_sitter_lib::NodeResult<'tree, TokenTree<'tree>>> {
+    pub fn child(&self) -> type_sitter_lib::NodeResult<'tree, Attribute<'tree>> {
         self.0
-            .child_by_field_name("arguments")
-            .map(<TokenTree<'tree> as TryFrom<_>>::try_from)
-    }
-    #[doc = concat!("Get the field `", "value", "`")]
-    #[allow(dead_code)]
-    #[inline]
-    pub fn value(
-        &self,
-    ) -> Option<type_sitter_lib::NodeResult<'tree, Expression<'tree>>> {
-        self.0
-            .child_by_field_name("value")
-            .map(<Expression<'tree> as TryFrom<_>>::try_from)
-    }
-    ///Get the node's child
-    #[allow(dead_code)]
-    #[inline]
-    pub fn child(
-        &self,
-    ) -> type_sitter_lib::NodeResult<
-        'tree,
-        type_sitter_lib::either_n::Either6<
-            Crate<'tree>,
-            Identifier<'tree>,
-            Metavariable<'tree>,
-            ScopedIdentifier<'tree>,
-            _Self<'tree>,
-            _Super<'tree>,
-        >,
-    > {
-        self.0
-            .child(0)
-            .map(
-                <type_sitter_lib::either_n::Either6<
-                    Crate<'tree>,
-                    Identifier<'tree>,
-                    Metavariable<'tree>,
-                    ScopedIdentifier<'tree>,
-                    _Self<'tree>,
-                    _Super<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
+            .named_child(0)
+            .map(<Attribute<'tree> as TryFrom<_>>::try_from)
             .expect(
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
     }
 }
-#[doc = concat!("Typed node `", "attribute_item", "`")]
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-#[allow(non_camel_case_types)]
-pub struct AttributeItem<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for AttributeItem<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -1889,24 +3168,24 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for AttributeItem<'tree> {
         Self(node)
     }
 }
+#[doc = concat!("Typed node `", "await_expression", "`")]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+pub struct AwaitExpression<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
-impl<'tree> AttributeItem<'tree> {
-    ///Get the node's child
+impl<'tree> AwaitExpression<'tree> {
+    ///Get the node's only named child
     #[allow(dead_code)]
     #[inline]
-    pub fn child(&self) -> type_sitter_lib::NodeResult<'tree, Attribute<'tree>> {
+    pub fn child(&self) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
         self.0
-            .child(0)
-            .map(<Attribute<'tree> as TryFrom<_>>::try_from)
+            .named_child(0)
+            .map(<Expression<'tree> as TryFrom<_>>::try_from)
             .expect(
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
     }
 }
-#[doc = concat!("Typed node `", "await_expression", "`")]
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-#[allow(non_camel_case_types)]
-pub struct AwaitExpression<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for AwaitExpression<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -1934,24 +3213,24 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for AwaitExpression<'tree> {
         Self(node)
     }
 }
+#[doc = concat!("Typed node `", "base_field_initializer", "`")]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+pub struct BaseFieldInitializer<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
-impl<'tree> AwaitExpression<'tree> {
-    ///Get the node's child
+impl<'tree> BaseFieldInitializer<'tree> {
+    ///Get the node's only named child
     #[allow(dead_code)]
     #[inline]
     pub fn child(&self) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
         self.0
-            .child(0)
+            .named_child(0)
             .map(<Expression<'tree> as TryFrom<_>>::try_from)
             .expect(
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
     }
 }
-#[doc = concat!("Typed node `", "base_field_initializer", "`")]
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-#[allow(non_camel_case_types)]
-pub struct BaseFieldInitializer<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for BaseFieldInitializer<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -1979,51 +3258,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for BaseFieldInitializer<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> BaseFieldInitializer<'tree> {
-    ///Get the node's child
-    #[allow(dead_code)]
-    #[inline]
-    pub fn child(&self) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
-        self.0
-            .child(0)
-            .map(<Expression<'tree> as TryFrom<_>>::try_from)
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
-}
 #[doc = concat!("Typed node `", "binary_expression", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct BinaryExpression<'tree>(tree_sitter::Node<'tree>);
-#[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for BinaryExpression<'tree> {
-    type Error = type_sitter_lib::IncorrectKind<'tree>;
-    #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
-        if node.kind() == "binary_expression" {
-            Ok(Self(node))
-        } else {
-            Err(type_sitter_lib::IncorrectKind {
-                node,
-                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-            })
-        }
-    }
-}
-#[automatically_derived]
-impl<'tree> type_sitter_lib::TypedNode<'tree> for BinaryExpression<'tree> {
-    const KIND: &'static str = "binary_expression";
-    #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
-        &self.0
-    }
-    #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
-        Self(node)
-    }
-}
 #[automatically_derived]
 impl<'tree> BinaryExpression<'tree> {
     #[doc = concat!("Get the field `", "left", "`")]
@@ -2044,7 +3282,7 @@ impl<'tree> BinaryExpression<'tree> {
         &self,
     ) -> type_sitter_lib::NodeResult<
         'tree,
-        type_sitter_lib::either_n::Either18<
+        type_sitter_lib::Either18<
             NotEq<'tree>,
             Mod<'tree>,
             And<'tree>,
@@ -2068,7 +3306,7 @@ impl<'tree> BinaryExpression<'tree> {
         self.0
             .child_by_field_name("operator")
             .map(
-                <type_sitter_lib::either_n::Either18<
+                <type_sitter_lib::Either18<
                     NotEq<'tree>,
                     Mod<'tree>,
                     And<'tree>,
@@ -2105,10 +3343,104 @@ impl<'tree> BinaryExpression<'tree> {
             )
     }
 }
+#[automatically_derived]
+impl<'tree> TryFrom<tree_sitter::Node<'tree>> for BinaryExpression<'tree> {
+    type Error = type_sitter_lib::IncorrectKind<'tree>;
+    #[inline]
+    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        if node.kind() == "binary_expression" {
+            Ok(Self(node))
+        } else {
+            Err(type_sitter_lib::IncorrectKind {
+                node,
+                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+            })
+        }
+    }
+}
+#[automatically_derived]
+impl<'tree> type_sitter_lib::TypedNode<'tree> for BinaryExpression<'tree> {
+    const KIND: &'static str = "binary_expression";
+    #[inline]
+    fn node(&self) -> &tree_sitter::Node<'tree> {
+        &self.0
+    }
+    #[inline]
+    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        Self(node)
+    }
+}
 #[doc = concat!("Typed node `", "block", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct Block<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> Block<'tree> {
+    ///Get the node's named children
+    #[allow(dead_code)]
+    #[inline]
+    pub fn children<'a>(
+        &'a self,
+        c: &'a mut tree_sitter::TreeCursor<'tree>,
+    ) -> impl Iterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either3<
+                    DeclarationStatement<'tree>,
+                    Expression<'tree>,
+                    ExpressionStatement<'tree>,
+                >,
+            >,
+        >,
+    > + 'a {
+        self.0
+            .named_children(c)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either3<
+                        DeclarationStatement<'tree>,
+                        Expression<'tree>,
+                        ExpressionStatement<'tree>,
+                    >,
+                > as TryFrom<_>>::try_from,
+            )
+    }
+    ///Get the node's named child #i
+    #[allow(dead_code)]
+    #[inline]
+    pub fn child(
+        &self,
+        i: usize,
+    ) -> Option<
+        type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either3<
+                    DeclarationStatement<'tree>,
+                    Expression<'tree>,
+                    ExpressionStatement<'tree>,
+                >,
+            >,
+        >,
+    > {
+        self.0
+            .named_child(i)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either3<
+                        DeclarationStatement<'tree>,
+                        Expression<'tree>,
+                        ExpressionStatement<'tree>,
+                    >,
+                > as TryFrom<_>>::try_from,
+            )
+    }
+}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Block<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -2136,65 +3468,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Block<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> Block<'tree> {
-    ///Get the node's children
-    #[allow(dead_code)]
-    #[inline]
-    pub fn children<'a>(
-        &'a self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
-    ) -> impl Iterator<
-        Item = type_sitter_lib::NodeResult<
-            'tree,
-            type_sitter_lib::either_n::Either3<
-                DeclarationStatement<'tree>,
-                Expression<'tree>,
-                ExpressionStatement<'tree>,
-            >,
-        >,
-    > + 'a {
-        self.0
-            .children(c)
-            .map(
-                <type_sitter_lib::either_n::Either3<
-                    DeclarationStatement<'tree>,
-                    Expression<'tree>,
-                    ExpressionStatement<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
-    }
-    ///Get the node's child #i
-    #[allow(dead_code)]
-    #[inline]
-    pub fn child(
-        &self,
-        i: usize,
-    ) -> Option<
-        type_sitter_lib::NodeResult<
-            'tree,
-            type_sitter_lib::either_n::Either3<
-                DeclarationStatement<'tree>,
-                Expression<'tree>,
-                ExpressionStatement<'tree>,
-            >,
-        >,
-    > {
-        self.0
-            .child(i)
-            .map(
-                <type_sitter_lib::either_n::Either3<
-                    DeclarationStatement<'tree>,
-                    Expression<'tree>,
-                    ExpressionStatement<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
-    }
-}
 #[doc = concat!("Typed node `", "boolean_literal", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct BooleanLiteral<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> BooleanLiteral<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for BooleanLiteral<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -2222,12 +3501,62 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for BooleanLiteral<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> BooleanLiteral<'tree> {}
 #[doc = concat!("Typed node `", "bounded_type", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct BoundedType<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> BoundedType<'tree> {
+    ///Get the node's named children
+    ///This is guaranteed to return at least one child
+    #[allow(dead_code)]
+    #[inline]
+    pub fn children<'a>(
+        &'a self,
+        c: &'a mut tree_sitter::TreeCursor<'tree>,
+    ) -> impl Iterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either2<Type<'tree>, Lifetime<'tree>>,
+            >,
+        >,
+    > + 'a {
+        self.0
+            .named_children(c)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either2<Type<'tree>, Lifetime<'tree>>,
+                > as TryFrom<_>>::try_from,
+            )
+    }
+    ///Get the node's named child #i
+    #[allow(dead_code)]
+    #[inline]
+    pub fn child(
+        &self,
+        i: usize,
+    ) -> Option<
+        type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either2<Type<'tree>, Lifetime<'tree>>,
+            >,
+        >,
+    > {
+        self.0
+            .named_child(i)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either2<Type<'tree>, Lifetime<'tree>>,
+                > as TryFrom<_>>::try_from,
+            )
+    }
+}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for BoundedType<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -2255,56 +3584,34 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for BoundedType<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> BoundedType<'tree> {
-    ///Get the node's children
-    ///This is guaranteed to return at least one child
-    #[allow(dead_code)]
-    #[inline]
-    pub fn children<'a>(
-        &'a self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
-    ) -> impl Iterator<
-        Item = type_sitter_lib::NodeResult<
-            'tree,
-            type_sitter_lib::either_n::Either2<Type<'tree>, Lifetime<'tree>>,
-        >,
-    > + 'a {
-        self.0
-            .children(c)
-            .map(
-                <type_sitter_lib::either_n::Either2<
-                    Type<'tree>,
-                    Lifetime<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
-    }
-    ///Get the node's child #i
-    #[allow(dead_code)]
-    #[inline]
-    pub fn child(
-        &self,
-        i: usize,
-    ) -> Option<
-        type_sitter_lib::NodeResult<
-            'tree,
-            type_sitter_lib::either_n::Either2<Type<'tree>, Lifetime<'tree>>,
-        >,
-    > {
-        self.0
-            .child(i)
-            .map(
-                <type_sitter_lib::either_n::Either2<
-                    Type<'tree>,
-                    Lifetime<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
-    }
-}
 #[doc = concat!("Typed node `", "bracketed_type", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct BracketedType<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> BracketedType<'tree> {
+    ///Get the node's only named child
+    #[allow(dead_code)]
+    #[inline]
+    pub fn child(
+        &self,
+    ) -> type_sitter_lib::NodeResult<
+        'tree,
+        type_sitter_lib::Either2<Type<'tree>, QualifiedType<'tree>>,
+    > {
+        self.0
+            .named_child(0)
+            .map(
+                <type_sitter_lib::Either2<
+                    Type<'tree>,
+                    QualifiedType<'tree>,
+                > as TryFrom<_>>::try_from,
+            )
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
+}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for BracketedType<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -2332,34 +3639,61 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for BracketedType<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> BracketedType<'tree> {
-    ///Get the node's child
-    #[allow(dead_code)]
-    #[inline]
-    pub fn child(
-        &self,
-    ) -> type_sitter_lib::NodeResult<
-        'tree,
-        type_sitter_lib::either_n::Either2<Type<'tree>, QualifiedType<'tree>>,
-    > {
-        self.0
-            .child(0)
-            .map(
-                <type_sitter_lib::either_n::Either2<
-                    Type<'tree>,
-                    QualifiedType<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
-}
 #[doc = concat!("Typed node `", "break_expression", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct BreakExpression<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> BreakExpression<'tree> {
+    ///Get the node's named children
+    #[allow(dead_code)]
+    #[inline]
+    pub fn children<'a>(
+        &'a self,
+        c: &'a mut tree_sitter::TreeCursor<'tree>,
+    ) -> impl Iterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either2<Expression<'tree>, LoopLabel<'tree>>,
+            >,
+        >,
+    > + 'a {
+        self.0
+            .named_children(c)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either2<Expression<'tree>, LoopLabel<'tree>>,
+                > as TryFrom<_>>::try_from,
+            )
+    }
+    ///Get the node's named child #i
+    #[allow(dead_code)]
+    #[inline]
+    pub fn child(
+        &self,
+        i: usize,
+    ) -> Option<
+        type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either2<Expression<'tree>, LoopLabel<'tree>>,
+            >,
+        >,
+    > {
+        self.0
+            .named_child(i)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either2<Expression<'tree>, LoopLabel<'tree>>,
+                > as TryFrom<_>>::try_from,
+            )
+    }
+}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for BreakExpression<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -2387,82 +3721,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for BreakExpression<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> BreakExpression<'tree> {
-    ///Get the node's children
-    #[allow(dead_code)]
-    #[inline]
-    pub fn children<'a>(
-        &'a self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
-    ) -> impl Iterator<
-        Item = type_sitter_lib::NodeResult<
-            'tree,
-            type_sitter_lib::either_n::Either2<Expression<'tree>, LoopLabel<'tree>>,
-        >,
-    > + 'a {
-        self.0
-            .children(c)
-            .map(
-                <type_sitter_lib::either_n::Either2<
-                    Expression<'tree>,
-                    LoopLabel<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
-    }
-    ///Get the node's child #i
-    #[allow(dead_code)]
-    #[inline]
-    pub fn child(
-        &self,
-        i: usize,
-    ) -> Option<
-        type_sitter_lib::NodeResult<
-            'tree,
-            type_sitter_lib::either_n::Either2<Expression<'tree>, LoopLabel<'tree>>,
-        >,
-    > {
-        self.0
-            .child(i)
-            .map(
-                <type_sitter_lib::either_n::Either2<
-                    Expression<'tree>,
-                    LoopLabel<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
-    }
-}
 #[doc = concat!("Typed node `", "call_expression", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct CallExpression<'tree>(tree_sitter::Node<'tree>);
-#[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for CallExpression<'tree> {
-    type Error = type_sitter_lib::IncorrectKind<'tree>;
-    #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
-        if node.kind() == "call_expression" {
-            Ok(Self(node))
-        } else {
-            Err(type_sitter_lib::IncorrectKind {
-                node,
-                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-            })
-        }
-    }
-}
-#[automatically_derived]
-impl<'tree> type_sitter_lib::TypedNode<'tree> for CallExpression<'tree> {
-    const KIND: &'static str = "call_expression";
-    #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
-        &self.0
-    }
-    #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
-        Self(node)
-    }
-}
 #[automatically_derived]
 impl<'tree> CallExpression<'tree> {
     #[doc = concat!("Get the field `", "arguments", "`")]
@@ -2527,10 +3789,77 @@ impl<'tree> CallExpression<'tree> {
             )
     }
 }
+#[automatically_derived]
+impl<'tree> TryFrom<tree_sitter::Node<'tree>> for CallExpression<'tree> {
+    type Error = type_sitter_lib::IncorrectKind<'tree>;
+    #[inline]
+    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        if node.kind() == "call_expression" {
+            Ok(Self(node))
+        } else {
+            Err(type_sitter_lib::IncorrectKind {
+                node,
+                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+            })
+        }
+    }
+}
+#[automatically_derived]
+impl<'tree> type_sitter_lib::TypedNode<'tree> for CallExpression<'tree> {
+    const KIND: &'static str = "call_expression";
+    #[inline]
+    fn node(&self) -> &tree_sitter::Node<'tree> {
+        &self.0
+    }
+    #[inline]
+    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        Self(node)
+    }
+}
 #[doc = concat!("Typed node `", "captured_pattern", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct CapturedPattern<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> CapturedPattern<'tree> {
+    ///Get the node's named children
+    ///This is guaranteed to return at least one child
+    #[allow(dead_code)]
+    #[inline]
+    pub fn children<'a>(
+        &'a self,
+        c: &'a mut tree_sitter::TreeCursor<'tree>,
+    ) -> impl Iterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<'tree, Pattern<'tree>>,
+        >,
+    > + 'a {
+        self.0
+            .named_children(c)
+            .map(
+                <type_sitter_lib::ExtraOr<'tree, Pattern<'tree>> as TryFrom<_>>::try_from,
+            )
+    }
+    ///Get the node's named child #i
+    #[allow(dead_code)]
+    #[inline]
+    pub fn child(
+        &self,
+        i: usize,
+    ) -> Option<
+        type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<'tree, Pattern<'tree>>,
+        >,
+    > {
+        self.0
+            .named_child(i)
+            .map(
+                <type_sitter_lib::ExtraOr<'tree, Pattern<'tree>> as TryFrom<_>>::try_from,
+            )
+    }
+}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for CapturedPattern<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -2558,59 +3887,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for CapturedPattern<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> CapturedPattern<'tree> {
-    ///Get the node's children
-    ///This is guaranteed to return at least one child
-    #[allow(dead_code)]
-    #[inline]
-    pub fn children<'a>(
-        &'a self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
-    ) -> impl Iterator<Item = type_sitter_lib::NodeResult<'tree, Pattern<'tree>>> + 'a {
-        self.0.children(c).map(<Pattern<'tree> as TryFrom<_>>::try_from)
-    }
-    ///Get the node's child #i
-    #[allow(dead_code)]
-    #[inline]
-    pub fn child(
-        &self,
-        i: usize,
-    ) -> Option<type_sitter_lib::NodeResult<'tree, Pattern<'tree>>> {
-        self.0.child(i).map(<Pattern<'tree> as TryFrom<_>>::try_from)
-    }
-}
 #[doc = concat!("Typed node `", "closure_expression", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct ClosureExpression<'tree>(tree_sitter::Node<'tree>);
-#[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ClosureExpression<'tree> {
-    type Error = type_sitter_lib::IncorrectKind<'tree>;
-    #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
-        if node.kind() == "closure_expression" {
-            Ok(Self(node))
-        } else {
-            Err(type_sitter_lib::IncorrectKind {
-                node,
-                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-            })
-        }
-    }
-}
-#[automatically_derived]
-impl<'tree> type_sitter_lib::TypedNode<'tree> for ClosureExpression<'tree> {
-    const KIND: &'static str = "closure_expression";
-    #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
-        &self.0
-    }
-    #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
-        Self(node)
-    }
-}
 #[automatically_derived]
 impl<'tree> ClosureExpression<'tree> {
     #[doc = concat!("Get the field `", "body", "`")]
@@ -2648,10 +3928,88 @@ impl<'tree> ClosureExpression<'tree> {
             .map(<Type<'tree> as TryFrom<_>>::try_from)
     }
 }
+#[automatically_derived]
+impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ClosureExpression<'tree> {
+    type Error = type_sitter_lib::IncorrectKind<'tree>;
+    #[inline]
+    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        if node.kind() == "closure_expression" {
+            Ok(Self(node))
+        } else {
+            Err(type_sitter_lib::IncorrectKind {
+                node,
+                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+            })
+        }
+    }
+}
+#[automatically_derived]
+impl<'tree> type_sitter_lib::TypedNode<'tree> for ClosureExpression<'tree> {
+    const KIND: &'static str = "closure_expression";
+    #[inline]
+    fn node(&self) -> &tree_sitter::Node<'tree> {
+        &self.0
+    }
+    #[inline]
+    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        Self(node)
+    }
+}
 #[doc = concat!("Typed node `", "closure_parameters", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct ClosureParameters<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> ClosureParameters<'tree> {
+    ///Get the node's named children
+    #[allow(dead_code)]
+    #[inline]
+    pub fn children<'a>(
+        &'a self,
+        c: &'a mut tree_sitter::TreeCursor<'tree>,
+    ) -> impl Iterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either2<Pattern<'tree>, Parameter<'tree>>,
+            >,
+        >,
+    > + 'a {
+        self.0
+            .named_children(c)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either2<Pattern<'tree>, Parameter<'tree>>,
+                > as TryFrom<_>>::try_from,
+            )
+    }
+    ///Get the node's named child #i
+    #[allow(dead_code)]
+    #[inline]
+    pub fn child(
+        &self,
+        i: usize,
+    ) -> Option<
+        type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either2<Pattern<'tree>, Parameter<'tree>>,
+            >,
+        >,
+    > {
+        self.0
+            .named_child(i)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either2<Pattern<'tree>, Parameter<'tree>>,
+                > as TryFrom<_>>::try_from,
+            )
+    }
+}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ClosureParameters<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -2679,82 +4037,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ClosureParameters<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> ClosureParameters<'tree> {
-    ///Get the node's children
-    #[allow(dead_code)]
-    #[inline]
-    pub fn children<'a>(
-        &'a self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
-    ) -> impl Iterator<
-        Item = type_sitter_lib::NodeResult<
-            'tree,
-            type_sitter_lib::either_n::Either2<Pattern<'tree>, Parameter<'tree>>,
-        >,
-    > + 'a {
-        self.0
-            .children(c)
-            .map(
-                <type_sitter_lib::either_n::Either2<
-                    Pattern<'tree>,
-                    Parameter<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
-    }
-    ///Get the node's child #i
-    #[allow(dead_code)]
-    #[inline]
-    pub fn child(
-        &self,
-        i: usize,
-    ) -> Option<
-        type_sitter_lib::NodeResult<
-            'tree,
-            type_sitter_lib::either_n::Either2<Pattern<'tree>, Parameter<'tree>>,
-        >,
-    > {
-        self.0
-            .child(i)
-            .map(
-                <type_sitter_lib::either_n::Either2<
-                    Pattern<'tree>,
-                    Parameter<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
-    }
-}
 #[doc = concat!("Typed node `", "compound_assignment_expr", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct CompoundAssignmentExpr<'tree>(tree_sitter::Node<'tree>);
-#[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for CompoundAssignmentExpr<'tree> {
-    type Error = type_sitter_lib::IncorrectKind<'tree>;
-    #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
-        if node.kind() == "compound_assignment_expr" {
-            Ok(Self(node))
-        } else {
-            Err(type_sitter_lib::IncorrectKind {
-                node,
-                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-            })
-        }
-    }
-}
-#[automatically_derived]
-impl<'tree> type_sitter_lib::TypedNode<'tree> for CompoundAssignmentExpr<'tree> {
-    const KIND: &'static str = "compound_assignment_expr";
-    #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
-        &self.0
-    }
-    #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
-        Self(node)
-    }
-}
 #[automatically_derived]
 impl<'tree> CompoundAssignmentExpr<'tree> {
     #[doc = concat!("Get the field `", "left", "`")]
@@ -2775,7 +4061,7 @@ impl<'tree> CompoundAssignmentExpr<'tree> {
         &self,
     ) -> type_sitter_lib::NodeResult<
         'tree,
-        type_sitter_lib::either_n::Either10<
+        type_sitter_lib::Either10<
             ModEq<'tree>,
             AndEq<'tree>,
             MulEq<'tree>,
@@ -2791,7 +4077,7 @@ impl<'tree> CompoundAssignmentExpr<'tree> {
         self.0
             .child_by_field_name("operator")
             .map(
-                <type_sitter_lib::either_n::Either10<
+                <type_sitter_lib::Either10<
                     ModEq<'tree>,
                     AndEq<'tree>,
                     MulEq<'tree>,
@@ -2820,10 +4106,51 @@ impl<'tree> CompoundAssignmentExpr<'tree> {
             )
     }
 }
+#[automatically_derived]
+impl<'tree> TryFrom<tree_sitter::Node<'tree>> for CompoundAssignmentExpr<'tree> {
+    type Error = type_sitter_lib::IncorrectKind<'tree>;
+    #[inline]
+    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        if node.kind() == "compound_assignment_expr" {
+            Ok(Self(node))
+        } else {
+            Err(type_sitter_lib::IncorrectKind {
+                node,
+                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+            })
+        }
+    }
+}
+#[automatically_derived]
+impl<'tree> type_sitter_lib::TypedNode<'tree> for CompoundAssignmentExpr<'tree> {
+    const KIND: &'static str = "compound_assignment_expr";
+    #[inline]
+    fn node(&self) -> &tree_sitter::Node<'tree> {
+        &self.0
+    }
+    #[inline]
+    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        Self(node)
+    }
+}
 #[doc = concat!("Typed node `", "const_block", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct ConstBlock<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> ConstBlock<'tree> {
+    #[doc = concat!("Get the field `", "body", "`")]
+    #[allow(dead_code)]
+    #[inline]
+    pub fn body(&self) -> type_sitter_lib::NodeResult<'tree, Block<'tree>> {
+        self.0
+            .child_by_field_name("body")
+            .map(<Block<'tree> as TryFrom<_>>::try_from)
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
+}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ConstBlock<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -2851,51 +4178,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ConstBlock<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> ConstBlock<'tree> {
-    #[doc = concat!("Get the field `", "body", "`")]
-    #[allow(dead_code)]
-    #[inline]
-    pub fn body(&self) -> type_sitter_lib::NodeResult<'tree, Block<'tree>> {
-        self.0
-            .child_by_field_name("body")
-            .map(<Block<'tree> as TryFrom<_>>::try_from)
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
-}
 #[doc = concat!("Typed node `", "const_item", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct ConstItem<'tree>(tree_sitter::Node<'tree>);
-#[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ConstItem<'tree> {
-    type Error = type_sitter_lib::IncorrectKind<'tree>;
-    #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
-        if node.kind() == "const_item" {
-            Ok(Self(node))
-        } else {
-            Err(type_sitter_lib::IncorrectKind {
-                node,
-                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-            })
-        }
-    }
-}
-#[automatically_derived]
-impl<'tree> type_sitter_lib::TypedNode<'tree> for ConstItem<'tree> {
-    const KIND: &'static str = "const_item";
-    #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
-        &self.0
-    }
-    #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
-        Self(node)
-    }
-}
 #[automatically_derived]
 impl<'tree> ConstItem<'tree> {
     #[doc = concat!("Get the field `", "name", "`")]
@@ -2930,19 +4216,71 @@ impl<'tree> ConstItem<'tree> {
             .child_by_field_name("value")
             .map(<Expression<'tree> as TryFrom<_>>::try_from)
     }
-    ///Get the node's child
+    ///Get the node's only named child
     #[allow(dead_code)]
     #[inline]
     pub fn child(
         &self,
     ) -> Option<type_sitter_lib::NodeResult<'tree, VisibilityModifier<'tree>>> {
-        self.0.child(0).map(<VisibilityModifier<'tree> as TryFrom<_>>::try_from)
+        self.0.named_child(0).map(<VisibilityModifier<'tree> as TryFrom<_>>::try_from)
+    }
+}
+#[automatically_derived]
+impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ConstItem<'tree> {
+    type Error = type_sitter_lib::IncorrectKind<'tree>;
+    #[inline]
+    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        if node.kind() == "const_item" {
+            Ok(Self(node))
+        } else {
+            Err(type_sitter_lib::IncorrectKind {
+                node,
+                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+            })
+        }
+    }
+}
+#[automatically_derived]
+impl<'tree> type_sitter_lib::TypedNode<'tree> for ConstItem<'tree> {
+    const KIND: &'static str = "const_item";
+    #[inline]
+    fn node(&self) -> &tree_sitter::Node<'tree> {
+        &self.0
+    }
+    #[inline]
+    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        Self(node)
     }
 }
 #[doc = concat!("Typed node `", "const_parameter", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct ConstParameter<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> ConstParameter<'tree> {
+    #[doc = concat!("Get the field `", "name", "`")]
+    #[allow(dead_code)]
+    #[inline]
+    pub fn name(&self) -> type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
+        self.0
+            .child_by_field_name("name")
+            .map(<Identifier<'tree> as TryFrom<_>>::try_from)
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
+    #[doc = concat!("Get the field `", "type", "`")]
+    #[allow(dead_code)]
+    #[inline]
+    pub fn r#type(&self) -> type_sitter_lib::NodeResult<'tree, Type<'tree>> {
+        self.0
+            .child_by_field_name("type")
+            .map(<Type<'tree> as TryFrom<_>>::try_from)
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
+}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ConstParameter<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -2970,35 +4308,45 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ConstParameter<'tree> {
         Self(node)
     }
 }
+#[doc = concat!("Typed node `", "constrained_type_parameter", "`")]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+pub struct ConstrainedTypeParameter<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
-impl<'tree> ConstParameter<'tree> {
-    #[doc = concat!("Get the field `", "name", "`")]
+impl<'tree> ConstrainedTypeParameter<'tree> {
+    #[doc = concat!("Get the field `", "bounds", "`")]
     #[allow(dead_code)]
     #[inline]
-    pub fn name(&self) -> type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
+    pub fn bounds(&self) -> type_sitter_lib::NodeResult<'tree, TraitBounds<'tree>> {
         self.0
-            .child_by_field_name("name")
-            .map(<Identifier<'tree> as TryFrom<_>>::try_from)
+            .child_by_field_name("bounds")
+            .map(<TraitBounds<'tree> as TryFrom<_>>::try_from)
             .expect(
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
     }
-    #[doc = concat!("Get the field `", "type", "`")]
+    #[doc = concat!("Get the field `", "left", "`")]
     #[allow(dead_code)]
     #[inline]
-    pub fn r#type(&self) -> type_sitter_lib::NodeResult<'tree, Type<'tree>> {
+    pub fn left(
+        &self,
+    ) -> type_sitter_lib::NodeResult<
+        'tree,
+        type_sitter_lib::Either2<Lifetime<'tree>, TypeIdentifier<'tree>>,
+    > {
         self.0
-            .child_by_field_name("type")
-            .map(<Type<'tree> as TryFrom<_>>::try_from)
+            .child_by_field_name("left")
+            .map(
+                <type_sitter_lib::Either2<
+                    Lifetime<'tree>,
+                    TypeIdentifier<'tree>,
+                > as TryFrom<_>>::try_from,
+            )
             .expect(
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
     }
 }
-#[doc = concat!("Typed node `", "constrained_type_parameter", "`")]
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-#[allow(non_camel_case_types)]
-pub struct ConstrainedTypeParameter<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ConstrainedTypeParameter<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -3026,45 +4374,19 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ConstrainedTypeParameter<'tree
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> ConstrainedTypeParameter<'tree> {
-    #[doc = concat!("Get the field `", "bounds", "`")]
-    #[allow(dead_code)]
-    #[inline]
-    pub fn bounds(&self) -> type_sitter_lib::NodeResult<'tree, TraitBounds<'tree>> {
-        self.0
-            .child_by_field_name("bounds")
-            .map(<TraitBounds<'tree> as TryFrom<_>>::try_from)
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
-    #[doc = concat!("Get the field `", "left", "`")]
-    #[allow(dead_code)]
-    #[inline]
-    pub fn left(
-        &self,
-    ) -> type_sitter_lib::NodeResult<
-        'tree,
-        type_sitter_lib::either_n::Either2<Lifetime<'tree>, TypeIdentifier<'tree>>,
-    > {
-        self.0
-            .child_by_field_name("left")
-            .map(
-                <type_sitter_lib::either_n::Either2<
-                    Lifetime<'tree>,
-                    TypeIdentifier<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
-}
 #[doc = concat!("Typed node `", "continue_expression", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct ContinueExpression<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> ContinueExpression<'tree> {
+    ///Get the node's only named child
+    #[allow(dead_code)]
+    #[inline]
+    pub fn child(&self) -> Option<type_sitter_lib::NodeResult<'tree, LoopLabel<'tree>>> {
+        self.0.named_child(0).map(<LoopLabel<'tree> as TryFrom<_>>::try_from)
+    }
+}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ContinueExpression<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -3092,19 +4414,55 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ContinueExpression<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> ContinueExpression<'tree> {
-    ///Get the node's child
-    #[allow(dead_code)]
-    #[inline]
-    pub fn child(&self) -> Option<type_sitter_lib::NodeResult<'tree, LoopLabel<'tree>>> {
-        self.0.child(0).map(<LoopLabel<'tree> as TryFrom<_>>::try_from)
-    }
-}
 #[doc = concat!("Typed node `", "declaration_list", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct DeclarationList<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> DeclarationList<'tree> {
+    ///Get the node's named children
+    #[allow(dead_code)]
+    #[inline]
+    pub fn children<'a>(
+        &'a self,
+        c: &'a mut tree_sitter::TreeCursor<'tree>,
+    ) -> impl Iterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<'tree, DeclarationStatement<'tree>>,
+        >,
+    > + 'a {
+        self.0
+            .named_children(c)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    DeclarationStatement<'tree>,
+                > as TryFrom<_>>::try_from,
+            )
+    }
+    ///Get the node's named child #i
+    #[allow(dead_code)]
+    #[inline]
+    pub fn child(
+        &self,
+        i: usize,
+    ) -> Option<
+        type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<'tree, DeclarationStatement<'tree>>,
+        >,
+    > {
+        self.0
+            .named_child(i)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    DeclarationStatement<'tree>,
+                > as TryFrom<_>>::try_from,
+            )
+    }
+}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for DeclarationList<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -3132,33 +4490,41 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for DeclarationList<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> DeclarationList<'tree> {
-    ///Get the node's children
-    #[allow(dead_code)]
-    #[inline]
-    pub fn children<'a>(
-        &'a self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
-    ) -> impl Iterator<
-        Item = type_sitter_lib::NodeResult<'tree, DeclarationStatement<'tree>>,
-    > + 'a {
-        self.0.children(c).map(<DeclarationStatement<'tree> as TryFrom<_>>::try_from)
-    }
-    ///Get the node's child #i
-    #[allow(dead_code)]
-    #[inline]
-    pub fn child(
-        &self,
-        i: usize,
-    ) -> Option<type_sitter_lib::NodeResult<'tree, DeclarationStatement<'tree>>> {
-        self.0.child(i).map(<DeclarationStatement<'tree> as TryFrom<_>>::try_from)
-    }
-}
 #[doc = concat!("Typed node `", "dynamic_type", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct DynamicType<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> DynamicType<'tree> {
+    #[doc = concat!("Get the field `", "trait", "`")]
+    #[allow(dead_code)]
+    #[inline]
+    pub fn r#trait(
+        &self,
+    ) -> type_sitter_lib::NodeResult<
+        'tree,
+        type_sitter_lib::Either4<
+            FunctionType<'tree>,
+            GenericType<'tree>,
+            ScopedTypeIdentifier<'tree>,
+            TypeIdentifier<'tree>,
+        >,
+    > {
+        self.0
+            .child_by_field_name("trait")
+            .map(
+                <type_sitter_lib::Either4<
+                    FunctionType<'tree>,
+                    GenericType<'tree>,
+                    ScopedTypeIdentifier<'tree>,
+                    TypeIdentifier<'tree>,
+                > as TryFrom<_>>::try_from,
+            )
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
+}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for DynamicType<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -3186,30 +4552,27 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for DynamicType<'tree> {
         Self(node)
     }
 }
+#[doc = concat!("Typed node `", "else_clause", "`")]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+pub struct ElseClause<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
-impl<'tree> DynamicType<'tree> {
-    #[doc = concat!("Get the field `", "trait", "`")]
+impl<'tree> ElseClause<'tree> {
+    ///Get the node's only named child
     #[allow(dead_code)]
     #[inline]
-    pub fn r#trait(
+    pub fn child(
         &self,
     ) -> type_sitter_lib::NodeResult<
         'tree,
-        type_sitter_lib::either_n::Either4<
-            FunctionType<'tree>,
-            GenericType<'tree>,
-            ScopedTypeIdentifier<'tree>,
-            TypeIdentifier<'tree>,
-        >,
+        type_sitter_lib::Either2<Block<'tree>, IfExpression<'tree>>,
     > {
         self.0
-            .child_by_field_name("trait")
+            .named_child(0)
             .map(
-                <type_sitter_lib::either_n::Either4<
-                    FunctionType<'tree>,
-                    GenericType<'tree>,
-                    ScopedTypeIdentifier<'tree>,
-                    TypeIdentifier<'tree>,
+                <type_sitter_lib::Either2<
+                    Block<'tree>,
+                    IfExpression<'tree>,
                 > as TryFrom<_>>::try_from,
             )
             .expect(
@@ -3217,10 +4580,6 @@ impl<'tree> DynamicType<'tree> {
             )
     }
 }
-#[doc = concat!("Typed node `", "else_clause", "`")]
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-#[allow(non_camel_case_types)]
-pub struct ElseClause<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ElseClause<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -3248,34 +4607,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ElseClause<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> ElseClause<'tree> {
-    ///Get the node's child
-    #[allow(dead_code)]
-    #[inline]
-    pub fn child(
-        &self,
-    ) -> type_sitter_lib::NodeResult<
-        'tree,
-        type_sitter_lib::either_n::Either2<Block<'tree>, IfExpression<'tree>>,
-    > {
-        self.0
-            .child(0)
-            .map(
-                <type_sitter_lib::either_n::Either2<
-                    Block<'tree>,
-                    IfExpression<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
-}
 #[doc = concat!("Typed node `", "empty_statement", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct EmptyStatement<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> EmptyStatement<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for EmptyStatement<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -3303,12 +4640,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for EmptyStatement<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> EmptyStatement<'tree> {}
 #[doc = concat!("Typed node `", "empty_type", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct EmptyType<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> EmptyType<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for EmptyType<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -3336,39 +4673,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for EmptyType<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> EmptyType<'tree> {}
 #[doc = concat!("Typed node `", "enum_item", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct EnumItem<'tree>(tree_sitter::Node<'tree>);
-#[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for EnumItem<'tree> {
-    type Error = type_sitter_lib::IncorrectKind<'tree>;
-    #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
-        if node.kind() == "enum_item" {
-            Ok(Self(node))
-        } else {
-            Err(type_sitter_lib::IncorrectKind {
-                node,
-                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-            })
-        }
-    }
-}
-#[automatically_derived]
-impl<'tree> type_sitter_lib::TypedNode<'tree> for EnumItem<'tree> {
-    const KIND: &'static str = "enum_item";
-    #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
-        &self.0
-    }
-    #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
-        Self(node)
-    }
-}
 #[automatically_derived]
 impl<'tree> EnumItem<'tree> {
     #[doc = concat!("Get the field `", "body", "`")]
@@ -3403,7 +4711,7 @@ impl<'tree> EnumItem<'tree> {
             .child_by_field_name("type_parameters")
             .map(<TypeParameters<'tree> as TryFrom<_>>::try_from)
     }
-    ///Get the node's children
+    ///Get the node's named children
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
@@ -3412,22 +4720,25 @@ impl<'tree> EnumItem<'tree> {
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::either_n::Either2<
-                VisibilityModifier<'tree>,
-                WhereClause<'tree>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either2<VisibilityModifier<'tree>, WhereClause<'tree>>,
             >,
         >,
     > + 'a {
         self.0
-            .children(c)
+            .named_children(c)
             .map(
-                <type_sitter_lib::either_n::Either2<
-                    VisibilityModifier<'tree>,
-                    WhereClause<'tree>,
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either2<
+                        VisibilityModifier<'tree>,
+                        WhereClause<'tree>,
+                    >,
                 > as TryFrom<_>>::try_from,
             )
     }
-    ///Get the node's child #i
+    ///Get the node's named child #i
     #[allow(dead_code)]
     #[inline]
     pub fn child(
@@ -3436,26 +4747,111 @@ impl<'tree> EnumItem<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::either_n::Either2<
-                VisibilityModifier<'tree>,
-                WhereClause<'tree>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either2<VisibilityModifier<'tree>, WhereClause<'tree>>,
             >,
         >,
     > {
         self.0
-            .child(i)
+            .named_child(i)
             .map(
-                <type_sitter_lib::either_n::Either2<
-                    VisibilityModifier<'tree>,
-                    WhereClause<'tree>,
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either2<
+                        VisibilityModifier<'tree>,
+                        WhereClause<'tree>,
+                    >,
                 > as TryFrom<_>>::try_from,
             )
+    }
+}
+#[automatically_derived]
+impl<'tree> TryFrom<tree_sitter::Node<'tree>> for EnumItem<'tree> {
+    type Error = type_sitter_lib::IncorrectKind<'tree>;
+    #[inline]
+    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        if node.kind() == "enum_item" {
+            Ok(Self(node))
+        } else {
+            Err(type_sitter_lib::IncorrectKind {
+                node,
+                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+            })
+        }
+    }
+}
+#[automatically_derived]
+impl<'tree> type_sitter_lib::TypedNode<'tree> for EnumItem<'tree> {
+    const KIND: &'static str = "enum_item";
+    #[inline]
+    fn node(&self) -> &tree_sitter::Node<'tree> {
+        &self.0
+    }
+    #[inline]
+    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        Self(node)
     }
 }
 #[doc = concat!("Typed node `", "enum_variant", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct EnumVariant<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> EnumVariant<'tree> {
+    #[doc = concat!("Get the field `", "body", "`")]
+    #[allow(dead_code)]
+    #[inline]
+    pub fn body(
+        &self,
+    ) -> Option<
+        type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::Either2<
+                FieldDeclarationList<'tree>,
+                OrderedFieldDeclarationList<'tree>,
+            >,
+        >,
+    > {
+        self.0
+            .child_by_field_name("body")
+            .map(
+                <type_sitter_lib::Either2<
+                    FieldDeclarationList<'tree>,
+                    OrderedFieldDeclarationList<'tree>,
+                > as TryFrom<_>>::try_from,
+            )
+    }
+    #[doc = concat!("Get the field `", "name", "`")]
+    #[allow(dead_code)]
+    #[inline]
+    pub fn name(&self) -> type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
+        self.0
+            .child_by_field_name("name")
+            .map(<Identifier<'tree> as TryFrom<_>>::try_from)
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
+    #[doc = concat!("Get the field `", "value", "`")]
+    #[allow(dead_code)]
+    #[inline]
+    pub fn value(
+        &self,
+    ) -> Option<type_sitter_lib::NodeResult<'tree, Expression<'tree>>> {
+        self.0
+            .child_by_field_name("value")
+            .map(<Expression<'tree> as TryFrom<_>>::try_from)
+    }
+    ///Get the node's only named child
+    #[allow(dead_code)]
+    #[inline]
+    pub fn child(
+        &self,
+    ) -> Option<type_sitter_lib::NodeResult<'tree, VisibilityModifier<'tree>>> {
+        self.0.named_child(0).map(<VisibilityModifier<'tree> as TryFrom<_>>::try_from)
+    }
+}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for EnumVariant<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -3483,65 +4879,61 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for EnumVariant<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> EnumVariant<'tree> {
-    #[doc = concat!("Get the field `", "body", "`")]
-    #[allow(dead_code)]
-    #[inline]
-    pub fn body(
-        &self,
-    ) -> Option<
-        type_sitter_lib::NodeResult<
-            'tree,
-            type_sitter_lib::either_n::Either2<
-                FieldDeclarationList<'tree>,
-                OrderedFieldDeclarationList<'tree>,
-            >,
-        >,
-    > {
-        self.0
-            .child_by_field_name("body")
-            .map(
-                <type_sitter_lib::either_n::Either2<
-                    FieldDeclarationList<'tree>,
-                    OrderedFieldDeclarationList<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
-    }
-    #[doc = concat!("Get the field `", "name", "`")]
-    #[allow(dead_code)]
-    #[inline]
-    pub fn name(&self) -> type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
-        self.0
-            .child_by_field_name("name")
-            .map(<Identifier<'tree> as TryFrom<_>>::try_from)
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
-    #[doc = concat!("Get the field `", "value", "`")]
-    #[allow(dead_code)]
-    #[inline]
-    pub fn value(
-        &self,
-    ) -> Option<type_sitter_lib::NodeResult<'tree, Expression<'tree>>> {
-        self.0
-            .child_by_field_name("value")
-            .map(<Expression<'tree> as TryFrom<_>>::try_from)
-    }
-    ///Get the node's child
-    #[allow(dead_code)]
-    #[inline]
-    pub fn child(
-        &self,
-    ) -> Option<type_sitter_lib::NodeResult<'tree, VisibilityModifier<'tree>>> {
-        self.0.child(0).map(<VisibilityModifier<'tree> as TryFrom<_>>::try_from)
-    }
-}
 #[doc = concat!("Typed node `", "enum_variant_list", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct EnumVariantList<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> EnumVariantList<'tree> {
+    ///Get the node's named children
+    #[allow(dead_code)]
+    #[inline]
+    pub fn children<'a>(
+        &'a self,
+        c: &'a mut tree_sitter::TreeCursor<'tree>,
+    ) -> impl Iterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either2<AttributeItem<'tree>, EnumVariant<'tree>>,
+            >,
+        >,
+    > + 'a {
+        self.0
+            .named_children(c)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either2<AttributeItem<'tree>, EnumVariant<'tree>>,
+                > as TryFrom<_>>::try_from,
+            )
+    }
+    ///Get the node's named child #i
+    #[allow(dead_code)]
+    #[inline]
+    pub fn child(
+        &self,
+        i: usize,
+    ) -> Option<
+        type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either2<AttributeItem<'tree>, EnumVariant<'tree>>,
+            >,
+        >,
+    > {
+        self.0
+            .named_child(i)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either2<AttributeItem<'tree>, EnumVariant<'tree>>,
+                > as TryFrom<_>>::try_from,
+            )
+    }
+}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for EnumVariantList<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -3569,55 +4961,24 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for EnumVariantList<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> EnumVariantList<'tree> {
-    ///Get the node's children
-    #[allow(dead_code)]
-    #[inline]
-    pub fn children<'a>(
-        &'a self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
-    ) -> impl Iterator<
-        Item = type_sitter_lib::NodeResult<
-            'tree,
-            type_sitter_lib::either_n::Either2<AttributeItem<'tree>, EnumVariant<'tree>>,
-        >,
-    > + 'a {
-        self.0
-            .children(c)
-            .map(
-                <type_sitter_lib::either_n::Either2<
-                    AttributeItem<'tree>,
-                    EnumVariant<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
-    }
-    ///Get the node's child #i
-    #[allow(dead_code)]
-    #[inline]
-    pub fn child(
-        &self,
-        i: usize,
-    ) -> Option<
-        type_sitter_lib::NodeResult<
-            'tree,
-            type_sitter_lib::either_n::Either2<AttributeItem<'tree>, EnumVariant<'tree>>,
-        >,
-    > {
-        self.0
-            .child(i)
-            .map(
-                <type_sitter_lib::either_n::Either2<
-                    AttributeItem<'tree>,
-                    EnumVariant<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
-    }
-}
 #[doc = concat!("Typed node `", "expression_statement", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct ExpressionStatement<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> ExpressionStatement<'tree> {
+    ///Get the node's only named child
+    #[allow(dead_code)]
+    #[inline]
+    pub fn child(&self) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
+        self.0
+            .named_child(0)
+            .map(<Expression<'tree> as TryFrom<_>>::try_from)
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
+}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ExpressionStatement<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -3645,24 +5006,83 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ExpressionStatement<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> ExpressionStatement<'tree> {
-    ///Get the node's child
-    #[allow(dead_code)]
-    #[inline]
-    pub fn child(&self) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
-        self.0
-            .child(0)
-            .map(<Expression<'tree> as TryFrom<_>>::try_from)
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
-}
 #[doc = concat!("Typed node `", "extern_crate_declaration", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct ExternCrateDeclaration<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> ExternCrateDeclaration<'tree> {
+    #[doc = concat!("Get the field `", "alias", "`")]
+    #[allow(dead_code)]
+    #[inline]
+    pub fn alias(
+        &self,
+    ) -> Option<type_sitter_lib::NodeResult<'tree, Identifier<'tree>>> {
+        self.0
+            .child_by_field_name("alias")
+            .map(<Identifier<'tree> as TryFrom<_>>::try_from)
+    }
+    #[doc = concat!("Get the field `", "name", "`")]
+    #[allow(dead_code)]
+    #[inline]
+    pub fn name(&self) -> type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
+        self.0
+            .child_by_field_name("name")
+            .map(<Identifier<'tree> as TryFrom<_>>::try_from)
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
+    ///Get the node's named children
+    ///This is guaranteed to return at least one child
+    #[allow(dead_code)]
+    #[inline]
+    pub fn children<'a>(
+        &'a self,
+        c: &'a mut tree_sitter::TreeCursor<'tree>,
+    ) -> impl Iterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either2<Crate<'tree>, VisibilityModifier<'tree>>,
+            >,
+        >,
+    > + 'a {
+        self.0
+            .named_children(c)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either2<Crate<'tree>, VisibilityModifier<'tree>>,
+                > as TryFrom<_>>::try_from,
+            )
+    }
+    ///Get the node's named child #i
+    #[allow(dead_code)]
+    #[inline]
+    pub fn child(
+        &self,
+        i: usize,
+    ) -> Option<
+        type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either2<Crate<'tree>, VisibilityModifier<'tree>>,
+            >,
+        >,
+    > {
+        self.0
+            .named_child(i)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either2<Crate<'tree>, VisibilityModifier<'tree>>,
+                > as TryFrom<_>>::try_from,
+            )
+    }
+}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ExternCrateDeclaration<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -3690,77 +5110,21 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ExternCrateDeclaration<'tree> 
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> ExternCrateDeclaration<'tree> {
-    #[doc = concat!("Get the field `", "alias", "`")]
-    #[allow(dead_code)]
-    #[inline]
-    pub fn alias(
-        &self,
-    ) -> Option<type_sitter_lib::NodeResult<'tree, Identifier<'tree>>> {
-        self.0
-            .child_by_field_name("alias")
-            .map(<Identifier<'tree> as TryFrom<_>>::try_from)
-    }
-    #[doc = concat!("Get the field `", "name", "`")]
-    #[allow(dead_code)]
-    #[inline]
-    pub fn name(&self) -> type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
-        self.0
-            .child_by_field_name("name")
-            .map(<Identifier<'tree> as TryFrom<_>>::try_from)
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
-    ///Get the node's children
-    ///This is guaranteed to return at least one child
-    #[allow(dead_code)]
-    #[inline]
-    pub fn children<'a>(
-        &'a self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
-    ) -> impl Iterator<
-        Item = type_sitter_lib::NodeResult<
-            'tree,
-            type_sitter_lib::either_n::Either2<Crate<'tree>, VisibilityModifier<'tree>>,
-        >,
-    > + 'a {
-        self.0
-            .children(c)
-            .map(
-                <type_sitter_lib::either_n::Either2<
-                    Crate<'tree>,
-                    VisibilityModifier<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
-    }
-    ///Get the node's child #i
-    #[allow(dead_code)]
-    #[inline]
-    pub fn child(
-        &self,
-        i: usize,
-    ) -> Option<
-        type_sitter_lib::NodeResult<
-            'tree,
-            type_sitter_lib::either_n::Either2<Crate<'tree>, VisibilityModifier<'tree>>,
-        >,
-    > {
-        self.0
-            .child(i)
-            .map(
-                <type_sitter_lib::either_n::Either2<
-                    Crate<'tree>,
-                    VisibilityModifier<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
-    }
-}
 #[doc = concat!("Typed node `", "extern_modifier", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct ExternModifier<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> ExternModifier<'tree> {
+    ///Get the node's only named child
+    #[allow(dead_code)]
+    #[inline]
+    pub fn child(
+        &self,
+    ) -> Option<type_sitter_lib::NodeResult<'tree, StringLiteral<'tree>>> {
+        self.0.named_child(0).map(<StringLiteral<'tree> as TryFrom<_>>::try_from)
+    }
+}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ExternModifier<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -3788,21 +5152,43 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ExternModifier<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> ExternModifier<'tree> {
-    ///Get the node's child
-    #[allow(dead_code)]
-    #[inline]
-    pub fn child(
-        &self,
-    ) -> Option<type_sitter_lib::NodeResult<'tree, StringLiteral<'tree>>> {
-        self.0.child(0).map(<StringLiteral<'tree> as TryFrom<_>>::try_from)
-    }
-}
 #[doc = concat!("Typed node `", "field_declaration", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct FieldDeclaration<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> FieldDeclaration<'tree> {
+    #[doc = concat!("Get the field `", "name", "`")]
+    #[allow(dead_code)]
+    #[inline]
+    pub fn name(&self) -> type_sitter_lib::NodeResult<'tree, FieldIdentifier<'tree>> {
+        self.0
+            .child_by_field_name("name")
+            .map(<FieldIdentifier<'tree> as TryFrom<_>>::try_from)
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
+    #[doc = concat!("Get the field `", "type", "`")]
+    #[allow(dead_code)]
+    #[inline]
+    pub fn r#type(&self) -> type_sitter_lib::NodeResult<'tree, Type<'tree>> {
+        self.0
+            .child_by_field_name("type")
+            .map(<Type<'tree> as TryFrom<_>>::try_from)
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
+    ///Get the node's only named child
+    #[allow(dead_code)]
+    #[inline]
+    pub fn child(
+        &self,
+    ) -> Option<type_sitter_lib::NodeResult<'tree, VisibilityModifier<'tree>>> {
+        self.0.named_child(0).map(<VisibilityModifier<'tree> as TryFrom<_>>::try_from)
+    }
+}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for FieldDeclaration<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -3830,43 +5216,67 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for FieldDeclaration<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> FieldDeclaration<'tree> {
-    #[doc = concat!("Get the field `", "name", "`")]
-    #[allow(dead_code)]
-    #[inline]
-    pub fn name(&self) -> type_sitter_lib::NodeResult<'tree, FieldIdentifier<'tree>> {
-        self.0
-            .child_by_field_name("name")
-            .map(<FieldIdentifier<'tree> as TryFrom<_>>::try_from)
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
-    #[doc = concat!("Get the field `", "type", "`")]
-    #[allow(dead_code)]
-    #[inline]
-    pub fn r#type(&self) -> type_sitter_lib::NodeResult<'tree, Type<'tree>> {
-        self.0
-            .child_by_field_name("type")
-            .map(<Type<'tree> as TryFrom<_>>::try_from)
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
-    ///Get the node's child
-    #[allow(dead_code)]
-    #[inline]
-    pub fn child(
-        &self,
-    ) -> Option<type_sitter_lib::NodeResult<'tree, VisibilityModifier<'tree>>> {
-        self.0.child(0).map(<VisibilityModifier<'tree> as TryFrom<_>>::try_from)
-    }
-}
 #[doc = concat!("Typed node `", "field_declaration_list", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct FieldDeclarationList<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> FieldDeclarationList<'tree> {
+    ///Get the node's named children
+    #[allow(dead_code)]
+    #[inline]
+    pub fn children<'a>(
+        &'a self,
+        c: &'a mut tree_sitter::TreeCursor<'tree>,
+    ) -> impl Iterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either2<AttributeItem<'tree>, FieldDeclaration<'tree>>,
+            >,
+        >,
+    > + 'a {
+        self.0
+            .named_children(c)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either2<
+                        AttributeItem<'tree>,
+                        FieldDeclaration<'tree>,
+                    >,
+                > as TryFrom<_>>::try_from,
+            )
+    }
+    ///Get the node's named child #i
+    #[allow(dead_code)]
+    #[inline]
+    pub fn child(
+        &self,
+        i: usize,
+    ) -> Option<
+        type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either2<AttributeItem<'tree>, FieldDeclaration<'tree>>,
+            >,
+        >,
+    > {
+        self.0
+            .named_child(i)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either2<
+                        AttributeItem<'tree>,
+                        FieldDeclaration<'tree>,
+                    >,
+                > as TryFrom<_>>::try_from,
+            )
+    }
+}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for FieldDeclarationList<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -3894,61 +5304,45 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for FieldDeclarationList<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> FieldDeclarationList<'tree> {
-    ///Get the node's children
-    #[allow(dead_code)]
-    #[inline]
-    pub fn children<'a>(
-        &'a self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
-    ) -> impl Iterator<
-        Item = type_sitter_lib::NodeResult<
-            'tree,
-            type_sitter_lib::either_n::Either2<
-                AttributeItem<'tree>,
-                FieldDeclaration<'tree>,
-            >,
-        >,
-    > + 'a {
-        self.0
-            .children(c)
-            .map(
-                <type_sitter_lib::either_n::Either2<
-                    AttributeItem<'tree>,
-                    FieldDeclaration<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
-    }
-    ///Get the node's child #i
-    #[allow(dead_code)]
-    #[inline]
-    pub fn child(
-        &self,
-        i: usize,
-    ) -> Option<
-        type_sitter_lib::NodeResult<
-            'tree,
-            type_sitter_lib::either_n::Either2<
-                AttributeItem<'tree>,
-                FieldDeclaration<'tree>,
-            >,
-        >,
-    > {
-        self.0
-            .child(i)
-            .map(
-                <type_sitter_lib::either_n::Either2<
-                    AttributeItem<'tree>,
-                    FieldDeclaration<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
-    }
-}
 #[doc = concat!("Typed node `", "field_expression", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct FieldExpression<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> FieldExpression<'tree> {
+    #[doc = concat!("Get the field `", "field", "`")]
+    #[allow(dead_code)]
+    #[inline]
+    pub fn field(
+        &self,
+    ) -> type_sitter_lib::NodeResult<
+        'tree,
+        type_sitter_lib::Either2<FieldIdentifier<'tree>, IntegerLiteral<'tree>>,
+    > {
+        self.0
+            .child_by_field_name("field")
+            .map(
+                <type_sitter_lib::Either2<
+                    FieldIdentifier<'tree>,
+                    IntegerLiteral<'tree>,
+                > as TryFrom<_>>::try_from,
+            )
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
+    #[doc = concat!("Get the field `", "value", "`")]
+    #[allow(dead_code)]
+    #[inline]
+    pub fn value(&self) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
+        self.0
+            .child_by_field_name("value")
+            .map(<Expression<'tree> as TryFrom<_>>::try_from)
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
+}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for FieldExpression<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -3976,25 +5370,19 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for FieldExpression<'tree> {
         Self(node)
     }
 }
+#[doc = concat!("Typed node `", "field_initializer", "`")]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+pub struct FieldInitializer<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
-impl<'tree> FieldExpression<'tree> {
-    #[doc = concat!("Get the field `", "field", "`")]
+impl<'tree> FieldInitializer<'tree> {
+    #[doc = concat!("Get the field `", "name", "`")]
     #[allow(dead_code)]
     #[inline]
-    pub fn field(
-        &self,
-    ) -> type_sitter_lib::NodeResult<
-        'tree,
-        type_sitter_lib::either_n::Either2<FieldIdentifier<'tree>, IntegerLiteral<'tree>>,
-    > {
+    pub fn name(&self) -> type_sitter_lib::NodeResult<'tree, FieldIdentifier<'tree>> {
         self.0
-            .child_by_field_name("field")
-            .map(
-                <type_sitter_lib::either_n::Either2<
-                    FieldIdentifier<'tree>,
-                    IntegerLiteral<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
+            .child_by_field_name("name")
+            .map(<FieldIdentifier<'tree> as TryFrom<_>>::try_from)
             .expect(
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
@@ -4010,11 +5398,49 @@ impl<'tree> FieldExpression<'tree> {
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
     }
+    ///Get the node's named children
+    #[allow(dead_code)]
+    #[inline]
+    pub fn children<'a>(
+        &'a self,
+        c: &'a mut tree_sitter::TreeCursor<'tree>,
+    ) -> impl Iterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<'tree, AttributeItem<'tree>>,
+        >,
+    > + 'a {
+        self.0
+            .named_children(c)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    AttributeItem<'tree>,
+                > as TryFrom<_>>::try_from,
+            )
+    }
+    ///Get the node's named child #i
+    #[allow(dead_code)]
+    #[inline]
+    pub fn child(
+        &self,
+        i: usize,
+    ) -> Option<
+        type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<'tree, AttributeItem<'tree>>,
+        >,
+    > {
+        self.0
+            .named_child(i)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    AttributeItem<'tree>,
+                > as TryFrom<_>>::try_from,
+            )
+    }
 }
-#[doc = concat!("Typed node `", "field_initializer", "`")]
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-#[allow(non_camel_case_types)]
-pub struct FieldInitializer<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for FieldInitializer<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -4042,55 +5468,77 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for FieldInitializer<'tree> {
         Self(node)
     }
 }
+#[doc = concat!("Typed node `", "field_initializer_list", "`")]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+pub struct FieldInitializerList<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
-impl<'tree> FieldInitializer<'tree> {
-    #[doc = concat!("Get the field `", "name", "`")]
-    #[allow(dead_code)]
-    #[inline]
-    pub fn name(&self) -> type_sitter_lib::NodeResult<'tree, FieldIdentifier<'tree>> {
-        self.0
-            .child_by_field_name("name")
-            .map(<FieldIdentifier<'tree> as TryFrom<_>>::try_from)
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
-    #[doc = concat!("Get the field `", "value", "`")]
-    #[allow(dead_code)]
-    #[inline]
-    pub fn value(&self) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
-        self.0
-            .child_by_field_name("value")
-            .map(<Expression<'tree> as TryFrom<_>>::try_from)
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
-    ///Get the node's children
+impl<'tree> FieldInitializerList<'tree> {
+    ///Get the node's named children
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
         &'a self,
         c: &'a mut tree_sitter::TreeCursor<'tree>,
     ) -> impl Iterator<
-        Item = type_sitter_lib::NodeResult<'tree, AttributeItem<'tree>>,
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either3<
+                    BaseFieldInitializer<'tree>,
+                    FieldInitializer<'tree>,
+                    ShorthandFieldInitializer<'tree>,
+                >,
+            >,
+        >,
     > + 'a {
-        self.0.children(c).map(<AttributeItem<'tree> as TryFrom<_>>::try_from)
+        self.0
+            .named_children(c)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either3<
+                        BaseFieldInitializer<'tree>,
+                        FieldInitializer<'tree>,
+                        ShorthandFieldInitializer<'tree>,
+                    >,
+                > as TryFrom<_>>::try_from,
+            )
     }
-    ///Get the node's child #i
+    ///Get the node's named child #i
     #[allow(dead_code)]
     #[inline]
     pub fn child(
         &self,
         i: usize,
-    ) -> Option<type_sitter_lib::NodeResult<'tree, AttributeItem<'tree>>> {
-        self.0.child(i).map(<AttributeItem<'tree> as TryFrom<_>>::try_from)
+    ) -> Option<
+        type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either3<
+                    BaseFieldInitializer<'tree>,
+                    FieldInitializer<'tree>,
+                    ShorthandFieldInitializer<'tree>,
+                >,
+            >,
+        >,
+    > {
+        self.0
+            .named_child(i)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either3<
+                        BaseFieldInitializer<'tree>,
+                        FieldInitializer<'tree>,
+                        ShorthandFieldInitializer<'tree>,
+                    >,
+                > as TryFrom<_>>::try_from,
+            )
     }
 }
-#[doc = concat!("Typed node `", "field_initializer_list", "`")]
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-#[allow(non_camel_case_types)]
-pub struct FieldInitializerList<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for FieldInitializerList<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -4118,65 +5566,50 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for FieldInitializerList<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> FieldInitializerList<'tree> {
-    ///Get the node's children
-    #[allow(dead_code)]
-    #[inline]
-    pub fn children<'a>(
-        &'a self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
-    ) -> impl Iterator<
-        Item = type_sitter_lib::NodeResult<
-            'tree,
-            type_sitter_lib::either_n::Either3<
-                BaseFieldInitializer<'tree>,
-                FieldInitializer<'tree>,
-                ShorthandFieldInitializer<'tree>,
-            >,
-        >,
-    > + 'a {
-        self.0
-            .children(c)
-            .map(
-                <type_sitter_lib::either_n::Either3<
-                    BaseFieldInitializer<'tree>,
-                    FieldInitializer<'tree>,
-                    ShorthandFieldInitializer<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
-    }
-    ///Get the node's child #i
-    #[allow(dead_code)]
-    #[inline]
-    pub fn child(
-        &self,
-        i: usize,
-    ) -> Option<
-        type_sitter_lib::NodeResult<
-            'tree,
-            type_sitter_lib::either_n::Either3<
-                BaseFieldInitializer<'tree>,
-                FieldInitializer<'tree>,
-                ShorthandFieldInitializer<'tree>,
-            >,
-        >,
-    > {
-        self.0
-            .child(i)
-            .map(
-                <type_sitter_lib::either_n::Either3<
-                    BaseFieldInitializer<'tree>,
-                    FieldInitializer<'tree>,
-                    ShorthandFieldInitializer<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
-    }
-}
 #[doc = concat!("Typed node `", "field_pattern", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct FieldPattern<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> FieldPattern<'tree> {
+    #[doc = concat!("Get the field `", "name", "`")]
+    #[allow(dead_code)]
+    #[inline]
+    pub fn name(
+        &self,
+    ) -> type_sitter_lib::NodeResult<
+        'tree,
+        type_sitter_lib::Either2<FieldIdentifier<'tree>, ShorthandFieldIdentifier<'tree>>,
+    > {
+        self.0
+            .child_by_field_name("name")
+            .map(
+                <type_sitter_lib::Either2<
+                    FieldIdentifier<'tree>,
+                    ShorthandFieldIdentifier<'tree>,
+                > as TryFrom<_>>::try_from,
+            )
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
+    #[doc = concat!("Get the field `", "pattern", "`")]
+    #[allow(dead_code)]
+    #[inline]
+    pub fn pattern(&self) -> Option<type_sitter_lib::NodeResult<'tree, Pattern<'tree>>> {
+        self.0
+            .child_by_field_name("pattern")
+            .map(<Pattern<'tree> as TryFrom<_>>::try_from)
+    }
+    ///Get the node's only named child
+    #[allow(dead_code)]
+    #[inline]
+    pub fn child(
+        &self,
+    ) -> Option<type_sitter_lib::NodeResult<'tree, MutableSpecifier<'tree>>> {
+        self.0.named_child(0).map(<MutableSpecifier<'tree> as TryFrom<_>>::try_from)
+    }
+}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for FieldPattern<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -4204,80 +5637,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for FieldPattern<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> FieldPattern<'tree> {
-    #[doc = concat!("Get the field `", "name", "`")]
-    #[allow(dead_code)]
-    #[inline]
-    pub fn name(
-        &self,
-    ) -> type_sitter_lib::NodeResult<
-        'tree,
-        type_sitter_lib::either_n::Either2<
-            FieldIdentifier<'tree>,
-            ShorthandFieldIdentifier<'tree>,
-        >,
-    > {
-        self.0
-            .child_by_field_name("name")
-            .map(
-                <type_sitter_lib::either_n::Either2<
-                    FieldIdentifier<'tree>,
-                    ShorthandFieldIdentifier<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
-    #[doc = concat!("Get the field `", "pattern", "`")]
-    #[allow(dead_code)]
-    #[inline]
-    pub fn pattern(&self) -> Option<type_sitter_lib::NodeResult<'tree, Pattern<'tree>>> {
-        self.0
-            .child_by_field_name("pattern")
-            .map(<Pattern<'tree> as TryFrom<_>>::try_from)
-    }
-    ///Get the node's child
-    #[allow(dead_code)]
-    #[inline]
-    pub fn child(
-        &self,
-    ) -> Option<type_sitter_lib::NodeResult<'tree, MutableSpecifier<'tree>>> {
-        self.0.child(0).map(<MutableSpecifier<'tree> as TryFrom<_>>::try_from)
-    }
-}
 #[doc = concat!("Typed node `", "for_expression", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct ForExpression<'tree>(tree_sitter::Node<'tree>);
-#[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ForExpression<'tree> {
-    type Error = type_sitter_lib::IncorrectKind<'tree>;
-    #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
-        if node.kind() == "for_expression" {
-            Ok(Self(node))
-        } else {
-            Err(type_sitter_lib::IncorrectKind {
-                node,
-                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-            })
-        }
-    }
-}
-#[automatically_derived]
-impl<'tree> type_sitter_lib::TypedNode<'tree> for ForExpression<'tree> {
-    const KIND: &'static str = "for_expression";
-    #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
-        &self.0
-    }
-    #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
-        Self(node)
-    }
-}
 #[automatically_derived]
 impl<'tree> ForExpression<'tree> {
     #[doc = concat!("Get the field `", "body", "`")]
@@ -4313,17 +5676,90 @@ impl<'tree> ForExpression<'tree> {
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the node's child
+    ///Get the node's only named child
     #[allow(dead_code)]
     #[inline]
     pub fn child(&self) -> Option<type_sitter_lib::NodeResult<'tree, LoopLabel<'tree>>> {
-        self.0.child(0).map(<LoopLabel<'tree> as TryFrom<_>>::try_from)
+        self.0.named_child(0).map(<LoopLabel<'tree> as TryFrom<_>>::try_from)
+    }
+}
+#[automatically_derived]
+impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ForExpression<'tree> {
+    type Error = type_sitter_lib::IncorrectKind<'tree>;
+    #[inline]
+    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        if node.kind() == "for_expression" {
+            Ok(Self(node))
+        } else {
+            Err(type_sitter_lib::IncorrectKind {
+                node,
+                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+            })
+        }
+    }
+}
+#[automatically_derived]
+impl<'tree> type_sitter_lib::TypedNode<'tree> for ForExpression<'tree> {
+    const KIND: &'static str = "for_expression";
+    #[inline]
+    fn node(&self) -> &tree_sitter::Node<'tree> {
+        &self.0
+    }
+    #[inline]
+    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        Self(node)
     }
 }
 #[doc = concat!("Typed node `", "for_lifetimes", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct ForLifetimes<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> ForLifetimes<'tree> {
+    ///Get the node's named children
+    ///This is guaranteed to return at least one child
+    #[allow(dead_code)]
+    #[inline]
+    pub fn children<'a>(
+        &'a self,
+        c: &'a mut tree_sitter::TreeCursor<'tree>,
+    ) -> impl Iterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<'tree, Lifetime<'tree>>,
+        >,
+    > + 'a {
+        self.0
+            .named_children(c)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    Lifetime<'tree>,
+                > as TryFrom<_>>::try_from,
+            )
+    }
+    ///Get the node's named child #i
+    #[allow(dead_code)]
+    #[inline]
+    pub fn child(
+        &self,
+        i: usize,
+    ) -> Option<
+        type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<'tree, Lifetime<'tree>>,
+        >,
+    > {
+        self.0
+            .named_child(i)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    Lifetime<'tree>,
+                > as TryFrom<_>>::try_from,
+            )
+    }
+}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ForLifetimes<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -4351,32 +5787,84 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ForLifetimes<'tree> {
         Self(node)
     }
 }
+#[doc = concat!("Typed node `", "foreign_mod_item", "`")]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+pub struct ForeignModItem<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
-impl<'tree> ForLifetimes<'tree> {
-    ///Get the node's children
+impl<'tree> ForeignModItem<'tree> {
+    #[doc = concat!("Get the field `", "body", "`")]
+    #[allow(dead_code)]
+    #[inline]
+    pub fn body(
+        &self,
+    ) -> Option<type_sitter_lib::NodeResult<'tree, DeclarationList<'tree>>> {
+        self.0
+            .child_by_field_name("body")
+            .map(<DeclarationList<'tree> as TryFrom<_>>::try_from)
+    }
+    ///Get the node's named children
     ///This is guaranteed to return at least one child
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
         &'a self,
         c: &'a mut tree_sitter::TreeCursor<'tree>,
-    ) -> impl Iterator<Item = type_sitter_lib::NodeResult<'tree, Lifetime<'tree>>> + 'a {
-        self.0.children(c).map(<Lifetime<'tree> as TryFrom<_>>::try_from)
+    ) -> impl Iterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either2<
+                    ExternModifier<'tree>,
+                    VisibilityModifier<'tree>,
+                >,
+            >,
+        >,
+    > + 'a {
+        self.0
+            .named_children(c)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either2<
+                        ExternModifier<'tree>,
+                        VisibilityModifier<'tree>,
+                    >,
+                > as TryFrom<_>>::try_from,
+            )
     }
-    ///Get the node's child #i
+    ///Get the node's named child #i
     #[allow(dead_code)]
     #[inline]
     pub fn child(
         &self,
         i: usize,
-    ) -> Option<type_sitter_lib::NodeResult<'tree, Lifetime<'tree>>> {
-        self.0.child(i).map(<Lifetime<'tree> as TryFrom<_>>::try_from)
+    ) -> Option<
+        type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either2<
+                    ExternModifier<'tree>,
+                    VisibilityModifier<'tree>,
+                >,
+            >,
+        >,
+    > {
+        self.0
+            .named_child(i)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either2<
+                        ExternModifier<'tree>,
+                        VisibilityModifier<'tree>,
+                    >,
+                > as TryFrom<_>>::try_from,
+            )
     }
 }
-#[doc = concat!("Typed node `", "foreign_mod_item", "`")]
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-#[allow(non_camel_case_types)]
-pub struct ForeignModItem<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ForeignModItem<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -4404,72 +5892,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ForeignModItem<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> ForeignModItem<'tree> {
-    #[doc = concat!("Get the field `", "body", "`")]
-    #[allow(dead_code)]
-    #[inline]
-    pub fn body(
-        &self,
-    ) -> Option<type_sitter_lib::NodeResult<'tree, DeclarationList<'tree>>> {
-        self.0
-            .child_by_field_name("body")
-            .map(<DeclarationList<'tree> as TryFrom<_>>::try_from)
-    }
-    ///Get the node's children
-    ///This is guaranteed to return at least one child
-    #[allow(dead_code)]
-    #[inline]
-    pub fn children<'a>(
-        &'a self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
-    ) -> impl Iterator<
-        Item = type_sitter_lib::NodeResult<
-            'tree,
-            type_sitter_lib::either_n::Either2<
-                ExternModifier<'tree>,
-                VisibilityModifier<'tree>,
-            >,
-        >,
-    > + 'a {
-        self.0
-            .children(c)
-            .map(
-                <type_sitter_lib::either_n::Either2<
-                    ExternModifier<'tree>,
-                    VisibilityModifier<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
-    }
-    ///Get the node's child #i
-    #[allow(dead_code)]
-    #[inline]
-    pub fn child(
-        &self,
-        i: usize,
-    ) -> Option<
-        type_sitter_lib::NodeResult<
-            'tree,
-            type_sitter_lib::either_n::Either2<
-                ExternModifier<'tree>,
-                VisibilityModifier<'tree>,
-            >,
-        >,
-    > {
-        self.0
-            .child(i)
-            .map(
-                <type_sitter_lib::either_n::Either2<
-                    ExternModifier<'tree>,
-                    VisibilityModifier<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
-    }
-}
 #[doc = concat!("Typed node `", "fragment_specifier", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct FragmentSpecifier<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> FragmentSpecifier<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for FragmentSpecifier<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -4497,12 +5925,140 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for FragmentSpecifier<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> FragmentSpecifier<'tree> {}
 #[doc = concat!("Typed node `", "function_item", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct FunctionItem<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> FunctionItem<'tree> {
+    #[doc = concat!("Get the field `", "body", "`")]
+    #[allow(dead_code)]
+    #[inline]
+    pub fn body(&self) -> type_sitter_lib::NodeResult<'tree, Block<'tree>> {
+        self.0
+            .child_by_field_name("body")
+            .map(<Block<'tree> as TryFrom<_>>::try_from)
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
+    #[doc = concat!("Get the field `", "name", "`")]
+    #[allow(dead_code)]
+    #[inline]
+    pub fn name(
+        &self,
+    ) -> type_sitter_lib::NodeResult<
+        'tree,
+        type_sitter_lib::Either2<Identifier<'tree>, Metavariable<'tree>>,
+    > {
+        self.0
+            .child_by_field_name("name")
+            .map(
+                <type_sitter_lib::Either2<
+                    Identifier<'tree>,
+                    Metavariable<'tree>,
+                > as TryFrom<_>>::try_from,
+            )
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
+    #[doc = concat!("Get the field `", "parameters", "`")]
+    #[allow(dead_code)]
+    #[inline]
+    pub fn parameters(&self) -> type_sitter_lib::NodeResult<'tree, Parameters<'tree>> {
+        self.0
+            .child_by_field_name("parameters")
+            .map(<Parameters<'tree> as TryFrom<_>>::try_from)
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
+    #[doc = concat!("Get the field `", "return_type", "`")]
+    #[allow(dead_code)]
+    #[inline]
+    pub fn return_type(
+        &self,
+    ) -> Option<type_sitter_lib::NodeResult<'tree, Type<'tree>>> {
+        self.0
+            .child_by_field_name("return_type")
+            .map(<Type<'tree> as TryFrom<_>>::try_from)
+    }
+    #[doc = concat!("Get the field `", "type_parameters", "`")]
+    #[allow(dead_code)]
+    #[inline]
+    pub fn type_parameters(
+        &self,
+    ) -> Option<type_sitter_lib::NodeResult<'tree, TypeParameters<'tree>>> {
+        self.0
+            .child_by_field_name("type_parameters")
+            .map(<TypeParameters<'tree> as TryFrom<_>>::try_from)
+    }
+    ///Get the node's named children
+    #[allow(dead_code)]
+    #[inline]
+    pub fn children<'a>(
+        &'a self,
+        c: &'a mut tree_sitter::TreeCursor<'tree>,
+    ) -> impl Iterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either3<
+                    FunctionModifiers<'tree>,
+                    VisibilityModifier<'tree>,
+                    WhereClause<'tree>,
+                >,
+            >,
+        >,
+    > + 'a {
+        self.0
+            .named_children(c)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either3<
+                        FunctionModifiers<'tree>,
+                        VisibilityModifier<'tree>,
+                        WhereClause<'tree>,
+                    >,
+                > as TryFrom<_>>::try_from,
+            )
+    }
+    ///Get the node's named child #i
+    #[allow(dead_code)]
+    #[inline]
+    pub fn child(
+        &self,
+        i: usize,
+    ) -> Option<
+        type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either3<
+                    FunctionModifiers<'tree>,
+                    VisibilityModifier<'tree>,
+                    WhereClause<'tree>,
+                >,
+            >,
+        >,
+    > {
+        self.0
+            .named_child(i)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either3<
+                        FunctionModifiers<'tree>,
+                        VisibilityModifier<'tree>,
+                        WhereClause<'tree>,
+                    >,
+                > as TryFrom<_>>::try_from,
+            )
+    }
+}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for FunctionItem<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -4530,72 +6086,13 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for FunctionItem<'tree> {
         Self(node)
     }
 }
+#[doc = concat!("Typed node `", "function_modifiers", "`")]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+pub struct FunctionModifiers<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
-impl<'tree> FunctionItem<'tree> {
-    #[doc = concat!("Get the field `", "body", "`")]
-    #[allow(dead_code)]
-    #[inline]
-    pub fn body(&self) -> type_sitter_lib::NodeResult<'tree, Block<'tree>> {
-        self.0
-            .child_by_field_name("body")
-            .map(<Block<'tree> as TryFrom<_>>::try_from)
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
-    #[doc = concat!("Get the field `", "name", "`")]
-    #[allow(dead_code)]
-    #[inline]
-    pub fn name(
-        &self,
-    ) -> type_sitter_lib::NodeResult<
-        'tree,
-        type_sitter_lib::either_n::Either2<Identifier<'tree>, Metavariable<'tree>>,
-    > {
-        self.0
-            .child_by_field_name("name")
-            .map(
-                <type_sitter_lib::either_n::Either2<
-                    Identifier<'tree>,
-                    Metavariable<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
-    #[doc = concat!("Get the field `", "parameters", "`")]
-    #[allow(dead_code)]
-    #[inline]
-    pub fn parameters(&self) -> type_sitter_lib::NodeResult<'tree, Parameters<'tree>> {
-        self.0
-            .child_by_field_name("parameters")
-            .map(<Parameters<'tree> as TryFrom<_>>::try_from)
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
-    #[doc = concat!("Get the field `", "return_type", "`")]
-    #[allow(dead_code)]
-    #[inline]
-    pub fn return_type(
-        &self,
-    ) -> Option<type_sitter_lib::NodeResult<'tree, Type<'tree>>> {
-        self.0
-            .child_by_field_name("return_type")
-            .map(<Type<'tree> as TryFrom<_>>::try_from)
-    }
-    #[doc = concat!("Get the field `", "type_parameters", "`")]
-    #[allow(dead_code)]
-    #[inline]
-    pub fn type_parameters(
-        &self,
-    ) -> Option<type_sitter_lib::NodeResult<'tree, TypeParameters<'tree>>> {
-        self.0
-            .child_by_field_name("type_parameters")
-            .map(<TypeParameters<'tree> as TryFrom<_>>::try_from)
-    }
-    ///Get the node's children
+impl<'tree> FunctionModifiers<'tree> {
+    ///Get the node's named children
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
@@ -4604,24 +6101,19 @@ impl<'tree> FunctionItem<'tree> {
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::either_n::Either3<
-                FunctionModifiers<'tree>,
-                VisibilityModifier<'tree>,
-                WhereClause<'tree>,
-            >,
+            type_sitter_lib::ExtraOr<'tree, ExternModifier<'tree>>,
         >,
     > + 'a {
         self.0
-            .children(c)
+            .named_children(c)
             .map(
-                <type_sitter_lib::either_n::Either3<
-                    FunctionModifiers<'tree>,
-                    VisibilityModifier<'tree>,
-                    WhereClause<'tree>,
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    ExternModifier<'tree>,
                 > as TryFrom<_>>::try_from,
             )
     }
-    ///Get the node's child #i
+    ///Get the node's named child #i
     #[allow(dead_code)]
     #[inline]
     pub fn child(
@@ -4630,28 +6122,19 @@ impl<'tree> FunctionItem<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::either_n::Either3<
-                FunctionModifiers<'tree>,
-                VisibilityModifier<'tree>,
-                WhereClause<'tree>,
-            >,
+            type_sitter_lib::ExtraOr<'tree, ExternModifier<'tree>>,
         >,
     > {
         self.0
-            .child(i)
+            .named_child(i)
             .map(
-                <type_sitter_lib::either_n::Either3<
-                    FunctionModifiers<'tree>,
-                    VisibilityModifier<'tree>,
-                    WhereClause<'tree>,
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    ExternModifier<'tree>,
                 > as TryFrom<_>>::try_from,
             )
     }
 }
-#[doc = concat!("Typed node `", "function_modifiers", "`")]
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-#[allow(non_camel_case_types)]
-pub struct FunctionModifiers<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for FunctionModifiers<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -4679,60 +6162,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for FunctionModifiers<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> FunctionModifiers<'tree> {
-    ///Get the node's children
-    #[allow(dead_code)]
-    #[inline]
-    pub fn children<'a>(
-        &'a self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
-    ) -> impl Iterator<
-        Item = type_sitter_lib::NodeResult<'tree, ExternModifier<'tree>>,
-    > + 'a {
-        self.0.children(c).map(<ExternModifier<'tree> as TryFrom<_>>::try_from)
-    }
-    ///Get the node's child #i
-    #[allow(dead_code)]
-    #[inline]
-    pub fn child(
-        &self,
-        i: usize,
-    ) -> Option<type_sitter_lib::NodeResult<'tree, ExternModifier<'tree>>> {
-        self.0.child(i).map(<ExternModifier<'tree> as TryFrom<_>>::try_from)
-    }
-}
 #[doc = concat!("Typed node `", "function_signature_item", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct FunctionSignatureItem<'tree>(tree_sitter::Node<'tree>);
-#[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for FunctionSignatureItem<'tree> {
-    type Error = type_sitter_lib::IncorrectKind<'tree>;
-    #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
-        if node.kind() == "function_signature_item" {
-            Ok(Self(node))
-        } else {
-            Err(type_sitter_lib::IncorrectKind {
-                node,
-                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-            })
-        }
-    }
-}
-#[automatically_derived]
-impl<'tree> type_sitter_lib::TypedNode<'tree> for FunctionSignatureItem<'tree> {
-    const KIND: &'static str = "function_signature_item";
-    #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
-        &self.0
-    }
-    #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
-        Self(node)
-    }
-}
 #[automatically_derived]
 impl<'tree> FunctionSignatureItem<'tree> {
     #[doc = concat!("Get the field `", "name", "`")]
@@ -4742,12 +6175,12 @@ impl<'tree> FunctionSignatureItem<'tree> {
         &self,
     ) -> type_sitter_lib::NodeResult<
         'tree,
-        type_sitter_lib::either_n::Either2<Identifier<'tree>, Metavariable<'tree>>,
+        type_sitter_lib::Either2<Identifier<'tree>, Metavariable<'tree>>,
     > {
         self.0
             .child_by_field_name("name")
             .map(
-                <type_sitter_lib::either_n::Either2<
+                <type_sitter_lib::Either2<
                     Identifier<'tree>,
                     Metavariable<'tree>,
                 > as TryFrom<_>>::try_from,
@@ -4787,7 +6220,7 @@ impl<'tree> FunctionSignatureItem<'tree> {
             .child_by_field_name("type_parameters")
             .map(<TypeParameters<'tree> as TryFrom<_>>::try_from)
     }
-    ///Get the node's children
+    ///Get the node's named children
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
@@ -4796,24 +6229,30 @@ impl<'tree> FunctionSignatureItem<'tree> {
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::either_n::Either3<
-                FunctionModifiers<'tree>,
-                VisibilityModifier<'tree>,
-                WhereClause<'tree>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either3<
+                    FunctionModifiers<'tree>,
+                    VisibilityModifier<'tree>,
+                    WhereClause<'tree>,
+                >,
             >,
         >,
     > + 'a {
         self.0
-            .children(c)
+            .named_children(c)
             .map(
-                <type_sitter_lib::either_n::Either3<
-                    FunctionModifiers<'tree>,
-                    VisibilityModifier<'tree>,
-                    WhereClause<'tree>,
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either3<
+                        FunctionModifiers<'tree>,
+                        VisibilityModifier<'tree>,
+                        WhereClause<'tree>,
+                    >,
                 > as TryFrom<_>>::try_from,
             )
     }
-    ///Get the node's child #i
+    ///Get the node's named child #i
     #[allow(dead_code)]
     #[inline]
     pub fn child(
@@ -4822,34 +6261,36 @@ impl<'tree> FunctionSignatureItem<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::either_n::Either3<
-                FunctionModifiers<'tree>,
-                VisibilityModifier<'tree>,
-                WhereClause<'tree>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either3<
+                    FunctionModifiers<'tree>,
+                    VisibilityModifier<'tree>,
+                    WhereClause<'tree>,
+                >,
             >,
         >,
     > {
         self.0
-            .child(i)
+            .named_child(i)
             .map(
-                <type_sitter_lib::either_n::Either3<
-                    FunctionModifiers<'tree>,
-                    VisibilityModifier<'tree>,
-                    WhereClause<'tree>,
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either3<
+                        FunctionModifiers<'tree>,
+                        VisibilityModifier<'tree>,
+                        WhereClause<'tree>,
+                    >,
                 > as TryFrom<_>>::try_from,
             )
     }
 }
-#[doc = concat!("Typed node `", "function_type", "`")]
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-#[allow(non_camel_case_types)]
-pub struct FunctionType<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for FunctionType<'tree> {
+impl<'tree> TryFrom<tree_sitter::Node<'tree>> for FunctionSignatureItem<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
     fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
-        if node.kind() == "function_type" {
+        if node.kind() == "function_signature_item" {
             Ok(Self(node))
         } else {
             Err(type_sitter_lib::IncorrectKind {
@@ -4860,8 +6301,8 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for FunctionType<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> type_sitter_lib::TypedNode<'tree> for FunctionType<'tree> {
-    const KIND: &'static str = "function_type";
+impl<'tree> type_sitter_lib::TypedNode<'tree> for FunctionSignatureItem<'tree> {
+    const KIND: &'static str = "function_signature_item";
     #[inline]
     fn node(&self) -> &tree_sitter::Node<'tree> {
         &self.0
@@ -4871,6 +6312,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for FunctionType<'tree> {
         Self(node)
     }
 }
+#[doc = concat!("Typed node `", "function_type", "`")]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+pub struct FunctionType<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> FunctionType<'tree> {
     #[doc = concat!("Get the field `", "parameters", "`")]
@@ -4902,22 +6347,19 @@ impl<'tree> FunctionType<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::either_n::Either2<
-                ScopedTypeIdentifier<'tree>,
-                TypeIdentifier<'tree>,
-            >,
+            type_sitter_lib::Either2<ScopedTypeIdentifier<'tree>, TypeIdentifier<'tree>>,
         >,
     > {
         self.0
             .child_by_field_name("trait")
             .map(
-                <type_sitter_lib::either_n::Either2<
+                <type_sitter_lib::Either2<
                     ScopedTypeIdentifier<'tree>,
                     TypeIdentifier<'tree>,
                 > as TryFrom<_>>::try_from,
             )
     }
-    ///Get the node's children
+    ///Get the node's named children
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
@@ -4926,22 +6368,25 @@ impl<'tree> FunctionType<'tree> {
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::either_n::Either2<
-                ForLifetimes<'tree>,
-                FunctionModifiers<'tree>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either2<ForLifetimes<'tree>, FunctionModifiers<'tree>>,
             >,
         >,
     > + 'a {
         self.0
-            .children(c)
+            .named_children(c)
             .map(
-                <type_sitter_lib::either_n::Either2<
-                    ForLifetimes<'tree>,
-                    FunctionModifiers<'tree>,
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either2<
+                        ForLifetimes<'tree>,
+                        FunctionModifiers<'tree>,
+                    >,
                 > as TryFrom<_>>::try_from,
             )
     }
-    ///Get the node's child #i
+    ///Get the node's named child #i
     #[allow(dead_code)]
     #[inline]
     pub fn child(
@@ -4950,26 +6395,98 @@ impl<'tree> FunctionType<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::either_n::Either2<
-                ForLifetimes<'tree>,
-                FunctionModifiers<'tree>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either2<ForLifetimes<'tree>, FunctionModifiers<'tree>>,
             >,
         >,
     > {
         self.0
-            .child(i)
+            .named_child(i)
             .map(
-                <type_sitter_lib::either_n::Either2<
-                    ForLifetimes<'tree>,
-                    FunctionModifiers<'tree>,
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either2<
+                        ForLifetimes<'tree>,
+                        FunctionModifiers<'tree>,
+                    >,
                 > as TryFrom<_>>::try_from,
             )
+    }
+}
+#[automatically_derived]
+impl<'tree> TryFrom<tree_sitter::Node<'tree>> for FunctionType<'tree> {
+    type Error = type_sitter_lib::IncorrectKind<'tree>;
+    #[inline]
+    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        if node.kind() == "function_type" {
+            Ok(Self(node))
+        } else {
+            Err(type_sitter_lib::IncorrectKind {
+                node,
+                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+            })
+        }
+    }
+}
+#[automatically_derived]
+impl<'tree> type_sitter_lib::TypedNode<'tree> for FunctionType<'tree> {
+    const KIND: &'static str = "function_type";
+    #[inline]
+    fn node(&self) -> &tree_sitter::Node<'tree> {
+        &self.0
+    }
+    #[inline]
+    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        Self(node)
     }
 }
 #[doc = concat!("Typed node `", "generic_function", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct GenericFunction<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> GenericFunction<'tree> {
+    #[doc = concat!("Get the field `", "function", "`")]
+    #[allow(dead_code)]
+    #[inline]
+    pub fn function(
+        &self,
+    ) -> type_sitter_lib::NodeResult<
+        'tree,
+        type_sitter_lib::Either3<
+            FieldExpression<'tree>,
+            Identifier<'tree>,
+            ScopedIdentifier<'tree>,
+        >,
+    > {
+        self.0
+            .child_by_field_name("function")
+            .map(
+                <type_sitter_lib::Either3<
+                    FieldExpression<'tree>,
+                    Identifier<'tree>,
+                    ScopedIdentifier<'tree>,
+                > as TryFrom<_>>::try_from,
+            )
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
+    #[doc = concat!("Get the field `", "type_arguments", "`")]
+    #[allow(dead_code)]
+    #[inline]
+    pub fn type_arguments(
+        &self,
+    ) -> type_sitter_lib::NodeResult<'tree, TypeArguments<'tree>> {
+        self.0
+            .child_by_field_name("type_arguments")
+            .map(<TypeArguments<'tree> as TryFrom<_>>::try_from)
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
+}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for GenericFunction<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -4997,28 +6514,32 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for GenericFunction<'tree> {
         Self(node)
     }
 }
+#[doc = concat!("Typed node `", "generic_type", "`")]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+pub struct GenericType<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
-impl<'tree> GenericFunction<'tree> {
-    #[doc = concat!("Get the field `", "function", "`")]
+impl<'tree> GenericType<'tree> {
+    #[doc = concat!("Get the field `", "type", "`")]
     #[allow(dead_code)]
     #[inline]
-    pub fn function(
+    pub fn r#type(
         &self,
     ) -> type_sitter_lib::NodeResult<
         'tree,
-        type_sitter_lib::either_n::Either3<
-            FieldExpression<'tree>,
-            Identifier<'tree>,
+        type_sitter_lib::Either3<
             ScopedIdentifier<'tree>,
+            ScopedTypeIdentifier<'tree>,
+            TypeIdentifier<'tree>,
         >,
     > {
         self.0
-            .child_by_field_name("function")
+            .child_by_field_name("type")
             .map(
-                <type_sitter_lib::either_n::Either3<
-                    FieldExpression<'tree>,
-                    Identifier<'tree>,
+                <type_sitter_lib::Either3<
                     ScopedIdentifier<'tree>,
+                    ScopedTypeIdentifier<'tree>,
+                    TypeIdentifier<'tree>,
                 > as TryFrom<_>>::try_from,
             )
             .expect(
@@ -5039,10 +6560,6 @@ impl<'tree> GenericFunction<'tree> {
             )
     }
 }
-#[doc = concat!("Typed node `", "generic_type", "`")]
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-#[allow(non_camel_case_types)]
-pub struct GenericType<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for GenericType<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -5070,8 +6587,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for GenericType<'tree> {
         Self(node)
     }
 }
+#[doc = concat!("Typed node `", "generic_type_with_turbofish", "`")]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+pub struct GenericTypeWithTurbofish<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
-impl<'tree> GenericType<'tree> {
+impl<'tree> GenericTypeWithTurbofish<'tree> {
     #[doc = concat!("Get the field `", "type", "`")]
     #[allow(dead_code)]
     #[inline]
@@ -5079,18 +6600,13 @@ impl<'tree> GenericType<'tree> {
         &self,
     ) -> type_sitter_lib::NodeResult<
         'tree,
-        type_sitter_lib::either_n::Either3<
-            ScopedIdentifier<'tree>,
-            ScopedTypeIdentifier<'tree>,
-            TypeIdentifier<'tree>,
-        >,
+        type_sitter_lib::Either2<ScopedIdentifier<'tree>, TypeIdentifier<'tree>>,
     > {
         self.0
             .child_by_field_name("type")
             .map(
-                <type_sitter_lib::either_n::Either3<
+                <type_sitter_lib::Either2<
                     ScopedIdentifier<'tree>,
-                    ScopedTypeIdentifier<'tree>,
                     TypeIdentifier<'tree>,
                 > as TryFrom<_>>::try_from,
             )
@@ -5112,10 +6628,6 @@ impl<'tree> GenericType<'tree> {
             )
     }
 }
-#[doc = concat!("Typed node `", "generic_type_with_turbofish", "`")]
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-#[allow(non_camel_case_types)]
-pub struct GenericTypeWithTurbofish<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for GenericTypeWithTurbofish<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -5143,77 +6655,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for GenericTypeWithTurbofish<'tree
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> GenericTypeWithTurbofish<'tree> {
-    #[doc = concat!("Get the field `", "type", "`")]
-    #[allow(dead_code)]
-    #[inline]
-    pub fn r#type(
-        &self,
-    ) -> type_sitter_lib::NodeResult<
-        'tree,
-        type_sitter_lib::either_n::Either2<
-            ScopedIdentifier<'tree>,
-            TypeIdentifier<'tree>,
-        >,
-    > {
-        self.0
-            .child_by_field_name("type")
-            .map(
-                <type_sitter_lib::either_n::Either2<
-                    ScopedIdentifier<'tree>,
-                    TypeIdentifier<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
-    #[doc = concat!("Get the field `", "type_arguments", "`")]
-    #[allow(dead_code)]
-    #[inline]
-    pub fn type_arguments(
-        &self,
-    ) -> type_sitter_lib::NodeResult<'tree, TypeArguments<'tree>> {
-        self.0
-            .child_by_field_name("type_arguments")
-            .map(<TypeArguments<'tree> as TryFrom<_>>::try_from)
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
-}
 #[doc = concat!("Typed node `", "higher_ranked_trait_bound", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct HigherRankedTraitBound<'tree>(tree_sitter::Node<'tree>);
-#[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for HigherRankedTraitBound<'tree> {
-    type Error = type_sitter_lib::IncorrectKind<'tree>;
-    #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
-        if node.kind() == "higher_ranked_trait_bound" {
-            Ok(Self(node))
-        } else {
-            Err(type_sitter_lib::IncorrectKind {
-                node,
-                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-            })
-        }
-    }
-}
-#[automatically_derived]
-impl<'tree> type_sitter_lib::TypedNode<'tree> for HigherRankedTraitBound<'tree> {
-    const KIND: &'static str = "higher_ranked_trait_bound";
-    #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
-        &self.0
-    }
-    #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
-        Self(node)
-    }
-}
 #[automatically_derived]
 impl<'tree> HigherRankedTraitBound<'tree> {
     #[doc = concat!("Get the field `", "type", "`")]
@@ -5241,10 +6686,83 @@ impl<'tree> HigherRankedTraitBound<'tree> {
             )
     }
 }
+#[automatically_derived]
+impl<'tree> TryFrom<tree_sitter::Node<'tree>> for HigherRankedTraitBound<'tree> {
+    type Error = type_sitter_lib::IncorrectKind<'tree>;
+    #[inline]
+    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        if node.kind() == "higher_ranked_trait_bound" {
+            Ok(Self(node))
+        } else {
+            Err(type_sitter_lib::IncorrectKind {
+                node,
+                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+            })
+        }
+    }
+}
+#[automatically_derived]
+impl<'tree> type_sitter_lib::TypedNode<'tree> for HigherRankedTraitBound<'tree> {
+    const KIND: &'static str = "higher_ranked_trait_bound";
+    #[inline]
+    fn node(&self) -> &tree_sitter::Node<'tree> {
+        &self.0
+    }
+    #[inline]
+    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        Self(node)
+    }
+}
 #[doc = concat!("Typed node `", "if_expression", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct IfExpression<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> IfExpression<'tree> {
+    #[doc = concat!("Get the field `", "alternative", "`")]
+    #[allow(dead_code)]
+    #[inline]
+    pub fn alternative(
+        &self,
+    ) -> Option<type_sitter_lib::NodeResult<'tree, ElseClause<'tree>>> {
+        self.0
+            .child_by_field_name("alternative")
+            .map(<ElseClause<'tree> as TryFrom<_>>::try_from)
+    }
+    #[doc = concat!("Get the field `", "condition", "`")]
+    #[allow(dead_code)]
+    #[inline]
+    pub fn condition(
+        &self,
+    ) -> type_sitter_lib::NodeResult<
+        'tree,
+        type_sitter_lib::Either3<Expression<'tree>, LetChain<'tree>, LetCondition<'tree>>,
+    > {
+        self.0
+            .child_by_field_name("condition")
+            .map(
+                <type_sitter_lib::Either3<
+                    Expression<'tree>,
+                    LetChain<'tree>,
+                    LetCondition<'tree>,
+                > as TryFrom<_>>::try_from,
+            )
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
+    #[doc = concat!("Get the field `", "consequence", "`")]
+    #[allow(dead_code)]
+    #[inline]
+    pub fn consequence(&self) -> type_sitter_lib::NodeResult<'tree, Block<'tree>> {
+        self.0
+            .child_by_field_name("consequence")
+            .map(<Block<'tree> as TryFrom<_>>::try_from)
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
+}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for IfExpression<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -5272,87 +6790,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for IfExpression<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> IfExpression<'tree> {
-    #[doc = concat!("Get the field `", "alternative", "`")]
-    #[allow(dead_code)]
-    #[inline]
-    pub fn alternative(
-        &self,
-    ) -> Option<type_sitter_lib::NodeResult<'tree, ElseClause<'tree>>> {
-        self.0
-            .child_by_field_name("alternative")
-            .map(<ElseClause<'tree> as TryFrom<_>>::try_from)
-    }
-    #[doc = concat!("Get the field `", "condition", "`")]
-    #[allow(dead_code)]
-    #[inline]
-    pub fn condition(
-        &self,
-    ) -> type_sitter_lib::NodeResult<
-        'tree,
-        type_sitter_lib::either_n::Either3<
-            Expression<'tree>,
-            LetChain<'tree>,
-            LetCondition<'tree>,
-        >,
-    > {
-        self.0
-            .child_by_field_name("condition")
-            .map(
-                <type_sitter_lib::either_n::Either3<
-                    Expression<'tree>,
-                    LetChain<'tree>,
-                    LetCondition<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
-    #[doc = concat!("Get the field `", "consequence", "`")]
-    #[allow(dead_code)]
-    #[inline]
-    pub fn consequence(&self) -> type_sitter_lib::NodeResult<'tree, Block<'tree>> {
-        self.0
-            .child_by_field_name("consequence")
-            .map(<Block<'tree> as TryFrom<_>>::try_from)
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
-}
 #[doc = concat!("Typed node `", "impl_item", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct ImplItem<'tree>(tree_sitter::Node<'tree>);
-#[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ImplItem<'tree> {
-    type Error = type_sitter_lib::IncorrectKind<'tree>;
-    #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
-        if node.kind() == "impl_item" {
-            Ok(Self(node))
-        } else {
-            Err(type_sitter_lib::IncorrectKind {
-                node,
-                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-            })
-        }
-    }
-}
-#[automatically_derived]
-impl<'tree> type_sitter_lib::TypedNode<'tree> for ImplItem<'tree> {
-    const KIND: &'static str = "impl_item";
-    #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
-        &self.0
-    }
-    #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
-        Self(node)
-    }
-}
 #[automatically_derived]
 impl<'tree> ImplItem<'tree> {
     #[doc = concat!("Get the field `", "body", "`")]
@@ -5373,7 +6814,7 @@ impl<'tree> ImplItem<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::either_n::Either3<
+            type_sitter_lib::Either3<
                 GenericType<'tree>,
                 ScopedTypeIdentifier<'tree>,
                 TypeIdentifier<'tree>,
@@ -5383,7 +6824,7 @@ impl<'tree> ImplItem<'tree> {
         self.0
             .child_by_field_name("trait")
             .map(
-                <type_sitter_lib::either_n::Either3<
+                <type_sitter_lib::Either3<
                     GenericType<'tree>,
                     ScopedTypeIdentifier<'tree>,
                     TypeIdentifier<'tree>,
@@ -5411,19 +6852,92 @@ impl<'tree> ImplItem<'tree> {
             .child_by_field_name("type_parameters")
             .map(<TypeParameters<'tree> as TryFrom<_>>::try_from)
     }
-    ///Get the node's child
+    ///Get the node's only named child
     #[allow(dead_code)]
     #[inline]
     pub fn child(
         &self,
     ) -> Option<type_sitter_lib::NodeResult<'tree, WhereClause<'tree>>> {
-        self.0.child(0).map(<WhereClause<'tree> as TryFrom<_>>::try_from)
+        self.0.named_child(0).map(<WhereClause<'tree> as TryFrom<_>>::try_from)
+    }
+}
+#[automatically_derived]
+impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ImplItem<'tree> {
+    type Error = type_sitter_lib::IncorrectKind<'tree>;
+    #[inline]
+    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        if node.kind() == "impl_item" {
+            Ok(Self(node))
+        } else {
+            Err(type_sitter_lib::IncorrectKind {
+                node,
+                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+            })
+        }
+    }
+}
+#[automatically_derived]
+impl<'tree> type_sitter_lib::TypedNode<'tree> for ImplItem<'tree> {
+    const KIND: &'static str = "impl_item";
+    #[inline]
+    fn node(&self) -> &tree_sitter::Node<'tree> {
+        &self.0
+    }
+    #[inline]
+    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        Self(node)
     }
 }
 #[doc = concat!("Typed node `", "index_expression", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct IndexExpression<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> IndexExpression<'tree> {
+    ///Get the node's named children
+    ///This is guaranteed to return at least one child
+    #[allow(dead_code)]
+    #[inline]
+    pub fn children<'a>(
+        &'a self,
+        c: &'a mut tree_sitter::TreeCursor<'tree>,
+    ) -> impl Iterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<'tree, Expression<'tree>>,
+        >,
+    > + 'a {
+        self.0
+            .named_children(c)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    Expression<'tree>,
+                > as TryFrom<_>>::try_from,
+            )
+    }
+    ///Get the node's named child #i
+    #[allow(dead_code)]
+    #[inline]
+    pub fn child(
+        &self,
+        i: usize,
+    ) -> Option<
+        type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<'tree, Expression<'tree>>,
+        >,
+    > {
+        self.0
+            .named_child(i)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    Expression<'tree>,
+                > as TryFrom<_>>::try_from,
+            )
+    }
+}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for IndexExpression<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -5451,34 +6965,24 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for IndexExpression<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> IndexExpression<'tree> {
-    ///Get the node's children
-    ///This is guaranteed to return at least one child
-    #[allow(dead_code)]
-    #[inline]
-    pub fn children<'a>(
-        &'a self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
-    ) -> impl Iterator<
-        Item = type_sitter_lib::NodeResult<'tree, Expression<'tree>>,
-    > + 'a {
-        self.0.children(c).map(<Expression<'tree> as TryFrom<_>>::try_from)
-    }
-    ///Get the node's child #i
-    #[allow(dead_code)]
-    #[inline]
-    pub fn child(
-        &self,
-        i: usize,
-    ) -> Option<type_sitter_lib::NodeResult<'tree, Expression<'tree>>> {
-        self.0.child(i).map(<Expression<'tree> as TryFrom<_>>::try_from)
-    }
-}
 #[doc = concat!("Typed node `", "inner_attribute_item", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct InnerAttributeItem<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> InnerAttributeItem<'tree> {
+    ///Get the node's only named child
+    #[allow(dead_code)]
+    #[inline]
+    pub fn child(&self) -> type_sitter_lib::NodeResult<'tree, Attribute<'tree>> {
+        self.0
+            .named_child(0)
+            .map(<Attribute<'tree> as TryFrom<_>>::try_from)
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
+}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for InnerAttributeItem<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -5506,24 +7010,62 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for InnerAttributeItem<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> InnerAttributeItem<'tree> {
-    ///Get the node's child
-    #[allow(dead_code)]
-    #[inline]
-    pub fn child(&self) -> type_sitter_lib::NodeResult<'tree, Attribute<'tree>> {
-        self.0
-            .child(0)
-            .map(<Attribute<'tree> as TryFrom<_>>::try_from)
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
-}
 #[doc = concat!("Typed node `", "let_chain", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct LetChain<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> LetChain<'tree> {
+    ///Get the node's named children
+    ///This is guaranteed to return at least one child
+    #[allow(dead_code)]
+    #[inline]
+    pub fn children<'a>(
+        &'a self,
+        c: &'a mut tree_sitter::TreeCursor<'tree>,
+    ) -> impl Iterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either2<Expression<'tree>, LetCondition<'tree>>,
+            >,
+        >,
+    > + 'a {
+        self.0
+            .named_children(c)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either2<Expression<'tree>, LetCondition<'tree>>,
+                > as TryFrom<_>>::try_from,
+            )
+    }
+    ///Get the node's named child #i
+    #[allow(dead_code)]
+    #[inline]
+    pub fn child(
+        &self,
+        i: usize,
+    ) -> Option<
+        type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either2<Expression<'tree>, LetCondition<'tree>>,
+            >,
+        >,
+    > {
+        self.0
+            .named_child(i)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either2<Expression<'tree>, LetCondition<'tree>>,
+                > as TryFrom<_>>::try_from,
+            )
+    }
+}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for LetChain<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -5551,56 +7093,35 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for LetChain<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> LetChain<'tree> {
-    ///Get the node's children
-    ///This is guaranteed to return at least one child
-    #[allow(dead_code)]
-    #[inline]
-    pub fn children<'a>(
-        &'a self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
-    ) -> impl Iterator<
-        Item = type_sitter_lib::NodeResult<
-            'tree,
-            type_sitter_lib::either_n::Either2<Expression<'tree>, LetCondition<'tree>>,
-        >,
-    > + 'a {
-        self.0
-            .children(c)
-            .map(
-                <type_sitter_lib::either_n::Either2<
-                    Expression<'tree>,
-                    LetCondition<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
-    }
-    ///Get the node's child #i
-    #[allow(dead_code)]
-    #[inline]
-    pub fn child(
-        &self,
-        i: usize,
-    ) -> Option<
-        type_sitter_lib::NodeResult<
-            'tree,
-            type_sitter_lib::either_n::Either2<Expression<'tree>, LetCondition<'tree>>,
-        >,
-    > {
-        self.0
-            .child(i)
-            .map(
-                <type_sitter_lib::either_n::Either2<
-                    Expression<'tree>,
-                    LetCondition<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
-    }
-}
 #[doc = concat!("Typed node `", "let_condition", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct LetCondition<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> LetCondition<'tree> {
+    #[doc = concat!("Get the field `", "pattern", "`")]
+    #[allow(dead_code)]
+    #[inline]
+    pub fn pattern(&self) -> type_sitter_lib::NodeResult<'tree, Pattern<'tree>> {
+        self.0
+            .child_by_field_name("pattern")
+            .map(<Pattern<'tree> as TryFrom<_>>::try_from)
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
+    #[doc = concat!("Get the field `", "value", "`")]
+    #[allow(dead_code)]
+    #[inline]
+    pub fn value(&self) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
+        self.0
+            .child_by_field_name("value")
+            .map(<Expression<'tree> as TryFrom<_>>::try_from)
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
+}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for LetCondition<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -5628,62 +7149,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for LetCondition<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> LetCondition<'tree> {
-    #[doc = concat!("Get the field `", "pattern", "`")]
-    #[allow(dead_code)]
-    #[inline]
-    pub fn pattern(&self) -> type_sitter_lib::NodeResult<'tree, Pattern<'tree>> {
-        self.0
-            .child_by_field_name("pattern")
-            .map(<Pattern<'tree> as TryFrom<_>>::try_from)
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
-    #[doc = concat!("Get the field `", "value", "`")]
-    #[allow(dead_code)]
-    #[inline]
-    pub fn value(&self) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
-        self.0
-            .child_by_field_name("value")
-            .map(<Expression<'tree> as TryFrom<_>>::try_from)
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
-}
 #[doc = concat!("Typed node `", "let_declaration", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct LetDeclaration<'tree>(tree_sitter::Node<'tree>);
-#[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for LetDeclaration<'tree> {
-    type Error = type_sitter_lib::IncorrectKind<'tree>;
-    #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
-        if node.kind() == "let_declaration" {
-            Ok(Self(node))
-        } else {
-            Err(type_sitter_lib::IncorrectKind {
-                node,
-                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-            })
-        }
-    }
-}
-#[automatically_derived]
-impl<'tree> type_sitter_lib::TypedNode<'tree> for LetDeclaration<'tree> {
-    const KIND: &'static str = "let_declaration";
-    #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
-        &self.0
-    }
-    #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
-        Self(node)
-    }
-}
 #[automatically_derived]
 impl<'tree> LetDeclaration<'tree> {
     #[doc = concat!("Get the field `", "alternative", "`")]
@@ -5723,19 +7192,60 @@ impl<'tree> LetDeclaration<'tree> {
             .child_by_field_name("value")
             .map(<Expression<'tree> as TryFrom<_>>::try_from)
     }
-    ///Get the node's child
+    ///Get the node's only named child
     #[allow(dead_code)]
     #[inline]
     pub fn child(
         &self,
     ) -> Option<type_sitter_lib::NodeResult<'tree, MutableSpecifier<'tree>>> {
-        self.0.child(0).map(<MutableSpecifier<'tree> as TryFrom<_>>::try_from)
+        self.0.named_child(0).map(<MutableSpecifier<'tree> as TryFrom<_>>::try_from)
+    }
+}
+#[automatically_derived]
+impl<'tree> TryFrom<tree_sitter::Node<'tree>> for LetDeclaration<'tree> {
+    type Error = type_sitter_lib::IncorrectKind<'tree>;
+    #[inline]
+    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        if node.kind() == "let_declaration" {
+            Ok(Self(node))
+        } else {
+            Err(type_sitter_lib::IncorrectKind {
+                node,
+                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+            })
+        }
+    }
+}
+#[automatically_derived]
+impl<'tree> type_sitter_lib::TypedNode<'tree> for LetDeclaration<'tree> {
+    const KIND: &'static str = "let_declaration";
+    #[inline]
+    fn node(&self) -> &tree_sitter::Node<'tree> {
+        &self.0
+    }
+    #[inline]
+    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        Self(node)
     }
 }
 #[doc = concat!("Typed node `", "lifetime", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct Lifetime<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> Lifetime<'tree> {
+    ///Get the node's only named child
+    #[allow(dead_code)]
+    #[inline]
+    pub fn child(&self) -> type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
+        self.0
+            .named_child(0)
+            .map(<Identifier<'tree> as TryFrom<_>>::try_from)
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
+}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Lifetime<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -5763,24 +7273,30 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Lifetime<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> Lifetime<'tree> {
-    ///Get the node's child
-    #[allow(dead_code)]
-    #[inline]
-    pub fn child(&self) -> type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
-        self.0
-            .child(0)
-            .map(<Identifier<'tree> as TryFrom<_>>::try_from)
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
-}
 #[doc = concat!("Typed node `", "loop_expression", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct LoopExpression<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> LoopExpression<'tree> {
+    #[doc = concat!("Get the field `", "body", "`")]
+    #[allow(dead_code)]
+    #[inline]
+    pub fn body(&self) -> type_sitter_lib::NodeResult<'tree, Block<'tree>> {
+        self.0
+            .child_by_field_name("body")
+            .map(<Block<'tree> as TryFrom<_>>::try_from)
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
+    ///Get the node's only named child
+    #[allow(dead_code)]
+    #[inline]
+    pub fn child(&self) -> Option<type_sitter_lib::NodeResult<'tree, LoopLabel<'tree>>> {
+        self.0.named_child(0).map(<LoopLabel<'tree> as TryFrom<_>>::try_from)
+    }
+}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for LoopExpression<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -5808,30 +7324,24 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for LoopExpression<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> LoopExpression<'tree> {
-    #[doc = concat!("Get the field `", "body", "`")]
-    #[allow(dead_code)]
-    #[inline]
-    pub fn body(&self) -> type_sitter_lib::NodeResult<'tree, Block<'tree>> {
-        self.0
-            .child_by_field_name("body")
-            .map(<Block<'tree> as TryFrom<_>>::try_from)
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
-    ///Get the node's child
-    #[allow(dead_code)]
-    #[inline]
-    pub fn child(&self) -> Option<type_sitter_lib::NodeResult<'tree, LoopLabel<'tree>>> {
-        self.0.child(0).map(<LoopLabel<'tree> as TryFrom<_>>::try_from)
-    }
-}
 #[doc = concat!("Typed node `", "loop_label", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct LoopLabel<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> LoopLabel<'tree> {
+    ///Get the node's only named child
+    #[allow(dead_code)]
+    #[inline]
+    pub fn child(&self) -> type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
+        self.0
+            .named_child(0)
+            .map(<Identifier<'tree> as TryFrom<_>>::try_from)
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
+}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for LoopLabel<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -5859,24 +7369,66 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for LoopLabel<'tree> {
         Self(node)
     }
 }
+#[doc = concat!("Typed node `", "macro_definition", "`")]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+pub struct MacroDefinition<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
-impl<'tree> LoopLabel<'tree> {
-    ///Get the node's child
+impl<'tree> MacroDefinition<'tree> {
+    #[doc = concat!("Get the field `", "name", "`")]
     #[allow(dead_code)]
     #[inline]
-    pub fn child(&self) -> type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
+    pub fn name(&self) -> type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
         self.0
-            .child(0)
+            .child_by_field_name("name")
             .map(<Identifier<'tree> as TryFrom<_>>::try_from)
             .expect(
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
     }
+    ///Get the node's named children
+    #[allow(dead_code)]
+    #[inline]
+    pub fn children<'a>(
+        &'a self,
+        c: &'a mut tree_sitter::TreeCursor<'tree>,
+    ) -> impl Iterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<'tree, MacroRule<'tree>>,
+        >,
+    > + 'a {
+        self.0
+            .named_children(c)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    MacroRule<'tree>,
+                > as TryFrom<_>>::try_from,
+            )
+    }
+    ///Get the node's named child #i
+    #[allow(dead_code)]
+    #[inline]
+    pub fn child(
+        &self,
+        i: usize,
+    ) -> Option<
+        type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<'tree, MacroRule<'tree>>,
+        >,
+    > {
+        self.0
+            .named_child(i)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    MacroRule<'tree>,
+                > as TryFrom<_>>::try_from,
+            )
+    }
 }
-#[doc = concat!("Typed node `", "macro_definition", "`")]
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-#[allow(non_camel_case_types)]
-pub struct MacroDefinition<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for MacroDefinition<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -5904,44 +7456,45 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for MacroDefinition<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> MacroDefinition<'tree> {
-    #[doc = concat!("Get the field `", "name", "`")]
-    #[allow(dead_code)]
-    #[inline]
-    pub fn name(&self) -> type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
-        self.0
-            .child_by_field_name("name")
-            .map(<Identifier<'tree> as TryFrom<_>>::try_from)
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
-    ///Get the node's children
-    #[allow(dead_code)]
-    #[inline]
-    pub fn children<'a>(
-        &'a self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
-    ) -> impl Iterator<
-        Item = type_sitter_lib::NodeResult<'tree, MacroRule<'tree>>,
-    > + 'a {
-        self.0.children(c).map(<MacroRule<'tree> as TryFrom<_>>::try_from)
-    }
-    ///Get the node's child #i
-    #[allow(dead_code)]
-    #[inline]
-    pub fn child(
-        &self,
-        i: usize,
-    ) -> Option<type_sitter_lib::NodeResult<'tree, MacroRule<'tree>>> {
-        self.0.child(i).map(<MacroRule<'tree> as TryFrom<_>>::try_from)
-    }
-}
 #[doc = concat!("Typed node `", "macro_invocation", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct MacroInvocation<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> MacroInvocation<'tree> {
+    #[doc = concat!("Get the field `", "macro", "`")]
+    #[allow(dead_code)]
+    #[inline]
+    pub fn r#macro(
+        &self,
+    ) -> type_sitter_lib::NodeResult<
+        'tree,
+        type_sitter_lib::Either2<Identifier<'tree>, ScopedIdentifier<'tree>>,
+    > {
+        self.0
+            .child_by_field_name("macro")
+            .map(
+                <type_sitter_lib::Either2<
+                    Identifier<'tree>,
+                    ScopedIdentifier<'tree>,
+                > as TryFrom<_>>::try_from,
+            )
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
+    ///Get the node's only named child
+    #[allow(dead_code)]
+    #[inline]
+    pub fn child(&self) -> type_sitter_lib::NodeResult<'tree, TokenTree<'tree>> {
+        self.0
+            .named_child(0)
+            .map(<TokenTree<'tree> as TryFrom<_>>::try_from)
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
+}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for MacroInvocation<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -5969,45 +7522,35 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for MacroInvocation<'tree> {
         Self(node)
     }
 }
+#[doc = concat!("Typed node `", "macro_rule", "`")]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+pub struct MacroRule<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
-impl<'tree> MacroInvocation<'tree> {
-    #[doc = concat!("Get the field `", "macro", "`")]
+impl<'tree> MacroRule<'tree> {
+    #[doc = concat!("Get the field `", "left", "`")]
     #[allow(dead_code)]
     #[inline]
-    pub fn r#macro(
-        &self,
-    ) -> type_sitter_lib::NodeResult<
-        'tree,
-        type_sitter_lib::either_n::Either2<Identifier<'tree>, ScopedIdentifier<'tree>>,
-    > {
+    pub fn left(&self) -> type_sitter_lib::NodeResult<'tree, TokenTreePattern<'tree>> {
         self.0
-            .child_by_field_name("macro")
-            .map(
-                <type_sitter_lib::either_n::Either2<
-                    Identifier<'tree>,
-                    ScopedIdentifier<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
+            .child_by_field_name("left")
+            .map(<TokenTreePattern<'tree> as TryFrom<_>>::try_from)
             .expect(
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the node's child
+    #[doc = concat!("Get the field `", "right", "`")]
     #[allow(dead_code)]
     #[inline]
-    pub fn child(&self) -> type_sitter_lib::NodeResult<'tree, TokenTree<'tree>> {
+    pub fn right(&self) -> type_sitter_lib::NodeResult<'tree, TokenTree<'tree>> {
         self.0
-            .child(0)
+            .child_by_field_name("right")
             .map(<TokenTree<'tree> as TryFrom<_>>::try_from)
             .expect(
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
     }
 }
-#[doc = concat!("Typed node `", "macro_rule", "`")]
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-#[allow(non_camel_case_types)]
-pub struct MacroRule<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for MacroRule<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -6035,35 +7578,77 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for MacroRule<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> MacroRule<'tree> {
-    #[doc = concat!("Get the field `", "left", "`")]
-    #[allow(dead_code)]
-    #[inline]
-    pub fn left(&self) -> type_sitter_lib::NodeResult<'tree, TokenTreePattern<'tree>> {
-        self.0
-            .child_by_field_name("left")
-            .map(<TokenTreePattern<'tree> as TryFrom<_>>::try_from)
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
-    #[doc = concat!("Get the field `", "right", "`")]
-    #[allow(dead_code)]
-    #[inline]
-    pub fn right(&self) -> type_sitter_lib::NodeResult<'tree, TokenTree<'tree>> {
-        self.0
-            .child_by_field_name("right")
-            .map(<TokenTree<'tree> as TryFrom<_>>::try_from)
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
-}
 #[doc = concat!("Typed node `", "match_arm", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct MatchArm<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> MatchArm<'tree> {
+    #[doc = concat!("Get the field `", "pattern", "`")]
+    #[allow(dead_code)]
+    #[inline]
+    pub fn pattern(&self) -> type_sitter_lib::NodeResult<'tree, MatchPattern<'tree>> {
+        self.0
+            .child_by_field_name("pattern")
+            .map(<MatchPattern<'tree> as TryFrom<_>>::try_from)
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
+    #[doc = concat!("Get the field `", "value", "`")]
+    #[allow(dead_code)]
+    #[inline]
+    pub fn value(&self) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
+        self.0
+            .child_by_field_name("value")
+            .map(<Expression<'tree> as TryFrom<_>>::try_from)
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
+    ///Get the node's named children
+    #[allow(dead_code)]
+    #[inline]
+    pub fn children<'a>(
+        &'a self,
+        c: &'a mut tree_sitter::TreeCursor<'tree>,
+    ) -> impl Iterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<'tree, AttributeItem<'tree>>,
+        >,
+    > + 'a {
+        self.0
+            .named_children(c)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    AttributeItem<'tree>,
+                > as TryFrom<_>>::try_from,
+            )
+    }
+    ///Get the node's named child #i
+    #[allow(dead_code)]
+    #[inline]
+    pub fn child(
+        &self,
+        i: usize,
+    ) -> Option<
+        type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<'tree, AttributeItem<'tree>>,
+        >,
+    > {
+        self.0
+            .named_child(i)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    AttributeItem<'tree>,
+                > as TryFrom<_>>::try_from,
+            )
+    }
+}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for MatchArm<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -6091,55 +7676,55 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for MatchArm<'tree> {
         Self(node)
     }
 }
+#[doc = concat!("Typed node `", "match_block", "`")]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+pub struct MatchBlock<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
-impl<'tree> MatchArm<'tree> {
-    #[doc = concat!("Get the field `", "pattern", "`")]
-    #[allow(dead_code)]
-    #[inline]
-    pub fn pattern(&self) -> type_sitter_lib::NodeResult<'tree, MatchPattern<'tree>> {
-        self.0
-            .child_by_field_name("pattern")
-            .map(<MatchPattern<'tree> as TryFrom<_>>::try_from)
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
-    #[doc = concat!("Get the field `", "value", "`")]
-    #[allow(dead_code)]
-    #[inline]
-    pub fn value(&self) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
-        self.0
-            .child_by_field_name("value")
-            .map(<Expression<'tree> as TryFrom<_>>::try_from)
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
-    ///Get the node's children
+impl<'tree> MatchBlock<'tree> {
+    ///Get the node's named children
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
         &'a self,
         c: &'a mut tree_sitter::TreeCursor<'tree>,
     ) -> impl Iterator<
-        Item = type_sitter_lib::NodeResult<'tree, AttributeItem<'tree>>,
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<'tree, MatchArm<'tree>>,
+        >,
     > + 'a {
-        self.0.children(c).map(<AttributeItem<'tree> as TryFrom<_>>::try_from)
+        self.0
+            .named_children(c)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    MatchArm<'tree>,
+                > as TryFrom<_>>::try_from,
+            )
     }
-    ///Get the node's child #i
+    ///Get the node's named child #i
     #[allow(dead_code)]
     #[inline]
     pub fn child(
         &self,
         i: usize,
-    ) -> Option<type_sitter_lib::NodeResult<'tree, AttributeItem<'tree>>> {
-        self.0.child(i).map(<AttributeItem<'tree> as TryFrom<_>>::try_from)
+    ) -> Option<
+        type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<'tree, MatchArm<'tree>>,
+        >,
+    > {
+        self.0
+            .named_child(i)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    MatchArm<'tree>,
+                > as TryFrom<_>>::try_from,
+            )
     }
 }
-#[doc = concat!("Typed node `", "match_block", "`")]
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-#[allow(non_camel_case_types)]
-pub struct MatchBlock<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for MatchBlock<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -6167,31 +7752,35 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for MatchBlock<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> MatchBlock<'tree> {
-    ///Get the node's children
-    #[allow(dead_code)]
-    #[inline]
-    pub fn children<'a>(
-        &'a self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
-    ) -> impl Iterator<Item = type_sitter_lib::NodeResult<'tree, MatchArm<'tree>>> + 'a {
-        self.0.children(c).map(<MatchArm<'tree> as TryFrom<_>>::try_from)
-    }
-    ///Get the node's child #i
-    #[allow(dead_code)]
-    #[inline]
-    pub fn child(
-        &self,
-        i: usize,
-    ) -> Option<type_sitter_lib::NodeResult<'tree, MatchArm<'tree>>> {
-        self.0.child(i).map(<MatchArm<'tree> as TryFrom<_>>::try_from)
-    }
-}
 #[doc = concat!("Typed node `", "match_expression", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct MatchExpression<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> MatchExpression<'tree> {
+    #[doc = concat!("Get the field `", "body", "`")]
+    #[allow(dead_code)]
+    #[inline]
+    pub fn body(&self) -> type_sitter_lib::NodeResult<'tree, MatchBlock<'tree>> {
+        self.0
+            .child_by_field_name("body")
+            .map(<MatchBlock<'tree> as TryFrom<_>>::try_from)
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
+    #[doc = concat!("Get the field `", "value", "`")]
+    #[allow(dead_code)]
+    #[inline]
+    pub fn value(&self) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
+        self.0
+            .child_by_field_name("value")
+            .map(<Expression<'tree> as TryFrom<_>>::try_from)
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
+}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for MatchExpression<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -6219,35 +7808,49 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for MatchExpression<'tree> {
         Self(node)
     }
 }
+#[doc = concat!("Typed node `", "match_pattern", "`")]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+pub struct MatchPattern<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
-impl<'tree> MatchExpression<'tree> {
-    #[doc = concat!("Get the field `", "body", "`")]
+impl<'tree> MatchPattern<'tree> {
+    #[doc = concat!("Get the field `", "condition", "`")]
     #[allow(dead_code)]
     #[inline]
-    pub fn body(&self) -> type_sitter_lib::NodeResult<'tree, MatchBlock<'tree>> {
+    pub fn condition(
+        &self,
+    ) -> Option<
+        type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::Either3<
+                Expression<'tree>,
+                LetChain<'tree>,
+                LetCondition<'tree>,
+            >,
+        >,
+    > {
         self.0
-            .child_by_field_name("body")
-            .map(<MatchBlock<'tree> as TryFrom<_>>::try_from)
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            .child_by_field_name("condition")
+            .map(
+                <type_sitter_lib::Either3<
+                    Expression<'tree>,
+                    LetChain<'tree>,
+                    LetCondition<'tree>,
+                > as TryFrom<_>>::try_from,
             )
     }
-    #[doc = concat!("Get the field `", "value", "`")]
+    ///Get the node's only named child
     #[allow(dead_code)]
     #[inline]
-    pub fn value(&self) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
+    pub fn child(&self) -> type_sitter_lib::NodeResult<'tree, Pattern<'tree>> {
         self.0
-            .child_by_field_name("value")
-            .map(<Expression<'tree> as TryFrom<_>>::try_from)
+            .named_child(0)
+            .map(<Pattern<'tree> as TryFrom<_>>::try_from)
             .expect(
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
     }
 }
-#[doc = concat!("Typed node `", "match_pattern", "`")]
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-#[allow(non_camel_case_types)]
-pub struct MatchPattern<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for MatchPattern<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -6275,49 +7878,42 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for MatchPattern<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> MatchPattern<'tree> {
-    #[doc = concat!("Get the field `", "condition", "`")]
-    #[allow(dead_code)]
-    #[inline]
-    pub fn condition(
-        &self,
-    ) -> Option<
-        type_sitter_lib::NodeResult<
-            'tree,
-            type_sitter_lib::either_n::Either3<
-                Expression<'tree>,
-                LetChain<'tree>,
-                LetCondition<'tree>,
-            >,
-        >,
-    > {
-        self.0
-            .child_by_field_name("condition")
-            .map(
-                <type_sitter_lib::either_n::Either3<
-                    Expression<'tree>,
-                    LetChain<'tree>,
-                    LetCondition<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
-    }
-    ///Get the node's child
-    #[allow(dead_code)]
-    #[inline]
-    pub fn child(&self) -> type_sitter_lib::NodeResult<'tree, Pattern<'tree>> {
-        self.0
-            .child(0)
-            .map(<Pattern<'tree> as TryFrom<_>>::try_from)
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
-}
 #[doc = concat!("Typed node `", "mod_item", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct ModItem<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> ModItem<'tree> {
+    #[doc = concat!("Get the field `", "body", "`")]
+    #[allow(dead_code)]
+    #[inline]
+    pub fn body(
+        &self,
+    ) -> Option<type_sitter_lib::NodeResult<'tree, DeclarationList<'tree>>> {
+        self.0
+            .child_by_field_name("body")
+            .map(<DeclarationList<'tree> as TryFrom<_>>::try_from)
+    }
+    #[doc = concat!("Get the field `", "name", "`")]
+    #[allow(dead_code)]
+    #[inline]
+    pub fn name(&self) -> type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
+        self.0
+            .child_by_field_name("name")
+            .map(<Identifier<'tree> as TryFrom<_>>::try_from)
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
+    ///Get the node's only named child
+    #[allow(dead_code)]
+    #[inline]
+    pub fn child(
+        &self,
+    ) -> Option<type_sitter_lib::NodeResult<'tree, VisibilityModifier<'tree>>> {
+        self.0.named_child(0).map(<VisibilityModifier<'tree> as TryFrom<_>>::try_from)
+    }
+}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ModItem<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -6345,42 +7941,62 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ModItem<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> ModItem<'tree> {
-    #[doc = concat!("Get the field `", "body", "`")]
-    #[allow(dead_code)]
-    #[inline]
-    pub fn body(
-        &self,
-    ) -> Option<type_sitter_lib::NodeResult<'tree, DeclarationList<'tree>>> {
-        self.0
-            .child_by_field_name("body")
-            .map(<DeclarationList<'tree> as TryFrom<_>>::try_from)
-    }
-    #[doc = concat!("Get the field `", "name", "`")]
-    #[allow(dead_code)]
-    #[inline]
-    pub fn name(&self) -> type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
-        self.0
-            .child_by_field_name("name")
-            .map(<Identifier<'tree> as TryFrom<_>>::try_from)
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
-    ///Get the node's child
-    #[allow(dead_code)]
-    #[inline]
-    pub fn child(
-        &self,
-    ) -> Option<type_sitter_lib::NodeResult<'tree, VisibilityModifier<'tree>>> {
-        self.0.child(0).map(<VisibilityModifier<'tree> as TryFrom<_>>::try_from)
-    }
-}
 #[doc = concat!("Typed node `", "mut_pattern", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct MutPattern<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> MutPattern<'tree> {
+    ///Get the node's named children
+    ///This is guaranteed to return at least one child
+    #[allow(dead_code)]
+    #[inline]
+    pub fn children<'a>(
+        &'a self,
+        c: &'a mut tree_sitter::TreeCursor<'tree>,
+    ) -> impl Iterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either2<Pattern<'tree>, MutableSpecifier<'tree>>,
+            >,
+        >,
+    > + 'a {
+        self.0
+            .named_children(c)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either2<Pattern<'tree>, MutableSpecifier<'tree>>,
+                > as TryFrom<_>>::try_from,
+            )
+    }
+    ///Get the node's named child #i
+    #[allow(dead_code)]
+    #[inline]
+    pub fn child(
+        &self,
+        i: usize,
+    ) -> Option<
+        type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either2<Pattern<'tree>, MutableSpecifier<'tree>>,
+            >,
+        >,
+    > {
+        self.0
+            .named_child(i)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either2<Pattern<'tree>, MutableSpecifier<'tree>>,
+                > as TryFrom<_>>::try_from,
+            )
+    }
+}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for MutPattern<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -6408,56 +8024,34 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for MutPattern<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> MutPattern<'tree> {
-    ///Get the node's children
-    ///This is guaranteed to return at least one child
-    #[allow(dead_code)]
-    #[inline]
-    pub fn children<'a>(
-        &'a self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
-    ) -> impl Iterator<
-        Item = type_sitter_lib::NodeResult<
-            'tree,
-            type_sitter_lib::either_n::Either2<Pattern<'tree>, MutableSpecifier<'tree>>,
-        >,
-    > + 'a {
-        self.0
-            .children(c)
-            .map(
-                <type_sitter_lib::either_n::Either2<
-                    Pattern<'tree>,
-                    MutableSpecifier<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
-    }
-    ///Get the node's child #i
-    #[allow(dead_code)]
-    #[inline]
-    pub fn child(
-        &self,
-        i: usize,
-    ) -> Option<
-        type_sitter_lib::NodeResult<
-            'tree,
-            type_sitter_lib::either_n::Either2<Pattern<'tree>, MutableSpecifier<'tree>>,
-        >,
-    > {
-        self.0
-            .child(i)
-            .map(
-                <type_sitter_lib::either_n::Either2<
-                    Pattern<'tree>,
-                    MutableSpecifier<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
-    }
-}
 #[doc = concat!("Typed node `", "negative_literal", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct NegativeLiteral<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> NegativeLiteral<'tree> {
+    ///Get the node's only named child
+    #[allow(dead_code)]
+    #[inline]
+    pub fn child(
+        &self,
+    ) -> type_sitter_lib::NodeResult<
+        'tree,
+        type_sitter_lib::Either2<FloatLiteral<'tree>, IntegerLiteral<'tree>>,
+    > {
+        self.0
+            .named_child(0)
+            .map(
+                <type_sitter_lib::Either2<
+                    FloatLiteral<'tree>,
+                    IntegerLiteral<'tree>,
+                > as TryFrom<_>>::try_from,
+            )
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
+}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for NegativeLiteral<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -6485,23 +8079,38 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for NegativeLiteral<'tree> {
         Self(node)
     }
 }
+#[doc = concat!("Typed node `", "optional_type_parameter", "`")]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+pub struct OptionalTypeParameter<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
-impl<'tree> NegativeLiteral<'tree> {
-    ///Get the node's child
+impl<'tree> OptionalTypeParameter<'tree> {
+    #[doc = concat!("Get the field `", "default_type", "`")]
     #[allow(dead_code)]
     #[inline]
-    pub fn child(
+    pub fn default_type(&self) -> type_sitter_lib::NodeResult<'tree, Type<'tree>> {
+        self.0
+            .child_by_field_name("default_type")
+            .map(<Type<'tree> as TryFrom<_>>::try_from)
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
+    #[doc = concat!("Get the field `", "name", "`")]
+    #[allow(dead_code)]
+    #[inline]
+    pub fn name(
         &self,
     ) -> type_sitter_lib::NodeResult<
         'tree,
-        type_sitter_lib::either_n::Either2<FloatLiteral<'tree>, IntegerLiteral<'tree>>,
+        type_sitter_lib::Either2<ConstrainedTypeParameter<'tree>, TypeIdentifier<'tree>>,
     > {
         self.0
-            .child(0)
+            .child_by_field_name("name")
             .map(
-                <type_sitter_lib::either_n::Either2<
-                    FloatLiteral<'tree>,
-                    IntegerLiteral<'tree>,
+                <type_sitter_lib::Either2<
+                    ConstrainedTypeParameter<'tree>,
+                    TypeIdentifier<'tree>,
                 > as TryFrom<_>>::try_from,
             )
             .expect(
@@ -6509,10 +8118,6 @@ impl<'tree> NegativeLiteral<'tree> {
             )
     }
 }
-#[doc = concat!("Typed node `", "optional_type_parameter", "`")]
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-#[allow(non_camel_case_types)]
-pub struct OptionalTypeParameter<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for OptionalTypeParameter<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -6540,48 +8145,50 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for OptionalTypeParameter<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> OptionalTypeParameter<'tree> {
-    #[doc = concat!("Get the field `", "default_type", "`")]
-    #[allow(dead_code)]
-    #[inline]
-    pub fn default_type(&self) -> type_sitter_lib::NodeResult<'tree, Type<'tree>> {
-        self.0
-            .child_by_field_name("default_type")
-            .map(<Type<'tree> as TryFrom<_>>::try_from)
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
-    #[doc = concat!("Get the field `", "name", "`")]
-    #[allow(dead_code)]
-    #[inline]
-    pub fn name(
-        &self,
-    ) -> type_sitter_lib::NodeResult<
-        'tree,
-        type_sitter_lib::either_n::Either2<
-            ConstrainedTypeParameter<'tree>,
-            TypeIdentifier<'tree>,
-        >,
-    > {
-        self.0
-            .child_by_field_name("name")
-            .map(
-                <type_sitter_lib::either_n::Either2<
-                    ConstrainedTypeParameter<'tree>,
-                    TypeIdentifier<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
-}
 #[doc = concat!("Typed node `", "or_pattern", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct OrPattern<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> OrPattern<'tree> {
+    ///Get the node's named children
+    ///This is guaranteed to return at least one child
+    #[allow(dead_code)]
+    #[inline]
+    pub fn children<'a>(
+        &'a self,
+        c: &'a mut tree_sitter::TreeCursor<'tree>,
+    ) -> impl Iterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<'tree, Pattern<'tree>>,
+        >,
+    > + 'a {
+        self.0
+            .named_children(c)
+            .map(
+                <type_sitter_lib::ExtraOr<'tree, Pattern<'tree>> as TryFrom<_>>::try_from,
+            )
+    }
+    ///Get the node's named child #i
+    #[allow(dead_code)]
+    #[inline]
+    pub fn child(
+        &self,
+        i: usize,
+    ) -> Option<
+        type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<'tree, Pattern<'tree>>,
+        >,
+    > {
+        self.0
+            .named_child(i)
+            .map(
+                <type_sitter_lib::ExtraOr<'tree, Pattern<'tree>> as TryFrom<_>>::try_from,
+            )
+    }
+}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for OrPattern<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -6609,32 +8216,83 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for OrPattern<'tree> {
         Self(node)
     }
 }
+#[doc = concat!("Typed node `", "ordered_field_declaration_list", "`")]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+pub struct OrderedFieldDeclarationList<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
-impl<'tree> OrPattern<'tree> {
-    ///Get the node's children
-    ///This is guaranteed to return at least one child
+impl<'tree> OrderedFieldDeclarationList<'tree> {
+    #[doc = concat!("Get the field `", "type", "`")]
+    #[allow(dead_code)]
+    #[inline]
+    pub fn types<'a>(
+        &'a self,
+        c: &'a mut tree_sitter::TreeCursor<'tree>,
+    ) -> impl Iterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<'tree, Type<'tree>>,
+        >,
+    > + 'a {
+        self.0
+            .children_by_field_name("type", c)
+            .map(<type_sitter_lib::ExtraOr<'tree, Type<'tree>> as TryFrom<_>>::try_from)
+    }
+    ///Get the node's named children
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
         &'a self,
         c: &'a mut tree_sitter::TreeCursor<'tree>,
-    ) -> impl Iterator<Item = type_sitter_lib::NodeResult<'tree, Pattern<'tree>>> + 'a {
-        self.0.children(c).map(<Pattern<'tree> as TryFrom<_>>::try_from)
+    ) -> impl Iterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either2<AttributeItem<'tree>, VisibilityModifier<'tree>>,
+            >,
+        >,
+    > + 'a {
+        self.0
+            .named_children(c)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either2<
+                        AttributeItem<'tree>,
+                        VisibilityModifier<'tree>,
+                    >,
+                > as TryFrom<_>>::try_from,
+            )
     }
-    ///Get the node's child #i
+    ///Get the node's named child #i
     #[allow(dead_code)]
     #[inline]
     pub fn child(
         &self,
         i: usize,
-    ) -> Option<type_sitter_lib::NodeResult<'tree, Pattern<'tree>>> {
-        self.0.child(i).map(<Pattern<'tree> as TryFrom<_>>::try_from)
+    ) -> Option<
+        type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either2<AttributeItem<'tree>, VisibilityModifier<'tree>>,
+            >,
+        >,
+    > {
+        self.0
+            .named_child(i)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either2<
+                        AttributeItem<'tree>,
+                        VisibilityModifier<'tree>,
+                    >,
+                > as TryFrom<_>>::try_from,
+            )
     }
 }
-#[doc = concat!("Typed node `", "ordered_field_declaration_list", "`")]
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-#[allow(non_camel_case_types)]
-pub struct OrderedFieldDeclarationList<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for OrderedFieldDeclarationList<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -6662,72 +8320,53 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for OrderedFieldDeclarationList<'t
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> OrderedFieldDeclarationList<'tree> {
-    #[doc = concat!("Get the field `", "type", "`")]
-    #[allow(dead_code)]
-    #[inline]
-    pub fn types<'a>(
-        &'a self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
-    ) -> impl Iterator<Item = type_sitter_lib::NodeResult<'tree, Type<'tree>>> + 'a {
-        self.0
-            .children_by_field_name("type", c)
-            .map(<Type<'tree> as TryFrom<_>>::try_from)
-    }
-    ///Get the node's children
-    #[allow(dead_code)]
-    #[inline]
-    pub fn children<'a>(
-        &'a self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
-    ) -> impl Iterator<
-        Item = type_sitter_lib::NodeResult<
-            'tree,
-            type_sitter_lib::either_n::Either2<
-                AttributeItem<'tree>,
-                VisibilityModifier<'tree>,
-            >,
-        >,
-    > + 'a {
-        self.0
-            .children(c)
-            .map(
-                <type_sitter_lib::either_n::Either2<
-                    AttributeItem<'tree>,
-                    VisibilityModifier<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
-    }
-    ///Get the node's child #i
-    #[allow(dead_code)]
-    #[inline]
-    pub fn child(
-        &self,
-        i: usize,
-    ) -> Option<
-        type_sitter_lib::NodeResult<
-            'tree,
-            type_sitter_lib::either_n::Either2<
-                AttributeItem<'tree>,
-                VisibilityModifier<'tree>,
-            >,
-        >,
-    > {
-        self.0
-            .child(i)
-            .map(
-                <type_sitter_lib::either_n::Either2<
-                    AttributeItem<'tree>,
-                    VisibilityModifier<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
-    }
-}
 #[doc = concat!("Typed node `", "parameter", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct Parameter<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> Parameter<'tree> {
+    #[doc = concat!("Get the field `", "pattern", "`")]
+    #[allow(dead_code)]
+    #[inline]
+    pub fn pattern(
+        &self,
+    ) -> type_sitter_lib::NodeResult<
+        'tree,
+        type_sitter_lib::Either2<Pattern<'tree>, _Self<'tree>>,
+    > {
+        self.0
+            .child_by_field_name("pattern")
+            .map(
+                <type_sitter_lib::Either2<
+                    Pattern<'tree>,
+                    _Self<'tree>,
+                > as TryFrom<_>>::try_from,
+            )
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
+    #[doc = concat!("Get the field `", "type", "`")]
+    #[allow(dead_code)]
+    #[inline]
+    pub fn r#type(&self) -> type_sitter_lib::NodeResult<'tree, Type<'tree>> {
+        self.0
+            .child_by_field_name("type")
+            .map(<Type<'tree> as TryFrom<_>>::try_from)
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
+    ///Get the node's only named child
+    #[allow(dead_code)]
+    #[inline]
+    pub fn child(
+        &self,
+    ) -> Option<type_sitter_lib::NodeResult<'tree, MutableSpecifier<'tree>>> {
+        self.0.named_child(0).map(<MutableSpecifier<'tree> as TryFrom<_>>::try_from)
+    }
+}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Parameter<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -6755,53 +8394,85 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Parameter<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> Parameter<'tree> {
-    #[doc = concat!("Get the field `", "pattern", "`")]
-    #[allow(dead_code)]
-    #[inline]
-    pub fn pattern(
-        &self,
-    ) -> type_sitter_lib::NodeResult<
-        'tree,
-        type_sitter_lib::either_n::Either2<Pattern<'tree>, _Self<'tree>>,
-    > {
-        self.0
-            .child_by_field_name("pattern")
-            .map(
-                <type_sitter_lib::either_n::Either2<
-                    Pattern<'tree>,
-                    _Self<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
-    #[doc = concat!("Get the field `", "type", "`")]
-    #[allow(dead_code)]
-    #[inline]
-    pub fn r#type(&self) -> type_sitter_lib::NodeResult<'tree, Type<'tree>> {
-        self.0
-            .child_by_field_name("type")
-            .map(<Type<'tree> as TryFrom<_>>::try_from)
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
-    ///Get the node's child
-    #[allow(dead_code)]
-    #[inline]
-    pub fn child(
-        &self,
-    ) -> Option<type_sitter_lib::NodeResult<'tree, MutableSpecifier<'tree>>> {
-        self.0.child(0).map(<MutableSpecifier<'tree> as TryFrom<_>>::try_from)
-    }
-}
 #[doc = concat!("Typed node `", "parameters", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct Parameters<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> Parameters<'tree> {
+    ///Get the node's named children
+    #[allow(dead_code)]
+    #[inline]
+    pub fn children<'a>(
+        &'a self,
+        c: &'a mut tree_sitter::TreeCursor<'tree>,
+    ) -> impl Iterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either5<
+                    Type<'tree>,
+                    AttributeItem<'tree>,
+                    Parameter<'tree>,
+                    SelfParameter<'tree>,
+                    VariadicParameter<'tree>,
+                >,
+            >,
+        >,
+    > + 'a {
+        self.0
+            .named_children(c)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either5<
+                        Type<'tree>,
+                        AttributeItem<'tree>,
+                        Parameter<'tree>,
+                        SelfParameter<'tree>,
+                        VariadicParameter<'tree>,
+                    >,
+                > as TryFrom<_>>::try_from,
+            )
+    }
+    ///Get the node's named child #i
+    #[allow(dead_code)]
+    #[inline]
+    pub fn child(
+        &self,
+        i: usize,
+    ) -> Option<
+        type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either5<
+                    Type<'tree>,
+                    AttributeItem<'tree>,
+                    Parameter<'tree>,
+                    SelfParameter<'tree>,
+                    VariadicParameter<'tree>,
+                >,
+            >,
+        >,
+    > {
+        self.0
+            .named_child(i)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either5<
+                        Type<'tree>,
+                        AttributeItem<'tree>,
+                        Parameter<'tree>,
+                        SelfParameter<'tree>,
+                        VariadicParameter<'tree>,
+                    >,
+                > as TryFrom<_>>::try_from,
+            )
+    }
+}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Parameters<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -6829,73 +8500,24 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Parameters<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> Parameters<'tree> {
-    ///Get the node's children
-    #[allow(dead_code)]
-    #[inline]
-    pub fn children<'a>(
-        &'a self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
-    ) -> impl Iterator<
-        Item = type_sitter_lib::NodeResult<
-            'tree,
-            type_sitter_lib::either_n::Either5<
-                Type<'tree>,
-                AttributeItem<'tree>,
-                Parameter<'tree>,
-                SelfParameter<'tree>,
-                VariadicParameter<'tree>,
-            >,
-        >,
-    > + 'a {
-        self.0
-            .children(c)
-            .map(
-                <type_sitter_lib::either_n::Either5<
-                    Type<'tree>,
-                    AttributeItem<'tree>,
-                    Parameter<'tree>,
-                    SelfParameter<'tree>,
-                    VariadicParameter<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
-    }
-    ///Get the node's child #i
-    #[allow(dead_code)]
-    #[inline]
-    pub fn child(
-        &self,
-        i: usize,
-    ) -> Option<
-        type_sitter_lib::NodeResult<
-            'tree,
-            type_sitter_lib::either_n::Either5<
-                Type<'tree>,
-                AttributeItem<'tree>,
-                Parameter<'tree>,
-                SelfParameter<'tree>,
-                VariadicParameter<'tree>,
-            >,
-        >,
-    > {
-        self.0
-            .child(i)
-            .map(
-                <type_sitter_lib::either_n::Either5<
-                    Type<'tree>,
-                    AttributeItem<'tree>,
-                    Parameter<'tree>,
-                    SelfParameter<'tree>,
-                    VariadicParameter<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
-    }
-}
 #[doc = concat!("Typed node `", "parenthesized_expression", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct ParenthesizedExpression<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> ParenthesizedExpression<'tree> {
+    ///Get the node's only named child
+    #[allow(dead_code)]
+    #[inline]
+    pub fn child(&self) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
+        self.0
+            .named_child(0)
+            .map(<Expression<'tree> as TryFrom<_>>::try_from)
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
+}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ParenthesizedExpression<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -6923,24 +8545,32 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ParenthesizedExpression<'tree>
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> ParenthesizedExpression<'tree> {
-    ///Get the node's child
-    #[allow(dead_code)]
-    #[inline]
-    pub fn child(&self) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
-        self.0
-            .child(0)
-            .map(<Expression<'tree> as TryFrom<_>>::try_from)
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
-}
 #[doc = concat!("Typed node `", "pointer_type", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct PointerType<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> PointerType<'tree> {
+    #[doc = concat!("Get the field `", "type", "`")]
+    #[allow(dead_code)]
+    #[inline]
+    pub fn r#type(&self) -> type_sitter_lib::NodeResult<'tree, Type<'tree>> {
+        self.0
+            .child_by_field_name("type")
+            .map(<Type<'tree> as TryFrom<_>>::try_from)
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
+    ///Get the node's only named child
+    #[allow(dead_code)]
+    #[inline]
+    pub fn child(
+        &self,
+    ) -> Option<type_sitter_lib::NodeResult<'tree, MutableSpecifier<'tree>>> {
+        self.0.named_child(0).map(<MutableSpecifier<'tree> as TryFrom<_>>::try_from)
+    }
+}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for PointerType<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -6968,8 +8598,23 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for PointerType<'tree> {
         Self(node)
     }
 }
+#[doc = concat!("Typed node `", "qualified_type", "`")]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+pub struct QualifiedType<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
-impl<'tree> PointerType<'tree> {
+impl<'tree> QualifiedType<'tree> {
+    #[doc = concat!("Get the field `", "alias", "`")]
+    #[allow(dead_code)]
+    #[inline]
+    pub fn alias(&self) -> type_sitter_lib::NodeResult<'tree, Type<'tree>> {
+        self.0
+            .child_by_field_name("alias")
+            .map(<Type<'tree> as TryFrom<_>>::try_from)
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
     #[doc = concat!("Get the field `", "type", "`")]
     #[allow(dead_code)]
     #[inline]
@@ -6981,19 +8626,7 @@ impl<'tree> PointerType<'tree> {
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the node's child
-    #[allow(dead_code)]
-    #[inline]
-    pub fn child(
-        &self,
-    ) -> Option<type_sitter_lib::NodeResult<'tree, MutableSpecifier<'tree>>> {
-        self.0.child(0).map(<MutableSpecifier<'tree> as TryFrom<_>>::try_from)
-    }
 }
-#[doc = concat!("Typed node `", "qualified_type", "`")]
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-#[allow(non_camel_case_types)]
-pub struct QualifiedType<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for QualifiedType<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -7021,35 +8654,55 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for QualifiedType<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> QualifiedType<'tree> {
-    #[doc = concat!("Get the field `", "alias", "`")]
-    #[allow(dead_code)]
-    #[inline]
-    pub fn alias(&self) -> type_sitter_lib::NodeResult<'tree, Type<'tree>> {
-        self.0
-            .child_by_field_name("alias")
-            .map(<Type<'tree> as TryFrom<_>>::try_from)
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
-    #[doc = concat!("Get the field `", "type", "`")]
-    #[allow(dead_code)]
-    #[inline]
-    pub fn r#type(&self) -> type_sitter_lib::NodeResult<'tree, Type<'tree>> {
-        self.0
-            .child_by_field_name("type")
-            .map(<Type<'tree> as TryFrom<_>>::try_from)
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
-}
 #[doc = concat!("Typed node `", "range_expression", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct RangeExpression<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> RangeExpression<'tree> {
+    ///Get the node's named children
+    #[allow(dead_code)]
+    #[inline]
+    pub fn children<'a>(
+        &'a self,
+        c: &'a mut tree_sitter::TreeCursor<'tree>,
+    ) -> impl Iterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<'tree, Expression<'tree>>,
+        >,
+    > + 'a {
+        self.0
+            .named_children(c)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    Expression<'tree>,
+                > as TryFrom<_>>::try_from,
+            )
+    }
+    ///Get the node's named child #i
+    #[allow(dead_code)]
+    #[inline]
+    pub fn child(
+        &self,
+        i: usize,
+    ) -> Option<
+        type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<'tree, Expression<'tree>>,
+        >,
+    > {
+        self.0
+            .named_child(i)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    Expression<'tree>,
+                > as TryFrom<_>>::try_from,
+            )
+    }
+}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for RangeExpression<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -7077,33 +8730,94 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for RangeExpression<'tree> {
         Self(node)
     }
 }
+#[doc = concat!("Typed node `", "range_pattern", "`")]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+pub struct RangePattern<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
-impl<'tree> RangeExpression<'tree> {
-    ///Get the node's children
+impl<'tree> RangePattern<'tree> {
+    ///Get the node's named children
+    ///This is guaranteed to return at least one child
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
         &'a self,
         c: &'a mut tree_sitter::TreeCursor<'tree>,
     ) -> impl Iterator<
-        Item = type_sitter_lib::NodeResult<'tree, Expression<'tree>>,
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either7<
+                    LiteralPattern<'tree>,
+                    Crate<'tree>,
+                    Identifier<'tree>,
+                    Metavariable<'tree>,
+                    ScopedIdentifier<'tree>,
+                    _Self<'tree>,
+                    _Super<'tree>,
+                >,
+            >,
+        >,
     > + 'a {
-        self.0.children(c).map(<Expression<'tree> as TryFrom<_>>::try_from)
+        self.0
+            .named_children(c)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either7<
+                        LiteralPattern<'tree>,
+                        Crate<'tree>,
+                        Identifier<'tree>,
+                        Metavariable<'tree>,
+                        ScopedIdentifier<'tree>,
+                        _Self<'tree>,
+                        _Super<'tree>,
+                    >,
+                > as TryFrom<_>>::try_from,
+            )
     }
-    ///Get the node's child #i
+    ///Get the node's named child #i
     #[allow(dead_code)]
     #[inline]
     pub fn child(
         &self,
         i: usize,
-    ) -> Option<type_sitter_lib::NodeResult<'tree, Expression<'tree>>> {
-        self.0.child(i).map(<Expression<'tree> as TryFrom<_>>::try_from)
+    ) -> Option<
+        type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either7<
+                    LiteralPattern<'tree>,
+                    Crate<'tree>,
+                    Identifier<'tree>,
+                    Metavariable<'tree>,
+                    ScopedIdentifier<'tree>,
+                    _Self<'tree>,
+                    _Super<'tree>,
+                >,
+            >,
+        >,
+    > {
+        self.0
+            .named_child(i)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either7<
+                        LiteralPattern<'tree>,
+                        Crate<'tree>,
+                        Identifier<'tree>,
+                        Metavariable<'tree>,
+                        ScopedIdentifier<'tree>,
+                        _Self<'tree>,
+                        _Super<'tree>,
+                    >,
+                > as TryFrom<_>>::try_from,
+            )
     }
 }
-#[doc = concat!("Typed node `", "range_pattern", "`")]
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-#[allow(non_camel_case_types)]
-pub struct RangePattern<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for RangePattern<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -7131,82 +8845,24 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for RangePattern<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> RangePattern<'tree> {
-    ///Get the node's children
-    ///This is guaranteed to return at least one child
-    #[allow(dead_code)]
-    #[inline]
-    pub fn children<'a>(
-        &'a self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
-    ) -> impl Iterator<
-        Item = type_sitter_lib::NodeResult<
-            'tree,
-            type_sitter_lib::either_n::Either7<
-                LiteralPattern<'tree>,
-                Crate<'tree>,
-                Identifier<'tree>,
-                Metavariable<'tree>,
-                ScopedIdentifier<'tree>,
-                _Self<'tree>,
-                _Super<'tree>,
-            >,
-        >,
-    > + 'a {
-        self.0
-            .children(c)
-            .map(
-                <type_sitter_lib::either_n::Either7<
-                    LiteralPattern<'tree>,
-                    Crate<'tree>,
-                    Identifier<'tree>,
-                    Metavariable<'tree>,
-                    ScopedIdentifier<'tree>,
-                    _Self<'tree>,
-                    _Super<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
-    }
-    ///Get the node's child #i
-    #[allow(dead_code)]
-    #[inline]
-    pub fn child(
-        &self,
-        i: usize,
-    ) -> Option<
-        type_sitter_lib::NodeResult<
-            'tree,
-            type_sitter_lib::either_n::Either7<
-                LiteralPattern<'tree>,
-                Crate<'tree>,
-                Identifier<'tree>,
-                Metavariable<'tree>,
-                ScopedIdentifier<'tree>,
-                _Self<'tree>,
-                _Super<'tree>,
-            >,
-        >,
-    > {
-        self.0
-            .child(i)
-            .map(
-                <type_sitter_lib::either_n::Either7<
-                    LiteralPattern<'tree>,
-                    Crate<'tree>,
-                    Identifier<'tree>,
-                    Metavariable<'tree>,
-                    ScopedIdentifier<'tree>,
-                    _Self<'tree>,
-                    _Super<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
-    }
-}
 #[doc = concat!("Typed node `", "ref_pattern", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct RefPattern<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> RefPattern<'tree> {
+    ///Get the node's only named child
+    #[allow(dead_code)]
+    #[inline]
+    pub fn child(&self) -> type_sitter_lib::NodeResult<'tree, Pattern<'tree>> {
+        self.0
+            .named_child(0)
+            .map(<Pattern<'tree> as TryFrom<_>>::try_from)
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
+}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for RefPattern<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -7234,24 +8890,32 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for RefPattern<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> RefPattern<'tree> {
-    ///Get the node's child
-    #[allow(dead_code)]
-    #[inline]
-    pub fn child(&self) -> type_sitter_lib::NodeResult<'tree, Pattern<'tree>> {
-        self.0
-            .child(0)
-            .map(<Pattern<'tree> as TryFrom<_>>::try_from)
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
-}
 #[doc = concat!("Typed node `", "reference_expression", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct ReferenceExpression<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> ReferenceExpression<'tree> {
+    #[doc = concat!("Get the field `", "value", "`")]
+    #[allow(dead_code)]
+    #[inline]
+    pub fn value(&self) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
+        self.0
+            .child_by_field_name("value")
+            .map(<Expression<'tree> as TryFrom<_>>::try_from)
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
+    ///Get the node's only named child
+    #[allow(dead_code)]
+    #[inline]
+    pub fn child(
+        &self,
+    ) -> Option<type_sitter_lib::NodeResult<'tree, MutableSpecifier<'tree>>> {
+        self.0.named_child(0).map(<MutableSpecifier<'tree> as TryFrom<_>>::try_from)
+    }
+}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ReferenceExpression<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -7279,32 +8943,62 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ReferenceExpression<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> ReferenceExpression<'tree> {
-    #[doc = concat!("Get the field `", "value", "`")]
-    #[allow(dead_code)]
-    #[inline]
-    pub fn value(&self) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
-        self.0
-            .child_by_field_name("value")
-            .map(<Expression<'tree> as TryFrom<_>>::try_from)
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
-    ///Get the node's child
-    #[allow(dead_code)]
-    #[inline]
-    pub fn child(
-        &self,
-    ) -> Option<type_sitter_lib::NodeResult<'tree, MutableSpecifier<'tree>>> {
-        self.0.child(0).map(<MutableSpecifier<'tree> as TryFrom<_>>::try_from)
-    }
-}
 #[doc = concat!("Typed node `", "reference_pattern", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct ReferencePattern<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> ReferencePattern<'tree> {
+    ///Get the node's named children
+    ///This is guaranteed to return at least one child
+    #[allow(dead_code)]
+    #[inline]
+    pub fn children<'a>(
+        &'a self,
+        c: &'a mut tree_sitter::TreeCursor<'tree>,
+    ) -> impl Iterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either2<Pattern<'tree>, MutableSpecifier<'tree>>,
+            >,
+        >,
+    > + 'a {
+        self.0
+            .named_children(c)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either2<Pattern<'tree>, MutableSpecifier<'tree>>,
+                > as TryFrom<_>>::try_from,
+            )
+    }
+    ///Get the node's named child #i
+    #[allow(dead_code)]
+    #[inline]
+    pub fn child(
+        &self,
+        i: usize,
+    ) -> Option<
+        type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either2<Pattern<'tree>, MutableSpecifier<'tree>>,
+            >,
+        >,
+    > {
+        self.0
+            .named_child(i)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either2<Pattern<'tree>, MutableSpecifier<'tree>>,
+                > as TryFrom<_>>::try_from,
+            )
+    }
+}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ReferencePattern<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -7332,10 +9026,24 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ReferencePattern<'tree> {
         Self(node)
     }
 }
+#[doc = concat!("Typed node `", "reference_type", "`")]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+pub struct ReferenceType<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
-impl<'tree> ReferencePattern<'tree> {
-    ///Get the node's children
-    ///This is guaranteed to return at least one child
+impl<'tree> ReferenceType<'tree> {
+    #[doc = concat!("Get the field `", "type", "`")]
+    #[allow(dead_code)]
+    #[inline]
+    pub fn r#type(&self) -> type_sitter_lib::NodeResult<'tree, Type<'tree>> {
+        self.0
+            .child_by_field_name("type")
+            .map(<Type<'tree> as TryFrom<_>>::try_from)
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
+    ///Get the node's named children
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
@@ -7344,19 +9052,22 @@ impl<'tree> ReferencePattern<'tree> {
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::either_n::Either2<Pattern<'tree>, MutableSpecifier<'tree>>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either2<Lifetime<'tree>, MutableSpecifier<'tree>>,
+            >,
         >,
     > + 'a {
         self.0
-            .children(c)
+            .named_children(c)
             .map(
-                <type_sitter_lib::either_n::Either2<
-                    Pattern<'tree>,
-                    MutableSpecifier<'tree>,
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either2<Lifetime<'tree>, MutableSpecifier<'tree>>,
                 > as TryFrom<_>>::try_from,
             )
     }
-    ///Get the node's child #i
+    ///Get the node's named child #i
     #[allow(dead_code)]
     #[inline]
     pub fn child(
@@ -7365,23 +9076,22 @@ impl<'tree> ReferencePattern<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::either_n::Either2<Pattern<'tree>, MutableSpecifier<'tree>>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either2<Lifetime<'tree>, MutableSpecifier<'tree>>,
+            >,
         >,
     > {
         self.0
-            .child(i)
+            .named_child(i)
             .map(
-                <type_sitter_lib::either_n::Either2<
-                    Pattern<'tree>,
-                    MutableSpecifier<'tree>,
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either2<Lifetime<'tree>, MutableSpecifier<'tree>>,
                 > as TryFrom<_>>::try_from,
             )
     }
 }
-#[doc = concat!("Typed node `", "reference_type", "`")]
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-#[allow(non_camel_case_types)]
-pub struct ReferenceType<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ReferenceType<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -7409,66 +9119,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ReferenceType<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> ReferenceType<'tree> {
-    #[doc = concat!("Get the field `", "type", "`")]
-    #[allow(dead_code)]
-    #[inline]
-    pub fn r#type(&self) -> type_sitter_lib::NodeResult<'tree, Type<'tree>> {
-        self.0
-            .child_by_field_name("type")
-            .map(<Type<'tree> as TryFrom<_>>::try_from)
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
-    ///Get the node's children
-    #[allow(dead_code)]
-    #[inline]
-    pub fn children<'a>(
-        &'a self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
-    ) -> impl Iterator<
-        Item = type_sitter_lib::NodeResult<
-            'tree,
-            type_sitter_lib::either_n::Either2<Lifetime<'tree>, MutableSpecifier<'tree>>,
-        >,
-    > + 'a {
-        self.0
-            .children(c)
-            .map(
-                <type_sitter_lib::either_n::Either2<
-                    Lifetime<'tree>,
-                    MutableSpecifier<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
-    }
-    ///Get the node's child #i
-    #[allow(dead_code)]
-    #[inline]
-    pub fn child(
-        &self,
-        i: usize,
-    ) -> Option<
-        type_sitter_lib::NodeResult<
-            'tree,
-            type_sitter_lib::either_n::Either2<Lifetime<'tree>, MutableSpecifier<'tree>>,
-        >,
-    > {
-        self.0
-            .child(i)
-            .map(
-                <type_sitter_lib::either_n::Either2<
-                    Lifetime<'tree>,
-                    MutableSpecifier<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
-    }
-}
 #[doc = concat!("Typed node `", "remaining_field_pattern", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct RemainingFieldPattern<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> RemainingFieldPattern<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for RemainingFieldPattern<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -7496,12 +9152,24 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for RemainingFieldPattern<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> RemainingFieldPattern<'tree> {}
 #[doc = concat!("Typed node `", "removed_trait_bound", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct RemovedTraitBound<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> RemovedTraitBound<'tree> {
+    ///Get the node's only named child
+    #[allow(dead_code)]
+    #[inline]
+    pub fn child(&self) -> type_sitter_lib::NodeResult<'tree, Type<'tree>> {
+        self.0
+            .named_child(0)
+            .map(<Type<'tree> as TryFrom<_>>::try_from)
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
+}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for RemovedTraitBound<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -7529,24 +9197,21 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for RemovedTraitBound<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> RemovedTraitBound<'tree> {
-    ///Get the node's child
-    #[allow(dead_code)]
-    #[inline]
-    pub fn child(&self) -> type_sitter_lib::NodeResult<'tree, Type<'tree>> {
-        self.0
-            .child(0)
-            .map(<Type<'tree> as TryFrom<_>>::try_from)
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
-}
 #[doc = concat!("Typed node `", "return_expression", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct ReturnExpression<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> ReturnExpression<'tree> {
+    ///Get the node's only named child
+    #[allow(dead_code)]
+    #[inline]
+    pub fn child(
+        &self,
+    ) -> Option<type_sitter_lib::NodeResult<'tree, Expression<'tree>>> {
+        self.0.named_child(0).map(<Expression<'tree> as TryFrom<_>>::try_from)
+    }
+}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ReturnExpression<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -7574,21 +9239,59 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ReturnExpression<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> ReturnExpression<'tree> {
-    ///Get the node's child
-    #[allow(dead_code)]
-    #[inline]
-    pub fn child(
-        &self,
-    ) -> Option<type_sitter_lib::NodeResult<'tree, Expression<'tree>>> {
-        self.0.child(0).map(<Expression<'tree> as TryFrom<_>>::try_from)
-    }
-}
 #[doc = concat!("Typed node `", "scoped_identifier", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct ScopedIdentifier<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> ScopedIdentifier<'tree> {
+    #[doc = concat!("Get the field `", "name", "`")]
+    #[allow(dead_code)]
+    #[inline]
+    pub fn name(&self) -> type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
+        self.0
+            .child_by_field_name("name")
+            .map(<Identifier<'tree> as TryFrom<_>>::try_from)
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
+    #[doc = concat!("Get the field `", "path", "`")]
+    #[allow(dead_code)]
+    #[inline]
+    pub fn path(
+        &self,
+    ) -> Option<
+        type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::Either8<
+                BracketedType<'tree>,
+                Crate<'tree>,
+                GenericType<'tree>,
+                Identifier<'tree>,
+                Metavariable<'tree>,
+                ScopedIdentifier<'tree>,
+                _Self<'tree>,
+                _Super<'tree>,
+            >,
+        >,
+    > {
+        self.0
+            .child_by_field_name("path")
+            .map(
+                <type_sitter_lib::Either8<
+                    BracketedType<'tree>,
+                    Crate<'tree>,
+                    GenericType<'tree>,
+                    Identifier<'tree>,
+                    Metavariable<'tree>,
+                    ScopedIdentifier<'tree>,
+                    _Self<'tree>,
+                    _Super<'tree>,
+                > as TryFrom<_>>::try_from,
+            )
+    }
+}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ScopedIdentifier<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -7616,15 +9319,19 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ScopedIdentifier<'tree> {
         Self(node)
     }
 }
+#[doc = concat!("Typed node `", "scoped_type_identifier", "`")]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+pub struct ScopedTypeIdentifier<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
-impl<'tree> ScopedIdentifier<'tree> {
+impl<'tree> ScopedTypeIdentifier<'tree> {
     #[doc = concat!("Get the field `", "name", "`")]
     #[allow(dead_code)]
     #[inline]
-    pub fn name(&self) -> type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
+    pub fn name(&self) -> type_sitter_lib::NodeResult<'tree, TypeIdentifier<'tree>> {
         self.0
             .child_by_field_name("name")
-            .map(<Identifier<'tree> as TryFrom<_>>::try_from)
+            .map(<TypeIdentifier<'tree> as TryFrom<_>>::try_from)
             .expect(
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
@@ -7637,7 +9344,7 @@ impl<'tree> ScopedIdentifier<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::either_n::Either8<
+            type_sitter_lib::Either8<
                 BracketedType<'tree>,
                 Crate<'tree>,
                 GenericType<'tree>,
@@ -7652,7 +9359,7 @@ impl<'tree> ScopedIdentifier<'tree> {
         self.0
             .child_by_field_name("path")
             .map(
-                <type_sitter_lib::either_n::Either8<
+                <type_sitter_lib::Either8<
                     BracketedType<'tree>,
                     Crate<'tree>,
                     GenericType<'tree>,
@@ -7665,10 +9372,6 @@ impl<'tree> ScopedIdentifier<'tree> {
             )
     }
 }
-#[doc = concat!("Typed node `", "scoped_type_identifier", "`")]
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-#[allow(non_camel_case_types)]
-pub struct ScopedTypeIdentifier<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ScopedTypeIdentifier<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -7696,15 +9399,19 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ScopedTypeIdentifier<'tree> {
         Self(node)
     }
 }
+#[doc = concat!("Typed node `", "scoped_use_list", "`")]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+pub struct ScopedUseList<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
-impl<'tree> ScopedTypeIdentifier<'tree> {
-    #[doc = concat!("Get the field `", "name", "`")]
+impl<'tree> ScopedUseList<'tree> {
+    #[doc = concat!("Get the field `", "list", "`")]
     #[allow(dead_code)]
     #[inline]
-    pub fn name(&self) -> type_sitter_lib::NodeResult<'tree, TypeIdentifier<'tree>> {
+    pub fn list(&self) -> type_sitter_lib::NodeResult<'tree, UseList<'tree>> {
         self.0
-            .child_by_field_name("name")
-            .map(<TypeIdentifier<'tree> as TryFrom<_>>::try_from)
+            .child_by_field_name("list")
+            .map(<UseList<'tree> as TryFrom<_>>::try_from)
             .expect(
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
@@ -7717,10 +9424,8 @@ impl<'tree> ScopedTypeIdentifier<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::either_n::Either8<
-                BracketedType<'tree>,
+            type_sitter_lib::Either6<
                 Crate<'tree>,
-                GenericType<'tree>,
                 Identifier<'tree>,
                 Metavariable<'tree>,
                 ScopedIdentifier<'tree>,
@@ -7732,10 +9437,8 @@ impl<'tree> ScopedTypeIdentifier<'tree> {
         self.0
             .child_by_field_name("path")
             .map(
-                <type_sitter_lib::either_n::Either8<
-                    BracketedType<'tree>,
+                <type_sitter_lib::Either6<
                     Crate<'tree>,
-                    GenericType<'tree>,
                     Identifier<'tree>,
                     Metavariable<'tree>,
                     ScopedIdentifier<'tree>,
@@ -7745,10 +9448,6 @@ impl<'tree> ScopedTypeIdentifier<'tree> {
             )
     }
 }
-#[doc = concat!("Typed node `", "scoped_use_list", "`")]
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-#[allow(non_camel_case_types)]
-pub struct ScopedUseList<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ScopedUseList<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -7776,55 +9475,78 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ScopedUseList<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> ScopedUseList<'tree> {
-    #[doc = concat!("Get the field `", "list", "`")]
-    #[allow(dead_code)]
-    #[inline]
-    pub fn list(&self) -> type_sitter_lib::NodeResult<'tree, UseList<'tree>> {
-        self.0
-            .child_by_field_name("list")
-            .map(<UseList<'tree> as TryFrom<_>>::try_from)
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
-    #[doc = concat!("Get the field `", "path", "`")]
-    #[allow(dead_code)]
-    #[inline]
-    pub fn path(
-        &self,
-    ) -> Option<
-        type_sitter_lib::NodeResult<
-            'tree,
-            type_sitter_lib::either_n::Either6<
-                Crate<'tree>,
-                Identifier<'tree>,
-                Metavariable<'tree>,
-                ScopedIdentifier<'tree>,
-                _Self<'tree>,
-                _Super<'tree>,
-            >,
-        >,
-    > {
-        self.0
-            .child_by_field_name("path")
-            .map(
-                <type_sitter_lib::either_n::Either6<
-                    Crate<'tree>,
-                    Identifier<'tree>,
-                    Metavariable<'tree>,
-                    ScopedIdentifier<'tree>,
-                    _Self<'tree>,
-                    _Super<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
-    }
-}
 #[doc = concat!("Typed node `", "self_parameter", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct SelfParameter<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> SelfParameter<'tree> {
+    ///Get the node's named children
+    ///This is guaranteed to return at least one child
+    #[allow(dead_code)]
+    #[inline]
+    pub fn children<'a>(
+        &'a self,
+        c: &'a mut tree_sitter::TreeCursor<'tree>,
+    ) -> impl Iterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either3<
+                    Lifetime<'tree>,
+                    MutableSpecifier<'tree>,
+                    _Self<'tree>,
+                >,
+            >,
+        >,
+    > + 'a {
+        self.0
+            .named_children(c)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either3<
+                        Lifetime<'tree>,
+                        MutableSpecifier<'tree>,
+                        _Self<'tree>,
+                    >,
+                > as TryFrom<_>>::try_from,
+            )
+    }
+    ///Get the node's named child #i
+    #[allow(dead_code)]
+    #[inline]
+    pub fn child(
+        &self,
+        i: usize,
+    ) -> Option<
+        type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either3<
+                    Lifetime<'tree>,
+                    MutableSpecifier<'tree>,
+                    _Self<'tree>,
+                >,
+            >,
+        >,
+    > {
+        self.0
+            .named_child(i)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either3<
+                        Lifetime<'tree>,
+                        MutableSpecifier<'tree>,
+                        _Self<'tree>,
+                    >,
+                > as TryFrom<_>>::try_from,
+            )
+    }
+}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for SelfParameter<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -7852,9 +9574,13 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for SelfParameter<'tree> {
         Self(node)
     }
 }
+#[doc = concat!("Typed node `", "shorthand_field_initializer", "`")]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+pub struct ShorthandFieldInitializer<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
-impl<'tree> SelfParameter<'tree> {
-    ///Get the node's children
+impl<'tree> ShorthandFieldInitializer<'tree> {
+    ///Get the node's named children
     ///This is guaranteed to return at least one child
     #[allow(dead_code)]
     #[inline]
@@ -7864,24 +9590,22 @@ impl<'tree> SelfParameter<'tree> {
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::either_n::Either3<
-                Lifetime<'tree>,
-                MutableSpecifier<'tree>,
-                _Self<'tree>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either2<AttributeItem<'tree>, Identifier<'tree>>,
             >,
         >,
     > + 'a {
         self.0
-            .children(c)
+            .named_children(c)
             .map(
-                <type_sitter_lib::either_n::Either3<
-                    Lifetime<'tree>,
-                    MutableSpecifier<'tree>,
-                    _Self<'tree>,
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either2<AttributeItem<'tree>, Identifier<'tree>>,
                 > as TryFrom<_>>::try_from,
             )
     }
-    ///Get the node's child #i
+    ///Get the node's named child #i
     #[allow(dead_code)]
     #[inline]
     pub fn child(
@@ -7890,28 +9614,22 @@ impl<'tree> SelfParameter<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::either_n::Either3<
-                Lifetime<'tree>,
-                MutableSpecifier<'tree>,
-                _Self<'tree>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either2<AttributeItem<'tree>, Identifier<'tree>>,
             >,
         >,
     > {
         self.0
-            .child(i)
+            .named_child(i)
             .map(
-                <type_sitter_lib::either_n::Either3<
-                    Lifetime<'tree>,
-                    MutableSpecifier<'tree>,
-                    _Self<'tree>,
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either2<AttributeItem<'tree>, Identifier<'tree>>,
                 > as TryFrom<_>>::try_from,
             )
     }
 }
-#[doc = concat!("Typed node `", "shorthand_field_initializer", "`")]
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-#[allow(non_camel_case_types)]
-pub struct ShorthandFieldInitializer<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ShorthandFieldInitializer<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -7939,10 +9657,13 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ShorthandFieldInitializer<'tre
         Self(node)
     }
 }
+#[doc = concat!("Typed node `", "slice_pattern", "`")]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+pub struct SlicePattern<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
-impl<'tree> ShorthandFieldInitializer<'tree> {
-    ///Get the node's children
-    ///This is guaranteed to return at least one child
+impl<'tree> SlicePattern<'tree> {
+    ///Get the node's named children
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
@@ -7951,19 +9672,16 @@ impl<'tree> ShorthandFieldInitializer<'tree> {
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::either_n::Either2<AttributeItem<'tree>, Identifier<'tree>>,
+            type_sitter_lib::ExtraOr<'tree, Pattern<'tree>>,
         >,
     > + 'a {
         self.0
-            .children(c)
+            .named_children(c)
             .map(
-                <type_sitter_lib::either_n::Either2<
-                    AttributeItem<'tree>,
-                    Identifier<'tree>,
-                > as TryFrom<_>>::try_from,
+                <type_sitter_lib::ExtraOr<'tree, Pattern<'tree>> as TryFrom<_>>::try_from,
             )
     }
-    ///Get the node's child #i
+    ///Get the node's named child #i
     #[allow(dead_code)]
     #[inline]
     pub fn child(
@@ -7972,23 +9690,16 @@ impl<'tree> ShorthandFieldInitializer<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::either_n::Either2<AttributeItem<'tree>, Identifier<'tree>>,
+            type_sitter_lib::ExtraOr<'tree, Pattern<'tree>>,
         >,
     > {
         self.0
-            .child(i)
+            .named_child(i)
             .map(
-                <type_sitter_lib::either_n::Either2<
-                    AttributeItem<'tree>,
-                    Identifier<'tree>,
-                > as TryFrom<_>>::try_from,
+                <type_sitter_lib::ExtraOr<'tree, Pattern<'tree>> as TryFrom<_>>::try_from,
             )
     }
 }
-#[doc = concat!("Typed node `", "slice_pattern", "`")]
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-#[allow(non_camel_case_types)]
-pub struct SlicePattern<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for SlicePattern<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -8016,31 +9727,73 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for SlicePattern<'tree> {
         Self(node)
     }
 }
+#[doc = concat!("Typed node `", "source_file", "`")]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+pub struct SourceFile<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
-impl<'tree> SlicePattern<'tree> {
-    ///Get the node's children
+impl<'tree> SourceFile<'tree> {
+    ///Get the node's named children
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
         &'a self,
         c: &'a mut tree_sitter::TreeCursor<'tree>,
-    ) -> impl Iterator<Item = type_sitter_lib::NodeResult<'tree, Pattern<'tree>>> + 'a {
-        self.0.children(c).map(<Pattern<'tree> as TryFrom<_>>::try_from)
+    ) -> impl Iterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either2<
+                    DeclarationStatement<'tree>,
+                    ExpressionStatement<'tree>,
+                >,
+            >,
+        >,
+    > + 'a {
+        self.0
+            .named_children(c)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either2<
+                        DeclarationStatement<'tree>,
+                        ExpressionStatement<'tree>,
+                    >,
+                > as TryFrom<_>>::try_from,
+            )
     }
-    ///Get the node's child #i
+    ///Get the node's named child #i
     #[allow(dead_code)]
     #[inline]
     pub fn child(
         &self,
         i: usize,
-    ) -> Option<type_sitter_lib::NodeResult<'tree, Pattern<'tree>>> {
-        self.0.child(i).map(<Pattern<'tree> as TryFrom<_>>::try_from)
+    ) -> Option<
+        type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either2<
+                    DeclarationStatement<'tree>,
+                    ExpressionStatement<'tree>,
+                >,
+            >,
+        >,
+    > {
+        self.0
+            .named_child(i)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either2<
+                        DeclarationStatement<'tree>,
+                        ExpressionStatement<'tree>,
+                    >,
+                > as TryFrom<_>>::try_from,
+            )
     }
 }
-#[doc = concat!("Typed node `", "source_file", "`")]
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-#[allow(non_camel_case_types)]
-pub struct SourceFile<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for SourceFile<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -8068,88 +9821,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for SourceFile<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> SourceFile<'tree> {
-    ///Get the node's children
-    #[allow(dead_code)]
-    #[inline]
-    pub fn children<'a>(
-        &'a self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
-    ) -> impl Iterator<
-        Item = type_sitter_lib::NodeResult<
-            'tree,
-            type_sitter_lib::either_n::Either2<
-                DeclarationStatement<'tree>,
-                ExpressionStatement<'tree>,
-            >,
-        >,
-    > + 'a {
-        self.0
-            .children(c)
-            .map(
-                <type_sitter_lib::either_n::Either2<
-                    DeclarationStatement<'tree>,
-                    ExpressionStatement<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
-    }
-    ///Get the node's child #i
-    #[allow(dead_code)]
-    #[inline]
-    pub fn child(
-        &self,
-        i: usize,
-    ) -> Option<
-        type_sitter_lib::NodeResult<
-            'tree,
-            type_sitter_lib::either_n::Either2<
-                DeclarationStatement<'tree>,
-                ExpressionStatement<'tree>,
-            >,
-        >,
-    > {
-        self.0
-            .child(i)
-            .map(
-                <type_sitter_lib::either_n::Either2<
-                    DeclarationStatement<'tree>,
-                    ExpressionStatement<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
-    }
-}
 #[doc = concat!("Typed node `", "static_item", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct StaticItem<'tree>(tree_sitter::Node<'tree>);
-#[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for StaticItem<'tree> {
-    type Error = type_sitter_lib::IncorrectKind<'tree>;
-    #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
-        if node.kind() == "static_item" {
-            Ok(Self(node))
-        } else {
-            Err(type_sitter_lib::IncorrectKind {
-                node,
-                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-            })
-        }
-    }
-}
-#[automatically_derived]
-impl<'tree> type_sitter_lib::TypedNode<'tree> for StaticItem<'tree> {
-    const KIND: &'static str = "static_item";
-    #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
-        &self.0
-    }
-    #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
-        Self(node)
-    }
-}
 #[automatically_derived]
 impl<'tree> StaticItem<'tree> {
     #[doc = concat!("Get the field `", "name", "`")]
@@ -8184,7 +9859,7 @@ impl<'tree> StaticItem<'tree> {
             .child_by_field_name("value")
             .map(<Expression<'tree> as TryFrom<_>>::try_from)
     }
-    ///Get the node's children
+    ///Get the node's named children
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
@@ -8193,22 +9868,28 @@ impl<'tree> StaticItem<'tree> {
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::either_n::Either2<
-                MutableSpecifier<'tree>,
-                VisibilityModifier<'tree>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either2<
+                    MutableSpecifier<'tree>,
+                    VisibilityModifier<'tree>,
+                >,
             >,
         >,
     > + 'a {
         self.0
-            .children(c)
+            .named_children(c)
             .map(
-                <type_sitter_lib::either_n::Either2<
-                    MutableSpecifier<'tree>,
-                    VisibilityModifier<'tree>,
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either2<
+                        MutableSpecifier<'tree>,
+                        VisibilityModifier<'tree>,
+                    >,
                 > as TryFrom<_>>::try_from,
             )
     }
-    ///Get the node's child #i
+    ///Get the node's named child #i
     #[allow(dead_code)]
     #[inline]
     pub fn child(
@@ -8217,26 +9898,104 @@ impl<'tree> StaticItem<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::either_n::Either2<
-                MutableSpecifier<'tree>,
-                VisibilityModifier<'tree>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either2<
+                    MutableSpecifier<'tree>,
+                    VisibilityModifier<'tree>,
+                >,
             >,
         >,
     > {
         self.0
-            .child(i)
+            .named_child(i)
             .map(
-                <type_sitter_lib::either_n::Either2<
-                    MutableSpecifier<'tree>,
-                    VisibilityModifier<'tree>,
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either2<
+                        MutableSpecifier<'tree>,
+                        VisibilityModifier<'tree>,
+                    >,
                 > as TryFrom<_>>::try_from,
             )
+    }
+}
+#[automatically_derived]
+impl<'tree> TryFrom<tree_sitter::Node<'tree>> for StaticItem<'tree> {
+    type Error = type_sitter_lib::IncorrectKind<'tree>;
+    #[inline]
+    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        if node.kind() == "static_item" {
+            Ok(Self(node))
+        } else {
+            Err(type_sitter_lib::IncorrectKind {
+                node,
+                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+            })
+        }
+    }
+}
+#[automatically_derived]
+impl<'tree> type_sitter_lib::TypedNode<'tree> for StaticItem<'tree> {
+    const KIND: &'static str = "static_item";
+    #[inline]
+    fn node(&self) -> &tree_sitter::Node<'tree> {
+        &self.0
+    }
+    #[inline]
+    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        Self(node)
     }
 }
 #[doc = concat!("Typed node `", "string_literal", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct StringLiteral<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> StringLiteral<'tree> {
+    ///Get the node's named children
+    #[allow(dead_code)]
+    #[inline]
+    pub fn children<'a>(
+        &'a self,
+        c: &'a mut tree_sitter::TreeCursor<'tree>,
+    ) -> impl Iterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<'tree, EscapeSequence<'tree>>,
+        >,
+    > + 'a {
+        self.0
+            .named_children(c)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    EscapeSequence<'tree>,
+                > as TryFrom<_>>::try_from,
+            )
+    }
+    ///Get the node's named child #i
+    #[allow(dead_code)]
+    #[inline]
+    pub fn child(
+        &self,
+        i: usize,
+    ) -> Option<
+        type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<'tree, EscapeSequence<'tree>>,
+        >,
+    > {
+        self.0
+            .named_child(i)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    EscapeSequence<'tree>,
+                > as TryFrom<_>>::try_from,
+            )
+    }
+}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for StringLiteral<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -8264,33 +10023,52 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for StringLiteral<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> StringLiteral<'tree> {
-    ///Get the node's children
-    #[allow(dead_code)]
-    #[inline]
-    pub fn children<'a>(
-        &'a self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
-    ) -> impl Iterator<
-        Item = type_sitter_lib::NodeResult<'tree, EscapeSequence<'tree>>,
-    > + 'a {
-        self.0.children(c).map(<EscapeSequence<'tree> as TryFrom<_>>::try_from)
-    }
-    ///Get the node's child #i
-    #[allow(dead_code)]
-    #[inline]
-    pub fn child(
-        &self,
-        i: usize,
-    ) -> Option<type_sitter_lib::NodeResult<'tree, EscapeSequence<'tree>>> {
-        self.0.child(i).map(<EscapeSequence<'tree> as TryFrom<_>>::try_from)
-    }
-}
 #[doc = concat!("Typed node `", "struct_expression", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct StructExpression<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> StructExpression<'tree> {
+    #[doc = concat!("Get the field `", "body", "`")]
+    #[allow(dead_code)]
+    #[inline]
+    pub fn body(
+        &self,
+    ) -> type_sitter_lib::NodeResult<'tree, FieldInitializerList<'tree>> {
+        self.0
+            .child_by_field_name("body")
+            .map(<FieldInitializerList<'tree> as TryFrom<_>>::try_from)
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
+    #[doc = concat!("Get the field `", "name", "`")]
+    #[allow(dead_code)]
+    #[inline]
+    pub fn name(
+        &self,
+    ) -> type_sitter_lib::NodeResult<
+        'tree,
+        type_sitter_lib::Either3<
+            GenericTypeWithTurbofish<'tree>,
+            ScopedTypeIdentifier<'tree>,
+            TypeIdentifier<'tree>,
+        >,
+    > {
+        self.0
+            .child_by_field_name("name")
+            .map(
+                <type_sitter_lib::Either3<
+                    GenericTypeWithTurbofish<'tree>,
+                    ScopedTypeIdentifier<'tree>,
+                    TypeIdentifier<'tree>,
+                > as TryFrom<_>>::try_from,
+            )
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
+}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for StructExpression<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -8318,52 +10096,111 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for StructExpression<'tree> {
         Self(node)
     }
 }
+#[doc = concat!("Typed node `", "struct_item", "`")]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+pub struct StructItem<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
-impl<'tree> StructExpression<'tree> {
+impl<'tree> StructItem<'tree> {
     #[doc = concat!("Get the field `", "body", "`")]
     #[allow(dead_code)]
     #[inline]
     pub fn body(
         &self,
-    ) -> type_sitter_lib::NodeResult<'tree, FieldInitializerList<'tree>> {
+    ) -> Option<
+        type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::Either2<
+                FieldDeclarationList<'tree>,
+                OrderedFieldDeclarationList<'tree>,
+            >,
+        >,
+    > {
         self.0
             .child_by_field_name("body")
-            .map(<FieldInitializerList<'tree> as TryFrom<_>>::try_from)
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            .map(
+                <type_sitter_lib::Either2<
+                    FieldDeclarationList<'tree>,
+                    OrderedFieldDeclarationList<'tree>,
+                > as TryFrom<_>>::try_from,
             )
     }
     #[doc = concat!("Get the field `", "name", "`")]
     #[allow(dead_code)]
     #[inline]
-    pub fn name(
-        &self,
-    ) -> type_sitter_lib::NodeResult<
-        'tree,
-        type_sitter_lib::either_n::Either3<
-            GenericTypeWithTurbofish<'tree>,
-            ScopedTypeIdentifier<'tree>,
-            TypeIdentifier<'tree>,
-        >,
-    > {
+    pub fn name(&self) -> type_sitter_lib::NodeResult<'tree, TypeIdentifier<'tree>> {
         self.0
             .child_by_field_name("name")
-            .map(
-                <type_sitter_lib::either_n::Either3<
-                    GenericTypeWithTurbofish<'tree>,
-                    ScopedTypeIdentifier<'tree>,
-                    TypeIdentifier<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
+            .map(<TypeIdentifier<'tree> as TryFrom<_>>::try_from)
             .expect(
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
     }
+    #[doc = concat!("Get the field `", "type_parameters", "`")]
+    #[allow(dead_code)]
+    #[inline]
+    pub fn type_parameters(
+        &self,
+    ) -> Option<type_sitter_lib::NodeResult<'tree, TypeParameters<'tree>>> {
+        self.0
+            .child_by_field_name("type_parameters")
+            .map(<TypeParameters<'tree> as TryFrom<_>>::try_from)
+    }
+    ///Get the node's named children
+    #[allow(dead_code)]
+    #[inline]
+    pub fn children<'a>(
+        &'a self,
+        c: &'a mut tree_sitter::TreeCursor<'tree>,
+    ) -> impl Iterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either2<VisibilityModifier<'tree>, WhereClause<'tree>>,
+            >,
+        >,
+    > + 'a {
+        self.0
+            .named_children(c)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either2<
+                        VisibilityModifier<'tree>,
+                        WhereClause<'tree>,
+                    >,
+                > as TryFrom<_>>::try_from,
+            )
+    }
+    ///Get the node's named child #i
+    #[allow(dead_code)]
+    #[inline]
+    pub fn child(
+        &self,
+        i: usize,
+    ) -> Option<
+        type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either2<VisibilityModifier<'tree>, WhereClause<'tree>>,
+            >,
+        >,
+    > {
+        self.0
+            .named_child(i)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either2<
+                        VisibilityModifier<'tree>,
+                        WhereClause<'tree>,
+                    >,
+                > as TryFrom<_>>::try_from,
+            )
+    }
 }
-#[doc = concat!("Typed node `", "struct_item", "`")]
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-#[allow(non_camel_case_types)]
-pub struct StructItem<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for StructItem<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -8391,53 +10228,34 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for StructItem<'tree> {
         Self(node)
     }
 }
+#[doc = concat!("Typed node `", "struct_pattern", "`")]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+pub struct StructPattern<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
-impl<'tree> StructItem<'tree> {
-    #[doc = concat!("Get the field `", "body", "`")]
+impl<'tree> StructPattern<'tree> {
+    #[doc = concat!("Get the field `", "type", "`")]
     #[allow(dead_code)]
     #[inline]
-    pub fn body(
+    pub fn r#type(
         &self,
-    ) -> Option<
-        type_sitter_lib::NodeResult<
-            'tree,
-            type_sitter_lib::either_n::Either2<
-                FieldDeclarationList<'tree>,
-                OrderedFieldDeclarationList<'tree>,
-            >,
-        >,
+    ) -> type_sitter_lib::NodeResult<
+        'tree,
+        type_sitter_lib::Either2<ScopedTypeIdentifier<'tree>, TypeIdentifier<'tree>>,
     > {
         self.0
-            .child_by_field_name("body")
+            .child_by_field_name("type")
             .map(
-                <type_sitter_lib::either_n::Either2<
-                    FieldDeclarationList<'tree>,
-                    OrderedFieldDeclarationList<'tree>,
+                <type_sitter_lib::Either2<
+                    ScopedTypeIdentifier<'tree>,
+                    TypeIdentifier<'tree>,
                 > as TryFrom<_>>::try_from,
             )
-    }
-    #[doc = concat!("Get the field `", "name", "`")]
-    #[allow(dead_code)]
-    #[inline]
-    pub fn name(&self) -> type_sitter_lib::NodeResult<'tree, TypeIdentifier<'tree>> {
-        self.0
-            .child_by_field_name("name")
-            .map(<TypeIdentifier<'tree> as TryFrom<_>>::try_from)
             .expect(
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
     }
-    #[doc = concat!("Get the field `", "type_parameters", "`")]
-    #[allow(dead_code)]
-    #[inline]
-    pub fn type_parameters(
-        &self,
-    ) -> Option<type_sitter_lib::NodeResult<'tree, TypeParameters<'tree>>> {
-        self.0
-            .child_by_field_name("type_parameters")
-            .map(<TypeParameters<'tree> as TryFrom<_>>::try_from)
-    }
-    ///Get the node's children
+    ///Get the node's named children
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
@@ -8446,22 +10264,28 @@ impl<'tree> StructItem<'tree> {
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::either_n::Either2<
-                VisibilityModifier<'tree>,
-                WhereClause<'tree>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either2<
+                    FieldPattern<'tree>,
+                    RemainingFieldPattern<'tree>,
+                >,
             >,
         >,
     > + 'a {
         self.0
-            .children(c)
+            .named_children(c)
             .map(
-                <type_sitter_lib::either_n::Either2<
-                    VisibilityModifier<'tree>,
-                    WhereClause<'tree>,
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either2<
+                        FieldPattern<'tree>,
+                        RemainingFieldPattern<'tree>,
+                    >,
                 > as TryFrom<_>>::try_from,
             )
     }
-    ///Get the node's child #i
+    ///Get the node's named child #i
     #[allow(dead_code)]
     #[inline]
     pub fn child(
@@ -8470,26 +10294,28 @@ impl<'tree> StructItem<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::either_n::Either2<
-                VisibilityModifier<'tree>,
-                WhereClause<'tree>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either2<
+                    FieldPattern<'tree>,
+                    RemainingFieldPattern<'tree>,
+                >,
             >,
         >,
     > {
         self.0
-            .child(i)
+            .named_child(i)
             .map(
-                <type_sitter_lib::either_n::Either2<
-                    VisibilityModifier<'tree>,
-                    WhereClause<'tree>,
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either2<
+                        FieldPattern<'tree>,
+                        RemainingFieldPattern<'tree>,
+                    >,
                 > as TryFrom<_>>::try_from,
             )
     }
 }
-#[doc = concat!("Typed node `", "struct_pattern", "`")]
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-#[allow(non_camel_case_types)]
-pub struct StructPattern<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for StructPattern<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -8517,112 +10343,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for StructPattern<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> StructPattern<'tree> {
-    #[doc = concat!("Get the field `", "type", "`")]
-    #[allow(dead_code)]
-    #[inline]
-    pub fn r#type(
-        &self,
-    ) -> type_sitter_lib::NodeResult<
-        'tree,
-        type_sitter_lib::either_n::Either2<
-            ScopedTypeIdentifier<'tree>,
-            TypeIdentifier<'tree>,
-        >,
-    > {
-        self.0
-            .child_by_field_name("type")
-            .map(
-                <type_sitter_lib::either_n::Either2<
-                    ScopedTypeIdentifier<'tree>,
-                    TypeIdentifier<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
-    ///Get the node's children
-    #[allow(dead_code)]
-    #[inline]
-    pub fn children<'a>(
-        &'a self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
-    ) -> impl Iterator<
-        Item = type_sitter_lib::NodeResult<
-            'tree,
-            type_sitter_lib::either_n::Either2<
-                FieldPattern<'tree>,
-                RemainingFieldPattern<'tree>,
-            >,
-        >,
-    > + 'a {
-        self.0
-            .children(c)
-            .map(
-                <type_sitter_lib::either_n::Either2<
-                    FieldPattern<'tree>,
-                    RemainingFieldPattern<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
-    }
-    ///Get the node's child #i
-    #[allow(dead_code)]
-    #[inline]
-    pub fn child(
-        &self,
-        i: usize,
-    ) -> Option<
-        type_sitter_lib::NodeResult<
-            'tree,
-            type_sitter_lib::either_n::Either2<
-                FieldPattern<'tree>,
-                RemainingFieldPattern<'tree>,
-            >,
-        >,
-    > {
-        self.0
-            .child(i)
-            .map(
-                <type_sitter_lib::either_n::Either2<
-                    FieldPattern<'tree>,
-                    RemainingFieldPattern<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
-    }
-}
 #[doc = concat!("Typed node `", "token_binding_pattern", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct TokenBindingPattern<'tree>(tree_sitter::Node<'tree>);
-#[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for TokenBindingPattern<'tree> {
-    type Error = type_sitter_lib::IncorrectKind<'tree>;
-    #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
-        if node.kind() == "token_binding_pattern" {
-            Ok(Self(node))
-        } else {
-            Err(type_sitter_lib::IncorrectKind {
-                node,
-                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-            })
-        }
-    }
-}
-#[automatically_derived]
-impl<'tree> type_sitter_lib::TypedNode<'tree> for TokenBindingPattern<'tree> {
-    const KIND: &'static str = "token_binding_pattern";
-    #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
-        &self.0
-    }
-    #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
-        Self(node)
-    }
-}
 #[automatically_derived]
 impl<'tree> TokenBindingPattern<'tree> {
     #[doc = concat!("Get the field `", "name", "`")]
@@ -8650,10 +10374,132 @@ impl<'tree> TokenBindingPattern<'tree> {
             )
     }
 }
+#[automatically_derived]
+impl<'tree> TryFrom<tree_sitter::Node<'tree>> for TokenBindingPattern<'tree> {
+    type Error = type_sitter_lib::IncorrectKind<'tree>;
+    #[inline]
+    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        if node.kind() == "token_binding_pattern" {
+            Ok(Self(node))
+        } else {
+            Err(type_sitter_lib::IncorrectKind {
+                node,
+                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+            })
+        }
+    }
+}
+#[automatically_derived]
+impl<'tree> type_sitter_lib::TypedNode<'tree> for TokenBindingPattern<'tree> {
+    const KIND: &'static str = "token_binding_pattern";
+    #[inline]
+    fn node(&self) -> &tree_sitter::Node<'tree> {
+        &self.0
+    }
+    #[inline]
+    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        Self(node)
+    }
+}
 #[doc = concat!("Typed node `", "token_repetition", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct TokenRepetition<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> TokenRepetition<'tree> {
+    ///Get the node's named children
+    #[allow(dead_code)]
+    #[inline]
+    pub fn children<'a>(
+        &'a self,
+        c: &'a mut tree_sitter::TreeCursor<'tree>,
+    ) -> impl Iterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either10<
+                    Literal<'tree>,
+                    Crate<'tree>,
+                    Identifier<'tree>,
+                    Metavariable<'tree>,
+                    MutableSpecifier<'tree>,
+                    PrimitiveType<'tree>,
+                    _Self<'tree>,
+                    _Super<'tree>,
+                    TokenRepetition<'tree>,
+                    TokenTree<'tree>,
+                >,
+            >,
+        >,
+    > + 'a {
+        self.0
+            .named_children(c)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either10<
+                        Literal<'tree>,
+                        Crate<'tree>,
+                        Identifier<'tree>,
+                        Metavariable<'tree>,
+                        MutableSpecifier<'tree>,
+                        PrimitiveType<'tree>,
+                        _Self<'tree>,
+                        _Super<'tree>,
+                        TokenRepetition<'tree>,
+                        TokenTree<'tree>,
+                    >,
+                > as TryFrom<_>>::try_from,
+            )
+    }
+    ///Get the node's named child #i
+    #[allow(dead_code)]
+    #[inline]
+    pub fn child(
+        &self,
+        i: usize,
+    ) -> Option<
+        type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either10<
+                    Literal<'tree>,
+                    Crate<'tree>,
+                    Identifier<'tree>,
+                    Metavariable<'tree>,
+                    MutableSpecifier<'tree>,
+                    PrimitiveType<'tree>,
+                    _Self<'tree>,
+                    _Super<'tree>,
+                    TokenRepetition<'tree>,
+                    TokenTree<'tree>,
+                >,
+            >,
+        >,
+    > {
+        self.0
+            .named_child(i)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either10<
+                        Literal<'tree>,
+                        Crate<'tree>,
+                        Identifier<'tree>,
+                        Metavariable<'tree>,
+                        MutableSpecifier<'tree>,
+                        PrimitiveType<'tree>,
+                        _Self<'tree>,
+                        _Super<'tree>,
+                        TokenRepetition<'tree>,
+                        TokenTree<'tree>,
+                    >,
+                > as TryFrom<_>>::try_from,
+            )
+    }
+}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for TokenRepetition<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -8681,9 +10527,13 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TokenRepetition<'tree> {
         Self(node)
     }
 }
+#[doc = concat!("Typed node `", "token_repetition_pattern", "`")]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+pub struct TokenRepetitionPattern<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
-impl<'tree> TokenRepetition<'tree> {
-    ///Get the node's children
+impl<'tree> TokenRepetitionPattern<'tree> {
+    ///Get the node's named children
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
@@ -8692,24 +10542,9 @@ impl<'tree> TokenRepetition<'tree> {
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::either_n::Either10<
-                Literal<'tree>,
-                Crate<'tree>,
-                Identifier<'tree>,
-                Metavariable<'tree>,
-                MutableSpecifier<'tree>,
-                PrimitiveType<'tree>,
-                _Self<'tree>,
-                _Super<'tree>,
-                TokenRepetition<'tree>,
-                TokenTree<'tree>,
-            >,
-        >,
-    > + 'a {
-        self.0
-            .children(c)
-            .map(
-                <type_sitter_lib::either_n::Either10<
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either11<
                     Literal<'tree>,
                     Crate<'tree>,
                     Identifier<'tree>,
@@ -8718,12 +10553,35 @@ impl<'tree> TokenRepetition<'tree> {
                     PrimitiveType<'tree>,
                     _Self<'tree>,
                     _Super<'tree>,
-                    TokenRepetition<'tree>,
-                    TokenTree<'tree>,
+                    TokenBindingPattern<'tree>,
+                    TokenRepetitionPattern<'tree>,
+                    TokenTreePattern<'tree>,
+                >,
+            >,
+        >,
+    > + 'a {
+        self.0
+            .named_children(c)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either11<
+                        Literal<'tree>,
+                        Crate<'tree>,
+                        Identifier<'tree>,
+                        Metavariable<'tree>,
+                        MutableSpecifier<'tree>,
+                        PrimitiveType<'tree>,
+                        _Self<'tree>,
+                        _Super<'tree>,
+                        TokenBindingPattern<'tree>,
+                        TokenRepetitionPattern<'tree>,
+                        TokenTreePattern<'tree>,
+                    >,
                 > as TryFrom<_>>::try_from,
             )
     }
-    ///Get the node's child #i
+    ///Get the node's named child #i
     #[allow(dead_code)]
     #[inline]
     pub fn child(
@@ -8732,24 +10590,9 @@ impl<'tree> TokenRepetition<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::either_n::Either10<
-                Literal<'tree>,
-                Crate<'tree>,
-                Identifier<'tree>,
-                Metavariable<'tree>,
-                MutableSpecifier<'tree>,
-                PrimitiveType<'tree>,
-                _Self<'tree>,
-                _Super<'tree>,
-                TokenRepetition<'tree>,
-                TokenTree<'tree>,
-            >,
-        >,
-    > {
-        self.0
-            .child(i)
-            .map(
-                <type_sitter_lib::either_n::Either10<
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either11<
                     Literal<'tree>,
                     Crate<'tree>,
                     Identifier<'tree>,
@@ -8758,16 +10601,35 @@ impl<'tree> TokenRepetition<'tree> {
                     PrimitiveType<'tree>,
                     _Self<'tree>,
                     _Super<'tree>,
-                    TokenRepetition<'tree>,
-                    TokenTree<'tree>,
+                    TokenBindingPattern<'tree>,
+                    TokenRepetitionPattern<'tree>,
+                    TokenTreePattern<'tree>,
+                >,
+            >,
+        >,
+    > {
+        self.0
+            .named_child(i)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either11<
+                        Literal<'tree>,
+                        Crate<'tree>,
+                        Identifier<'tree>,
+                        Metavariable<'tree>,
+                        MutableSpecifier<'tree>,
+                        PrimitiveType<'tree>,
+                        _Self<'tree>,
+                        _Super<'tree>,
+                        TokenBindingPattern<'tree>,
+                        TokenRepetitionPattern<'tree>,
+                        TokenTreePattern<'tree>,
+                    >,
                 > as TryFrom<_>>::try_from,
             )
     }
 }
-#[doc = concat!("Typed node `", "token_repetition_pattern", "`")]
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-#[allow(non_camel_case_types)]
-pub struct TokenRepetitionPattern<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for TokenRepetitionPattern<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -8795,9 +10657,13 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TokenRepetitionPattern<'tree> 
         Self(node)
     }
 }
+#[doc = concat!("Typed node `", "token_tree", "`")]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+pub struct TokenTree<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
-impl<'tree> TokenRepetitionPattern<'tree> {
-    ///Get the node's children
+impl<'tree> TokenTree<'tree> {
+    ///Get the node's named children
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
@@ -8806,25 +10672,9 @@ impl<'tree> TokenRepetitionPattern<'tree> {
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::either_n::Either11<
-                Literal<'tree>,
-                Crate<'tree>,
-                Identifier<'tree>,
-                Metavariable<'tree>,
-                MutableSpecifier<'tree>,
-                PrimitiveType<'tree>,
-                _Self<'tree>,
-                _Super<'tree>,
-                TokenBindingPattern<'tree>,
-                TokenRepetitionPattern<'tree>,
-                TokenTreePattern<'tree>,
-            >,
-        >,
-    > + 'a {
-        self.0
-            .children(c)
-            .map(
-                <type_sitter_lib::either_n::Either11<
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either10<
                     Literal<'tree>,
                     Crate<'tree>,
                     Identifier<'tree>,
@@ -8833,13 +10683,33 @@ impl<'tree> TokenRepetitionPattern<'tree> {
                     PrimitiveType<'tree>,
                     _Self<'tree>,
                     _Super<'tree>,
-                    TokenBindingPattern<'tree>,
-                    TokenRepetitionPattern<'tree>,
-                    TokenTreePattern<'tree>,
+                    TokenRepetition<'tree>,
+                    TokenTree<'tree>,
+                >,
+            >,
+        >,
+    > + 'a {
+        self.0
+            .named_children(c)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either10<
+                        Literal<'tree>,
+                        Crate<'tree>,
+                        Identifier<'tree>,
+                        Metavariable<'tree>,
+                        MutableSpecifier<'tree>,
+                        PrimitiveType<'tree>,
+                        _Self<'tree>,
+                        _Super<'tree>,
+                        TokenRepetition<'tree>,
+                        TokenTree<'tree>,
+                    >,
                 > as TryFrom<_>>::try_from,
             )
     }
-    ///Get the node's child #i
+    ///Get the node's named child #i
     #[allow(dead_code)]
     #[inline]
     pub fn child(
@@ -8848,25 +10718,9 @@ impl<'tree> TokenRepetitionPattern<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::either_n::Either11<
-                Literal<'tree>,
-                Crate<'tree>,
-                Identifier<'tree>,
-                Metavariable<'tree>,
-                MutableSpecifier<'tree>,
-                PrimitiveType<'tree>,
-                _Self<'tree>,
-                _Super<'tree>,
-                TokenBindingPattern<'tree>,
-                TokenRepetitionPattern<'tree>,
-                TokenTreePattern<'tree>,
-            >,
-        >,
-    > {
-        self.0
-            .child(i)
-            .map(
-                <type_sitter_lib::either_n::Either11<
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either10<
                     Literal<'tree>,
                     Crate<'tree>,
                     Identifier<'tree>,
@@ -8875,17 +10729,33 @@ impl<'tree> TokenRepetitionPattern<'tree> {
                     PrimitiveType<'tree>,
                     _Self<'tree>,
                     _Super<'tree>,
-                    TokenBindingPattern<'tree>,
-                    TokenRepetitionPattern<'tree>,
-                    TokenTreePattern<'tree>,
+                    TokenRepetition<'tree>,
+                    TokenTree<'tree>,
+                >,
+            >,
+        >,
+    > {
+        self.0
+            .named_child(i)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either10<
+                        Literal<'tree>,
+                        Crate<'tree>,
+                        Identifier<'tree>,
+                        Metavariable<'tree>,
+                        MutableSpecifier<'tree>,
+                        PrimitiveType<'tree>,
+                        _Self<'tree>,
+                        _Super<'tree>,
+                        TokenRepetition<'tree>,
+                        TokenTree<'tree>,
+                    >,
                 > as TryFrom<_>>::try_from,
             )
     }
 }
-#[doc = concat!("Typed node `", "token_tree", "`")]
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-#[allow(non_camel_case_types)]
-pub struct TokenTree<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for TokenTree<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -8913,9 +10783,13 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TokenTree<'tree> {
         Self(node)
     }
 }
+#[doc = concat!("Typed node `", "token_tree_pattern", "`")]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+pub struct TokenTreePattern<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
-impl<'tree> TokenTree<'tree> {
-    ///Get the node's children
+impl<'tree> TokenTreePattern<'tree> {
+    ///Get the node's named children
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
@@ -8924,24 +10798,9 @@ impl<'tree> TokenTree<'tree> {
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::either_n::Either10<
-                Literal<'tree>,
-                Crate<'tree>,
-                Identifier<'tree>,
-                Metavariable<'tree>,
-                MutableSpecifier<'tree>,
-                PrimitiveType<'tree>,
-                _Self<'tree>,
-                _Super<'tree>,
-                TokenRepetition<'tree>,
-                TokenTree<'tree>,
-            >,
-        >,
-    > + 'a {
-        self.0
-            .children(c)
-            .map(
-                <type_sitter_lib::either_n::Either10<
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either11<
                     Literal<'tree>,
                     Crate<'tree>,
                     Identifier<'tree>,
@@ -8950,12 +10809,35 @@ impl<'tree> TokenTree<'tree> {
                     PrimitiveType<'tree>,
                     _Self<'tree>,
                     _Super<'tree>,
-                    TokenRepetition<'tree>,
-                    TokenTree<'tree>,
+                    TokenBindingPattern<'tree>,
+                    TokenRepetitionPattern<'tree>,
+                    TokenTreePattern<'tree>,
+                >,
+            >,
+        >,
+    > + 'a {
+        self.0
+            .named_children(c)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either11<
+                        Literal<'tree>,
+                        Crate<'tree>,
+                        Identifier<'tree>,
+                        Metavariable<'tree>,
+                        MutableSpecifier<'tree>,
+                        PrimitiveType<'tree>,
+                        _Self<'tree>,
+                        _Super<'tree>,
+                        TokenBindingPattern<'tree>,
+                        TokenRepetitionPattern<'tree>,
+                        TokenTreePattern<'tree>,
+                    >,
                 > as TryFrom<_>>::try_from,
             )
     }
-    ///Get the node's child #i
+    ///Get the node's named child #i
     #[allow(dead_code)]
     #[inline]
     pub fn child(
@@ -8964,24 +10846,9 @@ impl<'tree> TokenTree<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::either_n::Either10<
-                Literal<'tree>,
-                Crate<'tree>,
-                Identifier<'tree>,
-                Metavariable<'tree>,
-                MutableSpecifier<'tree>,
-                PrimitiveType<'tree>,
-                _Self<'tree>,
-                _Super<'tree>,
-                TokenRepetition<'tree>,
-                TokenTree<'tree>,
-            >,
-        >,
-    > {
-        self.0
-            .child(i)
-            .map(
-                <type_sitter_lib::either_n::Either10<
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either11<
                     Literal<'tree>,
                     Crate<'tree>,
                     Identifier<'tree>,
@@ -8990,16 +10857,35 @@ impl<'tree> TokenTree<'tree> {
                     PrimitiveType<'tree>,
                     _Self<'tree>,
                     _Super<'tree>,
-                    TokenRepetition<'tree>,
-                    TokenTree<'tree>,
+                    TokenBindingPattern<'tree>,
+                    TokenRepetitionPattern<'tree>,
+                    TokenTreePattern<'tree>,
+                >,
+            >,
+        >,
+    > {
+        self.0
+            .named_child(i)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either11<
+                        Literal<'tree>,
+                        Crate<'tree>,
+                        Identifier<'tree>,
+                        Metavariable<'tree>,
+                        MutableSpecifier<'tree>,
+                        PrimitiveType<'tree>,
+                        _Self<'tree>,
+                        _Super<'tree>,
+                        TokenBindingPattern<'tree>,
+                        TokenRepetitionPattern<'tree>,
+                        TokenTreePattern<'tree>,
+                    >,
                 > as TryFrom<_>>::try_from,
             )
     }
 }
-#[doc = concat!("Typed node `", "token_tree_pattern", "`")]
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-#[allow(non_camel_case_types)]
-pub struct TokenTreePattern<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for TokenTreePattern<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -9027,9 +10913,14 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TokenTreePattern<'tree> {
         Self(node)
     }
 }
+#[doc = concat!("Typed node `", "trait_bounds", "`")]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+pub struct TraitBounds<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
-impl<'tree> TokenTreePattern<'tree> {
-    ///Get the node's children
+impl<'tree> TraitBounds<'tree> {
+    ///Get the node's named children
+    ///This is guaranteed to return at least one child
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
@@ -9038,40 +10929,32 @@ impl<'tree> TokenTreePattern<'tree> {
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::either_n::Either11<
-                Literal<'tree>,
-                Crate<'tree>,
-                Identifier<'tree>,
-                Metavariable<'tree>,
-                MutableSpecifier<'tree>,
-                PrimitiveType<'tree>,
-                _Self<'tree>,
-                _Super<'tree>,
-                TokenBindingPattern<'tree>,
-                TokenRepetitionPattern<'tree>,
-                TokenTreePattern<'tree>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either4<
+                    Type<'tree>,
+                    HigherRankedTraitBound<'tree>,
+                    Lifetime<'tree>,
+                    RemovedTraitBound<'tree>,
+                >,
             >,
         >,
     > + 'a {
         self.0
-            .children(c)
+            .named_children(c)
             .map(
-                <type_sitter_lib::either_n::Either11<
-                    Literal<'tree>,
-                    Crate<'tree>,
-                    Identifier<'tree>,
-                    Metavariable<'tree>,
-                    MutableSpecifier<'tree>,
-                    PrimitiveType<'tree>,
-                    _Self<'tree>,
-                    _Super<'tree>,
-                    TokenBindingPattern<'tree>,
-                    TokenRepetitionPattern<'tree>,
-                    TokenTreePattern<'tree>,
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either4<
+                        Type<'tree>,
+                        HigherRankedTraitBound<'tree>,
+                        Lifetime<'tree>,
+                        RemovedTraitBound<'tree>,
+                    >,
                 > as TryFrom<_>>::try_from,
             )
     }
-    ///Get the node's child #i
+    ///Get the node's named child #i
     #[allow(dead_code)]
     #[inline]
     pub fn child(
@@ -9080,44 +10963,32 @@ impl<'tree> TokenTreePattern<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::either_n::Either11<
-                Literal<'tree>,
-                Crate<'tree>,
-                Identifier<'tree>,
-                Metavariable<'tree>,
-                MutableSpecifier<'tree>,
-                PrimitiveType<'tree>,
-                _Self<'tree>,
-                _Super<'tree>,
-                TokenBindingPattern<'tree>,
-                TokenRepetitionPattern<'tree>,
-                TokenTreePattern<'tree>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either4<
+                    Type<'tree>,
+                    HigherRankedTraitBound<'tree>,
+                    Lifetime<'tree>,
+                    RemovedTraitBound<'tree>,
+                >,
             >,
         >,
     > {
         self.0
-            .child(i)
+            .named_child(i)
             .map(
-                <type_sitter_lib::either_n::Either11<
-                    Literal<'tree>,
-                    Crate<'tree>,
-                    Identifier<'tree>,
-                    Metavariable<'tree>,
-                    MutableSpecifier<'tree>,
-                    PrimitiveType<'tree>,
-                    _Self<'tree>,
-                    _Super<'tree>,
-                    TokenBindingPattern<'tree>,
-                    TokenRepetitionPattern<'tree>,
-                    TokenTreePattern<'tree>,
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either4<
+                        Type<'tree>,
+                        HigherRankedTraitBound<'tree>,
+                        Lifetime<'tree>,
+                        RemovedTraitBound<'tree>,
+                    >,
                 > as TryFrom<_>>::try_from,
             )
     }
 }
-#[doc = concat!("Typed node `", "trait_bounds", "`")]
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-#[allow(non_camel_case_types)]
-pub struct TraitBounds<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for TraitBounds<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -9145,97 +11016,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TraitBounds<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> TraitBounds<'tree> {
-    ///Get the node's children
-    ///This is guaranteed to return at least one child
-    #[allow(dead_code)]
-    #[inline]
-    pub fn children<'a>(
-        &'a self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
-    ) -> impl Iterator<
-        Item = type_sitter_lib::NodeResult<
-            'tree,
-            type_sitter_lib::either_n::Either4<
-                Type<'tree>,
-                HigherRankedTraitBound<'tree>,
-                Lifetime<'tree>,
-                RemovedTraitBound<'tree>,
-            >,
-        >,
-    > + 'a {
-        self.0
-            .children(c)
-            .map(
-                <type_sitter_lib::either_n::Either4<
-                    Type<'tree>,
-                    HigherRankedTraitBound<'tree>,
-                    Lifetime<'tree>,
-                    RemovedTraitBound<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
-    }
-    ///Get the node's child #i
-    #[allow(dead_code)]
-    #[inline]
-    pub fn child(
-        &self,
-        i: usize,
-    ) -> Option<
-        type_sitter_lib::NodeResult<
-            'tree,
-            type_sitter_lib::either_n::Either4<
-                Type<'tree>,
-                HigherRankedTraitBound<'tree>,
-                Lifetime<'tree>,
-                RemovedTraitBound<'tree>,
-            >,
-        >,
-    > {
-        self.0
-            .child(i)
-            .map(
-                <type_sitter_lib::either_n::Either4<
-                    Type<'tree>,
-                    HigherRankedTraitBound<'tree>,
-                    Lifetime<'tree>,
-                    RemovedTraitBound<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
-    }
-}
 #[doc = concat!("Typed node `", "trait_item", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct TraitItem<'tree>(tree_sitter::Node<'tree>);
-#[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for TraitItem<'tree> {
-    type Error = type_sitter_lib::IncorrectKind<'tree>;
-    #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
-        if node.kind() == "trait_item" {
-            Ok(Self(node))
-        } else {
-            Err(type_sitter_lib::IncorrectKind {
-                node,
-                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-            })
-        }
-    }
-}
-#[automatically_derived]
-impl<'tree> type_sitter_lib::TypedNode<'tree> for TraitItem<'tree> {
-    const KIND: &'static str = "trait_item";
-    #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
-        &self.0
-    }
-    #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
-        Self(node)
-    }
-}
 #[automatically_derived]
 impl<'tree> TraitItem<'tree> {
     #[doc = concat!("Get the field `", "body", "`")]
@@ -9280,7 +11064,7 @@ impl<'tree> TraitItem<'tree> {
             .child_by_field_name("type_parameters")
             .map(<TypeParameters<'tree> as TryFrom<_>>::try_from)
     }
-    ///Get the node's children
+    ///Get the node's named children
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
@@ -9289,22 +11073,25 @@ impl<'tree> TraitItem<'tree> {
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::either_n::Either2<
-                VisibilityModifier<'tree>,
-                WhereClause<'tree>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either2<VisibilityModifier<'tree>, WhereClause<'tree>>,
             >,
         >,
     > + 'a {
         self.0
-            .children(c)
+            .named_children(c)
             .map(
-                <type_sitter_lib::either_n::Either2<
-                    VisibilityModifier<'tree>,
-                    WhereClause<'tree>,
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either2<
+                        VisibilityModifier<'tree>,
+                        WhereClause<'tree>,
+                    >,
                 > as TryFrom<_>>::try_from,
             )
     }
-    ///Get the node's child #i
+    ///Get the node's named child #i
     #[allow(dead_code)]
     #[inline]
     pub fn child(
@@ -9313,26 +11100,70 @@ impl<'tree> TraitItem<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::either_n::Either2<
-                VisibilityModifier<'tree>,
-                WhereClause<'tree>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either2<VisibilityModifier<'tree>, WhereClause<'tree>>,
             >,
         >,
     > {
         self.0
-            .child(i)
+            .named_child(i)
             .map(
-                <type_sitter_lib::either_n::Either2<
-                    VisibilityModifier<'tree>,
-                    WhereClause<'tree>,
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either2<
+                        VisibilityModifier<'tree>,
+                        WhereClause<'tree>,
+                    >,
                 > as TryFrom<_>>::try_from,
             )
+    }
+}
+#[automatically_derived]
+impl<'tree> TryFrom<tree_sitter::Node<'tree>> for TraitItem<'tree> {
+    type Error = type_sitter_lib::IncorrectKind<'tree>;
+    #[inline]
+    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        if node.kind() == "trait_item" {
+            Ok(Self(node))
+        } else {
+            Err(type_sitter_lib::IncorrectKind {
+                node,
+                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+            })
+        }
+    }
+}
+#[automatically_derived]
+impl<'tree> type_sitter_lib::TypedNode<'tree> for TraitItem<'tree> {
+    const KIND: &'static str = "trait_item";
+    #[inline]
+    fn node(&self) -> &tree_sitter::Node<'tree> {
+        &self.0
+    }
+    #[inline]
+    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        Self(node)
     }
 }
 #[doc = concat!("Typed node `", "try_expression", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct TryExpression<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> TryExpression<'tree> {
+    ///Get the node's only named child
+    #[allow(dead_code)]
+    #[inline]
+    pub fn child(&self) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
+        self.0
+            .named_child(0)
+            .map(<Expression<'tree> as TryFrom<_>>::try_from)
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
+}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for TryExpression<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -9360,24 +11191,62 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TryExpression<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> TryExpression<'tree> {
-    ///Get the node's child
-    #[allow(dead_code)]
-    #[inline]
-    pub fn child(&self) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
-        self.0
-            .child(0)
-            .map(<Expression<'tree> as TryFrom<_>>::try_from)
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
-}
 #[doc = concat!("Typed node `", "tuple_expression", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct TupleExpression<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> TupleExpression<'tree> {
+    ///Get the node's named children
+    ///This is guaranteed to return at least one child
+    #[allow(dead_code)]
+    #[inline]
+    pub fn children<'a>(
+        &'a self,
+        c: &'a mut tree_sitter::TreeCursor<'tree>,
+    ) -> impl Iterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either2<Expression<'tree>, AttributeItem<'tree>>,
+            >,
+        >,
+    > + 'a {
+        self.0
+            .named_children(c)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either2<Expression<'tree>, AttributeItem<'tree>>,
+                > as TryFrom<_>>::try_from,
+            )
+    }
+    ///Get the node's named child #i
+    #[allow(dead_code)]
+    #[inline]
+    pub fn child(
+        &self,
+        i: usize,
+    ) -> Option<
+        type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either2<Expression<'tree>, AttributeItem<'tree>>,
+            >,
+        >,
+    > {
+        self.0
+            .named_child(i)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either2<Expression<'tree>, AttributeItem<'tree>>,
+                > as TryFrom<_>>::try_from,
+            )
+    }
+}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for TupleExpression<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -9405,10 +11274,13 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TupleExpression<'tree> {
         Self(node)
     }
 }
+#[doc = concat!("Typed node `", "tuple_pattern", "`")]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+pub struct TuplePattern<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
-impl<'tree> TupleExpression<'tree> {
-    ///Get the node's children
-    ///This is guaranteed to return at least one child
+impl<'tree> TuplePattern<'tree> {
+    ///Get the node's named children
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
@@ -9417,19 +11289,16 @@ impl<'tree> TupleExpression<'tree> {
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::either_n::Either2<Expression<'tree>, AttributeItem<'tree>>,
+            type_sitter_lib::ExtraOr<'tree, Pattern<'tree>>,
         >,
     > + 'a {
         self.0
-            .children(c)
+            .named_children(c)
             .map(
-                <type_sitter_lib::either_n::Either2<
-                    Expression<'tree>,
-                    AttributeItem<'tree>,
-                > as TryFrom<_>>::try_from,
+                <type_sitter_lib::ExtraOr<'tree, Pattern<'tree>> as TryFrom<_>>::try_from,
             )
     }
-    ///Get the node's child #i
+    ///Get the node's named child #i
     #[allow(dead_code)]
     #[inline]
     pub fn child(
@@ -9438,23 +11307,16 @@ impl<'tree> TupleExpression<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::either_n::Either2<Expression<'tree>, AttributeItem<'tree>>,
+            type_sitter_lib::ExtraOr<'tree, Pattern<'tree>>,
         >,
     > {
         self.0
-            .child(i)
+            .named_child(i)
             .map(
-                <type_sitter_lib::either_n::Either2<
-                    Expression<'tree>,
-                    AttributeItem<'tree>,
-                > as TryFrom<_>>::try_from,
+                <type_sitter_lib::ExtraOr<'tree, Pattern<'tree>> as TryFrom<_>>::try_from,
             )
     }
 }
-#[doc = concat!("Typed node `", "tuple_pattern", "`")]
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-#[allow(non_camel_case_types)]
-pub struct TuplePattern<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for TuplePattern<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -9482,31 +11344,70 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TuplePattern<'tree> {
         Self(node)
     }
 }
+#[doc = concat!("Typed node `", "tuple_struct_pattern", "`")]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+pub struct TupleStructPattern<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
-impl<'tree> TuplePattern<'tree> {
-    ///Get the node's children
+impl<'tree> TupleStructPattern<'tree> {
+    #[doc = concat!("Get the field `", "type", "`")]
+    #[allow(dead_code)]
+    #[inline]
+    pub fn r#type(
+        &self,
+    ) -> type_sitter_lib::NodeResult<
+        'tree,
+        type_sitter_lib::Either2<Identifier<'tree>, ScopedIdentifier<'tree>>,
+    > {
+        self.0
+            .child_by_field_name("type")
+            .map(
+                <type_sitter_lib::Either2<
+                    Identifier<'tree>,
+                    ScopedIdentifier<'tree>,
+                > as TryFrom<_>>::try_from,
+            )
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
+    ///Get the node's named children
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
         &'a self,
         c: &'a mut tree_sitter::TreeCursor<'tree>,
-    ) -> impl Iterator<Item = type_sitter_lib::NodeResult<'tree, Pattern<'tree>>> + 'a {
-        self.0.children(c).map(<Pattern<'tree> as TryFrom<_>>::try_from)
+    ) -> impl Iterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<'tree, Pattern<'tree>>,
+        >,
+    > + 'a {
+        self.0
+            .named_children(c)
+            .map(
+                <type_sitter_lib::ExtraOr<'tree, Pattern<'tree>> as TryFrom<_>>::try_from,
+            )
     }
-    ///Get the node's child #i
+    ///Get the node's named child #i
     #[allow(dead_code)]
     #[inline]
     pub fn child(
         &self,
         i: usize,
-    ) -> Option<type_sitter_lib::NodeResult<'tree, Pattern<'tree>>> {
-        self.0.child(i).map(<Pattern<'tree> as TryFrom<_>>::try_from)
+    ) -> Option<
+        type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<'tree, Pattern<'tree>>,
+        >,
+    > {
+        self.0
+            .named_child(i)
+            .map(
+                <type_sitter_lib::ExtraOr<'tree, Pattern<'tree>> as TryFrom<_>>::try_from,
+            )
     }
 }
-#[doc = concat!("Typed node `", "tuple_struct_pattern", "`")]
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-#[allow(non_camel_case_types)]
-pub struct TupleStructPattern<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for TupleStructPattern<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -9534,52 +11435,43 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TupleStructPattern<'tree> {
         Self(node)
     }
 }
+#[doc = concat!("Typed node `", "tuple_type", "`")]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+pub struct TupleType<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
-impl<'tree> TupleStructPattern<'tree> {
-    #[doc = concat!("Get the field `", "type", "`")]
-    #[allow(dead_code)]
-    #[inline]
-    pub fn r#type(
-        &self,
-    ) -> type_sitter_lib::NodeResult<
-        'tree,
-        type_sitter_lib::either_n::Either2<Identifier<'tree>, ScopedIdentifier<'tree>>,
-    > {
-        self.0
-            .child_by_field_name("type")
-            .map(
-                <type_sitter_lib::either_n::Either2<
-                    Identifier<'tree>,
-                    ScopedIdentifier<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
-    ///Get the node's children
+impl<'tree> TupleType<'tree> {
+    ///Get the node's named children
+    ///This is guaranteed to return at least one child
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
         &'a self,
         c: &'a mut tree_sitter::TreeCursor<'tree>,
-    ) -> impl Iterator<Item = type_sitter_lib::NodeResult<'tree, Pattern<'tree>>> + 'a {
-        self.0.children(c).map(<Pattern<'tree> as TryFrom<_>>::try_from)
+    ) -> impl Iterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<'tree, Type<'tree>>,
+        >,
+    > + 'a {
+        self.0
+            .named_children(c)
+            .map(<type_sitter_lib::ExtraOr<'tree, Type<'tree>> as TryFrom<_>>::try_from)
     }
-    ///Get the node's child #i
+    ///Get the node's named child #i
     #[allow(dead_code)]
     #[inline]
     pub fn child(
         &self,
         i: usize,
-    ) -> Option<type_sitter_lib::NodeResult<'tree, Pattern<'tree>>> {
-        self.0.child(i).map(<Pattern<'tree> as TryFrom<_>>::try_from)
+    ) -> Option<
+        type_sitter_lib::NodeResult<'tree, type_sitter_lib::ExtraOr<'tree, Type<'tree>>>,
+    > {
+        self.0
+            .named_child(i)
+            .map(<type_sitter_lib::ExtraOr<'tree, Type<'tree>> as TryFrom<_>>::try_from)
     }
 }
-#[doc = concat!("Typed node `", "tuple_type", "`")]
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-#[allow(non_camel_case_types)]
-pub struct TupleType<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for TupleType<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -9607,32 +11499,86 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TupleType<'tree> {
         Self(node)
     }
 }
+#[doc = concat!("Typed node `", "type_arguments", "`")]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+pub struct TypeArguments<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
-impl<'tree> TupleType<'tree> {
-    ///Get the node's children
+impl<'tree> TypeArguments<'tree> {
+    ///Get the node's named children
     ///This is guaranteed to return at least one child
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
         &'a self,
         c: &'a mut tree_sitter::TreeCursor<'tree>,
-    ) -> impl Iterator<Item = type_sitter_lib::NodeResult<'tree, Type<'tree>>> + 'a {
-        self.0.children(c).map(<Type<'tree> as TryFrom<_>>::try_from)
+    ) -> impl Iterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either5<
+                    Literal<'tree>,
+                    Type<'tree>,
+                    Block<'tree>,
+                    Lifetime<'tree>,
+                    TypeBinding<'tree>,
+                >,
+            >,
+        >,
+    > + 'a {
+        self.0
+            .named_children(c)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either5<
+                        Literal<'tree>,
+                        Type<'tree>,
+                        Block<'tree>,
+                        Lifetime<'tree>,
+                        TypeBinding<'tree>,
+                    >,
+                > as TryFrom<_>>::try_from,
+            )
     }
-    ///Get the node's child #i
+    ///Get the node's named child #i
     #[allow(dead_code)]
     #[inline]
     pub fn child(
         &self,
         i: usize,
-    ) -> Option<type_sitter_lib::NodeResult<'tree, Type<'tree>>> {
-        self.0.child(i).map(<Type<'tree> as TryFrom<_>>::try_from)
+    ) -> Option<
+        type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either5<
+                    Literal<'tree>,
+                    Type<'tree>,
+                    Block<'tree>,
+                    Lifetime<'tree>,
+                    TypeBinding<'tree>,
+                >,
+            >,
+        >,
+    > {
+        self.0
+            .named_child(i)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either5<
+                        Literal<'tree>,
+                        Type<'tree>,
+                        Block<'tree>,
+                        Lifetime<'tree>,
+                        TypeBinding<'tree>,
+                    >,
+                > as TryFrom<_>>::try_from,
+            )
     }
 }
-#[doc = concat!("Typed node `", "type_arguments", "`")]
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-#[allow(non_camel_case_types)]
-pub struct TypeArguments<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for TypeArguments<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -9660,101 +11606,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TypeArguments<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> TypeArguments<'tree> {
-    ///Get the node's children
-    ///This is guaranteed to return at least one child
-    #[allow(dead_code)]
-    #[inline]
-    pub fn children<'a>(
-        &'a self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
-    ) -> impl Iterator<
-        Item = type_sitter_lib::NodeResult<
-            'tree,
-            type_sitter_lib::either_n::Either5<
-                Literal<'tree>,
-                Type<'tree>,
-                Block<'tree>,
-                Lifetime<'tree>,
-                TypeBinding<'tree>,
-            >,
-        >,
-    > + 'a {
-        self.0
-            .children(c)
-            .map(
-                <type_sitter_lib::either_n::Either5<
-                    Literal<'tree>,
-                    Type<'tree>,
-                    Block<'tree>,
-                    Lifetime<'tree>,
-                    TypeBinding<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
-    }
-    ///Get the node's child #i
-    #[allow(dead_code)]
-    #[inline]
-    pub fn child(
-        &self,
-        i: usize,
-    ) -> Option<
-        type_sitter_lib::NodeResult<
-            'tree,
-            type_sitter_lib::either_n::Either5<
-                Literal<'tree>,
-                Type<'tree>,
-                Block<'tree>,
-                Lifetime<'tree>,
-                TypeBinding<'tree>,
-            >,
-        >,
-    > {
-        self.0
-            .child(i)
-            .map(
-                <type_sitter_lib::either_n::Either5<
-                    Literal<'tree>,
-                    Type<'tree>,
-                    Block<'tree>,
-                    Lifetime<'tree>,
-                    TypeBinding<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
-    }
-}
 #[doc = concat!("Typed node `", "type_binding", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct TypeBinding<'tree>(tree_sitter::Node<'tree>);
-#[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for TypeBinding<'tree> {
-    type Error = type_sitter_lib::IncorrectKind<'tree>;
-    #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
-        if node.kind() == "type_binding" {
-            Ok(Self(node))
-        } else {
-            Err(type_sitter_lib::IncorrectKind {
-                node,
-                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-            })
-        }
-    }
-}
-#[automatically_derived]
-impl<'tree> type_sitter_lib::TypedNode<'tree> for TypeBinding<'tree> {
-    const KIND: &'static str = "type_binding";
-    #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
-        &self.0
-    }
-    #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
-        Self(node)
-    }
-}
 #[automatically_derived]
 impl<'tree> TypeBinding<'tree> {
     #[doc = concat!("Get the field `", "name", "`")]
@@ -9790,10 +11645,62 @@ impl<'tree> TypeBinding<'tree> {
             .map(<TypeArguments<'tree> as TryFrom<_>>::try_from)
     }
 }
+#[automatically_derived]
+impl<'tree> TryFrom<tree_sitter::Node<'tree>> for TypeBinding<'tree> {
+    type Error = type_sitter_lib::IncorrectKind<'tree>;
+    #[inline]
+    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        if node.kind() == "type_binding" {
+            Ok(Self(node))
+        } else {
+            Err(type_sitter_lib::IncorrectKind {
+                node,
+                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+            })
+        }
+    }
+}
+#[automatically_derived]
+impl<'tree> type_sitter_lib::TypedNode<'tree> for TypeBinding<'tree> {
+    const KIND: &'static str = "type_binding";
+    #[inline]
+    fn node(&self) -> &tree_sitter::Node<'tree> {
+        &self.0
+    }
+    #[inline]
+    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        Self(node)
+    }
+}
 #[doc = concat!("Typed node `", "type_cast_expression", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct TypeCastExpression<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> TypeCastExpression<'tree> {
+    #[doc = concat!("Get the field `", "type", "`")]
+    #[allow(dead_code)]
+    #[inline]
+    pub fn r#type(&self) -> type_sitter_lib::NodeResult<'tree, Type<'tree>> {
+        self.0
+            .child_by_field_name("type")
+            .map(<Type<'tree> as TryFrom<_>>::try_from)
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
+    #[doc = concat!("Get the field `", "value", "`")]
+    #[allow(dead_code)]
+    #[inline]
+    pub fn value(&self) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
+        self.0
+            .child_by_field_name("value")
+            .map(<Expression<'tree> as TryFrom<_>>::try_from)
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
+}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for TypeCastExpression<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -9821,62 +11728,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TypeCastExpression<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> TypeCastExpression<'tree> {
-    #[doc = concat!("Get the field `", "type", "`")]
-    #[allow(dead_code)]
-    #[inline]
-    pub fn r#type(&self) -> type_sitter_lib::NodeResult<'tree, Type<'tree>> {
-        self.0
-            .child_by_field_name("type")
-            .map(<Type<'tree> as TryFrom<_>>::try_from)
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
-    #[doc = concat!("Get the field `", "value", "`")]
-    #[allow(dead_code)]
-    #[inline]
-    pub fn value(&self) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
-        self.0
-            .child_by_field_name("value")
-            .map(<Expression<'tree> as TryFrom<_>>::try_from)
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
-}
 #[doc = concat!("Typed node `", "type_item", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct TypeItem<'tree>(tree_sitter::Node<'tree>);
-#[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for TypeItem<'tree> {
-    type Error = type_sitter_lib::IncorrectKind<'tree>;
-    #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
-        if node.kind() == "type_item" {
-            Ok(Self(node))
-        } else {
-            Err(type_sitter_lib::IncorrectKind {
-                node,
-                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-            })
-        }
-    }
-}
-#[automatically_derived]
-impl<'tree> type_sitter_lib::TypedNode<'tree> for TypeItem<'tree> {
-    const KIND: &'static str = "type_item";
-    #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
-        &self.0
-    }
-    #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
-        Self(node)
-    }
-}
 #[automatically_derived]
 impl<'tree> TypeItem<'tree> {
     #[doc = concat!("Get the field `", "name", "`")]
@@ -9911,19 +11766,126 @@ impl<'tree> TypeItem<'tree> {
             .child_by_field_name("type_parameters")
             .map(<TypeParameters<'tree> as TryFrom<_>>::try_from)
     }
-    ///Get the node's child
+    ///Get the node's only named child
     #[allow(dead_code)]
     #[inline]
     pub fn child(
         &self,
     ) -> Option<type_sitter_lib::NodeResult<'tree, VisibilityModifier<'tree>>> {
-        self.0.child(0).map(<VisibilityModifier<'tree> as TryFrom<_>>::try_from)
+        self.0.named_child(0).map(<VisibilityModifier<'tree> as TryFrom<_>>::try_from)
+    }
+}
+#[automatically_derived]
+impl<'tree> TryFrom<tree_sitter::Node<'tree>> for TypeItem<'tree> {
+    type Error = type_sitter_lib::IncorrectKind<'tree>;
+    #[inline]
+    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        if node.kind() == "type_item" {
+            Ok(Self(node))
+        } else {
+            Err(type_sitter_lib::IncorrectKind {
+                node,
+                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+            })
+        }
+    }
+}
+#[automatically_derived]
+impl<'tree> type_sitter_lib::TypedNode<'tree> for TypeItem<'tree> {
+    const KIND: &'static str = "type_item";
+    #[inline]
+    fn node(&self) -> &tree_sitter::Node<'tree> {
+        &self.0
+    }
+    #[inline]
+    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        Self(node)
     }
 }
 #[doc = concat!("Typed node `", "type_parameters", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct TypeParameters<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> TypeParameters<'tree> {
+    ///Get the node's named children
+    ///This is guaranteed to return at least one child
+    #[allow(dead_code)]
+    #[inline]
+    pub fn children<'a>(
+        &'a self,
+        c: &'a mut tree_sitter::TreeCursor<'tree>,
+    ) -> impl Iterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either6<
+                    ConstParameter<'tree>,
+                    ConstrainedTypeParameter<'tree>,
+                    Lifetime<'tree>,
+                    Metavariable<'tree>,
+                    OptionalTypeParameter<'tree>,
+                    TypeIdentifier<'tree>,
+                >,
+            >,
+        >,
+    > + 'a {
+        self.0
+            .named_children(c)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either6<
+                        ConstParameter<'tree>,
+                        ConstrainedTypeParameter<'tree>,
+                        Lifetime<'tree>,
+                        Metavariable<'tree>,
+                        OptionalTypeParameter<'tree>,
+                        TypeIdentifier<'tree>,
+                    >,
+                > as TryFrom<_>>::try_from,
+            )
+    }
+    ///Get the node's named child #i
+    #[allow(dead_code)]
+    #[inline]
+    pub fn child(
+        &self,
+        i: usize,
+    ) -> Option<
+        type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either6<
+                    ConstParameter<'tree>,
+                    ConstrainedTypeParameter<'tree>,
+                    Lifetime<'tree>,
+                    Metavariable<'tree>,
+                    OptionalTypeParameter<'tree>,
+                    TypeIdentifier<'tree>,
+                >,
+            >,
+        >,
+    > {
+        self.0
+            .named_child(i)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either6<
+                        ConstParameter<'tree>,
+                        ConstrainedTypeParameter<'tree>,
+                        Lifetime<'tree>,
+                        Metavariable<'tree>,
+                        OptionalTypeParameter<'tree>,
+                        TypeIdentifier<'tree>,
+                    >,
+                > as TryFrom<_>>::try_from,
+            )
+    }
+}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for TypeParameters<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -9951,78 +11913,24 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TypeParameters<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> TypeParameters<'tree> {
-    ///Get the node's children
-    ///This is guaranteed to return at least one child
-    #[allow(dead_code)]
-    #[inline]
-    pub fn children<'a>(
-        &'a self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
-    ) -> impl Iterator<
-        Item = type_sitter_lib::NodeResult<
-            'tree,
-            type_sitter_lib::either_n::Either6<
-                ConstParameter<'tree>,
-                ConstrainedTypeParameter<'tree>,
-                Lifetime<'tree>,
-                Metavariable<'tree>,
-                OptionalTypeParameter<'tree>,
-                TypeIdentifier<'tree>,
-            >,
-        >,
-    > + 'a {
-        self.0
-            .children(c)
-            .map(
-                <type_sitter_lib::either_n::Either6<
-                    ConstParameter<'tree>,
-                    ConstrainedTypeParameter<'tree>,
-                    Lifetime<'tree>,
-                    Metavariable<'tree>,
-                    OptionalTypeParameter<'tree>,
-                    TypeIdentifier<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
-    }
-    ///Get the node's child #i
-    #[allow(dead_code)]
-    #[inline]
-    pub fn child(
-        &self,
-        i: usize,
-    ) -> Option<
-        type_sitter_lib::NodeResult<
-            'tree,
-            type_sitter_lib::either_n::Either6<
-                ConstParameter<'tree>,
-                ConstrainedTypeParameter<'tree>,
-                Lifetime<'tree>,
-                Metavariable<'tree>,
-                OptionalTypeParameter<'tree>,
-                TypeIdentifier<'tree>,
-            >,
-        >,
-    > {
-        self.0
-            .child(i)
-            .map(
-                <type_sitter_lib::either_n::Either6<
-                    ConstParameter<'tree>,
-                    ConstrainedTypeParameter<'tree>,
-                    Lifetime<'tree>,
-                    Metavariable<'tree>,
-                    OptionalTypeParameter<'tree>,
-                    TypeIdentifier<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
-    }
-}
 #[doc = concat!("Typed node `", "unary_expression", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct UnaryExpression<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> UnaryExpression<'tree> {
+    ///Get the node's only named child
+    #[allow(dead_code)]
+    #[inline]
+    pub fn child(&self) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
+        self.0
+            .named_child(0)
+            .map(<Expression<'tree> as TryFrom<_>>::try_from)
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
+}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for UnaryExpression<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -10050,51 +11958,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for UnaryExpression<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> UnaryExpression<'tree> {
-    ///Get the node's child
-    #[allow(dead_code)]
-    #[inline]
-    pub fn child(&self) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
-        self.0
-            .child(0)
-            .map(<Expression<'tree> as TryFrom<_>>::try_from)
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
-}
 #[doc = concat!("Typed node `", "union_item", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct UnionItem<'tree>(tree_sitter::Node<'tree>);
-#[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for UnionItem<'tree> {
-    type Error = type_sitter_lib::IncorrectKind<'tree>;
-    #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
-        if node.kind() == "union_item" {
-            Ok(Self(node))
-        } else {
-            Err(type_sitter_lib::IncorrectKind {
-                node,
-                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-            })
-        }
-    }
-}
-#[automatically_derived]
-impl<'tree> type_sitter_lib::TypedNode<'tree> for UnionItem<'tree> {
-    const KIND: &'static str = "union_item";
-    #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
-        &self.0
-    }
-    #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
-        Self(node)
-    }
-}
 #[automatically_derived]
 impl<'tree> UnionItem<'tree> {
     #[doc = concat!("Get the field `", "body", "`")]
@@ -10131,7 +11998,7 @@ impl<'tree> UnionItem<'tree> {
             .child_by_field_name("type_parameters")
             .map(<TypeParameters<'tree> as TryFrom<_>>::try_from)
     }
-    ///Get the node's children
+    ///Get the node's named children
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
@@ -10140,22 +12007,25 @@ impl<'tree> UnionItem<'tree> {
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::either_n::Either2<
-                VisibilityModifier<'tree>,
-                WhereClause<'tree>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either2<VisibilityModifier<'tree>, WhereClause<'tree>>,
             >,
         >,
     > + 'a {
         self.0
-            .children(c)
+            .named_children(c)
             .map(
-                <type_sitter_lib::either_n::Either2<
-                    VisibilityModifier<'tree>,
-                    WhereClause<'tree>,
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either2<
+                        VisibilityModifier<'tree>,
+                        WhereClause<'tree>,
+                    >,
                 > as TryFrom<_>>::try_from,
             )
     }
-    ///Get the node's child #i
+    ///Get the node's named child #i
     #[allow(dead_code)]
     #[inline]
     pub fn child(
@@ -10164,26 +12034,58 @@ impl<'tree> UnionItem<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::either_n::Either2<
-                VisibilityModifier<'tree>,
-                WhereClause<'tree>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either2<VisibilityModifier<'tree>, WhereClause<'tree>>,
             >,
         >,
     > {
         self.0
-            .child(i)
+            .named_child(i)
             .map(
-                <type_sitter_lib::either_n::Either2<
-                    VisibilityModifier<'tree>,
-                    WhereClause<'tree>,
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either2<
+                        VisibilityModifier<'tree>,
+                        WhereClause<'tree>,
+                    >,
                 > as TryFrom<_>>::try_from,
             )
+    }
+}
+#[automatically_derived]
+impl<'tree> TryFrom<tree_sitter::Node<'tree>> for UnionItem<'tree> {
+    type Error = type_sitter_lib::IncorrectKind<'tree>;
+    #[inline]
+    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        if node.kind() == "union_item" {
+            Ok(Self(node))
+        } else {
+            Err(type_sitter_lib::IncorrectKind {
+                node,
+                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+            })
+        }
+    }
+}
+#[automatically_derived]
+impl<'tree> type_sitter_lib::TypedNode<'tree> for UnionItem<'tree> {
+    const KIND: &'static str = "union_item";
+    #[inline]
+    fn node(&self) -> &tree_sitter::Node<'tree> {
+        &self.0
+    }
+    #[inline]
+    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        Self(node)
     }
 }
 #[doc = concat!("Typed node `", "unit_expression", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct UnitExpression<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> UnitExpression<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for UnitExpression<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -10211,12 +12113,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for UnitExpression<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> UnitExpression<'tree> {}
 #[doc = concat!("Typed node `", "unit_type", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct UnitType<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> UnitType<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for UnitType<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -10244,12 +12146,24 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for UnitType<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> UnitType<'tree> {}
 #[doc = concat!("Typed node `", "unsafe_block", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct UnsafeBlock<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> UnsafeBlock<'tree> {
+    ///Get the node's only named child
+    #[allow(dead_code)]
+    #[inline]
+    pub fn child(&self) -> type_sitter_lib::NodeResult<'tree, Block<'tree>> {
+        self.0
+            .named_child(0)
+            .map(<Block<'tree> as TryFrom<_>>::try_from)
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
+}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for UnsafeBlock<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -10277,24 +12191,56 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for UnsafeBlock<'tree> {
         Self(node)
     }
 }
+#[doc = concat!("Typed node `", "use_as_clause", "`")]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+pub struct UseAsClause<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
-impl<'tree> UnsafeBlock<'tree> {
-    ///Get the node's child
+impl<'tree> UseAsClause<'tree> {
+    #[doc = concat!("Get the field `", "alias", "`")]
     #[allow(dead_code)]
     #[inline]
-    pub fn child(&self) -> type_sitter_lib::NodeResult<'tree, Block<'tree>> {
+    pub fn alias(&self) -> type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
         self.0
-            .child(0)
-            .map(<Block<'tree> as TryFrom<_>>::try_from)
+            .child_by_field_name("alias")
+            .map(<Identifier<'tree> as TryFrom<_>>::try_from)
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
+    #[doc = concat!("Get the field `", "path", "`")]
+    #[allow(dead_code)]
+    #[inline]
+    pub fn path(
+        &self,
+    ) -> type_sitter_lib::NodeResult<
+        'tree,
+        type_sitter_lib::Either6<
+            Crate<'tree>,
+            Identifier<'tree>,
+            Metavariable<'tree>,
+            ScopedIdentifier<'tree>,
+            _Self<'tree>,
+            _Super<'tree>,
+        >,
+    > {
+        self.0
+            .child_by_field_name("path")
+            .map(
+                <type_sitter_lib::Either6<
+                    Crate<'tree>,
+                    Identifier<'tree>,
+                    Metavariable<'tree>,
+                    ScopedIdentifier<'tree>,
+                    _Self<'tree>,
+                    _Super<'tree>,
+                > as TryFrom<_>>::try_from,
+            )
             .expect(
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
     }
 }
-#[doc = concat!("Typed node `", "use_as_clause", "`")]
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-#[allow(non_camel_case_types)]
-pub struct UseAsClause<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for UseAsClause<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -10322,56 +12268,61 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for UseAsClause<'tree> {
         Self(node)
     }
 }
+#[doc = concat!("Typed node `", "use_declaration", "`")]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+pub struct UseDeclaration<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
-impl<'tree> UseAsClause<'tree> {
-    #[doc = concat!("Get the field `", "alias", "`")]
+impl<'tree> UseDeclaration<'tree> {
+    #[doc = concat!("Get the field `", "argument", "`")]
     #[allow(dead_code)]
     #[inline]
-    pub fn alias(&self) -> type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
-        self.0
-            .child_by_field_name("alias")
-            .map(<Identifier<'tree> as TryFrom<_>>::try_from)
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
-    #[doc = concat!("Get the field `", "path", "`")]
-    #[allow(dead_code)]
-    #[inline]
-    pub fn path(
+    pub fn argument(
         &self,
     ) -> type_sitter_lib::NodeResult<
         'tree,
-        type_sitter_lib::either_n::Either6<
+        type_sitter_lib::Either10<
             Crate<'tree>,
             Identifier<'tree>,
             Metavariable<'tree>,
             ScopedIdentifier<'tree>,
+            ScopedUseList<'tree>,
             _Self<'tree>,
             _Super<'tree>,
+            UseAsClause<'tree>,
+            UseList<'tree>,
+            UseWildcard<'tree>,
         >,
     > {
         self.0
-            .child_by_field_name("path")
+            .child_by_field_name("argument")
             .map(
-                <type_sitter_lib::either_n::Either6<
+                <type_sitter_lib::Either10<
                     Crate<'tree>,
                     Identifier<'tree>,
                     Metavariable<'tree>,
                     ScopedIdentifier<'tree>,
+                    ScopedUseList<'tree>,
                     _Self<'tree>,
                     _Super<'tree>,
+                    UseAsClause<'tree>,
+                    UseList<'tree>,
+                    UseWildcard<'tree>,
                 > as TryFrom<_>>::try_from,
             )
             .expect(
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
     }
+    ///Get the node's only named child
+    #[allow(dead_code)]
+    #[inline]
+    pub fn child(
+        &self,
+    ) -> Option<type_sitter_lib::NodeResult<'tree, VisibilityModifier<'tree>>> {
+        self.0.named_child(0).map(<VisibilityModifier<'tree> as TryFrom<_>>::try_from)
+    }
 }
-#[doc = concat!("Typed node `", "use_declaration", "`")]
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-#[allow(non_camel_case_types)]
-pub struct UseDeclaration<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for UseDeclaration<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -10399,32 +12350,24 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for UseDeclaration<'tree> {
         Self(node)
     }
 }
+#[doc = concat!("Typed node `", "use_list", "`")]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+pub struct UseList<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
-impl<'tree> UseDeclaration<'tree> {
-    #[doc = concat!("Get the field `", "argument", "`")]
+impl<'tree> UseList<'tree> {
+    ///Get the node's named children
     #[allow(dead_code)]
     #[inline]
-    pub fn argument(
-        &self,
-    ) -> type_sitter_lib::NodeResult<
-        'tree,
-        type_sitter_lib::either_n::Either10<
-            Crate<'tree>,
-            Identifier<'tree>,
-            Metavariable<'tree>,
-            ScopedIdentifier<'tree>,
-            ScopedUseList<'tree>,
-            _Self<'tree>,
-            _Super<'tree>,
-            UseAsClause<'tree>,
-            UseList<'tree>,
-            UseWildcard<'tree>,
-        >,
-    > {
-        self.0
-            .child_by_field_name("argument")
-            .map(
-                <type_sitter_lib::either_n::Either10<
+    pub fn children<'a>(
+        &'a self,
+        c: &'a mut tree_sitter::TreeCursor<'tree>,
+    ) -> impl Iterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either10<
                     Crate<'tree>,
                     Identifier<'tree>,
                     Metavariable<'tree>,
@@ -10435,25 +12378,77 @@ impl<'tree> UseDeclaration<'tree> {
                     UseAsClause<'tree>,
                     UseList<'tree>,
                     UseWildcard<'tree>,
+                >,
+            >,
+        >,
+    > + 'a {
+        self.0
+            .named_children(c)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either10<
+                        Crate<'tree>,
+                        Identifier<'tree>,
+                        Metavariable<'tree>,
+                        ScopedIdentifier<'tree>,
+                        ScopedUseList<'tree>,
+                        _Self<'tree>,
+                        _Super<'tree>,
+                        UseAsClause<'tree>,
+                        UseList<'tree>,
+                        UseWildcard<'tree>,
+                    >,
                 > as TryFrom<_>>::try_from,
             )
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
     }
-    ///Get the node's child
+    ///Get the node's named child #i
     #[allow(dead_code)]
     #[inline]
     pub fn child(
         &self,
-    ) -> Option<type_sitter_lib::NodeResult<'tree, VisibilityModifier<'tree>>> {
-        self.0.child(0).map(<VisibilityModifier<'tree> as TryFrom<_>>::try_from)
+        i: usize,
+    ) -> Option<
+        type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                type_sitter_lib::Either10<
+                    Crate<'tree>,
+                    Identifier<'tree>,
+                    Metavariable<'tree>,
+                    ScopedIdentifier<'tree>,
+                    ScopedUseList<'tree>,
+                    _Self<'tree>,
+                    _Super<'tree>,
+                    UseAsClause<'tree>,
+                    UseList<'tree>,
+                    UseWildcard<'tree>,
+                >,
+            >,
+        >,
+    > {
+        self.0
+            .named_child(i)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    type_sitter_lib::Either10<
+                        Crate<'tree>,
+                        Identifier<'tree>,
+                        Metavariable<'tree>,
+                        ScopedIdentifier<'tree>,
+                        ScopedUseList<'tree>,
+                        _Self<'tree>,
+                        _Super<'tree>,
+                        UseAsClause<'tree>,
+                        UseList<'tree>,
+                        UseWildcard<'tree>,
+                    >,
+                > as TryFrom<_>>::try_from,
+            )
     }
 }
-#[doc = concat!("Typed node `", "use_list", "`")]
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-#[allow(non_camel_case_types)]
-pub struct UseList<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for UseList<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -10481,93 +12476,44 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for UseList<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> UseList<'tree> {
-    ///Get the node's children
-    #[allow(dead_code)]
-    #[inline]
-    pub fn children<'a>(
-        &'a self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
-    ) -> impl Iterator<
-        Item = type_sitter_lib::NodeResult<
-            'tree,
-            type_sitter_lib::either_n::Either10<
-                Crate<'tree>,
-                Identifier<'tree>,
-                Metavariable<'tree>,
-                ScopedIdentifier<'tree>,
-                ScopedUseList<'tree>,
-                _Self<'tree>,
-                _Super<'tree>,
-                UseAsClause<'tree>,
-                UseList<'tree>,
-                UseWildcard<'tree>,
-            >,
-        >,
-    > + 'a {
-        self.0
-            .children(c)
-            .map(
-                <type_sitter_lib::either_n::Either10<
-                    Crate<'tree>,
-                    Identifier<'tree>,
-                    Metavariable<'tree>,
-                    ScopedIdentifier<'tree>,
-                    ScopedUseList<'tree>,
-                    _Self<'tree>,
-                    _Super<'tree>,
-                    UseAsClause<'tree>,
-                    UseList<'tree>,
-                    UseWildcard<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
-    }
-    ///Get the node's child #i
-    #[allow(dead_code)]
-    #[inline]
-    pub fn child(
-        &self,
-        i: usize,
-    ) -> Option<
-        type_sitter_lib::NodeResult<
-            'tree,
-            type_sitter_lib::either_n::Either10<
-                Crate<'tree>,
-                Identifier<'tree>,
-                Metavariable<'tree>,
-                ScopedIdentifier<'tree>,
-                ScopedUseList<'tree>,
-                _Self<'tree>,
-                _Super<'tree>,
-                UseAsClause<'tree>,
-                UseList<'tree>,
-                UseWildcard<'tree>,
-            >,
-        >,
-    > {
-        self.0
-            .child(i)
-            .map(
-                <type_sitter_lib::either_n::Either10<
-                    Crate<'tree>,
-                    Identifier<'tree>,
-                    Metavariable<'tree>,
-                    ScopedIdentifier<'tree>,
-                    ScopedUseList<'tree>,
-                    _Self<'tree>,
-                    _Super<'tree>,
-                    UseAsClause<'tree>,
-                    UseList<'tree>,
-                    UseWildcard<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
-    }
-}
 #[doc = concat!("Typed node `", "use_wildcard", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct UseWildcard<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> UseWildcard<'tree> {
+    ///Get the node's only named child
+    #[allow(dead_code)]
+    #[inline]
+    pub fn child(
+        &self,
+    ) -> Option<
+        type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::Either6<
+                Crate<'tree>,
+                Identifier<'tree>,
+                Metavariable<'tree>,
+                ScopedIdentifier<'tree>,
+                _Self<'tree>,
+                _Super<'tree>,
+            >,
+        >,
+    > {
+        self.0
+            .named_child(0)
+            .map(
+                <type_sitter_lib::Either6<
+                    Crate<'tree>,
+                    Identifier<'tree>,
+                    Metavariable<'tree>,
+                    ScopedIdentifier<'tree>,
+                    _Self<'tree>,
+                    _Super<'tree>,
+                > as TryFrom<_>>::try_from,
+            )
+    }
+}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for UseWildcard<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -10595,44 +12541,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for UseWildcard<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> UseWildcard<'tree> {
-    ///Get the node's child
-    #[allow(dead_code)]
-    #[inline]
-    pub fn child(
-        &self,
-    ) -> Option<
-        type_sitter_lib::NodeResult<
-            'tree,
-            type_sitter_lib::either_n::Either6<
-                Crate<'tree>,
-                Identifier<'tree>,
-                Metavariable<'tree>,
-                ScopedIdentifier<'tree>,
-                _Self<'tree>,
-                _Super<'tree>,
-            >,
-        >,
-    > {
-        self.0
-            .child(0)
-            .map(
-                <type_sitter_lib::either_n::Either6<
-                    Crate<'tree>,
-                    Identifier<'tree>,
-                    Metavariable<'tree>,
-                    ScopedIdentifier<'tree>,
-                    _Self<'tree>,
-                    _Super<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
-    }
-}
 #[doc = concat!("Typed node `", "variadic_parameter", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct VariadicParameter<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> VariadicParameter<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for VariadicParameter<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -10660,12 +12574,44 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for VariadicParameter<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> VariadicParameter<'tree> {}
 #[doc = concat!("Typed node `", "visibility_modifier", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct VisibilityModifier<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> VisibilityModifier<'tree> {
+    ///Get the node's only named child
+    #[allow(dead_code)]
+    #[inline]
+    pub fn child(
+        &self,
+    ) -> Option<
+        type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::Either6<
+                Crate<'tree>,
+                Identifier<'tree>,
+                Metavariable<'tree>,
+                ScopedIdentifier<'tree>,
+                _Self<'tree>,
+                _Super<'tree>,
+            >,
+        >,
+    > {
+        self.0
+            .named_child(0)
+            .map(
+                <type_sitter_lib::Either6<
+                    Crate<'tree>,
+                    Identifier<'tree>,
+                    Metavariable<'tree>,
+                    ScopedIdentifier<'tree>,
+                    _Self<'tree>,
+                    _Super<'tree>,
+                > as TryFrom<_>>::try_from,
+            )
+    }
+}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for VisibilityModifier<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -10693,44 +12639,56 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for VisibilityModifier<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> VisibilityModifier<'tree> {
-    ///Get the node's child
-    #[allow(dead_code)]
-    #[inline]
-    pub fn child(
-        &self,
-    ) -> Option<
-        type_sitter_lib::NodeResult<
-            'tree,
-            type_sitter_lib::either_n::Either6<
-                Crate<'tree>,
-                Identifier<'tree>,
-                Metavariable<'tree>,
-                ScopedIdentifier<'tree>,
-                _Self<'tree>,
-                _Super<'tree>,
-            >,
-        >,
-    > {
-        self.0
-            .child(0)
-            .map(
-                <type_sitter_lib::either_n::Either6<
-                    Crate<'tree>,
-                    Identifier<'tree>,
-                    Metavariable<'tree>,
-                    ScopedIdentifier<'tree>,
-                    _Self<'tree>,
-                    _Super<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
-    }
-}
 #[doc = concat!("Typed node `", "where_clause", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct WhereClause<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> WhereClause<'tree> {
+    ///Get the node's named children
+    ///This is guaranteed to return at least one child
+    #[allow(dead_code)]
+    #[inline]
+    pub fn children<'a>(
+        &'a self,
+        c: &'a mut tree_sitter::TreeCursor<'tree>,
+    ) -> impl Iterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<'tree, WherePredicate<'tree>>,
+        >,
+    > + 'a {
+        self.0
+            .named_children(c)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    WherePredicate<'tree>,
+                > as TryFrom<_>>::try_from,
+            )
+    }
+    ///Get the node's named child #i
+    #[allow(dead_code)]
+    #[inline]
+    pub fn child(
+        &self,
+        i: usize,
+    ) -> Option<
+        type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<'tree, WherePredicate<'tree>>,
+        >,
+    > {
+        self.0
+            .named_child(i)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    WherePredicate<'tree>,
+                > as TryFrom<_>>::try_from,
+            )
+    }
+}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for WhereClause<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -10758,34 +12716,64 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for WhereClause<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> WhereClause<'tree> {
-    ///Get the node's children
-    ///This is guaranteed to return at least one child
-    #[allow(dead_code)]
-    #[inline]
-    pub fn children<'a>(
-        &'a self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
-    ) -> impl Iterator<
-        Item = type_sitter_lib::NodeResult<'tree, WherePredicate<'tree>>,
-    > + 'a {
-        self.0.children(c).map(<WherePredicate<'tree> as TryFrom<_>>::try_from)
-    }
-    ///Get the node's child #i
-    #[allow(dead_code)]
-    #[inline]
-    pub fn child(
-        &self,
-        i: usize,
-    ) -> Option<type_sitter_lib::NodeResult<'tree, WherePredicate<'tree>>> {
-        self.0.child(i).map(<WherePredicate<'tree> as TryFrom<_>>::try_from)
-    }
-}
 #[doc = concat!("Typed node `", "where_predicate", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct WherePredicate<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> WherePredicate<'tree> {
+    #[doc = concat!("Get the field `", "bounds", "`")]
+    #[allow(dead_code)]
+    #[inline]
+    pub fn bounds(&self) -> type_sitter_lib::NodeResult<'tree, TraitBounds<'tree>> {
+        self.0
+            .child_by_field_name("bounds")
+            .map(<TraitBounds<'tree> as TryFrom<_>>::try_from)
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
+    #[doc = concat!("Get the field `", "left", "`")]
+    #[allow(dead_code)]
+    #[inline]
+    pub fn left(
+        &self,
+    ) -> type_sitter_lib::NodeResult<
+        'tree,
+        type_sitter_lib::Either10<
+            ArrayType<'tree>,
+            GenericType<'tree>,
+            HigherRankedTraitBound<'tree>,
+            Lifetime<'tree>,
+            PointerType<'tree>,
+            PrimitiveType<'tree>,
+            ReferenceType<'tree>,
+            ScopedTypeIdentifier<'tree>,
+            TupleType<'tree>,
+            TypeIdentifier<'tree>,
+        >,
+    > {
+        self.0
+            .child_by_field_name("left")
+            .map(
+                <type_sitter_lib::Either10<
+                    ArrayType<'tree>,
+                    GenericType<'tree>,
+                    HigherRankedTraitBound<'tree>,
+                    Lifetime<'tree>,
+                    PointerType<'tree>,
+                    PrimitiveType<'tree>,
+                    ReferenceType<'tree>,
+                    ScopedTypeIdentifier<'tree>,
+                    TupleType<'tree>,
+                    TypeIdentifier<'tree>,
+                > as TryFrom<_>>::try_from,
+            )
+            .expect(
+                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            )
+    }
+}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for WherePredicate<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -10813,64 +12801,52 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for WherePredicate<'tree> {
         Self(node)
     }
 }
+#[doc = concat!("Typed node `", "while_expression", "`")]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+pub struct WhileExpression<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
-impl<'tree> WherePredicate<'tree> {
-    #[doc = concat!("Get the field `", "bounds", "`")]
+impl<'tree> WhileExpression<'tree> {
+    #[doc = concat!("Get the field `", "body", "`")]
     #[allow(dead_code)]
     #[inline]
-    pub fn bounds(&self) -> type_sitter_lib::NodeResult<'tree, TraitBounds<'tree>> {
+    pub fn body(&self) -> type_sitter_lib::NodeResult<'tree, Block<'tree>> {
         self.0
-            .child_by_field_name("bounds")
-            .map(<TraitBounds<'tree> as TryFrom<_>>::try_from)
+            .child_by_field_name("body")
+            .map(<Block<'tree> as TryFrom<_>>::try_from)
             .expect(
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
     }
-    #[doc = concat!("Get the field `", "left", "`")]
+    #[doc = concat!("Get the field `", "condition", "`")]
     #[allow(dead_code)]
     #[inline]
-    pub fn left(
+    pub fn condition(
         &self,
     ) -> type_sitter_lib::NodeResult<
         'tree,
-        type_sitter_lib::either_n::Either10<
-            ArrayType<'tree>,
-            GenericType<'tree>,
-            HigherRankedTraitBound<'tree>,
-            Lifetime<'tree>,
-            PointerType<'tree>,
-            PrimitiveType<'tree>,
-            ReferenceType<'tree>,
-            ScopedTypeIdentifier<'tree>,
-            TupleType<'tree>,
-            TypeIdentifier<'tree>,
-        >,
+        type_sitter_lib::Either3<Expression<'tree>, LetChain<'tree>, LetCondition<'tree>>,
     > {
         self.0
-            .child_by_field_name("left")
+            .child_by_field_name("condition")
             .map(
-                <type_sitter_lib::either_n::Either10<
-                    ArrayType<'tree>,
-                    GenericType<'tree>,
-                    HigherRankedTraitBound<'tree>,
-                    Lifetime<'tree>,
-                    PointerType<'tree>,
-                    PrimitiveType<'tree>,
-                    ReferenceType<'tree>,
-                    ScopedTypeIdentifier<'tree>,
-                    TupleType<'tree>,
-                    TypeIdentifier<'tree>,
+                <type_sitter_lib::Either3<
+                    Expression<'tree>,
+                    LetChain<'tree>,
+                    LetCondition<'tree>,
                 > as TryFrom<_>>::try_from,
             )
             .expect(
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
     }
+    ///Get the node's only named child
+    #[allow(dead_code)]
+    #[inline]
+    pub fn child(&self) -> Option<type_sitter_lib::NodeResult<'tree, LoopLabel<'tree>>> {
+        self.0.named_child(0).map(<LoopLabel<'tree> as TryFrom<_>>::try_from)
+    }
 }
-#[doc = concat!("Typed node `", "while_expression", "`")]
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-#[allow(non_camel_case_types)]
-pub struct WhileExpression<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for WhileExpression<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -10898,56 +12874,21 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for WhileExpression<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> WhileExpression<'tree> {
-    #[doc = concat!("Get the field `", "body", "`")]
-    #[allow(dead_code)]
-    #[inline]
-    pub fn body(&self) -> type_sitter_lib::NodeResult<'tree, Block<'tree>> {
-        self.0
-            .child_by_field_name("body")
-            .map(<Block<'tree> as TryFrom<_>>::try_from)
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
-    #[doc = concat!("Get the field `", "condition", "`")]
-    #[allow(dead_code)]
-    #[inline]
-    pub fn condition(
-        &self,
-    ) -> type_sitter_lib::NodeResult<
-        'tree,
-        type_sitter_lib::either_n::Either3<
-            Expression<'tree>,
-            LetChain<'tree>,
-            LetCondition<'tree>,
-        >,
-    > {
-        self.0
-            .child_by_field_name("condition")
-            .map(
-                <type_sitter_lib::either_n::Either3<
-                    Expression<'tree>,
-                    LetChain<'tree>,
-                    LetCondition<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
-            )
-    }
-    ///Get the node's child
-    #[allow(dead_code)]
-    #[inline]
-    pub fn child(&self) -> Option<type_sitter_lib::NodeResult<'tree, LoopLabel<'tree>>> {
-        self.0.child(0).map(<LoopLabel<'tree> as TryFrom<_>>::try_from)
-    }
-}
 #[doc = concat!("Typed node `", "yield_expression", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct YieldExpression<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> YieldExpression<'tree> {
+    ///Get the node's only named child
+    #[allow(dead_code)]
+    #[inline]
+    pub fn child(
+        &self,
+    ) -> Option<type_sitter_lib::NodeResult<'tree, Expression<'tree>>> {
+        self.0.named_child(0).map(<Expression<'tree> as TryFrom<_>>::try_from)
+    }
+}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for YieldExpression<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -10975,21 +12916,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for YieldExpression<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> YieldExpression<'tree> {
-    ///Get the node's child
-    #[allow(dead_code)]
-    #[inline]
-    pub fn child(
-        &self,
-    ) -> Option<type_sitter_lib::NodeResult<'tree, Expression<'tree>>> {
-        self.0.child(0).map(<Expression<'tree> as TryFrom<_>>::try_from)
-    }
-}
 #[doc = concat!("Typed node `", "!", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct Not<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> Not<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Not<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -11017,12 +12949,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Not<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> Not<'tree> {}
 #[doc = concat!("Typed node `", "!=", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct NotEq<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> NotEq<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for NotEq<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -11050,12 +12982,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for NotEq<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> NotEq<'tree> {}
 #[doc = concat!("Typed node `", "\"", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct DoubleQuote<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> DoubleQuote<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for DoubleQuote<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -11083,12 +13015,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for DoubleQuote<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> DoubleQuote<'tree> {}
 #[doc = concat!("Typed node `", "#", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct Hash<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> Hash<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Hash<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -11116,12 +13048,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Hash<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> Hash<'tree> {}
 #[doc = concat!("Typed node `", "$", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct Dollar<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> Dollar<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Dollar<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -11149,12 +13081,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Dollar<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> Dollar<'tree> {}
 #[doc = concat!("Typed node `", "%", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct Mod<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> Mod<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Mod<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -11182,12 +13114,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Mod<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> Mod<'tree> {}
 #[doc = concat!("Typed node `", "%=", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct ModEq<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> ModEq<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ModEq<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -11215,12 +13147,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ModEq<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> ModEq<'tree> {}
 #[doc = concat!("Typed node `", "&", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct And<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> And<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for And<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -11248,12 +13180,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for And<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> And<'tree> {}
 #[doc = concat!("Typed node `", "&&", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct AndAnd<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> AndAnd<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for AndAnd<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -11281,12 +13213,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for AndAnd<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> AndAnd<'tree> {}
 #[doc = concat!("Typed node `", "&=", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct AndEq<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> AndEq<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for AndEq<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -11314,12 +13246,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for AndEq<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> AndEq<'tree> {}
 #[doc = concat!("Typed node `", "'", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct Quote<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> Quote<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Quote<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -11347,12 +13279,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Quote<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> Quote<'tree> {}
 #[doc = concat!("Typed node `", "(", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct LParen<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> LParen<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for LParen<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -11380,12 +13312,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for LParen<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> LParen<'tree> {}
 #[doc = concat!("Typed node `", ")", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct RParen<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> RParen<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for RParen<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -11413,12 +13345,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for RParen<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> RParen<'tree> {}
 #[doc = concat!("Typed node `", "*", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct Mul<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> Mul<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Mul<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -11446,12 +13378,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Mul<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> Mul<'tree> {}
 #[doc = concat!("Typed node `", "*=", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct MulEq<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> MulEq<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for MulEq<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -11479,12 +13411,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for MulEq<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> MulEq<'tree> {}
 #[doc = concat!("Typed node `", "+", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct Add<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> Add<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Add<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -11512,12 +13444,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Add<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> Add<'tree> {}
 #[doc = concat!("Typed node `", "+=", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct AddEq<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> AddEq<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for AddEq<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -11545,12 +13477,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for AddEq<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> AddEq<'tree> {}
 #[doc = concat!("Typed node `", ",", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct Comma<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> Comma<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Comma<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -11578,12 +13510,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Comma<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> Comma<'tree> {}
 #[doc = concat!("Typed node `", "-", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct Sub<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> Sub<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Sub<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -11611,12 +13543,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Sub<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> Sub<'tree> {}
 #[doc = concat!("Typed node `", "-=", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct SubEq<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> SubEq<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for SubEq<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -11644,12 +13576,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for SubEq<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> SubEq<'tree> {}
 #[doc = concat!("Typed node `", "->", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct SubGt<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> SubGt<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for SubGt<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -11677,12 +13609,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for SubGt<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> SubGt<'tree> {}
 #[doc = concat!("Typed node `", ".", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct Dot<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> Dot<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Dot<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -11710,12 +13642,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Dot<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> Dot<'tree> {}
 #[doc = concat!("Typed node `", "..", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct DotDot<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> DotDot<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for DotDot<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -11743,12 +13675,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for DotDot<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> DotDot<'tree> {}
 #[doc = concat!("Typed node `", "...", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct DotDotDot<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> DotDotDot<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for DotDotDot<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -11776,12 +13708,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for DotDotDot<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> DotDotDot<'tree> {}
 #[doc = concat!("Typed node `", "..=", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct DotDotEq<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> DotDotEq<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for DotDotEq<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -11809,12 +13741,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for DotDotEq<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> DotDotEq<'tree> {}
 #[doc = concat!("Typed node `", "/", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct Div<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> Div<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Div<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -11842,12 +13774,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Div<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> Div<'tree> {}
 #[doc = concat!("Typed node `", "/=", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct DivEq<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> DivEq<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for DivEq<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -11875,12 +13807,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for DivEq<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> DivEq<'tree> {}
 #[doc = concat!("Typed node `", ":", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct Colon<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> Colon<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Colon<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -11908,12 +13840,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Colon<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> Colon<'tree> {}
 #[doc = concat!("Typed node `", "::", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct ColonColon<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> ColonColon<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ColonColon<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -11941,12 +13873,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ColonColon<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> ColonColon<'tree> {}
 #[doc = concat!("Typed node `", ";", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct Semicolon<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> Semicolon<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Semicolon<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -11974,12 +13906,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Semicolon<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> Semicolon<'tree> {}
 #[doc = concat!("Typed node `", "<", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct Lt<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> Lt<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Lt<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -12007,12 +13939,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Lt<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> Lt<'tree> {}
 #[doc = concat!("Typed node `", "<<", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct LtLt<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> LtLt<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for LtLt<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -12040,12 +13972,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for LtLt<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> LtLt<'tree> {}
 #[doc = concat!("Typed node `", "<<=", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct LtLtEq<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> LtLtEq<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for LtLtEq<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -12073,12 +14005,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for LtLtEq<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> LtLtEq<'tree> {}
 #[doc = concat!("Typed node `", "<=", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct LtEq<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> LtEq<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for LtEq<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -12106,12 +14038,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for LtEq<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> LtEq<'tree> {}
 #[doc = concat!("Typed node `", "=", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct Eq<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> Eq<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Eq<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -12139,12 +14071,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Eq<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> Eq<'tree> {}
 #[doc = concat!("Typed node `", "==", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct EqEq<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> EqEq<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for EqEq<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -12172,12 +14104,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for EqEq<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> EqEq<'tree> {}
 #[doc = concat!("Typed node `", "=>", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct EqGt<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> EqGt<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for EqGt<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -12205,12 +14137,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for EqGt<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> EqGt<'tree> {}
 #[doc = concat!("Typed node `", ">", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct Gt<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> Gt<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Gt<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -12238,12 +14170,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Gt<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> Gt<'tree> {}
 #[doc = concat!("Typed node `", ">=", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct GtEq<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> GtEq<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for GtEq<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -12271,12 +14203,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for GtEq<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> GtEq<'tree> {}
 #[doc = concat!("Typed node `", ">>", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct GtGt<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> GtGt<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for GtGt<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -12304,12 +14236,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for GtGt<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> GtGt<'tree> {}
 #[doc = concat!("Typed node `", ">>=", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct GtGtEq<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> GtGtEq<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for GtGtEq<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -12337,12 +14269,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for GtGtEq<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> GtGtEq<'tree> {}
 #[doc = concat!("Typed node `", "?", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct Question<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> Question<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Question<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -12370,12 +14302,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Question<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> Question<'tree> {}
 #[doc = concat!("Typed node `", "@", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct At<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> At<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for At<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -12403,12 +14335,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for At<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> At<'tree> {}
 #[doc = concat!("Typed node `", "[", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct LBracket<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> LBracket<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for LBracket<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -12436,12 +14368,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for LBracket<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> LBracket<'tree> {}
 #[doc = concat!("Typed node `", "]", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct RBracket<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> RBracket<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for RBracket<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -12469,12 +14401,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for RBracket<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> RBracket<'tree> {}
 #[doc = concat!("Typed node `", "^", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct BitXor<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> BitXor<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for BitXor<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -12502,12 +14434,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for BitXor<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> BitXor<'tree> {}
 #[doc = concat!("Typed node `", "^=", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct BitXorEq<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> BitXorEq<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for BitXorEq<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -12535,12 +14467,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for BitXorEq<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> BitXorEq<'tree> {}
 #[doc = concat!("Typed node `", "_", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct __<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> __<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for __<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -12568,12 +14500,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for __<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> __<'tree> {}
 #[doc = concat!("Typed node `", "as", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct AS<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> AS<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for AS<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -12601,12 +14533,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for AS<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> AS<'tree> {}
 #[doc = concat!("Typed node `", "async", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct ASYNC<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> ASYNC<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ASYNC<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -12634,12 +14566,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ASYNC<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> ASYNC<'tree> {}
 #[doc = concat!("Typed node `", "await", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct AWAIT<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> AWAIT<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for AWAIT<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -12667,12 +14599,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for AWAIT<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> AWAIT<'tree> {}
 #[doc = concat!("Typed node `", "block", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct BLOCK<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> BLOCK<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for BLOCK<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -12700,12 +14632,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for BLOCK<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> BLOCK<'tree> {}
 #[doc = concat!("Typed node `", "block_comment", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct BlockComment<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> BlockComment<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for BlockComment<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -12733,12 +14665,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for BlockComment<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> BlockComment<'tree> {}
 #[doc = concat!("Typed node `", "break", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct BREAK<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> BREAK<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for BREAK<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -12766,12 +14698,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for BREAK<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> BREAK<'tree> {}
 #[doc = concat!("Typed node `", "char_literal", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct CharLiteral<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> CharLiteral<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for CharLiteral<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -12799,12 +14731,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for CharLiteral<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> CharLiteral<'tree> {}
 #[doc = concat!("Typed node `", "const", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct CONST<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> CONST<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for CONST<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -12832,12 +14764,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for CONST<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> CONST<'tree> {}
 #[doc = concat!("Typed node `", "continue", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct CONTINUE<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> CONTINUE<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for CONTINUE<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -12865,12 +14797,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for CONTINUE<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> CONTINUE<'tree> {}
 #[doc = concat!("Typed node `", "crate", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct Crate<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> Crate<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Crate<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -12898,12 +14830,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Crate<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> Crate<'tree> {}
 #[doc = concat!("Typed node `", "default", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct DEFAULT<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> DEFAULT<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for DEFAULT<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -12931,12 +14863,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for DEFAULT<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> DEFAULT<'tree> {}
 #[doc = concat!("Typed node `", "dyn", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct DYN<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> DYN<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for DYN<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -12964,12 +14896,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for DYN<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> DYN<'tree> {}
 #[doc = concat!("Typed node `", "else", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct ELSE<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> ELSE<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ELSE<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -12997,12 +14929,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ELSE<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> ELSE<'tree> {}
 #[doc = concat!("Typed node `", "enum", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct ENUM<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> ENUM<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ENUM<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -13030,12 +14962,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ENUM<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> ENUM<'tree> {}
 #[doc = concat!("Typed node `", "escape_sequence", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct EscapeSequence<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> EscapeSequence<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for EscapeSequence<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -13063,12 +14995,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for EscapeSequence<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> EscapeSequence<'tree> {}
 #[doc = concat!("Typed node `", "expr", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct EXPR<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> EXPR<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for EXPR<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -13096,12 +15028,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for EXPR<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> EXPR<'tree> {}
 #[doc = concat!("Typed node `", "extern", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct EXTERN<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> EXTERN<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for EXTERN<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -13129,12 +15061,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for EXTERN<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> EXTERN<'tree> {}
 #[doc = concat!("Typed node `", "false", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct FALSE<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> FALSE<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for FALSE<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -13162,12 +15094,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for FALSE<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> FALSE<'tree> {}
 #[doc = concat!("Typed node `", "field_identifier", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct FieldIdentifier<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> FieldIdentifier<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for FieldIdentifier<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -13195,12 +15127,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for FieldIdentifier<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> FieldIdentifier<'tree> {}
 #[doc = concat!("Typed node `", "float_literal", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct FloatLiteral<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> FloatLiteral<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for FloatLiteral<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -13228,12 +15160,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for FloatLiteral<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> FloatLiteral<'tree> {}
 #[doc = concat!("Typed node `", "fn", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct FN<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> FN<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for FN<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -13261,12 +15193,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for FN<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> FN<'tree> {}
 #[doc = concat!("Typed node `", "for", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct FOR<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> FOR<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for FOR<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -13294,12 +15226,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for FOR<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> FOR<'tree> {}
 #[doc = concat!("Typed node `", "ident", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct IDENT<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> IDENT<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for IDENT<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -13327,12 +15259,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for IDENT<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> IDENT<'tree> {}
 #[doc = concat!("Typed node `", "identifier", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct Identifier<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> Identifier<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Identifier<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -13360,12 +15292,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Identifier<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> Identifier<'tree> {}
 #[doc = concat!("Typed node `", "if", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct IF<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> IF<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for IF<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -13393,12 +15325,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for IF<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> IF<'tree> {}
 #[doc = concat!("Typed node `", "impl", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct IMPL<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> IMPL<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for IMPL<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -13426,12 +15358,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for IMPL<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> IMPL<'tree> {}
 #[doc = concat!("Typed node `", "in", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct IN<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> IN<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for IN<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -13459,12 +15391,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for IN<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> IN<'tree> {}
 #[doc = concat!("Typed node `", "integer_literal", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct IntegerLiteral<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> IntegerLiteral<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for IntegerLiteral<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -13492,12 +15424,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for IntegerLiteral<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> IntegerLiteral<'tree> {}
 #[doc = concat!("Typed node `", "item", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct ITEM<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> ITEM<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ITEM<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -13525,12 +15457,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ITEM<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> ITEM<'tree> {}
 #[doc = concat!("Typed node `", "let", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct LET<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> LET<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for LET<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -13558,12 +15490,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for LET<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> LET<'tree> {}
 #[doc = concat!("Typed node `", "lifetime", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct LIFETIME<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> LIFETIME<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for LIFETIME<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -13591,12 +15523,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for LIFETIME<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> LIFETIME<'tree> {}
 #[doc = concat!("Typed node `", "line_comment", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct LineComment<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> LineComment<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for LineComment<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -13624,12 +15556,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for LineComment<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> LineComment<'tree> {}
 #[doc = concat!("Typed node `", "literal", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct LITERAL<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> LITERAL<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for LITERAL<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -13657,12 +15589,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for LITERAL<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> LITERAL<'tree> {}
 #[doc = concat!("Typed node `", "loop", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct LOOP<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> LOOP<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for LOOP<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -13690,12 +15622,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for LOOP<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> LOOP<'tree> {}
 #[doc = concat!("Typed node `", "macro_rules!", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct MACROU5FRULESNot<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> MACROU5FRULESNot<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for MACROU5FRULESNot<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -13723,12 +15655,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for MACROU5FRULESNot<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> MACROU5FRULESNot<'tree> {}
 #[doc = concat!("Typed node `", "match", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct MATCH<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> MATCH<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for MATCH<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -13756,12 +15688,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for MATCH<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> MATCH<'tree> {}
 #[doc = concat!("Typed node `", "meta", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct META<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> META<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for META<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -13789,12 +15721,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for META<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> META<'tree> {}
 #[doc = concat!("Typed node `", "metavariable", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct Metavariable<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> Metavariable<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Metavariable<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -13822,12 +15754,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Metavariable<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> Metavariable<'tree> {}
 #[doc = concat!("Typed node `", "mod", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct MOD<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> MOD<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for MOD<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -13855,12 +15787,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for MOD<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> MOD<'tree> {}
 #[doc = concat!("Typed node `", "move", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct MOVE<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> MOVE<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for MOVE<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -13888,12 +15820,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for MOVE<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> MOVE<'tree> {}
 #[doc = concat!("Typed node `", "mutable_specifier", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct MutableSpecifier<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> MutableSpecifier<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for MutableSpecifier<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -13921,12 +15853,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for MutableSpecifier<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> MutableSpecifier<'tree> {}
 #[doc = concat!("Typed node `", "pat", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct PAT<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> PAT<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for PAT<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -13954,12 +15886,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for PAT<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> PAT<'tree> {}
 #[doc = concat!("Typed node `", "path", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct PATH<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> PATH<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for PATH<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -13987,12 +15919,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for PATH<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> PATH<'tree> {}
 #[doc = concat!("Typed node `", "primitive_type", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct PrimitiveType<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> PrimitiveType<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for PrimitiveType<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -14020,12 +15952,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for PrimitiveType<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> PrimitiveType<'tree> {}
 #[doc = concat!("Typed node `", "pub", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct PUB<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> PUB<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for PUB<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -14053,12 +15985,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for PUB<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> PUB<'tree> {}
 #[doc = concat!("Typed node `", "raw_string_literal", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct RawStringLiteral<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> RawStringLiteral<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for RawStringLiteral<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -14086,12 +16018,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for RawStringLiteral<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> RawStringLiteral<'tree> {}
 #[doc = concat!("Typed node `", "ref", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct REF<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> REF<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for REF<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -14119,12 +16051,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for REF<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> REF<'tree> {}
 #[doc = concat!("Typed node `", "return", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct RETURN<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> RETURN<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for RETURN<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -14152,12 +16084,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for RETURN<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> RETURN<'tree> {}
 #[doc = concat!("Typed node `", "self", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct _Self<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> _Self<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for _Self<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -14185,12 +16117,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for _Self<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> _Self<'tree> {}
 #[doc = concat!("Typed node `", "shorthand_field_identifier", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct ShorthandFieldIdentifier<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> ShorthandFieldIdentifier<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ShorthandFieldIdentifier<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -14218,12 +16150,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ShorthandFieldIdentifier<'tree
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> ShorthandFieldIdentifier<'tree> {}
 #[doc = concat!("Typed node `", "static", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct STATIC<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> STATIC<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for STATIC<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -14251,12 +16183,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for STATIC<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> STATIC<'tree> {}
 #[doc = concat!("Typed node `", "stmt", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct STMT<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> STMT<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for STMT<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -14284,12 +16216,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for STMT<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> STMT<'tree> {}
 #[doc = concat!("Typed node `", "struct", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct STRUCT<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> STRUCT<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for STRUCT<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -14317,12 +16249,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for STRUCT<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> STRUCT<'tree> {}
 #[doc = concat!("Typed node `", "super", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct _Super<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> _Super<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for _Super<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -14350,12 +16282,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for _Super<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> _Super<'tree> {}
 #[doc = concat!("Typed node `", "trait", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct TRAIT<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> TRAIT<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for TRAIT<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -14383,12 +16315,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TRAIT<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> TRAIT<'tree> {}
 #[doc = concat!("Typed node `", "true", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct TRUE<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> TRUE<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for TRUE<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -14416,12 +16348,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TRUE<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> TRUE<'tree> {}
 #[doc = concat!("Typed node `", "tt", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct TT<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> TT<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for TT<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -14449,12 +16381,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TT<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> TT<'tree> {}
 #[doc = concat!("Typed node `", "ty", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct TY<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> TY<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for TY<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -14482,12 +16414,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TY<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> TY<'tree> {}
 #[doc = concat!("Typed node `", "type", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct TYPE<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> TYPE<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for TYPE<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -14515,12 +16447,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TYPE<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> TYPE<'tree> {}
 #[doc = concat!("Typed node `", "type_identifier", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct TypeIdentifier<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> TypeIdentifier<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for TypeIdentifier<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -14548,12 +16480,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TypeIdentifier<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> TypeIdentifier<'tree> {}
 #[doc = concat!("Typed node `", "union", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct UNION<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> UNION<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for UNION<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -14581,12 +16513,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for UNION<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> UNION<'tree> {}
 #[doc = concat!("Typed node `", "unsafe", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct UNSAFE<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> UNSAFE<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for UNSAFE<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -14614,12 +16546,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for UNSAFE<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> UNSAFE<'tree> {}
 #[doc = concat!("Typed node `", "use", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct USE<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> USE<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for USE<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -14647,12 +16579,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for USE<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> USE<'tree> {}
 #[doc = concat!("Typed node `", "vis", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct VIS<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> VIS<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for VIS<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -14680,12 +16612,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for VIS<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> VIS<'tree> {}
 #[doc = concat!("Typed node `", "where", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct WHERE<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> WHERE<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for WHERE<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -14713,12 +16645,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for WHERE<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> WHERE<'tree> {}
 #[doc = concat!("Typed node `", "while", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct WHILE<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> WHILE<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for WHILE<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -14746,12 +16678,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for WHILE<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> WHILE<'tree> {}
 #[doc = concat!("Typed node `", "yield", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct YIELD<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> YIELD<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for YIELD<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -14779,12 +16711,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for YIELD<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> YIELD<'tree> {}
 #[doc = concat!("Typed node `", "{", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct LBrace<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> LBrace<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for LBrace<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -14812,12 +16744,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for LBrace<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> LBrace<'tree> {}
 #[doc = concat!("Typed node `", "|", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct Or<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> Or<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Or<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -14845,12 +16777,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Or<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> Or<'tree> {}
 #[doc = concat!("Typed node `", "|=", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct OrEq<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> OrEq<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for OrEq<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -14878,12 +16810,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for OrEq<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> OrEq<'tree> {}
 #[doc = concat!("Typed node `", "||", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct OrOr<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> OrOr<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for OrOr<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -14911,12 +16843,12 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for OrOr<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> OrOr<'tree> {}
 #[doc = concat!("Typed node `", "}", "`")]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct RBrace<'tree>(tree_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> RBrace<'tree> {}
 #[automatically_derived]
 impl<'tree> TryFrom<tree_sitter::Node<'tree>> for RBrace<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
@@ -14944,5 +16876,3 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for RBrace<'tree> {
         Self(node)
     }
 }
-#[automatically_derived]
-impl<'tree> RBrace<'tree> {}

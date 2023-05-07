@@ -35,6 +35,7 @@ pub struct Children {
 pub struct NodeName {
     pub sexp_name: String,
     pub rust_type_name: String,
+    pub rust_method_name: String,
     pub is_implicit: bool
 }
 
@@ -56,6 +57,11 @@ impl From<_NodeName> for NodeName {
             true => Case::Pascal,
         };
         let rust_type_name = make_valid(&snake_case.from_case(Case::Snake).to_case(case));
-        Self { sexp_name, rust_type_name, is_implicit }
+        let mut rust_method_name = rust_type_name.from_case(case).to_case(Case::Snake);
+        // Hacky workaround because cases are hard. TODO: Fix names in general
+        if rust_method_name.is_empty() {
+            rust_method_name.push_str("__");
+        }
+        Self { sexp_name, rust_type_name, rust_method_name, is_implicit }
     }
 }

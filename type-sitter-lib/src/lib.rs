@@ -1,9 +1,21 @@
 #![doc = include_str!("../README.md")]
 
+use std::str::Utf8Error;
 use tree_sitter::Node;
+pub use either_n::*;
+pub use extra_or::*;
+pub use incorrect_kind::*;
+pub use unwrap_and_flatten_multi::*;
 
 /// Tagged unions of arbitrary size
-pub mod either_n;
+mod either_n;
+/// Many typed node accessors can return an extra node instead of what is positionally-expected,
+/// this create has the type to wrap those.
+mod extra_or;
+/// Errors when a node has the wrong kind so it can't be wrapped
+mod incorrect_kind;
+/// Unwrapping multiple `Try`-types at once
+mod unwrap_and_flatten_multi;
 
 /// Typed node wrapper
 pub trait TypedNode<'tree>: TryFrom<Node<'tree>, Error=IncorrectKind<'tree>> {
@@ -17,68 +29,114 @@ pub trait TypedNode<'tree>: TryFrom<Node<'tree>, Error=IncorrectKind<'tree>> {
     unsafe fn from_node_unchecked(node: Node<'tree>) -> Self {
         Self::try_from(node).expect("from_node_unchecked failed")
     }
-}
 
-/// Result of attempting to wrap a node
-pub type NodeResult<'tree, T> = Result<T, IncorrectKind<'tree>>;
-
-/// Error when attempting to wrap a node of the wrong kind
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub struct IncorrectKind<'tree> {
-    /// Node attempted to be wrapped
-    pub node: Node<'tree>,
-    /// Expected node kind
-    pub kind: &'static str,
-}
-
-/// Underlying cause of why the node is the wrong kind
-pub enum IncorrectKindCause {
-    /// Node is an error node
-    Error,
-    /// Node is a missing node
-    Missing,
-    /// Node is an extra node
-    Extra,
-    /// Node is valid but simply of a different kind (bad node-types.json? Different language? Broken user invariant)
-    OtherKind(&'static str),
-}
-
-impl<'tree> IncorrectKind<'tree> {
-    /// Actual node kind
+    // region [Node] delegate
+    /// See [Node::utf8_text]
     #[inline]
-    pub fn actual_kind(&self) -> &'static str {
-        self.node.kind()
+    fn utf8_text<'a>(&self, source: &'a [u8]) -> Result<&'a str, Utf8Error> {
+        self.node().utf8_text(source)
     }
 
-    /// Is this an error node?
+    /// See [Node::utf16_text]
     #[inline]
-    pub fn is_error(&self) -> bool {
-        self.node.is_error()
+    fn utf16_text<'a>(&self, source: &'a [u16]) -> &'a [u16] {
+        self.node().utf16_text(source)
     }
 
-    /// Is this a missing node?
+    /// See [Node::walk]
     #[inline]
-    pub fn is_missing(&self) -> bool {
-        self.node.is_missing()
+    fn walk(&self) -> tree_sitter::TreeCursor<'tree> {
+        self.node().walk()
     }
 
-    /// Is this an extra node?
+    /// See [Node::parent]
     #[inline]
-    pub fn is_extra(&self) -> bool {
-        self.node.is_extra()
+    fn parent(&self) -> Option<Node<'tree>> {
+        self.node().parent()
     }
 
-    /// Underlying cause of why the node is the wrong kind
+    /// See [Node::next_sibling]
     #[inline]
-    pub fn cause(&self) -> IncorrectKindCause {
-        if self.is_error() {
-            IncorrectKindCause::Error
-        } else if self.is_missing() {
-            IncorrectKindCause::Missing
-        } else if self.is_extra() {
-            IncorrectKindCause::Extra
-        } else {
-            IncorrectKindCause::OtherKind(self.actual_kind())
-        }
+    fn next_sibling(&self) -> Option<Node<'tree>> {
+        self.node().next_sibling()
     }
+
+    /// See [Node::prev_sibling]
+    #[inline]
+    fn prev_sibling(&self) -> Option<Node<'tree>> {
+        self.node().prev_sibling()
+    }
+
+    /// See [Node::named_child_count]
+    #[inline]
+    fn named_child_count(&self) -> usize {
+        self.node().named_child_count()
+    }
+
+    /// See [Node::to_sexp]
+    #[inline]
+    fn to_sexp(&self) -> String {
+        self.node().to_sexp()
+    }
+
+    /// See [Node::kind]
+    #[inline]
+    fn kind(&self) -> &'tree str {
+        self.node().kind()
+    }
+
+    /// See [Node::is_named]
+    #[inline]
+    fn is_named(&self) -> bool {
+        self.node().is_named()
+    }
+
+    /// See [Node::has_changes]
+    #[inline]
+    fn has_changes(&self) -> bool {
+        self.node().has_changes()
+    }
+
+    /// See [Node::has_error]
+    #[inline]
+    fn has_error(&self) -> bool {
+        self.node().has_error()
+    }
+
+    /// See [Node::start_byte]
+    #[inline]
+    fn start_byte(&self) -> usize {
+        self.node().start_byte()
+    }
+
+    /// See [Node::end_byte]
+    #[inline]
+    fn end_byte(&self) -> usize {
+        self.node().end_byte()
+    }
+
+    /// See [Node::start_position]
+    #[inline]
+    fn start_position(&self) -> tree_sitter::Point {
+        self.node().start_position()
+    }
+
+    /// See [Node::end_position]
+    #[inline]
+    fn end_position(&self) -> tree_sitter::Point {
+        self.node().end_position()
+    }
+
+    /// See [Node::range]
+    #[inline]
+    fn range(&self) -> tree_sitter::Range {
+        self.node().range()
+    }
+
+    /// See [Node::byte_range]
+    #[inline]
+    fn byte_range(&self) -> std::ops::Range<usize> {
+        self.node().byte_range()
+    }
+    // endregion
 }
