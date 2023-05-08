@@ -60,7 +60,7 @@ impl NodeType {
 impl Children {
     fn print(
         &self,
-        (children_name, children_doc, children_body): (Cow<'_, str>, TokenStream, TokenStream),
+        (children_name, children_doc, children_body, is_exact_size_iterator): (Cow<'_, str>, TokenStream, TokenStream, bool),
         (child_name, child_doc, mut child_body): (Cow<'_, str>, TokenStream, TokenStream),
         child_i: Option<(Cow<'_, str>, TokenStream, TokenStream)>,
         tree_sitter: &Path,
@@ -75,13 +75,20 @@ impl Children {
             };
             let mut child_type = NodeName::print_sum_type(&self.types, tree_sitter, anon_unions);
             child_type = quote! { type_sitter_lib::ExtraOr<'tree, #child_type> };
+            let iterator_type = if is_exact_size_iterator {
+                quote! { ExactSizeIterator }
+            } else {
+                quote! { Iterator }
+            };
             let children_fn = quote! {
                 #[doc = #children_doc]
                 #nonempty_doc
                 #[allow(dead_code)]
                 #[inline]
-                pub fn #ident<'a>(&self, c: &'a mut #tree_sitter::TreeCursor<'tree>) -> impl Iterator<Item = type_sitter_lib::NodeResult<'tree, #child_type>> + 'a {
-                    #children_body.map(<#child_type as TryFrom<_>>::try_from)
+                pub fn #ident<'a>(&self, c: &'a mut #tree_sitter::TreeCursor<'tree>) -> impl #iterator_type<Item = type_sitter_lib::NodeResult<'tree, #child_type>> + 'a {
+                    // Fun fact: <#child_type as TryFrom<_>>::try_from without the anonymous closure
+                    //     causes a lifetime error, but this works fine. It may be compiler bug
+                    #children_body.map(|n| <#child_type as TryFrom<_>>::try_from(n))
                 }
             };
             let child_i_fn = child_i.map(|(child_i_name, child_i_doc, child_i_body)| {
@@ -139,7 +146,8 @@ impl NodeName {
                 (
                     Cow::Owned(format!("{}s", name)),
                     quote!(concat!("Get the field `", #name_sexp, "`")),
-                    quote! { self.0.children_by_field_name(#name_sexp, c) }
+                    quote! { self.0.children_by_field_name(#name_sexp, c) },
+                    false
                 ),
                 (
                     Cow::Borrowed(name),
@@ -153,11 +161,19 @@ impl NodeName {
         });
         let children_accessors = children.map(|children| {
             let mut anon_unions = anon_unions_ref.borrow_mut();
-            children.print(
+            let children_and_fields = if fields.is_empty() {
+                Cow::Borrowed(children)
+            } else {
+                let mut children_and_fields = children.clone();
+                children_and_fields.extend(fields.values().cloned());
+                Cow::Owned(children_and_fields)
+            };
+            children_and_fields.print(
                 (
                     Cow::Borrowed("children"),
                     quote!("Get the node's named children"),
-                    quote! { self.0.named_children(c) }
+                    quote! { self.0.named_children(c) },
+                    true
                 ),
                 (
                     Cow::Borrowed("child"),
@@ -231,9 +247,32 @@ impl NodeName {
         subtypes: &[NodeName],
         tree_sitter: &Path,
     ) -> TokenStream {
+        let has_implicit_subtypes = subtypes.iter().any(|subtype| subtype.is_implicit);
         let variants = subtypes.iter().map(NodeName::print_variant_definition);
         let variant_accessors = subtypes.iter().map(NodeName::print_variant_accessor);
-        let from_cases = subtypes.iter().map(NodeName::print_from_case);
+        let try_from = {
+            let error = quote! {
+                Err(type_sitter_lib::IncorrectKind {
+                    node,
+                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                })
+            };
+            if has_implicit_subtypes {
+                let try_from_ifs = subtypes.iter().map(NodeName::print_try_from_if);
+                quote! {
+                    #(#try_from_ifs)*
+                    #error
+                }
+            } else {
+                let from_cases = subtypes.iter().map(NodeName::print_from_case);
+                quote! {
+                    match node.kind() {
+                        #(#from_cases)*
+                        _ => #error
+                    }
+                }
+            }
+        };
         let node_cases = subtypes.iter().map(NodeName::print_node_case);
         let node_mut_cases = subtypes.iter().map(NodeName::print_node_mut_case);
         quote! {
@@ -255,13 +294,7 @@ impl NodeName {
 
                 #[inline]
                 fn try_from(node: #tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
-                    match node.kind() {
-                        #(#from_cases)*
-                        _ => Err(type_sitter_lib::IncorrectKind {
-                            node,
-                            kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                        })
-                    }
+                    #try_from
                 }
             }
 
@@ -349,6 +382,16 @@ impl NodeName {
                     Self::#ident(x) => Some(x),
                     _ => None,
                 }
+            }
+        }
+    }
+
+    fn print_try_from_if(&self) -> TokenStream {
+        let ident = ident!(&self.rust_type_name, "node kind converted into a rust type name (this is a library error, please report)");
+        let type_ = self.print_type();
+        quote! {
+            if let Ok(this) = <#type_ as TryFrom<_>>::try_from(node) {
+                return Ok(Self::#ident(this));
             }
         }
     }

@@ -516,7 +516,11 @@ impl<'tree> Node<'tree> {
     /// Get the node's first child of the given kind, named or unnamed. The cursor is used to
     /// iterate the node's immediate children.
     #[inline]
-    pub fn child_of_kind(&self, kind: &'static str, cursor: &mut TreeCursor<'tree>) -> Option<Node<'tree>> {
+    pub fn child_of_kind(
+        &self,
+        kind: &str,
+        cursor: &mut TreeCursor<'tree>
+    ) -> Option<Node<'tree>> {
         self.node.named_children(&mut cursor.cursor)
             .find(|node| node.kind() == kind)
             .map(|node| Node::new(node, self.tree))
@@ -525,7 +529,11 @@ impl<'tree> Node<'tree> {
     /// Get the node's children of the given kind, named or unnamed. The cursor is used to iterate
     /// the node's immediate children.
     #[inline]
-    pub fn children_of_kind<'a>(&self, kind: &'a str, cursor: &'a mut TreeCursor<'tree>) -> impl Iterator<Item = Node<'tree>> + 'a {
+    pub fn children_of_kind<'a>(
+        &self,
+        kind: &'a str,
+        cursor: &'a mut TreeCursor<'tree>
+    ) -> impl Iterator<Item = Node<'tree>> + 'a {
         self.node.named_children(&mut cursor.cursor)
             .filter(move |node| node.kind() == kind)
             .map(|node| Node::new(node, self.tree))
@@ -535,6 +543,16 @@ impl<'tree> Node<'tree> {
     #[inline]
     pub fn child_by_field_name(&self, field_name: &str) -> Option<Node<'tree>> {
         self.node.child_by_field_name(field_name).map(|node| Node::new(node, self.tree))
+    }
+
+    /// Get the node's children with the given field name.
+    #[inline]
+    pub fn children_by_field_name<'a>(
+        &self,
+        field_name: &str,
+        c: &'a mut TreeCursor<'tree>
+    ) -> impl Iterator<Item = Node<'tree>> + 'a {
+        self.node.children_by_field_name(field_name, &mut c.cursor).map(|node| Node::new(node, self.tree))
     }
 
     /// Get the field name of the child at the given index.

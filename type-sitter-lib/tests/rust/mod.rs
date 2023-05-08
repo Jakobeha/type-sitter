@@ -1079,432 +1079,125 @@ for Expression<'tree> {
     fn try_from(
         node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
     ) -> Result<Self, Self::Error> {
-        match node.kind() {
-            "_literal" => {
-                Ok(unsafe {
-                    Self::Literal(
-                        <Literal<
-                            'tree,
-                        > as type_sitter_lib::TypedNode<
-                            'tree,
-                        >>::from_node_unchecked(node),
-                    )
-                })
-            }
-            "array_expression" => {
-                Ok(unsafe {
-                    Self::ArrayExpression(
-                        <ArrayExpression<
-                            'tree,
-                        > as type_sitter_lib::TypedNode<
-                            'tree,
-                        >>::from_node_unchecked(node),
-                    )
-                })
-            }
-            "assignment_expression" => {
-                Ok(unsafe {
-                    Self::AssignmentExpression(
-                        <AssignmentExpression<
-                            'tree,
-                        > as type_sitter_lib::TypedNode<
-                            'tree,
-                        >>::from_node_unchecked(node),
-                    )
-                })
-            }
-            "async_block" => {
-                Ok(unsafe {
-                    Self::AsyncBlock(
-                        <AsyncBlock<
-                            'tree,
-                        > as type_sitter_lib::TypedNode<
-                            'tree,
-                        >>::from_node_unchecked(node),
-                    )
-                })
-            }
-            "await_expression" => {
-                Ok(unsafe {
-                    Self::AwaitExpression(
-                        <AwaitExpression<
-                            'tree,
-                        > as type_sitter_lib::TypedNode<
-                            'tree,
-                        >>::from_node_unchecked(node),
-                    )
-                })
-            }
-            "binary_expression" => {
-                Ok(unsafe {
-                    Self::BinaryExpression(
-                        <BinaryExpression<
-                            'tree,
-                        > as type_sitter_lib::TypedNode<
-                            'tree,
-                        >>::from_node_unchecked(node),
-                    )
-                })
-            }
-            "block" => {
-                Ok(unsafe {
-                    Self::Block(
-                        <Block<
-                            'tree,
-                        > as type_sitter_lib::TypedNode<
-                            'tree,
-                        >>::from_node_unchecked(node),
-                    )
-                })
-            }
-            "break_expression" => {
-                Ok(unsafe {
-                    Self::BreakExpression(
-                        <BreakExpression<
-                            'tree,
-                        > as type_sitter_lib::TypedNode<
-                            'tree,
-                        >>::from_node_unchecked(node),
-                    )
-                })
-            }
-            "call_expression" => {
-                Ok(unsafe {
-                    Self::CallExpression(
-                        <CallExpression<
-                            'tree,
-                        > as type_sitter_lib::TypedNode<
-                            'tree,
-                        >>::from_node_unchecked(node),
-                    )
-                })
-            }
-            "closure_expression" => {
-                Ok(unsafe {
-                    Self::ClosureExpression(
-                        <ClosureExpression<
-                            'tree,
-                        > as type_sitter_lib::TypedNode<
-                            'tree,
-                        >>::from_node_unchecked(node),
-                    )
-                })
-            }
-            "compound_assignment_expr" => {
-                Ok(unsafe {
-                    Self::CompoundAssignmentExpr(
-                        <CompoundAssignmentExpr<
-                            'tree,
-                        > as type_sitter_lib::TypedNode<
-                            'tree,
-                        >>::from_node_unchecked(node),
-                    )
-                })
-            }
-            "const_block" => {
-                Ok(unsafe {
-                    Self::ConstBlock(
-                        <ConstBlock<
-                            'tree,
-                        > as type_sitter_lib::TypedNode<
-                            'tree,
-                        >>::from_node_unchecked(node),
-                    )
-                })
-            }
-            "continue_expression" => {
-                Ok(unsafe {
-                    Self::ContinueExpression(
-                        <ContinueExpression<
-                            'tree,
-                        > as type_sitter_lib::TypedNode<
-                            'tree,
-                        >>::from_node_unchecked(node),
-                    )
-                })
-            }
-            "field_expression" => {
-                Ok(unsafe {
-                    Self::FieldExpression(
-                        <FieldExpression<
-                            'tree,
-                        > as type_sitter_lib::TypedNode<
-                            'tree,
-                        >>::from_node_unchecked(node),
-                    )
-                })
-            }
-            "for_expression" => {
-                Ok(unsafe {
-                    Self::ForExpression(
-                        <ForExpression<
-                            'tree,
-                        > as type_sitter_lib::TypedNode<
-                            'tree,
-                        >>::from_node_unchecked(node),
-                    )
-                })
-            }
-            "generic_function" => {
-                Ok(unsafe {
-                    Self::GenericFunction(
-                        <GenericFunction<
-                            'tree,
-                        > as type_sitter_lib::TypedNode<
-                            'tree,
-                        >>::from_node_unchecked(node),
-                    )
-                })
-            }
-            "identifier" => {
-                Ok(unsafe {
-                    Self::Identifier(
-                        <Identifier<
-                            'tree,
-                        > as type_sitter_lib::TypedNode<
-                            'tree,
-                        >>::from_node_unchecked(node),
-                    )
-                })
-            }
-            "if_expression" => {
-                Ok(unsafe {
-                    Self::IfExpression(
-                        <IfExpression<
-                            'tree,
-                        > as type_sitter_lib::TypedNode<
-                            'tree,
-                        >>::from_node_unchecked(node),
-                    )
-                })
-            }
-            "index_expression" => {
-                Ok(unsafe {
-                    Self::IndexExpression(
-                        <IndexExpression<
-                            'tree,
-                        > as type_sitter_lib::TypedNode<
-                            'tree,
-                        >>::from_node_unchecked(node),
-                    )
-                })
-            }
-            "loop_expression" => {
-                Ok(unsafe {
-                    Self::LoopExpression(
-                        <LoopExpression<
-                            'tree,
-                        > as type_sitter_lib::TypedNode<
-                            'tree,
-                        >>::from_node_unchecked(node),
-                    )
-                })
-            }
-            "macro_invocation" => {
-                Ok(unsafe {
-                    Self::MacroInvocation(
-                        <MacroInvocation<
-                            'tree,
-                        > as type_sitter_lib::TypedNode<
-                            'tree,
-                        >>::from_node_unchecked(node),
-                    )
-                })
-            }
-            "match_expression" => {
-                Ok(unsafe {
-                    Self::MatchExpression(
-                        <MatchExpression<
-                            'tree,
-                        > as type_sitter_lib::TypedNode<
-                            'tree,
-                        >>::from_node_unchecked(node),
-                    )
-                })
-            }
-            "metavariable" => {
-                Ok(unsafe {
-                    Self::Metavariable(
-                        <Metavariable<
-                            'tree,
-                        > as type_sitter_lib::TypedNode<
-                            'tree,
-                        >>::from_node_unchecked(node),
-                    )
-                })
-            }
-            "parenthesized_expression" => {
-                Ok(unsafe {
-                    Self::ParenthesizedExpression(
-                        <ParenthesizedExpression<
-                            'tree,
-                        > as type_sitter_lib::TypedNode<
-                            'tree,
-                        >>::from_node_unchecked(node),
-                    )
-                })
-            }
-            "range_expression" => {
-                Ok(unsafe {
-                    Self::RangeExpression(
-                        <RangeExpression<
-                            'tree,
-                        > as type_sitter_lib::TypedNode<
-                            'tree,
-                        >>::from_node_unchecked(node),
-                    )
-                })
-            }
-            "reference_expression" => {
-                Ok(unsafe {
-                    Self::ReferenceExpression(
-                        <ReferenceExpression<
-                            'tree,
-                        > as type_sitter_lib::TypedNode<
-                            'tree,
-                        >>::from_node_unchecked(node),
-                    )
-                })
-            }
-            "return_expression" => {
-                Ok(unsafe {
-                    Self::ReturnExpression(
-                        <ReturnExpression<
-                            'tree,
-                        > as type_sitter_lib::TypedNode<
-                            'tree,
-                        >>::from_node_unchecked(node),
-                    )
-                })
-            }
-            "scoped_identifier" => {
-                Ok(unsafe {
-                    Self::ScopedIdentifier(
-                        <ScopedIdentifier<
-                            'tree,
-                        > as type_sitter_lib::TypedNode<
-                            'tree,
-                        >>::from_node_unchecked(node),
-                    )
-                })
-            }
-            "self" => {
-                Ok(unsafe {
-                    Self::_Self(
-                        <_Self<
-                            'tree,
-                        > as type_sitter_lib::TypedNode<
-                            'tree,
-                        >>::from_node_unchecked(node),
-                    )
-                })
-            }
-            "struct_expression" => {
-                Ok(unsafe {
-                    Self::StructExpression(
-                        <StructExpression<
-                            'tree,
-                        > as type_sitter_lib::TypedNode<
-                            'tree,
-                        >>::from_node_unchecked(node),
-                    )
-                })
-            }
-            "try_expression" => {
-                Ok(unsafe {
-                    Self::TryExpression(
-                        <TryExpression<
-                            'tree,
-                        > as type_sitter_lib::TypedNode<
-                            'tree,
-                        >>::from_node_unchecked(node),
-                    )
-                })
-            }
-            "tuple_expression" => {
-                Ok(unsafe {
-                    Self::TupleExpression(
-                        <TupleExpression<
-                            'tree,
-                        > as type_sitter_lib::TypedNode<
-                            'tree,
-                        >>::from_node_unchecked(node),
-                    )
-                })
-            }
-            "type_cast_expression" => {
-                Ok(unsafe {
-                    Self::TypeCastExpression(
-                        <TypeCastExpression<
-                            'tree,
-                        > as type_sitter_lib::TypedNode<
-                            'tree,
-                        >>::from_node_unchecked(node),
-                    )
-                })
-            }
-            "unary_expression" => {
-                Ok(unsafe {
-                    Self::UnaryExpression(
-                        <UnaryExpression<
-                            'tree,
-                        > as type_sitter_lib::TypedNode<
-                            'tree,
-                        >>::from_node_unchecked(node),
-                    )
-                })
-            }
-            "unit_expression" => {
-                Ok(unsafe {
-                    Self::UnitExpression(
-                        <UnitExpression<
-                            'tree,
-                        > as type_sitter_lib::TypedNode<
-                            'tree,
-                        >>::from_node_unchecked(node),
-                    )
-                })
-            }
-            "unsafe_block" => {
-                Ok(unsafe {
-                    Self::UnsafeBlock(
-                        <UnsafeBlock<
-                            'tree,
-                        > as type_sitter_lib::TypedNode<
-                            'tree,
-                        >>::from_node_unchecked(node),
-                    )
-                })
-            }
-            "while_expression" => {
-                Ok(unsafe {
-                    Self::WhileExpression(
-                        <WhileExpression<
-                            'tree,
-                        > as type_sitter_lib::TypedNode<
-                            'tree,
-                        >>::from_node_unchecked(node),
-                    )
-                })
-            }
-            "yield_expression" => {
-                Ok(unsafe {
-                    Self::YieldExpression(
-                        <YieldExpression<
-                            'tree,
-                        > as type_sitter_lib::TypedNode<
-                            'tree,
-                        >>::from_node_unchecked(node),
-                    )
-                })
-            }
-            _ => {
-                Err(type_sitter_lib::IncorrectKind {
-                    node,
-                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                })
-            }
+        if let Ok(this) = <Literal<'tree> as TryFrom<_>>::try_from(node) {
+            return Ok(Self::Literal(this));
         }
+        if let Ok(this) = <ArrayExpression<'tree> as TryFrom<_>>::try_from(node) {
+            return Ok(Self::ArrayExpression(this));
+        }
+        if let Ok(this) = <AssignmentExpression<'tree> as TryFrom<_>>::try_from(node) {
+            return Ok(Self::AssignmentExpression(this));
+        }
+        if let Ok(this) = <AsyncBlock<'tree> as TryFrom<_>>::try_from(node) {
+            return Ok(Self::AsyncBlock(this));
+        }
+        if let Ok(this) = <AwaitExpression<'tree> as TryFrom<_>>::try_from(node) {
+            return Ok(Self::AwaitExpression(this));
+        }
+        if let Ok(this) = <BinaryExpression<'tree> as TryFrom<_>>::try_from(node) {
+            return Ok(Self::BinaryExpression(this));
+        }
+        if let Ok(this) = <Block<'tree> as TryFrom<_>>::try_from(node) {
+            return Ok(Self::Block(this));
+        }
+        if let Ok(this) = <BreakExpression<'tree> as TryFrom<_>>::try_from(node) {
+            return Ok(Self::BreakExpression(this));
+        }
+        if let Ok(this) = <CallExpression<'tree> as TryFrom<_>>::try_from(node) {
+            return Ok(Self::CallExpression(this));
+        }
+        if let Ok(this) = <ClosureExpression<'tree> as TryFrom<_>>::try_from(node) {
+            return Ok(Self::ClosureExpression(this));
+        }
+        if let Ok(this) = <CompoundAssignmentExpr<'tree> as TryFrom<_>>::try_from(node) {
+            return Ok(Self::CompoundAssignmentExpr(this));
+        }
+        if let Ok(this) = <ConstBlock<'tree> as TryFrom<_>>::try_from(node) {
+            return Ok(Self::ConstBlock(this));
+        }
+        if let Ok(this) = <ContinueExpression<'tree> as TryFrom<_>>::try_from(node) {
+            return Ok(Self::ContinueExpression(this));
+        }
+        if let Ok(this) = <FieldExpression<'tree> as TryFrom<_>>::try_from(node) {
+            return Ok(Self::FieldExpression(this));
+        }
+        if let Ok(this) = <ForExpression<'tree> as TryFrom<_>>::try_from(node) {
+            return Ok(Self::ForExpression(this));
+        }
+        if let Ok(this) = <GenericFunction<'tree> as TryFrom<_>>::try_from(node) {
+            return Ok(Self::GenericFunction(this));
+        }
+        if let Ok(this) = <Identifier<'tree> as TryFrom<_>>::try_from(node) {
+            return Ok(Self::Identifier(this));
+        }
+        if let Ok(this) = <IfExpression<'tree> as TryFrom<_>>::try_from(node) {
+            return Ok(Self::IfExpression(this));
+        }
+        if let Ok(this) = <IndexExpression<'tree> as TryFrom<_>>::try_from(node) {
+            return Ok(Self::IndexExpression(this));
+        }
+        if let Ok(this) = <LoopExpression<'tree> as TryFrom<_>>::try_from(node) {
+            return Ok(Self::LoopExpression(this));
+        }
+        if let Ok(this) = <MacroInvocation<'tree> as TryFrom<_>>::try_from(node) {
+            return Ok(Self::MacroInvocation(this));
+        }
+        if let Ok(this) = <MatchExpression<'tree> as TryFrom<_>>::try_from(node) {
+            return Ok(Self::MatchExpression(this));
+        }
+        if let Ok(this) = <Metavariable<'tree> as TryFrom<_>>::try_from(node) {
+            return Ok(Self::Metavariable(this));
+        }
+        if let Ok(this)
+            = <ParenthesizedExpression<'tree> as TryFrom<_>>::try_from(node) {
+            return Ok(Self::ParenthesizedExpression(this));
+        }
+        if let Ok(this) = <RangeExpression<'tree> as TryFrom<_>>::try_from(node) {
+            return Ok(Self::RangeExpression(this));
+        }
+        if let Ok(this) = <ReferenceExpression<'tree> as TryFrom<_>>::try_from(node) {
+            return Ok(Self::ReferenceExpression(this));
+        }
+        if let Ok(this) = <ReturnExpression<'tree> as TryFrom<_>>::try_from(node) {
+            return Ok(Self::ReturnExpression(this));
+        }
+        if let Ok(this) = <ScopedIdentifier<'tree> as TryFrom<_>>::try_from(node) {
+            return Ok(Self::ScopedIdentifier(this));
+        }
+        if let Ok(this) = <_Self<'tree> as TryFrom<_>>::try_from(node) {
+            return Ok(Self::_Self(this));
+        }
+        if let Ok(this) = <StructExpression<'tree> as TryFrom<_>>::try_from(node) {
+            return Ok(Self::StructExpression(this));
+        }
+        if let Ok(this) = <TryExpression<'tree> as TryFrom<_>>::try_from(node) {
+            return Ok(Self::TryExpression(this));
+        }
+        if let Ok(this) = <TupleExpression<'tree> as TryFrom<_>>::try_from(node) {
+            return Ok(Self::TupleExpression(this));
+        }
+        if let Ok(this) = <TypeCastExpression<'tree> as TryFrom<_>>::try_from(node) {
+            return Ok(Self::TypeCastExpression(this));
+        }
+        if let Ok(this) = <UnaryExpression<'tree> as TryFrom<_>>::try_from(node) {
+            return Ok(Self::UnaryExpression(this));
+        }
+        if let Ok(this) = <UnitExpression<'tree> as TryFrom<_>>::try_from(node) {
+            return Ok(Self::UnitExpression(this));
+        }
+        if let Ok(this) = <UnsafeBlock<'tree> as TryFrom<_>>::try_from(node) {
+            return Ok(Self::UnsafeBlock(this));
+        }
+        if let Ok(this) = <WhileExpression<'tree> as TryFrom<_>>::try_from(node) {
+            return Ok(Self::WhileExpression(this));
+        }
+        if let Ok(this) = <YieldExpression<'tree> as TryFrom<_>>::try_from(node) {
+            return Ok(Self::YieldExpression(this));
+        }
+        Err(type_sitter_lib::IncorrectKind {
+            node,
+            kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+        })
     }
 }
 #[automatically_derived]
@@ -2246,201 +1939,61 @@ for Pattern<'tree> {
     fn try_from(
         node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
     ) -> Result<Self, Self::Error> {
-        match node.kind() {
-            "_" => {
-                Ok(unsafe {
-                    Self::Underscore(
-                        <unnamed::Underscore<
-                            'tree,
-                        > as type_sitter_lib::TypedNode<
-                            'tree,
-                        >>::from_node_unchecked(node),
-                    )
-                })
-            }
-            "_literal_pattern" => {
-                Ok(unsafe {
-                    Self::LiteralPattern(
-                        <LiteralPattern<
-                            'tree,
-                        > as type_sitter_lib::TypedNode<
-                            'tree,
-                        >>::from_node_unchecked(node),
-                    )
-                })
-            }
-            "captured_pattern" => {
-                Ok(unsafe {
-                    Self::CapturedPattern(
-                        <CapturedPattern<
-                            'tree,
-                        > as type_sitter_lib::TypedNode<
-                            'tree,
-                        >>::from_node_unchecked(node),
-                    )
-                })
-            }
-            "const_block" => {
-                Ok(unsafe {
-                    Self::ConstBlock(
-                        <ConstBlock<
-                            'tree,
-                        > as type_sitter_lib::TypedNode<
-                            'tree,
-                        >>::from_node_unchecked(node),
-                    )
-                })
-            }
-            "identifier" => {
-                Ok(unsafe {
-                    Self::Identifier(
-                        <Identifier<
-                            'tree,
-                        > as type_sitter_lib::TypedNode<
-                            'tree,
-                        >>::from_node_unchecked(node),
-                    )
-                })
-            }
-            "macro_invocation" => {
-                Ok(unsafe {
-                    Self::MacroInvocation(
-                        <MacroInvocation<
-                            'tree,
-                        > as type_sitter_lib::TypedNode<
-                            'tree,
-                        >>::from_node_unchecked(node),
-                    )
-                })
-            }
-            "mut_pattern" => {
-                Ok(unsafe {
-                    Self::MutPattern(
-                        <MutPattern<
-                            'tree,
-                        > as type_sitter_lib::TypedNode<
-                            'tree,
-                        >>::from_node_unchecked(node),
-                    )
-                })
-            }
-            "or_pattern" => {
-                Ok(unsafe {
-                    Self::OrPattern(
-                        <OrPattern<
-                            'tree,
-                        > as type_sitter_lib::TypedNode<
-                            'tree,
-                        >>::from_node_unchecked(node),
-                    )
-                })
-            }
-            "range_pattern" => {
-                Ok(unsafe {
-                    Self::RangePattern(
-                        <RangePattern<
-                            'tree,
-                        > as type_sitter_lib::TypedNode<
-                            'tree,
-                        >>::from_node_unchecked(node),
-                    )
-                })
-            }
-            "ref_pattern" => {
-                Ok(unsafe {
-                    Self::RefPattern(
-                        <RefPattern<
-                            'tree,
-                        > as type_sitter_lib::TypedNode<
-                            'tree,
-                        >>::from_node_unchecked(node),
-                    )
-                })
-            }
-            "reference_pattern" => {
-                Ok(unsafe {
-                    Self::ReferencePattern(
-                        <ReferencePattern<
-                            'tree,
-                        > as type_sitter_lib::TypedNode<
-                            'tree,
-                        >>::from_node_unchecked(node),
-                    )
-                })
-            }
-            "remaining_field_pattern" => {
-                Ok(unsafe {
-                    Self::RemainingFieldPattern(
-                        <RemainingFieldPattern<
-                            'tree,
-                        > as type_sitter_lib::TypedNode<
-                            'tree,
-                        >>::from_node_unchecked(node),
-                    )
-                })
-            }
-            "scoped_identifier" => {
-                Ok(unsafe {
-                    Self::ScopedIdentifier(
-                        <ScopedIdentifier<
-                            'tree,
-                        > as type_sitter_lib::TypedNode<
-                            'tree,
-                        >>::from_node_unchecked(node),
-                    )
-                })
-            }
-            "slice_pattern" => {
-                Ok(unsafe {
-                    Self::SlicePattern(
-                        <SlicePattern<
-                            'tree,
-                        > as type_sitter_lib::TypedNode<
-                            'tree,
-                        >>::from_node_unchecked(node),
-                    )
-                })
-            }
-            "struct_pattern" => {
-                Ok(unsafe {
-                    Self::StructPattern(
-                        <StructPattern<
-                            'tree,
-                        > as type_sitter_lib::TypedNode<
-                            'tree,
-                        >>::from_node_unchecked(node),
-                    )
-                })
-            }
-            "tuple_pattern" => {
-                Ok(unsafe {
-                    Self::TuplePattern(
-                        <TuplePattern<
-                            'tree,
-                        > as type_sitter_lib::TypedNode<
-                            'tree,
-                        >>::from_node_unchecked(node),
-                    )
-                })
-            }
-            "tuple_struct_pattern" => {
-                Ok(unsafe {
-                    Self::TupleStructPattern(
-                        <TupleStructPattern<
-                            'tree,
-                        > as type_sitter_lib::TypedNode<
-                            'tree,
-                        >>::from_node_unchecked(node),
-                    )
-                })
-            }
-            _ => {
-                Err(type_sitter_lib::IncorrectKind {
-                    node,
-                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                })
-            }
+        if let Ok(this) = <unnamed::Underscore<'tree> as TryFrom<_>>::try_from(node) {
+            return Ok(Self::Underscore(this));
         }
+        if let Ok(this) = <LiteralPattern<'tree> as TryFrom<_>>::try_from(node) {
+            return Ok(Self::LiteralPattern(this));
+        }
+        if let Ok(this) = <CapturedPattern<'tree> as TryFrom<_>>::try_from(node) {
+            return Ok(Self::CapturedPattern(this));
+        }
+        if let Ok(this) = <ConstBlock<'tree> as TryFrom<_>>::try_from(node) {
+            return Ok(Self::ConstBlock(this));
+        }
+        if let Ok(this) = <Identifier<'tree> as TryFrom<_>>::try_from(node) {
+            return Ok(Self::Identifier(this));
+        }
+        if let Ok(this) = <MacroInvocation<'tree> as TryFrom<_>>::try_from(node) {
+            return Ok(Self::MacroInvocation(this));
+        }
+        if let Ok(this) = <MutPattern<'tree> as TryFrom<_>>::try_from(node) {
+            return Ok(Self::MutPattern(this));
+        }
+        if let Ok(this) = <OrPattern<'tree> as TryFrom<_>>::try_from(node) {
+            return Ok(Self::OrPattern(this));
+        }
+        if let Ok(this) = <RangePattern<'tree> as TryFrom<_>>::try_from(node) {
+            return Ok(Self::RangePattern(this));
+        }
+        if let Ok(this) = <RefPattern<'tree> as TryFrom<_>>::try_from(node) {
+            return Ok(Self::RefPattern(this));
+        }
+        if let Ok(this) = <ReferencePattern<'tree> as TryFrom<_>>::try_from(node) {
+            return Ok(Self::ReferencePattern(this));
+        }
+        if let Ok(this) = <RemainingFieldPattern<'tree> as TryFrom<_>>::try_from(node) {
+            return Ok(Self::RemainingFieldPattern(this));
+        }
+        if let Ok(this) = <ScopedIdentifier<'tree> as TryFrom<_>>::try_from(node) {
+            return Ok(Self::ScopedIdentifier(this));
+        }
+        if let Ok(this) = <SlicePattern<'tree> as TryFrom<_>>::try_from(node) {
+            return Ok(Self::SlicePattern(this));
+        }
+        if let Ok(this) = <StructPattern<'tree> as TryFrom<_>>::try_from(node) {
+            return Ok(Self::StructPattern(this));
+        }
+        if let Ok(this) = <TuplePattern<'tree> as TryFrom<_>>::try_from(node) {
+            return Ok(Self::TuplePattern(this));
+        }
+        if let Ok(this) = <TupleStructPattern<'tree> as TryFrom<_>>::try_from(node) {
+            return Ok(Self::TupleStructPattern(this));
+        }
+        Err(type_sitter_lib::IncorrectKind {
+            node,
+            kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+        })
     }
 }
 #[automatically_derived]
@@ -3017,7 +2570,7 @@ impl<'tree> Arguments<'tree> {
     pub fn children<'a>(
         &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
-    ) -> impl Iterator<
+    ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
             type_sitter_lib::ExtraOr<'tree, anon_unions::Expression_AttributeItem>,
@@ -3025,12 +2578,10 @@ impl<'tree> Arguments<'tree> {
     > + 'a {
         self.0
             .named_children(c)
-            .map(
-                <type_sitter_lib::ExtraOr<
-                    'tree,
-                    anon_unions::Expression_AttributeItem,
-                > as TryFrom<_>>::try_from,
-            )
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::Expression_AttributeItem,
+            > as TryFrom<_>>::try_from(n))
     }
     ///Get the node's named child #i
     #[allow(dead_code)]
@@ -3112,7 +2663,7 @@ impl<'tree> ArrayExpression<'tree> {
     pub fn children<'a>(
         &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
-    ) -> impl Iterator<
+    ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
             type_sitter_lib::ExtraOr<'tree, anon_unions::Expression_AttributeItem>,
@@ -3120,12 +2671,10 @@ impl<'tree> ArrayExpression<'tree> {
     > + 'a {
         self.0
             .named_children(c)
-            .map(
-                <type_sitter_lib::ExtraOr<
-                    'tree,
-                    anon_unions::Expression_AttributeItem,
-                > as TryFrom<_>>::try_from,
-            )
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::Expression_AttributeItem,
+            > as TryFrom<_>>::try_from(n))
     }
     ///Get the node's named child #i
     #[allow(dead_code)]
@@ -3470,24 +3019,51 @@ impl<'tree> Attribute<'tree> {
             .child_by_field_name("value")
             .map(<Expression<'tree> as TryFrom<_>>::try_from)
     }
-    ///Get the node's only named child
+    ///Get the node's named children
+    ///This is guaranteed to return at least one child
+    #[allow(dead_code)]
+    #[inline]
+    pub fn children<'a>(
+        &self,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
+    ) -> impl ExactSizeIterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super_TokenTree_Expression,
+            >,
+        >,
+    > + 'a {
+        self.0
+            .named_children(c)
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super_TokenTree_Expression,
+            > as TryFrom<_>>::try_from(n))
+    }
+    ///Get the node's named child #i
     #[allow(dead_code)]
     #[inline]
     pub fn child(
         &self,
-    ) -> type_sitter_lib::NodeResult<
-        'tree,
-        anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super,
+        i: usize,
+    ) -> Option<
+        type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super_TokenTree_Expression,
+            >,
+        >,
     > {
         self.0
-            .named_child(0)
+            .named_child(i)
             .map(
-                <anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super as TryFrom<
-                    _,
-                >>::try_from,
-            )
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super_TokenTree_Expression,
+                > as TryFrom<_>>::try_from,
             )
     }
 }
@@ -3788,7 +3364,7 @@ impl<'tree> Block<'tree> {
     pub fn children<'a>(
         &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
-    ) -> impl Iterator<
+    ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
             type_sitter_lib::ExtraOr<
@@ -3799,12 +3375,10 @@ impl<'tree> Block<'tree> {
     > + 'a {
         self.0
             .named_children(c)
-            .map(
-                <type_sitter_lib::ExtraOr<
-                    'tree,
-                    anon_unions::DeclarationStatement_Expression_ExpressionStatement,
-                > as TryFrom<_>>::try_from,
-            )
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::DeclarationStatement_Expression_ExpressionStatement,
+            > as TryFrom<_>>::try_from(n))
     }
     ///Get the node's named child #i
     #[allow(dead_code)]
@@ -3921,7 +3495,7 @@ impl<'tree> BoundedType<'tree> {
     pub fn children<'a>(
         &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
-    ) -> impl Iterator<
+    ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
             type_sitter_lib::ExtraOr<'tree, anon_unions::Type_Lifetime>,
@@ -3929,12 +3503,10 @@ impl<'tree> BoundedType<'tree> {
     > + 'a {
         self.0
             .named_children(c)
-            .map(
-                <type_sitter_lib::ExtraOr<
-                    'tree,
-                    anon_unions::Type_Lifetime,
-                > as TryFrom<_>>::try_from,
-            )
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::Type_Lifetime,
+            > as TryFrom<_>>::try_from(n))
     }
     ///Get the node's named child #i
     #[allow(dead_code)]
@@ -4062,7 +3634,7 @@ impl<'tree> BreakExpression<'tree> {
     pub fn children<'a>(
         &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
-    ) -> impl Iterator<
+    ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
             type_sitter_lib::ExtraOr<'tree, anon_unions::Expression_LoopLabel>,
@@ -4070,12 +3642,10 @@ impl<'tree> BreakExpression<'tree> {
     > + 'a {
         self.0
             .named_children(c)
-            .map(
-                <type_sitter_lib::ExtraOr<
-                    'tree,
-                    anon_unions::Expression_LoopLabel,
-                > as TryFrom<_>>::try_from,
-            )
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::Expression_LoopLabel,
+            > as TryFrom<_>>::try_from(n))
     }
     ///Get the node's named child #i
     #[allow(dead_code)]
@@ -4222,7 +3792,7 @@ impl<'tree> CapturedPattern<'tree> {
     pub fn children<'a>(
         &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
-    ) -> impl Iterator<
+    ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
             type_sitter_lib::ExtraOr<'tree, Pattern<'tree>>,
@@ -4230,9 +3800,10 @@ impl<'tree> CapturedPattern<'tree> {
     > + 'a {
         self.0
             .named_children(c)
-            .map(
-                <type_sitter_lib::ExtraOr<'tree, Pattern<'tree>> as TryFrom<_>>::try_from,
-            )
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                Pattern<'tree>,
+            > as TryFrom<_>>::try_from(n))
     }
     ///Get the node's named child #i
     #[allow(dead_code)]
@@ -4378,7 +3949,7 @@ impl<'tree> ClosureParameters<'tree> {
     pub fn children<'a>(
         &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
-    ) -> impl Iterator<
+    ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
             type_sitter_lib::ExtraOr<'tree, anon_unions::Pattern_Parameter>,
@@ -4386,12 +3957,10 @@ impl<'tree> ClosureParameters<'tree> {
     > + 'a {
         self.0
             .named_children(c)
-            .map(
-                <type_sitter_lib::ExtraOr<
-                    'tree,
-                    anon_unions::Pattern_Parameter,
-                > as TryFrom<_>>::try_from,
-            )
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::Pattern_Parameter,
+            > as TryFrom<_>>::try_from(n))
     }
     ///Get the node's named child #i
     #[allow(dead_code)]
@@ -4630,13 +4199,52 @@ impl<'tree> ConstItem<'tree> {
             .child_by_field_name("value")
             .map(<Expression<'tree> as TryFrom<_>>::try_from)
     }
-    ///Get the node's only named child
+    ///Get the node's named children
+    ///This is guaranteed to return at least one child
+    #[allow(dead_code)]
+    #[inline]
+    pub fn children<'a>(
+        &self,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
+    ) -> impl ExactSizeIterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::VisibilityModifier_Identifier_Type_Expression,
+            >,
+        >,
+    > + 'a {
+        self.0
+            .named_children(c)
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::VisibilityModifier_Identifier_Type_Expression,
+            > as TryFrom<_>>::try_from(n))
+    }
+    ///Get the node's named child #i
     #[allow(dead_code)]
     #[inline]
     pub fn child(
         &self,
-    ) -> Option<type_sitter_lib::NodeResult<'tree, VisibilityModifier<'tree>>> {
-        self.0.named_child(0).map(<VisibilityModifier<'tree> as TryFrom<_>>::try_from)
+        i: usize,
+    ) -> Option<
+        type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::VisibilityModifier_Identifier_Type_Expression,
+            >,
+        >,
+    > {
+        self.0
+            .named_child(i)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    anon_unions::VisibilityModifier_Identifier_Type_Expression,
+                > as TryFrom<_>>::try_from,
+            )
     }
 }
 #[automatically_derived]
@@ -4870,7 +4478,7 @@ impl<'tree> DeclarationList<'tree> {
     pub fn children<'a>(
         &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
-    ) -> impl Iterator<
+    ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
             type_sitter_lib::ExtraOr<'tree, DeclarationStatement<'tree>>,
@@ -4878,12 +4486,10 @@ impl<'tree> DeclarationList<'tree> {
     > + 'a {
         self.0
             .named_children(c)
-            .map(
-                <type_sitter_lib::ExtraOr<
-                    'tree,
-                    DeclarationStatement<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                DeclarationStatement<'tree>,
+            > as TryFrom<_>>::try_from(n))
     }
     ///Get the node's named child #i
     #[allow(dead_code)]
@@ -5185,25 +4791,27 @@ impl<'tree> EnumItem<'tree> {
             .map(<TypeParameters<'tree> as TryFrom<_>>::try_from)
     }
     ///Get the node's named children
+    ///This is guaranteed to return at least one child
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
         &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
-    ) -> impl Iterator<
+    ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::VisibilityModifier_WhereClause>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::VisibilityModifier_WhereClause_EnumVariantList_TypeIdentifier_TypeParameters,
+            >,
         >,
     > + 'a {
         self.0
             .named_children(c)
-            .map(
-                <type_sitter_lib::ExtraOr<
-                    'tree,
-                    anon_unions::VisibilityModifier_WhereClause,
-                > as TryFrom<_>>::try_from,
-            )
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::VisibilityModifier_WhereClause_EnumVariantList_TypeIdentifier_TypeParameters,
+            > as TryFrom<_>>::try_from(n))
     }
     ///Get the node's named child #i
     #[allow(dead_code)]
@@ -5214,7 +4822,10 @@ impl<'tree> EnumItem<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::VisibilityModifier_WhereClause>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::VisibilityModifier_WhereClause_EnumVariantList_TypeIdentifier_TypeParameters,
+            >,
         >,
     > {
         self.0
@@ -5222,7 +4833,7 @@ impl<'tree> EnumItem<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    anon_unions::VisibilityModifier_WhereClause,
+                    anon_unions::VisibilityModifier_WhereClause_EnumVariantList_TypeIdentifier_TypeParameters,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -5309,13 +4920,52 @@ impl<'tree> EnumVariant<'tree> {
             .child_by_field_name("value")
             .map(<Expression<'tree> as TryFrom<_>>::try_from)
     }
-    ///Get the node's only named child
+    ///Get the node's named children
+    ///This is guaranteed to return at least one child
+    #[allow(dead_code)]
+    #[inline]
+    pub fn children<'a>(
+        &self,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
+    ) -> impl ExactSizeIterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::VisibilityModifier_FieldDeclarationList_OrderedFieldDeclarationList_Identifier_Expression,
+            >,
+        >,
+    > + 'a {
+        self.0
+            .named_children(c)
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::VisibilityModifier_FieldDeclarationList_OrderedFieldDeclarationList_Identifier_Expression,
+            > as TryFrom<_>>::try_from(n))
+    }
+    ///Get the node's named child #i
     #[allow(dead_code)]
     #[inline]
     pub fn child(
         &self,
-    ) -> Option<type_sitter_lib::NodeResult<'tree, VisibilityModifier<'tree>>> {
-        self.0.named_child(0).map(<VisibilityModifier<'tree> as TryFrom<_>>::try_from)
+        i: usize,
+    ) -> Option<
+        type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::VisibilityModifier_FieldDeclarationList_OrderedFieldDeclarationList_Identifier_Expression,
+            >,
+        >,
+    > {
+        self.0
+            .named_child(i)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    anon_unions::VisibilityModifier_FieldDeclarationList_OrderedFieldDeclarationList_Identifier_Expression,
+                > as TryFrom<_>>::try_from,
+            )
     }
 }
 #[automatically_derived]
@@ -5366,7 +5016,7 @@ impl<'tree> EnumVariantList<'tree> {
     pub fn children<'a>(
         &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
-    ) -> impl Iterator<
+    ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
             type_sitter_lib::ExtraOr<'tree, anon_unions::AttributeItem_EnumVariant>,
@@ -5374,12 +5024,10 @@ impl<'tree> EnumVariantList<'tree> {
     > + 'a {
         self.0
             .named_children(c)
-            .map(
-                <type_sitter_lib::ExtraOr<
-                    'tree,
-                    anon_unions::AttributeItem_EnumVariant,
-                > as TryFrom<_>>::try_from,
-            )
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::AttributeItem_EnumVariant,
+            > as TryFrom<_>>::try_from(n))
     }
     ///Get the node's named child #i
     #[allow(dead_code)]
@@ -5529,20 +5177,21 @@ impl<'tree> ExternCrateDeclaration<'tree> {
     pub fn children<'a>(
         &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
-    ) -> impl Iterator<
+    ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::Crate_VisibilityModifier>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::Crate_VisibilityModifier_Identifier,
+            >,
         >,
     > + 'a {
         self.0
             .named_children(c)
-            .map(
-                <type_sitter_lib::ExtraOr<
-                    'tree,
-                    anon_unions::Crate_VisibilityModifier,
-                > as TryFrom<_>>::try_from,
-            )
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::Crate_VisibilityModifier_Identifier,
+            > as TryFrom<_>>::try_from(n))
     }
     ///Get the node's named child #i
     #[allow(dead_code)]
@@ -5553,7 +5202,10 @@ impl<'tree> ExternCrateDeclaration<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::Crate_VisibilityModifier>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::Crate_VisibilityModifier_Identifier,
+            >,
         >,
     > {
         self.0
@@ -5561,7 +5213,7 @@ impl<'tree> ExternCrateDeclaration<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    anon_unions::Crate_VisibilityModifier,
+                    anon_unions::Crate_VisibilityModifier_Identifier,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -5681,13 +5333,52 @@ impl<'tree> FieldDeclaration<'tree> {
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the node's only named child
+    ///Get the node's named children
+    ///This is guaranteed to return at least one child
+    #[allow(dead_code)]
+    #[inline]
+    pub fn children<'a>(
+        &self,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
+    ) -> impl ExactSizeIterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::VisibilityModifier_FieldIdentifier_Type,
+            >,
+        >,
+    > + 'a {
+        self.0
+            .named_children(c)
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::VisibilityModifier_FieldIdentifier_Type,
+            > as TryFrom<_>>::try_from(n))
+    }
+    ///Get the node's named child #i
     #[allow(dead_code)]
     #[inline]
     pub fn child(
         &self,
-    ) -> Option<type_sitter_lib::NodeResult<'tree, VisibilityModifier<'tree>>> {
-        self.0.named_child(0).map(<VisibilityModifier<'tree> as TryFrom<_>>::try_from)
+        i: usize,
+    ) -> Option<
+        type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::VisibilityModifier_FieldIdentifier_Type,
+            >,
+        >,
+    > {
+        self.0
+            .named_child(i)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    anon_unions::VisibilityModifier_FieldIdentifier_Type,
+                > as TryFrom<_>>::try_from,
+            )
     }
 }
 #[automatically_derived]
@@ -5740,7 +5431,7 @@ impl<'tree> FieldDeclarationList<'tree> {
     pub fn children<'a>(
         &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
-    ) -> impl Iterator<
+    ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
             type_sitter_lib::ExtraOr<'tree, anon_unions::AttributeItem_FieldDeclaration>,
@@ -5748,12 +5439,10 @@ impl<'tree> FieldDeclarationList<'tree> {
     > + 'a {
         self.0
             .named_children(c)
-            .map(
-                <type_sitter_lib::ExtraOr<
-                    'tree,
-                    anon_unions::AttributeItem_FieldDeclaration,
-                > as TryFrom<_>>::try_from,
-            )
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::AttributeItem_FieldDeclaration,
+            > as TryFrom<_>>::try_from(n))
     }
     ///Get the node's named child #i
     #[allow(dead_code)]
@@ -5912,25 +5601,27 @@ impl<'tree> FieldInitializer<'tree> {
             )
     }
     ///Get the node's named children
+    ///This is guaranteed to return at least one child
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
         &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
-    ) -> impl Iterator<
+    ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, AttributeItem<'tree>>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::AttributeItem_FieldIdentifier_Expression,
+            >,
         >,
     > + 'a {
         self.0
             .named_children(c)
-            .map(
-                <type_sitter_lib::ExtraOr<
-                    'tree,
-                    AttributeItem<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::AttributeItem_FieldIdentifier_Expression,
+            > as TryFrom<_>>::try_from(n))
     }
     ///Get the node's named child #i
     #[allow(dead_code)]
@@ -5941,7 +5632,10 @@ impl<'tree> FieldInitializer<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, AttributeItem<'tree>>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::AttributeItem_FieldIdentifier_Expression,
+            >,
         >,
     > {
         self.0
@@ -5949,7 +5643,7 @@ impl<'tree> FieldInitializer<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    AttributeItem<'tree>,
+                    anon_unions::AttributeItem_FieldIdentifier_Expression,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -6004,7 +5698,7 @@ impl<'tree> FieldInitializerList<'tree> {
     pub fn children<'a>(
         &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
-    ) -> impl Iterator<
+    ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
             type_sitter_lib::ExtraOr<
@@ -6015,12 +5709,10 @@ impl<'tree> FieldInitializerList<'tree> {
     > + 'a {
         self.0
             .named_children(c)
-            .map(
-                <type_sitter_lib::ExtraOr<
-                    'tree,
-                    anon_unions::BaseFieldInitializer_FieldInitializer_ShorthandFieldInitializer,
-                > as TryFrom<_>>::try_from,
-            )
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::BaseFieldInitializer_FieldInitializer_ShorthandFieldInitializer,
+            > as TryFrom<_>>::try_from(n))
     }
     ///Get the node's named child #i
     #[allow(dead_code)]
@@ -6117,13 +5809,52 @@ impl<'tree> FieldPattern<'tree> {
             .child_by_field_name("pattern")
             .map(<Pattern<'tree> as TryFrom<_>>::try_from)
     }
-    ///Get the node's only named child
+    ///Get the node's named children
+    ///This is guaranteed to return at least one child
+    #[allow(dead_code)]
+    #[inline]
+    pub fn children<'a>(
+        &self,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
+    ) -> impl ExactSizeIterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::MutableSpecifier_FieldIdentifier_ShorthandFieldIdentifier_Pattern,
+            >,
+        >,
+    > + 'a {
+        self.0
+            .named_children(c)
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::MutableSpecifier_FieldIdentifier_ShorthandFieldIdentifier_Pattern,
+            > as TryFrom<_>>::try_from(n))
+    }
+    ///Get the node's named child #i
     #[allow(dead_code)]
     #[inline]
     pub fn child(
         &self,
-    ) -> Option<type_sitter_lib::NodeResult<'tree, MutableSpecifier<'tree>>> {
-        self.0.named_child(0).map(<MutableSpecifier<'tree> as TryFrom<_>>::try_from)
+        i: usize,
+    ) -> Option<
+        type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::MutableSpecifier_FieldIdentifier_ShorthandFieldIdentifier_Pattern,
+            >,
+        >,
+    > {
+        self.0
+            .named_child(i)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    anon_unions::MutableSpecifier_FieldIdentifier_ShorthandFieldIdentifier_Pattern,
+                > as TryFrom<_>>::try_from,
+            )
     }
 }
 #[automatically_derived]
@@ -6201,11 +5932,52 @@ impl<'tree> ForExpression<'tree> {
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the node's only named child
+    ///Get the node's named children
+    ///This is guaranteed to return at least one child
     #[allow(dead_code)]
     #[inline]
-    pub fn child(&self) -> Option<type_sitter_lib::NodeResult<'tree, LoopLabel<'tree>>> {
-        self.0.named_child(0).map(<LoopLabel<'tree> as TryFrom<_>>::try_from)
+    pub fn children<'a>(
+        &self,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
+    ) -> impl ExactSizeIterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::LoopLabel_Block_Pattern_Expression,
+            >,
+        >,
+    > + 'a {
+        self.0
+            .named_children(c)
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::LoopLabel_Block_Pattern_Expression,
+            > as TryFrom<_>>::try_from(n))
+    }
+    ///Get the node's named child #i
+    #[allow(dead_code)]
+    #[inline]
+    pub fn child(
+        &self,
+        i: usize,
+    ) -> Option<
+        type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::LoopLabel_Block_Pattern_Expression,
+            >,
+        >,
+    > {
+        self.0
+            .named_child(i)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    anon_unions::LoopLabel_Block_Pattern_Expression,
+                > as TryFrom<_>>::try_from,
+            )
     }
 }
 #[automatically_derived]
@@ -6257,7 +6029,7 @@ impl<'tree> ForLifetimes<'tree> {
     pub fn children<'a>(
         &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
-    ) -> impl Iterator<
+    ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
             type_sitter_lib::ExtraOr<'tree, Lifetime<'tree>>,
@@ -6265,12 +6037,10 @@ impl<'tree> ForLifetimes<'tree> {
     > + 'a {
         self.0
             .named_children(c)
-            .map(
-                <type_sitter_lib::ExtraOr<
-                    'tree,
-                    Lifetime<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                Lifetime<'tree>,
+            > as TryFrom<_>>::try_from(n))
     }
     ///Get the node's named child #i
     #[allow(dead_code)]
@@ -6353,23 +6123,21 @@ impl<'tree> ForeignModItem<'tree> {
     pub fn children<'a>(
         &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
-    ) -> impl Iterator<
+    ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::ExternModifier_VisibilityModifier,
+                anon_unions::ExternModifier_VisibilityModifier_DeclarationList,
             >,
         >,
     > + 'a {
         self.0
             .named_children(c)
-            .map(
-                <type_sitter_lib::ExtraOr<
-                    'tree,
-                    anon_unions::ExternModifier_VisibilityModifier,
-                > as TryFrom<_>>::try_from,
-            )
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::ExternModifier_VisibilityModifier_DeclarationList,
+            > as TryFrom<_>>::try_from(n))
     }
     ///Get the node's named child #i
     #[allow(dead_code)]
@@ -6382,7 +6150,7 @@ impl<'tree> ForeignModItem<'tree> {
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::ExternModifier_VisibilityModifier,
+                anon_unions::ExternModifier_VisibilityModifier_DeclarationList,
             >,
         >,
     > {
@@ -6391,7 +6159,7 @@ impl<'tree> ForeignModItem<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    anon_unions::ExternModifier_VisibilityModifier,
+                    anon_unions::ExternModifier_VisibilityModifier_DeclarationList,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -6536,28 +6304,27 @@ impl<'tree> FunctionItem<'tree> {
             .map(<TypeParameters<'tree> as TryFrom<_>>::try_from)
     }
     ///Get the node's named children
+    ///This is guaranteed to return at least one child
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
         &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
-    ) -> impl Iterator<
+    ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::FunctionModifiers_VisibilityModifier_WhereClause,
+                anon_unions::FunctionModifiers_VisibilityModifier_WhereClause_Block_Identifier_Metavariable_Parameters_Type_TypeParameters,
             >,
         >,
     > + 'a {
         self.0
             .named_children(c)
-            .map(
-                <type_sitter_lib::ExtraOr<
-                    'tree,
-                    anon_unions::FunctionModifiers_VisibilityModifier_WhereClause,
-                > as TryFrom<_>>::try_from,
-            )
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::FunctionModifiers_VisibilityModifier_WhereClause_Block_Identifier_Metavariable_Parameters_Type_TypeParameters,
+            > as TryFrom<_>>::try_from(n))
     }
     ///Get the node's named child #i
     #[allow(dead_code)]
@@ -6570,7 +6337,7 @@ impl<'tree> FunctionItem<'tree> {
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::FunctionModifiers_VisibilityModifier_WhereClause,
+                anon_unions::FunctionModifiers_VisibilityModifier_WhereClause_Block_Identifier_Metavariable_Parameters_Type_TypeParameters,
             >,
         >,
     > {
@@ -6579,7 +6346,7 @@ impl<'tree> FunctionItem<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    anon_unions::FunctionModifiers_VisibilityModifier_WhereClause,
+                    anon_unions::FunctionModifiers_VisibilityModifier_WhereClause_Block_Identifier_Metavariable_Parameters_Type_TypeParameters,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -6632,7 +6399,7 @@ impl<'tree> FunctionModifiers<'tree> {
     pub fn children<'a>(
         &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
-    ) -> impl Iterator<
+    ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
             type_sitter_lib::ExtraOr<'tree, ExternModifier<'tree>>,
@@ -6640,12 +6407,10 @@ impl<'tree> FunctionModifiers<'tree> {
     > + 'a {
         self.0
             .named_children(c)
-            .map(
-                <type_sitter_lib::ExtraOr<
-                    'tree,
-                    ExternModifier<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                ExternModifier<'tree>,
+            > as TryFrom<_>>::try_from(n))
     }
     ///Get the node's named child #i
     #[allow(dead_code)]
@@ -6758,28 +6523,27 @@ impl<'tree> FunctionSignatureItem<'tree> {
             .map(<TypeParameters<'tree> as TryFrom<_>>::try_from)
     }
     ///Get the node's named children
+    ///This is guaranteed to return at least one child
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
         &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
-    ) -> impl Iterator<
+    ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::FunctionModifiers_VisibilityModifier_WhereClause,
+                anon_unions::FunctionModifiers_VisibilityModifier_WhereClause_Identifier_Metavariable_Parameters_Type_TypeParameters,
             >,
         >,
     > + 'a {
         self.0
             .named_children(c)
-            .map(
-                <type_sitter_lib::ExtraOr<
-                    'tree,
-                    anon_unions::FunctionModifiers_VisibilityModifier_WhereClause,
-                > as TryFrom<_>>::try_from,
-            )
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::FunctionModifiers_VisibilityModifier_WhereClause_Identifier_Metavariable_Parameters_Type_TypeParameters,
+            > as TryFrom<_>>::try_from(n))
     }
     ///Get the node's named child #i
     #[allow(dead_code)]
@@ -6792,7 +6556,7 @@ impl<'tree> FunctionSignatureItem<'tree> {
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::FunctionModifiers_VisibilityModifier_WhereClause,
+                anon_unions::FunctionModifiers_VisibilityModifier_WhereClause_Identifier_Metavariable_Parameters_Type_TypeParameters,
             >,
         >,
     > {
@@ -6801,7 +6565,7 @@ impl<'tree> FunctionSignatureItem<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    anon_unions::FunctionModifiers_VisibilityModifier_WhereClause,
+                    anon_unions::FunctionModifiers_VisibilityModifier_WhereClause_Identifier_Metavariable_Parameters_Type_TypeParameters,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -6889,25 +6653,27 @@ impl<'tree> FunctionType<'tree> {
             )
     }
     ///Get the node's named children
+    ///This is guaranteed to return at least one child
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
         &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
-    ) -> impl Iterator<
+    ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::ForLifetimes_FunctionModifiers>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::ForLifetimes_FunctionModifiers_Parameters_Type_ScopedTypeIdentifier_TypeIdentifier,
+            >,
         >,
     > + 'a {
         self.0
             .named_children(c)
-            .map(
-                <type_sitter_lib::ExtraOr<
-                    'tree,
-                    anon_unions::ForLifetimes_FunctionModifiers,
-                > as TryFrom<_>>::try_from,
-            )
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::ForLifetimes_FunctionModifiers_Parameters_Type_ScopedTypeIdentifier_TypeIdentifier,
+            > as TryFrom<_>>::try_from(n))
     }
     ///Get the node's named child #i
     #[allow(dead_code)]
@@ -6918,7 +6684,10 @@ impl<'tree> FunctionType<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::ForLifetimes_FunctionModifiers>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::ForLifetimes_FunctionModifiers_Parameters_Type_ScopedTypeIdentifier_TypeIdentifier,
+            >,
         >,
     > {
         self.0
@@ -6926,7 +6695,7 @@ impl<'tree> FunctionType<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    anon_unions::ForLifetimes_FunctionModifiers,
+                    anon_unions::ForLifetimes_FunctionModifiers_Parameters_Type_ScopedTypeIdentifier_TypeIdentifier,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -7398,13 +7167,52 @@ impl<'tree> ImplItem<'tree> {
             .child_by_field_name("type_parameters")
             .map(<TypeParameters<'tree> as TryFrom<_>>::try_from)
     }
-    ///Get the node's only named child
+    ///Get the node's named children
+    ///This is guaranteed to return at least one child
+    #[allow(dead_code)]
+    #[inline]
+    pub fn children<'a>(
+        &self,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
+    ) -> impl ExactSizeIterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::WhereClause_DeclarationList_GenericType_ScopedTypeIdentifier_TypeIdentifier_Type_TypeParameters,
+            >,
+        >,
+    > + 'a {
+        self.0
+            .named_children(c)
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::WhereClause_DeclarationList_GenericType_ScopedTypeIdentifier_TypeIdentifier_Type_TypeParameters,
+            > as TryFrom<_>>::try_from(n))
+    }
+    ///Get the node's named child #i
     #[allow(dead_code)]
     #[inline]
     pub fn child(
         &self,
-    ) -> Option<type_sitter_lib::NodeResult<'tree, WhereClause<'tree>>> {
-        self.0.named_child(0).map(<WhereClause<'tree> as TryFrom<_>>::try_from)
+        i: usize,
+    ) -> Option<
+        type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::WhereClause_DeclarationList_GenericType_ScopedTypeIdentifier_TypeIdentifier_Type_TypeParameters,
+            >,
+        >,
+    > {
+        self.0
+            .named_child(i)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    anon_unions::WhereClause_DeclarationList_GenericType_ScopedTypeIdentifier_TypeIdentifier_Type_TypeParameters,
+                > as TryFrom<_>>::try_from,
+            )
     }
 }
 #[automatically_derived]
@@ -7456,7 +7264,7 @@ impl<'tree> IndexExpression<'tree> {
     pub fn children<'a>(
         &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
-    ) -> impl Iterator<
+    ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
             type_sitter_lib::ExtraOr<'tree, Expression<'tree>>,
@@ -7464,12 +7272,10 @@ impl<'tree> IndexExpression<'tree> {
     > + 'a {
         self.0
             .named_children(c)
-            .map(
-                <type_sitter_lib::ExtraOr<
-                    'tree,
-                    Expression<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                Expression<'tree>,
+            > as TryFrom<_>>::try_from(n))
     }
     ///Get the node's named child #i
     #[allow(dead_code)]
@@ -7596,7 +7402,7 @@ impl<'tree> LetChain<'tree> {
     pub fn children<'a>(
         &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
-    ) -> impl Iterator<
+    ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
             type_sitter_lib::ExtraOr<'tree, anon_unions::Expression_LetCondition>,
@@ -7604,12 +7410,10 @@ impl<'tree> LetChain<'tree> {
     > + 'a {
         self.0
             .named_children(c)
-            .map(
-                <type_sitter_lib::ExtraOr<
-                    'tree,
-                    anon_unions::Expression_LetCondition,
-                > as TryFrom<_>>::try_from,
-            )
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::Expression_LetCondition,
+            > as TryFrom<_>>::try_from(n))
     }
     ///Get the node's named child #i
     #[allow(dead_code)]
@@ -7777,13 +7581,52 @@ impl<'tree> LetDeclaration<'tree> {
             .child_by_field_name("value")
             .map(<Expression<'tree> as TryFrom<_>>::try_from)
     }
-    ///Get the node's only named child
+    ///Get the node's named children
+    ///This is guaranteed to return at least one child
+    #[allow(dead_code)]
+    #[inline]
+    pub fn children<'a>(
+        &self,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
+    ) -> impl ExactSizeIterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::MutableSpecifier_Block_Pattern_Type_Expression,
+            >,
+        >,
+    > + 'a {
+        self.0
+            .named_children(c)
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::MutableSpecifier_Block_Pattern_Type_Expression,
+            > as TryFrom<_>>::try_from(n))
+    }
+    ///Get the node's named child #i
     #[allow(dead_code)]
     #[inline]
     pub fn child(
         &self,
-    ) -> Option<type_sitter_lib::NodeResult<'tree, MutableSpecifier<'tree>>> {
-        self.0.named_child(0).map(<MutableSpecifier<'tree> as TryFrom<_>>::try_from)
+        i: usize,
+    ) -> Option<
+        type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::MutableSpecifier_Block_Pattern_Type_Expression,
+            >,
+        >,
+    > {
+        self.0
+            .named_child(i)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    anon_unions::MutableSpecifier_Block_Pattern_Type_Expression,
+                > as TryFrom<_>>::try_from,
+            )
     }
 }
 #[automatically_derived]
@@ -7893,11 +7736,46 @@ impl<'tree> LoopExpression<'tree> {
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the node's only named child
+    ///Get the node's named children
+    ///This is guaranteed to return at least one child
     #[allow(dead_code)]
     #[inline]
-    pub fn child(&self) -> Option<type_sitter_lib::NodeResult<'tree, LoopLabel<'tree>>> {
-        self.0.named_child(0).map(<LoopLabel<'tree> as TryFrom<_>>::try_from)
+    pub fn children<'a>(
+        &self,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
+    ) -> impl ExactSizeIterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::LoopLabel_Block>,
+        >,
+    > + 'a {
+        self.0
+            .named_children(c)
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::LoopLabel_Block,
+            > as TryFrom<_>>::try_from(n))
+    }
+    ///Get the node's named child #i
+    #[allow(dead_code)]
+    #[inline]
+    pub fn child(
+        &self,
+        i: usize,
+    ) -> Option<
+        type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::LoopLabel_Block>,
+        >,
+    > {
+        self.0
+            .named_child(i)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    anon_unions::LoopLabel_Block,
+                > as TryFrom<_>>::try_from,
+            )
     }
 }
 #[automatically_derived]
@@ -8008,25 +7886,24 @@ impl<'tree> MacroDefinition<'tree> {
             )
     }
     ///Get the node's named children
+    ///This is guaranteed to return at least one child
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
         &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
-    ) -> impl Iterator<
+    ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, MacroRule<'tree>>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::MacroRule_Identifier>,
         >,
     > + 'a {
         self.0
             .named_children(c)
-            .map(
-                <type_sitter_lib::ExtraOr<
-                    'tree,
-                    MacroRule<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::MacroRule_Identifier,
+            > as TryFrom<_>>::try_from(n))
     }
     ///Get the node's named child #i
     #[allow(dead_code)]
@@ -8037,7 +7914,7 @@ impl<'tree> MacroDefinition<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, MacroRule<'tree>>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::MacroRule_Identifier>,
         >,
     > {
         self.0
@@ -8045,7 +7922,7 @@ impl<'tree> MacroDefinition<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    MacroRule<'tree>,
+                    anon_unions::MacroRule_Identifier,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -8105,15 +7982,51 @@ impl<'tree> MacroInvocation<'tree> {
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the node's only named child
+    ///Get the node's named children
+    ///This is guaranteed to return at least one child
     #[allow(dead_code)]
     #[inline]
-    pub fn child(&self) -> type_sitter_lib::NodeResult<'tree, TokenTree<'tree>> {
+    pub fn children<'a>(
+        &self,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
+    ) -> impl ExactSizeIterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::TokenTree_Identifier_ScopedIdentifier,
+            >,
+        >,
+    > + 'a {
         self.0
-            .named_child(0)
-            .map(<TokenTree<'tree> as TryFrom<_>>::try_from)
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            .named_children(c)
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::TokenTree_Identifier_ScopedIdentifier,
+            > as TryFrom<_>>::try_from(n))
+    }
+    ///Get the node's named child #i
+    #[allow(dead_code)]
+    #[inline]
+    pub fn child(
+        &self,
+        i: usize,
+    ) -> Option<
+        type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::TokenTree_Identifier_ScopedIdentifier,
+            >,
+        >,
+    > {
+        self.0
+            .named_child(i)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    anon_unions::TokenTree_Identifier_ScopedIdentifier,
+                > as TryFrom<_>>::try_from,
             )
     }
 }
@@ -8247,25 +8160,27 @@ impl<'tree> MatchArm<'tree> {
             )
     }
     ///Get the node's named children
+    ///This is guaranteed to return at least one child
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
         &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
-    ) -> impl Iterator<
+    ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, AttributeItem<'tree>>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::AttributeItem_MatchPattern_Expression,
+            >,
         >,
     > + 'a {
         self.0
             .named_children(c)
-            .map(
-                <type_sitter_lib::ExtraOr<
-                    'tree,
-                    AttributeItem<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::AttributeItem_MatchPattern_Expression,
+            > as TryFrom<_>>::try_from(n))
     }
     ///Get the node's named child #i
     #[allow(dead_code)]
@@ -8276,7 +8191,10 @@ impl<'tree> MatchArm<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, AttributeItem<'tree>>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::AttributeItem_MatchPattern_Expression,
+            >,
         >,
     > {
         self.0
@@ -8284,7 +8202,7 @@ impl<'tree> MatchArm<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    AttributeItem<'tree>,
+                    anon_unions::AttributeItem_MatchPattern_Expression,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -8337,7 +8255,7 @@ impl<'tree> MatchBlock<'tree> {
     pub fn children<'a>(
         &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
-    ) -> impl Iterator<
+    ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
             type_sitter_lib::ExtraOr<'tree, MatchArm<'tree>>,
@@ -8345,12 +8263,10 @@ impl<'tree> MatchBlock<'tree> {
     > + 'a {
         self.0
             .named_children(c)
-            .map(
-                <type_sitter_lib::ExtraOr<
-                    'tree,
-                    MatchArm<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                MatchArm<'tree>,
+            > as TryFrom<_>>::try_from(n))
     }
     ///Get the node's named child #i
     #[allow(dead_code)]
@@ -8493,15 +8409,51 @@ impl<'tree> MatchPattern<'tree> {
             .child_by_field_name("condition")
             .map(<anon_unions::Expression_LetChain_LetCondition as TryFrom<_>>::try_from)
     }
-    ///Get the node's only named child
+    ///Get the node's named children
+    ///This is guaranteed to return at least one child
     #[allow(dead_code)]
     #[inline]
-    pub fn child(&self) -> type_sitter_lib::NodeResult<'tree, Pattern<'tree>> {
+    pub fn children<'a>(
+        &self,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
+    ) -> impl ExactSizeIterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::Pattern_Expression_LetChain_LetCondition,
+            >,
+        >,
+    > + 'a {
         self.0
-            .named_child(0)
-            .map(<Pattern<'tree> as TryFrom<_>>::try_from)
-            .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+            .named_children(c)
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::Pattern_Expression_LetChain_LetCondition,
+            > as TryFrom<_>>::try_from(n))
+    }
+    ///Get the node's named child #i
+    #[allow(dead_code)]
+    #[inline]
+    pub fn child(
+        &self,
+        i: usize,
+    ) -> Option<
+        type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::Pattern_Expression_LetChain_LetCondition,
+            >,
+        >,
+    > {
+        self.0
+            .named_child(i)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    anon_unions::Pattern_Expression_LetChain_LetCondition,
+                > as TryFrom<_>>::try_from,
             )
     }
 }
@@ -8568,13 +8520,52 @@ impl<'tree> ModItem<'tree> {
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the node's only named child
+    ///Get the node's named children
+    ///This is guaranteed to return at least one child
+    #[allow(dead_code)]
+    #[inline]
+    pub fn children<'a>(
+        &self,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
+    ) -> impl ExactSizeIterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::VisibilityModifier_DeclarationList_Identifier,
+            >,
+        >,
+    > + 'a {
+        self.0
+            .named_children(c)
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::VisibilityModifier_DeclarationList_Identifier,
+            > as TryFrom<_>>::try_from(n))
+    }
+    ///Get the node's named child #i
     #[allow(dead_code)]
     #[inline]
     pub fn child(
         &self,
-    ) -> Option<type_sitter_lib::NodeResult<'tree, VisibilityModifier<'tree>>> {
-        self.0.named_child(0).map(<VisibilityModifier<'tree> as TryFrom<_>>::try_from)
+        i: usize,
+    ) -> Option<
+        type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::VisibilityModifier_DeclarationList_Identifier,
+            >,
+        >,
+    > {
+        self.0
+            .named_child(i)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    anon_unions::VisibilityModifier_DeclarationList_Identifier,
+                > as TryFrom<_>>::try_from,
+            )
     }
 }
 #[automatically_derived]
@@ -8626,7 +8617,7 @@ impl<'tree> MutPattern<'tree> {
     pub fn children<'a>(
         &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
-    ) -> impl Iterator<
+    ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
             type_sitter_lib::ExtraOr<'tree, anon_unions::Pattern_MutableSpecifier>,
@@ -8634,12 +8625,10 @@ impl<'tree> MutPattern<'tree> {
     > + 'a {
         self.0
             .named_children(c)
-            .map(
-                <type_sitter_lib::ExtraOr<
-                    'tree,
-                    anon_unions::Pattern_MutableSpecifier,
-                > as TryFrom<_>>::try_from,
-            )
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::Pattern_MutableSpecifier,
+            > as TryFrom<_>>::try_from(n))
     }
     ///Get the node's named child #i
     #[allow(dead_code)]
@@ -8844,7 +8833,7 @@ impl<'tree> OrPattern<'tree> {
     pub fn children<'a>(
         &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
-    ) -> impl Iterator<
+    ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
             type_sitter_lib::ExtraOr<'tree, Pattern<'tree>>,
@@ -8852,9 +8841,10 @@ impl<'tree> OrPattern<'tree> {
     > + 'a {
         self.0
             .named_children(c)
-            .map(
-                <type_sitter_lib::ExtraOr<'tree, Pattern<'tree>> as TryFrom<_>>::try_from,
-            )
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                Pattern<'tree>,
+            > as TryFrom<_>>::try_from(n))
     }
     ///Get the node's named child #i
     #[allow(dead_code)]
@@ -8933,7 +8923,10 @@ impl<'tree> OrderedFieldDeclarationList<'tree> {
     > + 'a {
         self.0
             .children_by_field_name("type", c)
-            .map(<type_sitter_lib::ExtraOr<'tree, Type<'tree>> as TryFrom<_>>::try_from)
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                Type<'tree>,
+            > as TryFrom<_>>::try_from(n))
     }
     ///Get the node's named children
     #[allow(dead_code)]
@@ -8941,23 +8934,21 @@ impl<'tree> OrderedFieldDeclarationList<'tree> {
     pub fn children<'a>(
         &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
-    ) -> impl Iterator<
+    ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::AttributeItem_VisibilityModifier,
+                anon_unions::AttributeItem_VisibilityModifier_Type,
             >,
         >,
     > + 'a {
         self.0
             .named_children(c)
-            .map(
-                <type_sitter_lib::ExtraOr<
-                    'tree,
-                    anon_unions::AttributeItem_VisibilityModifier,
-                > as TryFrom<_>>::try_from,
-            )
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::AttributeItem_VisibilityModifier_Type,
+            > as TryFrom<_>>::try_from(n))
     }
     ///Get the node's named child #i
     #[allow(dead_code)]
@@ -8970,7 +8961,7 @@ impl<'tree> OrderedFieldDeclarationList<'tree> {
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::AttributeItem_VisibilityModifier,
+                anon_unions::AttributeItem_VisibilityModifier_Type,
             >,
         >,
     > {
@@ -8979,7 +8970,7 @@ impl<'tree> OrderedFieldDeclarationList<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    anon_unions::AttributeItem_VisibilityModifier,
+                    anon_unions::AttributeItem_VisibilityModifier_Type,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -9050,13 +9041,52 @@ impl<'tree> Parameter<'tree> {
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the node's only named child
+    ///Get the node's named children
+    ///This is guaranteed to return at least one child
+    #[allow(dead_code)]
+    #[inline]
+    pub fn children<'a>(
+        &self,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
+    ) -> impl ExactSizeIterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::MutableSpecifier_Pattern__Self_Type,
+            >,
+        >,
+    > + 'a {
+        self.0
+            .named_children(c)
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::MutableSpecifier_Pattern__Self_Type,
+            > as TryFrom<_>>::try_from(n))
+    }
+    ///Get the node's named child #i
     #[allow(dead_code)]
     #[inline]
     pub fn child(
         &self,
-    ) -> Option<type_sitter_lib::NodeResult<'tree, MutableSpecifier<'tree>>> {
-        self.0.named_child(0).map(<MutableSpecifier<'tree> as TryFrom<_>>::try_from)
+        i: usize,
+    ) -> Option<
+        type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::MutableSpecifier_Pattern__Self_Type,
+            >,
+        >,
+    > {
+        self.0
+            .named_child(i)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    anon_unions::MutableSpecifier_Pattern__Self_Type,
+                > as TryFrom<_>>::try_from,
+            )
     }
 }
 #[automatically_derived]
@@ -9107,7 +9137,7 @@ impl<'tree> Parameters<'tree> {
     pub fn children<'a>(
         &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
-    ) -> impl Iterator<
+    ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
             type_sitter_lib::ExtraOr<
@@ -9118,12 +9148,10 @@ impl<'tree> Parameters<'tree> {
     > + 'a {
         self.0
             .named_children(c)
-            .map(
-                <type_sitter_lib::ExtraOr<
-                    'tree,
-                    anon_unions::Type_AttributeItem_Parameter_SelfParameter_VariadicParameter,
-                > as TryFrom<_>>::try_from,
-            )
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::Type_AttributeItem_Parameter_SelfParameter_VariadicParameter,
+            > as TryFrom<_>>::try_from(n))
     }
     ///Get the node's named child #i
     #[allow(dead_code)]
@@ -9259,13 +9287,46 @@ impl<'tree> PointerType<'tree> {
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the node's only named child
+    ///Get the node's named children
+    ///This is guaranteed to return at least one child
+    #[allow(dead_code)]
+    #[inline]
+    pub fn children<'a>(
+        &self,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
+    ) -> impl ExactSizeIterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::MutableSpecifier_Type>,
+        >,
+    > + 'a {
+        self.0
+            .named_children(c)
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::MutableSpecifier_Type,
+            > as TryFrom<_>>::try_from(n))
+    }
+    ///Get the node's named child #i
     #[allow(dead_code)]
     #[inline]
     pub fn child(
         &self,
-    ) -> Option<type_sitter_lib::NodeResult<'tree, MutableSpecifier<'tree>>> {
-        self.0.named_child(0).map(<MutableSpecifier<'tree> as TryFrom<_>>::try_from)
+        i: usize,
+    ) -> Option<
+        type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::MutableSpecifier_Type>,
+        >,
+    > {
+        self.0
+            .named_child(i)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    anon_unions::MutableSpecifier_Type,
+                > as TryFrom<_>>::try_from,
+            )
     }
 }
 #[automatically_derived]
@@ -9381,7 +9442,7 @@ impl<'tree> RangeExpression<'tree> {
     pub fn children<'a>(
         &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
-    ) -> impl Iterator<
+    ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
             type_sitter_lib::ExtraOr<'tree, Expression<'tree>>,
@@ -9389,12 +9450,10 @@ impl<'tree> RangeExpression<'tree> {
     > + 'a {
         self.0
             .named_children(c)
-            .map(
-                <type_sitter_lib::ExtraOr<
-                    'tree,
-                    Expression<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                Expression<'tree>,
+            > as TryFrom<_>>::try_from(n))
     }
     ///Get the node's named child #i
     #[allow(dead_code)]
@@ -9467,7 +9526,7 @@ impl<'tree> RangePattern<'tree> {
     pub fn children<'a>(
         &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
-    ) -> impl Iterator<
+    ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
             type_sitter_lib::ExtraOr<
@@ -9478,12 +9537,10 @@ impl<'tree> RangePattern<'tree> {
     > + 'a {
         self.0
             .named_children(c)
-            .map(
-                <type_sitter_lib::ExtraOr<
-                    'tree,
-                    anon_unions::LiteralPattern_Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super,
-                > as TryFrom<_>>::try_from,
-            )
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::LiteralPattern_Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super,
+            > as TryFrom<_>>::try_from(n))
     }
     ///Get the node's named child #i
     #[allow(dead_code)]
@@ -9617,13 +9674,46 @@ impl<'tree> ReferenceExpression<'tree> {
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the node's only named child
+    ///Get the node's named children
+    ///This is guaranteed to return at least one child
+    #[allow(dead_code)]
+    #[inline]
+    pub fn children<'a>(
+        &self,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
+    ) -> impl ExactSizeIterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::MutableSpecifier_Expression>,
+        >,
+    > + 'a {
+        self.0
+            .named_children(c)
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::MutableSpecifier_Expression,
+            > as TryFrom<_>>::try_from(n))
+    }
+    ///Get the node's named child #i
     #[allow(dead_code)]
     #[inline]
     pub fn child(
         &self,
-    ) -> Option<type_sitter_lib::NodeResult<'tree, MutableSpecifier<'tree>>> {
-        self.0.named_child(0).map(<MutableSpecifier<'tree> as TryFrom<_>>::try_from)
+        i: usize,
+    ) -> Option<
+        type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::MutableSpecifier_Expression>,
+        >,
+    > {
+        self.0
+            .named_child(i)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    anon_unions::MutableSpecifier_Expression,
+                > as TryFrom<_>>::try_from,
+            )
     }
 }
 #[automatically_derived]
@@ -9675,7 +9765,7 @@ impl<'tree> ReferencePattern<'tree> {
     pub fn children<'a>(
         &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
-    ) -> impl Iterator<
+    ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
             type_sitter_lib::ExtraOr<'tree, anon_unions::Pattern_MutableSpecifier>,
@@ -9683,12 +9773,10 @@ impl<'tree> ReferencePattern<'tree> {
     > + 'a {
         self.0
             .named_children(c)
-            .map(
-                <type_sitter_lib::ExtraOr<
-                    'tree,
-                    anon_unions::Pattern_MutableSpecifier,
-                > as TryFrom<_>>::try_from,
-            )
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::Pattern_MutableSpecifier,
+            > as TryFrom<_>>::try_from(n))
     }
     ///Get the node's named child #i
     #[allow(dead_code)]
@@ -9766,25 +9854,24 @@ impl<'tree> ReferenceType<'tree> {
             )
     }
     ///Get the node's named children
+    ///This is guaranteed to return at least one child
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
         &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
-    ) -> impl Iterator<
+    ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::Lifetime_MutableSpecifier>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::Lifetime_MutableSpecifier_Type>,
         >,
     > + 'a {
         self.0
             .named_children(c)
-            .map(
-                <type_sitter_lib::ExtraOr<
-                    'tree,
-                    anon_unions::Lifetime_MutableSpecifier,
-                > as TryFrom<_>>::try_from,
-            )
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::Lifetime_MutableSpecifier_Type,
+            > as TryFrom<_>>::try_from(n))
     }
     ///Get the node's named child #i
     #[allow(dead_code)]
@@ -9795,7 +9882,7 @@ impl<'tree> ReferenceType<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::Lifetime_MutableSpecifier>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::Lifetime_MutableSpecifier_Type>,
         >,
     > {
         self.0
@@ -9803,7 +9890,7 @@ impl<'tree> ReferenceType<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    anon_unions::Lifetime_MutableSpecifier,
+                    anon_unions::Lifetime_MutableSpecifier_Type,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -10227,7 +10314,7 @@ impl<'tree> SelfParameter<'tree> {
     pub fn children<'a>(
         &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
-    ) -> impl Iterator<
+    ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
             type_sitter_lib::ExtraOr<'tree, anon_unions::Lifetime_MutableSpecifier__Self>,
@@ -10235,12 +10322,10 @@ impl<'tree> SelfParameter<'tree> {
     > + 'a {
         self.0
             .named_children(c)
-            .map(
-                <type_sitter_lib::ExtraOr<
-                    'tree,
-                    anon_unions::Lifetime_MutableSpecifier__Self,
-                > as TryFrom<_>>::try_from,
-            )
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::Lifetime_MutableSpecifier__Self,
+            > as TryFrom<_>>::try_from(n))
     }
     ///Get the node's named child #i
     #[allow(dead_code)]
@@ -10315,7 +10400,7 @@ impl<'tree> ShorthandFieldInitializer<'tree> {
     pub fn children<'a>(
         &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
-    ) -> impl Iterator<
+    ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
             type_sitter_lib::ExtraOr<'tree, anon_unions::AttributeItem_Identifier>,
@@ -10323,12 +10408,10 @@ impl<'tree> ShorthandFieldInitializer<'tree> {
     > + 'a {
         self.0
             .named_children(c)
-            .map(
-                <type_sitter_lib::ExtraOr<
-                    'tree,
-                    anon_unions::AttributeItem_Identifier,
-                > as TryFrom<_>>::try_from,
-            )
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::AttributeItem_Identifier,
+            > as TryFrom<_>>::try_from(n))
     }
     ///Get the node's named child #i
     #[allow(dead_code)]
@@ -10400,7 +10483,7 @@ impl<'tree> SlicePattern<'tree> {
     pub fn children<'a>(
         &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
-    ) -> impl Iterator<
+    ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
             type_sitter_lib::ExtraOr<'tree, Pattern<'tree>>,
@@ -10408,9 +10491,10 @@ impl<'tree> SlicePattern<'tree> {
     > + 'a {
         self.0
             .named_children(c)
-            .map(
-                <type_sitter_lib::ExtraOr<'tree, Pattern<'tree>> as TryFrom<_>>::try_from,
-            )
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                Pattern<'tree>,
+            > as TryFrom<_>>::try_from(n))
     }
     ///Get the node's named child #i
     #[allow(dead_code)]
@@ -10479,7 +10563,7 @@ impl<'tree> SourceFile<'tree> {
     pub fn children<'a>(
         &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
-    ) -> impl Iterator<
+    ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
             type_sitter_lib::ExtraOr<
@@ -10490,12 +10574,10 @@ impl<'tree> SourceFile<'tree> {
     > + 'a {
         self.0
             .named_children(c)
-            .map(
-                <type_sitter_lib::ExtraOr<
-                    'tree,
-                    anon_unions::DeclarationStatement_ExpressionStatement,
-                > as TryFrom<_>>::try_from,
-            )
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::DeclarationStatement_ExpressionStatement,
+            > as TryFrom<_>>::try_from(n))
     }
     ///Get the node's named child #i
     #[allow(dead_code)]
@@ -10597,28 +10679,27 @@ impl<'tree> StaticItem<'tree> {
             .map(<Expression<'tree> as TryFrom<_>>::try_from)
     }
     ///Get the node's named children
+    ///This is guaranteed to return at least one child
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
         &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
-    ) -> impl Iterator<
+    ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::MutableSpecifier_VisibilityModifier,
+                anon_unions::MutableSpecifier_VisibilityModifier_Identifier_Type_Expression,
             >,
         >,
     > + 'a {
         self.0
             .named_children(c)
-            .map(
-                <type_sitter_lib::ExtraOr<
-                    'tree,
-                    anon_unions::MutableSpecifier_VisibilityModifier,
-                > as TryFrom<_>>::try_from,
-            )
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::MutableSpecifier_VisibilityModifier_Identifier_Type_Expression,
+            > as TryFrom<_>>::try_from(n))
     }
     ///Get the node's named child #i
     #[allow(dead_code)]
@@ -10631,7 +10712,7 @@ impl<'tree> StaticItem<'tree> {
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::MutableSpecifier_VisibilityModifier,
+                anon_unions::MutableSpecifier_VisibilityModifier_Identifier_Type_Expression,
             >,
         >,
     > {
@@ -10640,7 +10721,7 @@ impl<'tree> StaticItem<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    anon_unions::MutableSpecifier_VisibilityModifier,
+                    anon_unions::MutableSpecifier_VisibilityModifier_Identifier_Type_Expression,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -10693,7 +10774,7 @@ impl<'tree> StringLiteral<'tree> {
     pub fn children<'a>(
         &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
-    ) -> impl Iterator<
+    ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
             type_sitter_lib::ExtraOr<'tree, EscapeSequence<'tree>>,
@@ -10701,12 +10782,10 @@ impl<'tree> StringLiteral<'tree> {
     > + 'a {
         self.0
             .named_children(c)
-            .map(
-                <type_sitter_lib::ExtraOr<
-                    'tree,
-                    EscapeSequence<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                EscapeSequence<'tree>,
+            > as TryFrom<_>>::try_from(n))
     }
     ///Get the node's named child #i
     #[allow(dead_code)]
@@ -10889,25 +10968,27 @@ impl<'tree> StructItem<'tree> {
             .map(<TypeParameters<'tree> as TryFrom<_>>::try_from)
     }
     ///Get the node's named children
+    ///This is guaranteed to return at least one child
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
         &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
-    ) -> impl Iterator<
+    ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::VisibilityModifier_WhereClause>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::VisibilityModifier_WhereClause_FieldDeclarationList_OrderedFieldDeclarationList_TypeIdentifier_TypeParameters,
+            >,
         >,
     > + 'a {
         self.0
             .named_children(c)
-            .map(
-                <type_sitter_lib::ExtraOr<
-                    'tree,
-                    anon_unions::VisibilityModifier_WhereClause,
-                > as TryFrom<_>>::try_from,
-            )
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::VisibilityModifier_WhereClause_FieldDeclarationList_OrderedFieldDeclarationList_TypeIdentifier_TypeParameters,
+            > as TryFrom<_>>::try_from(n))
     }
     ///Get the node's named child #i
     #[allow(dead_code)]
@@ -10918,7 +10999,10 @@ impl<'tree> StructItem<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::VisibilityModifier_WhereClause>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::VisibilityModifier_WhereClause_FieldDeclarationList_OrderedFieldDeclarationList_TypeIdentifier_TypeParameters,
+            >,
         >,
     > {
         self.0
@@ -10926,7 +11010,7 @@ impl<'tree> StructItem<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    anon_unions::VisibilityModifier_WhereClause,
+                    anon_unions::VisibilityModifier_WhereClause_FieldDeclarationList_OrderedFieldDeclarationList_TypeIdentifier_TypeParameters,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -10994,28 +11078,27 @@ impl<'tree> StructPattern<'tree> {
             )
     }
     ///Get the node's named children
+    ///This is guaranteed to return at least one child
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
         &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
-    ) -> impl Iterator<
+    ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::FieldPattern_RemainingFieldPattern,
+                anon_unions::FieldPattern_RemainingFieldPattern_ScopedTypeIdentifier_TypeIdentifier,
             >,
         >,
     > + 'a {
         self.0
             .named_children(c)
-            .map(
-                <type_sitter_lib::ExtraOr<
-                    'tree,
-                    anon_unions::FieldPattern_RemainingFieldPattern,
-                > as TryFrom<_>>::try_from,
-            )
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::FieldPattern_RemainingFieldPattern_ScopedTypeIdentifier_TypeIdentifier,
+            > as TryFrom<_>>::try_from(n))
     }
     ///Get the node's named child #i
     #[allow(dead_code)]
@@ -11028,7 +11111,7 @@ impl<'tree> StructPattern<'tree> {
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::FieldPattern_RemainingFieldPattern,
+                anon_unions::FieldPattern_RemainingFieldPattern_ScopedTypeIdentifier_TypeIdentifier,
             >,
         >,
     > {
@@ -11037,7 +11120,7 @@ impl<'tree> StructPattern<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    anon_unions::FieldPattern_RemainingFieldPattern,
+                    anon_unions::FieldPattern_RemainingFieldPattern_ScopedTypeIdentifier_TypeIdentifier,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -11157,7 +11240,7 @@ impl<'tree> TokenRepetition<'tree> {
     pub fn children<'a>(
         &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
-    ) -> impl Iterator<
+    ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
             type_sitter_lib::ExtraOr<
@@ -11168,12 +11251,10 @@ impl<'tree> TokenRepetition<'tree> {
     > + 'a {
         self.0
             .named_children(c)
-            .map(
-                <type_sitter_lib::ExtraOr<
-                    'tree,
-                    anon_unions::Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenRepetition_TokenTree,
-                > as TryFrom<_>>::try_from,
-            )
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenRepetition_TokenTree,
+            > as TryFrom<_>>::try_from(n))
     }
     ///Get the node's named child #i
     #[allow(dead_code)]
@@ -11250,7 +11331,7 @@ impl<'tree> TokenRepetitionPattern<'tree> {
     pub fn children<'a>(
         &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
-    ) -> impl Iterator<
+    ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
             type_sitter_lib::ExtraOr<
@@ -11261,12 +11342,10 @@ impl<'tree> TokenRepetitionPattern<'tree> {
     > + 'a {
         self.0
             .named_children(c)
-            .map(
-                <type_sitter_lib::ExtraOr<
-                    'tree,
-                    anon_unions::Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern,
-                > as TryFrom<_>>::try_from,
-            )
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern,
+            > as TryFrom<_>>::try_from(n))
     }
     ///Get the node's named child #i
     #[allow(dead_code)]
@@ -11341,7 +11420,7 @@ impl<'tree> TokenTree<'tree> {
     pub fn children<'a>(
         &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
-    ) -> impl Iterator<
+    ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
             type_sitter_lib::ExtraOr<
@@ -11352,12 +11431,10 @@ impl<'tree> TokenTree<'tree> {
     > + 'a {
         self.0
             .named_children(c)
-            .map(
-                <type_sitter_lib::ExtraOr<
-                    'tree,
-                    anon_unions::Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenRepetition_TokenTree,
-                > as TryFrom<_>>::try_from,
-            )
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenRepetition_TokenTree,
+            > as TryFrom<_>>::try_from(n))
     }
     ///Get the node's named child #i
     #[allow(dead_code)]
@@ -11432,7 +11509,7 @@ impl<'tree> TokenTreePattern<'tree> {
     pub fn children<'a>(
         &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
-    ) -> impl Iterator<
+    ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
             type_sitter_lib::ExtraOr<
@@ -11443,12 +11520,10 @@ impl<'tree> TokenTreePattern<'tree> {
     > + 'a {
         self.0
             .named_children(c)
-            .map(
-                <type_sitter_lib::ExtraOr<
-                    'tree,
-                    anon_unions::Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern,
-                > as TryFrom<_>>::try_from,
-            )
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern,
+            > as TryFrom<_>>::try_from(n))
     }
     ///Get the node's named child #i
     #[allow(dead_code)]
@@ -11524,7 +11599,7 @@ impl<'tree> TraitBounds<'tree> {
     pub fn children<'a>(
         &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
-    ) -> impl Iterator<
+    ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
             type_sitter_lib::ExtraOr<
@@ -11535,12 +11610,10 @@ impl<'tree> TraitBounds<'tree> {
     > + 'a {
         self.0
             .named_children(c)
-            .map(
-                <type_sitter_lib::ExtraOr<
-                    'tree,
-                    anon_unions::Type_HigherRankedTraitBound_Lifetime_RemovedTraitBound,
-                > as TryFrom<_>>::try_from,
-            )
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::Type_HigherRankedTraitBound_Lifetime_RemovedTraitBound,
+            > as TryFrom<_>>::try_from(n))
     }
     ///Get the node's named child #i
     #[allow(dead_code)]
@@ -11652,25 +11725,27 @@ impl<'tree> TraitItem<'tree> {
             .map(<TypeParameters<'tree> as TryFrom<_>>::try_from)
     }
     ///Get the node's named children
+    ///This is guaranteed to return at least one child
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
         &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
-    ) -> impl Iterator<
+    ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::VisibilityModifier_WhereClause>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::VisibilityModifier_WhereClause_DeclarationList_TraitBounds_TypeIdentifier_TypeParameters,
+            >,
         >,
     > + 'a {
         self.0
             .named_children(c)
-            .map(
-                <type_sitter_lib::ExtraOr<
-                    'tree,
-                    anon_unions::VisibilityModifier_WhereClause,
-                > as TryFrom<_>>::try_from,
-            )
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::VisibilityModifier_WhereClause_DeclarationList_TraitBounds_TypeIdentifier_TypeParameters,
+            > as TryFrom<_>>::try_from(n))
     }
     ///Get the node's named child #i
     #[allow(dead_code)]
@@ -11681,7 +11756,10 @@ impl<'tree> TraitItem<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::VisibilityModifier_WhereClause>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::VisibilityModifier_WhereClause_DeclarationList_TraitBounds_TypeIdentifier_TypeParameters,
+            >,
         >,
     > {
         self.0
@@ -11689,7 +11767,7 @@ impl<'tree> TraitItem<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    anon_unions::VisibilityModifier_WhereClause,
+                    anon_unions::VisibilityModifier_WhereClause_DeclarationList_TraitBounds_TypeIdentifier_TypeParameters,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -11797,7 +11875,7 @@ impl<'tree> TupleExpression<'tree> {
     pub fn children<'a>(
         &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
-    ) -> impl Iterator<
+    ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
             type_sitter_lib::ExtraOr<'tree, anon_unions::Expression_AttributeItem>,
@@ -11805,12 +11883,10 @@ impl<'tree> TupleExpression<'tree> {
     > + 'a {
         self.0
             .named_children(c)
-            .map(
-                <type_sitter_lib::ExtraOr<
-                    'tree,
-                    anon_unions::Expression_AttributeItem,
-                > as TryFrom<_>>::try_from,
-            )
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::Expression_AttributeItem,
+            > as TryFrom<_>>::try_from(n))
     }
     ///Get the node's named child #i
     #[allow(dead_code)]
@@ -11882,7 +11958,7 @@ impl<'tree> TuplePattern<'tree> {
     pub fn children<'a>(
         &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
-    ) -> impl Iterator<
+    ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
             type_sitter_lib::ExtraOr<'tree, Pattern<'tree>>,
@@ -11890,9 +11966,10 @@ impl<'tree> TuplePattern<'tree> {
     > + 'a {
         self.0
             .named_children(c)
-            .map(
-                <type_sitter_lib::ExtraOr<'tree, Pattern<'tree>> as TryFrom<_>>::try_from,
-            )
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                Pattern<'tree>,
+            > as TryFrom<_>>::try_from(n))
     }
     ///Get the node's named child #i
     #[allow(dead_code)]
@@ -11969,22 +12046,27 @@ impl<'tree> TupleStructPattern<'tree> {
             )
     }
     ///Get the node's named children
+    ///This is guaranteed to return at least one child
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
         &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
-    ) -> impl Iterator<
+    ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, Pattern<'tree>>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::Pattern_Identifier_ScopedIdentifier,
+            >,
         >,
     > + 'a {
         self.0
             .named_children(c)
-            .map(
-                <type_sitter_lib::ExtraOr<'tree, Pattern<'tree>> as TryFrom<_>>::try_from,
-            )
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::Pattern_Identifier_ScopedIdentifier,
+            > as TryFrom<_>>::try_from(n))
     }
     ///Get the node's named child #i
     #[allow(dead_code)]
@@ -11995,13 +12077,19 @@ impl<'tree> TupleStructPattern<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, Pattern<'tree>>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::Pattern_Identifier_ScopedIdentifier,
+            >,
         >,
     > {
         self.0
             .named_child(i)
             .map(
-                <type_sitter_lib::ExtraOr<'tree, Pattern<'tree>> as TryFrom<_>>::try_from,
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    anon_unions::Pattern_Identifier_ScopedIdentifier,
+                > as TryFrom<_>>::try_from,
             )
     }
 }
@@ -12054,7 +12142,7 @@ impl<'tree> TupleType<'tree> {
     pub fn children<'a>(
         &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
-    ) -> impl Iterator<
+    ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
             type_sitter_lib::ExtraOr<'tree, Type<'tree>>,
@@ -12062,7 +12150,10 @@ impl<'tree> TupleType<'tree> {
     > + 'a {
         self.0
             .named_children(c)
-            .map(<type_sitter_lib::ExtraOr<'tree, Type<'tree>> as TryFrom<_>>::try_from)
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                Type<'tree>,
+            > as TryFrom<_>>::try_from(n))
     }
     ///Get the node's named child #i
     #[allow(dead_code)]
@@ -12127,7 +12218,7 @@ impl<'tree> TypeArguments<'tree> {
     pub fn children<'a>(
         &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
-    ) -> impl Iterator<
+    ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
             type_sitter_lib::ExtraOr<
@@ -12138,12 +12229,10 @@ impl<'tree> TypeArguments<'tree> {
     > + 'a {
         self.0
             .named_children(c)
-            .map(
-                <type_sitter_lib::ExtraOr<
-                    'tree,
-                    anon_unions::Literal_Type_Block_Lifetime_TypeBinding,
-                > as TryFrom<_>>::try_from,
-            )
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::Literal_Type_Block_Lifetime_TypeBinding,
+            > as TryFrom<_>>::try_from(n))
     }
     ///Get the node's named child #i
     #[allow(dead_code)]
@@ -12384,13 +12473,52 @@ impl<'tree> TypeItem<'tree> {
             .child_by_field_name("type_parameters")
             .map(<TypeParameters<'tree> as TryFrom<_>>::try_from)
     }
-    ///Get the node's only named child
+    ///Get the node's named children
+    ///This is guaranteed to return at least one child
+    #[allow(dead_code)]
+    #[inline]
+    pub fn children<'a>(
+        &self,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
+    ) -> impl ExactSizeIterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::VisibilityModifier_TypeIdentifier_Type_TypeParameters,
+            >,
+        >,
+    > + 'a {
+        self.0
+            .named_children(c)
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::VisibilityModifier_TypeIdentifier_Type_TypeParameters,
+            > as TryFrom<_>>::try_from(n))
+    }
+    ///Get the node's named child #i
     #[allow(dead_code)]
     #[inline]
     pub fn child(
         &self,
-    ) -> Option<type_sitter_lib::NodeResult<'tree, VisibilityModifier<'tree>>> {
-        self.0.named_child(0).map(<VisibilityModifier<'tree> as TryFrom<_>>::try_from)
+        i: usize,
+    ) -> Option<
+        type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::VisibilityModifier_TypeIdentifier_Type_TypeParameters,
+            >,
+        >,
+    > {
+        self.0
+            .named_child(i)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    anon_unions::VisibilityModifier_TypeIdentifier_Type_TypeParameters,
+                > as TryFrom<_>>::try_from,
+            )
     }
 }
 #[automatically_derived]
@@ -12442,7 +12570,7 @@ impl<'tree> TypeParameters<'tree> {
     pub fn children<'a>(
         &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
-    ) -> impl Iterator<
+    ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
             type_sitter_lib::ExtraOr<
@@ -12453,12 +12581,10 @@ impl<'tree> TypeParameters<'tree> {
     > + 'a {
         self.0
             .named_children(c)
-            .map(
-                <type_sitter_lib::ExtraOr<
-                    'tree,
-                    anon_unions::ConstParameter_ConstrainedTypeParameter_Lifetime_Metavariable_OptionalTypeParameter_TypeIdentifier,
-                > as TryFrom<_>>::try_from,
-            )
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::ConstParameter_ConstrainedTypeParameter_Lifetime_Metavariable_OptionalTypeParameter_TypeIdentifier,
+            > as TryFrom<_>>::try_from(n))
     }
     ///Get the node's named child #i
     #[allow(dead_code)]
@@ -12616,25 +12742,27 @@ impl<'tree> UnionItem<'tree> {
             .map(<TypeParameters<'tree> as TryFrom<_>>::try_from)
     }
     ///Get the node's named children
+    ///This is guaranteed to return at least one child
     #[allow(dead_code)]
     #[inline]
     pub fn children<'a>(
         &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
-    ) -> impl Iterator<
+    ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::VisibilityModifier_WhereClause>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::VisibilityModifier_WhereClause_FieldDeclarationList_TypeIdentifier_TypeParameters,
+            >,
         >,
     > + 'a {
         self.0
             .named_children(c)
-            .map(
-                <type_sitter_lib::ExtraOr<
-                    'tree,
-                    anon_unions::VisibilityModifier_WhereClause,
-                > as TryFrom<_>>::try_from,
-            )
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::VisibilityModifier_WhereClause_FieldDeclarationList_TypeIdentifier_TypeParameters,
+            > as TryFrom<_>>::try_from(n))
     }
     ///Get the node's named child #i
     #[allow(dead_code)]
@@ -12645,7 +12773,10 @@ impl<'tree> UnionItem<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::VisibilityModifier_WhereClause>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::VisibilityModifier_WhereClause_FieldDeclarationList_TypeIdentifier_TypeParameters,
+            >,
         >,
     > {
         self.0
@@ -12653,7 +12784,7 @@ impl<'tree> UnionItem<'tree> {
             .map(
                 <type_sitter_lib::ExtraOr<
                     'tree,
-                    anon_unions::VisibilityModifier_WhereClause,
+                    anon_unions::VisibilityModifier_WhereClause_FieldDeclarationList_TypeIdentifier_TypeParameters,
                 > as TryFrom<_>>::try_from,
             )
     }
@@ -12932,13 +13063,52 @@ impl<'tree> UseDeclaration<'tree> {
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the node's only named child
+    ///Get the node's named children
+    ///This is guaranteed to return at least one child
+    #[allow(dead_code)]
+    #[inline]
+    pub fn children<'a>(
+        &self,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
+    ) -> impl ExactSizeIterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::VisibilityModifier_Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard,
+            >,
+        >,
+    > + 'a {
+        self.0
+            .named_children(c)
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::VisibilityModifier_Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard,
+            > as TryFrom<_>>::try_from(n))
+    }
+    ///Get the node's named child #i
     #[allow(dead_code)]
     #[inline]
     pub fn child(
         &self,
-    ) -> Option<type_sitter_lib::NodeResult<'tree, VisibilityModifier<'tree>>> {
-        self.0.named_child(0).map(<VisibilityModifier<'tree> as TryFrom<_>>::try_from)
+        i: usize,
+    ) -> Option<
+        type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::VisibilityModifier_Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard,
+            >,
+        >,
+    > {
+        self.0
+            .named_child(i)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    anon_unions::VisibilityModifier_Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard,
+                > as TryFrom<_>>::try_from,
+            )
     }
 }
 #[automatically_derived]
@@ -12989,7 +13159,7 @@ impl<'tree> UseList<'tree> {
     pub fn children<'a>(
         &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
-    ) -> impl Iterator<
+    ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
             type_sitter_lib::ExtraOr<
@@ -13000,12 +13170,10 @@ impl<'tree> UseList<'tree> {
     > + 'a {
         self.0
             .named_children(c)
-            .map(
-                <type_sitter_lib::ExtraOr<
-                    'tree,
-                    anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard,
-                > as TryFrom<_>>::try_from,
-            )
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard,
+            > as TryFrom<_>>::try_from(n))
     }
     ///Get the node's named child #i
     #[allow(dead_code)]
@@ -13247,7 +13415,7 @@ impl<'tree> WhereClause<'tree> {
     pub fn children<'a>(
         &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
-    ) -> impl Iterator<
+    ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
             type_sitter_lib::ExtraOr<'tree, WherePredicate<'tree>>,
@@ -13255,12 +13423,10 @@ impl<'tree> WhereClause<'tree> {
     > + 'a {
         self.0
             .named_children(c)
-            .map(
-                <type_sitter_lib::ExtraOr<
-                    'tree,
-                    WherePredicate<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                WherePredicate<'tree>,
+            > as TryFrom<_>>::try_from(n))
     }
     ///Get the node's named child #i
     #[allow(dead_code)]
@@ -13427,11 +13593,52 @@ impl<'tree> WhileExpression<'tree> {
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the node's only named child
+    ///Get the node's named children
+    ///This is guaranteed to return at least one child
     #[allow(dead_code)]
     #[inline]
-    pub fn child(&self) -> Option<type_sitter_lib::NodeResult<'tree, LoopLabel<'tree>>> {
-        self.0.named_child(0).map(<LoopLabel<'tree> as TryFrom<_>>::try_from)
+    pub fn children<'a>(
+        &self,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
+    ) -> impl ExactSizeIterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::LoopLabel_Block_Expression_LetChain_LetCondition,
+            >,
+        >,
+    > + 'a {
+        self.0
+            .named_children(c)
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::LoopLabel_Block_Expression_LetChain_LetCondition,
+            > as TryFrom<_>>::try_from(n))
+    }
+    ///Get the node's named child #i
+    #[allow(dead_code)]
+    #[inline]
+    pub fn child(
+        &self,
+        i: usize,
+    ) -> Option<
+        type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::LoopLabel_Block_Expression_LetChain_LetCondition,
+            >,
+        >,
+    > {
+        self.0
+            .named_child(i)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    anon_unions::LoopLabel_Block_Expression_LetChain_LetCondition,
+                > as TryFrom<_>>::try_from,
+            )
     }
 }
 #[automatically_derived]
@@ -18965,36 +19172,16 @@ pub mod anon_unions {
         fn try_from(
             node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
         ) -> Result<Self, Self::Error> {
-            match node.kind() {
-                "_expression" => {
-                    Ok(unsafe {
-                        Self::Expression(
-                            <Expression<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "attribute_item" => {
-                    Ok(unsafe {
-                        Self::AttributeItem(
-                            <AttributeItem<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                _ => {
-                    Err(type_sitter_lib::IncorrectKind {
-                        node,
-                        kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                    })
-                }
+            if let Ok(this) = <Expression<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Expression(this));
             }
+            if let Ok(this) = <AttributeItem<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::AttributeItem(this));
+            }
+            Err(type_sitter_lib::IncorrectKind {
+                node,
+                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+            })
         }
     }
     #[automatically_derived]
@@ -19019,20 +19206,29 @@ pub mod anon_unions {
     }
     #[doc = concat!(
         "one of `",
-        "{crate | identifier | metavariable | scoped_identifier | self | super}", "`"
+        "{crate | identifier | metavariable | scoped_identifier | self | super | token_tree | _expression}",
+        "`"
     )]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub enum Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super<'tree> {
+    pub enum Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super_TokenTree_Expression<
+        'tree,
+    > {
         Crate(Crate<'tree>),
         Identifier(Identifier<'tree>),
         Metavariable(Metavariable<'tree>),
         ScopedIdentifier(ScopedIdentifier<'tree>),
         _Self(_Self<'tree>),
         Super(Super<'tree>),
+        TokenTree(TokenTree<'tree>),
+        Expression(Expression<'tree>),
     }
     #[automatically_derived]
-    impl<'tree> Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super<'tree> {
+    impl<
+        'tree,
+    > Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super_TokenTree_Expression<
+        'tree,
+    > {
         #[doc = concat!(
             "Returns the node if it is of kind `", "crate", "`, otherwise returns None"
         )]
@@ -19102,95 +19298,77 @@ pub mod anon_unions {
                 _ => None,
             }
         }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "token_tree",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn token_tree(self) -> Option<TokenTree<'tree>> {
+            match self {
+                Self::TokenTree(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "_expression",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn expression(self) -> Option<Expression<'tree>> {
+            match self {
+                Self::Expression(x) => Some(x),
+                _ => None,
+            }
+        }
     }
     #[automatically_derived]
     impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
-    for Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super<'tree> {
+    for Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super_TokenTree_Expression<
+        'tree,
+    > {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
         fn try_from(
             node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
         ) -> Result<Self, Self::Error> {
-            match node.kind() {
-                "crate" => {
-                    Ok(unsafe {
-                        Self::Crate(
-                            <Crate<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "identifier" => {
-                    Ok(unsafe {
-                        Self::Identifier(
-                            <Identifier<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "metavariable" => {
-                    Ok(unsafe {
-                        Self::Metavariable(
-                            <Metavariable<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "scoped_identifier" => {
-                    Ok(unsafe {
-                        Self::ScopedIdentifier(
-                            <ScopedIdentifier<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "self" => {
-                    Ok(unsafe {
-                        Self::_Self(
-                            <_Self<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "super" => {
-                    Ok(unsafe {
-                        Self::Super(
-                            <Super<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                _ => {
-                    Err(type_sitter_lib::IncorrectKind {
-                        node,
-                        kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                    })
-                }
+            if let Ok(this) = <Crate<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Crate(this));
             }
+            if let Ok(this) = <Identifier<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Identifier(this));
+            }
+            if let Ok(this) = <Metavariable<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Metavariable(this));
+            }
+            if let Ok(this) = <ScopedIdentifier<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::ScopedIdentifier(this));
+            }
+            if let Ok(this) = <_Self<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::_Self(this));
+            }
+            if let Ok(this) = <Super<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Super(this));
+            }
+            if let Ok(this) = <TokenTree<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::TokenTree(this));
+            }
+            if let Ok(this) = <Expression<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Expression(this));
+            }
+            Err(type_sitter_lib::IncorrectKind {
+                node,
+                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+            })
         }
     }
     #[automatically_derived]
     impl<'tree> type_sitter_lib::TypedNode<'tree>
-    for Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super<'tree> {
-        const KIND: &'static str = "{crate | identifier | metavariable | scoped_identifier | self | super}";
+    for Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super_TokenTree_Expression<
+        'tree,
+    > {
+        const KIND: &'static str = "{crate | identifier | metavariable | scoped_identifier | self | super | token_tree | _expression}";
         #[inline]
         fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
@@ -19200,6 +19378,8 @@ pub mod anon_unions {
                 Self::ScopedIdentifier(x) => x.node(),
                 Self::_Self(x) => x.node(),
                 Self::Super(x) => x.node(),
+                Self::TokenTree(x) => x.node(),
+                Self::Expression(x) => x.node(),
             }
         }
         #[inline]
@@ -19213,6 +19393,8 @@ pub mod anon_unions {
                 Self::ScopedIdentifier(x) => x.node_mut(),
                 Self::_Self(x) => x.node_mut(),
                 Self::Super(x) => x.node_mut(),
+                Self::TokenTree(x) => x.node_mut(),
+                Self::Expression(x) => x.node_mut(),
             }
         }
     }
@@ -19780,47 +19962,21 @@ pub mod anon_unions {
         fn try_from(
             node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
         ) -> Result<Self, Self::Error> {
-            match node.kind() {
-                "_declaration_statement" => {
-                    Ok(unsafe {
-                        Self::DeclarationStatement(
-                            <DeclarationStatement<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "_expression" => {
-                    Ok(unsafe {
-                        Self::Expression(
-                            <Expression<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "expression_statement" => {
-                    Ok(unsafe {
-                        Self::ExpressionStatement(
-                            <ExpressionStatement<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                _ => {
-                    Err(type_sitter_lib::IncorrectKind {
-                        node,
-                        kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                    })
-                }
+            if let Ok(this)
+                = <DeclarationStatement<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::DeclarationStatement(this));
             }
+            if let Ok(this) = <Expression<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Expression(this));
+            }
+            if let Ok(this)
+                = <ExpressionStatement<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::ExpressionStatement(this));
+            }
+            Err(type_sitter_lib::IncorrectKind {
+                node,
+                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+            })
         }
     }
     #[automatically_derived]
@@ -19887,36 +20043,16 @@ pub mod anon_unions {
         fn try_from(
             node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
         ) -> Result<Self, Self::Error> {
-            match node.kind() {
-                "_type" => {
-                    Ok(unsafe {
-                        Self::Type(
-                            <Type<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "lifetime" => {
-                    Ok(unsafe {
-                        Self::Lifetime(
-                            <Lifetime<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                _ => {
-                    Err(type_sitter_lib::IncorrectKind {
-                        node,
-                        kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                    })
-                }
+            if let Ok(this) = <Type<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Type(this));
             }
+            if let Ok(this) = <Lifetime<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Lifetime(this));
+            }
+            Err(type_sitter_lib::IncorrectKind {
+                node,
+                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+            })
         }
     }
     #[automatically_derived]
@@ -19980,36 +20116,16 @@ pub mod anon_unions {
         fn try_from(
             node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
         ) -> Result<Self, Self::Error> {
-            match node.kind() {
-                "_type" => {
-                    Ok(unsafe {
-                        Self::Type(
-                            <Type<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "qualified_type" => {
-                    Ok(unsafe {
-                        Self::QualifiedType(
-                            <QualifiedType<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                _ => {
-                    Err(type_sitter_lib::IncorrectKind {
-                        node,
-                        kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                    })
-                }
+            if let Ok(this) = <Type<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Type(this));
             }
+            if let Ok(this) = <QualifiedType<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::QualifiedType(this));
+            }
+            Err(type_sitter_lib::IncorrectKind {
+                node,
+                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+            })
         }
     }
     #[automatically_derived]
@@ -20074,36 +20190,16 @@ pub mod anon_unions {
         fn try_from(
             node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
         ) -> Result<Self, Self::Error> {
-            match node.kind() {
-                "_expression" => {
-                    Ok(unsafe {
-                        Self::Expression(
-                            <Expression<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "loop_label" => {
-                    Ok(unsafe {
-                        Self::LoopLabel(
-                            <LoopLabel<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                _ => {
-                    Err(type_sitter_lib::IncorrectKind {
-                        node,
-                        kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                    })
-                }
+            if let Ok(this) = <Expression<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Expression(this));
             }
+            if let Ok(this) = <LoopLabel<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::LoopLabel(this));
+            }
+            Err(type_sitter_lib::IncorrectKind {
+                node,
+                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+            })
         }
     }
     #[automatically_derived]
@@ -20633,421 +20729,125 @@ pub mod anon_unions {
         fn try_from(
             node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
         ) -> Result<Self, Self::Error> {
-            match node.kind() {
-                "_literal" => {
-                    Ok(unsafe {
-                        Self::Literal(
-                            <Literal<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "array_expression" => {
-                    Ok(unsafe {
-                        Self::ArrayExpression(
-                            <ArrayExpression<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "assignment_expression" => {
-                    Ok(unsafe {
-                        Self::AssignmentExpression(
-                            <AssignmentExpression<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "async_block" => {
-                    Ok(unsafe {
-                        Self::AsyncBlock(
-                            <AsyncBlock<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "await_expression" => {
-                    Ok(unsafe {
-                        Self::AwaitExpression(
-                            <AwaitExpression<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "binary_expression" => {
-                    Ok(unsafe {
-                        Self::BinaryExpression(
-                            <BinaryExpression<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "block" => {
-                    Ok(unsafe {
-                        Self::Block(
-                            <Block<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "break_expression" => {
-                    Ok(unsafe {
-                        Self::BreakExpression(
-                            <BreakExpression<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "call_expression" => {
-                    Ok(unsafe {
-                        Self::CallExpression(
-                            <CallExpression<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "closure_expression" => {
-                    Ok(unsafe {
-                        Self::ClosureExpression(
-                            <ClosureExpression<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "compound_assignment_expr" => {
-                    Ok(unsafe {
-                        Self::CompoundAssignmentExpr(
-                            <CompoundAssignmentExpr<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "const_block" => {
-                    Ok(unsafe {
-                        Self::ConstBlock(
-                            <ConstBlock<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "continue_expression" => {
-                    Ok(unsafe {
-                        Self::ContinueExpression(
-                            <ContinueExpression<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "field_expression" => {
-                    Ok(unsafe {
-                        Self::FieldExpression(
-                            <FieldExpression<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "for_expression" => {
-                    Ok(unsafe {
-                        Self::ForExpression(
-                            <ForExpression<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "generic_function" => {
-                    Ok(unsafe {
-                        Self::GenericFunction(
-                            <GenericFunction<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "identifier" => {
-                    Ok(unsafe {
-                        Self::Identifier(
-                            <Identifier<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "if_expression" => {
-                    Ok(unsafe {
-                        Self::IfExpression(
-                            <IfExpression<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "index_expression" => {
-                    Ok(unsafe {
-                        Self::IndexExpression(
-                            <IndexExpression<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "loop_expression" => {
-                    Ok(unsafe {
-                        Self::LoopExpression(
-                            <LoopExpression<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "macro_invocation" => {
-                    Ok(unsafe {
-                        Self::MacroInvocation(
-                            <MacroInvocation<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "match_expression" => {
-                    Ok(unsafe {
-                        Self::MatchExpression(
-                            <MatchExpression<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "metavariable" => {
-                    Ok(unsafe {
-                        Self::Metavariable(
-                            <Metavariable<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "parenthesized_expression" => {
-                    Ok(unsafe {
-                        Self::ParenthesizedExpression(
-                            <ParenthesizedExpression<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "reference_expression" => {
-                    Ok(unsafe {
-                        Self::ReferenceExpression(
-                            <ReferenceExpression<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "return_expression" => {
-                    Ok(unsafe {
-                        Self::ReturnExpression(
-                            <ReturnExpression<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "scoped_identifier" => {
-                    Ok(unsafe {
-                        Self::ScopedIdentifier(
-                            <ScopedIdentifier<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "self" => {
-                    Ok(unsafe {
-                        Self::_Self(
-                            <_Self<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "struct_expression" => {
-                    Ok(unsafe {
-                        Self::StructExpression(
-                            <StructExpression<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "try_expression" => {
-                    Ok(unsafe {
-                        Self::TryExpression(
-                            <TryExpression<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "tuple_expression" => {
-                    Ok(unsafe {
-                        Self::TupleExpression(
-                            <TupleExpression<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "type_cast_expression" => {
-                    Ok(unsafe {
-                        Self::TypeCastExpression(
-                            <TypeCastExpression<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "unary_expression" => {
-                    Ok(unsafe {
-                        Self::UnaryExpression(
-                            <UnaryExpression<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "unit_expression" => {
-                    Ok(unsafe {
-                        Self::UnitExpression(
-                            <UnitExpression<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "unsafe_block" => {
-                    Ok(unsafe {
-                        Self::UnsafeBlock(
-                            <UnsafeBlock<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "while_expression" => {
-                    Ok(unsafe {
-                        Self::WhileExpression(
-                            <WhileExpression<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "yield_expression" => {
-                    Ok(unsafe {
-                        Self::YieldExpression(
-                            <YieldExpression<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                _ => {
-                    Err(type_sitter_lib::IncorrectKind {
-                        node,
-                        kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                    })
-                }
+            if let Ok(this) = <Literal<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Literal(this));
             }
+            if let Ok(this) = <ArrayExpression<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::ArrayExpression(this));
+            }
+            if let Ok(this)
+                = <AssignmentExpression<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::AssignmentExpression(this));
+            }
+            if let Ok(this) = <AsyncBlock<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::AsyncBlock(this));
+            }
+            if let Ok(this) = <AwaitExpression<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::AwaitExpression(this));
+            }
+            if let Ok(this) = <BinaryExpression<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::BinaryExpression(this));
+            }
+            if let Ok(this) = <Block<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Block(this));
+            }
+            if let Ok(this) = <BreakExpression<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::BreakExpression(this));
+            }
+            if let Ok(this) = <CallExpression<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::CallExpression(this));
+            }
+            if let Ok(this) = <ClosureExpression<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::ClosureExpression(this));
+            }
+            if let Ok(this)
+                = <CompoundAssignmentExpr<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::CompoundAssignmentExpr(this));
+            }
+            if let Ok(this) = <ConstBlock<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::ConstBlock(this));
+            }
+            if let Ok(this) = <ContinueExpression<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::ContinueExpression(this));
+            }
+            if let Ok(this) = <FieldExpression<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::FieldExpression(this));
+            }
+            if let Ok(this) = <ForExpression<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::ForExpression(this));
+            }
+            if let Ok(this) = <GenericFunction<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::GenericFunction(this));
+            }
+            if let Ok(this) = <Identifier<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Identifier(this));
+            }
+            if let Ok(this) = <IfExpression<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::IfExpression(this));
+            }
+            if let Ok(this) = <IndexExpression<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::IndexExpression(this));
+            }
+            if let Ok(this) = <LoopExpression<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::LoopExpression(this));
+            }
+            if let Ok(this) = <MacroInvocation<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::MacroInvocation(this));
+            }
+            if let Ok(this) = <MatchExpression<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::MatchExpression(this));
+            }
+            if let Ok(this) = <Metavariable<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Metavariable(this));
+            }
+            if let Ok(this)
+                = <ParenthesizedExpression<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::ParenthesizedExpression(this));
+            }
+            if let Ok(this)
+                = <ReferenceExpression<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::ReferenceExpression(this));
+            }
+            if let Ok(this) = <ReturnExpression<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::ReturnExpression(this));
+            }
+            if let Ok(this) = <ScopedIdentifier<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::ScopedIdentifier(this));
+            }
+            if let Ok(this) = <_Self<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::_Self(this));
+            }
+            if let Ok(this) = <StructExpression<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::StructExpression(this));
+            }
+            if let Ok(this) = <TryExpression<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::TryExpression(this));
+            }
+            if let Ok(this) = <TupleExpression<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::TupleExpression(this));
+            }
+            if let Ok(this) = <TypeCastExpression<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::TypeCastExpression(this));
+            }
+            if let Ok(this) = <UnaryExpression<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::UnaryExpression(this));
+            }
+            if let Ok(this) = <UnitExpression<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::UnitExpression(this));
+            }
+            if let Ok(this) = <UnsafeBlock<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::UnsafeBlock(this));
+            }
+            if let Ok(this) = <WhileExpression<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::WhileExpression(this));
+            }
+            if let Ok(this) = <YieldExpression<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::YieldExpression(this));
+            }
+            Err(type_sitter_lib::IncorrectKind {
+                node,
+                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+            })
         }
     }
     #[automatically_derived]
@@ -21185,36 +20985,16 @@ pub mod anon_unions {
         fn try_from(
             node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
         ) -> Result<Self, Self::Error> {
-            match node.kind() {
-                "_pattern" => {
-                    Ok(unsafe {
-                        Self::Pattern(
-                            <Pattern<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "parameter" => {
-                    Ok(unsafe {
-                        Self::Parameter(
-                            <Parameter<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                _ => {
-                    Err(type_sitter_lib::IncorrectKind {
-                        node,
-                        kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                    })
-                }
+            if let Ok(this) = <Pattern<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Pattern(this));
             }
+            if let Ok(this) = <Parameter<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Parameter(this));
+            }
+            Err(type_sitter_lib::IncorrectKind {
+                node,
+                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+            })
         }
     }
     #[automatically_derived]
@@ -21532,6 +21312,118 @@ pub mod anon_unions {
             }
         }
     }
+    #[doc = concat!(
+        "one of `", "{visibility_modifier | identifier | _type | _expression}", "`"
+    )]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub enum VisibilityModifier_Identifier_Type_Expression<'tree> {
+        VisibilityModifier(VisibilityModifier<'tree>),
+        Identifier(Identifier<'tree>),
+        Type(Type<'tree>),
+        Expression(Expression<'tree>),
+    }
+    #[automatically_derived]
+    impl<'tree> VisibilityModifier_Identifier_Type_Expression<'tree> {
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "visibility_modifier",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn visibility_modifier(self) -> Option<VisibilityModifier<'tree>> {
+            match self {
+                Self::VisibilityModifier(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "identifier",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn identifier(self) -> Option<Identifier<'tree>> {
+            match self {
+                Self::Identifier(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "_type", "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn r#type(self) -> Option<Type<'tree>> {
+            match self {
+                Self::Type(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "_expression",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn expression(self) -> Option<Expression<'tree>> {
+            match self {
+                Self::Expression(x) => Some(x),
+                _ => None,
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for VisibilityModifier_Identifier_Type_Expression<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            if let Ok(this) = <VisibilityModifier<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::VisibilityModifier(this));
+            }
+            if let Ok(this) = <Identifier<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Identifier(this));
+            }
+            if let Ok(this) = <Type<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Type(this));
+            }
+            if let Ok(this) = <Expression<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Expression(this));
+            }
+            Err(type_sitter_lib::IncorrectKind {
+                node,
+                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+            })
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree>
+    for VisibilityModifier_Identifier_Type_Expression<'tree> {
+        const KIND: &'static str = "{visibility_modifier | identifier | _type | _expression}";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            match self {
+                Self::VisibilityModifier(x) => x.node(),
+                Self::Identifier(x) => x.node(),
+                Self::Type(x) => x.node(),
+                Self::Expression(x) => x.node(),
+            }
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            match self {
+                Self::VisibilityModifier(x) => x.node_mut(),
+                Self::Identifier(x) => x.node_mut(),
+                Self::Type(x) => x.node_mut(),
+                Self::Expression(x) => x.node_mut(),
+            }
+        }
+    }
     #[doc = concat!("one of `", "{lifetime | type_identifier}", "`")]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
@@ -21719,15 +21611,28 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = concat!("one of `", "{visibility_modifier | where_clause}", "`")]
+    #[doc = concat!(
+        "one of `",
+        "{visibility_modifier | where_clause | enum_variant_list | type_identifier | type_parameters}",
+        "`"
+    )]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub enum VisibilityModifier_WhereClause<'tree> {
+    pub enum VisibilityModifier_WhereClause_EnumVariantList_TypeIdentifier_TypeParameters<
+        'tree,
+    > {
         VisibilityModifier(VisibilityModifier<'tree>),
         WhereClause(WhereClause<'tree>),
+        EnumVariantList(EnumVariantList<'tree>),
+        TypeIdentifier(TypeIdentifier<'tree>),
+        TypeParameters(TypeParameters<'tree>),
     }
     #[automatically_derived]
-    impl<'tree> VisibilityModifier_WhereClause<'tree> {
+    impl<
+        'tree,
+    > VisibilityModifier_WhereClause_EnumVariantList_TypeIdentifier_TypeParameters<
+        'tree,
+    > {
         #[doc = concat!(
             "Returns the node if it is of kind `", "visibility_modifier",
             "`, otherwise returns None"
@@ -21752,10 +21657,48 @@ pub mod anon_unions {
                 _ => None,
             }
         }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "enum_variant_list",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn enum_variant_list(self) -> Option<EnumVariantList<'tree>> {
+            match self {
+                Self::EnumVariantList(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "type_identifier",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn type_identifier(self) -> Option<TypeIdentifier<'tree>> {
+            match self {
+                Self::TypeIdentifier(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "type_parameters",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn type_parameters(self) -> Option<TypeParameters<'tree>> {
+            match self {
+                Self::TypeParameters(x) => Some(x),
+                _ => None,
+            }
+        }
     }
     #[automatically_derived]
     impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
-    for VisibilityModifier_WhereClause<'tree> {
+    for VisibilityModifier_WhereClause_EnumVariantList_TypeIdentifier_TypeParameters<
+        'tree,
+    > {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
         fn try_from(
@@ -21784,6 +21727,39 @@ pub mod anon_unions {
                         )
                     })
                 }
+                "enum_variant_list" => {
+                    Ok(unsafe {
+                        Self::EnumVariantList(
+                            <EnumVariantList<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
+                                'tree,
+                            >>::from_node_unchecked(node),
+                        )
+                    })
+                }
+                "type_identifier" => {
+                    Ok(unsafe {
+                        Self::TypeIdentifier(
+                            <TypeIdentifier<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
+                                'tree,
+                            >>::from_node_unchecked(node),
+                        )
+                    })
+                }
+                "type_parameters" => {
+                    Ok(unsafe {
+                        Self::TypeParameters(
+                            <TypeParameters<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
+                                'tree,
+                            >>::from_node_unchecked(node),
+                        )
+                    })
+                }
                 _ => {
                     Err(type_sitter_lib::IncorrectKind {
                         node,
@@ -21795,13 +21771,18 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> type_sitter_lib::TypedNode<'tree>
-    for VisibilityModifier_WhereClause<'tree> {
-        const KIND: &'static str = "{visibility_modifier | where_clause}";
+    for VisibilityModifier_WhereClause_EnumVariantList_TypeIdentifier_TypeParameters<
+        'tree,
+    > {
+        const KIND: &'static str = "{visibility_modifier | where_clause | enum_variant_list | type_identifier | type_parameters}";
         #[inline]
         fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::VisibilityModifier(x) => x.node(),
                 Self::WhereClause(x) => x.node(),
+                Self::EnumVariantList(x) => x.node(),
+                Self::TypeIdentifier(x) => x.node(),
+                Self::TypeParameters(x) => x.node(),
             }
         }
         #[inline]
@@ -21811,6 +21792,156 @@ pub mod anon_unions {
             match self {
                 Self::VisibilityModifier(x) => x.node_mut(),
                 Self::WhereClause(x) => x.node_mut(),
+                Self::EnumVariantList(x) => x.node_mut(),
+                Self::TypeIdentifier(x) => x.node_mut(),
+                Self::TypeParameters(x) => x.node_mut(),
+            }
+        }
+    }
+    #[doc = concat!(
+        "one of `",
+        "{visibility_modifier | field_declaration_list | ordered_field_declaration_list | identifier | _expression}",
+        "`"
+    )]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub enum VisibilityModifier_FieldDeclarationList_OrderedFieldDeclarationList_Identifier_Expression<
+        'tree,
+    > {
+        VisibilityModifier(VisibilityModifier<'tree>),
+        FieldDeclarationList(FieldDeclarationList<'tree>),
+        OrderedFieldDeclarationList(OrderedFieldDeclarationList<'tree>),
+        Identifier(Identifier<'tree>),
+        Expression(Expression<'tree>),
+    }
+    #[automatically_derived]
+    impl<
+        'tree,
+    > VisibilityModifier_FieldDeclarationList_OrderedFieldDeclarationList_Identifier_Expression<
+        'tree,
+    > {
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "visibility_modifier",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn visibility_modifier(self) -> Option<VisibilityModifier<'tree>> {
+            match self {
+                Self::VisibilityModifier(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "field_declaration_list",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn field_declaration_list(self) -> Option<FieldDeclarationList<'tree>> {
+            match self {
+                Self::FieldDeclarationList(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "ordered_field_declaration_list",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn ordered_field_declaration_list(
+            self,
+        ) -> Option<OrderedFieldDeclarationList<'tree>> {
+            match self {
+                Self::OrderedFieldDeclarationList(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "identifier",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn identifier(self) -> Option<Identifier<'tree>> {
+            match self {
+                Self::Identifier(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "_expression",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn expression(self) -> Option<Expression<'tree>> {
+            match self {
+                Self::Expression(x) => Some(x),
+                _ => None,
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for VisibilityModifier_FieldDeclarationList_OrderedFieldDeclarationList_Identifier_Expression<
+        'tree,
+    > {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            if let Ok(this) = <VisibilityModifier<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::VisibilityModifier(this));
+            }
+            if let Ok(this)
+                = <FieldDeclarationList<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::FieldDeclarationList(this));
+            }
+            if let Ok(this)
+                = <OrderedFieldDeclarationList<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::OrderedFieldDeclarationList(this));
+            }
+            if let Ok(this) = <Identifier<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Identifier(this));
+            }
+            if let Ok(this) = <Expression<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Expression(this));
+            }
+            Err(type_sitter_lib::IncorrectKind {
+                node,
+                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+            })
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree>
+    for VisibilityModifier_FieldDeclarationList_OrderedFieldDeclarationList_Identifier_Expression<
+        'tree,
+    > {
+        const KIND: &'static str = "{visibility_modifier | field_declaration_list | ordered_field_declaration_list | identifier | _expression}";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            match self {
+                Self::VisibilityModifier(x) => x.node(),
+                Self::FieldDeclarationList(x) => x.node(),
+                Self::OrderedFieldDeclarationList(x) => x.node(),
+                Self::Identifier(x) => x.node(),
+                Self::Expression(x) => x.node(),
+            }
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            match self {
+                Self::VisibilityModifier(x) => x.node_mut(),
+                Self::FieldDeclarationList(x) => x.node_mut(),
+                Self::OrderedFieldDeclarationList(x) => x.node_mut(),
+                Self::Identifier(x) => x.node_mut(),
+                Self::Expression(x) => x.node_mut(),
             }
         }
     }
@@ -22007,15 +22138,16 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = concat!("one of `", "{crate | visibility_modifier}", "`")]
+    #[doc = concat!("one of `", "{crate | visibility_modifier | identifier}", "`")]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub enum Crate_VisibilityModifier<'tree> {
+    pub enum Crate_VisibilityModifier_Identifier<'tree> {
         Crate(Crate<'tree>),
         VisibilityModifier(VisibilityModifier<'tree>),
+        Identifier(Identifier<'tree>),
     }
     #[automatically_derived]
-    impl<'tree> Crate_VisibilityModifier<'tree> {
+    impl<'tree> Crate_VisibilityModifier_Identifier<'tree> {
         #[doc = concat!(
             "Returns the node if it is of kind `", "crate", "`, otherwise returns None"
         )]
@@ -22039,10 +22171,22 @@ pub mod anon_unions {
                 _ => None,
             }
         }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "identifier",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn identifier(self) -> Option<Identifier<'tree>> {
+            match self {
+                Self::Identifier(x) => Some(x),
+                _ => None,
+            }
+        }
     }
     #[automatically_derived]
     impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
-    for Crate_VisibilityModifier<'tree> {
+    for Crate_VisibilityModifier_Identifier<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
         fn try_from(
@@ -22071,6 +22215,17 @@ pub mod anon_unions {
                         )
                     })
                 }
+                "identifier" => {
+                    Ok(unsafe {
+                        Self::Identifier(
+                            <Identifier<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
+                                'tree,
+                            >>::from_node_unchecked(node),
+                        )
+                    })
+                }
                 _ => {
                     Err(type_sitter_lib::IncorrectKind {
                         node,
@@ -22081,13 +22236,15 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for Crate_VisibilityModifier<'tree> {
-        const KIND: &'static str = "{crate | visibility_modifier}";
+    impl<'tree> type_sitter_lib::TypedNode<'tree>
+    for Crate_VisibilityModifier_Identifier<'tree> {
+        const KIND: &'static str = "{crate | visibility_modifier | identifier}";
         #[inline]
         fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::Crate(x) => x.node(),
                 Self::VisibilityModifier(x) => x.node(),
+                Self::Identifier(x) => x.node(),
             }
         }
         #[inline]
@@ -22097,6 +22254,99 @@ pub mod anon_unions {
             match self {
                 Self::Crate(x) => x.node_mut(),
                 Self::VisibilityModifier(x) => x.node_mut(),
+                Self::Identifier(x) => x.node_mut(),
+            }
+        }
+    }
+    #[doc = concat!("one of `", "{visibility_modifier | field_identifier | _type}", "`")]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub enum VisibilityModifier_FieldIdentifier_Type<'tree> {
+        VisibilityModifier(VisibilityModifier<'tree>),
+        FieldIdentifier(FieldIdentifier<'tree>),
+        Type(Type<'tree>),
+    }
+    #[automatically_derived]
+    impl<'tree> VisibilityModifier_FieldIdentifier_Type<'tree> {
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "visibility_modifier",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn visibility_modifier(self) -> Option<VisibilityModifier<'tree>> {
+            match self {
+                Self::VisibilityModifier(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "field_identifier",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn field_identifier(self) -> Option<FieldIdentifier<'tree>> {
+            match self {
+                Self::FieldIdentifier(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "_type", "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn r#type(self) -> Option<Type<'tree>> {
+            match self {
+                Self::Type(x) => Some(x),
+                _ => None,
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for VisibilityModifier_FieldIdentifier_Type<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            if let Ok(this) = <VisibilityModifier<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::VisibilityModifier(this));
+            }
+            if let Ok(this) = <FieldIdentifier<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::FieldIdentifier(this));
+            }
+            if let Ok(this) = <Type<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Type(this));
+            }
+            Err(type_sitter_lib::IncorrectKind {
+                node,
+                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+            })
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree>
+    for VisibilityModifier_FieldIdentifier_Type<'tree> {
+        const KIND: &'static str = "{visibility_modifier | field_identifier | _type}";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            match self {
+                Self::VisibilityModifier(x) => x.node(),
+                Self::FieldIdentifier(x) => x.node(),
+                Self::Type(x) => x.node(),
+            }
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            match self {
+                Self::VisibilityModifier(x) => x.node_mut(),
+                Self::FieldIdentifier(x) => x.node_mut(),
+                Self::Type(x) => x.node_mut(),
             }
         }
     }
@@ -22291,6 +22541,101 @@ pub mod anon_unions {
         }
     }
     #[doc = concat!(
+        "one of `", "{attribute_item | field_identifier | _expression}", "`"
+    )]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub enum AttributeItem_FieldIdentifier_Expression<'tree> {
+        AttributeItem(AttributeItem<'tree>),
+        FieldIdentifier(FieldIdentifier<'tree>),
+        Expression(Expression<'tree>),
+    }
+    #[automatically_derived]
+    impl<'tree> AttributeItem_FieldIdentifier_Expression<'tree> {
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "attribute_item",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn attribute_item(self) -> Option<AttributeItem<'tree>> {
+            match self {
+                Self::AttributeItem(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "field_identifier",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn field_identifier(self) -> Option<FieldIdentifier<'tree>> {
+            match self {
+                Self::FieldIdentifier(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "_expression",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn expression(self) -> Option<Expression<'tree>> {
+            match self {
+                Self::Expression(x) => Some(x),
+                _ => None,
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for AttributeItem_FieldIdentifier_Expression<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            if let Ok(this) = <AttributeItem<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::AttributeItem(this));
+            }
+            if let Ok(this) = <FieldIdentifier<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::FieldIdentifier(this));
+            }
+            if let Ok(this) = <Expression<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Expression(this));
+            }
+            Err(type_sitter_lib::IncorrectKind {
+                node,
+                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+            })
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree>
+    for AttributeItem_FieldIdentifier_Expression<'tree> {
+        const KIND: &'static str = "{attribute_item | field_identifier | _expression}";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            match self {
+                Self::AttributeItem(x) => x.node(),
+                Self::FieldIdentifier(x) => x.node(),
+                Self::Expression(x) => x.node(),
+            }
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            match self {
+                Self::AttributeItem(x) => x.node_mut(),
+                Self::FieldIdentifier(x) => x.node_mut(),
+                Self::Expression(x) => x.node_mut(),
+            }
+        }
+    }
+    #[doc = concat!(
         "one of `",
         "{base_field_initializer | field_initializer | shorthand_field_initializer}", "`"
     )]
@@ -22416,6 +22761,126 @@ pub mod anon_unions {
             }
         }
     }
+    #[doc = concat!(
+        "one of `",
+        "{mutable_specifier | field_identifier | shorthand_field_identifier | _pattern}",
+        "`"
+    )]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub enum MutableSpecifier_FieldIdentifier_ShorthandFieldIdentifier_Pattern<'tree> {
+        MutableSpecifier(MutableSpecifier<'tree>),
+        FieldIdentifier(FieldIdentifier<'tree>),
+        ShorthandFieldIdentifier(ShorthandFieldIdentifier<'tree>),
+        Pattern(Pattern<'tree>),
+    }
+    #[automatically_derived]
+    impl<
+        'tree,
+    > MutableSpecifier_FieldIdentifier_ShorthandFieldIdentifier_Pattern<'tree> {
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "mutable_specifier",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn mutable_specifier(self) -> Option<MutableSpecifier<'tree>> {
+            match self {
+                Self::MutableSpecifier(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "field_identifier",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn field_identifier(self) -> Option<FieldIdentifier<'tree>> {
+            match self {
+                Self::FieldIdentifier(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "shorthand_field_identifier",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn shorthand_field_identifier(
+            self,
+        ) -> Option<ShorthandFieldIdentifier<'tree>> {
+            match self {
+                Self::ShorthandFieldIdentifier(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "_pattern",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn pattern(self) -> Option<Pattern<'tree>> {
+            match self {
+                Self::Pattern(x) => Some(x),
+                _ => None,
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for MutableSpecifier_FieldIdentifier_ShorthandFieldIdentifier_Pattern<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            if let Ok(this) = <MutableSpecifier<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::MutableSpecifier(this));
+            }
+            if let Ok(this) = <FieldIdentifier<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::FieldIdentifier(this));
+            }
+            if let Ok(this)
+                = <ShorthandFieldIdentifier<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::ShorthandFieldIdentifier(this));
+            }
+            if let Ok(this) = <Pattern<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Pattern(this));
+            }
+            Err(type_sitter_lib::IncorrectKind {
+                node,
+                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+            })
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree>
+    for MutableSpecifier_FieldIdentifier_ShorthandFieldIdentifier_Pattern<'tree> {
+        const KIND: &'static str = "{mutable_specifier | field_identifier | shorthand_field_identifier | _pattern}";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            match self {
+                Self::MutableSpecifier(x) => x.node(),
+                Self::FieldIdentifier(x) => x.node(),
+                Self::ShorthandFieldIdentifier(x) => x.node(),
+                Self::Pattern(x) => x.node(),
+            }
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            match self {
+                Self::MutableSpecifier(x) => x.node_mut(),
+                Self::FieldIdentifier(x) => x.node_mut(),
+                Self::ShorthandFieldIdentifier(x) => x.node_mut(),
+                Self::Pattern(x) => x.node_mut(),
+            }
+        }
+    }
     #[doc = concat!("one of `", "{field_identifier | shorthand_field_identifier}", "`")]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
@@ -22513,15 +22978,128 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = concat!("one of `", "{extern_modifier | visibility_modifier}", "`")]
+    #[doc = concat!("one of `", "{loop_label | block | _pattern | _expression}", "`")]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub enum ExternModifier_VisibilityModifier<'tree> {
-        ExternModifier(ExternModifier<'tree>),
-        VisibilityModifier(VisibilityModifier<'tree>),
+    pub enum LoopLabel_Block_Pattern_Expression<'tree> {
+        LoopLabel(LoopLabel<'tree>),
+        Block(Block<'tree>),
+        Pattern(Pattern<'tree>),
+        Expression(Expression<'tree>),
     }
     #[automatically_derived]
-    impl<'tree> ExternModifier_VisibilityModifier<'tree> {
+    impl<'tree> LoopLabel_Block_Pattern_Expression<'tree> {
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "loop_label",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn loop_label(self) -> Option<LoopLabel<'tree>> {
+            match self {
+                Self::LoopLabel(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "block", "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn block(self) -> Option<Block<'tree>> {
+            match self {
+                Self::Block(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "_pattern",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn pattern(self) -> Option<Pattern<'tree>> {
+            match self {
+                Self::Pattern(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "_expression",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn expression(self) -> Option<Expression<'tree>> {
+            match self {
+                Self::Expression(x) => Some(x),
+                _ => None,
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for LoopLabel_Block_Pattern_Expression<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            if let Ok(this) = <LoopLabel<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::LoopLabel(this));
+            }
+            if let Ok(this) = <Block<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Block(this));
+            }
+            if let Ok(this) = <Pattern<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Pattern(this));
+            }
+            if let Ok(this) = <Expression<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Expression(this));
+            }
+            Err(type_sitter_lib::IncorrectKind {
+                node,
+                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+            })
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree>
+    for LoopLabel_Block_Pattern_Expression<'tree> {
+        const KIND: &'static str = "{loop_label | block | _pattern | _expression}";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            match self {
+                Self::LoopLabel(x) => x.node(),
+                Self::Block(x) => x.node(),
+                Self::Pattern(x) => x.node(),
+                Self::Expression(x) => x.node(),
+            }
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            match self {
+                Self::LoopLabel(x) => x.node_mut(),
+                Self::Block(x) => x.node_mut(),
+                Self::Pattern(x) => x.node_mut(),
+                Self::Expression(x) => x.node_mut(),
+            }
+        }
+    }
+    #[doc = concat!(
+        "one of `", "{extern_modifier | visibility_modifier | declaration_list}", "`"
+    )]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub enum ExternModifier_VisibilityModifier_DeclarationList<'tree> {
+        ExternModifier(ExternModifier<'tree>),
+        VisibilityModifier(VisibilityModifier<'tree>),
+        DeclarationList(DeclarationList<'tree>),
+    }
+    #[automatically_derived]
+    impl<'tree> ExternModifier_VisibilityModifier_DeclarationList<'tree> {
         #[doc = concat!(
             "Returns the node if it is of kind `", "extern_modifier",
             "`, otherwise returns None"
@@ -22546,10 +23124,22 @@ pub mod anon_unions {
                 _ => None,
             }
         }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "declaration_list",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn declaration_list(self) -> Option<DeclarationList<'tree>> {
+            match self {
+                Self::DeclarationList(x) => Some(x),
+                _ => None,
+            }
+        }
     }
     #[automatically_derived]
     impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
-    for ExternModifier_VisibilityModifier<'tree> {
+    for ExternModifier_VisibilityModifier_DeclarationList<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
         fn try_from(
@@ -22578,6 +23168,17 @@ pub mod anon_unions {
                         )
                     })
                 }
+                "declaration_list" => {
+                    Ok(unsafe {
+                        Self::DeclarationList(
+                            <DeclarationList<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
+                                'tree,
+                            >>::from_node_unchecked(node),
+                        )
+                    })
+                }
                 _ => {
                     Err(type_sitter_lib::IncorrectKind {
                         node,
@@ -22589,13 +23190,14 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> type_sitter_lib::TypedNode<'tree>
-    for ExternModifier_VisibilityModifier<'tree> {
-        const KIND: &'static str = "{extern_modifier | visibility_modifier}";
+    for ExternModifier_VisibilityModifier_DeclarationList<'tree> {
+        const KIND: &'static str = "{extern_modifier | visibility_modifier | declaration_list}";
         #[inline]
         fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::ExternModifier(x) => x.node(),
                 Self::VisibilityModifier(x) => x.node(),
+                Self::DeclarationList(x) => x.node(),
             }
         }
         #[inline]
@@ -22605,21 +23207,36 @@ pub mod anon_unions {
             match self {
                 Self::ExternModifier(x) => x.node_mut(),
                 Self::VisibilityModifier(x) => x.node_mut(),
+                Self::DeclarationList(x) => x.node_mut(),
             }
         }
     }
     #[doc = concat!(
-        "one of `", "{function_modifiers | visibility_modifier | where_clause}", "`"
+        "one of `",
+        "{function_modifiers | visibility_modifier | where_clause | block | identifier | metavariable | parameters | _type | type_parameters}",
+        "`"
     )]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub enum FunctionModifiers_VisibilityModifier_WhereClause<'tree> {
+    pub enum FunctionModifiers_VisibilityModifier_WhereClause_Block_Identifier_Metavariable_Parameters_Type_TypeParameters<
+        'tree,
+    > {
         FunctionModifiers(FunctionModifiers<'tree>),
         VisibilityModifier(VisibilityModifier<'tree>),
         WhereClause(WhereClause<'tree>),
+        Block(Block<'tree>),
+        Identifier(Identifier<'tree>),
+        Metavariable(Metavariable<'tree>),
+        Parameters(Parameters<'tree>),
+        Type(Type<'tree>),
+        TypeParameters(TypeParameters<'tree>),
     }
     #[automatically_derived]
-    impl<'tree> FunctionModifiers_VisibilityModifier_WhereClause<'tree> {
+    impl<
+        'tree,
+    > FunctionModifiers_VisibilityModifier_WhereClause_Block_Identifier_Metavariable_Parameters_Type_TypeParameters<
+        'tree,
+    > {
         #[doc = concat!(
             "Returns the node if it is of kind `", "function_modifiers",
             "`, otherwise returns None"
@@ -22656,68 +23273,138 @@ pub mod anon_unions {
                 _ => None,
             }
         }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "block", "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn block(self) -> Option<Block<'tree>> {
+            match self {
+                Self::Block(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "identifier",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn identifier(self) -> Option<Identifier<'tree>> {
+            match self {
+                Self::Identifier(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "metavariable",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn metavariable(self) -> Option<Metavariable<'tree>> {
+            match self {
+                Self::Metavariable(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "parameters",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn parameters(self) -> Option<Parameters<'tree>> {
+            match self {
+                Self::Parameters(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "_type", "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn r#type(self) -> Option<Type<'tree>> {
+            match self {
+                Self::Type(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "type_parameters",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn type_parameters(self) -> Option<TypeParameters<'tree>> {
+            match self {
+                Self::TypeParameters(x) => Some(x),
+                _ => None,
+            }
+        }
     }
     #[automatically_derived]
     impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
-    for FunctionModifiers_VisibilityModifier_WhereClause<'tree> {
+    for FunctionModifiers_VisibilityModifier_WhereClause_Block_Identifier_Metavariable_Parameters_Type_TypeParameters<
+        'tree,
+    > {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
         fn try_from(
             node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
         ) -> Result<Self, Self::Error> {
-            match node.kind() {
-                "function_modifiers" => {
-                    Ok(unsafe {
-                        Self::FunctionModifiers(
-                            <FunctionModifiers<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "visibility_modifier" => {
-                    Ok(unsafe {
-                        Self::VisibilityModifier(
-                            <VisibilityModifier<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "where_clause" => {
-                    Ok(unsafe {
-                        Self::WhereClause(
-                            <WhereClause<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                _ => {
-                    Err(type_sitter_lib::IncorrectKind {
-                        node,
-                        kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                    })
-                }
+            if let Ok(this) = <FunctionModifiers<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::FunctionModifiers(this));
             }
+            if let Ok(this) = <VisibilityModifier<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::VisibilityModifier(this));
+            }
+            if let Ok(this) = <WhereClause<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::WhereClause(this));
+            }
+            if let Ok(this) = <Block<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Block(this));
+            }
+            if let Ok(this) = <Identifier<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Identifier(this));
+            }
+            if let Ok(this) = <Metavariable<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Metavariable(this));
+            }
+            if let Ok(this) = <Parameters<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Parameters(this));
+            }
+            if let Ok(this) = <Type<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Type(this));
+            }
+            if let Ok(this) = <TypeParameters<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::TypeParameters(this));
+            }
+            Err(type_sitter_lib::IncorrectKind {
+                node,
+                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+            })
         }
     }
     #[automatically_derived]
     impl<'tree> type_sitter_lib::TypedNode<'tree>
-    for FunctionModifiers_VisibilityModifier_WhereClause<'tree> {
-        const KIND: &'static str = "{function_modifiers | visibility_modifier | where_clause}";
+    for FunctionModifiers_VisibilityModifier_WhereClause_Block_Identifier_Metavariable_Parameters_Type_TypeParameters<
+        'tree,
+    > {
+        const KIND: &'static str = "{function_modifiers | visibility_modifier | where_clause | block | identifier | metavariable | parameters | _type | type_parameters}";
         #[inline]
         fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::FunctionModifiers(x) => x.node(),
                 Self::VisibilityModifier(x) => x.node(),
                 Self::WhereClause(x) => x.node(),
+                Self::Block(x) => x.node(),
+                Self::Identifier(x) => x.node(),
+                Self::Metavariable(x) => x.node(),
+                Self::Parameters(x) => x.node(),
+                Self::Type(x) => x.node(),
+                Self::TypeParameters(x) => x.node(),
             }
         }
         #[inline]
@@ -22728,6 +23415,12 @@ pub mod anon_unions {
                 Self::FunctionModifiers(x) => x.node_mut(),
                 Self::VisibilityModifier(x) => x.node_mut(),
                 Self::WhereClause(x) => x.node_mut(),
+                Self::Block(x) => x.node_mut(),
+                Self::Identifier(x) => x.node_mut(),
+                Self::Metavariable(x) => x.node_mut(),
+                Self::Parameters(x) => x.node_mut(),
+                Self::Type(x) => x.node_mut(),
+                Self::TypeParameters(x) => x.node_mut(),
             }
         }
     }
@@ -22825,15 +23518,225 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = concat!("one of `", "{for_lifetimes | function_modifiers}", "`")]
+    #[doc = concat!(
+        "one of `",
+        "{function_modifiers | visibility_modifier | where_clause | identifier | metavariable | parameters | _type | type_parameters}",
+        "`"
+    )]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub enum ForLifetimes_FunctionModifiers<'tree> {
-        ForLifetimes(ForLifetimes<'tree>),
+    pub enum FunctionModifiers_VisibilityModifier_WhereClause_Identifier_Metavariable_Parameters_Type_TypeParameters<
+        'tree,
+    > {
         FunctionModifiers(FunctionModifiers<'tree>),
+        VisibilityModifier(VisibilityModifier<'tree>),
+        WhereClause(WhereClause<'tree>),
+        Identifier(Identifier<'tree>),
+        Metavariable(Metavariable<'tree>),
+        Parameters(Parameters<'tree>),
+        Type(Type<'tree>),
+        TypeParameters(TypeParameters<'tree>),
     }
     #[automatically_derived]
-    impl<'tree> ForLifetimes_FunctionModifiers<'tree> {
+    impl<
+        'tree,
+    > FunctionModifiers_VisibilityModifier_WhereClause_Identifier_Metavariable_Parameters_Type_TypeParameters<
+        'tree,
+    > {
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "function_modifiers",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn function_modifiers(self) -> Option<FunctionModifiers<'tree>> {
+            match self {
+                Self::FunctionModifiers(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "visibility_modifier",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn visibility_modifier(self) -> Option<VisibilityModifier<'tree>> {
+            match self {
+                Self::VisibilityModifier(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "where_clause",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn where_clause(self) -> Option<WhereClause<'tree>> {
+            match self {
+                Self::WhereClause(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "identifier",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn identifier(self) -> Option<Identifier<'tree>> {
+            match self {
+                Self::Identifier(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "metavariable",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn metavariable(self) -> Option<Metavariable<'tree>> {
+            match self {
+                Self::Metavariable(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "parameters",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn parameters(self) -> Option<Parameters<'tree>> {
+            match self {
+                Self::Parameters(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "_type", "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn r#type(self) -> Option<Type<'tree>> {
+            match self {
+                Self::Type(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "type_parameters",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn type_parameters(self) -> Option<TypeParameters<'tree>> {
+            match self {
+                Self::TypeParameters(x) => Some(x),
+                _ => None,
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for FunctionModifiers_VisibilityModifier_WhereClause_Identifier_Metavariable_Parameters_Type_TypeParameters<
+        'tree,
+    > {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            if let Ok(this) = <FunctionModifiers<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::FunctionModifiers(this));
+            }
+            if let Ok(this) = <VisibilityModifier<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::VisibilityModifier(this));
+            }
+            if let Ok(this) = <WhereClause<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::WhereClause(this));
+            }
+            if let Ok(this) = <Identifier<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Identifier(this));
+            }
+            if let Ok(this) = <Metavariable<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Metavariable(this));
+            }
+            if let Ok(this) = <Parameters<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Parameters(this));
+            }
+            if let Ok(this) = <Type<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Type(this));
+            }
+            if let Ok(this) = <TypeParameters<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::TypeParameters(this));
+            }
+            Err(type_sitter_lib::IncorrectKind {
+                node,
+                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+            })
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree>
+    for FunctionModifiers_VisibilityModifier_WhereClause_Identifier_Metavariable_Parameters_Type_TypeParameters<
+        'tree,
+    > {
+        const KIND: &'static str = "{function_modifiers | visibility_modifier | where_clause | identifier | metavariable | parameters | _type | type_parameters}";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            match self {
+                Self::FunctionModifiers(x) => x.node(),
+                Self::VisibilityModifier(x) => x.node(),
+                Self::WhereClause(x) => x.node(),
+                Self::Identifier(x) => x.node(),
+                Self::Metavariable(x) => x.node(),
+                Self::Parameters(x) => x.node(),
+                Self::Type(x) => x.node(),
+                Self::TypeParameters(x) => x.node(),
+            }
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            match self {
+                Self::FunctionModifiers(x) => x.node_mut(),
+                Self::VisibilityModifier(x) => x.node_mut(),
+                Self::WhereClause(x) => x.node_mut(),
+                Self::Identifier(x) => x.node_mut(),
+                Self::Metavariable(x) => x.node_mut(),
+                Self::Parameters(x) => x.node_mut(),
+                Self::Type(x) => x.node_mut(),
+                Self::TypeParameters(x) => x.node_mut(),
+            }
+        }
+    }
+    #[doc = concat!(
+        "one of `",
+        "{for_lifetimes | function_modifiers | parameters | _type | scoped_type_identifier | type_identifier}",
+        "`"
+    )]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub enum ForLifetimes_FunctionModifiers_Parameters_Type_ScopedTypeIdentifier_TypeIdentifier<
+        'tree,
+    > {
+        ForLifetimes(ForLifetimes<'tree>),
+        FunctionModifiers(FunctionModifiers<'tree>),
+        Parameters(Parameters<'tree>),
+        Type(Type<'tree>),
+        ScopedTypeIdentifier(ScopedTypeIdentifier<'tree>),
+        TypeIdentifier(TypeIdentifier<'tree>),
+    }
+    #[automatically_derived]
+    impl<
+        'tree,
+    > ForLifetimes_FunctionModifiers_Parameters_Type_ScopedTypeIdentifier_TypeIdentifier<
+        'tree,
+    > {
         #[doc = concat!(
             "Returns the node if it is of kind `", "for_lifetimes",
             "`, otherwise returns None"
@@ -22858,56 +23761,104 @@ pub mod anon_unions {
                 _ => None,
             }
         }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "parameters",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn parameters(self) -> Option<Parameters<'tree>> {
+            match self {
+                Self::Parameters(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "_type", "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn r#type(self) -> Option<Type<'tree>> {
+            match self {
+                Self::Type(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "scoped_type_identifier",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn scoped_type_identifier(self) -> Option<ScopedTypeIdentifier<'tree>> {
+            match self {
+                Self::ScopedTypeIdentifier(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "type_identifier",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn type_identifier(self) -> Option<TypeIdentifier<'tree>> {
+            match self {
+                Self::TypeIdentifier(x) => Some(x),
+                _ => None,
+            }
+        }
     }
     #[automatically_derived]
     impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
-    for ForLifetimes_FunctionModifiers<'tree> {
+    for ForLifetimes_FunctionModifiers_Parameters_Type_ScopedTypeIdentifier_TypeIdentifier<
+        'tree,
+    > {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
         fn try_from(
             node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
         ) -> Result<Self, Self::Error> {
-            match node.kind() {
-                "for_lifetimes" => {
-                    Ok(unsafe {
-                        Self::ForLifetimes(
-                            <ForLifetimes<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "function_modifiers" => {
-                    Ok(unsafe {
-                        Self::FunctionModifiers(
-                            <FunctionModifiers<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                _ => {
-                    Err(type_sitter_lib::IncorrectKind {
-                        node,
-                        kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                    })
-                }
+            if let Ok(this) = <ForLifetimes<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::ForLifetimes(this));
             }
+            if let Ok(this) = <FunctionModifiers<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::FunctionModifiers(this));
+            }
+            if let Ok(this) = <Parameters<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Parameters(this));
+            }
+            if let Ok(this) = <Type<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Type(this));
+            }
+            if let Ok(this)
+                = <ScopedTypeIdentifier<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::ScopedTypeIdentifier(this));
+            }
+            if let Ok(this) = <TypeIdentifier<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::TypeIdentifier(this));
+            }
+            Err(type_sitter_lib::IncorrectKind {
+                node,
+                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+            })
         }
     }
     #[automatically_derived]
     impl<'tree> type_sitter_lib::TypedNode<'tree>
-    for ForLifetimes_FunctionModifiers<'tree> {
-        const KIND: &'static str = "{for_lifetimes | function_modifiers}";
+    for ForLifetimes_FunctionModifiers_Parameters_Type_ScopedTypeIdentifier_TypeIdentifier<
+        'tree,
+    > {
+        const KIND: &'static str = "{for_lifetimes | function_modifiers | parameters | _type | scoped_type_identifier | type_identifier}";
         #[inline]
         fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::ForLifetimes(x) => x.node(),
                 Self::FunctionModifiers(x) => x.node(),
+                Self::Parameters(x) => x.node(),
+                Self::Type(x) => x.node(),
+                Self::ScopedTypeIdentifier(x) => x.node(),
+                Self::TypeIdentifier(x) => x.node(),
             }
         }
         #[inline]
@@ -22917,6 +23868,10 @@ pub mod anon_unions {
             match self {
                 Self::ForLifetimes(x) => x.node_mut(),
                 Self::FunctionModifiers(x) => x.node_mut(),
+                Self::Parameters(x) => x.node_mut(),
+                Self::Type(x) => x.node_mut(),
+                Self::ScopedTypeIdentifier(x) => x.node_mut(),
+                Self::TypeIdentifier(x) => x.node_mut(),
             }
         }
     }
@@ -23411,47 +24366,19 @@ pub mod anon_unions {
         fn try_from(
             node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
         ) -> Result<Self, Self::Error> {
-            match node.kind() {
-                "_expression" => {
-                    Ok(unsafe {
-                        Self::Expression(
-                            <Expression<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "let_chain" => {
-                    Ok(unsafe {
-                        Self::LetChain(
-                            <LetChain<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "let_condition" => {
-                    Ok(unsafe {
-                        Self::LetCondition(
-                            <LetCondition<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                _ => {
-                    Err(type_sitter_lib::IncorrectKind {
-                        node,
-                        kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                    })
-                }
+            if let Ok(this) = <Expression<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Expression(this));
             }
+            if let Ok(this) = <LetChain<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::LetChain(this));
+            }
+            if let Ok(this) = <LetCondition<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::LetCondition(this));
+            }
+            Err(type_sitter_lib::IncorrectKind {
+                node,
+                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+            })
         }
     }
     #[automatically_derived]
@@ -23474,6 +24401,185 @@ pub mod anon_unions {
                 Self::Expression(x) => x.node_mut(),
                 Self::LetChain(x) => x.node_mut(),
                 Self::LetCondition(x) => x.node_mut(),
+            }
+        }
+    }
+    #[doc = concat!(
+        "one of `",
+        "{where_clause | declaration_list | generic_type | scoped_type_identifier | type_identifier | _type | type_parameters}",
+        "`"
+    )]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub enum WhereClause_DeclarationList_GenericType_ScopedTypeIdentifier_TypeIdentifier_Type_TypeParameters<
+        'tree,
+    > {
+        WhereClause(WhereClause<'tree>),
+        DeclarationList(DeclarationList<'tree>),
+        GenericType(GenericType<'tree>),
+        ScopedTypeIdentifier(ScopedTypeIdentifier<'tree>),
+        TypeIdentifier(TypeIdentifier<'tree>),
+        Type(Type<'tree>),
+        TypeParameters(TypeParameters<'tree>),
+    }
+    #[automatically_derived]
+    impl<
+        'tree,
+    > WhereClause_DeclarationList_GenericType_ScopedTypeIdentifier_TypeIdentifier_Type_TypeParameters<
+        'tree,
+    > {
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "where_clause",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn where_clause(self) -> Option<WhereClause<'tree>> {
+            match self {
+                Self::WhereClause(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "declaration_list",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn declaration_list(self) -> Option<DeclarationList<'tree>> {
+            match self {
+                Self::DeclarationList(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "generic_type",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn generic_type(self) -> Option<GenericType<'tree>> {
+            match self {
+                Self::GenericType(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "scoped_type_identifier",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn scoped_type_identifier(self) -> Option<ScopedTypeIdentifier<'tree>> {
+            match self {
+                Self::ScopedTypeIdentifier(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "type_identifier",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn type_identifier(self) -> Option<TypeIdentifier<'tree>> {
+            match self {
+                Self::TypeIdentifier(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "_type", "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn r#type(self) -> Option<Type<'tree>> {
+            match self {
+                Self::Type(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "type_parameters",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn type_parameters(self) -> Option<TypeParameters<'tree>> {
+            match self {
+                Self::TypeParameters(x) => Some(x),
+                _ => None,
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for WhereClause_DeclarationList_GenericType_ScopedTypeIdentifier_TypeIdentifier_Type_TypeParameters<
+        'tree,
+    > {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            if let Ok(this) = <WhereClause<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::WhereClause(this));
+            }
+            if let Ok(this) = <DeclarationList<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::DeclarationList(this));
+            }
+            if let Ok(this) = <GenericType<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::GenericType(this));
+            }
+            if let Ok(this)
+                = <ScopedTypeIdentifier<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::ScopedTypeIdentifier(this));
+            }
+            if let Ok(this) = <TypeIdentifier<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::TypeIdentifier(this));
+            }
+            if let Ok(this) = <Type<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Type(this));
+            }
+            if let Ok(this) = <TypeParameters<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::TypeParameters(this));
+            }
+            Err(type_sitter_lib::IncorrectKind {
+                node,
+                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+            })
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree>
+    for WhereClause_DeclarationList_GenericType_ScopedTypeIdentifier_TypeIdentifier_Type_TypeParameters<
+        'tree,
+    > {
+        const KIND: &'static str = "{where_clause | declaration_list | generic_type | scoped_type_identifier | type_identifier | _type | type_parameters}";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            match self {
+                Self::WhereClause(x) => x.node(),
+                Self::DeclarationList(x) => x.node(),
+                Self::GenericType(x) => x.node(),
+                Self::ScopedTypeIdentifier(x) => x.node(),
+                Self::TypeIdentifier(x) => x.node(),
+                Self::Type(x) => x.node(),
+                Self::TypeParameters(x) => x.node(),
+            }
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            match self {
+                Self::WhereClause(x) => x.node_mut(),
+                Self::DeclarationList(x) => x.node_mut(),
+                Self::GenericType(x) => x.node_mut(),
+                Self::ScopedTypeIdentifier(x) => x.node_mut(),
+                Self::TypeIdentifier(x) => x.node_mut(),
+                Self::Type(x) => x.node_mut(),
+                Self::TypeParameters(x) => x.node_mut(),
             }
         }
     }
@@ -23642,36 +24748,16 @@ pub mod anon_unions {
         fn try_from(
             node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
         ) -> Result<Self, Self::Error> {
-            match node.kind() {
-                "_expression" => {
-                    Ok(unsafe {
-                        Self::Expression(
-                            <Expression<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "let_condition" => {
-                    Ok(unsafe {
-                        Self::LetCondition(
-                            <LetCondition<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                _ => {
-                    Err(type_sitter_lib::IncorrectKind {
-                        node,
-                        kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                    })
-                }
+            if let Ok(this) = <Expression<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Expression(this));
             }
+            if let Ok(this) = <LetCondition<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::LetCondition(this));
+            }
+            Err(type_sitter_lib::IncorrectKind {
+                node,
+                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+            })
         }
     }
     #[automatically_derived]
@@ -23691,6 +24777,443 @@ pub mod anon_unions {
             match self {
                 Self::Expression(x) => x.node_mut(),
                 Self::LetCondition(x) => x.node_mut(),
+            }
+        }
+    }
+    #[doc = concat!(
+        "one of `", "{mutable_specifier | block | _pattern | _type | _expression}", "`"
+    )]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub enum MutableSpecifier_Block_Pattern_Type_Expression<'tree> {
+        MutableSpecifier(MutableSpecifier<'tree>),
+        Block(Block<'tree>),
+        Pattern(Pattern<'tree>),
+        Type(Type<'tree>),
+        Expression(Expression<'tree>),
+    }
+    #[automatically_derived]
+    impl<'tree> MutableSpecifier_Block_Pattern_Type_Expression<'tree> {
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "mutable_specifier",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn mutable_specifier(self) -> Option<MutableSpecifier<'tree>> {
+            match self {
+                Self::MutableSpecifier(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "block", "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn block(self) -> Option<Block<'tree>> {
+            match self {
+                Self::Block(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "_pattern",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn pattern(self) -> Option<Pattern<'tree>> {
+            match self {
+                Self::Pattern(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "_type", "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn r#type(self) -> Option<Type<'tree>> {
+            match self {
+                Self::Type(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "_expression",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn expression(self) -> Option<Expression<'tree>> {
+            match self {
+                Self::Expression(x) => Some(x),
+                _ => None,
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for MutableSpecifier_Block_Pattern_Type_Expression<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            if let Ok(this) = <MutableSpecifier<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::MutableSpecifier(this));
+            }
+            if let Ok(this) = <Block<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Block(this));
+            }
+            if let Ok(this) = <Pattern<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Pattern(this));
+            }
+            if let Ok(this) = <Type<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Type(this));
+            }
+            if let Ok(this) = <Expression<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Expression(this));
+            }
+            Err(type_sitter_lib::IncorrectKind {
+                node,
+                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+            })
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree>
+    for MutableSpecifier_Block_Pattern_Type_Expression<'tree> {
+        const KIND: &'static str = "{mutable_specifier | block | _pattern | _type | _expression}";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            match self {
+                Self::MutableSpecifier(x) => x.node(),
+                Self::Block(x) => x.node(),
+                Self::Pattern(x) => x.node(),
+                Self::Type(x) => x.node(),
+                Self::Expression(x) => x.node(),
+            }
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            match self {
+                Self::MutableSpecifier(x) => x.node_mut(),
+                Self::Block(x) => x.node_mut(),
+                Self::Pattern(x) => x.node_mut(),
+                Self::Type(x) => x.node_mut(),
+                Self::Expression(x) => x.node_mut(),
+            }
+        }
+    }
+    #[doc = concat!("one of `", "{loop_label | block}", "`")]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub enum LoopLabel_Block<'tree> {
+        LoopLabel(LoopLabel<'tree>),
+        Block(Block<'tree>),
+    }
+    #[automatically_derived]
+    impl<'tree> LoopLabel_Block<'tree> {
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "loop_label",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn loop_label(self) -> Option<LoopLabel<'tree>> {
+            match self {
+                Self::LoopLabel(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "block", "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn block(self) -> Option<Block<'tree>> {
+            match self {
+                Self::Block(x) => Some(x),
+                _ => None,
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for LoopLabel_Block<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            match node.kind() {
+                "loop_label" => {
+                    Ok(unsafe {
+                        Self::LoopLabel(
+                            <LoopLabel<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
+                                'tree,
+                            >>::from_node_unchecked(node),
+                        )
+                    })
+                }
+                "block" => {
+                    Ok(unsafe {
+                        Self::Block(
+                            <Block<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
+                                'tree,
+                            >>::from_node_unchecked(node),
+                        )
+                    })
+                }
+                _ => {
+                    Err(type_sitter_lib::IncorrectKind {
+                        node,
+                        kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                    })
+                }
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for LoopLabel_Block<'tree> {
+        const KIND: &'static str = "{loop_label | block}";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            match self {
+                Self::LoopLabel(x) => x.node(),
+                Self::Block(x) => x.node(),
+            }
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            match self {
+                Self::LoopLabel(x) => x.node_mut(),
+                Self::Block(x) => x.node_mut(),
+            }
+        }
+    }
+    #[doc = concat!("one of `", "{macro_rule | identifier}", "`")]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub enum MacroRule_Identifier<'tree> {
+        MacroRule(MacroRule<'tree>),
+        Identifier(Identifier<'tree>),
+    }
+    #[automatically_derived]
+    impl<'tree> MacroRule_Identifier<'tree> {
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "macro_rule",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn macro_rule(self) -> Option<MacroRule<'tree>> {
+            match self {
+                Self::MacroRule(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "identifier",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn identifier(self) -> Option<Identifier<'tree>> {
+            match self {
+                Self::Identifier(x) => Some(x),
+                _ => None,
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for MacroRule_Identifier<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            match node.kind() {
+                "macro_rule" => {
+                    Ok(unsafe {
+                        Self::MacroRule(
+                            <MacroRule<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
+                                'tree,
+                            >>::from_node_unchecked(node),
+                        )
+                    })
+                }
+                "identifier" => {
+                    Ok(unsafe {
+                        Self::Identifier(
+                            <Identifier<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
+                                'tree,
+                            >>::from_node_unchecked(node),
+                        )
+                    })
+                }
+                _ => {
+                    Err(type_sitter_lib::IncorrectKind {
+                        node,
+                        kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                    })
+                }
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for MacroRule_Identifier<'tree> {
+        const KIND: &'static str = "{macro_rule | identifier}";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            match self {
+                Self::MacroRule(x) => x.node(),
+                Self::Identifier(x) => x.node(),
+            }
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            match self {
+                Self::MacroRule(x) => x.node_mut(),
+                Self::Identifier(x) => x.node_mut(),
+            }
+        }
+    }
+    #[doc = concat!("one of `", "{token_tree | identifier | scoped_identifier}", "`")]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub enum TokenTree_Identifier_ScopedIdentifier<'tree> {
+        TokenTree(TokenTree<'tree>),
+        Identifier(Identifier<'tree>),
+        ScopedIdentifier(ScopedIdentifier<'tree>),
+    }
+    #[automatically_derived]
+    impl<'tree> TokenTree_Identifier_ScopedIdentifier<'tree> {
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "token_tree",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn token_tree(self) -> Option<TokenTree<'tree>> {
+            match self {
+                Self::TokenTree(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "identifier",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn identifier(self) -> Option<Identifier<'tree>> {
+            match self {
+                Self::Identifier(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "scoped_identifier",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn scoped_identifier(self) -> Option<ScopedIdentifier<'tree>> {
+            match self {
+                Self::ScopedIdentifier(x) => Some(x),
+                _ => None,
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for TokenTree_Identifier_ScopedIdentifier<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            match node.kind() {
+                "token_tree" => {
+                    Ok(unsafe {
+                        Self::TokenTree(
+                            <TokenTree<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
+                                'tree,
+                            >>::from_node_unchecked(node),
+                        )
+                    })
+                }
+                "identifier" => {
+                    Ok(unsafe {
+                        Self::Identifier(
+                            <Identifier<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
+                                'tree,
+                            >>::from_node_unchecked(node),
+                        )
+                    })
+                }
+                "scoped_identifier" => {
+                    Ok(unsafe {
+                        Self::ScopedIdentifier(
+                            <ScopedIdentifier<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
+                                'tree,
+                            >>::from_node_unchecked(node),
+                        )
+                    })
+                }
+                _ => {
+                    Err(type_sitter_lib::IncorrectKind {
+                        node,
+                        kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                    })
+                }
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree>
+    for TokenTree_Identifier_ScopedIdentifier<'tree> {
+        const KIND: &'static str = "{token_tree | identifier | scoped_identifier}";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            match self {
+                Self::TokenTree(x) => x.node(),
+                Self::Identifier(x) => x.node(),
+                Self::ScopedIdentifier(x) => x.node(),
+            }
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            match self {
+                Self::TokenTree(x) => x.node_mut(),
+                Self::Identifier(x) => x.node_mut(),
+                Self::ScopedIdentifier(x) => x.node_mut(),
             }
         }
     }
@@ -23789,6 +25312,335 @@ pub mod anon_unions {
             }
         }
     }
+    #[doc = concat!("one of `", "{attribute_item | match_pattern | _expression}", "`")]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub enum AttributeItem_MatchPattern_Expression<'tree> {
+        AttributeItem(AttributeItem<'tree>),
+        MatchPattern(MatchPattern<'tree>),
+        Expression(Expression<'tree>),
+    }
+    #[automatically_derived]
+    impl<'tree> AttributeItem_MatchPattern_Expression<'tree> {
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "attribute_item",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn attribute_item(self) -> Option<AttributeItem<'tree>> {
+            match self {
+                Self::AttributeItem(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "match_pattern",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn match_pattern(self) -> Option<MatchPattern<'tree>> {
+            match self {
+                Self::MatchPattern(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "_expression",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn expression(self) -> Option<Expression<'tree>> {
+            match self {
+                Self::Expression(x) => Some(x),
+                _ => None,
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for AttributeItem_MatchPattern_Expression<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            if let Ok(this) = <AttributeItem<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::AttributeItem(this));
+            }
+            if let Ok(this) = <MatchPattern<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::MatchPattern(this));
+            }
+            if let Ok(this) = <Expression<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Expression(this));
+            }
+            Err(type_sitter_lib::IncorrectKind {
+                node,
+                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+            })
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree>
+    for AttributeItem_MatchPattern_Expression<'tree> {
+        const KIND: &'static str = "{attribute_item | match_pattern | _expression}";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            match self {
+                Self::AttributeItem(x) => x.node(),
+                Self::MatchPattern(x) => x.node(),
+                Self::Expression(x) => x.node(),
+            }
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            match self {
+                Self::AttributeItem(x) => x.node_mut(),
+                Self::MatchPattern(x) => x.node_mut(),
+                Self::Expression(x) => x.node_mut(),
+            }
+        }
+    }
+    #[doc = concat!(
+        "one of `", "{_pattern | _expression | let_chain | let_condition}", "`"
+    )]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub enum Pattern_Expression_LetChain_LetCondition<'tree> {
+        Pattern(Pattern<'tree>),
+        Expression(Expression<'tree>),
+        LetChain(LetChain<'tree>),
+        LetCondition(LetCondition<'tree>),
+    }
+    #[automatically_derived]
+    impl<'tree> Pattern_Expression_LetChain_LetCondition<'tree> {
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "_pattern",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn pattern(self) -> Option<Pattern<'tree>> {
+            match self {
+                Self::Pattern(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "_expression",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn expression(self) -> Option<Expression<'tree>> {
+            match self {
+                Self::Expression(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "let_chain",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn let_chain(self) -> Option<LetChain<'tree>> {
+            match self {
+                Self::LetChain(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "let_condition",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn let_condition(self) -> Option<LetCondition<'tree>> {
+            match self {
+                Self::LetCondition(x) => Some(x),
+                _ => None,
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for Pattern_Expression_LetChain_LetCondition<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            if let Ok(this) = <Pattern<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Pattern(this));
+            }
+            if let Ok(this) = <Expression<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Expression(this));
+            }
+            if let Ok(this) = <LetChain<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::LetChain(this));
+            }
+            if let Ok(this) = <LetCondition<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::LetCondition(this));
+            }
+            Err(type_sitter_lib::IncorrectKind {
+                node,
+                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+            })
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree>
+    for Pattern_Expression_LetChain_LetCondition<'tree> {
+        const KIND: &'static str = "{_pattern | _expression | let_chain | let_condition}";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            match self {
+                Self::Pattern(x) => x.node(),
+                Self::Expression(x) => x.node(),
+                Self::LetChain(x) => x.node(),
+                Self::LetCondition(x) => x.node(),
+            }
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            match self {
+                Self::Pattern(x) => x.node_mut(),
+                Self::Expression(x) => x.node_mut(),
+                Self::LetChain(x) => x.node_mut(),
+                Self::LetCondition(x) => x.node_mut(),
+            }
+        }
+    }
+    #[doc = concat!(
+        "one of `", "{visibility_modifier | declaration_list | identifier}", "`"
+    )]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub enum VisibilityModifier_DeclarationList_Identifier<'tree> {
+        VisibilityModifier(VisibilityModifier<'tree>),
+        DeclarationList(DeclarationList<'tree>),
+        Identifier(Identifier<'tree>),
+    }
+    #[automatically_derived]
+    impl<'tree> VisibilityModifier_DeclarationList_Identifier<'tree> {
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "visibility_modifier",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn visibility_modifier(self) -> Option<VisibilityModifier<'tree>> {
+            match self {
+                Self::VisibilityModifier(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "declaration_list",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn declaration_list(self) -> Option<DeclarationList<'tree>> {
+            match self {
+                Self::DeclarationList(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "identifier",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn identifier(self) -> Option<Identifier<'tree>> {
+            match self {
+                Self::Identifier(x) => Some(x),
+                _ => None,
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for VisibilityModifier_DeclarationList_Identifier<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            match node.kind() {
+                "visibility_modifier" => {
+                    Ok(unsafe {
+                        Self::VisibilityModifier(
+                            <VisibilityModifier<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
+                                'tree,
+                            >>::from_node_unchecked(node),
+                        )
+                    })
+                }
+                "declaration_list" => {
+                    Ok(unsafe {
+                        Self::DeclarationList(
+                            <DeclarationList<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
+                                'tree,
+                            >>::from_node_unchecked(node),
+                        )
+                    })
+                }
+                "identifier" => {
+                    Ok(unsafe {
+                        Self::Identifier(
+                            <Identifier<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
+                                'tree,
+                            >>::from_node_unchecked(node),
+                        )
+                    })
+                }
+                _ => {
+                    Err(type_sitter_lib::IncorrectKind {
+                        node,
+                        kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                    })
+                }
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree>
+    for VisibilityModifier_DeclarationList_Identifier<'tree> {
+        const KIND: &'static str = "{visibility_modifier | declaration_list | identifier}";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            match self {
+                Self::VisibilityModifier(x) => x.node(),
+                Self::DeclarationList(x) => x.node(),
+                Self::Identifier(x) => x.node(),
+            }
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            match self {
+                Self::VisibilityModifier(x) => x.node_mut(),
+                Self::DeclarationList(x) => x.node_mut(),
+                Self::Identifier(x) => x.node_mut(),
+            }
+        }
+    }
     #[doc = concat!("one of `", "{_pattern | mutable_specifier}", "`")]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
@@ -23831,36 +25683,16 @@ pub mod anon_unions {
         fn try_from(
             node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
         ) -> Result<Self, Self::Error> {
-            match node.kind() {
-                "_pattern" => {
-                    Ok(unsafe {
-                        Self::Pattern(
-                            <Pattern<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "mutable_specifier" => {
-                    Ok(unsafe {
-                        Self::MutableSpecifier(
-                            <MutableSpecifier<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                _ => {
-                    Err(type_sitter_lib::IncorrectKind {
-                        node,
-                        kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                    })
-                }
+            if let Ok(this) = <Pattern<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Pattern(this));
             }
+            if let Ok(this) = <MutableSpecifier<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::MutableSpecifier(this));
+            }
+            Err(type_sitter_lib::IncorrectKind {
+                node,
+                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+            })
         }
     }
     #[automatically_derived]
@@ -24075,15 +25907,16 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = concat!("one of `", "{attribute_item | visibility_modifier}", "`")]
+    #[doc = concat!("one of `", "{attribute_item | visibility_modifier | _type}", "`")]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub enum AttributeItem_VisibilityModifier<'tree> {
+    pub enum AttributeItem_VisibilityModifier_Type<'tree> {
         AttributeItem(AttributeItem<'tree>),
         VisibilityModifier(VisibilityModifier<'tree>),
+        Type(Type<'tree>),
     }
     #[automatically_derived]
-    impl<'tree> AttributeItem_VisibilityModifier<'tree> {
+    impl<'tree> AttributeItem_VisibilityModifier_Type<'tree> {
         #[doc = concat!(
             "Returns the node if it is of kind `", "attribute_item",
             "`, otherwise returns None"
@@ -24108,56 +25941,51 @@ pub mod anon_unions {
                 _ => None,
             }
         }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "_type", "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn r#type(self) -> Option<Type<'tree>> {
+            match self {
+                Self::Type(x) => Some(x),
+                _ => None,
+            }
+        }
     }
     #[automatically_derived]
     impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
-    for AttributeItem_VisibilityModifier<'tree> {
+    for AttributeItem_VisibilityModifier_Type<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
         fn try_from(
             node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
         ) -> Result<Self, Self::Error> {
-            match node.kind() {
-                "attribute_item" => {
-                    Ok(unsafe {
-                        Self::AttributeItem(
-                            <AttributeItem<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "visibility_modifier" => {
-                    Ok(unsafe {
-                        Self::VisibilityModifier(
-                            <VisibilityModifier<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                _ => {
-                    Err(type_sitter_lib::IncorrectKind {
-                        node,
-                        kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                    })
-                }
+            if let Ok(this) = <AttributeItem<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::AttributeItem(this));
             }
+            if let Ok(this) = <VisibilityModifier<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::VisibilityModifier(this));
+            }
+            if let Ok(this) = <Type<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Type(this));
+            }
+            Err(type_sitter_lib::IncorrectKind {
+                node,
+                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+            })
         }
     }
     #[automatically_derived]
     impl<'tree> type_sitter_lib::TypedNode<'tree>
-    for AttributeItem_VisibilityModifier<'tree> {
-        const KIND: &'static str = "{attribute_item | visibility_modifier}";
+    for AttributeItem_VisibilityModifier_Type<'tree> {
+        const KIND: &'static str = "{attribute_item | visibility_modifier | _type}";
         #[inline]
         fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::AttributeItem(x) => x.node(),
                 Self::VisibilityModifier(x) => x.node(),
+                Self::Type(x) => x.node(),
             }
         }
         #[inline]
@@ -24167,6 +25995,116 @@ pub mod anon_unions {
             match self {
                 Self::AttributeItem(x) => x.node_mut(),
                 Self::VisibilityModifier(x) => x.node_mut(),
+                Self::Type(x) => x.node_mut(),
+            }
+        }
+    }
+    #[doc = concat!("one of `", "{mutable_specifier | _pattern | self | _type}", "`")]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub enum MutableSpecifier_Pattern__Self_Type<'tree> {
+        MutableSpecifier(MutableSpecifier<'tree>),
+        Pattern(Pattern<'tree>),
+        _Self(_Self<'tree>),
+        Type(Type<'tree>),
+    }
+    #[automatically_derived]
+    impl<'tree> MutableSpecifier_Pattern__Self_Type<'tree> {
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "mutable_specifier",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn mutable_specifier(self) -> Option<MutableSpecifier<'tree>> {
+            match self {
+                Self::MutableSpecifier(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "_pattern",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn pattern(self) -> Option<Pattern<'tree>> {
+            match self {
+                Self::Pattern(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "self", "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn _self(self) -> Option<_Self<'tree>> {
+            match self {
+                Self::_Self(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "_type", "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn r#type(self) -> Option<Type<'tree>> {
+            match self {
+                Self::Type(x) => Some(x),
+                _ => None,
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for MutableSpecifier_Pattern__Self_Type<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            if let Ok(this) = <MutableSpecifier<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::MutableSpecifier(this));
+            }
+            if let Ok(this) = <Pattern<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Pattern(this));
+            }
+            if let Ok(this) = <_Self<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::_Self(this));
+            }
+            if let Ok(this) = <Type<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Type(this));
+            }
+            Err(type_sitter_lib::IncorrectKind {
+                node,
+                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+            })
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree>
+    for MutableSpecifier_Pattern__Self_Type<'tree> {
+        const KIND: &'static str = "{mutable_specifier | _pattern | self | _type}";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            match self {
+                Self::MutableSpecifier(x) => x.node(),
+                Self::Pattern(x) => x.node(),
+                Self::_Self(x) => x.node(),
+                Self::Type(x) => x.node(),
+            }
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            match self {
+                Self::MutableSpecifier(x) => x.node_mut(),
+                Self::Pattern(x) => x.node_mut(),
+                Self::_Self(x) => x.node_mut(),
+                Self::Type(x) => x.node_mut(),
             }
         }
     }
@@ -24211,36 +26149,16 @@ pub mod anon_unions {
         fn try_from(
             node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
         ) -> Result<Self, Self::Error> {
-            match node.kind() {
-                "_pattern" => {
-                    Ok(unsafe {
-                        Self::Pattern(
-                            <Pattern<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "self" => {
-                    Ok(unsafe {
-                        Self::_Self(
-                            <_Self<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                _ => {
-                    Err(type_sitter_lib::IncorrectKind {
-                        node,
-                        kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                    })
-                }
+            if let Ok(this) = <Pattern<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Pattern(this));
             }
+            if let Ok(this) = <_Self<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::_Self(this));
+            }
+            Err(type_sitter_lib::IncorrectKind {
+                node,
+                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+            })
         }
     }
     #[automatically_derived]
@@ -24346,69 +26264,25 @@ pub mod anon_unions {
         fn try_from(
             node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
         ) -> Result<Self, Self::Error> {
-            match node.kind() {
-                "_type" => {
-                    Ok(unsafe {
-                        Self::Type(
-                            <Type<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "attribute_item" => {
-                    Ok(unsafe {
-                        Self::AttributeItem(
-                            <AttributeItem<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "parameter" => {
-                    Ok(unsafe {
-                        Self::Parameter(
-                            <Parameter<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "self_parameter" => {
-                    Ok(unsafe {
-                        Self::SelfParameter(
-                            <SelfParameter<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "variadic_parameter" => {
-                    Ok(unsafe {
-                        Self::VariadicParameter(
-                            <VariadicParameter<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                _ => {
-                    Err(type_sitter_lib::IncorrectKind {
-                        node,
-                        kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                    })
-                }
+            if let Ok(this) = <Type<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Type(this));
             }
+            if let Ok(this) = <AttributeItem<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::AttributeItem(this));
+            }
+            if let Ok(this) = <Parameter<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Parameter(this));
+            }
+            if let Ok(this) = <SelfParameter<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::SelfParameter(this));
+            }
+            if let Ok(this) = <VariadicParameter<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::VariadicParameter(this));
+            }
+            Err(type_sitter_lib::IncorrectKind {
+                node,
+                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+            })
         }
     }
     #[automatically_derived]
@@ -24435,6 +26309,79 @@ pub mod anon_unions {
                 Self::Parameter(x) => x.node_mut(),
                 Self::SelfParameter(x) => x.node_mut(),
                 Self::VariadicParameter(x) => x.node_mut(),
+            }
+        }
+    }
+    #[doc = concat!("one of `", "{mutable_specifier | _type}", "`")]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub enum MutableSpecifier_Type<'tree> {
+        MutableSpecifier(MutableSpecifier<'tree>),
+        Type(Type<'tree>),
+    }
+    #[automatically_derived]
+    impl<'tree> MutableSpecifier_Type<'tree> {
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "mutable_specifier",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn mutable_specifier(self) -> Option<MutableSpecifier<'tree>> {
+            match self {
+                Self::MutableSpecifier(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "_type", "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn r#type(self) -> Option<Type<'tree>> {
+            match self {
+                Self::Type(x) => Some(x),
+                _ => None,
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for MutableSpecifier_Type<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            if let Ok(this) = <MutableSpecifier<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::MutableSpecifier(this));
+            }
+            if let Ok(this) = <Type<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Type(this));
+            }
+            Err(type_sitter_lib::IncorrectKind {
+                node,
+                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+            })
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for MutableSpecifier_Type<'tree> {
+        const KIND: &'static str = "{mutable_specifier | _type}";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            match self {
+                Self::MutableSpecifier(x) => x.node(),
+                Self::Type(x) => x.node(),
+            }
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            match self {
+                Self::MutableSpecifier(x) => x.node_mut(),
+                Self::Type(x) => x.node_mut(),
             }
         }
     }
@@ -24552,91 +26499,31 @@ pub mod anon_unions {
         fn try_from(
             node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
         ) -> Result<Self, Self::Error> {
-            match node.kind() {
-                "_literal_pattern" => {
-                    Ok(unsafe {
-                        Self::LiteralPattern(
-                            <LiteralPattern<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "crate" => {
-                    Ok(unsafe {
-                        Self::Crate(
-                            <Crate<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "identifier" => {
-                    Ok(unsafe {
-                        Self::Identifier(
-                            <Identifier<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "metavariable" => {
-                    Ok(unsafe {
-                        Self::Metavariable(
-                            <Metavariable<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "scoped_identifier" => {
-                    Ok(unsafe {
-                        Self::ScopedIdentifier(
-                            <ScopedIdentifier<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "self" => {
-                    Ok(unsafe {
-                        Self::_Self(
-                            <_Self<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "super" => {
-                    Ok(unsafe {
-                        Self::Super(
-                            <Super<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                _ => {
-                    Err(type_sitter_lib::IncorrectKind {
-                        node,
-                        kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                    })
-                }
+            if let Ok(this) = <LiteralPattern<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::LiteralPattern(this));
             }
+            if let Ok(this) = <Crate<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Crate(this));
+            }
+            if let Ok(this) = <Identifier<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Identifier(this));
+            }
+            if let Ok(this) = <Metavariable<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Metavariable(this));
+            }
+            if let Ok(this) = <ScopedIdentifier<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::ScopedIdentifier(this));
+            }
+            if let Ok(this) = <_Self<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::_Self(this));
+            }
+            if let Ok(this) = <Super<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Super(this));
+            }
+            Err(type_sitter_lib::IncorrectKind {
+                node,
+                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+            })
         }
     }
     #[automatically_derived]
@@ -24672,15 +26559,91 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = concat!("one of `", "{lifetime | mutable_specifier}", "`")]
+    #[doc = concat!("one of `", "{mutable_specifier | _expression}", "`")]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub enum Lifetime_MutableSpecifier<'tree> {
-        Lifetime(Lifetime<'tree>),
+    pub enum MutableSpecifier_Expression<'tree> {
         MutableSpecifier(MutableSpecifier<'tree>),
+        Expression(Expression<'tree>),
     }
     #[automatically_derived]
-    impl<'tree> Lifetime_MutableSpecifier<'tree> {
+    impl<'tree> MutableSpecifier_Expression<'tree> {
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "mutable_specifier",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn mutable_specifier(self) -> Option<MutableSpecifier<'tree>> {
+            match self {
+                Self::MutableSpecifier(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "_expression",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn expression(self) -> Option<Expression<'tree>> {
+            match self {
+                Self::Expression(x) => Some(x),
+                _ => None,
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for MutableSpecifier_Expression<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            if let Ok(this) = <MutableSpecifier<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::MutableSpecifier(this));
+            }
+            if let Ok(this) = <Expression<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Expression(this));
+            }
+            Err(type_sitter_lib::IncorrectKind {
+                node,
+                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+            })
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree>
+    for MutableSpecifier_Expression<'tree> {
+        const KIND: &'static str = "{mutable_specifier | _expression}";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            match self {
+                Self::MutableSpecifier(x) => x.node(),
+                Self::Expression(x) => x.node(),
+            }
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            match self {
+                Self::MutableSpecifier(x) => x.node_mut(),
+                Self::Expression(x) => x.node_mut(),
+            }
+        }
+    }
+    #[doc = concat!("one of `", "{lifetime | mutable_specifier | _type}", "`")]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub enum Lifetime_MutableSpecifier_Type<'tree> {
+        Lifetime(Lifetime<'tree>),
+        MutableSpecifier(MutableSpecifier<'tree>),
+        Type(Type<'tree>),
+    }
+    #[automatically_derived]
+    impl<'tree> Lifetime_MutableSpecifier_Type<'tree> {
         #[doc = concat!(
             "Returns the node if it is of kind `", "lifetime",
             "`, otherwise returns None"
@@ -24705,55 +26668,51 @@ pub mod anon_unions {
                 _ => None,
             }
         }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "_type", "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn r#type(self) -> Option<Type<'tree>> {
+            match self {
+                Self::Type(x) => Some(x),
+                _ => None,
+            }
+        }
     }
     #[automatically_derived]
     impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
-    for Lifetime_MutableSpecifier<'tree> {
+    for Lifetime_MutableSpecifier_Type<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
         fn try_from(
             node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
         ) -> Result<Self, Self::Error> {
-            match node.kind() {
-                "lifetime" => {
-                    Ok(unsafe {
-                        Self::Lifetime(
-                            <Lifetime<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "mutable_specifier" => {
-                    Ok(unsafe {
-                        Self::MutableSpecifier(
-                            <MutableSpecifier<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                _ => {
-                    Err(type_sitter_lib::IncorrectKind {
-                        node,
-                        kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                    })
-                }
+            if let Ok(this) = <Lifetime<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Lifetime(this));
             }
+            if let Ok(this) = <MutableSpecifier<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::MutableSpecifier(this));
+            }
+            if let Ok(this) = <Type<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Type(this));
+            }
+            Err(type_sitter_lib::IncorrectKind {
+                node,
+                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+            })
         }
     }
     #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for Lifetime_MutableSpecifier<'tree> {
-        const KIND: &'static str = "{lifetime | mutable_specifier}";
+    impl<'tree> type_sitter_lib::TypedNode<'tree>
+    for Lifetime_MutableSpecifier_Type<'tree> {
+        const KIND: &'static str = "{lifetime | mutable_specifier | _type}";
         #[inline]
         fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::Lifetime(x) => x.node(),
                 Self::MutableSpecifier(x) => x.node(),
+                Self::Type(x) => x.node(),
             }
         }
         #[inline]
@@ -24763,6 +26722,7 @@ pub mod anon_unions {
             match self {
                 Self::Lifetime(x) => x.node_mut(),
                 Self::MutableSpecifier(x) => x.node_mut(),
+                Self::Type(x) => x.node_mut(),
             }
         }
     }
@@ -25028,6 +26988,205 @@ pub mod anon_unions {
             }
         }
     }
+    #[doc = concat!(
+        "one of `",
+        "{crate | identifier | metavariable | scoped_identifier | self | super}", "`"
+    )]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub enum Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super<'tree> {
+        Crate(Crate<'tree>),
+        Identifier(Identifier<'tree>),
+        Metavariable(Metavariable<'tree>),
+        ScopedIdentifier(ScopedIdentifier<'tree>),
+        _Self(_Self<'tree>),
+        Super(Super<'tree>),
+    }
+    #[automatically_derived]
+    impl<'tree> Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super<'tree> {
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "crate", "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn crate_(self) -> Option<Crate<'tree>> {
+            match self {
+                Self::Crate(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "identifier",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn identifier(self) -> Option<Identifier<'tree>> {
+            match self {
+                Self::Identifier(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "metavariable",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn metavariable(self) -> Option<Metavariable<'tree>> {
+            match self {
+                Self::Metavariable(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "scoped_identifier",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn scoped_identifier(self) -> Option<ScopedIdentifier<'tree>> {
+            match self {
+                Self::ScopedIdentifier(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "self", "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn _self(self) -> Option<_Self<'tree>> {
+            match self {
+                Self::_Self(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "super", "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn super_(self) -> Option<Super<'tree>> {
+            match self {
+                Self::Super(x) => Some(x),
+                _ => None,
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            match node.kind() {
+                "crate" => {
+                    Ok(unsafe {
+                        Self::Crate(
+                            <Crate<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
+                                'tree,
+                            >>::from_node_unchecked(node),
+                        )
+                    })
+                }
+                "identifier" => {
+                    Ok(unsafe {
+                        Self::Identifier(
+                            <Identifier<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
+                                'tree,
+                            >>::from_node_unchecked(node),
+                        )
+                    })
+                }
+                "metavariable" => {
+                    Ok(unsafe {
+                        Self::Metavariable(
+                            <Metavariable<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
+                                'tree,
+                            >>::from_node_unchecked(node),
+                        )
+                    })
+                }
+                "scoped_identifier" => {
+                    Ok(unsafe {
+                        Self::ScopedIdentifier(
+                            <ScopedIdentifier<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
+                                'tree,
+                            >>::from_node_unchecked(node),
+                        )
+                    })
+                }
+                "self" => {
+                    Ok(unsafe {
+                        Self::_Self(
+                            <_Self<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
+                                'tree,
+                            >>::from_node_unchecked(node),
+                        )
+                    })
+                }
+                "super" => {
+                    Ok(unsafe {
+                        Self::Super(
+                            <Super<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
+                                'tree,
+                            >>::from_node_unchecked(node),
+                        )
+                    })
+                }
+                _ => {
+                    Err(type_sitter_lib::IncorrectKind {
+                        node,
+                        kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                    })
+                }
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree>
+    for Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super<'tree> {
+        const KIND: &'static str = "{crate | identifier | metavariable | scoped_identifier | self | super}";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            match self {
+                Self::Crate(x) => x.node(),
+                Self::Identifier(x) => x.node(),
+                Self::Metavariable(x) => x.node(),
+                Self::ScopedIdentifier(x) => x.node(),
+                Self::_Self(x) => x.node(),
+                Self::Super(x) => x.node(),
+            }
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            match self {
+                Self::Crate(x) => x.node_mut(),
+                Self::Identifier(x) => x.node_mut(),
+                Self::Metavariable(x) => x.node_mut(),
+                Self::ScopedIdentifier(x) => x.node_mut(),
+                Self::_Self(x) => x.node_mut(),
+                Self::Super(x) => x.node_mut(),
+            }
+        }
+    }
     #[doc = concat!("one of `", "{lifetime | mutable_specifier | self}", "`")]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
@@ -25284,36 +27443,18 @@ pub mod anon_unions {
         fn try_from(
             node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
         ) -> Result<Self, Self::Error> {
-            match node.kind() {
-                "_declaration_statement" => {
-                    Ok(unsafe {
-                        Self::DeclarationStatement(
-                            <DeclarationStatement<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "expression_statement" => {
-                    Ok(unsafe {
-                        Self::ExpressionStatement(
-                            <ExpressionStatement<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                _ => {
-                    Err(type_sitter_lib::IncorrectKind {
-                        node,
-                        kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                    })
-                }
+            if let Ok(this)
+                = <DeclarationStatement<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::DeclarationStatement(this));
             }
+            if let Ok(this)
+                = <ExpressionStatement<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::ExpressionStatement(this));
+            }
+            Err(type_sitter_lib::IncorrectKind {
+                node,
+                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+            })
         }
     }
     #[automatically_derived]
@@ -25337,15 +27478,22 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = concat!("one of `", "{mutable_specifier | visibility_modifier}", "`")]
+    #[doc = concat!(
+        "one of `",
+        "{mutable_specifier | visibility_modifier | identifier | _type | _expression}",
+        "`"
+    )]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub enum MutableSpecifier_VisibilityModifier<'tree> {
+    pub enum MutableSpecifier_VisibilityModifier_Identifier_Type_Expression<'tree> {
         MutableSpecifier(MutableSpecifier<'tree>),
         VisibilityModifier(VisibilityModifier<'tree>),
+        Identifier(Identifier<'tree>),
+        Type(Type<'tree>),
+        Expression(Expression<'tree>),
     }
     #[automatically_derived]
-    impl<'tree> MutableSpecifier_VisibilityModifier<'tree> {
+    impl<'tree> MutableSpecifier_VisibilityModifier_Identifier_Type_Expression<'tree> {
         #[doc = concat!(
             "Returns the node if it is of kind `", "mutable_specifier",
             "`, otherwise returns None"
@@ -25370,56 +27518,83 @@ pub mod anon_unions {
                 _ => None,
             }
         }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "identifier",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn identifier(self) -> Option<Identifier<'tree>> {
+            match self {
+                Self::Identifier(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "_type", "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn r#type(self) -> Option<Type<'tree>> {
+            match self {
+                Self::Type(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "_expression",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn expression(self) -> Option<Expression<'tree>> {
+            match self {
+                Self::Expression(x) => Some(x),
+                _ => None,
+            }
+        }
     }
     #[automatically_derived]
     impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
-    for MutableSpecifier_VisibilityModifier<'tree> {
+    for MutableSpecifier_VisibilityModifier_Identifier_Type_Expression<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
         fn try_from(
             node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
         ) -> Result<Self, Self::Error> {
-            match node.kind() {
-                "mutable_specifier" => {
-                    Ok(unsafe {
-                        Self::MutableSpecifier(
-                            <MutableSpecifier<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "visibility_modifier" => {
-                    Ok(unsafe {
-                        Self::VisibilityModifier(
-                            <VisibilityModifier<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                _ => {
-                    Err(type_sitter_lib::IncorrectKind {
-                        node,
-                        kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                    })
-                }
+            if let Ok(this) = <MutableSpecifier<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::MutableSpecifier(this));
             }
+            if let Ok(this) = <VisibilityModifier<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::VisibilityModifier(this));
+            }
+            if let Ok(this) = <Identifier<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Identifier(this));
+            }
+            if let Ok(this) = <Type<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Type(this));
+            }
+            if let Ok(this) = <Expression<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Expression(this));
+            }
+            Err(type_sitter_lib::IncorrectKind {
+                node,
+                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+            })
         }
     }
     #[automatically_derived]
     impl<'tree> type_sitter_lib::TypedNode<'tree>
-    for MutableSpecifier_VisibilityModifier<'tree> {
-        const KIND: &'static str = "{mutable_specifier | visibility_modifier}";
+    for MutableSpecifier_VisibilityModifier_Identifier_Type_Expression<'tree> {
+        const KIND: &'static str = "{mutable_specifier | visibility_modifier | identifier | _type | _expression}";
         #[inline]
         fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::MutableSpecifier(x) => x.node(),
                 Self::VisibilityModifier(x) => x.node(),
+                Self::Identifier(x) => x.node(),
+                Self::Type(x) => x.node(),
+                Self::Expression(x) => x.node(),
             }
         }
         #[inline]
@@ -25429,6 +27604,9 @@ pub mod anon_unions {
             match self {
                 Self::MutableSpecifier(x) => x.node_mut(),
                 Self::VisibilityModifier(x) => x.node_mut(),
+                Self::Identifier(x) => x.node_mut(),
+                Self::Type(x) => x.node_mut(),
+                Self::Expression(x) => x.node_mut(),
             }
         }
     }
@@ -25558,15 +27736,240 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = concat!("one of `", "{field_pattern | remaining_field_pattern}", "`")]
+    #[doc = concat!(
+        "one of `",
+        "{visibility_modifier | where_clause | field_declaration_list | ordered_field_declaration_list | type_identifier | type_parameters}",
+        "`"
+    )]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub enum FieldPattern_RemainingFieldPattern<'tree> {
-        FieldPattern(FieldPattern<'tree>),
-        RemainingFieldPattern(RemainingFieldPattern<'tree>),
+    pub enum VisibilityModifier_WhereClause_FieldDeclarationList_OrderedFieldDeclarationList_TypeIdentifier_TypeParameters<
+        'tree,
+    > {
+        VisibilityModifier(VisibilityModifier<'tree>),
+        WhereClause(WhereClause<'tree>),
+        FieldDeclarationList(FieldDeclarationList<'tree>),
+        OrderedFieldDeclarationList(OrderedFieldDeclarationList<'tree>),
+        TypeIdentifier(TypeIdentifier<'tree>),
+        TypeParameters(TypeParameters<'tree>),
     }
     #[automatically_derived]
-    impl<'tree> FieldPattern_RemainingFieldPattern<'tree> {
+    impl<
+        'tree,
+    > VisibilityModifier_WhereClause_FieldDeclarationList_OrderedFieldDeclarationList_TypeIdentifier_TypeParameters<
+        'tree,
+    > {
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "visibility_modifier",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn visibility_modifier(self) -> Option<VisibilityModifier<'tree>> {
+            match self {
+                Self::VisibilityModifier(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "where_clause",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn where_clause(self) -> Option<WhereClause<'tree>> {
+            match self {
+                Self::WhereClause(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "field_declaration_list",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn field_declaration_list(self) -> Option<FieldDeclarationList<'tree>> {
+            match self {
+                Self::FieldDeclarationList(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "ordered_field_declaration_list",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn ordered_field_declaration_list(
+            self,
+        ) -> Option<OrderedFieldDeclarationList<'tree>> {
+            match self {
+                Self::OrderedFieldDeclarationList(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "type_identifier",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn type_identifier(self) -> Option<TypeIdentifier<'tree>> {
+            match self {
+                Self::TypeIdentifier(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "type_parameters",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn type_parameters(self) -> Option<TypeParameters<'tree>> {
+            match self {
+                Self::TypeParameters(x) => Some(x),
+                _ => None,
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for VisibilityModifier_WhereClause_FieldDeclarationList_OrderedFieldDeclarationList_TypeIdentifier_TypeParameters<
+        'tree,
+    > {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            match node.kind() {
+                "visibility_modifier" => {
+                    Ok(unsafe {
+                        Self::VisibilityModifier(
+                            <VisibilityModifier<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
+                                'tree,
+                            >>::from_node_unchecked(node),
+                        )
+                    })
+                }
+                "where_clause" => {
+                    Ok(unsafe {
+                        Self::WhereClause(
+                            <WhereClause<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
+                                'tree,
+                            >>::from_node_unchecked(node),
+                        )
+                    })
+                }
+                "field_declaration_list" => {
+                    Ok(unsafe {
+                        Self::FieldDeclarationList(
+                            <FieldDeclarationList<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
+                                'tree,
+                            >>::from_node_unchecked(node),
+                        )
+                    })
+                }
+                "ordered_field_declaration_list" => {
+                    Ok(unsafe {
+                        Self::OrderedFieldDeclarationList(
+                            <OrderedFieldDeclarationList<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
+                                'tree,
+                            >>::from_node_unchecked(node),
+                        )
+                    })
+                }
+                "type_identifier" => {
+                    Ok(unsafe {
+                        Self::TypeIdentifier(
+                            <TypeIdentifier<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
+                                'tree,
+                            >>::from_node_unchecked(node),
+                        )
+                    })
+                }
+                "type_parameters" => {
+                    Ok(unsafe {
+                        Self::TypeParameters(
+                            <TypeParameters<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
+                                'tree,
+                            >>::from_node_unchecked(node),
+                        )
+                    })
+                }
+                _ => {
+                    Err(type_sitter_lib::IncorrectKind {
+                        node,
+                        kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                    })
+                }
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree>
+    for VisibilityModifier_WhereClause_FieldDeclarationList_OrderedFieldDeclarationList_TypeIdentifier_TypeParameters<
+        'tree,
+    > {
+        const KIND: &'static str = "{visibility_modifier | where_clause | field_declaration_list | ordered_field_declaration_list | type_identifier | type_parameters}";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            match self {
+                Self::VisibilityModifier(x) => x.node(),
+                Self::WhereClause(x) => x.node(),
+                Self::FieldDeclarationList(x) => x.node(),
+                Self::OrderedFieldDeclarationList(x) => x.node(),
+                Self::TypeIdentifier(x) => x.node(),
+                Self::TypeParameters(x) => x.node(),
+            }
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            match self {
+                Self::VisibilityModifier(x) => x.node_mut(),
+                Self::WhereClause(x) => x.node_mut(),
+                Self::FieldDeclarationList(x) => x.node_mut(),
+                Self::OrderedFieldDeclarationList(x) => x.node_mut(),
+                Self::TypeIdentifier(x) => x.node_mut(),
+                Self::TypeParameters(x) => x.node_mut(),
+            }
+        }
+    }
+    #[doc = concat!(
+        "one of `",
+        "{field_pattern | remaining_field_pattern | scoped_type_identifier | type_identifier}",
+        "`"
+    )]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub enum FieldPattern_RemainingFieldPattern_ScopedTypeIdentifier_TypeIdentifier<
+        'tree,
+    > {
+        FieldPattern(FieldPattern<'tree>),
+        RemainingFieldPattern(RemainingFieldPattern<'tree>),
+        ScopedTypeIdentifier(ScopedTypeIdentifier<'tree>),
+        TypeIdentifier(TypeIdentifier<'tree>),
+    }
+    #[automatically_derived]
+    impl<
+        'tree,
+    > FieldPattern_RemainingFieldPattern_ScopedTypeIdentifier_TypeIdentifier<'tree> {
         #[doc = concat!(
             "Returns the node if it is of kind `", "field_pattern",
             "`, otherwise returns None"
@@ -25591,10 +27994,34 @@ pub mod anon_unions {
                 _ => None,
             }
         }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "scoped_type_identifier",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn scoped_type_identifier(self) -> Option<ScopedTypeIdentifier<'tree>> {
+            match self {
+                Self::ScopedTypeIdentifier(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "type_identifier",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn type_identifier(self) -> Option<TypeIdentifier<'tree>> {
+            match self {
+                Self::TypeIdentifier(x) => Some(x),
+                _ => None,
+            }
+        }
     }
     #[automatically_derived]
     impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
-    for FieldPattern_RemainingFieldPattern<'tree> {
+    for FieldPattern_RemainingFieldPattern_ScopedTypeIdentifier_TypeIdentifier<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
         fn try_from(
@@ -25623,6 +28050,28 @@ pub mod anon_unions {
                         )
                     })
                 }
+                "scoped_type_identifier" => {
+                    Ok(unsafe {
+                        Self::ScopedTypeIdentifier(
+                            <ScopedTypeIdentifier<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
+                                'tree,
+                            >>::from_node_unchecked(node),
+                        )
+                    })
+                }
+                "type_identifier" => {
+                    Ok(unsafe {
+                        Self::TypeIdentifier(
+                            <TypeIdentifier<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
+                                'tree,
+                            >>::from_node_unchecked(node),
+                        )
+                    })
+                }
                 _ => {
                     Err(type_sitter_lib::IncorrectKind {
                         node,
@@ -25634,13 +28083,15 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> type_sitter_lib::TypedNode<'tree>
-    for FieldPattern_RemainingFieldPattern<'tree> {
-        const KIND: &'static str = "{field_pattern | remaining_field_pattern}";
+    for FieldPattern_RemainingFieldPattern_ScopedTypeIdentifier_TypeIdentifier<'tree> {
+        const KIND: &'static str = "{field_pattern | remaining_field_pattern | scoped_type_identifier | type_identifier}";
         #[inline]
         fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::FieldPattern(x) => x.node(),
                 Self::RemainingFieldPattern(x) => x.node(),
+                Self::ScopedTypeIdentifier(x) => x.node(),
+                Self::TypeIdentifier(x) => x.node(),
             }
         }
         #[inline]
@@ -25650,6 +28101,8 @@ pub mod anon_unions {
             match self {
                 Self::FieldPattern(x) => x.node_mut(),
                 Self::RemainingFieldPattern(x) => x.node_mut(),
+                Self::ScopedTypeIdentifier(x) => x.node_mut(),
+                Self::TypeIdentifier(x) => x.node_mut(),
             }
         }
     }
@@ -25808,124 +28261,40 @@ pub mod anon_unions {
         fn try_from(
             node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
         ) -> Result<Self, Self::Error> {
-            match node.kind() {
-                "_literal" => {
-                    Ok(unsafe {
-                        Self::Literal(
-                            <Literal<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "crate" => {
-                    Ok(unsafe {
-                        Self::Crate(
-                            <Crate<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "identifier" => {
-                    Ok(unsafe {
-                        Self::Identifier(
-                            <Identifier<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "metavariable" => {
-                    Ok(unsafe {
-                        Self::Metavariable(
-                            <Metavariable<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "mutable_specifier" => {
-                    Ok(unsafe {
-                        Self::MutableSpecifier(
-                            <MutableSpecifier<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "primitive_type" => {
-                    Ok(unsafe {
-                        Self::PrimitiveType(
-                            <PrimitiveType<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "self" => {
-                    Ok(unsafe {
-                        Self::_Self(
-                            <_Self<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "super" => {
-                    Ok(unsafe {
-                        Self::Super(
-                            <Super<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "token_repetition" => {
-                    Ok(unsafe {
-                        Self::TokenRepetition(
-                            <TokenRepetition<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "token_tree" => {
-                    Ok(unsafe {
-                        Self::TokenTree(
-                            <TokenTree<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                _ => {
-                    Err(type_sitter_lib::IncorrectKind {
-                        node,
-                        kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                    })
-                }
+            if let Ok(this) = <Literal<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Literal(this));
             }
+            if let Ok(this) = <Crate<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Crate(this));
+            }
+            if let Ok(this) = <Identifier<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Identifier(this));
+            }
+            if let Ok(this) = <Metavariable<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Metavariable(this));
+            }
+            if let Ok(this) = <MutableSpecifier<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::MutableSpecifier(this));
+            }
+            if let Ok(this) = <PrimitiveType<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::PrimitiveType(this));
+            }
+            if let Ok(this) = <_Self<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::_Self(this));
+            }
+            if let Ok(this) = <Super<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Super(this));
+            }
+            if let Ok(this) = <TokenRepetition<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::TokenRepetition(this));
+            }
+            if let Ok(this) = <TokenTree<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::TokenTree(this));
+            }
+            Err(type_sitter_lib::IncorrectKind {
+                node,
+                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+            })
         }
     }
     #[automatically_derived]
@@ -26135,135 +28504,45 @@ pub mod anon_unions {
         fn try_from(
             node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
         ) -> Result<Self, Self::Error> {
-            match node.kind() {
-                "_literal" => {
-                    Ok(unsafe {
-                        Self::Literal(
-                            <Literal<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "crate" => {
-                    Ok(unsafe {
-                        Self::Crate(
-                            <Crate<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "identifier" => {
-                    Ok(unsafe {
-                        Self::Identifier(
-                            <Identifier<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "metavariable" => {
-                    Ok(unsafe {
-                        Self::Metavariable(
-                            <Metavariable<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "mutable_specifier" => {
-                    Ok(unsafe {
-                        Self::MutableSpecifier(
-                            <MutableSpecifier<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "primitive_type" => {
-                    Ok(unsafe {
-                        Self::PrimitiveType(
-                            <PrimitiveType<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "self" => {
-                    Ok(unsafe {
-                        Self::_Self(
-                            <_Self<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "super" => {
-                    Ok(unsafe {
-                        Self::Super(
-                            <Super<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "token_binding_pattern" => {
-                    Ok(unsafe {
-                        Self::TokenBindingPattern(
-                            <TokenBindingPattern<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "token_repetition_pattern" => {
-                    Ok(unsafe {
-                        Self::TokenRepetitionPattern(
-                            <TokenRepetitionPattern<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "token_tree_pattern" => {
-                    Ok(unsafe {
-                        Self::TokenTreePattern(
-                            <TokenTreePattern<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                _ => {
-                    Err(type_sitter_lib::IncorrectKind {
-                        node,
-                        kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                    })
-                }
+            if let Ok(this) = <Literal<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Literal(this));
             }
+            if let Ok(this) = <Crate<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Crate(this));
+            }
+            if let Ok(this) = <Identifier<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Identifier(this));
+            }
+            if let Ok(this) = <Metavariable<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Metavariable(this));
+            }
+            if let Ok(this) = <MutableSpecifier<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::MutableSpecifier(this));
+            }
+            if let Ok(this) = <PrimitiveType<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::PrimitiveType(this));
+            }
+            if let Ok(this) = <_Self<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::_Self(this));
+            }
+            if let Ok(this) = <Super<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Super(this));
+            }
+            if let Ok(this)
+                = <TokenBindingPattern<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::TokenBindingPattern(this));
+            }
+            if let Ok(this)
+                = <TokenRepetitionPattern<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::TokenRepetitionPattern(this));
+            }
+            if let Ok(this) = <TokenTreePattern<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::TokenTreePattern(this));
+            }
+            Err(type_sitter_lib::IncorrectKind {
+                node,
+                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+            })
         }
     }
     #[automatically_derived]
@@ -26377,58 +28656,23 @@ pub mod anon_unions {
         fn try_from(
             node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
         ) -> Result<Self, Self::Error> {
-            match node.kind() {
-                "_type" => {
-                    Ok(unsafe {
-                        Self::Type(
-                            <Type<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "higher_ranked_trait_bound" => {
-                    Ok(unsafe {
-                        Self::HigherRankedTraitBound(
-                            <HigherRankedTraitBound<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "lifetime" => {
-                    Ok(unsafe {
-                        Self::Lifetime(
-                            <Lifetime<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "removed_trait_bound" => {
-                    Ok(unsafe {
-                        Self::RemovedTraitBound(
-                            <RemovedTraitBound<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                _ => {
-                    Err(type_sitter_lib::IncorrectKind {
-                        node,
-                        kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                    })
-                }
+            if let Ok(this) = <Type<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Type(this));
             }
+            if let Ok(this)
+                = <HigherRankedTraitBound<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::HigherRankedTraitBound(this));
+            }
+            if let Ok(this) = <Lifetime<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Lifetime(this));
+            }
+            if let Ok(this) = <RemovedTraitBound<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::RemovedTraitBound(this));
+            }
+            Err(type_sitter_lib::IncorrectKind {
+                node,
+                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+            })
         }
     }
     #[automatically_derived]
@@ -26453,6 +28697,312 @@ pub mod anon_unions {
                 Self::HigherRankedTraitBound(x) => x.node_mut(),
                 Self::Lifetime(x) => x.node_mut(),
                 Self::RemovedTraitBound(x) => x.node_mut(),
+            }
+        }
+    }
+    #[doc = concat!(
+        "one of `",
+        "{visibility_modifier | where_clause | declaration_list | trait_bounds | type_identifier | type_parameters}",
+        "`"
+    )]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub enum VisibilityModifier_WhereClause_DeclarationList_TraitBounds_TypeIdentifier_TypeParameters<
+        'tree,
+    > {
+        VisibilityModifier(VisibilityModifier<'tree>),
+        WhereClause(WhereClause<'tree>),
+        DeclarationList(DeclarationList<'tree>),
+        TraitBounds(TraitBounds<'tree>),
+        TypeIdentifier(TypeIdentifier<'tree>),
+        TypeParameters(TypeParameters<'tree>),
+    }
+    #[automatically_derived]
+    impl<
+        'tree,
+    > VisibilityModifier_WhereClause_DeclarationList_TraitBounds_TypeIdentifier_TypeParameters<
+        'tree,
+    > {
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "visibility_modifier",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn visibility_modifier(self) -> Option<VisibilityModifier<'tree>> {
+            match self {
+                Self::VisibilityModifier(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "where_clause",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn where_clause(self) -> Option<WhereClause<'tree>> {
+            match self {
+                Self::WhereClause(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "declaration_list",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn declaration_list(self) -> Option<DeclarationList<'tree>> {
+            match self {
+                Self::DeclarationList(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "trait_bounds",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn trait_bounds(self) -> Option<TraitBounds<'tree>> {
+            match self {
+                Self::TraitBounds(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "type_identifier",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn type_identifier(self) -> Option<TypeIdentifier<'tree>> {
+            match self {
+                Self::TypeIdentifier(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "type_parameters",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn type_parameters(self) -> Option<TypeParameters<'tree>> {
+            match self {
+                Self::TypeParameters(x) => Some(x),
+                _ => None,
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for VisibilityModifier_WhereClause_DeclarationList_TraitBounds_TypeIdentifier_TypeParameters<
+        'tree,
+    > {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            match node.kind() {
+                "visibility_modifier" => {
+                    Ok(unsafe {
+                        Self::VisibilityModifier(
+                            <VisibilityModifier<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
+                                'tree,
+                            >>::from_node_unchecked(node),
+                        )
+                    })
+                }
+                "where_clause" => {
+                    Ok(unsafe {
+                        Self::WhereClause(
+                            <WhereClause<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
+                                'tree,
+                            >>::from_node_unchecked(node),
+                        )
+                    })
+                }
+                "declaration_list" => {
+                    Ok(unsafe {
+                        Self::DeclarationList(
+                            <DeclarationList<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
+                                'tree,
+                            >>::from_node_unchecked(node),
+                        )
+                    })
+                }
+                "trait_bounds" => {
+                    Ok(unsafe {
+                        Self::TraitBounds(
+                            <TraitBounds<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
+                                'tree,
+                            >>::from_node_unchecked(node),
+                        )
+                    })
+                }
+                "type_identifier" => {
+                    Ok(unsafe {
+                        Self::TypeIdentifier(
+                            <TypeIdentifier<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
+                                'tree,
+                            >>::from_node_unchecked(node),
+                        )
+                    })
+                }
+                "type_parameters" => {
+                    Ok(unsafe {
+                        Self::TypeParameters(
+                            <TypeParameters<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
+                                'tree,
+                            >>::from_node_unchecked(node),
+                        )
+                    })
+                }
+                _ => {
+                    Err(type_sitter_lib::IncorrectKind {
+                        node,
+                        kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                    })
+                }
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree>
+    for VisibilityModifier_WhereClause_DeclarationList_TraitBounds_TypeIdentifier_TypeParameters<
+        'tree,
+    > {
+        const KIND: &'static str = "{visibility_modifier | where_clause | declaration_list | trait_bounds | type_identifier | type_parameters}";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            match self {
+                Self::VisibilityModifier(x) => x.node(),
+                Self::WhereClause(x) => x.node(),
+                Self::DeclarationList(x) => x.node(),
+                Self::TraitBounds(x) => x.node(),
+                Self::TypeIdentifier(x) => x.node(),
+                Self::TypeParameters(x) => x.node(),
+            }
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            match self {
+                Self::VisibilityModifier(x) => x.node_mut(),
+                Self::WhereClause(x) => x.node_mut(),
+                Self::DeclarationList(x) => x.node_mut(),
+                Self::TraitBounds(x) => x.node_mut(),
+                Self::TypeIdentifier(x) => x.node_mut(),
+                Self::TypeParameters(x) => x.node_mut(),
+            }
+        }
+    }
+    #[doc = concat!("one of `", "{_pattern | identifier | scoped_identifier}", "`")]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub enum Pattern_Identifier_ScopedIdentifier<'tree> {
+        Pattern(Pattern<'tree>),
+        Identifier(Identifier<'tree>),
+        ScopedIdentifier(ScopedIdentifier<'tree>),
+    }
+    #[automatically_derived]
+    impl<'tree> Pattern_Identifier_ScopedIdentifier<'tree> {
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "_pattern",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn pattern(self) -> Option<Pattern<'tree>> {
+            match self {
+                Self::Pattern(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "identifier",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn identifier(self) -> Option<Identifier<'tree>> {
+            match self {
+                Self::Identifier(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "scoped_identifier",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn scoped_identifier(self) -> Option<ScopedIdentifier<'tree>> {
+            match self {
+                Self::ScopedIdentifier(x) => Some(x),
+                _ => None,
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for Pattern_Identifier_ScopedIdentifier<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            if let Ok(this) = <Pattern<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Pattern(this));
+            }
+            if let Ok(this) = <Identifier<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Identifier(this));
+            }
+            if let Ok(this) = <ScopedIdentifier<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::ScopedIdentifier(this));
+            }
+            Err(type_sitter_lib::IncorrectKind {
+                node,
+                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+            })
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree>
+    for Pattern_Identifier_ScopedIdentifier<'tree> {
+        const KIND: &'static str = "{_pattern | identifier | scoped_identifier}";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            match self {
+                Self::Pattern(x) => x.node(),
+                Self::Identifier(x) => x.node(),
+                Self::ScopedIdentifier(x) => x.node(),
+            }
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            match self {
+                Self::Pattern(x) => x.node_mut(),
+                Self::Identifier(x) => x.node_mut(),
+                Self::ScopedIdentifier(x) => x.node_mut(),
             }
         }
     }
@@ -26537,69 +29087,25 @@ pub mod anon_unions {
         fn try_from(
             node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
         ) -> Result<Self, Self::Error> {
-            match node.kind() {
-                "_literal" => {
-                    Ok(unsafe {
-                        Self::Literal(
-                            <Literal<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "_type" => {
-                    Ok(unsafe {
-                        Self::Type(
-                            <Type<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "block" => {
-                    Ok(unsafe {
-                        Self::Block(
-                            <Block<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "lifetime" => {
-                    Ok(unsafe {
-                        Self::Lifetime(
-                            <Lifetime<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "type_binding" => {
-                    Ok(unsafe {
-                        Self::TypeBinding(
-                            <TypeBinding<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                _ => {
-                    Err(type_sitter_lib::IncorrectKind {
-                        node,
-                        kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                    })
-                }
+            if let Ok(this) = <Literal<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Literal(this));
             }
+            if let Ok(this) = <Type<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Type(this));
+            }
+            if let Ok(this) = <Block<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Block(this));
+            }
+            if let Ok(this) = <Lifetime<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Lifetime(this));
+            }
+            if let Ok(this) = <TypeBinding<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::TypeBinding(this));
+            }
+            Err(type_sitter_lib::IncorrectKind {
+                node,
+                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+            })
         }
     }
     #[automatically_derived]
@@ -26626,6 +29132,119 @@ pub mod anon_unions {
                 Self::Block(x) => x.node_mut(),
                 Self::Lifetime(x) => x.node_mut(),
                 Self::TypeBinding(x) => x.node_mut(),
+            }
+        }
+    }
+    #[doc = concat!(
+        "one of `", "{visibility_modifier | type_identifier | _type | type_parameters}",
+        "`"
+    )]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub enum VisibilityModifier_TypeIdentifier_Type_TypeParameters<'tree> {
+        VisibilityModifier(VisibilityModifier<'tree>),
+        TypeIdentifier(TypeIdentifier<'tree>),
+        Type(Type<'tree>),
+        TypeParameters(TypeParameters<'tree>),
+    }
+    #[automatically_derived]
+    impl<'tree> VisibilityModifier_TypeIdentifier_Type_TypeParameters<'tree> {
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "visibility_modifier",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn visibility_modifier(self) -> Option<VisibilityModifier<'tree>> {
+            match self {
+                Self::VisibilityModifier(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "type_identifier",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn type_identifier(self) -> Option<TypeIdentifier<'tree>> {
+            match self {
+                Self::TypeIdentifier(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "_type", "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn r#type(self) -> Option<Type<'tree>> {
+            match self {
+                Self::Type(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "type_parameters",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn type_parameters(self) -> Option<TypeParameters<'tree>> {
+            match self {
+                Self::TypeParameters(x) => Some(x),
+                _ => None,
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for VisibilityModifier_TypeIdentifier_Type_TypeParameters<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            if let Ok(this) = <VisibilityModifier<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::VisibilityModifier(this));
+            }
+            if let Ok(this) = <TypeIdentifier<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::TypeIdentifier(this));
+            }
+            if let Ok(this) = <Type<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Type(this));
+            }
+            if let Ok(this) = <TypeParameters<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::TypeParameters(this));
+            }
+            Err(type_sitter_lib::IncorrectKind {
+                node,
+                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+            })
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree>
+    for VisibilityModifier_TypeIdentifier_Type_TypeParameters<'tree> {
+        const KIND: &'static str = "{visibility_modifier | type_identifier | _type | type_parameters}";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            match self {
+                Self::VisibilityModifier(x) => x.node(),
+                Self::TypeIdentifier(x) => x.node(),
+                Self::Type(x) => x.node(),
+                Self::TypeParameters(x) => x.node(),
+            }
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            match self {
+                Self::VisibilityModifier(x) => x.node_mut(),
+                Self::TypeIdentifier(x) => x.node_mut(),
+                Self::Type(x) => x.node_mut(),
+                Self::TypeParameters(x) => x.node_mut(),
             }
         }
     }
@@ -26841,6 +29460,533 @@ pub mod anon_unions {
                 Self::Metavariable(x) => x.node_mut(),
                 Self::OptionalTypeParameter(x) => x.node_mut(),
                 Self::TypeIdentifier(x) => x.node_mut(),
+            }
+        }
+    }
+    #[doc = concat!(
+        "one of `",
+        "{visibility_modifier | where_clause | field_declaration_list | type_identifier | type_parameters}",
+        "`"
+    )]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub enum VisibilityModifier_WhereClause_FieldDeclarationList_TypeIdentifier_TypeParameters<
+        'tree,
+    > {
+        VisibilityModifier(VisibilityModifier<'tree>),
+        WhereClause(WhereClause<'tree>),
+        FieldDeclarationList(FieldDeclarationList<'tree>),
+        TypeIdentifier(TypeIdentifier<'tree>),
+        TypeParameters(TypeParameters<'tree>),
+    }
+    #[automatically_derived]
+    impl<
+        'tree,
+    > VisibilityModifier_WhereClause_FieldDeclarationList_TypeIdentifier_TypeParameters<
+        'tree,
+    > {
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "visibility_modifier",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn visibility_modifier(self) -> Option<VisibilityModifier<'tree>> {
+            match self {
+                Self::VisibilityModifier(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "where_clause",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn where_clause(self) -> Option<WhereClause<'tree>> {
+            match self {
+                Self::WhereClause(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "field_declaration_list",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn field_declaration_list(self) -> Option<FieldDeclarationList<'tree>> {
+            match self {
+                Self::FieldDeclarationList(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "type_identifier",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn type_identifier(self) -> Option<TypeIdentifier<'tree>> {
+            match self {
+                Self::TypeIdentifier(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "type_parameters",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn type_parameters(self) -> Option<TypeParameters<'tree>> {
+            match self {
+                Self::TypeParameters(x) => Some(x),
+                _ => None,
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for VisibilityModifier_WhereClause_FieldDeclarationList_TypeIdentifier_TypeParameters<
+        'tree,
+    > {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            match node.kind() {
+                "visibility_modifier" => {
+                    Ok(unsafe {
+                        Self::VisibilityModifier(
+                            <VisibilityModifier<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
+                                'tree,
+                            >>::from_node_unchecked(node),
+                        )
+                    })
+                }
+                "where_clause" => {
+                    Ok(unsafe {
+                        Self::WhereClause(
+                            <WhereClause<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
+                                'tree,
+                            >>::from_node_unchecked(node),
+                        )
+                    })
+                }
+                "field_declaration_list" => {
+                    Ok(unsafe {
+                        Self::FieldDeclarationList(
+                            <FieldDeclarationList<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
+                                'tree,
+                            >>::from_node_unchecked(node),
+                        )
+                    })
+                }
+                "type_identifier" => {
+                    Ok(unsafe {
+                        Self::TypeIdentifier(
+                            <TypeIdentifier<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
+                                'tree,
+                            >>::from_node_unchecked(node),
+                        )
+                    })
+                }
+                "type_parameters" => {
+                    Ok(unsafe {
+                        Self::TypeParameters(
+                            <TypeParameters<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
+                                'tree,
+                            >>::from_node_unchecked(node),
+                        )
+                    })
+                }
+                _ => {
+                    Err(type_sitter_lib::IncorrectKind {
+                        node,
+                        kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                    })
+                }
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree>
+    for VisibilityModifier_WhereClause_FieldDeclarationList_TypeIdentifier_TypeParameters<
+        'tree,
+    > {
+        const KIND: &'static str = "{visibility_modifier | where_clause | field_declaration_list | type_identifier | type_parameters}";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            match self {
+                Self::VisibilityModifier(x) => x.node(),
+                Self::WhereClause(x) => x.node(),
+                Self::FieldDeclarationList(x) => x.node(),
+                Self::TypeIdentifier(x) => x.node(),
+                Self::TypeParameters(x) => x.node(),
+            }
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            match self {
+                Self::VisibilityModifier(x) => x.node_mut(),
+                Self::WhereClause(x) => x.node_mut(),
+                Self::FieldDeclarationList(x) => x.node_mut(),
+                Self::TypeIdentifier(x) => x.node_mut(),
+                Self::TypeParameters(x) => x.node_mut(),
+            }
+        }
+    }
+    #[doc = concat!(
+        "one of `",
+        "{visibility_modifier | crate | identifier | metavariable | scoped_identifier | scoped_use_list | self | super | use_as_clause | use_list | use_wildcard}",
+        "`"
+    )]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub enum VisibilityModifier_Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard<
+        'tree,
+    > {
+        VisibilityModifier(VisibilityModifier<'tree>),
+        Crate(Crate<'tree>),
+        Identifier(Identifier<'tree>),
+        Metavariable(Metavariable<'tree>),
+        ScopedIdentifier(ScopedIdentifier<'tree>),
+        ScopedUseList(ScopedUseList<'tree>),
+        _Self(_Self<'tree>),
+        Super(Super<'tree>),
+        UseAsClause(UseAsClause<'tree>),
+        UseList(UseList<'tree>),
+        UseWildcard(UseWildcard<'tree>),
+    }
+    #[automatically_derived]
+    impl<
+        'tree,
+    > VisibilityModifier_Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard<
+        'tree,
+    > {
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "visibility_modifier",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn visibility_modifier(self) -> Option<VisibilityModifier<'tree>> {
+            match self {
+                Self::VisibilityModifier(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "crate", "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn crate_(self) -> Option<Crate<'tree>> {
+            match self {
+                Self::Crate(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "identifier",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn identifier(self) -> Option<Identifier<'tree>> {
+            match self {
+                Self::Identifier(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "metavariable",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn metavariable(self) -> Option<Metavariable<'tree>> {
+            match self {
+                Self::Metavariable(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "scoped_identifier",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn scoped_identifier(self) -> Option<ScopedIdentifier<'tree>> {
+            match self {
+                Self::ScopedIdentifier(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "scoped_use_list",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn scoped_use_list(self) -> Option<ScopedUseList<'tree>> {
+            match self {
+                Self::ScopedUseList(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "self", "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn _self(self) -> Option<_Self<'tree>> {
+            match self {
+                Self::_Self(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "super", "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn super_(self) -> Option<Super<'tree>> {
+            match self {
+                Self::Super(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "use_as_clause",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn use_as_clause(self) -> Option<UseAsClause<'tree>> {
+            match self {
+                Self::UseAsClause(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "use_list",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn use_list(self) -> Option<UseList<'tree>> {
+            match self {
+                Self::UseList(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "use_wildcard",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn use_wildcard(self) -> Option<UseWildcard<'tree>> {
+            match self {
+                Self::UseWildcard(x) => Some(x),
+                _ => None,
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for VisibilityModifier_Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard<
+        'tree,
+    > {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            match node.kind() {
+                "visibility_modifier" => {
+                    Ok(unsafe {
+                        Self::VisibilityModifier(
+                            <VisibilityModifier<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
+                                'tree,
+                            >>::from_node_unchecked(node),
+                        )
+                    })
+                }
+                "crate" => {
+                    Ok(unsafe {
+                        Self::Crate(
+                            <Crate<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
+                                'tree,
+                            >>::from_node_unchecked(node),
+                        )
+                    })
+                }
+                "identifier" => {
+                    Ok(unsafe {
+                        Self::Identifier(
+                            <Identifier<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
+                                'tree,
+                            >>::from_node_unchecked(node),
+                        )
+                    })
+                }
+                "metavariable" => {
+                    Ok(unsafe {
+                        Self::Metavariable(
+                            <Metavariable<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
+                                'tree,
+                            >>::from_node_unchecked(node),
+                        )
+                    })
+                }
+                "scoped_identifier" => {
+                    Ok(unsafe {
+                        Self::ScopedIdentifier(
+                            <ScopedIdentifier<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
+                                'tree,
+                            >>::from_node_unchecked(node),
+                        )
+                    })
+                }
+                "scoped_use_list" => {
+                    Ok(unsafe {
+                        Self::ScopedUseList(
+                            <ScopedUseList<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
+                                'tree,
+                            >>::from_node_unchecked(node),
+                        )
+                    })
+                }
+                "self" => {
+                    Ok(unsafe {
+                        Self::_Self(
+                            <_Self<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
+                                'tree,
+                            >>::from_node_unchecked(node),
+                        )
+                    })
+                }
+                "super" => {
+                    Ok(unsafe {
+                        Self::Super(
+                            <Super<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
+                                'tree,
+                            >>::from_node_unchecked(node),
+                        )
+                    })
+                }
+                "use_as_clause" => {
+                    Ok(unsafe {
+                        Self::UseAsClause(
+                            <UseAsClause<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
+                                'tree,
+                            >>::from_node_unchecked(node),
+                        )
+                    })
+                }
+                "use_list" => {
+                    Ok(unsafe {
+                        Self::UseList(
+                            <UseList<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
+                                'tree,
+                            >>::from_node_unchecked(node),
+                        )
+                    })
+                }
+                "use_wildcard" => {
+                    Ok(unsafe {
+                        Self::UseWildcard(
+                            <UseWildcard<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
+                                'tree,
+                            >>::from_node_unchecked(node),
+                        )
+                    })
+                }
+                _ => {
+                    Err(type_sitter_lib::IncorrectKind {
+                        node,
+                        kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                    })
+                }
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree>
+    for VisibilityModifier_Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard<
+        'tree,
+    > {
+        const KIND: &'static str = "{visibility_modifier | crate | identifier | metavariable | scoped_identifier | scoped_use_list | self | super | use_as_clause | use_list | use_wildcard}";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            match self {
+                Self::VisibilityModifier(x) => x.node(),
+                Self::Crate(x) => x.node(),
+                Self::Identifier(x) => x.node(),
+                Self::Metavariable(x) => x.node(),
+                Self::ScopedIdentifier(x) => x.node(),
+                Self::ScopedUseList(x) => x.node(),
+                Self::_Self(x) => x.node(),
+                Self::Super(x) => x.node(),
+                Self::UseAsClause(x) => x.node(),
+                Self::UseList(x) => x.node(),
+                Self::UseWildcard(x) => x.node(),
+            }
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            match self {
+                Self::VisibilityModifier(x) => x.node_mut(),
+                Self::Crate(x) => x.node_mut(),
+                Self::Identifier(x) => x.node_mut(),
+                Self::Metavariable(x) => x.node_mut(),
+                Self::ScopedIdentifier(x) => x.node_mut(),
+                Self::ScopedUseList(x) => x.node_mut(),
+                Self::_Self(x) => x.node_mut(),
+                Self::Super(x) => x.node_mut(),
+                Self::UseAsClause(x) => x.node_mut(),
+                Self::UseList(x) => x.node_mut(),
+                Self::UseWildcard(x) => x.node_mut(),
             }
         }
     }
@@ -27472,6 +30618,136 @@ pub mod anon_unions {
                 Self::ScopedTypeIdentifier(x) => x.node_mut(),
                 Self::TupleType(x) => x.node_mut(),
                 Self::TypeIdentifier(x) => x.node_mut(),
+            }
+        }
+    }
+    #[doc = concat!(
+        "one of `", "{loop_label | block | _expression | let_chain | let_condition}", "`"
+    )]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub enum LoopLabel_Block_Expression_LetChain_LetCondition<'tree> {
+        LoopLabel(LoopLabel<'tree>),
+        Block(Block<'tree>),
+        Expression(Expression<'tree>),
+        LetChain(LetChain<'tree>),
+        LetCondition(LetCondition<'tree>),
+    }
+    #[automatically_derived]
+    impl<'tree> LoopLabel_Block_Expression_LetChain_LetCondition<'tree> {
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "loop_label",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn loop_label(self) -> Option<LoopLabel<'tree>> {
+            match self {
+                Self::LoopLabel(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "block", "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn block(self) -> Option<Block<'tree>> {
+            match self {
+                Self::Block(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "_expression",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn expression(self) -> Option<Expression<'tree>> {
+            match self {
+                Self::Expression(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "let_chain",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn let_chain(self) -> Option<LetChain<'tree>> {
+            match self {
+                Self::LetChain(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = concat!(
+            "Returns the node if it is of kind `", "let_condition",
+            "`, otherwise returns None"
+        )]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn let_condition(self) -> Option<LetCondition<'tree>> {
+            match self {
+                Self::LetCondition(x) => Some(x),
+                _ => None,
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for LoopLabel_Block_Expression_LetChain_LetCondition<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            if let Ok(this) = <LoopLabel<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::LoopLabel(this));
+            }
+            if let Ok(this) = <Block<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Block(this));
+            }
+            if let Ok(this) = <Expression<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Expression(this));
+            }
+            if let Ok(this) = <LetChain<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::LetChain(this));
+            }
+            if let Ok(this) = <LetCondition<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::LetCondition(this));
+            }
+            Err(type_sitter_lib::IncorrectKind {
+                node,
+                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+            })
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree>
+    for LoopLabel_Block_Expression_LetChain_LetCondition<'tree> {
+        const KIND: &'static str = "{loop_label | block | _expression | let_chain | let_condition}";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            match self {
+                Self::LoopLabel(x) => x.node(),
+                Self::Block(x) => x.node(),
+                Self::Expression(x) => x.node(),
+                Self::LetChain(x) => x.node(),
+                Self::LetCondition(x) => x.node(),
+            }
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            match self {
+                Self::LoopLabel(x) => x.node_mut(),
+                Self::Block(x) => x.node_mut(),
+                Self::Expression(x) => x.node_mut(),
+                Self::LetChain(x) => x.node_mut(),
+                Self::LetCondition(x) => x.node_mut(),
             }
         }
     }

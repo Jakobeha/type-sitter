@@ -21,14 +21,14 @@ pub enum NodeTypeKind {
     }
 }
 
-#[derive(Deserialize)]
+#[derive(Clone, Deserialize)]
 pub struct Children {
     pub multiple: bool,
     pub required: bool,
     pub types: Vec<NodeName>,
 }
 
-#[derive(Deserialize)]
+#[derive(Clone, Deserialize)]
 #[serde(from = "_NodeName")]
 pub struct NodeName {
     pub sexp_name: String,
@@ -53,5 +53,26 @@ pub struct AnonUnionId {
 impl From<_NodeName> for NodeName {
     fn from(_NodeName { sexp_name, named }: _NodeName) -> Self {
         NodeName::new(sexp_name, named)
+    }
+}
+
+impl Extend<Children> for Children {
+    fn extend<T: IntoIterator<Item=Children>>(&mut self, iter: T) {
+        for child in iter {
+            // If either of the original Children have at least 1 element, than this Children will.
+            self.required |= child.required;
+            // Even if both original Children only have up to 1 element, this means this Children
+            // will now have up to 2.
+            self.multiple = true;
+            // Add other child types, but no duplicates
+            let len = self.types.len();
+            self.types.reserve(child.types.len());
+            for child_type in child.types {
+                if self.types.iter().take(len).any(|existing_type| &existing_type.rust_type_name == &child_type.rust_type_name) {
+                    continue;
+                }
+                self.types.push(child_type);
+            }
+        }
     }
 }

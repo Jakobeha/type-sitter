@@ -224,7 +224,7 @@ impl<'tree> Array<'tree> {
     pub fn children<'a>(
         &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
-    ) -> impl Iterator<
+    ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
             type_sitter_lib::ExtraOr<'tree, Value<'tree>>,
@@ -232,7 +232,10 @@ impl<'tree> Array<'tree> {
     > + 'a {
         self.0
             .named_children(c)
-            .map(<type_sitter_lib::ExtraOr<'tree, Value<'tree>> as TryFrom<_>>::try_from)
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                Value<'tree>,
+            > as TryFrom<_>>::try_from(n))
     }
     ///Get the node's named child #i
     #[allow(dead_code)]
@@ -295,7 +298,7 @@ impl<'tree> Document<'tree> {
     pub fn children<'a>(
         &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
-    ) -> impl Iterator<
+    ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
             type_sitter_lib::ExtraOr<'tree, Value<'tree>>,
@@ -303,7 +306,10 @@ impl<'tree> Document<'tree> {
     > + 'a {
         self.0
             .named_children(c)
-            .map(<type_sitter_lib::ExtraOr<'tree, Value<'tree>> as TryFrom<_>>::try_from)
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                Value<'tree>,
+            > as TryFrom<_>>::try_from(n))
     }
     ///Get the node's named child #i
     #[allow(dead_code)]
@@ -367,7 +373,7 @@ impl<'tree> Object<'tree> {
     pub fn children<'a>(
         &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
-    ) -> impl Iterator<
+    ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
             type_sitter_lib::ExtraOr<'tree, Pair<'tree>>,
@@ -375,7 +381,10 @@ impl<'tree> Object<'tree> {
     > + 'a {
         self.0
             .named_children(c)
-            .map(<type_sitter_lib::ExtraOr<'tree, Pair<'tree>> as TryFrom<_>>::try_from)
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                Pair<'tree>,
+            > as TryFrom<_>>::try_from(n))
     }
     ///Get the node's named child #i
     #[allow(dead_code)]
@@ -554,7 +563,7 @@ impl<'tree> StringContent<'tree> {
     pub fn children<'a>(
         &self,
         c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
-    ) -> impl Iterator<
+    ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
             type_sitter_lib::ExtraOr<'tree, EscapeSequence<'tree>>,
@@ -562,12 +571,10 @@ impl<'tree> StringContent<'tree> {
     > + 'a {
         self.0
             .named_children(c)
-            .map(
-                <type_sitter_lib::ExtraOr<
-                    'tree,
-                    EscapeSequence<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                EscapeSequence<'tree>,
+            > as TryFrom<_>>::try_from(n))
     }
     ///Get the node's named child #i
     #[allow(dead_code)]
