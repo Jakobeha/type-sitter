@@ -2,7 +2,7 @@
 
 use std::fs::File;
 use std::io::BufReader;
-use std::path::{Path, PathBuf};
+use std::path::Path;
 
 use proc_macro2::TokenStream;
 use mk_syntax::ident;
@@ -42,7 +42,7 @@ mod generated_tokens;
 /// }
 /// ```
 pub fn generate_nodes(path: impl AsRef<Path>, tree_sitter: &syn::Path) -> Result<TokenStream, Error> {
-    let path = normalize(path);
+    let path = path.as_ref();
     let node_types = iter_json_array::<NodeType, _>(BufReader::new(File::open(path)?));
     node_types
         .map(|node_type| node_type.map(|x| x.print(tree_sitter)).map_err(Error::from))
@@ -70,7 +70,7 @@ pub fn generate_nodes(path: impl AsRef<Path>, tree_sitter: &syn::Path) -> Result
 /// }
 /// ```
 pub fn generate_queries(path: impl AsRef<Path>, tree_sitter: &syn::Path) -> Result<TokenStream, Error> {
-    let path = normalize(path);
+    let path = path.as_ref();
     if path.is_dir() {
         generate_queries_from_dir(path, tree_sitter)
     } else {
@@ -97,12 +97,12 @@ pub fn generate_queries(path: impl AsRef<Path>, tree_sitter: &syn::Path) -> Resu
 /// }
 /// ```
 pub fn generate_queries_from_dir(path: impl AsRef<Path>, tree_sitter: &syn::Path) -> Result<TokenStream, Error> {
-    let path = normalize(path);
+    let path = path.as_ref();
     let mut queries = TokenStream::new();
     for entry in std::fs::read_dir(path)? {
         let entry = entry?;
         let entry_path = entry.path();
-        if entry.metadata()?.is_dir() || entry_path.ends_with(".scm") {
+        if entry.metadata()?.is_dir() || has_extension(&entry_path, "scm") {
             let entry_name = entry_path.file_stem().unwrap().to_string_lossy();
             let entry_ident = ident!(&entry_name, "query filename");
             let entry_code = generate_queries(entry_path, tree_sitter)?;
@@ -134,8 +134,8 @@ pub fn generate_queries_from_dir(path: impl AsRef<Path>, tree_sitter: &syn::Path
 /// }
 /// ```
 pub fn generate_queries_from_file(path: impl AsRef<Path>, tree_sitter: &syn::Path) -> Result<TokenStream, Error> {
-    let _path = normalize(path);
-    todo!("generate queries from file (tree_sitter = {})", tree_sitter.to_token_stream())
+    let path = path.as_ref();
+    todo!("generate queries from file (path = {}, tree_sitter = {})", path.display(), tree_sitter.to_token_stream())
 }
 
 /// = `parse_quote!(tree_sitter)`. The default path to the `tree_sitter` crate.
@@ -149,11 +149,7 @@ pub fn type_sitter_lib_wrapper() -> syn::Path {
     parse_quote!(type_sitter_lib::tree_sitter_wrapper)
 }
 
-/// Convert into PathBuf and prepend manifest
-fn normalize(path: impl AsRef<Path>) -> PathBuf {
-    let mut path = path.as_ref().to_owned();
-    if let Ok(cargo_manifest) = std::env::var("CARGO_MANIFEST_DIR") {
-        path = PathBuf::from(cargo_manifest).join(path);
-    }
-    path
+/// Check if the path has the given extension
+fn has_extension(path: &Path, extension: &str) -> bool {
+    path.extension().and_then(|e| e.to_str()) == Some(extension)
 }

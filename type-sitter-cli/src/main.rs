@@ -1,12 +1,14 @@
 use std::ffi::OsString;
 use std::fmt::Display;
-use std::fs::{create_dir, File, remove_dir_all};
+use std::fs::{create_dir, create_dir_all, File, remove_dir_all};
 use std::io::Write;
 use std::iter::once;
 use std::path::{Path, PathBuf};
 use std::process::exit;
 
 use clap::{Parser, ValueEnum};
+use lazy_static::lazy_static;
+use rust_format::{Formatter, RustFmt};
 
 use thiserror::Error;
 use type_sitter_gen::{tree_sitter, type_sitter_lib_wrapper};
@@ -44,14 +46,16 @@ enum InputType {
 
 #[derive(Debug, Error)]
 enum Error {
-    #[error("IO error")]
+    #[error("IO error; {0}")]
     IO(#[from] std::io::Error),
-    #[error("codegen error")]
+    #[error("codegen error; {0}")]
     GeneratingTokens(#[from] type_sitter_gen::Error),
-    #[error("in {location}")]
+    #[error("codegen formatting (rustfmt) error; {0}")]
+    Formatting(#[from] rust_format::Error),
+    #[error("in {location}; {source}")]
     Nested { location: String, #[source] source: Box<Error> },
-    #[error("couldn't infer input type")]
-    CouldntInferInputType,
+    #[error("couldn't infer input type for path; {}", path.display())]
+    CouldntInferInputType { path: PathBuf },
     #[error("output dir doesn't only contain rust files, so we don't know if its safe to clear")]
     OutputDirNotOnlyRustFiles,
     #[error("some files failed to process")]
@@ -62,21 +66,21 @@ type Result<T> = std::result::Result<T, Error>;
 
 impl InputType {
     fn infer(path: &Path) -> Result<Self> {
-        if path.ends_with("/node_types.json") {
+        if path_ends_with(path, "node-types.json") {
             Ok(Self::NodeTypes)
-        } else if path.ends_with(".scm") {
+        } else if has_extension(path, "scm") {
             Ok(Self::QueryFile)
         } else if path.is_dir() {
             let entries = path.read_dir()?.filter_map(|e| e.ok()).collect::<Vec<_>>();
-            if entries.iter().any(|entry| entry.path().ends_with(".scm")) {
+            if entries.iter().any(|entry| has_extension(&entry.path(), "scm")) {
                 Ok(Self::QueryFolder)
-            } else if entries.iter().any(|entry| entry.path().ends_with("/src")) {
+            } else if entries.iter().any(|entry| path_ends_with(&entry.path(), "src")) {
                 Ok(Self::LanguageRoot)
             } else {
-                Err(Error::CouldntInferInputType)
+                Err(Error::CouldntInferInputType { path: path.to_path_buf() })
             }
         } else {
-            Err(Error::CouldntInferInputType)
+            Err(Error::CouldntInferInputType { path: path.to_path_buf() })
         }
     }
 
@@ -84,11 +88,7 @@ impl InputType {
         match self {
             InputType::NodeTypes => PathBuf::from("mod.rs"),
             InputType::QueryFile => input_path.file_stem().map_or_else(|| Path::new("/"), Path::new).with_extension("rs"),
-            InputType::QueryFolder => PathBuf::from(language_name(if input_path.ends_with("/queries") {
-                input_path.parent().unwrap()
-            } else {
-                input_path
-            })),
+            InputType::QueryFolder => PathBuf::new(),
             InputType::LanguageRoot => PathBuf::from(language_name(input_path)),
         }
     }
@@ -102,7 +102,7 @@ impl Error {
 
 fn main() {
     if let Err(err) = run(Args::parse()) {
-        eprintln!("{}", err);
+        eprintln!("Error: {}", err);
         exit(1);
     }
 }
@@ -119,6 +119,7 @@ fn run(args: Args) -> Result<()> {
         }
         remove_dir_all(&args.output_dir)?;
     }
+    create_dir_all(&args.output_dir)?;
 
     // Process
     let mut had_some_failures = false;
@@ -143,7 +144,7 @@ fn is_dir_of_only_rust_files(dir: &Path) -> bool {
             f.map_or(false, |f| {
                 f.metadata().map_or(false, |m| {
                     let path = f.path();
-                    (m.is_file() && (path.ends_with(".rs") || path.ends_with("/.DS_Store"))) ||
+                    (m.is_file() && (has_extension(&path, "rs") || path_ends_with(&path, ".DS_Store"))) ||
                         (m.is_dir() && is_dir_of_only_rust_files(&path))
                 })
             })
@@ -166,11 +167,10 @@ fn process(input_path: &Path, input_type: InputType, output_dir: &Path, use_wrap
             write(&output_path, type_sitter_gen::generate_queries_from_file(input_path, &tree_sitter)?)?;
         }
         InputType::QueryFolder => {
-            create_dir(&output_path)?;
             for entry in std::fs::read_dir(input_path)? {
                 let entry = entry?;
                 let input_path = entry.path();
-                if input_path.ends_with(".scm") {
+                if has_extension(&input_path, "scm") {
                     process(&input_path, InputType::QueryFile, &output_path, use_wrapper)
                         .map_err(|e| e.nested(entry.file_name().to_string_lossy()))?;
                 }
@@ -186,9 +186,15 @@ fn process(input_path: &Path, input_type: InputType, output_dir: &Path, use_wrap
     Ok(())
 }
 
+lazy_static! {
+    static ref RUST_FMT: RustFmt = RustFmt::new();
+}
+
 fn write(path: &Path, contents: impl Display) -> Result<()> {
     let mut file = File::create(path)?;
-    Ok(write!(file, "{}", contents)?)
+    write!(file, "{}", contents)?;
+    RUST_FMT.format_file(path)?;
+    Ok(())
 }
 
 fn language_name(path: &Path) -> String {
@@ -196,4 +202,12 @@ fn language_name(path: &Path) -> String {
     path.file_stem().unwrap_or(&temp).to_string_lossy()
         .trim_start_matches("tree-sitter-")
         .replace("-", "_")
+}
+
+fn path_ends_with(path: &Path, last_component: &str) -> bool {
+    path.components().last().map_or(false, |c| c.as_os_str().to_str() == Some(last_component))
+}
+
+fn has_extension(path: &Path, extension: &str) -> bool {
+    path.extension().and_then(|e| e.to_str()) == Some(extension)
 }

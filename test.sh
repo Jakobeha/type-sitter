@@ -7,6 +7,5 @@ cargo test -p type-sitter-lib --features tree-sitter-wrapper
 echo "*** TESTING type-sitter-proc"
 cargo test -p type-sitter-proc-tests
 echo "*** TESTING type-sitter-cli"
-# We don't have any tests for this!
-cargo build -p type-sitter-cli
-echo "*** TESTED"
+cargo build -p type-sitter-cli && ./type-sitter-cli/test.sh
+echo "*** PASSED"
