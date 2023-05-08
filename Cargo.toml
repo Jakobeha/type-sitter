@@ -5,4 +5,8 @@ members = [
     "type-sitter-gen",
     "type-sitter-cli",
     "type-sitter-proc",
+    "type-sitter-proc-tests"
+]
+exclude = [
+    "vendor"
 ]

@@ -6,13 +6,13 @@ use proc_macro2::TokenStream;
 use quote::quote;
 use syn::{Ident, LitStr, Path};
 use crate::generated_tokens::{AnonUnions, GeneratedNodeTokens};
-use crate::types::{AnonUnionId, Children, NodeName, NodeType, NodeTypeKind};
+use crate::types::{AnonUnionId, Children, NodeName, NodeType, NodeTypeKind, NodeModule};
 use crate::mk_syntax::{ident, lit_str};
 
 impl NodeType {
     pub fn print(&self, tree_sitter: &Path) -> GeneratedNodeTokens {
         let mut tokens = GeneratedNodeTokens::new();
-        let NodeName { sexp_name, rust_type_name, rust_method_name: _, is_implicit, is_named } = &self.name;
+        let NodeName { sexp_name, rust_type_name, rust_method_name: _, is_implicit, module } = &self.name;
         let ident = ident!(rust_type_name, "node kind converted into a rust type name (this is a library error, please report)");
         let kind = lit_str(sexp_name);
         let doc = quote! { concat!("Typed node `", #sexp_name, "`") };
@@ -48,11 +48,7 @@ impl NodeType {
             }
         };
 
-        if *is_named {
-            tokens.toplevel.extend(definition);
-        } else {
-            tokens.unnamed.extend(definition);
-        }
+        tokens.extend(*module, definition);
         tokens
     }
 }
@@ -354,10 +350,10 @@ impl NodeName {
 
     fn print_type(&self) -> TokenStream {
         let ident = ident!(&self.rust_type_name, "node kind converted into a rust type name (this is a library error, please report)");
-        if self.is_named {
-            quote! { #ident<'tree> }
-        } else {
-            quote! { unnamed::#ident<'tree> }
+        match self.module {
+            NodeModule::Toplevel => quote! { #ident<'tree> },
+            NodeModule::Unnamed => quote! { unnamed::#ident<'tree> },
+            NodeModule::Symbols => quote! { symbols::#ident<'tree> },
         }
     }
 
@@ -442,14 +438,17 @@ impl GeneratedNodeTokens {
         let GeneratedNodeTokens {
             toplevel,
             unnamed,
+            symbols,
             anon_unions
         } = self;
         let anon_unions = anon_unions.into_values().collect::<TokenStream>();
         let unnamed = modularize!(unnamed);
+        let symbols = modularize!(symbols);
         let anon_unions = modularize!(anon_unions);
         quote! {
             #toplevel
             #unnamed
+            #symbols
             #anon_unions
         }
     }

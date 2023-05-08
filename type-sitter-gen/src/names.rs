@@ -1,7 +1,7 @@
 use convert_case::{Casing, Case};
 use std::fmt::Write;
 use join_lazy_fmt::Join;
-use crate::types::{AnonUnionId, NodeName};
+use crate::types::{AnonUnionId, NodeModule, NodeName};
 
 const PUNCTUATION_TABLE: [(char, &'static str); 35] = [
     ('&', "And"), ('|', "Or"), ('!', "Not"), ('=', "Eq"), ('<', "Lt"),
@@ -35,10 +35,13 @@ impl NodeName {
             // Special-cased
             return Self {
                 sexp_name,
-                rust_type_name: "Underscore".to_owned(),
-                rust_method_name: "underscore".to_owned(),
+                rust_type_name: "__".to_owned(),
+                rust_method_name: "__".to_owned(),
                 is_implicit: false,
-                is_named,
+                module: match is_named {
+                    false => NodeModule::Symbols,
+                    true => NodeModule::Toplevel
+                },
             };
         }
 
@@ -46,15 +49,14 @@ impl NodeName {
             false => (false, &sexp_name[..]),
             true => (true, &sexp_name[1..])
         };
-        let mut rust_type_name = make_valid(&raw_sexp_name.from_case(Case::Snake).to_case(Case::Pascal));
-        // We need to disambiguate literal 'Hash', 'At', 'Mod', etc.
-        if PUNCTUATION_TABLE.iter().any(|(c, s)| {
-            !(sexp_name.len() == 1 && sexp_name.starts_with(*c)) && *s == rust_type_name
-        }) {
-            rust_type_name.push('_');
-        }
+        let rust_type_name = make_valid(&raw_sexp_name.from_case(Case::Snake).to_case(Case::Pascal));
         let rust_method_name = make_valid2(rust_type_name.from_case(Case::Pascal).to_case(Case::Snake));
-        Self { sexp_name, rust_type_name, rust_method_name, is_implicit, is_named }
+        let module = match is_named {
+            false if sexp_name.contains(|c| PUNCTUATION_TABLE.iter().any(|(c2, _)| c == *c2)) => NodeModule::Symbols,
+            false => NodeModule::Unnamed,
+            true => NodeModule::Toplevel
+        };
+        Self { sexp_name, rust_type_name, rust_method_name, is_implicit, module }
     }
 }
 

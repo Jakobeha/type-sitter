@@ -38,7 +38,7 @@ mod generated_tokens;
 /// use syn::parse_quote;
 ///
 /// fn main() {
-///     println!("{}", generate_nodes("vendor/tree-sitter-rust/src/node-types.json", &tree_sitter()).unwrap());
+///     println!("{}", generate_nodes("../vendor/tree-sitter-rust/src/node-types.json", &tree_sitter()).unwrap());
 /// }
 /// ```
 pub fn generate_nodes(path: impl AsRef<Path>, tree_sitter: &syn::Path) -> Result<TokenStream, Error> {
@@ -61,7 +61,7 @@ pub fn generate_nodes(path: impl AsRef<Path>, tree_sitter: &syn::Path) -> Result
 ///
 /// # Example
 ///
-/// ```rust
+/// ```no_run
 /// use type_sitter_gen::{generate_queries, tree_sitter};
 ///
 /// fn main() {
@@ -89,7 +89,7 @@ pub fn generate_queries(path: impl AsRef<Path>, tree_sitter: &syn::Path) -> Resu
 ///
 /// # Example
 ///
-/// ```rust
+/// ```no_run
 /// use type_sitter_gen::{generate_queries_from_dir, tree_sitter};
 ///
 /// fn main() {
@@ -126,7 +126,7 @@ pub fn generate_queries_from_dir(path: impl AsRef<Path>, tree_sitter: &syn::Path
 ///
 /// # Example
 ///
-/// ```rust
+/// ```no_run
 /// use type_sitter_gen::{generate_queries_from_file, tree_sitter};
 ///
 /// fn main() {

@@ -35,7 +35,14 @@ pub struct NodeName {
     pub rust_type_name: String,
     pub rust_method_name: String,
     pub is_implicit: bool,
-    pub is_named: bool
+    pub module: NodeModule,
+}
+
+#[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
+pub enum NodeModule {
+    Toplevel,
+    Unnamed,
+    Symbols
 }
 
 #[derive(Deserialize)]

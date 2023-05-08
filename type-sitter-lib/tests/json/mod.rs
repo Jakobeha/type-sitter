@@ -883,7 +883,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for True<'tree> {
         Self(node)
     }
 }
-pub mod unnamed {
+pub mod symbols {
     #[allow(unused_imports)]
     use super::*;
     #[doc = concat!("Typed node `", "\"", "`")]

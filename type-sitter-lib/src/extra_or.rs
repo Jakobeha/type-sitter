@@ -77,6 +77,22 @@ impl<'tree, T> ExtraOr<'tree, T> {
             ExtraOr::Regular(value) => f(value)
         }
     }
+
+    /// Returns `true` if this is a regular node which satisfies the predicate
+    pub fn is_regular_and(&self, f: impl FnOnce(&T) -> bool) -> bool {
+        match self {
+            ExtraOr::Extra(_) => false,
+            ExtraOr::Regular(value) => f(value)
+        }
+    }
+
+    /// Returns `true` if this is an extra node which satisfies the predicate
+    pub fn is_extra_and(&self, f: impl FnOnce(&Node<'tree>) -> bool) -> bool {
+        match self {
+            ExtraOr::Extra(node) => f(node),
+            ExtraOr::Regular(_) => false
+        }
+    }
 }
 
 impl<'tree, T: TypedNode<'tree>> TryFrom<Node<'tree>> for ExtraOr<'tree, T> {

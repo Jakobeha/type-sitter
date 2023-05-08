@@ -1,12 +1,12 @@
 use indexmap::IndexMap;
 use proc_macro2::TokenStream;
-use crate::types::AnonUnionId;
+use crate::types::{AnonUnionId, NodeModule};
 
 /// Generated AST tokens from calling [NodeType::print] on a single instance or each element of a
 /// collection.
 ///
 /// We can't just collect the output of [NodeType::print] into a [TokenStream] because some
-/// declarations go in specific submodules (`unnamed`, `anon_unions`), and also we don't want
+/// declarations go in specific submodules (`unnamed`, `symbols`, `anon_unions`), and also we don't want
 /// duplicate definitions of the anonymous unions.
 #[derive(Default)]
 pub struct GeneratedNodeTokens {
@@ -14,6 +14,8 @@ pub struct GeneratedNodeTokens {
     pub toplevel: TokenStream,
     /// Tokens for the `unnamed` submodule
     pub unnamed: TokenStream,
+    /// Tokens for the `symbols` submodule
+    pub symbols: TokenStream,
     /// Anonymous unions and tokens for the `anon_union` submodule
     pub anon_unions: AnonUnions,
 }
@@ -25,6 +27,15 @@ impl GeneratedNodeTokens {
     pub fn new() -> Self {
         Self::default()
     }
+
+    /// Append the tokens to the given module
+    pub fn extend(&mut self, module: NodeModule, tokens: TokenStream) {
+        match module {
+            NodeModule::Toplevel => self.toplevel.extend(tokens),
+            NodeModule::Unnamed => self.unnamed.extend(tokens),
+            NodeModule::Symbols => self.symbols.extend(tokens),
+        }
+    }
 }
 
 impl Extend<GeneratedNodeTokens> for GeneratedNodeTokens {
@@ -32,6 +43,7 @@ impl Extend<GeneratedNodeTokens> for GeneratedNodeTokens {
         for x in iter {
             self.toplevel.extend(x.toplevel);
             self.unnamed.extend(x.unnamed);
+            self.symbols.extend(x.symbols);
             self.anon_unions.extend(x.anon_unions);
         }
     }
@@ -40,7 +52,7 @@ impl Extend<GeneratedNodeTokens> for GeneratedNodeTokens {
 impl FromIterator<GeneratedNodeTokens> for GeneratedNodeTokens {
     fn from_iter<T: IntoIterator<Item = GeneratedNodeTokens>>(iter: T) -> Self {
         let mut this = Self::new();
-        this.extend(iter);
+        Extend::<GeneratedNodeTokens>::extend(&mut this, iter);
         this
     }
 }

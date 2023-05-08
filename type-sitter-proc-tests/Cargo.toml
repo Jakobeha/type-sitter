@@ -1,22 +1,17 @@
 [package]
-name = "type-sitter-proc"
+name = "type-sitter-proc-tests"
 version = "0.1.0"
 authors = ["Jakob Hain <jakobeha@fastmail.com>"]
-description = "procedural macros for type-sitter (generate typed wrappers for tree-sitter grammars from node-types.json and queries)"
+description = "small crate to test type-sitter-proc macros"
 license = "MIT OR Apache-2.0"
 repository = "https://github.com/Jakobeha/type-sitter/"
 categories = ["parsing", "compilers"]
 keywords = ["type-sitter", "tree-sitter"]
 edition = "2021"
 
-[lib]
-proc-macro = true
-
-[dependencies]
-type-sitter-gen = { path = "../type-sitter-gen" }
-proc-macro2 = "1.0.56"
-syn = "2.0.15"
-
 [dev-dependencies]
+type-sitter-proc = { path = "../type-sitter-proc" }
 type-sitter-lib = { path = "../type-sitter-lib" }
+tree-sitter-json = { path = "../vendor/tree-sitter-json" }
+tree-sitter-rust = { path = "../vendor/tree-sitter-rust" }
 tree-sitter = "0.20.10"

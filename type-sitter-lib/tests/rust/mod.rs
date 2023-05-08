@@ -1712,7 +1712,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for LiteralPattern<'tree> {
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub enum Pattern<'tree> {
-    Underscore(unnamed::Underscore<'tree>),
+    __(symbols::__<'tree>),
     LiteralPattern(LiteralPattern<'tree>),
     CapturedPattern(CapturedPattern<'tree>),
     ConstBlock(ConstBlock<'tree>),
@@ -1737,9 +1737,9 @@ impl<'tree> Pattern<'tree> {
     )]
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn underscore(self) -> Option<unnamed::Underscore<'tree>> {
+    pub fn __(self) -> Option<symbols::__<'tree>> {
         match self {
-            Self::Underscore(x) => Some(x),
+            Self::__(x) => Some(x),
             _ => None,
         }
     }
@@ -1939,8 +1939,8 @@ for Pattern<'tree> {
     fn try_from(
         node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
     ) -> Result<Self, Self::Error> {
-        if let Ok(this) = <unnamed::Underscore<'tree> as TryFrom<_>>::try_from(node) {
-            return Ok(Self::Underscore(this));
+        if let Ok(this) = <symbols::__<'tree> as TryFrom<_>>::try_from(node) {
+            return Ok(Self::__(this));
         }
         if let Ok(this) = <LiteralPattern<'tree> as TryFrom<_>>::try_from(node) {
             return Ok(Self::LiteralPattern(this));
@@ -2002,7 +2002,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Pattern<'tree> {
     #[inline]
     fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         match self {
-            Self::Underscore(x) => x.node(),
+            Self::__(x) => x.node(),
             Self::LiteralPattern(x) => x.node(),
             Self::CapturedPattern(x) => x.node(),
             Self::ConstBlock(x) => x.node(),
@@ -2024,7 +2024,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Pattern<'tree> {
     #[inline]
     fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         match self {
-            Self::Underscore(x) => x.node_mut(),
+            Self::__(x) => x.node_mut(),
             Self::LiteralPattern(x) => x.node_mut(),
             Self::CapturedPattern(x) => x.node_mut(),
             Self::ConstBlock(x) => x.node_mut(),
@@ -14444,6 +14444,2166 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TypeIdentifier<'tree> {
 pub mod unnamed {
     #[allow(unused_imports)]
     use super::*;
+    #[doc = concat!("Typed node `", "as", "`")]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub struct As<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
+    #[automatically_derived]
+    impl<'tree> As<'tree> {}
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for As<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            if node.kind() == "as" {
+                Ok(Self(node))
+            } else {
+                Err(type_sitter_lib::IncorrectKind {
+                    node,
+                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                })
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for As<'tree> {
+        const KIND: &'static str = "as";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &self.0
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &mut self.0
+        }
+        #[inline]
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
+            Self(node)
+        }
+    }
+    #[doc = concat!("Typed node `", "async", "`")]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub struct Async<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
+    #[automatically_derived]
+    impl<'tree> Async<'tree> {}
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for Async<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            if node.kind() == "async" {
+                Ok(Self(node))
+            } else {
+                Err(type_sitter_lib::IncorrectKind {
+                    node,
+                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                })
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for Async<'tree> {
+        const KIND: &'static str = "async";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &self.0
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &mut self.0
+        }
+        #[inline]
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
+            Self(node)
+        }
+    }
+    #[doc = concat!("Typed node `", "await", "`")]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub struct Await<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
+    #[automatically_derived]
+    impl<'tree> Await<'tree> {}
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for Await<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            if node.kind() == "await" {
+                Ok(Self(node))
+            } else {
+                Err(type_sitter_lib::IncorrectKind {
+                    node,
+                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                })
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for Await<'tree> {
+        const KIND: &'static str = "await";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &self.0
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &mut self.0
+        }
+        #[inline]
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
+            Self(node)
+        }
+    }
+    #[doc = concat!("Typed node `", "block", "`")]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub struct Block<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
+    #[automatically_derived]
+    impl<'tree> Block<'tree> {}
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for Block<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            if node.kind() == "block" {
+                Ok(Self(node))
+            } else {
+                Err(type_sitter_lib::IncorrectKind {
+                    node,
+                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                })
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for Block<'tree> {
+        const KIND: &'static str = "block";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &self.0
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &mut self.0
+        }
+        #[inline]
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
+            Self(node)
+        }
+    }
+    #[doc = concat!("Typed node `", "break", "`")]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub struct Break<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
+    #[automatically_derived]
+    impl<'tree> Break<'tree> {}
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for Break<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            if node.kind() == "break" {
+                Ok(Self(node))
+            } else {
+                Err(type_sitter_lib::IncorrectKind {
+                    node,
+                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                })
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for Break<'tree> {
+        const KIND: &'static str = "break";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &self.0
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &mut self.0
+        }
+        #[inline]
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
+            Self(node)
+        }
+    }
+    #[doc = concat!("Typed node `", "const", "`")]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub struct Const<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
+    #[automatically_derived]
+    impl<'tree> Const<'tree> {}
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for Const<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            if node.kind() == "const" {
+                Ok(Self(node))
+            } else {
+                Err(type_sitter_lib::IncorrectKind {
+                    node,
+                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                })
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for Const<'tree> {
+        const KIND: &'static str = "const";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &self.0
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &mut self.0
+        }
+        #[inline]
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
+            Self(node)
+        }
+    }
+    #[doc = concat!("Typed node `", "continue", "`")]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub struct Continue<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
+    #[automatically_derived]
+    impl<'tree> Continue<'tree> {}
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for Continue<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            if node.kind() == "continue" {
+                Ok(Self(node))
+            } else {
+                Err(type_sitter_lib::IncorrectKind {
+                    node,
+                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                })
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for Continue<'tree> {
+        const KIND: &'static str = "continue";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &self.0
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &mut self.0
+        }
+        #[inline]
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
+            Self(node)
+        }
+    }
+    #[doc = concat!("Typed node `", "default", "`")]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub struct Default<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
+    #[automatically_derived]
+    impl<'tree> Default<'tree> {}
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for Default<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            if node.kind() == "default" {
+                Ok(Self(node))
+            } else {
+                Err(type_sitter_lib::IncorrectKind {
+                    node,
+                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                })
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for Default<'tree> {
+        const KIND: &'static str = "default";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &self.0
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &mut self.0
+        }
+        #[inline]
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
+            Self(node)
+        }
+    }
+    #[doc = concat!("Typed node `", "dyn", "`")]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub struct Dyn<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
+    #[automatically_derived]
+    impl<'tree> Dyn<'tree> {}
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for Dyn<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            if node.kind() == "dyn" {
+                Ok(Self(node))
+            } else {
+                Err(type_sitter_lib::IncorrectKind {
+                    node,
+                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                })
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for Dyn<'tree> {
+        const KIND: &'static str = "dyn";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &self.0
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &mut self.0
+        }
+        #[inline]
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
+            Self(node)
+        }
+    }
+    #[doc = concat!("Typed node `", "else", "`")]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub struct Else<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
+    #[automatically_derived]
+    impl<'tree> Else<'tree> {}
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for Else<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            if node.kind() == "else" {
+                Ok(Self(node))
+            } else {
+                Err(type_sitter_lib::IncorrectKind {
+                    node,
+                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                })
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for Else<'tree> {
+        const KIND: &'static str = "else";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &self.0
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &mut self.0
+        }
+        #[inline]
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
+            Self(node)
+        }
+    }
+    #[doc = concat!("Typed node `", "enum", "`")]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub struct Enum<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
+    #[automatically_derived]
+    impl<'tree> Enum<'tree> {}
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for Enum<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            if node.kind() == "enum" {
+                Ok(Self(node))
+            } else {
+                Err(type_sitter_lib::IncorrectKind {
+                    node,
+                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                })
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for Enum<'tree> {
+        const KIND: &'static str = "enum";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &self.0
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &mut self.0
+        }
+        #[inline]
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
+            Self(node)
+        }
+    }
+    #[doc = concat!("Typed node `", "expr", "`")]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub struct Expr<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
+    #[automatically_derived]
+    impl<'tree> Expr<'tree> {}
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for Expr<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            if node.kind() == "expr" {
+                Ok(Self(node))
+            } else {
+                Err(type_sitter_lib::IncorrectKind {
+                    node,
+                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                })
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for Expr<'tree> {
+        const KIND: &'static str = "expr";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &self.0
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &mut self.0
+        }
+        #[inline]
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
+            Self(node)
+        }
+    }
+    #[doc = concat!("Typed node `", "extern", "`")]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub struct Extern<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
+    #[automatically_derived]
+    impl<'tree> Extern<'tree> {}
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for Extern<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            if node.kind() == "extern" {
+                Ok(Self(node))
+            } else {
+                Err(type_sitter_lib::IncorrectKind {
+                    node,
+                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                })
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for Extern<'tree> {
+        const KIND: &'static str = "extern";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &self.0
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &mut self.0
+        }
+        #[inline]
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
+            Self(node)
+        }
+    }
+    #[doc = concat!("Typed node `", "false", "`")]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub struct False<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
+    #[automatically_derived]
+    impl<'tree> False<'tree> {}
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for False<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            if node.kind() == "false" {
+                Ok(Self(node))
+            } else {
+                Err(type_sitter_lib::IncorrectKind {
+                    node,
+                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                })
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for False<'tree> {
+        const KIND: &'static str = "false";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &self.0
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &mut self.0
+        }
+        #[inline]
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
+            Self(node)
+        }
+    }
+    #[doc = concat!("Typed node `", "fn", "`")]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub struct Fn<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
+    #[automatically_derived]
+    impl<'tree> Fn<'tree> {}
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for Fn<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            if node.kind() == "fn" {
+                Ok(Self(node))
+            } else {
+                Err(type_sitter_lib::IncorrectKind {
+                    node,
+                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                })
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for Fn<'tree> {
+        const KIND: &'static str = "fn";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &self.0
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &mut self.0
+        }
+        #[inline]
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
+            Self(node)
+        }
+    }
+    #[doc = concat!("Typed node `", "for", "`")]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub struct For<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
+    #[automatically_derived]
+    impl<'tree> For<'tree> {}
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for For<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            if node.kind() == "for" {
+                Ok(Self(node))
+            } else {
+                Err(type_sitter_lib::IncorrectKind {
+                    node,
+                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                })
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for For<'tree> {
+        const KIND: &'static str = "for";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &self.0
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &mut self.0
+        }
+        #[inline]
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
+            Self(node)
+        }
+    }
+    #[doc = concat!("Typed node `", "ident", "`")]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub struct Ident<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
+    #[automatically_derived]
+    impl<'tree> Ident<'tree> {}
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for Ident<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            if node.kind() == "ident" {
+                Ok(Self(node))
+            } else {
+                Err(type_sitter_lib::IncorrectKind {
+                    node,
+                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                })
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for Ident<'tree> {
+        const KIND: &'static str = "ident";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &self.0
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &mut self.0
+        }
+        #[inline]
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
+            Self(node)
+        }
+    }
+    #[doc = concat!("Typed node `", "if", "`")]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub struct If<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
+    #[automatically_derived]
+    impl<'tree> If<'tree> {}
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for If<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            if node.kind() == "if" {
+                Ok(Self(node))
+            } else {
+                Err(type_sitter_lib::IncorrectKind {
+                    node,
+                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                })
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for If<'tree> {
+        const KIND: &'static str = "if";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &self.0
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &mut self.0
+        }
+        #[inline]
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
+            Self(node)
+        }
+    }
+    #[doc = concat!("Typed node `", "impl", "`")]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub struct Impl<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
+    #[automatically_derived]
+    impl<'tree> Impl<'tree> {}
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for Impl<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            if node.kind() == "impl" {
+                Ok(Self(node))
+            } else {
+                Err(type_sitter_lib::IncorrectKind {
+                    node,
+                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                })
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for Impl<'tree> {
+        const KIND: &'static str = "impl";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &self.0
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &mut self.0
+        }
+        #[inline]
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
+            Self(node)
+        }
+    }
+    #[doc = concat!("Typed node `", "in", "`")]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub struct In<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
+    #[automatically_derived]
+    impl<'tree> In<'tree> {}
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for In<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            if node.kind() == "in" {
+                Ok(Self(node))
+            } else {
+                Err(type_sitter_lib::IncorrectKind {
+                    node,
+                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                })
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for In<'tree> {
+        const KIND: &'static str = "in";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &self.0
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &mut self.0
+        }
+        #[inline]
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
+            Self(node)
+        }
+    }
+    #[doc = concat!("Typed node `", "item", "`")]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub struct Item<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
+    #[automatically_derived]
+    impl<'tree> Item<'tree> {}
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for Item<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            if node.kind() == "item" {
+                Ok(Self(node))
+            } else {
+                Err(type_sitter_lib::IncorrectKind {
+                    node,
+                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                })
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for Item<'tree> {
+        const KIND: &'static str = "item";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &self.0
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &mut self.0
+        }
+        #[inline]
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
+            Self(node)
+        }
+    }
+    #[doc = concat!("Typed node `", "let", "`")]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub struct Let<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
+    #[automatically_derived]
+    impl<'tree> Let<'tree> {}
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for Let<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            if node.kind() == "let" {
+                Ok(Self(node))
+            } else {
+                Err(type_sitter_lib::IncorrectKind {
+                    node,
+                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                })
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for Let<'tree> {
+        const KIND: &'static str = "let";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &self.0
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &mut self.0
+        }
+        #[inline]
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
+            Self(node)
+        }
+    }
+    #[doc = concat!("Typed node `", "lifetime", "`")]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub struct Lifetime<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
+    #[automatically_derived]
+    impl<'tree> Lifetime<'tree> {}
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for Lifetime<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            if node.kind() == "lifetime" {
+                Ok(Self(node))
+            } else {
+                Err(type_sitter_lib::IncorrectKind {
+                    node,
+                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                })
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for Lifetime<'tree> {
+        const KIND: &'static str = "lifetime";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &self.0
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &mut self.0
+        }
+        #[inline]
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
+            Self(node)
+        }
+    }
+    #[doc = concat!("Typed node `", "literal", "`")]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub struct Literal<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
+    #[automatically_derived]
+    impl<'tree> Literal<'tree> {}
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for Literal<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            if node.kind() == "literal" {
+                Ok(Self(node))
+            } else {
+                Err(type_sitter_lib::IncorrectKind {
+                    node,
+                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                })
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for Literal<'tree> {
+        const KIND: &'static str = "literal";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &self.0
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &mut self.0
+        }
+        #[inline]
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
+            Self(node)
+        }
+    }
+    #[doc = concat!("Typed node `", "loop", "`")]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub struct Loop<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
+    #[automatically_derived]
+    impl<'tree> Loop<'tree> {}
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for Loop<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            if node.kind() == "loop" {
+                Ok(Self(node))
+            } else {
+                Err(type_sitter_lib::IncorrectKind {
+                    node,
+                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                })
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for Loop<'tree> {
+        const KIND: &'static str = "loop";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &self.0
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &mut self.0
+        }
+        #[inline]
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
+            Self(node)
+        }
+    }
+    #[doc = concat!("Typed node `", "match", "`")]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub struct Match<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
+    #[automatically_derived]
+    impl<'tree> Match<'tree> {}
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for Match<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            if node.kind() == "match" {
+                Ok(Self(node))
+            } else {
+                Err(type_sitter_lib::IncorrectKind {
+                    node,
+                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                })
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for Match<'tree> {
+        const KIND: &'static str = "match";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &self.0
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &mut self.0
+        }
+        #[inline]
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
+            Self(node)
+        }
+    }
+    #[doc = concat!("Typed node `", "meta", "`")]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub struct Meta<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
+    #[automatically_derived]
+    impl<'tree> Meta<'tree> {}
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for Meta<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            if node.kind() == "meta" {
+                Ok(Self(node))
+            } else {
+                Err(type_sitter_lib::IncorrectKind {
+                    node,
+                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                })
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for Meta<'tree> {
+        const KIND: &'static str = "meta";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &self.0
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &mut self.0
+        }
+        #[inline]
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
+            Self(node)
+        }
+    }
+    #[doc = concat!("Typed node `", "mod", "`")]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub struct Mod<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
+    #[automatically_derived]
+    impl<'tree> Mod<'tree> {}
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for Mod<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            if node.kind() == "mod" {
+                Ok(Self(node))
+            } else {
+                Err(type_sitter_lib::IncorrectKind {
+                    node,
+                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                })
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for Mod<'tree> {
+        const KIND: &'static str = "mod";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &self.0
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &mut self.0
+        }
+        #[inline]
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
+            Self(node)
+        }
+    }
+    #[doc = concat!("Typed node `", "move", "`")]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub struct Move<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
+    #[automatically_derived]
+    impl<'tree> Move<'tree> {}
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for Move<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            if node.kind() == "move" {
+                Ok(Self(node))
+            } else {
+                Err(type_sitter_lib::IncorrectKind {
+                    node,
+                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                })
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for Move<'tree> {
+        const KIND: &'static str = "move";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &self.0
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &mut self.0
+        }
+        #[inline]
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
+            Self(node)
+        }
+    }
+    #[doc = concat!("Typed node `", "pat", "`")]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub struct Pat<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
+    #[automatically_derived]
+    impl<'tree> Pat<'tree> {}
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for Pat<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            if node.kind() == "pat" {
+                Ok(Self(node))
+            } else {
+                Err(type_sitter_lib::IncorrectKind {
+                    node,
+                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                })
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for Pat<'tree> {
+        const KIND: &'static str = "pat";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &self.0
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &mut self.0
+        }
+        #[inline]
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
+            Self(node)
+        }
+    }
+    #[doc = concat!("Typed node `", "path", "`")]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub struct Path<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
+    #[automatically_derived]
+    impl<'tree> Path<'tree> {}
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for Path<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            if node.kind() == "path" {
+                Ok(Self(node))
+            } else {
+                Err(type_sitter_lib::IncorrectKind {
+                    node,
+                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                })
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for Path<'tree> {
+        const KIND: &'static str = "path";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &self.0
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &mut self.0
+        }
+        #[inline]
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
+            Self(node)
+        }
+    }
+    #[doc = concat!("Typed node `", "pub", "`")]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub struct Pub<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
+    #[automatically_derived]
+    impl<'tree> Pub<'tree> {}
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for Pub<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            if node.kind() == "pub" {
+                Ok(Self(node))
+            } else {
+                Err(type_sitter_lib::IncorrectKind {
+                    node,
+                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                })
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for Pub<'tree> {
+        const KIND: &'static str = "pub";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &self.0
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &mut self.0
+        }
+        #[inline]
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
+            Self(node)
+        }
+    }
+    #[doc = concat!("Typed node `", "ref", "`")]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub struct Ref<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
+    #[automatically_derived]
+    impl<'tree> Ref<'tree> {}
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for Ref<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            if node.kind() == "ref" {
+                Ok(Self(node))
+            } else {
+                Err(type_sitter_lib::IncorrectKind {
+                    node,
+                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                })
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for Ref<'tree> {
+        const KIND: &'static str = "ref";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &self.0
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &mut self.0
+        }
+        #[inline]
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
+            Self(node)
+        }
+    }
+    #[doc = concat!("Typed node `", "return", "`")]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub struct Return<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
+    #[automatically_derived]
+    impl<'tree> Return<'tree> {}
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for Return<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            if node.kind() == "return" {
+                Ok(Self(node))
+            } else {
+                Err(type_sitter_lib::IncorrectKind {
+                    node,
+                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                })
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for Return<'tree> {
+        const KIND: &'static str = "return";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &self.0
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &mut self.0
+        }
+        #[inline]
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
+            Self(node)
+        }
+    }
+    #[doc = concat!("Typed node `", "static", "`")]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub struct Static<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
+    #[automatically_derived]
+    impl<'tree> Static<'tree> {}
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for Static<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            if node.kind() == "static" {
+                Ok(Self(node))
+            } else {
+                Err(type_sitter_lib::IncorrectKind {
+                    node,
+                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                })
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for Static<'tree> {
+        const KIND: &'static str = "static";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &self.0
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &mut self.0
+        }
+        #[inline]
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
+            Self(node)
+        }
+    }
+    #[doc = concat!("Typed node `", "stmt", "`")]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub struct Stmt<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
+    #[automatically_derived]
+    impl<'tree> Stmt<'tree> {}
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for Stmt<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            if node.kind() == "stmt" {
+                Ok(Self(node))
+            } else {
+                Err(type_sitter_lib::IncorrectKind {
+                    node,
+                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                })
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for Stmt<'tree> {
+        const KIND: &'static str = "stmt";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &self.0
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &mut self.0
+        }
+        #[inline]
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
+            Self(node)
+        }
+    }
+    #[doc = concat!("Typed node `", "struct", "`")]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub struct Struct<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
+    #[automatically_derived]
+    impl<'tree> Struct<'tree> {}
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for Struct<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            if node.kind() == "struct" {
+                Ok(Self(node))
+            } else {
+                Err(type_sitter_lib::IncorrectKind {
+                    node,
+                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                })
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for Struct<'tree> {
+        const KIND: &'static str = "struct";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &self.0
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &mut self.0
+        }
+        #[inline]
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
+            Self(node)
+        }
+    }
+    #[doc = concat!("Typed node `", "trait", "`")]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub struct Trait<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
+    #[automatically_derived]
+    impl<'tree> Trait<'tree> {}
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for Trait<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            if node.kind() == "trait" {
+                Ok(Self(node))
+            } else {
+                Err(type_sitter_lib::IncorrectKind {
+                    node,
+                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                })
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for Trait<'tree> {
+        const KIND: &'static str = "trait";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &self.0
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &mut self.0
+        }
+        #[inline]
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
+            Self(node)
+        }
+    }
+    #[doc = concat!("Typed node `", "true", "`")]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub struct True<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
+    #[automatically_derived]
+    impl<'tree> True<'tree> {}
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for True<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            if node.kind() == "true" {
+                Ok(Self(node))
+            } else {
+                Err(type_sitter_lib::IncorrectKind {
+                    node,
+                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                })
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for True<'tree> {
+        const KIND: &'static str = "true";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &self.0
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &mut self.0
+        }
+        #[inline]
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
+            Self(node)
+        }
+    }
+    #[doc = concat!("Typed node `", "tt", "`")]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub struct Tt<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
+    #[automatically_derived]
+    impl<'tree> Tt<'tree> {}
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for Tt<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            if node.kind() == "tt" {
+                Ok(Self(node))
+            } else {
+                Err(type_sitter_lib::IncorrectKind {
+                    node,
+                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                })
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for Tt<'tree> {
+        const KIND: &'static str = "tt";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &self.0
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &mut self.0
+        }
+        #[inline]
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
+            Self(node)
+        }
+    }
+    #[doc = concat!("Typed node `", "ty", "`")]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub struct Ty<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
+    #[automatically_derived]
+    impl<'tree> Ty<'tree> {}
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for Ty<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            if node.kind() == "ty" {
+                Ok(Self(node))
+            } else {
+                Err(type_sitter_lib::IncorrectKind {
+                    node,
+                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                })
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for Ty<'tree> {
+        const KIND: &'static str = "ty";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &self.0
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &mut self.0
+        }
+        #[inline]
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
+            Self(node)
+        }
+    }
+    #[doc = concat!("Typed node `", "type", "`")]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub struct Type<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
+    #[automatically_derived]
+    impl<'tree> Type<'tree> {}
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for Type<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            if node.kind() == "type" {
+                Ok(Self(node))
+            } else {
+                Err(type_sitter_lib::IncorrectKind {
+                    node,
+                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                })
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for Type<'tree> {
+        const KIND: &'static str = "type";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &self.0
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &mut self.0
+        }
+        #[inline]
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
+            Self(node)
+        }
+    }
+    #[doc = concat!("Typed node `", "union", "`")]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub struct Union<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
+    #[automatically_derived]
+    impl<'tree> Union<'tree> {}
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for Union<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            if node.kind() == "union" {
+                Ok(Self(node))
+            } else {
+                Err(type_sitter_lib::IncorrectKind {
+                    node,
+                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                })
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for Union<'tree> {
+        const KIND: &'static str = "union";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &self.0
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &mut self.0
+        }
+        #[inline]
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
+            Self(node)
+        }
+    }
+    #[doc = concat!("Typed node `", "unsafe", "`")]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub struct Unsafe<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
+    #[automatically_derived]
+    impl<'tree> Unsafe<'tree> {}
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for Unsafe<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            if node.kind() == "unsafe" {
+                Ok(Self(node))
+            } else {
+                Err(type_sitter_lib::IncorrectKind {
+                    node,
+                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                })
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for Unsafe<'tree> {
+        const KIND: &'static str = "unsafe";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &self.0
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &mut self.0
+        }
+        #[inline]
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
+            Self(node)
+        }
+    }
+    #[doc = concat!("Typed node `", "use", "`")]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub struct Use<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
+    #[automatically_derived]
+    impl<'tree> Use<'tree> {}
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for Use<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            if node.kind() == "use" {
+                Ok(Self(node))
+            } else {
+                Err(type_sitter_lib::IncorrectKind {
+                    node,
+                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                })
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for Use<'tree> {
+        const KIND: &'static str = "use";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &self.0
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &mut self.0
+        }
+        #[inline]
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
+            Self(node)
+        }
+    }
+    #[doc = concat!("Typed node `", "vis", "`")]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub struct Vis<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
+    #[automatically_derived]
+    impl<'tree> Vis<'tree> {}
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for Vis<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            if node.kind() == "vis" {
+                Ok(Self(node))
+            } else {
+                Err(type_sitter_lib::IncorrectKind {
+                    node,
+                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                })
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for Vis<'tree> {
+        const KIND: &'static str = "vis";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &self.0
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &mut self.0
+        }
+        #[inline]
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
+            Self(node)
+        }
+    }
+    #[doc = concat!("Typed node `", "where", "`")]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub struct Where<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
+    #[automatically_derived]
+    impl<'tree> Where<'tree> {}
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for Where<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            if node.kind() == "where" {
+                Ok(Self(node))
+            } else {
+                Err(type_sitter_lib::IncorrectKind {
+                    node,
+                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                })
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for Where<'tree> {
+        const KIND: &'static str = "where";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &self.0
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &mut self.0
+        }
+        #[inline]
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
+            Self(node)
+        }
+    }
+    #[doc = concat!("Typed node `", "while", "`")]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub struct While<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
+    #[automatically_derived]
+    impl<'tree> While<'tree> {}
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for While<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            if node.kind() == "while" {
+                Ok(Self(node))
+            } else {
+                Err(type_sitter_lib::IncorrectKind {
+                    node,
+                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                })
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for While<'tree> {
+        const KIND: &'static str = "while";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &self.0
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &mut self.0
+        }
+        #[inline]
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
+            Self(node)
+        }
+    }
+    #[doc = concat!("Typed node `", "yield", "`")]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub struct Yield<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
+    #[automatically_derived]
+    impl<'tree> Yield<'tree> {}
+    #[automatically_derived]
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for Yield<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
+            if node.kind() == "yield" {
+                Ok(Self(node))
+            } else {
+                Err(type_sitter_lib::IncorrectKind {
+                    node,
+                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                })
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for Yield<'tree> {
+        const KIND: &'static str = "yield";
+        #[inline]
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &self.0
+        }
+        #[inline]
+        fn node_mut(
+            &mut self,
+        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            &mut self.0
+        }
+        #[inline]
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
+            Self(node)
+        }
+    }
+}
+pub mod symbols {
+    #[allow(unused_imports)]
+    use super::*;
     #[doc = concat!("Typed node `", "!", "`")]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
@@ -16515,12 +18675,12 @@ pub mod unnamed {
     #[doc = concat!("Typed node `", "_", "`")]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct Underscore<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
+    pub struct __<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
-    impl<'tree> Underscore<'tree> {}
+    impl<'tree> __<'tree> {}
     #[automatically_derived]
     impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
-    for Underscore<'tree> {
+    for __<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
         fn try_from(
@@ -16537,1108 +18697,8 @@ pub mod unnamed {
         }
     }
     #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for Underscore<'tree> {
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for __<'tree> {
         const KIND: &'static str = "_";
-        #[inline]
-        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &self.0
-        }
-        #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &mut self.0
-        }
-        #[inline]
-        unsafe fn from_node_unchecked(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Self {
-            Self(node)
-        }
-    }
-    #[doc = concat!("Typed node `", "as", "`")]
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[allow(non_camel_case_types)]
-    pub struct As<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
-    #[automatically_derived]
-    impl<'tree> As<'tree> {}
-    #[automatically_derived]
-    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
-    for As<'tree> {
-        type Error = type_sitter_lib::IncorrectKind<'tree>;
-        #[inline]
-        fn try_from(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
-            if node.kind() == "as" {
-                Ok(Self(node))
-            } else {
-                Err(type_sitter_lib::IncorrectKind {
-                    node,
-                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                })
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for As<'tree> {
-        const KIND: &'static str = "as";
-        #[inline]
-        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &self.0
-        }
-        #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &mut self.0
-        }
-        #[inline]
-        unsafe fn from_node_unchecked(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Self {
-            Self(node)
-        }
-    }
-    #[doc = concat!("Typed node `", "async", "`")]
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[allow(non_camel_case_types)]
-    pub struct Async<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
-    #[automatically_derived]
-    impl<'tree> Async<'tree> {}
-    #[automatically_derived]
-    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
-    for Async<'tree> {
-        type Error = type_sitter_lib::IncorrectKind<'tree>;
-        #[inline]
-        fn try_from(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
-            if node.kind() == "async" {
-                Ok(Self(node))
-            } else {
-                Err(type_sitter_lib::IncorrectKind {
-                    node,
-                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                })
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for Async<'tree> {
-        const KIND: &'static str = "async";
-        #[inline]
-        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &self.0
-        }
-        #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &mut self.0
-        }
-        #[inline]
-        unsafe fn from_node_unchecked(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Self {
-            Self(node)
-        }
-    }
-    #[doc = concat!("Typed node `", "await", "`")]
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[allow(non_camel_case_types)]
-    pub struct Await<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
-    #[automatically_derived]
-    impl<'tree> Await<'tree> {}
-    #[automatically_derived]
-    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
-    for Await<'tree> {
-        type Error = type_sitter_lib::IncorrectKind<'tree>;
-        #[inline]
-        fn try_from(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
-            if node.kind() == "await" {
-                Ok(Self(node))
-            } else {
-                Err(type_sitter_lib::IncorrectKind {
-                    node,
-                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                })
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for Await<'tree> {
-        const KIND: &'static str = "await";
-        #[inline]
-        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &self.0
-        }
-        #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &mut self.0
-        }
-        #[inline]
-        unsafe fn from_node_unchecked(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Self {
-            Self(node)
-        }
-    }
-    #[doc = concat!("Typed node `", "block", "`")]
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[allow(non_camel_case_types)]
-    pub struct Block<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
-    #[automatically_derived]
-    impl<'tree> Block<'tree> {}
-    #[automatically_derived]
-    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
-    for Block<'tree> {
-        type Error = type_sitter_lib::IncorrectKind<'tree>;
-        #[inline]
-        fn try_from(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
-            if node.kind() == "block" {
-                Ok(Self(node))
-            } else {
-                Err(type_sitter_lib::IncorrectKind {
-                    node,
-                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                })
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for Block<'tree> {
-        const KIND: &'static str = "block";
-        #[inline]
-        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &self.0
-        }
-        #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &mut self.0
-        }
-        #[inline]
-        unsafe fn from_node_unchecked(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Self {
-            Self(node)
-        }
-    }
-    #[doc = concat!("Typed node `", "break", "`")]
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[allow(non_camel_case_types)]
-    pub struct Break<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
-    #[automatically_derived]
-    impl<'tree> Break<'tree> {}
-    #[automatically_derived]
-    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
-    for Break<'tree> {
-        type Error = type_sitter_lib::IncorrectKind<'tree>;
-        #[inline]
-        fn try_from(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
-            if node.kind() == "break" {
-                Ok(Self(node))
-            } else {
-                Err(type_sitter_lib::IncorrectKind {
-                    node,
-                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                })
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for Break<'tree> {
-        const KIND: &'static str = "break";
-        #[inline]
-        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &self.0
-        }
-        #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &mut self.0
-        }
-        #[inline]
-        unsafe fn from_node_unchecked(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Self {
-            Self(node)
-        }
-    }
-    #[doc = concat!("Typed node `", "const", "`")]
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[allow(non_camel_case_types)]
-    pub struct Const<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
-    #[automatically_derived]
-    impl<'tree> Const<'tree> {}
-    #[automatically_derived]
-    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
-    for Const<'tree> {
-        type Error = type_sitter_lib::IncorrectKind<'tree>;
-        #[inline]
-        fn try_from(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
-            if node.kind() == "const" {
-                Ok(Self(node))
-            } else {
-                Err(type_sitter_lib::IncorrectKind {
-                    node,
-                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                })
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for Const<'tree> {
-        const KIND: &'static str = "const";
-        #[inline]
-        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &self.0
-        }
-        #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &mut self.0
-        }
-        #[inline]
-        unsafe fn from_node_unchecked(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Self {
-            Self(node)
-        }
-    }
-    #[doc = concat!("Typed node `", "continue", "`")]
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[allow(non_camel_case_types)]
-    pub struct Continue<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
-    #[automatically_derived]
-    impl<'tree> Continue<'tree> {}
-    #[automatically_derived]
-    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
-    for Continue<'tree> {
-        type Error = type_sitter_lib::IncorrectKind<'tree>;
-        #[inline]
-        fn try_from(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
-            if node.kind() == "continue" {
-                Ok(Self(node))
-            } else {
-                Err(type_sitter_lib::IncorrectKind {
-                    node,
-                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                })
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for Continue<'tree> {
-        const KIND: &'static str = "continue";
-        #[inline]
-        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &self.0
-        }
-        #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &mut self.0
-        }
-        #[inline]
-        unsafe fn from_node_unchecked(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Self {
-            Self(node)
-        }
-    }
-    #[doc = concat!("Typed node `", "default", "`")]
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[allow(non_camel_case_types)]
-    pub struct Default<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
-    #[automatically_derived]
-    impl<'tree> Default<'tree> {}
-    #[automatically_derived]
-    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
-    for Default<'tree> {
-        type Error = type_sitter_lib::IncorrectKind<'tree>;
-        #[inline]
-        fn try_from(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
-            if node.kind() == "default" {
-                Ok(Self(node))
-            } else {
-                Err(type_sitter_lib::IncorrectKind {
-                    node,
-                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                })
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for Default<'tree> {
-        const KIND: &'static str = "default";
-        #[inline]
-        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &self.0
-        }
-        #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &mut self.0
-        }
-        #[inline]
-        unsafe fn from_node_unchecked(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Self {
-            Self(node)
-        }
-    }
-    #[doc = concat!("Typed node `", "dyn", "`")]
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[allow(non_camel_case_types)]
-    pub struct Dyn<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
-    #[automatically_derived]
-    impl<'tree> Dyn<'tree> {}
-    #[automatically_derived]
-    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
-    for Dyn<'tree> {
-        type Error = type_sitter_lib::IncorrectKind<'tree>;
-        #[inline]
-        fn try_from(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
-            if node.kind() == "dyn" {
-                Ok(Self(node))
-            } else {
-                Err(type_sitter_lib::IncorrectKind {
-                    node,
-                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                })
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for Dyn<'tree> {
-        const KIND: &'static str = "dyn";
-        #[inline]
-        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &self.0
-        }
-        #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &mut self.0
-        }
-        #[inline]
-        unsafe fn from_node_unchecked(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Self {
-            Self(node)
-        }
-    }
-    #[doc = concat!("Typed node `", "else", "`")]
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[allow(non_camel_case_types)]
-    pub struct Else<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
-    #[automatically_derived]
-    impl<'tree> Else<'tree> {}
-    #[automatically_derived]
-    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
-    for Else<'tree> {
-        type Error = type_sitter_lib::IncorrectKind<'tree>;
-        #[inline]
-        fn try_from(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
-            if node.kind() == "else" {
-                Ok(Self(node))
-            } else {
-                Err(type_sitter_lib::IncorrectKind {
-                    node,
-                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                })
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for Else<'tree> {
-        const KIND: &'static str = "else";
-        #[inline]
-        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &self.0
-        }
-        #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &mut self.0
-        }
-        #[inline]
-        unsafe fn from_node_unchecked(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Self {
-            Self(node)
-        }
-    }
-    #[doc = concat!("Typed node `", "enum", "`")]
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[allow(non_camel_case_types)]
-    pub struct Enum<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
-    #[automatically_derived]
-    impl<'tree> Enum<'tree> {}
-    #[automatically_derived]
-    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
-    for Enum<'tree> {
-        type Error = type_sitter_lib::IncorrectKind<'tree>;
-        #[inline]
-        fn try_from(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
-            if node.kind() == "enum" {
-                Ok(Self(node))
-            } else {
-                Err(type_sitter_lib::IncorrectKind {
-                    node,
-                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                })
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for Enum<'tree> {
-        const KIND: &'static str = "enum";
-        #[inline]
-        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &self.0
-        }
-        #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &mut self.0
-        }
-        #[inline]
-        unsafe fn from_node_unchecked(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Self {
-            Self(node)
-        }
-    }
-    #[doc = concat!("Typed node `", "expr", "`")]
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[allow(non_camel_case_types)]
-    pub struct Expr<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
-    #[automatically_derived]
-    impl<'tree> Expr<'tree> {}
-    #[automatically_derived]
-    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
-    for Expr<'tree> {
-        type Error = type_sitter_lib::IncorrectKind<'tree>;
-        #[inline]
-        fn try_from(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
-            if node.kind() == "expr" {
-                Ok(Self(node))
-            } else {
-                Err(type_sitter_lib::IncorrectKind {
-                    node,
-                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                })
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for Expr<'tree> {
-        const KIND: &'static str = "expr";
-        #[inline]
-        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &self.0
-        }
-        #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &mut self.0
-        }
-        #[inline]
-        unsafe fn from_node_unchecked(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Self {
-            Self(node)
-        }
-    }
-    #[doc = concat!("Typed node `", "extern", "`")]
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[allow(non_camel_case_types)]
-    pub struct Extern<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
-    #[automatically_derived]
-    impl<'tree> Extern<'tree> {}
-    #[automatically_derived]
-    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
-    for Extern<'tree> {
-        type Error = type_sitter_lib::IncorrectKind<'tree>;
-        #[inline]
-        fn try_from(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
-            if node.kind() == "extern" {
-                Ok(Self(node))
-            } else {
-                Err(type_sitter_lib::IncorrectKind {
-                    node,
-                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                })
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for Extern<'tree> {
-        const KIND: &'static str = "extern";
-        #[inline]
-        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &self.0
-        }
-        #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &mut self.0
-        }
-        #[inline]
-        unsafe fn from_node_unchecked(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Self {
-            Self(node)
-        }
-    }
-    #[doc = concat!("Typed node `", "false", "`")]
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[allow(non_camel_case_types)]
-    pub struct False<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
-    #[automatically_derived]
-    impl<'tree> False<'tree> {}
-    #[automatically_derived]
-    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
-    for False<'tree> {
-        type Error = type_sitter_lib::IncorrectKind<'tree>;
-        #[inline]
-        fn try_from(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
-            if node.kind() == "false" {
-                Ok(Self(node))
-            } else {
-                Err(type_sitter_lib::IncorrectKind {
-                    node,
-                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                })
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for False<'tree> {
-        const KIND: &'static str = "false";
-        #[inline]
-        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &self.0
-        }
-        #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &mut self.0
-        }
-        #[inline]
-        unsafe fn from_node_unchecked(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Self {
-            Self(node)
-        }
-    }
-    #[doc = concat!("Typed node `", "fn", "`")]
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[allow(non_camel_case_types)]
-    pub struct Fn<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
-    #[automatically_derived]
-    impl<'tree> Fn<'tree> {}
-    #[automatically_derived]
-    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
-    for Fn<'tree> {
-        type Error = type_sitter_lib::IncorrectKind<'tree>;
-        #[inline]
-        fn try_from(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
-            if node.kind() == "fn" {
-                Ok(Self(node))
-            } else {
-                Err(type_sitter_lib::IncorrectKind {
-                    node,
-                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                })
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for Fn<'tree> {
-        const KIND: &'static str = "fn";
-        #[inline]
-        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &self.0
-        }
-        #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &mut self.0
-        }
-        #[inline]
-        unsafe fn from_node_unchecked(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Self {
-            Self(node)
-        }
-    }
-    #[doc = concat!("Typed node `", "for", "`")]
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[allow(non_camel_case_types)]
-    pub struct For<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
-    #[automatically_derived]
-    impl<'tree> For<'tree> {}
-    #[automatically_derived]
-    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
-    for For<'tree> {
-        type Error = type_sitter_lib::IncorrectKind<'tree>;
-        #[inline]
-        fn try_from(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
-            if node.kind() == "for" {
-                Ok(Self(node))
-            } else {
-                Err(type_sitter_lib::IncorrectKind {
-                    node,
-                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                })
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for For<'tree> {
-        const KIND: &'static str = "for";
-        #[inline]
-        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &self.0
-        }
-        #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &mut self.0
-        }
-        #[inline]
-        unsafe fn from_node_unchecked(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Self {
-            Self(node)
-        }
-    }
-    #[doc = concat!("Typed node `", "ident", "`")]
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[allow(non_camel_case_types)]
-    pub struct Ident<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
-    #[automatically_derived]
-    impl<'tree> Ident<'tree> {}
-    #[automatically_derived]
-    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
-    for Ident<'tree> {
-        type Error = type_sitter_lib::IncorrectKind<'tree>;
-        #[inline]
-        fn try_from(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
-            if node.kind() == "ident" {
-                Ok(Self(node))
-            } else {
-                Err(type_sitter_lib::IncorrectKind {
-                    node,
-                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                })
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for Ident<'tree> {
-        const KIND: &'static str = "ident";
-        #[inline]
-        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &self.0
-        }
-        #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &mut self.0
-        }
-        #[inline]
-        unsafe fn from_node_unchecked(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Self {
-            Self(node)
-        }
-    }
-    #[doc = concat!("Typed node `", "if", "`")]
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[allow(non_camel_case_types)]
-    pub struct If<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
-    #[automatically_derived]
-    impl<'tree> If<'tree> {}
-    #[automatically_derived]
-    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
-    for If<'tree> {
-        type Error = type_sitter_lib::IncorrectKind<'tree>;
-        #[inline]
-        fn try_from(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
-            if node.kind() == "if" {
-                Ok(Self(node))
-            } else {
-                Err(type_sitter_lib::IncorrectKind {
-                    node,
-                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                })
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for If<'tree> {
-        const KIND: &'static str = "if";
-        #[inline]
-        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &self.0
-        }
-        #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &mut self.0
-        }
-        #[inline]
-        unsafe fn from_node_unchecked(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Self {
-            Self(node)
-        }
-    }
-    #[doc = concat!("Typed node `", "impl", "`")]
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[allow(non_camel_case_types)]
-    pub struct Impl<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
-    #[automatically_derived]
-    impl<'tree> Impl<'tree> {}
-    #[automatically_derived]
-    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
-    for Impl<'tree> {
-        type Error = type_sitter_lib::IncorrectKind<'tree>;
-        #[inline]
-        fn try_from(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
-            if node.kind() == "impl" {
-                Ok(Self(node))
-            } else {
-                Err(type_sitter_lib::IncorrectKind {
-                    node,
-                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                })
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for Impl<'tree> {
-        const KIND: &'static str = "impl";
-        #[inline]
-        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &self.0
-        }
-        #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &mut self.0
-        }
-        #[inline]
-        unsafe fn from_node_unchecked(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Self {
-            Self(node)
-        }
-    }
-    #[doc = concat!("Typed node `", "in", "`")]
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[allow(non_camel_case_types)]
-    pub struct In<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
-    #[automatically_derived]
-    impl<'tree> In<'tree> {}
-    #[automatically_derived]
-    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
-    for In<'tree> {
-        type Error = type_sitter_lib::IncorrectKind<'tree>;
-        #[inline]
-        fn try_from(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
-            if node.kind() == "in" {
-                Ok(Self(node))
-            } else {
-                Err(type_sitter_lib::IncorrectKind {
-                    node,
-                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                })
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for In<'tree> {
-        const KIND: &'static str = "in";
-        #[inline]
-        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &self.0
-        }
-        #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &mut self.0
-        }
-        #[inline]
-        unsafe fn from_node_unchecked(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Self {
-            Self(node)
-        }
-    }
-    #[doc = concat!("Typed node `", "item", "`")]
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[allow(non_camel_case_types)]
-    pub struct Item<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
-    #[automatically_derived]
-    impl<'tree> Item<'tree> {}
-    #[automatically_derived]
-    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
-    for Item<'tree> {
-        type Error = type_sitter_lib::IncorrectKind<'tree>;
-        #[inline]
-        fn try_from(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
-            if node.kind() == "item" {
-                Ok(Self(node))
-            } else {
-                Err(type_sitter_lib::IncorrectKind {
-                    node,
-                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                })
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for Item<'tree> {
-        const KIND: &'static str = "item";
-        #[inline]
-        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &self.0
-        }
-        #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &mut self.0
-        }
-        #[inline]
-        unsafe fn from_node_unchecked(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Self {
-            Self(node)
-        }
-    }
-    #[doc = concat!("Typed node `", "let", "`")]
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[allow(non_camel_case_types)]
-    pub struct Let<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
-    #[automatically_derived]
-    impl<'tree> Let<'tree> {}
-    #[automatically_derived]
-    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
-    for Let<'tree> {
-        type Error = type_sitter_lib::IncorrectKind<'tree>;
-        #[inline]
-        fn try_from(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
-            if node.kind() == "let" {
-                Ok(Self(node))
-            } else {
-                Err(type_sitter_lib::IncorrectKind {
-                    node,
-                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                })
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for Let<'tree> {
-        const KIND: &'static str = "let";
-        #[inline]
-        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &self.0
-        }
-        #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &mut self.0
-        }
-        #[inline]
-        unsafe fn from_node_unchecked(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Self {
-            Self(node)
-        }
-    }
-    #[doc = concat!("Typed node `", "lifetime", "`")]
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[allow(non_camel_case_types)]
-    pub struct Lifetime<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
-    #[automatically_derived]
-    impl<'tree> Lifetime<'tree> {}
-    #[automatically_derived]
-    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
-    for Lifetime<'tree> {
-        type Error = type_sitter_lib::IncorrectKind<'tree>;
-        #[inline]
-        fn try_from(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
-            if node.kind() == "lifetime" {
-                Ok(Self(node))
-            } else {
-                Err(type_sitter_lib::IncorrectKind {
-                    node,
-                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                })
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for Lifetime<'tree> {
-        const KIND: &'static str = "lifetime";
-        #[inline]
-        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &self.0
-        }
-        #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &mut self.0
-        }
-        #[inline]
-        unsafe fn from_node_unchecked(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Self {
-            Self(node)
-        }
-    }
-    #[doc = concat!("Typed node `", "literal", "`")]
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[allow(non_camel_case_types)]
-    pub struct Literal<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
-    #[automatically_derived]
-    impl<'tree> Literal<'tree> {}
-    #[automatically_derived]
-    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
-    for Literal<'tree> {
-        type Error = type_sitter_lib::IncorrectKind<'tree>;
-        #[inline]
-        fn try_from(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
-            if node.kind() == "literal" {
-                Ok(Self(node))
-            } else {
-                Err(type_sitter_lib::IncorrectKind {
-                    node,
-                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                })
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for Literal<'tree> {
-        const KIND: &'static str = "literal";
-        #[inline]
-        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &self.0
-        }
-        #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &mut self.0
-        }
-        #[inline]
-        unsafe fn from_node_unchecked(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Self {
-            Self(node)
-        }
-    }
-    #[doc = concat!("Typed node `", "loop", "`")]
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[allow(non_camel_case_types)]
-    pub struct Loop<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
-    #[automatically_derived]
-    impl<'tree> Loop<'tree> {}
-    #[automatically_derived]
-    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
-    for Loop<'tree> {
-        type Error = type_sitter_lib::IncorrectKind<'tree>;
-        #[inline]
-        fn try_from(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
-            if node.kind() == "loop" {
-                Ok(Self(node))
-            } else {
-                Err(type_sitter_lib::IncorrectKind {
-                    node,
-                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                })
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for Loop<'tree> {
-        const KIND: &'static str = "loop";
         #[inline]
         fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
@@ -17683,1062 +18743,6 @@ pub mod unnamed {
     #[automatically_derived]
     impl<'tree> type_sitter_lib::TypedNode<'tree> for MacroRulesNot<'tree> {
         const KIND: &'static str = "macro_rules!";
-        #[inline]
-        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &self.0
-        }
-        #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &mut self.0
-        }
-        #[inline]
-        unsafe fn from_node_unchecked(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Self {
-            Self(node)
-        }
-    }
-    #[doc = concat!("Typed node `", "match", "`")]
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[allow(non_camel_case_types)]
-    pub struct Match<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
-    #[automatically_derived]
-    impl<'tree> Match<'tree> {}
-    #[automatically_derived]
-    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
-    for Match<'tree> {
-        type Error = type_sitter_lib::IncorrectKind<'tree>;
-        #[inline]
-        fn try_from(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
-            if node.kind() == "match" {
-                Ok(Self(node))
-            } else {
-                Err(type_sitter_lib::IncorrectKind {
-                    node,
-                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                })
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for Match<'tree> {
-        const KIND: &'static str = "match";
-        #[inline]
-        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &self.0
-        }
-        #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &mut self.0
-        }
-        #[inline]
-        unsafe fn from_node_unchecked(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Self {
-            Self(node)
-        }
-    }
-    #[doc = concat!("Typed node `", "meta", "`")]
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[allow(non_camel_case_types)]
-    pub struct Meta<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
-    #[automatically_derived]
-    impl<'tree> Meta<'tree> {}
-    #[automatically_derived]
-    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
-    for Meta<'tree> {
-        type Error = type_sitter_lib::IncorrectKind<'tree>;
-        #[inline]
-        fn try_from(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
-            if node.kind() == "meta" {
-                Ok(Self(node))
-            } else {
-                Err(type_sitter_lib::IncorrectKind {
-                    node,
-                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                })
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for Meta<'tree> {
-        const KIND: &'static str = "meta";
-        #[inline]
-        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &self.0
-        }
-        #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &mut self.0
-        }
-        #[inline]
-        unsafe fn from_node_unchecked(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Self {
-            Self(node)
-        }
-    }
-    #[doc = concat!("Typed node `", "mod", "`")]
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[allow(non_camel_case_types)]
-    pub struct Mod_<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
-    #[automatically_derived]
-    impl<'tree> Mod_<'tree> {}
-    #[automatically_derived]
-    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
-    for Mod_<'tree> {
-        type Error = type_sitter_lib::IncorrectKind<'tree>;
-        #[inline]
-        fn try_from(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
-            if node.kind() == "mod" {
-                Ok(Self(node))
-            } else {
-                Err(type_sitter_lib::IncorrectKind {
-                    node,
-                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                })
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for Mod_<'tree> {
-        const KIND: &'static str = "mod";
-        #[inline]
-        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &self.0
-        }
-        #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &mut self.0
-        }
-        #[inline]
-        unsafe fn from_node_unchecked(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Self {
-            Self(node)
-        }
-    }
-    #[doc = concat!("Typed node `", "move", "`")]
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[allow(non_camel_case_types)]
-    pub struct Move<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
-    #[automatically_derived]
-    impl<'tree> Move<'tree> {}
-    #[automatically_derived]
-    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
-    for Move<'tree> {
-        type Error = type_sitter_lib::IncorrectKind<'tree>;
-        #[inline]
-        fn try_from(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
-            if node.kind() == "move" {
-                Ok(Self(node))
-            } else {
-                Err(type_sitter_lib::IncorrectKind {
-                    node,
-                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                })
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for Move<'tree> {
-        const KIND: &'static str = "move";
-        #[inline]
-        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &self.0
-        }
-        #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &mut self.0
-        }
-        #[inline]
-        unsafe fn from_node_unchecked(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Self {
-            Self(node)
-        }
-    }
-    #[doc = concat!("Typed node `", "pat", "`")]
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[allow(non_camel_case_types)]
-    pub struct Pat<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
-    #[automatically_derived]
-    impl<'tree> Pat<'tree> {}
-    #[automatically_derived]
-    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
-    for Pat<'tree> {
-        type Error = type_sitter_lib::IncorrectKind<'tree>;
-        #[inline]
-        fn try_from(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
-            if node.kind() == "pat" {
-                Ok(Self(node))
-            } else {
-                Err(type_sitter_lib::IncorrectKind {
-                    node,
-                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                })
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for Pat<'tree> {
-        const KIND: &'static str = "pat";
-        #[inline]
-        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &self.0
-        }
-        #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &mut self.0
-        }
-        #[inline]
-        unsafe fn from_node_unchecked(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Self {
-            Self(node)
-        }
-    }
-    #[doc = concat!("Typed node `", "path", "`")]
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[allow(non_camel_case_types)]
-    pub struct Path<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
-    #[automatically_derived]
-    impl<'tree> Path<'tree> {}
-    #[automatically_derived]
-    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
-    for Path<'tree> {
-        type Error = type_sitter_lib::IncorrectKind<'tree>;
-        #[inline]
-        fn try_from(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
-            if node.kind() == "path" {
-                Ok(Self(node))
-            } else {
-                Err(type_sitter_lib::IncorrectKind {
-                    node,
-                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                })
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for Path<'tree> {
-        const KIND: &'static str = "path";
-        #[inline]
-        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &self.0
-        }
-        #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &mut self.0
-        }
-        #[inline]
-        unsafe fn from_node_unchecked(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Self {
-            Self(node)
-        }
-    }
-    #[doc = concat!("Typed node `", "pub", "`")]
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[allow(non_camel_case_types)]
-    pub struct Pub<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
-    #[automatically_derived]
-    impl<'tree> Pub<'tree> {}
-    #[automatically_derived]
-    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
-    for Pub<'tree> {
-        type Error = type_sitter_lib::IncorrectKind<'tree>;
-        #[inline]
-        fn try_from(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
-            if node.kind() == "pub" {
-                Ok(Self(node))
-            } else {
-                Err(type_sitter_lib::IncorrectKind {
-                    node,
-                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                })
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for Pub<'tree> {
-        const KIND: &'static str = "pub";
-        #[inline]
-        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &self.0
-        }
-        #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &mut self.0
-        }
-        #[inline]
-        unsafe fn from_node_unchecked(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Self {
-            Self(node)
-        }
-    }
-    #[doc = concat!("Typed node `", "ref", "`")]
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[allow(non_camel_case_types)]
-    pub struct Ref<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
-    #[automatically_derived]
-    impl<'tree> Ref<'tree> {}
-    #[automatically_derived]
-    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
-    for Ref<'tree> {
-        type Error = type_sitter_lib::IncorrectKind<'tree>;
-        #[inline]
-        fn try_from(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
-            if node.kind() == "ref" {
-                Ok(Self(node))
-            } else {
-                Err(type_sitter_lib::IncorrectKind {
-                    node,
-                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                })
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for Ref<'tree> {
-        const KIND: &'static str = "ref";
-        #[inline]
-        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &self.0
-        }
-        #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &mut self.0
-        }
-        #[inline]
-        unsafe fn from_node_unchecked(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Self {
-            Self(node)
-        }
-    }
-    #[doc = concat!("Typed node `", "return", "`")]
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[allow(non_camel_case_types)]
-    pub struct Return<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
-    #[automatically_derived]
-    impl<'tree> Return<'tree> {}
-    #[automatically_derived]
-    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
-    for Return<'tree> {
-        type Error = type_sitter_lib::IncorrectKind<'tree>;
-        #[inline]
-        fn try_from(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
-            if node.kind() == "return" {
-                Ok(Self(node))
-            } else {
-                Err(type_sitter_lib::IncorrectKind {
-                    node,
-                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                })
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for Return<'tree> {
-        const KIND: &'static str = "return";
-        #[inline]
-        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &self.0
-        }
-        #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &mut self.0
-        }
-        #[inline]
-        unsafe fn from_node_unchecked(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Self {
-            Self(node)
-        }
-    }
-    #[doc = concat!("Typed node `", "static", "`")]
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[allow(non_camel_case_types)]
-    pub struct Static<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
-    #[automatically_derived]
-    impl<'tree> Static<'tree> {}
-    #[automatically_derived]
-    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
-    for Static<'tree> {
-        type Error = type_sitter_lib::IncorrectKind<'tree>;
-        #[inline]
-        fn try_from(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
-            if node.kind() == "static" {
-                Ok(Self(node))
-            } else {
-                Err(type_sitter_lib::IncorrectKind {
-                    node,
-                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                })
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for Static<'tree> {
-        const KIND: &'static str = "static";
-        #[inline]
-        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &self.0
-        }
-        #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &mut self.0
-        }
-        #[inline]
-        unsafe fn from_node_unchecked(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Self {
-            Self(node)
-        }
-    }
-    #[doc = concat!("Typed node `", "stmt", "`")]
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[allow(non_camel_case_types)]
-    pub struct Stmt<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
-    #[automatically_derived]
-    impl<'tree> Stmt<'tree> {}
-    #[automatically_derived]
-    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
-    for Stmt<'tree> {
-        type Error = type_sitter_lib::IncorrectKind<'tree>;
-        #[inline]
-        fn try_from(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
-            if node.kind() == "stmt" {
-                Ok(Self(node))
-            } else {
-                Err(type_sitter_lib::IncorrectKind {
-                    node,
-                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                })
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for Stmt<'tree> {
-        const KIND: &'static str = "stmt";
-        #[inline]
-        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &self.0
-        }
-        #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &mut self.0
-        }
-        #[inline]
-        unsafe fn from_node_unchecked(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Self {
-            Self(node)
-        }
-    }
-    #[doc = concat!("Typed node `", "struct", "`")]
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[allow(non_camel_case_types)]
-    pub struct Struct<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
-    #[automatically_derived]
-    impl<'tree> Struct<'tree> {}
-    #[automatically_derived]
-    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
-    for Struct<'tree> {
-        type Error = type_sitter_lib::IncorrectKind<'tree>;
-        #[inline]
-        fn try_from(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
-            if node.kind() == "struct" {
-                Ok(Self(node))
-            } else {
-                Err(type_sitter_lib::IncorrectKind {
-                    node,
-                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                })
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for Struct<'tree> {
-        const KIND: &'static str = "struct";
-        #[inline]
-        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &self.0
-        }
-        #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &mut self.0
-        }
-        #[inline]
-        unsafe fn from_node_unchecked(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Self {
-            Self(node)
-        }
-    }
-    #[doc = concat!("Typed node `", "trait", "`")]
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[allow(non_camel_case_types)]
-    pub struct Trait<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
-    #[automatically_derived]
-    impl<'tree> Trait<'tree> {}
-    #[automatically_derived]
-    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
-    for Trait<'tree> {
-        type Error = type_sitter_lib::IncorrectKind<'tree>;
-        #[inline]
-        fn try_from(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
-            if node.kind() == "trait" {
-                Ok(Self(node))
-            } else {
-                Err(type_sitter_lib::IncorrectKind {
-                    node,
-                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                })
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for Trait<'tree> {
-        const KIND: &'static str = "trait";
-        #[inline]
-        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &self.0
-        }
-        #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &mut self.0
-        }
-        #[inline]
-        unsafe fn from_node_unchecked(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Self {
-            Self(node)
-        }
-    }
-    #[doc = concat!("Typed node `", "true", "`")]
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[allow(non_camel_case_types)]
-    pub struct True<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
-    #[automatically_derived]
-    impl<'tree> True<'tree> {}
-    #[automatically_derived]
-    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
-    for True<'tree> {
-        type Error = type_sitter_lib::IncorrectKind<'tree>;
-        #[inline]
-        fn try_from(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
-            if node.kind() == "true" {
-                Ok(Self(node))
-            } else {
-                Err(type_sitter_lib::IncorrectKind {
-                    node,
-                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                })
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for True<'tree> {
-        const KIND: &'static str = "true";
-        #[inline]
-        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &self.0
-        }
-        #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &mut self.0
-        }
-        #[inline]
-        unsafe fn from_node_unchecked(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Self {
-            Self(node)
-        }
-    }
-    #[doc = concat!("Typed node `", "tt", "`")]
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[allow(non_camel_case_types)]
-    pub struct Tt<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
-    #[automatically_derived]
-    impl<'tree> Tt<'tree> {}
-    #[automatically_derived]
-    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
-    for Tt<'tree> {
-        type Error = type_sitter_lib::IncorrectKind<'tree>;
-        #[inline]
-        fn try_from(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
-            if node.kind() == "tt" {
-                Ok(Self(node))
-            } else {
-                Err(type_sitter_lib::IncorrectKind {
-                    node,
-                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                })
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for Tt<'tree> {
-        const KIND: &'static str = "tt";
-        #[inline]
-        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &self.0
-        }
-        #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &mut self.0
-        }
-        #[inline]
-        unsafe fn from_node_unchecked(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Self {
-            Self(node)
-        }
-    }
-    #[doc = concat!("Typed node `", "ty", "`")]
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[allow(non_camel_case_types)]
-    pub struct Ty<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
-    #[automatically_derived]
-    impl<'tree> Ty<'tree> {}
-    #[automatically_derived]
-    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
-    for Ty<'tree> {
-        type Error = type_sitter_lib::IncorrectKind<'tree>;
-        #[inline]
-        fn try_from(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
-            if node.kind() == "ty" {
-                Ok(Self(node))
-            } else {
-                Err(type_sitter_lib::IncorrectKind {
-                    node,
-                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                })
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for Ty<'tree> {
-        const KIND: &'static str = "ty";
-        #[inline]
-        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &self.0
-        }
-        #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &mut self.0
-        }
-        #[inline]
-        unsafe fn from_node_unchecked(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Self {
-            Self(node)
-        }
-    }
-    #[doc = concat!("Typed node `", "type", "`")]
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[allow(non_camel_case_types)]
-    pub struct Type<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
-    #[automatically_derived]
-    impl<'tree> Type<'tree> {}
-    #[automatically_derived]
-    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
-    for Type<'tree> {
-        type Error = type_sitter_lib::IncorrectKind<'tree>;
-        #[inline]
-        fn try_from(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
-            if node.kind() == "type" {
-                Ok(Self(node))
-            } else {
-                Err(type_sitter_lib::IncorrectKind {
-                    node,
-                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                })
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for Type<'tree> {
-        const KIND: &'static str = "type";
-        #[inline]
-        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &self.0
-        }
-        #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &mut self.0
-        }
-        #[inline]
-        unsafe fn from_node_unchecked(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Self {
-            Self(node)
-        }
-    }
-    #[doc = concat!("Typed node `", "union", "`")]
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[allow(non_camel_case_types)]
-    pub struct Union<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
-    #[automatically_derived]
-    impl<'tree> Union<'tree> {}
-    #[automatically_derived]
-    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
-    for Union<'tree> {
-        type Error = type_sitter_lib::IncorrectKind<'tree>;
-        #[inline]
-        fn try_from(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
-            if node.kind() == "union" {
-                Ok(Self(node))
-            } else {
-                Err(type_sitter_lib::IncorrectKind {
-                    node,
-                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                })
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for Union<'tree> {
-        const KIND: &'static str = "union";
-        #[inline]
-        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &self.0
-        }
-        #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &mut self.0
-        }
-        #[inline]
-        unsafe fn from_node_unchecked(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Self {
-            Self(node)
-        }
-    }
-    #[doc = concat!("Typed node `", "unsafe", "`")]
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[allow(non_camel_case_types)]
-    pub struct Unsafe<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
-    #[automatically_derived]
-    impl<'tree> Unsafe<'tree> {}
-    #[automatically_derived]
-    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
-    for Unsafe<'tree> {
-        type Error = type_sitter_lib::IncorrectKind<'tree>;
-        #[inline]
-        fn try_from(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
-            if node.kind() == "unsafe" {
-                Ok(Self(node))
-            } else {
-                Err(type_sitter_lib::IncorrectKind {
-                    node,
-                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                })
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for Unsafe<'tree> {
-        const KIND: &'static str = "unsafe";
-        #[inline]
-        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &self.0
-        }
-        #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &mut self.0
-        }
-        #[inline]
-        unsafe fn from_node_unchecked(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Self {
-            Self(node)
-        }
-    }
-    #[doc = concat!("Typed node `", "use", "`")]
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[allow(non_camel_case_types)]
-    pub struct Use<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
-    #[automatically_derived]
-    impl<'tree> Use<'tree> {}
-    #[automatically_derived]
-    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
-    for Use<'tree> {
-        type Error = type_sitter_lib::IncorrectKind<'tree>;
-        #[inline]
-        fn try_from(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
-            if node.kind() == "use" {
-                Ok(Self(node))
-            } else {
-                Err(type_sitter_lib::IncorrectKind {
-                    node,
-                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                })
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for Use<'tree> {
-        const KIND: &'static str = "use";
-        #[inline]
-        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &self.0
-        }
-        #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &mut self.0
-        }
-        #[inline]
-        unsafe fn from_node_unchecked(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Self {
-            Self(node)
-        }
-    }
-    #[doc = concat!("Typed node `", "vis", "`")]
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[allow(non_camel_case_types)]
-    pub struct Vis<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
-    #[automatically_derived]
-    impl<'tree> Vis<'tree> {}
-    #[automatically_derived]
-    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
-    for Vis<'tree> {
-        type Error = type_sitter_lib::IncorrectKind<'tree>;
-        #[inline]
-        fn try_from(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
-            if node.kind() == "vis" {
-                Ok(Self(node))
-            } else {
-                Err(type_sitter_lib::IncorrectKind {
-                    node,
-                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                })
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for Vis<'tree> {
-        const KIND: &'static str = "vis";
-        #[inline]
-        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &self.0
-        }
-        #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &mut self.0
-        }
-        #[inline]
-        unsafe fn from_node_unchecked(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Self {
-            Self(node)
-        }
-    }
-    #[doc = concat!("Typed node `", "where", "`")]
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[allow(non_camel_case_types)]
-    pub struct Where<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
-    #[automatically_derived]
-    impl<'tree> Where<'tree> {}
-    #[automatically_derived]
-    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
-    for Where<'tree> {
-        type Error = type_sitter_lib::IncorrectKind<'tree>;
-        #[inline]
-        fn try_from(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
-            if node.kind() == "where" {
-                Ok(Self(node))
-            } else {
-                Err(type_sitter_lib::IncorrectKind {
-                    node,
-                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                })
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for Where<'tree> {
-        const KIND: &'static str = "where";
-        #[inline]
-        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &self.0
-        }
-        #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &mut self.0
-        }
-        #[inline]
-        unsafe fn from_node_unchecked(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Self {
-            Self(node)
-        }
-    }
-    #[doc = concat!("Typed node `", "while", "`")]
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[allow(non_camel_case_types)]
-    pub struct While<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
-    #[automatically_derived]
-    impl<'tree> While<'tree> {}
-    #[automatically_derived]
-    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
-    for While<'tree> {
-        type Error = type_sitter_lib::IncorrectKind<'tree>;
-        #[inline]
-        fn try_from(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
-            if node.kind() == "while" {
-                Ok(Self(node))
-            } else {
-                Err(type_sitter_lib::IncorrectKind {
-                    node,
-                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                })
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for While<'tree> {
-        const KIND: &'static str = "while";
-        #[inline]
-        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &self.0
-        }
-        #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
-            &mut self.0
-        }
-        #[inline]
-        unsafe fn from_node_unchecked(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Self {
-            Self(node)
-        }
-    }
-    #[doc = concat!("Typed node `", "yield", "`")]
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[allow(non_camel_case_types)]
-    pub struct Yield<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
-    #[automatically_derived]
-    impl<'tree> Yield<'tree> {}
-    #[automatically_derived]
-    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
-    for Yield<'tree> {
-        type Error = type_sitter_lib::IncorrectKind<'tree>;
-        #[inline]
-        fn try_from(
-            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
-            if node.kind() == "yield" {
-                Ok(Self(node))
-            } else {
-                Err(type_sitter_lib::IncorrectKind {
-                    node,
-                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                })
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for Yield<'tree> {
-        const KIND: &'static str = "yield";
         #[inline]
         fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
@@ -19408,24 +19412,24 @@ pub mod anon_unions {
     pub enum NotEq_Mod_And_AndAnd_Mul_Add_Sub_Div_Lt_LtLt_LtEq_EqEq_Gt_GtEq_GtGt_BitXor_Or_OrOr<
         'tree,
     > {
-        NotEq(unnamed::NotEq<'tree>),
-        Mod(unnamed::Mod<'tree>),
-        And(unnamed::And<'tree>),
-        AndAnd(unnamed::AndAnd<'tree>),
-        Mul(unnamed::Mul<'tree>),
-        Add(unnamed::Add<'tree>),
-        Sub(unnamed::Sub<'tree>),
-        Div(unnamed::Div<'tree>),
-        Lt(unnamed::Lt<'tree>),
-        LtLt(unnamed::LtLt<'tree>),
-        LtEq(unnamed::LtEq<'tree>),
-        EqEq(unnamed::EqEq<'tree>),
-        Gt(unnamed::Gt<'tree>),
-        GtEq(unnamed::GtEq<'tree>),
-        GtGt(unnamed::GtGt<'tree>),
-        BitXor(unnamed::BitXor<'tree>),
-        Or(unnamed::Or<'tree>),
-        OrOr(unnamed::OrOr<'tree>),
+        NotEq(symbols::NotEq<'tree>),
+        Mod(symbols::Mod<'tree>),
+        And(symbols::And<'tree>),
+        AndAnd(symbols::AndAnd<'tree>),
+        Mul(symbols::Mul<'tree>),
+        Add(symbols::Add<'tree>),
+        Sub(symbols::Sub<'tree>),
+        Div(symbols::Div<'tree>),
+        Lt(symbols::Lt<'tree>),
+        LtLt(symbols::LtLt<'tree>),
+        LtEq(symbols::LtEq<'tree>),
+        EqEq(symbols::EqEq<'tree>),
+        Gt(symbols::Gt<'tree>),
+        GtEq(symbols::GtEq<'tree>),
+        GtGt(symbols::GtGt<'tree>),
+        BitXor(symbols::BitXor<'tree>),
+        Or(symbols::Or<'tree>),
+        OrOr(symbols::OrOr<'tree>),
     }
     #[automatically_derived]
     impl<
@@ -19438,7 +19442,7 @@ pub mod anon_unions {
         )]
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn not_eq(self) -> Option<unnamed::NotEq<'tree>> {
+        pub fn not_eq(self) -> Option<symbols::NotEq<'tree>> {
             match self {
                 Self::NotEq(x) => Some(x),
                 _ => None,
@@ -19449,7 +19453,7 @@ pub mod anon_unions {
         )]
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn r#mod(self) -> Option<unnamed::Mod<'tree>> {
+        pub fn r#mod(self) -> Option<symbols::Mod<'tree>> {
             match self {
                 Self::Mod(x) => Some(x),
                 _ => None,
@@ -19460,7 +19464,7 @@ pub mod anon_unions {
         )]
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn and(self) -> Option<unnamed::And<'tree>> {
+        pub fn and(self) -> Option<symbols::And<'tree>> {
             match self {
                 Self::And(x) => Some(x),
                 _ => None,
@@ -19471,7 +19475,7 @@ pub mod anon_unions {
         )]
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn and_and(self) -> Option<unnamed::AndAnd<'tree>> {
+        pub fn and_and(self) -> Option<symbols::AndAnd<'tree>> {
             match self {
                 Self::AndAnd(x) => Some(x),
                 _ => None,
@@ -19482,7 +19486,7 @@ pub mod anon_unions {
         )]
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn mul(self) -> Option<unnamed::Mul<'tree>> {
+        pub fn mul(self) -> Option<symbols::Mul<'tree>> {
             match self {
                 Self::Mul(x) => Some(x),
                 _ => None,
@@ -19493,7 +19497,7 @@ pub mod anon_unions {
         )]
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn add(self) -> Option<unnamed::Add<'tree>> {
+        pub fn add(self) -> Option<symbols::Add<'tree>> {
             match self {
                 Self::Add(x) => Some(x),
                 _ => None,
@@ -19504,7 +19508,7 @@ pub mod anon_unions {
         )]
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn sub(self) -> Option<unnamed::Sub<'tree>> {
+        pub fn sub(self) -> Option<symbols::Sub<'tree>> {
             match self {
                 Self::Sub(x) => Some(x),
                 _ => None,
@@ -19515,7 +19519,7 @@ pub mod anon_unions {
         )]
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn div(self) -> Option<unnamed::Div<'tree>> {
+        pub fn div(self) -> Option<symbols::Div<'tree>> {
             match self {
                 Self::Div(x) => Some(x),
                 _ => None,
@@ -19526,7 +19530,7 @@ pub mod anon_unions {
         )]
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn lt(self) -> Option<unnamed::Lt<'tree>> {
+        pub fn lt(self) -> Option<symbols::Lt<'tree>> {
             match self {
                 Self::Lt(x) => Some(x),
                 _ => None,
@@ -19537,7 +19541,7 @@ pub mod anon_unions {
         )]
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn lt_lt(self) -> Option<unnamed::LtLt<'tree>> {
+        pub fn lt_lt(self) -> Option<symbols::LtLt<'tree>> {
             match self {
                 Self::LtLt(x) => Some(x),
                 _ => None,
@@ -19548,7 +19552,7 @@ pub mod anon_unions {
         )]
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn lt_eq(self) -> Option<unnamed::LtEq<'tree>> {
+        pub fn lt_eq(self) -> Option<symbols::LtEq<'tree>> {
             match self {
                 Self::LtEq(x) => Some(x),
                 _ => None,
@@ -19559,7 +19563,7 @@ pub mod anon_unions {
         )]
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn eq_eq(self) -> Option<unnamed::EqEq<'tree>> {
+        pub fn eq_eq(self) -> Option<symbols::EqEq<'tree>> {
             match self {
                 Self::EqEq(x) => Some(x),
                 _ => None,
@@ -19570,7 +19574,7 @@ pub mod anon_unions {
         )]
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn gt(self) -> Option<unnamed::Gt<'tree>> {
+        pub fn gt(self) -> Option<symbols::Gt<'tree>> {
             match self {
                 Self::Gt(x) => Some(x),
                 _ => None,
@@ -19581,7 +19585,7 @@ pub mod anon_unions {
         )]
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn gt_eq(self) -> Option<unnamed::GtEq<'tree>> {
+        pub fn gt_eq(self) -> Option<symbols::GtEq<'tree>> {
             match self {
                 Self::GtEq(x) => Some(x),
                 _ => None,
@@ -19592,7 +19596,7 @@ pub mod anon_unions {
         )]
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn gt_gt(self) -> Option<unnamed::GtGt<'tree>> {
+        pub fn gt_gt(self) -> Option<symbols::GtGt<'tree>> {
             match self {
                 Self::GtGt(x) => Some(x),
                 _ => None,
@@ -19603,7 +19607,7 @@ pub mod anon_unions {
         )]
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn bit_xor(self) -> Option<unnamed::BitXor<'tree>> {
+        pub fn bit_xor(self) -> Option<symbols::BitXor<'tree>> {
             match self {
                 Self::BitXor(x) => Some(x),
                 _ => None,
@@ -19614,7 +19618,7 @@ pub mod anon_unions {
         )]
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn or(self) -> Option<unnamed::Or<'tree>> {
+        pub fn or(self) -> Option<symbols::Or<'tree>> {
             match self {
                 Self::Or(x) => Some(x),
                 _ => None,
@@ -19625,7 +19629,7 @@ pub mod anon_unions {
         )]
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn or_or(self) -> Option<unnamed::OrOr<'tree>> {
+        pub fn or_or(self) -> Option<symbols::OrOr<'tree>> {
             match self {
                 Self::OrOr(x) => Some(x),
                 _ => None,
@@ -19646,7 +19650,7 @@ pub mod anon_unions {
                 "!=" => {
                     Ok(unsafe {
                         Self::NotEq(
-                            <unnamed::NotEq<
+                            <symbols::NotEq<
                                 'tree,
                             > as type_sitter_lib::TypedNode<
                                 'tree,
@@ -19657,7 +19661,7 @@ pub mod anon_unions {
                 "%" => {
                     Ok(unsafe {
                         Self::Mod(
-                            <unnamed::Mod<
+                            <symbols::Mod<
                                 'tree,
                             > as type_sitter_lib::TypedNode<
                                 'tree,
@@ -19668,7 +19672,7 @@ pub mod anon_unions {
                 "&" => {
                     Ok(unsafe {
                         Self::And(
-                            <unnamed::And<
+                            <symbols::And<
                                 'tree,
                             > as type_sitter_lib::TypedNode<
                                 'tree,
@@ -19679,7 +19683,7 @@ pub mod anon_unions {
                 "&&" => {
                     Ok(unsafe {
                         Self::AndAnd(
-                            <unnamed::AndAnd<
+                            <symbols::AndAnd<
                                 'tree,
                             > as type_sitter_lib::TypedNode<
                                 'tree,
@@ -19690,7 +19694,7 @@ pub mod anon_unions {
                 "*" => {
                     Ok(unsafe {
                         Self::Mul(
-                            <unnamed::Mul<
+                            <symbols::Mul<
                                 'tree,
                             > as type_sitter_lib::TypedNode<
                                 'tree,
@@ -19701,7 +19705,7 @@ pub mod anon_unions {
                 "+" => {
                     Ok(unsafe {
                         Self::Add(
-                            <unnamed::Add<
+                            <symbols::Add<
                                 'tree,
                             > as type_sitter_lib::TypedNode<
                                 'tree,
@@ -19712,7 +19716,7 @@ pub mod anon_unions {
                 "-" => {
                     Ok(unsafe {
                         Self::Sub(
-                            <unnamed::Sub<
+                            <symbols::Sub<
                                 'tree,
                             > as type_sitter_lib::TypedNode<
                                 'tree,
@@ -19723,7 +19727,7 @@ pub mod anon_unions {
                 "/" => {
                     Ok(unsafe {
                         Self::Div(
-                            <unnamed::Div<
+                            <symbols::Div<
                                 'tree,
                             > as type_sitter_lib::TypedNode<
                                 'tree,
@@ -19734,7 +19738,7 @@ pub mod anon_unions {
                 "<" => {
                     Ok(unsafe {
                         Self::Lt(
-                            <unnamed::Lt<
+                            <symbols::Lt<
                                 'tree,
                             > as type_sitter_lib::TypedNode<
                                 'tree,
@@ -19745,7 +19749,7 @@ pub mod anon_unions {
                 "<<" => {
                     Ok(unsafe {
                         Self::LtLt(
-                            <unnamed::LtLt<
+                            <symbols::LtLt<
                                 'tree,
                             > as type_sitter_lib::TypedNode<
                                 'tree,
@@ -19756,7 +19760,7 @@ pub mod anon_unions {
                 "<=" => {
                     Ok(unsafe {
                         Self::LtEq(
-                            <unnamed::LtEq<
+                            <symbols::LtEq<
                                 'tree,
                             > as type_sitter_lib::TypedNode<
                                 'tree,
@@ -19767,7 +19771,7 @@ pub mod anon_unions {
                 "==" => {
                     Ok(unsafe {
                         Self::EqEq(
-                            <unnamed::EqEq<
+                            <symbols::EqEq<
                                 'tree,
                             > as type_sitter_lib::TypedNode<
                                 'tree,
@@ -19778,7 +19782,7 @@ pub mod anon_unions {
                 ">" => {
                     Ok(unsafe {
                         Self::Gt(
-                            <unnamed::Gt<
+                            <symbols::Gt<
                                 'tree,
                             > as type_sitter_lib::TypedNode<
                                 'tree,
@@ -19789,7 +19793,7 @@ pub mod anon_unions {
                 ">=" => {
                     Ok(unsafe {
                         Self::GtEq(
-                            <unnamed::GtEq<
+                            <symbols::GtEq<
                                 'tree,
                             > as type_sitter_lib::TypedNode<
                                 'tree,
@@ -19800,7 +19804,7 @@ pub mod anon_unions {
                 ">>" => {
                     Ok(unsafe {
                         Self::GtGt(
-                            <unnamed::GtGt<
+                            <symbols::GtGt<
                                 'tree,
                             > as type_sitter_lib::TypedNode<
                                 'tree,
@@ -19811,7 +19815,7 @@ pub mod anon_unions {
                 "^" => {
                     Ok(unsafe {
                         Self::BitXor(
-                            <unnamed::BitXor<
+                            <symbols::BitXor<
                                 'tree,
                             > as type_sitter_lib::TypedNode<
                                 'tree,
@@ -19822,7 +19826,7 @@ pub mod anon_unions {
                 "|" => {
                     Ok(unsafe {
                         Self::Or(
-                            <unnamed::Or<
+                            <symbols::Or<
                                 'tree,
                             > as type_sitter_lib::TypedNode<
                                 'tree,
@@ -19833,7 +19837,7 @@ pub mod anon_unions {
                 "||" => {
                     Ok(unsafe {
                         Self::OrOr(
-                            <unnamed::OrOr<
+                            <symbols::OrOr<
                                 'tree,
                             > as type_sitter_lib::TypedNode<
                                 'tree,
@@ -21023,16 +21027,16 @@ pub mod anon_unions {
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum ModEq_AndEq_MulEq_AddEq_SubEq_DivEq_LtLtEq_GtGtEq_BitXorEq_OrEq<'tree> {
-        ModEq(unnamed::ModEq<'tree>),
-        AndEq(unnamed::AndEq<'tree>),
-        MulEq(unnamed::MulEq<'tree>),
-        AddEq(unnamed::AddEq<'tree>),
-        SubEq(unnamed::SubEq<'tree>),
-        DivEq(unnamed::DivEq<'tree>),
-        LtLtEq(unnamed::LtLtEq<'tree>),
-        GtGtEq(unnamed::GtGtEq<'tree>),
-        BitXorEq(unnamed::BitXorEq<'tree>),
-        OrEq(unnamed::OrEq<'tree>),
+        ModEq(symbols::ModEq<'tree>),
+        AndEq(symbols::AndEq<'tree>),
+        MulEq(symbols::MulEq<'tree>),
+        AddEq(symbols::AddEq<'tree>),
+        SubEq(symbols::SubEq<'tree>),
+        DivEq(symbols::DivEq<'tree>),
+        LtLtEq(symbols::LtLtEq<'tree>),
+        GtGtEq(symbols::GtGtEq<'tree>),
+        BitXorEq(symbols::BitXorEq<'tree>),
+        OrEq(symbols::OrEq<'tree>),
     }
     #[automatically_derived]
     impl<'tree> ModEq_AndEq_MulEq_AddEq_SubEq_DivEq_LtLtEq_GtGtEq_BitXorEq_OrEq<'tree> {
@@ -21041,7 +21045,7 @@ pub mod anon_unions {
         )]
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn mod_eq(self) -> Option<unnamed::ModEq<'tree>> {
+        pub fn mod_eq(self) -> Option<symbols::ModEq<'tree>> {
             match self {
                 Self::ModEq(x) => Some(x),
                 _ => None,
@@ -21052,7 +21056,7 @@ pub mod anon_unions {
         )]
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn and_eq(self) -> Option<unnamed::AndEq<'tree>> {
+        pub fn and_eq(self) -> Option<symbols::AndEq<'tree>> {
             match self {
                 Self::AndEq(x) => Some(x),
                 _ => None,
@@ -21063,7 +21067,7 @@ pub mod anon_unions {
         )]
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn mul_eq(self) -> Option<unnamed::MulEq<'tree>> {
+        pub fn mul_eq(self) -> Option<symbols::MulEq<'tree>> {
             match self {
                 Self::MulEq(x) => Some(x),
                 _ => None,
@@ -21074,7 +21078,7 @@ pub mod anon_unions {
         )]
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn add_eq(self) -> Option<unnamed::AddEq<'tree>> {
+        pub fn add_eq(self) -> Option<symbols::AddEq<'tree>> {
             match self {
                 Self::AddEq(x) => Some(x),
                 _ => None,
@@ -21085,7 +21089,7 @@ pub mod anon_unions {
         )]
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn sub_eq(self) -> Option<unnamed::SubEq<'tree>> {
+        pub fn sub_eq(self) -> Option<symbols::SubEq<'tree>> {
             match self {
                 Self::SubEq(x) => Some(x),
                 _ => None,
@@ -21096,7 +21100,7 @@ pub mod anon_unions {
         )]
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn div_eq(self) -> Option<unnamed::DivEq<'tree>> {
+        pub fn div_eq(self) -> Option<symbols::DivEq<'tree>> {
             match self {
                 Self::DivEq(x) => Some(x),
                 _ => None,
@@ -21107,7 +21111,7 @@ pub mod anon_unions {
         )]
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn lt_lt_eq(self) -> Option<unnamed::LtLtEq<'tree>> {
+        pub fn lt_lt_eq(self) -> Option<symbols::LtLtEq<'tree>> {
             match self {
                 Self::LtLtEq(x) => Some(x),
                 _ => None,
@@ -21118,7 +21122,7 @@ pub mod anon_unions {
         )]
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn gt_gt_eq(self) -> Option<unnamed::GtGtEq<'tree>> {
+        pub fn gt_gt_eq(self) -> Option<symbols::GtGtEq<'tree>> {
             match self {
                 Self::GtGtEq(x) => Some(x),
                 _ => None,
@@ -21129,7 +21133,7 @@ pub mod anon_unions {
         )]
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn bit_xor_eq(self) -> Option<unnamed::BitXorEq<'tree>> {
+        pub fn bit_xor_eq(self) -> Option<symbols::BitXorEq<'tree>> {
             match self {
                 Self::BitXorEq(x) => Some(x),
                 _ => None,
@@ -21140,7 +21144,7 @@ pub mod anon_unions {
         )]
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn or_eq(self) -> Option<unnamed::OrEq<'tree>> {
+        pub fn or_eq(self) -> Option<symbols::OrEq<'tree>> {
             match self {
                 Self::OrEq(x) => Some(x),
                 _ => None,
@@ -21159,7 +21163,7 @@ pub mod anon_unions {
                 "%=" => {
                     Ok(unsafe {
                         Self::ModEq(
-                            <unnamed::ModEq<
+                            <symbols::ModEq<
                                 'tree,
                             > as type_sitter_lib::TypedNode<
                                 'tree,
@@ -21170,7 +21174,7 @@ pub mod anon_unions {
                 "&=" => {
                     Ok(unsafe {
                         Self::AndEq(
-                            <unnamed::AndEq<
+                            <symbols::AndEq<
                                 'tree,
                             > as type_sitter_lib::TypedNode<
                                 'tree,
@@ -21181,7 +21185,7 @@ pub mod anon_unions {
                 "*=" => {
                     Ok(unsafe {
                         Self::MulEq(
-                            <unnamed::MulEq<
+                            <symbols::MulEq<
                                 'tree,
                             > as type_sitter_lib::TypedNode<
                                 'tree,
@@ -21192,7 +21196,7 @@ pub mod anon_unions {
                 "+=" => {
                     Ok(unsafe {
                         Self::AddEq(
-                            <unnamed::AddEq<
+                            <symbols::AddEq<
                                 'tree,
                             > as type_sitter_lib::TypedNode<
                                 'tree,
@@ -21203,7 +21207,7 @@ pub mod anon_unions {
                 "-=" => {
                     Ok(unsafe {
                         Self::SubEq(
-                            <unnamed::SubEq<
+                            <symbols::SubEq<
                                 'tree,
                             > as type_sitter_lib::TypedNode<
                                 'tree,
@@ -21214,7 +21218,7 @@ pub mod anon_unions {
                 "/=" => {
                     Ok(unsafe {
                         Self::DivEq(
-                            <unnamed::DivEq<
+                            <symbols::DivEq<
                                 'tree,
                             > as type_sitter_lib::TypedNode<
                                 'tree,
@@ -21225,7 +21229,7 @@ pub mod anon_unions {
                 "<<=" => {
                     Ok(unsafe {
                         Self::LtLtEq(
-                            <unnamed::LtLtEq<
+                            <symbols::LtLtEq<
                                 'tree,
                             > as type_sitter_lib::TypedNode<
                                 'tree,
@@ -21236,7 +21240,7 @@ pub mod anon_unions {
                 ">>=" => {
                     Ok(unsafe {
                         Self::GtGtEq(
-                            <unnamed::GtGtEq<
+                            <symbols::GtGtEq<
                                 'tree,
                             > as type_sitter_lib::TypedNode<
                                 'tree,
@@ -21247,7 +21251,7 @@ pub mod anon_unions {
                 "^=" => {
                     Ok(unsafe {
                         Self::BitXorEq(
-                            <unnamed::BitXorEq<
+                            <symbols::BitXorEq<
                                 'tree,
                             > as type_sitter_lib::TypedNode<
                                 'tree,
@@ -21258,7 +21262,7 @@ pub mod anon_unions {
                 "|=" => {
                     Ok(unsafe {
                         Self::OrEq(
-                            <unnamed::OrEq<
+                            <symbols::OrEq<
                                 'tree,
                             > as type_sitter_lib::TypedNode<
                                 'tree,
