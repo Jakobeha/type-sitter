@@ -2,6 +2,14 @@
 
 ***Note:** type-sitter is still in the very early stages and as such the API is subject to change.*
 
+<!-- [![Build status](https://github.com/Jakobeha/type-sitter/workflows/ci/badge.svg)](https://github.com/Jakobeha/type-sitter/actions) -->
+[![Crates.io](https://img.shields.io/crates/v/type-sitter-cli.svg?label=type-sitter-cli)](https://crates.io/crates/type-sitter-cli)
+[![Crates.io](https://img.shields.io/crates/v/type-sitter-cli.svg?label=type-sitter-proc)](https://crates.io/crates/type-sitter-proc)
+[![Crates.io](https://img.shields.io/crates/v/type-sitter-cli.svg?label=type-sitter-gen)](https://crates.io/crates/type-sitter-gen)
+[![Docs.rs](https://docs.rs/type-sitter-gen/badge.svg)](https://docs.rs/type-sitter-gen)
+[![Crates.io](https://img.shields.io/crates/v/type-sitter-cli.svg?label=type-sitter-lib)](https://crates.io/crates/type-sitter-lib)
+[![Docs.rs](https://docs.rs/type-sitter-lib/badge.svg)](https://docs.rs/type-sitter-lib)
+
 ## Overview
 
 type-sitter is a library, CLI tool, and procedural-macro which generates type-safe wrappers for tree-sitter nodes from a tree-sitter grammar. These wrappers contain methods to access the node's fields and children, and nodes with subtypes are represented as `enum`s. The wrappers also encourage good practices by explicitly handling "error" and "extra" nodes, while also providing convenience methods like variant selectors and `flatten` to ease some of the verbosity.
