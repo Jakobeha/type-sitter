@@ -1,7 +1,7 @@
 use convert_case::{Casing, Case};
 use std::fmt::Write;
 use join_lazy_fmt::Join;
-use crate::types::{AnonUnionId, NodeModule, NodeName};
+use crate::node_types::types::{AnonUnionId, NodeModule, NodeName};
 
 const PUNCTUATION_TABLE: [(char, &'static str); 35] = [
     ('&', "And"), ('|', "Or"), ('!', "Not"), ('=', "Eq"), ('<', "Lt"),

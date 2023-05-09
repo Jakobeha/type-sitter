@@ -1,5 +1,6 @@
 use indexmap::IndexMap;
 use proc_macro2::TokenStream;
+use crate::node_types::NodeModule;
 use crate::types::{AnonUnionId, NodeModule};
 
 /// Generated AST tokens from calling [NodeType::print] on a single instance or each element of a

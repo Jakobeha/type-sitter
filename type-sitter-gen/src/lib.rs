@@ -9,134 +9,16 @@ use mk_syntax::ident;
 use quote::{quote, ToTokens};
 use syn::parse_quote;
 
-use crate::deserialize_json_array_as_stream::iter_json_array;
 pub use crate::error::Error;
-use crate::generated_tokens::GeneratedNodeTokens;
-use crate::types::NodeType;
+pub use crate::node_types::generate_nodes;
+pub use crate::queries::{generate_queries, generate_queries_from_dir, generate_query_from_file, nodes};
 
-/// From https://github.com/serde-rs/json/issues/404#issuecomment-892957228
-mod deserialize_json_array_as_stream;
+
 mod error;
-mod types;
-mod print;
 mod names;
+mod node_types;
 mod mk_syntax;
-mod generated_tokens;
-
-/// Generate source code (tokens) for typed AST node wrappers.
-///
-/// # Parameters
-/// - `path`: Path to the `node-types.json` file of the language.
-/// - `tree_sitter`: Path to the `tree_sitter` crate. Typically either
-///   [type_sitter_gen::tree_sitter] or [type_sitter_gen::type_sitter_lib_wrapper], but you can
-///   provide a path to your own wrapper as well.
-///
-/// # Example
-///
-/// ```rust
-/// use type_sitter_gen::{generate_nodes, tree_sitter};
-/// use syn::parse_quote;
-///
-/// fn main() {
-///     println!("{}", generate_nodes("../vendor/tree-sitter-rust/src/node-types.json", &tree_sitter()).unwrap());
-/// }
-/// ```
-pub fn generate_nodes(path: impl AsRef<Path>, tree_sitter: &syn::Path) -> Result<TokenStream, Error> {
-    let path = path.as_ref();
-    let node_types = iter_json_array::<NodeType, _>(BufReader::new(File::open(path)?));
-    node_types
-        .map(|node_type| node_type.map(|x| x.print(tree_sitter)).map_err(Error::from))
-        .collect::<Result<GeneratedNodeTokens, _>>()
-        .map(GeneratedNodeTokens::collapse)
-}
-
-/// Generate source code (tokens) of wrappers for queries.
-///
-/// # Parameters
-/// - `path`: Path to the queries. Must point to a `.scm` or directory of `.scm` files. If a
-///   directory, this function will generate submodules for each `.scm`.
-/// - `tree_sitter`: Path to the `tree_sitter` crate. Typically either
-///   [type_sitter_gen::tree_sitter] or [type_sitter_gen::type_sitter_lib_wrapper], but you can
-///   provide a path to your own wrapper as well.
-///
-/// # Example
-///
-/// ```no_run
-/// use type_sitter_gen::{generate_queries, tree_sitter};
-///
-/// fn main() {
-///     println!("{}", generate_queries("vendor/tree-sitter-typescript/queries/tags.scm", &tree_sitter()).unwrap());
-///     println!("{}", generate_queries("vendor/tree-sitter-rust/queries", &tree_sitter()).unwrap());
-/// }
-/// ```
-pub fn generate_queries(path: impl AsRef<Path>, tree_sitter: &syn::Path) -> Result<TokenStream, Error> {
-    let path = path.as_ref();
-    if path.is_dir() {
-        generate_queries_from_dir(path, tree_sitter)
-    } else {
-        generate_queries_from_file(path, tree_sitter)
-    }
-}
-
-/// Generate source code (tokens) of wrappers for queries.
-///
-/// # Parameters
-/// - `path`: Path to the queries. Must point to directory of `.scm` files. This function will
-///   generate submodules for each `.scm`.
-/// - `tree_sitter`: Path to the `tree_sitter` crate. Typically either
-///   [type_sitter_gen::tree_sitter] or [type_sitter_gen::type_sitter_lib_wrapper], but you can
-///   provide a path to your own wrapper as well.
-///
-/// # Example
-///
-/// ```no_run
-/// use type_sitter_gen::{generate_queries_from_dir, tree_sitter};
-///
-/// fn main() {
-///     println!("{}", generate_queries_from_dir("vendor/tree-sitter-rust/queries", &tree_sitter()).unwrap());
-/// }
-/// ```
-pub fn generate_queries_from_dir(path: impl AsRef<Path>, tree_sitter: &syn::Path) -> Result<TokenStream, Error> {
-    let path = path.as_ref();
-    let mut queries = TokenStream::new();
-    for entry in std::fs::read_dir(path)? {
-        let entry = entry?;
-        let entry_path = entry.path();
-        if entry.metadata()?.is_dir() || has_extension(&entry_path, "scm") {
-            let entry_name = entry_path.file_stem().unwrap().to_string_lossy();
-            let entry_ident = ident!(&entry_name, "query filename");
-            let entry_code = generate_queries(entry_path, tree_sitter)?;
-            queries.extend(quote! {
-                pub mod #entry_ident {
-                    #entry_code
-                }
-            });
-        }
-    }
-    return Ok(queries);
-}
-
-/// Generate source code (tokens) of wrappers for queries.
-///
-/// # Parameters
-/// - `path`: Path to the queries. Must point to a `.scm` file.
-/// - `tree_sitter`: Path to the `tree_sitter` crate. Typically either
-///   [type_sitter_gen::tree_sitter] or [type_sitter_gen::type_sitter_lib_wrapper], but you can
-///   provide a path to your own wrapper as well.
-///
-/// # Example
-///
-/// ```no_run
-/// use type_sitter_gen::{generate_queries_from_file, tree_sitter};
-///
-/// fn main() {
-///     println!("{}", generate_queries_from_file("vendor/tree-sitter-typescript/queries/tags.scm", &tree_sitter()).unwrap());
-/// }
-/// ```
-pub fn generate_queries_from_file(path: impl AsRef<Path>, tree_sitter: &syn::Path) -> Result<TokenStream, Error> {
-    let path = path.as_ref();
-    todo!("generate queries from file (path = {}, tree_sitter = {})", path.display(), tree_sitter.to_token_stream())
-}
+mod queries;
 
 /// = `parse_quote!(tree_sitter)`. The default path to the `tree_sitter` crate.
 pub fn tree_sitter() -> syn::Path {
@@ -147,9 +29,4 @@ pub fn tree_sitter() -> syn::Path {
 /// convenience functions for tree-sitter nodes at the cost of worse performance.
 pub fn type_sitter_lib_wrapper() -> syn::Path {
     parse_quote!(type_sitter_lib::tree_sitter_wrapper)
-}
-
-/// Check if the path has the given extension
-fn has_extension(path: &Path, extension: &str) -> bool {
-    path.extension().and_then(|e| e.to_str()) == Some(extension)
 }
