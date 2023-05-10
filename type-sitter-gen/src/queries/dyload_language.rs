@@ -9,7 +9,7 @@ use libloading::Library;
 use tree_sitter::Language;
 use walkdir::WalkDir;
 use crate::Error;
-use crate::queries::has_extension;
+use crate::queries::{has_extension, language_name};
 
 lazy_static! {
     // We don't want to load the same library multiple times, and we also need to store the Library
@@ -33,11 +33,9 @@ pub fn dyload_language(path: impl AsRef<Path>) -> Result<Language, Error> {
 
 fn dyload_new_language(path: &Path) -> Result<(Library, Language), Error> {
     let dylib_path = dylib_path(path);
-    // e.g. tree-sitter-rust => { extern "C" fn tree_sitter_rust() -> Language ... }
-    let symbol_name = path.file_name()
-        .and_then(|s| s.to_str())
-        .ok_or(Error::UnknownTSLanguageSymbolName)?
-        .replace("-", "_");
+    // Symbol name = language name, and it has type fn() -> Language
+    //     e.g. tree-sitter-rust => { extern "C" fn tree_sitter_rust() -> Language ... }
+    let symbol_name = language_name(path);
     build_dylib_if_needed(path, &dylib_path)?;
     eprintln!("Dynamically loading {}...", symbol_name);
     // SAFETY: We are literally calling into arbitrary code, so...we can't rule out UB. However,

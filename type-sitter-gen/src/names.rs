@@ -49,8 +49,7 @@ impl NodeName {
             false => (false, &sexp_name[..]),
             true => (true, &sexp_name[1..])
         };
-        let rust_type_name = make_valid(&raw_sexp_name.from_case(Case::Snake).to_case(Case::Pascal));
-        let rust_method_name = make_valid2(rust_type_name.from_case(Case::Pascal).to_case(Case::Snake));
+        let (rust_type_name, rust_method_name) = sexp_name_to_rust_names(raw_sexp_name);
         let module = match is_named {
             false if sexp_name.contains(|c| PUNCTUATION_TABLE.iter().any(|(c2, _)| c == *c2)) => NodeModule::Symbols,
             false => NodeModule::Unnamed,
@@ -58,6 +57,13 @@ impl NodeName {
         };
         Self { sexp_name, rust_type_name, rust_method_name, is_implicit, module }
     }
+}
+
+/// Convert an s-expression to rust type and method identifier names
+pub fn sexp_name_to_rust_names(sexp_name: &str) -> (String, String) {
+    let rust_type_name = make_valid(&sexp_name.from_case(Case::Snake).to_case(Case::Pascal));
+    let rust_method_name = make_valid2(sexp_name.from_case(Case::Pascal).to_case(Case::Snake));
+    (rust_type_name, rust_method_name)
 }
 
 /// Replace punctuation with names (e.g. '&' -> 'And'), and prepend '_' if necessary, to make this

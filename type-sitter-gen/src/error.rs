@@ -15,6 +15,7 @@ pub enum Error {
     LinkDylibFailed { exit_status: ExitStatus },
     UnknownTSLanguageSymbolName,
     ParseQuery(QueryError),
+    IllegalIdentifier { type_desc: String, name: String }
 }
 
 impl Error {
@@ -70,6 +71,7 @@ impl Display for Error {
             Error::LinkDylibFailed { exit_status} => write!(f, "couldn't link tree-sitter language dylib: exit code {}", exit_status),
             Error::UnknownTSLanguageSymbolName => write!(f, "couldn't resolve tree-sitter language symbol name"),
             Error::ParseQuery(e) => write!(f, "Error parsing query: {}", e),
+            Error::IllegalIdentifier { type_desc, name } => write!(f, "illegal identifier ({}): `{}`", type_desc, name)
         }
     }
 }
@@ -87,6 +89,7 @@ impl std::error::Error for Error {
             Error::LinkDylibFailed { .. } => None,
             Error::UnknownTSLanguageSymbolName => None,
             Error::ParseQuery(e) => Some(e),
+            Error::IllegalIdentifier { .. } => None,
         }
     }
 }
