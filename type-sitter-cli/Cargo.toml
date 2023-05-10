@@ -15,3 +15,4 @@ thiserror = "1.0.40"
 type-sitter-gen = { path = "../type-sitter-gen", version = "0.2.0" }
 lazy_static = "1.4.0"
 rust-format = "0.3.4"
+syn = "2.0.15"

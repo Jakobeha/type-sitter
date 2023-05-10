@@ -1,18 +1,10 @@
 #![doc = include_str!("../README.md")]
 
-use std::fs::File;
-use std::io::BufReader;
-use std::path::Path;
-
-use proc_macro2::TokenStream;
-use mk_syntax::ident;
-use quote::{quote, ToTokens};
 use syn::parse_quote;
 
 pub use crate::error::Error;
 pub use crate::node_types::generate_nodes;
 pub use crate::queries::{generate_queries, generate_queries_from_dir, generate_query_from_file, nodes};
-
 
 mod error;
 mod names;

@@ -1,6 +1,5 @@
 use std::path::{Path, PathBuf};
 use std::fs::create_dir;
-use tree_sitter::Language;
 use type_sitter_gen::nodes;
 use crate::args::{Args, InOutPair, InputType};
 use crate::errors;
@@ -12,11 +11,11 @@ pub fn process(item: &InOutPair, args: &Args, tree_sitter: &syn::Path) -> errors
     let input_type = args.input_type
         .map_or_else(|| InputType::infer(&item.input), Ok)?;
     // Get language
-    let language_dir = args.language_dir
+    let language_dir = args.language_dir.clone()
         .or_else(|| input_type.infer_language_dir(&item.input));
     // Get output path
     let output_name = item.output.clone()
-        .or_else(|| language_dir.as_ref().map(|l| language_name(l).to_path_buf()))
+        .or_else(|| language_dir.as_ref().map(|l| PathBuf::from(language_name(l))))
         .ok_or(Error::CouldntInferOutputName)?;
     let mut output_path = args.output_dir.join(output_name);
     if !input_type.is_output_a_dir() {
@@ -42,11 +41,11 @@ fn do_process(
         }
         InputType::LanguageRoot => {
             create_dir(&output_path)?;
-            write(&output_path.join("mod.rs"), format!(r#"
-                //! Generated node and query wrappers for {}
-                pub mod nodes;
-                pub mod queries;
-            "#, language_name(input_path))).map_err(|e| e.nested("root"))?;
+            std::fs::write(&output_path.join("mod.rs"), format!(r#"
+//! Generated node and query wrappers for {}
+pub mod nodes;
+pub mod queries;
+            "#, language_name(input_path))).map_err(|e| Error::from(e).nested("root"))?;
             do_process(
                 &input_path.join("src/node-types.json"),
                 &output_path.join("nodes.rs"),

@@ -5,6 +5,7 @@ use std::iter::successors;
 use std::fs::DirEntry;
 use crate::Error;
 use crate::errors::InOutPairParseError;
+use crate::path_utils::has_extension;
 
 /// CLI arguments
 #[derive(Parser, Debug)]
@@ -38,6 +39,7 @@ pub struct Args {
 }
 
 /// Input path or input path / output path pair
+#[derive(Debug, Clone)]
 pub struct InOutPair {
     pub input: PathBuf,
     pub output: Option<PathBuf>,
@@ -55,14 +57,14 @@ pub enum InputType {
 
 impl InputType {
     pub fn infer(path: &Path) -> crate::errors::Result<Self> {
-        if crate::path_utils::has_extension(path, "json") {
+        if has_extension(path, "json") {
             Ok(Self::NodeTypes)
-        } else if crate::path_utils::has_extension(path, "scm") {
-            Ok(Self::QueryFile)
+        } else if has_extension(path, "scm") {
+            Ok(Self::Query)
         } else if path.is_dir() {
             let entries = Self::read_parent_dir(path, Error::IOInferringInputType)?.collect::<Vec<_>>();
-            if entries.iter().any(|e| crate::path_utils::has_extension(&e.path(), "scm")) {
-                Ok(Self::QueryFolder)
+            if entries.iter().any(|e| has_extension(&e.path(), "scm")) {
+                Ok(Self::Query)
             } else if entries.iter().any(|e| e.path().ends_with( "src")) {
                 Ok(Self::LanguageRoot)
             } else {
@@ -78,10 +80,10 @@ impl InputType {
             // Doesn't need language dir
             InputType::NodeTypes => None,
             InputType::Query => {
-                successors(input_path.parent(), Path::parent)
+                successors(input_path.parent(), |p| p.parent())
                     .find(|parent| {
-                        Self::read_parent_dir(parent, Error::IOInferringLanguage)?
-                            .any(|e| e.path().ends_with( "src"))
+                        Self::read_parent_dir(parent, Error::IOInferringLanguage).ok()
+                            .map_or(false, |mut i| i.any(|e| e.path().ends_with( "src")))
                     })
                     .map(|p| p.to_path_buf())
             }

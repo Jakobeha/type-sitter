@@ -1,10 +1,11 @@
 use std::path::Path;
 use std::fmt::Display;
 use std::fs::File;
+use std::io::Write;
 use std::ffi::OsString;
 use lazy_static::lazy_static;
-use rust_format::Formatter;
-use crate::{errors, RUST_FMT};
+use rust_format::{RustFmt, Formatter};
+use crate::errors;
 
 lazy_static! {
     static ref RUST_FMT: RustFmt = RustFmt::new();

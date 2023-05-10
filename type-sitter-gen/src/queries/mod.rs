@@ -6,7 +6,7 @@ use std::path::Path;
 use proc_macro2::TokenStream;
 use quote::quote;
 use syn::parse_quote;
-use tree_sitter::{Language, Query};
+use tree_sitter::Query;
 use crate::Error;
 use crate::mk_syntax::ident;
 use crate::queries::dyload_language::dyload_language;

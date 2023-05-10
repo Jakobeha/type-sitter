@@ -1,14 +1,18 @@
 use proc_macro2::{Span, TokenStream};
 use std::fmt::{Display, Formatter};
+use std::process::ExitStatus;
 use tree_sitter::QueryError;
 
 #[derive(Debug)]
 pub enum Error {
     IO(std::io::Error),
     ParseNodeTypes(serde_json::Error),
-    BuildFailed { exit_code: i32, log: String },
+    BuildDylibFailed(cc::Error),
     MissingDylib,
     LoadDylibFailed(libloading::Error),
+    LoadDylibSymbolFailed(libloading::Error),
+    LinkDylibCmdFailed(std::io::Error),
+    LinkDylibFailed { exit_status: ExitStatus },
     UnknownTSLanguageSymbolName,
     ParseQuery(QueryError),
 }
@@ -35,9 +39,9 @@ impl From<serde_json::Error> for Error {
     }
 }
 
-impl From<libloading::Error> for Error {
-    fn from(e: libloading::Error) -> Self {
-        Error::LoadDylibFailed(e)
+impl From<cc::Error> for Error {
+    fn from(e: cc::Error) -> Self {
+        Error::BuildDylibFailed(e)
     }
 }
 
@@ -58,13 +62,31 @@ impl Display for Error {
         match self {
             Error::IO(e) => write!(f, "IO error: {}", e),
             Error::ParseNodeTypes(e) => write!(f, "Error parsing node-types: {}", e),
-            Error::BuildFailed { exit_code, log } => write!(f, "failed with exit code {}; ***\n{}", exit_code, log),
+            Error::BuildDylibFailed(e) => write!(f, "couldn't build tree-sitter language dylib: {}", e),
             Error::MissingDylib => write!(f, "couldn't find tree-sitter language dylib (internal error or fs weirdness)"),
             Error::LoadDylibFailed(e) => write!(f, "couldn't load tree-sitter language dylib: {}", e),
+            Error::LoadDylibSymbolFailed(e) => write!(f, "couldn't load tree-sitter language dylib symbol: {}", e),
+            Error::LinkDylibCmdFailed(e) => write!(f, "couldn't link tree-sitter language dylib: {}", e),
+            Error::LinkDylibFailed { exit_status} => write!(f, "couldn't link tree-sitter language dylib: exit code {}", exit_status),
             Error::UnknownTSLanguageSymbolName => write!(f, "couldn't resolve tree-sitter language symbol name"),
             Error::ParseQuery(e) => write!(f, "Error parsing query: {}", e),
         }
     }
 }
 
-impl std::error::Error for Error {}
+impl std::error::Error for Error {
+    fn source(&self) -> Option<&(dyn std::error::Error + 'static)> {
+        match self {
+            Error::IO(e) => Some(e),
+            Error::ParseNodeTypes(e) => Some(e),
+            Error::BuildDylibFailed(e) => Some(e),
+            Error::MissingDylib => None,
+            Error::LoadDylibFailed(e) => Some(e),
+            Error::LoadDylibSymbolFailed(e) => Some(e),
+            Error::LinkDylibCmdFailed(e) => Some(e),
+            Error::LinkDylibFailed { .. } => None,
+            Error::UnknownTSLanguageSymbolName => None,
+            Error::ParseQuery(e) => Some(e),
+        }
+    }
+}

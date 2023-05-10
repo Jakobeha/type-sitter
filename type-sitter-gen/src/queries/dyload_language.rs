@@ -1,25 +1,23 @@
 use std::collections::HashMap;
-use std::fs::read_to_string;
-use std::mem::transmute;
-use std::ops::Deref;
+use std::fs::create_dir_all;
 use std::path::{Path, PathBuf};
-use std::process::{Command, Stdio};
+use std::process::Command;
 use std::sync::RwLock;
-use cp_r::CopyOptions;
+use cc::Build;
 use lazy_static::lazy_static;
 use libloading::Library;
-use tempfile::tempdir_in;
 use tree_sitter::Language;
-use crate::{Error, errors};
-use crate::errors::Error;
+use walkdir::WalkDir;
+use crate::Error;
+use crate::queries::has_extension;
 
 lazy_static! {
     // We don't want to load the same library multiple times, and we also need to store the Library
     //    so that it doesn't get unloaded.
-    static ref LOADED_LANGUAGES: RwLock<HashMap<PathBuf, (Library, Language)>> = HashMap::new();
+    static ref LOADED_LANGUAGES: RwLock<HashMap<PathBuf, (Library, Language)>> = RwLock::new(HashMap::new());
 }
 
-pub fn dyload_language(path: impl AsRef<Path>) -> errors::Result<Language> {
+pub fn dyload_language(path: impl AsRef<Path>) -> Result<Language, Error> {
     let path = path.as_ref();
     // Check if the language has already been loaded
     if let Some((_, language)) = LOADED_LANGUAGES.read().unwrap().get(path) {
@@ -33,72 +31,101 @@ pub fn dyload_language(path: impl AsRef<Path>) -> errors::Result<Language> {
     Ok(language)
 }
 
-fn dyload_new_language(path: &Path) -> errors::Result<(Library, Language)> {
-    cargo_build_if_needed(path)?;
-    let dylib_path = dylib_path(path).ok_or(Error::MissingDylib)?;
-    let ts_language_symbol_name = dylib_path.file_stem()
+fn dyload_new_language(path: &Path) -> Result<(Library, Language), Error> {
+    let dylib_path = dylib_path(path);
+    // e.g. tree-sitter-rust => { extern "C" fn tree_sitter_rust() -> Language ... }
+    let symbol_name = path.file_name()
         .and_then(|s| s.to_str())
-        .and_then(|s| s.strip_prefix("lib"))
         .ok_or(Error::UnknownTSLanguageSymbolName)?
-        .as_bytes();
-    // SAFETY: We are running arbitrary code, so...we can't rule out UB or anything really.
-    //     However, assuming we have a regular tree-sitter binary, we are not doing anything which
-    //     should cause UB since we're only accessing it's TSLanguage pointer and casting to a
-    //     tree_sitter::Language.
+        .replace("-", "_");
+    build_dylib_if_needed(path, &dylib_path)?;
+    eprintln!("Dynamically loading {}...", symbol_name);
+    // SAFETY: We are literally calling into arbitrary code, so...we can't rule out UB. However,
+    //     assuming we have a regular tree-sitter binary and not something evil, we are loading and
+    //     calling a function which really does return a [tree_sitter::Language] and is as safe as
+    //     tree_sitter.
     unsafe {
-        let dylib = Library::new(dylib_path)?;
-        let ts_language_symbol = dylib.get::<()>(ts_language_symbol_name)?;
-        // SAFETY: assuming this is a regular tree-sitter binary, this should be a valid pointer
-        // to a TSLanguage, which is the exact repr of tree_sitter::Language.
-        let language = transmute::<_, Language>(ts_language_symbol.into_raw().into_raw());
+        // We need the canonical path so it doesn't try to load the dylib from random system
+        // directories if it can't find it locally (that would lead to some tricky errors...)
+        let dylib = Library::new(&dylib_path.canonicalize()?).map_err(Error::LoadDylibFailed)?;
+        let language_fn = dylib
+            .get::<fn() -> Language>(symbol_name.as_bytes())
+            .map_err(Error::LoadDylibSymbolFailed)?;
+        let language = language_fn();
         Ok((dylib, language))
     }
 }
 
-fn cargo_build_if_needed(path: &Path) -> errors::Result<()> {
-    if dylib_path(path).is_some() {
-        Ok(())
-    } else {
-        cargo_build(path)
+fn build_dylib_if_needed(path: &Path, dylib_path: &Path) -> Result<(), Error> {
+    if !dylib_path.exists() {
+        build_dylib(path, dylib_path)?;
     }
-}
-
-fn dylib_path(path: &Path) -> Option<PathBuf> {
-    path.join("target/release").read_dir().ok()?.find_map(|entry| {
-        entry.ok().map(|e| e.path()).filter(|p| {
-            match p.extension().and_then(|e| e.to_str()) {
-                Some("so") | Some("dylib") => true,
-                _ => false
-            }
-        })
-    })
-}
-
-fn cargo_build(path: &Path) -> errors::Result<()> {
-    // Copy the directory so we can modify Cargo.toml
-    let newdir = tempdir_in(path.parent().unwrap_or(path))?;
-    let tmp_path = newdir.path();
-    CopyOptions::new().copy_tree(path, tmp_path)?;
-
-    let cargo_toml = tmp_path.join("Cargo.toml");
-    std::fs::write(&cargo_toml, read_to_string(&cargo_toml)?.replacen(
-        "\n[lib]\n", "\n[lib]\ncrate-type = [\"cdylib\"]\n",
-        1
-    ))?;
-
-    let output = Command::new("cargo")
-        .args(["build", "--release", "--quiet"])
-        .current_dir(tmp_path)
-        .stdout(Stdio::null())
-        .spawn()?
-        .wait_with_output()?;
-    if !output.status.success() {
-        let exit_code = status.code().unwrap_or(255);
-        let log = String::from_utf8(output.stderr).unwrap_or_else(|e| e.to_string());
-        return Err(Error::BuildFailed { exit_code, log });
+    if !dylib_path.exists() {
+        return Err(Error::MissingDylib);
     }
-
-    // Copy back built dylib (copies the entire target in case we modified anything else as well)
-    CopyOptions::new().copy_tree(tmp_path.join("target"), path.join("target"))?;
     Ok(())
+}
+
+fn dylib_path(path: &Path) -> PathBuf {
+    let mut path = path.join("target/c-release-so/libtree-sitter");
+    if cfg!(target_os = "macos") {
+        path.set_extension("dylib");
+    } else if cfg!(target_os = "windows") {
+        path.set_extension("dll");
+    } else {
+        path.set_extension("so");
+    }
+    path
+}
+
+fn build_dylib(path: &Path, dylib_path: &Path) -> Result<(), Error> {
+    let dylib_dir = dylib_path.parent().unwrap();
+    create_dir_all(dylib_dir)?;
+    // Derived from tree-sitter-rust's build.rs
+    let src_dir = path.join("src");
+    eprintln!("Building {}...", dylib_path.display());
+    Build::new()
+        // Use the same target, optimization level, etc. as this crate was compiled with
+        .host(env!("HOST"))
+        .target(env!("TARGET"))
+        .opt_level_str(env!("OPT_LEVEL"))
+        .debug(env!("DEBUG") == "true")
+        // Add tree-sitter flags
+        .flag_if_supported("-Wno-unused-parameter")
+        .flag_if_supported("-Wno-unused-but-set-variable")
+        .flag_if_supported("-Wno-trigraphs")
+        // Include sources
+        .include(&src_dir)
+        .file(&src_dir.join("parser.c"))
+        .file(&src_dir.join("scanner.c"))
+        // Set to compile a shared object (doesn't work on macOS)
+        .shared_flag(true)
+        .cargo_metadata(false)
+        // Compile dylib in dylib dir
+        .out_dir(&dylib_dir)
+        .try_compile("tree-sitter")?;
+    if cfg!(target_os = "macos") {
+        // Oops, we're on macOS and compiled a static library because clang doesn't support -shared.
+        // Let's fix that.
+        eprintln!("Dynamic linking {}...", dylib_path.display());
+        let status = Command::new("/usr/bin/clang")
+            .args(["-dynamiclib", "-undefined", "error", "-o"])
+            .arg(&dylib_path)
+            .args(find_object_files_in(dylib_dir))
+            .status()
+            .map_err(Error::LinkDylibCmdFailed)?;
+        if !status.success() {
+            return Err(Error::LinkDylibFailed { exit_status: status });
+        }
+    }
+    Ok(())
+}
+
+fn find_object_files_in(dir: &Path) -> impl Iterator<Item=PathBuf> {
+    WalkDir::new(dir)
+        .into_iter()
+        .filter_map(|entry| entry.ok())
+        .filter(|entry| entry.file_type().is_file())
+        .filter(|entry| has_extension(entry.path(), "o"))
+        .map(|entry| entry.into_path())
 }

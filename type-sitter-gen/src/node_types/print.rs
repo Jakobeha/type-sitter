@@ -5,9 +5,9 @@ use join_lazy_fmt::Join;
 use proc_macro2::TokenStream;
 use quote::quote;
 use syn::{Ident, LitStr, Path};
-use crate::generated_tokens::{AnonUnions, GeneratedNodeTokens};
-use crate::types::{AnonUnionId, Children, NodeName, NodeType, NodeTypeKind, NodeModule};
 use crate::mk_syntax::{ident, lit_str};
+use crate::node_types::generated_tokens::{AnonUnions, GeneratedNodeTokens};
+use crate::node_types::types::{AnonUnionId, Children, NodeModule, NodeName, NodeType, NodeTypeKind};
 
 impl NodeType {
     pub fn print(&self, tree_sitter: &Path) -> GeneratedNodeTokens {
