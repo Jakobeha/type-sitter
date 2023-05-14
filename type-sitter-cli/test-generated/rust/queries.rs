@@ -1370,8 +1370,8 @@ impl TypedQuery for Injections {
     #[inline]
     unsafe fn wrap_capture<'cursor, 'tree>(
         &self,
-        capture: tree_sitter::QueryCapture<'cursor, 'tree>,
-    ) -> Self::Capture<'cursor, 'tree> {
+        capture: tree_sitter::QueryCapture<'tree>,
+    ) -> Self::Capture<'tree> {
         match capture . index { 0usize => InjectionContent (< super :: nodes :: MacroInvocation < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node)) , }
     }
 }

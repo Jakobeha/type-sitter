@@ -203,14 +203,14 @@ impl<'tree> SExpSeq<'tree> {
             pub struct #query_match_ident<'cursor, 'tree>(tree_sitter::QueryMatch<'cursor, 'tree>);
             #[doc = #query_capture_doc]
             #[derive(Debug, Clone, Copy)]
-            pub enum #query_capture_ident<'cursor, 'tree> {
+            pub enum #query_capture_ident<'tree> {
                 #(#capture_variant_documentations #capture_variant_idents(#capture_node_types),)*
             }
 
             #[automatically_derived]
             impl TypedQuery for #def_ident {
                 type Match<'cursor, 'tree> = #query_match_ident<'cursor, 'tree>;
-                type Capture<'cursor, 'tree> = #query_capture_ident<'cursor, 'tree>;
+                type Capture<'tree> = #query_capture_ident<'tree>;
 
                 fn query_str(&self) -> &'static str {
                     #query_str
@@ -229,14 +229,14 @@ impl<'tree> SExpSeq<'tree> {
                 }
 
                 #[inline]
-                unsafe fn wrap_capture<'cursor, 'tree>(
+                unsafe fn wrap_capture<'tree>(
                     &self,
-                    capture: tree_sitter::QueryCapture<'cursor, 'tree>
-                ) -> Self::Capture<'cursor, 'tree> {
+                    capture: tree_sitter::QueryCapture<'tree>
+                ) -> Self::Capture<'tree> {
                     // SAFETY: As long as the capture came from the query this is safe, because the
                     // query only captures nodes of the correct type
                     match capture.index {
-                        #(#capture_idxs => #capture_variant_idents(<#capture_node_types as type_sitter_lib::TypedNode<'tree>>::from_unchecked(capture.node)),)*
+                        #(#capture_idxs => Self::Capture::#capture_variant_idents(<#capture_node_types as type_sitter_lib::TypedNode<'tree>>::from_unchecked(capture.node)),)*
                     }
                 }
             }
@@ -251,6 +251,11 @@ impl<'tree> SExpSeq<'tree> {
                 type Query = #def_ident;
 
                 #[inline]
+                fn query(&self) -> &'static Self::Query {
+                    #def_ident
+                }
+
+                #[inline]
                 fn raw(&self) -> &tree_sitter::QueryMatch<'cursor, 'tree> {
                     &self.0
                 }
@@ -259,35 +264,30 @@ impl<'tree> SExpSeq<'tree> {
                 fn into_raw(self) -> tree_sitter::QueryMatch<'cursor, 'tree> {
                     self.0
                 }
-
-                #[inline]
-                fn query(&self) -> &Self::Query {
-                    #def_ident
-                }
             }
 
             #[automatically_derived]
-            impl<'cursor, 'tree> #query_match_ident<'cursor, 'tree> {
+            impl<'tree> #query_capture_ident<'tree> {
                 #(#capture_variant_extract_methods)*
             }
 
             #[automatically_derived]
-            impl<'cursor, 'tree> TypedQueryCapture<'cursor, 'tree> for #query_capture_ident<'cursor, 'tree> {
+            impl<'tree> TypedQueryCapture<'tree> for #query_capture_ident<'tree> {
                 type Query = #def_ident;
 
                 #[inline]
-                fn to_raw(self) -> tree_sitter::QueryCapture<'cursor, 'tree> {
-                    match self {
-                        #(#capture_variant_idents(node) => tree_sitter::QueryCapture {
-                            index: #capture_idxs,
-                            node: *node.node()
-                        },)*
-                    }
+                fn query(&self) -> &'static Self::Query {
+                    #def_ident
                 }
 
                 #[inline]
-                fn query(&self) -> &Self::Query {
-                    #def_ident
+                fn to_raw(&self) -> tree_sitter::QueryCapture<'tree> {
+                    match self {
+                        #(Self::#capture_variant_idents(node) => tree_sitter::QueryCapture {
+                            index: #capture_idxs as u32,
+                            node: *node.node()
+                        },)*
+                    }
                 }
             }
         }
