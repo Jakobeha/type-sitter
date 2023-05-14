@@ -1070,12 +1070,6 @@ impl<'query, 'tree> QueryCapture<'query, 'tree> {
     }
 }
 
-impl Display for Point {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        write!(f, "{}:{}", self.0.row + 1, self.0.column + 1)
-    }
-}
-
 impl Range {
     /// Get the start point
     #[inline]
@@ -1084,14 +1078,37 @@ impl Range {
     }
 
     /// Get the end point
+    #[inline]
     pub fn end_point(&self) -> Point {
         Point(self.0.end_point)
     }
 }
 
 impl Display for Range {
+    #[inline]
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         write!(f, "{}-{}", Point(self.0.start_point), Point(self.0.end_point))
+    }
+}
+
+impl Into<tree_sitter::Range> for Range {
+    #[inline]
+    fn into(self) -> tree_sitter::Range {
+        self.0
+    }
+}
+
+impl Display for Point {
+    #[inline]
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "{}:{}", self.0.row + 1, self.0.column + 1)
+    }
+}
+
+impl Into<tree_sitter::Point> for Point {
+    #[inline]
+    fn into(self) -> tree_sitter::Point {
+        self.0
     }
 }
 

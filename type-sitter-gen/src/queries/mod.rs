@@ -4,6 +4,7 @@ mod print;
 mod dyload_language;
 /// Tree-sitter query s-expression dialect
 mod sexp;
+mod sexp_node_type;
 
 use std::fs::read_to_string;
 use std::path::Path;

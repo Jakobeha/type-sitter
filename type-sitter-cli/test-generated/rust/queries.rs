@@ -9,13 +9,17 @@ fn __Mk__Tags() -> tree_sitter::Query {
 #[allow(non_camel_case_types)]
 #[derive(Debug, Clone, Copy)]
 pub struct Tags;
-pub type TagsMatches<'a, 'tree, T> = TypedQueryMatches<'a, 'tree, T, TagsMatch<'a, 'tree>>;
-pub type TagsCaptures<'a, 'tree, T> = TypedQueryCaptures<'a, 'tree, T, TagsMatch<'a, 'tree>>;
+pub type TagsMatches<'cursor, 'tree, Text> =
+    TypedQueryMatches<'cursor, 'tree, TagsMatch<'cursor, 'tree>, Text>;
+pub type TagsCaptures<'cursor, 'tree, Text> =
+    TypedQueryCaptures<'cursor, 'tree, TagsMatch<'cursor, 'tree>, Text>;
 #[doc = "A match returned by the query [Tags]:\n\n```sexp\n; ADT definitions\n\n(struct_item\n    name: (type_identifier) @name) @definition.class\n\n(enum_item\n    name: (type_identifier) @name) @definition.class\n\n(union_item\n    name: (type_identifier) @name) @definition.class\n\n; type aliases\n\n(type_item\n    name: (type_identifier) @name) @definition.class\n\n; method definitions\n\n(declaration_list\n    (function_item\n        name: (identifier) @name)) @definition.method\n\n; function definitions\n\n(function_item\n    name: (identifier) @name) @definition.function\n\n; trait definitions\n(trait_item\n    name: (type_identifier) @name) @definition.interface\n\n; module definitions\n(mod_item\n    name: (identifier) @name) @definition.module\n\n; macro definitions\n\n(macro_definition\n    name: (identifier) @name) @definition.macro\n\n; references\n\n(call_expression\n    function: (identifier) @name) @reference.call\n\n(call_expression\n    function: (field_expression\n        field: (field_identifier) @name)) @reference.call\n\n(macro_invocation\n    macro: (identifier) @name) @reference.call\n\n; implementations\n\n(impl_item\n    trait: (type_identifier) @name) @reference.implementation\n\n(impl_item\n    type: (type_identifier) @name\n    !trait) @reference.implementation\n\n```"]
 #[derive(Debug)]
-pub struct TagsMatch<'cursor, 'tree>(tree_sitter::QueryMatch<'cursor, 'tree>);
+pub struct TagsMatch<'cursor, 'tree> {
+    match_: tree_sitter::QueryMatch<'cursor, 'tree>,
+}
 #[doc = "A capture returned by the query [Tags]:\n\n```sexp\n; ADT definitions\n\n(struct_item\n    name: (type_identifier) @name) @definition.class\n\n(enum_item\n    name: (type_identifier) @name) @definition.class\n\n(union_item\n    name: (type_identifier) @name) @definition.class\n\n; type aliases\n\n(type_item\n    name: (type_identifier) @name) @definition.class\n\n; method definitions\n\n(declaration_list\n    (function_item\n        name: (identifier) @name)) @definition.method\n\n; function definitions\n\n(function_item\n    name: (identifier) @name) @definition.function\n\n; trait definitions\n(trait_item\n    name: (type_identifier) @name) @definition.interface\n\n; module definitions\n(mod_item\n    name: (identifier) @name) @definition.module\n\n; macro definitions\n\n(macro_definition\n    name: (identifier) @name) @definition.macro\n\n; references\n\n(call_expression\n    function: (identifier) @name) @reference.call\n\n(call_expression\n    function: (field_expression\n        field: (field_identifier) @name)) @reference.call\n\n(macro_invocation\n    macro: (identifier) @name) @reference.call\n\n; implementations\n\n(impl_item\n    trait: (type_identifier) @name) @reference.implementation\n\n(impl_item\n    type: (type_identifier) @name\n    !trait) @reference.implementation\n\n```"]
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug)]
 pub enum TagsCapture<'cursor, 'tree> {
     #[doc = "A `name`"]
     #[doc = ""]
@@ -23,63 +27,90 @@ pub enum TagsCapture<'cursor, 'tree> {
     #[doc = "```sexp"]
     #[doc = "struct_item @name"]
     #[doc = "```"]
-    Name(super::nodes::StructItem<'tree>),
+    Name {
+        node: super::nodes::StructItem<'tree>,
+        match_: Option<TagsMatch<'cursor, 'tree>>,
+    },
     #[doc = "A `definition.class`"]
     #[doc = ""]
     #[doc = "The full capture including pattern is:"]
     #[doc = "```sexp"]
     #[doc = "(struct_item\n    name: (type_identifier) @name) @definition.class"]
     #[doc = "```"]
-    DefinitionClass(super::nodes::StructItem<'tree>),
+    DefinitionClass {
+        node: super::nodes::StructItem<'tree>,
+        match_: Option<TagsMatch<'cursor, 'tree>>,
+    },
     #[doc = "A `definition.method`"]
     #[doc = ""]
     #[doc = "The full capture including pattern is:"]
     #[doc = "```sexp"]
     #[doc = "(struct_item\n    name: (type_identifier) @name) @definition.method"]
     #[doc = "```"]
-    DefinitionMethod(super::nodes::StructItem<'tree>),
+    DefinitionMethod {
+        node: super::nodes::StructItem<'tree>,
+        match_: Option<TagsMatch<'cursor, 'tree>>,
+    },
     #[doc = "A `definition.function`"]
     #[doc = ""]
     #[doc = "The full capture including pattern is:"]
     #[doc = "```sexp"]
     #[doc = "(struct_item\n    name: (type_identifier) @name) @definition.function"]
     #[doc = "```"]
-    DefinitionFunction(super::nodes::StructItem<'tree>),
+    DefinitionFunction {
+        node: super::nodes::StructItem<'tree>,
+        match_: Option<TagsMatch<'cursor, 'tree>>,
+    },
     #[doc = "A `definition.interface`"]
     #[doc = ""]
     #[doc = "The full capture including pattern is:"]
     #[doc = "```sexp"]
     #[doc = "(struct_item\n    name: (type_identifier) @name) @definition.interface"]
     #[doc = "```"]
-    DefinitionInterface(super::nodes::StructItem<'tree>),
+    DefinitionInterface {
+        node: super::nodes::StructItem<'tree>,
+        match_: Option<TagsMatch<'cursor, 'tree>>,
+    },
     #[doc = "A `definition.module`"]
     #[doc = ""]
     #[doc = "The full capture including pattern is:"]
     #[doc = "```sexp"]
     #[doc = "(struct_item\n    name: (type_identifier) @name) @definition.module"]
     #[doc = "```"]
-    DefinitionModule(super::nodes::StructItem<'tree>),
+    DefinitionModule {
+        node: super::nodes::StructItem<'tree>,
+        match_: Option<TagsMatch<'cursor, 'tree>>,
+    },
     #[doc = "A `definition.macro`"]
     #[doc = ""]
     #[doc = "The full capture including pattern is:"]
     #[doc = "```sexp"]
     #[doc = "(struct_item\n    name: (type_identifier) @name) @definition.macro"]
     #[doc = "```"]
-    DefinitionMacro(super::nodes::StructItem<'tree>),
+    DefinitionMacro {
+        node: super::nodes::StructItem<'tree>,
+        match_: Option<TagsMatch<'cursor, 'tree>>,
+    },
     #[doc = "A `reference.call`"]
     #[doc = ""]
     #[doc = "The full capture including pattern is:"]
     #[doc = "```sexp"]
     #[doc = "(struct_item\n    name: (type_identifier) @name) @reference.call"]
     #[doc = "```"]
-    ReferenceCall(super::nodes::StructItem<'tree>),
+    ReferenceCall {
+        node: super::nodes::StructItem<'tree>,
+        match_: Option<TagsMatch<'cursor, 'tree>>,
+    },
     #[doc = "A `reference.implementation`"]
     #[doc = ""]
     #[doc = "The full capture including pattern is:"]
     #[doc = "```sexp"]
     #[doc = "(struct_item\n    name: (type_identifier) @name) @reference.implementation"]
     #[doc = "```"]
-    ReferenceImplementation(super::nodes::StructItem<'tree>),
+    ReferenceImplementation {
+        node: super::nodes::StructItem<'tree>,
+        match_: Option<TagsMatch<'cursor, 'tree>>,
+    },
 }
 #[automatically_derived]
 impl TypedQuery for Tags {
@@ -96,14 +127,15 @@ impl TypedQuery for Tags {
         &self,
         match_: tree_sitter::QueryMatch<'cursor, 'tree>,
     ) -> Self::Match<'cursor, 'tree> {
-        Self::Match(match_)
+        Self::Match { match_ }
     }
     #[inline]
     unsafe fn wrap_capture<'cursor, 'tree>(
         &self,
         capture: tree_sitter::QueryCapture<'cursor, 'tree>,
+        match_: Option<Self::Match<'cursor, 'tree>>,
     ) -> Self::Capture<'cursor, 'tree> {
-        match capture . index { 0usize => Name (< super :: nodes :: StructItem < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node)) , 1usize => DefinitionClass (< super :: nodes :: StructItem < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node)) , 2usize => DefinitionMethod (< super :: nodes :: StructItem < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node)) , 3usize => DefinitionFunction (< super :: nodes :: StructItem < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node)) , 4usize => DefinitionInterface (< super :: nodes :: StructItem < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node)) , 5usize => DefinitionModule (< super :: nodes :: StructItem < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node)) , 6usize => DefinitionMacro (< super :: nodes :: StructItem < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node)) , 7usize => ReferenceCall (< super :: nodes :: StructItem < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node)) , 8usize => ReferenceImplementation (< super :: nodes :: StructItem < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node)) , }
+        match capture . index { 0usize => Self :: Capture :: Name { node : < super :: nodes :: StructItem < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 1usize => Self :: Capture :: DefinitionClass { node : < super :: nodes :: StructItem < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 2usize => Self :: Capture :: DefinitionMethod { node : < super :: nodes :: StructItem < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 3usize => Self :: Capture :: DefinitionFunction { node : < super :: nodes :: StructItem < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 4usize => Self :: Capture :: DefinitionInterface { node : < super :: nodes :: StructItem < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 5usize => Self :: Capture :: DefinitionModule { node : < super :: nodes :: StructItem < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 6usize => Self :: Capture :: DefinitionMacro { node : < super :: nodes :: StructItem < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 7usize => Self :: Capture :: ReferenceCall { node : < super :: nodes :: StructItem < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 8usize => Self :: Capture :: ReferenceImplementation { node : < super :: nodes :: StructItem < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , capture_index => unreachable ! ("Invalid capture index: {}" , capture_index) }
     }
 }
 #[automatically_derived]
@@ -257,6 +289,10 @@ impl<'cursor, 'tree> TagsMatch<'cursor, 'tree> {
 impl<'cursor, 'tree> TypedQueryMatch<'cursor, 'tree> for TagsMatch<'cursor, 'tree> {
     type Query = Tags;
     #[inline]
+    fn query(&self) -> &'static Self::Query {
+        Tags
+    }
+    #[inline]
     fn raw(&self) -> &tree_sitter::QueryMatch<'cursor, 'tree> {
         &self.0
     }
@@ -264,13 +300,9 @@ impl<'cursor, 'tree> TypedQueryMatch<'cursor, 'tree> for TagsMatch<'cursor, 'tre
     fn into_raw(self) -> tree_sitter::QueryMatch<'cursor, 'tree> {
         self.0
     }
-    #[inline]
-    fn query(&self) -> &Self::Query {
-        Tags
-    }
 }
 #[automatically_derived]
-impl<'cursor, 'tree> TagsMatch<'cursor, 'tree> {
+impl<'cursor, 'tree> TagsCapture<'cursor, 'tree> {
     #[doc = "Try to interpret this capture as a `name`"]
     #[doc = ""]
     #[doc = "The full capture including pattern is:"]
@@ -280,7 +312,7 @@ impl<'cursor, 'tree> TagsMatch<'cursor, 'tree> {
     #[inline]
     pub fn name(&self) -> Option<super::nodes::StructItem<'tree>> {
         match self {
-            Self::Name(node) => Some(node),
+            Self::Name { node, .. } => Some(node),
             _ => None,
         }
     }
@@ -293,7 +325,7 @@ impl<'cursor, 'tree> TagsMatch<'cursor, 'tree> {
     #[inline]
     pub fn definition_class(&self) -> Option<super::nodes::StructItem<'tree>> {
         match self {
-            Self::DefinitionClass(node) => Some(node),
+            Self::DefinitionClass { node, .. } => Some(node),
             _ => None,
         }
     }
@@ -306,7 +338,7 @@ impl<'cursor, 'tree> TagsMatch<'cursor, 'tree> {
     #[inline]
     pub fn definition_method(&self) -> Option<super::nodes::StructItem<'tree>> {
         match self {
-            Self::DefinitionMethod(node) => Some(node),
+            Self::DefinitionMethod { node, .. } => Some(node),
             _ => None,
         }
     }
@@ -319,7 +351,7 @@ impl<'cursor, 'tree> TagsMatch<'cursor, 'tree> {
     #[inline]
     pub fn definition_function(&self) -> Option<super::nodes::StructItem<'tree>> {
         match self {
-            Self::DefinitionFunction(node) => Some(node),
+            Self::DefinitionFunction { node, .. } => Some(node),
             _ => None,
         }
     }
@@ -332,7 +364,7 @@ impl<'cursor, 'tree> TagsMatch<'cursor, 'tree> {
     #[inline]
     pub fn definition_interface(&self) -> Option<super::nodes::StructItem<'tree>> {
         match self {
-            Self::DefinitionInterface(node) => Some(node),
+            Self::DefinitionInterface { node, .. } => Some(node),
             _ => None,
         }
     }
@@ -345,7 +377,7 @@ impl<'cursor, 'tree> TagsMatch<'cursor, 'tree> {
     #[inline]
     pub fn definition_module(&self) -> Option<super::nodes::StructItem<'tree>> {
         match self {
-            Self::DefinitionModule(node) => Some(node),
+            Self::DefinitionModule { node, .. } => Some(node),
             _ => None,
         }
     }
@@ -358,7 +390,7 @@ impl<'cursor, 'tree> TagsMatch<'cursor, 'tree> {
     #[inline]
     pub fn definition_macro(&self) -> Option<super::nodes::StructItem<'tree>> {
         match self {
-            Self::DefinitionMacro(node) => Some(node),
+            Self::DefinitionMacro { node, .. } => Some(node),
             _ => None,
         }
     }
@@ -371,7 +403,7 @@ impl<'cursor, 'tree> TagsMatch<'cursor, 'tree> {
     #[inline]
     pub fn reference_call(&self) -> Option<super::nodes::StructItem<'tree>> {
         match self {
-            Self::ReferenceCall(node) => Some(node),
+            Self::ReferenceCall { node, .. } => Some(node),
             _ => None,
         }
     }
@@ -384,8 +416,51 @@ impl<'cursor, 'tree> TagsMatch<'cursor, 'tree> {
     #[inline]
     pub fn reference_implementation(&self) -> Option<super::nodes::StructItem<'tree>> {
         match self {
-            Self::ReferenceImplementation(node) => Some(node),
+            Self::ReferenceImplementation { node, .. } => Some(node),
             _ => None,
+        }
+    }
+}
+#[automatically_derived]
+impl<'cursor, 'tree> Clone for TagsCapture<'cursor, 'tree> {
+    fn clone(&self) -> Self {
+        match self {
+            Self::Name { node, .. } => Self::Name {
+                node: *node,
+                match_: None,
+            },
+            Self::DefinitionClass { node, .. } => Self::DefinitionClass {
+                node: *node,
+                match_: None,
+            },
+            Self::DefinitionMethod { node, .. } => Self::DefinitionMethod {
+                node: *node,
+                match_: None,
+            },
+            Self::DefinitionFunction { node, .. } => Self::DefinitionFunction {
+                node: *node,
+                match_: None,
+            },
+            Self::DefinitionInterface { node, .. } => Self::DefinitionInterface {
+                node: *node,
+                match_: None,
+            },
+            Self::DefinitionModule { node, .. } => Self::DefinitionModule {
+                node: *node,
+                match_: None,
+            },
+            Self::DefinitionMacro { node, .. } => Self::DefinitionMacro {
+                node: *node,
+                match_: None,
+            },
+            Self::ReferenceCall { node, .. } => Self::ReferenceCall {
+                node: *node,
+                match_: None,
+            },
+            Self::ReferenceImplementation { node, .. } => Self::ReferenceImplementation {
+                node: *node,
+                match_: None,
+            },
         }
     }
 }
@@ -393,49 +468,91 @@ impl<'cursor, 'tree> TagsMatch<'cursor, 'tree> {
 impl<'cursor, 'tree> TypedQueryCapture<'cursor, 'tree> for TagsCapture<'cursor, 'tree> {
     type Query = Tags;
     #[inline]
-    fn to_raw(self) -> tree_sitter::QueryCapture<'cursor, 'tree> {
+    fn query(&self) -> &'static Self::Query {
+        Tags
+    }
+    #[inline]
+    fn match_(&self) -> Option<&<Self::Query as TypedQuery>::Match<'cursor, 'tree>> {
         match self {
-            Name(node) => tree_sitter::QueryCapture {
-                index: 0usize,
+            Self::Name { match_, .. } => match_,
+            Self::DefinitionClass { match_, .. } => match_,
+            Self::DefinitionMethod { match_, .. } => match_,
+            Self::DefinitionFunction { match_, .. } => match_,
+            Self::DefinitionInterface { match_, .. } => match_,
+            Self::DefinitionModule { match_, .. } => match_,
+            Self::DefinitionMacro { match_, .. } => match_,
+            Self::ReferenceCall { match_, .. } => match_,
+            Self::ReferenceImplementation { match_, .. } => match_,
+        }
+    }
+    #[inline]
+    fn into_match(self) -> Option<<Self::Query as TypedQuery>::Match<'cursor, 'tree>> {
+        match self {
+            Self::Name { match_, .. } => match_,
+            Self::DefinitionClass { match_, .. } => match_,
+            Self::DefinitionMethod { match_, .. } => match_,
+            Self::DefinitionFunction { match_, .. } => match_,
+            Self::DefinitionInterface { match_, .. } => match_,
+            Self::DefinitionModule { match_, .. } => match_,
+            Self::DefinitionMacro { match_, .. } => match_,
+            Self::ReferenceCall { match_, .. } => match_,
+            Self::ReferenceImplementation { match_, .. } => match_,
+        }
+    }
+    #[inline]
+    fn to_raw(&self) -> tree_sitter::QueryCapture<'tree> {
+        match self {
+            Self::Name { node, .. } => tree_sitter::QueryCapture {
+                index: 0usize as u32,
                 node: *node.node(),
             },
-            DefinitionClass(node) => tree_sitter::QueryCapture {
-                index: 1usize,
+            Self::DefinitionClass { node, .. } => tree_sitter::QueryCapture {
+                index: 1usize as u32,
                 node: *node.node(),
             },
-            DefinitionMethod(node) => tree_sitter::QueryCapture {
-                index: 2usize,
+            Self::DefinitionMethod { node, .. } => tree_sitter::QueryCapture {
+                index: 2usize as u32,
                 node: *node.node(),
             },
-            DefinitionFunction(node) => tree_sitter::QueryCapture {
-                index: 3usize,
+            Self::DefinitionFunction { node, .. } => tree_sitter::QueryCapture {
+                index: 3usize as u32,
                 node: *node.node(),
             },
-            DefinitionInterface(node) => tree_sitter::QueryCapture {
-                index: 4usize,
+            Self::DefinitionInterface { node, .. } => tree_sitter::QueryCapture {
+                index: 4usize as u32,
                 node: *node.node(),
             },
-            DefinitionModule(node) => tree_sitter::QueryCapture {
-                index: 5usize,
+            Self::DefinitionModule { node, .. } => tree_sitter::QueryCapture {
+                index: 5usize as u32,
                 node: *node.node(),
             },
-            DefinitionMacro(node) => tree_sitter::QueryCapture {
-                index: 6usize,
+            Self::DefinitionMacro { node, .. } => tree_sitter::QueryCapture {
+                index: 6usize as u32,
                 node: *node.node(),
             },
-            ReferenceCall(node) => tree_sitter::QueryCapture {
-                index: 7usize,
+            Self::ReferenceCall { node, .. } => tree_sitter::QueryCapture {
+                index: 7usize as u32,
                 node: *node.node(),
             },
-            ReferenceImplementation(node) => tree_sitter::QueryCapture {
-                index: 8usize,
+            Self::ReferenceImplementation { node, .. } => tree_sitter::QueryCapture {
+                index: 8usize as u32,
                 node: *node.node(),
             },
         }
     }
     #[inline]
-    fn query(&self) -> &Self::Query {
-        Tags
+    fn node(&self) -> tree_sitter::Node<'tree> {
+        match self {
+            Self::Name { node, .. } => node.node(),
+            Self::DefinitionClass { node, .. } => node.node(),
+            Self::DefinitionMethod { node, .. } => node.node(),
+            Self::DefinitionFunction { node, .. } => node.node(),
+            Self::DefinitionInterface { node, .. } => node.node(),
+            Self::DefinitionModule { node, .. } => node.node(),
+            Self::DefinitionMacro { node, .. } => node.node(),
+            Self::ReferenceCall { node, .. } => node.node(),
+            Self::ReferenceImplementation { node, .. } => node.node(),
+        }
     }
 }
 #[allow(non_upper_case_globals)]
@@ -450,15 +567,17 @@ fn __Mk__Highlights() -> tree_sitter::Query {
 #[allow(non_camel_case_types)]
 #[derive(Debug, Clone, Copy)]
 pub struct Highlights;
-pub type HighlightsMatches<'a, 'tree, T> =
-    TypedQueryMatches<'a, 'tree, T, HighlightsMatch<'a, 'tree>>;
-pub type HighlightsCaptures<'a, 'tree, T> =
-    TypedQueryCaptures<'a, 'tree, T, HighlightsMatch<'a, 'tree>>;
+pub type HighlightsMatches<'cursor, 'tree, Text> =
+    TypedQueryMatches<'cursor, 'tree, HighlightsMatch<'cursor, 'tree>, Text>;
+pub type HighlightsCaptures<'cursor, 'tree, Text> =
+    TypedQueryCaptures<'cursor, 'tree, HighlightsMatch<'cursor, 'tree>, Text>;
 #[doc = "A match returned by the query [Highlights]:\n\n```sexp\n; Identifier conventions\n\n; Assume all-caps names are constants\n((identifier) @constant\n (#match? @constant \"^[A-Z][A-Z\\\\d_]+$'\"))\n\n; Assume that uppercase names in paths are types\n((scoped_identifier\n  path: (identifier) @type)\n (#match? @type \"^[A-Z]\"))\n((scoped_identifier\n  path: (scoped_identifier\n    name: (identifier) @type))\n (#match? @type \"^[A-Z]\"))\n((scoped_type_identifier\n  path: (identifier) @type)\n (#match? @type \"^[A-Z]\"))\n((scoped_type_identifier\n  path: (scoped_identifier\n    name: (identifier) @type))\n (#match? @type \"^[A-Z]\"))\n\n; Assume other uppercase names are enum constructors\n((identifier) @constructor\n (#match? @constructor \"^[A-Z]\"))\n\n; Assume all qualified names in struct patterns are enum constructors. (They're\n; either that, or struct names; highlighting both as constructors seems to be\n; the less glaring choice of error, visually.)\n(struct_pattern\n  type: (scoped_type_identifier\n    name: (type_identifier) @constructor))\n\n; Function calls\n\n(call_expression\n  function: (identifier) @function)\n(call_expression\n  function: (field_expression\n    field: (field_identifier) @function.method))\n(call_expression\n  function: (scoped_identifier\n    \"::\"\n    name: (identifier) @function))\n\n(generic_function\n  function: (identifier) @function)\n(generic_function\n  function: (scoped_identifier\n    name: (identifier) @function))\n(generic_function\n  function: (field_expression\n    field: (field_identifier) @function.method))\n\n(macro_invocation\n  macro: (identifier) @function.macro\n  \"!\" @function.macro)\n\n; Function definitions\n\n(function_item (identifier) @function)\n(function_signature_item (identifier) @function)\n\n; Other identifiers\n\n(type_identifier) @type\n(primitive_type) @type.builtin\n(field_identifier) @property\n\n(line_comment) @comment\n(block_comment) @comment\n\n\"(\" @punctuation.bracket\n\")\" @punctuation.bracket\n\"[\" @punctuation.bracket\n\"]\" @punctuation.bracket\n\"{\" @punctuation.bracket\n\"}\" @punctuation.bracket\n\n(type_arguments\n  \"<\" @punctuation.bracket\n  \">\" @punctuation.bracket)\n(type_parameters\n  \"<\" @punctuation.bracket\n  \">\" @punctuation.bracket)\n\n\"::\" @punctuation.delimiter\n\":\" @punctuation.delimiter\n\".\" @punctuation.delimiter\n\",\" @punctuation.delimiter\n\";\" @punctuation.delimiter\n\n(parameter (identifier) @variable.parameter)\n\n(lifetime (identifier) @label)\n\n\"as\" @keyword\n\"async\" @keyword\n\"await\" @keyword\n\"break\" @keyword\n\"const\" @keyword\n\"continue\" @keyword\n\"default\" @keyword\n\"dyn\" @keyword\n\"else\" @keyword\n\"enum\" @keyword\n\"extern\" @keyword\n\"fn\" @keyword\n\"for\" @keyword\n\"if\" @keyword\n\"impl\" @keyword\n\"in\" @keyword\n\"let\" @keyword\n\"loop\" @keyword\n\"macro_rules!\" @keyword\n\"match\" @keyword\n\"mod\" @keyword\n\"move\" @keyword\n\"pub\" @keyword\n\"ref\" @keyword\n\"return\" @keyword\n\"static\" @keyword\n\"struct\" @keyword\n\"trait\" @keyword\n\"type\" @keyword\n\"union\" @keyword\n\"unsafe\" @keyword\n\"use\" @keyword\n\"where\" @keyword\n\"while\" @keyword\n(crate) @keyword\n(mutable_specifier) @keyword\n(use_list (self) @keyword)\n(scoped_use_list (self) @keyword)\n(scoped_identifier (self) @keyword)\n(super) @keyword\n\n(self) @variable.builtin\n\n(char_literal) @string\n(string_literal) @string\n(raw_string_literal) @string\n\n(boolean_literal) @constant.builtin\n(integer_literal) @constant.builtin\n(float_literal) @constant.builtin\n\n(escape_sequence) @escape\n\n(attribute_item) @attribute\n(inner_attribute_item) @attribute\n\n\"*\" @operator\n\"&\" @operator\n\"'\" @operator\n\n```"]
 #[derive(Debug)]
-pub struct HighlightsMatch<'cursor, 'tree>(tree_sitter::QueryMatch<'cursor, 'tree>);
+pub struct HighlightsMatch<'cursor, 'tree> {
+    match_: tree_sitter::QueryMatch<'cursor, 'tree>,
+}
 #[doc = "A capture returned by the query [Highlights]:\n\n```sexp\n; Identifier conventions\n\n; Assume all-caps names are constants\n((identifier) @constant\n (#match? @constant \"^[A-Z][A-Z\\\\d_]+$'\"))\n\n; Assume that uppercase names in paths are types\n((scoped_identifier\n  path: (identifier) @type)\n (#match? @type \"^[A-Z]\"))\n((scoped_identifier\n  path: (scoped_identifier\n    name: (identifier) @type))\n (#match? @type \"^[A-Z]\"))\n((scoped_type_identifier\n  path: (identifier) @type)\n (#match? @type \"^[A-Z]\"))\n((scoped_type_identifier\n  path: (scoped_identifier\n    name: (identifier) @type))\n (#match? @type \"^[A-Z]\"))\n\n; Assume other uppercase names are enum constructors\n((identifier) @constructor\n (#match? @constructor \"^[A-Z]\"))\n\n; Assume all qualified names in struct patterns are enum constructors. (They're\n; either that, or struct names; highlighting both as constructors seems to be\n; the less glaring choice of error, visually.)\n(struct_pattern\n  type: (scoped_type_identifier\n    name: (type_identifier) @constructor))\n\n; Function calls\n\n(call_expression\n  function: (identifier) @function)\n(call_expression\n  function: (field_expression\n    field: (field_identifier) @function.method))\n(call_expression\n  function: (scoped_identifier\n    \"::\"\n    name: (identifier) @function))\n\n(generic_function\n  function: (identifier) @function)\n(generic_function\n  function: (scoped_identifier\n    name: (identifier) @function))\n(generic_function\n  function: (field_expression\n    field: (field_identifier) @function.method))\n\n(macro_invocation\n  macro: (identifier) @function.macro\n  \"!\" @function.macro)\n\n; Function definitions\n\n(function_item (identifier) @function)\n(function_signature_item (identifier) @function)\n\n; Other identifiers\n\n(type_identifier) @type\n(primitive_type) @type.builtin\n(field_identifier) @property\n\n(line_comment) @comment\n(block_comment) @comment\n\n\"(\" @punctuation.bracket\n\")\" @punctuation.bracket\n\"[\" @punctuation.bracket\n\"]\" @punctuation.bracket\n\"{\" @punctuation.bracket\n\"}\" @punctuation.bracket\n\n(type_arguments\n  \"<\" @punctuation.bracket\n  \">\" @punctuation.bracket)\n(type_parameters\n  \"<\" @punctuation.bracket\n  \">\" @punctuation.bracket)\n\n\"::\" @punctuation.delimiter\n\":\" @punctuation.delimiter\n\".\" @punctuation.delimiter\n\",\" @punctuation.delimiter\n\";\" @punctuation.delimiter\n\n(parameter (identifier) @variable.parameter)\n\n(lifetime (identifier) @label)\n\n\"as\" @keyword\n\"async\" @keyword\n\"await\" @keyword\n\"break\" @keyword\n\"const\" @keyword\n\"continue\" @keyword\n\"default\" @keyword\n\"dyn\" @keyword\n\"else\" @keyword\n\"enum\" @keyword\n\"extern\" @keyword\n\"fn\" @keyword\n\"for\" @keyword\n\"if\" @keyword\n\"impl\" @keyword\n\"in\" @keyword\n\"let\" @keyword\n\"loop\" @keyword\n\"macro_rules!\" @keyword\n\"match\" @keyword\n\"mod\" @keyword\n\"move\" @keyword\n\"pub\" @keyword\n\"ref\" @keyword\n\"return\" @keyword\n\"static\" @keyword\n\"struct\" @keyword\n\"trait\" @keyword\n\"type\" @keyword\n\"union\" @keyword\n\"unsafe\" @keyword\n\"use\" @keyword\n\"where\" @keyword\n\"while\" @keyword\n(crate) @keyword\n(mutable_specifier) @keyword\n(use_list (self) @keyword)\n(scoped_use_list (self) @keyword)\n(scoped_identifier (self) @keyword)\n(super) @keyword\n\n(self) @variable.builtin\n\n(char_literal) @string\n(string_literal) @string\n(raw_string_literal) @string\n\n(boolean_literal) @constant.builtin\n(integer_literal) @constant.builtin\n(float_literal) @constant.builtin\n\n(escape_sequence) @escape\n\n(attribute_item) @attribute\n(inner_attribute_item) @attribute\n\n\"*\" @operator\n\"&\" @operator\n\"'\" @operator\n\n```"]
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug)]
 pub enum HighlightsCapture<'cursor, 'tree> {
     #[doc = "A `constant`"]
     #[doc = ""]
@@ -466,140 +585,200 @@ pub enum HighlightsCapture<'cursor, 'tree> {
     #[doc = "```sexp"]
     #[doc = "(identifier) @constant"]
     #[doc = "```"]
-    Constant(super::nodes::Identifier<'tree>),
+    Constant {
+        node: super::nodes::Identifier<'tree>,
+        match_: Option<HighlightsMatch<'cursor, 'tree>>,
+    },
     #[doc = "A `type`"]
     #[doc = ""]
     #[doc = "The full capture including pattern is:"]
     #[doc = "```sexp"]
     #[doc = "((identifier) @constant\n (#match? @constant \"^[A-Z][A-Z\\\\d_]+$'\")) @type"]
     #[doc = "```"]
-    Type(super::nodes::Identifier<'tree>),
+    Type {
+        node: super::nodes::Identifier<'tree>,
+        match_: Option<HighlightsMatch<'cursor, 'tree>>,
+    },
     #[doc = "A `constructor`"]
     #[doc = ""]
     #[doc = "The full capture including pattern is:"]
     #[doc = "```sexp"]
     #[doc = "(identifier) @constructor"]
     #[doc = "```"]
-    Constructor(super::nodes::Identifier<'tree>),
+    Constructor {
+        node: super::nodes::Identifier<'tree>,
+        match_: Option<HighlightsMatch<'cursor, 'tree>>,
+    },
     #[doc = "A `function`"]
     #[doc = ""]
     #[doc = "The full capture including pattern is:"]
     #[doc = "```sexp"]
     #[doc = "call_expression @function"]
     #[doc = "```"]
-    Function(super::nodes::CallExpression<'tree>),
+    Function {
+        node: super::nodes::CallExpression<'tree>,
+        match_: Option<HighlightsMatch<'cursor, 'tree>>,
+    },
     #[doc = "A `function.method`"]
     #[doc = ""]
     #[doc = "The full capture including pattern is:"]
     #[doc = "```sexp"]
     #[doc = "field_expression @function.method"]
     #[doc = "```"]
-    FunctionMethod(super::nodes::FieldExpression<'tree>),
+    FunctionMethod {
+        node: super::nodes::FieldExpression<'tree>,
+        match_: Option<HighlightsMatch<'cursor, 'tree>>,
+    },
     #[doc = "A `function.macro`"]
     #[doc = ""]
     #[doc = "The full capture including pattern is:"]
     #[doc = "```sexp"]
     #[doc = "macro_invocation @function.macro"]
     #[doc = "```"]
-    FunctionMacro(super::nodes::MacroInvocation<'tree>),
+    FunctionMacro {
+        node: super::nodes::MacroInvocation<'tree>,
+        match_: Option<HighlightsMatch<'cursor, 'tree>>,
+    },
     #[doc = "A `type.builtin`"]
     #[doc = ""]
     #[doc = "The full capture including pattern is:"]
     #[doc = "```sexp"]
     #[doc = "((identifier) @constant\n (#match? @constant \"^[A-Z][A-Z\\\\d_]+$'\")) @type.builtin"]
     #[doc = "```"]
-    TypeBuiltin(super::nodes::Identifier<'tree>),
+    TypeBuiltin {
+        node: super::nodes::Identifier<'tree>,
+        match_: Option<HighlightsMatch<'cursor, 'tree>>,
+    },
     #[doc = "A `property`"]
     #[doc = ""]
     #[doc = "The full capture including pattern is:"]
     #[doc = "```sexp"]
     #[doc = "((identifier) @constant\n (#match? @constant \"^[A-Z][A-Z\\\\d_]+$'\")) @property"]
     #[doc = "```"]
-    Property(super::nodes::Identifier<'tree>),
+    Property {
+        node: super::nodes::Identifier<'tree>,
+        match_: Option<HighlightsMatch<'cursor, 'tree>>,
+    },
     #[doc = "A `comment`"]
     #[doc = ""]
     #[doc = "The full capture including pattern is:"]
     #[doc = "```sexp"]
     #[doc = "((identifier) @constant\n (#match? @constant \"^[A-Z][A-Z\\\\d_]+$'\")) @comment"]
     #[doc = "```"]
-    Comment(super::nodes::Identifier<'tree>),
+    Comment {
+        node: super::nodes::Identifier<'tree>,
+        match_: Option<HighlightsMatch<'cursor, 'tree>>,
+    },
     #[doc = "A `punctuation.bracket`"]
     #[doc = ""]
     #[doc = "The full capture including pattern is:"]
     #[doc = "```sexp"]
     #[doc = "((identifier) @constant\n (#match? @constant \"^[A-Z][A-Z\\\\d_]+$'\")) @punctuation.bracket"]
     #[doc = "```"]
-    PunctuationBracket(super::nodes::Identifier<'tree>),
+    PunctuationBracket {
+        node: super::nodes::Identifier<'tree>,
+        match_: Option<HighlightsMatch<'cursor, 'tree>>,
+    },
     #[doc = "A `punctuation.delimiter`"]
     #[doc = ""]
     #[doc = "The full capture including pattern is:"]
     #[doc = "```sexp"]
     #[doc = "((identifier) @constant\n (#match? @constant \"^[A-Z][A-Z\\\\d_]+$'\")) @punctuation.delimiter"]
     #[doc = "```"]
-    PunctuationDelimiter(super::nodes::Identifier<'tree>),
+    PunctuationDelimiter {
+        node: super::nodes::Identifier<'tree>,
+        match_: Option<HighlightsMatch<'cursor, 'tree>>,
+    },
     #[doc = "A `variable.parameter`"]
     #[doc = ""]
     #[doc = "The full capture including pattern is:"]
     #[doc = "```sexp"]
     #[doc = "parameter @variable.parameter"]
     #[doc = "```"]
-    VariableParameter(super::nodes::Parameter<'tree>),
+    VariableParameter {
+        node: super::nodes::Parameter<'tree>,
+        match_: Option<HighlightsMatch<'cursor, 'tree>>,
+    },
     #[doc = "A `label`"]
     #[doc = ""]
     #[doc = "The full capture including pattern is:"]
     #[doc = "```sexp"]
     #[doc = "lifetime @label"]
     #[doc = "```"]
-    Label(super::nodes::Lifetime<'tree>),
+    Label {
+        node: super::nodes::Lifetime<'tree>,
+        match_: Option<HighlightsMatch<'cursor, 'tree>>,
+    },
     #[doc = "A `keyword`"]
     #[doc = ""]
     #[doc = "The full capture including pattern is:"]
     #[doc = "```sexp"]
     #[doc = "((identifier) @constant\n (#match? @constant \"^[A-Z][A-Z\\\\d_]+$'\")) @keyword"]
     #[doc = "```"]
-    Keyword(super::nodes::Identifier<'tree>),
+    Keyword {
+        node: super::nodes::Identifier<'tree>,
+        match_: Option<HighlightsMatch<'cursor, 'tree>>,
+    },
     #[doc = "A `variable.builtin`"]
     #[doc = ""]
     #[doc = "The full capture including pattern is:"]
     #[doc = "```sexp"]
     #[doc = "((identifier) @constant\n (#match? @constant \"^[A-Z][A-Z\\\\d_]+$'\")) @variable.builtin"]
     #[doc = "```"]
-    VariableBuiltin(super::nodes::Identifier<'tree>),
+    VariableBuiltin {
+        node: super::nodes::Identifier<'tree>,
+        match_: Option<HighlightsMatch<'cursor, 'tree>>,
+    },
     #[doc = "A `string`"]
     #[doc = ""]
     #[doc = "The full capture including pattern is:"]
     #[doc = "```sexp"]
     #[doc = "((identifier) @constant\n (#match? @constant \"^[A-Z][A-Z\\\\d_]+$'\")) @string"]
     #[doc = "```"]
-    String(super::nodes::Identifier<'tree>),
+    String {
+        node: super::nodes::Identifier<'tree>,
+        match_: Option<HighlightsMatch<'cursor, 'tree>>,
+    },
     #[doc = "A `constant.builtin`"]
     #[doc = ""]
     #[doc = "The full capture including pattern is:"]
     #[doc = "```sexp"]
     #[doc = "((identifier) @constant\n (#match? @constant \"^[A-Z][A-Z\\\\d_]+$'\")) @constant.builtin"]
     #[doc = "```"]
-    ConstantBuiltin(super::nodes::Identifier<'tree>),
+    ConstantBuiltin {
+        node: super::nodes::Identifier<'tree>,
+        match_: Option<HighlightsMatch<'cursor, 'tree>>,
+    },
     #[doc = "A `escape`"]
     #[doc = ""]
     #[doc = "The full capture including pattern is:"]
     #[doc = "```sexp"]
     #[doc = "((identifier) @constant\n (#match? @constant \"^[A-Z][A-Z\\\\d_]+$'\")) @escape"]
     #[doc = "```"]
-    Escape(super::nodes::Identifier<'tree>),
+    Escape {
+        node: super::nodes::Identifier<'tree>,
+        match_: Option<HighlightsMatch<'cursor, 'tree>>,
+    },
     #[doc = "A `attribute`"]
     #[doc = ""]
     #[doc = "The full capture including pattern is:"]
     #[doc = "```sexp"]
     #[doc = "((identifier) @constant\n (#match? @constant \"^[A-Z][A-Z\\\\d_]+$'\")) @attribute"]
     #[doc = "```"]
-    Attribute(super::nodes::Identifier<'tree>),
+    Attribute {
+        node: super::nodes::Identifier<'tree>,
+        match_: Option<HighlightsMatch<'cursor, 'tree>>,
+    },
     #[doc = "A `operator`"]
     #[doc = ""]
     #[doc = "The full capture including pattern is:"]
     #[doc = "```sexp"]
     #[doc = "((identifier) @constant\n (#match? @constant \"^[A-Z][A-Z\\\\d_]+$'\")) @operator"]
     #[doc = "```"]
-    Operator(super::nodes::Identifier<'tree>),
+    Operator {
+        node: super::nodes::Identifier<'tree>,
+        match_: Option<HighlightsMatch<'cursor, 'tree>>,
+    },
 }
 #[automatically_derived]
 impl TypedQuery for Highlights {
@@ -616,14 +795,15 @@ impl TypedQuery for Highlights {
         &self,
         match_: tree_sitter::QueryMatch<'cursor, 'tree>,
     ) -> Self::Match<'cursor, 'tree> {
-        Self::Match(match_)
+        Self::Match { match_ }
     }
     #[inline]
     unsafe fn wrap_capture<'cursor, 'tree>(
         &self,
         capture: tree_sitter::QueryCapture<'cursor, 'tree>,
+        match_: Option<Self::Match<'cursor, 'tree>>,
     ) -> Self::Capture<'cursor, 'tree> {
-        match capture . index { 0usize => Constant (< super :: nodes :: Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node)) , 1usize => Type (< super :: nodes :: Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node)) , 2usize => Constructor (< super :: nodes :: Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node)) , 3usize => Function (< super :: nodes :: CallExpression < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node)) , 4usize => FunctionMethod (< super :: nodes :: FieldExpression < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node)) , 5usize => FunctionMacro (< super :: nodes :: MacroInvocation < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node)) , 6usize => TypeBuiltin (< super :: nodes :: Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node)) , 7usize => Property (< super :: nodes :: Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node)) , 8usize => Comment (< super :: nodes :: Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node)) , 9usize => PunctuationBracket (< super :: nodes :: Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node)) , 10usize => PunctuationDelimiter (< super :: nodes :: Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node)) , 11usize => VariableParameter (< super :: nodes :: Parameter < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node)) , 12usize => Label (< super :: nodes :: Lifetime < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node)) , 13usize => Keyword (< super :: nodes :: Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node)) , 14usize => VariableBuiltin (< super :: nodes :: Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node)) , 15usize => String (< super :: nodes :: Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node)) , 16usize => ConstantBuiltin (< super :: nodes :: Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node)) , 17usize => Escape (< super :: nodes :: Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node)) , 18usize => Attribute (< super :: nodes :: Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node)) , 19usize => Operator (< super :: nodes :: Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node)) , }
+        match capture . index { 0usize => Self :: Capture :: Constant { node : < super :: nodes :: Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 1usize => Self :: Capture :: Type { node : < super :: nodes :: Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 2usize => Self :: Capture :: Constructor { node : < super :: nodes :: Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 3usize => Self :: Capture :: Function { node : < super :: nodes :: CallExpression < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 4usize => Self :: Capture :: FunctionMethod { node : < super :: nodes :: FieldExpression < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 5usize => Self :: Capture :: FunctionMacro { node : < super :: nodes :: MacroInvocation < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 6usize => Self :: Capture :: TypeBuiltin { node : < super :: nodes :: Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 7usize => Self :: Capture :: Property { node : < super :: nodes :: Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 8usize => Self :: Capture :: Comment { node : < super :: nodes :: Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 9usize => Self :: Capture :: PunctuationBracket { node : < super :: nodes :: Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 10usize => Self :: Capture :: PunctuationDelimiter { node : < super :: nodes :: Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 11usize => Self :: Capture :: VariableParameter { node : < super :: nodes :: Parameter < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 12usize => Self :: Capture :: Label { node : < super :: nodes :: Lifetime < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 13usize => Self :: Capture :: Keyword { node : < super :: nodes :: Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 14usize => Self :: Capture :: VariableBuiltin { node : < super :: nodes :: Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 15usize => Self :: Capture :: String { node : < super :: nodes :: Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 16usize => Self :: Capture :: ConstantBuiltin { node : < super :: nodes :: Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 17usize => Self :: Capture :: Escape { node : < super :: nodes :: Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 18usize => Self :: Capture :: Attribute { node : < super :: nodes :: Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 19usize => Self :: Capture :: Operator { node : < super :: nodes :: Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , capture_index => unreachable ! ("Invalid capture index: {}" , capture_index) }
     }
 }
 #[automatically_derived]
@@ -952,6 +1132,10 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
 impl<'cursor, 'tree> TypedQueryMatch<'cursor, 'tree> for HighlightsMatch<'cursor, 'tree> {
     type Query = Highlights;
     #[inline]
+    fn query(&self) -> &'static Self::Query {
+        Highlights
+    }
+    #[inline]
     fn raw(&self) -> &tree_sitter::QueryMatch<'cursor, 'tree> {
         &self.0
     }
@@ -959,13 +1143,9 @@ impl<'cursor, 'tree> TypedQueryMatch<'cursor, 'tree> for HighlightsMatch<'cursor
     fn into_raw(self) -> tree_sitter::QueryMatch<'cursor, 'tree> {
         self.0
     }
-    #[inline]
-    fn query(&self) -> &Self::Query {
-        Highlights
-    }
 }
 #[automatically_derived]
-impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
+impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
     #[doc = "Try to interpret this capture as a `constant`"]
     #[doc = ""]
     #[doc = "The full capture including pattern is:"]
@@ -975,7 +1155,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
     #[inline]
     pub fn constant(&self) -> Option<super::nodes::Identifier<'tree>> {
         match self {
-            Self::Constant(node) => Some(node),
+            Self::Constant { node, .. } => Some(node),
             _ => None,
         }
     }
@@ -988,7 +1168,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
     #[inline]
     pub fn r#type(&self) -> Option<super::nodes::Identifier<'tree>> {
         match self {
-            Self::Type(node) => Some(node),
+            Self::Type { node, .. } => Some(node),
             _ => None,
         }
     }
@@ -1001,7 +1181,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
     #[inline]
     pub fn constructor(&self) -> Option<super::nodes::Identifier<'tree>> {
         match self {
-            Self::Constructor(node) => Some(node),
+            Self::Constructor { node, .. } => Some(node),
             _ => None,
         }
     }
@@ -1014,7 +1194,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
     #[inline]
     pub fn function(&self) -> Option<super::nodes::CallExpression<'tree>> {
         match self {
-            Self::Function(node) => Some(node),
+            Self::Function { node, .. } => Some(node),
             _ => None,
         }
     }
@@ -1027,7 +1207,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
     #[inline]
     pub fn function_method(&self) -> Option<super::nodes::FieldExpression<'tree>> {
         match self {
-            Self::FunctionMethod(node) => Some(node),
+            Self::FunctionMethod { node, .. } => Some(node),
             _ => None,
         }
     }
@@ -1040,7 +1220,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
     #[inline]
     pub fn function_macro(&self) -> Option<super::nodes::MacroInvocation<'tree>> {
         match self {
-            Self::FunctionMacro(node) => Some(node),
+            Self::FunctionMacro { node, .. } => Some(node),
             _ => None,
         }
     }
@@ -1053,7 +1233,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
     #[inline]
     pub fn type_builtin(&self) -> Option<super::nodes::Identifier<'tree>> {
         match self {
-            Self::TypeBuiltin(node) => Some(node),
+            Self::TypeBuiltin { node, .. } => Some(node),
             _ => None,
         }
     }
@@ -1066,7 +1246,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
     #[inline]
     pub fn property(&self) -> Option<super::nodes::Identifier<'tree>> {
         match self {
-            Self::Property(node) => Some(node),
+            Self::Property { node, .. } => Some(node),
             _ => None,
         }
     }
@@ -1079,7 +1259,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
     #[inline]
     pub fn comment(&self) -> Option<super::nodes::Identifier<'tree>> {
         match self {
-            Self::Comment(node) => Some(node),
+            Self::Comment { node, .. } => Some(node),
             _ => None,
         }
     }
@@ -1092,7 +1272,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
     #[inline]
     pub fn punctuation_bracket(&self) -> Option<super::nodes::Identifier<'tree>> {
         match self {
-            Self::PunctuationBracket(node) => Some(node),
+            Self::PunctuationBracket { node, .. } => Some(node),
             _ => None,
         }
     }
@@ -1105,7 +1285,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
     #[inline]
     pub fn punctuation_delimiter(&self) -> Option<super::nodes::Identifier<'tree>> {
         match self {
-            Self::PunctuationDelimiter(node) => Some(node),
+            Self::PunctuationDelimiter { node, .. } => Some(node),
             _ => None,
         }
     }
@@ -1118,7 +1298,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
     #[inline]
     pub fn variable_parameter(&self) -> Option<super::nodes::Parameter<'tree>> {
         match self {
-            Self::VariableParameter(node) => Some(node),
+            Self::VariableParameter { node, .. } => Some(node),
             _ => None,
         }
     }
@@ -1131,7 +1311,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
     #[inline]
     pub fn label(&self) -> Option<super::nodes::Lifetime<'tree>> {
         match self {
-            Self::Label(node) => Some(node),
+            Self::Label { node, .. } => Some(node),
             _ => None,
         }
     }
@@ -1144,7 +1324,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
     #[inline]
     pub fn keyword(&self) -> Option<super::nodes::Identifier<'tree>> {
         match self {
-            Self::Keyword(node) => Some(node),
+            Self::Keyword { node, .. } => Some(node),
             _ => None,
         }
     }
@@ -1157,7 +1337,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
     #[inline]
     pub fn variable_builtin(&self) -> Option<super::nodes::Identifier<'tree>> {
         match self {
-            Self::VariableBuiltin(node) => Some(node),
+            Self::VariableBuiltin { node, .. } => Some(node),
             _ => None,
         }
     }
@@ -1170,7 +1350,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
     #[inline]
     pub fn string(&self) -> Option<super::nodes::Identifier<'tree>> {
         match self {
-            Self::String(node) => Some(node),
+            Self::String { node, .. } => Some(node),
             _ => None,
         }
     }
@@ -1183,7 +1363,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
     #[inline]
     pub fn constant_builtin(&self) -> Option<super::nodes::Identifier<'tree>> {
         match self {
-            Self::ConstantBuiltin(node) => Some(node),
+            Self::ConstantBuiltin { node, .. } => Some(node),
             _ => None,
         }
     }
@@ -1196,7 +1376,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
     #[inline]
     pub fn escape(&self) -> Option<super::nodes::Identifier<'tree>> {
         match self {
-            Self::Escape(node) => Some(node),
+            Self::Escape { node, .. } => Some(node),
             _ => None,
         }
     }
@@ -1209,7 +1389,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
     #[inline]
     pub fn attribute(&self) -> Option<super::nodes::Identifier<'tree>> {
         match self {
-            Self::Attribute(node) => Some(node),
+            Self::Attribute { node, .. } => Some(node),
             _ => None,
         }
     }
@@ -1222,8 +1402,95 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
     #[inline]
     pub fn operator(&self) -> Option<super::nodes::Identifier<'tree>> {
         match self {
-            Self::Operator(node) => Some(node),
+            Self::Operator { node, .. } => Some(node),
             _ => None,
+        }
+    }
+}
+#[automatically_derived]
+impl<'cursor, 'tree> Clone for HighlightsCapture<'cursor, 'tree> {
+    fn clone(&self) -> Self {
+        match self {
+            Self::Constant { node, .. } => Self::Constant {
+                node: *node,
+                match_: None,
+            },
+            Self::Type { node, .. } => Self::Type {
+                node: *node,
+                match_: None,
+            },
+            Self::Constructor { node, .. } => Self::Constructor {
+                node: *node,
+                match_: None,
+            },
+            Self::Function { node, .. } => Self::Function {
+                node: *node,
+                match_: None,
+            },
+            Self::FunctionMethod { node, .. } => Self::FunctionMethod {
+                node: *node,
+                match_: None,
+            },
+            Self::FunctionMacro { node, .. } => Self::FunctionMacro {
+                node: *node,
+                match_: None,
+            },
+            Self::TypeBuiltin { node, .. } => Self::TypeBuiltin {
+                node: *node,
+                match_: None,
+            },
+            Self::Property { node, .. } => Self::Property {
+                node: *node,
+                match_: None,
+            },
+            Self::Comment { node, .. } => Self::Comment {
+                node: *node,
+                match_: None,
+            },
+            Self::PunctuationBracket { node, .. } => Self::PunctuationBracket {
+                node: *node,
+                match_: None,
+            },
+            Self::PunctuationDelimiter { node, .. } => Self::PunctuationDelimiter {
+                node: *node,
+                match_: None,
+            },
+            Self::VariableParameter { node, .. } => Self::VariableParameter {
+                node: *node,
+                match_: None,
+            },
+            Self::Label { node, .. } => Self::Label {
+                node: *node,
+                match_: None,
+            },
+            Self::Keyword { node, .. } => Self::Keyword {
+                node: *node,
+                match_: None,
+            },
+            Self::VariableBuiltin { node, .. } => Self::VariableBuiltin {
+                node: *node,
+                match_: None,
+            },
+            Self::String { node, .. } => Self::String {
+                node: *node,
+                match_: None,
+            },
+            Self::ConstantBuiltin { node, .. } => Self::ConstantBuiltin {
+                node: *node,
+                match_: None,
+            },
+            Self::Escape { node, .. } => Self::Escape {
+                node: *node,
+                match_: None,
+            },
+            Self::Attribute { node, .. } => Self::Attribute {
+                node: *node,
+                match_: None,
+            },
+            Self::Operator { node, .. } => Self::Operator {
+                node: *node,
+                match_: None,
+            },
         }
     }
 }
@@ -1231,93 +1498,168 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
 impl<'cursor, 'tree> TypedQueryCapture<'cursor, 'tree> for HighlightsCapture<'cursor, 'tree> {
     type Query = Highlights;
     #[inline]
-    fn to_raw(self) -> tree_sitter::QueryCapture<'cursor, 'tree> {
+    fn query(&self) -> &'static Self::Query {
+        Highlights
+    }
+    #[inline]
+    fn match_(&self) -> Option<&<Self::Query as TypedQuery>::Match<'cursor, 'tree>> {
         match self {
-            Constant(node) => tree_sitter::QueryCapture {
-                index: 0usize,
+            Self::Constant { match_, .. } => match_,
+            Self::Type { match_, .. } => match_,
+            Self::Constructor { match_, .. } => match_,
+            Self::Function { match_, .. } => match_,
+            Self::FunctionMethod { match_, .. } => match_,
+            Self::FunctionMacro { match_, .. } => match_,
+            Self::TypeBuiltin { match_, .. } => match_,
+            Self::Property { match_, .. } => match_,
+            Self::Comment { match_, .. } => match_,
+            Self::PunctuationBracket { match_, .. } => match_,
+            Self::PunctuationDelimiter { match_, .. } => match_,
+            Self::VariableParameter { match_, .. } => match_,
+            Self::Label { match_, .. } => match_,
+            Self::Keyword { match_, .. } => match_,
+            Self::VariableBuiltin { match_, .. } => match_,
+            Self::String { match_, .. } => match_,
+            Self::ConstantBuiltin { match_, .. } => match_,
+            Self::Escape { match_, .. } => match_,
+            Self::Attribute { match_, .. } => match_,
+            Self::Operator { match_, .. } => match_,
+        }
+    }
+    #[inline]
+    fn into_match(self) -> Option<<Self::Query as TypedQuery>::Match<'cursor, 'tree>> {
+        match self {
+            Self::Constant { match_, .. } => match_,
+            Self::Type { match_, .. } => match_,
+            Self::Constructor { match_, .. } => match_,
+            Self::Function { match_, .. } => match_,
+            Self::FunctionMethod { match_, .. } => match_,
+            Self::FunctionMacro { match_, .. } => match_,
+            Self::TypeBuiltin { match_, .. } => match_,
+            Self::Property { match_, .. } => match_,
+            Self::Comment { match_, .. } => match_,
+            Self::PunctuationBracket { match_, .. } => match_,
+            Self::PunctuationDelimiter { match_, .. } => match_,
+            Self::VariableParameter { match_, .. } => match_,
+            Self::Label { match_, .. } => match_,
+            Self::Keyword { match_, .. } => match_,
+            Self::VariableBuiltin { match_, .. } => match_,
+            Self::String { match_, .. } => match_,
+            Self::ConstantBuiltin { match_, .. } => match_,
+            Self::Escape { match_, .. } => match_,
+            Self::Attribute { match_, .. } => match_,
+            Self::Operator { match_, .. } => match_,
+        }
+    }
+    #[inline]
+    fn to_raw(&self) -> tree_sitter::QueryCapture<'tree> {
+        match self {
+            Self::Constant { node, .. } => tree_sitter::QueryCapture {
+                index: 0usize as u32,
                 node: *node.node(),
             },
-            Type(node) => tree_sitter::QueryCapture {
-                index: 1usize,
+            Self::Type { node, .. } => tree_sitter::QueryCapture {
+                index: 1usize as u32,
                 node: *node.node(),
             },
-            Constructor(node) => tree_sitter::QueryCapture {
-                index: 2usize,
+            Self::Constructor { node, .. } => tree_sitter::QueryCapture {
+                index: 2usize as u32,
                 node: *node.node(),
             },
-            Function(node) => tree_sitter::QueryCapture {
-                index: 3usize,
+            Self::Function { node, .. } => tree_sitter::QueryCapture {
+                index: 3usize as u32,
                 node: *node.node(),
             },
-            FunctionMethod(node) => tree_sitter::QueryCapture {
-                index: 4usize,
+            Self::FunctionMethod { node, .. } => tree_sitter::QueryCapture {
+                index: 4usize as u32,
                 node: *node.node(),
             },
-            FunctionMacro(node) => tree_sitter::QueryCapture {
-                index: 5usize,
+            Self::FunctionMacro { node, .. } => tree_sitter::QueryCapture {
+                index: 5usize as u32,
                 node: *node.node(),
             },
-            TypeBuiltin(node) => tree_sitter::QueryCapture {
-                index: 6usize,
+            Self::TypeBuiltin { node, .. } => tree_sitter::QueryCapture {
+                index: 6usize as u32,
                 node: *node.node(),
             },
-            Property(node) => tree_sitter::QueryCapture {
-                index: 7usize,
+            Self::Property { node, .. } => tree_sitter::QueryCapture {
+                index: 7usize as u32,
                 node: *node.node(),
             },
-            Comment(node) => tree_sitter::QueryCapture {
-                index: 8usize,
+            Self::Comment { node, .. } => tree_sitter::QueryCapture {
+                index: 8usize as u32,
                 node: *node.node(),
             },
-            PunctuationBracket(node) => tree_sitter::QueryCapture {
-                index: 9usize,
+            Self::PunctuationBracket { node, .. } => tree_sitter::QueryCapture {
+                index: 9usize as u32,
                 node: *node.node(),
             },
-            PunctuationDelimiter(node) => tree_sitter::QueryCapture {
-                index: 10usize,
+            Self::PunctuationDelimiter { node, .. } => tree_sitter::QueryCapture {
+                index: 10usize as u32,
                 node: *node.node(),
             },
-            VariableParameter(node) => tree_sitter::QueryCapture {
-                index: 11usize,
+            Self::VariableParameter { node, .. } => tree_sitter::QueryCapture {
+                index: 11usize as u32,
                 node: *node.node(),
             },
-            Label(node) => tree_sitter::QueryCapture {
-                index: 12usize,
+            Self::Label { node, .. } => tree_sitter::QueryCapture {
+                index: 12usize as u32,
                 node: *node.node(),
             },
-            Keyword(node) => tree_sitter::QueryCapture {
-                index: 13usize,
+            Self::Keyword { node, .. } => tree_sitter::QueryCapture {
+                index: 13usize as u32,
                 node: *node.node(),
             },
-            VariableBuiltin(node) => tree_sitter::QueryCapture {
-                index: 14usize,
+            Self::VariableBuiltin { node, .. } => tree_sitter::QueryCapture {
+                index: 14usize as u32,
                 node: *node.node(),
             },
-            String(node) => tree_sitter::QueryCapture {
-                index: 15usize,
+            Self::String { node, .. } => tree_sitter::QueryCapture {
+                index: 15usize as u32,
                 node: *node.node(),
             },
-            ConstantBuiltin(node) => tree_sitter::QueryCapture {
-                index: 16usize,
+            Self::ConstantBuiltin { node, .. } => tree_sitter::QueryCapture {
+                index: 16usize as u32,
                 node: *node.node(),
             },
-            Escape(node) => tree_sitter::QueryCapture {
-                index: 17usize,
+            Self::Escape { node, .. } => tree_sitter::QueryCapture {
+                index: 17usize as u32,
                 node: *node.node(),
             },
-            Attribute(node) => tree_sitter::QueryCapture {
-                index: 18usize,
+            Self::Attribute { node, .. } => tree_sitter::QueryCapture {
+                index: 18usize as u32,
                 node: *node.node(),
             },
-            Operator(node) => tree_sitter::QueryCapture {
-                index: 19usize,
+            Self::Operator { node, .. } => tree_sitter::QueryCapture {
+                index: 19usize as u32,
                 node: *node.node(),
             },
         }
     }
     #[inline]
-    fn query(&self) -> &Self::Query {
-        Highlights
+    fn node(&self) -> tree_sitter::Node<'tree> {
+        match self {
+            Self::Constant { node, .. } => node.node(),
+            Self::Type { node, .. } => node.node(),
+            Self::Constructor { node, .. } => node.node(),
+            Self::Function { node, .. } => node.node(),
+            Self::FunctionMethod { node, .. } => node.node(),
+            Self::FunctionMacro { node, .. } => node.node(),
+            Self::TypeBuiltin { node, .. } => node.node(),
+            Self::Property { node, .. } => node.node(),
+            Self::Comment { node, .. } => node.node(),
+            Self::PunctuationBracket { node, .. } => node.node(),
+            Self::PunctuationDelimiter { node, .. } => node.node(),
+            Self::VariableParameter { node, .. } => node.node(),
+            Self::Label { node, .. } => node.node(),
+            Self::Keyword { node, .. } => node.node(),
+            Self::VariableBuiltin { node, .. } => node.node(),
+            Self::String { node, .. } => node.node(),
+            Self::ConstantBuiltin { node, .. } => node.node(),
+            Self::Escape { node, .. } => node.node(),
+            Self::Attribute { node, .. } => node.node(),
+            Self::Operator { node, .. } => node.node(),
+        }
     }
 }
 #[allow(non_upper_case_globals)]
@@ -1332,15 +1674,17 @@ fn __Mk__Injections() -> tree_sitter::Query {
 #[allow(non_camel_case_types)]
 #[derive(Debug, Clone, Copy)]
 pub struct Injections;
-pub type InjectionsMatches<'a, 'tree, T> =
-    TypedQueryMatches<'a, 'tree, T, InjectionsMatch<'a, 'tree>>;
-pub type InjectionsCaptures<'a, 'tree, T> =
-    TypedQueryCaptures<'a, 'tree, T, InjectionsMatch<'a, 'tree>>;
+pub type InjectionsMatches<'cursor, 'tree, Text> =
+    TypedQueryMatches<'cursor, 'tree, InjectionsMatch<'cursor, 'tree>, Text>;
+pub type InjectionsCaptures<'cursor, 'tree, Text> =
+    TypedQueryCaptures<'cursor, 'tree, InjectionsMatch<'cursor, 'tree>, Text>;
 #[doc = "A match returned by the query [Injections]:\n\n```sexp\n((macro_invocation\n  (token_tree) @injection.content)\n (#set! injection.language \"rust\")\n (#set! injection.include-children))\n\n((macro_rule\n  (token_tree) @injection.content)\n (#set! injection.language \"rust\")\n (#set! injection.include-children))\n\n```"]
 #[derive(Debug)]
-pub struct InjectionsMatch<'cursor, 'tree>(tree_sitter::QueryMatch<'cursor, 'tree>);
+pub struct InjectionsMatch<'cursor, 'tree> {
+    match_: tree_sitter::QueryMatch<'cursor, 'tree>,
+}
 #[doc = "A capture returned by the query [Injections]:\n\n```sexp\n((macro_invocation\n  (token_tree) @injection.content)\n (#set! injection.language \"rust\")\n (#set! injection.include-children))\n\n((macro_rule\n  (token_tree) @injection.content)\n (#set! injection.language \"rust\")\n (#set! injection.include-children))\n\n```"]
-#[derive(Debug, Clone, Copy)]
+#[derive(Debug)]
 pub enum InjectionsCapture<'cursor, 'tree> {
     #[doc = "A `injection.content`"]
     #[doc = ""]
@@ -1348,7 +1692,10 @@ pub enum InjectionsCapture<'cursor, 'tree> {
     #[doc = "```sexp"]
     #[doc = "macro_invocation @injection.content"]
     #[doc = "```"]
-    InjectionContent(super::nodes::MacroInvocation<'tree>),
+    InjectionContent {
+        node: super::nodes::MacroInvocation<'tree>,
+        match_: Option<InjectionsMatch<'cursor, 'tree>>,
+    },
 }
 #[automatically_derived]
 impl TypedQuery for Injections {
@@ -1365,14 +1712,25 @@ impl TypedQuery for Injections {
         &self,
         match_: tree_sitter::QueryMatch<'cursor, 'tree>,
     ) -> Self::Match<'cursor, 'tree> {
-        Self::Match(match_)
+        Self::Match { match_ }
     }
     #[inline]
     unsafe fn wrap_capture<'cursor, 'tree>(
         &self,
-        capture: tree_sitter::QueryCapture<'tree>,
-    ) -> Self::Capture<'tree> {
-        match capture . index { 0usize => InjectionContent (< super :: nodes :: MacroInvocation < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node)) , }
+        capture: tree_sitter::QueryCapture<'cursor, 'tree>,
+        match_: Option<Self::Match<'cursor, 'tree>>,
+    ) -> Self::Capture<'cursor, 'tree> {
+        match capture.index {
+            0usize => {
+                Self::Capture::InjectionContent {
+                    node: <super::nodes::MacroInvocation<'tree> as type_sitter_lib::TypedNode<
+                        'tree,
+                    >>::from_unchecked(capture.node),
+                    match_,
+                }
+            }
+            capture_index => unreachable!("Invalid capture index: {}", capture_index),
+        }
     }
 }
 #[automatically_derived]
@@ -1411,6 +1769,10 @@ impl<'cursor, 'tree> InjectionsMatch<'cursor, 'tree> {
 impl<'cursor, 'tree> TypedQueryMatch<'cursor, 'tree> for InjectionsMatch<'cursor, 'tree> {
     type Query = Injections;
     #[inline]
+    fn query(&self) -> &'static Self::Query {
+        Injections
+    }
+    #[inline]
     fn raw(&self) -> &tree_sitter::QueryMatch<'cursor, 'tree> {
         &self.0
     }
@@ -1418,13 +1780,9 @@ impl<'cursor, 'tree> TypedQueryMatch<'cursor, 'tree> for InjectionsMatch<'cursor
     fn into_raw(self) -> tree_sitter::QueryMatch<'cursor, 'tree> {
         self.0
     }
-    #[inline]
-    fn query(&self) -> &Self::Query {
-        Injections
-    }
 }
 #[automatically_derived]
-impl<'cursor, 'tree> InjectionsMatch<'cursor, 'tree> {
+impl<'cursor, 'tree> InjectionsCapture<'cursor, 'tree> {
     #[doc = "Try to interpret this capture as a `injection.content`"]
     #[doc = ""]
     #[doc = "The full capture including pattern is:"]
@@ -1434,8 +1792,19 @@ impl<'cursor, 'tree> InjectionsMatch<'cursor, 'tree> {
     #[inline]
     pub fn injection_content(&self) -> Option<super::nodes::MacroInvocation<'tree>> {
         match self {
-            Self::InjectionContent(node) => Some(node),
+            Self::InjectionContent { node, .. } => Some(node),
             _ => None,
+        }
+    }
+}
+#[automatically_derived]
+impl<'cursor, 'tree> Clone for InjectionsCapture<'cursor, 'tree> {
+    fn clone(&self) -> Self {
+        match self {
+            Self::InjectionContent { node, .. } => Self::InjectionContent {
+                node: *node,
+                match_: None,
+            },
         }
     }
 }
@@ -1443,16 +1812,34 @@ impl<'cursor, 'tree> InjectionsMatch<'cursor, 'tree> {
 impl<'cursor, 'tree> TypedQueryCapture<'cursor, 'tree> for InjectionsCapture<'cursor, 'tree> {
     type Query = Injections;
     #[inline]
-    fn to_raw(self) -> tree_sitter::QueryCapture<'cursor, 'tree> {
+    fn query(&self) -> &'static Self::Query {
+        Injections
+    }
+    #[inline]
+    fn match_(&self) -> Option<&<Self::Query as TypedQuery>::Match<'cursor, 'tree>> {
         match self {
-            InjectionContent(node) => tree_sitter::QueryCapture {
-                index: 0usize,
+            Self::InjectionContent { match_, .. } => match_,
+        }
+    }
+    #[inline]
+    fn into_match(self) -> Option<<Self::Query as TypedQuery>::Match<'cursor, 'tree>> {
+        match self {
+            Self::InjectionContent { match_, .. } => match_,
+        }
+    }
+    #[inline]
+    fn to_raw(&self) -> tree_sitter::QueryCapture<'tree> {
+        match self {
+            Self::InjectionContent { node, .. } => tree_sitter::QueryCapture {
+                index: 0usize as u32,
                 node: *node.node(),
             },
         }
     }
     #[inline]
-    fn query(&self) -> &Self::Query {
-        Injections
+    fn node(&self) -> tree_sitter::Node<'tree> {
+        match self {
+            Self::InjectionContent { node, .. } => node.node(),
+        }
     }
 }

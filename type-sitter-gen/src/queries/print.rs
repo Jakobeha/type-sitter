@@ -1,4 +1,4 @@
-use std::collections::VecDeque;
+use std::iter::zip;
 use proc_macro2::TokenStream;
 use syn::{Ident, Path};
 use quote::{format_ident, quote};
@@ -6,107 +6,8 @@ use tree_sitter::CaptureQuantifier;
 use crate::mk_syntax::{concat_doc, ident, lit_str};
 use crate::names::{NodeName, sexp_name_to_rust_names};
 use crate::node_types::generated_tokens::AnonUnions;
-use crate::node_types::types::NodeModule;
-use crate::queries::sexp::{Atom, GroupType, SExp, SExpSeq};
-
-enum SExpNodeType {
-    Single { name: NodeName },
-    Union { names: VecDeque<NodeName>, are_all_variants_named: bool },
-    Untyped { is_named: bool },
-}
-// quote! { type_sitter_lib::UntypedAnonymousNode<'tree> }
-impl SExpNodeType {
-    fn union_with(self, other: Self) -> Self {
-        match (self, other) {
-            (this, Self::Untyped { is_named }) => {
-                Self::Untyped { is_named: this.is_named() && is_named }
-            }
-            (Self::Untyped { is_named: self_is_named }, other) => {
-                Self::Untyped { is_named: self_is_named && other.is_named() }
-            },
-            (Self::Single { name: self_name }, Self::Single { name }) => {
-                let self_is_named = matches!(self_name.module, NodeModule::Toplevel);
-                let is_named = matches!(name.module, NodeModule::Toplevel);
-                Self::Union {
-                    names: VecDeque::from([self_name, name]),
-                    are_all_variants_named: self_is_named && is_named
-                }
-            }
-            (Self::Union { mut names, are_all_variants_named }, Self::Single { name }) => {
-                let is_named = matches!(name.module, NodeModule::Toplevel);
-                names.push_back(name);
-                Self::Union {
-                    names,
-                    are_all_variants_named: are_all_variants_named && is_named
-                }
-            }
-            (Self::Single { name: self_name }, Self::Union { mut names, are_all_variants_named }) => {
-                let self_is_named = matches!(self_name.module, NodeModule::Toplevel);
-                names.push_front(self_name);
-                Self::Union {
-                    names,
-                    are_all_variants_named: self_is_named && are_all_variants_named
-                }
-            }
-            (Self::Union { names: mut self_names, are_all_variants_named: self_are_all_variants_named }, Self::Union { mut names, are_all_variants_named }) => {
-                self_names.append(&mut names);
-                Self::Union {
-                    names: self_names,
-                    are_all_variants_named: self_are_all_variants_named && are_all_variants_named
-                }
-            }
-        }
-    }
-
-    fn is_named(&self) -> bool {
-        match self {
-            Self::Untyped { is_named } => *is_named,
-            Self::Single { name } => matches!(name.module, NodeModule::Toplevel),
-            Self::Union { are_all_variants_named, .. } => *are_all_variants_named
-        }
-    }
-
-    fn print(
-        &mut self,
-        capture_variant_name: &str,
-        nodes: &Path,
-        tree_sitter: &Path,
-        anon_unions: &mut AnonUnions
-    ) -> TokenStream {
-        match self {
-            Self::Single { name } => {
-                let type_ = name.print_type();
-                quote! { #nodes::#type_ }
-            }
-            Self::Union { names, .. } => {
-                let names = names.make_contiguous();
-                NodeName::print_query_capture_sum_type(capture_variant_name, names, nodes, &tree_sitter, anon_unions)
-            }
-            Self::Untyped { is_named } => match is_named {
-                false => quote! { type_sitter_lib::UntypedAnonymousNode<'tree> },
-                true => quote! { type_sitter_lib::UntypedNamedNode<'tree> }
-            }
-        }
-    }
-}
-
-impl From<NodeName> for SExpNodeType {
-    fn from(name: NodeName) -> Self {
-        Self::Single { name }
-    }
-}
-
-impl FromIterator<SExpNodeType> for SExpNodeType {
-    fn from_iter<T: IntoIterator<Item=SExpNodeType>>(iter: T) -> Self {
-        let mut iter = iter.into_iter();
-        let mut this = iter.next()
-            .expect("can't create s-expression node type from empty iterator (shouldn't have tree-sitter query with empty union)");
-        for next in iter {
-            this = this.union_with(next);
-        }
-        this
-    }
-}
+use crate::queries::sexp::SExpSeq;
+use crate::queries::sexp_node_type::SExpNodeType;
 
 impl<'tree> SExpSeq<'tree> {
     /// Generate the AST for the typed wrapper of the given query.
@@ -136,8 +37,9 @@ impl<'tree> SExpSeq<'tree> {
         tree_sitter: &Path,
         anon_unions: &mut AnonUnions
     ) -> TokenStream {
-        let captures = || ts_query.capture_names().iter().enumerate()
-            .filter(|(capture_idx, _)| !disabled_captures.contains(capture_idx));
+        let (capture_idxs, capture_names) = ts_query.capture_names().iter().enumerate()
+            .filter(|(capture_idx, _)| !disabled_captures.contains(capture_idx))
+            .unzip::<_, _, Vec<_>, Vec<_>>();
 
         let def_name = def_ident.to_string();
         let language_name = language_ident.to_string();
@@ -158,18 +60,56 @@ impl<'tree> SExpSeq<'tree> {
         let query_match_doc = concat_doc!("A match returned by the query [", def_name, "]:", full_query_documentation);
         let query_capture_doc = concat_doc!("A capture returned by the query [", def_name, "]:", full_query_documentation);
 
-        let query_matches_t = match use_wrapper {
-            true => quote! {},
-            false => quote! { , T }
+        let (
+            tree_t,
+            tree_arg,
+            tree_ident,
+            tree_capture_node,
+            tree_fn,
+            tree_static,
+            tree_to_raws
+        ) = match use_wrapper {
+            false => (
+                quote! { , Text },
+                quote! {},
+                quote! {},
+                quote! { capture.node },
+                quote! {},
+                quote! {},
+                capture_idxs.iter().map(|capture_idx| quote! {
+                    tree_sitter::QueryCapture {
+                        index: #capture_idx as u32,
+                        node: *node.node()
+                    }
+                }).collect::<Vec<_>>()
+            ),
+            true => (
+                quote! {},
+                quote! { tree: &'tree Tree },
+                quote! { tree },
+                quote! { type_sitter_lib::tree_sitter_wrapper::Node::new(capture.node, tree) },
+                quote! {
+                    #[inline]
+                    fn tree(&self) -> &'tree Tree {
+                        self.tree
+                    }
+                },
+                quote! { 'static, },
+                capture_names.iter().map(|c| lit_str(c)).map(|capture_name| quote! {
+                    type_sitter_lib::tree_sitter_wrapper::QueryCapture {
+                        node: *node.node(),
+                        name: #capture_name,
+                    }
+                }).collect::<Vec<_>>()
+            )
         };
 
         // Pattern-idx-specific matches and capture-idx-specific captures (TODO)
         // Pattern-idx-agnostic matches and capture-idx-specific captures
         // Capture-idx-agnostic captures
-        let capture_methods_and_variants = captures().map(|(capture_idx, capture_name)| {
-            self.print_capture_method_and_variant(capture_idx, capture_name, query_str, &ts_query, nodes, tree_sitter, anon_unions)
+        let capture_methods_and_variants = zip(&capture_idxs, &capture_names).map(|(capture_idx, capture_name)| {
+            self.print_capture_method_and_variant(*capture_idx, capture_name, query_str, &ts_query, nodes, tree_sitter, anon_unions)
         }).collect::<Vec<_>>();
-        let capture_idxs = captures().map(|(capture_idx, _)| capture_idx).collect::<Vec<_>>();
         let capture_methods = capture_methods_and_variants.iter().map(|x| &x.0).collect::<Vec<_>>();
         let capture_variant_extract_methods = capture_methods_and_variants.iter().map(|x| &x.1).collect::<Vec<_>>();
         let capture_variant_idents = capture_methods_and_variants.iter().map(|x| &x.2).collect::<Vec<_>>();
@@ -196,21 +136,27 @@ impl<'tree> SExpSeq<'tree> {
             #[derive(Debug, Clone, Copy)]
             pub struct #def_ident;
 
-            pub type #query_matches_ident<'a, 'tree #query_matches_t> = TypedQueryMatches<'a, 'tree #query_matches_t, #query_match_ident<'a, 'tree>>;
-            pub type #query_captures_ident<'a, 'tree #query_matches_t> = TypedQueryCaptures<'a, 'tree #query_matches_t, #query_match_ident<'a, 'tree>>;
+            pub type #query_matches_ident<'cursor, 'tree #tree_t> = TypedQueryMatches<'cursor, 'tree, #query_match_ident<'cursor, 'tree> #tree_t>;
+            pub type #query_captures_ident<'cursor, 'tree #tree_t> = TypedQueryCaptures<'cursor, 'tree, #query_match_ident<'cursor, 'tree> #tree_t>;
             #[doc = #query_match_doc]
             #[derive(Debug)]
-            pub struct #query_match_ident<'cursor, 'tree>(tree_sitter::QueryMatch<'cursor, 'tree>);
+            pub struct #query_match_ident<'cursor, 'tree> {
+                match_: tree_sitter::QueryMatch<'cursor, 'tree>,
+                #tree_arg
+            }
             #[doc = #query_capture_doc]
-            #[derive(Debug, Clone, Copy)]
-            pub enum #query_capture_ident<'tree> {
-                #(#capture_variant_documentations #capture_variant_idents(#capture_node_types),)*
+            #[derive(Debug)]
+            pub enum #query_capture_ident<'cursor, 'tree> {
+                #(#capture_variant_documentations #capture_variant_idents {
+                    node: #capture_node_types,
+                    match_: Option<#query_match_ident<'cursor, 'tree>>
+                },)*
             }
 
             #[automatically_derived]
             impl TypedQuery for #def_ident {
                 type Match<'cursor, 'tree> = #query_match_ident<'cursor, 'tree>;
-                type Capture<'tree> = #query_capture_ident<'tree>;
+                type Capture<'cursor, 'tree> = #query_capture_ident<'cursor, 'tree>;
 
                 fn query_str(&self) -> &'static str {
                     #query_str
@@ -223,20 +169,27 @@ impl<'tree> SExpSeq<'tree> {
                 #[inline]
                 unsafe fn wrap_match<'cursor, 'tree>(
                     &self,
-                    match_: tree_sitter::QueryMatch<'cursor, 'tree>
+                    match_: tree_sitter::QueryMatch<'cursor, 'tree>,
+                    #tree_arg
                 ) -> Self::Match<'cursor, 'tree> {
-                    Self::Match(match_)
+                    Self::Match { match_, #tree_ident }
                 }
 
                 #[inline]
-                unsafe fn wrap_capture<'tree>(
+                unsafe fn wrap_capture<'cursor, 'tree>(
                     &self,
-                    capture: tree_sitter::QueryCapture<'tree>
-                ) -> Self::Capture<'tree> {
+                    capture: tree_sitter::QueryCapture<'cursor, 'tree>,
+                    match_: Option<Self::Match<'cursor, 'tree>>,
+                    #tree_arg
+                ) -> Self::Capture<'cursor, 'tree> {
                     // SAFETY: As long as the capture came from the query this is safe, because the
                     // query only captures nodes of the correct type
                     match capture.index {
-                        #(#capture_idxs => Self::Capture::#capture_variant_idents(<#capture_node_types as type_sitter_lib::TypedNode<'tree>>::from_unchecked(capture.node)),)*
+                        #(#capture_idxs => Self::Capture::#capture_variant_idents {
+                            node: <#capture_node_types as type_sitter_lib::TypedNode<'tree>>::from_unchecked(#tree_capture_node),
+                            match_
+                        },)*
+                        capture_index => unreachable!("Invalid capture index: {}", capture_index)
                     }
                 }
             }
@@ -255,6 +208,8 @@ impl<'tree> SExpSeq<'tree> {
                     #def_ident
                 }
 
+                #tree_fn
+
                 #[inline]
                 fn raw(&self) -> &tree_sitter::QueryMatch<'cursor, 'tree> {
                     &self.0
@@ -267,12 +222,21 @@ impl<'tree> SExpSeq<'tree> {
             }
 
             #[automatically_derived]
-            impl<'tree> #query_capture_ident<'tree> {
+            impl<'cursor, 'tree> #query_capture_ident<'cursor, 'tree> {
                 #(#capture_variant_extract_methods)*
             }
 
             #[automatically_derived]
-            impl<'tree> TypedQueryCapture<'tree> for #query_capture_ident<'tree> {
+            impl<'cursor, 'tree> Clone for #query_capture_ident<'cursor, 'tree> {
+                fn clone(&self) -> Self {
+                    match self {
+                        #(Self::#capture_variant_idents { node, .. } => Self::#capture_variant_idents { node: *node, match_: None }),*
+                    }
+                }
+            }
+
+            #[automatically_derived]
+            impl<'cursor, 'tree> TypedQueryCapture<'cursor, 'tree> for #query_capture_ident<'cursor, 'tree> {
                 type Query = #def_ident;
 
                 #[inline]
@@ -281,12 +245,30 @@ impl<'tree> SExpSeq<'tree> {
                 }
 
                 #[inline]
-                fn to_raw(&self) -> tree_sitter::QueryCapture<'tree> {
+                fn match_(&self) -> Option<&<Self::Query as TypedQuery>::Match<'cursor, 'tree>> {
                     match self {
-                        #(Self::#capture_variant_idents(node) => tree_sitter::QueryCapture {
-                            index: #capture_idxs as u32,
-                            node: *node.node()
-                        },)*
+                        #(Self::#capture_variant_idents { match_, .. } => match_),*
+                    }
+                }
+
+                #[inline]
+                fn into_match(self) -> Option<<Self::Query as TypedQuery>::Match<'cursor, 'tree>> {
+                    match self {
+                        #(Self::#capture_variant_idents { match_, .. } => match_),*
+                    }
+                }
+
+                #[inline]
+                fn to_raw(&self) -> tree_sitter::QueryCapture<#tree_static 'tree> {
+                    match self {
+                        #(Self::#capture_variant_idents { node, .. } => #tree_to_raws,)*
+                    }
+                }
+
+                #[inline]
+                fn node(&self) -> tree_sitter::Node<'tree> {
+                    match self {
+                        #(Self::#capture_variant_idents { node, .. } => node.node()),*
                     }
                 }
             }
@@ -352,7 +334,7 @@ impl<'tree> SExpSeq<'tree> {
             #[inline]
             pub fn #capture_method_ident(&self) -> Option<#capture_node_type> {
                 match self {
-                    Self::#capture_variant_ident(node) => Some(node),
+                    Self::#capture_variant_ident { node, .. } => Some(node),
                     _ => None
                 }
             }
@@ -366,32 +348,27 @@ impl<'tree> SExpSeq<'tree> {
     }
 }
 
-impl<'tree> SExp<'tree> {
-    fn node_type(&self, is_head: bool) -> SExpNodeType {
+impl SExpNodeType {
+    fn print(
+        &mut self,
+        capture_variant_name: &str,
+        nodes: &Path,
+        tree_sitter: &Path,
+        anon_unions: &mut AnonUnions
+    ) -> TokenStream {
         match self {
-            SExp::Atom { atom, .. } => atom.node_type(is_head),
-            SExp::Group { group_type, items, .. } => match group_type {
-                GroupType::Paren => match items.get(0) {
-                    None => panic!("empty paren group is not in a valid tree-sitter query"),
-                    Some(item) => item.node_type(true)
-                },
-                GroupType::Bracket => items.iter().map(|item| item.node_type(is_head)).collect()
+            Self::Single { name } => {
+                let type_ = name.print_type();
+                quote! { #nodes::#type_ }
             }
-        }
-    }
-}
-
-impl<'tree> Atom<'tree> {
-    fn node_type(&self, is_head: bool) -> SExpNodeType {
-        match self {
-            Atom::Wildcard => SExpNodeType::Untyped { is_named: is_head },
-            Atom::Anchor => panic!("capturing an anchor is not in a valid tree-sitter query"),
-            Atom::Field { .. } => panic!("capturing a field is not in a valid tree-sitter query"),
-            Atom::Ident { name } => SExpNodeType::from(NodeName::new(name.to_string(), true)),
-            Atom::String { content } => SExpNodeType::from(NodeName::new(content.to_string(), false)),
-            Atom::Negation { .. } => SExpNodeType::Untyped { is_named: true },
-            Atom::Capture { name } => panic!("capturing a capture is not in a valid tree-sitter query (captured capture name = {})", name),
-            Atom::Predicate { name } => panic!("capturing a predicate is not in a valid tree-sitter query (captured predicate name = {})", name)
+            Self::Union { names, .. } => {
+                let names = names.make_contiguous();
+                NodeName::print_query_capture_sum_type(capture_variant_name, names, nodes, &tree_sitter, anon_unions)
+            }
+            Self::Untyped { is_named } => match is_named {
+                false => quote! { type_sitter_lib::UntypedNode<'tree> },
+                true => quote! { type_sitter_lib::UntypedNamedNode<'tree> }
+            }
         }
     }
 }
