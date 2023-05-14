@@ -1,11 +1,12 @@
 #![doc = include_str!("../README.md")]
 
 use syn::parse_macro_input;
-use lit_str_and_path::LitStrAndPath;
-use crate::lit_str_and_lit_str_and_path_and_path::LitStrAndLitStrAndPathAndPath;
+use generate_nodes_args::GenerateNodesArgs;
+use type_sitter_gen::{tree_sitter, type_sitter_lib_wrapper};
+use crate::generate_queries_args::GenerateQueriesArgs;
 
-mod lit_str_and_path;
-mod lit_str_and_lit_str_and_path_and_path;
+mod generate_nodes_args;
+mod generate_queries_args;
 
 /// Generate typed AST node wrappers.
 ///
@@ -31,10 +32,10 @@ mod lit_str_and_lit_str_and_path_and_path;
 /// ```
 #[proc_macro]
 pub fn generate_nodes(item: proc_macro::TokenStream) -> proc_macro::TokenStream {
-    let args = parse_macro_input!(item as LitStrAndPath);
+    let args = parse_macro_input!(item as GenerateNodesArgs);
     type_sitter_gen::generate_nodes(
-        &args.lit_str_path_buf,
-        &args.path
+        &args.path,
+        &args.tree_sitter
     ).unwrap_or_else(|err| err.to_compile_error()).into()
 }
 
@@ -45,9 +46,10 @@ pub fn generate_nodes(item: proc_macro::TokenStream) -> proc_macro::TokenStream 
 ///   directory, this function will generate submodules for each `.scm`.
 /// - `1`: the path to the tree-sitter language root. Typically `vendor/tree-sitter-<language>`.
 /// - `2`: Path to the crate with the typed node wrappers. Typically `super::nodes`
-/// - `3`: Path to the `tree_sitter` crate. Typically either `tree_sitter` or
-///   `type_sitter_lib::tree_sitter_wrapper`, but you can provide a path to your own wrapper as
-///   well.
+/// - `3`: Whether to use `tree_sitter` or `type_sitter_lib::tree_sitter_wrapper`
+/// - `4` (optional): Path to the `tree_sitter` crate. Defaults to `tree_sitter` (if `use_wrapper`
+///   is true) or `type_sitter_lib::tree_sitter_wrapper` (if `use_wrapper` is false), but you can
+///   provide a path to your own wrapper.
 ///
 /// # Example
 ///
@@ -55,16 +57,20 @@ pub fn generate_nodes(item: proc_macro::TokenStream) -> proc_macro::TokenStream 
 /// # Doc tests give hygiene errors, so instead we use type-sitter-proc-tests to test these
 /// use type_sitter_proc::generate_queries;
 ///
-/// generate_queries!("vendor/tree-sitter-typescript/queries/tags.scm", "vendor/tree-sitter-typescript", super::typescript_nodes, tree_sitter);
-/// generate_queries!("vendor/tree-sitter-rust/queries", "vendor/tree-sitter-rust", super::rust_nodes, type_sitter_lib::tree_sitter_wrapper);
+/// generate_queries!("vendor/tree-sitter-typescript/queries/tags.scm", "vendor/tree-sitter-typescript", super::typescript_nodes, false);
+/// generate_queries!("vendor/tree-sitter-rust/queries", "vendor/tree-sitter-rust", super::rust_nodes, true, type_sitter_lib::tree_sitter_wrapper);
 /// ```
 #[proc_macro]
 pub fn generate_queries(item: proc_macro::TokenStream) -> proc_macro::TokenStream {
-    let args = parse_macro_input!(item as LitStrAndLitStrAndPathAndPath);
+    let args = parse_macro_input!(item as GenerateQueriesArgs);
     type_sitter_gen::generate_queries(
-        &args.lit_str_path_buf,
-        &args.lit_str_path_buf2,
         &args.path,
-        &args.path2
+        &args.language_path,
+        &args.nodes,
+        args.use_wrapper.value,
+        &args.tree_sitter.unwrap_or_else(|| match args.use_wrapper.value {
+            false => tree_sitter(),
+            true => type_sitter_lib_wrapper(),
+        })
     ).unwrap_or_else(|err| err.to_compile_error()).into()
 }
