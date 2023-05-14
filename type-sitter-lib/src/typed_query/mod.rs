@@ -1,8 +1,6 @@
-use std::fmt::Debug;
-use std::iter::FusedIterator;
-use matches::TypedQueryMatch;
 #[cfg(feature = "tree-sitter-wrapper")]
 use crate::tree_sitter_wrapper::Tree;
+pub use match_captures::*;
 pub use matches::*;
 pub use captures::*;
 
@@ -17,9 +15,9 @@ mod match_captures;
 /// which contain [TypedNode]s
 pub trait TypedQuery {
     /// A match of this typed query (runtime pattern index)
-    type Match<'cursor, 'tree>: TypedQueryMatch<'cursor, 'tree>;
+    type Match<'cursor, 'tree: 'cursor>: TypedQueryMatch<'cursor, 'tree>;
     /// An capture of this typed query (runtime capture index)
-    type Capture<'cursor, 'tree>: TypedQueryCapture<'cursor, 'tree>;
+    type Capture<'cursor, 'tree: 'cursor>: TypedQueryCapture<'cursor, 'tree>;
 
     /// The string used to generate this query
     fn query_str(&self) -> &'static str;
@@ -46,7 +44,7 @@ pub trait TypedQuery {
     unsafe fn wrap_capture<'cursor, 'tree>(
         &self,
         capture: tree_sitter::QueryCapture<'tree>,
-        match_: Option<Self::QueryMatch<'cursor, 'tree>>,
+        match_: Option<Self::Match<'cursor, 'tree>>,
         #[cfg(feature = "tree-sitter-wrapper")]
         tree: &'tree Tree,
     ) -> Self::Capture<'cursor, 'tree>;

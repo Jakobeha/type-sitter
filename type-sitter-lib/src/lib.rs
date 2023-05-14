@@ -4,6 +4,8 @@ use std::convert::Infallible;
 pub use typed_node::*;
 pub use typed_query::*;
 
+/// "Private" structures for [type_sitter_gen]
+pub mod gen_internal;
 /// Typed node trait
 mod typed_node;
 /// Typed query and related traits

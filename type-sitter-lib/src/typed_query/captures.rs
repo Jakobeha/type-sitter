@@ -1,33 +1,33 @@
 use std::fmt::Debug;
 use tree_sitter::TextProvider;
 #[cfg(feature = "tree-sitter-wrapper")]
-use crate::tree_sitter_wrapper::{Node, Point, QueryCapture, Range, Tree};
+use crate::tree_sitter_wrapper::{Node, QueryCapture, Range, Tree};
 #[cfg(not(feature = "tree-sitter-wrapper"))]
-use tree_sitter::{Node, Point, QueryCapture, Range, Tree};
+use tree_sitter::{Node, QueryCapture, Range, Tree};
 use crate::TypedQuery;
 
 /// Iterate a query's captures (see [tree_sitter::QueryCaptures])
 #[cfg(feature = "tree-sitter-wrapper")]
-pub struct TypedQueryCaptures<'cursor, 'tree, Capture: TypedQueryCapture, Text: TextProvider<'tree> = &'tree Tree> {
-    typed_query: &'static Capture::Query,
+pub struct TypedQueryCaptures<'cursor, 'tree: 'cursor, Capture: TypedQueryCapture<'cursor, 'tree>, Text: TextProvider<'cursor> = &'tree Tree> {
+    typed_query: &'cursor Capture::Query,
     untyped_captures: tree_sitter::QueryCaptures<'cursor, 'tree, Text>,
     tree: &'tree Tree,
 }
 
 /// Iterate a query's captures (see [tree_sitter::QueryCaptures])
 #[cfg(not(feature = "tree-sitter-wrapper"))]
-pub struct TypedQueryCaptures<'cursor, 'tree, Capture: TypedQueryCapture, Text: TextProvider<'tree>> {
-    typed_query: &'static Capture::Query,
+pub struct TypedQueryCaptures<'cursor, 'tree, Capture: TypedQueryCapture<'cursor, 'tree>, Text: TextProvider<'cursor>> {
+    typed_query: &'cursor Capture::Query,
     untyped_captures: tree_sitter::QueryCaptures<'cursor, 'tree, Text>,
 }
 
 /// A capture from a [TypedQuery] with [TypedNode]s
-pub trait TypedQueryCapture<'cursor, 'tree>: Debug + Clone {
+pub trait TypedQueryCapture<'cursor, 'tree: 'cursor>: Debug + Clone {
     /// The type of query this capture came from
-    type Query: TypedQuery;
+    type Query: TypedQuery<Capture<'cursor, 'tree> = Self>;
 
     /// The query this capture came from
-    fn query(&self) -> &'static Self::Query;
+    fn query(&self) -> &'cursor Self::Query;
 
     /// This capture's match, if iterating via [TypedQueryCaptures].
     /// If iterating via [TypedQueryMatchCaptures] this will be `None`.
@@ -67,12 +67,12 @@ pub trait TypedQueryCapture<'cursor, 'tree>: Debug + Clone {
     }
 }
 
-impl<'cursor, 'tree, Capture: TypedQueryCapture, Text: TextProvider<'tree>> TypedQueryCaptures<'cursor, 'tree, Captures, Text> {
+impl<'cursor, 'tree: 'cursor, Capture: TypedQueryCapture<'cursor, 'tree>, Text: TextProvider<'cursor>> TypedQueryCaptures<'cursor, 'tree, Capture, Text> {
     /// SAFETY: The captures must have come from the same query
     #[inline]
     pub(super) unsafe fn new(
-        typed_query: &'static Capture::Query,
-        untyped_captures: tree_sitter::QueryCaptures<'cursor, 'tree, &'tree Tree>,
+        typed_query: &'cursor Capture::Query,
+        untyped_captures: tree_sitter::QueryCaptures<'cursor, 'tree, Text>,
         #[cfg(feature = "tree-sitter-wrapper")]
         tree: &'tree Tree,
     ) -> Self {
@@ -106,7 +106,7 @@ impl<'cursor, 'tree, Capture: TypedQueryCapture, Text: TextProvider<'tree>> Type
     }
 }
 
-impl<'cursor, 'tree, Capture: TypedQueryCapture, Text: TextProvider<'tree>> Iterator for TypedQueryCaptures<'cursor, 'tree, Capture, Text> {
+impl<'cursor, 'tree, Capture: TypedQueryCapture<'cursor, 'tree>, Text: TextProvider<'cursor>> Iterator for TypedQueryCaptures<'cursor, 'tree, Capture, Text> {
     type Item = Capture;
 
     #[inline]

@@ -1,7 +1,10 @@
 #[allow(non_upper_case_globals)]
-static __Highlights__: once_cell::race::OnceBox<tree_sitter::Query> = once_cell::race::OnceBox::new();
+static __Highlights__: type_sitter_lib::gen_internal::TypedQueryOnceBox<
+    tree_sitter::Query,
+> = type_sitter_lib::gen_internal::TypedQueryOnceBox::new();
 #[allow(non_snake_case)]
-fn __Mk__Highlights() -> tree_sitter::Query {
+fn __Mk__Highlights() -> Box<tree_sitter::Query> {
+    #[allow(unused_mut)]
     let mut query = tree_sitter::Query::new(
             tree_sitter_json::language(),
             "(pair\n  key: (_) @string.special.key)\n\n(string) @string\n\n(number) @number\n\n[\n  (null)\n  (true)\n  (false)\n] @constant.builtin\n\n(escape_sequence) @escape\n\n(comment) @comment\n",
@@ -9,7 +12,7 @@ fn __Mk__Highlights() -> tree_sitter::Query {
         .expect(
             "query parsed at compile-time but failed at runtime. Is the language 'tree_sitter_json' correct, and did you use the same tree-sitter / tree_sitter_json version?",
         );
-    query
+    Box::new(query)
 }
 /**Typed version of the query:
 
@@ -35,11 +38,55 @@ fn __Mk__Highlights() -> tree_sitter::Query {
 #[allow(non_camel_case_types)]
 #[derive(Debug, Clone, Copy)]
 pub struct Highlights;
+/**Matches returned by a query cursor running the query [Highlights]:
+
+```sexp
+(pair
+  key: (_) @string.special.key)
+
+(string) @string
+
+(number) @number
+
+[
+  (null)
+  (true)
+  (false)
+] @constant.builtin
+
+(escape_sequence) @escape
+
+(comment) @comment
+
+```*/
+#[allow(unused, non_camel_case_types)]
 pub type HighlightsMatches<'cursor, 'tree> = type_sitter_lib::TypedQueryMatches<
     'cursor,
     'tree,
     HighlightsMatch<'cursor, 'tree>,
 >;
+/**Captures returned by a query cursor running the query [Highlights]:
+
+```sexp
+(pair
+  key: (_) @string.special.key)
+
+(string) @string
+
+(number) @number
+
+[
+  (null)
+  (true)
+  (false)
+] @constant.builtin
+
+(escape_sequence) @escape
+
+(comment) @comment
+
+```*/
+#[allow(unused, non_camel_case_types)]
 pub type HighlightsCaptures<'cursor, 'tree> = type_sitter_lib::TypedQueryCaptures<
     'cursor,
     'tree,
@@ -162,8 +209,8 @@ pub enum HighlightsCapture<'cursor, 'tree> {
 }
 #[automatically_derived]
 impl type_sitter_lib::TypedQuery for Highlights {
-    type Match<'cursor, 'tree> = HighlightsMatch<'cursor, 'tree>;
-    type Capture<'cursor, 'tree> = HighlightsCapture<'cursor, 'tree>;
+    type Match<'cursor, 'tree: 'cursor> = HighlightsMatch<'cursor, 'tree>;
+    type Capture<'cursor, 'tree: 'cursor> = HighlightsCapture<'cursor, 'tree>;
     fn query_str(&self) -> &'static str {
         "(pair\n  key: (_) @string.special.key)\n\n(string) @string\n\n(number) @number\n\n[\n  (null)\n  (true)\n  (false)\n] @constant.builtin\n\n(escape_sequence) @escape\n\n(comment) @comment\n"
     }
@@ -192,7 +239,7 @@ impl type_sitter_lib::TypedQuery for Highlights {
                         'tree,
                     > as type_sitter_lib::TypedNode<
                         'tree,
-                    >>::from_unchecked(unsafe {
+                    >>::from_node_unchecked(unsafe {
                         type_sitter_lib::tree_sitter_wrapper::Node::new(
                             capture.node,
                             tree,
@@ -207,7 +254,7 @@ impl type_sitter_lib::TypedQuery for Highlights {
                         'tree,
                     > as type_sitter_lib::TypedNode<
                         'tree,
-                    >>::from_unchecked(unsafe {
+                    >>::from_node_unchecked(unsafe {
                         type_sitter_lib::tree_sitter_wrapper::Node::new(
                             capture.node,
                             tree,
@@ -222,7 +269,7 @@ impl type_sitter_lib::TypedQuery for Highlights {
                         'tree,
                     > as type_sitter_lib::TypedNode<
                         'tree,
-                    >>::from_unchecked(unsafe {
+                    >>::from_node_unchecked(unsafe {
                         type_sitter_lib::tree_sitter_wrapper::Node::new(
                             capture.node,
                             tree,
@@ -237,7 +284,7 @@ impl type_sitter_lib::TypedQuery for Highlights {
                         'tree,
                     > as type_sitter_lib::TypedNode<
                         'tree,
-                    >>::from_unchecked(unsafe {
+                    >>::from_node_unchecked(unsafe {
                         type_sitter_lib::tree_sitter_wrapper::Node::new(
                             capture.node,
                             tree,
@@ -252,7 +299,7 @@ impl type_sitter_lib::TypedQuery for Highlights {
                         'tree,
                     > as type_sitter_lib::TypedNode<
                         'tree,
-                    >>::from_unchecked(unsafe {
+                    >>::from_node_unchecked(unsafe {
                         type_sitter_lib::tree_sitter_wrapper::Node::new(
                             capture.node,
                             tree,
@@ -267,7 +314,7 @@ impl type_sitter_lib::TypedQuery for Highlights {
                         'tree,
                     > as type_sitter_lib::TypedNode<
                         'tree,
-                    >>::from_unchecked(unsafe {
+                    >>::from_node_unchecked(unsafe {
                         type_sitter_lib::tree_sitter_wrapper::Node::new(
                             capture.node,
                             tree,
@@ -289,12 +336,20 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
     ///pair @string.special.key
     ///```
     #[inline]
+    #[allow(unused, non_snake_case)]
     pub fn string_special_key(&self) -> Option<super::nodes::Pair<'tree>> {
         {
-            unsafe {
-                self.nodes_for_capture_ix(capture_idx)
-                    .map(tree_sitter_lib::TypedNode::<'tree>::from_unchecked)
-            }
+            self.match_
+                .nodes_for_capture_index(0usize as u32)
+                .map(|n| unsafe {
+                    <super::nodes::Pair<
+                        'tree,
+                    > as type_sitter_lib::TypedNode<
+                        'tree,
+                    >>::from_node_unchecked(
+                        type_sitter_lib::tree_sitter_wrapper::Node::new(n, self.tree),
+                    )
+                })
         }
             .next()
     }
@@ -306,12 +361,20 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
   key: (_) @string.special.key) @string*/
     ///```
     #[inline]
+    #[allow(unused, non_snake_case)]
     pub fn string(&self) -> Option<super::nodes::Pair<'tree>> {
         {
-            unsafe {
-                self.nodes_for_capture_ix(capture_idx)
-                    .map(tree_sitter_lib::TypedNode::<'tree>::from_unchecked)
-            }
+            self.match_
+                .nodes_for_capture_index(1usize as u32)
+                .map(|n| unsafe {
+                    <super::nodes::Pair<
+                        'tree,
+                    > as type_sitter_lib::TypedNode<
+                        'tree,
+                    >>::from_node_unchecked(
+                        type_sitter_lib::tree_sitter_wrapper::Node::new(n, self.tree),
+                    )
+                })
         }
             .next()
     }
@@ -323,12 +386,20 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
   key: (_) @string.special.key) @number*/
     ///```
     #[inline]
+    #[allow(unused, non_snake_case)]
     pub fn number(&self) -> Option<super::nodes::Pair<'tree>> {
         {
-            unsafe {
-                self.nodes_for_capture_ix(capture_idx)
-                    .map(tree_sitter_lib::TypedNode::<'tree>::from_unchecked)
-            }
+            self.match_
+                .nodes_for_capture_index(2usize as u32)
+                .map(|n| unsafe {
+                    <super::nodes::Pair<
+                        'tree,
+                    > as type_sitter_lib::TypedNode<
+                        'tree,
+                    >>::from_node_unchecked(
+                        type_sitter_lib::tree_sitter_wrapper::Node::new(n, self.tree),
+                    )
+                })
         }
             .next()
     }
@@ -340,12 +411,20 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
   key: (_) @string.special.key) @constant.builtin*/
     ///```
     #[inline]
+    #[allow(unused, non_snake_case)]
     pub fn constant_builtin(&self) -> Option<super::nodes::Pair<'tree>> {
         {
-            unsafe {
-                self.nodes_for_capture_ix(capture_idx)
-                    .map(tree_sitter_lib::TypedNode::<'tree>::from_unchecked)
-            }
+            self.match_
+                .nodes_for_capture_index(3usize as u32)
+                .map(|n| unsafe {
+                    <super::nodes::Pair<
+                        'tree,
+                    > as type_sitter_lib::TypedNode<
+                        'tree,
+                    >>::from_node_unchecked(
+                        type_sitter_lib::tree_sitter_wrapper::Node::new(n, self.tree),
+                    )
+                })
         }
             .next()
     }
@@ -357,12 +436,20 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
   key: (_) @string.special.key) @escape*/
     ///```
     #[inline]
+    #[allow(unused, non_snake_case)]
     pub fn escape(&self) -> Option<super::nodes::Pair<'tree>> {
         {
-            unsafe {
-                self.nodes_for_capture_ix(capture_idx)
-                    .map(tree_sitter_lib::TypedNode::<'tree>::from_unchecked)
-            }
+            self.match_
+                .nodes_for_capture_index(4usize as u32)
+                .map(|n| unsafe {
+                    <super::nodes::Pair<
+                        'tree,
+                    > as type_sitter_lib::TypedNode<
+                        'tree,
+                    >>::from_node_unchecked(
+                        type_sitter_lib::tree_sitter_wrapper::Node::new(n, self.tree),
+                    )
+                })
         }
             .next()
     }
@@ -374,12 +461,20 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
   key: (_) @string.special.key) @comment*/
     ///```
     #[inline]
+    #[allow(unused, non_snake_case)]
     pub fn comment(&self) -> Option<super::nodes::Pair<'tree>> {
         {
-            unsafe {
-                self.nodes_for_capture_ix(capture_idx)
-                    .map(tree_sitter_lib::TypedNode::<'tree>::from_unchecked)
-            }
+            self.match_
+                .nodes_for_capture_index(5usize as u32)
+                .map(|n| unsafe {
+                    <super::nodes::Pair<
+                        'tree,
+                    > as type_sitter_lib::TypedNode<
+                        'tree,
+                    >>::from_node_unchecked(
+                        type_sitter_lib::tree_sitter_wrapper::Node::new(n, self.tree),
+                    )
+                })
         }
             .next()
     }
@@ -389,7 +484,7 @@ impl<'cursor, 'tree> type_sitter_lib::TypedQueryMatch<'cursor, 'tree>
 for HighlightsMatch<'cursor, 'tree> {
     type Query = Highlights;
     #[inline]
-    fn query(&self) -> &'static Self::Query {
+    fn query(&self) -> &'cursor Self::Query {
         &Highlights
     }
     #[inline]
@@ -398,11 +493,11 @@ for HighlightsMatch<'cursor, 'tree> {
     }
     #[inline]
     fn raw(&self) -> &tree_sitter::QueryMatch<'cursor, 'tree> {
-        &self.0
+        &self.match_
     }
     #[inline]
     fn into_raw(self) -> tree_sitter::QueryMatch<'cursor, 'tree> {
-        self.0
+        self.match_
     }
 }
 #[automatically_derived]
@@ -414,9 +509,11 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
     ///pair @string.special.key
     ///```
     #[inline]
+    #[allow(unused, non_snake_case)]
     pub fn string_special_key(&self) -> Option<&super::nodes::Pair<'tree>> {
         match self {
             Self::StringSpecialKey { node, .. } => Some(node),
+            #[allow(unreachable_patterns)]
             _ => None,
         }
     }
@@ -428,9 +525,11 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
   key: (_) @string.special.key) @string*/
     ///```
     #[inline]
+    #[allow(unused, non_snake_case)]
     pub fn string(&self) -> Option<&super::nodes::Pair<'tree>> {
         match self {
             Self::String { node, .. } => Some(node),
+            #[allow(unreachable_patterns)]
             _ => None,
         }
     }
@@ -442,9 +541,11 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
   key: (_) @string.special.key) @number*/
     ///```
     #[inline]
+    #[allow(unused, non_snake_case)]
     pub fn number(&self) -> Option<&super::nodes::Pair<'tree>> {
         match self {
             Self::Number { node, .. } => Some(node),
+            #[allow(unreachable_patterns)]
             _ => None,
         }
     }
@@ -456,9 +557,11 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
   key: (_) @string.special.key) @constant.builtin*/
     ///```
     #[inline]
+    #[allow(unused, non_snake_case)]
     pub fn constant_builtin(&self) -> Option<&super::nodes::Pair<'tree>> {
         match self {
             Self::ConstantBuiltin { node, .. } => Some(node),
+            #[allow(unreachable_patterns)]
             _ => None,
         }
     }
@@ -470,9 +573,11 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
   key: (_) @string.special.key) @escape*/
     ///```
     #[inline]
+    #[allow(unused, non_snake_case)]
     pub fn escape(&self) -> Option<&super::nodes::Pair<'tree>> {
         match self {
             Self::Escape { node, .. } => Some(node),
+            #[allow(unreachable_patterns)]
             _ => None,
         }
     }
@@ -484,9 +589,11 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
   key: (_) @string.special.key) @comment*/
     ///```
     #[inline]
+    #[allow(unused, non_snake_case)]
     pub fn comment(&self) -> Option<&super::nodes::Pair<'tree>> {
         match self {
             Self::Comment { node, .. } => Some(node),
+            #[allow(unreachable_patterns)]
             _ => None,
         }
     }
@@ -539,7 +646,7 @@ impl<'cursor, 'tree> type_sitter_lib::TypedQueryCapture<'cursor, 'tree>
 for HighlightsCapture<'cursor, 'tree> {
     type Query = Highlights;
     #[inline]
-    fn query(&self) -> &'static Self::Query {
+    fn query(&self) -> &'cursor Self::Query {
         &Highlights
     }
     #[inline]

@@ -1,12 +1,11 @@
 use std::iter::FusedIterator;
 #[cfg(feature = "tree-sitter-wrapper")]
 use crate::tree_sitter_wrapper::Tree;
-use crate::typed_query::matches::TypedQueryMatch;
 use crate::TypedQuery;
 
 /// Captures from a [TypedQueryMatch]
 pub struct TypedQueryMatchCaptures<'cursor, 'tree, Query: TypedQuery> {
-    query: &'static Query,
+    query: &'cursor Query,
     captures: &'cursor [tree_sitter::QueryCapture<'tree>],
     #[cfg(feature = "tree-sitter-wrapper")]
     tree: &'tree Tree
@@ -22,7 +21,7 @@ pub struct TypedQueryMatchCapturesIntoIter<'cursor, 'tree, Query: TypedQuery> {
 impl<'cursor, 'tree, Query: TypedQuery> TypedQueryMatchCaptures<'cursor, 'tree, Query> {
     /// SAFETY: Captures must come from the same query
     pub(super) unsafe fn new(
-        query: &'static Query,
+        query: &'cursor Query,
         captures: &'cursor [tree_sitter::QueryCapture<'tree>],
         #[cfg(feature = "tree-sitter-wrapper")]
         tree: &'tree Tree
@@ -76,14 +75,15 @@ impl<'cursor, 'tree, Query: TypedQuery> TypedQueryMatchCaptures<'cursor, 'tree, 
 }
 
 impl<'cursor, 'tree, Query: TypedQuery> IntoIterator for TypedQueryMatchCaptures<'cursor, 'tree, Query> {
-    type Item = TypedQueryMatchCapture<'cursor, 'tree>;
+    type Item = Query::Capture<'cursor, 'tree>;
     type IntoIter = TypedQueryMatchCapturesIntoIter<'cursor, 'tree, Query>;
 
     fn into_iter(self) -> Self::IntoIter {
+        let limit = self.len();
         TypedQueryMatchCapturesIntoIter {
             captures: self,
             index: 0,
-            limit: self.len()
+            limit
         }
     }
 }

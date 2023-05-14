@@ -1,35 +1,34 @@
-use std::iter::FusedIterator;
 use std::fmt::Debug;
 use tree_sitter::TextProvider;
 #[cfg(feature = "tree-sitter-wrapper")]
-use crate::tree_sitter_wrapper::{Point, Range, Tree};
+use crate::tree_sitter_wrapper::{Range, Tree};
 #[cfg(not(feature = "tree-sitter-wrapper"))]
-use tree_sitter::{Point, Range};
+use tree_sitter::Range;
 use crate::typed_query::match_captures::TypedQueryMatchCaptures;
 use crate::TypedQuery;
 
 /// Iterate a typed query's matches (see [tree_sitter::QueryMatches])
 #[cfg(feature = "tree-sitter-wrapper")]
-pub struct TypeQueryMatches<'cursor, 'tree, Match: TypedQueryMatch, Text: TextProvider<'tree> = &'tree Tree> {
-    typed_query: &'static Match::Query,
+pub struct TypedQueryMatches<'cursor, 'tree: 'cursor, Match: TypedQueryMatch<'cursor, 'tree>, Text: TextProvider<'cursor> = &'tree Tree> {
+    typed_query: &'cursor Match::Query,
     untyped_matches: tree_sitter::QueryMatches<'cursor, 'tree, Text>,
     tree: &'tree Tree,
 }
 
 /// Iterate a typed query's matches (see [tree_sitter::QueryMatches])
 #[cfg(not(feature = "tree-sitter-wrapper"))]
-pub struct TypeQueryMatches<'cursor, 'tree, Match: TypedQueryMatch, Text: TextProvider<'tree>> {
-    typed_query: &'static Match::Query,
+pub struct TypeQueryMatches<'cursor, 'tree, Match: TypedQueryMatch<'cursor, 'tree>, Text: TextProvider<'cursor>> {
+    typed_query: &'cursor Match::Query,
     untyped_matches: tree_sitter::QueryMatches<'cursor, 'tree, Text>,
 }
 
 /// A match from a [TypedQuery] with [TypedNode]s
-pub trait TypedQueryMatch<'cursor, 'tree>: Debug {
+pub trait TypedQueryMatch<'cursor, 'tree: 'cursor>: Debug {
     /// The type of query this match came from
-    type Query: TypedQuery;
+    type Query: TypedQuery<Match<'cursor, 'tree> = Self>;
 
     /// The query this match came from
-    fn query(&self) -> &'static Self::Query;
+    fn query(&self) -> &'cursor Self::Query;
 
     /// The tree this match came from
     #[cfg(feature = "tree-sitter-wrapper")]
@@ -54,17 +53,17 @@ pub trait TypedQueryMatch<'cursor, 'tree>: Debug {
 
     /// See [tree_sitter::QueryMatch::remove]
     #[inline]
-    fn remove(self) {
+    fn remove(self) where Self: Sized {
         self.into_raw().remove()
     }
 }
 
-impl<'cursor, 'tree, Match: TypedQueryMatch, Text: TextProvider<'tree>> TypeQueryMatches<'cursor, 'tree, Match, Text> {
+impl<'cursor, 'tree: 'cursor, Match: TypedQueryMatch<'cursor, 'tree>, Text: TextProvider<'cursor>> TypedQueryMatches<'cursor, 'tree, Match, Text> {
     /// SAFETY: The matches must have come from the same query
     #[inline]
     pub(super) unsafe fn new(
-        typed_query: &'static Match::Query,
-        untyped_matches: tree_sitter::QueryMatches<'cursor, 'tree, &'tree Tree>,
+        typed_query: &'cursor Match::Query,
+        untyped_matches: tree_sitter::QueryMatches<'cursor, 'tree, Text>,
         #[cfg(feature = "tree-sitter-wrapper")]
         tree: &'tree Tree,
     ) -> Self {
@@ -98,7 +97,7 @@ impl<'cursor, 'tree, Match: TypedQueryMatch, Text: TextProvider<'tree>> TypeQuer
     }
 }
 
-impl<'cursor, 'tree, Match: TypedQueryMatch, Text: TextProvider<'tree>> Iterator for TypeQueryMatches<'cursor, 'tree, Match, Text> {
+impl<'cursor, 'tree, Match: TypedQueryMatch<'cursor, 'tree>, Text: TextProvider<'cursor>> Iterator for TypedQueryMatches<'cursor, 'tree, Match, Text> {
     type Item = Match;
 
     #[inline]

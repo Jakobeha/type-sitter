@@ -1,7 +1,8 @@
 #[allow(non_upper_case_globals)]
-static __Tags__: once_cell::race::OnceBox<tree_sitter::Query> = once_cell::race::OnceBox::new();
+static __Tags__: type_sitter_lib::gen_internal::TypedQueryOnceBox<tree_sitter::Query> = type_sitter_lib::gen_internal::TypedQueryOnceBox::new();
 #[allow(non_snake_case)]
-fn __Mk__Tags() -> tree_sitter::Query {
+fn __Mk__Tags() -> Box<tree_sitter::Query> {
+    #[allow(unused_mut)]
     let mut query = tree_sitter::Query::new(
             tree_sitter_rust::language(),
             "; ADT definitions\n\n(struct_item\n    name: (type_identifier) @name) @definition.class\n\n(enum_item\n    name: (type_identifier) @name) @definition.class\n\n(union_item\n    name: (type_identifier) @name) @definition.class\n\n; type aliases\n\n(type_item\n    name: (type_identifier) @name) @definition.class\n\n; method definitions\n\n(declaration_list\n    (function_item\n        name: (identifier) @name)) @definition.method\n\n; function definitions\n\n(function_item\n    name: (identifier) @name) @definition.function\n\n; trait definitions\n(trait_item\n    name: (type_identifier) @name) @definition.interface\n\n; module definitions\n(mod_item\n    name: (identifier) @name) @definition.module\n\n; macro definitions\n\n(macro_definition\n    name: (identifier) @name) @definition.macro\n\n; references\n\n(call_expression\n    function: (identifier) @name) @reference.call\n\n(call_expression\n    function: (field_expression\n        field: (field_identifier) @name)) @reference.call\n\n(macro_invocation\n    macro: (identifier) @name) @reference.call\n\n; implementations\n\n(impl_item\n    trait: (type_identifier) @name) @reference.implementation\n\n(impl_item\n    type: (type_identifier) @name\n    !trait) @reference.implementation\n",
@@ -9,7 +10,7 @@ fn __Mk__Tags() -> tree_sitter::Query {
         .expect(
             "query parsed at compile-time but failed at runtime. Is the language 'tree_sitter_rust' correct, and did you use the same tree-sitter / tree_sitter_rust version?",
         );
-    query
+    Box::new(query)
 }
 /**Typed version of the query:
 
@@ -79,11 +80,143 @@ fn __Mk__Tags() -> tree_sitter::Query {
 #[allow(non_camel_case_types)]
 #[derive(Debug, Clone, Copy)]
 pub struct Tags;
+/**Matches returned by a query cursor running the query [Tags]:
+
+```sexp
+; ADT definitions
+
+(struct_item
+    name: (type_identifier) @name) @definition.class
+
+(enum_item
+    name: (type_identifier) @name) @definition.class
+
+(union_item
+    name: (type_identifier) @name) @definition.class
+
+; type aliases
+
+(type_item
+    name: (type_identifier) @name) @definition.class
+
+; method definitions
+
+(declaration_list
+    (function_item
+        name: (identifier) @name)) @definition.method
+
+; function definitions
+
+(function_item
+    name: (identifier) @name) @definition.function
+
+; trait definitions
+(trait_item
+    name: (type_identifier) @name) @definition.interface
+
+; module definitions
+(mod_item
+    name: (identifier) @name) @definition.module
+
+; macro definitions
+
+(macro_definition
+    name: (identifier) @name) @definition.macro
+
+; references
+
+(call_expression
+    function: (identifier) @name) @reference.call
+
+(call_expression
+    function: (field_expression
+        field: (field_identifier) @name)) @reference.call
+
+(macro_invocation
+    macro: (identifier) @name) @reference.call
+
+; implementations
+
+(impl_item
+    trait: (type_identifier) @name) @reference.implementation
+
+(impl_item
+    type: (type_identifier) @name
+    !trait) @reference.implementation
+
+```*/
+#[allow(unused, non_camel_case_types)]
 pub type TagsMatches<'cursor, 'tree> = type_sitter_lib::TypedQueryMatches<
     'cursor,
     'tree,
     TagsMatch<'cursor, 'tree>,
 >;
+/**Captures returned by a query cursor running the query [Tags]:
+
+```sexp
+; ADT definitions
+
+(struct_item
+    name: (type_identifier) @name) @definition.class
+
+(enum_item
+    name: (type_identifier) @name) @definition.class
+
+(union_item
+    name: (type_identifier) @name) @definition.class
+
+; type aliases
+
+(type_item
+    name: (type_identifier) @name) @definition.class
+
+; method definitions
+
+(declaration_list
+    (function_item
+        name: (identifier) @name)) @definition.method
+
+; function definitions
+
+(function_item
+    name: (identifier) @name) @definition.function
+
+; trait definitions
+(trait_item
+    name: (type_identifier) @name) @definition.interface
+
+; module definitions
+(mod_item
+    name: (identifier) @name) @definition.module
+
+; macro definitions
+
+(macro_definition
+    name: (identifier) @name) @definition.macro
+
+; references
+
+(call_expression
+    function: (identifier) @name) @reference.call
+
+(call_expression
+    function: (field_expression
+        field: (field_identifier) @name)) @reference.call
+
+(macro_invocation
+    macro: (identifier) @name) @reference.call
+
+; implementations
+
+(impl_item
+    trait: (type_identifier) @name) @reference.implementation
+
+(impl_item
+    type: (type_identifier) @name
+    !trait) @reference.implementation
+
+```*/
+#[allow(unused, non_camel_case_types)]
 pub type TagsCaptures<'cursor, 'tree> = type_sitter_lib::TypedQueryCaptures<
     'cursor,
     'tree,
@@ -327,8 +460,8 @@ pub enum TagsCapture<'cursor, 'tree> {
 }
 #[automatically_derived]
 impl type_sitter_lib::TypedQuery for Tags {
-    type Match<'cursor, 'tree> = TagsMatch<'cursor, 'tree>;
-    type Capture<'cursor, 'tree> = TagsCapture<'cursor, 'tree>;
+    type Match<'cursor, 'tree: 'cursor> = TagsMatch<'cursor, 'tree>;
+    type Capture<'cursor, 'tree: 'cursor> = TagsCapture<'cursor, 'tree>;
     fn query_str(&self) -> &'static str {
         "; ADT definitions\n\n(struct_item\n    name: (type_identifier) @name) @definition.class\n\n(enum_item\n    name: (type_identifier) @name) @definition.class\n\n(union_item\n    name: (type_identifier) @name) @definition.class\n\n; type aliases\n\n(type_item\n    name: (type_identifier) @name) @definition.class\n\n; method definitions\n\n(declaration_list\n    (function_item\n        name: (identifier) @name)) @definition.method\n\n; function definitions\n\n(function_item\n    name: (identifier) @name) @definition.function\n\n; trait definitions\n(trait_item\n    name: (type_identifier) @name) @definition.interface\n\n; module definitions\n(mod_item\n    name: (identifier) @name) @definition.module\n\n; macro definitions\n\n(macro_definition\n    name: (identifier) @name) @definition.macro\n\n; references\n\n(call_expression\n    function: (identifier) @name) @reference.call\n\n(call_expression\n    function: (field_expression\n        field: (field_identifier) @name)) @reference.call\n\n(macro_invocation\n    macro: (identifier) @name) @reference.call\n\n; implementations\n\n(impl_item\n    trait: (type_identifier) @name) @reference.implementation\n\n(impl_item\n    type: (type_identifier) @name\n    !trait) @reference.implementation\n"
     }
@@ -357,7 +490,7 @@ impl type_sitter_lib::TypedQuery for Tags {
                         'tree,
                     > as type_sitter_lib::TypedNode<
                         'tree,
-                    >>::from_unchecked(unsafe {
+                    >>::from_node_unchecked(unsafe {
                         type_sitter_lib::tree_sitter_wrapper::Node::new(
                             capture.node,
                             tree,
@@ -372,7 +505,7 @@ impl type_sitter_lib::TypedQuery for Tags {
                         'tree,
                     > as type_sitter_lib::TypedNode<
                         'tree,
-                    >>::from_unchecked(unsafe {
+                    >>::from_node_unchecked(unsafe {
                         type_sitter_lib::tree_sitter_wrapper::Node::new(
                             capture.node,
                             tree,
@@ -387,7 +520,7 @@ impl type_sitter_lib::TypedQuery for Tags {
                         'tree,
                     > as type_sitter_lib::TypedNode<
                         'tree,
-                    >>::from_unchecked(unsafe {
+                    >>::from_node_unchecked(unsafe {
                         type_sitter_lib::tree_sitter_wrapper::Node::new(
                             capture.node,
                             tree,
@@ -402,7 +535,7 @@ impl type_sitter_lib::TypedQuery for Tags {
                         'tree,
                     > as type_sitter_lib::TypedNode<
                         'tree,
-                    >>::from_unchecked(unsafe {
+                    >>::from_node_unchecked(unsafe {
                         type_sitter_lib::tree_sitter_wrapper::Node::new(
                             capture.node,
                             tree,
@@ -417,7 +550,7 @@ impl type_sitter_lib::TypedQuery for Tags {
                         'tree,
                     > as type_sitter_lib::TypedNode<
                         'tree,
-                    >>::from_unchecked(unsafe {
+                    >>::from_node_unchecked(unsafe {
                         type_sitter_lib::tree_sitter_wrapper::Node::new(
                             capture.node,
                             tree,
@@ -432,7 +565,7 @@ impl type_sitter_lib::TypedQuery for Tags {
                         'tree,
                     > as type_sitter_lib::TypedNode<
                         'tree,
-                    >>::from_unchecked(unsafe {
+                    >>::from_node_unchecked(unsafe {
                         type_sitter_lib::tree_sitter_wrapper::Node::new(
                             capture.node,
                             tree,
@@ -447,7 +580,7 @@ impl type_sitter_lib::TypedQuery for Tags {
                         'tree,
                     > as type_sitter_lib::TypedNode<
                         'tree,
-                    >>::from_unchecked(unsafe {
+                    >>::from_node_unchecked(unsafe {
                         type_sitter_lib::tree_sitter_wrapper::Node::new(
                             capture.node,
                             tree,
@@ -462,7 +595,7 @@ impl type_sitter_lib::TypedQuery for Tags {
                         'tree,
                     > as type_sitter_lib::TypedNode<
                         'tree,
-                    >>::from_unchecked(unsafe {
+                    >>::from_node_unchecked(unsafe {
                         type_sitter_lib::tree_sitter_wrapper::Node::new(
                             capture.node,
                             tree,
@@ -477,7 +610,7 @@ impl type_sitter_lib::TypedQuery for Tags {
                         'tree,
                     > as type_sitter_lib::TypedNode<
                         'tree,
-                    >>::from_unchecked(unsafe {
+                    >>::from_node_unchecked(unsafe {
                         type_sitter_lib::tree_sitter_wrapper::Node::new(
                             capture.node,
                             tree,
@@ -499,12 +632,20 @@ impl<'cursor, 'tree> TagsMatch<'cursor, 'tree> {
     ///struct_item @name
     ///```
     #[inline]
+    #[allow(unused, non_snake_case)]
     pub fn name(&self) -> Option<super::nodes::StructItem<'tree>> {
         {
-            unsafe {
-                self.nodes_for_capture_ix(capture_idx)
-                    .map(tree_sitter_lib::TypedNode::<'tree>::from_unchecked)
-            }
+            self.match_
+                .nodes_for_capture_index(0usize as u32)
+                .map(|n| unsafe {
+                    <super::nodes::StructItem<
+                        'tree,
+                    > as type_sitter_lib::TypedNode<
+                        'tree,
+                    >>::from_node_unchecked(
+                        type_sitter_lib::tree_sitter_wrapper::Node::new(n, self.tree),
+                    )
+                })
         }
             .next()
     }
@@ -516,12 +657,20 @@ impl<'cursor, 'tree> TagsMatch<'cursor, 'tree> {
     name: (type_identifier) @name) @definition.class*/
     ///```
     #[inline]
+    #[allow(unused, non_snake_case)]
     pub fn definition_class(&self) -> Option<super::nodes::StructItem<'tree>> {
         {
-            unsafe {
-                self.nodes_for_capture_ix(capture_idx)
-                    .map(tree_sitter_lib::TypedNode::<'tree>::from_unchecked)
-            }
+            self.match_
+                .nodes_for_capture_index(1usize as u32)
+                .map(|n| unsafe {
+                    <super::nodes::StructItem<
+                        'tree,
+                    > as type_sitter_lib::TypedNode<
+                        'tree,
+                    >>::from_node_unchecked(
+                        type_sitter_lib::tree_sitter_wrapper::Node::new(n, self.tree),
+                    )
+                })
         }
             .next()
     }
@@ -533,12 +682,20 @@ impl<'cursor, 'tree> TagsMatch<'cursor, 'tree> {
     name: (type_identifier) @name) @definition.method*/
     ///```
     #[inline]
+    #[allow(unused, non_snake_case)]
     pub fn definition_method(&self) -> Option<super::nodes::StructItem<'tree>> {
         {
-            unsafe {
-                self.nodes_for_capture_ix(capture_idx)
-                    .map(tree_sitter_lib::TypedNode::<'tree>::from_unchecked)
-            }
+            self.match_
+                .nodes_for_capture_index(2usize as u32)
+                .map(|n| unsafe {
+                    <super::nodes::StructItem<
+                        'tree,
+                    > as type_sitter_lib::TypedNode<
+                        'tree,
+                    >>::from_node_unchecked(
+                        type_sitter_lib::tree_sitter_wrapper::Node::new(n, self.tree),
+                    )
+                })
         }
             .next()
     }
@@ -550,12 +707,20 @@ impl<'cursor, 'tree> TagsMatch<'cursor, 'tree> {
     name: (type_identifier) @name) @definition.function*/
     ///```
     #[inline]
+    #[allow(unused, non_snake_case)]
     pub fn definition_function(&self) -> Option<super::nodes::StructItem<'tree>> {
         {
-            unsafe {
-                self.nodes_for_capture_ix(capture_idx)
-                    .map(tree_sitter_lib::TypedNode::<'tree>::from_unchecked)
-            }
+            self.match_
+                .nodes_for_capture_index(3usize as u32)
+                .map(|n| unsafe {
+                    <super::nodes::StructItem<
+                        'tree,
+                    > as type_sitter_lib::TypedNode<
+                        'tree,
+                    >>::from_node_unchecked(
+                        type_sitter_lib::tree_sitter_wrapper::Node::new(n, self.tree),
+                    )
+                })
         }
             .next()
     }
@@ -567,12 +732,20 @@ impl<'cursor, 'tree> TagsMatch<'cursor, 'tree> {
     name: (type_identifier) @name) @definition.interface*/
     ///```
     #[inline]
+    #[allow(unused, non_snake_case)]
     pub fn definition_interface(&self) -> Option<super::nodes::StructItem<'tree>> {
         {
-            unsafe {
-                self.nodes_for_capture_ix(capture_idx)
-                    .map(tree_sitter_lib::TypedNode::<'tree>::from_unchecked)
-            }
+            self.match_
+                .nodes_for_capture_index(4usize as u32)
+                .map(|n| unsafe {
+                    <super::nodes::StructItem<
+                        'tree,
+                    > as type_sitter_lib::TypedNode<
+                        'tree,
+                    >>::from_node_unchecked(
+                        type_sitter_lib::tree_sitter_wrapper::Node::new(n, self.tree),
+                    )
+                })
         }
             .next()
     }
@@ -584,12 +757,20 @@ impl<'cursor, 'tree> TagsMatch<'cursor, 'tree> {
     name: (type_identifier) @name) @definition.module*/
     ///```
     #[inline]
+    #[allow(unused, non_snake_case)]
     pub fn definition_module(&self) -> Option<super::nodes::StructItem<'tree>> {
         {
-            unsafe {
-                self.nodes_for_capture_ix(capture_idx)
-                    .map(tree_sitter_lib::TypedNode::<'tree>::from_unchecked)
-            }
+            self.match_
+                .nodes_for_capture_index(5usize as u32)
+                .map(|n| unsafe {
+                    <super::nodes::StructItem<
+                        'tree,
+                    > as type_sitter_lib::TypedNode<
+                        'tree,
+                    >>::from_node_unchecked(
+                        type_sitter_lib::tree_sitter_wrapper::Node::new(n, self.tree),
+                    )
+                })
         }
             .next()
     }
@@ -601,12 +782,20 @@ impl<'cursor, 'tree> TagsMatch<'cursor, 'tree> {
     name: (type_identifier) @name) @definition.macro*/
     ///```
     #[inline]
+    #[allow(unused, non_snake_case)]
     pub fn definition_macro(&self) -> Option<super::nodes::StructItem<'tree>> {
         {
-            unsafe {
-                self.nodes_for_capture_ix(capture_idx)
-                    .map(tree_sitter_lib::TypedNode::<'tree>::from_unchecked)
-            }
+            self.match_
+                .nodes_for_capture_index(6usize as u32)
+                .map(|n| unsafe {
+                    <super::nodes::StructItem<
+                        'tree,
+                    > as type_sitter_lib::TypedNode<
+                        'tree,
+                    >>::from_node_unchecked(
+                        type_sitter_lib::tree_sitter_wrapper::Node::new(n, self.tree),
+                    )
+                })
         }
             .next()
     }
@@ -618,12 +807,20 @@ impl<'cursor, 'tree> TagsMatch<'cursor, 'tree> {
     name: (type_identifier) @name) @reference.call*/
     ///```
     #[inline]
+    #[allow(unused, non_snake_case)]
     pub fn reference_call(&self) -> Option<super::nodes::StructItem<'tree>> {
         {
-            unsafe {
-                self.nodes_for_capture_ix(capture_idx)
-                    .map(tree_sitter_lib::TypedNode::<'tree>::from_unchecked)
-            }
+            self.match_
+                .nodes_for_capture_index(7usize as u32)
+                .map(|n| unsafe {
+                    <super::nodes::StructItem<
+                        'tree,
+                    > as type_sitter_lib::TypedNode<
+                        'tree,
+                    >>::from_node_unchecked(
+                        type_sitter_lib::tree_sitter_wrapper::Node::new(n, self.tree),
+                    )
+                })
         }
             .next()
     }
@@ -635,12 +832,20 @@ impl<'cursor, 'tree> TagsMatch<'cursor, 'tree> {
     name: (type_identifier) @name) @reference.implementation*/
     ///```
     #[inline]
+    #[allow(unused, non_snake_case)]
     pub fn reference_implementation(&self) -> Option<super::nodes::StructItem<'tree>> {
         {
-            unsafe {
-                self.nodes_for_capture_ix(capture_idx)
-                    .map(tree_sitter_lib::TypedNode::<'tree>::from_unchecked)
-            }
+            self.match_
+                .nodes_for_capture_index(8usize as u32)
+                .map(|n| unsafe {
+                    <super::nodes::StructItem<
+                        'tree,
+                    > as type_sitter_lib::TypedNode<
+                        'tree,
+                    >>::from_node_unchecked(
+                        type_sitter_lib::tree_sitter_wrapper::Node::new(n, self.tree),
+                    )
+                })
         }
             .next()
     }
@@ -650,7 +855,7 @@ impl<'cursor, 'tree> type_sitter_lib::TypedQueryMatch<'cursor, 'tree>
 for TagsMatch<'cursor, 'tree> {
     type Query = Tags;
     #[inline]
-    fn query(&self) -> &'static Self::Query {
+    fn query(&self) -> &'cursor Self::Query {
         &Tags
     }
     #[inline]
@@ -659,11 +864,11 @@ for TagsMatch<'cursor, 'tree> {
     }
     #[inline]
     fn raw(&self) -> &tree_sitter::QueryMatch<'cursor, 'tree> {
-        &self.0
+        &self.match_
     }
     #[inline]
     fn into_raw(self) -> tree_sitter::QueryMatch<'cursor, 'tree> {
-        self.0
+        self.match_
     }
 }
 #[automatically_derived]
@@ -675,9 +880,11 @@ impl<'cursor, 'tree> TagsCapture<'cursor, 'tree> {
     ///struct_item @name
     ///```
     #[inline]
+    #[allow(unused, non_snake_case)]
     pub fn name(&self) -> Option<&super::nodes::StructItem<'tree>> {
         match self {
             Self::Name { node, .. } => Some(node),
+            #[allow(unreachable_patterns)]
             _ => None,
         }
     }
@@ -689,9 +896,11 @@ impl<'cursor, 'tree> TagsCapture<'cursor, 'tree> {
     name: (type_identifier) @name) @definition.class*/
     ///```
     #[inline]
+    #[allow(unused, non_snake_case)]
     pub fn definition_class(&self) -> Option<&super::nodes::StructItem<'tree>> {
         match self {
             Self::DefinitionClass { node, .. } => Some(node),
+            #[allow(unreachable_patterns)]
             _ => None,
         }
     }
@@ -703,9 +912,11 @@ impl<'cursor, 'tree> TagsCapture<'cursor, 'tree> {
     name: (type_identifier) @name) @definition.method*/
     ///```
     #[inline]
+    #[allow(unused, non_snake_case)]
     pub fn definition_method(&self) -> Option<&super::nodes::StructItem<'tree>> {
         match self {
             Self::DefinitionMethod { node, .. } => Some(node),
+            #[allow(unreachable_patterns)]
             _ => None,
         }
     }
@@ -717,9 +928,11 @@ impl<'cursor, 'tree> TagsCapture<'cursor, 'tree> {
     name: (type_identifier) @name) @definition.function*/
     ///```
     #[inline]
+    #[allow(unused, non_snake_case)]
     pub fn definition_function(&self) -> Option<&super::nodes::StructItem<'tree>> {
         match self {
             Self::DefinitionFunction { node, .. } => Some(node),
+            #[allow(unreachable_patterns)]
             _ => None,
         }
     }
@@ -731,9 +944,11 @@ impl<'cursor, 'tree> TagsCapture<'cursor, 'tree> {
     name: (type_identifier) @name) @definition.interface*/
     ///```
     #[inline]
+    #[allow(unused, non_snake_case)]
     pub fn definition_interface(&self) -> Option<&super::nodes::StructItem<'tree>> {
         match self {
             Self::DefinitionInterface { node, .. } => Some(node),
+            #[allow(unreachable_patterns)]
             _ => None,
         }
     }
@@ -745,9 +960,11 @@ impl<'cursor, 'tree> TagsCapture<'cursor, 'tree> {
     name: (type_identifier) @name) @definition.module*/
     ///```
     #[inline]
+    #[allow(unused, non_snake_case)]
     pub fn definition_module(&self) -> Option<&super::nodes::StructItem<'tree>> {
         match self {
             Self::DefinitionModule { node, .. } => Some(node),
+            #[allow(unreachable_patterns)]
             _ => None,
         }
     }
@@ -759,9 +976,11 @@ impl<'cursor, 'tree> TagsCapture<'cursor, 'tree> {
     name: (type_identifier) @name) @definition.macro*/
     ///```
     #[inline]
+    #[allow(unused, non_snake_case)]
     pub fn definition_macro(&self) -> Option<&super::nodes::StructItem<'tree>> {
         match self {
             Self::DefinitionMacro { node, .. } => Some(node),
+            #[allow(unreachable_patterns)]
             _ => None,
         }
     }
@@ -773,9 +992,11 @@ impl<'cursor, 'tree> TagsCapture<'cursor, 'tree> {
     name: (type_identifier) @name) @reference.call*/
     ///```
     #[inline]
+    #[allow(unused, non_snake_case)]
     pub fn reference_call(&self) -> Option<&super::nodes::StructItem<'tree>> {
         match self {
             Self::ReferenceCall { node, .. } => Some(node),
+            #[allow(unreachable_patterns)]
             _ => None,
         }
     }
@@ -787,9 +1008,11 @@ impl<'cursor, 'tree> TagsCapture<'cursor, 'tree> {
     name: (type_identifier) @name) @reference.implementation*/
     ///```
     #[inline]
+    #[allow(unused, non_snake_case)]
     pub fn reference_implementation(&self) -> Option<&super::nodes::StructItem<'tree>> {
         match self {
             Self::ReferenceImplementation { node, .. } => Some(node),
+            #[allow(unreachable_patterns)]
             _ => None,
         }
     }
@@ -860,7 +1083,7 @@ impl<'cursor, 'tree> type_sitter_lib::TypedQueryCapture<'cursor, 'tree>
 for TagsCapture<'cursor, 'tree> {
     type Query = Tags;
     #[inline]
-    fn query(&self) -> &'static Self::Query {
+    fn query(&self) -> &'cursor Self::Query {
         &Tags
     }
     #[inline]
@@ -989,9 +1212,12 @@ for TagsCapture<'cursor, 'tree> {
     }
 }
 #[allow(non_upper_case_globals)]
-static __Highlights__: once_cell::race::OnceBox<tree_sitter::Query> = once_cell::race::OnceBox::new();
+static __Highlights__: type_sitter_lib::gen_internal::TypedQueryOnceBox<
+    tree_sitter::Query,
+> = type_sitter_lib::gen_internal::TypedQueryOnceBox::new();
 #[allow(non_snake_case)]
-fn __Mk__Highlights() -> tree_sitter::Query {
+fn __Mk__Highlights() -> Box<tree_sitter::Query> {
+    #[allow(unused_mut)]
     let mut query = tree_sitter::Query::new(
             tree_sitter_rust::language(),
             "; Identifier conventions\n\n; Assume all-caps names are constants\n((identifier) @constant\n (#match? @constant \"^[A-Z][A-Z\\\\d_]+$'\"))\n\n; Assume that uppercase names in paths are types\n((scoped_identifier\n  path: (identifier) @type)\n (#match? @type \"^[A-Z]\"))\n((scoped_identifier\n  path: (scoped_identifier\n    name: (identifier) @type))\n (#match? @type \"^[A-Z]\"))\n((scoped_type_identifier\n  path: (identifier) @type)\n (#match? @type \"^[A-Z]\"))\n((scoped_type_identifier\n  path: (scoped_identifier\n    name: (identifier) @type))\n (#match? @type \"^[A-Z]\"))\n\n; Assume other uppercase names are enum constructors\n((identifier) @constructor\n (#match? @constructor \"^[A-Z]\"))\n\n; Assume all qualified names in struct patterns are enum constructors. (They're\n; either that, or struct names; highlighting both as constructors seems to be\n; the less glaring choice of error, visually.)\n(struct_pattern\n  type: (scoped_type_identifier\n    name: (type_identifier) @constructor))\n\n; Function calls\n\n(call_expression\n  function: (identifier) @function)\n(call_expression\n  function: (field_expression\n    field: (field_identifier) @function.method))\n(call_expression\n  function: (scoped_identifier\n    \"::\"\n    name: (identifier) @function))\n\n(generic_function\n  function: (identifier) @function)\n(generic_function\n  function: (scoped_identifier\n    name: (identifier) @function))\n(generic_function\n  function: (field_expression\n    field: (field_identifier) @function.method))\n\n(macro_invocation\n  macro: (identifier) @function.macro\n  \"!\" @function.macro)\n\n; Function definitions\n\n(function_item (identifier) @function)\n(function_signature_item (identifier) @function)\n\n; Other identifiers\n\n(type_identifier) @type\n(primitive_type) @type.builtin\n(field_identifier) @property\n\n(line_comment) @comment\n(block_comment) @comment\n\n\"(\" @punctuation.bracket\n\")\" @punctuation.bracket\n\"[\" @punctuation.bracket\n\"]\" @punctuation.bracket\n\"{\" @punctuation.bracket\n\"}\" @punctuation.bracket\n\n(type_arguments\n  \"<\" @punctuation.bracket\n  \">\" @punctuation.bracket)\n(type_parameters\n  \"<\" @punctuation.bracket\n  \">\" @punctuation.bracket)\n\n\"::\" @punctuation.delimiter\n\":\" @punctuation.delimiter\n\".\" @punctuation.delimiter\n\",\" @punctuation.delimiter\n\";\" @punctuation.delimiter\n\n(parameter (identifier) @variable.parameter)\n\n(lifetime (identifier) @label)\n\n\"as\" @keyword\n\"async\" @keyword\n\"await\" @keyword\n\"break\" @keyword\n\"const\" @keyword\n\"continue\" @keyword\n\"default\" @keyword\n\"dyn\" @keyword\n\"else\" @keyword\n\"enum\" @keyword\n\"extern\" @keyword\n\"fn\" @keyword\n\"for\" @keyword\n\"if\" @keyword\n\"impl\" @keyword\n\"in\" @keyword\n\"let\" @keyword\n\"loop\" @keyword\n\"macro_rules!\" @keyword\n\"match\" @keyword\n\"mod\" @keyword\n\"move\" @keyword\n\"pub\" @keyword\n\"ref\" @keyword\n\"return\" @keyword\n\"static\" @keyword\n\"struct\" @keyword\n\"trait\" @keyword\n\"type\" @keyword\n\"union\" @keyword\n\"unsafe\" @keyword\n\"use\" @keyword\n\"where\" @keyword\n\"while\" @keyword\n(crate) @keyword\n(mutable_specifier) @keyword\n(use_list (self) @keyword)\n(scoped_use_list (self) @keyword)\n(scoped_identifier (self) @keyword)\n(super) @keyword\n\n(self) @variable.builtin\n\n(char_literal) @string\n(string_literal) @string\n(raw_string_literal) @string\n\n(boolean_literal) @constant.builtin\n(integer_literal) @constant.builtin\n(float_literal) @constant.builtin\n\n(escape_sequence) @escape\n\n(attribute_item) @attribute\n(inner_attribute_item) @attribute\n\n\"*\" @operator\n\"&\" @operator\n\"'\" @operator\n",
@@ -999,7 +1225,7 @@ fn __Mk__Highlights() -> tree_sitter::Query {
         .expect(
             "query parsed at compile-time but failed at runtime. Is the language 'tree_sitter_rust' correct, and did you use the same tree-sitter / tree_sitter_rust version?",
         );
-    query
+    Box::new(query)
 }
 /**Typed version of the query:
 
@@ -1164,11 +1390,333 @@ fn __Mk__Highlights() -> tree_sitter::Query {
 #[allow(non_camel_case_types)]
 #[derive(Debug, Clone, Copy)]
 pub struct Highlights;
+/**Matches returned by a query cursor running the query [Highlights]:
+
+```sexp
+; Identifier conventions
+
+; Assume all-caps names are constants
+((identifier) @constant
+ (#match? @constant "^[A-Z][A-Z\\d_]+$'"))
+
+; Assume that uppercase names in paths are types
+((scoped_identifier
+  path: (identifier) @type)
+ (#match? @type "^[A-Z]"))
+((scoped_identifier
+  path: (scoped_identifier
+    name: (identifier) @type))
+ (#match? @type "^[A-Z]"))
+((scoped_type_identifier
+  path: (identifier) @type)
+ (#match? @type "^[A-Z]"))
+((scoped_type_identifier
+  path: (scoped_identifier
+    name: (identifier) @type))
+ (#match? @type "^[A-Z]"))
+
+; Assume other uppercase names are enum constructors
+((identifier) @constructor
+ (#match? @constructor "^[A-Z]"))
+
+; Assume all qualified names in struct patterns are enum constructors. (They're
+; either that, or struct names; highlighting both as constructors seems to be
+; the less glaring choice of error, visually.)
+(struct_pattern
+  type: (scoped_type_identifier
+    name: (type_identifier) @constructor))
+
+; Function calls
+
+(call_expression
+  function: (identifier) @function)
+(call_expression
+  function: (field_expression
+    field: (field_identifier) @function.method))
+(call_expression
+  function: (scoped_identifier
+    "::"
+    name: (identifier) @function))
+
+(generic_function
+  function: (identifier) @function)
+(generic_function
+  function: (scoped_identifier
+    name: (identifier) @function))
+(generic_function
+  function: (field_expression
+    field: (field_identifier) @function.method))
+
+(macro_invocation
+  macro: (identifier) @function.macro
+  "!" @function.macro)
+
+; Function definitions
+
+(function_item (identifier) @function)
+(function_signature_item (identifier) @function)
+
+; Other identifiers
+
+(type_identifier) @type
+(primitive_type) @type.builtin
+(field_identifier) @property
+
+(line_comment) @comment
+(block_comment) @comment
+
+"(" @punctuation.bracket
+")" @punctuation.bracket
+"[" @punctuation.bracket
+"]" @punctuation.bracket
+"{" @punctuation.bracket
+"}" @punctuation.bracket
+
+(type_arguments
+  "<" @punctuation.bracket
+  ">" @punctuation.bracket)
+(type_parameters
+  "<" @punctuation.bracket
+  ">" @punctuation.bracket)
+
+"::" @punctuation.delimiter
+":" @punctuation.delimiter
+"." @punctuation.delimiter
+"," @punctuation.delimiter
+";" @punctuation.delimiter
+
+(parameter (identifier) @variable.parameter)
+
+(lifetime (identifier) @label)
+
+"as" @keyword
+"async" @keyword
+"await" @keyword
+"break" @keyword
+"const" @keyword
+"continue" @keyword
+"default" @keyword
+"dyn" @keyword
+"else" @keyword
+"enum" @keyword
+"extern" @keyword
+"fn" @keyword
+"for" @keyword
+"if" @keyword
+"impl" @keyword
+"in" @keyword
+"let" @keyword
+"loop" @keyword
+"macro_rules!" @keyword
+"match" @keyword
+"mod" @keyword
+"move" @keyword
+"pub" @keyword
+"ref" @keyword
+"return" @keyword
+"static" @keyword
+"struct" @keyword
+"trait" @keyword
+"type" @keyword
+"union" @keyword
+"unsafe" @keyword
+"use" @keyword
+"where" @keyword
+"while" @keyword
+(crate) @keyword
+(mutable_specifier) @keyword
+(use_list (self) @keyword)
+(scoped_use_list (self) @keyword)
+(scoped_identifier (self) @keyword)
+(super) @keyword
+
+(self) @variable.builtin
+
+(char_literal) @string
+(string_literal) @string
+(raw_string_literal) @string
+
+(boolean_literal) @constant.builtin
+(integer_literal) @constant.builtin
+(float_literal) @constant.builtin
+
+(escape_sequence) @escape
+
+(attribute_item) @attribute
+(inner_attribute_item) @attribute
+
+"*" @operator
+"&" @operator
+"'" @operator
+
+```*/
+#[allow(unused, non_camel_case_types)]
 pub type HighlightsMatches<'cursor, 'tree> = type_sitter_lib::TypedQueryMatches<
     'cursor,
     'tree,
     HighlightsMatch<'cursor, 'tree>,
 >;
+/**Captures returned by a query cursor running the query [Highlights]:
+
+```sexp
+; Identifier conventions
+
+; Assume all-caps names are constants
+((identifier) @constant
+ (#match? @constant "^[A-Z][A-Z\\d_]+$'"))
+
+; Assume that uppercase names in paths are types
+((scoped_identifier
+  path: (identifier) @type)
+ (#match? @type "^[A-Z]"))
+((scoped_identifier
+  path: (scoped_identifier
+    name: (identifier) @type))
+ (#match? @type "^[A-Z]"))
+((scoped_type_identifier
+  path: (identifier) @type)
+ (#match? @type "^[A-Z]"))
+((scoped_type_identifier
+  path: (scoped_identifier
+    name: (identifier) @type))
+ (#match? @type "^[A-Z]"))
+
+; Assume other uppercase names are enum constructors
+((identifier) @constructor
+ (#match? @constructor "^[A-Z]"))
+
+; Assume all qualified names in struct patterns are enum constructors. (They're
+; either that, or struct names; highlighting both as constructors seems to be
+; the less glaring choice of error, visually.)
+(struct_pattern
+  type: (scoped_type_identifier
+    name: (type_identifier) @constructor))
+
+; Function calls
+
+(call_expression
+  function: (identifier) @function)
+(call_expression
+  function: (field_expression
+    field: (field_identifier) @function.method))
+(call_expression
+  function: (scoped_identifier
+    "::"
+    name: (identifier) @function))
+
+(generic_function
+  function: (identifier) @function)
+(generic_function
+  function: (scoped_identifier
+    name: (identifier) @function))
+(generic_function
+  function: (field_expression
+    field: (field_identifier) @function.method))
+
+(macro_invocation
+  macro: (identifier) @function.macro
+  "!" @function.macro)
+
+; Function definitions
+
+(function_item (identifier) @function)
+(function_signature_item (identifier) @function)
+
+; Other identifiers
+
+(type_identifier) @type
+(primitive_type) @type.builtin
+(field_identifier) @property
+
+(line_comment) @comment
+(block_comment) @comment
+
+"(" @punctuation.bracket
+")" @punctuation.bracket
+"[" @punctuation.bracket
+"]" @punctuation.bracket
+"{" @punctuation.bracket
+"}" @punctuation.bracket
+
+(type_arguments
+  "<" @punctuation.bracket
+  ">" @punctuation.bracket)
+(type_parameters
+  "<" @punctuation.bracket
+  ">" @punctuation.bracket)
+
+"::" @punctuation.delimiter
+":" @punctuation.delimiter
+"." @punctuation.delimiter
+"," @punctuation.delimiter
+";" @punctuation.delimiter
+
+(parameter (identifier) @variable.parameter)
+
+(lifetime (identifier) @label)
+
+"as" @keyword
+"async" @keyword
+"await" @keyword
+"break" @keyword
+"const" @keyword
+"continue" @keyword
+"default" @keyword
+"dyn" @keyword
+"else" @keyword
+"enum" @keyword
+"extern" @keyword
+"fn" @keyword
+"for" @keyword
+"if" @keyword
+"impl" @keyword
+"in" @keyword
+"let" @keyword
+"loop" @keyword
+"macro_rules!" @keyword
+"match" @keyword
+"mod" @keyword
+"move" @keyword
+"pub" @keyword
+"ref" @keyword
+"return" @keyword
+"static" @keyword
+"struct" @keyword
+"trait" @keyword
+"type" @keyword
+"union" @keyword
+"unsafe" @keyword
+"use" @keyword
+"where" @keyword
+"while" @keyword
+(crate) @keyword
+(mutable_specifier) @keyword
+(use_list (self) @keyword)
+(scoped_use_list (self) @keyword)
+(scoped_identifier (self) @keyword)
+(super) @keyword
+
+(self) @variable.builtin
+
+(char_literal) @string
+(string_literal) @string
+(raw_string_literal) @string
+
+(boolean_literal) @constant.builtin
+(integer_literal) @constant.builtin
+(float_literal) @constant.builtin
+
+(escape_sequence) @escape
+
+(attribute_item) @attribute
+(inner_attribute_item) @attribute
+
+"*" @operator
+"&" @operator
+"'" @operator
+
+```*/
+#[allow(unused, non_camel_case_types)]
 pub type HighlightsCaptures<'cursor, 'tree> = type_sitter_lib::TypedQueryCaptures<
     'cursor,
     'tree,
@@ -1717,8 +2265,8 @@ pub enum HighlightsCapture<'cursor, 'tree> {
 }
 #[automatically_derived]
 impl type_sitter_lib::TypedQuery for Highlights {
-    type Match<'cursor, 'tree> = HighlightsMatch<'cursor, 'tree>;
-    type Capture<'cursor, 'tree> = HighlightsCapture<'cursor, 'tree>;
+    type Match<'cursor, 'tree: 'cursor> = HighlightsMatch<'cursor, 'tree>;
+    type Capture<'cursor, 'tree: 'cursor> = HighlightsCapture<'cursor, 'tree>;
     fn query_str(&self) -> &'static str {
         "; Identifier conventions\n\n; Assume all-caps names are constants\n((identifier) @constant\n (#match? @constant \"^[A-Z][A-Z\\\\d_]+$'\"))\n\n; Assume that uppercase names in paths are types\n((scoped_identifier\n  path: (identifier) @type)\n (#match? @type \"^[A-Z]\"))\n((scoped_identifier\n  path: (scoped_identifier\n    name: (identifier) @type))\n (#match? @type \"^[A-Z]\"))\n((scoped_type_identifier\n  path: (identifier) @type)\n (#match? @type \"^[A-Z]\"))\n((scoped_type_identifier\n  path: (scoped_identifier\n    name: (identifier) @type))\n (#match? @type \"^[A-Z]\"))\n\n; Assume other uppercase names are enum constructors\n((identifier) @constructor\n (#match? @constructor \"^[A-Z]\"))\n\n; Assume all qualified names in struct patterns are enum constructors. (They're\n; either that, or struct names; highlighting both as constructors seems to be\n; the less glaring choice of error, visually.)\n(struct_pattern\n  type: (scoped_type_identifier\n    name: (type_identifier) @constructor))\n\n; Function calls\n\n(call_expression\n  function: (identifier) @function)\n(call_expression\n  function: (field_expression\n    field: (field_identifier) @function.method))\n(call_expression\n  function: (scoped_identifier\n    \"::\"\n    name: (identifier) @function))\n\n(generic_function\n  function: (identifier) @function)\n(generic_function\n  function: (scoped_identifier\n    name: (identifier) @function))\n(generic_function\n  function: (field_expression\n    field: (field_identifier) @function.method))\n\n(macro_invocation\n  macro: (identifier) @function.macro\n  \"!\" @function.macro)\n\n; Function definitions\n\n(function_item (identifier) @function)\n(function_signature_item (identifier) @function)\n\n; Other identifiers\n\n(type_identifier) @type\n(primitive_type) @type.builtin\n(field_identifier) @property\n\n(line_comment) @comment\n(block_comment) @comment\n\n\"(\" @punctuation.bracket\n\")\" @punctuation.bracket\n\"[\" @punctuation.bracket\n\"]\" @punctuation.bracket\n\"{\" @punctuation.bracket\n\"}\" @punctuation.bracket\n\n(type_arguments\n  \"<\" @punctuation.bracket\n  \">\" @punctuation.bracket)\n(type_parameters\n  \"<\" @punctuation.bracket\n  \">\" @punctuation.bracket)\n\n\"::\" @punctuation.delimiter\n\":\" @punctuation.delimiter\n\".\" @punctuation.delimiter\n\",\" @punctuation.delimiter\n\";\" @punctuation.delimiter\n\n(parameter (identifier) @variable.parameter)\n\n(lifetime (identifier) @label)\n\n\"as\" @keyword\n\"async\" @keyword\n\"await\" @keyword\n\"break\" @keyword\n\"const\" @keyword\n\"continue\" @keyword\n\"default\" @keyword\n\"dyn\" @keyword\n\"else\" @keyword\n\"enum\" @keyword\n\"extern\" @keyword\n\"fn\" @keyword\n\"for\" @keyword\n\"if\" @keyword\n\"impl\" @keyword\n\"in\" @keyword\n\"let\" @keyword\n\"loop\" @keyword\n\"macro_rules!\" @keyword\n\"match\" @keyword\n\"mod\" @keyword\n\"move\" @keyword\n\"pub\" @keyword\n\"ref\" @keyword\n\"return\" @keyword\n\"static\" @keyword\n\"struct\" @keyword\n\"trait\" @keyword\n\"type\" @keyword\n\"union\" @keyword\n\"unsafe\" @keyword\n\"use\" @keyword\n\"where\" @keyword\n\"while\" @keyword\n(crate) @keyword\n(mutable_specifier) @keyword\n(use_list (self) @keyword)\n(scoped_use_list (self) @keyword)\n(scoped_identifier (self) @keyword)\n(super) @keyword\n\n(self) @variable.builtin\n\n(char_literal) @string\n(string_literal) @string\n(raw_string_literal) @string\n\n(boolean_literal) @constant.builtin\n(integer_literal) @constant.builtin\n(float_literal) @constant.builtin\n\n(escape_sequence) @escape\n\n(attribute_item) @attribute\n(inner_attribute_item) @attribute\n\n\"*\" @operator\n\"&\" @operator\n\"'\" @operator\n"
     }
@@ -1747,7 +2295,7 @@ impl type_sitter_lib::TypedQuery for Highlights {
                         'tree,
                     > as type_sitter_lib::TypedNode<
                         'tree,
-                    >>::from_unchecked(unsafe {
+                    >>::from_node_unchecked(unsafe {
                         type_sitter_lib::tree_sitter_wrapper::Node::new(
                             capture.node,
                             tree,
@@ -1762,7 +2310,7 @@ impl type_sitter_lib::TypedQuery for Highlights {
                         'tree,
                     > as type_sitter_lib::TypedNode<
                         'tree,
-                    >>::from_unchecked(unsafe {
+                    >>::from_node_unchecked(unsafe {
                         type_sitter_lib::tree_sitter_wrapper::Node::new(
                             capture.node,
                             tree,
@@ -1777,7 +2325,7 @@ impl type_sitter_lib::TypedQuery for Highlights {
                         'tree,
                     > as type_sitter_lib::TypedNode<
                         'tree,
-                    >>::from_unchecked(unsafe {
+                    >>::from_node_unchecked(unsafe {
                         type_sitter_lib::tree_sitter_wrapper::Node::new(
                             capture.node,
                             tree,
@@ -1792,7 +2340,7 @@ impl type_sitter_lib::TypedQuery for Highlights {
                         'tree,
                     > as type_sitter_lib::TypedNode<
                         'tree,
-                    >>::from_unchecked(unsafe {
+                    >>::from_node_unchecked(unsafe {
                         type_sitter_lib::tree_sitter_wrapper::Node::new(
                             capture.node,
                             tree,
@@ -1807,7 +2355,7 @@ impl type_sitter_lib::TypedQuery for Highlights {
                         'tree,
                     > as type_sitter_lib::TypedNode<
                         'tree,
-                    >>::from_unchecked(unsafe {
+                    >>::from_node_unchecked(unsafe {
                         type_sitter_lib::tree_sitter_wrapper::Node::new(
                             capture.node,
                             tree,
@@ -1822,7 +2370,7 @@ impl type_sitter_lib::TypedQuery for Highlights {
                         'tree,
                     > as type_sitter_lib::TypedNode<
                         'tree,
-                    >>::from_unchecked(unsafe {
+                    >>::from_node_unchecked(unsafe {
                         type_sitter_lib::tree_sitter_wrapper::Node::new(
                             capture.node,
                             tree,
@@ -1837,7 +2385,7 @@ impl type_sitter_lib::TypedQuery for Highlights {
                         'tree,
                     > as type_sitter_lib::TypedNode<
                         'tree,
-                    >>::from_unchecked(unsafe {
+                    >>::from_node_unchecked(unsafe {
                         type_sitter_lib::tree_sitter_wrapper::Node::new(
                             capture.node,
                             tree,
@@ -1852,7 +2400,7 @@ impl type_sitter_lib::TypedQuery for Highlights {
                         'tree,
                     > as type_sitter_lib::TypedNode<
                         'tree,
-                    >>::from_unchecked(unsafe {
+                    >>::from_node_unchecked(unsafe {
                         type_sitter_lib::tree_sitter_wrapper::Node::new(
                             capture.node,
                             tree,
@@ -1867,7 +2415,7 @@ impl type_sitter_lib::TypedQuery for Highlights {
                         'tree,
                     > as type_sitter_lib::TypedNode<
                         'tree,
-                    >>::from_unchecked(unsafe {
+                    >>::from_node_unchecked(unsafe {
                         type_sitter_lib::tree_sitter_wrapper::Node::new(
                             capture.node,
                             tree,
@@ -1882,7 +2430,7 @@ impl type_sitter_lib::TypedQuery for Highlights {
                         'tree,
                     > as type_sitter_lib::TypedNode<
                         'tree,
-                    >>::from_unchecked(unsafe {
+                    >>::from_node_unchecked(unsafe {
                         type_sitter_lib::tree_sitter_wrapper::Node::new(
                             capture.node,
                             tree,
@@ -1897,7 +2445,7 @@ impl type_sitter_lib::TypedQuery for Highlights {
                         'tree,
                     > as type_sitter_lib::TypedNode<
                         'tree,
-                    >>::from_unchecked(unsafe {
+                    >>::from_node_unchecked(unsafe {
                         type_sitter_lib::tree_sitter_wrapper::Node::new(
                             capture.node,
                             tree,
@@ -1912,7 +2460,7 @@ impl type_sitter_lib::TypedQuery for Highlights {
                         'tree,
                     > as type_sitter_lib::TypedNode<
                         'tree,
-                    >>::from_unchecked(unsafe {
+                    >>::from_node_unchecked(unsafe {
                         type_sitter_lib::tree_sitter_wrapper::Node::new(
                             capture.node,
                             tree,
@@ -1927,7 +2475,7 @@ impl type_sitter_lib::TypedQuery for Highlights {
                         'tree,
                     > as type_sitter_lib::TypedNode<
                         'tree,
-                    >>::from_unchecked(unsafe {
+                    >>::from_node_unchecked(unsafe {
                         type_sitter_lib::tree_sitter_wrapper::Node::new(
                             capture.node,
                             tree,
@@ -1942,7 +2490,7 @@ impl type_sitter_lib::TypedQuery for Highlights {
                         'tree,
                     > as type_sitter_lib::TypedNode<
                         'tree,
-                    >>::from_unchecked(unsafe {
+                    >>::from_node_unchecked(unsafe {
                         type_sitter_lib::tree_sitter_wrapper::Node::new(
                             capture.node,
                             tree,
@@ -1957,7 +2505,7 @@ impl type_sitter_lib::TypedQuery for Highlights {
                         'tree,
                     > as type_sitter_lib::TypedNode<
                         'tree,
-                    >>::from_unchecked(unsafe {
+                    >>::from_node_unchecked(unsafe {
                         type_sitter_lib::tree_sitter_wrapper::Node::new(
                             capture.node,
                             tree,
@@ -1972,7 +2520,7 @@ impl type_sitter_lib::TypedQuery for Highlights {
                         'tree,
                     > as type_sitter_lib::TypedNode<
                         'tree,
-                    >>::from_unchecked(unsafe {
+                    >>::from_node_unchecked(unsafe {
                         type_sitter_lib::tree_sitter_wrapper::Node::new(
                             capture.node,
                             tree,
@@ -1987,7 +2535,7 @@ impl type_sitter_lib::TypedQuery for Highlights {
                         'tree,
                     > as type_sitter_lib::TypedNode<
                         'tree,
-                    >>::from_unchecked(unsafe {
+                    >>::from_node_unchecked(unsafe {
                         type_sitter_lib::tree_sitter_wrapper::Node::new(
                             capture.node,
                             tree,
@@ -2002,7 +2550,7 @@ impl type_sitter_lib::TypedQuery for Highlights {
                         'tree,
                     > as type_sitter_lib::TypedNode<
                         'tree,
-                    >>::from_unchecked(unsafe {
+                    >>::from_node_unchecked(unsafe {
                         type_sitter_lib::tree_sitter_wrapper::Node::new(
                             capture.node,
                             tree,
@@ -2017,7 +2565,7 @@ impl type_sitter_lib::TypedQuery for Highlights {
                         'tree,
                     > as type_sitter_lib::TypedNode<
                         'tree,
-                    >>::from_unchecked(unsafe {
+                    >>::from_node_unchecked(unsafe {
                         type_sitter_lib::tree_sitter_wrapper::Node::new(
                             capture.node,
                             tree,
@@ -2032,7 +2580,7 @@ impl type_sitter_lib::TypedQuery for Highlights {
                         'tree,
                     > as type_sitter_lib::TypedNode<
                         'tree,
-                    >>::from_unchecked(unsafe {
+                    >>::from_node_unchecked(unsafe {
                         type_sitter_lib::tree_sitter_wrapper::Node::new(
                             capture.node,
                             tree,
@@ -2054,12 +2602,20 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
     ///(identifier) @constant
     ///```
     #[inline]
+    #[allow(unused, non_snake_case)]
     pub fn constant(&self) -> Option<super::nodes::Identifier<'tree>> {
         {
-            unsafe {
-                self.nodes_for_capture_ix(capture_idx)
-                    .map(tree_sitter_lib::TypedNode::<'tree>::from_unchecked)
-            }
+            self.match_
+                .nodes_for_capture_index(0usize as u32)
+                .map(|n| unsafe {
+                    <super::nodes::Identifier<
+                        'tree,
+                    > as type_sitter_lib::TypedNode<
+                        'tree,
+                    >>::from_node_unchecked(
+                        type_sitter_lib::tree_sitter_wrapper::Node::new(n, self.tree),
+                    )
+                })
         }
             .next()
     }
@@ -2071,12 +2627,20 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
  (#match? @constant "^[A-Z][A-Z\\d_]+$'")) @type*/
     ///```
     #[inline]
+    #[allow(unused, non_snake_case)]
     pub fn r#type(&self) -> Option<super::nodes::Identifier<'tree>> {
         {
-            unsafe {
-                self.nodes_for_capture_ix(capture_idx)
-                    .map(tree_sitter_lib::TypedNode::<'tree>::from_unchecked)
-            }
+            self.match_
+                .nodes_for_capture_index(1usize as u32)
+                .map(|n| unsafe {
+                    <super::nodes::Identifier<
+                        'tree,
+                    > as type_sitter_lib::TypedNode<
+                        'tree,
+                    >>::from_node_unchecked(
+                        type_sitter_lib::tree_sitter_wrapper::Node::new(n, self.tree),
+                    )
+                })
         }
             .next()
     }
@@ -2087,12 +2651,20 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
     ///(identifier) @constructor
     ///```
     #[inline]
+    #[allow(unused, non_snake_case)]
     pub fn constructor(&self) -> Option<super::nodes::Identifier<'tree>> {
         {
-            unsafe {
-                self.nodes_for_capture_ix(capture_idx)
-                    .map(tree_sitter_lib::TypedNode::<'tree>::from_unchecked)
-            }
+            self.match_
+                .nodes_for_capture_index(2usize as u32)
+                .map(|n| unsafe {
+                    <super::nodes::Identifier<
+                        'tree,
+                    > as type_sitter_lib::TypedNode<
+                        'tree,
+                    >>::from_node_unchecked(
+                        type_sitter_lib::tree_sitter_wrapper::Node::new(n, self.tree),
+                    )
+                })
         }
             .next()
     }
@@ -2103,12 +2675,20 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
     ///call_expression @function
     ///```
     #[inline]
+    #[allow(unused, non_snake_case)]
     pub fn function(&self) -> Option<super::nodes::CallExpression<'tree>> {
         {
-            unsafe {
-                self.nodes_for_capture_ix(capture_idx)
-                    .map(tree_sitter_lib::TypedNode::<'tree>::from_unchecked)
-            }
+            self.match_
+                .nodes_for_capture_index(3usize as u32)
+                .map(|n| unsafe {
+                    <super::nodes::CallExpression<
+                        'tree,
+                    > as type_sitter_lib::TypedNode<
+                        'tree,
+                    >>::from_node_unchecked(
+                        type_sitter_lib::tree_sitter_wrapper::Node::new(n, self.tree),
+                    )
+                })
         }
             .next()
     }
@@ -2119,12 +2699,20 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
     ///field_expression @function.method
     ///```
     #[inline]
+    #[allow(unused, non_snake_case)]
     pub fn function_method(&self) -> Option<super::nodes::FieldExpression<'tree>> {
         {
-            unsafe {
-                self.nodes_for_capture_ix(capture_idx)
-                    .map(tree_sitter_lib::TypedNode::<'tree>::from_unchecked)
-            }
+            self.match_
+                .nodes_for_capture_index(4usize as u32)
+                .map(|n| unsafe {
+                    <super::nodes::FieldExpression<
+                        'tree,
+                    > as type_sitter_lib::TypedNode<
+                        'tree,
+                    >>::from_node_unchecked(
+                        type_sitter_lib::tree_sitter_wrapper::Node::new(n, self.tree),
+                    )
+                })
         }
             .next()
     }
@@ -2135,12 +2723,20 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
     ///macro_invocation @function.macro
     ///```
     #[inline]
+    #[allow(unused, non_snake_case)]
     pub fn function_macro(&self) -> Option<super::nodes::MacroInvocation<'tree>> {
         {
-            unsafe {
-                self.nodes_for_capture_ix(capture_idx)
-                    .map(tree_sitter_lib::TypedNode::<'tree>::from_unchecked)
-            }
+            self.match_
+                .nodes_for_capture_index(5usize as u32)
+                .map(|n| unsafe {
+                    <super::nodes::MacroInvocation<
+                        'tree,
+                    > as type_sitter_lib::TypedNode<
+                        'tree,
+                    >>::from_node_unchecked(
+                        type_sitter_lib::tree_sitter_wrapper::Node::new(n, self.tree),
+                    )
+                })
         }
             .next()
     }
@@ -2152,12 +2748,20 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
  (#match? @constant "^[A-Z][A-Z\\d_]+$'")) @type.builtin*/
     ///```
     #[inline]
+    #[allow(unused, non_snake_case)]
     pub fn type_builtin(&self) -> Option<super::nodes::Identifier<'tree>> {
         {
-            unsafe {
-                self.nodes_for_capture_ix(capture_idx)
-                    .map(tree_sitter_lib::TypedNode::<'tree>::from_unchecked)
-            }
+            self.match_
+                .nodes_for_capture_index(6usize as u32)
+                .map(|n| unsafe {
+                    <super::nodes::Identifier<
+                        'tree,
+                    > as type_sitter_lib::TypedNode<
+                        'tree,
+                    >>::from_node_unchecked(
+                        type_sitter_lib::tree_sitter_wrapper::Node::new(n, self.tree),
+                    )
+                })
         }
             .next()
     }
@@ -2169,12 +2773,20 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
  (#match? @constant "^[A-Z][A-Z\\d_]+$'")) @property*/
     ///```
     #[inline]
+    #[allow(unused, non_snake_case)]
     pub fn property(&self) -> Option<super::nodes::Identifier<'tree>> {
         {
-            unsafe {
-                self.nodes_for_capture_ix(capture_idx)
-                    .map(tree_sitter_lib::TypedNode::<'tree>::from_unchecked)
-            }
+            self.match_
+                .nodes_for_capture_index(7usize as u32)
+                .map(|n| unsafe {
+                    <super::nodes::Identifier<
+                        'tree,
+                    > as type_sitter_lib::TypedNode<
+                        'tree,
+                    >>::from_node_unchecked(
+                        type_sitter_lib::tree_sitter_wrapper::Node::new(n, self.tree),
+                    )
+                })
         }
             .next()
     }
@@ -2186,12 +2798,20 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
  (#match? @constant "^[A-Z][A-Z\\d_]+$'")) @comment*/
     ///```
     #[inline]
+    #[allow(unused, non_snake_case)]
     pub fn comment(&self) -> Option<super::nodes::Identifier<'tree>> {
         {
-            unsafe {
-                self.nodes_for_capture_ix(capture_idx)
-                    .map(tree_sitter_lib::TypedNode::<'tree>::from_unchecked)
-            }
+            self.match_
+                .nodes_for_capture_index(8usize as u32)
+                .map(|n| unsafe {
+                    <super::nodes::Identifier<
+                        'tree,
+                    > as type_sitter_lib::TypedNode<
+                        'tree,
+                    >>::from_node_unchecked(
+                        type_sitter_lib::tree_sitter_wrapper::Node::new(n, self.tree),
+                    )
+                })
         }
             .next()
     }
@@ -2203,12 +2823,20 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
  (#match? @constant "^[A-Z][A-Z\\d_]+$'")) @punctuation.bracket*/
     ///```
     #[inline]
+    #[allow(unused, non_snake_case)]
     pub fn punctuation_bracket(&self) -> Option<super::nodes::Identifier<'tree>> {
         {
-            unsafe {
-                self.nodes_for_capture_ix(capture_idx)
-                    .map(tree_sitter_lib::TypedNode::<'tree>::from_unchecked)
-            }
+            self.match_
+                .nodes_for_capture_index(9usize as u32)
+                .map(|n| unsafe {
+                    <super::nodes::Identifier<
+                        'tree,
+                    > as type_sitter_lib::TypedNode<
+                        'tree,
+                    >>::from_node_unchecked(
+                        type_sitter_lib::tree_sitter_wrapper::Node::new(n, self.tree),
+                    )
+                })
         }
             .next()
     }
@@ -2220,12 +2848,20 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
  (#match? @constant "^[A-Z][A-Z\\d_]+$'")) @punctuation.delimiter*/
     ///```
     #[inline]
+    #[allow(unused, non_snake_case)]
     pub fn punctuation_delimiter(&self) -> Option<super::nodes::Identifier<'tree>> {
         {
-            unsafe {
-                self.nodes_for_capture_ix(capture_idx)
-                    .map(tree_sitter_lib::TypedNode::<'tree>::from_unchecked)
-            }
+            self.match_
+                .nodes_for_capture_index(10usize as u32)
+                .map(|n| unsafe {
+                    <super::nodes::Identifier<
+                        'tree,
+                    > as type_sitter_lib::TypedNode<
+                        'tree,
+                    >>::from_node_unchecked(
+                        type_sitter_lib::tree_sitter_wrapper::Node::new(n, self.tree),
+                    )
+                })
         }
             .next()
     }
@@ -2236,12 +2872,20 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
     ///parameter @variable.parameter
     ///```
     #[inline]
+    #[allow(unused, non_snake_case)]
     pub fn variable_parameter(&self) -> Option<super::nodes::Parameter<'tree>> {
         {
-            unsafe {
-                self.nodes_for_capture_ix(capture_idx)
-                    .map(tree_sitter_lib::TypedNode::<'tree>::from_unchecked)
-            }
+            self.match_
+                .nodes_for_capture_index(11usize as u32)
+                .map(|n| unsafe {
+                    <super::nodes::Parameter<
+                        'tree,
+                    > as type_sitter_lib::TypedNode<
+                        'tree,
+                    >>::from_node_unchecked(
+                        type_sitter_lib::tree_sitter_wrapper::Node::new(n, self.tree),
+                    )
+                })
         }
             .next()
     }
@@ -2252,12 +2896,20 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
     ///lifetime @label
     ///```
     #[inline]
+    #[allow(unused, non_snake_case)]
     pub fn label(&self) -> Option<super::nodes::Lifetime<'tree>> {
         {
-            unsafe {
-                self.nodes_for_capture_ix(capture_idx)
-                    .map(tree_sitter_lib::TypedNode::<'tree>::from_unchecked)
-            }
+            self.match_
+                .nodes_for_capture_index(12usize as u32)
+                .map(|n| unsafe {
+                    <super::nodes::Lifetime<
+                        'tree,
+                    > as type_sitter_lib::TypedNode<
+                        'tree,
+                    >>::from_node_unchecked(
+                        type_sitter_lib::tree_sitter_wrapper::Node::new(n, self.tree),
+                    )
+                })
         }
             .next()
     }
@@ -2269,12 +2921,20 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
  (#match? @constant "^[A-Z][A-Z\\d_]+$'")) @keyword*/
     ///```
     #[inline]
-    pub fn keyword(&self) -> impl Iterator<Item = super::nodes::Identifier<'tree>> {
+    #[allow(unused, non_snake_case)]
+    pub fn keyword(&self) -> impl Iterator<Item = super::nodes::Identifier<'tree>> + '_ {
         {
-            unsafe {
-                self.nodes_for_capture_ix(capture_idx)
-                    .map(tree_sitter_lib::TypedNode::<'tree>::from_unchecked)
-            }
+            self.match_
+                .nodes_for_capture_index(13usize as u32)
+                .map(|n| unsafe {
+                    <super::nodes::Identifier<
+                        'tree,
+                    > as type_sitter_lib::TypedNode<
+                        'tree,
+                    >>::from_node_unchecked(
+                        type_sitter_lib::tree_sitter_wrapper::Node::new(n, self.tree),
+                    )
+                })
         }
     }
     ///Returns an iterator over the nodes captured by `variable.builtin`
@@ -2285,12 +2945,20 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
  (#match? @constant "^[A-Z][A-Z\\d_]+$'")) @variable.builtin*/
     ///```
     #[inline]
+    #[allow(unused, non_snake_case)]
     pub fn variable_builtin(&self) -> Option<super::nodes::Identifier<'tree>> {
         {
-            unsafe {
-                self.nodes_for_capture_ix(capture_idx)
-                    .map(tree_sitter_lib::TypedNode::<'tree>::from_unchecked)
-            }
+            self.match_
+                .nodes_for_capture_index(14usize as u32)
+                .map(|n| unsafe {
+                    <super::nodes::Identifier<
+                        'tree,
+                    > as type_sitter_lib::TypedNode<
+                        'tree,
+                    >>::from_node_unchecked(
+                        type_sitter_lib::tree_sitter_wrapper::Node::new(n, self.tree),
+                    )
+                })
         }
             .next()
     }
@@ -2302,12 +2970,20 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
  (#match? @constant "^[A-Z][A-Z\\d_]+$'")) @string*/
     ///```
     #[inline]
+    #[allow(unused, non_snake_case)]
     pub fn string(&self) -> Option<super::nodes::Identifier<'tree>> {
         {
-            unsafe {
-                self.nodes_for_capture_ix(capture_idx)
-                    .map(tree_sitter_lib::TypedNode::<'tree>::from_unchecked)
-            }
+            self.match_
+                .nodes_for_capture_index(15usize as u32)
+                .map(|n| unsafe {
+                    <super::nodes::Identifier<
+                        'tree,
+                    > as type_sitter_lib::TypedNode<
+                        'tree,
+                    >>::from_node_unchecked(
+                        type_sitter_lib::tree_sitter_wrapper::Node::new(n, self.tree),
+                    )
+                })
         }
             .next()
     }
@@ -2319,12 +2995,20 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
  (#match? @constant "^[A-Z][A-Z\\d_]+$'")) @constant.builtin*/
     ///```
     #[inline]
+    #[allow(unused, non_snake_case)]
     pub fn constant_builtin(&self) -> Option<super::nodes::Identifier<'tree>> {
         {
-            unsafe {
-                self.nodes_for_capture_ix(capture_idx)
-                    .map(tree_sitter_lib::TypedNode::<'tree>::from_unchecked)
-            }
+            self.match_
+                .nodes_for_capture_index(16usize as u32)
+                .map(|n| unsafe {
+                    <super::nodes::Identifier<
+                        'tree,
+                    > as type_sitter_lib::TypedNode<
+                        'tree,
+                    >>::from_node_unchecked(
+                        type_sitter_lib::tree_sitter_wrapper::Node::new(n, self.tree),
+                    )
+                })
         }
             .next()
     }
@@ -2336,12 +3020,20 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
  (#match? @constant "^[A-Z][A-Z\\d_]+$'")) @escape*/
     ///```
     #[inline]
+    #[allow(unused, non_snake_case)]
     pub fn escape(&self) -> Option<super::nodes::Identifier<'tree>> {
         {
-            unsafe {
-                self.nodes_for_capture_ix(capture_idx)
-                    .map(tree_sitter_lib::TypedNode::<'tree>::from_unchecked)
-            }
+            self.match_
+                .nodes_for_capture_index(17usize as u32)
+                .map(|n| unsafe {
+                    <super::nodes::Identifier<
+                        'tree,
+                    > as type_sitter_lib::TypedNode<
+                        'tree,
+                    >>::from_node_unchecked(
+                        type_sitter_lib::tree_sitter_wrapper::Node::new(n, self.tree),
+                    )
+                })
         }
             .next()
     }
@@ -2353,12 +3045,20 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
  (#match? @constant "^[A-Z][A-Z\\d_]+$'")) @attribute*/
     ///```
     #[inline]
+    #[allow(unused, non_snake_case)]
     pub fn attribute(&self) -> Option<super::nodes::Identifier<'tree>> {
         {
-            unsafe {
-                self.nodes_for_capture_ix(capture_idx)
-                    .map(tree_sitter_lib::TypedNode::<'tree>::from_unchecked)
-            }
+            self.match_
+                .nodes_for_capture_index(18usize as u32)
+                .map(|n| unsafe {
+                    <super::nodes::Identifier<
+                        'tree,
+                    > as type_sitter_lib::TypedNode<
+                        'tree,
+                    >>::from_node_unchecked(
+                        type_sitter_lib::tree_sitter_wrapper::Node::new(n, self.tree),
+                    )
+                })
         }
             .next()
     }
@@ -2370,12 +3070,20 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
  (#match? @constant "^[A-Z][A-Z\\d_]+$'")) @operator*/
     ///```
     #[inline]
+    #[allow(unused, non_snake_case)]
     pub fn operator(&self) -> Option<super::nodes::Identifier<'tree>> {
         {
-            unsafe {
-                self.nodes_for_capture_ix(capture_idx)
-                    .map(tree_sitter_lib::TypedNode::<'tree>::from_unchecked)
-            }
+            self.match_
+                .nodes_for_capture_index(19usize as u32)
+                .map(|n| unsafe {
+                    <super::nodes::Identifier<
+                        'tree,
+                    > as type_sitter_lib::TypedNode<
+                        'tree,
+                    >>::from_node_unchecked(
+                        type_sitter_lib::tree_sitter_wrapper::Node::new(n, self.tree),
+                    )
+                })
         }
             .next()
     }
@@ -2385,7 +3093,7 @@ impl<'cursor, 'tree> type_sitter_lib::TypedQueryMatch<'cursor, 'tree>
 for HighlightsMatch<'cursor, 'tree> {
     type Query = Highlights;
     #[inline]
-    fn query(&self) -> &'static Self::Query {
+    fn query(&self) -> &'cursor Self::Query {
         &Highlights
     }
     #[inline]
@@ -2394,11 +3102,11 @@ for HighlightsMatch<'cursor, 'tree> {
     }
     #[inline]
     fn raw(&self) -> &tree_sitter::QueryMatch<'cursor, 'tree> {
-        &self.0
+        &self.match_
     }
     #[inline]
     fn into_raw(self) -> tree_sitter::QueryMatch<'cursor, 'tree> {
-        self.0
+        self.match_
     }
 }
 #[automatically_derived]
@@ -2410,9 +3118,11 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
     ///(identifier) @constant
     ///```
     #[inline]
+    #[allow(unused, non_snake_case)]
     pub fn constant(&self) -> Option<&super::nodes::Identifier<'tree>> {
         match self {
             Self::Constant { node, .. } => Some(node),
+            #[allow(unreachable_patterns)]
             _ => None,
         }
     }
@@ -2424,9 +3134,11 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
  (#match? @constant "^[A-Z][A-Z\\d_]+$'")) @type*/
     ///```
     #[inline]
+    #[allow(unused, non_snake_case)]
     pub fn r#type(&self) -> Option<&super::nodes::Identifier<'tree>> {
         match self {
             Self::Type { node, .. } => Some(node),
+            #[allow(unreachable_patterns)]
             _ => None,
         }
     }
@@ -2437,9 +3149,11 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
     ///(identifier) @constructor
     ///```
     #[inline]
+    #[allow(unused, non_snake_case)]
     pub fn constructor(&self) -> Option<&super::nodes::Identifier<'tree>> {
         match self {
             Self::Constructor { node, .. } => Some(node),
+            #[allow(unreachable_patterns)]
             _ => None,
         }
     }
@@ -2450,9 +3164,11 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
     ///call_expression @function
     ///```
     #[inline]
+    #[allow(unused, non_snake_case)]
     pub fn function(&self) -> Option<&super::nodes::CallExpression<'tree>> {
         match self {
             Self::Function { node, .. } => Some(node),
+            #[allow(unreachable_patterns)]
             _ => None,
         }
     }
@@ -2463,9 +3179,11 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
     ///field_expression @function.method
     ///```
     #[inline]
+    #[allow(unused, non_snake_case)]
     pub fn function_method(&self) -> Option<&super::nodes::FieldExpression<'tree>> {
         match self {
             Self::FunctionMethod { node, .. } => Some(node),
+            #[allow(unreachable_patterns)]
             _ => None,
         }
     }
@@ -2476,9 +3194,11 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
     ///macro_invocation @function.macro
     ///```
     #[inline]
+    #[allow(unused, non_snake_case)]
     pub fn function_macro(&self) -> Option<&super::nodes::MacroInvocation<'tree>> {
         match self {
             Self::FunctionMacro { node, .. } => Some(node),
+            #[allow(unreachable_patterns)]
             _ => None,
         }
     }
@@ -2490,9 +3210,11 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
  (#match? @constant "^[A-Z][A-Z\\d_]+$'")) @type.builtin*/
     ///```
     #[inline]
+    #[allow(unused, non_snake_case)]
     pub fn type_builtin(&self) -> Option<&super::nodes::Identifier<'tree>> {
         match self {
             Self::TypeBuiltin { node, .. } => Some(node),
+            #[allow(unreachable_patterns)]
             _ => None,
         }
     }
@@ -2504,9 +3226,11 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
  (#match? @constant "^[A-Z][A-Z\\d_]+$'")) @property*/
     ///```
     #[inline]
+    #[allow(unused, non_snake_case)]
     pub fn property(&self) -> Option<&super::nodes::Identifier<'tree>> {
         match self {
             Self::Property { node, .. } => Some(node),
+            #[allow(unreachable_patterns)]
             _ => None,
         }
     }
@@ -2518,9 +3242,11 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
  (#match? @constant "^[A-Z][A-Z\\d_]+$'")) @comment*/
     ///```
     #[inline]
+    #[allow(unused, non_snake_case)]
     pub fn comment(&self) -> Option<&super::nodes::Identifier<'tree>> {
         match self {
             Self::Comment { node, .. } => Some(node),
+            #[allow(unreachable_patterns)]
             _ => None,
         }
     }
@@ -2532,9 +3258,11 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
  (#match? @constant "^[A-Z][A-Z\\d_]+$'")) @punctuation.bracket*/
     ///```
     #[inline]
+    #[allow(unused, non_snake_case)]
     pub fn punctuation_bracket(&self) -> Option<&super::nodes::Identifier<'tree>> {
         match self {
             Self::PunctuationBracket { node, .. } => Some(node),
+            #[allow(unreachable_patterns)]
             _ => None,
         }
     }
@@ -2546,9 +3274,11 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
  (#match? @constant "^[A-Z][A-Z\\d_]+$'")) @punctuation.delimiter*/
     ///```
     #[inline]
+    #[allow(unused, non_snake_case)]
     pub fn punctuation_delimiter(&self) -> Option<&super::nodes::Identifier<'tree>> {
         match self {
             Self::PunctuationDelimiter { node, .. } => Some(node),
+            #[allow(unreachable_patterns)]
             _ => None,
         }
     }
@@ -2559,9 +3289,11 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
     ///parameter @variable.parameter
     ///```
     #[inline]
+    #[allow(unused, non_snake_case)]
     pub fn variable_parameter(&self) -> Option<&super::nodes::Parameter<'tree>> {
         match self {
             Self::VariableParameter { node, .. } => Some(node),
+            #[allow(unreachable_patterns)]
             _ => None,
         }
     }
@@ -2572,9 +3304,11 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
     ///lifetime @label
     ///```
     #[inline]
+    #[allow(unused, non_snake_case)]
     pub fn label(&self) -> Option<&super::nodes::Lifetime<'tree>> {
         match self {
             Self::Label { node, .. } => Some(node),
+            #[allow(unreachable_patterns)]
             _ => None,
         }
     }
@@ -2586,9 +3320,11 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
  (#match? @constant "^[A-Z][A-Z\\d_]+$'")) @keyword*/
     ///```
     #[inline]
+    #[allow(unused, non_snake_case)]
     pub fn keyword(&self) -> Option<&super::nodes::Identifier<'tree>> {
         match self {
             Self::Keyword { node, .. } => Some(node),
+            #[allow(unreachable_patterns)]
             _ => None,
         }
     }
@@ -2600,9 +3336,11 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
  (#match? @constant "^[A-Z][A-Z\\d_]+$'")) @variable.builtin*/
     ///```
     #[inline]
+    #[allow(unused, non_snake_case)]
     pub fn variable_builtin(&self) -> Option<&super::nodes::Identifier<'tree>> {
         match self {
             Self::VariableBuiltin { node, .. } => Some(node),
+            #[allow(unreachable_patterns)]
             _ => None,
         }
     }
@@ -2614,9 +3352,11 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
  (#match? @constant "^[A-Z][A-Z\\d_]+$'")) @string*/
     ///```
     #[inline]
+    #[allow(unused, non_snake_case)]
     pub fn string(&self) -> Option<&super::nodes::Identifier<'tree>> {
         match self {
             Self::String { node, .. } => Some(node),
+            #[allow(unreachable_patterns)]
             _ => None,
         }
     }
@@ -2628,9 +3368,11 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
  (#match? @constant "^[A-Z][A-Z\\d_]+$'")) @constant.builtin*/
     ///```
     #[inline]
+    #[allow(unused, non_snake_case)]
     pub fn constant_builtin(&self) -> Option<&super::nodes::Identifier<'tree>> {
         match self {
             Self::ConstantBuiltin { node, .. } => Some(node),
+            #[allow(unreachable_patterns)]
             _ => None,
         }
     }
@@ -2642,9 +3384,11 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
  (#match? @constant "^[A-Z][A-Z\\d_]+$'")) @escape*/
     ///```
     #[inline]
+    #[allow(unused, non_snake_case)]
     pub fn escape(&self) -> Option<&super::nodes::Identifier<'tree>> {
         match self {
             Self::Escape { node, .. } => Some(node),
+            #[allow(unreachable_patterns)]
             _ => None,
         }
     }
@@ -2656,9 +3400,11 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
  (#match? @constant "^[A-Z][A-Z\\d_]+$'")) @attribute*/
     ///```
     #[inline]
+    #[allow(unused, non_snake_case)]
     pub fn attribute(&self) -> Option<&super::nodes::Identifier<'tree>> {
         match self {
             Self::Attribute { node, .. } => Some(node),
+            #[allow(unreachable_patterns)]
             _ => None,
         }
     }
@@ -2670,9 +3416,11 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
  (#match? @constant "^[A-Z][A-Z\\d_]+$'")) @operator*/
     ///```
     #[inline]
+    #[allow(unused, non_snake_case)]
     pub fn operator(&self) -> Option<&super::nodes::Identifier<'tree>> {
         match self {
             Self::Operator { node, .. } => Some(node),
+            #[allow(unreachable_patterns)]
             _ => None,
         }
     }
@@ -2809,7 +3557,7 @@ impl<'cursor, 'tree> type_sitter_lib::TypedQueryCapture<'cursor, 'tree>
 for HighlightsCapture<'cursor, 'tree> {
     type Query = Highlights;
     #[inline]
-    fn query(&self) -> &'static Self::Query {
+    fn query(&self) -> &'cursor Self::Query {
         &Highlights
     }
     #[inline]
@@ -3048,9 +3796,12 @@ for HighlightsCapture<'cursor, 'tree> {
     }
 }
 #[allow(non_upper_case_globals)]
-static __Injections__: once_cell::race::OnceBox<tree_sitter::Query> = once_cell::race::OnceBox::new();
+static __Injections__: type_sitter_lib::gen_internal::TypedQueryOnceBox<
+    tree_sitter::Query,
+> = type_sitter_lib::gen_internal::TypedQueryOnceBox::new();
 #[allow(non_snake_case)]
-fn __Mk__Injections() -> tree_sitter::Query {
+fn __Mk__Injections() -> Box<tree_sitter::Query> {
+    #[allow(unused_mut)]
     let mut query = tree_sitter::Query::new(
             tree_sitter_rust::language(),
             "((macro_invocation\n  (token_tree) @injection.content)\n (#set! injection.language \"rust\")\n (#set! injection.include-children))\n\n((macro_rule\n  (token_tree) @injection.content)\n (#set! injection.language \"rust\")\n (#set! injection.include-children))\n",
@@ -3058,7 +3809,7 @@ fn __Mk__Injections() -> tree_sitter::Query {
         .expect(
             "query parsed at compile-time but failed at runtime. Is the language 'tree_sitter_rust' correct, and did you use the same tree-sitter / tree_sitter_rust version?",
         );
-    query
+    Box::new(query)
 }
 /**Typed version of the query:
 
@@ -3077,11 +3828,41 @@ fn __Mk__Injections() -> tree_sitter::Query {
 #[allow(non_camel_case_types)]
 #[derive(Debug, Clone, Copy)]
 pub struct Injections;
+/**Matches returned by a query cursor running the query [Injections]:
+
+```sexp
+((macro_invocation
+  (token_tree) @injection.content)
+ (#set! injection.language "rust")
+ (#set! injection.include-children))
+
+((macro_rule
+  (token_tree) @injection.content)
+ (#set! injection.language "rust")
+ (#set! injection.include-children))
+
+```*/
+#[allow(unused, non_camel_case_types)]
 pub type InjectionsMatches<'cursor, 'tree> = type_sitter_lib::TypedQueryMatches<
     'cursor,
     'tree,
     InjectionsMatch<'cursor, 'tree>,
 >;
+/**Captures returned by a query cursor running the query [Injections]:
+
+```sexp
+((macro_invocation
+  (token_tree) @injection.content)
+ (#set! injection.language "rust")
+ (#set! injection.include-children))
+
+((macro_rule
+  (token_tree) @injection.content)
+ (#set! injection.language "rust")
+ (#set! injection.include-children))
+
+```*/
+#[allow(unused, non_camel_case_types)]
 pub type InjectionsCaptures<'cursor, 'tree> = type_sitter_lib::TypedQueryCaptures<
     'cursor,
     'tree,
@@ -3135,8 +3916,8 @@ pub enum InjectionsCapture<'cursor, 'tree> {
 }
 #[automatically_derived]
 impl type_sitter_lib::TypedQuery for Injections {
-    type Match<'cursor, 'tree> = InjectionsMatch<'cursor, 'tree>;
-    type Capture<'cursor, 'tree> = InjectionsCapture<'cursor, 'tree>;
+    type Match<'cursor, 'tree: 'cursor> = InjectionsMatch<'cursor, 'tree>;
+    type Capture<'cursor, 'tree: 'cursor> = InjectionsCapture<'cursor, 'tree>;
     fn query_str(&self) -> &'static str {
         "((macro_invocation\n  (token_tree) @injection.content)\n (#set! injection.language \"rust\")\n (#set! injection.include-children))\n\n((macro_rule\n  (token_tree) @injection.content)\n (#set! injection.language \"rust\")\n (#set! injection.include-children))\n"
     }
@@ -3165,7 +3946,7 @@ impl type_sitter_lib::TypedQuery for Injections {
                         'tree,
                     > as type_sitter_lib::TypedNode<
                         'tree,
-                    >>::from_unchecked(unsafe {
+                    >>::from_node_unchecked(unsafe {
                         type_sitter_lib::tree_sitter_wrapper::Node::new(
                             capture.node,
                             tree,
@@ -3187,19 +3968,29 @@ impl<'cursor, 'tree> InjectionsMatch<'cursor, 'tree> {
     ///macro_invocation @injection.content
     ///```
     #[inline]
+    #[allow(unused, non_snake_case)]
     pub fn injection_content(&self) -> super::nodes::MacroInvocation<'tree> {
         let result = {
-            unsafe {
-                self.nodes_for_capture_ix(capture_idx)
-                    .map(tree_sitter_lib::TypedNode::<'tree>::from_unchecked)
-            }
+            self.match_
+                .nodes_for_capture_index(0usize as u32)
+                .map(|n| unsafe {
+                    <super::nodes::MacroInvocation<
+                        'tree,
+                    > as type_sitter_lib::TypedNode<
+                        'tree,
+                    >>::from_node_unchecked(
+                        type_sitter_lib::tree_sitter_wrapper::Node::new(n, self.tree),
+                    )
+                })
         }
             .next()
             .expect("one quantifier returned nothing");
         debug_assert!(
-            { unsafe { self.nodes_for_capture_ix(capture_idx)
-            .map(tree_sitter_lib::TypedNode:: < 'tree > ::from_unchecked) } } .next()
-            .is_none(), "one quantifier returned more than one item"
+            { self.match_.nodes_for_capture_index(0usize as u32).map(| n | unsafe { <
+            super::nodes::MacroInvocation < 'tree > as type_sitter_lib::TypedNode:: <
+            'tree >>
+            ::from_node_unchecked(type_sitter_lib::tree_sitter_wrapper::Node::new(n, self
+            .tree)) }) } .next().is_none(), "one quantifier returned more than one item"
         );
         result
     }
@@ -3209,7 +4000,7 @@ impl<'cursor, 'tree> type_sitter_lib::TypedQueryMatch<'cursor, 'tree>
 for InjectionsMatch<'cursor, 'tree> {
     type Query = Injections;
     #[inline]
-    fn query(&self) -> &'static Self::Query {
+    fn query(&self) -> &'cursor Self::Query {
         &Injections
     }
     #[inline]
@@ -3218,11 +4009,11 @@ for InjectionsMatch<'cursor, 'tree> {
     }
     #[inline]
     fn raw(&self) -> &tree_sitter::QueryMatch<'cursor, 'tree> {
-        &self.0
+        &self.match_
     }
     #[inline]
     fn into_raw(self) -> tree_sitter::QueryMatch<'cursor, 'tree> {
-        self.0
+        self.match_
     }
 }
 #[automatically_derived]
@@ -3234,9 +4025,11 @@ impl<'cursor, 'tree> InjectionsCapture<'cursor, 'tree> {
     ///macro_invocation @injection.content
     ///```
     #[inline]
+    #[allow(unused, non_snake_case)]
     pub fn injection_content(&self) -> Option<&super::nodes::MacroInvocation<'tree>> {
         match self {
             Self::InjectionContent { node, .. } => Some(node),
+            #[allow(unreachable_patterns)]
             _ => None,
         }
     }
@@ -3259,7 +4052,7 @@ impl<'cursor, 'tree> type_sitter_lib::TypedQueryCapture<'cursor, 'tree>
 for InjectionsCapture<'cursor, 'tree> {
     type Query = Injections;
     #[inline]
-    fn query(&self) -> &'static Self::Query {
+    fn query(&self) -> &'cursor Self::Query {
         &Injections
     }
     #[inline]

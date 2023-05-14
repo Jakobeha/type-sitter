@@ -12,7 +12,7 @@ pub fn test_use_node_types_rust() {
     let mut parser = Parser::new(tree_sitter_rust::language()).unwrap();
     let code_path = Path::new(env!("CARGO_MANIFEST_DIR")).join("../vendor/tree-sitter-rust/bindings/rust/lib.rs");
     let code_ast = parser.parse_file(&code_path, None).expect("Failed to parse code");
-    let code_root = rust::SourceFile::try_from(code_ast.root_node()).expect("Failed to wrap code root node");
+    let code_root = rust::nodes::SourceFile::try_from(code_ast.root_node()).expect("Failed to wrap code root node");
     let statements = code_root.children(&mut code_root.walk())
         .filter_map(|child| child.unwrap().regular())
         .collect::<Vec<_>>();
@@ -20,7 +20,7 @@ pub fn test_use_node_types_rust() {
     for statement in &statements {
         eprintln!("  {}", statement.node().to_sexp());
     }
-    assert!(matches!(statements[0], rust::anon_unions::DeclarationStatement_ExpressionStatement::DeclarationStatement(rust::DeclarationStatement::UseDeclaration(_))));
+    assert!(matches!(statements[0], rust::nodes::anon_unions::DeclarationStatement_ExpressionStatement::DeclarationStatement(rust::nodes::DeclarationStatement::UseDeclaration(_))));
     assert!(statements[0].declaration_statement().unwrap().use_declaration().is_some(), "Expected 1st statement to be a use declaration");
     assert!(statements[1].declaration_statement().unwrap().foreign_mod_item().is_some(), "Expected 2nd statement to be a foreign mod item");
     assert!(statements[2].declaration_statement().unwrap().function_item().is_some(), "Expected 3rd statement to be a function item");

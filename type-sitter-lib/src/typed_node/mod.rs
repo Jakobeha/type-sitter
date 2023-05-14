@@ -1,5 +1,3 @@
-use std::convert::Infallible;
-use crate::IncorrectKind;
 #[cfg(feature = "tree-sitter-wrapper")]
 use crate::tree_sitter_wrapper::{Bitmask, InputEdit, Node, Point, Range, TreeCursor};
 #[cfg(not(feature = "tree-sitter-wrapper"))]
