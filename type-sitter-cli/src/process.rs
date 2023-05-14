@@ -1,6 +1,6 @@
 use std::path::{Path, PathBuf};
 use std::fs::create_dir;
-use type_sitter_gen::nodes;
+use type_sitter_gen::super_nodes;
 use crate::args::{Args, InOutPair, InputType};
 use crate::errors;
 use crate::errors::Error;
@@ -38,7 +38,7 @@ fn do_process(
         }
         InputType::Query => {
             let language_dir = language_dir.ok_or(Error::CouldntInferLanguage)?;
-            write(&output_path, type_sitter_gen::generate_queries(input_path, language_dir, &nodes(), use_wrapper, &tree_sitter)?)?;
+            write(&output_path, type_sitter_gen::generate_queries(input_path, language_dir, &super_nodes(), use_wrapper, &tree_sitter)?)?;
         }
         InputType::LanguageRoot => {
             create_dir(&output_path)?;

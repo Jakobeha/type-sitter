@@ -11,7 +11,6 @@ use std::path::Path;
 use convert_case::{Case, Casing};
 use proc_macro2::TokenStream;
 use quote::quote;
-use syn::parse_quote;
 use tree_sitter::Query;
 use crate::Error;
 use crate::mk_syntax::ident;
@@ -26,7 +25,8 @@ use crate::node_types::generated_tokens::AnonUnions;
 ///   directory, this function will generate submodules for each `.scm`.
 /// - `language_path`: path to the tree-sitter language module, where the [Language] will be
 ///   dynamically loaded
-/// - `nodes`: Path to the crate with the typed node wrappers. Typically [type_sitter_gen::nodes]
+/// - `nodes`: Path to the crate with the typed node wrappers. Typically
+///   [type_sitter_gen::super_nodes]
 /// - `use_wrapper`: Whether to use `tree_sitter_wrapper` or `tree_sitter`
 /// - `tree_sitter`: Path to the crate with the tree-sitter API. Typically [tree_sitter] if
 ///    `use_wrapper` is false, or [type_sitter_gen::tree_sitter_wrapper] if `use_wrapper` is true
@@ -34,12 +34,11 @@ use crate::node_types::generated_tokens::AnonUnions;
 /// # Example
 ///
 /// ```no_run
-/// use type_sitter_gen::{generate_queries, tree_sitter};
+/// use type_sitter_gen::{generate_queries, super_nodes, tree_sitter};
 ///
 /// fn main() {
-///     use type_sitter_gen::{nodes, tree_sitter};
-///     println!("{}", generate_queries("vendor/tree-sitter-typescript/queries/tags.scm", "vendor/tree-sitter-typescript", &nodes(), false, &tree_sitter()).unwrap());
-///     println!("{}", generate_queries("vendor/tree-sitter-rust/queries", "vendor/tree-sitter-rust", &nodes(), false, &tree_sitter()).unwrap());
+///     println!("{}", generate_queries("vendor/tree-sitter-typescript/queries/tags.scm", "vendor/tree-sitter-typescript", &super_nodes(), false, &tree_sitter()).unwrap());
+///     println!("{}", generate_queries("vendor/tree-sitter-rust/queries", "vendor/tree-sitter-rust", &super_nodes(), false, &tree_sitter()).unwrap());
 /// }
 /// ```
 pub fn generate_queries(
@@ -64,7 +63,8 @@ pub fn generate_queries(
 ///   generate submodules for each `.scm`.
 /// - `language_path`: path to the tree-sitter language module, where the [Language] will be
 ///   dynamically loaded
-/// - `nodes`: Path to the crate with the typed node wrappers. Typically [type_sitter_gen::nodes]
+/// - `nodes`: Path to the crate with the typed node wrappers. Typically
+///   [type_sitter_gen::super_nodes]
 /// - `use_wrapper`: Whether to use `tree_sitter_wrapper` or `tree_sitter`
 /// - `tree_sitter`: Path to the crate with the tree-sitter API. Typically [tree_sitter] if
 ///   `use_wrapper` is false, or [type_sitter_gen::tree_sitter_wrapper] if `use_wrapper` is true
@@ -72,11 +72,10 @@ pub fn generate_queries(
 /// # Example
 ///
 /// ```no_run
-/// use type_sitter_gen::{generate_queries_from_dir, tree_sitter};
+/// use type_sitter_gen::{generate_queries_from_dir, super_nodes, tree_sitter};
 ///
 /// fn main() {
-///     use type_sitter_gen::nodes;
-///     println!("{}", generate_queries_from_dir("vendor/tree-sitter-rust/queries", "vendor/tree-sitter-rust", &nodes(), false, &tree_sitter()).unwrap());
+///     println!("{}", generate_queries_from_dir("vendor/tree-sitter-rust/queries", "vendor/tree-sitter-rust", &super_nodes(), false, &tree_sitter()).unwrap());
 /// }
 /// ```
 pub fn generate_queries_from_dir(
@@ -121,7 +120,8 @@ pub fn generate_queries_from_dir(
 ///   dynamically loaded
 /// - `disabled_patterns`: Patterns to disable. See [Query::disable_pattern].
 /// - `disabled_captures`: Captures to disable. See [Query::disable_capture].
-/// - `nodes`: Path to the crate with the typed node wrappers. Typically [type_sitter_gen::nodes]
+/// - `nodes`: Path to the crate with the typed node wrappers. Typically
+///   [type_sitter_gen::super_nodes]
 /// - `use_wrapper`: Whether to use `tree_sitter_wrapper` or `tree_sitter`
 /// - `tree_sitter`: Path to the crate with the tree-sitter API. Typically [tree_sitter] if
 ///    `use_wrapper` is false, or [type_sitter_gen::tree_sitter_wrapper] if `use_wrapper` is true
@@ -129,11 +129,10 @@ pub fn generate_queries_from_dir(
 /// # Example
 ///
 /// ```no_run
-/// use type_sitter_gen::{generate_query_from_file, tree_sitter};
+/// use type_sitter_gen::{generate_query_from_file, super_nodes, tree_sitter};
 ///
 /// fn main() {
-///     use type_sitter_gen::nodes;
-///     println!("{}", generate_query_from_file("vendor/tree-sitter-typescript/queries/tags.scm", "vendor/tree-sitter-typescript", &[], &[], &nodes(), false, &tree_sitter()).unwrap());
+///     println!("{}", generate_query_from_file("vendor/tree-sitter-typescript/queries/tags.scm", "vendor/tree-sitter-typescript", &[], &[], &super_nodes(), false, &tree_sitter()).unwrap());
 /// }
 /// ```
 pub fn generate_query_from_file(
@@ -207,9 +206,4 @@ fn language_name(path: &Path) -> Result<String, Error> {
 /// Check if the path has the given extension
 fn has_extension(path: &Path, extension: &str) -> bool {
     path.extension().and_then(|e| e.to_str()) == Some(extension)
-}
-
-/// = `parse_quote!(super::nodes)`. The default path to the typed nodes crate from the queries crate.
-pub fn nodes() -> syn::Path {
-    parse_quote!(super::nodes)
 }

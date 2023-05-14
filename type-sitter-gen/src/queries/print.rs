@@ -18,7 +18,8 @@ impl<'tree> SExpSeq<'tree> {
     /// - `language_ident`: Identifier used for the language to create the query for
     /// - `disable_patterns`: List of patterns to ignore on the query
     /// - `disabled_captures`: List of captur indices to ignore on the query
-    /// - `nodes`: Path to the crate with the typed node wrappers. Typically [type_sitter_gen::nodes]
+    /// - `nodes`: Path to the crate with the typed node wrappers. Typically
+    ///   [type_sitter_gen::super_nodes]
     /// - `use_wrapper`: Whether to use `tree_sitter_wrapper` or `tree_sitter`
     /// - `tree_sitter`: Path to the crate with the tree-sitter bindings. Typically [tree_sitter]
     ///   if `use_wrapper` is false, or [type_sitter_lib::tree_sitter_wrapper] if `use_wrapper` is
@@ -85,12 +86,15 @@ impl<'tree> SExpSeq<'tree> {
             ),
             true => (
                 quote! {},
-                quote! { tree: &'tree Tree },
+                quote! { tree: &'tree type_sitter_lib::tree_sitter_wrapper::Tree },
                 quote! { tree },
-                quote! { type_sitter_lib::tree_sitter_wrapper::Node::new(capture.node, tree) },
+                quote! {
+                    // SAFETY: Same tree
+                    unsafe { type_sitter_lib::tree_sitter_wrapper::Node::new(capture.node, tree) }
+                },
                 quote! {
                     #[inline]
-                    fn tree(&self) -> &'tree Tree {
+                    fn tree(&self) -> &'tree type_sitter_lib::tree_sitter_wrapper::Tree {
                         self.tree
                     }
                 },
@@ -136,8 +140,8 @@ impl<'tree> SExpSeq<'tree> {
             #[derive(Debug, Clone, Copy)]
             pub struct #def_ident;
 
-            pub type #query_matches_ident<'cursor, 'tree #tree_t> = TypedQueryMatches<'cursor, 'tree, #query_match_ident<'cursor, 'tree> #tree_t>;
-            pub type #query_captures_ident<'cursor, 'tree #tree_t> = TypedQueryCaptures<'cursor, 'tree, #query_match_ident<'cursor, 'tree> #tree_t>;
+            pub type #query_matches_ident<'cursor, 'tree #tree_t> = type_sitter_lib::TypedQueryMatches<'cursor, 'tree, #query_match_ident<'cursor, 'tree> #tree_t>;
+            pub type #query_captures_ident<'cursor, 'tree #tree_t> = type_sitter_lib::TypedQueryCaptures<'cursor, 'tree, #query_match_ident<'cursor, 'tree> #tree_t>;
             #[doc = #query_match_doc]
             #[derive(Debug)]
             pub struct #query_match_ident<'cursor, 'tree> {
@@ -154,7 +158,7 @@ impl<'tree> SExpSeq<'tree> {
             }
 
             #[automatically_derived]
-            impl TypedQuery for #def_ident {
+            impl type_sitter_lib::TypedQuery for #def_ident {
                 type Match<'cursor, 'tree> = #query_match_ident<'cursor, 'tree>;
                 type Capture<'cursor, 'tree> = #query_capture_ident<'cursor, 'tree>;
 
@@ -178,13 +182,13 @@ impl<'tree> SExpSeq<'tree> {
                 #[inline]
                 unsafe fn wrap_capture<'cursor, 'tree>(
                     &self,
-                    capture: tree_sitter::QueryCapture<'cursor, 'tree>,
+                    capture: tree_sitter::QueryCapture<'tree>,
                     match_: Option<Self::Match<'cursor, 'tree>>,
                     #tree_arg
                 ) -> Self::Capture<'cursor, 'tree> {
                     // SAFETY: As long as the capture came from the query this is safe, because the
                     // query only captures nodes of the correct type
-                    match capture.index {
+                    match capture.index as usize {
                         #(#capture_idxs => Self::Capture::#capture_variant_idents {
                             node: <#capture_node_types as type_sitter_lib::TypedNode<'tree>>::from_unchecked(#tree_capture_node),
                             match_
@@ -200,12 +204,12 @@ impl<'tree> SExpSeq<'tree> {
             }
 
             #[automatically_derived]
-            impl<'cursor, 'tree> TypedQueryMatch<'cursor, 'tree> for #query_match_ident<'cursor, 'tree> {
+            impl<'cursor, 'tree> type_sitter_lib::TypedQueryMatch<'cursor, 'tree> for #query_match_ident<'cursor, 'tree> {
                 type Query = #def_ident;
 
                 #[inline]
                 fn query(&self) -> &'static Self::Query {
-                    #def_ident
+                    &#def_ident
                 }
 
                 #tree_fn
@@ -236,39 +240,49 @@ impl<'tree> SExpSeq<'tree> {
             }
 
             #[automatically_derived]
-            impl<'cursor, 'tree> TypedQueryCapture<'cursor, 'tree> for #query_capture_ident<'cursor, 'tree> {
+            impl<'cursor, 'tree> type_sitter_lib::TypedQueryCapture<'cursor, 'tree> for #query_capture_ident<'cursor, 'tree> {
                 type Query = #def_ident;
 
                 #[inline]
                 fn query(&self) -> &'static Self::Query {
-                    #def_ident
+                    &#def_ident
                 }
 
                 #[inline]
-                fn match_(&self) -> Option<&<Self::Query as TypedQuery>::Match<'cursor, 'tree>> {
+                fn match_(&self) -> Option<&<Self::Query as type_sitter_lib::TypedQuery>::Match<'cursor, 'tree>> {
+                    match self {
+                        #(Self::#capture_variant_idents { match_, .. } => match_.as_ref()),*
+                    }
+                }
+
+                #[inline]
+                fn into_match(self) -> Option<<Self::Query as type_sitter_lib::TypedQuery>::Match<'cursor, 'tree>> {
                     match self {
                         #(Self::#capture_variant_idents { match_, .. } => match_),*
                     }
                 }
 
                 #[inline]
-                fn into_match(self) -> Option<<Self::Query as TypedQuery>::Match<'cursor, 'tree>> {
-                    match self {
-                        #(Self::#capture_variant_idents { match_, .. } => match_),*
-                    }
-                }
-
-                #[inline]
-                fn to_raw(&self) -> tree_sitter::QueryCapture<#tree_static 'tree> {
+                fn to_raw(&self) -> #tree_sitter::QueryCapture<#tree_static 'tree> {
+                    use type_sitter_lib::TypedNode;
                     match self {
                         #(Self::#capture_variant_idents { node, .. } => #tree_to_raws,)*
                     }
                 }
 
                 #[inline]
-                fn node(&self) -> tree_sitter::Node<'tree> {
+                fn node(&self) -> &#tree_sitter::Node<'tree> {
+                    use type_sitter_lib::TypedNode;
                     match self {
                         #(Self::#capture_variant_idents { node, .. } => node.node()),*
+                    }
+                }
+
+                #[inline]
+                fn node_mut(&mut self) -> &mut #tree_sitter::Node<'tree> {
+                    use type_sitter_lib::TypedNode;
+                    match self {
+                        #(Self::#capture_variant_idents { node, .. } => node.node_mut()),*
                     }
                 }
             }
@@ -305,7 +319,7 @@ impl<'tree> SExpSeq<'tree> {
         let captured_nonempty_iterator_doc = capture_quantifier.print_nonempty_iterator_doc();
         let captured_expr = capture_quantifier.print_expr(&quote! {
             // SAFETY: Query only captures nodes of the correct type
-            unsafe { self.nodes_for_capture_ix(capture_idx).map(TypedNode::from_unchecked) }
+            unsafe { self.nodes_for_capture_ix(capture_idx).map(tree_sitter_lib::TypedNode::<'tree>::from_unchecked) }
         });
 
         let full_capture_pattern_doc = concat_doc!(captured_sexp_str, " @", capture_name);
@@ -332,7 +346,7 @@ impl<'tree> SExpSeq<'tree> {
             #[doc = #capture_variant_extract_method_doc]
             #full_capture_documentation
             #[inline]
-            pub fn #capture_method_ident(&self) -> Option<#capture_node_type> {
+            pub fn #capture_method_ident(&self) -> Option<&#capture_node_type> {
                 match self {
                     Self::#capture_variant_ident { node, .. } => Some(node),
                     _ => None

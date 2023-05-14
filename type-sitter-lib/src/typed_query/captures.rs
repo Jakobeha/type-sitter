@@ -47,10 +47,10 @@ pub trait TypedQueryCapture<'cursor, 'tree>: Debug + Clone {
     fn to_raw(&self) -> QueryCapture<'tree>;
 
     /// Get the captured untyped node
-    #[inline]
-    fn node(&self) -> Node<'tree> {
-        self.to_raw().node
-    }
+    fn node(&self) -> &Node<'tree>;
+
+    /// Get a mutable reference to the captured untyped node
+    fn node_mut(&mut self) -> &mut Node<'tree>;
 
     /// Get the capture name
     #[inline]

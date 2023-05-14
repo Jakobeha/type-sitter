@@ -82,6 +82,10 @@ fn build_dylib(path: &Path, dylib_path: &Path) -> Result<(), Error> {
     // Derived from tree-sitter-rust's build.rs
     let src_dir = path.join("src");
     eprintln!("Building {}...", dylib_path.display());
+    let sources = src_dir.read_dir()?
+        .filter_map(|e| e.ok())
+        .map(|e| e.path())
+        .filter(|p| has_extension(p, "c"));
     Build::new()
         // Use the same target, optimization level, etc. as this crate was compiled with
         .host(env!("HOST"))
@@ -94,8 +98,7 @@ fn build_dylib(path: &Path, dylib_path: &Path) -> Result<(), Error> {
         .flag_if_supported("-Wno-trigraphs")
         // Include sources
         .include(&src_dir)
-        .file(&src_dir.join("parser.c"))
-        .file(&src_dir.join("scanner.c"))
+        .files(sources)
         // Set to compile a shared object (doesn't work on macOS)
         .shared_flag(true)
         .cargo_metadata(false)

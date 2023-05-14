@@ -254,7 +254,8 @@ impl Tree {
     /// Get the root node.
     #[inline]
     pub fn root_node(&self) -> Node<'_> {
-        Node::new(self.tree.root_node(), self)
+        // SAFETY: The node is from this tree
+        unsafe { Node::new(self.tree.root_node(), self) }
     }
 
     /// Create a [TreeCursor] starting at the root node.
@@ -319,8 +320,10 @@ impl<'tree> tree_sitter::TextProvider<'tree> for &'tree Tree {
 
 impl<'tree> Node<'tree> {
     /// Wrap a [tree_sitter::Node]. Requires its associated [Tree] for convenience methods.
+    ///
+    /// SAFETY: The node must be from the given tree.
     #[inline]
-    fn new(node: tree_sitter::Node<'tree>, tree: &'tree Tree) -> Self {
+    pub unsafe fn new(node: tree_sitter::Node<'tree>, tree: &'tree Tree) -> Self {
         Self { node, tree }
     }
 
@@ -435,14 +438,16 @@ impl<'tree> Node<'tree> {
     #[inline]
     pub fn all_children<'a>(&self, cursor: &'a mut TreeCursor<'tree>) -> impl ExactSizeIterator<Item = Node<'tree>> + 'a {
         let tree = self.tree;
-        self.node.children(&mut cursor.cursor).map(move |node| Node::new(node, tree))
+        // SAFETY: Same tree
+        self.node.children(&mut cursor.cursor).map(move |node| unsafe { Node::new(node, tree) })
     }
 
     /// Get the node's named children. See [tree_sitter::Node::named_children]
     #[inline]
     pub fn named_children<'a>(&self, cursor: &'a mut TreeCursor<'tree>) -> impl ExactSizeIterator<Item = Node<'tree>> + 'a {
         let tree = self.tree;
-        self.node.named_children(&mut cursor.cursor).map(move |node| Node::new(node, tree))
+        // SAFETY: Same tree
+        self.node.named_children(&mut cursor.cursor).map(move |node| unsafe { Node::new(node, tree) })
     }
 
     /// Get the number of named and unnamed children.
@@ -460,57 +465,66 @@ impl<'tree> Node<'tree> {
     /// Get the node's immediate parent.
     #[inline]
     pub fn parent(&self) -> Option<Node<'tree>> {
-        self.node.parent().map(|node| Node::new(node, self.tree))
+        // SAFETY: Same tree
+        self.node.parent().map(|node| unsafe { Node::new(node, self.tree) })
     }
 
     /// Get the node's immediate next sibling, named or unnamed.
     #[inline]
     pub fn next_any_sibling(&self) -> Option<Node<'tree>> {
-        self.node.next_sibling().map(|node| Node::new(node, self.tree))
+        // SAFETY: Same tree
+        self.node.next_sibling().map(|node| unsafe { Node::new(node, self.tree) })
     }
 
     /// Get the node's immediate named next sibling.
     #[inline]
     pub fn next_named_sibling(&self) -> Option<Node<'tree>> {
-        self.node.next_named_sibling().map(|node| Node::new(node, self.tree))
+        // SAFETY: Same tree
+        self.node.next_named_sibling().map(|node| unsafe { Node::new(node, self.tree) })
     }
 
     /// Get the node's immediate previous sibling, named or unnamed.
     #[inline]
     pub fn prev_any_sibling(&self) -> Option<Node<'tree>> {
-        self.node.prev_sibling().map(|node| Node::new(node, self.tree))
+        // SAFETY: Same tree
+        self.node.prev_sibling().map(|node| unsafe { Node::new(node, self.tree) })
     }
 
     /// Get the node's immediate named previous sibling.
     #[inline]
     pub fn prev_named_sibling(&self) -> Option<Node<'tree>> {
-        self.node.prev_named_sibling().map(|node| Node::new(node, self.tree))
+        // SAFETY: Same tree
+        self.node.prev_named_sibling().map(|node| unsafe { Node::new(node, self.tree) })
     }
 
     /// Get the node's child at the given index, named or unnamed. See [tree_sitter::Node::child]
     #[inline]
     pub fn any_child(&self, i: usize) -> Option<Node<'tree>> {
-        self.node.child(i).map(|node| Node::new(node, self.tree))
+        // SAFETY: Same tree
+        self.node.child(i).map(|node| unsafe { Node::new(node, self.tree) })
     }
 
     /// Get the node's named child at the given index. See [tree_sitter::Node::named_child]
     #[inline]
     pub fn named_child(&self, i: usize) -> Option<Node<'tree>> {
-        self.node.named_child(i).map(|node| Node::new(node, self.tree))
+        // SAFETY: Same tree
+        self.node.named_child(i).map(|node| unsafe { Node::new(node, self.tree) })
     }
 
     /// Get the node's last child, named or unnamed.
     #[inline]
     pub fn last_any_child(&self) -> Option<Node<'tree>> {
         // .child is already bounds-checked so we use wrapping_sub for iff the count is 0
-        self.node.child(self.any_child_count().wrapping_sub(1)).map(|node| Node::new(node, self.tree))
+        // SAFETY: Same tree
+        self.node.child(self.any_child_count().wrapping_sub(1)).map(|node| unsafe { Node::new(node, self.tree) })
     }
 
     /// Get the node's last named child.
     #[inline]
     pub fn last_named_child(&self) -> Option<Node<'tree>> {
         // .named_child is already bounds-checked so we use wrapping_sub for iff the count is 0
-        self.node.named_child(self.named_child_count().wrapping_sub(1)).map(|node| Node::new(node, self.tree))
+        // SAFETY: Same tree
+        self.node.named_child(self.named_child_count().wrapping_sub(1)).map(|node| unsafe { Node::new(node, self.tree) })
     }
 
     /// Get the node's first child of the given kind, named or unnamed. The cursor is used to
@@ -521,9 +535,10 @@ impl<'tree> Node<'tree> {
         kind: &str,
         cursor: &mut TreeCursor<'tree>
     ) -> Option<Node<'tree>> {
+        // SAFETY: Same tree
         self.node.named_children(&mut cursor.cursor)
             .find(|node| node.kind() == kind)
-            .map(|node| Node::new(node, self.tree))
+            .map(|node| unsafe { Node::new(node, self.tree) })
     }
 
     /// Get the node's children of the given kind, named or unnamed. The cursor is used to iterate
@@ -534,15 +549,17 @@ impl<'tree> Node<'tree> {
         kind: &'a str,
         cursor: &'a mut TreeCursor<'tree>
     ) -> impl Iterator<Item = Node<'tree>> + 'a {
+        // SAFETY: Same tree
         self.node.named_children(&mut cursor.cursor)
             .filter(move |node| node.kind() == kind)
-            .map(|node| Node::new(node, self.tree))
+            .map(|node| unsafe { Node::new(node, self.tree) })
     }
 
     /// Get the first child with the given field name.
     #[inline]
     pub fn child_by_field_name(&self, field_name: &str) -> Option<Node<'tree>> {
-        self.node.child_by_field_name(field_name).map(|node| Node::new(node, self.tree))
+        // SAFETY: Same tree
+        self.node.child_by_field_name(field_name).map(|node| unsafe { Node::new(node, self.tree) })
     }
 
     /// Get the node's children with the given field name.
@@ -552,7 +569,8 @@ impl<'tree> Node<'tree> {
         field_name: &str,
         c: &'a mut TreeCursor<'tree>
     ) -> impl Iterator<Item = Node<'tree>> + 'a {
-        self.node.children_by_field_name(field_name, &mut c.cursor).map(|node| Node::new(node, self.tree))
+        // SAFETY: Same tree
+        self.node.children_by_field_name(field_name, &mut c.cursor).map(|node| unsafe { Node::new(node, self.tree) })
     }
 
     /// Get the field name of the child at the given index.
@@ -782,7 +800,8 @@ impl<'tree> TreeCursor<'tree> {
     /// Gets the cursor's current [Node].
     #[inline]
     pub fn node(&self) -> Node<'tree> {
-        Node::new(self.cursor.node(), self.tree)
+        // SAFETY: Same tree
+        unsafe { Node::new(self.cursor.node(), self.tree) }
     }
 
     /// Gets the field name of the cursor's current node.
@@ -1053,9 +1072,10 @@ impl<'query, 'tree> QueryMatch<'query, 'tree> {
     /// Get the nodes that were captures by the capture at the given index.
     #[inline]
     pub fn nodes_for_capture_index(&self, capture_index: u32) -> impl Iterator<Item = Node<'tree>> + '_ {
+        // SAFETY: Same tree
         self.query_match
             .nodes_for_capture_index(capture_index)
-            .map(move |node| Node::new(node, self.tree))
+             .map(move |node| unsafe { Node::new(node, self.tree) })
     }
 }
 
@@ -1063,9 +1083,12 @@ impl<'query, 'tree> QueryCapture<'query, 'tree> {
     /// Wrap a [tree_sitter::QueryCapture]. This also needs the tree and query for helper methods.
     #[inline]
     fn new(query_capture: tree_sitter::QueryCapture<'tree>, tree: &'tree Tree, query: &'query Query) -> Self {
-        Self {
-            node: Node::new(query_capture.node, tree),
-            name: &query.capture_names()[query_capture.index as usize]
+        // SAFETY: fn is internal so the provided tree is always the same as the node's tree
+        unsafe {
+            Self {
+                node: Node::new(query_capture.node, tree),
+                name: &query.capture_names()[query_capture.index as usize]
+            }
         }
     }
 }

@@ -10,9 +10,9 @@ fn __Mk__Tags() -> tree_sitter::Query {
 #[derive(Debug, Clone, Copy)]
 pub struct Tags;
 pub type TagsMatches<'cursor, 'tree, Text> =
-    TypedQueryMatches<'cursor, 'tree, TagsMatch<'cursor, 'tree>, Text>;
+    type_sitter_lib::TypedQueryMatches<'cursor, 'tree, TagsMatch<'cursor, 'tree>, Text>;
 pub type TagsCaptures<'cursor, 'tree, Text> =
-    TypedQueryCaptures<'cursor, 'tree, TagsMatch<'cursor, 'tree>, Text>;
+    type_sitter_lib::TypedQueryCaptures<'cursor, 'tree, TagsMatch<'cursor, 'tree>, Text>;
 #[doc = "A match returned by the query [Tags]:\n\n```sexp\n; ADT definitions\n\n(struct_item\n    name: (type_identifier) @name) @definition.class\n\n(enum_item\n    name: (type_identifier) @name) @definition.class\n\n(union_item\n    name: (type_identifier) @name) @definition.class\n\n; type aliases\n\n(type_item\n    name: (type_identifier) @name) @definition.class\n\n; method definitions\n\n(declaration_list\n    (function_item\n        name: (identifier) @name)) @definition.method\n\n; function definitions\n\n(function_item\n    name: (identifier) @name) @definition.function\n\n; trait definitions\n(trait_item\n    name: (type_identifier) @name) @definition.interface\n\n; module definitions\n(mod_item\n    name: (identifier) @name) @definition.module\n\n; macro definitions\n\n(macro_definition\n    name: (identifier) @name) @definition.macro\n\n; references\n\n(call_expression\n    function: (identifier) @name) @reference.call\n\n(call_expression\n    function: (field_expression\n        field: (field_identifier) @name)) @reference.call\n\n(macro_invocation\n    macro: (identifier) @name) @reference.call\n\n; implementations\n\n(impl_item\n    trait: (type_identifier) @name) @reference.implementation\n\n(impl_item\n    type: (type_identifier) @name\n    !trait) @reference.implementation\n\n```"]
 #[derive(Debug)]
 pub struct TagsMatch<'cursor, 'tree> {
@@ -113,7 +113,7 @@ pub enum TagsCapture<'cursor, 'tree> {
     },
 }
 #[automatically_derived]
-impl TypedQuery for Tags {
+impl type_sitter_lib::TypedQuery for Tags {
     type Match<'cursor, 'tree> = TagsMatch<'cursor, 'tree>;
     type Capture<'cursor, 'tree> = TagsCapture<'cursor, 'tree>;
     fn query_str(&self) -> &'static str {
@@ -132,10 +132,10 @@ impl TypedQuery for Tags {
     #[inline]
     unsafe fn wrap_capture<'cursor, 'tree>(
         &self,
-        capture: tree_sitter::QueryCapture<'cursor, 'tree>,
+        capture: tree_sitter::QueryCapture<'tree>,
         match_: Option<Self::Match<'cursor, 'tree>>,
     ) -> Self::Capture<'cursor, 'tree> {
-        match capture . index { 0usize => Self :: Capture :: Name { node : < super :: nodes :: StructItem < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 1usize => Self :: Capture :: DefinitionClass { node : < super :: nodes :: StructItem < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 2usize => Self :: Capture :: DefinitionMethod { node : < super :: nodes :: StructItem < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 3usize => Self :: Capture :: DefinitionFunction { node : < super :: nodes :: StructItem < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 4usize => Self :: Capture :: DefinitionInterface { node : < super :: nodes :: StructItem < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 5usize => Self :: Capture :: DefinitionModule { node : < super :: nodes :: StructItem < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 6usize => Self :: Capture :: DefinitionMacro { node : < super :: nodes :: StructItem < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 7usize => Self :: Capture :: ReferenceCall { node : < super :: nodes :: StructItem < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 8usize => Self :: Capture :: ReferenceImplementation { node : < super :: nodes :: StructItem < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , capture_index => unreachable ! ("Invalid capture index: {}" , capture_index) }
+        match capture . index as usize { 0usize => Self :: Capture :: Name { node : < super :: nodes :: StructItem < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 1usize => Self :: Capture :: DefinitionClass { node : < super :: nodes :: StructItem < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 2usize => Self :: Capture :: DefinitionMethod { node : < super :: nodes :: StructItem < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 3usize => Self :: Capture :: DefinitionFunction { node : < super :: nodes :: StructItem < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 4usize => Self :: Capture :: DefinitionInterface { node : < super :: nodes :: StructItem < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 5usize => Self :: Capture :: DefinitionModule { node : < super :: nodes :: StructItem < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 6usize => Self :: Capture :: DefinitionMacro { node : < super :: nodes :: StructItem < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 7usize => Self :: Capture :: ReferenceCall { node : < super :: nodes :: StructItem < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 8usize => Self :: Capture :: ReferenceImplementation { node : < super :: nodes :: StructItem < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , capture_index => unreachable ! ("Invalid capture index: {}" , capture_index) }
     }
 }
 #[automatically_derived]
@@ -151,7 +151,7 @@ impl<'cursor, 'tree> TagsMatch<'cursor, 'tree> {
         {
             unsafe {
                 self.nodes_for_capture_ix(capture_idx)
-                    .map(TypedNode::from_unchecked)
+                    .map(tree_sitter_lib::TypedNode::<'tree>::from_unchecked)
             }
         }
         .next()
@@ -167,7 +167,7 @@ impl<'cursor, 'tree> TagsMatch<'cursor, 'tree> {
         {
             unsafe {
                 self.nodes_for_capture_ix(capture_idx)
-                    .map(TypedNode::from_unchecked)
+                    .map(tree_sitter_lib::TypedNode::<'tree>::from_unchecked)
             }
         }
         .next()
@@ -183,7 +183,7 @@ impl<'cursor, 'tree> TagsMatch<'cursor, 'tree> {
         {
             unsafe {
                 self.nodes_for_capture_ix(capture_idx)
-                    .map(TypedNode::from_unchecked)
+                    .map(tree_sitter_lib::TypedNode::<'tree>::from_unchecked)
             }
         }
         .next()
@@ -199,7 +199,7 @@ impl<'cursor, 'tree> TagsMatch<'cursor, 'tree> {
         {
             unsafe {
                 self.nodes_for_capture_ix(capture_idx)
-                    .map(TypedNode::from_unchecked)
+                    .map(tree_sitter_lib::TypedNode::<'tree>::from_unchecked)
             }
         }
         .next()
@@ -215,7 +215,7 @@ impl<'cursor, 'tree> TagsMatch<'cursor, 'tree> {
         {
             unsafe {
                 self.nodes_for_capture_ix(capture_idx)
-                    .map(TypedNode::from_unchecked)
+                    .map(tree_sitter_lib::TypedNode::<'tree>::from_unchecked)
             }
         }
         .next()
@@ -231,7 +231,7 @@ impl<'cursor, 'tree> TagsMatch<'cursor, 'tree> {
         {
             unsafe {
                 self.nodes_for_capture_ix(capture_idx)
-                    .map(TypedNode::from_unchecked)
+                    .map(tree_sitter_lib::TypedNode::<'tree>::from_unchecked)
             }
         }
         .next()
@@ -247,7 +247,7 @@ impl<'cursor, 'tree> TagsMatch<'cursor, 'tree> {
         {
             unsafe {
                 self.nodes_for_capture_ix(capture_idx)
-                    .map(TypedNode::from_unchecked)
+                    .map(tree_sitter_lib::TypedNode::<'tree>::from_unchecked)
             }
         }
         .next()
@@ -263,7 +263,7 @@ impl<'cursor, 'tree> TagsMatch<'cursor, 'tree> {
         {
             unsafe {
                 self.nodes_for_capture_ix(capture_idx)
-                    .map(TypedNode::from_unchecked)
+                    .map(tree_sitter_lib::TypedNode::<'tree>::from_unchecked)
             }
         }
         .next()
@@ -279,18 +279,20 @@ impl<'cursor, 'tree> TagsMatch<'cursor, 'tree> {
         {
             unsafe {
                 self.nodes_for_capture_ix(capture_idx)
-                    .map(TypedNode::from_unchecked)
+                    .map(tree_sitter_lib::TypedNode::<'tree>::from_unchecked)
             }
         }
         .next()
     }
 }
 #[automatically_derived]
-impl<'cursor, 'tree> TypedQueryMatch<'cursor, 'tree> for TagsMatch<'cursor, 'tree> {
+impl<'cursor, 'tree> type_sitter_lib::TypedQueryMatch<'cursor, 'tree>
+    for TagsMatch<'cursor, 'tree>
+{
     type Query = Tags;
     #[inline]
     fn query(&self) -> &'static Self::Query {
-        Tags
+        &Tags
     }
     #[inline]
     fn raw(&self) -> &tree_sitter::QueryMatch<'cursor, 'tree> {
@@ -310,7 +312,7 @@ impl<'cursor, 'tree> TagsCapture<'cursor, 'tree> {
     #[doc = "struct_item @name"]
     #[doc = "```"]
     #[inline]
-    pub fn name(&self) -> Option<super::nodes::StructItem<'tree>> {
+    pub fn name(&self) -> Option<&super::nodes::StructItem<'tree>> {
         match self {
             Self::Name { node, .. } => Some(node),
             _ => None,
@@ -323,7 +325,7 @@ impl<'cursor, 'tree> TagsCapture<'cursor, 'tree> {
     #[doc = "(struct_item\n    name: (type_identifier) @name) @definition.class"]
     #[doc = "```"]
     #[inline]
-    pub fn definition_class(&self) -> Option<super::nodes::StructItem<'tree>> {
+    pub fn definition_class(&self) -> Option<&super::nodes::StructItem<'tree>> {
         match self {
             Self::DefinitionClass { node, .. } => Some(node),
             _ => None,
@@ -336,7 +338,7 @@ impl<'cursor, 'tree> TagsCapture<'cursor, 'tree> {
     #[doc = "(struct_item\n    name: (type_identifier) @name) @definition.method"]
     #[doc = "```"]
     #[inline]
-    pub fn definition_method(&self) -> Option<super::nodes::StructItem<'tree>> {
+    pub fn definition_method(&self) -> Option<&super::nodes::StructItem<'tree>> {
         match self {
             Self::DefinitionMethod { node, .. } => Some(node),
             _ => None,
@@ -349,7 +351,7 @@ impl<'cursor, 'tree> TagsCapture<'cursor, 'tree> {
     #[doc = "(struct_item\n    name: (type_identifier) @name) @definition.function"]
     #[doc = "```"]
     #[inline]
-    pub fn definition_function(&self) -> Option<super::nodes::StructItem<'tree>> {
+    pub fn definition_function(&self) -> Option<&super::nodes::StructItem<'tree>> {
         match self {
             Self::DefinitionFunction { node, .. } => Some(node),
             _ => None,
@@ -362,7 +364,7 @@ impl<'cursor, 'tree> TagsCapture<'cursor, 'tree> {
     #[doc = "(struct_item\n    name: (type_identifier) @name) @definition.interface"]
     #[doc = "```"]
     #[inline]
-    pub fn definition_interface(&self) -> Option<super::nodes::StructItem<'tree>> {
+    pub fn definition_interface(&self) -> Option<&super::nodes::StructItem<'tree>> {
         match self {
             Self::DefinitionInterface { node, .. } => Some(node),
             _ => None,
@@ -375,7 +377,7 @@ impl<'cursor, 'tree> TagsCapture<'cursor, 'tree> {
     #[doc = "(struct_item\n    name: (type_identifier) @name) @definition.module"]
     #[doc = "```"]
     #[inline]
-    pub fn definition_module(&self) -> Option<super::nodes::StructItem<'tree>> {
+    pub fn definition_module(&self) -> Option<&super::nodes::StructItem<'tree>> {
         match self {
             Self::DefinitionModule { node, .. } => Some(node),
             _ => None,
@@ -388,7 +390,7 @@ impl<'cursor, 'tree> TagsCapture<'cursor, 'tree> {
     #[doc = "(struct_item\n    name: (type_identifier) @name) @definition.macro"]
     #[doc = "```"]
     #[inline]
-    pub fn definition_macro(&self) -> Option<super::nodes::StructItem<'tree>> {
+    pub fn definition_macro(&self) -> Option<&super::nodes::StructItem<'tree>> {
         match self {
             Self::DefinitionMacro { node, .. } => Some(node),
             _ => None,
@@ -401,7 +403,7 @@ impl<'cursor, 'tree> TagsCapture<'cursor, 'tree> {
     #[doc = "(struct_item\n    name: (type_identifier) @name) @reference.call"]
     #[doc = "```"]
     #[inline]
-    pub fn reference_call(&self) -> Option<super::nodes::StructItem<'tree>> {
+    pub fn reference_call(&self) -> Option<&super::nodes::StructItem<'tree>> {
         match self {
             Self::ReferenceCall { node, .. } => Some(node),
             _ => None,
@@ -414,7 +416,7 @@ impl<'cursor, 'tree> TagsCapture<'cursor, 'tree> {
     #[doc = "(struct_item\n    name: (type_identifier) @name) @reference.implementation"]
     #[doc = "```"]
     #[inline]
-    pub fn reference_implementation(&self) -> Option<super::nodes::StructItem<'tree>> {
+    pub fn reference_implementation(&self) -> Option<&super::nodes::StructItem<'tree>> {
         match self {
             Self::ReferenceImplementation { node, .. } => Some(node),
             _ => None,
@@ -465,28 +467,34 @@ impl<'cursor, 'tree> Clone for TagsCapture<'cursor, 'tree> {
     }
 }
 #[automatically_derived]
-impl<'cursor, 'tree> TypedQueryCapture<'cursor, 'tree> for TagsCapture<'cursor, 'tree> {
+impl<'cursor, 'tree> type_sitter_lib::TypedQueryCapture<'cursor, 'tree>
+    for TagsCapture<'cursor, 'tree>
+{
     type Query = Tags;
     #[inline]
     fn query(&self) -> &'static Self::Query {
-        Tags
+        &Tags
     }
     #[inline]
-    fn match_(&self) -> Option<&<Self::Query as TypedQuery>::Match<'cursor, 'tree>> {
+    fn match_(
+        &self,
+    ) -> Option<&<Self::Query as type_sitter_lib::TypedQuery>::Match<'cursor, 'tree>> {
         match self {
-            Self::Name { match_, .. } => match_,
-            Self::DefinitionClass { match_, .. } => match_,
-            Self::DefinitionMethod { match_, .. } => match_,
-            Self::DefinitionFunction { match_, .. } => match_,
-            Self::DefinitionInterface { match_, .. } => match_,
-            Self::DefinitionModule { match_, .. } => match_,
-            Self::DefinitionMacro { match_, .. } => match_,
-            Self::ReferenceCall { match_, .. } => match_,
-            Self::ReferenceImplementation { match_, .. } => match_,
+            Self::Name { match_, .. } => match_.as_ref(),
+            Self::DefinitionClass { match_, .. } => match_.as_ref(),
+            Self::DefinitionMethod { match_, .. } => match_.as_ref(),
+            Self::DefinitionFunction { match_, .. } => match_.as_ref(),
+            Self::DefinitionInterface { match_, .. } => match_.as_ref(),
+            Self::DefinitionModule { match_, .. } => match_.as_ref(),
+            Self::DefinitionMacro { match_, .. } => match_.as_ref(),
+            Self::ReferenceCall { match_, .. } => match_.as_ref(),
+            Self::ReferenceImplementation { match_, .. } => match_.as_ref(),
         }
     }
     #[inline]
-    fn into_match(self) -> Option<<Self::Query as TypedQuery>::Match<'cursor, 'tree>> {
+    fn into_match(
+        self,
+    ) -> Option<<Self::Query as type_sitter_lib::TypedQuery>::Match<'cursor, 'tree>> {
         match self {
             Self::Name { match_, .. } => match_,
             Self::DefinitionClass { match_, .. } => match_,
@@ -501,6 +509,7 @@ impl<'cursor, 'tree> TypedQueryCapture<'cursor, 'tree> for TagsCapture<'cursor, 
     }
     #[inline]
     fn to_raw(&self) -> tree_sitter::QueryCapture<'tree> {
+        use type_sitter_lib::TypedNode;
         match self {
             Self::Name { node, .. } => tree_sitter::QueryCapture {
                 index: 0usize as u32,
@@ -541,7 +550,8 @@ impl<'cursor, 'tree> TypedQueryCapture<'cursor, 'tree> for TagsCapture<'cursor, 
         }
     }
     #[inline]
-    fn node(&self) -> tree_sitter::Node<'tree> {
+    fn node(&self) -> &tree_sitter::Node<'tree> {
+        use type_sitter_lib::TypedNode;
         match self {
             Self::Name { node, .. } => node.node(),
             Self::DefinitionClass { node, .. } => node.node(),
@@ -552,6 +562,21 @@ impl<'cursor, 'tree> TypedQueryCapture<'cursor, 'tree> for TagsCapture<'cursor, 
             Self::DefinitionMacro { node, .. } => node.node(),
             Self::ReferenceCall { node, .. } => node.node(),
             Self::ReferenceImplementation { node, .. } => node.node(),
+        }
+    }
+    #[inline]
+    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        use type_sitter_lib::TypedNode;
+        match self {
+            Self::Name { node, .. } => node.node_mut(),
+            Self::DefinitionClass { node, .. } => node.node_mut(),
+            Self::DefinitionMethod { node, .. } => node.node_mut(),
+            Self::DefinitionFunction { node, .. } => node.node_mut(),
+            Self::DefinitionInterface { node, .. } => node.node_mut(),
+            Self::DefinitionModule { node, .. } => node.node_mut(),
+            Self::DefinitionMacro { node, .. } => node.node_mut(),
+            Self::ReferenceCall { node, .. } => node.node_mut(),
+            Self::ReferenceImplementation { node, .. } => node.node_mut(),
         }
     }
 }
@@ -568,9 +593,9 @@ fn __Mk__Highlights() -> tree_sitter::Query {
 #[derive(Debug, Clone, Copy)]
 pub struct Highlights;
 pub type HighlightsMatches<'cursor, 'tree, Text> =
-    TypedQueryMatches<'cursor, 'tree, HighlightsMatch<'cursor, 'tree>, Text>;
+    type_sitter_lib::TypedQueryMatches<'cursor, 'tree, HighlightsMatch<'cursor, 'tree>, Text>;
 pub type HighlightsCaptures<'cursor, 'tree, Text> =
-    TypedQueryCaptures<'cursor, 'tree, HighlightsMatch<'cursor, 'tree>, Text>;
+    type_sitter_lib::TypedQueryCaptures<'cursor, 'tree, HighlightsMatch<'cursor, 'tree>, Text>;
 #[doc = "A match returned by the query [Highlights]:\n\n```sexp\n; Identifier conventions\n\n; Assume all-caps names are constants\n((identifier) @constant\n (#match? @constant \"^[A-Z][A-Z\\\\d_]+$'\"))\n\n; Assume that uppercase names in paths are types\n((scoped_identifier\n  path: (identifier) @type)\n (#match? @type \"^[A-Z]\"))\n((scoped_identifier\n  path: (scoped_identifier\n    name: (identifier) @type))\n (#match? @type \"^[A-Z]\"))\n((scoped_type_identifier\n  path: (identifier) @type)\n (#match? @type \"^[A-Z]\"))\n((scoped_type_identifier\n  path: (scoped_identifier\n    name: (identifier) @type))\n (#match? @type \"^[A-Z]\"))\n\n; Assume other uppercase names are enum constructors\n((identifier) @constructor\n (#match? @constructor \"^[A-Z]\"))\n\n; Assume all qualified names in struct patterns are enum constructors. (They're\n; either that, or struct names; highlighting both as constructors seems to be\n; the less glaring choice of error, visually.)\n(struct_pattern\n  type: (scoped_type_identifier\n    name: (type_identifier) @constructor))\n\n; Function calls\n\n(call_expression\n  function: (identifier) @function)\n(call_expression\n  function: (field_expression\n    field: (field_identifier) @function.method))\n(call_expression\n  function: (scoped_identifier\n    \"::\"\n    name: (identifier) @function))\n\n(generic_function\n  function: (identifier) @function)\n(generic_function\n  function: (scoped_identifier\n    name: (identifier) @function))\n(generic_function\n  function: (field_expression\n    field: (field_identifier) @function.method))\n\n(macro_invocation\n  macro: (identifier) @function.macro\n  \"!\" @function.macro)\n\n; Function definitions\n\n(function_item (identifier) @function)\n(function_signature_item (identifier) @function)\n\n; Other identifiers\n\n(type_identifier) @type\n(primitive_type) @type.builtin\n(field_identifier) @property\n\n(line_comment) @comment\n(block_comment) @comment\n\n\"(\" @punctuation.bracket\n\")\" @punctuation.bracket\n\"[\" @punctuation.bracket\n\"]\" @punctuation.bracket\n\"{\" @punctuation.bracket\n\"}\" @punctuation.bracket\n\n(type_arguments\n  \"<\" @punctuation.bracket\n  \">\" @punctuation.bracket)\n(type_parameters\n  \"<\" @punctuation.bracket\n  \">\" @punctuation.bracket)\n\n\"::\" @punctuation.delimiter\n\":\" @punctuation.delimiter\n\".\" @punctuation.delimiter\n\",\" @punctuation.delimiter\n\";\" @punctuation.delimiter\n\n(parameter (identifier) @variable.parameter)\n\n(lifetime (identifier) @label)\n\n\"as\" @keyword\n\"async\" @keyword\n\"await\" @keyword\n\"break\" @keyword\n\"const\" @keyword\n\"continue\" @keyword\n\"default\" @keyword\n\"dyn\" @keyword\n\"else\" @keyword\n\"enum\" @keyword\n\"extern\" @keyword\n\"fn\" @keyword\n\"for\" @keyword\n\"if\" @keyword\n\"impl\" @keyword\n\"in\" @keyword\n\"let\" @keyword\n\"loop\" @keyword\n\"macro_rules!\" @keyword\n\"match\" @keyword\n\"mod\" @keyword\n\"move\" @keyword\n\"pub\" @keyword\n\"ref\" @keyword\n\"return\" @keyword\n\"static\" @keyword\n\"struct\" @keyword\n\"trait\" @keyword\n\"type\" @keyword\n\"union\" @keyword\n\"unsafe\" @keyword\n\"use\" @keyword\n\"where\" @keyword\n\"while\" @keyword\n(crate) @keyword\n(mutable_specifier) @keyword\n(use_list (self) @keyword)\n(scoped_use_list (self) @keyword)\n(scoped_identifier (self) @keyword)\n(super) @keyword\n\n(self) @variable.builtin\n\n(char_literal) @string\n(string_literal) @string\n(raw_string_literal) @string\n\n(boolean_literal) @constant.builtin\n(integer_literal) @constant.builtin\n(float_literal) @constant.builtin\n\n(escape_sequence) @escape\n\n(attribute_item) @attribute\n(inner_attribute_item) @attribute\n\n\"*\" @operator\n\"&\" @operator\n\"'\" @operator\n\n```"]
 #[derive(Debug)]
 pub struct HighlightsMatch<'cursor, 'tree> {
@@ -781,7 +806,7 @@ pub enum HighlightsCapture<'cursor, 'tree> {
     },
 }
 #[automatically_derived]
-impl TypedQuery for Highlights {
+impl type_sitter_lib::TypedQuery for Highlights {
     type Match<'cursor, 'tree> = HighlightsMatch<'cursor, 'tree>;
     type Capture<'cursor, 'tree> = HighlightsCapture<'cursor, 'tree>;
     fn query_str(&self) -> &'static str {
@@ -800,10 +825,10 @@ impl TypedQuery for Highlights {
     #[inline]
     unsafe fn wrap_capture<'cursor, 'tree>(
         &self,
-        capture: tree_sitter::QueryCapture<'cursor, 'tree>,
+        capture: tree_sitter::QueryCapture<'tree>,
         match_: Option<Self::Match<'cursor, 'tree>>,
     ) -> Self::Capture<'cursor, 'tree> {
-        match capture . index { 0usize => Self :: Capture :: Constant { node : < super :: nodes :: Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 1usize => Self :: Capture :: Type { node : < super :: nodes :: Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 2usize => Self :: Capture :: Constructor { node : < super :: nodes :: Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 3usize => Self :: Capture :: Function { node : < super :: nodes :: CallExpression < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 4usize => Self :: Capture :: FunctionMethod { node : < super :: nodes :: FieldExpression < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 5usize => Self :: Capture :: FunctionMacro { node : < super :: nodes :: MacroInvocation < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 6usize => Self :: Capture :: TypeBuiltin { node : < super :: nodes :: Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 7usize => Self :: Capture :: Property { node : < super :: nodes :: Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 8usize => Self :: Capture :: Comment { node : < super :: nodes :: Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 9usize => Self :: Capture :: PunctuationBracket { node : < super :: nodes :: Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 10usize => Self :: Capture :: PunctuationDelimiter { node : < super :: nodes :: Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 11usize => Self :: Capture :: VariableParameter { node : < super :: nodes :: Parameter < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 12usize => Self :: Capture :: Label { node : < super :: nodes :: Lifetime < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 13usize => Self :: Capture :: Keyword { node : < super :: nodes :: Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 14usize => Self :: Capture :: VariableBuiltin { node : < super :: nodes :: Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 15usize => Self :: Capture :: String { node : < super :: nodes :: Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 16usize => Self :: Capture :: ConstantBuiltin { node : < super :: nodes :: Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 17usize => Self :: Capture :: Escape { node : < super :: nodes :: Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 18usize => Self :: Capture :: Attribute { node : < super :: nodes :: Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 19usize => Self :: Capture :: Operator { node : < super :: nodes :: Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , capture_index => unreachable ! ("Invalid capture index: {}" , capture_index) }
+        match capture . index as usize { 0usize => Self :: Capture :: Constant { node : < super :: nodes :: Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 1usize => Self :: Capture :: Type { node : < super :: nodes :: Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 2usize => Self :: Capture :: Constructor { node : < super :: nodes :: Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 3usize => Self :: Capture :: Function { node : < super :: nodes :: CallExpression < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 4usize => Self :: Capture :: FunctionMethod { node : < super :: nodes :: FieldExpression < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 5usize => Self :: Capture :: FunctionMacro { node : < super :: nodes :: MacroInvocation < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 6usize => Self :: Capture :: TypeBuiltin { node : < super :: nodes :: Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 7usize => Self :: Capture :: Property { node : < super :: nodes :: Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 8usize => Self :: Capture :: Comment { node : < super :: nodes :: Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 9usize => Self :: Capture :: PunctuationBracket { node : < super :: nodes :: Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 10usize => Self :: Capture :: PunctuationDelimiter { node : < super :: nodes :: Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 11usize => Self :: Capture :: VariableParameter { node : < super :: nodes :: Parameter < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 12usize => Self :: Capture :: Label { node : < super :: nodes :: Lifetime < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 13usize => Self :: Capture :: Keyword { node : < super :: nodes :: Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 14usize => Self :: Capture :: VariableBuiltin { node : < super :: nodes :: Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 15usize => Self :: Capture :: String { node : < super :: nodes :: Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 16usize => Self :: Capture :: ConstantBuiltin { node : < super :: nodes :: Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 17usize => Self :: Capture :: Escape { node : < super :: nodes :: Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 18usize => Self :: Capture :: Attribute { node : < super :: nodes :: Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , 19usize => Self :: Capture :: Operator { node : < super :: nodes :: Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_unchecked (capture . node) , match_ } , capture_index => unreachable ! ("Invalid capture index: {}" , capture_index) }
     }
 }
 #[automatically_derived]
@@ -819,7 +844,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         {
             unsafe {
                 self.nodes_for_capture_ix(capture_idx)
-                    .map(TypedNode::from_unchecked)
+                    .map(tree_sitter_lib::TypedNode::<'tree>::from_unchecked)
             }
         }
         .next()
@@ -835,7 +860,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         {
             unsafe {
                 self.nodes_for_capture_ix(capture_idx)
-                    .map(TypedNode::from_unchecked)
+                    .map(tree_sitter_lib::TypedNode::<'tree>::from_unchecked)
             }
         }
         .next()
@@ -851,7 +876,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         {
             unsafe {
                 self.nodes_for_capture_ix(capture_idx)
-                    .map(TypedNode::from_unchecked)
+                    .map(tree_sitter_lib::TypedNode::<'tree>::from_unchecked)
             }
         }
         .next()
@@ -867,7 +892,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         {
             unsafe {
                 self.nodes_for_capture_ix(capture_idx)
-                    .map(TypedNode::from_unchecked)
+                    .map(tree_sitter_lib::TypedNode::<'tree>::from_unchecked)
             }
         }
         .next()
@@ -883,7 +908,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         {
             unsafe {
                 self.nodes_for_capture_ix(capture_idx)
-                    .map(TypedNode::from_unchecked)
+                    .map(tree_sitter_lib::TypedNode::<'tree>::from_unchecked)
             }
         }
         .next()
@@ -899,7 +924,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         {
             unsafe {
                 self.nodes_for_capture_ix(capture_idx)
-                    .map(TypedNode::from_unchecked)
+                    .map(tree_sitter_lib::TypedNode::<'tree>::from_unchecked)
             }
         }
         .next()
@@ -915,7 +940,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         {
             unsafe {
                 self.nodes_for_capture_ix(capture_idx)
-                    .map(TypedNode::from_unchecked)
+                    .map(tree_sitter_lib::TypedNode::<'tree>::from_unchecked)
             }
         }
         .next()
@@ -931,7 +956,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         {
             unsafe {
                 self.nodes_for_capture_ix(capture_idx)
-                    .map(TypedNode::from_unchecked)
+                    .map(tree_sitter_lib::TypedNode::<'tree>::from_unchecked)
             }
         }
         .next()
@@ -947,7 +972,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         {
             unsafe {
                 self.nodes_for_capture_ix(capture_idx)
-                    .map(TypedNode::from_unchecked)
+                    .map(tree_sitter_lib::TypedNode::<'tree>::from_unchecked)
             }
         }
         .next()
@@ -963,7 +988,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         {
             unsafe {
                 self.nodes_for_capture_ix(capture_idx)
-                    .map(TypedNode::from_unchecked)
+                    .map(tree_sitter_lib::TypedNode::<'tree>::from_unchecked)
             }
         }
         .next()
@@ -979,7 +1004,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         {
             unsafe {
                 self.nodes_for_capture_ix(capture_idx)
-                    .map(TypedNode::from_unchecked)
+                    .map(tree_sitter_lib::TypedNode::<'tree>::from_unchecked)
             }
         }
         .next()
@@ -995,7 +1020,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         {
             unsafe {
                 self.nodes_for_capture_ix(capture_idx)
-                    .map(TypedNode::from_unchecked)
+                    .map(tree_sitter_lib::TypedNode::<'tree>::from_unchecked)
             }
         }
         .next()
@@ -1011,7 +1036,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         {
             unsafe {
                 self.nodes_for_capture_ix(capture_idx)
-                    .map(TypedNode::from_unchecked)
+                    .map(tree_sitter_lib::TypedNode::<'tree>::from_unchecked)
             }
         }
         .next()
@@ -1027,7 +1052,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         {
             unsafe {
                 self.nodes_for_capture_ix(capture_idx)
-                    .map(TypedNode::from_unchecked)
+                    .map(tree_sitter_lib::TypedNode::<'tree>::from_unchecked)
             }
         }
     }
@@ -1042,7 +1067,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         {
             unsafe {
                 self.nodes_for_capture_ix(capture_idx)
-                    .map(TypedNode::from_unchecked)
+                    .map(tree_sitter_lib::TypedNode::<'tree>::from_unchecked)
             }
         }
         .next()
@@ -1058,7 +1083,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         {
             unsafe {
                 self.nodes_for_capture_ix(capture_idx)
-                    .map(TypedNode::from_unchecked)
+                    .map(tree_sitter_lib::TypedNode::<'tree>::from_unchecked)
             }
         }
         .next()
@@ -1074,7 +1099,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         {
             unsafe {
                 self.nodes_for_capture_ix(capture_idx)
-                    .map(TypedNode::from_unchecked)
+                    .map(tree_sitter_lib::TypedNode::<'tree>::from_unchecked)
             }
         }
         .next()
@@ -1090,7 +1115,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         {
             unsafe {
                 self.nodes_for_capture_ix(capture_idx)
-                    .map(TypedNode::from_unchecked)
+                    .map(tree_sitter_lib::TypedNode::<'tree>::from_unchecked)
             }
         }
         .next()
@@ -1106,7 +1131,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         {
             unsafe {
                 self.nodes_for_capture_ix(capture_idx)
-                    .map(TypedNode::from_unchecked)
+                    .map(tree_sitter_lib::TypedNode::<'tree>::from_unchecked)
             }
         }
         .next()
@@ -1122,18 +1147,20 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         {
             unsafe {
                 self.nodes_for_capture_ix(capture_idx)
-                    .map(TypedNode::from_unchecked)
+                    .map(tree_sitter_lib::TypedNode::<'tree>::from_unchecked)
             }
         }
         .next()
     }
 }
 #[automatically_derived]
-impl<'cursor, 'tree> TypedQueryMatch<'cursor, 'tree> for HighlightsMatch<'cursor, 'tree> {
+impl<'cursor, 'tree> type_sitter_lib::TypedQueryMatch<'cursor, 'tree>
+    for HighlightsMatch<'cursor, 'tree>
+{
     type Query = Highlights;
     #[inline]
     fn query(&self) -> &'static Self::Query {
-        Highlights
+        &Highlights
     }
     #[inline]
     fn raw(&self) -> &tree_sitter::QueryMatch<'cursor, 'tree> {
@@ -1153,7 +1180,7 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
     #[doc = "(identifier) @constant"]
     #[doc = "```"]
     #[inline]
-    pub fn constant(&self) -> Option<super::nodes::Identifier<'tree>> {
+    pub fn constant(&self) -> Option<&super::nodes::Identifier<'tree>> {
         match self {
             Self::Constant { node, .. } => Some(node),
             _ => None,
@@ -1166,7 +1193,7 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
     #[doc = "((identifier) @constant\n (#match? @constant \"^[A-Z][A-Z\\\\d_]+$'\")) @type"]
     #[doc = "```"]
     #[inline]
-    pub fn r#type(&self) -> Option<super::nodes::Identifier<'tree>> {
+    pub fn r#type(&self) -> Option<&super::nodes::Identifier<'tree>> {
         match self {
             Self::Type { node, .. } => Some(node),
             _ => None,
@@ -1179,7 +1206,7 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
     #[doc = "(identifier) @constructor"]
     #[doc = "```"]
     #[inline]
-    pub fn constructor(&self) -> Option<super::nodes::Identifier<'tree>> {
+    pub fn constructor(&self) -> Option<&super::nodes::Identifier<'tree>> {
         match self {
             Self::Constructor { node, .. } => Some(node),
             _ => None,
@@ -1192,7 +1219,7 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
     #[doc = "call_expression @function"]
     #[doc = "```"]
     #[inline]
-    pub fn function(&self) -> Option<super::nodes::CallExpression<'tree>> {
+    pub fn function(&self) -> Option<&super::nodes::CallExpression<'tree>> {
         match self {
             Self::Function { node, .. } => Some(node),
             _ => None,
@@ -1205,7 +1232,7 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
     #[doc = "field_expression @function.method"]
     #[doc = "```"]
     #[inline]
-    pub fn function_method(&self) -> Option<super::nodes::FieldExpression<'tree>> {
+    pub fn function_method(&self) -> Option<&super::nodes::FieldExpression<'tree>> {
         match self {
             Self::FunctionMethod { node, .. } => Some(node),
             _ => None,
@@ -1218,7 +1245,7 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
     #[doc = "macro_invocation @function.macro"]
     #[doc = "```"]
     #[inline]
-    pub fn function_macro(&self) -> Option<super::nodes::MacroInvocation<'tree>> {
+    pub fn function_macro(&self) -> Option<&super::nodes::MacroInvocation<'tree>> {
         match self {
             Self::FunctionMacro { node, .. } => Some(node),
             _ => None,
@@ -1231,7 +1258,7 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
     #[doc = "((identifier) @constant\n (#match? @constant \"^[A-Z][A-Z\\\\d_]+$'\")) @type.builtin"]
     #[doc = "```"]
     #[inline]
-    pub fn type_builtin(&self) -> Option<super::nodes::Identifier<'tree>> {
+    pub fn type_builtin(&self) -> Option<&super::nodes::Identifier<'tree>> {
         match self {
             Self::TypeBuiltin { node, .. } => Some(node),
             _ => None,
@@ -1244,7 +1271,7 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
     #[doc = "((identifier) @constant\n (#match? @constant \"^[A-Z][A-Z\\\\d_]+$'\")) @property"]
     #[doc = "```"]
     #[inline]
-    pub fn property(&self) -> Option<super::nodes::Identifier<'tree>> {
+    pub fn property(&self) -> Option<&super::nodes::Identifier<'tree>> {
         match self {
             Self::Property { node, .. } => Some(node),
             _ => None,
@@ -1257,7 +1284,7 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
     #[doc = "((identifier) @constant\n (#match? @constant \"^[A-Z][A-Z\\\\d_]+$'\")) @comment"]
     #[doc = "```"]
     #[inline]
-    pub fn comment(&self) -> Option<super::nodes::Identifier<'tree>> {
+    pub fn comment(&self) -> Option<&super::nodes::Identifier<'tree>> {
         match self {
             Self::Comment { node, .. } => Some(node),
             _ => None,
@@ -1270,7 +1297,7 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
     #[doc = "((identifier) @constant\n (#match? @constant \"^[A-Z][A-Z\\\\d_]+$'\")) @punctuation.bracket"]
     #[doc = "```"]
     #[inline]
-    pub fn punctuation_bracket(&self) -> Option<super::nodes::Identifier<'tree>> {
+    pub fn punctuation_bracket(&self) -> Option<&super::nodes::Identifier<'tree>> {
         match self {
             Self::PunctuationBracket { node, .. } => Some(node),
             _ => None,
@@ -1283,7 +1310,7 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
     #[doc = "((identifier) @constant\n (#match? @constant \"^[A-Z][A-Z\\\\d_]+$'\")) @punctuation.delimiter"]
     #[doc = "```"]
     #[inline]
-    pub fn punctuation_delimiter(&self) -> Option<super::nodes::Identifier<'tree>> {
+    pub fn punctuation_delimiter(&self) -> Option<&super::nodes::Identifier<'tree>> {
         match self {
             Self::PunctuationDelimiter { node, .. } => Some(node),
             _ => None,
@@ -1296,7 +1323,7 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
     #[doc = "parameter @variable.parameter"]
     #[doc = "```"]
     #[inline]
-    pub fn variable_parameter(&self) -> Option<super::nodes::Parameter<'tree>> {
+    pub fn variable_parameter(&self) -> Option<&super::nodes::Parameter<'tree>> {
         match self {
             Self::VariableParameter { node, .. } => Some(node),
             _ => None,
@@ -1309,7 +1336,7 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
     #[doc = "lifetime @label"]
     #[doc = "```"]
     #[inline]
-    pub fn label(&self) -> Option<super::nodes::Lifetime<'tree>> {
+    pub fn label(&self) -> Option<&super::nodes::Lifetime<'tree>> {
         match self {
             Self::Label { node, .. } => Some(node),
             _ => None,
@@ -1322,7 +1349,7 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
     #[doc = "((identifier) @constant\n (#match? @constant \"^[A-Z][A-Z\\\\d_]+$'\")) @keyword"]
     #[doc = "```"]
     #[inline]
-    pub fn keyword(&self) -> Option<super::nodes::Identifier<'tree>> {
+    pub fn keyword(&self) -> Option<&super::nodes::Identifier<'tree>> {
         match self {
             Self::Keyword { node, .. } => Some(node),
             _ => None,
@@ -1335,7 +1362,7 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
     #[doc = "((identifier) @constant\n (#match? @constant \"^[A-Z][A-Z\\\\d_]+$'\")) @variable.builtin"]
     #[doc = "```"]
     #[inline]
-    pub fn variable_builtin(&self) -> Option<super::nodes::Identifier<'tree>> {
+    pub fn variable_builtin(&self) -> Option<&super::nodes::Identifier<'tree>> {
         match self {
             Self::VariableBuiltin { node, .. } => Some(node),
             _ => None,
@@ -1348,7 +1375,7 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
     #[doc = "((identifier) @constant\n (#match? @constant \"^[A-Z][A-Z\\\\d_]+$'\")) @string"]
     #[doc = "```"]
     #[inline]
-    pub fn string(&self) -> Option<super::nodes::Identifier<'tree>> {
+    pub fn string(&self) -> Option<&super::nodes::Identifier<'tree>> {
         match self {
             Self::String { node, .. } => Some(node),
             _ => None,
@@ -1361,7 +1388,7 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
     #[doc = "((identifier) @constant\n (#match? @constant \"^[A-Z][A-Z\\\\d_]+$'\")) @constant.builtin"]
     #[doc = "```"]
     #[inline]
-    pub fn constant_builtin(&self) -> Option<super::nodes::Identifier<'tree>> {
+    pub fn constant_builtin(&self) -> Option<&super::nodes::Identifier<'tree>> {
         match self {
             Self::ConstantBuiltin { node, .. } => Some(node),
             _ => None,
@@ -1374,7 +1401,7 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
     #[doc = "((identifier) @constant\n (#match? @constant \"^[A-Z][A-Z\\\\d_]+$'\")) @escape"]
     #[doc = "```"]
     #[inline]
-    pub fn escape(&self) -> Option<super::nodes::Identifier<'tree>> {
+    pub fn escape(&self) -> Option<&super::nodes::Identifier<'tree>> {
         match self {
             Self::Escape { node, .. } => Some(node),
             _ => None,
@@ -1387,7 +1414,7 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
     #[doc = "((identifier) @constant\n (#match? @constant \"^[A-Z][A-Z\\\\d_]+$'\")) @attribute"]
     #[doc = "```"]
     #[inline]
-    pub fn attribute(&self) -> Option<super::nodes::Identifier<'tree>> {
+    pub fn attribute(&self) -> Option<&super::nodes::Identifier<'tree>> {
         match self {
             Self::Attribute { node, .. } => Some(node),
             _ => None,
@@ -1400,7 +1427,7 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
     #[doc = "((identifier) @constant\n (#match? @constant \"^[A-Z][A-Z\\\\d_]+$'\")) @operator"]
     #[doc = "```"]
     #[inline]
-    pub fn operator(&self) -> Option<super::nodes::Identifier<'tree>> {
+    pub fn operator(&self) -> Option<&super::nodes::Identifier<'tree>> {
         match self {
             Self::Operator { node, .. } => Some(node),
             _ => None,
@@ -1495,39 +1522,45 @@ impl<'cursor, 'tree> Clone for HighlightsCapture<'cursor, 'tree> {
     }
 }
 #[automatically_derived]
-impl<'cursor, 'tree> TypedQueryCapture<'cursor, 'tree> for HighlightsCapture<'cursor, 'tree> {
+impl<'cursor, 'tree> type_sitter_lib::TypedQueryCapture<'cursor, 'tree>
+    for HighlightsCapture<'cursor, 'tree>
+{
     type Query = Highlights;
     #[inline]
     fn query(&self) -> &'static Self::Query {
-        Highlights
+        &Highlights
     }
     #[inline]
-    fn match_(&self) -> Option<&<Self::Query as TypedQuery>::Match<'cursor, 'tree>> {
+    fn match_(
+        &self,
+    ) -> Option<&<Self::Query as type_sitter_lib::TypedQuery>::Match<'cursor, 'tree>> {
         match self {
-            Self::Constant { match_, .. } => match_,
-            Self::Type { match_, .. } => match_,
-            Self::Constructor { match_, .. } => match_,
-            Self::Function { match_, .. } => match_,
-            Self::FunctionMethod { match_, .. } => match_,
-            Self::FunctionMacro { match_, .. } => match_,
-            Self::TypeBuiltin { match_, .. } => match_,
-            Self::Property { match_, .. } => match_,
-            Self::Comment { match_, .. } => match_,
-            Self::PunctuationBracket { match_, .. } => match_,
-            Self::PunctuationDelimiter { match_, .. } => match_,
-            Self::VariableParameter { match_, .. } => match_,
-            Self::Label { match_, .. } => match_,
-            Self::Keyword { match_, .. } => match_,
-            Self::VariableBuiltin { match_, .. } => match_,
-            Self::String { match_, .. } => match_,
-            Self::ConstantBuiltin { match_, .. } => match_,
-            Self::Escape { match_, .. } => match_,
-            Self::Attribute { match_, .. } => match_,
-            Self::Operator { match_, .. } => match_,
+            Self::Constant { match_, .. } => match_.as_ref(),
+            Self::Type { match_, .. } => match_.as_ref(),
+            Self::Constructor { match_, .. } => match_.as_ref(),
+            Self::Function { match_, .. } => match_.as_ref(),
+            Self::FunctionMethod { match_, .. } => match_.as_ref(),
+            Self::FunctionMacro { match_, .. } => match_.as_ref(),
+            Self::TypeBuiltin { match_, .. } => match_.as_ref(),
+            Self::Property { match_, .. } => match_.as_ref(),
+            Self::Comment { match_, .. } => match_.as_ref(),
+            Self::PunctuationBracket { match_, .. } => match_.as_ref(),
+            Self::PunctuationDelimiter { match_, .. } => match_.as_ref(),
+            Self::VariableParameter { match_, .. } => match_.as_ref(),
+            Self::Label { match_, .. } => match_.as_ref(),
+            Self::Keyword { match_, .. } => match_.as_ref(),
+            Self::VariableBuiltin { match_, .. } => match_.as_ref(),
+            Self::String { match_, .. } => match_.as_ref(),
+            Self::ConstantBuiltin { match_, .. } => match_.as_ref(),
+            Self::Escape { match_, .. } => match_.as_ref(),
+            Self::Attribute { match_, .. } => match_.as_ref(),
+            Self::Operator { match_, .. } => match_.as_ref(),
         }
     }
     #[inline]
-    fn into_match(self) -> Option<<Self::Query as TypedQuery>::Match<'cursor, 'tree>> {
+    fn into_match(
+        self,
+    ) -> Option<<Self::Query as type_sitter_lib::TypedQuery>::Match<'cursor, 'tree>> {
         match self {
             Self::Constant { match_, .. } => match_,
             Self::Type { match_, .. } => match_,
@@ -1553,6 +1586,7 @@ impl<'cursor, 'tree> TypedQueryCapture<'cursor, 'tree> for HighlightsCapture<'cu
     }
     #[inline]
     fn to_raw(&self) -> tree_sitter::QueryCapture<'tree> {
+        use type_sitter_lib::TypedNode;
         match self {
             Self::Constant { node, .. } => tree_sitter::QueryCapture {
                 index: 0usize as u32,
@@ -1637,7 +1671,8 @@ impl<'cursor, 'tree> TypedQueryCapture<'cursor, 'tree> for HighlightsCapture<'cu
         }
     }
     #[inline]
-    fn node(&self) -> tree_sitter::Node<'tree> {
+    fn node(&self) -> &tree_sitter::Node<'tree> {
+        use type_sitter_lib::TypedNode;
         match self {
             Self::Constant { node, .. } => node.node(),
             Self::Type { node, .. } => node.node(),
@@ -1661,6 +1696,32 @@ impl<'cursor, 'tree> TypedQueryCapture<'cursor, 'tree> for HighlightsCapture<'cu
             Self::Operator { node, .. } => node.node(),
         }
     }
+    #[inline]
+    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        use type_sitter_lib::TypedNode;
+        match self {
+            Self::Constant { node, .. } => node.node_mut(),
+            Self::Type { node, .. } => node.node_mut(),
+            Self::Constructor { node, .. } => node.node_mut(),
+            Self::Function { node, .. } => node.node_mut(),
+            Self::FunctionMethod { node, .. } => node.node_mut(),
+            Self::FunctionMacro { node, .. } => node.node_mut(),
+            Self::TypeBuiltin { node, .. } => node.node_mut(),
+            Self::Property { node, .. } => node.node_mut(),
+            Self::Comment { node, .. } => node.node_mut(),
+            Self::PunctuationBracket { node, .. } => node.node_mut(),
+            Self::PunctuationDelimiter { node, .. } => node.node_mut(),
+            Self::VariableParameter { node, .. } => node.node_mut(),
+            Self::Label { node, .. } => node.node_mut(),
+            Self::Keyword { node, .. } => node.node_mut(),
+            Self::VariableBuiltin { node, .. } => node.node_mut(),
+            Self::String { node, .. } => node.node_mut(),
+            Self::ConstantBuiltin { node, .. } => node.node_mut(),
+            Self::Escape { node, .. } => node.node_mut(),
+            Self::Attribute { node, .. } => node.node_mut(),
+            Self::Operator { node, .. } => node.node_mut(),
+        }
+    }
 }
 #[allow(non_upper_case_globals)]
 static __Injections__: once_cell::race::OnceBox<tree_sitter::Query> =
@@ -1675,9 +1736,9 @@ fn __Mk__Injections() -> tree_sitter::Query {
 #[derive(Debug, Clone, Copy)]
 pub struct Injections;
 pub type InjectionsMatches<'cursor, 'tree, Text> =
-    TypedQueryMatches<'cursor, 'tree, InjectionsMatch<'cursor, 'tree>, Text>;
+    type_sitter_lib::TypedQueryMatches<'cursor, 'tree, InjectionsMatch<'cursor, 'tree>, Text>;
 pub type InjectionsCaptures<'cursor, 'tree, Text> =
-    TypedQueryCaptures<'cursor, 'tree, InjectionsMatch<'cursor, 'tree>, Text>;
+    type_sitter_lib::TypedQueryCaptures<'cursor, 'tree, InjectionsMatch<'cursor, 'tree>, Text>;
 #[doc = "A match returned by the query [Injections]:\n\n```sexp\n((macro_invocation\n  (token_tree) @injection.content)\n (#set! injection.language \"rust\")\n (#set! injection.include-children))\n\n((macro_rule\n  (token_tree) @injection.content)\n (#set! injection.language \"rust\")\n (#set! injection.include-children))\n\n```"]
 #[derive(Debug)]
 pub struct InjectionsMatch<'cursor, 'tree> {
@@ -1698,7 +1759,7 @@ pub enum InjectionsCapture<'cursor, 'tree> {
     },
 }
 #[automatically_derived]
-impl TypedQuery for Injections {
+impl type_sitter_lib::TypedQuery for Injections {
     type Match<'cursor, 'tree> = InjectionsMatch<'cursor, 'tree>;
     type Capture<'cursor, 'tree> = InjectionsCapture<'cursor, 'tree>;
     fn query_str(&self) -> &'static str {
@@ -1717,10 +1778,10 @@ impl TypedQuery for Injections {
     #[inline]
     unsafe fn wrap_capture<'cursor, 'tree>(
         &self,
-        capture: tree_sitter::QueryCapture<'cursor, 'tree>,
+        capture: tree_sitter::QueryCapture<'tree>,
         match_: Option<Self::Match<'cursor, 'tree>>,
     ) -> Self::Capture<'cursor, 'tree> {
-        match capture.index {
+        match capture.index as usize {
             0usize => {
                 Self::Capture::InjectionContent {
                     node: <super::nodes::MacroInvocation<'tree> as type_sitter_lib::TypedNode<
@@ -1746,7 +1807,7 @@ impl<'cursor, 'tree> InjectionsMatch<'cursor, 'tree> {
         let result = {
             unsafe {
                 self.nodes_for_capture_ix(capture_idx)
-                    .map(TypedNode::from_unchecked)
+                    .map(tree_sitter_lib::TypedNode::<'tree>::from_unchecked)
             }
         }
         .next()
@@ -1755,7 +1816,7 @@ impl<'cursor, 'tree> InjectionsMatch<'cursor, 'tree> {
             {
                 unsafe {
                     self.nodes_for_capture_ix(capture_idx)
-                        .map(TypedNode::from_unchecked)
+                        .map(tree_sitter_lib::TypedNode::<'tree>::from_unchecked)
                 }
             }
             .next()
@@ -1766,11 +1827,13 @@ impl<'cursor, 'tree> InjectionsMatch<'cursor, 'tree> {
     }
 }
 #[automatically_derived]
-impl<'cursor, 'tree> TypedQueryMatch<'cursor, 'tree> for InjectionsMatch<'cursor, 'tree> {
+impl<'cursor, 'tree> type_sitter_lib::TypedQueryMatch<'cursor, 'tree>
+    for InjectionsMatch<'cursor, 'tree>
+{
     type Query = Injections;
     #[inline]
     fn query(&self) -> &'static Self::Query {
-        Injections
+        &Injections
     }
     #[inline]
     fn raw(&self) -> &tree_sitter::QueryMatch<'cursor, 'tree> {
@@ -1790,7 +1853,7 @@ impl<'cursor, 'tree> InjectionsCapture<'cursor, 'tree> {
     #[doc = "macro_invocation @injection.content"]
     #[doc = "```"]
     #[inline]
-    pub fn injection_content(&self) -> Option<super::nodes::MacroInvocation<'tree>> {
+    pub fn injection_content(&self) -> Option<&super::nodes::MacroInvocation<'tree>> {
         match self {
             Self::InjectionContent { node, .. } => Some(node),
             _ => None,
@@ -1809,26 +1872,33 @@ impl<'cursor, 'tree> Clone for InjectionsCapture<'cursor, 'tree> {
     }
 }
 #[automatically_derived]
-impl<'cursor, 'tree> TypedQueryCapture<'cursor, 'tree> for InjectionsCapture<'cursor, 'tree> {
+impl<'cursor, 'tree> type_sitter_lib::TypedQueryCapture<'cursor, 'tree>
+    for InjectionsCapture<'cursor, 'tree>
+{
     type Query = Injections;
     #[inline]
     fn query(&self) -> &'static Self::Query {
-        Injections
+        &Injections
     }
     #[inline]
-    fn match_(&self) -> Option<&<Self::Query as TypedQuery>::Match<'cursor, 'tree>> {
+    fn match_(
+        &self,
+    ) -> Option<&<Self::Query as type_sitter_lib::TypedQuery>::Match<'cursor, 'tree>> {
         match self {
-            Self::InjectionContent { match_, .. } => match_,
+            Self::InjectionContent { match_, .. } => match_.as_ref(),
         }
     }
     #[inline]
-    fn into_match(self) -> Option<<Self::Query as TypedQuery>::Match<'cursor, 'tree>> {
+    fn into_match(
+        self,
+    ) -> Option<<Self::Query as type_sitter_lib::TypedQuery>::Match<'cursor, 'tree>> {
         match self {
             Self::InjectionContent { match_, .. } => match_,
         }
     }
     #[inline]
     fn to_raw(&self) -> tree_sitter::QueryCapture<'tree> {
+        use type_sitter_lib::TypedNode;
         match self {
             Self::InjectionContent { node, .. } => tree_sitter::QueryCapture {
                 index: 0usize as u32,
@@ -1837,9 +1907,17 @@ impl<'cursor, 'tree> TypedQueryCapture<'cursor, 'tree> for InjectionsCapture<'cu
         }
     }
     #[inline]
-    fn node(&self) -> tree_sitter::Node<'tree> {
+    fn node(&self) -> &tree_sitter::Node<'tree> {
+        use type_sitter_lib::TypedNode;
         match self {
             Self::InjectionContent { node, .. } => node.node(),
+        }
+    }
+    #[inline]
+    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        use type_sitter_lib::TypedNode;
+        match self {
+            Self::InjectionContent { node, .. } => node.node_mut(),
         }
     }
 }
