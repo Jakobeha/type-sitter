@@ -224,7 +224,7 @@ impl<'tree> SExpSeq<'tree> {
                     // SAFETY: As long as the capture came from the query this is safe, because the
                     // query only captures nodes of the correct type
                     match capture.index {
-                        #(#capture_idxs => #capture_variant_idents(<#capture_node_types as type_sitter_lib::TypedNode<'tree>>::from_unchecked(capture.node)))*
+                        #(#capture_idxs => #capture_variant_idents(<#capture_node_types as type_sitter_lib::TypedNode<'tree>>::from_unchecked(capture.node)),)*
                     }
                 }
             }
@@ -299,10 +299,11 @@ impl<'tree> SExpSeq<'tree> {
         let capture_variant_ident = ident!(capture_variant_name, "capture name (capture variant)")
             .expect("ident should be valid because we get them from a names function");
 
-        let captured_sexp = self.captured_pattern(capture_name)
-            .expect("capture name was found by tree-sitter but not by type-sitter");
+        let Some(captured_sexp) = self.captured_pattern(capture_name) else {
+            panic!("capture name was found by tree-sitter but not by type-sitter: {}", capture_name)
+        };
         let captured_sexp_lit = lit_str(&query_str[captured_sexp.span()]);
-        let capture_node_type = captured_sexp.node_type().print(&capture_variant_name, nodes, tree_sitter, anon_unions);
+        let capture_node_type = captured_sexp.node_type(false).print(&capture_variant_name, nodes, tree_sitter, anon_unions);
 
         let capture_quantifier = ts_query.capture_quantifiers(capture_idx).iter().copied()
             .reduce(CaptureQuantifierExt::union)
@@ -351,47 +352,31 @@ impl<'tree> SExpSeq<'tree> {
 }
 
 impl<'tree> SExp<'tree> {
-    fn node_type(&self) -> SExpNodeType {
+    fn node_type(&self, is_head: bool) -> SExpNodeType {
         match self {
-            SExp::Atom { atom, .. } => atom.node_type(),
+            SExp::Atom { atom, .. } => atom.node_type(is_head),
             SExp::Group { group_type, items, .. } => match group_type {
                 GroupType::Paren => match items.get(0) {
                     None => panic!("empty paren group is not in a valid tree-sitter query"),
-                    Some(item) => item.head_node_type()
+                    Some(item) => item.node_type(true)
                 },
-                GroupType::Bracket => items.iter().map(|item| item.node_type()).collect()
-            }
-        }
-    }
-
-    fn head_node_type(&self) -> SExpNodeType {
-        match self {
-            SExp::Atom { atom, .. } => atom.head_node_type(),
-            SExp::Group { group_type, items, .. } => match group_type {
-                GroupType::Paren => panic!("paren group as head of another paren group is not in a valid tree-sitter query"),
-                GroupType::Bracket => items.iter().map(|item| item.head_node_type()).collect()
+                GroupType::Bracket => items.iter().map(|item| item.node_type(is_head)).collect()
             }
         }
     }
 }
 
 impl<'tree> Atom<'tree> {
-    fn node_type(&self) -> SExpNodeType {
+    fn node_type(&self, is_head: bool) -> SExpNodeType {
         match self {
-            Atom::Wildcard => SExpNodeType::Untyped { is_named: false },
+            Atom::Wildcard => SExpNodeType::Untyped { is_named: is_head },
             Atom::Anchor => panic!("capturing an anchor is not in a valid tree-sitter query"),
+            Atom::Field { .. } => panic!("capturing a field is not in a valid tree-sitter query"),
             Atom::Ident { name } => SExpNodeType::from(NodeName::new(name.to_string(), true)),
             Atom::String { content } => SExpNodeType::from(NodeName::new(content.to_string(), false)),
             Atom::Negation { .. } => SExpNodeType::Untyped { is_named: true },
             Atom::Capture { name } => panic!("capturing a capture is not in a valid tree-sitter query (captured capture name = {})", name),
             Atom::Predicate { name } => panic!("capturing a predicate is not in a valid tree-sitter query (captured predicate name = {})", name)
-        }
-    }
-
-    fn head_node_type(&self) -> SExpNodeType {
-        match self {
-            Atom::Wildcard => SExpNodeType::Untyped { is_named: true },
-            _ => self.node_type()
         }
     }
 }

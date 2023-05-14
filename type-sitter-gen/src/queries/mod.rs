@@ -155,8 +155,14 @@ pub fn generate_query_from_file(
     )?;
     let query_str = read_to_string(path)?;
     let ts_query = Query::new(language, &query_str)?;
-    let query = SExpSeq::try_from(query_str.as_str())
-        .expect("query was already parsed by tree-sitter but can't be parsed by type-sitter");
+    let query = SExpSeq::try_from(query_str.as_str()).unwrap_or_else(|err| {
+        panic!(
+            "query was already parsed by tree-sitter but can't be parsed by type-sitter: {} ({})\n\n{}",
+            err,
+            &query_str.as_str()[*err.span()],
+            query_str
+        )
+    });
     let mut anon_unions = AnonUnions::new();
     let query = query.print(
         &query_str,
@@ -183,7 +189,7 @@ pub fn generate_query_from_file(
         }
     };
     Ok(quote! {
-        #query,
+        #query
         #anon_unions
     })
 }

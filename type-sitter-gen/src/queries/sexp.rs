@@ -1,3 +1,4 @@
+use std::fmt::{Display, Formatter};
 use std::iter::zip;
 use std::ops::Index;
 use logos::Logos;
@@ -27,6 +28,8 @@ pub enum Atom<'a> {
     Wildcard,
     /// `.`
     Anchor,
+    /// `foo_bar:`
+    Field { name: &'a str },
     /// `foo_bar`
     Ident { name: &'a str },
     /// `"foo bar"`
@@ -50,6 +53,7 @@ type Lexer<'a> = logos::Lexer<'a, Token<'a>>;
 /// Tree-sitter query lex token
 #[derive(Logos)]
 #[logos(skip r"[ \t\n\f]+")]
+#[logos(skip r";[^\n]*")]
 enum Token<'a> {
     // Group types
     #[token("(")]
@@ -65,23 +69,25 @@ enum Token<'a> {
     Wildcard,
     #[token(".")]
     Anchor,
-    #[regex(r#"[a-zA-Z_][a-zA-Z0-9_\.]*"#, Lexer::slice)]
+    #[regex(r#"[a-zA-Z_][a-zA-Z0-9_\-+\.!?@#$%^&*|'/<>]*:"#, lex_snoc)]
+    Field(&'a str),
+    #[regex(r#"[a-zA-Z_][a-zA-Z0-9_\-+\.!?@#$%^&*|'/<>]*"#, Lexer::slice)]
     Ident(&'a str),
-    #[regex(r#""([^"\\]|\.)*""#, Lexer::slice)]
+    #[regex(r#""([^"\\]|\\.)*""#, Lexer::slice)]
     String(&'a str),
-    #[regex(r#"![a-zA-Z_][a-zA-Z0-9_\.]*"#, lex_tail)]
+    #[regex(r#"![a-zA-Z_][a-zA-Z0-9_\-+\.!?@#$%^&*|'/<>]*"#, lex_tail)]
     Negation(&'a str),
-    #[regex(r#"@[a-zA-Z0-9_\-+\.]*"#, lex_tail)]
+    #[regex(r#"@[a-zA-Z0-9_\-+\.!?@#$%^&*|'/<>]*"#, lex_tail)]
     Capture(&'a str),
     /// `#foo_bar`
-    #[regex(r#"#[a-zA-Z0-9_\-+\.]*"#, lex_tail)]
+    #[regex(r#"#[a-zA-Z0-9_\-+\.!?@#$%^&*|'/<>]*"#, lex_tail)]
     Predicate(&'a str),
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum ParseError {
     Eof { span: Span },
-    BadCharacter { span: Span },
+    BadToken { span: Span },
     IllegalGroupClose { span: Span, group_type: GroupType },
     UnclosedGroup { span: Span, group_type: GroupType }
 }
@@ -96,6 +102,15 @@ pub struct Span {
 
 impl<'a> SExpSeq<'a> {
     pub fn captured_pattern(&self, name: &'a str) -> Option<SExp<'a>> {
+        self.toplevel_captured_pattern(name).or_else(|| {
+            self.iter().find_map(|sexp| match sexp {
+                SExp::Atom { .. } => None,
+                SExp::Group { items, .. } => items.captured_pattern(name)
+            })
+        })
+    }
+
+    fn toplevel_captured_pattern(&self, name: &'a str) -> Option<SExp<'a>> {
         zip(self, self.iter().skip(1))
             .find(|(_, capture)| capture.is_capture(name))
             .map(|(pattern, _)| pattern.clone())
@@ -140,6 +155,15 @@ impl<'a> SExp<'a> {
     }
 }
 
+impl Display for GroupType {
+    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
+        match self {
+            Self::Paren => write!(f, "paren"),
+            Self::Bracket => write!(f, "bracket")
+        }
+    }
+}
+
 impl<'a> TryFrom<Token<'a>> for Atom<'a> {
     type Error = Token<'a>;
 
@@ -147,6 +171,7 @@ impl<'a> TryFrom<Token<'a>> for Atom<'a> {
         match value {
             Token::Wildcard => Ok(Self::Wildcard),
             Token::Anchor => Ok(Self::Anchor),
+            Token::Field(name) => Ok(Self::Field { name }),
             Token::Ident(name) => Ok(Self::Ident { name }),
             Token::String(content) => Ok(Self::String { content }),
             Token::Negation(name) => Ok(Self::Negation { name }),
@@ -167,7 +192,7 @@ impl<'a> Parser<'a> {
         let span = Span::of(&self.lexer);
         match next {
             None => Err(ParseError::Eof { span }),
-            Some(Err(())) => Err(ParseError::BadCharacter { span }),
+            Some(Err(())) => Err(ParseError::BadToken { span }),
             Some(Ok(token)) => match Atom::try_from(token) {
                 Ok(atom) => Ok(SExp::Atom { span, atom }),
                 Err(token) => match token {
@@ -214,6 +239,28 @@ impl<'a> Iterator for Parser<'a> {
     }
 }
 
+impl ParseError {
+    pub fn span(&self) -> &Span {
+        match self {
+            Self::Eof { span } => span,
+            Self::BadToken { span } => span,
+            Self::IllegalGroupClose { span, .. } => span,
+            Self::UnclosedGroup { span, .. } => span
+        }
+    }
+}
+
+impl Display for ParseError {
+    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
+        match self {
+            Self::Eof { span } => write!(f, "unexpected end of input at {}", span),
+            Self::BadToken { span } => write!(f, "bad token at {}", span),
+            Self::IllegalGroupClose { span, group_type } => write!(f, "illegal group close at {} (expected {})", span, group_type),
+            Self::UnclosedGroup { span, group_type } => write!(f, "unclosed group at {} (expected {})", span, group_type)
+        }
+    }
+}
+
 impl Span {
     fn of(lexer: &Lexer<'_>) -> Self {
         Self::from(lexer.span())
@@ -236,6 +283,16 @@ impl Index<Span> for str {
     fn index(&self, index: Span) -> &Self::Output {
         &self[index.range()]
     }
+}
+
+impl Display for Span {
+    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
+        write!(f, "{}..{}", self.start, self.end)
+    }
+}
+
+fn lex_snoc<'a>(lex: &mut Lexer<'a>) -> &'a str {
+    &lex.slice()[..lex.slice().len() - 1]
 }
 
 fn lex_tail<'a>(lex: &mut Lexer<'a>) -> &'a str {
