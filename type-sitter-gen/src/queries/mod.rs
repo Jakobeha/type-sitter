@@ -1,8 +1,11 @@
+/// Print query
 mod print;
+/// Dynamically-load a [Language] to create [Query]s
 mod dyload_language;
+/// Tree-sitter query s-expression dialect
+mod sexp;
 
 use std::fs::read_to_string;
-use std::iter::empty;
 use std::path::Path;
 use convert_case::{Case, Casing};
 use proc_macro2::TokenStream;
@@ -13,6 +16,8 @@ use crate::Error;
 use crate::mk_syntax::ident;
 use crate::queries::dyload_language::dyload_language;
 use crate::queries::print::print_query;
+use crate::queries::sexp::SExpSeq;
+use crate::node_types::generated_tokens::AnonUnions;
 
 /// Generate source code (tokens) of wrappers for queries.
 ///
@@ -22,27 +27,25 @@ use crate::queries::print::print_query;
 /// - `language_path`: path to the tree-sitter language module, where the [Language] will be
 ///   dynamically loaded
 /// - `nodes`: Path to the crate with the typed node wrappers. Typically [type_sitter_gen::nodes]
-/// - `tree_sitter`: Path to the `tree_sitter` crate. Typically either
-///   [type_sitter_gen::tree_sitter] or [type_sitter_gen::type_sitter_lib_wrapper], but you can
-///   provide a path to your own wrapper as well.
+/// - `use_wrapper`: Whether to use `tree_sitter_wrapper` or `tree_sitter`
 ///
 /// # Example
 ///
 /// ```no_run
-/// use type_sitter_gen::{generate_queries, tree_sitter};
+/// use type_sitter_gen::generate_queries;
 ///
 /// fn main() {
 ///     use type_sitter_gen::nodes;
-///     println!("{}", generate_queries("vendor/tree-sitter-typescript/queries/tags.scm", "vendor/tree-sitter-typescript", &nodes(), &tree_sitter()).unwrap());
-///     println!("{}", generate_queries("vendor/tree-sitter-rust/queries", "vendor/tree-sitter-rust", &nodes(), &tree_sitter()).unwrap());
+///     println!("{}", generate_queries("vendor/tree-sitter-typescript/queries/tags.scm", "vendor/tree-sitter-typescript", &nodes(), false).unwrap());
+///     println!("{}", generate_queries("vendor/tree-sitter-rust/queries", "vendor/tree-sitter-rust", &nodes(), false).unwrap());
 /// }
 /// ```
-pub fn generate_queries(path: impl AsRef<Path>, language_path: impl AsRef<Path>, nodes: &syn::Path, tree_sitter: &syn::Path) -> Result<TokenStream, Error> {
+pub fn generate_queries(path: impl AsRef<Path>, language_path: impl AsRef<Path>, nodes: &syn::Path, use_wrapper: bool) -> Result<TokenStream, Error> {
     let path = path.as_ref();
     if path.is_dir() {
-        generate_queries_from_dir(path, language_path, nodes, tree_sitter)
+        generate_queries_from_dir(path, language_path, nodes, use_wrapper)
     } else {
-        generate_query_from_file(path, language_path, empty(), empty(), nodes, tree_sitter)
+        generate_query_from_file(path, language_path, &[], &[], nodes, use_wrapper)
     }
 }
 
@@ -54,21 +57,19 @@ pub fn generate_queries(path: impl AsRef<Path>, language_path: impl AsRef<Path>,
 /// - `language_path`: path to the tree-sitter language module, where the [Language] will be
 ///   dynamically loaded
 /// - `nodes`: Path to the crate with the typed node wrappers. Typically [type_sitter_gen::nodes]
-/// - `tree_sitter`: Path to the `tree_sitter` crate. Typically either
-///   [type_sitter_gen::tree_sitter] or [type_sitter_gen::type_sitter_lib_wrapper], but you can
-///   provide a path to your own wrapper as well.
+/// - `use_wrapper`: Whether to use `tree_sitter_wrapper` or `tree_sitter`
 ///
 /// # Example
 ///
 /// ```no_run
-/// use type_sitter_gen::{generate_queries_from_dir, tree_sitter};
+/// use type_sitter_gen::generate_queries_from_dir;
 ///
 /// fn main() {
 ///     use type_sitter_gen::nodes;
-///     println!("{}", generate_queries_from_dir("vendor/tree-sitter-rust/queries", "vendor/tree-sitter-rust", &nodes(), &tree_sitter()).unwrap());
+///     println!("{}", generate_queries_from_dir("vendor/tree-sitter-rust/queries", "vendor/tree-sitter-rust", &nodes(), false).unwrap());
 /// }
 /// ```
-pub fn generate_queries_from_dir(path: impl AsRef<Path>, language_path: impl AsRef<Path>, nodes: &syn::Path, tree_sitter: &syn::Path) -> Result<TokenStream, Error> {
+pub fn generate_queries_from_dir(path: impl AsRef<Path>, language_path: impl AsRef<Path>, nodes: &syn::Path, use_wrapper: bool) -> Result<TokenStream, Error> {
     let path = path.as_ref();
     let language_path = language_path.as_ref();
     let mut queries = TokenStream::new();
@@ -78,7 +79,7 @@ pub fn generate_queries_from_dir(path: impl AsRef<Path>, language_path: impl AsR
         let entry_is_dir = entry.metadata()?.is_dir();
         if entry_is_dir || has_extension(&entry_path, "scm") {
             let entry_name = entry_path.file_stem().unwrap().to_string_lossy();
-            let entry_code = generate_queries(entry_path, language_path, nodes, tree_sitter)?;
+            let entry_code = generate_queries(entry_path, language_path, nodes, use_wrapper)?;
             queries.extend(match entry_is_dir {
                 false => entry_code,
                 true => {
@@ -102,53 +103,69 @@ pub fn generate_queries_from_dir(path: impl AsRef<Path>, language_path: impl AsR
 /// - `path`: Path to the query. Must point to a `.scm` file.
 /// - `language_path`: path to the tree-sitter language module, where the [Language] will be
 ///   dynamically loaded
-/// - `disable_patterns`: Patterns to disable. See [Query::disable_pattern].
-/// - `disable_captures`: Captures to disable. See [Query::disable_capture].
+/// - `disabled_patterns`: Patterns to disable. See [Query::disable_pattern].
+/// - `disabled_captures`: Captures to disable. See [Query::disable_capture].
 /// - `nodes`: Path to the crate with the typed node wrappers. Typically [type_sitter_gen::nodes]
-/// - `tree_sitter`: Path to the `tree_sitter` crate. Typically either
-///   [type_sitter_gen::tree_sitter] or [type_sitter_gen::type_sitter_lib_wrapper], but you can
-///   provide a path to your own wrapper as well.
+/// - `use_wrapper`: Whether to use `tree_sitter_wrapper` or `tree_sitter`
 ///
 /// # Example
 ///
 /// ```no_run
-/// use type_sitter_gen::{generate_query_from_file, tree_sitter};
-/// use std::iter::empty;
+/// use type_sitter_gen::generate_query_from_file;
 ///
 /// fn main() {
 ///     use type_sitter_gen::nodes;
-///     println!("{}", generate_query_from_file("vendor/tree-sitter-typescript/queries/tags.scm", "vendor/tree-sitter-typescript", empty(), empty(), &nodes(), &tree_sitter()).unwrap());
+///     println!("{}", generate_query_from_file("vendor/tree-sitter-typescript/queries/tags.scm", "vendor/tree-sitter-typescript", &[], &[], &nodes(), false).unwrap());
 /// }
 /// ```
 pub fn generate_query_from_file(
     path: impl AsRef<Path>,
     language_path: impl AsRef<Path>,
-    disable_patterns: impl Iterator<Item=&str>,
-    disable_captures: impl Iterator<Item=usize>,
+    disabled_patterns: &[&str],
+    disabled_captures: &[usize],
     nodes: &syn::Path,
-    tree_sitter: &syn::Path
+    use_wrapper: bool
 ) -> Result<TokenStream, Error> {
     let path = path.as_ref();
     let language_path = language_path.as_ref();
     let language_name = language_name(language_path);
     let language_ident = ident!(language_name, "language name")?;
     let language = dyload_language(language_path)?;
-    let query_ident = ident!(
-        path.file_name().and_then(|f| f.to_str()).unwrap_or("�").to_case(Case::UpperSnake),
+    let def_ident = ident!(
+        path.file_name().and_then(|f| f.to_str()).unwrap_or("�").to_case(Case::Pascal),
         "query name (filename)"
     )?;
     let query_str = read_to_string(path)?;
-    let query = Query::new(language, &query_str)?;
-    Ok(print_query(
-        query,
-        &query_str,
-        &query_ident,
+    let ts_query = Query::new(language, &query_str)?;
+    let query = SExpSeq::try_from(&query_str)
+        .expect("query was already parsed by tree-sitter but can't be parsed by type-sitter");
+    let mut anon_unions = AnonUnions::new();
+    let query = query.print(
+        ts_query,
+        &def_ident,
         &language_ident,
-        disable_patterns,
-        disable_captures,
+        disabled_patterns,
+        disabled_captures,
         nodes,
-        tree_sitter
-    ))
+        use_wrapper,
+        &mut anon_unions,
+    );
+    let anon_unions = anon_unions.into_values().collect::<TokenStream>();
+    let anon_unions = if anon_unions.is_empty() {
+        quote! {}
+    } else {
+        quote! {
+            pub mod anon_unions {
+                #[allow(unused_imports)]
+                use #nodes::*;
+                #anon_unions
+            }
+        }
+    };
+    Ok(quote! {
+        #query,
+        #anon_unions
+    })
 }
 
 fn language_name(path: &Path) -> String {

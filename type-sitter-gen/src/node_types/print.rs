@@ -6,8 +6,9 @@ use proc_macro2::TokenStream;
 use quote::quote;
 use syn::{Ident, LitStr, Path};
 use crate::mk_syntax::{ident, lit_str};
+use crate::names::NodeName;
 use crate::node_types::generated_tokens::{AnonUnions, GeneratedNodeTokens};
-use crate::node_types::types::{AnonUnionId, Children, NodeModule, NodeName, NodeType, NodeTypeKind};
+use crate::node_types::types::{AnonUnionId, Children, NodeModule, NodeType, NodeTypeKind};
 
 impl NodeType {
     pub fn print(&self, tree_sitter: &Path) -> GeneratedNodeTokens {
@@ -316,10 +317,42 @@ impl NodeName {
         }
     }
 
-    fn print_sum_type(
+    pub fn print_sum_type(
         names: &[NodeName],
         tree_sitter: &Path,
         anon_unions: &mut AnonUnions
+    ) -> TokenStream {
+        Self::print_general_sum_type(
+            names,
+            quote! {},
+            tree_sitter,
+            anon_unions,
+            || AnonUnionId::new(names)
+        )
+    }
+
+    pub(crate) fn print_query_capture_sum_type(
+        capture_variant_name: &str,
+        names: &[NodeName],
+        nodes: &Path,
+        tree_sitter: &Path,
+        anon_unions: &mut AnonUnions
+    ) -> TokenStream {
+        Self::print_general_sum_type(
+            names,
+            quote! { #nodes:: },
+            tree_sitter,
+            anon_unions,
+            || AnonUnionId::query_capture(capture_variant_name)
+        )
+    }
+
+    fn print_general_sum_type(
+        names: &[NodeName],
+        nodes_prefix: TokenStream,
+        tree_sitter: &Path,
+        anon_unions: &mut AnonUnions,
+        mk_anon_union_id: impl FnOnce() -> AnonUnionId
     ) -> TokenStream {
         match names.len() {
             // Never type
@@ -327,11 +360,11 @@ impl NodeName {
             // Regular type
             1 => {
                 let type_ = NodeName::print_type(&names[0]);
-                quote! { #type_ }
+                quote! { #nodes_prefix #type_ }
             },
-            // Anonnymous union
+            // Anonymous union
             _ => {
-                let anon_union_id = AnonUnionId::new(names);
+                let anon_union_id = mk_anon_union_id();
                 let anon_union_name = ident!(&anon_union_id.name, "generated (anon union name)").unwrap();
                 if !anon_unions.contains_key(&anon_union_id) {
                     let kind = lit_str(&format!("{{{}}}", " | ".join(names.iter().map(|n| &n.sexp_name))));
@@ -349,7 +382,7 @@ impl NodeName {
         }
     }
 
-    fn print_type(&self) -> TokenStream {
+    pub(crate) fn print_type(&self) -> TokenStream {
         let ident = self.rust_type_ident();
         match self.module {
             NodeModule::Toplevel => quote! { #ident<'tree> },
@@ -365,6 +398,7 @@ impl NodeName {
             #ident(#type_),
         }
     }
+
     fn print_variant_accessor(&self) -> TokenStream {
         let ident = self.rust_type_ident();
         let type_ = self.print_type();
@@ -416,7 +450,7 @@ impl NodeName {
         }
     }
 
-    fn rust_type_ident(&self) -> Ident {
+    pub(crate) fn rust_type_ident(&self) -> Ident {
         ident!(&self.rust_type_name, "node kind (rust type name)").unwrap()
     }
 

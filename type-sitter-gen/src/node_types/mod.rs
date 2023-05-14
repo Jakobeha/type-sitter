@@ -1,8 +1,8 @@
 /// From https://github.com/serde-rs/json/issues/404#issuecomment-892957228
 mod deserialize_json_array_as_stream;
 pub(crate) mod types;
-mod print;
-mod generated_tokens;
+pub(crate) mod print;
+pub(crate) mod generated_tokens;
 
 use std::fs::File;
 use std::io::BufReader;

@@ -1,5 +1,6 @@
 use serde::Deserialize;
 use indexmap::IndexMap;
+use crate::names::NodeName;
 
 #[derive(Deserialize)]
 pub struct NodeType {
@@ -28,16 +29,6 @@ pub struct Children {
     pub types: Vec<NodeName>,
 }
 
-#[derive(Clone, Deserialize)]
-#[serde(from = "_NodeName")]
-pub struct NodeName {
-    pub sexp_name: String,
-    pub rust_type_name: String,
-    pub rust_method_name: String,
-    pub is_implicit: bool,
-    pub module: NodeModule,
-}
-
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub enum NodeModule {
     Toplevel,
@@ -45,22 +36,9 @@ pub enum NodeModule {
     Symbols
 }
 
-#[derive(Deserialize)]
-pub struct _NodeName {
-    #[serde(rename = "type")]
-    pub sexp_name: String,
-    pub named: bool,
-}
-
 #[derive(PartialEq, Eq, Hash)]
 pub struct AnonUnionId {
     pub name: String
-}
-
-impl From<_NodeName> for NodeName {
-    fn from(_NodeName { sexp_name, named }: _NodeName) -> Self {
-        NodeName::new(sexp_name, named)
-    }
 }
 
 impl Extend<Children> for Children {

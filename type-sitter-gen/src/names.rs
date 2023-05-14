@@ -1,7 +1,25 @@
-use convert_case::{Casing, Case};
+use convert_case::{Case, Casing};
 use std::fmt::Write;
 use join_lazy_fmt::Join;
-use crate::node_types::types::{AnonUnionId, NodeModule, NodeName};
+use serde::Deserialize;
+use crate::node_types::types::{AnonUnionId, NodeModule};
+
+#[derive(Clone, Deserialize)]
+#[serde(from = "_NodeName")]
+pub struct NodeName {
+    pub sexp_name: String,
+    pub rust_type_name: String,
+    pub rust_method_name: String,
+    pub is_implicit: bool,
+    pub module: NodeModule,
+}
+
+#[derive(Deserialize)]
+pub struct _NodeName {
+    #[serde(rename = "type")]
+    pub sexp_name: String,
+    pub named: bool,
+}
 
 const PUNCTUATION_TABLE: [(char, &'static str); 35] = [
     ('&', "And"), ('|', "Or"), ('!', "Not"), ('=', "Eq"), ('<', "Lt"),
@@ -24,6 +42,12 @@ impl AnonUnionId {
     pub fn new(names: &[NodeName]) -> Self {
         Self {
             name: "_".join(names.iter().map(|name| name.rust_type_name.clone())).to_string()
+        }
+    }
+
+    pub fn query_capture(capture_variant_name: &str) -> Self {
+        Self {
+            name: capture_variant_name.to_string()
         }
     }
 }
@@ -56,6 +80,12 @@ impl NodeName {
             true => NodeModule::Toplevel
         };
         Self { sexp_name, rust_type_name, rust_method_name, is_implicit, module }
+    }
+}
+
+impl From<_NodeName> for NodeName {
+    fn from(_NodeName { sexp_name, named }: _NodeName) -> Self {
+        NodeName::new(sexp_name, named)
     }
 }
 
