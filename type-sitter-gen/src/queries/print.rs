@@ -3,7 +3,7 @@ use proc_macro2::TokenStream;
 use syn::{Ident, Path};
 use quote::{format_ident, quote};
 use tree_sitter::CaptureQuantifier;
-use crate::mk_syntax::{ident, lit_str};
+use crate::mk_syntax::{concat_doc, ident, lit_str};
 use crate::names::{NodeName, sexp_name_to_rust_names};
 use crate::node_types::generated_tokens::AnonUnions;
 use crate::node_types::types::NodeModule;
@@ -139,6 +139,7 @@ impl<'tree> SExpSeq<'tree> {
         let captures = || ts_query.capture_names().iter().enumerate()
             .filter(|(capture_idx, _)| !disabled_captures.contains(capture_idx));
 
+        let def_name = def_ident.to_string();
         let language_name = language_ident.to_string();
         let query_parse_error = lit_str(&format!(
             "query parsed at compile-time but failed at runtime. Is the language '{}' correct, and did \
@@ -152,7 +153,10 @@ impl<'tree> SExpSeq<'tree> {
         let query_match_ident = format_ident!("{}Match", def_ident);
         let query_capture_ident = format_ident!("{}Capture", def_ident);
         let disabled_patterns = disabled_patterns.iter().map(|p| lit_str(p));
-        let full_query_documentation = quote! { "\n\n```sexp\n", query_str, "\n```" };
+        let full_query_documentation = format!("\n\n```sexp\n{}\n```", query_str);
+        let def_doc = concat_doc!("Typed version of the query:", full_query_documentation);
+        let query_match_doc = concat_doc!("A match returned by the query [", def_name, "]:", full_query_documentation);
+        let query_capture_doc = concat_doc!("A capture returned by the query [", def_name, "]:", full_query_documentation);
 
         let query_matches_t = match use_wrapper {
             true => quote! {},
@@ -173,8 +177,10 @@ impl<'tree> SExpSeq<'tree> {
         let capture_node_types = capture_methods_and_variants.iter().map(|x| &x.4).collect::<Vec<_>>();
 
         quote! {
+            #[allow(non_upper_case_globals)]
             static #internal_query_ident: once_cell::race::OnceBox<tree_sitter::Query> = once_cell::race::OnceBox::new();
 
+            #[allow(non_snake_case)]
             fn #mk_internal_query_ident() -> tree_sitter::Query {
                 let mut query = tree_sitter::Query::new(
                     #language_ident::language(),
@@ -185,17 +191,17 @@ impl<'tree> SExpSeq<'tree> {
                 query
             }
 
-            #[doc = concat!("Typed version of the query:", #full_query_documentation)]
+            #[doc = #def_doc]
             #[allow(non_camel_case_types)]
             #[derive(Debug, Clone, Copy)]
             pub struct #def_ident;
 
             pub type #query_matches_ident<'a, 'tree #query_matches_t> = TypedQueryMatches<'a, 'tree #query_matches_t, #query_match_ident<'a, 'tree>>;
             pub type #query_captures_ident<'a, 'tree #query_matches_t> = TypedQueryCaptures<'a, 'tree #query_matches_t, #query_match_ident<'a, 'tree>>;
-            #[doc = concat!("A match returned by the query [", #def_ident, "]:", #full_query_documentation)]
+            #[doc = #query_match_doc]
             #[derive(Debug)]
             pub struct #query_match_ident<'cursor, 'tree>(tree_sitter::QueryMatch<'cursor, 'tree>);
-            #[doc = concat!("A capture returned by the query [", #def_ident, "]:", #full_query_documentation)]
+            #[doc = #query_capture_doc]
             #[derive(Debug, Clone, Copy)]
             pub enum #query_capture_ident<'cursor, 'tree> {
                 #(#capture_variant_documentations #capture_variant_idents(#capture_node_types),)*
@@ -215,12 +221,18 @@ impl<'tree> SExpSeq<'tree> {
                 }
 
                 #[inline]
-                unsafe fn wrap_match<'cursor>(&self, match_: tree_sitter::QueryMatch<'cursor, 'tree>) -> Self::Match<'cursor, 'tree> {
+                unsafe fn wrap_match<'cursor, 'tree>(
+                    &self,
+                    match_: tree_sitter::QueryMatch<'cursor, 'tree>
+                ) -> Self::Match<'cursor, 'tree> {
                     Self::Match(match_)
                 }
 
                 #[inline]
-                unsafe fn wrap_capture<'cursor>(&self, capture: tree_sitter::QueryCapture<'cursor, 'tree>) -> Self::Capture<'cursor, 'tree> {
+                unsafe fn wrap_capture<'cursor, 'tree>(
+                    &self,
+                    capture: tree_sitter::QueryCapture<'cursor, 'tree>
+                ) -> Self::Capture<'cursor, 'tree> {
                     // SAFETY: As long as the capture came from the query this is safe, because the
                     // query only captures nodes of the correct type
                     match capture.index {
@@ -292,8 +304,7 @@ impl<'tree> SExpSeq<'tree> {
         tree_sitter: &Path,
         anon_unions: &mut AnonUnions
     ) -> (TokenStream, TokenStream, Ident, TokenStream, TokenStream) {
-        let capture_name_lit = lit_str(capture_name);
-        let (capture_variant_name, capture_method_name) = sexp_name_to_rust_names(capture_name);
+        let (capture_variant_name, capture_method_name) = sexp_name_to_rust_names(&capture_name.replace(".", "_"));
         let capture_method_ident = ident!(capture_method_name, "capture name (capture method)")
             .expect("ident should be valid because we get them from a names function");
         let capture_variant_ident = ident!(capture_variant_name, "capture name (capture variant)")
@@ -302,7 +313,7 @@ impl<'tree> SExpSeq<'tree> {
         let Some(captured_sexp) = self.captured_pattern(capture_name) else {
             panic!("capture name was found by tree-sitter but not by type-sitter: {}", capture_name)
         };
-        let captured_sexp_lit = lit_str(&query_str[captured_sexp.span()]);
+        let captured_sexp_str = &query_str[captured_sexp.span()];
         let capture_node_type = captured_sexp.node_type(false).print(&capture_variant_name, nodes, tree_sitter, anon_unions);
 
         let capture_quantifier = ts_query.capture_quantifiers(capture_idx).iter().copied()
@@ -315,16 +326,18 @@ impl<'tree> SExpSeq<'tree> {
             unsafe { self.nodes_for_capture_ix(capture_idx).map(TypedNode::from_unchecked) }
         });
 
+        let full_capture_pattern_doc = concat_doc!(captured_sexp_str, " @", capture_name);
         let full_capture_documentation = quote! {
             #[doc = ""]
             #[doc = "The full capture including pattern is:"]
             #[doc = "```sexp"]
-            #[doc = concat!(#captured_sexp_lit, " @", #capture_name_lit)]
+            #[doc = #full_capture_pattern_doc]
             #[doc = "```"]
         };
 
+        let capture_method_doc = concat_doc!("Returns an iterator over the nodes captured by `", capture_name, "`");
         let capture_method = quote! {
-            #[doc = concat!("Returns an iterator over the nodes captured by `", #capture_name_lit, "`")]
+            #[doc = #capture_method_doc]
             #captured_nonempty_iterator_doc
             #full_capture_documentation
             #[inline]
@@ -332,8 +345,9 @@ impl<'tree> SExpSeq<'tree> {
                 #captured_expr
             }
         };
+        let capture_variant_extract_method_doc = concat_doc!("Try to interpret this capture as a `", capture_name, "`");
         let capture_variant_extract_method = quote! {
-            #[doc = concat!("Try to interpret this capture as a `", #capture_name_lit, "`")]
+            #[doc = #capture_variant_extract_method_doc]
             #full_capture_documentation
             #[inline]
             pub fn #capture_method_ident(&self) -> Option<#capture_node_type> {
@@ -343,8 +357,9 @@ impl<'tree> SExpSeq<'tree> {
                 }
             }
         };
+        let capture_variant_main_doc = concat_doc!("A `", capture_name, "`");
         let capture_variant_documentation = quote! {
-            #[doc = concat!("A `", #capture_name_lit, "`")]
+            #[doc = #capture_variant_main_doc]
             #full_capture_documentation
         };
         (capture_method, capture_variant_extract_method, capture_variant_ident, capture_variant_documentation, capture_node_type)

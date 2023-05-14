@@ -5,7 +5,7 @@ use join_lazy_fmt::Join;
 use proc_macro2::TokenStream;
 use quote::quote;
 use syn::{Ident, LitStr, Path};
-use crate::mk_syntax::{ident, lit_str};
+use crate::mk_syntax::{concat_doc, ident, lit_str};
 use crate::names::NodeName;
 use crate::node_types::generated_tokens::{AnonUnions, GeneratedNodeTokens};
 use crate::node_types::types::{AnonUnionId, Children, NodeModule, NodeType, NodeTypeKind};
@@ -17,7 +17,7 @@ impl NodeType {
         // Node type names are always valid identifiers
         let ident = ident!(rust_type_name, "node kind (rust type name)").unwrap();
         let kind = lit_str(sexp_name);
-        let doc = quote! { concat!("Typed node `", #sexp_name, "`") };
+        let doc = concat_doc!("Typed node `", sexp_name, "`");
 
         let definition = match &self.kind {
             NodeTypeKind::Supertype { subtypes } => {
@@ -143,13 +143,13 @@ impl NodeName {
             field.print(
                 (
                     Cow::Owned(format!("{}s", name)),
-                    quote!(concat!("Get the field `", #name_sexp, "`")),
+                    concat_doc!("Get the field `", name, "`"),
                     quote! { self.0.children_by_field_name(#name_sexp, c) },
                     false
                 ),
                 (
                     Cow::Borrowed(name),
-                    quote!(concat!("Get the field `", #name_sexp, "`")),
+                    concat_doc!("Get the field `", name, "`"),
                     quote! { self.0.child_by_field_name(#name_sexp) }
                 ),
                 None,
@@ -169,18 +169,18 @@ impl NodeName {
             children_and_fields.print(
                 (
                     Cow::Borrowed("children"),
-                    quote!("Get the node's named children"),
+                    quote! { "Get the node's named children" },
                     quote! { self.0.named_children(c) },
                     true
                 ),
                 (
                     Cow::Borrowed("child"),
-                    quote!("Get the node's only named child"),
+                    quote! { "Get the node's only named child" },
                     quote! { self.0.named_child(0) }
                 ),
                 Some((
                     Cow::Borrowed("child"),
-                    quote!("Get the node's named child #i"),
+                    quote! { "Get the node's named child #i" },
                     quote! { self.0.named_child(i) }
                 )),
                 tree_sitter,
@@ -367,9 +367,10 @@ impl NodeName {
                 let anon_union_id = mk_anon_union_id();
                 let anon_union_name = ident!(anon_union_id.name, "generated (anon union name)").unwrap();
                 if !anon_unions.contains_key(&anon_union_id) {
-                    let kind = lit_str(&format!("{{{}}}", " | ".join(names.iter().map(|n| &n.sexp_name))));
+                    let kind_str = format!("{{{}}}", " | ".join(names.iter().map(|n| &n.sexp_name)));
+                    let kind = lit_str(&kind_str);
                     let definition = NodeName::print_sum_definition(
-                        quote! { concat!("one of `", #kind, "`") },
+                        concat_doc!("one of `", kind_str, "`"),
                         &anon_union_name,
                         &kind,
                         names,
@@ -403,9 +404,9 @@ impl NodeName {
         let ident = self.rust_type_ident();
         let type_ = self.print_type();
         let method = self.rust_method_ident();
-        let sexp_name = self.sexp_lit_str();
+        let doc = concat_doc!("Returns the node if it is of kind `", self.sexp_name, "`, otherwise returns None");
         quote! {
-            #[doc = concat!("Returns the node if it is of kind `", #sexp_name, "`, otherwise returns None")]
+            #[doc = #doc]
             #[inline]
             #[allow(unused, non_snake_case)]
             pub fn #method(self) -> Option<#type_> {

@@ -186,10 +186,12 @@ pub fn generate_query_from_file(
                 use #nodes::*;
                 #anon_unions
             }
+
         }
     };
     Ok(quote! {
         #query
+
         #anon_unions
     })
 }

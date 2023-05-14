@@ -2,6 +2,18 @@ use proc_macro2::Span;
 use syn::{Ident, LitStr, parse_str};
 use crate::Error;
 
+/// Concatenate strings for documentation
+macro_rules! concat_doc {
+    ($($term:expr),*) => {{
+        let mut result = String::new();
+        $(
+            result.push_str(&$term);
+        )*
+        quote::quote! { #result }
+    }}
+}
+pub(crate) use concat_doc;
+
 /// Create an identifier
 macro_rules! ident {
     ($name:expr, $fmt:literal $(, $arg:expr)*) => {

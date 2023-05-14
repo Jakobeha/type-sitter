@@ -1,4 +1,4 @@
-#[doc = concat!("Typed node `", "_value", "`")]
+///Typed node `_value`
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub enum Value<'tree> {
@@ -12,9 +12,7 @@ pub enum Value<'tree> {
 }
 #[automatically_derived]
 impl<'tree> Value<'tree> {
-    #[doc = concat!(
-        "Returns the node if it is of kind `", "array", "`, otherwise returns None"
-    )]
+    ///Returns the node if it is of kind `array`, otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn array(self) -> Option<Array<'tree>> {
@@ -23,9 +21,7 @@ impl<'tree> Value<'tree> {
             _ => None,
         }
     }
-    #[doc = concat!(
-        "Returns the node if it is of kind `", "false", "`, otherwise returns None"
-    )]
+    ///Returns the node if it is of kind `false`, otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn r#false(self) -> Option<False<'tree>> {
@@ -34,9 +30,7 @@ impl<'tree> Value<'tree> {
             _ => None,
         }
     }
-    #[doc = concat!(
-        "Returns the node if it is of kind `", "null", "`, otherwise returns None"
-    )]
+    ///Returns the node if it is of kind `null`, otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn null(self) -> Option<Null<'tree>> {
@@ -45,9 +39,7 @@ impl<'tree> Value<'tree> {
             _ => None,
         }
     }
-    #[doc = concat!(
-        "Returns the node if it is of kind `", "number", "`, otherwise returns None"
-    )]
+    ///Returns the node if it is of kind `number`, otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn number(self) -> Option<Number<'tree>> {
@@ -56,9 +48,7 @@ impl<'tree> Value<'tree> {
             _ => None,
         }
     }
-    #[doc = concat!(
-        "Returns the node if it is of kind `", "object", "`, otherwise returns None"
-    )]
+    ///Returns the node if it is of kind `object`, otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn object(self) -> Option<Object<'tree>> {
@@ -67,9 +57,7 @@ impl<'tree> Value<'tree> {
             _ => None,
         }
     }
-    #[doc = concat!(
-        "Returns the node if it is of kind `", "string", "`, otherwise returns None"
-    )]
+    ///Returns the node if it is of kind `string`, otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn string(self) -> Option<String<'tree>> {
@@ -78,9 +66,7 @@ impl<'tree> Value<'tree> {
             _ => None,
         }
     }
-    #[doc = concat!(
-        "Returns the node if it is of kind `", "true", "`, otherwise returns None"
-    )]
+    ///Returns the node if it is of kind `true`, otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn r#true(self) -> Option<True<'tree>> {
@@ -212,7 +198,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Value<'tree> {
         }
     }
 }
-#[doc = concat!("Typed node `", "array", "`")]
+///Typed node `array`
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct Array<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
@@ -286,7 +272,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Array<'tree> {
         Self(node)
     }
 }
-#[doc = concat!("Typed node `", "document", "`")]
+///Typed node `document`
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct Document<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
@@ -361,7 +347,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Document<'tree> {
         Self(node)
     }
 }
-#[doc = concat!("Typed node `", "object", "`")]
+///Typed node `object`
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct Object<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
@@ -436,13 +422,13 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Object<'tree> {
         Self(node)
     }
 }
-#[doc = concat!("Typed node `", "pair", "`")]
+///Typed node `pair`
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct Pair<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> Pair<'tree> {
-    #[doc = concat!("Get the field `", "key", "`")]
+    ///Get the field `key`
     #[allow(dead_code)]
     #[inline]
     pub fn key(&self) -> type_sitter_lib::NodeResult<'tree, anon_unions::Number_String> {
@@ -453,7 +439,7 @@ impl<'tree> Pair<'tree> {
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
     }
-    #[doc = concat!("Get the field `", "value", "`")]
+    ///Get the field `value`
     #[allow(dead_code)]
     #[inline]
     pub fn value(&self) -> type_sitter_lib::NodeResult<'tree, Value<'tree>> {
@@ -500,7 +486,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Pair<'tree> {
         Self(node)
     }
 }
-#[doc = concat!("Typed node `", "string", "`")]
+///Typed node `string`
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct String<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
@@ -551,7 +537,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for String<'tree> {
         Self(node)
     }
 }
-#[doc = concat!("Typed node `", "string_content", "`")]
+///Typed node `string_content`
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct StringContent<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
@@ -634,7 +620,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for StringContent<'tree> {
         Self(node)
     }
 }
-#[doc = concat!("Typed node `", "comment", "`")]
+///Typed node `comment`
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct Comment<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
@@ -676,7 +662,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Comment<'tree> {
         Self(node)
     }
 }
-#[doc = concat!("Typed node `", "escape_sequence", "`")]
+///Typed node `escape_sequence`
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct EscapeSequence<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
@@ -718,7 +704,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for EscapeSequence<'tree> {
         Self(node)
     }
 }
-#[doc = concat!("Typed node `", "false", "`")]
+///Typed node `false`
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct False<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
@@ -759,7 +745,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for False<'tree> {
         Self(node)
     }
 }
-#[doc = concat!("Typed node `", "null", "`")]
+///Typed node `null`
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct Null<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
@@ -800,7 +786,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Null<'tree> {
         Self(node)
     }
 }
-#[doc = concat!("Typed node `", "number", "`")]
+///Typed node `number`
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct Number<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
@@ -842,7 +828,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Number<'tree> {
         Self(node)
     }
 }
-#[doc = concat!("Typed node `", "true", "`")]
+///Typed node `true`
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct True<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
@@ -886,7 +872,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for True<'tree> {
 pub mod symbols {
     #[allow(unused_imports)]
     use super::*;
-    #[doc = concat!("Typed node `", "\"", "`")]
+    ///Typed node `"`
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct DoubleQuote<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
@@ -930,7 +916,7 @@ pub mod symbols {
             Self(node)
         }
     }
-    #[doc = concat!("Typed node `", ",", "`")]
+    ///Typed node `,`
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct Comma<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
@@ -974,7 +960,7 @@ pub mod symbols {
             Self(node)
         }
     }
-    #[doc = concat!("Typed node `", ":", "`")]
+    ///Typed node `:`
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct Colon<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
@@ -1018,7 +1004,7 @@ pub mod symbols {
             Self(node)
         }
     }
-    #[doc = concat!("Typed node `", "[", "`")]
+    ///Typed node `[`
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct LBracket<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
@@ -1062,7 +1048,7 @@ pub mod symbols {
             Self(node)
         }
     }
-    #[doc = concat!("Typed node `", "]", "`")]
+    ///Typed node `]`
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct RBracket<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
@@ -1106,7 +1092,7 @@ pub mod symbols {
             Self(node)
         }
     }
-    #[doc = concat!("Typed node `", "{", "`")]
+    ///Typed node `{`
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct LBrace<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
@@ -1150,7 +1136,7 @@ pub mod symbols {
             Self(node)
         }
     }
-    #[doc = concat!("Typed node `", "}", "`")]
+    ///Typed node `}`
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct RBrace<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
@@ -1198,7 +1184,7 @@ pub mod symbols {
 pub mod anon_unions {
     #[allow(unused_imports)]
     use super::*;
-    #[doc = concat!("one of `", "{number | string}", "`")]
+    ///one of `{number | string}`
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum Number_String<'tree> {
@@ -1207,9 +1193,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> Number_String<'tree> {
-        #[doc = concat!(
-            "Returns the node if it is of kind `", "number", "`, otherwise returns None"
-        )]
+        ///Returns the node if it is of kind `number`, otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn number(self) -> Option<Number<'tree>> {
@@ -1218,9 +1202,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = concat!(
-            "Returns the node if it is of kind `", "string", "`, otherwise returns None"
-        )]
+        ///Returns the node if it is of kind `string`, otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn string(self) -> Option<String<'tree>> {
