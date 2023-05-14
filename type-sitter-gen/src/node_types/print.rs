@@ -65,7 +65,7 @@ impl Children {
         anon_unions: &mut AnonUnions,
     ) -> TokenStream {
         if self.multiple {
-            let ident = ident!(&children_name, "node field (rust method name)").unwrap();
+            let ident = ident!(children_name, "node field (rust method name)").unwrap();
             let nonempty_doc = if self.required {
                 quote! { #[doc = "This is guaranteed to return at least one child"] }
             } else {
@@ -90,7 +90,7 @@ impl Children {
                 }
             };
             let child_i_fn = child_i.map(|(child_i_name, child_i_doc, child_i_body)| {
-                let child_i_ident = ident!(&child_i_name, "node field (rust method name)").unwrap();
+                let child_i_ident = ident!(child_i_name, "node field (rust method name)").unwrap();
                 quote! {
                     #[doc = #child_i_doc]
                     #[allow(dead_code)]
@@ -105,7 +105,7 @@ impl Children {
                 #child_i_fn
             }
         } else {
-            let ident = ident!(&child_name, "node field (rust method name)").unwrap();
+            let ident = ident!(child_name, "node field (rust method name)").unwrap();
             let mut child_type = NodeName::print_sum_type(&self.types, tree_sitter, anon_unions);
             child_body = quote! { #child_body.map(<#child_type as TryFrom<_>>::try_from) };
             child_type = quote! { type_sitter_lib::NodeResult<'tree, #child_type> };
@@ -365,7 +365,7 @@ impl NodeName {
             // Anonymous union
             _ => {
                 let anon_union_id = mk_anon_union_id();
-                let anon_union_name = ident!(&anon_union_id.name, "generated (anon union name)").unwrap();
+                let anon_union_name = ident!(anon_union_id.name, "generated (anon union name)").unwrap();
                 if !anon_unions.contains_key(&anon_union_id) {
                     let kind = lit_str(&format!("{{{}}}", " | ".join(names.iter().map(|n| &n.sexp_name))));
                     let definition = NodeName::print_sum_definition(
@@ -451,11 +451,11 @@ impl NodeName {
     }
 
     pub(crate) fn rust_type_ident(&self) -> Ident {
-        ident!(&self.rust_type_name, "node kind (rust type name)").unwrap()
+        ident!(self.rust_type_name, "node kind (rust type name)").unwrap()
     }
 
     fn rust_method_ident(&self) -> Ident {
-        ident!(&self.rust_method_name, "node kind (rust method name)").unwrap()
+        ident!(self.rust_method_name, "node kind (rust method name)").unwrap()
     }
 
     fn sexp_lit_str(&self) -> LitStr {

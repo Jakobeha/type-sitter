@@ -13,7 +13,7 @@ pub enum Error {
     LoadDylibSymbolFailed(libloading::Error),
     LinkDylibCmdFailed(std::io::Error),
     LinkDylibFailed { exit_status: ExitStatus },
-    UnknownTSLanguageSymbolName,
+    IllegalTSLanguageSymbolName,
     ParseQuery(QueryError),
     IllegalIdentifier { type_desc: String, name: String }
 }
@@ -69,7 +69,7 @@ impl Display for Error {
             Error::LoadDylibSymbolFailed(e) => write!(f, "couldn't load tree-sitter language dylib symbol: {}", e),
             Error::LinkDylibCmdFailed(e) => write!(f, "couldn't link tree-sitter language dylib: {}", e),
             Error::LinkDylibFailed { exit_status} => write!(f, "couldn't link tree-sitter language dylib: exit code {}", exit_status),
-            Error::UnknownTSLanguageSymbolName => write!(f, "couldn't resolve tree-sitter language symbol name"),
+            Error::IllegalTSLanguageSymbolName => write!(f, "inferred language symbol name is not a valid UTF-8 string"),
             Error::ParseQuery(e) => write!(f, "Error parsing query: {}", e),
             Error::IllegalIdentifier { type_desc, name } => write!(f, "illegal identifier ({}): `{}`", type_desc, name)
         }
@@ -87,7 +87,7 @@ impl std::error::Error for Error {
             Error::LoadDylibSymbolFailed(e) => Some(e),
             Error::LinkDylibCmdFailed(e) => Some(e),
             Error::LinkDylibFailed { .. } => None,
-            Error::UnknownTSLanguageSymbolName => None,
+            Error::IllegalTSLanguageSymbolName => None,
             Error::ParseQuery(e) => Some(e),
             Error::IllegalIdentifier { .. } => None,
         }

@@ -35,7 +35,7 @@ fn dyload_new_language(path: &Path) -> Result<(Library, Language), Error> {
     let dylib_path = dylib_path(path);
     // Symbol name = language name, and it has type fn() -> Language
     //     e.g. tree-sitter-rust => { extern "C" fn tree_sitter_rust() -> Language ... }
-    let symbol_name = language_name(path);
+    let symbol_name = language_name(path)?;
     build_dylib_if_needed(path, &dylib_path)?;
     eprintln!("Dynamically loading {}...", symbol_name);
     // SAFETY: We are literally calling into arbitrary code, so...we can't rule out UB. However,

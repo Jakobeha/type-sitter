@@ -3,10 +3,11 @@ use std::ops::Index;
 use logos::Logos;
 
 /// Parsed tree-sitter query = sequence of s-expressions
+#[derive(Debug, Clone, PartialEq, Eq)]
 pub struct SExpSeq<'a>(Vec<SExp<'a>>);
 
 /// Tree-sitter query s-expression
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq)]
 pub enum SExp<'a> {
     Atom { span: Span, atom: Atom<'a> },
     Group { span: Span, group_type: GroupType, items: SExpSeq<'a> }
@@ -70,15 +71,15 @@ enum Token<'a> {
     String(&'a str),
     #[regex(r#"![a-zA-Z_][a-zA-Z0-9_\.]*"#, lex_tail)]
     Negation(&'a str),
-    #[regex(r#"@[a-zA-Z0-9_-+\.]*"#, lex_tail)]
+    #[regex(r#"@[a-zA-Z0-9_\-+\.]*"#, lex_tail)]
     Capture(&'a str),
     /// `#foo_bar`
-    #[regex("#[a-zA-Z0-9_-+\\.]*", lex_tail)]
+    #[regex(r#"#[a-zA-Z0-9_\-+\.]*"#, lex_tail)]
     Predicate(&'a str),
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub enum ParseError<'a> {
+pub enum ParseError {
     Eof { span: Span },
     BadCharacter { span: Span },
     IllegalGroupClose { span: Span, group_type: GroupType },
@@ -95,25 +96,24 @@ pub struct Span {
 
 impl<'a> SExpSeq<'a> {
     pub fn captured_pattern(&self, name: &'a str) -> Option<SExp<'a>> {
-        zip(&self, self.iter().skip(1))
+        zip(self, self.iter().skip(1))
             .find(|(_, capture)| capture.is_capture(name))
             .map(|(pattern, _)| pattern.clone())
     }
 }
 
 impl<'a> TryFrom<&'a str> for SExpSeq<'a> {
-    type Error = ParseError<'a>;
+    type Error = ParseError;
 
     fn try_from(source: &'a str) -> Result<Self, Self::Error> {
         Parser::new(source).collect()
     }
 }
 
-
 impl<'a> SExp<'a> {
     pub fn is_capture(&self, name: &'a str) -> bool {
         match self {
-            Self::Atom { atom: Atom::Capture { name: atom_name }, .. } => name == atom_name,
+            Self::Atom { atom: Atom::Capture { name: atom_name }, .. } => name == *atom_name,
             _ => false
         }
     }
@@ -162,7 +162,7 @@ impl<'a> Parser<'a> {
         Self { lexer: Lexer::new(source) }
     }
 
-    fn parse_next(&mut self) -> Result<SExp<'a>, ParseError<'a>> {
+    fn parse_next(&mut self) -> Result<SExp<'a>, ParseError> {
         let next = self.lexer.next();
         let span = Span::of(&self.lexer);
         match next {
@@ -181,7 +181,7 @@ impl<'a> Parser<'a> {
         }
     }
 
-    fn finish_parsing_group(&mut self, group_type: GroupType) -> Result<SExp<'a>, ParseError<'a>> {
+    fn finish_parsing_group(&mut self, group_type: GroupType) -> Result<SExp<'a>, ParseError> {
         let span_start = Span::of(&self.lexer).start;
         let mut items = SExpSeq::new();
         loop {
@@ -204,7 +204,7 @@ impl<'a> Parser<'a> {
 }
 
 impl<'a> Iterator for Parser<'a> {
-    type Item = Result<SExp<'a>, ParseError<'a>>;
+    type Item = Result<SExp<'a>, ParseError>;
 
     fn next(&mut self) -> Option<Self::Item> {
         match self.parse_next() {
@@ -215,14 +215,26 @@ impl<'a> Iterator for Parser<'a> {
 }
 
 impl Span {
-    pub fn of(lexer: &Lexer<'_>) -> Self {
+    fn of(lexer: &Lexer<'_>) -> Self {
         Self::from(lexer.span())
+    }
+
+    pub fn range(&self) -> std::ops::Range<usize> {
+        self.start..self.end
     }
 }
 
 impl From<logos::Span> for Span {
     fn from(value: logos::Span) -> Self {
         Span { start: value.start, end: value.end }
+    }
+}
+
+impl Index<Span> for str {
+    type Output = str;
+
+    fn index(&self, index: Span) -> &Self::Output {
+        &self[index.range()]
     }
 }
 
@@ -236,12 +248,16 @@ impl<'a> SExpSeq<'a> {
         Self(Vec::new())
     }
 
+    pub fn is_empty(&self) -> bool {
+        self.0.is_empty()
+    }
+
     pub fn push(&mut self, item: SExp<'a>) {
         self.0.push(item);
     }
 
     pub fn iter(&self) -> impl Iterator<Item=&SExp<'a>> {
-        self.iter()
+        self.0.iter()
     }
 
     pub fn get(&self, index: usize) -> Option<&SExp<'a>> {

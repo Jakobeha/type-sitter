@@ -43,7 +43,7 @@ fn run(args: Args) -> errors::Result<()> {
     // Process
     let mut had_some_failures = false;
     for item in &args.items {
-        if let Err(err) = process::process(item, &args, &tree_sitter) {
+        if let Err(err) = process::process(item, &args, args.use_wrapper, &tree_sitter) {
             eprintln!("Error processing {}: {}", item.input.display(), err);
             had_some_failures = true;
         }

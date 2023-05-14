@@ -1,14 +1,12 @@
 use std::collections::VecDeque;
-use convert_case::{Case, Casing};
 use proc_macro2::TokenStream;
-use syn::{Ident, parse_quote, Path};
+use syn::{Ident, Path};
 use quote::{format_ident, quote};
 use tree_sitter::CaptureQuantifier;
-use crate::Error;
 use crate::mk_syntax::{ident, lit_str};
 use crate::names::{NodeName, sexp_name_to_rust_names};
 use crate::node_types::generated_tokens::AnonUnions;
-use crate::node_types::types::{AnonUnionId, NodeModule};
+use crate::node_types::types::NodeModule;
 use crate::queries::sexp::{Atom, GroupType, SExp, SExpSeq};
 
 enum SExpNodeType {
@@ -35,7 +33,7 @@ impl SExpNodeType {
                 }
             }
             (Self::Union { mut names, are_all_variants_named }, Self::Single { name }) => {
-                let is_named = matches!(name.module, NodeModule::TopLevel);
+                let is_named = matches!(name.module, NodeModule::Toplevel);
                 names.push_back(name);
                 Self::Union {
                     names,
@@ -72,7 +70,7 @@ impl SExpNodeType {
         &mut self,
         capture_variant_name: &str,
         nodes: &Path,
-        use_wrapper: bool,
+        tree_sitter: &Path,
         anon_unions: &mut AnonUnions
     ) -> TokenStream {
         match self {
@@ -81,10 +79,6 @@ impl SExpNodeType {
                 quote! { #nodes::#type_ }
             }
             Self::Union { names, .. } => {
-                let tree_sitter: Path = match use_wrapper {
-                    false => parse_quote! { tree_sitter },
-                    true => parse_quote! { type_sitter_lib::tree_sitter_wrapper }
-                };
                 let names = names.make_contiguous();
                 NodeName::print_query_capture_sum_type(capture_variant_name, names, nodes, &tree_sitter, anon_unions)
             }
@@ -125,9 +119,13 @@ impl<'tree> SExpSeq<'tree> {
     /// - `disabled_captures`: List of captur indices to ignore on the query
     /// - `nodes`: Path to the crate with the typed node wrappers. Typically [type_sitter_gen::nodes]
     /// - `use_wrapper`: Whether to use `tree_sitter_wrapper` or `tree_sitter`
+    /// - `tree_sitter`: Path to the crate with the tree-sitter bindings. Typically [tree_sitter]
+    ///   if `use_wrapper` is false, or [type_sitter_lib::tree_sitter_wrapper] if `use_wrapper` is
+    ///   true
     /// - `anon_unions`: Anonymous unions for query capture type
     pub fn print(
         &self,
+        query_str: &str,
         ts_query: tree_sitter::Query,
         def_ident: &Ident,
         language_ident: &syn::Ident,
@@ -135,6 +133,7 @@ impl<'tree> SExpSeq<'tree> {
         disabled_captures: &[usize],
         nodes: &Path,
         use_wrapper: bool,
+        tree_sitter: &Path,
         anon_unions: &mut AnonUnions
     ) -> TokenStream {
         let captures = || ts_query.capture_names().iter().enumerate()
@@ -152,25 +151,26 @@ impl<'tree> SExpSeq<'tree> {
         let query_captures_ident = format_ident!("{}Captures", def_ident);
         let query_match_ident = format_ident!("{}Match", def_ident);
         let query_capture_ident = format_ident!("{}Capture", def_ident);
-        let disabled_patterns = disabled_patterns.iter().map(lit_str);
+        let disabled_patterns = disabled_patterns.iter().map(|p| lit_str(p));
         let full_query_documentation = quote! { "\n\n```sexp\n", query_str, "\n```" };
 
-        let (tree_sitter, query_matches_t) = match use_wrapper {
-            true => (quote! { type_sitter_lib::tree_sitter_wrapper }, quote! {}),
-            false => (quote! { tree_sitter }, quote! { , T })
+        let query_matches_t = match use_wrapper {
+            true => quote! {},
+            false => quote! { , T }
         };
 
         // Pattern-idx-specific matches and capture-idx-specific captures (TODO)
         // Pattern-idx-agnostic matches and capture-idx-specific captures
         // Capture-idx-agnostic captures
         let capture_methods_and_variants = captures().map(|(capture_idx, capture_name)| {
-            self.print_capture_method_and_variant(capture_idx, capture_name, &ts_query, nodes, use_wrapper, anon_unions)
+            self.print_capture_method_and_variant(capture_idx, capture_name, query_str, &ts_query, nodes, tree_sitter, anon_unions)
         }).collect::<Vec<_>>();
-        let capture_idxs = captures().map(|(capture_idx, _)| capture_idx);
-        let capture_methods = capture_methods_and_variants.iter().map(|x| &x.0);
-        let capture_variant_extract_methods = capture_methods_and_variants.iter().map(|x| &x.1);
-        let capture_variant_idents = capture_methods_and_variants.iter().map(|x| &x.2);
-        let capture_node_types = capture_methods_and_variants.iter().map(|x| &x.3);
+        let capture_idxs = captures().map(|(capture_idx, _)| capture_idx).collect::<Vec<_>>();
+        let capture_methods = capture_methods_and_variants.iter().map(|x| &x.0).collect::<Vec<_>>();
+        let capture_variant_extract_methods = capture_methods_and_variants.iter().map(|x| &x.1).collect::<Vec<_>>();
+        let capture_variant_idents = capture_methods_and_variants.iter().map(|x| &x.2).collect::<Vec<_>>();
+        let capture_variant_documentations = capture_methods_and_variants.iter().map(|x| &x.3).collect::<Vec<_>>();
+        let capture_node_types = capture_methods_and_variants.iter().map(|x| &x.4).collect::<Vec<_>>();
 
         quote! {
             static #internal_query_ident: once_cell::race::OnceBox<tree_sitter::Query> = once_cell::race::OnceBox::new();
@@ -286,11 +286,12 @@ impl<'tree> SExpSeq<'tree> {
         &self,
         capture_idx: usize,
         capture_name: &str,
+        query_str: &str,
         ts_query: &tree_sitter::Query,
         nodes: &Path,
-        use_wrapper: bool,
+        tree_sitter: &Path,
         anon_unions: &mut AnonUnions
-    ) -> (TokenStream, TokenStream, Ident, TokenStream) {
+    ) -> (TokenStream, TokenStream, Ident, TokenStream, TokenStream) {
         let capture_name_lit = lit_str(capture_name);
         let (capture_variant_name, capture_method_name) = sexp_name_to_rust_names(capture_name);
         let capture_method_ident = ident!(capture_method_name, "capture name (capture method)")
@@ -300,8 +301,8 @@ impl<'tree> SExpSeq<'tree> {
 
         let captured_sexp = self.captured_pattern(capture_name)
             .expect("capture name was found by tree-sitter but not by type-sitter");
-        let captured_sexp_lit = lit_str(&captured_sexp.to_string());
-        let capture_node_type = captured_sexp.node_type().print(&capture_variant_name, nodes, use_wrapper, anon_unions);
+        let captured_sexp_lit = lit_str(&query_str[captured_sexp.span()]);
+        let capture_node_type = captured_sexp.node_type().print(&capture_variant_name, nodes, tree_sitter, anon_unions);
 
         let capture_quantifier = ts_query.capture_quantifiers(capture_idx).iter().copied()
             .reduce(CaptureQuantifierExt::union)
@@ -341,7 +342,11 @@ impl<'tree> SExpSeq<'tree> {
                 }
             }
         };
-        (capture_method, capture_variant_extract_method, capture_variant_ident, capture_node_type)
+        let capture_variant_documentation = quote! {
+            #[doc = concat!("A `", #capture_name_lit, "`")]
+            #full_capture_documentation
+        };
+        (capture_method, capture_variant_extract_method, capture_variant_ident, capture_variant_documentation, capture_node_type)
     }
 }
 
@@ -393,14 +398,14 @@ impl<'tree> Atom<'tree> {
 
 trait CaptureQuantifierExt {
     fn union(self, other: CaptureQuantifier) -> CaptureQuantifier;
-    fn print_type(&self, inner_type: TokenStream) -> TokenStream;
+    fn print_type(&self, inner_type: &TokenStream) -> TokenStream;
     fn print_nonempty_iterator_doc(&self) -> TokenStream;
-    fn print_expr(&self, iterator: TokenStream) -> TokenStream;
+    fn print_expr(&self, iterator: &TokenStream) -> TokenStream;
 }
 
 impl CaptureQuantifierExt for CaptureQuantifier {
     fn union(self, rhs: CaptureQuantifier) -> CaptureQuantifier {
-        match (lhs, rhs) {
+        match (self, rhs) {
             (CaptureQuantifier::Zero, CaptureQuantifier::Zero) => CaptureQuantifier::Zero,
             (CaptureQuantifier::Zero, CaptureQuantifier::ZeroOrOne) => CaptureQuantifier::ZeroOrOne,
             (CaptureQuantifier::Zero, CaptureQuantifier::ZeroOrMore) => CaptureQuantifier::ZeroOrMore,
@@ -450,7 +455,7 @@ impl CaptureQuantifierExt for CaptureQuantifier {
     }
 
     fn print_expr(&self, iterator: &TokenStream) -> TokenStream {
-        let mut iterator = quote! {{ #iterator }};
+        let iterator = quote! {{ #iterator }};
         match self {
             CaptureQuantifier::Zero => quote! { debug_assert!(#iterator.next().is_none(), "zero quantifier returned an item") },
             CaptureQuantifier::ZeroOrOne => quote! { #iterator.next() },

@@ -15,7 +15,6 @@ use tree_sitter::Query;
 use crate::Error;
 use crate::mk_syntax::ident;
 use crate::queries::dyload_language::dyload_language;
-use crate::queries::print::print_query;
 use crate::queries::sexp::SExpSeq;
 use crate::node_types::generated_tokens::AnonUnions;
 
@@ -28,24 +27,32 @@ use crate::node_types::generated_tokens::AnonUnions;
 ///   dynamically loaded
 /// - `nodes`: Path to the crate with the typed node wrappers. Typically [type_sitter_gen::nodes]
 /// - `use_wrapper`: Whether to use `tree_sitter_wrapper` or `tree_sitter`
+/// - `tree_sitter`: Path to the crate with the tree-sitter API. Typically [tree_sitter] if
+///    `use_wrapper` is false, or [type_sitter_gen::tree_sitter_wrapper] if `use_wrapper` is true
 ///
 /// # Example
 ///
 /// ```no_run
-/// use type_sitter_gen::generate_queries;
+/// use type_sitter_gen::{generate_queries, tree_sitter};
 ///
 /// fn main() {
-///     use type_sitter_gen::nodes;
-///     println!("{}", generate_queries("vendor/tree-sitter-typescript/queries/tags.scm", "vendor/tree-sitter-typescript", &nodes(), false).unwrap());
-///     println!("{}", generate_queries("vendor/tree-sitter-rust/queries", "vendor/tree-sitter-rust", &nodes(), false).unwrap());
+///     use type_sitter_gen::{nodes, tree_sitter};
+///     println!("{}", generate_queries("vendor/tree-sitter-typescript/queries/tags.scm", "vendor/tree-sitter-typescript", &nodes(), false, &tree_sitter()).unwrap());
+///     println!("{}", generate_queries("vendor/tree-sitter-rust/queries", "vendor/tree-sitter-rust", &nodes(), false, &tree_sitter()).unwrap());
 /// }
 /// ```
-pub fn generate_queries(path: impl AsRef<Path>, language_path: impl AsRef<Path>, nodes: &syn::Path, use_wrapper: bool) -> Result<TokenStream, Error> {
+pub fn generate_queries(
+    path: impl AsRef<Path>,
+    language_path: impl AsRef<Path>,
+    nodes: &syn::Path,
+    use_wrapper: bool,
+    tree_sitter: &syn::Path
+) -> Result<TokenStream, Error> {
     let path = path.as_ref();
     if path.is_dir() {
-        generate_queries_from_dir(path, language_path, nodes, use_wrapper)
+        generate_queries_from_dir(path, language_path, nodes, use_wrapper, tree_sitter)
     } else {
-        generate_query_from_file(path, language_path, &[], &[], nodes, use_wrapper)
+        generate_query_from_file(path, language_path, &[], &[], nodes, use_wrapper, tree_sitter)
     }
 }
 
@@ -58,18 +65,26 @@ pub fn generate_queries(path: impl AsRef<Path>, language_path: impl AsRef<Path>,
 ///   dynamically loaded
 /// - `nodes`: Path to the crate with the typed node wrappers. Typically [type_sitter_gen::nodes]
 /// - `use_wrapper`: Whether to use `tree_sitter_wrapper` or `tree_sitter`
+/// - `tree_sitter`: Path to the crate with the tree-sitter API. Typically [tree_sitter] if
+///   `use_wrapper` is false, or [type_sitter_gen::tree_sitter_wrapper] if `use_wrapper` is true
 ///
 /// # Example
 ///
 /// ```no_run
-/// use type_sitter_gen::generate_queries_from_dir;
+/// use type_sitter_gen::{generate_queries_from_dir, tree_sitter};
 ///
 /// fn main() {
 ///     use type_sitter_gen::nodes;
-///     println!("{}", generate_queries_from_dir("vendor/tree-sitter-rust/queries", "vendor/tree-sitter-rust", &nodes(), false).unwrap());
+///     println!("{}", generate_queries_from_dir("vendor/tree-sitter-rust/queries", "vendor/tree-sitter-rust", &nodes(), false, &tree_sitter()).unwrap());
 /// }
 /// ```
-pub fn generate_queries_from_dir(path: impl AsRef<Path>, language_path: impl AsRef<Path>, nodes: &syn::Path, use_wrapper: bool) -> Result<TokenStream, Error> {
+pub fn generate_queries_from_dir(
+    path: impl AsRef<Path>,
+    language_path: impl AsRef<Path>,
+    nodes: &syn::Path,
+    use_wrapper: bool,
+    tree_sitter: &syn::Path,
+) -> Result<TokenStream, Error> {
     let path = path.as_ref();
     let language_path = language_path.as_ref();
     let mut queries = TokenStream::new();
@@ -79,11 +94,11 @@ pub fn generate_queries_from_dir(path: impl AsRef<Path>, language_path: impl AsR
         let entry_is_dir = entry.metadata()?.is_dir();
         if entry_is_dir || has_extension(&entry_path, "scm") {
             let entry_name = entry_path.file_stem().unwrap().to_string_lossy();
-            let entry_code = generate_queries(entry_path, language_path, nodes, use_wrapper)?;
+            let entry_code = generate_queries(&entry_path, language_path, nodes, use_wrapper, tree_sitter)?;
             queries.extend(match entry_is_dir {
                 false => entry_code,
                 true => {
-                    let entry_ident = ident!(&entry_name, "query module name (subfolder name)")?;
+                    let entry_ident = ident!(entry_name, "query module name (subfolder name)")?;
                     quote! {
                         pub mod #entry_ident {
                             #entry_code
@@ -107,15 +122,17 @@ pub fn generate_queries_from_dir(path: impl AsRef<Path>, language_path: impl AsR
 /// - `disabled_captures`: Captures to disable. See [Query::disable_capture].
 /// - `nodes`: Path to the crate with the typed node wrappers. Typically [type_sitter_gen::nodes]
 /// - `use_wrapper`: Whether to use `tree_sitter_wrapper` or `tree_sitter`
+/// - `tree_sitter`: Path to the crate with the tree-sitter API. Typically [tree_sitter] if
+///    `use_wrapper` is false, or [type_sitter_gen::tree_sitter_wrapper] if `use_wrapper` is true
 ///
 /// # Example
 ///
 /// ```no_run
-/// use type_sitter_gen::generate_query_from_file;
+/// use type_sitter_gen::{generate_query_from_file, tree_sitter};
 ///
 /// fn main() {
 ///     use type_sitter_gen::nodes;
-///     println!("{}", generate_query_from_file("vendor/tree-sitter-typescript/queries/tags.scm", "vendor/tree-sitter-typescript", &[], &[], &nodes(), false).unwrap());
+///     println!("{}", generate_query_from_file("vendor/tree-sitter-typescript/queries/tags.scm", "vendor/tree-sitter-typescript", &[], &[], &nodes(), false, &tree_sitter()).unwrap());
 /// }
 /// ```
 pub fn generate_query_from_file(
@@ -124,23 +141,25 @@ pub fn generate_query_from_file(
     disabled_patterns: &[&str],
     disabled_captures: &[usize],
     nodes: &syn::Path,
-    use_wrapper: bool
+    use_wrapper: bool,
+    tree_sitter: &syn::Path,
 ) -> Result<TokenStream, Error> {
     let path = path.as_ref();
     let language_path = language_path.as_ref();
-    let language_name = language_name(language_path);
+    let language_name = language_name(language_path)?;
     let language_ident = ident!(language_name, "language name")?;
     let language = dyload_language(language_path)?;
     let def_ident = ident!(
-        path.file_name().and_then(|f| f.to_str()).unwrap_or("�").to_case(Case::Pascal),
+        path.file_stem().and_then(|f| f.to_str()).unwrap_or("�").to_case(Case::Pascal),
         "query name (filename)"
     )?;
     let query_str = read_to_string(path)?;
     let ts_query = Query::new(language, &query_str)?;
-    let query = SExpSeq::try_from(&query_str)
+    let query = SExpSeq::try_from(query_str.as_str())
         .expect("query was already parsed by tree-sitter but can't be parsed by type-sitter");
     let mut anon_unions = AnonUnions::new();
     let query = query.print(
+        &query_str,
         ts_query,
         &def_ident,
         &language_ident,
@@ -148,6 +167,7 @@ pub fn generate_query_from_file(
         disabled_captures,
         nodes,
         use_wrapper,
+        tree_sitter,
         &mut anon_unions,
     );
     let anon_unions = anon_unions.into_values().collect::<TokenStream>();
@@ -168,11 +188,11 @@ pub fn generate_query_from_file(
     })
 }
 
-fn language_name(path: &Path) -> String {
-    path.file_name()
+fn language_name(path: &Path) -> Result<String, Error> {
+    Ok(path.file_name()
         .and_then(|s| s.to_str())
-        .ok_or(Error::UnknownTSLanguageSymbolName)?
-        .replace("-", "_")
+        .ok_or(Error::IllegalTSLanguageSymbolName)?
+        .replace("-", "_"))
 }
 
 /// Check if the path has the given extension

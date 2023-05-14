@@ -92,7 +92,7 @@ impl From<_NodeName> for NodeName {
 /// Convert an s-expression to rust type and method identifier names
 pub fn sexp_name_to_rust_names(sexp_name: &str) -> (String, String) {
     let rust_type_name = make_valid(&sexp_name.from_case(Case::Snake).to_case(Case::Pascal));
-    let rust_method_name = make_valid2(sexp_name.from_case(Case::Pascal).to_case(Case::Snake));
+    let rust_method_name = make_valid2(rust_type_name.from_case(Case::Pascal).to_case(Case::Snake));
     (rust_type_name, rust_method_name)
 }
 

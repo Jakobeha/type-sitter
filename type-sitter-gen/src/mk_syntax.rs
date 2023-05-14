@@ -5,7 +5,7 @@ use crate::Error;
 /// Create an identifier
 macro_rules! ident {
     ($name:expr, $fmt:literal $(, $arg:expr)*) => {
-        $crate::mk_syntax::_ident($name, || format!($fmt $(, $arg)*))
+        $crate::mk_syntax::_ident(&$name, || format!($fmt $(, $arg)*))
     };
 }
 pub(crate) use ident;
