@@ -1,4 +1,4 @@
-#[doc = "Typed node `_declaration_statement`"]
+#[doc = "Typed node `_declaration_statement`\n\nThis node type is a supertype of:\n- `associated_type` ([AssociatedType])\n- `attribute_item` ([AttributeItem])\n- `const_item` ([ConstItem])\n- `empty_statement` ([EmptyStatement])\n- `enum_item` ([EnumItem])\n- `extern_crate_declaration` ([ExternCrateDeclaration])\n- `foreign_mod_item` ([ForeignModItem])\n- `function_item` ([FunctionItem])\n- `function_signature_item` ([FunctionSignatureItem])\n- `impl_item` ([ImplItem])\n- `inner_attribute_item` ([InnerAttributeItem])\n- `let_declaration` ([LetDeclaration])\n- `macro_definition` ([MacroDefinition])\n- `macro_invocation` ([MacroInvocation])\n- `mod_item` ([ModItem])\n- `static_item` ([StaticItem])\n- `struct_item` ([StructItem])\n- `trait_item` ([TraitItem])\n- `type_item` ([TypeItem])\n- `union_item` ([UnionItem])\n- `use_declaration` ([UseDeclaration])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub enum DeclarationStatement<'tree> {
@@ -26,7 +26,7 @@ pub enum DeclarationStatement<'tree> {
 }
 #[automatically_derived]
 impl<'tree> DeclarationStatement<'tree> {
-    #[doc = "Returns the node if it is of kind `associated_type`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `associated_type` ([AssociatedType]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn associated_type(self) -> Option<AssociatedType<'tree>> {
@@ -35,7 +35,7 @@ impl<'tree> DeclarationStatement<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `attribute_item`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `attribute_item` ([AttributeItem]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn attribute_item(self) -> Option<AttributeItem<'tree>> {
@@ -44,7 +44,7 @@ impl<'tree> DeclarationStatement<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `const_item`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `const_item` ([ConstItem]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn const_item(self) -> Option<ConstItem<'tree>> {
@@ -53,7 +53,7 @@ impl<'tree> DeclarationStatement<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `empty_statement`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `empty_statement` ([EmptyStatement]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn empty_statement(self) -> Option<EmptyStatement<'tree>> {
@@ -62,7 +62,7 @@ impl<'tree> DeclarationStatement<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `enum_item`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `enum_item` ([EnumItem]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn enum_item(self) -> Option<EnumItem<'tree>> {
@@ -71,7 +71,7 @@ impl<'tree> DeclarationStatement<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `extern_crate_declaration`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `extern_crate_declaration` ([ExternCrateDeclaration]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn extern_crate_declaration(self) -> Option<ExternCrateDeclaration<'tree>> {
@@ -80,7 +80,7 @@ impl<'tree> DeclarationStatement<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `foreign_mod_item`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `foreign_mod_item` ([ForeignModItem]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn foreign_mod_item(self) -> Option<ForeignModItem<'tree>> {
@@ -89,7 +89,7 @@ impl<'tree> DeclarationStatement<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `function_item`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `function_item` ([FunctionItem]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn function_item(self) -> Option<FunctionItem<'tree>> {
@@ -98,7 +98,7 @@ impl<'tree> DeclarationStatement<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `function_signature_item`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `function_signature_item` ([FunctionSignatureItem]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn function_signature_item(self) -> Option<FunctionSignatureItem<'tree>> {
@@ -107,7 +107,7 @@ impl<'tree> DeclarationStatement<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `impl_item`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `impl_item` ([ImplItem]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn impl_item(self) -> Option<ImplItem<'tree>> {
@@ -116,7 +116,7 @@ impl<'tree> DeclarationStatement<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `inner_attribute_item`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `inner_attribute_item` ([InnerAttributeItem]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn inner_attribute_item(self) -> Option<InnerAttributeItem<'tree>> {
@@ -125,7 +125,7 @@ impl<'tree> DeclarationStatement<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `let_declaration`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `let_declaration` ([LetDeclaration]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn let_declaration(self) -> Option<LetDeclaration<'tree>> {
@@ -134,7 +134,7 @@ impl<'tree> DeclarationStatement<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `macro_definition`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `macro_definition` ([MacroDefinition]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn macro_definition(self) -> Option<MacroDefinition<'tree>> {
@@ -143,7 +143,7 @@ impl<'tree> DeclarationStatement<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `macro_invocation`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `macro_invocation` ([MacroInvocation]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn macro_invocation(self) -> Option<MacroInvocation<'tree>> {
@@ -152,7 +152,7 @@ impl<'tree> DeclarationStatement<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `mod_item`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `mod_item` ([ModItem]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn mod_item(self) -> Option<ModItem<'tree>> {
@@ -161,7 +161,7 @@ impl<'tree> DeclarationStatement<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `static_item`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `static_item` ([StaticItem]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn static_item(self) -> Option<StaticItem<'tree>> {
@@ -170,7 +170,7 @@ impl<'tree> DeclarationStatement<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `struct_item`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `struct_item` ([StructItem]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn struct_item(self) -> Option<StructItem<'tree>> {
@@ -179,7 +179,7 @@ impl<'tree> DeclarationStatement<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `trait_item`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `trait_item` ([TraitItem]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn trait_item(self) -> Option<TraitItem<'tree>> {
@@ -188,7 +188,7 @@ impl<'tree> DeclarationStatement<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `type_item`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `type_item` ([TypeItem]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn type_item(self) -> Option<TypeItem<'tree>> {
@@ -197,7 +197,7 @@ impl<'tree> DeclarationStatement<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `union_item`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `union_item` ([UnionItem]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn union_item(self) -> Option<UnionItem<'tree>> {
@@ -206,7 +206,7 @@ impl<'tree> DeclarationStatement<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `use_declaration`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `use_declaration` ([UseDeclaration]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn use_declaration(self) -> Option<UseDeclaration<'tree>> {
@@ -418,7 +418,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for DeclarationStatement<'tree> {
         }
     }
 }
-#[doc = "Typed node `_expression`"]
+#[doc = "Typed node `_expression`\n\nThis node type is a supertype of:\n- `_literal` ([Literal])\n- `array_expression` ([ArrayExpression])\n- `assignment_expression` ([AssignmentExpression])\n- `async_block` ([AsyncBlock])\n- `await_expression` ([AwaitExpression])\n- `binary_expression` ([BinaryExpression])\n- `block` ([Block])\n- `break_expression` ([BreakExpression])\n- `call_expression` ([CallExpression])\n- `closure_expression` ([ClosureExpression])\n- `compound_assignment_expr` ([CompoundAssignmentExpr])\n- `const_block` ([ConstBlock])\n- `continue_expression` ([ContinueExpression])\n- `field_expression` ([FieldExpression])\n- `for_expression` ([ForExpression])\n- `generic_function` ([GenericFunction])\n- `identifier` ([Identifier])\n- `if_expression` ([IfExpression])\n- `index_expression` ([IndexExpression])\n- `loop_expression` ([LoopExpression])\n- `macro_invocation` ([MacroInvocation])\n- `match_expression` ([MatchExpression])\n- `metavariable` ([Metavariable])\n- `parenthesized_expression` ([ParenthesizedExpression])\n- `range_expression` ([RangeExpression])\n- `reference_expression` ([ReferenceExpression])\n- `return_expression` ([ReturnExpression])\n- `scoped_identifier` ([ScopedIdentifier])\n- `self` ([_Self])\n- `struct_expression` ([StructExpression])\n- `try_expression` ([TryExpression])\n- `tuple_expression` ([TupleExpression])\n- `type_cast_expression` ([TypeCastExpression])\n- `unary_expression` ([UnaryExpression])\n- `unit_expression` ([UnitExpression])\n- `unsafe_block` ([UnsafeBlock])\n- `while_expression` ([WhileExpression])\n- `yield_expression` ([YieldExpression])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub enum Expression<'tree> {
@@ -463,7 +463,7 @@ pub enum Expression<'tree> {
 }
 #[automatically_derived]
 impl<'tree> Expression<'tree> {
-    #[doc = "Returns the node if it is of kind `_literal`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `_literal` ([Literal]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn literal(self) -> Option<Literal<'tree>> {
@@ -472,7 +472,7 @@ impl<'tree> Expression<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `array_expression`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `array_expression` ([ArrayExpression]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn array_expression(self) -> Option<ArrayExpression<'tree>> {
@@ -481,7 +481,7 @@ impl<'tree> Expression<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `assignment_expression`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `assignment_expression` ([AssignmentExpression]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn assignment_expression(self) -> Option<AssignmentExpression<'tree>> {
@@ -490,7 +490,7 @@ impl<'tree> Expression<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `async_block`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `async_block` ([AsyncBlock]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn async_block(self) -> Option<AsyncBlock<'tree>> {
@@ -499,7 +499,7 @@ impl<'tree> Expression<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `await_expression`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `await_expression` ([AwaitExpression]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn await_expression(self) -> Option<AwaitExpression<'tree>> {
@@ -508,7 +508,7 @@ impl<'tree> Expression<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `binary_expression`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `binary_expression` ([BinaryExpression]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn binary_expression(self) -> Option<BinaryExpression<'tree>> {
@@ -517,7 +517,7 @@ impl<'tree> Expression<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `block`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `block` ([Block]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn block(self) -> Option<Block<'tree>> {
@@ -526,7 +526,7 @@ impl<'tree> Expression<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `break_expression`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `break_expression` ([BreakExpression]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn break_expression(self) -> Option<BreakExpression<'tree>> {
@@ -535,7 +535,7 @@ impl<'tree> Expression<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `call_expression`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `call_expression` ([CallExpression]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn call_expression(self) -> Option<CallExpression<'tree>> {
@@ -544,7 +544,7 @@ impl<'tree> Expression<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `closure_expression`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `closure_expression` ([ClosureExpression]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn closure_expression(self) -> Option<ClosureExpression<'tree>> {
@@ -553,7 +553,7 @@ impl<'tree> Expression<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `compound_assignment_expr`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `compound_assignment_expr` ([CompoundAssignmentExpr]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn compound_assignment_expr(self) -> Option<CompoundAssignmentExpr<'tree>> {
@@ -562,7 +562,7 @@ impl<'tree> Expression<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `const_block`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `const_block` ([ConstBlock]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn const_block(self) -> Option<ConstBlock<'tree>> {
@@ -571,7 +571,7 @@ impl<'tree> Expression<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `continue_expression`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `continue_expression` ([ContinueExpression]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn continue_expression(self) -> Option<ContinueExpression<'tree>> {
@@ -580,7 +580,7 @@ impl<'tree> Expression<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `field_expression`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `field_expression` ([FieldExpression]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn field_expression(self) -> Option<FieldExpression<'tree>> {
@@ -589,7 +589,7 @@ impl<'tree> Expression<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `for_expression`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `for_expression` ([ForExpression]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn for_expression(self) -> Option<ForExpression<'tree>> {
@@ -598,7 +598,7 @@ impl<'tree> Expression<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `generic_function`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `generic_function` ([GenericFunction]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn generic_function(self) -> Option<GenericFunction<'tree>> {
@@ -607,7 +607,7 @@ impl<'tree> Expression<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `identifier`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `identifier` ([Identifier]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn identifier(self) -> Option<Identifier<'tree>> {
@@ -616,7 +616,7 @@ impl<'tree> Expression<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `if_expression`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `if_expression` ([IfExpression]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn if_expression(self) -> Option<IfExpression<'tree>> {
@@ -625,7 +625,7 @@ impl<'tree> Expression<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `index_expression`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `index_expression` ([IndexExpression]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn index_expression(self) -> Option<IndexExpression<'tree>> {
@@ -634,7 +634,7 @@ impl<'tree> Expression<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `loop_expression`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `loop_expression` ([LoopExpression]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn loop_expression(self) -> Option<LoopExpression<'tree>> {
@@ -643,7 +643,7 @@ impl<'tree> Expression<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `macro_invocation`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `macro_invocation` ([MacroInvocation]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn macro_invocation(self) -> Option<MacroInvocation<'tree>> {
@@ -652,7 +652,7 @@ impl<'tree> Expression<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `match_expression`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `match_expression` ([MatchExpression]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn match_expression(self) -> Option<MatchExpression<'tree>> {
@@ -661,7 +661,7 @@ impl<'tree> Expression<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `metavariable`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `metavariable` ([Metavariable]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn metavariable(self) -> Option<Metavariable<'tree>> {
@@ -670,7 +670,7 @@ impl<'tree> Expression<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `parenthesized_expression`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `parenthesized_expression` ([ParenthesizedExpression]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn parenthesized_expression(self) -> Option<ParenthesizedExpression<'tree>> {
@@ -679,7 +679,7 @@ impl<'tree> Expression<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `range_expression`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `range_expression` ([RangeExpression]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn range_expression(self) -> Option<RangeExpression<'tree>> {
@@ -688,7 +688,7 @@ impl<'tree> Expression<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `reference_expression`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `reference_expression` ([ReferenceExpression]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn reference_expression(self) -> Option<ReferenceExpression<'tree>> {
@@ -697,7 +697,7 @@ impl<'tree> Expression<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `return_expression`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `return_expression` ([ReturnExpression]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn return_expression(self) -> Option<ReturnExpression<'tree>> {
@@ -706,7 +706,7 @@ impl<'tree> Expression<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `scoped_identifier`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `scoped_identifier` ([ScopedIdentifier]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn scoped_identifier(self) -> Option<ScopedIdentifier<'tree>> {
@@ -715,7 +715,7 @@ impl<'tree> Expression<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `self`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `self` ([_Self]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn _self(self) -> Option<_Self<'tree>> {
@@ -724,7 +724,7 @@ impl<'tree> Expression<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `struct_expression`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `struct_expression` ([StructExpression]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn struct_expression(self) -> Option<StructExpression<'tree>> {
@@ -733,7 +733,7 @@ impl<'tree> Expression<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `try_expression`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `try_expression` ([TryExpression]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn try_expression(self) -> Option<TryExpression<'tree>> {
@@ -742,7 +742,7 @@ impl<'tree> Expression<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `tuple_expression`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `tuple_expression` ([TupleExpression]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn tuple_expression(self) -> Option<TupleExpression<'tree>> {
@@ -751,7 +751,7 @@ impl<'tree> Expression<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `type_cast_expression`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `type_cast_expression` ([TypeCastExpression]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn type_cast_expression(self) -> Option<TypeCastExpression<'tree>> {
@@ -760,7 +760,7 @@ impl<'tree> Expression<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `unary_expression`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `unary_expression` ([UnaryExpression]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn unary_expression(self) -> Option<UnaryExpression<'tree>> {
@@ -769,7 +769,7 @@ impl<'tree> Expression<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `unit_expression`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `unit_expression` ([UnitExpression]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn unit_expression(self) -> Option<UnitExpression<'tree>> {
@@ -778,7 +778,7 @@ impl<'tree> Expression<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `unsafe_block`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `unsafe_block` ([UnsafeBlock]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn unsafe_block(self) -> Option<UnsafeBlock<'tree>> {
@@ -787,7 +787,7 @@ impl<'tree> Expression<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `while_expression`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `while_expression` ([WhileExpression]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn while_expression(self) -> Option<WhileExpression<'tree>> {
@@ -796,7 +796,7 @@ impl<'tree> Expression<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `yield_expression`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `yield_expression` ([YieldExpression]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn yield_expression(self) -> Option<YieldExpression<'tree>> {
@@ -1064,7 +1064,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Expression<'tree> {
         }
     }
 }
-#[doc = "Typed node `_literal`"]
+#[doc = "Typed node `_literal`\n\nThis node type is a supertype of:\n- `boolean_literal` ([BooleanLiteral])\n- `char_literal` ([CharLiteral])\n- `float_literal` ([FloatLiteral])\n- `integer_literal` ([IntegerLiteral])\n- `raw_string_literal` ([RawStringLiteral])\n- `string_literal` ([StringLiteral])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub enum Literal<'tree> {
@@ -1077,7 +1077,7 @@ pub enum Literal<'tree> {
 }
 #[automatically_derived]
 impl<'tree> Literal<'tree> {
-    #[doc = "Returns the node if it is of kind `boolean_literal`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `boolean_literal` ([BooleanLiteral]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn boolean_literal(self) -> Option<BooleanLiteral<'tree>> {
@@ -1086,7 +1086,7 @@ impl<'tree> Literal<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `char_literal`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `char_literal` ([CharLiteral]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn char_literal(self) -> Option<CharLiteral<'tree>> {
@@ -1095,7 +1095,7 @@ impl<'tree> Literal<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `float_literal`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `float_literal` ([FloatLiteral]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn float_literal(self) -> Option<FloatLiteral<'tree>> {
@@ -1104,7 +1104,7 @@ impl<'tree> Literal<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `integer_literal`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `integer_literal` ([IntegerLiteral]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn integer_literal(self) -> Option<IntegerLiteral<'tree>> {
@@ -1113,7 +1113,7 @@ impl<'tree> Literal<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `raw_string_literal`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `raw_string_literal` ([RawStringLiteral]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn raw_string_literal(self) -> Option<RawStringLiteral<'tree>> {
@@ -1122,7 +1122,7 @@ impl<'tree> Literal<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `string_literal`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `string_literal` ([StringLiteral]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn string_literal(self) -> Option<StringLiteral<'tree>> {
@@ -1212,7 +1212,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Literal<'tree> {
         }
     }
 }
-#[doc = "Typed node `_literal_pattern`"]
+#[doc = "Typed node `_literal_pattern`\n\nThis node type is a supertype of:\n- `boolean_literal` ([BooleanLiteral])\n- `char_literal` ([CharLiteral])\n- `float_literal` ([FloatLiteral])\n- `integer_literal` ([IntegerLiteral])\n- `negative_literal` ([NegativeLiteral])\n- `raw_string_literal` ([RawStringLiteral])\n- `string_literal` ([StringLiteral])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub enum LiteralPattern<'tree> {
@@ -1226,7 +1226,7 @@ pub enum LiteralPattern<'tree> {
 }
 #[automatically_derived]
 impl<'tree> LiteralPattern<'tree> {
-    #[doc = "Returns the node if it is of kind `boolean_literal`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `boolean_literal` ([BooleanLiteral]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn boolean_literal(self) -> Option<BooleanLiteral<'tree>> {
@@ -1235,7 +1235,7 @@ impl<'tree> LiteralPattern<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `char_literal`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `char_literal` ([CharLiteral]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn char_literal(self) -> Option<CharLiteral<'tree>> {
@@ -1244,7 +1244,7 @@ impl<'tree> LiteralPattern<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `float_literal`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `float_literal` ([FloatLiteral]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn float_literal(self) -> Option<FloatLiteral<'tree>> {
@@ -1253,7 +1253,7 @@ impl<'tree> LiteralPattern<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `integer_literal`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `integer_literal` ([IntegerLiteral]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn integer_literal(self) -> Option<IntegerLiteral<'tree>> {
@@ -1262,7 +1262,7 @@ impl<'tree> LiteralPattern<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `negative_literal`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `negative_literal` ([NegativeLiteral]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn negative_literal(self) -> Option<NegativeLiteral<'tree>> {
@@ -1271,7 +1271,7 @@ impl<'tree> LiteralPattern<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `raw_string_literal`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `raw_string_literal` ([RawStringLiteral]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn raw_string_literal(self) -> Option<RawStringLiteral<'tree>> {
@@ -1280,7 +1280,7 @@ impl<'tree> LiteralPattern<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `string_literal`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `string_literal` ([StringLiteral]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn string_literal(self) -> Option<StringLiteral<'tree>> {
@@ -1378,7 +1378,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for LiteralPattern<'tree> {
         }
     }
 }
-#[doc = "Typed node `_pattern`"]
+#[doc = "Typed node `_pattern`\n\nThis node type is a supertype of:\n- `_` ([symbols::__])\n- `_literal_pattern` ([LiteralPattern])\n- `captured_pattern` ([CapturedPattern])\n- `const_block` ([ConstBlock])\n- `identifier` ([Identifier])\n- `macro_invocation` ([MacroInvocation])\n- `mut_pattern` ([MutPattern])\n- `or_pattern` ([OrPattern])\n- `range_pattern` ([RangePattern])\n- `ref_pattern` ([RefPattern])\n- `reference_pattern` ([ReferencePattern])\n- `remaining_field_pattern` ([RemainingFieldPattern])\n- `scoped_identifier` ([ScopedIdentifier])\n- `slice_pattern` ([SlicePattern])\n- `struct_pattern` ([StructPattern])\n- `tuple_pattern` ([TuplePattern])\n- `tuple_struct_pattern` ([TupleStructPattern])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub enum Pattern<'tree> {
@@ -1402,7 +1402,7 @@ pub enum Pattern<'tree> {
 }
 #[automatically_derived]
 impl<'tree> Pattern<'tree> {
-    #[doc = "Returns the node if it is of kind `_`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `_` ([symbols::__]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn __(self) -> Option<symbols::__<'tree>> {
@@ -1411,7 +1411,7 @@ impl<'tree> Pattern<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `_literal_pattern`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `_literal_pattern` ([LiteralPattern]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn literal_pattern(self) -> Option<LiteralPattern<'tree>> {
@@ -1420,7 +1420,7 @@ impl<'tree> Pattern<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `captured_pattern`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `captured_pattern` ([CapturedPattern]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn captured_pattern(self) -> Option<CapturedPattern<'tree>> {
@@ -1429,7 +1429,7 @@ impl<'tree> Pattern<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `const_block`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `const_block` ([ConstBlock]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn const_block(self) -> Option<ConstBlock<'tree>> {
@@ -1438,7 +1438,7 @@ impl<'tree> Pattern<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `identifier`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `identifier` ([Identifier]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn identifier(self) -> Option<Identifier<'tree>> {
@@ -1447,7 +1447,7 @@ impl<'tree> Pattern<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `macro_invocation`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `macro_invocation` ([MacroInvocation]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn macro_invocation(self) -> Option<MacroInvocation<'tree>> {
@@ -1456,7 +1456,7 @@ impl<'tree> Pattern<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `mut_pattern`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `mut_pattern` ([MutPattern]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn mut_pattern(self) -> Option<MutPattern<'tree>> {
@@ -1465,7 +1465,7 @@ impl<'tree> Pattern<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `or_pattern`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `or_pattern` ([OrPattern]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn or_pattern(self) -> Option<OrPattern<'tree>> {
@@ -1474,7 +1474,7 @@ impl<'tree> Pattern<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `range_pattern`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `range_pattern` ([RangePattern]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn range_pattern(self) -> Option<RangePattern<'tree>> {
@@ -1483,7 +1483,7 @@ impl<'tree> Pattern<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `ref_pattern`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `ref_pattern` ([RefPattern]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn ref_pattern(self) -> Option<RefPattern<'tree>> {
@@ -1492,7 +1492,7 @@ impl<'tree> Pattern<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `reference_pattern`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `reference_pattern` ([ReferencePattern]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn reference_pattern(self) -> Option<ReferencePattern<'tree>> {
@@ -1501,7 +1501,7 @@ impl<'tree> Pattern<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `remaining_field_pattern`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `remaining_field_pattern` ([RemainingFieldPattern]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn remaining_field_pattern(self) -> Option<RemainingFieldPattern<'tree>> {
@@ -1510,7 +1510,7 @@ impl<'tree> Pattern<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `scoped_identifier`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `scoped_identifier` ([ScopedIdentifier]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn scoped_identifier(self) -> Option<ScopedIdentifier<'tree>> {
@@ -1519,7 +1519,7 @@ impl<'tree> Pattern<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `slice_pattern`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `slice_pattern` ([SlicePattern]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn slice_pattern(self) -> Option<SlicePattern<'tree>> {
@@ -1528,7 +1528,7 @@ impl<'tree> Pattern<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `struct_pattern`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `struct_pattern` ([StructPattern]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn struct_pattern(self) -> Option<StructPattern<'tree>> {
@@ -1537,7 +1537,7 @@ impl<'tree> Pattern<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `tuple_pattern`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `tuple_pattern` ([TuplePattern]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn tuple_pattern(self) -> Option<TuplePattern<'tree>> {
@@ -1546,7 +1546,7 @@ impl<'tree> Pattern<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `tuple_struct_pattern`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `tuple_struct_pattern` ([TupleStructPattern]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn tuple_struct_pattern(self) -> Option<TupleStructPattern<'tree>> {
@@ -1688,7 +1688,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Pattern<'tree> {
         }
     }
 }
-#[doc = "Typed node `_type`"]
+#[doc = "Typed node `_type`\n\nThis node type is a supertype of:\n- `abstract_type` ([AbstractType])\n- `array_type` ([ArrayType])\n- `bounded_type` ([BoundedType])\n- `dynamic_type` ([DynamicType])\n- `empty_type` ([EmptyType])\n- `function_type` ([FunctionType])\n- `generic_type` ([GenericType])\n- `macro_invocation` ([MacroInvocation])\n- `metavariable` ([Metavariable])\n- `pointer_type` ([PointerType])\n- `primitive_type` ([PrimitiveType])\n- `reference_type` ([ReferenceType])\n- `scoped_type_identifier` ([ScopedTypeIdentifier])\n- `tuple_type` ([TupleType])\n- `type_identifier` ([TypeIdentifier])\n- `unit_type` ([UnitType])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub enum Type<'tree> {
@@ -1711,7 +1711,7 @@ pub enum Type<'tree> {
 }
 #[automatically_derived]
 impl<'tree> Type<'tree> {
-    #[doc = "Returns the node if it is of kind `abstract_type`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `abstract_type` ([AbstractType]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn abstract_type(self) -> Option<AbstractType<'tree>> {
@@ -1720,7 +1720,7 @@ impl<'tree> Type<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `array_type`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `array_type` ([ArrayType]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn array_type(self) -> Option<ArrayType<'tree>> {
@@ -1729,7 +1729,7 @@ impl<'tree> Type<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `bounded_type`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `bounded_type` ([BoundedType]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn bounded_type(self) -> Option<BoundedType<'tree>> {
@@ -1738,7 +1738,7 @@ impl<'tree> Type<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `dynamic_type`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `dynamic_type` ([DynamicType]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn dynamic_type(self) -> Option<DynamicType<'tree>> {
@@ -1747,7 +1747,7 @@ impl<'tree> Type<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `empty_type`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `empty_type` ([EmptyType]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn empty_type(self) -> Option<EmptyType<'tree>> {
@@ -1756,7 +1756,7 @@ impl<'tree> Type<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `function_type`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `function_type` ([FunctionType]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn function_type(self) -> Option<FunctionType<'tree>> {
@@ -1765,7 +1765,7 @@ impl<'tree> Type<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `generic_type`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `generic_type` ([GenericType]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn generic_type(self) -> Option<GenericType<'tree>> {
@@ -1774,7 +1774,7 @@ impl<'tree> Type<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `macro_invocation`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `macro_invocation` ([MacroInvocation]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn macro_invocation(self) -> Option<MacroInvocation<'tree>> {
@@ -1783,7 +1783,7 @@ impl<'tree> Type<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `metavariable`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `metavariable` ([Metavariable]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn metavariable(self) -> Option<Metavariable<'tree>> {
@@ -1792,7 +1792,7 @@ impl<'tree> Type<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `pointer_type`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `pointer_type` ([PointerType]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn pointer_type(self) -> Option<PointerType<'tree>> {
@@ -1801,7 +1801,7 @@ impl<'tree> Type<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `primitive_type`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `primitive_type` ([PrimitiveType]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn primitive_type(self) -> Option<PrimitiveType<'tree>> {
@@ -1810,7 +1810,7 @@ impl<'tree> Type<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `reference_type`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `reference_type` ([ReferenceType]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn reference_type(self) -> Option<ReferenceType<'tree>> {
@@ -1819,7 +1819,7 @@ impl<'tree> Type<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `scoped_type_identifier`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `scoped_type_identifier` ([ScopedTypeIdentifier]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn scoped_type_identifier(self) -> Option<ScopedTypeIdentifier<'tree>> {
@@ -1828,7 +1828,7 @@ impl<'tree> Type<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `tuple_type`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `tuple_type` ([TupleType]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn tuple_type(self) -> Option<TupleType<'tree>> {
@@ -1837,7 +1837,7 @@ impl<'tree> Type<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `type_identifier`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `type_identifier` ([TypeIdentifier]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn type_identifier(self) -> Option<TypeIdentifier<'tree>> {
@@ -1846,7 +1846,7 @@ impl<'tree> Type<'tree> {
             _ => None,
         }
     }
-    #[doc = "Returns the node if it is of kind `unit_type`, otherwise returns None"]
+    #[doc = "Returns the node if it is of kind `unit_type` ([UnitType]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn unit_type(self) -> Option<UnitType<'tree>> {
@@ -2016,13 +2016,13 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Type<'tree> {
         }
     }
 }
-#[doc = "Typed node `abstract_type`"]
+#[doc = "Typed node `abstract_type`\n\nThis node has these fields:\n- `trait`: `{function_type | generic_type | scoped_type_identifier | type_identifier}` ([anon_unions::FunctionType_GenericType_ScopedTypeIdentifier_TypeIdentifier])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct AbstractType<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> AbstractType<'tree> {
-    #[doc = "Get the field `trait`"]
+    #[doc = "Get the field `trait` which has kind `{function_type | generic_type | scoped_type_identifier | type_identifier}` ([anon_unions::FunctionType_GenericType_ScopedTypeIdentifier_TypeIdentifier])"]
     #[allow(dead_code)]
     #[inline]
     pub fn r#trait(
@@ -2069,7 +2069,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for AbstractType<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `arguments`"]
+#[doc = "Typed node `arguments`\n\nThis node has children: `{_expression | attribute_item}*`:\n- [Expression]\n- [AttributeItem]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct Arguments<'tree>(tree_sitter::Node<'tree>);
@@ -2139,13 +2139,13 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Arguments<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `array_expression`"]
+#[doc = "Typed node `array_expression`\n\nThis node has these fields:\n- `length`: `_expression?` ([Expression])\n\nAnd additional children: `{_expression | attribute_item}*`:\n- [Expression]\n- [AttributeItem]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct ArrayExpression<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ArrayExpression<'tree> {
-    #[doc = "Get the field `length`"]
+    #[doc = "Get the field `length` which has kind `_expression?` ([Expression])"]
     #[allow(dead_code)]
     #[inline]
     pub fn length(&self) -> Option<type_sitter_lib::NodeResult<'tree, Expression<'tree>>> {
@@ -2217,19 +2217,19 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ArrayExpression<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `array_type`"]
+#[doc = "Typed node `array_type`\n\nThis node has these fields:\n- `element`: `_type` ([Type])\n- `length`: `_expression?` ([Expression])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct ArrayType<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ArrayType<'tree> {
-    #[doc = "Get the field `element`"]
+    #[doc = "Get the field `element` which has kind `_type` ([Type])"]
     #[allow(dead_code)]
     #[inline]
     pub fn element(&self) -> type_sitter_lib::NodeResult<'tree, Type<'tree>> {
         self . 0 . child_by_field_name ("element") . map (< Type < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
-    #[doc = "Get the field `length`"]
+    #[doc = "Get the field `length` which has kind `_expression?` ([Expression])"]
     #[allow(dead_code)]
     #[inline]
     pub fn length(&self) -> Option<type_sitter_lib::NodeResult<'tree, Expression<'tree>>> {
@@ -2273,19 +2273,19 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ArrayType<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `assignment_expression`"]
+#[doc = "Typed node `assignment_expression`\n\nThis node has these fields:\n- `left`: `_expression` ([Expression])\n- `right`: `_expression` ([Expression])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct AssignmentExpression<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> AssignmentExpression<'tree> {
-    #[doc = "Get the field `left`"]
+    #[doc = "Get the field `left` which has kind `_expression` ([Expression])"]
     #[allow(dead_code)]
     #[inline]
     pub fn left(&self) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
         self . 0 . child_by_field_name ("left") . map (< Expression < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
-    #[doc = "Get the field `right`"]
+    #[doc = "Get the field `right` which has kind `_expression` ([Expression])"]
     #[allow(dead_code)]
     #[inline]
     pub fn right(&self) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
@@ -2327,13 +2327,13 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for AssignmentExpression<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `associated_type`"]
+#[doc = "Typed node `associated_type`\n\nThis node has these fields:\n- `bounds`: `trait_bounds?` ([TraitBounds])\n- `name`: `type_identifier` ([TypeIdentifier])\n- `type_parameters`: `type_parameters?` ([TypeParameters])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct AssociatedType<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> AssociatedType<'tree> {
-    #[doc = "Get the field `bounds`"]
+    #[doc = "Get the field `bounds` which has kind `trait_bounds?` ([TraitBounds])"]
     #[allow(dead_code)]
     #[inline]
     pub fn bounds(&self) -> Option<type_sitter_lib::NodeResult<'tree, TraitBounds<'tree>>> {
@@ -2341,13 +2341,13 @@ impl<'tree> AssociatedType<'tree> {
             .child_by_field_name("bounds")
             .map(<TraitBounds<'tree> as TryFrom<_>>::try_from)
     }
-    #[doc = "Get the field `name`"]
+    #[doc = "Get the field `name` which has kind `type_identifier` ([TypeIdentifier])"]
     #[allow(dead_code)]
     #[inline]
     pub fn name(&self) -> type_sitter_lib::NodeResult<'tree, TypeIdentifier<'tree>> {
         self . 0 . child_by_field_name ("name") . map (< TypeIdentifier < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
-    #[doc = "Get the field `type_parameters`"]
+    #[doc = "Get the field `type_parameters` which has kind `type_parameters?` ([TypeParameters])"]
     #[allow(dead_code)]
     #[inline]
     pub fn type_parameters(
@@ -2393,7 +2393,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for AssociatedType<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `async_block`"]
+#[doc = "Typed node `async_block`\n\nThis node has a child: `block` ([Block])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct AsyncBlock<'tree>(tree_sitter::Node<'tree>);
@@ -2441,13 +2441,13 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for AsyncBlock<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `attribute`"]
+#[doc = "Typed node `attribute`\n\nThis node has these fields:\n- `arguments`: `token_tree?` ([TokenTree])\n- `value`: `_expression?` ([Expression])\n\nAnd an additional child: `{crate | identifier | metavariable | scoped_identifier | self | super}`:\n- [Crate]\n- [Identifier]\n- [Metavariable]\n- [ScopedIdentifier]\n- [_Self]\n- [Super]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct Attribute<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> Attribute<'tree> {
-    #[doc = "Get the field `arguments`"]
+    #[doc = "Get the field `arguments` which has kind `token_tree?` ([TokenTree])"]
     #[allow(dead_code)]
     #[inline]
     pub fn arguments(&self) -> Option<type_sitter_lib::NodeResult<'tree, TokenTree<'tree>>> {
@@ -2455,7 +2455,7 @@ impl<'tree> Attribute<'tree> {
             .child_by_field_name("arguments")
             .map(<TokenTree<'tree> as TryFrom<_>>::try_from)
     }
-    #[doc = "Get the field `value`"]
+    #[doc = "Get the field `value` which has kind `_expression?` ([Expression])"]
     #[allow(dead_code)]
     #[inline]
     pub fn value(&self) -> Option<type_sitter_lib::NodeResult<'tree, Expression<'tree>>> {
@@ -2510,7 +2510,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Attribute<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `attribute_item`"]
+#[doc = "Typed node `attribute_item`\n\nThis node has a child: `attribute` ([Attribute])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct AttributeItem<'tree>(tree_sitter::Node<'tree>);
@@ -2558,7 +2558,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for AttributeItem<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `await_expression`"]
+#[doc = "Typed node `await_expression`\n\nThis node has a child: `_expression` ([Expression])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct AwaitExpression<'tree>(tree_sitter::Node<'tree>);
@@ -2606,7 +2606,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for AwaitExpression<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `base_field_initializer`"]
+#[doc = "Typed node `base_field_initializer`\n\nThis node has a child: `_expression` ([Expression])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct BaseFieldInitializer<'tree>(tree_sitter::Node<'tree>);
@@ -2654,24 +2654,24 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for BaseFieldInitializer<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `binary_expression`"]
+#[doc = "Typed node `binary_expression`\n\nThis node has these fields:\n- `left`: `_expression` ([Expression])\n- `operator`: `{!= | % | & | && | * | + | - | / | < | << | <= | == | > | >= | >> | ^ | | | ||}` ([anon_unions::NotEq_Mod_And_AndAnd_Mul_Add_Sub_Div_Lt_LtLt_LtEq_EqEq_Gt_GtEq_GtGt_BitXor_Or_OrOr])\n- `right`: `_expression` ([Expression])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct BinaryExpression<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> BinaryExpression<'tree> {
-    #[doc = "Get the field `left`"]
+    #[doc = "Get the field `left` which has kind `_expression` ([Expression])"]
     #[allow(dead_code)]
     #[inline]
     pub fn left(&self) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
         self . 0 . child_by_field_name ("left") . map (< Expression < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
-    #[doc = "Get the field `operator`"]
+    #[doc = "Get the field `operator` which has kind `{!= | % | & | && | * | + | - | / | < | << | <= | == | > | >= | >> | ^ | | | ||}` ([anon_unions::NotEq_Mod_And_AndAnd_Mul_Add_Sub_Div_Lt_LtLt_LtEq_EqEq_Gt_GtEq_GtGt_BitXor_Or_OrOr])"]
     #[allow(dead_code)]
     #[inline]    pub fn operator (& self) -> type_sitter_lib :: NodeResult < 'tree , anon_unions :: NotEq_Mod_And_AndAnd_Mul_Add_Sub_Div_Lt_LtLt_LtEq_EqEq_Gt_GtEq_GtGt_BitXor_Or_OrOr < 'tree > >{
         self . 0 . child_by_field_name ("operator") . map (< anon_unions :: NotEq_Mod_And_AndAnd_Mul_Add_Sub_Div_Lt_LtLt_LtEq_EqEq_Gt_GtEq_GtGt_BitXor_Or_OrOr < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
-    #[doc = "Get the field `right`"]
+    #[doc = "Get the field `right` which has kind `_expression` ([Expression])"]
     #[allow(dead_code)]
     #[inline]
     pub fn right(&self) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
@@ -2713,7 +2713,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for BinaryExpression<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `block`"]
+#[doc = "Typed node `block`\n\nThis node has children: `{_declaration_statement | _expression | expression_statement}*`:\n- [DeclarationStatement]\n- [Expression]\n- [ExpressionStatement]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct Block<'tree>(tree_sitter::Node<'tree>);
@@ -2799,7 +2799,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Block<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `boolean_literal`"]
+#[doc = "Typed node `boolean_literal`\n\nThis node has no children\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct BooleanLiteral<'tree>(tree_sitter::Node<'tree>);
@@ -2840,7 +2840,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for BooleanLiteral<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `bounded_type`"]
+#[doc = "Typed node `bounded_type`\n\nThis node has children: `{_type | lifetime}+`:\n- [Type]\n- [Lifetime]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct BoundedType<'tree>(tree_sitter::Node<'tree>);
@@ -2911,7 +2911,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for BoundedType<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `bracketed_type`"]
+#[doc = "Typed node `bracketed_type`\n\nThis node has a child: `{_type | qualified_type}`:\n- [Type]\n- [QualifiedType]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct BracketedType<'tree>(tree_sitter::Node<'tree>);
@@ -2961,7 +2961,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for BracketedType<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `break_expression`"]
+#[doc = "Typed node `break_expression`\n\nThis node has children: `{_expression | loop_label}*`:\n- [Expression]\n- [LoopLabel]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct BreakExpression<'tree>(tree_sitter::Node<'tree>);
@@ -3035,19 +3035,19 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for BreakExpression<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `call_expression`"]
+#[doc = "Typed node `call_expression`\n\nThis node has these fields:\n- `arguments`: `arguments` ([Arguments])\n- `function`: `{_literal | array_expression | assignment_expression | async_block | await_expression | binary_expression | block | break_expression | call_expression | closure_expression | compound_assignment_expr | const_block | continue_expression | field_expression | for_expression | generic_function | identifier | if_expression | index_expression | loop_expression | macro_invocation | match_expression | metavariable | parenthesized_expression | reference_expression | return_expression | scoped_identifier | self | struct_expression | try_expression | tuple_expression | type_cast_expression | unary_expression | unit_expression | unsafe_block | while_expression | yield_expression}` ([anon_unions::Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier__Self_StructExpression_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct CallExpression<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> CallExpression<'tree> {
-    #[doc = "Get the field `arguments`"]
+    #[doc = "Get the field `arguments` which has kind `arguments` ([Arguments])"]
     #[allow(dead_code)]
     #[inline]
     pub fn arguments(&self) -> type_sitter_lib::NodeResult<'tree, Arguments<'tree>> {
         self . 0 . child_by_field_name ("arguments") . map (< Arguments < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
-    #[doc = "Get the field `function`"]
+    #[doc = "Get the field `function` which has kind `{_literal | array_expression | assignment_expression | async_block | await_expression | binary_expression | block | break_expression | call_expression | closure_expression | compound_assignment_expr | const_block | continue_expression | field_expression | for_expression | generic_function | identifier | if_expression | index_expression | loop_expression | macro_invocation | match_expression | metavariable | parenthesized_expression | reference_expression | return_expression | scoped_identifier | self | struct_expression | try_expression | tuple_expression | type_cast_expression | unary_expression | unit_expression | unsafe_block | while_expression | yield_expression}` ([anon_unions::Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier__Self_StructExpression_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression])"]
     #[allow(dead_code)]
     #[inline]    pub fn function (& self) -> type_sitter_lib :: NodeResult < 'tree , anon_unions :: Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier__Self_StructExpression_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression < 'tree > >{
         self . 0 . child_by_field_name ("function") . map (< anon_unions :: Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier__Self_StructExpression_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
@@ -3088,7 +3088,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for CallExpression<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `captured_pattern`"]
+#[doc = "Typed node `captured_pattern`\n\nThis node has children: `_pattern+` ([Pattern])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct CapturedPattern<'tree>(tree_sitter::Node<'tree>);
@@ -3156,25 +3156,25 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for CapturedPattern<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `closure_expression`"]
+#[doc = "Typed node `closure_expression`\n\nThis node has these fields:\n- `body`: `_expression` ([Expression])\n- `parameters`: `closure_parameters` ([ClosureParameters])\n- `return_type`: `_type?` ([Type])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct ClosureExpression<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ClosureExpression<'tree> {
-    #[doc = "Get the field `body`"]
+    #[doc = "Get the field `body` which has kind `_expression` ([Expression])"]
     #[allow(dead_code)]
     #[inline]
     pub fn body(&self) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
         self . 0 . child_by_field_name ("body") . map (< Expression < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
-    #[doc = "Get the field `parameters`"]
+    #[doc = "Get the field `parameters` which has kind `closure_parameters` ([ClosureParameters])"]
     #[allow(dead_code)]
     #[inline]
     pub fn parameters(&self) -> type_sitter_lib::NodeResult<'tree, ClosureParameters<'tree>> {
         self . 0 . child_by_field_name ("parameters") . map (< ClosureParameters < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
-    #[doc = "Get the field `return_type`"]
+    #[doc = "Get the field `return_type` which has kind `_type?` ([Type])"]
     #[allow(dead_code)]
     #[inline]
     pub fn return_type(&self) -> Option<type_sitter_lib::NodeResult<'tree, Type<'tree>>> {
@@ -3218,7 +3218,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ClosureExpression<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `closure_parameters`"]
+#[doc = "Typed node `closure_parameters`\n\nThis node has children: `{_pattern | parameter}*`:\n- [Pattern]\n- [Parameter]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct ClosureParameters<'tree>(tree_sitter::Node<'tree>);
@@ -3292,19 +3292,19 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ClosureParameters<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `compound_assignment_expr`"]
+#[doc = "Typed node `compound_assignment_expr`\n\nThis node has these fields:\n- `left`: `_expression` ([Expression])\n- `operator`: `{%= | &= | *= | += | -= | /= | <<= | >>= | ^= | |=}` ([anon_unions::ModEq_AndEq_MulEq_AddEq_SubEq_DivEq_LtLtEq_GtGtEq_BitXorEq_OrEq])\n- `right`: `_expression` ([Expression])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct CompoundAssignmentExpr<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> CompoundAssignmentExpr<'tree> {
-    #[doc = "Get the field `left`"]
+    #[doc = "Get the field `left` which has kind `_expression` ([Expression])"]
     #[allow(dead_code)]
     #[inline]
     pub fn left(&self) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
         self . 0 . child_by_field_name ("left") . map (< Expression < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
-    #[doc = "Get the field `operator`"]
+    #[doc = "Get the field `operator` which has kind `{%= | &= | *= | += | -= | /= | <<= | >>= | ^= | |=}` ([anon_unions::ModEq_AndEq_MulEq_AddEq_SubEq_DivEq_LtLtEq_GtGtEq_BitXorEq_OrEq])"]
     #[allow(dead_code)]
     #[inline]
     pub fn operator(
@@ -3315,7 +3315,7 @@ impl<'tree> CompoundAssignmentExpr<'tree> {
     > {
         self . 0 . child_by_field_name ("operator") . map (< anon_unions :: ModEq_AndEq_MulEq_AddEq_SubEq_DivEq_LtLtEq_GtGtEq_BitXorEq_OrEq < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
-    #[doc = "Get the field `right`"]
+    #[doc = "Get the field `right` which has kind `_expression` ([Expression])"]
     #[allow(dead_code)]
     #[inline]
     pub fn right(&self) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
@@ -3357,13 +3357,13 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for CompoundAssignmentExpr<'tree> 
         Self(node)
     }
 }
-#[doc = "Typed node `const_block`"]
+#[doc = "Typed node `const_block`\n\nThis node has these fields:\n- `body`: `block` ([Block])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct ConstBlock<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ConstBlock<'tree> {
-    #[doc = "Get the field `body`"]
+    #[doc = "Get the field `body` which has kind `block` ([Block])"]
     #[allow(dead_code)]
     #[inline]
     pub fn body(&self) -> type_sitter_lib::NodeResult<'tree, Block<'tree>> {
@@ -3405,25 +3405,25 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ConstBlock<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `const_item`"]
+#[doc = "Typed node `const_item`\n\nThis node has these fields:\n- `name`: `identifier` ([Identifier])\n- `type`: `_type` ([Type])\n- `value`: `_expression?` ([Expression])\n\nAnd an additional (optional) child: `visibility_modifier?` ([VisibilityModifier])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct ConstItem<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ConstItem<'tree> {
-    #[doc = "Get the field `name`"]
+    #[doc = "Get the field `name` which has kind `identifier` ([Identifier])"]
     #[allow(dead_code)]
     #[inline]
     pub fn name(&self) -> type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
         self . 0 . child_by_field_name ("name") . map (< Identifier < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
-    #[doc = "Get the field `type`"]
+    #[doc = "Get the field `type` which has kind `_type` ([Type])"]
     #[allow(dead_code)]
     #[inline]
     pub fn r#type(&self) -> type_sitter_lib::NodeResult<'tree, Type<'tree>> {
         self . 0 . child_by_field_name ("type") . map (< Type < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
-    #[doc = "Get the field `value`"]
+    #[doc = "Get the field `value` which has kind `_expression?` ([Expression])"]
     #[allow(dead_code)]
     #[inline]
     pub fn value(&self) -> Option<type_sitter_lib::NodeResult<'tree, Expression<'tree>>> {
@@ -3512,19 +3512,19 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ConstItem<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `const_parameter`"]
+#[doc = "Typed node `const_parameter`\n\nThis node has these fields:\n- `name`: `identifier` ([Identifier])\n- `type`: `_type` ([Type])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct ConstParameter<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ConstParameter<'tree> {
-    #[doc = "Get the field `name`"]
+    #[doc = "Get the field `name` which has kind `identifier` ([Identifier])"]
     #[allow(dead_code)]
     #[inline]
     pub fn name(&self) -> type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
         self . 0 . child_by_field_name ("name") . map (< Identifier < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
-    #[doc = "Get the field `type`"]
+    #[doc = "Get the field `type` which has kind `_type` ([Type])"]
     #[allow(dead_code)]
     #[inline]
     pub fn r#type(&self) -> type_sitter_lib::NodeResult<'tree, Type<'tree>> {
@@ -3566,19 +3566,19 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ConstParameter<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `constrained_type_parameter`"]
+#[doc = "Typed node `constrained_type_parameter`\n\nThis node has these fields:\n- `bounds`: `trait_bounds` ([TraitBounds])\n- `left`: `{lifetime | type_identifier}` ([anon_unions::Lifetime_TypeIdentifier])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct ConstrainedTypeParameter<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ConstrainedTypeParameter<'tree> {
-    #[doc = "Get the field `bounds`"]
+    #[doc = "Get the field `bounds` which has kind `trait_bounds` ([TraitBounds])"]
     #[allow(dead_code)]
     #[inline]
     pub fn bounds(&self) -> type_sitter_lib::NodeResult<'tree, TraitBounds<'tree>> {
         self . 0 . child_by_field_name ("bounds") . map (< TraitBounds < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
-    #[doc = "Get the field `left`"]
+    #[doc = "Get the field `left` which has kind `{lifetime | type_identifier}` ([anon_unions::Lifetime_TypeIdentifier])"]
     #[allow(dead_code)]
     #[inline]
     pub fn left(
@@ -3622,7 +3622,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ConstrainedTypeParameter<'tree
         Self(node)
     }
 }
-#[doc = "Typed node `continue_expression`"]
+#[doc = "Typed node `continue_expression`\n\nThis node has an (optional) child: `loop_label?` ([LoopLabel])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct ContinueExpression<'tree>(tree_sitter::Node<'tree>);
@@ -3672,7 +3672,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ContinueExpression<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `declaration_list`"]
+#[doc = "Typed node `declaration_list`\n\nThis node has children: `_declaration_statement*` ([DeclarationStatement])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct DeclarationList<'tree>(tree_sitter::Node<'tree>);
@@ -3748,13 +3748,13 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for DeclarationList<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `dynamic_type`"]
+#[doc = "Typed node `dynamic_type`\n\nThis node has these fields:\n- `trait`: `{function_type | generic_type | scoped_type_identifier | type_identifier}` ([anon_unions::FunctionType_GenericType_ScopedTypeIdentifier_TypeIdentifier])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct DynamicType<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> DynamicType<'tree> {
-    #[doc = "Get the field `trait`"]
+    #[doc = "Get the field `trait` which has kind `{function_type | generic_type | scoped_type_identifier | type_identifier}` ([anon_unions::FunctionType_GenericType_ScopedTypeIdentifier_TypeIdentifier])"]
     #[allow(dead_code)]
     #[inline]
     pub fn r#trait(
@@ -3801,7 +3801,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for DynamicType<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `else_clause`"]
+#[doc = "Typed node `else_clause`\n\nThis node has a child: `{block | if_expression}`:\n- [Block]\n- [IfExpression]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct ElseClause<'tree>(tree_sitter::Node<'tree>);
@@ -3851,7 +3851,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ElseClause<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `empty_statement`"]
+#[doc = "Typed node `empty_statement`\n\nThis node has no children\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct EmptyStatement<'tree>(tree_sitter::Node<'tree>);
@@ -3892,7 +3892,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for EmptyStatement<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `empty_type`"]
+#[doc = "Typed node `empty_type`\n\nThis node has no children\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct EmptyType<'tree>(tree_sitter::Node<'tree>);
@@ -3933,25 +3933,25 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for EmptyType<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `enum_item`"]
+#[doc = "Typed node `enum_item`\n\nThis node has these fields:\n- `body`: `enum_variant_list` ([EnumVariantList])\n- `name`: `type_identifier` ([TypeIdentifier])\n- `type_parameters`: `type_parameters?` ([TypeParameters])\n\nAnd additional children: `{visibility_modifier | where_clause}*`:\n- [VisibilityModifier]\n- [WhereClause]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct EnumItem<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> EnumItem<'tree> {
-    #[doc = "Get the field `body`"]
+    #[doc = "Get the field `body` which has kind `enum_variant_list` ([EnumVariantList])"]
     #[allow(dead_code)]
     #[inline]
     pub fn body(&self) -> type_sitter_lib::NodeResult<'tree, EnumVariantList<'tree>> {
         self . 0 . child_by_field_name ("body") . map (< EnumVariantList < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
-    #[doc = "Get the field `name`"]
+    #[doc = "Get the field `name` which has kind `type_identifier` ([TypeIdentifier])"]
     #[allow(dead_code)]
     #[inline]
     pub fn name(&self) -> type_sitter_lib::NodeResult<'tree, TypeIdentifier<'tree>> {
         self . 0 . child_by_field_name ("name") . map (< TypeIdentifier < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
-    #[doc = "Get the field `type_parameters`"]
+    #[doc = "Get the field `type_parameters` which has kind `type_parameters?` ([TypeParameters])"]
     #[allow(dead_code)]
     #[inline]
     pub fn type_parameters(
@@ -4008,13 +4008,13 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for EnumItem<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `enum_variant`"]
+#[doc = "Typed node `enum_variant`\n\nThis node has these fields:\n- `body`: `{field_declaration_list | ordered_field_declaration_list}?` ([anon_unions::FieldDeclarationList_OrderedFieldDeclarationList])\n- `name`: `identifier` ([Identifier])\n- `value`: `_expression?` ([Expression])\n\nAnd an additional (optional) child: `visibility_modifier?` ([VisibilityModifier])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct EnumVariant<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> EnumVariant<'tree> {
-    #[doc = "Get the field `body`"]
+    #[doc = "Get the field `body` which has kind `{field_declaration_list | ordered_field_declaration_list}?` ([anon_unions::FieldDeclarationList_OrderedFieldDeclarationList])"]
     #[allow(dead_code)]
     #[inline]
     pub fn body(
@@ -4027,13 +4027,13 @@ impl<'tree> EnumVariant<'tree> {
     > {
         self . 0 . child_by_field_name ("body") . map (< anon_unions :: FieldDeclarationList_OrderedFieldDeclarationList < 'tree > as TryFrom < _ >> :: try_from)
     }
-    #[doc = "Get the field `name`"]
+    #[doc = "Get the field `name` which has kind `identifier` ([Identifier])"]
     #[allow(dead_code)]
     #[inline]
     pub fn name(&self) -> type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
         self . 0 . child_by_field_name ("name") . map (< Identifier < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
-    #[doc = "Get the field `value`"]
+    #[doc = "Get the field `value` which has kind `_expression?` ([Expression])"]
     #[allow(dead_code)]
     #[inline]
     pub fn value(&self) -> Option<type_sitter_lib::NodeResult<'tree, Expression<'tree>>> {
@@ -4088,7 +4088,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for EnumVariant<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `enum_variant_list`"]
+#[doc = "Typed node `enum_variant_list`\n\nThis node has children: `{attribute_item | enum_variant}*`:\n- [AttributeItem]\n- [EnumVariant]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct EnumVariantList<'tree>(tree_sitter::Node<'tree>);
@@ -4158,7 +4158,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for EnumVariantList<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `expression_statement`"]
+#[doc = "Typed node `expression_statement`\n\nThis node has a child: `_expression` ([Expression])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct ExpressionStatement<'tree>(tree_sitter::Node<'tree>);
@@ -4206,13 +4206,13 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ExpressionStatement<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `extern_crate_declaration`"]
+#[doc = "Typed node `extern_crate_declaration`\n\nThis node has these fields:\n- `alias`: `identifier?` ([Identifier])\n- `name`: `identifier` ([Identifier])\n\nAnd additional children: `{crate | visibility_modifier}+`:\n- [Crate]\n- [VisibilityModifier]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct ExternCrateDeclaration<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ExternCrateDeclaration<'tree> {
-    #[doc = "Get the field `alias`"]
+    #[doc = "Get the field `alias` which has kind `identifier?` ([Identifier])"]
     #[allow(dead_code)]
     #[inline]
     pub fn alias(&self) -> Option<type_sitter_lib::NodeResult<'tree, Identifier<'tree>>> {
@@ -4220,7 +4220,7 @@ impl<'tree> ExternCrateDeclaration<'tree> {
             .child_by_field_name("alias")
             .map(<Identifier<'tree> as TryFrom<_>>::try_from)
     }
-    #[doc = "Get the field `name`"]
+    #[doc = "Get the field `name` which has kind `identifier` ([Identifier])"]
     #[allow(dead_code)]
     #[inline]
     pub fn name(&self) -> type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
@@ -4302,7 +4302,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ExternCrateDeclaration<'tree> 
         Self(node)
     }
 }
-#[doc = "Typed node `extern_modifier`"]
+#[doc = "Typed node `extern_modifier`\n\nThis node has an (optional) child: `string_literal?` ([StringLiteral])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct ExternModifier<'tree>(tree_sitter::Node<'tree>);
@@ -4352,19 +4352,19 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ExternModifier<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `field_declaration`"]
+#[doc = "Typed node `field_declaration`\n\nThis node has these fields:\n- `name`: `field_identifier` ([FieldIdentifier])\n- `type`: `_type` ([Type])\n\nAnd an additional (optional) child: `visibility_modifier?` ([VisibilityModifier])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct FieldDeclaration<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> FieldDeclaration<'tree> {
-    #[doc = "Get the field `name`"]
+    #[doc = "Get the field `name` which has kind `field_identifier` ([FieldIdentifier])"]
     #[allow(dead_code)]
     #[inline]
     pub fn name(&self) -> type_sitter_lib::NodeResult<'tree, FieldIdentifier<'tree>> {
         self . 0 . child_by_field_name ("name") . map (< FieldIdentifier < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
-    #[doc = "Get the field `type`"]
+    #[doc = "Get the field `type` which has kind `_type` ([Type])"]
     #[allow(dead_code)]
     #[inline]
     pub fn r#type(&self) -> type_sitter_lib::NodeResult<'tree, Type<'tree>> {
@@ -4451,7 +4451,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for FieldDeclaration<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `field_declaration_list`"]
+#[doc = "Typed node `field_declaration_list`\n\nThis node has children: `{attribute_item | field_declaration}*`:\n- [AttributeItem]\n- [FieldDeclaration]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct FieldDeclarationList<'tree>(tree_sitter::Node<'tree>);
@@ -4521,13 +4521,13 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for FieldDeclarationList<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `field_expression`"]
+#[doc = "Typed node `field_expression`\n\nThis node has these fields:\n- `field`: `{field_identifier | integer_literal}` ([anon_unions::FieldIdentifier_IntegerLiteral])\n- `value`: `_expression` ([Expression])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct FieldExpression<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> FieldExpression<'tree> {
-    #[doc = "Get the field `field`"]
+    #[doc = "Get the field `field` which has kind `{field_identifier | integer_literal}` ([anon_unions::FieldIdentifier_IntegerLiteral])"]
     #[allow(dead_code)]
     #[inline]
     pub fn field(
@@ -4536,7 +4536,7 @@ impl<'tree> FieldExpression<'tree> {
     {
         self . 0 . child_by_field_name ("field") . map (< anon_unions :: FieldIdentifier_IntegerLiteral < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
-    #[doc = "Get the field `value`"]
+    #[doc = "Get the field `value` which has kind `_expression` ([Expression])"]
     #[allow(dead_code)]
     #[inline]
     pub fn value(&self) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
@@ -4578,19 +4578,19 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for FieldExpression<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `field_initializer`"]
+#[doc = "Typed node `field_initializer`\n\nThis node has these fields:\n- `name`: `field_identifier` ([FieldIdentifier])\n- `value`: `_expression` ([Expression])\n\nAnd additional children: `attribute_item*` ([AttributeItem])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct FieldInitializer<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> FieldInitializer<'tree> {
-    #[doc = "Get the field `name`"]
+    #[doc = "Get the field `name` which has kind `field_identifier` ([FieldIdentifier])"]
     #[allow(dead_code)]
     #[inline]
     pub fn name(&self) -> type_sitter_lib::NodeResult<'tree, FieldIdentifier<'tree>> {
         self . 0 . child_by_field_name ("name") . map (< FieldIdentifier < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
-    #[doc = "Get the field `value`"]
+    #[doc = "Get the field `value` which has kind `_expression` ([Expression])"]
     #[allow(dead_code)]
     #[inline]
     pub fn value(&self) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
@@ -4677,7 +4677,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for FieldInitializer<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `field_initializer_list`"]
+#[doc = "Typed node `field_initializer_list`\n\nThis node has children: `{base_field_initializer | field_initializer | shorthand_field_initializer}*`:\n- [BaseFieldInitializer]\n- [FieldInitializer]\n- [ShorthandFieldInitializer]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct FieldInitializerList<'tree>(tree_sitter::Node<'tree>);
@@ -4763,13 +4763,13 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for FieldInitializerList<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `field_pattern`"]
+#[doc = "Typed node `field_pattern`\n\nThis node has these fields:\n- `name`: `{field_identifier | shorthand_field_identifier}` ([anon_unions::FieldIdentifier_ShorthandFieldIdentifier])\n- `pattern`: `_pattern?` ([Pattern])\n\nAnd an additional (optional) child: `mutable_specifier?` ([MutableSpecifier])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct FieldPattern<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> FieldPattern<'tree> {
-    #[doc = "Get the field `name`"]
+    #[doc = "Get the field `name` which has kind `{field_identifier | shorthand_field_identifier}` ([anon_unions::FieldIdentifier_ShorthandFieldIdentifier])"]
     #[allow(dead_code)]
     #[inline]
     pub fn name(
@@ -4780,7 +4780,7 @@ impl<'tree> FieldPattern<'tree> {
     > {
         self . 0 . child_by_field_name ("name") . map (< anon_unions :: FieldIdentifier_ShorthandFieldIdentifier < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
-    #[doc = "Get the field `pattern`"]
+    #[doc = "Get the field `pattern` which has kind `_pattern?` ([Pattern])"]
     #[allow(dead_code)]
     #[inline]
     pub fn pattern(&self) -> Option<type_sitter_lib::NodeResult<'tree, Pattern<'tree>>> {
@@ -4877,25 +4877,25 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for FieldPattern<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `for_expression`"]
+#[doc = "Typed node `for_expression`\n\nThis node has these fields:\n- `body`: `block` ([Block])\n- `pattern`: `_pattern` ([Pattern])\n- `value`: `_expression` ([Expression])\n\nAnd an additional (optional) child: `loop_label?` ([LoopLabel])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct ForExpression<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ForExpression<'tree> {
-    #[doc = "Get the field `body`"]
+    #[doc = "Get the field `body` which has kind `block` ([Block])"]
     #[allow(dead_code)]
     #[inline]
     pub fn body(&self) -> type_sitter_lib::NodeResult<'tree, Block<'tree>> {
         self . 0 . child_by_field_name ("body") . map (< Block < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
-    #[doc = "Get the field `pattern`"]
+    #[doc = "Get the field `pattern` which has kind `_pattern` ([Pattern])"]
     #[allow(dead_code)]
     #[inline]
     pub fn pattern(&self) -> type_sitter_lib::NodeResult<'tree, Pattern<'tree>> {
         self . 0 . child_by_field_name ("pattern") . map (< Pattern < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
-    #[doc = "Get the field `value`"]
+    #[doc = "Get the field `value` which has kind `_expression` ([Expression])"]
     #[allow(dead_code)]
     #[inline]
     pub fn value(&self) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
@@ -4966,7 +4966,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ForExpression<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `for_lifetimes`"]
+#[doc = "Typed node `for_lifetimes`\n\nThis node has children: `lifetime+` ([Lifetime])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct ForLifetimes<'tree>(tree_sitter::Node<'tree>);
@@ -5034,13 +5034,13 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ForLifetimes<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `foreign_mod_item`"]
+#[doc = "Typed node `foreign_mod_item`\n\nThis node has these fields:\n- `body`: `declaration_list?` ([DeclarationList])\n\nAnd additional children: `{extern_modifier | visibility_modifier}+`:\n- [ExternModifier]\n- [VisibilityModifier]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct ForeignModItem<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ForeignModItem<'tree> {
-    #[doc = "Get the field `body`"]
+    #[doc = "Get the field `body` which has kind `declaration_list?` ([DeclarationList])"]
     #[allow(dead_code)]
     #[inline]
     pub fn body(&self) -> Option<type_sitter_lib::NodeResult<'tree, DeclarationList<'tree>>> {
@@ -5129,7 +5129,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ForeignModItem<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `fragment_specifier`"]
+#[doc = "Typed node `fragment_specifier`\n\nThis node has no children\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct FragmentSpecifier<'tree>(tree_sitter::Node<'tree>);
@@ -5170,19 +5170,19 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for FragmentSpecifier<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `function_item`"]
+#[doc = "Typed node `function_item`\n\nThis node has these fields:\n- `body`: `block` ([Block])\n- `name`: `{identifier | metavariable}` ([anon_unions::Identifier_Metavariable])\n- `parameters`: `parameters` ([Parameters])\n- `return_type`: `_type?` ([Type])\n- `type_parameters`: `type_parameters?` ([TypeParameters])\n\nAnd additional children: `{function_modifiers | visibility_modifier | where_clause}*`:\n- [FunctionModifiers]\n- [VisibilityModifier]\n- [WhereClause]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct FunctionItem<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> FunctionItem<'tree> {
-    #[doc = "Get the field `body`"]
+    #[doc = "Get the field `body` which has kind `block` ([Block])"]
     #[allow(dead_code)]
     #[inline]
     pub fn body(&self) -> type_sitter_lib::NodeResult<'tree, Block<'tree>> {
         self . 0 . child_by_field_name ("body") . map (< Block < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
-    #[doc = "Get the field `name`"]
+    #[doc = "Get the field `name` which has kind `{identifier | metavariable}` ([anon_unions::Identifier_Metavariable])"]
     #[allow(dead_code)]
     #[inline]
     pub fn name(
@@ -5190,13 +5190,13 @@ impl<'tree> FunctionItem<'tree> {
     ) -> type_sitter_lib::NodeResult<'tree, anon_unions::Identifier_Metavariable<'tree>> {
         self . 0 . child_by_field_name ("name") . map (< anon_unions :: Identifier_Metavariable < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
-    #[doc = "Get the field `parameters`"]
+    #[doc = "Get the field `parameters` which has kind `parameters` ([Parameters])"]
     #[allow(dead_code)]
     #[inline]
     pub fn parameters(&self) -> type_sitter_lib::NodeResult<'tree, Parameters<'tree>> {
         self . 0 . child_by_field_name ("parameters") . map (< Parameters < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
-    #[doc = "Get the field `return_type`"]
+    #[doc = "Get the field `return_type` which has kind `_type?` ([Type])"]
     #[allow(dead_code)]
     #[inline]
     pub fn return_type(&self) -> Option<type_sitter_lib::NodeResult<'tree, Type<'tree>>> {
@@ -5204,7 +5204,7 @@ impl<'tree> FunctionItem<'tree> {
             .child_by_field_name("return_type")
             .map(<Type<'tree> as TryFrom<_>>::try_from)
     }
-    #[doc = "Get the field `type_parameters`"]
+    #[doc = "Get the field `type_parameters` which has kind `type_parameters?` ([TypeParameters])"]
     #[allow(dead_code)]
     #[inline]
     pub fn type_parameters(
@@ -5261,7 +5261,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for FunctionItem<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `function_modifiers`"]
+#[doc = "Typed node `function_modifiers`\n\nThis node has children: `extern_modifier*` ([ExternModifier])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct FunctionModifiers<'tree>(tree_sitter::Node<'tree>);
@@ -5332,13 +5332,13 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for FunctionModifiers<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `function_signature_item`"]
+#[doc = "Typed node `function_signature_item`\n\nThis node has these fields:\n- `name`: `{identifier | metavariable}` ([anon_unions::Identifier_Metavariable])\n- `parameters`: `parameters` ([Parameters])\n- `return_type`: `_type?` ([Type])\n- `type_parameters`: `type_parameters?` ([TypeParameters])\n\nAnd additional children: `{function_modifiers | visibility_modifier | where_clause}*`:\n- [FunctionModifiers]\n- [VisibilityModifier]\n- [WhereClause]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct FunctionSignatureItem<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> FunctionSignatureItem<'tree> {
-    #[doc = "Get the field `name`"]
+    #[doc = "Get the field `name` which has kind `{identifier | metavariable}` ([anon_unions::Identifier_Metavariable])"]
     #[allow(dead_code)]
     #[inline]
     pub fn name(
@@ -5346,13 +5346,13 @@ impl<'tree> FunctionSignatureItem<'tree> {
     ) -> type_sitter_lib::NodeResult<'tree, anon_unions::Identifier_Metavariable<'tree>> {
         self . 0 . child_by_field_name ("name") . map (< anon_unions :: Identifier_Metavariable < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
-    #[doc = "Get the field `parameters`"]
+    #[doc = "Get the field `parameters` which has kind `parameters` ([Parameters])"]
     #[allow(dead_code)]
     #[inline]
     pub fn parameters(&self) -> type_sitter_lib::NodeResult<'tree, Parameters<'tree>> {
         self . 0 . child_by_field_name ("parameters") . map (< Parameters < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
-    #[doc = "Get the field `return_type`"]
+    #[doc = "Get the field `return_type` which has kind `_type?` ([Type])"]
     #[allow(dead_code)]
     #[inline]
     pub fn return_type(&self) -> Option<type_sitter_lib::NodeResult<'tree, Type<'tree>>> {
@@ -5360,7 +5360,7 @@ impl<'tree> FunctionSignatureItem<'tree> {
             .child_by_field_name("return_type")
             .map(<Type<'tree> as TryFrom<_>>::try_from)
     }
-    #[doc = "Get the field `type_parameters`"]
+    #[doc = "Get the field `type_parameters` which has kind `type_parameters?` ([TypeParameters])"]
     #[allow(dead_code)]
     #[inline]
     pub fn type_parameters(
@@ -5417,19 +5417,19 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for FunctionSignatureItem<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `function_type`"]
+#[doc = "Typed node `function_type`\n\nThis node has these fields:\n- `parameters`: `parameters` ([Parameters])\n- `return_type`: `_type?` ([Type])\n- `trait`: `{scoped_type_identifier | type_identifier}?` ([anon_unions::ScopedTypeIdentifier_TypeIdentifier])\n\nAnd additional children: `{for_lifetimes | function_modifiers}*`:\n- [ForLifetimes]\n- [FunctionModifiers]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct FunctionType<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> FunctionType<'tree> {
-    #[doc = "Get the field `parameters`"]
+    #[doc = "Get the field `parameters` which has kind `parameters` ([Parameters])"]
     #[allow(dead_code)]
     #[inline]
     pub fn parameters(&self) -> type_sitter_lib::NodeResult<'tree, Parameters<'tree>> {
         self . 0 . child_by_field_name ("parameters") . map (< Parameters < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
-    #[doc = "Get the field `return_type`"]
+    #[doc = "Get the field `return_type` which has kind `_type?` ([Type])"]
     #[allow(dead_code)]
     #[inline]
     pub fn return_type(&self) -> Option<type_sitter_lib::NodeResult<'tree, Type<'tree>>> {
@@ -5437,7 +5437,7 @@ impl<'tree> FunctionType<'tree> {
             .child_by_field_name("return_type")
             .map(<Type<'tree> as TryFrom<_>>::try_from)
     }
-    #[doc = "Get the field `trait`"]
+    #[doc = "Get the field `trait` which has kind `{scoped_type_identifier | type_identifier}?` ([anon_unions::ScopedTypeIdentifier_TypeIdentifier])"]
     #[allow(dead_code)]
     #[inline]
     pub fn r#trait(
@@ -5496,13 +5496,13 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for FunctionType<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `generic_function`"]
+#[doc = "Typed node `generic_function`\n\nThis node has these fields:\n- `function`: `{field_expression | identifier | scoped_identifier}` ([anon_unions::FieldExpression_Identifier_ScopedIdentifier])\n- `type_arguments`: `type_arguments` ([TypeArguments])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct GenericFunction<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> GenericFunction<'tree> {
-    #[doc = "Get the field `function`"]
+    #[doc = "Get the field `function` which has kind `{field_expression | identifier | scoped_identifier}` ([anon_unions::FieldExpression_Identifier_ScopedIdentifier])"]
     #[allow(dead_code)]
     #[inline]
     pub fn function(
@@ -5513,7 +5513,7 @@ impl<'tree> GenericFunction<'tree> {
     > {
         self . 0 . child_by_field_name ("function") . map (< anon_unions :: FieldExpression_Identifier_ScopedIdentifier < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
-    #[doc = "Get the field `type_arguments`"]
+    #[doc = "Get the field `type_arguments` which has kind `type_arguments` ([TypeArguments])"]
     #[allow(dead_code)]
     #[inline]
     pub fn type_arguments(&self) -> type_sitter_lib::NodeResult<'tree, TypeArguments<'tree>> {
@@ -5555,13 +5555,13 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for GenericFunction<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `generic_type`"]
+#[doc = "Typed node `generic_type`\n\nThis node has these fields:\n- `type`: `{scoped_identifier | scoped_type_identifier | type_identifier}` ([anon_unions::ScopedIdentifier_ScopedTypeIdentifier_TypeIdentifier])\n- `type_arguments`: `type_arguments` ([TypeArguments])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct GenericType<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> GenericType<'tree> {
-    #[doc = "Get the field `type`"]
+    #[doc = "Get the field `type` which has kind `{scoped_identifier | scoped_type_identifier | type_identifier}` ([anon_unions::ScopedIdentifier_ScopedTypeIdentifier_TypeIdentifier])"]
     #[allow(dead_code)]
     #[inline]
     pub fn r#type(
@@ -5572,7 +5572,7 @@ impl<'tree> GenericType<'tree> {
     > {
         self . 0 . child_by_field_name ("type") . map (< anon_unions :: ScopedIdentifier_ScopedTypeIdentifier_TypeIdentifier < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
-    #[doc = "Get the field `type_arguments`"]
+    #[doc = "Get the field `type_arguments` which has kind `type_arguments` ([TypeArguments])"]
     #[allow(dead_code)]
     #[inline]
     pub fn type_arguments(&self) -> type_sitter_lib::NodeResult<'tree, TypeArguments<'tree>> {
@@ -5614,13 +5614,13 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for GenericType<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `generic_type_with_turbofish`"]
+#[doc = "Typed node `generic_type_with_turbofish`\n\nThis node has these fields:\n- `type`: `{scoped_identifier | type_identifier}` ([anon_unions::ScopedIdentifier_TypeIdentifier])\n- `type_arguments`: `type_arguments` ([TypeArguments])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct GenericTypeWithTurbofish<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> GenericTypeWithTurbofish<'tree> {
-    #[doc = "Get the field `type`"]
+    #[doc = "Get the field `type` which has kind `{scoped_identifier | type_identifier}` ([anon_unions::ScopedIdentifier_TypeIdentifier])"]
     #[allow(dead_code)]
     #[inline]
     pub fn r#type(
@@ -5629,7 +5629,7 @@ impl<'tree> GenericTypeWithTurbofish<'tree> {
     {
         self . 0 . child_by_field_name ("type") . map (< anon_unions :: ScopedIdentifier_TypeIdentifier < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
-    #[doc = "Get the field `type_arguments`"]
+    #[doc = "Get the field `type_arguments` which has kind `type_arguments` ([TypeArguments])"]
     #[allow(dead_code)]
     #[inline]
     pub fn type_arguments(&self) -> type_sitter_lib::NodeResult<'tree, TypeArguments<'tree>> {
@@ -5671,19 +5671,19 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for GenericTypeWithTurbofish<'tree
         Self(node)
     }
 }
-#[doc = "Typed node `higher_ranked_trait_bound`"]
+#[doc = "Typed node `higher_ranked_trait_bound`\n\nThis node has these fields:\n- `type`: `_type` ([Type])\n- `type_parameters`: `type_parameters` ([TypeParameters])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct HigherRankedTraitBound<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> HigherRankedTraitBound<'tree> {
-    #[doc = "Get the field `type`"]
+    #[doc = "Get the field `type` which has kind `_type` ([Type])"]
     #[allow(dead_code)]
     #[inline]
     pub fn r#type(&self) -> type_sitter_lib::NodeResult<'tree, Type<'tree>> {
         self . 0 . child_by_field_name ("type") . map (< Type < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
-    #[doc = "Get the field `type_parameters`"]
+    #[doc = "Get the field `type_parameters` which has kind `type_parameters` ([TypeParameters])"]
     #[allow(dead_code)]
     #[inline]
     pub fn type_parameters(&self) -> type_sitter_lib::NodeResult<'tree, TypeParameters<'tree>> {
@@ -5725,13 +5725,13 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for HigherRankedTraitBound<'tree> 
         Self(node)
     }
 }
-#[doc = "Typed node `if_expression`"]
+#[doc = "Typed node `if_expression`\n\nThis node has these fields:\n- `alternative`: `else_clause?` ([ElseClause])\n- `condition`: `{_expression | let_chain | let_condition}` ([anon_unions::Expression_LetChain_LetCondition])\n- `consequence`: `block` ([Block])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct IfExpression<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> IfExpression<'tree> {
-    #[doc = "Get the field `alternative`"]
+    #[doc = "Get the field `alternative` which has kind `else_clause?` ([ElseClause])"]
     #[allow(dead_code)]
     #[inline]
     pub fn alternative(&self) -> Option<type_sitter_lib::NodeResult<'tree, ElseClause<'tree>>> {
@@ -5739,7 +5739,7 @@ impl<'tree> IfExpression<'tree> {
             .child_by_field_name("alternative")
             .map(<ElseClause<'tree> as TryFrom<_>>::try_from)
     }
-    #[doc = "Get the field `condition`"]
+    #[doc = "Get the field `condition` which has kind `{_expression | let_chain | let_condition}` ([anon_unions::Expression_LetChain_LetCondition])"]
     #[allow(dead_code)]
     #[inline]
     pub fn condition(
@@ -5748,7 +5748,7 @@ impl<'tree> IfExpression<'tree> {
     {
         self . 0 . child_by_field_name ("condition") . map (< anon_unions :: Expression_LetChain_LetCondition < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
-    #[doc = "Get the field `consequence`"]
+    #[doc = "Get the field `consequence` which has kind `block` ([Block])"]
     #[allow(dead_code)]
     #[inline]
     pub fn consequence(&self) -> type_sitter_lib::NodeResult<'tree, Block<'tree>> {
@@ -5790,13 +5790,13 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for IfExpression<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `impl_item`"]
+#[doc = "Typed node `impl_item`\n\nThis node has these fields:\n- `body`: `declaration_list?` ([DeclarationList])\n- `trait`: `{generic_type | scoped_type_identifier | type_identifier}?` ([anon_unions::GenericType_ScopedTypeIdentifier_TypeIdentifier])\n- `type`: `_type` ([Type])\n- `type_parameters`: `type_parameters?` ([TypeParameters])\n\nAnd an additional (optional) child: `where_clause?` ([WhereClause])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct ImplItem<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ImplItem<'tree> {
-    #[doc = "Get the field `body`"]
+    #[doc = "Get the field `body` which has kind `declaration_list?` ([DeclarationList])"]
     #[allow(dead_code)]
     #[inline]
     pub fn body(&self) -> Option<type_sitter_lib::NodeResult<'tree, DeclarationList<'tree>>> {
@@ -5804,7 +5804,7 @@ impl<'tree> ImplItem<'tree> {
             .child_by_field_name("body")
             .map(<DeclarationList<'tree> as TryFrom<_>>::try_from)
     }
-    #[doc = "Get the field `trait`"]
+    #[doc = "Get the field `trait` which has kind `{generic_type | scoped_type_identifier | type_identifier}?` ([anon_unions::GenericType_ScopedTypeIdentifier_TypeIdentifier])"]
     #[allow(dead_code)]
     #[inline]
     pub fn r#trait(
@@ -5817,13 +5817,13 @@ impl<'tree> ImplItem<'tree> {
     > {
         self . 0 . child_by_field_name ("trait") . map (< anon_unions :: GenericType_ScopedTypeIdentifier_TypeIdentifier < 'tree > as TryFrom < _ >> :: try_from)
     }
-    #[doc = "Get the field `type`"]
+    #[doc = "Get the field `type` which has kind `_type` ([Type])"]
     #[allow(dead_code)]
     #[inline]
     pub fn r#type(&self) -> type_sitter_lib::NodeResult<'tree, Type<'tree>> {
         self . 0 . child_by_field_name ("type") . map (< Type < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
-    #[doc = "Get the field `type_parameters`"]
+    #[doc = "Get the field `type_parameters` which has kind `type_parameters?` ([TypeParameters])"]
     #[allow(dead_code)]
     #[inline]
     pub fn type_parameters(
@@ -5880,7 +5880,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ImplItem<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `index_expression`"]
+#[doc = "Typed node `index_expression`\n\nThis node has children: `_expression+` ([Expression])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct IndexExpression<'tree>(tree_sitter::Node<'tree>);
@@ -5952,7 +5952,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for IndexExpression<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `inner_attribute_item`"]
+#[doc = "Typed node `inner_attribute_item`\n\nThis node has a child: `attribute` ([Attribute])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct InnerAttributeItem<'tree>(tree_sitter::Node<'tree>);
@@ -6000,7 +6000,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for InnerAttributeItem<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `let_chain`"]
+#[doc = "Typed node `let_chain`\n\nThis node has children: `{_expression | let_condition}+`:\n- [Expression]\n- [LetCondition]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct LetChain<'tree>(tree_sitter::Node<'tree>);
@@ -6071,19 +6071,19 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for LetChain<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `let_condition`"]
+#[doc = "Typed node `let_condition`\n\nThis node has these fields:\n- `pattern`: `_pattern` ([Pattern])\n- `value`: `_expression` ([Expression])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct LetCondition<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> LetCondition<'tree> {
-    #[doc = "Get the field `pattern`"]
+    #[doc = "Get the field `pattern` which has kind `_pattern` ([Pattern])"]
     #[allow(dead_code)]
     #[inline]
     pub fn pattern(&self) -> type_sitter_lib::NodeResult<'tree, Pattern<'tree>> {
         self . 0 . child_by_field_name ("pattern") . map (< Pattern < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
-    #[doc = "Get the field `value`"]
+    #[doc = "Get the field `value` which has kind `_expression` ([Expression])"]
     #[allow(dead_code)]
     #[inline]
     pub fn value(&self) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
@@ -6125,13 +6125,13 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for LetCondition<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `let_declaration`"]
+#[doc = "Typed node `let_declaration`\n\nThis node has these fields:\n- `alternative`: `block?` ([Block])\n- `pattern`: `_pattern` ([Pattern])\n- `type`: `_type?` ([Type])\n- `value`: `_expression?` ([Expression])\n\nAnd an additional (optional) child: `mutable_specifier?` ([MutableSpecifier])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct LetDeclaration<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> LetDeclaration<'tree> {
-    #[doc = "Get the field `alternative`"]
+    #[doc = "Get the field `alternative` which has kind `block?` ([Block])"]
     #[allow(dead_code)]
     #[inline]
     pub fn alternative(&self) -> Option<type_sitter_lib::NodeResult<'tree, Block<'tree>>> {
@@ -6139,13 +6139,13 @@ impl<'tree> LetDeclaration<'tree> {
             .child_by_field_name("alternative")
             .map(<Block<'tree> as TryFrom<_>>::try_from)
     }
-    #[doc = "Get the field `pattern`"]
+    #[doc = "Get the field `pattern` which has kind `_pattern` ([Pattern])"]
     #[allow(dead_code)]
     #[inline]
     pub fn pattern(&self) -> type_sitter_lib::NodeResult<'tree, Pattern<'tree>> {
         self . 0 . child_by_field_name ("pattern") . map (< Pattern < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
-    #[doc = "Get the field `type`"]
+    #[doc = "Get the field `type` which has kind `_type?` ([Type])"]
     #[allow(dead_code)]
     #[inline]
     pub fn r#type(&self) -> Option<type_sitter_lib::NodeResult<'tree, Type<'tree>>> {
@@ -6153,7 +6153,7 @@ impl<'tree> LetDeclaration<'tree> {
             .child_by_field_name("type")
             .map(<Type<'tree> as TryFrom<_>>::try_from)
     }
-    #[doc = "Get the field `value`"]
+    #[doc = "Get the field `value` which has kind `_expression?` ([Expression])"]
     #[allow(dead_code)]
     #[inline]
     pub fn value(&self) -> Option<type_sitter_lib::NodeResult<'tree, Expression<'tree>>> {
@@ -6242,7 +6242,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for LetDeclaration<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `lifetime`"]
+#[doc = "Typed node `lifetime`\n\nThis node has a child: `identifier` ([Identifier])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct Lifetime<'tree>(tree_sitter::Node<'tree>);
@@ -6290,13 +6290,13 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Lifetime<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `loop_expression`"]
+#[doc = "Typed node `loop_expression`\n\nThis node has these fields:\n- `body`: `block` ([Block])\n\nAnd an additional (optional) child: `loop_label?` ([LoopLabel])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct LoopExpression<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> LoopExpression<'tree> {
-    #[doc = "Get the field `body`"]
+    #[doc = "Get the field `body` which has kind `block` ([Block])"]
     #[allow(dead_code)]
     #[inline]
     pub fn body(&self) -> type_sitter_lib::NodeResult<'tree, Block<'tree>> {
@@ -6367,7 +6367,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for LoopExpression<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `loop_label`"]
+#[doc = "Typed node `loop_label`\n\nThis node has a child: `identifier` ([Identifier])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct LoopLabel<'tree>(tree_sitter::Node<'tree>);
@@ -6415,13 +6415,13 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for LoopLabel<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `macro_definition`"]
+#[doc = "Typed node `macro_definition`\n\nThis node has these fields:\n- `name`: `identifier` ([Identifier])\n\nAnd additional children: `macro_rule*` ([MacroRule])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct MacroDefinition<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> MacroDefinition<'tree> {
-    #[doc = "Get the field `name`"]
+    #[doc = "Get the field `name` which has kind `identifier` ([Identifier])"]
     #[allow(dead_code)]
     #[inline]
     pub fn name(&self) -> type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
@@ -6496,13 +6496,13 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for MacroDefinition<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `macro_invocation`"]
+#[doc = "Typed node `macro_invocation`\n\nThis node has these fields:\n- `macro`: `{identifier | scoped_identifier}` ([anon_unions::Identifier_ScopedIdentifier])\n\nAnd an additional child: `token_tree` ([TokenTree])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct MacroInvocation<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> MacroInvocation<'tree> {
-    #[doc = "Get the field `macro`"]
+    #[doc = "Get the field `macro` which has kind `{identifier | scoped_identifier}` ([anon_unions::Identifier_ScopedIdentifier])"]
     #[allow(dead_code)]
     #[inline]
     pub fn r#macro(
@@ -6591,19 +6591,19 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for MacroInvocation<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `macro_rule`"]
+#[doc = "Typed node `macro_rule`\n\nThis node has these fields:\n- `left`: `token_tree_pattern` ([TokenTreePattern])\n- `right`: `token_tree` ([TokenTree])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct MacroRule<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> MacroRule<'tree> {
-    #[doc = "Get the field `left`"]
+    #[doc = "Get the field `left` which has kind `token_tree_pattern` ([TokenTreePattern])"]
     #[allow(dead_code)]
     #[inline]
     pub fn left(&self) -> type_sitter_lib::NodeResult<'tree, TokenTreePattern<'tree>> {
         self . 0 . child_by_field_name ("left") . map (< TokenTreePattern < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
-    #[doc = "Get the field `right`"]
+    #[doc = "Get the field `right` which has kind `token_tree` ([TokenTree])"]
     #[allow(dead_code)]
     #[inline]
     pub fn right(&self) -> type_sitter_lib::NodeResult<'tree, TokenTree<'tree>> {
@@ -6645,19 +6645,19 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for MacroRule<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `match_arm`"]
+#[doc = "Typed node `match_arm`\n\nThis node has these fields:\n- `pattern`: `match_pattern` ([MatchPattern])\n- `value`: `_expression` ([Expression])\n\nAnd additional children: `attribute_item*` ([AttributeItem])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct MatchArm<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> MatchArm<'tree> {
-    #[doc = "Get the field `pattern`"]
+    #[doc = "Get the field `pattern` which has kind `match_pattern` ([MatchPattern])"]
     #[allow(dead_code)]
     #[inline]
     pub fn pattern(&self) -> type_sitter_lib::NodeResult<'tree, MatchPattern<'tree>> {
         self . 0 . child_by_field_name ("pattern") . map (< MatchPattern < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
-    #[doc = "Get the field `value`"]
+    #[doc = "Get the field `value` which has kind `_expression` ([Expression])"]
     #[allow(dead_code)]
     #[inline]
     pub fn value(&self) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
@@ -6744,7 +6744,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for MatchArm<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `match_block`"]
+#[doc = "Typed node `match_block`\n\nThis node has children: `match_arm*` ([MatchArm])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct MatchBlock<'tree>(tree_sitter::Node<'tree>);
@@ -6811,19 +6811,19 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for MatchBlock<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `match_expression`"]
+#[doc = "Typed node `match_expression`\n\nThis node has these fields:\n- `body`: `match_block` ([MatchBlock])\n- `value`: `_expression` ([Expression])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct MatchExpression<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> MatchExpression<'tree> {
-    #[doc = "Get the field `body`"]
+    #[doc = "Get the field `body` which has kind `match_block` ([MatchBlock])"]
     #[allow(dead_code)]
     #[inline]
     pub fn body(&self) -> type_sitter_lib::NodeResult<'tree, MatchBlock<'tree>> {
         self . 0 . child_by_field_name ("body") . map (< MatchBlock < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
-    #[doc = "Get the field `value`"]
+    #[doc = "Get the field `value` which has kind `_expression` ([Expression])"]
     #[allow(dead_code)]
     #[inline]
     pub fn value(&self) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
@@ -6865,13 +6865,13 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for MatchExpression<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `match_pattern`"]
+#[doc = "Typed node `match_pattern`\n\nThis node has these fields:\n- `condition`: `{_expression | let_chain | let_condition}?` ([anon_unions::Expression_LetChain_LetCondition])\n\nAnd an additional child: `_pattern` ([Pattern])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct MatchPattern<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> MatchPattern<'tree> {
-    #[doc = "Get the field `condition`"]
+    #[doc = "Get the field `condition` which has kind `{_expression | let_chain | let_condition}?` ([anon_unions::Expression_LetChain_LetCondition])"]
     #[allow(dead_code)]
     #[inline]
     pub fn condition(
@@ -6964,13 +6964,13 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for MatchPattern<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `mod_item`"]
+#[doc = "Typed node `mod_item`\n\nThis node has these fields:\n- `body`: `declaration_list?` ([DeclarationList])\n- `name`: `identifier` ([Identifier])\n\nAnd an additional (optional) child: `visibility_modifier?` ([VisibilityModifier])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct ModItem<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ModItem<'tree> {
-    #[doc = "Get the field `body`"]
+    #[doc = "Get the field `body` which has kind `declaration_list?` ([DeclarationList])"]
     #[allow(dead_code)]
     #[inline]
     pub fn body(&self) -> Option<type_sitter_lib::NodeResult<'tree, DeclarationList<'tree>>> {
@@ -6978,7 +6978,7 @@ impl<'tree> ModItem<'tree> {
             .child_by_field_name("body")
             .map(<DeclarationList<'tree> as TryFrom<_>>::try_from)
     }
-    #[doc = "Get the field `name`"]
+    #[doc = "Get the field `name` which has kind `identifier` ([Identifier])"]
     #[allow(dead_code)]
     #[inline]
     pub fn name(&self) -> type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
@@ -7065,7 +7065,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ModItem<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `mut_pattern`"]
+#[doc = "Typed node `mut_pattern`\n\nThis node has children: `{_pattern | mutable_specifier}+`:\n- [Pattern]\n- [MutableSpecifier]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct MutPattern<'tree>(tree_sitter::Node<'tree>);
@@ -7136,7 +7136,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for MutPattern<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `negative_literal`"]
+#[doc = "Typed node `negative_literal`\n\nThis node has a child: `{float_literal | integer_literal}`:\n- [FloatLiteral]\n- [IntegerLiteral]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct NegativeLiteral<'tree>(tree_sitter::Node<'tree>);
@@ -7186,19 +7186,19 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for NegativeLiteral<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `optional_type_parameter`"]
+#[doc = "Typed node `optional_type_parameter`\n\nThis node has these fields:\n- `default_type`: `_type` ([Type])\n- `name`: `{constrained_type_parameter | type_identifier}` ([anon_unions::ConstrainedTypeParameter_TypeIdentifier])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct OptionalTypeParameter<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> OptionalTypeParameter<'tree> {
-    #[doc = "Get the field `default_type`"]
+    #[doc = "Get the field `default_type` which has kind `_type` ([Type])"]
     #[allow(dead_code)]
     #[inline]
     pub fn default_type(&self) -> type_sitter_lib::NodeResult<'tree, Type<'tree>> {
         self . 0 . child_by_field_name ("default_type") . map (< Type < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
-    #[doc = "Get the field `name`"]
+    #[doc = "Get the field `name` which has kind `{constrained_type_parameter | type_identifier}` ([anon_unions::ConstrainedTypeParameter_TypeIdentifier])"]
     #[allow(dead_code)]
     #[inline]
     pub fn name(
@@ -7245,7 +7245,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for OptionalTypeParameter<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `or_pattern`"]
+#[doc = "Typed node `or_pattern`\n\nThis node has children: `_pattern+` ([Pattern])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct OrPattern<'tree>(tree_sitter::Node<'tree>);
@@ -7313,13 +7313,13 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for OrPattern<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `ordered_field_declaration_list`"]
+#[doc = "Typed node `ordered_field_declaration_list`\n\nThis node has these fields:\n- `type`: `_type*` ([Type])\n\nAnd additional children: `{attribute_item | visibility_modifier}*`:\n- [AttributeItem]\n- [VisibilityModifier]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct OrderedFieldDeclarationList<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> OrderedFieldDeclarationList<'tree> {
-    #[doc = "Get the field `type`"]
+    #[doc = "Get the field `type` which has kind `_type*` ([Type])"]
     #[allow(dead_code)]
     #[inline]
     pub fn types<'a>(
@@ -7412,19 +7412,19 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for OrderedFieldDeclarationList<'t
         Self(node)
     }
 }
-#[doc = "Typed node `parameter`"]
+#[doc = "Typed node `parameter`\n\nThis node has these fields:\n- `pattern`: `{_pattern | self}` ([anon_unions::Pattern__Self])\n- `type`: `_type` ([Type])\n\nAnd an additional (optional) child: `mutable_specifier?` ([MutableSpecifier])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct Parameter<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> Parameter<'tree> {
-    #[doc = "Get the field `pattern`"]
+    #[doc = "Get the field `pattern` which has kind `{_pattern | self}` ([anon_unions::Pattern__Self])"]
     #[allow(dead_code)]
     #[inline]
     pub fn pattern(&self) -> type_sitter_lib::NodeResult<'tree, anon_unions::Pattern__Self<'tree>> {
         self . 0 . child_by_field_name ("pattern") . map (< anon_unions :: Pattern__Self < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
-    #[doc = "Get the field `type`"]
+    #[doc = "Get the field `type` which has kind `_type` ([Type])"]
     #[allow(dead_code)]
     #[inline]
     pub fn r#type(&self) -> type_sitter_lib::NodeResult<'tree, Type<'tree>> {
@@ -7506,7 +7506,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Parameter<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `parameters`"]
+#[doc = "Typed node `parameters`\n\nThis node has children: `{_type | attribute_item | parameter | self_parameter | variadic_parameter}*`:\n- [Type]\n- [AttributeItem]\n- [Parameter]\n- [SelfParameter]\n- [VariadicParameter]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct Parameters<'tree>(tree_sitter::Node<'tree>);
@@ -7592,7 +7592,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Parameters<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `parenthesized_expression`"]
+#[doc = "Typed node `parenthesized_expression`\n\nThis node has a child: `_expression` ([Expression])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct ParenthesizedExpression<'tree>(tree_sitter::Node<'tree>);
@@ -7640,13 +7640,13 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ParenthesizedExpression<'tree>
         Self(node)
     }
 }
-#[doc = "Typed node `pointer_type`"]
+#[doc = "Typed node `pointer_type`\n\nThis node has these fields:\n- `type`: `_type` ([Type])\n\nAnd an additional (optional) child: `mutable_specifier?` ([MutableSpecifier])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct PointerType<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> PointerType<'tree> {
-    #[doc = "Get the field `type`"]
+    #[doc = "Get the field `type` which has kind `_type` ([Type])"]
     #[allow(dead_code)]
     #[inline]
     pub fn r#type(&self) -> type_sitter_lib::NodeResult<'tree, Type<'tree>> {
@@ -7717,19 +7717,19 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for PointerType<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `qualified_type`"]
+#[doc = "Typed node `qualified_type`\n\nThis node has these fields:\n- `alias`: `_type` ([Type])\n- `type`: `_type` ([Type])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct QualifiedType<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> QualifiedType<'tree> {
-    #[doc = "Get the field `alias`"]
+    #[doc = "Get the field `alias` which has kind `_type` ([Type])"]
     #[allow(dead_code)]
     #[inline]
     pub fn alias(&self) -> type_sitter_lib::NodeResult<'tree, Type<'tree>> {
         self . 0 . child_by_field_name ("alias") . map (< Type < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
-    #[doc = "Get the field `type`"]
+    #[doc = "Get the field `type` which has kind `_type` ([Type])"]
     #[allow(dead_code)]
     #[inline]
     pub fn r#type(&self) -> type_sitter_lib::NodeResult<'tree, Type<'tree>> {
@@ -7771,7 +7771,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for QualifiedType<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `range_expression`"]
+#[doc = "Typed node `range_expression`\n\nThis node has children: `_expression*` ([Expression])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct RangeExpression<'tree>(tree_sitter::Node<'tree>);
@@ -7842,7 +7842,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for RangeExpression<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `range_pattern`"]
+#[doc = "Typed node `range_pattern`\n\nThis node has children: `{_literal_pattern | crate | identifier | metavariable | scoped_identifier | self | super}+`:\n- [LiteralPattern]\n- [Crate]\n- [Identifier]\n- [Metavariable]\n- [ScopedIdentifier]\n- [_Self]\n- [Super]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct RangePattern<'tree>(tree_sitter::Node<'tree>);
@@ -7895,7 +7895,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for RangePattern<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `ref_pattern`"]
+#[doc = "Typed node `ref_pattern`\n\nThis node has a child: `_pattern` ([Pattern])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct RefPattern<'tree>(tree_sitter::Node<'tree>);
@@ -7943,13 +7943,13 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for RefPattern<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `reference_expression`"]
+#[doc = "Typed node `reference_expression`\n\nThis node has these fields:\n- `value`: `_expression` ([Expression])\n\nAnd an additional (optional) child: `mutable_specifier?` ([MutableSpecifier])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct ReferenceExpression<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ReferenceExpression<'tree> {
-    #[doc = "Get the field `value`"]
+    #[doc = "Get the field `value` which has kind `_expression` ([Expression])"]
     #[allow(dead_code)]
     #[inline]
     pub fn value(&self) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
@@ -8020,7 +8020,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ReferenceExpression<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `reference_pattern`"]
+#[doc = "Typed node `reference_pattern`\n\nThis node has children: `{_pattern | mutable_specifier}+`:\n- [Pattern]\n- [MutableSpecifier]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct ReferencePattern<'tree>(tree_sitter::Node<'tree>);
@@ -8091,13 +8091,13 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ReferencePattern<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `reference_type`"]
+#[doc = "Typed node `reference_type`\n\nThis node has these fields:\n- `type`: `_type` ([Type])\n\nAnd additional children: `{lifetime | mutable_specifier}*`:\n- [Lifetime]\n- [MutableSpecifier]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct ReferenceType<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ReferenceType<'tree> {
-    #[doc = "Get the field `type`"]
+    #[doc = "Get the field `type` which has kind `_type` ([Type])"]
     #[allow(dead_code)]
     #[inline]
     pub fn r#type(&self) -> type_sitter_lib::NodeResult<'tree, Type<'tree>> {
@@ -8168,7 +8168,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ReferenceType<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `remaining_field_pattern`"]
+#[doc = "Typed node `remaining_field_pattern`\n\nThis node has no children\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct RemainingFieldPattern<'tree>(tree_sitter::Node<'tree>);
@@ -8209,7 +8209,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for RemainingFieldPattern<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `removed_trait_bound`"]
+#[doc = "Typed node `removed_trait_bound`\n\nThis node has a child: `_type` ([Type])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct RemovedTraitBound<'tree>(tree_sitter::Node<'tree>);
@@ -8257,7 +8257,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for RemovedTraitBound<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `return_expression`"]
+#[doc = "Typed node `return_expression`\n\nThis node has an (optional) child: `_expression?` ([Expression])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct ReturnExpression<'tree>(tree_sitter::Node<'tree>);
@@ -8307,19 +8307,19 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ReturnExpression<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `scoped_identifier`"]
+#[doc = "Typed node `scoped_identifier`\n\nThis node has these fields:\n- `name`: `identifier` ([Identifier])\n- `path`: `{bracketed_type | crate | generic_type | identifier | metavariable | scoped_identifier | self | super}?` ([anon_unions::BracketedType_Crate_GenericType_Identifier_Metavariable_ScopedIdentifier__Self_Super])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct ScopedIdentifier<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ScopedIdentifier<'tree> {
-    #[doc = "Get the field `name`"]
+    #[doc = "Get the field `name` which has kind `identifier` ([Identifier])"]
     #[allow(dead_code)]
     #[inline]
     pub fn name(&self) -> type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
         self . 0 . child_by_field_name ("name") . map (< Identifier < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
-    #[doc = "Get the field `path`"]
+    #[doc = "Get the field `path` which has kind `{bracketed_type | crate | generic_type | identifier | metavariable | scoped_identifier | self | super}?` ([anon_unions::BracketedType_Crate_GenericType_Identifier_Metavariable_ScopedIdentifier__Self_Super])"]
     #[allow(dead_code)]
     #[inline]    pub fn path (& self) -> Option < type_sitter_lib :: NodeResult < 'tree , anon_unions :: BracketedType_Crate_GenericType_Identifier_Metavariable_ScopedIdentifier__Self_Super < 'tree > > >{
         self . 0 . child_by_field_name ("path") . map (< anon_unions :: BracketedType_Crate_GenericType_Identifier_Metavariable_ScopedIdentifier__Self_Super < 'tree > as TryFrom < _ >> :: try_from)
@@ -8360,19 +8360,19 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ScopedIdentifier<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `scoped_type_identifier`"]
+#[doc = "Typed node `scoped_type_identifier`\n\nThis node has these fields:\n- `name`: `type_identifier` ([TypeIdentifier])\n- `path`: `{bracketed_type | crate | generic_type | identifier | metavariable | scoped_identifier | self | super}?` ([anon_unions::BracketedType_Crate_GenericType_Identifier_Metavariable_ScopedIdentifier__Self_Super])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct ScopedTypeIdentifier<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ScopedTypeIdentifier<'tree> {
-    #[doc = "Get the field `name`"]
+    #[doc = "Get the field `name` which has kind `type_identifier` ([TypeIdentifier])"]
     #[allow(dead_code)]
     #[inline]
     pub fn name(&self) -> type_sitter_lib::NodeResult<'tree, TypeIdentifier<'tree>> {
         self . 0 . child_by_field_name ("name") . map (< TypeIdentifier < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
-    #[doc = "Get the field `path`"]
+    #[doc = "Get the field `path` which has kind `{bracketed_type | crate | generic_type | identifier | metavariable | scoped_identifier | self | super}?` ([anon_unions::BracketedType_Crate_GenericType_Identifier_Metavariable_ScopedIdentifier__Self_Super])"]
     #[allow(dead_code)]
     #[inline]    pub fn path (& self) -> Option < type_sitter_lib :: NodeResult < 'tree , anon_unions :: BracketedType_Crate_GenericType_Identifier_Metavariable_ScopedIdentifier__Self_Super < 'tree > > >{
         self . 0 . child_by_field_name ("path") . map (< anon_unions :: BracketedType_Crate_GenericType_Identifier_Metavariable_ScopedIdentifier__Self_Super < 'tree > as TryFrom < _ >> :: try_from)
@@ -8413,19 +8413,19 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ScopedTypeIdentifier<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `scoped_use_list`"]
+#[doc = "Typed node `scoped_use_list`\n\nThis node has these fields:\n- `list`: `use_list` ([UseList])\n- `path`: `{crate | identifier | metavariable | scoped_identifier | self | super}?` ([anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct ScopedUseList<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ScopedUseList<'tree> {
-    #[doc = "Get the field `list`"]
+    #[doc = "Get the field `list` which has kind `use_list` ([UseList])"]
     #[allow(dead_code)]
     #[inline]
     pub fn list(&self) -> type_sitter_lib::NodeResult<'tree, UseList<'tree>> {
         self . 0 . child_by_field_name ("list") . map (< UseList < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
-    #[doc = "Get the field `path`"]
+    #[doc = "Get the field `path` which has kind `{crate | identifier | metavariable | scoped_identifier | self | super}?` ([anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super])"]
     #[allow(dead_code)]
     #[inline]
     pub fn path(
@@ -8474,7 +8474,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ScopedUseList<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `self_parameter`"]
+#[doc = "Typed node `self_parameter`\n\nThis node has children: `{lifetime | mutable_specifier | self}+`:\n- [Lifetime]\n- [MutableSpecifier]\n- [_Self]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct SelfParameter<'tree>(tree_sitter::Node<'tree>);
@@ -8545,7 +8545,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for SelfParameter<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `shorthand_field_initializer`"]
+#[doc = "Typed node `shorthand_field_initializer`\n\nThis node has children: `{attribute_item | identifier}+`:\n- [AttributeItem]\n- [Identifier]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct ShorthandFieldInitializer<'tree>(tree_sitter::Node<'tree>);
@@ -8616,7 +8616,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ShorthandFieldInitializer<'tre
         Self(node)
     }
 }
-#[doc = "Typed node `slice_pattern`"]
+#[doc = "Typed node `slice_pattern`\n\nThis node has children: `_pattern*` ([Pattern])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct SlicePattern<'tree>(tree_sitter::Node<'tree>);
@@ -8683,7 +8683,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for SlicePattern<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `source_file`"]
+#[doc = "Typed node `source_file`\n\nThis node has children: `{_declaration_statement | expression_statement}*`:\n- [DeclarationStatement]\n- [ExpressionStatement]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct SourceFile<'tree>(tree_sitter::Node<'tree>);
@@ -8769,25 +8769,25 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for SourceFile<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `static_item`"]
+#[doc = "Typed node `static_item`\n\nThis node has these fields:\n- `name`: `identifier` ([Identifier])\n- `type`: `_type` ([Type])\n- `value`: `_expression?` ([Expression])\n\nAnd additional children: `{mutable_specifier | visibility_modifier}*`:\n- [MutableSpecifier]\n- [VisibilityModifier]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct StaticItem<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> StaticItem<'tree> {
-    #[doc = "Get the field `name`"]
+    #[doc = "Get the field `name` which has kind `identifier` ([Identifier])"]
     #[allow(dead_code)]
     #[inline]
     pub fn name(&self) -> type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
         self . 0 . child_by_field_name ("name") . map (< Identifier < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
-    #[doc = "Get the field `type`"]
+    #[doc = "Get the field `type` which has kind `_type` ([Type])"]
     #[allow(dead_code)]
     #[inline]
     pub fn r#type(&self) -> type_sitter_lib::NodeResult<'tree, Type<'tree>> {
         self . 0 . child_by_field_name ("type") . map (< Type < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
-    #[doc = "Get the field `value`"]
+    #[doc = "Get the field `value` which has kind `_expression?` ([Expression])"]
     #[allow(dead_code)]
     #[inline]
     pub fn value(&self) -> Option<type_sitter_lib::NodeResult<'tree, Expression<'tree>>> {
@@ -8876,7 +8876,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for StaticItem<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `string_literal`"]
+#[doc = "Typed node `string_literal`\n\nThis node has children: `escape_sequence*` ([EscapeSequence])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct StringLiteral<'tree>(tree_sitter::Node<'tree>);
@@ -8947,19 +8947,19 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for StringLiteral<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `struct_expression`"]
+#[doc = "Typed node `struct_expression`\n\nThis node has these fields:\n- `body`: `field_initializer_list` ([FieldInitializerList])\n- `name`: `{generic_type_with_turbofish | scoped_type_identifier | type_identifier}` ([anon_unions::GenericTypeWithTurbofish_ScopedTypeIdentifier_TypeIdentifier])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct StructExpression<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> StructExpression<'tree> {
-    #[doc = "Get the field `body`"]
+    #[doc = "Get the field `body` which has kind `field_initializer_list` ([FieldInitializerList])"]
     #[allow(dead_code)]
     #[inline]
     pub fn body(&self) -> type_sitter_lib::NodeResult<'tree, FieldInitializerList<'tree>> {
         self . 0 . child_by_field_name ("body") . map (< FieldInitializerList < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
-    #[doc = "Get the field `name`"]
+    #[doc = "Get the field `name` which has kind `{generic_type_with_turbofish | scoped_type_identifier | type_identifier}` ([anon_unions::GenericTypeWithTurbofish_ScopedTypeIdentifier_TypeIdentifier])"]
     #[allow(dead_code)]
     #[inline]
     pub fn name(
@@ -9006,13 +9006,13 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for StructExpression<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `struct_item`"]
+#[doc = "Typed node `struct_item`\n\nThis node has these fields:\n- `body`: `{field_declaration_list | ordered_field_declaration_list}?` ([anon_unions::FieldDeclarationList_OrderedFieldDeclarationList])\n- `name`: `type_identifier` ([TypeIdentifier])\n- `type_parameters`: `type_parameters?` ([TypeParameters])\n\nAnd additional children: `{visibility_modifier | where_clause}*`:\n- [VisibilityModifier]\n- [WhereClause]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct StructItem<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> StructItem<'tree> {
-    #[doc = "Get the field `body`"]
+    #[doc = "Get the field `body` which has kind `{field_declaration_list | ordered_field_declaration_list}?` ([anon_unions::FieldDeclarationList_OrderedFieldDeclarationList])"]
     #[allow(dead_code)]
     #[inline]
     pub fn body(
@@ -9025,13 +9025,13 @@ impl<'tree> StructItem<'tree> {
     > {
         self . 0 . child_by_field_name ("body") . map (< anon_unions :: FieldDeclarationList_OrderedFieldDeclarationList < 'tree > as TryFrom < _ >> :: try_from)
     }
-    #[doc = "Get the field `name`"]
+    #[doc = "Get the field `name` which has kind `type_identifier` ([TypeIdentifier])"]
     #[allow(dead_code)]
     #[inline]
     pub fn name(&self) -> type_sitter_lib::NodeResult<'tree, TypeIdentifier<'tree>> {
         self . 0 . child_by_field_name ("name") . map (< TypeIdentifier < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
-    #[doc = "Get the field `type_parameters`"]
+    #[doc = "Get the field `type_parameters` which has kind `type_parameters?` ([TypeParameters])"]
     #[allow(dead_code)]
     #[inline]
     pub fn type_parameters(
@@ -9088,13 +9088,13 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for StructItem<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `struct_pattern`"]
+#[doc = "Typed node `struct_pattern`\n\nThis node has these fields:\n- `type`: `{scoped_type_identifier | type_identifier}` ([anon_unions::ScopedTypeIdentifier_TypeIdentifier])\n\nAnd additional children: `{field_pattern | remaining_field_pattern}*`:\n- [FieldPattern]\n- [RemainingFieldPattern]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct StructPattern<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> StructPattern<'tree> {
-    #[doc = "Get the field `type`"]
+    #[doc = "Get the field `type` which has kind `{scoped_type_identifier | type_identifier}` ([anon_unions::ScopedTypeIdentifier_TypeIdentifier])"]
     #[allow(dead_code)]
     #[inline]
     pub fn r#type(
@@ -9192,19 +9192,19 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for StructPattern<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `token_binding_pattern`"]
+#[doc = "Typed node `token_binding_pattern`\n\nThis node has these fields:\n- `name`: `metavariable` ([Metavariable])\n- `type`: `fragment_specifier` ([FragmentSpecifier])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct TokenBindingPattern<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TokenBindingPattern<'tree> {
-    #[doc = "Get the field `name`"]
+    #[doc = "Get the field `name` which has kind `metavariable` ([Metavariable])"]
     #[allow(dead_code)]
     #[inline]
     pub fn name(&self) -> type_sitter_lib::NodeResult<'tree, Metavariable<'tree>> {
         self . 0 . child_by_field_name ("name") . map (< Metavariable < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
-    #[doc = "Get the field `type`"]
+    #[doc = "Get the field `type` which has kind `fragment_specifier` ([FragmentSpecifier])"]
     #[allow(dead_code)]
     #[inline]
     pub fn r#type(&self) -> type_sitter_lib::NodeResult<'tree, FragmentSpecifier<'tree>> {
@@ -9246,7 +9246,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TokenBindingPattern<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `token_repetition`"]
+#[doc = "Typed node `token_repetition`\n\nThis node has children: `{_literal | crate | identifier | metavariable | mutable_specifier | primitive_type | self | super | token_repetition | token_tree}*`:\n- [Literal]\n- [Crate]\n- [Identifier]\n- [Metavariable]\n- [MutableSpecifier]\n- [PrimitiveType]\n- [_Self]\n- [Super]\n- [TokenRepetition]\n- [TokenTree]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct TokenRepetition<'tree>(tree_sitter::Node<'tree>);
@@ -9298,7 +9298,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TokenRepetition<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `token_repetition_pattern`"]
+#[doc = "Typed node `token_repetition_pattern`\n\nThis node has children: `{_literal | crate | identifier | metavariable | mutable_specifier | primitive_type | self | super | token_binding_pattern | token_repetition_pattern | token_tree_pattern}*`:\n- [Literal]\n- [Crate]\n- [Identifier]\n- [Metavariable]\n- [MutableSpecifier]\n- [PrimitiveType]\n- [_Self]\n- [Super]\n- [TokenBindingPattern]\n- [TokenRepetitionPattern]\n- [TokenTreePattern]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct TokenRepetitionPattern<'tree>(tree_sitter::Node<'tree>);
@@ -9350,7 +9350,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TokenRepetitionPattern<'tree> 
         Self(node)
     }
 }
-#[doc = "Typed node `token_tree`"]
+#[doc = "Typed node `token_tree`\n\nThis node has children: `{_literal | crate | identifier | metavariable | mutable_specifier | primitive_type | self | super | token_repetition | token_tree}*`:\n- [Literal]\n- [Crate]\n- [Identifier]\n- [Metavariable]\n- [MutableSpecifier]\n- [PrimitiveType]\n- [_Self]\n- [Super]\n- [TokenRepetition]\n- [TokenTree]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct TokenTree<'tree>(tree_sitter::Node<'tree>);
@@ -9402,7 +9402,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TokenTree<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `token_tree_pattern`"]
+#[doc = "Typed node `token_tree_pattern`\n\nThis node has children: `{_literal | crate | identifier | metavariable | mutable_specifier | primitive_type | self | super | token_binding_pattern | token_repetition_pattern | token_tree_pattern}*`:\n- [Literal]\n- [Crate]\n- [Identifier]\n- [Metavariable]\n- [MutableSpecifier]\n- [PrimitiveType]\n- [_Self]\n- [Super]\n- [TokenBindingPattern]\n- [TokenRepetitionPattern]\n- [TokenTreePattern]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct TokenTreePattern<'tree>(tree_sitter::Node<'tree>);
@@ -9454,7 +9454,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TokenTreePattern<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `trait_bounds`"]
+#[doc = "Typed node `trait_bounds`\n\nThis node has children: `{_type | higher_ranked_trait_bound | lifetime | removed_trait_bound}+`:\n- [Type]\n- [HigherRankedTraitBound]\n- [Lifetime]\n- [RemovedTraitBound]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct TraitBounds<'tree>(tree_sitter::Node<'tree>);
@@ -9541,19 +9541,19 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TraitBounds<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `trait_item`"]
+#[doc = "Typed node `trait_item`\n\nThis node has these fields:\n- `body`: `declaration_list` ([DeclarationList])\n- `bounds`: `trait_bounds?` ([TraitBounds])\n- `name`: `type_identifier` ([TypeIdentifier])\n- `type_parameters`: `type_parameters?` ([TypeParameters])\n\nAnd additional children: `{visibility_modifier | where_clause}*`:\n- [VisibilityModifier]\n- [WhereClause]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct TraitItem<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TraitItem<'tree> {
-    #[doc = "Get the field `body`"]
+    #[doc = "Get the field `body` which has kind `declaration_list` ([DeclarationList])"]
     #[allow(dead_code)]
     #[inline]
     pub fn body(&self) -> type_sitter_lib::NodeResult<'tree, DeclarationList<'tree>> {
         self . 0 . child_by_field_name ("body") . map (< DeclarationList < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
-    #[doc = "Get the field `bounds`"]
+    #[doc = "Get the field `bounds` which has kind `trait_bounds?` ([TraitBounds])"]
     #[allow(dead_code)]
     #[inline]
     pub fn bounds(&self) -> Option<type_sitter_lib::NodeResult<'tree, TraitBounds<'tree>>> {
@@ -9561,13 +9561,13 @@ impl<'tree> TraitItem<'tree> {
             .child_by_field_name("bounds")
             .map(<TraitBounds<'tree> as TryFrom<_>>::try_from)
     }
-    #[doc = "Get the field `name`"]
+    #[doc = "Get the field `name` which has kind `type_identifier` ([TypeIdentifier])"]
     #[allow(dead_code)]
     #[inline]
     pub fn name(&self) -> type_sitter_lib::NodeResult<'tree, TypeIdentifier<'tree>> {
         self . 0 . child_by_field_name ("name") . map (< TypeIdentifier < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
-    #[doc = "Get the field `type_parameters`"]
+    #[doc = "Get the field `type_parameters` which has kind `type_parameters?` ([TypeParameters])"]
     #[allow(dead_code)]
     #[inline]
     pub fn type_parameters(
@@ -9624,7 +9624,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TraitItem<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `try_expression`"]
+#[doc = "Typed node `try_expression`\n\nThis node has a child: `_expression` ([Expression])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct TryExpression<'tree>(tree_sitter::Node<'tree>);
@@ -9672,7 +9672,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TryExpression<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `tuple_expression`"]
+#[doc = "Typed node `tuple_expression`\n\nThis node has children: `{_expression | attribute_item}+`:\n- [Expression]\n- [AttributeItem]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct TupleExpression<'tree>(tree_sitter::Node<'tree>);
@@ -9743,7 +9743,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TupleExpression<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `tuple_pattern`"]
+#[doc = "Typed node `tuple_pattern`\n\nThis node has children: `_pattern*` ([Pattern])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct TuplePattern<'tree>(tree_sitter::Node<'tree>);
@@ -9810,13 +9810,13 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TuplePattern<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `tuple_struct_pattern`"]
+#[doc = "Typed node `tuple_struct_pattern`\n\nThis node has these fields:\n- `type`: `{identifier | scoped_identifier}` ([anon_unions::Identifier_ScopedIdentifier])\n\nAnd additional children: `_pattern*` ([Pattern])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct TupleStructPattern<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TupleStructPattern<'tree> {
-    #[doc = "Get the field `type`"]
+    #[doc = "Get the field `type` which has kind `{identifier | scoped_identifier}` ([anon_unions::Identifier_ScopedIdentifier])"]
     #[allow(dead_code)]
     #[inline]
     pub fn r#type(
@@ -9900,7 +9900,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TupleStructPattern<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `tuple_type`"]
+#[doc = "Typed node `tuple_type`\n\nThis node has children: `_type+` ([Type])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct TupleType<'tree>(tree_sitter::Node<'tree>);
@@ -9968,7 +9968,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TupleType<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `type_arguments`"]
+#[doc = "Typed node `type_arguments`\n\nThis node has children: `{_literal | _type | block | lifetime | type_binding}+`:\n- [Literal]\n- [Type]\n- [Block]\n- [Lifetime]\n- [TypeBinding]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct TypeArguments<'tree>(tree_sitter::Node<'tree>);
@@ -10055,25 +10055,25 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TypeArguments<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `type_binding`"]
+#[doc = "Typed node `type_binding`\n\nThis node has these fields:\n- `name`: `type_identifier` ([TypeIdentifier])\n- `type`: `_type` ([Type])\n- `type_arguments`: `type_arguments?` ([TypeArguments])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct TypeBinding<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TypeBinding<'tree> {
-    #[doc = "Get the field `name`"]
+    #[doc = "Get the field `name` which has kind `type_identifier` ([TypeIdentifier])"]
     #[allow(dead_code)]
     #[inline]
     pub fn name(&self) -> type_sitter_lib::NodeResult<'tree, TypeIdentifier<'tree>> {
         self . 0 . child_by_field_name ("name") . map (< TypeIdentifier < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
-    #[doc = "Get the field `type`"]
+    #[doc = "Get the field `type` which has kind `_type` ([Type])"]
     #[allow(dead_code)]
     #[inline]
     pub fn r#type(&self) -> type_sitter_lib::NodeResult<'tree, Type<'tree>> {
         self . 0 . child_by_field_name ("type") . map (< Type < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
-    #[doc = "Get the field `type_arguments`"]
+    #[doc = "Get the field `type_arguments` which has kind `type_arguments?` ([TypeArguments])"]
     #[allow(dead_code)]
     #[inline]
     pub fn type_arguments(
@@ -10119,19 +10119,19 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TypeBinding<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `type_cast_expression`"]
+#[doc = "Typed node `type_cast_expression`\n\nThis node has these fields:\n- `type`: `_type` ([Type])\n- `value`: `_expression` ([Expression])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct TypeCastExpression<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TypeCastExpression<'tree> {
-    #[doc = "Get the field `type`"]
+    #[doc = "Get the field `type` which has kind `_type` ([Type])"]
     #[allow(dead_code)]
     #[inline]
     pub fn r#type(&self) -> type_sitter_lib::NodeResult<'tree, Type<'tree>> {
         self . 0 . child_by_field_name ("type") . map (< Type < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
-    #[doc = "Get the field `value`"]
+    #[doc = "Get the field `value` which has kind `_expression` ([Expression])"]
     #[allow(dead_code)]
     #[inline]
     pub fn value(&self) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
@@ -10173,25 +10173,25 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TypeCastExpression<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `type_item`"]
+#[doc = "Typed node `type_item`\n\nThis node has these fields:\n- `name`: `type_identifier` ([TypeIdentifier])\n- `type`: `_type` ([Type])\n- `type_parameters`: `type_parameters?` ([TypeParameters])\n\nAnd an additional (optional) child: `visibility_modifier?` ([VisibilityModifier])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct TypeItem<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TypeItem<'tree> {
-    #[doc = "Get the field `name`"]
+    #[doc = "Get the field `name` which has kind `type_identifier` ([TypeIdentifier])"]
     #[allow(dead_code)]
     #[inline]
     pub fn name(&self) -> type_sitter_lib::NodeResult<'tree, TypeIdentifier<'tree>> {
         self . 0 . child_by_field_name ("name") . map (< TypeIdentifier < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
-    #[doc = "Get the field `type`"]
+    #[doc = "Get the field `type` which has kind `_type` ([Type])"]
     #[allow(dead_code)]
     #[inline]
     pub fn r#type(&self) -> type_sitter_lib::NodeResult<'tree, Type<'tree>> {
         self . 0 . child_by_field_name ("type") . map (< Type < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
-    #[doc = "Get the field `type_parameters`"]
+    #[doc = "Get the field `type_parameters` which has kind `type_parameters?` ([TypeParameters])"]
     #[allow(dead_code)]
     #[inline]
     pub fn type_parameters(
@@ -10282,7 +10282,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TypeItem<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `type_parameters`"]
+#[doc = "Typed node `type_parameters`\n\nThis node has children: `{const_parameter | constrained_type_parameter | lifetime | metavariable | optional_type_parameter | type_identifier}+`:\n- [ConstParameter]\n- [ConstrainedTypeParameter]\n- [Lifetime]\n- [Metavariable]\n- [OptionalTypeParameter]\n- [TypeIdentifier]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct TypeParameters<'tree>(tree_sitter::Node<'tree>);
@@ -10335,7 +10335,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TypeParameters<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `unary_expression`"]
+#[doc = "Typed node `unary_expression`\n\nThis node has a child: `_expression` ([Expression])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct UnaryExpression<'tree>(tree_sitter::Node<'tree>);
@@ -10383,25 +10383,25 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for UnaryExpression<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `union_item`"]
+#[doc = "Typed node `union_item`\n\nThis node has these fields:\n- `body`: `field_declaration_list` ([FieldDeclarationList])\n- `name`: `type_identifier` ([TypeIdentifier])\n- `type_parameters`: `type_parameters?` ([TypeParameters])\n\nAnd additional children: `{visibility_modifier | where_clause}*`:\n- [VisibilityModifier]\n- [WhereClause]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct UnionItem<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> UnionItem<'tree> {
-    #[doc = "Get the field `body`"]
+    #[doc = "Get the field `body` which has kind `field_declaration_list` ([FieldDeclarationList])"]
     #[allow(dead_code)]
     #[inline]
     pub fn body(&self) -> type_sitter_lib::NodeResult<'tree, FieldDeclarationList<'tree>> {
         self . 0 . child_by_field_name ("body") . map (< FieldDeclarationList < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
-    #[doc = "Get the field `name`"]
+    #[doc = "Get the field `name` which has kind `type_identifier` ([TypeIdentifier])"]
     #[allow(dead_code)]
     #[inline]
     pub fn name(&self) -> type_sitter_lib::NodeResult<'tree, TypeIdentifier<'tree>> {
         self . 0 . child_by_field_name ("name") . map (< TypeIdentifier < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
-    #[doc = "Get the field `type_parameters`"]
+    #[doc = "Get the field `type_parameters` which has kind `type_parameters?` ([TypeParameters])"]
     #[allow(dead_code)]
     #[inline]
     pub fn type_parameters(
@@ -10458,7 +10458,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for UnionItem<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `unit_expression`"]
+#[doc = "Typed node `unit_expression`\n\nThis node has no children\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct UnitExpression<'tree>(tree_sitter::Node<'tree>);
@@ -10499,7 +10499,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for UnitExpression<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `unit_type`"]
+#[doc = "Typed node `unit_type`\n\nThis node has no children\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct UnitType<'tree>(tree_sitter::Node<'tree>);
@@ -10540,7 +10540,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for UnitType<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `unsafe_block`"]
+#[doc = "Typed node `unsafe_block`\n\nThis node has a child: `block` ([Block])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct UnsafeBlock<'tree>(tree_sitter::Node<'tree>);
@@ -10588,19 +10588,19 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for UnsafeBlock<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `use_as_clause`"]
+#[doc = "Typed node `use_as_clause`\n\nThis node has these fields:\n- `alias`: `identifier` ([Identifier])\n- `path`: `{crate | identifier | metavariable | scoped_identifier | self | super}` ([anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct UseAsClause<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> UseAsClause<'tree> {
-    #[doc = "Get the field `alias`"]
+    #[doc = "Get the field `alias` which has kind `identifier` ([Identifier])"]
     #[allow(dead_code)]
     #[inline]
     pub fn alias(&self) -> type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
         self . 0 . child_by_field_name ("alias") . map (< Identifier < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
-    #[doc = "Get the field `path`"]
+    #[doc = "Get the field `path` which has kind `{crate | identifier | metavariable | scoped_identifier | self | super}` ([anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super])"]
     #[allow(dead_code)]
     #[inline]
     pub fn path(
@@ -10647,13 +10647,13 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for UseAsClause<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `use_declaration`"]
+#[doc = "Typed node `use_declaration`\n\nThis node has these fields:\n- `argument`: `{crate | identifier | metavariable | scoped_identifier | scoped_use_list | self | super | use_as_clause | use_list | use_wildcard}` ([anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard])\n\nAnd an additional (optional) child: `visibility_modifier?` ([VisibilityModifier])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct UseDeclaration<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> UseDeclaration<'tree> {
-    #[doc = "Get the field `argument`"]
+    #[doc = "Get the field `argument` which has kind `{crate | identifier | metavariable | scoped_identifier | scoped_use_list | self | super | use_as_clause | use_list | use_wildcard}` ([anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard])"]
     #[allow(dead_code)]
     #[inline]    pub fn argument (& self) -> type_sitter_lib :: NodeResult < 'tree , anon_unions :: Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard < 'tree > >{
         self . 0 . child_by_field_name ("argument") . map (< anon_unions :: Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
@@ -10705,7 +10705,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for UseDeclaration<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `use_list`"]
+#[doc = "Typed node `use_list`\n\nThis node has children: `{crate | identifier | metavariable | scoped_identifier | scoped_use_list | self | super | use_as_clause | use_list | use_wildcard}*`:\n- [Crate]\n- [Identifier]\n- [Metavariable]\n- [ScopedIdentifier]\n- [ScopedUseList]\n- [_Self]\n- [Super]\n- [UseAsClause]\n- [UseList]\n- [UseWildcard]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct UseList<'tree>(tree_sitter::Node<'tree>);
@@ -10757,7 +10757,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for UseList<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `use_wildcard`"]
+#[doc = "Typed node `use_wildcard`\n\nThis node has an (optional) child: `{crate | identifier | metavariable | scoped_identifier | self | super}?`:\n- [Crate]\n- [Identifier]\n- [Metavariable]\n- [ScopedIdentifier]\n- [_Self]\n- [Super]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct UseWildcard<'tree>(tree_sitter::Node<'tree>);
@@ -10812,7 +10812,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for UseWildcard<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `variadic_parameter`"]
+#[doc = "Typed node `variadic_parameter`\n\nThis node has no children\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct VariadicParameter<'tree>(tree_sitter::Node<'tree>);
@@ -10853,7 +10853,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for VariadicParameter<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `visibility_modifier`"]
+#[doc = "Typed node `visibility_modifier`\n\nThis node has an (optional) child: `{crate | identifier | metavariable | scoped_identifier | self | super}?`:\n- [Crate]\n- [Identifier]\n- [Metavariable]\n- [ScopedIdentifier]\n- [_Self]\n- [Super]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct VisibilityModifier<'tree>(tree_sitter::Node<'tree>);
@@ -10908,7 +10908,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for VisibilityModifier<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `where_clause`"]
+#[doc = "Typed node `where_clause`\n\nThis node has children: `where_predicate+` ([WherePredicate])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct WhereClause<'tree>(tree_sitter::Node<'tree>);
@@ -10980,19 +10980,19 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for WhereClause<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `where_predicate`"]
+#[doc = "Typed node `where_predicate`\n\nThis node has these fields:\n- `bounds`: `trait_bounds` ([TraitBounds])\n- `left`: `{array_type | generic_type | higher_ranked_trait_bound | lifetime | pointer_type | primitive_type | reference_type | scoped_type_identifier | tuple_type | type_identifier}` ([anon_unions::ArrayType_GenericType_HigherRankedTraitBound_Lifetime_PointerType_PrimitiveType_ReferenceType_ScopedTypeIdentifier_TupleType_TypeIdentifier])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct WherePredicate<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> WherePredicate<'tree> {
-    #[doc = "Get the field `bounds`"]
+    #[doc = "Get the field `bounds` which has kind `trait_bounds` ([TraitBounds])"]
     #[allow(dead_code)]
     #[inline]
     pub fn bounds(&self) -> type_sitter_lib::NodeResult<'tree, TraitBounds<'tree>> {
         self . 0 . child_by_field_name ("bounds") . map (< TraitBounds < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
-    #[doc = "Get the field `left`"]
+    #[doc = "Get the field `left` which has kind `{array_type | generic_type | higher_ranked_trait_bound | lifetime | pointer_type | primitive_type | reference_type | scoped_type_identifier | tuple_type | type_identifier}` ([anon_unions::ArrayType_GenericType_HigherRankedTraitBound_Lifetime_PointerType_PrimitiveType_ReferenceType_ScopedTypeIdentifier_TupleType_TypeIdentifier])"]
     #[allow(dead_code)]
     #[inline]    pub fn left (& self) -> type_sitter_lib :: NodeResult < 'tree , anon_unions :: ArrayType_GenericType_HigherRankedTraitBound_Lifetime_PointerType_PrimitiveType_ReferenceType_ScopedTypeIdentifier_TupleType_TypeIdentifier < 'tree > >{
         self . 0 . child_by_field_name ("left") . map (< anon_unions :: ArrayType_GenericType_HigherRankedTraitBound_Lifetime_PointerType_PrimitiveType_ReferenceType_ScopedTypeIdentifier_TupleType_TypeIdentifier < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
@@ -11033,19 +11033,19 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for WherePredicate<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `while_expression`"]
+#[doc = "Typed node `while_expression`\n\nThis node has these fields:\n- `body`: `block` ([Block])\n- `condition`: `{_expression | let_chain | let_condition}` ([anon_unions::Expression_LetChain_LetCondition])\n\nAnd an additional (optional) child: `loop_label?` ([LoopLabel])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct WhileExpression<'tree>(tree_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> WhileExpression<'tree> {
-    #[doc = "Get the field `body`"]
+    #[doc = "Get the field `body` which has kind `block` ([Block])"]
     #[allow(dead_code)]
     #[inline]
     pub fn body(&self) -> type_sitter_lib::NodeResult<'tree, Block<'tree>> {
         self . 0 . child_by_field_name ("body") . map (< Block < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
-    #[doc = "Get the field `condition`"]
+    #[doc = "Get the field `condition` which has kind `{_expression | let_chain | let_condition}` ([anon_unions::Expression_LetChain_LetCondition])"]
     #[allow(dead_code)]
     #[inline]
     pub fn condition(
@@ -11135,7 +11135,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for WhileExpression<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `yield_expression`"]
+#[doc = "Typed node `yield_expression`\n\nThis node has an (optional) child: `_expression?` ([Expression])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct YieldExpression<'tree>(tree_sitter::Node<'tree>);
@@ -11185,7 +11185,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for YieldExpression<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `block_comment`"]
+#[doc = "Typed node `block_comment`\n\nThis node has no children\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct BlockComment<'tree>(tree_sitter::Node<'tree>);
@@ -11226,7 +11226,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for BlockComment<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `char_literal`"]
+#[doc = "Typed node `char_literal`\n\nThis node has no children\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct CharLiteral<'tree>(tree_sitter::Node<'tree>);
@@ -11267,7 +11267,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for CharLiteral<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `crate`"]
+#[doc = "Typed node `crate`\n\nThis node has no children\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct Crate<'tree>(tree_sitter::Node<'tree>);
@@ -11308,7 +11308,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Crate<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `escape_sequence`"]
+#[doc = "Typed node `escape_sequence`\n\nThis node has no children\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct EscapeSequence<'tree>(tree_sitter::Node<'tree>);
@@ -11349,7 +11349,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for EscapeSequence<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `field_identifier`"]
+#[doc = "Typed node `field_identifier`\n\nThis node has no children\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct FieldIdentifier<'tree>(tree_sitter::Node<'tree>);
@@ -11390,7 +11390,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for FieldIdentifier<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `float_literal`"]
+#[doc = "Typed node `float_literal`\n\nThis node has no children\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct FloatLiteral<'tree>(tree_sitter::Node<'tree>);
@@ -11431,7 +11431,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for FloatLiteral<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `identifier`"]
+#[doc = "Typed node `identifier`\n\nThis node has no children\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct Identifier<'tree>(tree_sitter::Node<'tree>);
@@ -11472,7 +11472,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Identifier<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `integer_literal`"]
+#[doc = "Typed node `integer_literal`\n\nThis node has no children\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct IntegerLiteral<'tree>(tree_sitter::Node<'tree>);
@@ -11513,7 +11513,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for IntegerLiteral<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `line_comment`"]
+#[doc = "Typed node `line_comment`\n\nThis node has no children\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct LineComment<'tree>(tree_sitter::Node<'tree>);
@@ -11554,7 +11554,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for LineComment<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `metavariable`"]
+#[doc = "Typed node `metavariable`\n\nThis node has no children\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct Metavariable<'tree>(tree_sitter::Node<'tree>);
@@ -11595,7 +11595,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Metavariable<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `mutable_specifier`"]
+#[doc = "Typed node `mutable_specifier`\n\nThis node has no children\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct MutableSpecifier<'tree>(tree_sitter::Node<'tree>);
@@ -11636,7 +11636,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for MutableSpecifier<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `primitive_type`"]
+#[doc = "Typed node `primitive_type`\n\nThis node has no children\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct PrimitiveType<'tree>(tree_sitter::Node<'tree>);
@@ -11677,7 +11677,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for PrimitiveType<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `raw_string_literal`"]
+#[doc = "Typed node `raw_string_literal`\n\nThis node has no children\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct RawStringLiteral<'tree>(tree_sitter::Node<'tree>);
@@ -11718,7 +11718,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for RawStringLiteral<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `self`"]
+#[doc = "Typed node `self`\n\nThis node has no children\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct _Self<'tree>(tree_sitter::Node<'tree>);
@@ -11759,7 +11759,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for _Self<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `shorthand_field_identifier`"]
+#[doc = "Typed node `shorthand_field_identifier`\n\nThis node has no children\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct ShorthandFieldIdentifier<'tree>(tree_sitter::Node<'tree>);
@@ -11800,7 +11800,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ShorthandFieldIdentifier<'tree
         Self(node)
     }
 }
-#[doc = "Typed node `super`"]
+#[doc = "Typed node `super`\n\nThis node has no children\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct Super<'tree>(tree_sitter::Node<'tree>);
@@ -11841,7 +11841,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Super<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `type_identifier`"]
+#[doc = "Typed node `type_identifier`\n\nThis node has no children\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct TypeIdentifier<'tree>(tree_sitter::Node<'tree>);
@@ -11885,7 +11885,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TypeIdentifier<'tree> {
 pub mod unnamed {
     #[allow(unused_imports)]
     use super::*;
-    #[doc = "Typed node `as`"]
+    #[doc = "Typed node `as`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct As<'tree>(tree_sitter::Node<'tree>);
@@ -11926,7 +11926,7 @@ pub mod unnamed {
             Self(node)
         }
     }
-    #[doc = "Typed node `async`"]
+    #[doc = "Typed node `async`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct Async<'tree>(tree_sitter::Node<'tree>);
@@ -11967,7 +11967,7 @@ pub mod unnamed {
             Self(node)
         }
     }
-    #[doc = "Typed node `await`"]
+    #[doc = "Typed node `await`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct Await<'tree>(tree_sitter::Node<'tree>);
@@ -12008,7 +12008,7 @@ pub mod unnamed {
             Self(node)
         }
     }
-    #[doc = "Typed node `block`"]
+    #[doc = "Typed node `block`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct Block<'tree>(tree_sitter::Node<'tree>);
@@ -12049,7 +12049,7 @@ pub mod unnamed {
             Self(node)
         }
     }
-    #[doc = "Typed node `break`"]
+    #[doc = "Typed node `break`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct Break<'tree>(tree_sitter::Node<'tree>);
@@ -12090,7 +12090,7 @@ pub mod unnamed {
             Self(node)
         }
     }
-    #[doc = "Typed node `const`"]
+    #[doc = "Typed node `const`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct Const<'tree>(tree_sitter::Node<'tree>);
@@ -12131,7 +12131,7 @@ pub mod unnamed {
             Self(node)
         }
     }
-    #[doc = "Typed node `continue`"]
+    #[doc = "Typed node `continue`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct Continue<'tree>(tree_sitter::Node<'tree>);
@@ -12172,7 +12172,7 @@ pub mod unnamed {
             Self(node)
         }
     }
-    #[doc = "Typed node `default`"]
+    #[doc = "Typed node `default`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct Default<'tree>(tree_sitter::Node<'tree>);
@@ -12213,7 +12213,7 @@ pub mod unnamed {
             Self(node)
         }
     }
-    #[doc = "Typed node `dyn`"]
+    #[doc = "Typed node `dyn`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct Dyn<'tree>(tree_sitter::Node<'tree>);
@@ -12254,7 +12254,7 @@ pub mod unnamed {
             Self(node)
         }
     }
-    #[doc = "Typed node `else`"]
+    #[doc = "Typed node `else`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct Else<'tree>(tree_sitter::Node<'tree>);
@@ -12295,7 +12295,7 @@ pub mod unnamed {
             Self(node)
         }
     }
-    #[doc = "Typed node `enum`"]
+    #[doc = "Typed node `enum`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct Enum<'tree>(tree_sitter::Node<'tree>);
@@ -12336,7 +12336,7 @@ pub mod unnamed {
             Self(node)
         }
     }
-    #[doc = "Typed node `expr`"]
+    #[doc = "Typed node `expr`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct Expr<'tree>(tree_sitter::Node<'tree>);
@@ -12377,7 +12377,7 @@ pub mod unnamed {
             Self(node)
         }
     }
-    #[doc = "Typed node `extern`"]
+    #[doc = "Typed node `extern`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct Extern<'tree>(tree_sitter::Node<'tree>);
@@ -12418,7 +12418,7 @@ pub mod unnamed {
             Self(node)
         }
     }
-    #[doc = "Typed node `false`"]
+    #[doc = "Typed node `false`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct False<'tree>(tree_sitter::Node<'tree>);
@@ -12459,7 +12459,7 @@ pub mod unnamed {
             Self(node)
         }
     }
-    #[doc = "Typed node `fn`"]
+    #[doc = "Typed node `fn`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct Fn<'tree>(tree_sitter::Node<'tree>);
@@ -12500,7 +12500,7 @@ pub mod unnamed {
             Self(node)
         }
     }
-    #[doc = "Typed node `for`"]
+    #[doc = "Typed node `for`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct For<'tree>(tree_sitter::Node<'tree>);
@@ -12541,7 +12541,7 @@ pub mod unnamed {
             Self(node)
         }
     }
-    #[doc = "Typed node `ident`"]
+    #[doc = "Typed node `ident`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct Ident<'tree>(tree_sitter::Node<'tree>);
@@ -12582,7 +12582,7 @@ pub mod unnamed {
             Self(node)
         }
     }
-    #[doc = "Typed node `if`"]
+    #[doc = "Typed node `if`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct If<'tree>(tree_sitter::Node<'tree>);
@@ -12623,7 +12623,7 @@ pub mod unnamed {
             Self(node)
         }
     }
-    #[doc = "Typed node `impl`"]
+    #[doc = "Typed node `impl`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct Impl<'tree>(tree_sitter::Node<'tree>);
@@ -12664,7 +12664,7 @@ pub mod unnamed {
             Self(node)
         }
     }
-    #[doc = "Typed node `in`"]
+    #[doc = "Typed node `in`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct In<'tree>(tree_sitter::Node<'tree>);
@@ -12705,7 +12705,7 @@ pub mod unnamed {
             Self(node)
         }
     }
-    #[doc = "Typed node `item`"]
+    #[doc = "Typed node `item`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct Item<'tree>(tree_sitter::Node<'tree>);
@@ -12746,7 +12746,7 @@ pub mod unnamed {
             Self(node)
         }
     }
-    #[doc = "Typed node `let`"]
+    #[doc = "Typed node `let`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct Let<'tree>(tree_sitter::Node<'tree>);
@@ -12787,7 +12787,7 @@ pub mod unnamed {
             Self(node)
         }
     }
-    #[doc = "Typed node `lifetime`"]
+    #[doc = "Typed node `lifetime`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct Lifetime<'tree>(tree_sitter::Node<'tree>);
@@ -12828,7 +12828,7 @@ pub mod unnamed {
             Self(node)
         }
     }
-    #[doc = "Typed node `literal`"]
+    #[doc = "Typed node `literal`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct Literal<'tree>(tree_sitter::Node<'tree>);
@@ -12869,7 +12869,7 @@ pub mod unnamed {
             Self(node)
         }
     }
-    #[doc = "Typed node `loop`"]
+    #[doc = "Typed node `loop`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct Loop<'tree>(tree_sitter::Node<'tree>);
@@ -12910,7 +12910,7 @@ pub mod unnamed {
             Self(node)
         }
     }
-    #[doc = "Typed node `match`"]
+    #[doc = "Typed node `match`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct Match<'tree>(tree_sitter::Node<'tree>);
@@ -12951,7 +12951,7 @@ pub mod unnamed {
             Self(node)
         }
     }
-    #[doc = "Typed node `meta`"]
+    #[doc = "Typed node `meta`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct Meta<'tree>(tree_sitter::Node<'tree>);
@@ -12992,7 +12992,7 @@ pub mod unnamed {
             Self(node)
         }
     }
-    #[doc = "Typed node `mod`"]
+    #[doc = "Typed node `mod`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct Mod<'tree>(tree_sitter::Node<'tree>);
@@ -13033,7 +13033,7 @@ pub mod unnamed {
             Self(node)
         }
     }
-    #[doc = "Typed node `move`"]
+    #[doc = "Typed node `move`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct Move<'tree>(tree_sitter::Node<'tree>);
@@ -13074,7 +13074,7 @@ pub mod unnamed {
             Self(node)
         }
     }
-    #[doc = "Typed node `pat`"]
+    #[doc = "Typed node `pat`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct Pat<'tree>(tree_sitter::Node<'tree>);
@@ -13115,7 +13115,7 @@ pub mod unnamed {
             Self(node)
         }
     }
-    #[doc = "Typed node `path`"]
+    #[doc = "Typed node `path`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct Path<'tree>(tree_sitter::Node<'tree>);
@@ -13156,7 +13156,7 @@ pub mod unnamed {
             Self(node)
         }
     }
-    #[doc = "Typed node `pub`"]
+    #[doc = "Typed node `pub`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct Pub<'tree>(tree_sitter::Node<'tree>);
@@ -13197,7 +13197,7 @@ pub mod unnamed {
             Self(node)
         }
     }
-    #[doc = "Typed node `ref`"]
+    #[doc = "Typed node `ref`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct Ref<'tree>(tree_sitter::Node<'tree>);
@@ -13238,7 +13238,7 @@ pub mod unnamed {
             Self(node)
         }
     }
-    #[doc = "Typed node `return`"]
+    #[doc = "Typed node `return`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct Return<'tree>(tree_sitter::Node<'tree>);
@@ -13279,7 +13279,7 @@ pub mod unnamed {
             Self(node)
         }
     }
-    #[doc = "Typed node `static`"]
+    #[doc = "Typed node `static`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct Static<'tree>(tree_sitter::Node<'tree>);
@@ -13320,7 +13320,7 @@ pub mod unnamed {
             Self(node)
         }
     }
-    #[doc = "Typed node `stmt`"]
+    #[doc = "Typed node `stmt`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct Stmt<'tree>(tree_sitter::Node<'tree>);
@@ -13361,7 +13361,7 @@ pub mod unnamed {
             Self(node)
         }
     }
-    #[doc = "Typed node `struct`"]
+    #[doc = "Typed node `struct`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct Struct<'tree>(tree_sitter::Node<'tree>);
@@ -13402,7 +13402,7 @@ pub mod unnamed {
             Self(node)
         }
     }
-    #[doc = "Typed node `trait`"]
+    #[doc = "Typed node `trait`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct Trait<'tree>(tree_sitter::Node<'tree>);
@@ -13443,7 +13443,7 @@ pub mod unnamed {
             Self(node)
         }
     }
-    #[doc = "Typed node `true`"]
+    #[doc = "Typed node `true`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct True<'tree>(tree_sitter::Node<'tree>);
@@ -13484,7 +13484,7 @@ pub mod unnamed {
             Self(node)
         }
     }
-    #[doc = "Typed node `tt`"]
+    #[doc = "Typed node `tt`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct Tt<'tree>(tree_sitter::Node<'tree>);
@@ -13525,7 +13525,7 @@ pub mod unnamed {
             Self(node)
         }
     }
-    #[doc = "Typed node `ty`"]
+    #[doc = "Typed node `ty`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct Ty<'tree>(tree_sitter::Node<'tree>);
@@ -13566,7 +13566,7 @@ pub mod unnamed {
             Self(node)
         }
     }
-    #[doc = "Typed node `type`"]
+    #[doc = "Typed node `type`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct Type<'tree>(tree_sitter::Node<'tree>);
@@ -13607,7 +13607,7 @@ pub mod unnamed {
             Self(node)
         }
     }
-    #[doc = "Typed node `union`"]
+    #[doc = "Typed node `union`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct Union<'tree>(tree_sitter::Node<'tree>);
@@ -13648,7 +13648,7 @@ pub mod unnamed {
             Self(node)
         }
     }
-    #[doc = "Typed node `unsafe`"]
+    #[doc = "Typed node `unsafe`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct Unsafe<'tree>(tree_sitter::Node<'tree>);
@@ -13689,7 +13689,7 @@ pub mod unnamed {
             Self(node)
         }
     }
-    #[doc = "Typed node `use`"]
+    #[doc = "Typed node `use`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct Use<'tree>(tree_sitter::Node<'tree>);
@@ -13730,7 +13730,7 @@ pub mod unnamed {
             Self(node)
         }
     }
-    #[doc = "Typed node `vis`"]
+    #[doc = "Typed node `vis`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct Vis<'tree>(tree_sitter::Node<'tree>);
@@ -13771,7 +13771,7 @@ pub mod unnamed {
             Self(node)
         }
     }
-    #[doc = "Typed node `where`"]
+    #[doc = "Typed node `where`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct Where<'tree>(tree_sitter::Node<'tree>);
@@ -13812,7 +13812,7 @@ pub mod unnamed {
             Self(node)
         }
     }
-    #[doc = "Typed node `while`"]
+    #[doc = "Typed node `while`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct While<'tree>(tree_sitter::Node<'tree>);
@@ -13853,7 +13853,7 @@ pub mod unnamed {
             Self(node)
         }
     }
-    #[doc = "Typed node `yield`"]
+    #[doc = "Typed node `yield`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct Yield<'tree>(tree_sitter::Node<'tree>);
@@ -13898,7 +13898,7 @@ pub mod unnamed {
 pub mod symbols {
     #[allow(unused_imports)]
     use super::*;
-    #[doc = "Typed node `!`"]
+    #[doc = "Typed node `!`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct Not<'tree>(tree_sitter::Node<'tree>);
@@ -13939,7 +13939,7 @@ pub mod symbols {
             Self(node)
         }
     }
-    #[doc = "Typed node `!=`"]
+    #[doc = "Typed node `!=`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct NotEq<'tree>(tree_sitter::Node<'tree>);
@@ -13980,7 +13980,7 @@ pub mod symbols {
             Self(node)
         }
     }
-    #[doc = "Typed node `\"`"]
+    #[doc = "Typed node `\"`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct DoubleQuote<'tree>(tree_sitter::Node<'tree>);
@@ -14021,7 +14021,7 @@ pub mod symbols {
             Self(node)
         }
     }
-    #[doc = "Typed node `#`"]
+    #[doc = "Typed node `#`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct Hash<'tree>(tree_sitter::Node<'tree>);
@@ -14062,7 +14062,7 @@ pub mod symbols {
             Self(node)
         }
     }
-    #[doc = "Typed node `$`"]
+    #[doc = "Typed node `$`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct Dollar<'tree>(tree_sitter::Node<'tree>);
@@ -14103,7 +14103,7 @@ pub mod symbols {
             Self(node)
         }
     }
-    #[doc = "Typed node `%`"]
+    #[doc = "Typed node `%`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct Mod<'tree>(tree_sitter::Node<'tree>);
@@ -14144,7 +14144,7 @@ pub mod symbols {
             Self(node)
         }
     }
-    #[doc = "Typed node `%=`"]
+    #[doc = "Typed node `%=`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct ModEq<'tree>(tree_sitter::Node<'tree>);
@@ -14185,7 +14185,7 @@ pub mod symbols {
             Self(node)
         }
     }
-    #[doc = "Typed node `&`"]
+    #[doc = "Typed node `&`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct And<'tree>(tree_sitter::Node<'tree>);
@@ -14226,7 +14226,7 @@ pub mod symbols {
             Self(node)
         }
     }
-    #[doc = "Typed node `&&`"]
+    #[doc = "Typed node `&&`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct AndAnd<'tree>(tree_sitter::Node<'tree>);
@@ -14267,7 +14267,7 @@ pub mod symbols {
             Self(node)
         }
     }
-    #[doc = "Typed node `&=`"]
+    #[doc = "Typed node `&=`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct AndEq<'tree>(tree_sitter::Node<'tree>);
@@ -14308,7 +14308,7 @@ pub mod symbols {
             Self(node)
         }
     }
-    #[doc = "Typed node `'`"]
+    #[doc = "Typed node `'`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct Quote<'tree>(tree_sitter::Node<'tree>);
@@ -14349,7 +14349,7 @@ pub mod symbols {
             Self(node)
         }
     }
-    #[doc = "Typed node `(`"]
+    #[doc = "Typed node `(`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct LParen<'tree>(tree_sitter::Node<'tree>);
@@ -14390,7 +14390,7 @@ pub mod symbols {
             Self(node)
         }
     }
-    #[doc = "Typed node `)`"]
+    #[doc = "Typed node `)`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct RParen<'tree>(tree_sitter::Node<'tree>);
@@ -14431,7 +14431,7 @@ pub mod symbols {
             Self(node)
         }
     }
-    #[doc = "Typed node `*`"]
+    #[doc = "Typed node `*`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct Mul<'tree>(tree_sitter::Node<'tree>);
@@ -14472,7 +14472,7 @@ pub mod symbols {
             Self(node)
         }
     }
-    #[doc = "Typed node `*=`"]
+    #[doc = "Typed node `*=`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct MulEq<'tree>(tree_sitter::Node<'tree>);
@@ -14513,7 +14513,7 @@ pub mod symbols {
             Self(node)
         }
     }
-    #[doc = "Typed node `+`"]
+    #[doc = "Typed node `+`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct Add<'tree>(tree_sitter::Node<'tree>);
@@ -14554,7 +14554,7 @@ pub mod symbols {
             Self(node)
         }
     }
-    #[doc = "Typed node `+=`"]
+    #[doc = "Typed node `+=`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct AddEq<'tree>(tree_sitter::Node<'tree>);
@@ -14595,7 +14595,7 @@ pub mod symbols {
             Self(node)
         }
     }
-    #[doc = "Typed node `,`"]
+    #[doc = "Typed node `,`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct Comma<'tree>(tree_sitter::Node<'tree>);
@@ -14636,7 +14636,7 @@ pub mod symbols {
             Self(node)
         }
     }
-    #[doc = "Typed node `-`"]
+    #[doc = "Typed node `-`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct Sub<'tree>(tree_sitter::Node<'tree>);
@@ -14677,7 +14677,7 @@ pub mod symbols {
             Self(node)
         }
     }
-    #[doc = "Typed node `-=`"]
+    #[doc = "Typed node `-=`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct SubEq<'tree>(tree_sitter::Node<'tree>);
@@ -14718,7 +14718,7 @@ pub mod symbols {
             Self(node)
         }
     }
-    #[doc = "Typed node `->`"]
+    #[doc = "Typed node `->`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct SubGt<'tree>(tree_sitter::Node<'tree>);
@@ -14759,7 +14759,7 @@ pub mod symbols {
             Self(node)
         }
     }
-    #[doc = "Typed node `.`"]
+    #[doc = "Typed node `.`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct Dot<'tree>(tree_sitter::Node<'tree>);
@@ -14800,7 +14800,7 @@ pub mod symbols {
             Self(node)
         }
     }
-    #[doc = "Typed node `..`"]
+    #[doc = "Typed node `..`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct DotDot<'tree>(tree_sitter::Node<'tree>);
@@ -14841,7 +14841,7 @@ pub mod symbols {
             Self(node)
         }
     }
-    #[doc = "Typed node `...`"]
+    #[doc = "Typed node `...`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct DotDotDot<'tree>(tree_sitter::Node<'tree>);
@@ -14882,7 +14882,7 @@ pub mod symbols {
             Self(node)
         }
     }
-    #[doc = "Typed node `..=`"]
+    #[doc = "Typed node `..=`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct DotDotEq<'tree>(tree_sitter::Node<'tree>);
@@ -14923,7 +14923,7 @@ pub mod symbols {
             Self(node)
         }
     }
-    #[doc = "Typed node `/`"]
+    #[doc = "Typed node `/`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct Div<'tree>(tree_sitter::Node<'tree>);
@@ -14964,7 +14964,7 @@ pub mod symbols {
             Self(node)
         }
     }
-    #[doc = "Typed node `/=`"]
+    #[doc = "Typed node `/=`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct DivEq<'tree>(tree_sitter::Node<'tree>);
@@ -15005,7 +15005,7 @@ pub mod symbols {
             Self(node)
         }
     }
-    #[doc = "Typed node `:`"]
+    #[doc = "Typed node `:`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct Colon<'tree>(tree_sitter::Node<'tree>);
@@ -15046,7 +15046,7 @@ pub mod symbols {
             Self(node)
         }
     }
-    #[doc = "Typed node `::`"]
+    #[doc = "Typed node `::`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct ColonColon<'tree>(tree_sitter::Node<'tree>);
@@ -15087,7 +15087,7 @@ pub mod symbols {
             Self(node)
         }
     }
-    #[doc = "Typed node `;`"]
+    #[doc = "Typed node `;`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct Semicolon<'tree>(tree_sitter::Node<'tree>);
@@ -15128,7 +15128,7 @@ pub mod symbols {
             Self(node)
         }
     }
-    #[doc = "Typed node `<`"]
+    #[doc = "Typed node `<`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct Lt<'tree>(tree_sitter::Node<'tree>);
@@ -15169,7 +15169,7 @@ pub mod symbols {
             Self(node)
         }
     }
-    #[doc = "Typed node `<<`"]
+    #[doc = "Typed node `<<`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct LtLt<'tree>(tree_sitter::Node<'tree>);
@@ -15210,7 +15210,7 @@ pub mod symbols {
             Self(node)
         }
     }
-    #[doc = "Typed node `<<=`"]
+    #[doc = "Typed node `<<=`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct LtLtEq<'tree>(tree_sitter::Node<'tree>);
@@ -15251,7 +15251,7 @@ pub mod symbols {
             Self(node)
         }
     }
-    #[doc = "Typed node `<=`"]
+    #[doc = "Typed node `<=`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct LtEq<'tree>(tree_sitter::Node<'tree>);
@@ -15292,7 +15292,7 @@ pub mod symbols {
             Self(node)
         }
     }
-    #[doc = "Typed node `=`"]
+    #[doc = "Typed node `=`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct Eq<'tree>(tree_sitter::Node<'tree>);
@@ -15333,7 +15333,7 @@ pub mod symbols {
             Self(node)
         }
     }
-    #[doc = "Typed node `==`"]
+    #[doc = "Typed node `==`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct EqEq<'tree>(tree_sitter::Node<'tree>);
@@ -15374,7 +15374,7 @@ pub mod symbols {
             Self(node)
         }
     }
-    #[doc = "Typed node `=>`"]
+    #[doc = "Typed node `=>`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct EqGt<'tree>(tree_sitter::Node<'tree>);
@@ -15415,7 +15415,7 @@ pub mod symbols {
             Self(node)
         }
     }
-    #[doc = "Typed node `>`"]
+    #[doc = "Typed node `>`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct Gt<'tree>(tree_sitter::Node<'tree>);
@@ -15456,7 +15456,7 @@ pub mod symbols {
             Self(node)
         }
     }
-    #[doc = "Typed node `>=`"]
+    #[doc = "Typed node `>=`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct GtEq<'tree>(tree_sitter::Node<'tree>);
@@ -15497,7 +15497,7 @@ pub mod symbols {
             Self(node)
         }
     }
-    #[doc = "Typed node `>>`"]
+    #[doc = "Typed node `>>`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct GtGt<'tree>(tree_sitter::Node<'tree>);
@@ -15538,7 +15538,7 @@ pub mod symbols {
             Self(node)
         }
     }
-    #[doc = "Typed node `>>=`"]
+    #[doc = "Typed node `>>=`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct GtGtEq<'tree>(tree_sitter::Node<'tree>);
@@ -15579,7 +15579,7 @@ pub mod symbols {
             Self(node)
         }
     }
-    #[doc = "Typed node `?`"]
+    #[doc = "Typed node `?`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct Question<'tree>(tree_sitter::Node<'tree>);
@@ -15620,7 +15620,7 @@ pub mod symbols {
             Self(node)
         }
     }
-    #[doc = "Typed node `@`"]
+    #[doc = "Typed node `@`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct At<'tree>(tree_sitter::Node<'tree>);
@@ -15661,7 +15661,7 @@ pub mod symbols {
             Self(node)
         }
     }
-    #[doc = "Typed node `[`"]
+    #[doc = "Typed node `[`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct LBracket<'tree>(tree_sitter::Node<'tree>);
@@ -15702,7 +15702,7 @@ pub mod symbols {
             Self(node)
         }
     }
-    #[doc = "Typed node `]`"]
+    #[doc = "Typed node `]`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct RBracket<'tree>(tree_sitter::Node<'tree>);
@@ -15743,7 +15743,7 @@ pub mod symbols {
             Self(node)
         }
     }
-    #[doc = "Typed node `^`"]
+    #[doc = "Typed node `^`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct BitXor<'tree>(tree_sitter::Node<'tree>);
@@ -15784,7 +15784,7 @@ pub mod symbols {
             Self(node)
         }
     }
-    #[doc = "Typed node `^=`"]
+    #[doc = "Typed node `^=`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct BitXorEq<'tree>(tree_sitter::Node<'tree>);
@@ -15825,7 +15825,7 @@ pub mod symbols {
             Self(node)
         }
     }
-    #[doc = "Typed node `_`"]
+    #[doc = "Typed node `_`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct __<'tree>(tree_sitter::Node<'tree>);
@@ -15866,7 +15866,7 @@ pub mod symbols {
             Self(node)
         }
     }
-    #[doc = "Typed node `macro_rules!`"]
+    #[doc = "Typed node `macro_rules!`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct MacroRulesNot<'tree>(tree_sitter::Node<'tree>);
@@ -15907,7 +15907,7 @@ pub mod symbols {
             Self(node)
         }
     }
-    #[doc = "Typed node `{`"]
+    #[doc = "Typed node `{`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct LBrace<'tree>(tree_sitter::Node<'tree>);
@@ -15948,7 +15948,7 @@ pub mod symbols {
             Self(node)
         }
     }
-    #[doc = "Typed node `|`"]
+    #[doc = "Typed node `|`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct Or<'tree>(tree_sitter::Node<'tree>);
@@ -15989,7 +15989,7 @@ pub mod symbols {
             Self(node)
         }
     }
-    #[doc = "Typed node `|=`"]
+    #[doc = "Typed node `|=`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct OrEq<'tree>(tree_sitter::Node<'tree>);
@@ -16030,7 +16030,7 @@ pub mod symbols {
             Self(node)
         }
     }
-    #[doc = "Typed node `||`"]
+    #[doc = "Typed node `||`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct OrOr<'tree>(tree_sitter::Node<'tree>);
@@ -16071,7 +16071,7 @@ pub mod symbols {
             Self(node)
         }
     }
-    #[doc = "Typed node `}`"]
+    #[doc = "Typed node `}`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub struct RBrace<'tree>(tree_sitter::Node<'tree>);
@@ -16116,7 +16116,7 @@ pub mod symbols {
 pub mod anon_unions {
     #[allow(unused_imports)]
     use super::*;
-    #[doc = "one of `{function_type | generic_type | scoped_type_identifier | type_identifier}`"]
+    #[doc = "one of `{function_type | generic_type | scoped_type_identifier | type_identifier}`:\n- [FunctionType]\n- [GenericType]\n- [ScopedTypeIdentifier]\n- [TypeIdentifier]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum FunctionType_GenericType_ScopedTypeIdentifier_TypeIdentifier<'tree> {
@@ -16127,7 +16127,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> FunctionType_GenericType_ScopedTypeIdentifier_TypeIdentifier<'tree> {
-        #[doc = "Returns the node if it is of kind `function_type`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `function_type` ([FunctionType]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn function_type(self) -> Option<FunctionType<'tree>> {
@@ -16136,7 +16136,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `generic_type`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `generic_type` ([GenericType]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn generic_type(self) -> Option<GenericType<'tree>> {
@@ -16145,7 +16145,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `scoped_type_identifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `scoped_type_identifier` ([ScopedTypeIdentifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn scoped_type_identifier(self) -> Option<ScopedTypeIdentifier<'tree>> {
@@ -16154,7 +16154,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `type_identifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `type_identifier` ([TypeIdentifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn type_identifier(self) -> Option<TypeIdentifier<'tree>> {
@@ -16227,7 +16227,7 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{_expression | attribute_item}`"]
+    #[doc = "one of `{_expression | attribute_item}`:\n- [Expression]\n- [AttributeItem]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum Expression_AttributeItem<'tree> {
@@ -16236,7 +16236,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> Expression_AttributeItem<'tree> {
-        #[doc = "Returns the node if it is of kind `_expression`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `_expression` ([Expression]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn expression(self) -> Option<Expression<'tree>> {
@@ -16245,7 +16245,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `attribute_item`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `attribute_item` ([AttributeItem]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn attribute_item(self) -> Option<AttributeItem<'tree>> {
@@ -16297,7 +16297,7 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{crate | identifier | metavariable | scoped_identifier | self | super | token_tree | _expression}`"]
+    #[doc = "one of `{crate | identifier | metavariable | scoped_identifier | self | super | token_tree | _expression}`:\n- [Crate]\n- [Identifier]\n- [Metavariable]\n- [ScopedIdentifier]\n- [_Self]\n- [Super]\n- [TokenTree]\n- [Expression]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super_TokenTree_Expression<'tree> {
@@ -16312,7 +16312,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super_TokenTree_Expression<'tree> {
-        #[doc = "Returns the node if it is of kind `crate`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `crate` ([Crate]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn crate_(self) -> Option<Crate<'tree>> {
@@ -16321,7 +16321,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `identifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `identifier` ([Identifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn identifier(self) -> Option<Identifier<'tree>> {
@@ -16330,7 +16330,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `metavariable`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `metavariable` ([Metavariable]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn metavariable(self) -> Option<Metavariable<'tree>> {
@@ -16339,7 +16339,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `scoped_identifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `scoped_identifier` ([ScopedIdentifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn scoped_identifier(self) -> Option<ScopedIdentifier<'tree>> {
@@ -16348,7 +16348,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `self`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `self` ([_Self]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn _self(self) -> Option<_Self<'tree>> {
@@ -16357,7 +16357,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `super`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `super` ([Super]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn super_(self) -> Option<Super<'tree>> {
@@ -16366,7 +16366,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `token_tree`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `token_tree` ([TokenTree]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn token_tree(self) -> Option<TokenTree<'tree>> {
@@ -16375,7 +16375,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `_expression`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `_expression` ([Expression]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn expression(self) -> Option<Expression<'tree>> {
@@ -16467,7 +16467,7 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{!= | % | & | && | * | + | - | / | < | << | <= | == | > | >= | >> | ^ | | | ||}`"]
+    #[doc = "one of `{!= | % | & | && | * | + | - | / | < | << | <= | == | > | >= | >> | ^ | | | ||}`:\n- [symbols::NotEq]\n- [symbols::Mod]\n- [symbols::And]\n- [symbols::AndAnd]\n- [symbols::Mul]\n- [symbols::Add]\n- [symbols::Sub]\n- [symbols::Div]\n- [symbols::Lt]\n- [symbols::LtLt]\n- [symbols::LtEq]\n- [symbols::EqEq]\n- [symbols::Gt]\n- [symbols::GtEq]\n- [symbols::GtGt]\n- [symbols::BitXor]\n- [symbols::Or]\n- [symbols::OrOr]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum NotEq_Mod_And_AndAnd_Mul_Add_Sub_Div_Lt_LtLt_LtEq_EqEq_Gt_GtEq_GtGt_BitXor_Or_OrOr<
@@ -16496,7 +16496,7 @@ pub mod anon_unions {
     impl<'tree>
         NotEq_Mod_And_AndAnd_Mul_Add_Sub_Div_Lt_LtLt_LtEq_EqEq_Gt_GtEq_GtGt_BitXor_Or_OrOr<'tree>
     {
-        #[doc = "Returns the node if it is of kind `!=`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `!=` ([symbols::NotEq]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn not_eq(self) -> Option<symbols::NotEq<'tree>> {
@@ -16505,7 +16505,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `%`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `%` ([symbols::Mod]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#mod(self) -> Option<symbols::Mod<'tree>> {
@@ -16514,7 +16514,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `&`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `&` ([symbols::And]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn and(self) -> Option<symbols::And<'tree>> {
@@ -16523,7 +16523,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `&&`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `&&` ([symbols::AndAnd]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn and_and(self) -> Option<symbols::AndAnd<'tree>> {
@@ -16532,7 +16532,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `*`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `*` ([symbols::Mul]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn mul(self) -> Option<symbols::Mul<'tree>> {
@@ -16541,7 +16541,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `+`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `+` ([symbols::Add]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn add(self) -> Option<symbols::Add<'tree>> {
@@ -16550,7 +16550,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `-`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `-` ([symbols::Sub]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn sub(self) -> Option<symbols::Sub<'tree>> {
@@ -16559,7 +16559,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `/`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `/` ([symbols::Div]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn div(self) -> Option<symbols::Div<'tree>> {
@@ -16568,7 +16568,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `<`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `<` ([symbols::Lt]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn lt(self) -> Option<symbols::Lt<'tree>> {
@@ -16577,7 +16577,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `<<`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `<<` ([symbols::LtLt]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn lt_lt(self) -> Option<symbols::LtLt<'tree>> {
@@ -16586,7 +16586,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `<=`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `<=` ([symbols::LtEq]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn lt_eq(self) -> Option<symbols::LtEq<'tree>> {
@@ -16595,7 +16595,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `==`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `==` ([symbols::EqEq]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn eq_eq(self) -> Option<symbols::EqEq<'tree>> {
@@ -16604,7 +16604,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `>`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `>` ([symbols::Gt]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn gt(self) -> Option<symbols::Gt<'tree>> {
@@ -16613,7 +16613,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `>=`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `>=` ([symbols::GtEq]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn gt_eq(self) -> Option<symbols::GtEq<'tree>> {
@@ -16622,7 +16622,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `>>`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `>>` ([symbols::GtGt]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn gt_gt(self) -> Option<symbols::GtGt<'tree>> {
@@ -16631,7 +16631,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `^`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `^` ([symbols::BitXor]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn bit_xor(self) -> Option<symbols::BitXor<'tree>> {
@@ -16640,7 +16640,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `|`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `|` ([symbols::Or]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn or(self) -> Option<symbols::Or<'tree>> {
@@ -16649,7 +16649,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `||`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `||` ([symbols::OrOr]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn or_or(self) -> Option<symbols::OrOr<'tree>> {
@@ -16826,7 +16826,7 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{_declaration_statement | _expression | expression_statement}`"]
+    #[doc = "one of `{_declaration_statement | _expression | expression_statement}`:\n- [DeclarationStatement]\n- [Expression]\n- [ExpressionStatement]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum DeclarationStatement_Expression_ExpressionStatement<'tree> {
@@ -16836,7 +16836,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> DeclarationStatement_Expression_ExpressionStatement<'tree> {
-        #[doc = "Returns the node if it is of kind `_declaration_statement`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `_declaration_statement` ([DeclarationStatement]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn declaration_statement(self) -> Option<DeclarationStatement<'tree>> {
@@ -16845,7 +16845,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `_expression`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `_expression` ([Expression]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn expression(self) -> Option<Expression<'tree>> {
@@ -16854,7 +16854,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `expression_statement`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `expression_statement` ([ExpressionStatement]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn expression_statement(self) -> Option<ExpressionStatement<'tree>> {
@@ -16916,7 +16916,7 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{_type | lifetime}`"]
+    #[doc = "one of `{_type | lifetime}`:\n- [Type]\n- [Lifetime]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum Type_Lifetime<'tree> {
@@ -16925,7 +16925,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> Type_Lifetime<'tree> {
-        #[doc = "Returns the node if it is of kind `_type`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `_type` ([Type]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#type(self) -> Option<Type<'tree>> {
@@ -16934,7 +16934,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `lifetime`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `lifetime` ([Lifetime]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn lifetime(self) -> Option<Lifetime<'tree>> {
@@ -16986,7 +16986,7 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{_type | qualified_type}`"]
+    #[doc = "one of `{_type | qualified_type}`:\n- [Type]\n- [QualifiedType]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum Type_QualifiedType<'tree> {
@@ -16995,7 +16995,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> Type_QualifiedType<'tree> {
-        #[doc = "Returns the node if it is of kind `_type`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `_type` ([Type]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#type(self) -> Option<Type<'tree>> {
@@ -17004,7 +17004,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `qualified_type`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `qualified_type` ([QualifiedType]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn qualified_type(self) -> Option<QualifiedType<'tree>> {
@@ -17056,7 +17056,7 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{_expression | loop_label}`"]
+    #[doc = "one of `{_expression | loop_label}`:\n- [Expression]\n- [LoopLabel]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum Expression_LoopLabel<'tree> {
@@ -17065,7 +17065,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> Expression_LoopLabel<'tree> {
-        #[doc = "Returns the node if it is of kind `_expression`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `_expression` ([Expression]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn expression(self) -> Option<Expression<'tree>> {
@@ -17074,7 +17074,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `loop_label`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `loop_label` ([LoopLabel]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn loop_label(self) -> Option<LoopLabel<'tree>> {
@@ -17126,7 +17126,7 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{_literal | array_expression | assignment_expression | async_block | await_expression | binary_expression | block | break_expression | call_expression | closure_expression | compound_assignment_expr | const_block | continue_expression | field_expression | for_expression | generic_function | identifier | if_expression | index_expression | loop_expression | macro_invocation | match_expression | metavariable | parenthesized_expression | reference_expression | return_expression | scoped_identifier | self | struct_expression | try_expression | tuple_expression | type_cast_expression | unary_expression | unit_expression | unsafe_block | while_expression | yield_expression}`"]
+    #[doc = "one of `{_literal | array_expression | assignment_expression | async_block | await_expression | binary_expression | block | break_expression | call_expression | closure_expression | compound_assignment_expr | const_block | continue_expression | field_expression | for_expression | generic_function | identifier | if_expression | index_expression | loop_expression | macro_invocation | match_expression | metavariable | parenthesized_expression | reference_expression | return_expression | scoped_identifier | self | struct_expression | try_expression | tuple_expression | type_cast_expression | unary_expression | unit_expression | unsafe_block | while_expression | yield_expression}`:\n- [Literal]\n- [ArrayExpression]\n- [AssignmentExpression]\n- [AsyncBlock]\n- [AwaitExpression]\n- [BinaryExpression]\n- [Block]\n- [BreakExpression]\n- [CallExpression]\n- [ClosureExpression]\n- [CompoundAssignmentExpr]\n- [ConstBlock]\n- [ContinueExpression]\n- [FieldExpression]\n- [ForExpression]\n- [GenericFunction]\n- [Identifier]\n- [IfExpression]\n- [IndexExpression]\n- [LoopExpression]\n- [MacroInvocation]\n- [MatchExpression]\n- [Metavariable]\n- [ParenthesizedExpression]\n- [ReferenceExpression]\n- [ReturnExpression]\n- [ScopedIdentifier]\n- [_Self]\n- [StructExpression]\n- [TryExpression]\n- [TupleExpression]\n- [TypeCastExpression]\n- [UnaryExpression]\n- [UnitExpression]\n- [UnsafeBlock]\n- [WhileExpression]\n- [YieldExpression]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier__Self_StructExpression_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression<
@@ -17171,12 +17171,12 @@ pub mod anon_unions {
         YieldExpression(YieldExpression<'tree>),
     }
     #[automatically_derived]
-    impl < 'tree > Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier__Self_StructExpression_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression < 'tree > { # [doc = "Returns the node if it is of kind `_literal`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn literal (self) -> Option < Literal < 'tree > > { match self { Self :: Literal (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `array_expression`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn array_expression (self) -> Option < ArrayExpression < 'tree > > { match self { Self :: ArrayExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `assignment_expression`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn assignment_expression (self) -> Option < AssignmentExpression < 'tree > > { match self { Self :: AssignmentExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `async_block`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn async_block (self) -> Option < AsyncBlock < 'tree > > { match self { Self :: AsyncBlock (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `await_expression`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn await_expression (self) -> Option < AwaitExpression < 'tree > > { match self { Self :: AwaitExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `binary_expression`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn binary_expression (self) -> Option < BinaryExpression < 'tree > > { match self { Self :: BinaryExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `block`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn block (self) -> Option < Block < 'tree > > { match self { Self :: Block (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `break_expression`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn break_expression (self) -> Option < BreakExpression < 'tree > > { match self { Self :: BreakExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `call_expression`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn call_expression (self) -> Option < CallExpression < 'tree > > { match self { Self :: CallExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `closure_expression`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn closure_expression (self) -> Option < ClosureExpression < 'tree > > { match self { Self :: ClosureExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `compound_assignment_expr`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn compound_assignment_expr (self) -> Option < CompoundAssignmentExpr < 'tree > > { match self { Self :: CompoundAssignmentExpr (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `const_block`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn const_block (self) -> Option < ConstBlock < 'tree > > { match self { Self :: ConstBlock (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `continue_expression`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn continue_expression (self) -> Option < ContinueExpression < 'tree > > { match self { Self :: ContinueExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `field_expression`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn field_expression (self) -> Option < FieldExpression < 'tree > > { match self { Self :: FieldExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `for_expression`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn for_expression (self) -> Option < ForExpression < 'tree > > { match self { Self :: ForExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `generic_function`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn generic_function (self) -> Option < GenericFunction < 'tree > > { match self { Self :: GenericFunction (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `identifier`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn identifier (self) -> Option < Identifier < 'tree > > { match self { Self :: Identifier (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `if_expression`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn if_expression (self) -> Option < IfExpression < 'tree > > { match self { Self :: IfExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `index_expression`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn index_expression (self) -> Option < IndexExpression < 'tree > > { match self { Self :: IndexExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `loop_expression`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn loop_expression (self) -> Option < LoopExpression < 'tree > > { match self { Self :: LoopExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `macro_invocation`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn macro_invocation (self) -> Option < MacroInvocation < 'tree > > { match self { Self :: MacroInvocation (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `match_expression`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn match_expression (self) -> Option < MatchExpression < 'tree > > { match self { Self :: MatchExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `metavariable`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn metavariable (self) -> Option < Metavariable < 'tree > > { match self { Self :: Metavariable (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `parenthesized_expression`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn parenthesized_expression (self) -> Option < ParenthesizedExpression < 'tree > > { match self { Self :: ParenthesizedExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `reference_expression`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn reference_expression (self) -> Option < ReferenceExpression < 'tree > > { match self { Self :: ReferenceExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `return_expression`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn return_expression (self) -> Option < ReturnExpression < 'tree > > { match self { Self :: ReturnExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `scoped_identifier`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn scoped_identifier (self) -> Option < ScopedIdentifier < 'tree > > { match self { Self :: ScopedIdentifier (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `self`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn _self (self) -> Option < _Self < 'tree > > { match self { Self :: _Self (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `struct_expression`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn struct_expression (self) -> Option < StructExpression < 'tree > > { match self { Self :: StructExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `try_expression`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn try_expression (self) -> Option < TryExpression < 'tree > > { match self { Self :: TryExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `tuple_expression`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn tuple_expression (self) -> Option < TupleExpression < 'tree > > { match self { Self :: TupleExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `type_cast_expression`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn type_cast_expression (self) -> Option < TypeCastExpression < 'tree > > { match self { Self :: TypeCastExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `unary_expression`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn unary_expression (self) -> Option < UnaryExpression < 'tree > > { match self { Self :: UnaryExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `unit_expression`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn unit_expression (self) -> Option < UnitExpression < 'tree > > { match self { Self :: UnitExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `unsafe_block`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn unsafe_block (self) -> Option < UnsafeBlock < 'tree > > { match self { Self :: UnsafeBlock (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `while_expression`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn while_expression (self) -> Option < WhileExpression < 'tree > > { match self { Self :: WhileExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `yield_expression`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn yield_expression (self) -> Option < YieldExpression < 'tree > > { match self { Self :: YieldExpression (x) => Some (x) , _ => None , } } }
+    impl < 'tree > Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier__Self_StructExpression_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression < 'tree > { # [doc = "Returns the node if it is of kind `_literal` ([Literal]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn literal (self) -> Option < Literal < 'tree > > { match self { Self :: Literal (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `array_expression` ([ArrayExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn array_expression (self) -> Option < ArrayExpression < 'tree > > { match self { Self :: ArrayExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `assignment_expression` ([AssignmentExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn assignment_expression (self) -> Option < AssignmentExpression < 'tree > > { match self { Self :: AssignmentExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `async_block` ([AsyncBlock]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn async_block (self) -> Option < AsyncBlock < 'tree > > { match self { Self :: AsyncBlock (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `await_expression` ([AwaitExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn await_expression (self) -> Option < AwaitExpression < 'tree > > { match self { Self :: AwaitExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `binary_expression` ([BinaryExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn binary_expression (self) -> Option < BinaryExpression < 'tree > > { match self { Self :: BinaryExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `block` ([Block]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn block (self) -> Option < Block < 'tree > > { match self { Self :: Block (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `break_expression` ([BreakExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn break_expression (self) -> Option < BreakExpression < 'tree > > { match self { Self :: BreakExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `call_expression` ([CallExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn call_expression (self) -> Option < CallExpression < 'tree > > { match self { Self :: CallExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `closure_expression` ([ClosureExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn closure_expression (self) -> Option < ClosureExpression < 'tree > > { match self { Self :: ClosureExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `compound_assignment_expr` ([CompoundAssignmentExpr]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn compound_assignment_expr (self) -> Option < CompoundAssignmentExpr < 'tree > > { match self { Self :: CompoundAssignmentExpr (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `const_block` ([ConstBlock]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn const_block (self) -> Option < ConstBlock < 'tree > > { match self { Self :: ConstBlock (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `continue_expression` ([ContinueExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn continue_expression (self) -> Option < ContinueExpression < 'tree > > { match self { Self :: ContinueExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `field_expression` ([FieldExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn field_expression (self) -> Option < FieldExpression < 'tree > > { match self { Self :: FieldExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `for_expression` ([ForExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn for_expression (self) -> Option < ForExpression < 'tree > > { match self { Self :: ForExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `generic_function` ([GenericFunction]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn generic_function (self) -> Option < GenericFunction < 'tree > > { match self { Self :: GenericFunction (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `identifier` ([Identifier]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn identifier (self) -> Option < Identifier < 'tree > > { match self { Self :: Identifier (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `if_expression` ([IfExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn if_expression (self) -> Option < IfExpression < 'tree > > { match self { Self :: IfExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `index_expression` ([IndexExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn index_expression (self) -> Option < IndexExpression < 'tree > > { match self { Self :: IndexExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `loop_expression` ([LoopExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn loop_expression (self) -> Option < LoopExpression < 'tree > > { match self { Self :: LoopExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `macro_invocation` ([MacroInvocation]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn macro_invocation (self) -> Option < MacroInvocation < 'tree > > { match self { Self :: MacroInvocation (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `match_expression` ([MatchExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn match_expression (self) -> Option < MatchExpression < 'tree > > { match self { Self :: MatchExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `metavariable` ([Metavariable]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn metavariable (self) -> Option < Metavariable < 'tree > > { match self { Self :: Metavariable (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `parenthesized_expression` ([ParenthesizedExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn parenthesized_expression (self) -> Option < ParenthesizedExpression < 'tree > > { match self { Self :: ParenthesizedExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `reference_expression` ([ReferenceExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn reference_expression (self) -> Option < ReferenceExpression < 'tree > > { match self { Self :: ReferenceExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `return_expression` ([ReturnExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn return_expression (self) -> Option < ReturnExpression < 'tree > > { match self { Self :: ReturnExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `scoped_identifier` ([ScopedIdentifier]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn scoped_identifier (self) -> Option < ScopedIdentifier < 'tree > > { match self { Self :: ScopedIdentifier (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `self` ([_Self]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn _self (self) -> Option < _Self < 'tree > > { match self { Self :: _Self (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `struct_expression` ([StructExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn struct_expression (self) -> Option < StructExpression < 'tree > > { match self { Self :: StructExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `try_expression` ([TryExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn try_expression (self) -> Option < TryExpression < 'tree > > { match self { Self :: TryExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `tuple_expression` ([TupleExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn tuple_expression (self) -> Option < TupleExpression < 'tree > > { match self { Self :: TupleExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `type_cast_expression` ([TypeCastExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn type_cast_expression (self) -> Option < TypeCastExpression < 'tree > > { match self { Self :: TypeCastExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `unary_expression` ([UnaryExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn unary_expression (self) -> Option < UnaryExpression < 'tree > > { match self { Self :: UnaryExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `unit_expression` ([UnitExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn unit_expression (self) -> Option < UnitExpression < 'tree > > { match self { Self :: UnitExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `unsafe_block` ([UnsafeBlock]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn unsafe_block (self) -> Option < UnsafeBlock < 'tree > > { match self { Self :: UnsafeBlock (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `while_expression` ([WhileExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn while_expression (self) -> Option < WhileExpression < 'tree > > { match self { Self :: WhileExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `yield_expression` ([YieldExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn yield_expression (self) -> Option < YieldExpression < 'tree > > { match self { Self :: YieldExpression (x) => Some (x) , _ => None , } } }
     #[automatically_derived]
     impl < 'tree > TryFrom < tree_sitter :: Node < 'tree >> for Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier__Self_StructExpression_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression < 'tree > { type Error = type_sitter_lib :: IncorrectKind < 'tree > ; # [inline] fn try_from (node : tree_sitter :: Node < 'tree >) -> Result < Self , Self :: Error > { if let Ok (this) = < Literal < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Literal (this)) ; } if let Ok (this) = < ArrayExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: ArrayExpression (this)) ; } if let Ok (this) = < AssignmentExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: AssignmentExpression (this)) ; } if let Ok (this) = < AsyncBlock < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: AsyncBlock (this)) ; } if let Ok (this) = < AwaitExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: AwaitExpression (this)) ; } if let Ok (this) = < BinaryExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: BinaryExpression (this)) ; } if let Ok (this) = < Block < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Block (this)) ; } if let Ok (this) = < BreakExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: BreakExpression (this)) ; } if let Ok (this) = < CallExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: CallExpression (this)) ; } if let Ok (this) = < ClosureExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: ClosureExpression (this)) ; } if let Ok (this) = < CompoundAssignmentExpr < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: CompoundAssignmentExpr (this)) ; } if let Ok (this) = < ConstBlock < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: ConstBlock (this)) ; } if let Ok (this) = < ContinueExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: ContinueExpression (this)) ; } if let Ok (this) = < FieldExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: FieldExpression (this)) ; } if let Ok (this) = < ForExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: ForExpression (this)) ; } if let Ok (this) = < GenericFunction < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: GenericFunction (this)) ; } if let Ok (this) = < Identifier < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Identifier (this)) ; } if let Ok (this) = < IfExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: IfExpression (this)) ; } if let Ok (this) = < IndexExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: IndexExpression (this)) ; } if let Ok (this) = < LoopExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: LoopExpression (this)) ; } if let Ok (this) = < MacroInvocation < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: MacroInvocation (this)) ; } if let Ok (this) = < MatchExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: MatchExpression (this)) ; } if let Ok (this) = < Metavariable < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Metavariable (this)) ; } if let Ok (this) = < ParenthesizedExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: ParenthesizedExpression (this)) ; } if let Ok (this) = < ReferenceExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: ReferenceExpression (this)) ; } if let Ok (this) = < ReturnExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: ReturnExpression (this)) ; } if let Ok (this) = < ScopedIdentifier < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: ScopedIdentifier (this)) ; } if let Ok (this) = < _Self < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: _Self (this)) ; } if let Ok (this) = < StructExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: StructExpression (this)) ; } if let Ok (this) = < TryExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: TryExpression (this)) ; } if let Ok (this) = < TupleExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: TupleExpression (this)) ; } if let Ok (this) = < TypeCastExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: TypeCastExpression (this)) ; } if let Ok (this) = < UnaryExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: UnaryExpression (this)) ; } if let Ok (this) = < UnitExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: UnitExpression (this)) ; } if let Ok (this) = < UnsafeBlock < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: UnsafeBlock (this)) ; } if let Ok (this) = < WhileExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: WhileExpression (this)) ; } if let Ok (this) = < YieldExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: YieldExpression (this)) ; } Err (type_sitter_lib :: IncorrectKind { node , kind : < Self as type_sitter_lib :: TypedNode < 'tree >> :: KIND , }) } }
     #[automatically_derived]
     impl < 'tree > type_sitter_lib :: TypedNode < 'tree > for Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier__Self_StructExpression_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression < 'tree > { const KIND : & 'static str = "{_literal | array_expression | assignment_expression | async_block | await_expression | binary_expression | block | break_expression | call_expression | closure_expression | compound_assignment_expr | const_block | continue_expression | field_expression | for_expression | generic_function | identifier | if_expression | index_expression | loop_expression | macro_invocation | match_expression | metavariable | parenthesized_expression | reference_expression | return_expression | scoped_identifier | self | struct_expression | try_expression | tuple_expression | type_cast_expression | unary_expression | unit_expression | unsafe_block | while_expression | yield_expression}" ; # [inline] fn node (& self) -> & tree_sitter :: Node < 'tree > { match self { Self :: Literal (x) => x . node () , Self :: ArrayExpression (x) => x . node () , Self :: AssignmentExpression (x) => x . node () , Self :: AsyncBlock (x) => x . node () , Self :: AwaitExpression (x) => x . node () , Self :: BinaryExpression (x) => x . node () , Self :: Block (x) => x . node () , Self :: BreakExpression (x) => x . node () , Self :: CallExpression (x) => x . node () , Self :: ClosureExpression (x) => x . node () , Self :: CompoundAssignmentExpr (x) => x . node () , Self :: ConstBlock (x) => x . node () , Self :: ContinueExpression (x) => x . node () , Self :: FieldExpression (x) => x . node () , Self :: ForExpression (x) => x . node () , Self :: GenericFunction (x) => x . node () , Self :: Identifier (x) => x . node () , Self :: IfExpression (x) => x . node () , Self :: IndexExpression (x) => x . node () , Self :: LoopExpression (x) => x . node () , Self :: MacroInvocation (x) => x . node () , Self :: MatchExpression (x) => x . node () , Self :: Metavariable (x) => x . node () , Self :: ParenthesizedExpression (x) => x . node () , Self :: ReferenceExpression (x) => x . node () , Self :: ReturnExpression (x) => x . node () , Self :: ScopedIdentifier (x) => x . node () , Self :: _Self (x) => x . node () , Self :: StructExpression (x) => x . node () , Self :: TryExpression (x) => x . node () , Self :: TupleExpression (x) => x . node () , Self :: TypeCastExpression (x) => x . node () , Self :: UnaryExpression (x) => x . node () , Self :: UnitExpression (x) => x . node () , Self :: UnsafeBlock (x) => x . node () , Self :: WhileExpression (x) => x . node () , Self :: YieldExpression (x) => x . node () , } } # [inline] fn node_mut (& mut self) -> & mut tree_sitter :: Node < 'tree > { match self { Self :: Literal (x) => x . node_mut () , Self :: ArrayExpression (x) => x . node_mut () , Self :: AssignmentExpression (x) => x . node_mut () , Self :: AsyncBlock (x) => x . node_mut () , Self :: AwaitExpression (x) => x . node_mut () , Self :: BinaryExpression (x) => x . node_mut () , Self :: Block (x) => x . node_mut () , Self :: BreakExpression (x) => x . node_mut () , Self :: CallExpression (x) => x . node_mut () , Self :: ClosureExpression (x) => x . node_mut () , Self :: CompoundAssignmentExpr (x) => x . node_mut () , Self :: ConstBlock (x) => x . node_mut () , Self :: ContinueExpression (x) => x . node_mut () , Self :: FieldExpression (x) => x . node_mut () , Self :: ForExpression (x) => x . node_mut () , Self :: GenericFunction (x) => x . node_mut () , Self :: Identifier (x) => x . node_mut () , Self :: IfExpression (x) => x . node_mut () , Self :: IndexExpression (x) => x . node_mut () , Self :: LoopExpression (x) => x . node_mut () , Self :: MacroInvocation (x) => x . node_mut () , Self :: MatchExpression (x) => x . node_mut () , Self :: Metavariable (x) => x . node_mut () , Self :: ParenthesizedExpression (x) => x . node_mut () , Self :: ReferenceExpression (x) => x . node_mut () , Self :: ReturnExpression (x) => x . node_mut () , Self :: ScopedIdentifier (x) => x . node_mut () , Self :: _Self (x) => x . node_mut () , Self :: StructExpression (x) => x . node_mut () , Self :: TryExpression (x) => x . node_mut () , Self :: TupleExpression (x) => x . node_mut () , Self :: TypeCastExpression (x) => x . node_mut () , Self :: UnaryExpression (x) => x . node_mut () , Self :: UnitExpression (x) => x . node_mut () , Self :: UnsafeBlock (x) => x . node_mut () , Self :: WhileExpression (x) => x . node_mut () , Self :: YieldExpression (x) => x . node_mut () , } } # [inline] fn into_node (self) -> tree_sitter :: Node < 'tree > { match self { Self :: Literal (x) => x . into_node () , Self :: ArrayExpression (x) => x . into_node () , Self :: AssignmentExpression (x) => x . into_node () , Self :: AsyncBlock (x) => x . into_node () , Self :: AwaitExpression (x) => x . into_node () , Self :: BinaryExpression (x) => x . into_node () , Self :: Block (x) => x . into_node () , Self :: BreakExpression (x) => x . into_node () , Self :: CallExpression (x) => x . into_node () , Self :: ClosureExpression (x) => x . into_node () , Self :: CompoundAssignmentExpr (x) => x . into_node () , Self :: ConstBlock (x) => x . into_node () , Self :: ContinueExpression (x) => x . into_node () , Self :: FieldExpression (x) => x . into_node () , Self :: ForExpression (x) => x . into_node () , Self :: GenericFunction (x) => x . into_node () , Self :: Identifier (x) => x . into_node () , Self :: IfExpression (x) => x . into_node () , Self :: IndexExpression (x) => x . into_node () , Self :: LoopExpression (x) => x . into_node () , Self :: MacroInvocation (x) => x . into_node () , Self :: MatchExpression (x) => x . into_node () , Self :: Metavariable (x) => x . into_node () , Self :: ParenthesizedExpression (x) => x . into_node () , Self :: ReferenceExpression (x) => x . into_node () , Self :: ReturnExpression (x) => x . into_node () , Self :: ScopedIdentifier (x) => x . into_node () , Self :: _Self (x) => x . into_node () , Self :: StructExpression (x) => x . into_node () , Self :: TryExpression (x) => x . into_node () , Self :: TupleExpression (x) => x . into_node () , Self :: TypeCastExpression (x) => x . into_node () , Self :: UnaryExpression (x) => x . into_node () , Self :: UnitExpression (x) => x . into_node () , Self :: UnsafeBlock (x) => x . into_node () , Self :: WhileExpression (x) => x . into_node () , Self :: YieldExpression (x) => x . into_node () , } } }
-    #[doc = "one of `{_pattern | parameter}`"]
+    #[doc = "one of `{_pattern | parameter}`:\n- [Pattern]\n- [Parameter]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum Pattern_Parameter<'tree> {
@@ -17185,7 +17185,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> Pattern_Parameter<'tree> {
-        #[doc = "Returns the node if it is of kind `_pattern`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `_pattern` ([Pattern]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn pattern(self) -> Option<Pattern<'tree>> {
@@ -17194,7 +17194,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `parameter`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `parameter` ([Parameter]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn parameter(self) -> Option<Parameter<'tree>> {
@@ -17246,7 +17246,7 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{%= | &= | *= | += | -= | /= | <<= | >>= | ^= | |=}`"]
+    #[doc = "one of `{%= | &= | *= | += | -= | /= | <<= | >>= | ^= | |=}`:\n- [symbols::ModEq]\n- [symbols::AndEq]\n- [symbols::MulEq]\n- [symbols::AddEq]\n- [symbols::SubEq]\n- [symbols::DivEq]\n- [symbols::LtLtEq]\n- [symbols::GtGtEq]\n- [symbols::BitXorEq]\n- [symbols::OrEq]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum ModEq_AndEq_MulEq_AddEq_SubEq_DivEq_LtLtEq_GtGtEq_BitXorEq_OrEq<'tree> {
@@ -17263,7 +17263,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> ModEq_AndEq_MulEq_AddEq_SubEq_DivEq_LtLtEq_GtGtEq_BitXorEq_OrEq<'tree> {
-        #[doc = "Returns the node if it is of kind `%=`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `%=` ([symbols::ModEq]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn mod_eq(self) -> Option<symbols::ModEq<'tree>> {
@@ -17272,7 +17272,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `&=`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `&=` ([symbols::AndEq]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn and_eq(self) -> Option<symbols::AndEq<'tree>> {
@@ -17281,7 +17281,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `*=`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `*=` ([symbols::MulEq]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn mul_eq(self) -> Option<symbols::MulEq<'tree>> {
@@ -17290,7 +17290,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `+=`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `+=` ([symbols::AddEq]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn add_eq(self) -> Option<symbols::AddEq<'tree>> {
@@ -17299,7 +17299,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `-=`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `-=` ([symbols::SubEq]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn sub_eq(self) -> Option<symbols::SubEq<'tree>> {
@@ -17308,7 +17308,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `/=`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `/=` ([symbols::DivEq]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn div_eq(self) -> Option<symbols::DivEq<'tree>> {
@@ -17317,7 +17317,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `<<=`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `<<=` ([symbols::LtLtEq]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn lt_lt_eq(self) -> Option<symbols::LtLtEq<'tree>> {
@@ -17326,7 +17326,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `>>=`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `>>=` ([symbols::GtGtEq]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn gt_gt_eq(self) -> Option<symbols::GtGtEq<'tree>> {
@@ -17335,7 +17335,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `^=`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `^=` ([symbols::BitXorEq]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn bit_xor_eq(self) -> Option<symbols::BitXorEq<'tree>> {
@@ -17344,7 +17344,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `|=`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `|=` ([symbols::OrEq]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn or_eq(self) -> Option<symbols::OrEq<'tree>> {
@@ -17470,7 +17470,7 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{visibility_modifier | identifier | _type | _expression}`"]
+    #[doc = "one of `{visibility_modifier | identifier | _type | _expression}`:\n- [VisibilityModifier]\n- [Identifier]\n- [Type]\n- [Expression]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum VisibilityModifier_Identifier_Type_Expression<'tree> {
@@ -17481,7 +17481,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> VisibilityModifier_Identifier_Type_Expression<'tree> {
-        #[doc = "Returns the node if it is of kind `visibility_modifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `visibility_modifier` ([VisibilityModifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn visibility_modifier(self) -> Option<VisibilityModifier<'tree>> {
@@ -17490,7 +17490,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `identifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `identifier` ([Identifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn identifier(self) -> Option<Identifier<'tree>> {
@@ -17499,7 +17499,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `_type`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `_type` ([Type]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#type(self) -> Option<Type<'tree>> {
@@ -17508,7 +17508,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `_expression`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `_expression` ([Expression]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn expression(self) -> Option<Expression<'tree>> {
@@ -17576,7 +17576,7 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{lifetime | type_identifier}`"]
+    #[doc = "one of `{lifetime | type_identifier}`:\n- [Lifetime]\n- [TypeIdentifier]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum Lifetime_TypeIdentifier<'tree> {
@@ -17585,7 +17585,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> Lifetime_TypeIdentifier<'tree> {
-        #[doc = "Returns the node if it is of kind `lifetime`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `lifetime` ([Lifetime]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn lifetime(self) -> Option<Lifetime<'tree>> {
@@ -17594,7 +17594,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `type_identifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `type_identifier` ([TypeIdentifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn type_identifier(self) -> Option<TypeIdentifier<'tree>> {
@@ -17652,7 +17652,7 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{block | if_expression}`"]
+    #[doc = "one of `{block | if_expression}`:\n- [Block]\n- [IfExpression]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum Block_IfExpression<'tree> {
@@ -17661,7 +17661,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> Block_IfExpression<'tree> {
-        #[doc = "Returns the node if it is of kind `block`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `block` ([Block]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn block(self) -> Option<Block<'tree>> {
@@ -17670,7 +17670,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `if_expression`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `if_expression` ([IfExpression]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn if_expression(self) -> Option<IfExpression<'tree>> {
@@ -17726,7 +17726,7 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{visibility_modifier | where_clause | enum_variant_list | type_identifier | type_parameters}`"]
+    #[doc = "one of `{visibility_modifier | where_clause | enum_variant_list | type_identifier | type_parameters}`:\n- [VisibilityModifier]\n- [WhereClause]\n- [EnumVariantList]\n- [TypeIdentifier]\n- [TypeParameters]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum VisibilityModifier_WhereClause_EnumVariantList_TypeIdentifier_TypeParameters<'tree> {
@@ -17738,7 +17738,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> VisibilityModifier_WhereClause_EnumVariantList_TypeIdentifier_TypeParameters<'tree> {
-        #[doc = "Returns the node if it is of kind `visibility_modifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `visibility_modifier` ([VisibilityModifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn visibility_modifier(self) -> Option<VisibilityModifier<'tree>> {
@@ -17747,7 +17747,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `where_clause`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `where_clause` ([WhereClause]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn where_clause(self) -> Option<WhereClause<'tree>> {
@@ -17756,7 +17756,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `enum_variant_list`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `enum_variant_list` ([EnumVariantList]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn enum_variant_list(self) -> Option<EnumVariantList<'tree>> {
@@ -17765,7 +17765,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `type_identifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `type_identifier` ([TypeIdentifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn type_identifier(self) -> Option<TypeIdentifier<'tree>> {
@@ -17774,7 +17774,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `type_parameters`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `type_parameters` ([TypeParameters]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn type_parameters(self) -> Option<TypeParameters<'tree>> {
@@ -17856,7 +17856,7 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{visibility_modifier | field_declaration_list | ordered_field_declaration_list | identifier | _expression}`"]
+    #[doc = "one of `{visibility_modifier | field_declaration_list | ordered_field_declaration_list | identifier | _expression}`:\n- [VisibilityModifier]\n- [FieldDeclarationList]\n- [OrderedFieldDeclarationList]\n- [Identifier]\n- [Expression]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum VisibilityModifier_FieldDeclarationList_OrderedFieldDeclarationList_Identifier_Expression<
@@ -17874,7 +17874,7 @@ pub mod anon_unions {
             'tree,
         >
     {
-        #[doc = "Returns the node if it is of kind `visibility_modifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `visibility_modifier` ([VisibilityModifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn visibility_modifier(self) -> Option<VisibilityModifier<'tree>> {
@@ -17883,7 +17883,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `field_declaration_list`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `field_declaration_list` ([FieldDeclarationList]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn field_declaration_list(self) -> Option<FieldDeclarationList<'tree>> {
@@ -17892,7 +17892,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `ordered_field_declaration_list`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `ordered_field_declaration_list` ([OrderedFieldDeclarationList]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn ordered_field_declaration_list(self) -> Option<OrderedFieldDeclarationList<'tree>> {
@@ -17901,7 +17901,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `identifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `identifier` ([Identifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn identifier(self) -> Option<Identifier<'tree>> {
@@ -17910,7 +17910,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `_expression`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `_expression` ([Expression]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn expression(self) -> Option<Expression<'tree>> {
@@ -17924,7 +17924,7 @@ pub mod anon_unions {
     impl < 'tree > TryFrom < tree_sitter :: Node < 'tree >> for VisibilityModifier_FieldDeclarationList_OrderedFieldDeclarationList_Identifier_Expression < 'tree > { type Error = type_sitter_lib :: IncorrectKind < 'tree > ; # [inline] fn try_from (node : tree_sitter :: Node < 'tree >) -> Result < Self , Self :: Error > { if let Ok (this) = < VisibilityModifier < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: VisibilityModifier (this)) ; } if let Ok (this) = < FieldDeclarationList < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: FieldDeclarationList (this)) ; } if let Ok (this) = < OrderedFieldDeclarationList < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: OrderedFieldDeclarationList (this)) ; } if let Ok (this) = < Identifier < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Identifier (this)) ; } if let Ok (this) = < Expression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Expression (this)) ; } Err (type_sitter_lib :: IncorrectKind { node , kind : < Self as type_sitter_lib :: TypedNode < 'tree >> :: KIND , }) } }
     #[automatically_derived]
     impl < 'tree > type_sitter_lib :: TypedNode < 'tree > for VisibilityModifier_FieldDeclarationList_OrderedFieldDeclarationList_Identifier_Expression < 'tree > { const KIND : & 'static str = "{visibility_modifier | field_declaration_list | ordered_field_declaration_list | identifier | _expression}" ; # [inline] fn node (& self) -> & tree_sitter :: Node < 'tree > { match self { Self :: VisibilityModifier (x) => x . node () , Self :: FieldDeclarationList (x) => x . node () , Self :: OrderedFieldDeclarationList (x) => x . node () , Self :: Identifier (x) => x . node () , Self :: Expression (x) => x . node () , } } # [inline] fn node_mut (& mut self) -> & mut tree_sitter :: Node < 'tree > { match self { Self :: VisibilityModifier (x) => x . node_mut () , Self :: FieldDeclarationList (x) => x . node_mut () , Self :: OrderedFieldDeclarationList (x) => x . node_mut () , Self :: Identifier (x) => x . node_mut () , Self :: Expression (x) => x . node_mut () , } } # [inline] fn into_node (self) -> tree_sitter :: Node < 'tree > { match self { Self :: VisibilityModifier (x) => x . into_node () , Self :: FieldDeclarationList (x) => x . into_node () , Self :: OrderedFieldDeclarationList (x) => x . into_node () , Self :: Identifier (x) => x . into_node () , Self :: Expression (x) => x . into_node () , } } }
-    #[doc = "one of `{field_declaration_list | ordered_field_declaration_list}`"]
+    #[doc = "one of `{field_declaration_list | ordered_field_declaration_list}`:\n- [FieldDeclarationList]\n- [OrderedFieldDeclarationList]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum FieldDeclarationList_OrderedFieldDeclarationList<'tree> {
@@ -17933,7 +17933,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> FieldDeclarationList_OrderedFieldDeclarationList<'tree> {
-        #[doc = "Returns the node if it is of kind `field_declaration_list`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `field_declaration_list` ([FieldDeclarationList]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn field_declaration_list(self) -> Option<FieldDeclarationList<'tree>> {
@@ -17942,7 +17942,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `ordered_field_declaration_list`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `ordered_field_declaration_list` ([OrderedFieldDeclarationList]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn ordered_field_declaration_list(self) -> Option<OrderedFieldDeclarationList<'tree>> {
@@ -18000,7 +18000,7 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{attribute_item | enum_variant}`"]
+    #[doc = "one of `{attribute_item | enum_variant}`:\n- [AttributeItem]\n- [EnumVariant]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum AttributeItem_EnumVariant<'tree> {
@@ -18009,7 +18009,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> AttributeItem_EnumVariant<'tree> {
-        #[doc = "Returns the node if it is of kind `attribute_item`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `attribute_item` ([AttributeItem]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn attribute_item(self) -> Option<AttributeItem<'tree>> {
@@ -18018,7 +18018,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `enum_variant`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `enum_variant` ([EnumVariant]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn enum_variant(self) -> Option<EnumVariant<'tree>> {
@@ -18074,7 +18074,7 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{crate | visibility_modifier | identifier}`"]
+    #[doc = "one of `{crate | visibility_modifier | identifier}`:\n- [Crate]\n- [VisibilityModifier]\n- [Identifier]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum Crate_VisibilityModifier_Identifier<'tree> {
@@ -18084,7 +18084,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> Crate_VisibilityModifier_Identifier<'tree> {
-        #[doc = "Returns the node if it is of kind `crate`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `crate` ([Crate]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn crate_(self) -> Option<Crate<'tree>> {
@@ -18093,7 +18093,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `visibility_modifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `visibility_modifier` ([VisibilityModifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn visibility_modifier(self) -> Option<VisibilityModifier<'tree>> {
@@ -18102,7 +18102,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `identifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `identifier` ([Identifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn identifier(self) -> Option<Identifier<'tree>> {
@@ -18164,7 +18164,7 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{visibility_modifier | field_identifier | _type}`"]
+    #[doc = "one of `{visibility_modifier | field_identifier | _type}`:\n- [VisibilityModifier]\n- [FieldIdentifier]\n- [Type]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum VisibilityModifier_FieldIdentifier_Type<'tree> {
@@ -18174,7 +18174,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> VisibilityModifier_FieldIdentifier_Type<'tree> {
-        #[doc = "Returns the node if it is of kind `visibility_modifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `visibility_modifier` ([VisibilityModifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn visibility_modifier(self) -> Option<VisibilityModifier<'tree>> {
@@ -18183,7 +18183,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `field_identifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `field_identifier` ([FieldIdentifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn field_identifier(self) -> Option<FieldIdentifier<'tree>> {
@@ -18192,7 +18192,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `_type`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `_type` ([Type]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#type(self) -> Option<Type<'tree>> {
@@ -18250,7 +18250,7 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{attribute_item | field_declaration}`"]
+    #[doc = "one of `{attribute_item | field_declaration}`:\n- [AttributeItem]\n- [FieldDeclaration]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum AttributeItem_FieldDeclaration<'tree> {
@@ -18259,7 +18259,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> AttributeItem_FieldDeclaration<'tree> {
-        #[doc = "Returns the node if it is of kind `attribute_item`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `attribute_item` ([AttributeItem]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn attribute_item(self) -> Option<AttributeItem<'tree>> {
@@ -18268,7 +18268,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `field_declaration`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `field_declaration` ([FieldDeclaration]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn field_declaration(self) -> Option<FieldDeclaration<'tree>> {
@@ -18324,7 +18324,7 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{field_identifier | integer_literal}`"]
+    #[doc = "one of `{field_identifier | integer_literal}`:\n- [FieldIdentifier]\n- [IntegerLiteral]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum FieldIdentifier_IntegerLiteral<'tree> {
@@ -18333,7 +18333,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> FieldIdentifier_IntegerLiteral<'tree> {
-        #[doc = "Returns the node if it is of kind `field_identifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `field_identifier` ([FieldIdentifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn field_identifier(self) -> Option<FieldIdentifier<'tree>> {
@@ -18342,7 +18342,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `integer_literal`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `integer_literal` ([IntegerLiteral]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn integer_literal(self) -> Option<IntegerLiteral<'tree>> {
@@ -18400,7 +18400,7 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{attribute_item | field_identifier | _expression}`"]
+    #[doc = "one of `{attribute_item | field_identifier | _expression}`:\n- [AttributeItem]\n- [FieldIdentifier]\n- [Expression]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum AttributeItem_FieldIdentifier_Expression<'tree> {
@@ -18410,7 +18410,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> AttributeItem_FieldIdentifier_Expression<'tree> {
-        #[doc = "Returns the node if it is of kind `attribute_item`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `attribute_item` ([AttributeItem]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn attribute_item(self) -> Option<AttributeItem<'tree>> {
@@ -18419,7 +18419,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `field_identifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `field_identifier` ([FieldIdentifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn field_identifier(self) -> Option<FieldIdentifier<'tree>> {
@@ -18428,7 +18428,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `_expression`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `_expression` ([Expression]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn expression(self) -> Option<Expression<'tree>> {
@@ -18486,7 +18486,7 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{base_field_initializer | field_initializer | shorthand_field_initializer}`"]
+    #[doc = "one of `{base_field_initializer | field_initializer | shorthand_field_initializer}`:\n- [BaseFieldInitializer]\n- [FieldInitializer]\n- [ShorthandFieldInitializer]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum BaseFieldInitializer_FieldInitializer_ShorthandFieldInitializer<'tree> {
@@ -18496,7 +18496,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> BaseFieldInitializer_FieldInitializer_ShorthandFieldInitializer<'tree> {
-        #[doc = "Returns the node if it is of kind `base_field_initializer`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `base_field_initializer` ([BaseFieldInitializer]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn base_field_initializer(self) -> Option<BaseFieldInitializer<'tree>> {
@@ -18505,7 +18505,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `field_initializer`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `field_initializer` ([FieldInitializer]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn field_initializer(self) -> Option<FieldInitializer<'tree>> {
@@ -18514,7 +18514,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `shorthand_field_initializer`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `shorthand_field_initializer` ([ShorthandFieldInitializer]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn shorthand_field_initializer(self) -> Option<ShorthandFieldInitializer<'tree>> {
@@ -18579,7 +18579,7 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{mutable_specifier | field_identifier | shorthand_field_identifier | _pattern}`"]
+    #[doc = "one of `{mutable_specifier | field_identifier | shorthand_field_identifier | _pattern}`:\n- [MutableSpecifier]\n- [FieldIdentifier]\n- [ShorthandFieldIdentifier]\n- [Pattern]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum MutableSpecifier_FieldIdentifier_ShorthandFieldIdentifier_Pattern<'tree> {
@@ -18590,7 +18590,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> MutableSpecifier_FieldIdentifier_ShorthandFieldIdentifier_Pattern<'tree> {
-        #[doc = "Returns the node if it is of kind `mutable_specifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `mutable_specifier` ([MutableSpecifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn mutable_specifier(self) -> Option<MutableSpecifier<'tree>> {
@@ -18599,7 +18599,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `field_identifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `field_identifier` ([FieldIdentifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn field_identifier(self) -> Option<FieldIdentifier<'tree>> {
@@ -18608,7 +18608,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `shorthand_field_identifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `shorthand_field_identifier` ([ShorthandFieldIdentifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn shorthand_field_identifier(self) -> Option<ShorthandFieldIdentifier<'tree>> {
@@ -18617,7 +18617,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `_pattern`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `_pattern` ([Pattern]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn pattern(self) -> Option<Pattern<'tree>> {
@@ -18686,7 +18686,7 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{field_identifier | shorthand_field_identifier}`"]
+    #[doc = "one of `{field_identifier | shorthand_field_identifier}`:\n- [FieldIdentifier]\n- [ShorthandFieldIdentifier]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum FieldIdentifier_ShorthandFieldIdentifier<'tree> {
@@ -18695,7 +18695,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> FieldIdentifier_ShorthandFieldIdentifier<'tree> {
-        #[doc = "Returns the node if it is of kind `field_identifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `field_identifier` ([FieldIdentifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn field_identifier(self) -> Option<FieldIdentifier<'tree>> {
@@ -18704,7 +18704,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `shorthand_field_identifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `shorthand_field_identifier` ([ShorthandFieldIdentifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn shorthand_field_identifier(self) -> Option<ShorthandFieldIdentifier<'tree>> {
@@ -18760,7 +18760,7 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{loop_label | block | _pattern | _expression}`"]
+    #[doc = "one of `{loop_label | block | _pattern | _expression}`:\n- [LoopLabel]\n- [Block]\n- [Pattern]\n- [Expression]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum LoopLabel_Block_Pattern_Expression<'tree> {
@@ -18771,7 +18771,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> LoopLabel_Block_Pattern_Expression<'tree> {
-        #[doc = "Returns the node if it is of kind `loop_label`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `loop_label` ([LoopLabel]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn loop_label(self) -> Option<LoopLabel<'tree>> {
@@ -18780,7 +18780,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `block`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `block` ([Block]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn block(self) -> Option<Block<'tree>> {
@@ -18789,7 +18789,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `_pattern`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `_pattern` ([Pattern]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn pattern(self) -> Option<Pattern<'tree>> {
@@ -18798,7 +18798,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `_expression`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `_expression` ([Expression]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn expression(self) -> Option<Expression<'tree>> {
@@ -18862,7 +18862,7 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{extern_modifier | visibility_modifier | declaration_list}`"]
+    #[doc = "one of `{extern_modifier | visibility_modifier | declaration_list}`:\n- [ExternModifier]\n- [VisibilityModifier]\n- [DeclarationList]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum ExternModifier_VisibilityModifier_DeclarationList<'tree> {
@@ -18872,7 +18872,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> ExternModifier_VisibilityModifier_DeclarationList<'tree> {
-        #[doc = "Returns the node if it is of kind `extern_modifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `extern_modifier` ([ExternModifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn extern_modifier(self) -> Option<ExternModifier<'tree>> {
@@ -18881,7 +18881,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `visibility_modifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `visibility_modifier` ([VisibilityModifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn visibility_modifier(self) -> Option<VisibilityModifier<'tree>> {
@@ -18890,7 +18890,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `declaration_list`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `declaration_list` ([DeclarationList]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn declaration_list(self) -> Option<DeclarationList<'tree>> {
@@ -18958,7 +18958,7 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{function_modifiers | visibility_modifier | where_clause | block | identifier | metavariable | parameters | _type | type_parameters}`"]
+    #[doc = "one of `{function_modifiers | visibility_modifier | where_clause | block | identifier | metavariable | parameters | _type | type_parameters}`:\n- [FunctionModifiers]\n- [VisibilityModifier]\n- [WhereClause]\n- [Block]\n- [Identifier]\n- [Metavariable]\n- [Parameters]\n- [Type]\n- [TypeParameters]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum FunctionModifiers_VisibilityModifier_WhereClause_Block_Identifier_Metavariable_Parameters_Type_TypeParameters<
@@ -18975,12 +18975,12 @@ pub mod anon_unions {
         TypeParameters(TypeParameters<'tree>),
     }
     #[automatically_derived]
-    impl < 'tree > FunctionModifiers_VisibilityModifier_WhereClause_Block_Identifier_Metavariable_Parameters_Type_TypeParameters < 'tree > { # [doc = "Returns the node if it is of kind `function_modifiers`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn function_modifiers (self) -> Option < FunctionModifiers < 'tree > > { match self { Self :: FunctionModifiers (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `visibility_modifier`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn visibility_modifier (self) -> Option < VisibilityModifier < 'tree > > { match self { Self :: VisibilityModifier (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `where_clause`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn where_clause (self) -> Option < WhereClause < 'tree > > { match self { Self :: WhereClause (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `block`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn block (self) -> Option < Block < 'tree > > { match self { Self :: Block (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `identifier`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn identifier (self) -> Option < Identifier < 'tree > > { match self { Self :: Identifier (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `metavariable`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn metavariable (self) -> Option < Metavariable < 'tree > > { match self { Self :: Metavariable (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `parameters`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn parameters (self) -> Option < Parameters < 'tree > > { match self { Self :: Parameters (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `_type`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn r#type (self) -> Option < Type < 'tree > > { match self { Self :: Type (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `type_parameters`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn type_parameters (self) -> Option < TypeParameters < 'tree > > { match self { Self :: TypeParameters (x) => Some (x) , _ => None , } } }
+    impl < 'tree > FunctionModifiers_VisibilityModifier_WhereClause_Block_Identifier_Metavariable_Parameters_Type_TypeParameters < 'tree > { # [doc = "Returns the node if it is of kind `function_modifiers` ([FunctionModifiers]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn function_modifiers (self) -> Option < FunctionModifiers < 'tree > > { match self { Self :: FunctionModifiers (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `visibility_modifier` ([VisibilityModifier]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn visibility_modifier (self) -> Option < VisibilityModifier < 'tree > > { match self { Self :: VisibilityModifier (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `where_clause` ([WhereClause]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn where_clause (self) -> Option < WhereClause < 'tree > > { match self { Self :: WhereClause (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `block` ([Block]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn block (self) -> Option < Block < 'tree > > { match self { Self :: Block (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `identifier` ([Identifier]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn identifier (self) -> Option < Identifier < 'tree > > { match self { Self :: Identifier (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `metavariable` ([Metavariable]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn metavariable (self) -> Option < Metavariable < 'tree > > { match self { Self :: Metavariable (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `parameters` ([Parameters]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn parameters (self) -> Option < Parameters < 'tree > > { match self { Self :: Parameters (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `_type` ([Type]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn r#type (self) -> Option < Type < 'tree > > { match self { Self :: Type (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `type_parameters` ([TypeParameters]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn type_parameters (self) -> Option < TypeParameters < 'tree > > { match self { Self :: TypeParameters (x) => Some (x) , _ => None , } } }
     #[automatically_derived]
     impl < 'tree > TryFrom < tree_sitter :: Node < 'tree >> for FunctionModifiers_VisibilityModifier_WhereClause_Block_Identifier_Metavariable_Parameters_Type_TypeParameters < 'tree > { type Error = type_sitter_lib :: IncorrectKind < 'tree > ; # [inline] fn try_from (node : tree_sitter :: Node < 'tree >) -> Result < Self , Self :: Error > { if let Ok (this) = < FunctionModifiers < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: FunctionModifiers (this)) ; } if let Ok (this) = < VisibilityModifier < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: VisibilityModifier (this)) ; } if let Ok (this) = < WhereClause < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: WhereClause (this)) ; } if let Ok (this) = < Block < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Block (this)) ; } if let Ok (this) = < Identifier < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Identifier (this)) ; } if let Ok (this) = < Metavariable < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Metavariable (this)) ; } if let Ok (this) = < Parameters < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Parameters (this)) ; } if let Ok (this) = < Type < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Type (this)) ; } if let Ok (this) = < TypeParameters < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: TypeParameters (this)) ; } Err (type_sitter_lib :: IncorrectKind { node , kind : < Self as type_sitter_lib :: TypedNode < 'tree >> :: KIND , }) } }
     #[automatically_derived]
     impl < 'tree > type_sitter_lib :: TypedNode < 'tree > for FunctionModifiers_VisibilityModifier_WhereClause_Block_Identifier_Metavariable_Parameters_Type_TypeParameters < 'tree > { const KIND : & 'static str = "{function_modifiers | visibility_modifier | where_clause | block | identifier | metavariable | parameters | _type | type_parameters}" ; # [inline] fn node (& self) -> & tree_sitter :: Node < 'tree > { match self { Self :: FunctionModifiers (x) => x . node () , Self :: VisibilityModifier (x) => x . node () , Self :: WhereClause (x) => x . node () , Self :: Block (x) => x . node () , Self :: Identifier (x) => x . node () , Self :: Metavariable (x) => x . node () , Self :: Parameters (x) => x . node () , Self :: Type (x) => x . node () , Self :: TypeParameters (x) => x . node () , } } # [inline] fn node_mut (& mut self) -> & mut tree_sitter :: Node < 'tree > { match self { Self :: FunctionModifiers (x) => x . node_mut () , Self :: VisibilityModifier (x) => x . node_mut () , Self :: WhereClause (x) => x . node_mut () , Self :: Block (x) => x . node_mut () , Self :: Identifier (x) => x . node_mut () , Self :: Metavariable (x) => x . node_mut () , Self :: Parameters (x) => x . node_mut () , Self :: Type (x) => x . node_mut () , Self :: TypeParameters (x) => x . node_mut () , } } # [inline] fn into_node (self) -> tree_sitter :: Node < 'tree > { match self { Self :: FunctionModifiers (x) => x . into_node () , Self :: VisibilityModifier (x) => x . into_node () , Self :: WhereClause (x) => x . into_node () , Self :: Block (x) => x . into_node () , Self :: Identifier (x) => x . into_node () , Self :: Metavariable (x) => x . into_node () , Self :: Parameters (x) => x . into_node () , Self :: Type (x) => x . into_node () , Self :: TypeParameters (x) => x . into_node () , } } }
-    #[doc = "one of `{identifier | metavariable}`"]
+    #[doc = "one of `{identifier | metavariable}`:\n- [Identifier]\n- [Metavariable]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum Identifier_Metavariable<'tree> {
@@ -18989,7 +18989,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> Identifier_Metavariable<'tree> {
-        #[doc = "Returns the node if it is of kind `identifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `identifier` ([Identifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn identifier(self) -> Option<Identifier<'tree>> {
@@ -18998,7 +18998,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `metavariable`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `metavariable` ([Metavariable]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn metavariable(self) -> Option<Metavariable<'tree>> {
@@ -19052,7 +19052,7 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{function_modifiers | visibility_modifier | where_clause | identifier | metavariable | parameters | _type | type_parameters}`"]
+    #[doc = "one of `{function_modifiers | visibility_modifier | where_clause | identifier | metavariable | parameters | _type | type_parameters}`:\n- [FunctionModifiers]\n- [VisibilityModifier]\n- [WhereClause]\n- [Identifier]\n- [Metavariable]\n- [Parameters]\n- [Type]\n- [TypeParameters]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum FunctionModifiers_VisibilityModifier_WhereClause_Identifier_Metavariable_Parameters_Type_TypeParameters<
@@ -19068,12 +19068,12 @@ pub mod anon_unions {
         TypeParameters(TypeParameters<'tree>),
     }
     #[automatically_derived]
-    impl < 'tree > FunctionModifiers_VisibilityModifier_WhereClause_Identifier_Metavariable_Parameters_Type_TypeParameters < 'tree > { # [doc = "Returns the node if it is of kind `function_modifiers`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn function_modifiers (self) -> Option < FunctionModifiers < 'tree > > { match self { Self :: FunctionModifiers (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `visibility_modifier`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn visibility_modifier (self) -> Option < VisibilityModifier < 'tree > > { match self { Self :: VisibilityModifier (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `where_clause`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn where_clause (self) -> Option < WhereClause < 'tree > > { match self { Self :: WhereClause (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `identifier`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn identifier (self) -> Option < Identifier < 'tree > > { match self { Self :: Identifier (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `metavariable`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn metavariable (self) -> Option < Metavariable < 'tree > > { match self { Self :: Metavariable (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `parameters`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn parameters (self) -> Option < Parameters < 'tree > > { match self { Self :: Parameters (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `_type`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn r#type (self) -> Option < Type < 'tree > > { match self { Self :: Type (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `type_parameters`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn type_parameters (self) -> Option < TypeParameters < 'tree > > { match self { Self :: TypeParameters (x) => Some (x) , _ => None , } } }
+    impl < 'tree > FunctionModifiers_VisibilityModifier_WhereClause_Identifier_Metavariable_Parameters_Type_TypeParameters < 'tree > { # [doc = "Returns the node if it is of kind `function_modifiers` ([FunctionModifiers]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn function_modifiers (self) -> Option < FunctionModifiers < 'tree > > { match self { Self :: FunctionModifiers (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `visibility_modifier` ([VisibilityModifier]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn visibility_modifier (self) -> Option < VisibilityModifier < 'tree > > { match self { Self :: VisibilityModifier (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `where_clause` ([WhereClause]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn where_clause (self) -> Option < WhereClause < 'tree > > { match self { Self :: WhereClause (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `identifier` ([Identifier]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn identifier (self) -> Option < Identifier < 'tree > > { match self { Self :: Identifier (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `metavariable` ([Metavariable]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn metavariable (self) -> Option < Metavariable < 'tree > > { match self { Self :: Metavariable (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `parameters` ([Parameters]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn parameters (self) -> Option < Parameters < 'tree > > { match self { Self :: Parameters (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `_type` ([Type]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn r#type (self) -> Option < Type < 'tree > > { match self { Self :: Type (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `type_parameters` ([TypeParameters]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn type_parameters (self) -> Option < TypeParameters < 'tree > > { match self { Self :: TypeParameters (x) => Some (x) , _ => None , } } }
     #[automatically_derived]
     impl < 'tree > TryFrom < tree_sitter :: Node < 'tree >> for FunctionModifiers_VisibilityModifier_WhereClause_Identifier_Metavariable_Parameters_Type_TypeParameters < 'tree > { type Error = type_sitter_lib :: IncorrectKind < 'tree > ; # [inline] fn try_from (node : tree_sitter :: Node < 'tree >) -> Result < Self , Self :: Error > { if let Ok (this) = < FunctionModifiers < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: FunctionModifiers (this)) ; } if let Ok (this) = < VisibilityModifier < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: VisibilityModifier (this)) ; } if let Ok (this) = < WhereClause < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: WhereClause (this)) ; } if let Ok (this) = < Identifier < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Identifier (this)) ; } if let Ok (this) = < Metavariable < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Metavariable (this)) ; } if let Ok (this) = < Parameters < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Parameters (this)) ; } if let Ok (this) = < Type < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Type (this)) ; } if let Ok (this) = < TypeParameters < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: TypeParameters (this)) ; } Err (type_sitter_lib :: IncorrectKind { node , kind : < Self as type_sitter_lib :: TypedNode < 'tree >> :: KIND , }) } }
     #[automatically_derived]
     impl < 'tree > type_sitter_lib :: TypedNode < 'tree > for FunctionModifiers_VisibilityModifier_WhereClause_Identifier_Metavariable_Parameters_Type_TypeParameters < 'tree > { const KIND : & 'static str = "{function_modifiers | visibility_modifier | where_clause | identifier | metavariable | parameters | _type | type_parameters}" ; # [inline] fn node (& self) -> & tree_sitter :: Node < 'tree > { match self { Self :: FunctionModifiers (x) => x . node () , Self :: VisibilityModifier (x) => x . node () , Self :: WhereClause (x) => x . node () , Self :: Identifier (x) => x . node () , Self :: Metavariable (x) => x . node () , Self :: Parameters (x) => x . node () , Self :: Type (x) => x . node () , Self :: TypeParameters (x) => x . node () , } } # [inline] fn node_mut (& mut self) -> & mut tree_sitter :: Node < 'tree > { match self { Self :: FunctionModifiers (x) => x . node_mut () , Self :: VisibilityModifier (x) => x . node_mut () , Self :: WhereClause (x) => x . node_mut () , Self :: Identifier (x) => x . node_mut () , Self :: Metavariable (x) => x . node_mut () , Self :: Parameters (x) => x . node_mut () , Self :: Type (x) => x . node_mut () , Self :: TypeParameters (x) => x . node_mut () , } } # [inline] fn into_node (self) -> tree_sitter :: Node < 'tree > { match self { Self :: FunctionModifiers (x) => x . into_node () , Self :: VisibilityModifier (x) => x . into_node () , Self :: WhereClause (x) => x . into_node () , Self :: Identifier (x) => x . into_node () , Self :: Metavariable (x) => x . into_node () , Self :: Parameters (x) => x . into_node () , Self :: Type (x) => x . into_node () , Self :: TypeParameters (x) => x . into_node () , } } }
-    #[doc = "one of `{for_lifetimes | function_modifiers | parameters | _type | scoped_type_identifier | type_identifier}`"]
+    #[doc = "one of `{for_lifetimes | function_modifiers | parameters | _type | scoped_type_identifier | type_identifier}`:\n- [ForLifetimes]\n- [FunctionModifiers]\n- [Parameters]\n- [Type]\n- [ScopedTypeIdentifier]\n- [TypeIdentifier]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum ForLifetimes_FunctionModifiers_Parameters_Type_ScopedTypeIdentifier_TypeIdentifier<
@@ -19090,7 +19090,7 @@ pub mod anon_unions {
     impl<'tree>
         ForLifetimes_FunctionModifiers_Parameters_Type_ScopedTypeIdentifier_TypeIdentifier<'tree>
     {
-        #[doc = "Returns the node if it is of kind `for_lifetimes`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `for_lifetimes` ([ForLifetimes]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn for_lifetimes(self) -> Option<ForLifetimes<'tree>> {
@@ -19099,7 +19099,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `function_modifiers`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `function_modifiers` ([FunctionModifiers]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn function_modifiers(self) -> Option<FunctionModifiers<'tree>> {
@@ -19108,7 +19108,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `parameters`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `parameters` ([Parameters]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn parameters(self) -> Option<Parameters<'tree>> {
@@ -19117,7 +19117,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `_type`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `_type` ([Type]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#type(self) -> Option<Type<'tree>> {
@@ -19126,7 +19126,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `scoped_type_identifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `scoped_type_identifier` ([ScopedTypeIdentifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn scoped_type_identifier(self) -> Option<ScopedTypeIdentifier<'tree>> {
@@ -19135,7 +19135,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `type_identifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `type_identifier` ([TypeIdentifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn type_identifier(self) -> Option<TypeIdentifier<'tree>> {
@@ -19219,7 +19219,7 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{scoped_type_identifier | type_identifier}`"]
+    #[doc = "one of `{scoped_type_identifier | type_identifier}`:\n- [ScopedTypeIdentifier]\n- [TypeIdentifier]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum ScopedTypeIdentifier_TypeIdentifier<'tree> {
@@ -19228,7 +19228,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> ScopedTypeIdentifier_TypeIdentifier<'tree> {
-        #[doc = "Returns the node if it is of kind `scoped_type_identifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `scoped_type_identifier` ([ScopedTypeIdentifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn scoped_type_identifier(self) -> Option<ScopedTypeIdentifier<'tree>> {
@@ -19237,7 +19237,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `type_identifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `type_identifier` ([TypeIdentifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn type_identifier(self) -> Option<TypeIdentifier<'tree>> {
@@ -19293,7 +19293,7 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{field_expression | identifier | scoped_identifier}`"]
+    #[doc = "one of `{field_expression | identifier | scoped_identifier}`:\n- [FieldExpression]\n- [Identifier]\n- [ScopedIdentifier]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum FieldExpression_Identifier_ScopedIdentifier<'tree> {
@@ -19303,7 +19303,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> FieldExpression_Identifier_ScopedIdentifier<'tree> {
-        #[doc = "Returns the node if it is of kind `field_expression`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `field_expression` ([FieldExpression]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn field_expression(self) -> Option<FieldExpression<'tree>> {
@@ -19312,7 +19312,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `identifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `identifier` ([Identifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn identifier(self) -> Option<Identifier<'tree>> {
@@ -19321,7 +19321,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `scoped_identifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `scoped_identifier` ([ScopedIdentifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn scoped_identifier(self) -> Option<ScopedIdentifier<'tree>> {
@@ -19387,7 +19387,7 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{scoped_identifier | scoped_type_identifier | type_identifier}`"]
+    #[doc = "one of `{scoped_identifier | scoped_type_identifier | type_identifier}`:\n- [ScopedIdentifier]\n- [ScopedTypeIdentifier]\n- [TypeIdentifier]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum ScopedIdentifier_ScopedTypeIdentifier_TypeIdentifier<'tree> {
@@ -19397,7 +19397,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> ScopedIdentifier_ScopedTypeIdentifier_TypeIdentifier<'tree> {
-        #[doc = "Returns the node if it is of kind `scoped_identifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `scoped_identifier` ([ScopedIdentifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn scoped_identifier(self) -> Option<ScopedIdentifier<'tree>> {
@@ -19406,7 +19406,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `scoped_type_identifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `scoped_type_identifier` ([ScopedTypeIdentifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn scoped_type_identifier(self) -> Option<ScopedTypeIdentifier<'tree>> {
@@ -19415,7 +19415,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `type_identifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `type_identifier` ([TypeIdentifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn type_identifier(self) -> Option<TypeIdentifier<'tree>> {
@@ -19481,7 +19481,7 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{scoped_identifier | type_identifier}`"]
+    #[doc = "one of `{scoped_identifier | type_identifier}`:\n- [ScopedIdentifier]\n- [TypeIdentifier]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum ScopedIdentifier_TypeIdentifier<'tree> {
@@ -19490,7 +19490,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> ScopedIdentifier_TypeIdentifier<'tree> {
-        #[doc = "Returns the node if it is of kind `scoped_identifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `scoped_identifier` ([ScopedIdentifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn scoped_identifier(self) -> Option<ScopedIdentifier<'tree>> {
@@ -19499,7 +19499,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `type_identifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `type_identifier` ([TypeIdentifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn type_identifier(self) -> Option<TypeIdentifier<'tree>> {
@@ -19555,7 +19555,7 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{_expression | let_chain | let_condition}`"]
+    #[doc = "one of `{_expression | let_chain | let_condition}`:\n- [Expression]\n- [LetChain]\n- [LetCondition]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum Expression_LetChain_LetCondition<'tree> {
@@ -19565,7 +19565,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> Expression_LetChain_LetCondition<'tree> {
-        #[doc = "Returns the node if it is of kind `_expression`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `_expression` ([Expression]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn expression(self) -> Option<Expression<'tree>> {
@@ -19574,7 +19574,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `let_chain`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `let_chain` ([LetChain]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn let_chain(self) -> Option<LetChain<'tree>> {
@@ -19583,7 +19583,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `let_condition`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `let_condition` ([LetCondition]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn let_condition(self) -> Option<LetCondition<'tree>> {
@@ -19641,7 +19641,7 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{where_clause | declaration_list | generic_type | scoped_type_identifier | type_identifier | _type | type_parameters}`"]
+    #[doc = "one of `{where_clause | declaration_list | generic_type | scoped_type_identifier | type_identifier | _type | type_parameters}`:\n- [WhereClause]\n- [DeclarationList]\n- [GenericType]\n- [ScopedTypeIdentifier]\n- [TypeIdentifier]\n- [Type]\n- [TypeParameters]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum WhereClause_DeclarationList_GenericType_ScopedTypeIdentifier_TypeIdentifier_Type_TypeParameters<
@@ -19656,12 +19656,12 @@ pub mod anon_unions {
         TypeParameters(TypeParameters<'tree>),
     }
     #[automatically_derived]
-    impl < 'tree > WhereClause_DeclarationList_GenericType_ScopedTypeIdentifier_TypeIdentifier_Type_TypeParameters < 'tree > { # [doc = "Returns the node if it is of kind `where_clause`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn where_clause (self) -> Option < WhereClause < 'tree > > { match self { Self :: WhereClause (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `declaration_list`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn declaration_list (self) -> Option < DeclarationList < 'tree > > { match self { Self :: DeclarationList (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `generic_type`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn generic_type (self) -> Option < GenericType < 'tree > > { match self { Self :: GenericType (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `scoped_type_identifier`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn scoped_type_identifier (self) -> Option < ScopedTypeIdentifier < 'tree > > { match self { Self :: ScopedTypeIdentifier (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `type_identifier`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn type_identifier (self) -> Option < TypeIdentifier < 'tree > > { match self { Self :: TypeIdentifier (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `_type`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn r#type (self) -> Option < Type < 'tree > > { match self { Self :: Type (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `type_parameters`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn type_parameters (self) -> Option < TypeParameters < 'tree > > { match self { Self :: TypeParameters (x) => Some (x) , _ => None , } } }
+    impl < 'tree > WhereClause_DeclarationList_GenericType_ScopedTypeIdentifier_TypeIdentifier_Type_TypeParameters < 'tree > { # [doc = "Returns the node if it is of kind `where_clause` ([WhereClause]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn where_clause (self) -> Option < WhereClause < 'tree > > { match self { Self :: WhereClause (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `declaration_list` ([DeclarationList]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn declaration_list (self) -> Option < DeclarationList < 'tree > > { match self { Self :: DeclarationList (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `generic_type` ([GenericType]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn generic_type (self) -> Option < GenericType < 'tree > > { match self { Self :: GenericType (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `scoped_type_identifier` ([ScopedTypeIdentifier]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn scoped_type_identifier (self) -> Option < ScopedTypeIdentifier < 'tree > > { match self { Self :: ScopedTypeIdentifier (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `type_identifier` ([TypeIdentifier]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn type_identifier (self) -> Option < TypeIdentifier < 'tree > > { match self { Self :: TypeIdentifier (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `_type` ([Type]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn r#type (self) -> Option < Type < 'tree > > { match self { Self :: Type (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `type_parameters` ([TypeParameters]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn type_parameters (self) -> Option < TypeParameters < 'tree > > { match self { Self :: TypeParameters (x) => Some (x) , _ => None , } } }
     #[automatically_derived]
     impl < 'tree > TryFrom < tree_sitter :: Node < 'tree >> for WhereClause_DeclarationList_GenericType_ScopedTypeIdentifier_TypeIdentifier_Type_TypeParameters < 'tree > { type Error = type_sitter_lib :: IncorrectKind < 'tree > ; # [inline] fn try_from (node : tree_sitter :: Node < 'tree >) -> Result < Self , Self :: Error > { if let Ok (this) = < WhereClause < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: WhereClause (this)) ; } if let Ok (this) = < DeclarationList < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: DeclarationList (this)) ; } if let Ok (this) = < GenericType < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: GenericType (this)) ; } if let Ok (this) = < ScopedTypeIdentifier < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: ScopedTypeIdentifier (this)) ; } if let Ok (this) = < TypeIdentifier < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: TypeIdentifier (this)) ; } if let Ok (this) = < Type < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Type (this)) ; } if let Ok (this) = < TypeParameters < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: TypeParameters (this)) ; } Err (type_sitter_lib :: IncorrectKind { node , kind : < Self as type_sitter_lib :: TypedNode < 'tree >> :: KIND , }) } }
     #[automatically_derived]
     impl < 'tree > type_sitter_lib :: TypedNode < 'tree > for WhereClause_DeclarationList_GenericType_ScopedTypeIdentifier_TypeIdentifier_Type_TypeParameters < 'tree > { const KIND : & 'static str = "{where_clause | declaration_list | generic_type | scoped_type_identifier | type_identifier | _type | type_parameters}" ; # [inline] fn node (& self) -> & tree_sitter :: Node < 'tree > { match self { Self :: WhereClause (x) => x . node () , Self :: DeclarationList (x) => x . node () , Self :: GenericType (x) => x . node () , Self :: ScopedTypeIdentifier (x) => x . node () , Self :: TypeIdentifier (x) => x . node () , Self :: Type (x) => x . node () , Self :: TypeParameters (x) => x . node () , } } # [inline] fn node_mut (& mut self) -> & mut tree_sitter :: Node < 'tree > { match self { Self :: WhereClause (x) => x . node_mut () , Self :: DeclarationList (x) => x . node_mut () , Self :: GenericType (x) => x . node_mut () , Self :: ScopedTypeIdentifier (x) => x . node_mut () , Self :: TypeIdentifier (x) => x . node_mut () , Self :: Type (x) => x . node_mut () , Self :: TypeParameters (x) => x . node_mut () , } } # [inline] fn into_node (self) -> tree_sitter :: Node < 'tree > { match self { Self :: WhereClause (x) => x . into_node () , Self :: DeclarationList (x) => x . into_node () , Self :: GenericType (x) => x . into_node () , Self :: ScopedTypeIdentifier (x) => x . into_node () , Self :: TypeIdentifier (x) => x . into_node () , Self :: Type (x) => x . into_node () , Self :: TypeParameters (x) => x . into_node () , } } }
-    #[doc = "one of `{generic_type | scoped_type_identifier | type_identifier}`"]
+    #[doc = "one of `{generic_type | scoped_type_identifier | type_identifier}`:\n- [GenericType]\n- [ScopedTypeIdentifier]\n- [TypeIdentifier]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum GenericType_ScopedTypeIdentifier_TypeIdentifier<'tree> {
@@ -19671,7 +19671,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> GenericType_ScopedTypeIdentifier_TypeIdentifier<'tree> {
-        #[doc = "Returns the node if it is of kind `generic_type`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `generic_type` ([GenericType]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn generic_type(self) -> Option<GenericType<'tree>> {
@@ -19680,7 +19680,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `scoped_type_identifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `scoped_type_identifier` ([ScopedTypeIdentifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn scoped_type_identifier(self) -> Option<ScopedTypeIdentifier<'tree>> {
@@ -19689,7 +19689,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `type_identifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `type_identifier` ([TypeIdentifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn type_identifier(self) -> Option<TypeIdentifier<'tree>> {
@@ -19755,7 +19755,7 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{_expression | let_condition}`"]
+    #[doc = "one of `{_expression | let_condition}`:\n- [Expression]\n- [LetCondition]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum Expression_LetCondition<'tree> {
@@ -19764,7 +19764,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> Expression_LetCondition<'tree> {
-        #[doc = "Returns the node if it is of kind `_expression`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `_expression` ([Expression]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn expression(self) -> Option<Expression<'tree>> {
@@ -19773,7 +19773,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `let_condition`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `let_condition` ([LetCondition]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn let_condition(self) -> Option<LetCondition<'tree>> {
@@ -19825,7 +19825,7 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{mutable_specifier | block | _pattern | _type | _expression}`"]
+    #[doc = "one of `{mutable_specifier | block | _pattern | _type | _expression}`:\n- [MutableSpecifier]\n- [Block]\n- [Pattern]\n- [Type]\n- [Expression]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum MutableSpecifier_Block_Pattern_Type_Expression<'tree> {
@@ -19837,7 +19837,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> MutableSpecifier_Block_Pattern_Type_Expression<'tree> {
-        #[doc = "Returns the node if it is of kind `mutable_specifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `mutable_specifier` ([MutableSpecifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn mutable_specifier(self) -> Option<MutableSpecifier<'tree>> {
@@ -19846,7 +19846,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `block`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `block` ([Block]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn block(self) -> Option<Block<'tree>> {
@@ -19855,7 +19855,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `_pattern`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `_pattern` ([Pattern]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn pattern(self) -> Option<Pattern<'tree>> {
@@ -19864,7 +19864,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `_type`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `_type` ([Type]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#type(self) -> Option<Type<'tree>> {
@@ -19873,7 +19873,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `_expression`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `_expression` ([Expression]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn expression(self) -> Option<Expression<'tree>> {
@@ -19947,7 +19947,7 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{loop_label | block}`"]
+    #[doc = "one of `{loop_label | block}`:\n- [LoopLabel]\n- [Block]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum LoopLabel_Block<'tree> {
@@ -19956,7 +19956,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> LoopLabel_Block<'tree> {
-        #[doc = "Returns the node if it is of kind `loop_label`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `loop_label` ([LoopLabel]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn loop_label(self) -> Option<LoopLabel<'tree>> {
@@ -19965,7 +19965,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `block`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `block` ([Block]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn block(self) -> Option<Block<'tree>> {
@@ -20021,7 +20021,7 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{macro_rule | identifier}`"]
+    #[doc = "one of `{macro_rule | identifier}`:\n- [MacroRule]\n- [Identifier]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum MacroRule_Identifier<'tree> {
@@ -20030,7 +20030,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> MacroRule_Identifier<'tree> {
-        #[doc = "Returns the node if it is of kind `macro_rule`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `macro_rule` ([MacroRule]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn macro_rule(self) -> Option<MacroRule<'tree>> {
@@ -20039,7 +20039,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `identifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `identifier` ([Identifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn identifier(self) -> Option<Identifier<'tree>> {
@@ -20093,7 +20093,7 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{token_tree | identifier | scoped_identifier}`"]
+    #[doc = "one of `{token_tree | identifier | scoped_identifier}`:\n- [TokenTree]\n- [Identifier]\n- [ScopedIdentifier]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum TokenTree_Identifier_ScopedIdentifier<'tree> {
@@ -20103,7 +20103,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> TokenTree_Identifier_ScopedIdentifier<'tree> {
-        #[doc = "Returns the node if it is of kind `token_tree`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `token_tree` ([TokenTree]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn token_tree(self) -> Option<TokenTree<'tree>> {
@@ -20112,7 +20112,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `identifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `identifier` ([Identifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn identifier(self) -> Option<Identifier<'tree>> {
@@ -20121,7 +20121,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `scoped_identifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `scoped_identifier` ([ScopedIdentifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn scoped_identifier(self) -> Option<ScopedIdentifier<'tree>> {
@@ -20181,7 +20181,7 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{identifier | scoped_identifier}`"]
+    #[doc = "one of `{identifier | scoped_identifier}`:\n- [Identifier]\n- [ScopedIdentifier]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum Identifier_ScopedIdentifier<'tree> {
@@ -20190,7 +20190,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> Identifier_ScopedIdentifier<'tree> {
-        #[doc = "Returns the node if it is of kind `identifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `identifier` ([Identifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn identifier(self) -> Option<Identifier<'tree>> {
@@ -20199,7 +20199,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `scoped_identifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `scoped_identifier` ([ScopedIdentifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn scoped_identifier(self) -> Option<ScopedIdentifier<'tree>> {
@@ -20253,7 +20253,7 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{attribute_item | match_pattern | _expression}`"]
+    #[doc = "one of `{attribute_item | match_pattern | _expression}`:\n- [AttributeItem]\n- [MatchPattern]\n- [Expression]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum AttributeItem_MatchPattern_Expression<'tree> {
@@ -20263,7 +20263,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> AttributeItem_MatchPattern_Expression<'tree> {
-        #[doc = "Returns the node if it is of kind `attribute_item`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `attribute_item` ([AttributeItem]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn attribute_item(self) -> Option<AttributeItem<'tree>> {
@@ -20272,7 +20272,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `match_pattern`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `match_pattern` ([MatchPattern]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn match_pattern(self) -> Option<MatchPattern<'tree>> {
@@ -20281,7 +20281,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `_expression`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `_expression` ([Expression]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn expression(self) -> Option<Expression<'tree>> {
@@ -20339,7 +20339,7 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{_pattern | _expression | let_chain | let_condition}`"]
+    #[doc = "one of `{_pattern | _expression | let_chain | let_condition}`:\n- [Pattern]\n- [Expression]\n- [LetChain]\n- [LetCondition]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum Pattern_Expression_LetChain_LetCondition<'tree> {
@@ -20350,7 +20350,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> Pattern_Expression_LetChain_LetCondition<'tree> {
-        #[doc = "Returns the node if it is of kind `_pattern`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `_pattern` ([Pattern]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn pattern(self) -> Option<Pattern<'tree>> {
@@ -20359,7 +20359,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `_expression`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `_expression` ([Expression]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn expression(self) -> Option<Expression<'tree>> {
@@ -20368,7 +20368,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `let_chain`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `let_chain` ([LetChain]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn let_chain(self) -> Option<LetChain<'tree>> {
@@ -20377,7 +20377,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `let_condition`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `let_condition` ([LetCondition]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn let_condition(self) -> Option<LetCondition<'tree>> {
@@ -20441,7 +20441,7 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{visibility_modifier | declaration_list | identifier}`"]
+    #[doc = "one of `{visibility_modifier | declaration_list | identifier}`:\n- [VisibilityModifier]\n- [DeclarationList]\n- [Identifier]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum VisibilityModifier_DeclarationList_Identifier<'tree> {
@@ -20451,7 +20451,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> VisibilityModifier_DeclarationList_Identifier<'tree> {
-        #[doc = "Returns the node if it is of kind `visibility_modifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `visibility_modifier` ([VisibilityModifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn visibility_modifier(self) -> Option<VisibilityModifier<'tree>> {
@@ -20460,7 +20460,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `declaration_list`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `declaration_list` ([DeclarationList]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn declaration_list(self) -> Option<DeclarationList<'tree>> {
@@ -20469,7 +20469,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `identifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `identifier` ([Identifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn identifier(self) -> Option<Identifier<'tree>> {
@@ -20535,7 +20535,7 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{_pattern | mutable_specifier}`"]
+    #[doc = "one of `{_pattern | mutable_specifier}`:\n- [Pattern]\n- [MutableSpecifier]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum Pattern_MutableSpecifier<'tree> {
@@ -20544,7 +20544,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> Pattern_MutableSpecifier<'tree> {
-        #[doc = "Returns the node if it is of kind `_pattern`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `_pattern` ([Pattern]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn pattern(self) -> Option<Pattern<'tree>> {
@@ -20553,7 +20553,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `mutable_specifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `mutable_specifier` ([MutableSpecifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn mutable_specifier(self) -> Option<MutableSpecifier<'tree>> {
@@ -20605,7 +20605,7 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{float_literal | integer_literal}`"]
+    #[doc = "one of `{float_literal | integer_literal}`:\n- [FloatLiteral]\n- [IntegerLiteral]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum FloatLiteral_IntegerLiteral<'tree> {
@@ -20614,7 +20614,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> FloatLiteral_IntegerLiteral<'tree> {
-        #[doc = "Returns the node if it is of kind `float_literal`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `float_literal` ([FloatLiteral]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn float_literal(self) -> Option<FloatLiteral<'tree>> {
@@ -20623,7 +20623,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `integer_literal`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `integer_literal` ([IntegerLiteral]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn integer_literal(self) -> Option<IntegerLiteral<'tree>> {
@@ -20679,7 +20679,7 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{constrained_type_parameter | type_identifier}`"]
+    #[doc = "one of `{constrained_type_parameter | type_identifier}`:\n- [ConstrainedTypeParameter]\n- [TypeIdentifier]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum ConstrainedTypeParameter_TypeIdentifier<'tree> {
@@ -20688,7 +20688,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> ConstrainedTypeParameter_TypeIdentifier<'tree> {
-        #[doc = "Returns the node if it is of kind `constrained_type_parameter`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `constrained_type_parameter` ([ConstrainedTypeParameter]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn constrained_type_parameter(self) -> Option<ConstrainedTypeParameter<'tree>> {
@@ -20697,7 +20697,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `type_identifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `type_identifier` ([TypeIdentifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn type_identifier(self) -> Option<TypeIdentifier<'tree>> {
@@ -20753,7 +20753,7 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{attribute_item | visibility_modifier | _type}`"]
+    #[doc = "one of `{attribute_item | visibility_modifier | _type}`:\n- [AttributeItem]\n- [VisibilityModifier]\n- [Type]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum AttributeItem_VisibilityModifier_Type<'tree> {
@@ -20763,7 +20763,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> AttributeItem_VisibilityModifier_Type<'tree> {
-        #[doc = "Returns the node if it is of kind `attribute_item`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `attribute_item` ([AttributeItem]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn attribute_item(self) -> Option<AttributeItem<'tree>> {
@@ -20772,7 +20772,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `visibility_modifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `visibility_modifier` ([VisibilityModifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn visibility_modifier(self) -> Option<VisibilityModifier<'tree>> {
@@ -20781,7 +20781,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `_type`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `_type` ([Type]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#type(self) -> Option<Type<'tree>> {
@@ -20839,7 +20839,7 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{mutable_specifier | _pattern | self | _type}`"]
+    #[doc = "one of `{mutable_specifier | _pattern | self | _type}`:\n- [MutableSpecifier]\n- [Pattern]\n- [_Self]\n- [Type]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum MutableSpecifier_Pattern__Self_Type<'tree> {
@@ -20850,7 +20850,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> MutableSpecifier_Pattern__Self_Type<'tree> {
-        #[doc = "Returns the node if it is of kind `mutable_specifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `mutable_specifier` ([MutableSpecifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn mutable_specifier(self) -> Option<MutableSpecifier<'tree>> {
@@ -20859,7 +20859,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `_pattern`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `_pattern` ([Pattern]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn pattern(self) -> Option<Pattern<'tree>> {
@@ -20868,7 +20868,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `self`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `self` ([_Self]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn _self(self) -> Option<_Self<'tree>> {
@@ -20877,7 +20877,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `_type`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `_type` ([Type]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#type(self) -> Option<Type<'tree>> {
@@ -20941,7 +20941,7 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{_pattern | self}`"]
+    #[doc = "one of `{_pattern | self}`:\n- [Pattern]\n- [_Self]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum Pattern__Self<'tree> {
@@ -20950,7 +20950,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> Pattern__Self<'tree> {
-        #[doc = "Returns the node if it is of kind `_pattern`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `_pattern` ([Pattern]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn pattern(self) -> Option<Pattern<'tree>> {
@@ -20959,7 +20959,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `self`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `self` ([_Self]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn _self(self) -> Option<_Self<'tree>> {
@@ -21011,7 +21011,7 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{_type | attribute_item | parameter | self_parameter | variadic_parameter}`"]
+    #[doc = "one of `{_type | attribute_item | parameter | self_parameter | variadic_parameter}`:\n- [Type]\n- [AttributeItem]\n- [Parameter]\n- [SelfParameter]\n- [VariadicParameter]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum Type_AttributeItem_Parameter_SelfParameter_VariadicParameter<'tree> {
@@ -21023,7 +21023,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> Type_AttributeItem_Parameter_SelfParameter_VariadicParameter<'tree> {
-        #[doc = "Returns the node if it is of kind `_type`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `_type` ([Type]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#type(self) -> Option<Type<'tree>> {
@@ -21032,7 +21032,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `attribute_item`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `attribute_item` ([AttributeItem]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn attribute_item(self) -> Option<AttributeItem<'tree>> {
@@ -21041,7 +21041,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `parameter`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `parameter` ([Parameter]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn parameter(self) -> Option<Parameter<'tree>> {
@@ -21050,7 +21050,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `self_parameter`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `self_parameter` ([SelfParameter]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn self_parameter(self) -> Option<SelfParameter<'tree>> {
@@ -21059,7 +21059,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `variadic_parameter`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `variadic_parameter` ([VariadicParameter]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn variadic_parameter(self) -> Option<VariadicParameter<'tree>> {
@@ -21134,7 +21134,7 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{mutable_specifier | _type}`"]
+    #[doc = "one of `{mutable_specifier | _type}`:\n- [MutableSpecifier]\n- [Type]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum MutableSpecifier_Type<'tree> {
@@ -21143,7 +21143,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> MutableSpecifier_Type<'tree> {
-        #[doc = "Returns the node if it is of kind `mutable_specifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `mutable_specifier` ([MutableSpecifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn mutable_specifier(self) -> Option<MutableSpecifier<'tree>> {
@@ -21152,7 +21152,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `_type`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `_type` ([Type]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#type(self) -> Option<Type<'tree>> {
@@ -21204,7 +21204,7 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{_literal_pattern | crate | identifier | metavariable | scoped_identifier | self | super}`"]
+    #[doc = "one of `{_literal_pattern | crate | identifier | metavariable | scoped_identifier | self | super}`:\n- [LiteralPattern]\n- [Crate]\n- [Identifier]\n- [Metavariable]\n- [ScopedIdentifier]\n- [_Self]\n- [Super]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum LiteralPattern_Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super<'tree> {
@@ -21218,7 +21218,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> LiteralPattern_Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super<'tree> {
-        #[doc = "Returns the node if it is of kind `_literal_pattern`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `_literal_pattern` ([LiteralPattern]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn literal_pattern(self) -> Option<LiteralPattern<'tree>> {
@@ -21227,7 +21227,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `crate`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `crate` ([Crate]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn crate_(self) -> Option<Crate<'tree>> {
@@ -21236,7 +21236,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `identifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `identifier` ([Identifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn identifier(self) -> Option<Identifier<'tree>> {
@@ -21245,7 +21245,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `metavariable`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `metavariable` ([Metavariable]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn metavariable(self) -> Option<Metavariable<'tree>> {
@@ -21254,7 +21254,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `scoped_identifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `scoped_identifier` ([ScopedIdentifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn scoped_identifier(self) -> Option<ScopedIdentifier<'tree>> {
@@ -21263,7 +21263,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `self`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `self` ([_Self]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn _self(self) -> Option<_Self<'tree>> {
@@ -21272,7 +21272,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `super`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `super` ([Super]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn super_(self) -> Option<Super<'tree>> {
@@ -21358,7 +21358,7 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{mutable_specifier | _expression}`"]
+    #[doc = "one of `{mutable_specifier | _expression}`:\n- [MutableSpecifier]\n- [Expression]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum MutableSpecifier_Expression<'tree> {
@@ -21367,7 +21367,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> MutableSpecifier_Expression<'tree> {
-        #[doc = "Returns the node if it is of kind `mutable_specifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `mutable_specifier` ([MutableSpecifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn mutable_specifier(self) -> Option<MutableSpecifier<'tree>> {
@@ -21376,7 +21376,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `_expression`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `_expression` ([Expression]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn expression(self) -> Option<Expression<'tree>> {
@@ -21428,7 +21428,7 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{lifetime | mutable_specifier | _type}`"]
+    #[doc = "one of `{lifetime | mutable_specifier | _type}`:\n- [Lifetime]\n- [MutableSpecifier]\n- [Type]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum Lifetime_MutableSpecifier_Type<'tree> {
@@ -21438,7 +21438,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> Lifetime_MutableSpecifier_Type<'tree> {
-        #[doc = "Returns the node if it is of kind `lifetime`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `lifetime` ([Lifetime]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn lifetime(self) -> Option<Lifetime<'tree>> {
@@ -21447,7 +21447,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `mutable_specifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `mutable_specifier` ([MutableSpecifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn mutable_specifier(self) -> Option<MutableSpecifier<'tree>> {
@@ -21456,7 +21456,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `_type`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `_type` ([Type]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#type(self) -> Option<Type<'tree>> {
@@ -21514,7 +21514,7 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{bracketed_type | crate | generic_type | identifier | metavariable | scoped_identifier | self | super}`"]
+    #[doc = "one of `{bracketed_type | crate | generic_type | identifier | metavariable | scoped_identifier | self | super}`:\n- [BracketedType]\n- [Crate]\n- [GenericType]\n- [Identifier]\n- [Metavariable]\n- [ScopedIdentifier]\n- [_Self]\n- [Super]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum BracketedType_Crate_GenericType_Identifier_Metavariable_ScopedIdentifier__Self_Super<
@@ -21533,7 +21533,7 @@ pub mod anon_unions {
     impl<'tree>
         BracketedType_Crate_GenericType_Identifier_Metavariable_ScopedIdentifier__Self_Super<'tree>
     {
-        #[doc = "Returns the node if it is of kind `bracketed_type`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `bracketed_type` ([BracketedType]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn bracketed_type(self) -> Option<BracketedType<'tree>> {
@@ -21542,7 +21542,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `crate`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `crate` ([Crate]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn crate_(self) -> Option<Crate<'tree>> {
@@ -21551,7 +21551,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `generic_type`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `generic_type` ([GenericType]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn generic_type(self) -> Option<GenericType<'tree>> {
@@ -21560,7 +21560,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `identifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `identifier` ([Identifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn identifier(self) -> Option<Identifier<'tree>> {
@@ -21569,7 +21569,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `metavariable`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `metavariable` ([Metavariable]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn metavariable(self) -> Option<Metavariable<'tree>> {
@@ -21578,7 +21578,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `scoped_identifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `scoped_identifier` ([ScopedIdentifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn scoped_identifier(self) -> Option<ScopedIdentifier<'tree>> {
@@ -21587,7 +21587,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `self`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `self` ([_Self]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn _self(self) -> Option<_Self<'tree>> {
@@ -21596,7 +21596,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `super`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `super` ([Super]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn super_(self) -> Option<Super<'tree>> {
@@ -21702,7 +21702,7 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{crate | identifier | metavariable | scoped_identifier | self | super}`"]
+    #[doc = "one of `{crate | identifier | metavariable | scoped_identifier | self | super}`:\n- [Crate]\n- [Identifier]\n- [Metavariable]\n- [ScopedIdentifier]\n- [_Self]\n- [Super]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super<'tree> {
@@ -21715,7 +21715,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super<'tree> {
-        #[doc = "Returns the node if it is of kind `crate`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `crate` ([Crate]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn crate_(self) -> Option<Crate<'tree>> {
@@ -21724,7 +21724,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `identifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `identifier` ([Identifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn identifier(self) -> Option<Identifier<'tree>> {
@@ -21733,7 +21733,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `metavariable`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `metavariable` ([Metavariable]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn metavariable(self) -> Option<Metavariable<'tree>> {
@@ -21742,7 +21742,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `scoped_identifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `scoped_identifier` ([ScopedIdentifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn scoped_identifier(self) -> Option<ScopedIdentifier<'tree>> {
@@ -21751,7 +21751,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `self`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `self` ([_Self]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn _self(self) -> Option<_Self<'tree>> {
@@ -21760,7 +21760,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `super`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `super` ([Super]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn super_(self) -> Option<Super<'tree>> {
@@ -21849,7 +21849,7 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{lifetime | mutable_specifier | self}`"]
+    #[doc = "one of `{lifetime | mutable_specifier | self}`:\n- [Lifetime]\n- [MutableSpecifier]\n- [_Self]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum Lifetime_MutableSpecifier__Self<'tree> {
@@ -21859,7 +21859,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> Lifetime_MutableSpecifier__Self<'tree> {
-        #[doc = "Returns the node if it is of kind `lifetime`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `lifetime` ([Lifetime]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn lifetime(self) -> Option<Lifetime<'tree>> {
@@ -21868,7 +21868,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `mutable_specifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `mutable_specifier` ([MutableSpecifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn mutable_specifier(self) -> Option<MutableSpecifier<'tree>> {
@@ -21877,7 +21877,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `self`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `self` ([_Self]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn _self(self) -> Option<_Self<'tree>> {
@@ -21941,7 +21941,7 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{attribute_item | identifier}`"]
+    #[doc = "one of `{attribute_item | identifier}`:\n- [AttributeItem]\n- [Identifier]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum AttributeItem_Identifier<'tree> {
@@ -21950,7 +21950,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> AttributeItem_Identifier<'tree> {
-        #[doc = "Returns the node if it is of kind `attribute_item`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `attribute_item` ([AttributeItem]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn attribute_item(self) -> Option<AttributeItem<'tree>> {
@@ -21959,7 +21959,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `identifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `identifier` ([Identifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn identifier(self) -> Option<Identifier<'tree>> {
@@ -22015,7 +22015,7 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{_declaration_statement | expression_statement}`"]
+    #[doc = "one of `{_declaration_statement | expression_statement}`:\n- [DeclarationStatement]\n- [ExpressionStatement]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum DeclarationStatement_ExpressionStatement<'tree> {
@@ -22024,7 +22024,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> DeclarationStatement_ExpressionStatement<'tree> {
-        #[doc = "Returns the node if it is of kind `_declaration_statement`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `_declaration_statement` ([DeclarationStatement]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn declaration_statement(self) -> Option<DeclarationStatement<'tree>> {
@@ -22033,7 +22033,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `expression_statement`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `expression_statement` ([ExpressionStatement]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn expression_statement(self) -> Option<ExpressionStatement<'tree>> {
@@ -22085,7 +22085,7 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{mutable_specifier | visibility_modifier | identifier | _type | _expression}`"]
+    #[doc = "one of `{mutable_specifier | visibility_modifier | identifier | _type | _expression}`:\n- [MutableSpecifier]\n- [VisibilityModifier]\n- [Identifier]\n- [Type]\n- [Expression]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum MutableSpecifier_VisibilityModifier_Identifier_Type_Expression<'tree> {
@@ -22097,7 +22097,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> MutableSpecifier_VisibilityModifier_Identifier_Type_Expression<'tree> {
-        #[doc = "Returns the node if it is of kind `mutable_specifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `mutable_specifier` ([MutableSpecifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn mutable_specifier(self) -> Option<MutableSpecifier<'tree>> {
@@ -22106,7 +22106,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `visibility_modifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `visibility_modifier` ([VisibilityModifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn visibility_modifier(self) -> Option<VisibilityModifier<'tree>> {
@@ -22115,7 +22115,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `identifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `identifier` ([Identifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn identifier(self) -> Option<Identifier<'tree>> {
@@ -22124,7 +22124,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `_type`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `_type` ([Type]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#type(self) -> Option<Type<'tree>> {
@@ -22133,7 +22133,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `_expression`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `_expression` ([Expression]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn expression(self) -> Option<Expression<'tree>> {
@@ -22208,7 +22208,7 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{generic_type_with_turbofish | scoped_type_identifier | type_identifier}`"]
+    #[doc = "one of `{generic_type_with_turbofish | scoped_type_identifier | type_identifier}`:\n- [GenericTypeWithTurbofish]\n- [ScopedTypeIdentifier]\n- [TypeIdentifier]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum GenericTypeWithTurbofish_ScopedTypeIdentifier_TypeIdentifier<'tree> {
@@ -22218,7 +22218,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> GenericTypeWithTurbofish_ScopedTypeIdentifier_TypeIdentifier<'tree> {
-        #[doc = "Returns the node if it is of kind `generic_type_with_turbofish`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `generic_type_with_turbofish` ([GenericTypeWithTurbofish]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn generic_type_with_turbofish(self) -> Option<GenericTypeWithTurbofish<'tree>> {
@@ -22227,7 +22227,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `scoped_type_identifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `scoped_type_identifier` ([ScopedTypeIdentifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn scoped_type_identifier(self) -> Option<ScopedTypeIdentifier<'tree>> {
@@ -22236,7 +22236,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `type_identifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `type_identifier` ([TypeIdentifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn type_identifier(self) -> Option<TypeIdentifier<'tree>> {
@@ -22303,7 +22303,7 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{visibility_modifier | where_clause | field_declaration_list | ordered_field_declaration_list | type_identifier | type_parameters}`"]
+    #[doc = "one of `{visibility_modifier | where_clause | field_declaration_list | ordered_field_declaration_list | type_identifier | type_parameters}`:\n- [VisibilityModifier]\n- [WhereClause]\n- [FieldDeclarationList]\n- [OrderedFieldDeclarationList]\n- [TypeIdentifier]\n- [TypeParameters]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum VisibilityModifier_WhereClause_FieldDeclarationList_OrderedFieldDeclarationList_TypeIdentifier_TypeParameters<
@@ -22317,12 +22317,12 @@ pub mod anon_unions {
         TypeParameters(TypeParameters<'tree>),
     }
     #[automatically_derived]
-    impl < 'tree > VisibilityModifier_WhereClause_FieldDeclarationList_OrderedFieldDeclarationList_TypeIdentifier_TypeParameters < 'tree > { # [doc = "Returns the node if it is of kind `visibility_modifier`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn visibility_modifier (self) -> Option < VisibilityModifier < 'tree > > { match self { Self :: VisibilityModifier (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `where_clause`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn where_clause (self) -> Option < WhereClause < 'tree > > { match self { Self :: WhereClause (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `field_declaration_list`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn field_declaration_list (self) -> Option < FieldDeclarationList < 'tree > > { match self { Self :: FieldDeclarationList (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `ordered_field_declaration_list`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn ordered_field_declaration_list (self) -> Option < OrderedFieldDeclarationList < 'tree > > { match self { Self :: OrderedFieldDeclarationList (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `type_identifier`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn type_identifier (self) -> Option < TypeIdentifier < 'tree > > { match self { Self :: TypeIdentifier (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `type_parameters`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn type_parameters (self) -> Option < TypeParameters < 'tree > > { match self { Self :: TypeParameters (x) => Some (x) , _ => None , } } }
+    impl < 'tree > VisibilityModifier_WhereClause_FieldDeclarationList_OrderedFieldDeclarationList_TypeIdentifier_TypeParameters < 'tree > { # [doc = "Returns the node if it is of kind `visibility_modifier` ([VisibilityModifier]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn visibility_modifier (self) -> Option < VisibilityModifier < 'tree > > { match self { Self :: VisibilityModifier (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `where_clause` ([WhereClause]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn where_clause (self) -> Option < WhereClause < 'tree > > { match self { Self :: WhereClause (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `field_declaration_list` ([FieldDeclarationList]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn field_declaration_list (self) -> Option < FieldDeclarationList < 'tree > > { match self { Self :: FieldDeclarationList (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `ordered_field_declaration_list` ([OrderedFieldDeclarationList]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn ordered_field_declaration_list (self) -> Option < OrderedFieldDeclarationList < 'tree > > { match self { Self :: OrderedFieldDeclarationList (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `type_identifier` ([TypeIdentifier]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn type_identifier (self) -> Option < TypeIdentifier < 'tree > > { match self { Self :: TypeIdentifier (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `type_parameters` ([TypeParameters]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn type_parameters (self) -> Option < TypeParameters < 'tree > > { match self { Self :: TypeParameters (x) => Some (x) , _ => None , } } }
     #[automatically_derived]
     impl < 'tree > TryFrom < tree_sitter :: Node < 'tree >> for VisibilityModifier_WhereClause_FieldDeclarationList_OrderedFieldDeclarationList_TypeIdentifier_TypeParameters < 'tree > { type Error = type_sitter_lib :: IncorrectKind < 'tree > ; # [inline] fn try_from (node : tree_sitter :: Node < 'tree >) -> Result < Self , Self :: Error > { match node . kind () { "visibility_modifier" => Ok (unsafe { Self :: VisibilityModifier (< VisibilityModifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "where_clause" => Ok (unsafe { Self :: WhereClause (< WhereClause < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "field_declaration_list" => Ok (unsafe { Self :: FieldDeclarationList (< FieldDeclarationList < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "ordered_field_declaration_list" => Ok (unsafe { Self :: OrderedFieldDeclarationList (< OrderedFieldDeclarationList < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "type_identifier" => Ok (unsafe { Self :: TypeIdentifier (< TypeIdentifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "type_parameters" => Ok (unsafe { Self :: TypeParameters (< TypeParameters < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , _ => Err (type_sitter_lib :: IncorrectKind { node , kind : < Self as type_sitter_lib :: TypedNode < 'tree >> :: KIND , }) } } }
     #[automatically_derived]
     impl < 'tree > type_sitter_lib :: TypedNode < 'tree > for VisibilityModifier_WhereClause_FieldDeclarationList_OrderedFieldDeclarationList_TypeIdentifier_TypeParameters < 'tree > { const KIND : & 'static str = "{visibility_modifier | where_clause | field_declaration_list | ordered_field_declaration_list | type_identifier | type_parameters}" ; # [inline] fn node (& self) -> & tree_sitter :: Node < 'tree > { match self { Self :: VisibilityModifier (x) => x . node () , Self :: WhereClause (x) => x . node () , Self :: FieldDeclarationList (x) => x . node () , Self :: OrderedFieldDeclarationList (x) => x . node () , Self :: TypeIdentifier (x) => x . node () , Self :: TypeParameters (x) => x . node () , } } # [inline] fn node_mut (& mut self) -> & mut tree_sitter :: Node < 'tree > { match self { Self :: VisibilityModifier (x) => x . node_mut () , Self :: WhereClause (x) => x . node_mut () , Self :: FieldDeclarationList (x) => x . node_mut () , Self :: OrderedFieldDeclarationList (x) => x . node_mut () , Self :: TypeIdentifier (x) => x . node_mut () , Self :: TypeParameters (x) => x . node_mut () , } } # [inline] fn into_node (self) -> tree_sitter :: Node < 'tree > { match self { Self :: VisibilityModifier (x) => x . into_node () , Self :: WhereClause (x) => x . into_node () , Self :: FieldDeclarationList (x) => x . into_node () , Self :: OrderedFieldDeclarationList (x) => x . into_node () , Self :: TypeIdentifier (x) => x . into_node () , Self :: TypeParameters (x) => x . into_node () , } } }
-    #[doc = "one of `{field_pattern | remaining_field_pattern | scoped_type_identifier | type_identifier}`"]
+    #[doc = "one of `{field_pattern | remaining_field_pattern | scoped_type_identifier | type_identifier}`:\n- [FieldPattern]\n- [RemainingFieldPattern]\n- [ScopedTypeIdentifier]\n- [TypeIdentifier]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum FieldPattern_RemainingFieldPattern_ScopedTypeIdentifier_TypeIdentifier<'tree> {
@@ -22333,7 +22333,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> FieldPattern_RemainingFieldPattern_ScopedTypeIdentifier_TypeIdentifier<'tree> {
-        #[doc = "Returns the node if it is of kind `field_pattern`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `field_pattern` ([FieldPattern]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn field_pattern(self) -> Option<FieldPattern<'tree>> {
@@ -22342,7 +22342,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `remaining_field_pattern`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `remaining_field_pattern` ([RemainingFieldPattern]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn remaining_field_pattern(self) -> Option<RemainingFieldPattern<'tree>> {
@@ -22351,7 +22351,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `scoped_type_identifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `scoped_type_identifier` ([ScopedTypeIdentifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn scoped_type_identifier(self) -> Option<ScopedTypeIdentifier<'tree>> {
@@ -22360,7 +22360,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `type_identifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `type_identifier` ([TypeIdentifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn type_identifier(self) -> Option<TypeIdentifier<'tree>> {
@@ -22433,7 +22433,7 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{_literal | crate | identifier | metavariable | mutable_specifier | primitive_type | self | super | token_repetition | token_tree}`"]
+    #[doc = "one of `{_literal | crate | identifier | metavariable | mutable_specifier | primitive_type | self | super | token_repetition | token_tree}`:\n- [Literal]\n- [Crate]\n- [Identifier]\n- [Metavariable]\n- [MutableSpecifier]\n- [PrimitiveType]\n- [_Self]\n- [Super]\n- [TokenRepetition]\n- [TokenTree]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenRepetition_TokenTree<
@@ -22451,12 +22451,12 @@ pub mod anon_unions {
         TokenTree(TokenTree<'tree>),
     }
     #[automatically_derived]
-    impl < 'tree > Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenRepetition_TokenTree < 'tree > { # [doc = "Returns the node if it is of kind `_literal`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn literal (self) -> Option < Literal < 'tree > > { match self { Self :: Literal (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `crate`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn crate_ (self) -> Option < Crate < 'tree > > { match self { Self :: Crate (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `identifier`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn identifier (self) -> Option < Identifier < 'tree > > { match self { Self :: Identifier (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `metavariable`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn metavariable (self) -> Option < Metavariable < 'tree > > { match self { Self :: Metavariable (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `mutable_specifier`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn mutable_specifier (self) -> Option < MutableSpecifier < 'tree > > { match self { Self :: MutableSpecifier (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `primitive_type`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn primitive_type (self) -> Option < PrimitiveType < 'tree > > { match self { Self :: PrimitiveType (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `self`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn _self (self) -> Option < _Self < 'tree > > { match self { Self :: _Self (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `super`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn super_ (self) -> Option < Super < 'tree > > { match self { Self :: Super (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `token_repetition`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn token_repetition (self) -> Option < TokenRepetition < 'tree > > { match self { Self :: TokenRepetition (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `token_tree`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn token_tree (self) -> Option < TokenTree < 'tree > > { match self { Self :: TokenTree (x) => Some (x) , _ => None , } } }
+    impl < 'tree > Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenRepetition_TokenTree < 'tree > { # [doc = "Returns the node if it is of kind `_literal` ([Literal]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn literal (self) -> Option < Literal < 'tree > > { match self { Self :: Literal (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `crate` ([Crate]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn crate_ (self) -> Option < Crate < 'tree > > { match self { Self :: Crate (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `identifier` ([Identifier]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn identifier (self) -> Option < Identifier < 'tree > > { match self { Self :: Identifier (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `metavariable` ([Metavariable]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn metavariable (self) -> Option < Metavariable < 'tree > > { match self { Self :: Metavariable (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `mutable_specifier` ([MutableSpecifier]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn mutable_specifier (self) -> Option < MutableSpecifier < 'tree > > { match self { Self :: MutableSpecifier (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `primitive_type` ([PrimitiveType]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn primitive_type (self) -> Option < PrimitiveType < 'tree > > { match self { Self :: PrimitiveType (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `self` ([_Self]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn _self (self) -> Option < _Self < 'tree > > { match self { Self :: _Self (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `super` ([Super]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn super_ (self) -> Option < Super < 'tree > > { match self { Self :: Super (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `token_repetition` ([TokenRepetition]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn token_repetition (self) -> Option < TokenRepetition < 'tree > > { match self { Self :: TokenRepetition (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `token_tree` ([TokenTree]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn token_tree (self) -> Option < TokenTree < 'tree > > { match self { Self :: TokenTree (x) => Some (x) , _ => None , } } }
     #[automatically_derived]
     impl < 'tree > TryFrom < tree_sitter :: Node < 'tree >> for Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenRepetition_TokenTree < 'tree > { type Error = type_sitter_lib :: IncorrectKind < 'tree > ; # [inline] fn try_from (node : tree_sitter :: Node < 'tree >) -> Result < Self , Self :: Error > { if let Ok (this) = < Literal < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Literal (this)) ; } if let Ok (this) = < Crate < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Crate (this)) ; } if let Ok (this) = < Identifier < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Identifier (this)) ; } if let Ok (this) = < Metavariable < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Metavariable (this)) ; } if let Ok (this) = < MutableSpecifier < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: MutableSpecifier (this)) ; } if let Ok (this) = < PrimitiveType < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: PrimitiveType (this)) ; } if let Ok (this) = < _Self < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: _Self (this)) ; } if let Ok (this) = < Super < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Super (this)) ; } if let Ok (this) = < TokenRepetition < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: TokenRepetition (this)) ; } if let Ok (this) = < TokenTree < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: TokenTree (this)) ; } Err (type_sitter_lib :: IncorrectKind { node , kind : < Self as type_sitter_lib :: TypedNode < 'tree >> :: KIND , }) } }
     #[automatically_derived]
     impl < 'tree > type_sitter_lib :: TypedNode < 'tree > for Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenRepetition_TokenTree < 'tree > { const KIND : & 'static str = "{_literal | crate | identifier | metavariable | mutable_specifier | primitive_type | self | super | token_repetition | token_tree}" ; # [inline] fn node (& self) -> & tree_sitter :: Node < 'tree > { match self { Self :: Literal (x) => x . node () , Self :: Crate (x) => x . node () , Self :: Identifier (x) => x . node () , Self :: Metavariable (x) => x . node () , Self :: MutableSpecifier (x) => x . node () , Self :: PrimitiveType (x) => x . node () , Self :: _Self (x) => x . node () , Self :: Super (x) => x . node () , Self :: TokenRepetition (x) => x . node () , Self :: TokenTree (x) => x . node () , } } # [inline] fn node_mut (& mut self) -> & mut tree_sitter :: Node < 'tree > { match self { Self :: Literal (x) => x . node_mut () , Self :: Crate (x) => x . node_mut () , Self :: Identifier (x) => x . node_mut () , Self :: Metavariable (x) => x . node_mut () , Self :: MutableSpecifier (x) => x . node_mut () , Self :: PrimitiveType (x) => x . node_mut () , Self :: _Self (x) => x . node_mut () , Self :: Super (x) => x . node_mut () , Self :: TokenRepetition (x) => x . node_mut () , Self :: TokenTree (x) => x . node_mut () , } } # [inline] fn into_node (self) -> tree_sitter :: Node < 'tree > { match self { Self :: Literal (x) => x . into_node () , Self :: Crate (x) => x . into_node () , Self :: Identifier (x) => x . into_node () , Self :: Metavariable (x) => x . into_node () , Self :: MutableSpecifier (x) => x . into_node () , Self :: PrimitiveType (x) => x . into_node () , Self :: _Self (x) => x . into_node () , Self :: Super (x) => x . into_node () , Self :: TokenRepetition (x) => x . into_node () , Self :: TokenTree (x) => x . into_node () , } } }
-    #[doc = "one of `{_literal | crate | identifier | metavariable | mutable_specifier | primitive_type | self | super | token_binding_pattern | token_repetition_pattern | token_tree_pattern}`"]
+    #[doc = "one of `{_literal | crate | identifier | metavariable | mutable_specifier | primitive_type | self | super | token_binding_pattern | token_repetition_pattern | token_tree_pattern}`:\n- [Literal]\n- [Crate]\n- [Identifier]\n- [Metavariable]\n- [MutableSpecifier]\n- [PrimitiveType]\n- [_Self]\n- [Super]\n- [TokenBindingPattern]\n- [TokenRepetitionPattern]\n- [TokenTreePattern]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern<
@@ -22475,12 +22475,12 @@ pub mod anon_unions {
         TokenTreePattern(TokenTreePattern<'tree>),
     }
     #[automatically_derived]
-    impl < 'tree > Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern < 'tree > { # [doc = "Returns the node if it is of kind `_literal`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn literal (self) -> Option < Literal < 'tree > > { match self { Self :: Literal (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `crate`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn crate_ (self) -> Option < Crate < 'tree > > { match self { Self :: Crate (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `identifier`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn identifier (self) -> Option < Identifier < 'tree > > { match self { Self :: Identifier (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `metavariable`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn metavariable (self) -> Option < Metavariable < 'tree > > { match self { Self :: Metavariable (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `mutable_specifier`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn mutable_specifier (self) -> Option < MutableSpecifier < 'tree > > { match self { Self :: MutableSpecifier (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `primitive_type`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn primitive_type (self) -> Option < PrimitiveType < 'tree > > { match self { Self :: PrimitiveType (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `self`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn _self (self) -> Option < _Self < 'tree > > { match self { Self :: _Self (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `super`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn super_ (self) -> Option < Super < 'tree > > { match self { Self :: Super (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `token_binding_pattern`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn token_binding_pattern (self) -> Option < TokenBindingPattern < 'tree > > { match self { Self :: TokenBindingPattern (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `token_repetition_pattern`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn token_repetition_pattern (self) -> Option < TokenRepetitionPattern < 'tree > > { match self { Self :: TokenRepetitionPattern (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `token_tree_pattern`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn token_tree_pattern (self) -> Option < TokenTreePattern < 'tree > > { match self { Self :: TokenTreePattern (x) => Some (x) , _ => None , } } }
+    impl < 'tree > Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern < 'tree > { # [doc = "Returns the node if it is of kind `_literal` ([Literal]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn literal (self) -> Option < Literal < 'tree > > { match self { Self :: Literal (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `crate` ([Crate]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn crate_ (self) -> Option < Crate < 'tree > > { match self { Self :: Crate (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `identifier` ([Identifier]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn identifier (self) -> Option < Identifier < 'tree > > { match self { Self :: Identifier (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `metavariable` ([Metavariable]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn metavariable (self) -> Option < Metavariable < 'tree > > { match self { Self :: Metavariable (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `mutable_specifier` ([MutableSpecifier]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn mutable_specifier (self) -> Option < MutableSpecifier < 'tree > > { match self { Self :: MutableSpecifier (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `primitive_type` ([PrimitiveType]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn primitive_type (self) -> Option < PrimitiveType < 'tree > > { match self { Self :: PrimitiveType (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `self` ([_Self]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn _self (self) -> Option < _Self < 'tree > > { match self { Self :: _Self (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `super` ([Super]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn super_ (self) -> Option < Super < 'tree > > { match self { Self :: Super (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `token_binding_pattern` ([TokenBindingPattern]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn token_binding_pattern (self) -> Option < TokenBindingPattern < 'tree > > { match self { Self :: TokenBindingPattern (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `token_repetition_pattern` ([TokenRepetitionPattern]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn token_repetition_pattern (self) -> Option < TokenRepetitionPattern < 'tree > > { match self { Self :: TokenRepetitionPattern (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `token_tree_pattern` ([TokenTreePattern]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn token_tree_pattern (self) -> Option < TokenTreePattern < 'tree > > { match self { Self :: TokenTreePattern (x) => Some (x) , _ => None , } } }
     #[automatically_derived]
     impl < 'tree > TryFrom < tree_sitter :: Node < 'tree >> for Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern < 'tree > { type Error = type_sitter_lib :: IncorrectKind < 'tree > ; # [inline] fn try_from (node : tree_sitter :: Node < 'tree >) -> Result < Self , Self :: Error > { if let Ok (this) = < Literal < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Literal (this)) ; } if let Ok (this) = < Crate < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Crate (this)) ; } if let Ok (this) = < Identifier < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Identifier (this)) ; } if let Ok (this) = < Metavariable < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Metavariable (this)) ; } if let Ok (this) = < MutableSpecifier < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: MutableSpecifier (this)) ; } if let Ok (this) = < PrimitiveType < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: PrimitiveType (this)) ; } if let Ok (this) = < _Self < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: _Self (this)) ; } if let Ok (this) = < Super < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Super (this)) ; } if let Ok (this) = < TokenBindingPattern < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: TokenBindingPattern (this)) ; } if let Ok (this) = < TokenRepetitionPattern < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: TokenRepetitionPattern (this)) ; } if let Ok (this) = < TokenTreePattern < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: TokenTreePattern (this)) ; } Err (type_sitter_lib :: IncorrectKind { node , kind : < Self as type_sitter_lib :: TypedNode < 'tree >> :: KIND , }) } }
     #[automatically_derived]
     impl < 'tree > type_sitter_lib :: TypedNode < 'tree > for Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern < 'tree > { const KIND : & 'static str = "{_literal | crate | identifier | metavariable | mutable_specifier | primitive_type | self | super | token_binding_pattern | token_repetition_pattern | token_tree_pattern}" ; # [inline] fn node (& self) -> & tree_sitter :: Node < 'tree > { match self { Self :: Literal (x) => x . node () , Self :: Crate (x) => x . node () , Self :: Identifier (x) => x . node () , Self :: Metavariable (x) => x . node () , Self :: MutableSpecifier (x) => x . node () , Self :: PrimitiveType (x) => x . node () , Self :: _Self (x) => x . node () , Self :: Super (x) => x . node () , Self :: TokenBindingPattern (x) => x . node () , Self :: TokenRepetitionPattern (x) => x . node () , Self :: TokenTreePattern (x) => x . node () , } } # [inline] fn node_mut (& mut self) -> & mut tree_sitter :: Node < 'tree > { match self { Self :: Literal (x) => x . node_mut () , Self :: Crate (x) => x . node_mut () , Self :: Identifier (x) => x . node_mut () , Self :: Metavariable (x) => x . node_mut () , Self :: MutableSpecifier (x) => x . node_mut () , Self :: PrimitiveType (x) => x . node_mut () , Self :: _Self (x) => x . node_mut () , Self :: Super (x) => x . node_mut () , Self :: TokenBindingPattern (x) => x . node_mut () , Self :: TokenRepetitionPattern (x) => x . node_mut () , Self :: TokenTreePattern (x) => x . node_mut () , } } # [inline] fn into_node (self) -> tree_sitter :: Node < 'tree > { match self { Self :: Literal (x) => x . into_node () , Self :: Crate (x) => x . into_node () , Self :: Identifier (x) => x . into_node () , Self :: Metavariable (x) => x . into_node () , Self :: MutableSpecifier (x) => x . into_node () , Self :: PrimitiveType (x) => x . into_node () , Self :: _Self (x) => x . into_node () , Self :: Super (x) => x . into_node () , Self :: TokenBindingPattern (x) => x . into_node () , Self :: TokenRepetitionPattern (x) => x . into_node () , Self :: TokenTreePattern (x) => x . into_node () , } } }
-    #[doc = "one of `{_type | higher_ranked_trait_bound | lifetime | removed_trait_bound}`"]
+    #[doc = "one of `{_type | higher_ranked_trait_bound | lifetime | removed_trait_bound}`:\n- [Type]\n- [HigherRankedTraitBound]\n- [Lifetime]\n- [RemovedTraitBound]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum Type_HigherRankedTraitBound_Lifetime_RemovedTraitBound<'tree> {
@@ -22491,7 +22491,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> Type_HigherRankedTraitBound_Lifetime_RemovedTraitBound<'tree> {
-        #[doc = "Returns the node if it is of kind `_type`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `_type` ([Type]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#type(self) -> Option<Type<'tree>> {
@@ -22500,7 +22500,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `higher_ranked_trait_bound`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `higher_ranked_trait_bound` ([HigherRankedTraitBound]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn higher_ranked_trait_bound(self) -> Option<HigherRankedTraitBound<'tree>> {
@@ -22509,7 +22509,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `lifetime`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `lifetime` ([Lifetime]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn lifetime(self) -> Option<Lifetime<'tree>> {
@@ -22518,7 +22518,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `removed_trait_bound`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `removed_trait_bound` ([RemovedTraitBound]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn removed_trait_bound(self) -> Option<RemovedTraitBound<'tree>> {
@@ -22587,7 +22587,7 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{visibility_modifier | where_clause | declaration_list | trait_bounds | type_identifier | type_parameters}`"]
+    #[doc = "one of `{visibility_modifier | where_clause | declaration_list | trait_bounds | type_identifier | type_parameters}`:\n- [VisibilityModifier]\n- [WhereClause]\n- [DeclarationList]\n- [TraitBounds]\n- [TypeIdentifier]\n- [TypeParameters]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum VisibilityModifier_WhereClause_DeclarationList_TraitBounds_TypeIdentifier_TypeParameters<
@@ -22606,7 +22606,7 @@ pub mod anon_unions {
             'tree,
         >
     {
-        #[doc = "Returns the node if it is of kind `visibility_modifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `visibility_modifier` ([VisibilityModifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn visibility_modifier(self) -> Option<VisibilityModifier<'tree>> {
@@ -22615,7 +22615,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `where_clause`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `where_clause` ([WhereClause]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn where_clause(self) -> Option<WhereClause<'tree>> {
@@ -22624,7 +22624,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `declaration_list`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `declaration_list` ([DeclarationList]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn declaration_list(self) -> Option<DeclarationList<'tree>> {
@@ -22633,7 +22633,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `trait_bounds`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `trait_bounds` ([TraitBounds]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn trait_bounds(self) -> Option<TraitBounds<'tree>> {
@@ -22642,7 +22642,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `type_identifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `type_identifier` ([TypeIdentifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn type_identifier(self) -> Option<TypeIdentifier<'tree>> {
@@ -22651,7 +22651,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `type_parameters`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `type_parameters` ([TypeParameters]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn type_parameters(self) -> Option<TypeParameters<'tree>> {
@@ -22743,7 +22743,7 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{_pattern | identifier | scoped_identifier}`"]
+    #[doc = "one of `{_pattern | identifier | scoped_identifier}`:\n- [Pattern]\n- [Identifier]\n- [ScopedIdentifier]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum Pattern_Identifier_ScopedIdentifier<'tree> {
@@ -22753,7 +22753,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> Pattern_Identifier_ScopedIdentifier<'tree> {
-        #[doc = "Returns the node if it is of kind `_pattern`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `_pattern` ([Pattern]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn pattern(self) -> Option<Pattern<'tree>> {
@@ -22762,7 +22762,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `identifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `identifier` ([Identifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn identifier(self) -> Option<Identifier<'tree>> {
@@ -22771,7 +22771,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `scoped_identifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `scoped_identifier` ([ScopedIdentifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn scoped_identifier(self) -> Option<ScopedIdentifier<'tree>> {
@@ -22829,7 +22829,7 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{_literal | _type | block | lifetime | type_binding}`"]
+    #[doc = "one of `{_literal | _type | block | lifetime | type_binding}`:\n- [Literal]\n- [Type]\n- [Block]\n- [Lifetime]\n- [TypeBinding]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum Literal_Type_Block_Lifetime_TypeBinding<'tree> {
@@ -22841,7 +22841,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> Literal_Type_Block_Lifetime_TypeBinding<'tree> {
-        #[doc = "Returns the node if it is of kind `_literal`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `_literal` ([Literal]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn literal(self) -> Option<Literal<'tree>> {
@@ -22850,7 +22850,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `_type`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `_type` ([Type]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#type(self) -> Option<Type<'tree>> {
@@ -22859,7 +22859,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `block`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `block` ([Block]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn block(self) -> Option<Block<'tree>> {
@@ -22868,7 +22868,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `lifetime`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `lifetime` ([Lifetime]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn lifetime(self) -> Option<Lifetime<'tree>> {
@@ -22877,7 +22877,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `type_binding`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `type_binding` ([TypeBinding]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn type_binding(self) -> Option<TypeBinding<'tree>> {
@@ -22947,7 +22947,7 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{visibility_modifier | type_identifier | _type | type_parameters}`"]
+    #[doc = "one of `{visibility_modifier | type_identifier | _type | type_parameters}`:\n- [VisibilityModifier]\n- [TypeIdentifier]\n- [Type]\n- [TypeParameters]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum VisibilityModifier_TypeIdentifier_Type_TypeParameters<'tree> {
@@ -22958,7 +22958,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> VisibilityModifier_TypeIdentifier_Type_TypeParameters<'tree> {
-        #[doc = "Returns the node if it is of kind `visibility_modifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `visibility_modifier` ([VisibilityModifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn visibility_modifier(self) -> Option<VisibilityModifier<'tree>> {
@@ -22967,7 +22967,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `type_identifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `type_identifier` ([TypeIdentifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn type_identifier(self) -> Option<TypeIdentifier<'tree>> {
@@ -22976,7 +22976,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `_type`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `_type` ([Type]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#type(self) -> Option<Type<'tree>> {
@@ -22985,7 +22985,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `type_parameters`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `type_parameters` ([TypeParameters]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn type_parameters(self) -> Option<TypeParameters<'tree>> {
@@ -23054,7 +23054,7 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{const_parameter | constrained_type_parameter | lifetime | metavariable | optional_type_parameter | type_identifier}`"]
+    #[doc = "one of `{const_parameter | constrained_type_parameter | lifetime | metavariable | optional_type_parameter | type_identifier}`:\n- [ConstParameter]\n- [ConstrainedTypeParameter]\n- [Lifetime]\n- [Metavariable]\n- [OptionalTypeParameter]\n- [TypeIdentifier]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum ConstParameter_ConstrainedTypeParameter_Lifetime_Metavariable_OptionalTypeParameter_TypeIdentifier<
@@ -23068,12 +23068,12 @@ pub mod anon_unions {
         TypeIdentifier(TypeIdentifier<'tree>),
     }
     #[automatically_derived]
-    impl < 'tree > ConstParameter_ConstrainedTypeParameter_Lifetime_Metavariable_OptionalTypeParameter_TypeIdentifier < 'tree > { # [doc = "Returns the node if it is of kind `const_parameter`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn const_parameter (self) -> Option < ConstParameter < 'tree > > { match self { Self :: ConstParameter (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `constrained_type_parameter`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn constrained_type_parameter (self) -> Option < ConstrainedTypeParameter < 'tree > > { match self { Self :: ConstrainedTypeParameter (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `lifetime`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn lifetime (self) -> Option < Lifetime < 'tree > > { match self { Self :: Lifetime (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `metavariable`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn metavariable (self) -> Option < Metavariable < 'tree > > { match self { Self :: Metavariable (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `optional_type_parameter`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn optional_type_parameter (self) -> Option < OptionalTypeParameter < 'tree > > { match self { Self :: OptionalTypeParameter (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `type_identifier`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn type_identifier (self) -> Option < TypeIdentifier < 'tree > > { match self { Self :: TypeIdentifier (x) => Some (x) , _ => None , } } }
+    impl < 'tree > ConstParameter_ConstrainedTypeParameter_Lifetime_Metavariable_OptionalTypeParameter_TypeIdentifier < 'tree > { # [doc = "Returns the node if it is of kind `const_parameter` ([ConstParameter]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn const_parameter (self) -> Option < ConstParameter < 'tree > > { match self { Self :: ConstParameter (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `constrained_type_parameter` ([ConstrainedTypeParameter]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn constrained_type_parameter (self) -> Option < ConstrainedTypeParameter < 'tree > > { match self { Self :: ConstrainedTypeParameter (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `lifetime` ([Lifetime]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn lifetime (self) -> Option < Lifetime < 'tree > > { match self { Self :: Lifetime (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `metavariable` ([Metavariable]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn metavariable (self) -> Option < Metavariable < 'tree > > { match self { Self :: Metavariable (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `optional_type_parameter` ([OptionalTypeParameter]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn optional_type_parameter (self) -> Option < OptionalTypeParameter < 'tree > > { match self { Self :: OptionalTypeParameter (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `type_identifier` ([TypeIdentifier]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn type_identifier (self) -> Option < TypeIdentifier < 'tree > > { match self { Self :: TypeIdentifier (x) => Some (x) , _ => None , } } }
     #[automatically_derived]
     impl < 'tree > TryFrom < tree_sitter :: Node < 'tree >> for ConstParameter_ConstrainedTypeParameter_Lifetime_Metavariable_OptionalTypeParameter_TypeIdentifier < 'tree > { type Error = type_sitter_lib :: IncorrectKind < 'tree > ; # [inline] fn try_from (node : tree_sitter :: Node < 'tree >) -> Result < Self , Self :: Error > { match node . kind () { "const_parameter" => Ok (unsafe { Self :: ConstParameter (< ConstParameter < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "constrained_type_parameter" => Ok (unsafe { Self :: ConstrainedTypeParameter (< ConstrainedTypeParameter < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "lifetime" => Ok (unsafe { Self :: Lifetime (< Lifetime < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "metavariable" => Ok (unsafe { Self :: Metavariable (< Metavariable < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "optional_type_parameter" => Ok (unsafe { Self :: OptionalTypeParameter (< OptionalTypeParameter < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "type_identifier" => Ok (unsafe { Self :: TypeIdentifier (< TypeIdentifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , _ => Err (type_sitter_lib :: IncorrectKind { node , kind : < Self as type_sitter_lib :: TypedNode < 'tree >> :: KIND , }) } } }
     #[automatically_derived]
     impl < 'tree > type_sitter_lib :: TypedNode < 'tree > for ConstParameter_ConstrainedTypeParameter_Lifetime_Metavariable_OptionalTypeParameter_TypeIdentifier < 'tree > { const KIND : & 'static str = "{const_parameter | constrained_type_parameter | lifetime | metavariable | optional_type_parameter | type_identifier}" ; # [inline] fn node (& self) -> & tree_sitter :: Node < 'tree > { match self { Self :: ConstParameter (x) => x . node () , Self :: ConstrainedTypeParameter (x) => x . node () , Self :: Lifetime (x) => x . node () , Self :: Metavariable (x) => x . node () , Self :: OptionalTypeParameter (x) => x . node () , Self :: TypeIdentifier (x) => x . node () , } } # [inline] fn node_mut (& mut self) -> & mut tree_sitter :: Node < 'tree > { match self { Self :: ConstParameter (x) => x . node_mut () , Self :: ConstrainedTypeParameter (x) => x . node_mut () , Self :: Lifetime (x) => x . node_mut () , Self :: Metavariable (x) => x . node_mut () , Self :: OptionalTypeParameter (x) => x . node_mut () , Self :: TypeIdentifier (x) => x . node_mut () , } } # [inline] fn into_node (self) -> tree_sitter :: Node < 'tree > { match self { Self :: ConstParameter (x) => x . into_node () , Self :: ConstrainedTypeParameter (x) => x . into_node () , Self :: Lifetime (x) => x . into_node () , Self :: Metavariable (x) => x . into_node () , Self :: OptionalTypeParameter (x) => x . into_node () , Self :: TypeIdentifier (x) => x . into_node () , } } }
-    #[doc = "one of `{visibility_modifier | where_clause | field_declaration_list | type_identifier | type_parameters}`"]
+    #[doc = "one of `{visibility_modifier | where_clause | field_declaration_list | type_identifier | type_parameters}`:\n- [VisibilityModifier]\n- [WhereClause]\n- [FieldDeclarationList]\n- [TypeIdentifier]\n- [TypeParameters]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum VisibilityModifier_WhereClause_FieldDeclarationList_TypeIdentifier_TypeParameters<
@@ -23089,7 +23089,7 @@ pub mod anon_unions {
     impl<'tree>
         VisibilityModifier_WhereClause_FieldDeclarationList_TypeIdentifier_TypeParameters<'tree>
     {
-        #[doc = "Returns the node if it is of kind `visibility_modifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `visibility_modifier` ([VisibilityModifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn visibility_modifier(self) -> Option<VisibilityModifier<'tree>> {
@@ -23098,7 +23098,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `where_clause`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `where_clause` ([WhereClause]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn where_clause(self) -> Option<WhereClause<'tree>> {
@@ -23107,7 +23107,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `field_declaration_list`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `field_declaration_list` ([FieldDeclarationList]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn field_declaration_list(self) -> Option<FieldDeclarationList<'tree>> {
@@ -23116,7 +23116,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `type_identifier`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `type_identifier` ([TypeIdentifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn type_identifier(self) -> Option<TypeIdentifier<'tree>> {
@@ -23125,7 +23125,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `type_parameters`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `type_parameters` ([TypeParameters]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn type_parameters(self) -> Option<TypeParameters<'tree>> {
@@ -23205,7 +23205,7 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{visibility_modifier | crate | identifier | metavariable | scoped_identifier | scoped_use_list | self | super | use_as_clause | use_list | use_wildcard}`"]
+    #[doc = "one of `{visibility_modifier | crate | identifier | metavariable | scoped_identifier | scoped_use_list | self | super | use_as_clause | use_list | use_wildcard}`:\n- [VisibilityModifier]\n- [Crate]\n- [Identifier]\n- [Metavariable]\n- [ScopedIdentifier]\n- [ScopedUseList]\n- [_Self]\n- [Super]\n- [UseAsClause]\n- [UseList]\n- [UseWildcard]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum VisibilityModifier_Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard<
@@ -23224,12 +23224,12 @@ pub mod anon_unions {
         UseWildcard(UseWildcard<'tree>),
     }
     #[automatically_derived]
-    impl < 'tree > VisibilityModifier_Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard < 'tree > { # [doc = "Returns the node if it is of kind `visibility_modifier`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn visibility_modifier (self) -> Option < VisibilityModifier < 'tree > > { match self { Self :: VisibilityModifier (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `crate`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn crate_ (self) -> Option < Crate < 'tree > > { match self { Self :: Crate (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `identifier`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn identifier (self) -> Option < Identifier < 'tree > > { match self { Self :: Identifier (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `metavariable`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn metavariable (self) -> Option < Metavariable < 'tree > > { match self { Self :: Metavariable (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `scoped_identifier`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn scoped_identifier (self) -> Option < ScopedIdentifier < 'tree > > { match self { Self :: ScopedIdentifier (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `scoped_use_list`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn scoped_use_list (self) -> Option < ScopedUseList < 'tree > > { match self { Self :: ScopedUseList (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `self`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn _self (self) -> Option < _Self < 'tree > > { match self { Self :: _Self (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `super`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn super_ (self) -> Option < Super < 'tree > > { match self { Self :: Super (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `use_as_clause`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn use_as_clause (self) -> Option < UseAsClause < 'tree > > { match self { Self :: UseAsClause (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `use_list`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn use_list (self) -> Option < UseList < 'tree > > { match self { Self :: UseList (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `use_wildcard`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn use_wildcard (self) -> Option < UseWildcard < 'tree > > { match self { Self :: UseWildcard (x) => Some (x) , _ => None , } } }
+    impl < 'tree > VisibilityModifier_Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard < 'tree > { # [doc = "Returns the node if it is of kind `visibility_modifier` ([VisibilityModifier]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn visibility_modifier (self) -> Option < VisibilityModifier < 'tree > > { match self { Self :: VisibilityModifier (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `crate` ([Crate]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn crate_ (self) -> Option < Crate < 'tree > > { match self { Self :: Crate (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `identifier` ([Identifier]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn identifier (self) -> Option < Identifier < 'tree > > { match self { Self :: Identifier (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `metavariable` ([Metavariable]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn metavariable (self) -> Option < Metavariable < 'tree > > { match self { Self :: Metavariable (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `scoped_identifier` ([ScopedIdentifier]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn scoped_identifier (self) -> Option < ScopedIdentifier < 'tree > > { match self { Self :: ScopedIdentifier (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `scoped_use_list` ([ScopedUseList]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn scoped_use_list (self) -> Option < ScopedUseList < 'tree > > { match self { Self :: ScopedUseList (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `self` ([_Self]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn _self (self) -> Option < _Self < 'tree > > { match self { Self :: _Self (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `super` ([Super]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn super_ (self) -> Option < Super < 'tree > > { match self { Self :: Super (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `use_as_clause` ([UseAsClause]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn use_as_clause (self) -> Option < UseAsClause < 'tree > > { match self { Self :: UseAsClause (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `use_list` ([UseList]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn use_list (self) -> Option < UseList < 'tree > > { match self { Self :: UseList (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `use_wildcard` ([UseWildcard]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn use_wildcard (self) -> Option < UseWildcard < 'tree > > { match self { Self :: UseWildcard (x) => Some (x) , _ => None , } } }
     #[automatically_derived]
     impl < 'tree > TryFrom < tree_sitter :: Node < 'tree >> for VisibilityModifier_Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard < 'tree > { type Error = type_sitter_lib :: IncorrectKind < 'tree > ; # [inline] fn try_from (node : tree_sitter :: Node < 'tree >) -> Result < Self , Self :: Error > { match node . kind () { "visibility_modifier" => Ok (unsafe { Self :: VisibilityModifier (< VisibilityModifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "crate" => Ok (unsafe { Self :: Crate (< Crate < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "identifier" => Ok (unsafe { Self :: Identifier (< Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "metavariable" => Ok (unsafe { Self :: Metavariable (< Metavariable < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "scoped_identifier" => Ok (unsafe { Self :: ScopedIdentifier (< ScopedIdentifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "scoped_use_list" => Ok (unsafe { Self :: ScopedUseList (< ScopedUseList < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "self" => Ok (unsafe { Self :: _Self (< _Self < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "super" => Ok (unsafe { Self :: Super (< Super < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "use_as_clause" => Ok (unsafe { Self :: UseAsClause (< UseAsClause < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "use_list" => Ok (unsafe { Self :: UseList (< UseList < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "use_wildcard" => Ok (unsafe { Self :: UseWildcard (< UseWildcard < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , _ => Err (type_sitter_lib :: IncorrectKind { node , kind : < Self as type_sitter_lib :: TypedNode < 'tree >> :: KIND , }) } } }
     #[automatically_derived]
     impl < 'tree > type_sitter_lib :: TypedNode < 'tree > for VisibilityModifier_Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard < 'tree > { const KIND : & 'static str = "{visibility_modifier | crate | identifier | metavariable | scoped_identifier | scoped_use_list | self | super | use_as_clause | use_list | use_wildcard}" ; # [inline] fn node (& self) -> & tree_sitter :: Node < 'tree > { match self { Self :: VisibilityModifier (x) => x . node () , Self :: Crate (x) => x . node () , Self :: Identifier (x) => x . node () , Self :: Metavariable (x) => x . node () , Self :: ScopedIdentifier (x) => x . node () , Self :: ScopedUseList (x) => x . node () , Self :: _Self (x) => x . node () , Self :: Super (x) => x . node () , Self :: UseAsClause (x) => x . node () , Self :: UseList (x) => x . node () , Self :: UseWildcard (x) => x . node () , } } # [inline] fn node_mut (& mut self) -> & mut tree_sitter :: Node < 'tree > { match self { Self :: VisibilityModifier (x) => x . node_mut () , Self :: Crate (x) => x . node_mut () , Self :: Identifier (x) => x . node_mut () , Self :: Metavariable (x) => x . node_mut () , Self :: ScopedIdentifier (x) => x . node_mut () , Self :: ScopedUseList (x) => x . node_mut () , Self :: _Self (x) => x . node_mut () , Self :: Super (x) => x . node_mut () , Self :: UseAsClause (x) => x . node_mut () , Self :: UseList (x) => x . node_mut () , Self :: UseWildcard (x) => x . node_mut () , } } # [inline] fn into_node (self) -> tree_sitter :: Node < 'tree > { match self { Self :: VisibilityModifier (x) => x . into_node () , Self :: Crate (x) => x . into_node () , Self :: Identifier (x) => x . into_node () , Self :: Metavariable (x) => x . into_node () , Self :: ScopedIdentifier (x) => x . into_node () , Self :: ScopedUseList (x) => x . into_node () , Self :: _Self (x) => x . into_node () , Self :: Super (x) => x . into_node () , Self :: UseAsClause (x) => x . into_node () , Self :: UseList (x) => x . into_node () , Self :: UseWildcard (x) => x . into_node () , } } }
-    #[doc = "one of `{crate | identifier | metavariable | scoped_identifier | scoped_use_list | self | super | use_as_clause | use_list | use_wildcard}`"]
+    #[doc = "one of `{crate | identifier | metavariable | scoped_identifier | scoped_use_list | self | super | use_as_clause | use_list | use_wildcard}`:\n- [Crate]\n- [Identifier]\n- [Metavariable]\n- [ScopedIdentifier]\n- [ScopedUseList]\n- [_Self]\n- [Super]\n- [UseAsClause]\n- [UseList]\n- [UseWildcard]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard<
@@ -23247,12 +23247,12 @@ pub mod anon_unions {
         UseWildcard(UseWildcard<'tree>),
     }
     #[automatically_derived]
-    impl < 'tree > Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard < 'tree > { # [doc = "Returns the node if it is of kind `crate`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn crate_ (self) -> Option < Crate < 'tree > > { match self { Self :: Crate (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `identifier`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn identifier (self) -> Option < Identifier < 'tree > > { match self { Self :: Identifier (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `metavariable`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn metavariable (self) -> Option < Metavariable < 'tree > > { match self { Self :: Metavariable (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `scoped_identifier`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn scoped_identifier (self) -> Option < ScopedIdentifier < 'tree > > { match self { Self :: ScopedIdentifier (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `scoped_use_list`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn scoped_use_list (self) -> Option < ScopedUseList < 'tree > > { match self { Self :: ScopedUseList (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `self`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn _self (self) -> Option < _Self < 'tree > > { match self { Self :: _Self (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `super`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn super_ (self) -> Option < Super < 'tree > > { match self { Self :: Super (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `use_as_clause`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn use_as_clause (self) -> Option < UseAsClause < 'tree > > { match self { Self :: UseAsClause (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `use_list`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn use_list (self) -> Option < UseList < 'tree > > { match self { Self :: UseList (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `use_wildcard`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn use_wildcard (self) -> Option < UseWildcard < 'tree > > { match self { Self :: UseWildcard (x) => Some (x) , _ => None , } } }
+    impl < 'tree > Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard < 'tree > { # [doc = "Returns the node if it is of kind `crate` ([Crate]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn crate_ (self) -> Option < Crate < 'tree > > { match self { Self :: Crate (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `identifier` ([Identifier]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn identifier (self) -> Option < Identifier < 'tree > > { match self { Self :: Identifier (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `metavariable` ([Metavariable]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn metavariable (self) -> Option < Metavariable < 'tree > > { match self { Self :: Metavariable (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `scoped_identifier` ([ScopedIdentifier]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn scoped_identifier (self) -> Option < ScopedIdentifier < 'tree > > { match self { Self :: ScopedIdentifier (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `scoped_use_list` ([ScopedUseList]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn scoped_use_list (self) -> Option < ScopedUseList < 'tree > > { match self { Self :: ScopedUseList (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `self` ([_Self]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn _self (self) -> Option < _Self < 'tree > > { match self { Self :: _Self (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `super` ([Super]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn super_ (self) -> Option < Super < 'tree > > { match self { Self :: Super (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `use_as_clause` ([UseAsClause]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn use_as_clause (self) -> Option < UseAsClause < 'tree > > { match self { Self :: UseAsClause (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `use_list` ([UseList]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn use_list (self) -> Option < UseList < 'tree > > { match self { Self :: UseList (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `use_wildcard` ([UseWildcard]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn use_wildcard (self) -> Option < UseWildcard < 'tree > > { match self { Self :: UseWildcard (x) => Some (x) , _ => None , } } }
     #[automatically_derived]
     impl < 'tree > TryFrom < tree_sitter :: Node < 'tree >> for Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard < 'tree > { type Error = type_sitter_lib :: IncorrectKind < 'tree > ; # [inline] fn try_from (node : tree_sitter :: Node < 'tree >) -> Result < Self , Self :: Error > { match node . kind () { "crate" => Ok (unsafe { Self :: Crate (< Crate < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "identifier" => Ok (unsafe { Self :: Identifier (< Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "metavariable" => Ok (unsafe { Self :: Metavariable (< Metavariable < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "scoped_identifier" => Ok (unsafe { Self :: ScopedIdentifier (< ScopedIdentifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "scoped_use_list" => Ok (unsafe { Self :: ScopedUseList (< ScopedUseList < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "self" => Ok (unsafe { Self :: _Self (< _Self < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "super" => Ok (unsafe { Self :: Super (< Super < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "use_as_clause" => Ok (unsafe { Self :: UseAsClause (< UseAsClause < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "use_list" => Ok (unsafe { Self :: UseList (< UseList < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "use_wildcard" => Ok (unsafe { Self :: UseWildcard (< UseWildcard < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , _ => Err (type_sitter_lib :: IncorrectKind { node , kind : < Self as type_sitter_lib :: TypedNode < 'tree >> :: KIND , }) } } }
     #[automatically_derived]
     impl < 'tree > type_sitter_lib :: TypedNode < 'tree > for Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard < 'tree > { const KIND : & 'static str = "{crate | identifier | metavariable | scoped_identifier | scoped_use_list | self | super | use_as_clause | use_list | use_wildcard}" ; # [inline] fn node (& self) -> & tree_sitter :: Node < 'tree > { match self { Self :: Crate (x) => x . node () , Self :: Identifier (x) => x . node () , Self :: Metavariable (x) => x . node () , Self :: ScopedIdentifier (x) => x . node () , Self :: ScopedUseList (x) => x . node () , Self :: _Self (x) => x . node () , Self :: Super (x) => x . node () , Self :: UseAsClause (x) => x . node () , Self :: UseList (x) => x . node () , Self :: UseWildcard (x) => x . node () , } } # [inline] fn node_mut (& mut self) -> & mut tree_sitter :: Node < 'tree > { match self { Self :: Crate (x) => x . node_mut () , Self :: Identifier (x) => x . node_mut () , Self :: Metavariable (x) => x . node_mut () , Self :: ScopedIdentifier (x) => x . node_mut () , Self :: ScopedUseList (x) => x . node_mut () , Self :: _Self (x) => x . node_mut () , Self :: Super (x) => x . node_mut () , Self :: UseAsClause (x) => x . node_mut () , Self :: UseList (x) => x . node_mut () , Self :: UseWildcard (x) => x . node_mut () , } } # [inline] fn into_node (self) -> tree_sitter :: Node < 'tree > { match self { Self :: Crate (x) => x . into_node () , Self :: Identifier (x) => x . into_node () , Self :: Metavariable (x) => x . into_node () , Self :: ScopedIdentifier (x) => x . into_node () , Self :: ScopedUseList (x) => x . into_node () , Self :: _Self (x) => x . into_node () , Self :: Super (x) => x . into_node () , Self :: UseAsClause (x) => x . into_node () , Self :: UseList (x) => x . into_node () , Self :: UseWildcard (x) => x . into_node () , } } }
-    #[doc = "one of `{array_type | generic_type | higher_ranked_trait_bound | lifetime | pointer_type | primitive_type | reference_type | scoped_type_identifier | tuple_type | type_identifier}`"]
+    #[doc = "one of `{array_type | generic_type | higher_ranked_trait_bound | lifetime | pointer_type | primitive_type | reference_type | scoped_type_identifier | tuple_type | type_identifier}`:\n- [ArrayType]\n- [GenericType]\n- [HigherRankedTraitBound]\n- [Lifetime]\n- [PointerType]\n- [PrimitiveType]\n- [ReferenceType]\n- [ScopedTypeIdentifier]\n- [TupleType]\n- [TypeIdentifier]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum ArrayType_GenericType_HigherRankedTraitBound_Lifetime_PointerType_PrimitiveType_ReferenceType_ScopedTypeIdentifier_TupleType_TypeIdentifier<
@@ -23270,12 +23270,12 @@ pub mod anon_unions {
         TypeIdentifier(TypeIdentifier<'tree>),
     }
     #[automatically_derived]
-    impl < 'tree > ArrayType_GenericType_HigherRankedTraitBound_Lifetime_PointerType_PrimitiveType_ReferenceType_ScopedTypeIdentifier_TupleType_TypeIdentifier < 'tree > { # [doc = "Returns the node if it is of kind `array_type`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn array_type (self) -> Option < ArrayType < 'tree > > { match self { Self :: ArrayType (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `generic_type`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn generic_type (self) -> Option < GenericType < 'tree > > { match self { Self :: GenericType (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `higher_ranked_trait_bound`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn higher_ranked_trait_bound (self) -> Option < HigherRankedTraitBound < 'tree > > { match self { Self :: HigherRankedTraitBound (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `lifetime`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn lifetime (self) -> Option < Lifetime < 'tree > > { match self { Self :: Lifetime (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `pointer_type`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn pointer_type (self) -> Option < PointerType < 'tree > > { match self { Self :: PointerType (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `primitive_type`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn primitive_type (self) -> Option < PrimitiveType < 'tree > > { match self { Self :: PrimitiveType (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `reference_type`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn reference_type (self) -> Option < ReferenceType < 'tree > > { match self { Self :: ReferenceType (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `scoped_type_identifier`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn scoped_type_identifier (self) -> Option < ScopedTypeIdentifier < 'tree > > { match self { Self :: ScopedTypeIdentifier (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `tuple_type`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn tuple_type (self) -> Option < TupleType < 'tree > > { match self { Self :: TupleType (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `type_identifier`, otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn type_identifier (self) -> Option < TypeIdentifier < 'tree > > { match self { Self :: TypeIdentifier (x) => Some (x) , _ => None , } } }
+    impl < 'tree > ArrayType_GenericType_HigherRankedTraitBound_Lifetime_PointerType_PrimitiveType_ReferenceType_ScopedTypeIdentifier_TupleType_TypeIdentifier < 'tree > { # [doc = "Returns the node if it is of kind `array_type` ([ArrayType]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn array_type (self) -> Option < ArrayType < 'tree > > { match self { Self :: ArrayType (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `generic_type` ([GenericType]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn generic_type (self) -> Option < GenericType < 'tree > > { match self { Self :: GenericType (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `higher_ranked_trait_bound` ([HigherRankedTraitBound]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn higher_ranked_trait_bound (self) -> Option < HigherRankedTraitBound < 'tree > > { match self { Self :: HigherRankedTraitBound (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `lifetime` ([Lifetime]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn lifetime (self) -> Option < Lifetime < 'tree > > { match self { Self :: Lifetime (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `pointer_type` ([PointerType]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn pointer_type (self) -> Option < PointerType < 'tree > > { match self { Self :: PointerType (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `primitive_type` ([PrimitiveType]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn primitive_type (self) -> Option < PrimitiveType < 'tree > > { match self { Self :: PrimitiveType (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `reference_type` ([ReferenceType]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn reference_type (self) -> Option < ReferenceType < 'tree > > { match self { Self :: ReferenceType (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `scoped_type_identifier` ([ScopedTypeIdentifier]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn scoped_type_identifier (self) -> Option < ScopedTypeIdentifier < 'tree > > { match self { Self :: ScopedTypeIdentifier (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `tuple_type` ([TupleType]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn tuple_type (self) -> Option < TupleType < 'tree > > { match self { Self :: TupleType (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `type_identifier` ([TypeIdentifier]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn type_identifier (self) -> Option < TypeIdentifier < 'tree > > { match self { Self :: TypeIdentifier (x) => Some (x) , _ => None , } } }
     #[automatically_derived]
     impl < 'tree > TryFrom < tree_sitter :: Node < 'tree >> for ArrayType_GenericType_HigherRankedTraitBound_Lifetime_PointerType_PrimitiveType_ReferenceType_ScopedTypeIdentifier_TupleType_TypeIdentifier < 'tree > { type Error = type_sitter_lib :: IncorrectKind < 'tree > ; # [inline] fn try_from (node : tree_sitter :: Node < 'tree >) -> Result < Self , Self :: Error > { match node . kind () { "array_type" => Ok (unsafe { Self :: ArrayType (< ArrayType < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "generic_type" => Ok (unsafe { Self :: GenericType (< GenericType < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "higher_ranked_trait_bound" => Ok (unsafe { Self :: HigherRankedTraitBound (< HigherRankedTraitBound < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "lifetime" => Ok (unsafe { Self :: Lifetime (< Lifetime < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "pointer_type" => Ok (unsafe { Self :: PointerType (< PointerType < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "primitive_type" => Ok (unsafe { Self :: PrimitiveType (< PrimitiveType < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "reference_type" => Ok (unsafe { Self :: ReferenceType (< ReferenceType < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "scoped_type_identifier" => Ok (unsafe { Self :: ScopedTypeIdentifier (< ScopedTypeIdentifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "tuple_type" => Ok (unsafe { Self :: TupleType (< TupleType < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "type_identifier" => Ok (unsafe { Self :: TypeIdentifier (< TypeIdentifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , _ => Err (type_sitter_lib :: IncorrectKind { node , kind : < Self as type_sitter_lib :: TypedNode < 'tree >> :: KIND , }) } } }
     #[automatically_derived]
     impl < 'tree > type_sitter_lib :: TypedNode < 'tree > for ArrayType_GenericType_HigherRankedTraitBound_Lifetime_PointerType_PrimitiveType_ReferenceType_ScopedTypeIdentifier_TupleType_TypeIdentifier < 'tree > { const KIND : & 'static str = "{array_type | generic_type | higher_ranked_trait_bound | lifetime | pointer_type | primitive_type | reference_type | scoped_type_identifier | tuple_type | type_identifier}" ; # [inline] fn node (& self) -> & tree_sitter :: Node < 'tree > { match self { Self :: ArrayType (x) => x . node () , Self :: GenericType (x) => x . node () , Self :: HigherRankedTraitBound (x) => x . node () , Self :: Lifetime (x) => x . node () , Self :: PointerType (x) => x . node () , Self :: PrimitiveType (x) => x . node () , Self :: ReferenceType (x) => x . node () , Self :: ScopedTypeIdentifier (x) => x . node () , Self :: TupleType (x) => x . node () , Self :: TypeIdentifier (x) => x . node () , } } # [inline] fn node_mut (& mut self) -> & mut tree_sitter :: Node < 'tree > { match self { Self :: ArrayType (x) => x . node_mut () , Self :: GenericType (x) => x . node_mut () , Self :: HigherRankedTraitBound (x) => x . node_mut () , Self :: Lifetime (x) => x . node_mut () , Self :: PointerType (x) => x . node_mut () , Self :: PrimitiveType (x) => x . node_mut () , Self :: ReferenceType (x) => x . node_mut () , Self :: ScopedTypeIdentifier (x) => x . node_mut () , Self :: TupleType (x) => x . node_mut () , Self :: TypeIdentifier (x) => x . node_mut () , } } # [inline] fn into_node (self) -> tree_sitter :: Node < 'tree > { match self { Self :: ArrayType (x) => x . into_node () , Self :: GenericType (x) => x . into_node () , Self :: HigherRankedTraitBound (x) => x . into_node () , Self :: Lifetime (x) => x . into_node () , Self :: PointerType (x) => x . into_node () , Self :: PrimitiveType (x) => x . into_node () , Self :: ReferenceType (x) => x . into_node () , Self :: ScopedTypeIdentifier (x) => x . into_node () , Self :: TupleType (x) => x . into_node () , Self :: TypeIdentifier (x) => x . into_node () , } } }
-    #[doc = "one of `{loop_label | block | _expression | let_chain | let_condition}`"]
+    #[doc = "one of `{loop_label | block | _expression | let_chain | let_condition}`:\n- [LoopLabel]\n- [Block]\n- [Expression]\n- [LetChain]\n- [LetCondition]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum LoopLabel_Block_Expression_LetChain_LetCondition<'tree> {
@@ -23287,7 +23287,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> LoopLabel_Block_Expression_LetChain_LetCondition<'tree> {
-        #[doc = "Returns the node if it is of kind `loop_label`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `loop_label` ([LoopLabel]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn loop_label(self) -> Option<LoopLabel<'tree>> {
@@ -23296,7 +23296,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `block`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `block` ([Block]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn block(self) -> Option<Block<'tree>> {
@@ -23305,7 +23305,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `_expression`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `_expression` ([Expression]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn expression(self) -> Option<Expression<'tree>> {
@@ -23314,7 +23314,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `let_chain`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `let_chain` ([LetChain]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn let_chain(self) -> Option<LetChain<'tree>> {
@@ -23323,7 +23323,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `let_condition`, otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `let_condition` ([LetCondition]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn let_condition(self) -> Option<LetCondition<'tree>> {
