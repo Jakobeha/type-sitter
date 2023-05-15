@@ -6,6 +6,7 @@ use tree_sitter::Node;
 use crate::{IncorrectKind, TypedNode};
 
 /// May be a comment or other "extra" instead of the positionally-expected node kind
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub enum ExtraOr<'tree, T> {
     /// A comment or other "extra"
     Extra(Node<'tree>),
@@ -122,6 +123,14 @@ impl<'tree, T: TypedNode<'tree>> TypedNode<'tree> for ExtraOr<'tree, T> {
         match self {
             ExtraOr::Extra(node) => node,
             ExtraOr::Regular(value) => value.node_mut()
+        }
+    }
+
+    #[inline]
+    fn into_node(self) -> Node<'tree> {
+        match self {
+            ExtraOr::Extra(node) => node,
+            ExtraOr::Regular(value) => value.into_node()
         }
     }
 

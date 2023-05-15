@@ -85,7 +85,7 @@ impl<'tree> SExp<'tree> {
             SExp::Atom { atom, .. } => atom.node_type(is_head),
             SExp::Group { group_type, items, .. } => match group_type {
                 GroupType::Paren => match items.get(0) {
-                    None => panic!("empty paren group is not in a valid tree-sitter query"),
+                    None => panic!("empty paren group isn't allowed in a tree-sitter query"),
                     Some(item) => item.node_type(true)
                 },
                 GroupType::Bracket => items.iter().map(|item| item.node_type(is_head)).collect()
@@ -98,13 +98,13 @@ impl<'tree> Atom<'tree> {
     pub(super) fn node_type(&self, is_head: bool) -> SExpNodeType {
         match self {
             Atom::Wildcard => SExpNodeType::Untyped { is_named: is_head },
-            Atom::Anchor => panic!("capturing an anchor is not in a valid tree-sitter query"),
-            Atom::Field { .. } => panic!("capturing a field is not in a valid tree-sitter query"),
+            Atom::Anchor => panic!("anchor doesn't have a node type (note: capturing an anchor isn't allowed in a tree-sitter query)"),
+            Atom::Field { .. } => panic!("field doesn't have a node type (note: capturing a field isn't allowed in a tree-sitter query)"),
             Atom::Ident { name } => SExpNodeType::from(NodeName::new(name.to_string(), true)),
             Atom::String { content } => SExpNodeType::from(NodeName::new(content.to_string(), false)),
             Atom::Negation { .. } => SExpNodeType::Untyped { is_named: true },
-            Atom::Capture { name } => panic!("capturing a capture is not in a valid tree-sitter query (captured capture name = {})", name),
-            Atom::Predicate { name } => panic!("capturing a predicate is not in a valid tree-sitter query (captured predicate name = {})", name)
+            Atom::Capture { name } => panic!("capture doesn't have a node type (note: capturing a capture isn't allowed in a tree-sitter query; capture name = {})", name),
+            Atom::Predicate { name } => panic!("predicate doesn't have a node type (internal error, a capture after a predicate should never make us try to check the predicate's type; predicate name = {})", name)
         }
     }
 }

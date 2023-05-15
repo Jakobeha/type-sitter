@@ -87,6 +87,7 @@ pub struct QueryCaptures<'query, 'tree> {
 #[derive(Debug, Clone, Copy)]
 pub struct QueryCapture<'query, 'tree> {
     pub node: Node<'tree>,
+    pub index: usize,
     pub name: &'query str,
 }
 
@@ -987,16 +988,35 @@ impl QueryCursor {
         self.query_cursor.set_byte_range(range);
     }
 
-    /// Set the range in which to search for matches, in terms of points.
+    /// Set the range in which to search for matches, in terms of rows and columns.
     #[inline]
-    pub fn set_point_range(&mut self, range: std::ops::Range<Point>) {
-        // SAFETY: Same repr
-        self.query_cursor.set_point_range(unsafe { std::mem::transmute(range) });
+    pub fn set_point_range(&mut self, range: Range) {
+        self.query_cursor.set_point_range(range.start_point().0..range.end_point().0);
     }
 }
 
-impl<'query, 'tree: 'query> Iterator for QueryMatches<'query, 'tree> {
-    type Item = QueryMatch<'query, 'tree>;
+impl<'cursor, 'tree: 'cursor> QueryMatches<'cursor, 'tree> {
+    /// Get the underlying [tree_sitter::QueryMatches]
+    #[inline]
+    pub fn as_inner(&self) -> &tree_sitter::QueryMatches<'cursor, 'tree, &'cursor Tree> {
+        &self.query_matches
+    }
+
+    /// Get the underlying [tree_sitter::QueryMatches]
+    #[inline]
+    pub fn as_inner_mut(&mut self) -> &mut tree_sitter::QueryMatches<'cursor, 'tree, &'cursor Tree> {
+        &mut self.query_matches
+    }
+
+    /// Destruct into the underlying [tree_sitter::QueryMatches], query, and tree
+    #[inline]
+    pub fn into_inner(self) -> (tree_sitter::QueryMatches<'cursor, 'tree, &'cursor Tree>, &'cursor Query, &'tree Tree) {
+        (self.query_matches, self.query, self.tree)
+    }
+}
+
+impl<'cursor, 'tree: 'cursor> Iterator for QueryMatches<'cursor, 'tree> {
+    type Item = QueryMatch<'cursor, 'tree>;
 
     #[inline]
     fn next(&mut self) -> Option<Self::Item> {
@@ -1008,8 +1028,28 @@ impl<'query, 'tree: 'query> Iterator for QueryMatches<'query, 'tree> {
     }
 }
 
-impl<'query, 'tree: 'query> Iterator for QueryCaptures<'query, 'tree> {
-    type Item = QueryCapture<'query, 'tree>;
+impl<'cursor, 'tree: 'cursor> QueryCaptures<'cursor, 'tree> {
+    /// Get the underlying [tree_sitter::QueryCaptures]
+    #[inline]
+    pub fn as_inner(&self) -> &tree_sitter::QueryCaptures<'cursor, 'tree, &'cursor Tree> {
+        &self.query_captures
+    }
+
+    /// Get the underlying [tree_sitter::QueryCaptures]
+    #[inline]
+    pub fn as_inner_mut(&mut self) -> &mut tree_sitter::QueryCaptures<'cursor, 'tree, &'cursor Tree> {
+        &mut self.query_captures
+    }
+
+    /// Destruct into the underlying [tree_sitter::QueryCaptures], query, and tree
+    #[inline]
+    pub fn into_inner(self) -> (tree_sitter::QueryCaptures<'cursor, 'tree, &'cursor Tree>, &'cursor Query, &'tree Tree) {
+        (self.query_captures, self.query, self.tree)
+    }
+}
+
+impl<'cursor, 'tree: 'cursor> Iterator for QueryCaptures<'cursor, 'tree> {
+    type Item = QueryCapture<'cursor, 'tree>;
 
     #[inline]
     fn next(&mut self) -> Option<Self::Item> {
@@ -1087,6 +1127,7 @@ impl<'query, 'tree> QueryCapture<'query, 'tree> {
         unsafe {
             Self {
                 node: Node::new(query_capture.node, tree),
+                index: query_capture.index as usize,
                 name: &query.capture_names()[query_capture.index as usize]
             }
         }

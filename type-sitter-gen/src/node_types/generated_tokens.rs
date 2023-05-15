@@ -1,6 +1,7 @@
-use indexmap::IndexMap;
+use std::fmt::{Display, Formatter};
 use proc_macro2::TokenStream;
-use crate::node_types::types::{AnonUnionId, NodeModule};
+use crate::anon_unions::AnonUnions;
+use crate::node_types::types::NodeModule;
 
 /// Generated AST tokens from calling [NodeType::print] on a single instance or each element of a
 /// collection.
@@ -8,7 +9,7 @@ use crate::node_types::types::{AnonUnionId, NodeModule};
 /// We can't just collect the output of [NodeType::print] into a [TokenStream] because some
 /// declarations go in specific submodules (`unnamed`, `symbols`, `anon_unions`), and also we don't want
 /// duplicate definitions of the anonymous unions.
-#[derive(Default)]
+#[derive(Debug, Default, Clone)]
 pub struct GeneratedNodeTokens {
     /// Toplevel declaration tokens
     pub toplevel: TokenStream,
@@ -20,8 +21,6 @@ pub struct GeneratedNodeTokens {
     pub anon_unions: AnonUnions,
 }
 
-pub type AnonUnions = IndexMap<AnonUnionId, TokenStream>;
-
 impl GeneratedNodeTokens {
     /// Empty instance
     pub fn new() -> Self {
@@ -29,22 +28,28 @@ impl GeneratedNodeTokens {
     }
 
     /// Append the tokens to the given module
-    pub fn extend(&mut self, module: NodeModule, tokens: TokenStream) {
+    pub fn append_tokens(&mut self, module: NodeModule, tokens: TokenStream) {
         match module {
             NodeModule::Toplevel => self.toplevel.extend(tokens),
             NodeModule::Unnamed => self.unnamed.extend(tokens),
             NodeModule::Symbols => self.symbols.extend(tokens),
         }
     }
+
+    /// Append the other's tokens into this
+    pub fn append(&mut self, other: GeneratedNodeTokens) {
+        self.toplevel.extend(other.toplevel);
+        self.unnamed.extend(other.unnamed);
+        self.symbols.extend(other.symbols);
+        self.anon_unions.extend(other.anon_unions);
+    }
+
 }
 
 impl Extend<GeneratedNodeTokens> for GeneratedNodeTokens {
     fn extend<T: IntoIterator<Item = GeneratedNodeTokens>>(&mut self, iter: T) {
         for x in iter {
-            self.toplevel.extend(x.toplevel);
-            self.unnamed.extend(x.unnamed);
-            self.symbols.extend(x.symbols);
-            self.anon_unions.extend(x.anon_unions);
+            self.append(x)
         }
     }
 }
@@ -54,5 +59,11 @@ impl FromIterator<GeneratedNodeTokens> for GeneratedNodeTokens {
         let mut this = Self::new();
         Extend::<GeneratedNodeTokens>::extend(&mut this, iter);
         this
+    }
+}
+
+impl Display for GeneratedNodeTokens {
+    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
+        write!(f, "{}", self.clone().collapse())
     }
 }

@@ -1,5 +1,6 @@
+use std::borrow::Cow;
 use std::fmt::{Display, Formatter};
-use std::iter::zip;
+use std::iter::{empty, zip};
 use std::ops::Index;
 use logos::Logos;
 
@@ -22,7 +23,7 @@ pub enum GroupType {
 }
 
 /// S-expression which is not a group
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq)]
 pub enum Atom<'a> {
     /// `_`
     Wildcard,
@@ -33,7 +34,7 @@ pub enum Atom<'a> {
     /// `foo_bar`
     Ident { name: &'a str },
     /// `"foo bar"`
-    String { content: &'a str },
+    String { content: Cow<'a, str> },
     /// `!foo_bar`
     Negation { name: &'a str },
     /// `@foo_bar`
@@ -73,8 +74,8 @@ enum Token<'a> {
     Field(&'a str),
     #[regex(r#"[a-zA-Z_][a-zA-Z0-9_\-+\.!?@#$%^&*|'/<>]*"#, Lexer::slice)]
     Ident(&'a str),
-    #[regex(r#""([^"\\]|\\.)*""#, Lexer::slice)]
-    String(&'a str),
+    #[regex(r#""([^"\\]|\\.)*""#, unquote_simple)]
+    String(Cow<'a, str>),
     #[regex(r#"![a-zA-Z_][a-zA-Z0-9_\-+\.!?@#$%^&*|'/<>]*"#, lex_tail)]
     Negation(&'a str),
     #[regex(r#"@[a-zA-Z0-9_\-+\.!?@#$%^&*|'/<>]*"#, lex_tail)]
@@ -101,18 +102,21 @@ pub struct Span {
 }
 
 impl<'a> SExpSeq<'a> {
-    pub fn captured_pattern(&self, name: &'a str) -> Option<SExp<'a>> {
-        self.toplevel_captured_pattern(name).or_else(|| {
-            self.iter().find_map(|sexp| match sexp {
-                SExp::Atom { .. } => None,
-                SExp::Group { items, .. } => items.captured_pattern(name)
+    pub fn captured_patterns(&self, name: &'a str) -> impl Iterator<Item=SExp<'a>> + '_ {
+        self.toplevel_captured_patterns(name).chain(
+            self.iter().flat_map(|sexp| match sexp {
+                SExp::Atom { .. } => Box::new(empty()) as Box<dyn Iterator<Item=SExp<'a>> + '_>,
+                SExp::Group { items, .. } => Box::new(items.captured_patterns(name)) as Box<dyn Iterator<Item=SExp<'a>> + '_>
             })
-        })
+        )
     }
 
-    fn toplevel_captured_pattern(&self, name: &'a str) -> Option<SExp<'a>> {
+    fn toplevel_captured_patterns(&self, name: &'a str) -> impl Iterator<Item=SExp<'a>> + '_ {
         zip(self, self.iter().skip(1))
-            .find(|(_, capture)| capture.is_capture(name))
+            .filter(|(captured, capture)| {
+                !matches!(captured, SExp::Atom { atom: Atom::Predicate { .. }, .. }) &&
+                    capture.is_capture(name)
+            })
             .map(|(pattern, _)| pattern.clone())
     }
 }
@@ -122,6 +126,19 @@ impl<'a> TryFrom<&'a str> for SExpSeq<'a> {
 
     fn try_from(source: &'a str) -> Result<Self, Self::Error> {
         Parser::new(source).collect()
+    }
+}
+
+impl<'a> Display for SExpSeq<'a> {
+    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
+        let mut sexps = self.iter();
+        if let Some(sexp) = sexps.next() {
+            write!(f, "{}", sexp)?;
+        }
+        for sexp in sexps {
+            write!(f, " {}", sexp)?;
+        }
+        Ok(())
     }
 }
 
@@ -155,6 +172,33 @@ impl<'a> SExp<'a> {
     }
 }
 
+impl<'a> Display for SExp<'a> {
+    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
+        match self {
+            Self::Atom { atom, .. } => write!(f, "{}", atom),
+            Self::Group { items, group_type, .. } => {
+                write!(f, "{}{}{}", group_type.start_char(), items, group_type.end_char())
+            }
+        }
+    }
+}
+
+impl GroupType {
+    pub fn start_char(&self) -> char {
+        match self {
+            Self::Paren => '(',
+            Self::Bracket => '['
+        }
+    }
+
+    pub fn end_char(&self) -> char {
+        match self {
+            Self::Paren => ')',
+            Self::Bracket => ']'
+        }
+    }
+}
+
 impl Display for GroupType {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
         match self {
@@ -178,6 +222,21 @@ impl<'a> TryFrom<Token<'a>> for Atom<'a> {
             Token::Capture(name) => Ok(Self::Capture { name }),
             Token::Predicate(name) => Ok(Self::Predicate { name }),
             token => Err(token)
+        }
+    }
+}
+
+impl<'a> Display for Atom<'a> {
+    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
+        match self {
+            Atom::Wildcard => write!(f, "_"),
+            Atom::Anchor => write!(f, "^"),
+            Atom::Field { name } => write!(f, "{}:", name),
+            Atom::Ident { name } => write!(f, "{}", name),
+            Atom::String { content } => write!(f, "{:?}", content),
+            Atom::Negation { name } => write!(f, "!{}", name),
+            Atom::Capture { name } => write!(f, "@{}", name),
+            Atom::Predicate { name } => write!(f, "#{}", name)
         }
     }
 }
@@ -299,6 +358,24 @@ fn lex_tail<'a>(lex: &mut Lexer<'a>) -> &'a str {
     &lex.slice()[1..]
 }
 
+/// Unquotes a string where only single-character escape codes are allowed
+fn unquote_simple<'a>(lex: &mut Lexer<'a>) -> Cow<'a, str> {
+    let slice = &lex.slice()[1..lex.slice().len() - 1];
+    if slice.contains("\\") {
+        Cow::Owned(slice
+            .replace("\\\"", "\"")
+            .replace("\\\\", "\\")
+            .replace("\\n", "\n")
+            .replace("\\r", "\r")
+            .replace("\\t", "\t")
+            .replace("\\0", "\0")
+            .replace("\\'", "'"))
+
+    } else {
+        Cow::Borrowed(slice)
+    }
+}
+
 // region SExpSeq Vec delegate
 impl<'a> SExpSeq<'a> {
     pub fn new() -> Self {
@@ -328,11 +405,12 @@ impl<'a> FromIterator<SExp<'a>> for SExpSeq<'a> {
     }
 }
 
-impl<'a, 'b> Iterator for &'b SExpSeq<'a> {
+impl<'a, 'b> IntoIterator for &'b SExpSeq<'a> {
     type Item = &'b SExp<'a>;
+    type IntoIter = std::slice::Iter<'b, SExp<'a>>;
 
-    fn next(&mut self) -> Option<Self::Item> {
-        self.0.iter().next()
+    fn into_iter(self) -> Self::IntoIter {
+        self.0.iter()
     }
 }
 

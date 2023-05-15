@@ -2,16 +2,15 @@
 mod deserialize_json_array_as_stream;
 pub(crate) mod types;
 pub(crate) mod print;
-pub(crate) mod generated_tokens;
+mod generated_tokens;
 
 use std::fs::File;
 use std::io::BufReader;
 use std::path::Path;
-use proc_macro2::TokenStream;
 use crate::Error;
 use crate::node_types::deserialize_json_array_as_stream::iter_json_array;
-use crate::node_types::generated_tokens::GeneratedNodeTokens;
 use crate::node_types::types::NodeType;
+pub use generated_tokens::GeneratedNodeTokens;
 
 /// Generate source code (tokens) for typed AST node wrappers.
 ///
@@ -31,11 +30,10 @@ use crate::node_types::types::NodeType;
 ///     println!("{}", generate_nodes("../vendor/tree-sitter-rust/src/node-types.json", &tree_sitter()).unwrap());
 /// }
 /// ```
-pub fn generate_nodes(path: impl AsRef<Path>, tree_sitter: &syn::Path) -> Result<TokenStream, Error> {
+pub fn generate_nodes(path: impl AsRef<Path>, tree_sitter: &syn::Path) -> Result<GeneratedNodeTokens, Error> {
     let path = path.as_ref();
     let node_types = iter_json_array::<NodeType, _>(BufReader::new(File::open(path)?));
     node_types
         .map(|node_type| node_type.map(|x| x.print(tree_sitter)).map_err(Error::from))
         .collect::<Result<GeneratedNodeTokens, _>>()
-        .map(GeneratedNodeTokens::collapse)
 }

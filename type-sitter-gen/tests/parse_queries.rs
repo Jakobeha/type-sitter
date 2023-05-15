@@ -32,7 +32,7 @@ pub fn test_parse_queries(lang: &str) {
         &super_nodes(),
         true,
         &type_sitter_lib_wrapper()
-    ).expect("Failed to generate queries");
+    ).expect("Failed to generate queries").collapse(&super_nodes());
 
     if !expected_queries_path.exists() {
         write(&expected_queries_path, pretty_print(&queries_code))

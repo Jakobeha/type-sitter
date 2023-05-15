@@ -1,3 +1,5 @@
+use std::fmt::Debug;
+use std::hash::Hash;
 #[cfg(feature = "tree-sitter-wrapper")]
 use crate::tree_sitter_wrapper::{Bitmask, InputEdit, Node, Point, Range, TreeCursor};
 #[cfg(not(feature = "tree-sitter-wrapper"))]
@@ -20,7 +22,7 @@ mod unwrap_and_flatten_multi;
 mod untyped_nodes;
 
 /// Typed node wrapper
-pub trait TypedNode<'tree>: TryFrom<Node<'tree>, Error=IncorrectKind<'tree>> {
+pub trait TypedNode<'tree>: TryFrom<Node<'tree>, Error=IncorrectKind<'tree>> + Debug + Clone + Copy + PartialEq + Eq + Hash {
     /// Kind of nodes this wraps. Note that it can wrap sub-kinds, so an instance's node's kind may
     /// not be this exact value
     const KIND: &'static str;
@@ -28,7 +30,9 @@ pub trait TypedNode<'tree>: TryFrom<Node<'tree>, Error=IncorrectKind<'tree>> {
     fn node(&self) -> &Node<'tree>;
     /// The wrapped node (mutable reference, rarely needed)
     fn node_mut(&mut self) -> &mut Node<'tree>;
-    /// Assume that the node is the correct type and wrap. UB if the node is incorrect type
+    /// Destruct into the wrapped node
+    fn into_node(self) -> Node<'tree>;
+    /// Assume that the node is the correct type and wrap. UB if the node is an incorrect type
     #[inline]
     unsafe fn from_node_unchecked(node: Node<'tree>) -> Self {
         Self::try_from(node).expect("from_node_unchecked failed")

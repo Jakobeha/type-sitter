@@ -5,9 +5,11 @@ use tree_sitter::Node;
 use crate::{IncorrectKind, TypedNode};
 
 /// Untyped "typed" named or anonymous node (implements [TypedNode] but don't actually have a type)
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub struct UntypedNode<'tree>(Node<'tree>);
 
 /// Untyped "typed" named node (implements [TypedNode] but don't actually have a type, except that it's named)
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub struct UntypedNamedNode<'tree>(Node<'tree>);
 
 impl<'tree> UntypedNode<'tree> {
@@ -37,6 +39,11 @@ impl<'tree> TypedNode<'tree> for UntypedNode<'tree> {
     #[inline]
     fn node_mut(&mut self) -> &mut Node<'tree> {
         &mut self.0
+    }
+
+    #[inline]
+    fn into_node(self) -> Node<'tree> {
+        self.0
     }
 
     #[inline]
@@ -72,6 +79,11 @@ impl<'tree> TypedNode<'tree> for UntypedNamedNode<'tree> {
     #[inline]
     fn node_mut(&mut self) -> &mut Node<'tree> {
         &mut self.0
+    }
+
+    #[inline]
+    fn into_node(self) -> Node<'tree> {
+        self.0
     }
 
     #[inline]

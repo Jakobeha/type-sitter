@@ -5,10 +5,11 @@ use join_lazy_fmt::Join;
 use proc_macro2::TokenStream;
 use quote::quote;
 use syn::{Ident, LitStr, Path};
-use crate::mk_syntax::{concat_doc, ident, lit_str};
+use crate::anon_unions::{AnonUnionId, AnonUnions};
+use crate::mk_syntax::{concat_doc, ident, lit_str, modularize};
 use crate::names::NodeName;
-use crate::node_types::generated_tokens::{AnonUnions, GeneratedNodeTokens};
-use crate::node_types::types::{AnonUnionId, Children, NodeModule, NodeType, NodeTypeKind};
+use crate::node_types::generated_tokens::GeneratedNodeTokens;
+use crate::node_types::types::{Children, NodeModule, NodeType, NodeTypeKind};
 
 impl NodeType {
     pub fn print(&self, tree_sitter: &Path) -> GeneratedNodeTokens {
@@ -50,7 +51,7 @@ impl NodeType {
             }
         };
 
-        tokens.extend(*module, definition);
+        tokens.append_tokens(*module, definition);
         tokens
     }
 }
@@ -231,6 +232,11 @@ impl NodeName {
                 }
 
                 #[inline]
+                fn into_node(self) -> #tree_sitter::Node<'tree> {
+                    self.0
+                }
+
+                #[inline]
                 unsafe fn from_node_unchecked(node: #tree_sitter::Node<'tree>) -> Self {
                     Self(node)
                 }
@@ -273,6 +279,7 @@ impl NodeName {
         };
         let node_cases = subtypes.iter().map(NodeName::print_node_case);
         let node_mut_cases = subtypes.iter().map(NodeName::print_node_mut_case);
+        let into_node_cases = subtypes.iter().map(NodeName::print_into_node_case);
         quote! {
             #[doc = #doc]
             #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -311,6 +318,13 @@ impl NodeName {
                 fn node_mut(&mut self) -> &mut #tree_sitter::Node<'tree> {
                     match self {
                         #(#node_mut_cases)*
+                    }
+                }
+
+                #[inline]
+                fn into_node(self) -> #tree_sitter::Node<'tree> {
+                    match self {
+                        #(#into_node_cases)*
                     }
                 }
             }
@@ -378,7 +392,7 @@ impl NodeName {
                     );
                     anon_unions.insert(anon_union_id, definition);
                 }
-                quote! { anon_unions::#anon_union_name }
+                quote! { anon_unions::#anon_union_name<'tree> }
             }
         }
     }
@@ -451,6 +465,13 @@ impl NodeName {
         }
     }
 
+    fn print_into_node_case(&self) -> TokenStream {
+        let ident = self.rust_type_ident();
+        quote! {
+            Self::#ident(x) => x.into_node(),
+        }
+    }
+
     pub(crate) fn rust_type_ident(&self) -> Ident {
         ident!(self.rust_type_name, "node kind (rust type name)").unwrap()
     }
@@ -464,24 +485,8 @@ impl NodeName {
     }
 }
 
-macro_rules! modularize {
-    ($module:ident) => {
-        if $module.is_empty() {
-            quote!()
-        } else {
-            quote! {
-                pub mod $module {
-                    #[allow(unused_imports)]
-                    use super::*;
-                    #$module
-                }
-            }
-        }
-    }
-}
-
 impl GeneratedNodeTokens {
-    /// Strip extra info converting this into a regular [TokenStream]
+    /// Strip extra info, converting this into a regular [TokenStream]
     pub fn collapse(self) -> TokenStream {
         let GeneratedNodeTokens {
             toplevel,

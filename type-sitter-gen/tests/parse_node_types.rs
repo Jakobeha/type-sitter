@@ -29,7 +29,7 @@ pub fn test_parse_node_types(lang: &str) {
     let node_types_code = generate_nodes(
         input_node_types_path,
         &type_sitter_lib_wrapper()
-    ).expect("Failed to generate node types");
+    ).expect("Failed to generate node types").collapse();
 
     if !expected_node_types_path.exists() {
         write(&expected_node_types_path, pretty_print(&node_types_code))

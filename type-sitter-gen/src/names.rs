@@ -1,8 +1,7 @@
 use convert_case::{Case, Casing};
 use std::fmt::Write;
-use join_lazy_fmt::Join;
 use serde::Deserialize;
-use crate::node_types::types::{AnonUnionId, NodeModule};
+use crate::node_types::types::NodeModule;
 
 #[derive(Clone, Deserialize)]
 #[serde(from = "_NodeName")]
@@ -37,20 +36,6 @@ const RESERVED_IDENTS: [&'static str; 4] = [
     "super",
     "crate"
 ];
-
-impl AnonUnionId {
-    pub fn new(names: &[NodeName]) -> Self {
-        Self {
-            name: "_".join(names.iter().map(|name| name.rust_type_name.clone())).to_string()
-        }
-    }
-
-    pub fn query_capture(capture_variant_name: &str) -> Self {
-        Self {
-            name: capture_variant_name.to_string()
-        }
-    }
-}
 
 impl NodeName {
     /// Create a node name from the sexp name.

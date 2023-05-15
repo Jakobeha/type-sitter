@@ -8,16 +8,16 @@ use crate::TypedQuery;
 
 /// Iterate a query's captures (see [tree_sitter::QueryCaptures])
 #[cfg(feature = "tree-sitter-wrapper")]
-pub struct TypedQueryCaptures<'cursor, 'tree: 'cursor, Capture: TypedQueryCapture<'cursor, 'tree>, Text: TextProvider<'cursor> = &'tree Tree> {
-    typed_query: &'cursor Capture::Query,
+pub struct TypedQueryCaptures<'cursor, 'tree: 'cursor, Query: TypedQuery, Text: TextProvider<'cursor> = &'cursor Tree> {
+    typed_query: &'cursor Query,
     untyped_captures: tree_sitter::QueryCaptures<'cursor, 'tree, Text>,
     tree: &'tree Tree,
 }
 
 /// Iterate a query's captures (see [tree_sitter::QueryCaptures])
 #[cfg(not(feature = "tree-sitter-wrapper"))]
-pub struct TypedQueryCaptures<'cursor, 'tree, Capture: TypedQueryCapture<'cursor, 'tree>, Text: TextProvider<'cursor>> {
-    typed_query: &'cursor Capture::Query,
+pub struct TypedQueryCaptures<'cursor, 'tree, Query: TypedQuery, Text: TextProvider<'cursor>> {
+    typed_query: &'cursor Query,
     untyped_captures: tree_sitter::QueryCaptures<'cursor, 'tree, Text>,
 }
 
@@ -53,25 +53,20 @@ pub trait TypedQueryCapture<'cursor, 'tree: 'cursor>: Debug + Clone {
     fn node_mut(&mut self) -> &mut Node<'tree>;
 
     /// Get the capture name
-    #[inline]
-    #[cfg(feature = "tree-sitter-wrapper")]
-    fn name(&self) -> &'static str {
-        self.to_raw().name
-    }
+    fn name(&self) -> &'static str;
 
     /// Get the capture index
     #[inline]
-    #[cfg(not(feature = "tree-sitter-wrapper"))]
     fn index(&self) -> usize {
         self.to_raw().index
     }
 }
 
-impl<'cursor, 'tree: 'cursor, Capture: TypedQueryCapture<'cursor, 'tree>, Text: TextProvider<'cursor>> TypedQueryCaptures<'cursor, 'tree, Capture, Text> {
+impl<'cursor, 'tree: 'cursor, Query: TypedQuery, Text: TextProvider<'cursor>> TypedQueryCaptures<'cursor, 'tree, Query, Text> {
     /// SAFETY: The captures must have come from the same query
     #[inline]
     pub(super) unsafe fn new(
-        typed_query: &'cursor Capture::Query,
+        typed_query: &'cursor Query,
         untyped_captures: tree_sitter::QueryCaptures<'cursor, 'tree, Text>,
         #[cfg(feature = "tree-sitter-wrapper")]
         tree: &'tree Tree,
@@ -106,8 +101,8 @@ impl<'cursor, 'tree: 'cursor, Capture: TypedQueryCapture<'cursor, 'tree>, Text: 
     }
 }
 
-impl<'cursor, 'tree, Capture: TypedQueryCapture<'cursor, 'tree>, Text: TextProvider<'cursor>> Iterator for TypedQueryCaptures<'cursor, 'tree, Capture, Text> {
-    type Item = Capture;
+impl<'cursor, 'tree, Query: TypedQuery, Text: TextProvider<'cursor>> Iterator for TypedQueryCaptures<'cursor, 'tree, Query, Text> {
+    type Item = Query::Capture<'cursor, 'tree>;
 
     #[inline]
     fn next(&mut self) -> Option<Self::Item> {

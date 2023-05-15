@@ -1,6 +1,27 @@
-use proc_macro2::Span;
+use proc_macro2::{Span, TokenStream};
+use quote::{quote, ToTokens};
 use syn::{Ident, LitStr, parse_str};
 use crate::Error;
+
+macro_rules! modularize {
+    ($module:ident) => {
+        crate::mk_syntax::modularize!($module (use super::*))
+    };
+    ($module:ident (use $($imports:tt)+)) => {
+        if $module.is_empty() {
+            quote!()
+        } else {
+            quote! {
+                pub mod $module {
+                    #[allow(unused_imports)]
+                    use $($imports)+;
+                    #$module
+                }
+            }
+        }
+    }
+}
+pub(crate) use modularize;
 
 /// Concatenate strings for documentation
 macro_rules! concat_doc {
@@ -35,4 +56,9 @@ pub fn _ident(name: &str, type_desc: impl FnOnce() -> String) -> Result<Ident, E
 /// Create a literal string
 pub fn lit_str(contents: &str) -> LitStr {
     LitStr::new(contents, Span::call_site())
+}
+
+/// Create a literal array
+pub fn lit_array<T: ToTokens>(contents: impl Iterator<Item=T>) -> TokenStream {
+    quote! { [#(#contents),*] }
 }

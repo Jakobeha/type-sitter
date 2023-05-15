@@ -1,15 +1,18 @@
 #[cfg(feature = "tree-sitter-wrapper")]
 use crate::tree_sitter_wrapper::Tree;
+pub use cursor_ext::*;
 pub use match_captures::*;
 pub use matches::*;
 pub use captures::*;
 
+/// [QueryCursorExt] to run typed queries
+mod cursor_ext;
+/// [TypedQueryMatchCaptures]
+mod match_captures;
 /// [TypedQueryMatches]
 mod matches;
 /// [TypedQueryCaptures]
 mod captures;
-/// [TypedQueryMatchCaptures]
-mod match_captures;
 
 /// A query which can generate type-safe matches and captures,
 /// which contain [TypedNode]s

@@ -197,6 +197,18 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Value<'tree> {
             Self::True(x) => x.node_mut(),
         }
     }
+    #[inline]
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+        match self {
+            Self::Array(x) => x.into_node(),
+            Self::False(x) => x.into_node(),
+            Self::Null(x) => x.into_node(),
+            Self::Number(x) => x.into_node(),
+            Self::Object(x) => x.into_node(),
+            Self::String(x) => x.into_node(),
+            Self::True(x) => x.into_node(),
+        }
+    }
 }
 ///Typed node `array`
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -264,6 +276,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Array<'tree> {
     #[inline]
     fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+        self.0
     }
     #[inline]
     unsafe fn from_node_unchecked(
@@ -341,6 +357,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Document<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(
         node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
     ) -> Self {
@@ -416,6 +436,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Object<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(
         node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
     ) -> Self {
@@ -431,10 +455,12 @@ impl<'tree> Pair<'tree> {
     ///Get the field `key`
     #[allow(dead_code)]
     #[inline]
-    pub fn key(&self) -> type_sitter_lib::NodeResult<'tree, anon_unions::Number_String> {
+    pub fn key(
+        &self,
+    ) -> type_sitter_lib::NodeResult<'tree, anon_unions::Number_String<'tree>> {
         self.0
             .child_by_field_name("key")
-            .map(<anon_unions::Number_String as TryFrom<_>>::try_from)
+            .map(<anon_unions::Number_String<'tree> as TryFrom<_>>::try_from)
             .expect(
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
@@ -478,6 +504,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Pair<'tree> {
     #[inline]
     fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+        self.0
     }
     #[inline]
     unsafe fn from_node_unchecked(
@@ -529,6 +559,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for String<'tree> {
     #[inline]
     fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+        self.0
     }
     #[inline]
     unsafe fn from_node_unchecked(
@@ -614,6 +648,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for StringContent<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(
         node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
     ) -> Self {
@@ -654,6 +692,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Comment<'tree> {
     #[inline]
     fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+        self.0
     }
     #[inline]
     unsafe fn from_node_unchecked(
@@ -698,6 +740,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for EscapeSequence<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(
         node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
     ) -> Self {
@@ -739,6 +785,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for False<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(
         node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
     ) -> Self {
@@ -778,6 +828,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Null<'tree> {
     #[inline]
     fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+        self.0
     }
     #[inline]
     unsafe fn from_node_unchecked(
@@ -822,6 +876,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Number<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(
         node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
     ) -> Self {
@@ -861,6 +919,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for True<'tree> {
     #[inline]
     fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+        self.0
     }
     #[inline]
     unsafe fn from_node_unchecked(
@@ -910,6 +972,10 @@ pub mod symbols {
             &mut self.0
         }
         #[inline]
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            self.0
+        }
+        #[inline]
         unsafe fn from_node_unchecked(
             node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
         ) -> Self {
@@ -952,6 +1018,10 @@ pub mod symbols {
             &mut self,
         ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
+        }
+        #[inline]
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            self.0
         }
         #[inline]
         unsafe fn from_node_unchecked(
@@ -998,6 +1068,10 @@ pub mod symbols {
             &mut self.0
         }
         #[inline]
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            self.0
+        }
+        #[inline]
         unsafe fn from_node_unchecked(
             node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
         ) -> Self {
@@ -1040,6 +1114,10 @@ pub mod symbols {
             &mut self,
         ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
+        }
+        #[inline]
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            self.0
         }
         #[inline]
         unsafe fn from_node_unchecked(
@@ -1086,6 +1164,10 @@ pub mod symbols {
             &mut self.0
         }
         #[inline]
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            self.0
+        }
+        #[inline]
         unsafe fn from_node_unchecked(
             node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
         ) -> Self {
@@ -1130,6 +1212,10 @@ pub mod symbols {
             &mut self.0
         }
         #[inline]
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            self.0
+        }
+        #[inline]
         unsafe fn from_node_unchecked(
             node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
         ) -> Self {
@@ -1172,6 +1258,10 @@ pub mod symbols {
             &mut self,
         ) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
+        }
+        #[inline]
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            self.0
         }
         #[inline]
         unsafe fn from_node_unchecked(
@@ -1269,6 +1359,13 @@ pub mod anon_unions {
             match self {
                 Self::Number(x) => x.node_mut(),
                 Self::String(x) => x.node_mut(),
+            }
+        }
+        #[inline]
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
+            match self {
+                Self::Number(x) => x.into_node(),
+                Self::String(x) => x.into_node(),
             }
         }
     }

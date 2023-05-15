@@ -9,16 +9,16 @@ use crate::TypedQuery;
 
 /// Iterate a typed query's matches (see [tree_sitter::QueryMatches])
 #[cfg(feature = "tree-sitter-wrapper")]
-pub struct TypedQueryMatches<'cursor, 'tree: 'cursor, Match: TypedQueryMatch<'cursor, 'tree>, Text: TextProvider<'cursor> = &'tree Tree> {
-    typed_query: &'cursor Match::Query,
+pub struct TypedQueryMatches<'cursor, 'tree: 'cursor, Query: TypedQuery, Text: TextProvider<'cursor> = &'cursor Tree> {
+    typed_query: &'cursor Query,
     untyped_matches: tree_sitter::QueryMatches<'cursor, 'tree, Text>,
     tree: &'tree Tree,
 }
 
 /// Iterate a typed query's matches (see [tree_sitter::QueryMatches])
 #[cfg(not(feature = "tree-sitter-wrapper"))]
-pub struct TypeQueryMatches<'cursor, 'tree, Match: TypedQueryMatch<'cursor, 'tree>, Text: TextProvider<'cursor>> {
-    typed_query: &'cursor Match::Query,
+pub struct TypeQueryMatches<'cursor, 'tree, Query: TypedQuery, Text: TextProvider<'cursor>> {
+    typed_query: &'cursor Query,
     untyped_matches: tree_sitter::QueryMatches<'cursor, 'tree, Text>,
 }
 
@@ -58,11 +58,11 @@ pub trait TypedQueryMatch<'cursor, 'tree: 'cursor>: Debug {
     }
 }
 
-impl<'cursor, 'tree: 'cursor, Match: TypedQueryMatch<'cursor, 'tree>, Text: TextProvider<'cursor>> TypedQueryMatches<'cursor, 'tree, Match, Text> {
+impl<'cursor, 'tree: 'cursor, Query: TypedQuery, Text: TextProvider<'cursor>> TypedQueryMatches<'cursor, 'tree, Query, Text> {
     /// SAFETY: The matches must have come from the same query
     #[inline]
     pub(super) unsafe fn new(
-        typed_query: &'cursor Match::Query,
+        typed_query: &'cursor Query,
         untyped_matches: tree_sitter::QueryMatches<'cursor, 'tree, Text>,
         #[cfg(feature = "tree-sitter-wrapper")]
         tree: &'tree Tree,
@@ -97,8 +97,8 @@ impl<'cursor, 'tree: 'cursor, Match: TypedQueryMatch<'cursor, 'tree>, Text: Text
     }
 }
 
-impl<'cursor, 'tree, Match: TypedQueryMatch<'cursor, 'tree>, Text: TextProvider<'cursor>> Iterator for TypedQueryMatches<'cursor, 'tree, Match, Text> {
-    type Item = Match;
+impl<'cursor, 'tree, Query: TypedQuery, Text: TextProvider<'cursor>> Iterator for TypedQueryMatches<'cursor, 'tree, Query, Text> {
+    type Item = Query::Match<'cursor, 'tree>;
 
     #[inline]
     fn next(&mut self) -> Option<Self::Item> {

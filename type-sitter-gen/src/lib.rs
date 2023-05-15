@@ -11,6 +11,7 @@ mod names;
 mod node_types;
 mod mk_syntax;
 mod queries;
+mod anon_unions;
 
 /// = `parse_quote!(tree_sitter)`. The default path to the `tree_sitter` crate.
 pub fn tree_sitter() -> syn::Path {

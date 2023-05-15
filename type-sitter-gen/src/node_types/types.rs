@@ -36,11 +36,6 @@ pub enum NodeModule {
     Symbols
 }
 
-#[derive(PartialEq, Eq, Hash)]
-pub struct AnonUnionId {
-    pub name: String
-}
-
 impl Extend<Children> for Children {
     fn extend<T: IntoIterator<Item=Children>>(&mut self, iter: T) {
         for child in iter {
