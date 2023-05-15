@@ -990,15 +990,21 @@ impl QueryCursor {
     }
 
     /// Set the range in which to search for matches, in terms of byte offsets.
+    ///
+    /// Returns `self` for convenience (builder pattern)
     #[inline]
-    pub fn set_byte_range(&mut self, range: std::ops::Range<usize>) {
+    pub fn set_byte_range(&mut self, range: std::ops::Range<usize>) -> &mut Self {
         self.query_cursor.set_byte_range(range);
+        self
     }
 
     /// Set the range in which to search for matches, in terms of rows and columns.
+    ///
+    /// Returns `self` for convenience (builder pattern)
     #[inline]
-    pub fn set_point_range(&mut self, range: Range) {
+    pub fn set_point_range(&mut self, range: Range) -> &mut Self {
         self.query_cursor.set_point_range(range.start_point().0..range.end_point().0);
+        self
     }
 }
 

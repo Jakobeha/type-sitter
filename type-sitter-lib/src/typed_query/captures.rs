@@ -3,7 +3,7 @@ use tree_sitter::TextProvider;
 #[cfg(feature = "tree-sitter-wrapper")]
 use crate::tree_sitter_wrapper::{Node, QueryCapture, Range, Tree};
 #[cfg(not(feature = "tree-sitter-wrapper"))]
-use tree_sitter::{Node, QueryCapture, Range, Tree};
+use tree_sitter::{Node, QueryCapture, Range};
 use crate::TypedQuery;
 
 /// Iterate a query's captures (see [tree_sitter::QueryCaptures])
@@ -58,7 +58,7 @@ pub trait TypedQueryCapture<'cursor, 'tree: 'cursor>: Debug + Clone {
     /// Get the capture index
     #[inline]
     fn index(&self) -> usize {
-        self.to_raw().index
+        self.to_raw().index as usize
     }
 }
 
@@ -95,8 +95,8 @@ impl<'cursor, 'tree: 'cursor, Query: TypedQuery, Text: TextProvider<'cursor>> Ty
     #[cfg(not(feature = "tree-sitter-wrapper"))]
     pub fn set_point_range(&mut self, range: Range) {
         self.untyped_captures.set_point_range(std::ops::Range {
-            start: range.start_point(),
-            end: range.end_point()
+            start: range.start_point,
+            end: range.end_point
         })
     }
 }

@@ -23,9 +23,10 @@ pub struct TypedQueryMatches<'cursor, 'tree: 'cursor, Query: TypedQuery, Text: T
 
 /// Iterate a typed query's matches (see [tree_sitter::QueryMatches])
 #[cfg(not(feature = "tree-sitter-wrapper"))]
-pub struct TypeQueryMatches<'cursor, 'tree, Query: TypedQuery, Text: TextProvider<'cursor>> {
+pub struct TypedQueryMatches<'cursor, 'tree, Query: TypedQuery, Text: TextProvider<'cursor>> {
     typed_query: &'cursor Query,
     untyped_matches: tree_sitter::QueryMatches<'cursor, 'tree, Text>,
+    current_match: Option<Query::Match<'cursor, 'tree>>,
 }
 
 /// A match from a [TypedQuery] with [TypedNode]s
@@ -102,8 +103,8 @@ impl<'cursor, 'tree: 'cursor, Query: TypedQuery, Text: TextProvider<'cursor>> Ty
     #[cfg(not(feature = "tree-sitter-wrapper"))]
     pub fn set_point_range(&mut self, range: Range) {
         self.untyped_matches.set_point_range(std::ops::Range {
-            start: range.start_point(),
-            end: range.end_point()
+            start: range.start_point,
+            end: range.end_point
         })
     }
 }

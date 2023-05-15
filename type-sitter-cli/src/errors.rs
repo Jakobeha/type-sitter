@@ -4,12 +4,8 @@ use thiserror::Error;
 pub enum Error {
     #[error("Need at least one input (see --help)")]
     NoInputs,
-    #[error("IO error; {0}")]
-    IO(#[from] std::io::Error),
-    #[error("IO error reading dir parents to infer input type; {0}")]
-    IOInferringInputType(#[source] std::io::Error),
-    #[error("IO error reading dir parents to infer language; {0}")]
-    IOInferringLanguage(#[source] std::io::Error),
+    #[error("IO error {action}; {source}")]
+    IO { action: String, #[source] source: std::io::Error },
     #[error("codegen error; {0}")]
     GeneratingTokens(#[from] type_sitter_gen::Error),
     #[error("codegen formatting (rustfmt) error; {0}")]
@@ -39,6 +35,10 @@ pub enum InOutPairParseError {
 pub type Result<T> = std::result::Result<T, Error>;
 
 impl Error {
+    pub fn io(action: impl ToString) -> impl FnOnce(std::io::Error) -> Self {
+        move |source| Self::IO { action: action.to_string(), source }
+    }
+
     pub fn nested(self, location: impl AsRef<str>) -> Self {
         Self::Nested { location: location.as_ref().to_string(), source: Box::new(self) }
     }

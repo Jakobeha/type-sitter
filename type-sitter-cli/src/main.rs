@@ -30,9 +30,9 @@ fn run(args: Args) -> errors::Result<()> {
         if !path_utils::is_dir_of_only_rust_files(&args.output_dir) {
             return Err(Error::OutputDirNotOnlyRustFiles);
         }
-        remove_dir_all(&args.output_dir)?;
+        remove_dir_all(&args.output_dir).map_err(Error::io("removing old output directory"))?;
     }
-    create_dir_all(&args.output_dir)?;
+    create_dir_all(&args.output_dir).map_err(Error::io("creating output directory"))?;
 
     // Get common arg data
     let tree_sitter = match args.use_wrapper {

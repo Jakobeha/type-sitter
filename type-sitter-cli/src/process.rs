@@ -41,12 +41,12 @@ fn do_process(
             write(&output_path, type_sitter_gen::generate_queries(input_path, language_dir, &super_nodes(), use_wrapper, &tree_sitter)?)?;
         }
         InputType::LanguageRoot => {
-            create_dir(&output_path)?;
+            create_dir(&output_path).map_err(Error::io("creating language codegen directory"))?;
             std::fs::write(&output_path.join("mod.rs"), format!(r#"
 //! Generated node and query wrappers for {}
 pub mod nodes;
 pub mod queries;
-            "#, language_name(input_path))).map_err(|e| Error::from(e).nested("root"))?;
+            "#, language_name(input_path))).map_err(Error::io("creating language codegen mod.rs"))?;
             do_process(
                 &input_path.join("src/node-types.json"),
                 &output_path.join("nodes.rs"),

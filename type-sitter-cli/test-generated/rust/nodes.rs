@@ -391,6 +391,32 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for DeclarationStatement<'tree> {
             Self::UseDeclaration(x) => x.node_mut(),
         }
     }
+    #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        match self {
+            Self::AssociatedType(x) => x.into_node(),
+            Self::AttributeItem(x) => x.into_node(),
+            Self::ConstItem(x) => x.into_node(),
+            Self::EmptyStatement(x) => x.into_node(),
+            Self::EnumItem(x) => x.into_node(),
+            Self::ExternCrateDeclaration(x) => x.into_node(),
+            Self::ForeignModItem(x) => x.into_node(),
+            Self::FunctionItem(x) => x.into_node(),
+            Self::FunctionSignatureItem(x) => x.into_node(),
+            Self::ImplItem(x) => x.into_node(),
+            Self::InnerAttributeItem(x) => x.into_node(),
+            Self::LetDeclaration(x) => x.into_node(),
+            Self::MacroDefinition(x) => x.into_node(),
+            Self::MacroInvocation(x) => x.into_node(),
+            Self::ModItem(x) => x.into_node(),
+            Self::StaticItem(x) => x.into_node(),
+            Self::StructItem(x) => x.into_node(),
+            Self::TraitItem(x) => x.into_node(),
+            Self::TypeItem(x) => x.into_node(),
+            Self::UnionItem(x) => x.into_node(),
+            Self::UseDeclaration(x) => x.into_node(),
+        }
+    }
 }
 #[doc = "Typed node `_expression`"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -994,6 +1020,49 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Expression<'tree> {
             Self::YieldExpression(x) => x.node_mut(),
         }
     }
+    #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        match self {
+            Self::Literal(x) => x.into_node(),
+            Self::ArrayExpression(x) => x.into_node(),
+            Self::AssignmentExpression(x) => x.into_node(),
+            Self::AsyncBlock(x) => x.into_node(),
+            Self::AwaitExpression(x) => x.into_node(),
+            Self::BinaryExpression(x) => x.into_node(),
+            Self::Block(x) => x.into_node(),
+            Self::BreakExpression(x) => x.into_node(),
+            Self::CallExpression(x) => x.into_node(),
+            Self::ClosureExpression(x) => x.into_node(),
+            Self::CompoundAssignmentExpr(x) => x.into_node(),
+            Self::ConstBlock(x) => x.into_node(),
+            Self::ContinueExpression(x) => x.into_node(),
+            Self::FieldExpression(x) => x.into_node(),
+            Self::ForExpression(x) => x.into_node(),
+            Self::GenericFunction(x) => x.into_node(),
+            Self::Identifier(x) => x.into_node(),
+            Self::IfExpression(x) => x.into_node(),
+            Self::IndexExpression(x) => x.into_node(),
+            Self::LoopExpression(x) => x.into_node(),
+            Self::MacroInvocation(x) => x.into_node(),
+            Self::MatchExpression(x) => x.into_node(),
+            Self::Metavariable(x) => x.into_node(),
+            Self::ParenthesizedExpression(x) => x.into_node(),
+            Self::RangeExpression(x) => x.into_node(),
+            Self::ReferenceExpression(x) => x.into_node(),
+            Self::ReturnExpression(x) => x.into_node(),
+            Self::ScopedIdentifier(x) => x.into_node(),
+            Self::_Self(x) => x.into_node(),
+            Self::StructExpression(x) => x.into_node(),
+            Self::TryExpression(x) => x.into_node(),
+            Self::TupleExpression(x) => x.into_node(),
+            Self::TypeCastExpression(x) => x.into_node(),
+            Self::UnaryExpression(x) => x.into_node(),
+            Self::UnitExpression(x) => x.into_node(),
+            Self::UnsafeBlock(x) => x.into_node(),
+            Self::WhileExpression(x) => x.into_node(),
+            Self::YieldExpression(x) => x.into_node(),
+        }
+    }
 }
 #[doc = "Typed node `_literal`"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -1129,6 +1198,17 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Literal<'tree> {
             Self::IntegerLiteral(x) => x.node_mut(),
             Self::RawStringLiteral(x) => x.node_mut(),
             Self::StringLiteral(x) => x.node_mut(),
+        }
+    }
+    #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        match self {
+            Self::BooleanLiteral(x) => x.into_node(),
+            Self::CharLiteral(x) => x.into_node(),
+            Self::FloatLiteral(x) => x.into_node(),
+            Self::IntegerLiteral(x) => x.into_node(),
+            Self::RawStringLiteral(x) => x.into_node(),
+            Self::StringLiteral(x) => x.into_node(),
         }
     }
 }
@@ -1283,6 +1363,18 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for LiteralPattern<'tree> {
             Self::NegativeLiteral(x) => x.node_mut(),
             Self::RawStringLiteral(x) => x.node_mut(),
             Self::StringLiteral(x) => x.node_mut(),
+        }
+    }
+    #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        match self {
+            Self::BooleanLiteral(x) => x.into_node(),
+            Self::CharLiteral(x) => x.into_node(),
+            Self::FloatLiteral(x) => x.into_node(),
+            Self::IntegerLiteral(x) => x.into_node(),
+            Self::NegativeLiteral(x) => x.into_node(),
+            Self::RawStringLiteral(x) => x.into_node(),
+            Self::StringLiteral(x) => x.into_node(),
         }
     }
 }
@@ -1571,6 +1663,28 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Pattern<'tree> {
             Self::StructPattern(x) => x.node_mut(),
             Self::TuplePattern(x) => x.node_mut(),
             Self::TupleStructPattern(x) => x.node_mut(),
+        }
+    }
+    #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        match self {
+            Self::__(x) => x.into_node(),
+            Self::LiteralPattern(x) => x.into_node(),
+            Self::CapturedPattern(x) => x.into_node(),
+            Self::ConstBlock(x) => x.into_node(),
+            Self::Identifier(x) => x.into_node(),
+            Self::MacroInvocation(x) => x.into_node(),
+            Self::MutPattern(x) => x.into_node(),
+            Self::OrPattern(x) => x.into_node(),
+            Self::RangePattern(x) => x.into_node(),
+            Self::RefPattern(x) => x.into_node(),
+            Self::ReferencePattern(x) => x.into_node(),
+            Self::RemainingFieldPattern(x) => x.into_node(),
+            Self::ScopedIdentifier(x) => x.into_node(),
+            Self::SlicePattern(x) => x.into_node(),
+            Self::StructPattern(x) => x.into_node(),
+            Self::TuplePattern(x) => x.into_node(),
+            Self::TupleStructPattern(x) => x.into_node(),
         }
     }
 }
@@ -1880,6 +1994,27 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Type<'tree> {
             Self::UnitType(x) => x.node_mut(),
         }
     }
+    #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        match self {
+            Self::AbstractType(x) => x.into_node(),
+            Self::ArrayType(x) => x.into_node(),
+            Self::BoundedType(x) => x.into_node(),
+            Self::DynamicType(x) => x.into_node(),
+            Self::EmptyType(x) => x.into_node(),
+            Self::FunctionType(x) => x.into_node(),
+            Self::GenericType(x) => x.into_node(),
+            Self::MacroInvocation(x) => x.into_node(),
+            Self::Metavariable(x) => x.into_node(),
+            Self::PointerType(x) => x.into_node(),
+            Self::PrimitiveType(x) => x.into_node(),
+            Self::ReferenceType(x) => x.into_node(),
+            Self::ScopedTypeIdentifier(x) => x.into_node(),
+            Self::TupleType(x) => x.into_node(),
+            Self::TypeIdentifier(x) => x.into_node(),
+            Self::UnitType(x) => x.into_node(),
+        }
+    }
 }
 #[doc = "Typed node `abstract_type`"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -1894,9 +2029,9 @@ impl<'tree> AbstractType<'tree> {
         &self,
     ) -> type_sitter_lib::NodeResult<
         'tree,
-        anon_unions::FunctionType_GenericType_ScopedTypeIdentifier_TypeIdentifier,
+        anon_unions::FunctionType_GenericType_ScopedTypeIdentifier_TypeIdentifier<'tree>,
     > {
-        self . 0 . child_by_field_name ("trait") . map (< anon_unions :: FunctionType_GenericType_ScopedTypeIdentifier_TypeIdentifier as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
+        self . 0 . child_by_field_name ("trait") . map (< anon_unions :: FunctionType_GenericType_ScopedTypeIdentifier_TypeIdentifier < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
 }
 #[automatically_derived]
@@ -1926,6 +2061,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for AbstractType<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -1945,10 +2084,10 @@ impl<'tree> Arguments<'tree> {
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::Expression_AttributeItem>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::Expression_AttributeItem<'tree>>,
         >,
     > + 'a {
-        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Expression_AttributeItem > as TryFrom < _ >> :: try_from (n))
+        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Expression_AttributeItem < 'tree > > as TryFrom < _ >> :: try_from (n))
     }
     #[doc = "Get the node's named child #i"]
     #[allow(dead_code)]
@@ -1959,14 +2098,10 @@ impl<'tree> Arguments<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::Expression_AttributeItem>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::Expression_AttributeItem<'tree>>,
         >,
     > {
-        self.0.named_child(i).map(
-            <type_sitter_lib::ExtraOr<'tree, anon_unions::Expression_AttributeItem> as TryFrom<
-                _,
-            >>::try_from,
-        )
+        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Expression_AttributeItem < 'tree > > as TryFrom < _ >> :: try_from)
     }
 }
 #[automatically_derived]
@@ -1996,6 +2131,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Arguments<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -2023,10 +2162,10 @@ impl<'tree> ArrayExpression<'tree> {
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::Expression_AttributeItem>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::Expression_AttributeItem<'tree>>,
         >,
     > + 'a {
-        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Expression_AttributeItem > as TryFrom < _ >> :: try_from (n))
+        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Expression_AttributeItem < 'tree > > as TryFrom < _ >> :: try_from (n))
     }
     #[doc = "Get the node's named child #i"]
     #[allow(dead_code)]
@@ -2037,14 +2176,10 @@ impl<'tree> ArrayExpression<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::Expression_AttributeItem>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::Expression_AttributeItem<'tree>>,
         >,
     > {
-        self.0.named_child(i).map(
-            <type_sitter_lib::ExtraOr<'tree, anon_unions::Expression_AttributeItem> as TryFrom<
-                _,
-            >>::try_from,
-        )
+        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Expression_AttributeItem < 'tree > > as TryFrom < _ >> :: try_from)
     }
 }
 #[automatically_derived]
@@ -2072,6 +2207,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ArrayExpression<'tree> {
     #[inline]
     fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
         &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
     }
     #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -2126,6 +2265,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ArrayType<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -2174,6 +2317,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for AssignmentExpression<'tree> {
     #[inline]
     fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
         &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
     }
     #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -2238,6 +2385,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for AssociatedType<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -2282,6 +2433,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for AsyncBlock<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -2311,13 +2466,13 @@ impl<'tree> Attribute<'tree> {
     #[doc = "Get the node's named children"]
     #[doc = "This is guaranteed to return at least one child"]
     #[allow(dead_code)]
-    #[inline]    pub fn children < 'a > (& self , c : & 'a mut tree_sitter :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super_TokenTree_Expression > >> + 'a{
-        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super_TokenTree_Expression > as TryFrom < _ >> :: try_from (n))
+    #[inline]    pub fn children < 'a > (& self , c : & 'a mut tree_sitter :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super_TokenTree_Expression < 'tree > > >> + 'a{
+        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super_TokenTree_Expression < 'tree > > as TryFrom < _ >> :: try_from (n))
     }
     #[doc = "Get the node's named child #i"]
     #[allow(dead_code)]
-    #[inline]    pub fn child (& self , i : usize) -> Option < type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super_TokenTree_Expression > >>{
-        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super_TokenTree_Expression > as TryFrom < _ >> :: try_from)
+    #[inline]    pub fn child (& self , i : usize) -> Option < type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super_TokenTree_Expression < 'tree > > >>{
+        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super_TokenTree_Expression < 'tree > > as TryFrom < _ >> :: try_from)
     }
 }
 #[automatically_derived]
@@ -2345,6 +2500,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Attribute<'tree> {
     #[inline]
     fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
         &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
     }
     #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -2391,6 +2550,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for AttributeItem<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -2433,6 +2596,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for AwaitExpression<'tree> {
     #[inline]
     fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
         &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
     }
     #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -2479,6 +2646,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for BaseFieldInitializer<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -2497,8 +2668,8 @@ impl<'tree> BinaryExpression<'tree> {
     }
     #[doc = "Get the field `operator`"]
     #[allow(dead_code)]
-    #[inline]    pub fn operator (& self) -> type_sitter_lib :: NodeResult < 'tree , anon_unions :: NotEq_Mod_And_AndAnd_Mul_Add_Sub_Div_Lt_LtLt_LtEq_EqEq_Gt_GtEq_GtGt_BitXor_Or_OrOr >{
-        self . 0 . child_by_field_name ("operator") . map (< anon_unions :: NotEq_Mod_And_AndAnd_Mul_Add_Sub_Div_Lt_LtLt_LtEq_EqEq_Gt_GtEq_GtGt_BitXor_Or_OrOr as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
+    #[inline]    pub fn operator (& self) -> type_sitter_lib :: NodeResult < 'tree , anon_unions :: NotEq_Mod_And_AndAnd_Mul_Add_Sub_Div_Lt_LtLt_LtEq_EqEq_Gt_GtEq_GtGt_BitXor_Or_OrOr < 'tree > >{
+        self . 0 . child_by_field_name ("operator") . map (< anon_unions :: NotEq_Mod_And_AndAnd_Mul_Add_Sub_Div_Lt_LtLt_LtEq_EqEq_Gt_GtEq_GtGt_BitXor_Or_OrOr < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
     #[doc = "Get the field `right`"]
     #[allow(dead_code)]
@@ -2534,6 +2705,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for BinaryExpression<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -2555,14 +2730,14 @@ impl<'tree> Block<'tree> {
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::DeclarationStatement_Expression_ExpressionStatement,
+                anon_unions::DeclarationStatement_Expression_ExpressionStatement<'tree>,
             >,
         >,
     > + 'a {
         self.0.named_children(c).map(|n| {
             <type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::DeclarationStatement_Expression_ExpressionStatement,
+                anon_unions::DeclarationStatement_Expression_ExpressionStatement<'tree>,
             > as TryFrom<_>>::try_from(n)
         })
     }
@@ -2577,14 +2752,14 @@ impl<'tree> Block<'tree> {
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::DeclarationStatement_Expression_ExpressionStatement,
+                anon_unions::DeclarationStatement_Expression_ExpressionStatement<'tree>,
             >,
         >,
     > {
         self.0.named_child(i).map(
             <type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::DeclarationStatement_Expression_ExpressionStatement,
+                anon_unions::DeclarationStatement_Expression_ExpressionStatement<'tree>,
             > as TryFrom<_>>::try_from,
         )
     }
@@ -2614,6 +2789,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Block<'tree> {
     #[inline]
     fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
         &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
     }
     #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -2653,6 +2832,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for BooleanLiteral<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -2673,12 +2856,10 @@ impl<'tree> BoundedType<'tree> {
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::Type_Lifetime>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::Type_Lifetime<'tree>>,
         >,
     > + 'a {
-        self.0.named_children(c).map(|n| {
-            <type_sitter_lib::ExtraOr<'tree, anon_unions::Type_Lifetime> as TryFrom<_>>::try_from(n)
-        })
+        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Type_Lifetime < 'tree > > as TryFrom < _ >> :: try_from (n))
     }
     #[doc = "Get the node's named child #i"]
     #[allow(dead_code)]
@@ -2689,12 +2870,10 @@ impl<'tree> BoundedType<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::Type_Lifetime>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::Type_Lifetime<'tree>>,
         >,
     > {
-        self.0.named_child(i).map(
-            <type_sitter_lib::ExtraOr<'tree, anon_unions::Type_Lifetime> as TryFrom<_>>::try_from,
-        )
+        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Type_Lifetime < 'tree > > as TryFrom < _ >> :: try_from)
     }
 }
 #[automatically_derived]
@@ -2724,6 +2903,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for BoundedType<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -2737,8 +2920,10 @@ impl<'tree> BracketedType<'tree> {
     #[doc = "Get the node's only named child"]
     #[allow(dead_code)]
     #[inline]
-    pub fn child(&self) -> type_sitter_lib::NodeResult<'tree, anon_unions::Type_QualifiedType> {
-        self . 0 . named_child (0) . map (< anon_unions :: Type_QualifiedType as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
+    pub fn child(
+        &self,
+    ) -> type_sitter_lib::NodeResult<'tree, anon_unions::Type_QualifiedType<'tree>> {
+        self . 0 . named_child (0) . map (< anon_unions :: Type_QualifiedType < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
 }
 #[automatically_derived]
@@ -2768,6 +2953,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for BracketedType<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -2787,10 +2976,14 @@ impl<'tree> BreakExpression<'tree> {
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::Expression_LoopLabel>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::Expression_LoopLabel<'tree>>,
         >,
     > + 'a {
-        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Expression_LoopLabel > as TryFrom < _ >> :: try_from (n))
+        self.0.named_children(c).map(|n| {
+            <type_sitter_lib::ExtraOr<'tree, anon_unions::Expression_LoopLabel<'tree>> as TryFrom<
+                _,
+            >>::try_from(n)
+        })
     }
     #[doc = "Get the node's named child #i"]
     #[allow(dead_code)]
@@ -2801,10 +2994,10 @@ impl<'tree> BreakExpression<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::Expression_LoopLabel>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::Expression_LoopLabel<'tree>>,
         >,
     > {
-        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Expression_LoopLabel > as TryFrom < _ >> :: try_from)
+        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Expression_LoopLabel < 'tree > > as TryFrom < _ >> :: try_from)
     }
 }
 #[automatically_derived]
@@ -2834,6 +3027,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for BreakExpression<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -2852,8 +3049,8 @@ impl<'tree> CallExpression<'tree> {
     }
     #[doc = "Get the field `function`"]
     #[allow(dead_code)]
-    #[inline]    pub fn function (& self) -> type_sitter_lib :: NodeResult < 'tree , anon_unions :: Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier__Self_StructExpression_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression >{
-        self . 0 . child_by_field_name ("function") . map (< anon_unions :: Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier__Self_StructExpression_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
+    #[inline]    pub fn function (& self) -> type_sitter_lib :: NodeResult < 'tree , anon_unions :: Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier__Self_StructExpression_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression < 'tree > >{
+        self . 0 . child_by_field_name ("function") . map (< anon_unions :: Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier__Self_StructExpression_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
 }
 #[automatically_derived]
@@ -2881,6 +3078,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for CallExpression<'tree> {
     #[inline]
     fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
         &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
     }
     #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -2947,6 +3148,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for CapturedPattern<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -3005,6 +3210,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ClosureExpression<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -3024,10 +3233,10 @@ impl<'tree> ClosureParameters<'tree> {
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::Pattern_Parameter>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::Pattern_Parameter<'tree>>,
         >,
     > + 'a {
-        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Pattern_Parameter > as TryFrom < _ >> :: try_from (n))
+        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Pattern_Parameter < 'tree > > as TryFrom < _ >> :: try_from (n))
     }
     #[doc = "Get the node's named child #i"]
     #[allow(dead_code)]
@@ -3038,10 +3247,14 @@ impl<'tree> ClosureParameters<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::Pattern_Parameter>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::Pattern_Parameter<'tree>>,
         >,
     > {
-        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Pattern_Parameter > as TryFrom < _ >> :: try_from)
+        self.0.named_child(i).map(
+            <type_sitter_lib::ExtraOr<'tree, anon_unions::Pattern_Parameter<'tree>> as TryFrom<
+                _,
+            >>::try_from,
+        )
     }
 }
 #[automatically_derived]
@@ -3071,6 +3284,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ClosureParameters<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -3094,9 +3311,9 @@ impl<'tree> CompoundAssignmentExpr<'tree> {
         &self,
     ) -> type_sitter_lib::NodeResult<
         'tree,
-        anon_unions::ModEq_AndEq_MulEq_AddEq_SubEq_DivEq_LtLtEq_GtGtEq_BitXorEq_OrEq,
+        anon_unions::ModEq_AndEq_MulEq_AddEq_SubEq_DivEq_LtLtEq_GtGtEq_BitXorEq_OrEq<'tree>,
     > {
-        self . 0 . child_by_field_name ("operator") . map (< anon_unions :: ModEq_AndEq_MulEq_AddEq_SubEq_DivEq_LtLtEq_GtGtEq_BitXorEq_OrEq as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
+        self . 0 . child_by_field_name ("operator") . map (< anon_unions :: ModEq_AndEq_MulEq_AddEq_SubEq_DivEq_LtLtEq_GtGtEq_BitXorEq_OrEq < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
     #[doc = "Get the field `right`"]
     #[allow(dead_code)]
@@ -3130,6 +3347,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for CompoundAssignmentExpr<'tree> 
     #[inline]
     fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
         &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
     }
     #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -3176,6 +3397,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ConstBlock<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -3218,14 +3443,14 @@ impl<'tree> ConstItem<'tree> {
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::VisibilityModifier_Identifier_Type_Expression,
+                anon_unions::VisibilityModifier_Identifier_Type_Expression<'tree>,
             >,
         >,
     > + 'a {
         self.0.named_children(c).map(|n| {
             <type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::VisibilityModifier_Identifier_Type_Expression,
+                anon_unions::VisibilityModifier_Identifier_Type_Expression<'tree>,
             > as TryFrom<_>>::try_from(n)
         })
     }
@@ -3240,14 +3465,14 @@ impl<'tree> ConstItem<'tree> {
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::VisibilityModifier_Identifier_Type_Expression,
+                anon_unions::VisibilityModifier_Identifier_Type_Expression<'tree>,
             >,
         >,
     > {
         self.0.named_child(i).map(
             <type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::VisibilityModifier_Identifier_Type_Expression,
+                anon_unions::VisibilityModifier_Identifier_Type_Expression<'tree>,
             > as TryFrom<_>>::try_from,
         )
     }
@@ -3277,6 +3502,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ConstItem<'tree> {
     #[inline]
     fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
         &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
     }
     #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -3329,6 +3558,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ConstParameter<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -3348,8 +3581,10 @@ impl<'tree> ConstrainedTypeParameter<'tree> {
     #[doc = "Get the field `left`"]
     #[allow(dead_code)]
     #[inline]
-    pub fn left(&self) -> type_sitter_lib::NodeResult<'tree, anon_unions::Lifetime_TypeIdentifier> {
-        self . 0 . child_by_field_name ("left") . map (< anon_unions :: Lifetime_TypeIdentifier as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
+    pub fn left(
+        &self,
+    ) -> type_sitter_lib::NodeResult<'tree, anon_unions::Lifetime_TypeIdentifier<'tree>> {
+        self . 0 . child_by_field_name ("left") . map (< anon_unions :: Lifetime_TypeIdentifier < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
 }
 #[automatically_derived]
@@ -3377,6 +3612,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ConstrainedTypeParameter<'tree
     #[inline]
     fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
         &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
     }
     #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -3423,6 +3662,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ContinueExpression<'tree> {
     #[inline]
     fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
         &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
     }
     #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -3497,6 +3740,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for DeclarationList<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -3514,9 +3761,9 @@ impl<'tree> DynamicType<'tree> {
         &self,
     ) -> type_sitter_lib::NodeResult<
         'tree,
-        anon_unions::FunctionType_GenericType_ScopedTypeIdentifier_TypeIdentifier,
+        anon_unions::FunctionType_GenericType_ScopedTypeIdentifier_TypeIdentifier<'tree>,
     > {
-        self . 0 . child_by_field_name ("trait") . map (< anon_unions :: FunctionType_GenericType_ScopedTypeIdentifier_TypeIdentifier as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
+        self . 0 . child_by_field_name ("trait") . map (< anon_unions :: FunctionType_GenericType_ScopedTypeIdentifier_TypeIdentifier < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
 }
 #[automatically_derived]
@@ -3546,6 +3793,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for DynamicType<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -3559,8 +3810,10 @@ impl<'tree> ElseClause<'tree> {
     #[doc = "Get the node's only named child"]
     #[allow(dead_code)]
     #[inline]
-    pub fn child(&self) -> type_sitter_lib::NodeResult<'tree, anon_unions::Block_IfExpression> {
-        self . 0 . named_child (0) . map (< anon_unions :: Block_IfExpression as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
+    pub fn child(
+        &self,
+    ) -> type_sitter_lib::NodeResult<'tree, anon_unions::Block_IfExpression<'tree>> {
+        self . 0 . named_child (0) . map (< anon_unions :: Block_IfExpression < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
 }
 #[automatically_derived]
@@ -3588,6 +3841,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ElseClause<'tree> {
     #[inline]
     fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
         &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
     }
     #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -3627,6 +3884,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for EmptyStatement<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -3664,6 +3925,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for EmptyType<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -3699,13 +3964,13 @@ impl<'tree> EnumItem<'tree> {
     #[doc = "Get the node's named children"]
     #[doc = "This is guaranteed to return at least one child"]
     #[allow(dead_code)]
-    #[inline]    pub fn children < 'a > (& self , c : & 'a mut tree_sitter :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: VisibilityModifier_WhereClause_EnumVariantList_TypeIdentifier_TypeParameters > >> + 'a{
-        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: VisibilityModifier_WhereClause_EnumVariantList_TypeIdentifier_TypeParameters > as TryFrom < _ >> :: try_from (n))
+    #[inline]    pub fn children < 'a > (& self , c : & 'a mut tree_sitter :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: VisibilityModifier_WhereClause_EnumVariantList_TypeIdentifier_TypeParameters < 'tree > > >> + 'a{
+        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: VisibilityModifier_WhereClause_EnumVariantList_TypeIdentifier_TypeParameters < 'tree > > as TryFrom < _ >> :: try_from (n))
     }
     #[doc = "Get the node's named child #i"]
     #[allow(dead_code)]
-    #[inline]    pub fn child (& self , i : usize) -> Option < type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: VisibilityModifier_WhereClause_EnumVariantList_TypeIdentifier_TypeParameters > >>{
-        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: VisibilityModifier_WhereClause_EnumVariantList_TypeIdentifier_TypeParameters > as TryFrom < _ >> :: try_from)
+    #[inline]    pub fn child (& self , i : usize) -> Option < type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: VisibilityModifier_WhereClause_EnumVariantList_TypeIdentifier_TypeParameters < 'tree > > >>{
+        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: VisibilityModifier_WhereClause_EnumVariantList_TypeIdentifier_TypeParameters < 'tree > > as TryFrom < _ >> :: try_from)
     }
 }
 #[automatically_derived]
@@ -3735,6 +4000,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for EnumItem<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -3753,12 +4022,10 @@ impl<'tree> EnumVariant<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            anon_unions::FieldDeclarationList_OrderedFieldDeclarationList,
+            anon_unions::FieldDeclarationList_OrderedFieldDeclarationList<'tree>,
         >,
     > {
-        self.0.child_by_field_name("body").map(
-            <anon_unions::FieldDeclarationList_OrderedFieldDeclarationList as TryFrom<_>>::try_from,
-        )
+        self . 0 . child_by_field_name ("body") . map (< anon_unions :: FieldDeclarationList_OrderedFieldDeclarationList < 'tree > as TryFrom < _ >> :: try_from)
     }
     #[doc = "Get the field `name`"]
     #[allow(dead_code)]
@@ -3777,13 +4044,13 @@ impl<'tree> EnumVariant<'tree> {
     #[doc = "Get the node's named children"]
     #[doc = "This is guaranteed to return at least one child"]
     #[allow(dead_code)]
-    #[inline]    pub fn children < 'a > (& self , c : & 'a mut tree_sitter :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: VisibilityModifier_FieldDeclarationList_OrderedFieldDeclarationList_Identifier_Expression > >> + 'a{
-        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: VisibilityModifier_FieldDeclarationList_OrderedFieldDeclarationList_Identifier_Expression > as TryFrom < _ >> :: try_from (n))
+    #[inline]    pub fn children < 'a > (& self , c : & 'a mut tree_sitter :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: VisibilityModifier_FieldDeclarationList_OrderedFieldDeclarationList_Identifier_Expression < 'tree > > >> + 'a{
+        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: VisibilityModifier_FieldDeclarationList_OrderedFieldDeclarationList_Identifier_Expression < 'tree > > as TryFrom < _ >> :: try_from (n))
     }
     #[doc = "Get the node's named child #i"]
     #[allow(dead_code)]
-    #[inline]    pub fn child (& self , i : usize) -> Option < type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: VisibilityModifier_FieldDeclarationList_OrderedFieldDeclarationList_Identifier_Expression > >>{
-        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: VisibilityModifier_FieldDeclarationList_OrderedFieldDeclarationList_Identifier_Expression > as TryFrom < _ >> :: try_from)
+    #[inline]    pub fn child (& self , i : usize) -> Option < type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: VisibilityModifier_FieldDeclarationList_OrderedFieldDeclarationList_Identifier_Expression < 'tree > > >>{
+        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: VisibilityModifier_FieldDeclarationList_OrderedFieldDeclarationList_Identifier_Expression < 'tree > > as TryFrom < _ >> :: try_from)
     }
 }
 #[automatically_derived]
@@ -3813,6 +4080,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for EnumVariant<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -3832,14 +4103,10 @@ impl<'tree> EnumVariantList<'tree> {
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::AttributeItem_EnumVariant>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::AttributeItem_EnumVariant<'tree>>,
         >,
     > + 'a {
-        self.0.named_children(c).map(|n| {
-            <type_sitter_lib::ExtraOr<'tree, anon_unions::AttributeItem_EnumVariant> as TryFrom<
-                _,
-            >>::try_from(n)
-        })
+        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: AttributeItem_EnumVariant < 'tree > > as TryFrom < _ >> :: try_from (n))
     }
     #[doc = "Get the node's named child #i"]
     #[allow(dead_code)]
@@ -3850,14 +4117,10 @@ impl<'tree> EnumVariantList<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::AttributeItem_EnumVariant>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::AttributeItem_EnumVariant<'tree>>,
         >,
     > {
-        self.0.named_child(i).map(
-            <type_sitter_lib::ExtraOr<'tree, anon_unions::AttributeItem_EnumVariant> as TryFrom<
-                _,
-            >>::try_from,
-        )
+        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: AttributeItem_EnumVariant < 'tree > > as TryFrom < _ >> :: try_from)
     }
 }
 #[automatically_derived]
@@ -3885,6 +4148,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for EnumVariantList<'tree> {
     #[inline]
     fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
         &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
     }
     #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -3931,6 +4198,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ExpressionStatement<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -3965,10 +4236,13 @@ impl<'tree> ExternCrateDeclaration<'tree> {
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::Crate_VisibilityModifier_Identifier>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::Crate_VisibilityModifier_Identifier<'tree>,
+            >,
         >,
     > + 'a {
-        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Crate_VisibilityModifier_Identifier > as TryFrom < _ >> :: try_from (n))
+        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Crate_VisibilityModifier_Identifier < 'tree > > as TryFrom < _ >> :: try_from (n))
     }
     #[doc = "Get the node's named child #i"]
     #[allow(dead_code)]
@@ -3979,10 +4253,18 @@ impl<'tree> ExternCrateDeclaration<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::Crate_VisibilityModifier_Identifier>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::Crate_VisibilityModifier_Identifier<'tree>,
+            >,
         >,
     > {
-        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Crate_VisibilityModifier_Identifier > as TryFrom < _ >> :: try_from)
+        self.0.named_child(i).map(
+            <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::Crate_VisibilityModifier_Identifier<'tree>,
+            > as TryFrom<_>>::try_from,
+        )
     }
 }
 #[automatically_derived]
@@ -4010,6 +4292,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ExternCrateDeclaration<'tree> 
     #[inline]
     fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
         &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
     }
     #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -4058,6 +4344,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ExternModifier<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -4090,10 +4380,18 @@ impl<'tree> FieldDeclaration<'tree> {
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::VisibilityModifier_FieldIdentifier_Type>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::VisibilityModifier_FieldIdentifier_Type<'tree>,
+            >,
         >,
     > + 'a {
-        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: VisibilityModifier_FieldIdentifier_Type > as TryFrom < _ >> :: try_from (n))
+        self.0.named_children(c).map(|n| {
+            <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::VisibilityModifier_FieldIdentifier_Type<'tree>,
+            > as TryFrom<_>>::try_from(n)
+        })
     }
     #[doc = "Get the node's named child #i"]
     #[allow(dead_code)]
@@ -4104,10 +4402,18 @@ impl<'tree> FieldDeclaration<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::VisibilityModifier_FieldIdentifier_Type>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::VisibilityModifier_FieldIdentifier_Type<'tree>,
+            >,
         >,
     > {
-        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: VisibilityModifier_FieldIdentifier_Type > as TryFrom < _ >> :: try_from)
+        self.0.named_child(i).map(
+            <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::VisibilityModifier_FieldIdentifier_Type<'tree>,
+            > as TryFrom<_>>::try_from,
+        )
     }
 }
 #[automatically_derived]
@@ -4137,6 +4443,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for FieldDeclaration<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -4156,10 +4466,10 @@ impl<'tree> FieldDeclarationList<'tree> {
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::AttributeItem_FieldDeclaration>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::AttributeItem_FieldDeclaration<'tree>>,
         >,
     > + 'a {
-        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: AttributeItem_FieldDeclaration > as TryFrom < _ >> :: try_from (n))
+        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: AttributeItem_FieldDeclaration < 'tree > > as TryFrom < _ >> :: try_from (n))
     }
     #[doc = "Get the node's named child #i"]
     #[allow(dead_code)]
@@ -4170,10 +4480,10 @@ impl<'tree> FieldDeclarationList<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::AttributeItem_FieldDeclaration>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::AttributeItem_FieldDeclaration<'tree>>,
         >,
     > {
-        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: AttributeItem_FieldDeclaration > as TryFrom < _ >> :: try_from)
+        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: AttributeItem_FieldDeclaration < 'tree > > as TryFrom < _ >> :: try_from)
     }
 }
 #[automatically_derived]
@@ -4203,6 +4513,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for FieldDeclarationList<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -4218,8 +4532,9 @@ impl<'tree> FieldExpression<'tree> {
     #[inline]
     pub fn field(
         &self,
-    ) -> type_sitter_lib::NodeResult<'tree, anon_unions::FieldIdentifier_IntegerLiteral> {
-        self . 0 . child_by_field_name ("field") . map (< anon_unions :: FieldIdentifier_IntegerLiteral as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
+    ) -> type_sitter_lib::NodeResult<'tree, anon_unions::FieldIdentifier_IntegerLiteral<'tree>>
+    {
+        self . 0 . child_by_field_name ("field") . map (< anon_unions :: FieldIdentifier_IntegerLiteral < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
     #[doc = "Get the field `value`"]
     #[allow(dead_code)]
@@ -4255,6 +4570,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for FieldExpression<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -4287,10 +4606,18 @@ impl<'tree> FieldInitializer<'tree> {
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::AttributeItem_FieldIdentifier_Expression>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::AttributeItem_FieldIdentifier_Expression<'tree>,
+            >,
         >,
     > + 'a {
-        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: AttributeItem_FieldIdentifier_Expression > as TryFrom < _ >> :: try_from (n))
+        self.0.named_children(c).map(|n| {
+            <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::AttributeItem_FieldIdentifier_Expression<'tree>,
+            > as TryFrom<_>>::try_from(n)
+        })
     }
     #[doc = "Get the node's named child #i"]
     #[allow(dead_code)]
@@ -4301,10 +4628,18 @@ impl<'tree> FieldInitializer<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::AttributeItem_FieldIdentifier_Expression>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::AttributeItem_FieldIdentifier_Expression<'tree>,
+            >,
         >,
     > {
-        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: AttributeItem_FieldIdentifier_Expression > as TryFrom < _ >> :: try_from)
+        self.0.named_child(i).map(
+            <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::AttributeItem_FieldIdentifier_Expression<'tree>,
+            > as TryFrom<_>>::try_from,
+        )
     }
 }
 #[automatically_derived]
@@ -4334,6 +4669,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for FieldInitializer<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -4355,14 +4694,14 @@ impl<'tree> FieldInitializerList<'tree> {
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::BaseFieldInitializer_FieldInitializer_ShorthandFieldInitializer,
+                anon_unions::BaseFieldInitializer_FieldInitializer_ShorthandFieldInitializer<'tree>,
             >,
         >,
     > + 'a {
         self.0.named_children(c).map(|n| {
             <type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::BaseFieldInitializer_FieldInitializer_ShorthandFieldInitializer,
+                anon_unions::BaseFieldInitializer_FieldInitializer_ShorthandFieldInitializer<'tree>,
             > as TryFrom<_>>::try_from(n)
         })
     }
@@ -4377,14 +4716,14 @@ impl<'tree> FieldInitializerList<'tree> {
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::BaseFieldInitializer_FieldInitializer_ShorthandFieldInitializer,
+                anon_unions::BaseFieldInitializer_FieldInitializer_ShorthandFieldInitializer<'tree>,
             >,
         >,
     > {
         self.0.named_child(i).map(
             <type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::BaseFieldInitializer_FieldInitializer_ShorthandFieldInitializer,
+                anon_unions::BaseFieldInitializer_FieldInitializer_ShorthandFieldInitializer<'tree>,
             > as TryFrom<_>>::try_from,
         )
     }
@@ -4416,6 +4755,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for FieldInitializerList<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -4431,9 +4774,11 @@ impl<'tree> FieldPattern<'tree> {
     #[inline]
     pub fn name(
         &self,
-    ) -> type_sitter_lib::NodeResult<'tree, anon_unions::FieldIdentifier_ShorthandFieldIdentifier>
-    {
-        self . 0 . child_by_field_name ("name") . map (< anon_unions :: FieldIdentifier_ShorthandFieldIdentifier as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
+    ) -> type_sitter_lib::NodeResult<
+        'tree,
+        anon_unions::FieldIdentifier_ShorthandFieldIdentifier<'tree>,
+    > {
+        self . 0 . child_by_field_name ("name") . map (< anon_unions :: FieldIdentifier_ShorthandFieldIdentifier < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
     #[doc = "Get the field `pattern`"]
     #[allow(dead_code)]
@@ -4455,14 +4800,18 @@ impl<'tree> FieldPattern<'tree> {
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::MutableSpecifier_FieldIdentifier_ShorthandFieldIdentifier_Pattern,
+                anon_unions::MutableSpecifier_FieldIdentifier_ShorthandFieldIdentifier_Pattern<
+                    'tree,
+                >,
             >,
         >,
     > + 'a {
         self.0.named_children(c).map(|n| {
             <type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::MutableSpecifier_FieldIdentifier_ShorthandFieldIdentifier_Pattern,
+                anon_unions::MutableSpecifier_FieldIdentifier_ShorthandFieldIdentifier_Pattern<
+                    'tree,
+                >,
             > as TryFrom<_>>::try_from(n)
         })
     }
@@ -4477,14 +4826,18 @@ impl<'tree> FieldPattern<'tree> {
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::MutableSpecifier_FieldIdentifier_ShorthandFieldIdentifier_Pattern,
+                anon_unions::MutableSpecifier_FieldIdentifier_ShorthandFieldIdentifier_Pattern<
+                    'tree,
+                >,
             >,
         >,
     > {
         self.0.named_child(i).map(
             <type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::MutableSpecifier_FieldIdentifier_ShorthandFieldIdentifier_Pattern,
+                anon_unions::MutableSpecifier_FieldIdentifier_ShorthandFieldIdentifier_Pattern<
+                    'tree,
+                >,
             > as TryFrom<_>>::try_from,
         )
     }
@@ -4514,6 +4867,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for FieldPattern<'tree> {
     #[inline]
     fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
         &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
     }
     #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -4554,10 +4911,10 @@ impl<'tree> ForExpression<'tree> {
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::LoopLabel_Block_Pattern_Expression>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::LoopLabel_Block_Pattern_Expression<'tree>>,
         >,
     > + 'a {
-        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: LoopLabel_Block_Pattern_Expression > as TryFrom < _ >> :: try_from (n))
+        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: LoopLabel_Block_Pattern_Expression < 'tree > > as TryFrom < _ >> :: try_from (n))
     }
     #[doc = "Get the node's named child #i"]
     #[allow(dead_code)]
@@ -4568,10 +4925,10 @@ impl<'tree> ForExpression<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::LoopLabel_Block_Pattern_Expression>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::LoopLabel_Block_Pattern_Expression<'tree>>,
         >,
     > {
-        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: LoopLabel_Block_Pattern_Expression > as TryFrom < _ >> :: try_from)
+        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: LoopLabel_Block_Pattern_Expression < 'tree > > as TryFrom < _ >> :: try_from)
     }
 }
 #[automatically_derived]
@@ -4599,6 +4956,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ForExpression<'tree> {
     #[inline]
     fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
         &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
     }
     #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -4665,6 +5026,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ForLifetimes<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -4695,14 +5060,14 @@ impl<'tree> ForeignModItem<'tree> {
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::ExternModifier_VisibilityModifier_DeclarationList,
+                anon_unions::ExternModifier_VisibilityModifier_DeclarationList<'tree>,
             >,
         >,
     > + 'a {
         self.0.named_children(c).map(|n| {
             <type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::ExternModifier_VisibilityModifier_DeclarationList,
+                anon_unions::ExternModifier_VisibilityModifier_DeclarationList<'tree>,
             > as TryFrom<_>>::try_from(n)
         })
     }
@@ -4717,14 +5082,14 @@ impl<'tree> ForeignModItem<'tree> {
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::ExternModifier_VisibilityModifier_DeclarationList,
+                anon_unions::ExternModifier_VisibilityModifier_DeclarationList<'tree>,
             >,
         >,
     > {
         self.0.named_child(i).map(
             <type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::ExternModifier_VisibilityModifier_DeclarationList,
+                anon_unions::ExternModifier_VisibilityModifier_DeclarationList<'tree>,
             > as TryFrom<_>>::try_from,
         )
     }
@@ -4754,6 +5119,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ForeignModItem<'tree> {
     #[inline]
     fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
         &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
     }
     #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -4793,6 +5162,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for FragmentSpecifier<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -4812,8 +5185,10 @@ impl<'tree> FunctionItem<'tree> {
     #[doc = "Get the field `name`"]
     #[allow(dead_code)]
     #[inline]
-    pub fn name(&self) -> type_sitter_lib::NodeResult<'tree, anon_unions::Identifier_Metavariable> {
-        self . 0 . child_by_field_name ("name") . map (< anon_unions :: Identifier_Metavariable as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
+    pub fn name(
+        &self,
+    ) -> type_sitter_lib::NodeResult<'tree, anon_unions::Identifier_Metavariable<'tree>> {
+        self . 0 . child_by_field_name ("name") . map (< anon_unions :: Identifier_Metavariable < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
     #[doc = "Get the field `parameters`"]
     #[allow(dead_code)]
@@ -4842,13 +5217,13 @@ impl<'tree> FunctionItem<'tree> {
     #[doc = "Get the node's named children"]
     #[doc = "This is guaranteed to return at least one child"]
     #[allow(dead_code)]
-    #[inline]    pub fn children < 'a > (& self , c : & 'a mut tree_sitter :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: FunctionModifiers_VisibilityModifier_WhereClause_Block_Identifier_Metavariable_Parameters_Type_TypeParameters > >> + 'a{
-        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: FunctionModifiers_VisibilityModifier_WhereClause_Block_Identifier_Metavariable_Parameters_Type_TypeParameters > as TryFrom < _ >> :: try_from (n))
+    #[inline]    pub fn children < 'a > (& self , c : & 'a mut tree_sitter :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: FunctionModifiers_VisibilityModifier_WhereClause_Block_Identifier_Metavariable_Parameters_Type_TypeParameters < 'tree > > >> + 'a{
+        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: FunctionModifiers_VisibilityModifier_WhereClause_Block_Identifier_Metavariable_Parameters_Type_TypeParameters < 'tree > > as TryFrom < _ >> :: try_from (n))
     }
     #[doc = "Get the node's named child #i"]
     #[allow(dead_code)]
-    #[inline]    pub fn child (& self , i : usize) -> Option < type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: FunctionModifiers_VisibilityModifier_WhereClause_Block_Identifier_Metavariable_Parameters_Type_TypeParameters > >>{
-        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: FunctionModifiers_VisibilityModifier_WhereClause_Block_Identifier_Metavariable_Parameters_Type_TypeParameters > as TryFrom < _ >> :: try_from)
+    #[inline]    pub fn child (& self , i : usize) -> Option < type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: FunctionModifiers_VisibilityModifier_WhereClause_Block_Identifier_Metavariable_Parameters_Type_TypeParameters < 'tree > > >>{
+        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: FunctionModifiers_VisibilityModifier_WhereClause_Block_Identifier_Metavariable_Parameters_Type_TypeParameters < 'tree > > as TryFrom < _ >> :: try_from)
     }
 }
 #[automatically_derived]
@@ -4876,6 +5251,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for FunctionItem<'tree> {
     #[inline]
     fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
         &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
     }
     #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -4945,6 +5324,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for FunctionModifiers<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -4958,8 +5341,10 @@ impl<'tree> FunctionSignatureItem<'tree> {
     #[doc = "Get the field `name`"]
     #[allow(dead_code)]
     #[inline]
-    pub fn name(&self) -> type_sitter_lib::NodeResult<'tree, anon_unions::Identifier_Metavariable> {
-        self . 0 . child_by_field_name ("name") . map (< anon_unions :: Identifier_Metavariable as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
+    pub fn name(
+        &self,
+    ) -> type_sitter_lib::NodeResult<'tree, anon_unions::Identifier_Metavariable<'tree>> {
+        self . 0 . child_by_field_name ("name") . map (< anon_unions :: Identifier_Metavariable < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
     #[doc = "Get the field `parameters`"]
     #[allow(dead_code)]
@@ -4988,13 +5373,13 @@ impl<'tree> FunctionSignatureItem<'tree> {
     #[doc = "Get the node's named children"]
     #[doc = "This is guaranteed to return at least one child"]
     #[allow(dead_code)]
-    #[inline]    pub fn children < 'a > (& self , c : & 'a mut tree_sitter :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: FunctionModifiers_VisibilityModifier_WhereClause_Identifier_Metavariable_Parameters_Type_TypeParameters > >> + 'a{
-        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: FunctionModifiers_VisibilityModifier_WhereClause_Identifier_Metavariable_Parameters_Type_TypeParameters > as TryFrom < _ >> :: try_from (n))
+    #[inline]    pub fn children < 'a > (& self , c : & 'a mut tree_sitter :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: FunctionModifiers_VisibilityModifier_WhereClause_Identifier_Metavariable_Parameters_Type_TypeParameters < 'tree > > >> + 'a{
+        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: FunctionModifiers_VisibilityModifier_WhereClause_Identifier_Metavariable_Parameters_Type_TypeParameters < 'tree > > as TryFrom < _ >> :: try_from (n))
     }
     #[doc = "Get the node's named child #i"]
     #[allow(dead_code)]
-    #[inline]    pub fn child (& self , i : usize) -> Option < type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: FunctionModifiers_VisibilityModifier_WhereClause_Identifier_Metavariable_Parameters_Type_TypeParameters > >>{
-        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: FunctionModifiers_VisibilityModifier_WhereClause_Identifier_Metavariable_Parameters_Type_TypeParameters > as TryFrom < _ >> :: try_from)
+    #[inline]    pub fn child (& self , i : usize) -> Option < type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: FunctionModifiers_VisibilityModifier_WhereClause_Identifier_Metavariable_Parameters_Type_TypeParameters < 'tree > > >>{
+        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: FunctionModifiers_VisibilityModifier_WhereClause_Identifier_Metavariable_Parameters_Type_TypeParameters < 'tree > > as TryFrom < _ >> :: try_from)
     }
 }
 #[automatically_derived]
@@ -5022,6 +5407,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for FunctionSignatureItem<'tree> {
     #[inline]
     fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
         &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
     }
     #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -5053,22 +5442,23 @@ impl<'tree> FunctionType<'tree> {
     #[inline]
     pub fn r#trait(
         &self,
-    ) -> Option<type_sitter_lib::NodeResult<'tree, anon_unions::ScopedTypeIdentifier_TypeIdentifier>>
-    {
+    ) -> Option<
+        type_sitter_lib::NodeResult<'tree, anon_unions::ScopedTypeIdentifier_TypeIdentifier<'tree>>,
+    > {
         self.0
             .child_by_field_name("trait")
-            .map(<anon_unions::ScopedTypeIdentifier_TypeIdentifier as TryFrom<_>>::try_from)
+            .map(<anon_unions::ScopedTypeIdentifier_TypeIdentifier<'tree> as TryFrom<_>>::try_from)
     }
     #[doc = "Get the node's named children"]
     #[doc = "This is guaranteed to return at least one child"]
     #[allow(dead_code)]
-    #[inline]    pub fn children < 'a > (& self , c : & 'a mut tree_sitter :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: ForLifetimes_FunctionModifiers_Parameters_Type_ScopedTypeIdentifier_TypeIdentifier > >> + 'a{
-        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: ForLifetimes_FunctionModifiers_Parameters_Type_ScopedTypeIdentifier_TypeIdentifier > as TryFrom < _ >> :: try_from (n))
+    #[inline]    pub fn children < 'a > (& self , c : & 'a mut tree_sitter :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: ForLifetimes_FunctionModifiers_Parameters_Type_ScopedTypeIdentifier_TypeIdentifier < 'tree > > >> + 'a{
+        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: ForLifetimes_FunctionModifiers_Parameters_Type_ScopedTypeIdentifier_TypeIdentifier < 'tree > > as TryFrom < _ >> :: try_from (n))
     }
     #[doc = "Get the node's named child #i"]
     #[allow(dead_code)]
-    #[inline]    pub fn child (& self , i : usize) -> Option < type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: ForLifetimes_FunctionModifiers_Parameters_Type_ScopedTypeIdentifier_TypeIdentifier > >>{
-        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: ForLifetimes_FunctionModifiers_Parameters_Type_ScopedTypeIdentifier_TypeIdentifier > as TryFrom < _ >> :: try_from)
+    #[inline]    pub fn child (& self , i : usize) -> Option < type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: ForLifetimes_FunctionModifiers_Parameters_Type_ScopedTypeIdentifier_TypeIdentifier < 'tree > > >>{
+        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: ForLifetimes_FunctionModifiers_Parameters_Type_ScopedTypeIdentifier_TypeIdentifier < 'tree > > as TryFrom < _ >> :: try_from)
     }
 }
 #[automatically_derived]
@@ -5098,6 +5488,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for FunctionType<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -5113,9 +5507,11 @@ impl<'tree> GenericFunction<'tree> {
     #[inline]
     pub fn function(
         &self,
-    ) -> type_sitter_lib::NodeResult<'tree, anon_unions::FieldExpression_Identifier_ScopedIdentifier>
-    {
-        self . 0 . child_by_field_name ("function") . map (< anon_unions :: FieldExpression_Identifier_ScopedIdentifier as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
+    ) -> type_sitter_lib::NodeResult<
+        'tree,
+        anon_unions::FieldExpression_Identifier_ScopedIdentifier<'tree>,
+    > {
+        self . 0 . child_by_field_name ("function") . map (< anon_unions :: FieldExpression_Identifier_ScopedIdentifier < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
     #[doc = "Get the field `type_arguments`"]
     #[allow(dead_code)]
@@ -5151,6 +5547,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for GenericFunction<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -5168,9 +5568,9 @@ impl<'tree> GenericType<'tree> {
         &self,
     ) -> type_sitter_lib::NodeResult<
         'tree,
-        anon_unions::ScopedIdentifier_ScopedTypeIdentifier_TypeIdentifier,
+        anon_unions::ScopedIdentifier_ScopedTypeIdentifier_TypeIdentifier<'tree>,
     > {
-        self . 0 . child_by_field_name ("type") . map (< anon_unions :: ScopedIdentifier_ScopedTypeIdentifier_TypeIdentifier as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
+        self . 0 . child_by_field_name ("type") . map (< anon_unions :: ScopedIdentifier_ScopedTypeIdentifier_TypeIdentifier < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
     #[doc = "Get the field `type_arguments`"]
     #[allow(dead_code)]
@@ -5206,6 +5606,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for GenericType<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -5221,8 +5625,9 @@ impl<'tree> GenericTypeWithTurbofish<'tree> {
     #[inline]
     pub fn r#type(
         &self,
-    ) -> type_sitter_lib::NodeResult<'tree, anon_unions::ScopedIdentifier_TypeIdentifier> {
-        self . 0 . child_by_field_name ("type") . map (< anon_unions :: ScopedIdentifier_TypeIdentifier as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
+    ) -> type_sitter_lib::NodeResult<'tree, anon_unions::ScopedIdentifier_TypeIdentifier<'tree>>
+    {
+        self . 0 . child_by_field_name ("type") . map (< anon_unions :: ScopedIdentifier_TypeIdentifier < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
     #[doc = "Get the field `type_arguments`"]
     #[allow(dead_code)]
@@ -5256,6 +5661,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for GenericTypeWithTurbofish<'tree
     #[inline]
     fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
         &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
     }
     #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -5308,6 +5717,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for HigherRankedTraitBound<'tree> 
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -5331,8 +5744,9 @@ impl<'tree> IfExpression<'tree> {
     #[inline]
     pub fn condition(
         &self,
-    ) -> type_sitter_lib::NodeResult<'tree, anon_unions::Expression_LetChain_LetCondition> {
-        self . 0 . child_by_field_name ("condition") . map (< anon_unions :: Expression_LetChain_LetCondition as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
+    ) -> type_sitter_lib::NodeResult<'tree, anon_unions::Expression_LetChain_LetCondition<'tree>>
+    {
+        self . 0 . child_by_field_name ("condition") . map (< anon_unions :: Expression_LetChain_LetCondition < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
     #[doc = "Get the field `consequence`"]
     #[allow(dead_code)]
@@ -5368,6 +5782,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for IfExpression<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -5394,12 +5812,10 @@ impl<'tree> ImplItem<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            anon_unions::GenericType_ScopedTypeIdentifier_TypeIdentifier,
+            anon_unions::GenericType_ScopedTypeIdentifier_TypeIdentifier<'tree>,
         >,
     > {
-        self.0.child_by_field_name("trait").map(
-            <anon_unions::GenericType_ScopedTypeIdentifier_TypeIdentifier as TryFrom<_>>::try_from,
-        )
+        self . 0 . child_by_field_name ("trait") . map (< anon_unions :: GenericType_ScopedTypeIdentifier_TypeIdentifier < 'tree > as TryFrom < _ >> :: try_from)
     }
     #[doc = "Get the field `type`"]
     #[allow(dead_code)]
@@ -5420,13 +5836,13 @@ impl<'tree> ImplItem<'tree> {
     #[doc = "Get the node's named children"]
     #[doc = "This is guaranteed to return at least one child"]
     #[allow(dead_code)]
-    #[inline]    pub fn children < 'a > (& self , c : & 'a mut tree_sitter :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: WhereClause_DeclarationList_GenericType_ScopedTypeIdentifier_TypeIdentifier_Type_TypeParameters > >> + 'a{
-        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: WhereClause_DeclarationList_GenericType_ScopedTypeIdentifier_TypeIdentifier_Type_TypeParameters > as TryFrom < _ >> :: try_from (n))
+    #[inline]    pub fn children < 'a > (& self , c : & 'a mut tree_sitter :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: WhereClause_DeclarationList_GenericType_ScopedTypeIdentifier_TypeIdentifier_Type_TypeParameters < 'tree > > >> + 'a{
+        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: WhereClause_DeclarationList_GenericType_ScopedTypeIdentifier_TypeIdentifier_Type_TypeParameters < 'tree > > as TryFrom < _ >> :: try_from (n))
     }
     #[doc = "Get the node's named child #i"]
     #[allow(dead_code)]
-    #[inline]    pub fn child (& self , i : usize) -> Option < type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: WhereClause_DeclarationList_GenericType_ScopedTypeIdentifier_TypeIdentifier_Type_TypeParameters > >>{
-        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: WhereClause_DeclarationList_GenericType_ScopedTypeIdentifier_TypeIdentifier_Type_TypeParameters > as TryFrom < _ >> :: try_from)
+    #[inline]    pub fn child (& self , i : usize) -> Option < type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: WhereClause_DeclarationList_GenericType_ScopedTypeIdentifier_TypeIdentifier_Type_TypeParameters < 'tree > > >>{
+        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: WhereClause_DeclarationList_GenericType_ScopedTypeIdentifier_TypeIdentifier_Type_TypeParameters < 'tree > > as TryFrom < _ >> :: try_from)
     }
 }
 #[automatically_derived]
@@ -5454,6 +5870,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ImplItem<'tree> {
     #[inline]
     fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
         &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
     }
     #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -5524,6 +5944,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for IndexExpression<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -5568,6 +5992,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for InnerAttributeItem<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -5588,10 +6016,10 @@ impl<'tree> LetChain<'tree> {
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::Expression_LetCondition>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::Expression_LetCondition<'tree>>,
         >,
     > + 'a {
-        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Expression_LetCondition > as TryFrom < _ >> :: try_from (n))
+        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Expression_LetCondition < 'tree > > as TryFrom < _ >> :: try_from (n))
     }
     #[doc = "Get the node's named child #i"]
     #[allow(dead_code)]
@@ -5602,10 +6030,10 @@ impl<'tree> LetChain<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::Expression_LetCondition>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::Expression_LetCondition<'tree>>,
         >,
     > {
-        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Expression_LetCondition > as TryFrom < _ >> :: try_from)
+        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Expression_LetCondition < 'tree > > as TryFrom < _ >> :: try_from)
     }
 }
 #[automatically_derived]
@@ -5633,6 +6061,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for LetChain<'tree> {
     #[inline]
     fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
         &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
     }
     #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -5683,6 +6115,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for LetCondition<'tree> {
     #[inline]
     fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
         &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
     }
     #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -5737,14 +6173,14 @@ impl<'tree> LetDeclaration<'tree> {
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::MutableSpecifier_Block_Pattern_Type_Expression,
+                anon_unions::MutableSpecifier_Block_Pattern_Type_Expression<'tree>,
             >,
         >,
     > + 'a {
         self.0.named_children(c).map(|n| {
             <type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::MutableSpecifier_Block_Pattern_Type_Expression,
+                anon_unions::MutableSpecifier_Block_Pattern_Type_Expression<'tree>,
             > as TryFrom<_>>::try_from(n)
         })
     }
@@ -5759,14 +6195,14 @@ impl<'tree> LetDeclaration<'tree> {
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::MutableSpecifier_Block_Pattern_Type_Expression,
+                anon_unions::MutableSpecifier_Block_Pattern_Type_Expression<'tree>,
             >,
         >,
     > {
         self.0.named_child(i).map(
             <type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::MutableSpecifier_Block_Pattern_Type_Expression,
+                anon_unions::MutableSpecifier_Block_Pattern_Type_Expression<'tree>,
             > as TryFrom<_>>::try_from,
         )
     }
@@ -5796,6 +6232,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for LetDeclaration<'tree> {
     #[inline]
     fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
         &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
     }
     #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -5842,6 +6282,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Lifetime<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -5868,14 +6312,10 @@ impl<'tree> LoopExpression<'tree> {
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::LoopLabel_Block>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::LoopLabel_Block<'tree>>,
         >,
     > + 'a {
-        self.0.named_children(c).map(|n| {
-            <type_sitter_lib::ExtraOr<'tree, anon_unions::LoopLabel_Block> as TryFrom<_>>::try_from(
-                n,
-            )
-        })
+        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: LoopLabel_Block < 'tree > > as TryFrom < _ >> :: try_from (n))
     }
     #[doc = "Get the node's named child #i"]
     #[allow(dead_code)]
@@ -5886,12 +6326,10 @@ impl<'tree> LoopExpression<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::LoopLabel_Block>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::LoopLabel_Block<'tree>>,
         >,
     > {
-        self.0.named_child(i).map(
-            <type_sitter_lib::ExtraOr<'tree, anon_unions::LoopLabel_Block> as TryFrom<_>>::try_from,
-        )
+        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: LoopLabel_Block < 'tree > > as TryFrom < _ >> :: try_from)
     }
 }
 #[automatically_derived]
@@ -5919,6 +6357,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for LoopExpression<'tree> {
     #[inline]
     fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
         &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
     }
     #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -5965,6 +6407,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for LoopLabel<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -5991,10 +6437,14 @@ impl<'tree> MacroDefinition<'tree> {
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::MacroRule_Identifier>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::MacroRule_Identifier<'tree>>,
         >,
     > + 'a {
-        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: MacroRule_Identifier > as TryFrom < _ >> :: try_from (n))
+        self.0.named_children(c).map(|n| {
+            <type_sitter_lib::ExtraOr<'tree, anon_unions::MacroRule_Identifier<'tree>> as TryFrom<
+                _,
+            >>::try_from(n)
+        })
     }
     #[doc = "Get the node's named child #i"]
     #[allow(dead_code)]
@@ -6005,10 +6455,10 @@ impl<'tree> MacroDefinition<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::MacroRule_Identifier>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::MacroRule_Identifier<'tree>>,
         >,
     > {
-        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: MacroRule_Identifier > as TryFrom < _ >> :: try_from)
+        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: MacroRule_Identifier < 'tree > > as TryFrom < _ >> :: try_from)
     }
 }
 #[automatically_derived]
@@ -6038,6 +6488,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for MacroDefinition<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -6053,8 +6507,8 @@ impl<'tree> MacroInvocation<'tree> {
     #[inline]
     pub fn r#macro(
         &self,
-    ) -> type_sitter_lib::NodeResult<'tree, anon_unions::Identifier_ScopedIdentifier> {
-        self . 0 . child_by_field_name ("macro") . map (< anon_unions :: Identifier_ScopedIdentifier as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
+    ) -> type_sitter_lib::NodeResult<'tree, anon_unions::Identifier_ScopedIdentifier<'tree>> {
+        self . 0 . child_by_field_name ("macro") . map (< anon_unions :: Identifier_ScopedIdentifier < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
     #[doc = "Get the node's named children"]
     #[doc = "This is guaranteed to return at least one child"]
@@ -6066,10 +6520,18 @@ impl<'tree> MacroInvocation<'tree> {
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::TokenTree_Identifier_ScopedIdentifier>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::TokenTree_Identifier_ScopedIdentifier<'tree>,
+            >,
         >,
     > + 'a {
-        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: TokenTree_Identifier_ScopedIdentifier > as TryFrom < _ >> :: try_from (n))
+        self.0.named_children(c).map(|n| {
+            <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::TokenTree_Identifier_ScopedIdentifier<'tree>,
+            > as TryFrom<_>>::try_from(n)
+        })
     }
     #[doc = "Get the node's named child #i"]
     #[allow(dead_code)]
@@ -6080,10 +6542,18 @@ impl<'tree> MacroInvocation<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::TokenTree_Identifier_ScopedIdentifier>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::TokenTree_Identifier_ScopedIdentifier<'tree>,
+            >,
         >,
     > {
-        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: TokenTree_Identifier_ScopedIdentifier > as TryFrom < _ >> :: try_from)
+        self.0.named_child(i).map(
+            <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::TokenTree_Identifier_ScopedIdentifier<'tree>,
+            > as TryFrom<_>>::try_from,
+        )
     }
 }
 #[automatically_derived]
@@ -6111,6 +6581,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for MacroInvocation<'tree> {
     #[inline]
     fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
         &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
     }
     #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -6163,6 +6637,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for MacroRule<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -6195,10 +6673,18 @@ impl<'tree> MatchArm<'tree> {
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::AttributeItem_MatchPattern_Expression>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::AttributeItem_MatchPattern_Expression<'tree>,
+            >,
         >,
     > + 'a {
-        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: AttributeItem_MatchPattern_Expression > as TryFrom < _ >> :: try_from (n))
+        self.0.named_children(c).map(|n| {
+            <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::AttributeItem_MatchPattern_Expression<'tree>,
+            > as TryFrom<_>>::try_from(n)
+        })
     }
     #[doc = "Get the node's named child #i"]
     #[allow(dead_code)]
@@ -6209,10 +6695,18 @@ impl<'tree> MatchArm<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::AttributeItem_MatchPattern_Expression>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::AttributeItem_MatchPattern_Expression<'tree>,
+            >,
         >,
     > {
-        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: AttributeItem_MatchPattern_Expression > as TryFrom < _ >> :: try_from)
+        self.0.named_child(i).map(
+            <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::AttributeItem_MatchPattern_Expression<'tree>,
+            > as TryFrom<_>>::try_from,
+        )
     }
 }
 #[automatically_derived]
@@ -6240,6 +6734,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for MatchArm<'tree> {
     #[inline]
     fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
         &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
     }
     #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -6305,6 +6803,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for MatchBlock<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -6355,6 +6857,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for MatchExpression<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -6370,11 +6876,12 @@ impl<'tree> MatchPattern<'tree> {
     #[inline]
     pub fn condition(
         &self,
-    ) -> Option<type_sitter_lib::NodeResult<'tree, anon_unions::Expression_LetChain_LetCondition>>
-    {
+    ) -> Option<
+        type_sitter_lib::NodeResult<'tree, anon_unions::Expression_LetChain_LetCondition<'tree>>,
+    > {
         self.0
             .child_by_field_name("condition")
-            .map(<anon_unions::Expression_LetChain_LetCondition as TryFrom<_>>::try_from)
+            .map(<anon_unions::Expression_LetChain_LetCondition<'tree> as TryFrom<_>>::try_from)
     }
     #[doc = "Get the node's named children"]
     #[doc = "This is guaranteed to return at least one child"]
@@ -6386,10 +6893,18 @@ impl<'tree> MatchPattern<'tree> {
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::Pattern_Expression_LetChain_LetCondition>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::Pattern_Expression_LetChain_LetCondition<'tree>,
+            >,
         >,
     > + 'a {
-        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Pattern_Expression_LetChain_LetCondition > as TryFrom < _ >> :: try_from (n))
+        self.0.named_children(c).map(|n| {
+            <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::Pattern_Expression_LetChain_LetCondition<'tree>,
+            > as TryFrom<_>>::try_from(n)
+        })
     }
     #[doc = "Get the node's named child #i"]
     #[allow(dead_code)]
@@ -6400,10 +6915,18 @@ impl<'tree> MatchPattern<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::Pattern_Expression_LetChain_LetCondition>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::Pattern_Expression_LetChain_LetCondition<'tree>,
+            >,
         >,
     > {
-        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Pattern_Expression_LetChain_LetCondition > as TryFrom < _ >> :: try_from)
+        self.0.named_child(i).map(
+            <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::Pattern_Expression_LetChain_LetCondition<'tree>,
+            > as TryFrom<_>>::try_from,
+        )
     }
 }
 #[automatically_derived]
@@ -6431,6 +6954,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for MatchPattern<'tree> {
     #[inline]
     fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
         &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
     }
     #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -6469,14 +6996,14 @@ impl<'tree> ModItem<'tree> {
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::VisibilityModifier_DeclarationList_Identifier,
+                anon_unions::VisibilityModifier_DeclarationList_Identifier<'tree>,
             >,
         >,
     > + 'a {
         self.0.named_children(c).map(|n| {
             <type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::VisibilityModifier_DeclarationList_Identifier,
+                anon_unions::VisibilityModifier_DeclarationList_Identifier<'tree>,
             > as TryFrom<_>>::try_from(n)
         })
     }
@@ -6491,14 +7018,14 @@ impl<'tree> ModItem<'tree> {
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::VisibilityModifier_DeclarationList_Identifier,
+                anon_unions::VisibilityModifier_DeclarationList_Identifier<'tree>,
             >,
         >,
     > {
         self.0.named_child(i).map(
             <type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::VisibilityModifier_DeclarationList_Identifier,
+                anon_unions::VisibilityModifier_DeclarationList_Identifier<'tree>,
             > as TryFrom<_>>::try_from,
         )
     }
@@ -6530,6 +7057,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ModItem<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -6550,10 +7081,10 @@ impl<'tree> MutPattern<'tree> {
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::Pattern_MutableSpecifier>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::Pattern_MutableSpecifier<'tree>>,
         >,
     > + 'a {
-        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Pattern_MutableSpecifier > as TryFrom < _ >> :: try_from (n))
+        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Pattern_MutableSpecifier < 'tree > > as TryFrom < _ >> :: try_from (n))
     }
     #[doc = "Get the node's named child #i"]
     #[allow(dead_code)]
@@ -6564,14 +7095,10 @@ impl<'tree> MutPattern<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::Pattern_MutableSpecifier>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::Pattern_MutableSpecifier<'tree>>,
         >,
     > {
-        self.0.named_child(i).map(
-            <type_sitter_lib::ExtraOr<'tree, anon_unions::Pattern_MutableSpecifier> as TryFrom<
-                _,
-            >>::try_from,
-        )
+        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Pattern_MutableSpecifier < 'tree > > as TryFrom < _ >> :: try_from)
     }
 }
 #[automatically_derived]
@@ -6601,6 +7128,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for MutPattern<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -6616,8 +7147,8 @@ impl<'tree> NegativeLiteral<'tree> {
     #[inline]
     pub fn child(
         &self,
-    ) -> type_sitter_lib::NodeResult<'tree, anon_unions::FloatLiteral_IntegerLiteral> {
-        self . 0 . named_child (0) . map (< anon_unions :: FloatLiteral_IntegerLiteral as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
+    ) -> type_sitter_lib::NodeResult<'tree, anon_unions::FloatLiteral_IntegerLiteral<'tree>> {
+        self . 0 . named_child (0) . map (< anon_unions :: FloatLiteral_IntegerLiteral < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
 }
 #[automatically_derived]
@@ -6647,6 +7178,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for NegativeLiteral<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -6668,9 +7203,11 @@ impl<'tree> OptionalTypeParameter<'tree> {
     #[inline]
     pub fn name(
         &self,
-    ) -> type_sitter_lib::NodeResult<'tree, anon_unions::ConstrainedTypeParameter_TypeIdentifier>
-    {
-        self . 0 . child_by_field_name ("name") . map (< anon_unions :: ConstrainedTypeParameter_TypeIdentifier as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
+    ) -> type_sitter_lib::NodeResult<
+        'tree,
+        anon_unions::ConstrainedTypeParameter_TypeIdentifier<'tree>,
+    > {
+        self . 0 . child_by_field_name ("name") . map (< anon_unions :: ConstrainedTypeParameter_TypeIdentifier < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
 }
 #[automatically_derived]
@@ -6698,6 +7235,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for OptionalTypeParameter<'tree> {
     #[inline]
     fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
         &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
     }
     #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -6764,6 +7305,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for OrPattern<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -6796,10 +7341,18 @@ impl<'tree> OrderedFieldDeclarationList<'tree> {
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::AttributeItem_VisibilityModifier_Type>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::AttributeItem_VisibilityModifier_Type<'tree>,
+            >,
         >,
     > + 'a {
-        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: AttributeItem_VisibilityModifier_Type > as TryFrom < _ >> :: try_from (n))
+        self.0.named_children(c).map(|n| {
+            <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::AttributeItem_VisibilityModifier_Type<'tree>,
+            > as TryFrom<_>>::try_from(n)
+        })
     }
     #[doc = "Get the node's named child #i"]
     #[allow(dead_code)]
@@ -6810,10 +7363,18 @@ impl<'tree> OrderedFieldDeclarationList<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::AttributeItem_VisibilityModifier_Type>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::AttributeItem_VisibilityModifier_Type<'tree>,
+            >,
         >,
     > {
-        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: AttributeItem_VisibilityModifier_Type > as TryFrom < _ >> :: try_from)
+        self.0.named_child(i).map(
+            <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::AttributeItem_VisibilityModifier_Type<'tree>,
+            > as TryFrom<_>>::try_from,
+        )
     }
 }
 #[automatically_derived]
@@ -6843,6 +7404,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for OrderedFieldDeclarationList<'t
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -6856,8 +7421,8 @@ impl<'tree> Parameter<'tree> {
     #[doc = "Get the field `pattern`"]
     #[allow(dead_code)]
     #[inline]
-    pub fn pattern(&self) -> type_sitter_lib::NodeResult<'tree, anon_unions::Pattern__Self> {
-        self . 0 . child_by_field_name ("pattern") . map (< anon_unions :: Pattern__Self as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
+    pub fn pattern(&self) -> type_sitter_lib::NodeResult<'tree, anon_unions::Pattern__Self<'tree>> {
+        self . 0 . child_by_field_name ("pattern") . map (< anon_unions :: Pattern__Self < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
     #[doc = "Get the field `type`"]
     #[allow(dead_code)]
@@ -6875,10 +7440,13 @@ impl<'tree> Parameter<'tree> {
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::MutableSpecifier_Pattern__Self_Type>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::MutableSpecifier_Pattern__Self_Type<'tree>,
+            >,
         >,
     > + 'a {
-        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: MutableSpecifier_Pattern__Self_Type > as TryFrom < _ >> :: try_from (n))
+        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: MutableSpecifier_Pattern__Self_Type < 'tree > > as TryFrom < _ >> :: try_from (n))
     }
     #[doc = "Get the node's named child #i"]
     #[allow(dead_code)]
@@ -6889,10 +7457,18 @@ impl<'tree> Parameter<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::MutableSpecifier_Pattern__Self_Type>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::MutableSpecifier_Pattern__Self_Type<'tree>,
+            >,
         >,
     > {
-        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: MutableSpecifier_Pattern__Self_Type > as TryFrom < _ >> :: try_from)
+        self.0.named_child(i).map(
+            <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::MutableSpecifier_Pattern__Self_Type<'tree>,
+            > as TryFrom<_>>::try_from,
+        )
     }
 }
 #[automatically_derived]
@@ -6922,6 +7498,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Parameter<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -6943,14 +7523,14 @@ impl<'tree> Parameters<'tree> {
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::Type_AttributeItem_Parameter_SelfParameter_VariadicParameter,
+                anon_unions::Type_AttributeItem_Parameter_SelfParameter_VariadicParameter<'tree>,
             >,
         >,
     > + 'a {
         self.0.named_children(c).map(|n| {
             <type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::Type_AttributeItem_Parameter_SelfParameter_VariadicParameter,
+                anon_unions::Type_AttributeItem_Parameter_SelfParameter_VariadicParameter<'tree>,
             > as TryFrom<_>>::try_from(n)
         })
     }
@@ -6965,14 +7545,14 @@ impl<'tree> Parameters<'tree> {
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::Type_AttributeItem_Parameter_SelfParameter_VariadicParameter,
+                anon_unions::Type_AttributeItem_Parameter_SelfParameter_VariadicParameter<'tree>,
             >,
         >,
     > {
         self.0.named_child(i).map(
             <type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::Type_AttributeItem_Parameter_SelfParameter_VariadicParameter,
+                anon_unions::Type_AttributeItem_Parameter_SelfParameter_VariadicParameter<'tree>,
             > as TryFrom<_>>::try_from,
         )
     }
@@ -7002,6 +7582,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Parameters<'tree> {
     #[inline]
     fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
         &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
     }
     #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -7048,6 +7632,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ParenthesizedExpression<'tree>
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -7074,10 +7662,10 @@ impl<'tree> PointerType<'tree> {
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::MutableSpecifier_Type>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::MutableSpecifier_Type<'tree>>,
         >,
     > + 'a {
-        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: MutableSpecifier_Type > as TryFrom < _ >> :: try_from (n))
+        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: MutableSpecifier_Type < 'tree > > as TryFrom < _ >> :: try_from (n))
     }
     #[doc = "Get the node's named child #i"]
     #[allow(dead_code)]
@@ -7088,10 +7676,10 @@ impl<'tree> PointerType<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::MutableSpecifier_Type>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::MutableSpecifier_Type<'tree>>,
         >,
     > {
-        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: MutableSpecifier_Type > as TryFrom < _ >> :: try_from)
+        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: MutableSpecifier_Type < 'tree > > as TryFrom < _ >> :: try_from)
     }
 }
 #[automatically_derived]
@@ -7119,6 +7707,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for PointerType<'tree> {
     #[inline]
     fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
         &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
     }
     #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -7169,6 +7761,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for QualifiedType<'tree> {
     #[inline]
     fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
         &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
     }
     #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -7238,6 +7834,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for RangeExpression<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -7251,13 +7851,13 @@ impl<'tree> RangePattern<'tree> {
     #[doc = "Get the node's named children"]
     #[doc = "This is guaranteed to return at least one child"]
     #[allow(dead_code)]
-    #[inline]    pub fn children < 'a > (& self , c : & 'a mut tree_sitter :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: LiteralPattern_Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super > >> + 'a{
-        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: LiteralPattern_Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super > as TryFrom < _ >> :: try_from (n))
+    #[inline]    pub fn children < 'a > (& self , c : & 'a mut tree_sitter :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: LiteralPattern_Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super < 'tree > > >> + 'a{
+        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: LiteralPattern_Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super < 'tree > > as TryFrom < _ >> :: try_from (n))
     }
     #[doc = "Get the node's named child #i"]
     #[allow(dead_code)]
-    #[inline]    pub fn child (& self , i : usize) -> Option < type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: LiteralPattern_Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super > >>{
-        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: LiteralPattern_Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super > as TryFrom < _ >> :: try_from)
+    #[inline]    pub fn child (& self , i : usize) -> Option < type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: LiteralPattern_Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super < 'tree > > >>{
+        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: LiteralPattern_Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super < 'tree > > as TryFrom < _ >> :: try_from)
     }
 }
 #[automatically_derived]
@@ -7285,6 +7885,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for RangePattern<'tree> {
     #[inline]
     fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
         &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
     }
     #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -7331,6 +7935,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for RefPattern<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -7357,14 +7965,10 @@ impl<'tree> ReferenceExpression<'tree> {
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::MutableSpecifier_Expression>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::MutableSpecifier_Expression<'tree>>,
         >,
     > + 'a {
-        self.0.named_children(c).map(|n| {
-            <type_sitter_lib::ExtraOr<'tree, anon_unions::MutableSpecifier_Expression> as TryFrom<
-                _,
-            >>::try_from(n)
-        })
+        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: MutableSpecifier_Expression < 'tree > > as TryFrom < _ >> :: try_from (n))
     }
     #[doc = "Get the node's named child #i"]
     #[allow(dead_code)]
@@ -7375,10 +7979,10 @@ impl<'tree> ReferenceExpression<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::MutableSpecifier_Expression>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::MutableSpecifier_Expression<'tree>>,
         >,
     > {
-        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: MutableSpecifier_Expression > as TryFrom < _ >> :: try_from)
+        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: MutableSpecifier_Expression < 'tree > > as TryFrom < _ >> :: try_from)
     }
 }
 #[automatically_derived]
@@ -7408,6 +8012,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ReferenceExpression<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -7428,10 +8036,10 @@ impl<'tree> ReferencePattern<'tree> {
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::Pattern_MutableSpecifier>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::Pattern_MutableSpecifier<'tree>>,
         >,
     > + 'a {
-        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Pattern_MutableSpecifier > as TryFrom < _ >> :: try_from (n))
+        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Pattern_MutableSpecifier < 'tree > > as TryFrom < _ >> :: try_from (n))
     }
     #[doc = "Get the node's named child #i"]
     #[allow(dead_code)]
@@ -7442,14 +8050,10 @@ impl<'tree> ReferencePattern<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::Pattern_MutableSpecifier>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::Pattern_MutableSpecifier<'tree>>,
         >,
     > {
-        self.0.named_child(i).map(
-            <type_sitter_lib::ExtraOr<'tree, anon_unions::Pattern_MutableSpecifier> as TryFrom<
-                _,
-            >>::try_from,
-        )
+        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Pattern_MutableSpecifier < 'tree > > as TryFrom < _ >> :: try_from)
     }
 }
 #[automatically_derived]
@@ -7479,6 +8083,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ReferencePattern<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -7505,10 +8113,10 @@ impl<'tree> ReferenceType<'tree> {
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::Lifetime_MutableSpecifier_Type>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::Lifetime_MutableSpecifier_Type<'tree>>,
         >,
     > + 'a {
-        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Lifetime_MutableSpecifier_Type > as TryFrom < _ >> :: try_from (n))
+        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Lifetime_MutableSpecifier_Type < 'tree > > as TryFrom < _ >> :: try_from (n))
     }
     #[doc = "Get the node's named child #i"]
     #[allow(dead_code)]
@@ -7519,10 +8127,10 @@ impl<'tree> ReferenceType<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::Lifetime_MutableSpecifier_Type>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::Lifetime_MutableSpecifier_Type<'tree>>,
         >,
     > {
-        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Lifetime_MutableSpecifier_Type > as TryFrom < _ >> :: try_from)
+        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Lifetime_MutableSpecifier_Type < 'tree > > as TryFrom < _ >> :: try_from)
     }
 }
 #[automatically_derived]
@@ -7550,6 +8158,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ReferenceType<'tree> {
     #[inline]
     fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
         &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
     }
     #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -7587,6 +8199,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for RemainingFieldPattern<'tree> {
     #[inline]
     fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
         &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
     }
     #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -7631,6 +8247,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for RemovedTraitBound<'tree> {
     #[inline]
     fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
         &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
     }
     #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -7679,6 +8299,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ReturnExpression<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -7697,8 +8321,8 @@ impl<'tree> ScopedIdentifier<'tree> {
     }
     #[doc = "Get the field `path`"]
     #[allow(dead_code)]
-    #[inline]    pub fn path (& self) -> Option < type_sitter_lib :: NodeResult < 'tree , anon_unions :: BracketedType_Crate_GenericType_Identifier_Metavariable_ScopedIdentifier__Self_Super > >{
-        self . 0 . child_by_field_name ("path") . map (< anon_unions :: BracketedType_Crate_GenericType_Identifier_Metavariable_ScopedIdentifier__Self_Super as TryFrom < _ >> :: try_from)
+    #[inline]    pub fn path (& self) -> Option < type_sitter_lib :: NodeResult < 'tree , anon_unions :: BracketedType_Crate_GenericType_Identifier_Metavariable_ScopedIdentifier__Self_Super < 'tree > > >{
+        self . 0 . child_by_field_name ("path") . map (< anon_unions :: BracketedType_Crate_GenericType_Identifier_Metavariable_ScopedIdentifier__Self_Super < 'tree > as TryFrom < _ >> :: try_from)
     }
 }
 #[automatically_derived]
@@ -7728,6 +8352,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ScopedIdentifier<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -7746,8 +8374,8 @@ impl<'tree> ScopedTypeIdentifier<'tree> {
     }
     #[doc = "Get the field `path`"]
     #[allow(dead_code)]
-    #[inline]    pub fn path (& self) -> Option < type_sitter_lib :: NodeResult < 'tree , anon_unions :: BracketedType_Crate_GenericType_Identifier_Metavariable_ScopedIdentifier__Self_Super > >{
-        self . 0 . child_by_field_name ("path") . map (< anon_unions :: BracketedType_Crate_GenericType_Identifier_Metavariable_ScopedIdentifier__Self_Super as TryFrom < _ >> :: try_from)
+    #[inline]    pub fn path (& self) -> Option < type_sitter_lib :: NodeResult < 'tree , anon_unions :: BracketedType_Crate_GenericType_Identifier_Metavariable_ScopedIdentifier__Self_Super < 'tree > > >{
+        self . 0 . child_by_field_name ("path") . map (< anon_unions :: BracketedType_Crate_GenericType_Identifier_Metavariable_ScopedIdentifier__Self_Super < 'tree > as TryFrom < _ >> :: try_from)
     }
 }
 #[automatically_derived]
@@ -7777,6 +8405,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ScopedTypeIdentifier<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -7801,14 +8433,10 @@ impl<'tree> ScopedUseList<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super,
+            anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super<'tree>,
         >,
     > {
-        self.0.child_by_field_name("path").map(
-            <anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super as TryFrom<
-                _,
-            >>::try_from,
-        )
+        self . 0 . child_by_field_name ("path") . map (< anon_unions :: Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super < 'tree > as TryFrom < _ >> :: try_from)
     }
 }
 #[automatically_derived]
@@ -7838,6 +8466,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ScopedUseList<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -7858,10 +8490,10 @@ impl<'tree> SelfParameter<'tree> {
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::Lifetime_MutableSpecifier__Self>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::Lifetime_MutableSpecifier__Self<'tree>>,
         >,
     > + 'a {
-        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Lifetime_MutableSpecifier__Self > as TryFrom < _ >> :: try_from (n))
+        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Lifetime_MutableSpecifier__Self < 'tree > > as TryFrom < _ >> :: try_from (n))
     }
     #[doc = "Get the node's named child #i"]
     #[allow(dead_code)]
@@ -7872,10 +8504,10 @@ impl<'tree> SelfParameter<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::Lifetime_MutableSpecifier__Self>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::Lifetime_MutableSpecifier__Self<'tree>>,
         >,
     > {
-        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Lifetime_MutableSpecifier__Self > as TryFrom < _ >> :: try_from)
+        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Lifetime_MutableSpecifier__Self < 'tree > > as TryFrom < _ >> :: try_from)
     }
 }
 #[automatically_derived]
@@ -7905,6 +8537,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for SelfParameter<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -7925,10 +8561,10 @@ impl<'tree> ShorthandFieldInitializer<'tree> {
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::AttributeItem_Identifier>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::AttributeItem_Identifier<'tree>>,
         >,
     > + 'a {
-        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: AttributeItem_Identifier > as TryFrom < _ >> :: try_from (n))
+        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: AttributeItem_Identifier < 'tree > > as TryFrom < _ >> :: try_from (n))
     }
     #[doc = "Get the node's named child #i"]
     #[allow(dead_code)]
@@ -7939,14 +8575,10 @@ impl<'tree> ShorthandFieldInitializer<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::AttributeItem_Identifier>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::AttributeItem_Identifier<'tree>>,
         >,
     > {
-        self.0.named_child(i).map(
-            <type_sitter_lib::ExtraOr<'tree, anon_unions::AttributeItem_Identifier> as TryFrom<
-                _,
-            >>::try_from,
-        )
+        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: AttributeItem_Identifier < 'tree > > as TryFrom < _ >> :: try_from)
     }
 }
 #[automatically_derived]
@@ -7974,6 +8606,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ShorthandFieldInitializer<'tre
     #[inline]
     fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
         &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
     }
     #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -8039,6 +8675,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for SlicePattern<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -8058,10 +8698,18 @@ impl<'tree> SourceFile<'tree> {
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::DeclarationStatement_ExpressionStatement>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::DeclarationStatement_ExpressionStatement<'tree>,
+            >,
         >,
     > + 'a {
-        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: DeclarationStatement_ExpressionStatement > as TryFrom < _ >> :: try_from (n))
+        self.0.named_children(c).map(|n| {
+            <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::DeclarationStatement_ExpressionStatement<'tree>,
+            > as TryFrom<_>>::try_from(n)
+        })
     }
     #[doc = "Get the node's named child #i"]
     #[allow(dead_code)]
@@ -8072,10 +8720,18 @@ impl<'tree> SourceFile<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::DeclarationStatement_ExpressionStatement>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::DeclarationStatement_ExpressionStatement<'tree>,
+            >,
         >,
     > {
-        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: DeclarationStatement_ExpressionStatement > as TryFrom < _ >> :: try_from)
+        self.0.named_child(i).map(
+            <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::DeclarationStatement_ExpressionStatement<'tree>,
+            > as TryFrom<_>>::try_from,
+        )
     }
 }
 #[automatically_derived]
@@ -8103,6 +8759,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for SourceFile<'tree> {
     #[inline]
     fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
         &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
     }
     #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -8147,14 +8807,14 @@ impl<'tree> StaticItem<'tree> {
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::MutableSpecifier_VisibilityModifier_Identifier_Type_Expression,
+                anon_unions::MutableSpecifier_VisibilityModifier_Identifier_Type_Expression<'tree>,
             >,
         >,
     > + 'a {
         self.0.named_children(c).map(|n| {
             <type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::MutableSpecifier_VisibilityModifier_Identifier_Type_Expression,
+                anon_unions::MutableSpecifier_VisibilityModifier_Identifier_Type_Expression<'tree>,
             > as TryFrom<_>>::try_from(n)
         })
     }
@@ -8169,14 +8829,14 @@ impl<'tree> StaticItem<'tree> {
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::MutableSpecifier_VisibilityModifier_Identifier_Type_Expression,
+                anon_unions::MutableSpecifier_VisibilityModifier_Identifier_Type_Expression<'tree>,
             >,
         >,
     > {
         self.0.named_child(i).map(
             <type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::MutableSpecifier_VisibilityModifier_Identifier_Type_Expression,
+                anon_unions::MutableSpecifier_VisibilityModifier_Identifier_Type_Expression<'tree>,
             > as TryFrom<_>>::try_from,
         )
     }
@@ -8206,6 +8866,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for StaticItem<'tree> {
     #[inline]
     fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
         &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
     }
     #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -8275,6 +8939,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for StringLiteral<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -8298,9 +8966,9 @@ impl<'tree> StructExpression<'tree> {
         &self,
     ) -> type_sitter_lib::NodeResult<
         'tree,
-        anon_unions::GenericTypeWithTurbofish_ScopedTypeIdentifier_TypeIdentifier,
+        anon_unions::GenericTypeWithTurbofish_ScopedTypeIdentifier_TypeIdentifier<'tree>,
     > {
-        self . 0 . child_by_field_name ("name") . map (< anon_unions :: GenericTypeWithTurbofish_ScopedTypeIdentifier_TypeIdentifier as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
+        self . 0 . child_by_field_name ("name") . map (< anon_unions :: GenericTypeWithTurbofish_ScopedTypeIdentifier_TypeIdentifier < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
 }
 #[automatically_derived]
@@ -8330,6 +8998,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for StructExpression<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -8348,12 +9020,10 @@ impl<'tree> StructItem<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            anon_unions::FieldDeclarationList_OrderedFieldDeclarationList,
+            anon_unions::FieldDeclarationList_OrderedFieldDeclarationList<'tree>,
         >,
     > {
-        self.0.child_by_field_name("body").map(
-            <anon_unions::FieldDeclarationList_OrderedFieldDeclarationList as TryFrom<_>>::try_from,
-        )
+        self . 0 . child_by_field_name ("body") . map (< anon_unions :: FieldDeclarationList_OrderedFieldDeclarationList < 'tree > as TryFrom < _ >> :: try_from)
     }
     #[doc = "Get the field `name`"]
     #[allow(dead_code)]
@@ -8374,13 +9044,13 @@ impl<'tree> StructItem<'tree> {
     #[doc = "Get the node's named children"]
     #[doc = "This is guaranteed to return at least one child"]
     #[allow(dead_code)]
-    #[inline]    pub fn children < 'a > (& self , c : & 'a mut tree_sitter :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: VisibilityModifier_WhereClause_FieldDeclarationList_OrderedFieldDeclarationList_TypeIdentifier_TypeParameters > >> + 'a{
-        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: VisibilityModifier_WhereClause_FieldDeclarationList_OrderedFieldDeclarationList_TypeIdentifier_TypeParameters > as TryFrom < _ >> :: try_from (n))
+    #[inline]    pub fn children < 'a > (& self , c : & 'a mut tree_sitter :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: VisibilityModifier_WhereClause_FieldDeclarationList_OrderedFieldDeclarationList_TypeIdentifier_TypeParameters < 'tree > > >> + 'a{
+        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: VisibilityModifier_WhereClause_FieldDeclarationList_OrderedFieldDeclarationList_TypeIdentifier_TypeParameters < 'tree > > as TryFrom < _ >> :: try_from (n))
     }
     #[doc = "Get the node's named child #i"]
     #[allow(dead_code)]
-    #[inline]    pub fn child (& self , i : usize) -> Option < type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: VisibilityModifier_WhereClause_FieldDeclarationList_OrderedFieldDeclarationList_TypeIdentifier_TypeParameters > >>{
-        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: VisibilityModifier_WhereClause_FieldDeclarationList_OrderedFieldDeclarationList_TypeIdentifier_TypeParameters > as TryFrom < _ >> :: try_from)
+    #[inline]    pub fn child (& self , i : usize) -> Option < type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: VisibilityModifier_WhereClause_FieldDeclarationList_OrderedFieldDeclarationList_TypeIdentifier_TypeParameters < 'tree > > >>{
+        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: VisibilityModifier_WhereClause_FieldDeclarationList_OrderedFieldDeclarationList_TypeIdentifier_TypeParameters < 'tree > > as TryFrom < _ >> :: try_from)
     }
 }
 #[automatically_derived]
@@ -8410,6 +9080,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for StructItem<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -8425,8 +9099,9 @@ impl<'tree> StructPattern<'tree> {
     #[inline]
     pub fn r#type(
         &self,
-    ) -> type_sitter_lib::NodeResult<'tree, anon_unions::ScopedTypeIdentifier_TypeIdentifier> {
-        self . 0 . child_by_field_name ("type") . map (< anon_unions :: ScopedTypeIdentifier_TypeIdentifier as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
+    ) -> type_sitter_lib::NodeResult<'tree, anon_unions::ScopedTypeIdentifier_TypeIdentifier<'tree>>
+    {
+        self . 0 . child_by_field_name ("type") . map (< anon_unions :: ScopedTypeIdentifier_TypeIdentifier < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
     #[doc = "Get the node's named children"]
     #[doc = "This is guaranteed to return at least one child"]
@@ -8440,14 +9115,18 @@ impl<'tree> StructPattern<'tree> {
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::FieldPattern_RemainingFieldPattern_ScopedTypeIdentifier_TypeIdentifier,
+                anon_unions::FieldPattern_RemainingFieldPattern_ScopedTypeIdentifier_TypeIdentifier<
+                    'tree,
+                >,
             >,
         >,
     > + 'a {
         self.0.named_children(c).map(|n| {
             <type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::FieldPattern_RemainingFieldPattern_ScopedTypeIdentifier_TypeIdentifier,
+                anon_unions::FieldPattern_RemainingFieldPattern_ScopedTypeIdentifier_TypeIdentifier<
+                    'tree,
+                >,
             > as TryFrom<_>>::try_from(n)
         })
     }
@@ -8462,14 +9141,18 @@ impl<'tree> StructPattern<'tree> {
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::FieldPattern_RemainingFieldPattern_ScopedTypeIdentifier_TypeIdentifier,
+                anon_unions::FieldPattern_RemainingFieldPattern_ScopedTypeIdentifier_TypeIdentifier<
+                    'tree,
+                >,
             >,
         >,
     > {
         self.0.named_child(i).map(
             <type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::FieldPattern_RemainingFieldPattern_ScopedTypeIdentifier_TypeIdentifier,
+                anon_unions::FieldPattern_RemainingFieldPattern_ScopedTypeIdentifier_TypeIdentifier<
+                    'tree,
+                >,
             > as TryFrom<_>>::try_from,
         )
     }
@@ -8499,6 +9182,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for StructPattern<'tree> {
     #[inline]
     fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
         &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
     }
     #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -8551,6 +9238,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TokenBindingPattern<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -8563,13 +9254,13 @@ pub struct TokenRepetition<'tree>(tree_sitter::Node<'tree>);
 impl<'tree> TokenRepetition<'tree> {
     #[doc = "Get the node's named children"]
     #[allow(dead_code)]
-    #[inline]    pub fn children < 'a > (& self , c : & 'a mut tree_sitter :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenRepetition_TokenTree > >> + 'a{
-        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenRepetition_TokenTree > as TryFrom < _ >> :: try_from (n))
+    #[inline]    pub fn children < 'a > (& self , c : & 'a mut tree_sitter :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenRepetition_TokenTree < 'tree > > >> + 'a{
+        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenRepetition_TokenTree < 'tree > > as TryFrom < _ >> :: try_from (n))
     }
     #[doc = "Get the node's named child #i"]
     #[allow(dead_code)]
-    #[inline]    pub fn child (& self , i : usize) -> Option < type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenRepetition_TokenTree > >>{
-        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenRepetition_TokenTree > as TryFrom < _ >> :: try_from)
+    #[inline]    pub fn child (& self , i : usize) -> Option < type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenRepetition_TokenTree < 'tree > > >>{
+        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenRepetition_TokenTree < 'tree > > as TryFrom < _ >> :: try_from)
     }
 }
 #[automatically_derived]
@@ -8599,6 +9290,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TokenRepetition<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -8611,13 +9306,13 @@ pub struct TokenRepetitionPattern<'tree>(tree_sitter::Node<'tree>);
 impl<'tree> TokenRepetitionPattern<'tree> {
     #[doc = "Get the node's named children"]
     #[allow(dead_code)]
-    #[inline]    pub fn children < 'a > (& self , c : & 'a mut tree_sitter :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern > >> + 'a{
-        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern > as TryFrom < _ >> :: try_from (n))
+    #[inline]    pub fn children < 'a > (& self , c : & 'a mut tree_sitter :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern < 'tree > > >> + 'a{
+        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern < 'tree > > as TryFrom < _ >> :: try_from (n))
     }
     #[doc = "Get the node's named child #i"]
     #[allow(dead_code)]
-    #[inline]    pub fn child (& self , i : usize) -> Option < type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern > >>{
-        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern > as TryFrom < _ >> :: try_from)
+    #[inline]    pub fn child (& self , i : usize) -> Option < type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern < 'tree > > >>{
+        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern < 'tree > > as TryFrom < _ >> :: try_from)
     }
 }
 #[automatically_derived]
@@ -8647,6 +9342,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TokenRepetitionPattern<'tree> 
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -8659,13 +9358,13 @@ pub struct TokenTree<'tree>(tree_sitter::Node<'tree>);
 impl<'tree> TokenTree<'tree> {
     #[doc = "Get the node's named children"]
     #[allow(dead_code)]
-    #[inline]    pub fn children < 'a > (& self , c : & 'a mut tree_sitter :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenRepetition_TokenTree > >> + 'a{
-        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenRepetition_TokenTree > as TryFrom < _ >> :: try_from (n))
+    #[inline]    pub fn children < 'a > (& self , c : & 'a mut tree_sitter :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenRepetition_TokenTree < 'tree > > >> + 'a{
+        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenRepetition_TokenTree < 'tree > > as TryFrom < _ >> :: try_from (n))
     }
     #[doc = "Get the node's named child #i"]
     #[allow(dead_code)]
-    #[inline]    pub fn child (& self , i : usize) -> Option < type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenRepetition_TokenTree > >>{
-        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenRepetition_TokenTree > as TryFrom < _ >> :: try_from)
+    #[inline]    pub fn child (& self , i : usize) -> Option < type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenRepetition_TokenTree < 'tree > > >>{
+        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenRepetition_TokenTree < 'tree > > as TryFrom < _ >> :: try_from)
     }
 }
 #[automatically_derived]
@@ -8695,6 +9394,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TokenTree<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -8707,13 +9410,13 @@ pub struct TokenTreePattern<'tree>(tree_sitter::Node<'tree>);
 impl<'tree> TokenTreePattern<'tree> {
     #[doc = "Get the node's named children"]
     #[allow(dead_code)]
-    #[inline]    pub fn children < 'a > (& self , c : & 'a mut tree_sitter :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern > >> + 'a{
-        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern > as TryFrom < _ >> :: try_from (n))
+    #[inline]    pub fn children < 'a > (& self , c : & 'a mut tree_sitter :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern < 'tree > > >> + 'a{
+        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern < 'tree > > as TryFrom < _ >> :: try_from (n))
     }
     #[doc = "Get the node's named child #i"]
     #[allow(dead_code)]
-    #[inline]    pub fn child (& self , i : usize) -> Option < type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern > >>{
-        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern > as TryFrom < _ >> :: try_from)
+    #[inline]    pub fn child (& self , i : usize) -> Option < type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern < 'tree > > >>{
+        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern < 'tree > > as TryFrom < _ >> :: try_from)
     }
 }
 #[automatically_derived]
@@ -8743,6 +9446,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TokenTreePattern<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -8765,14 +9472,14 @@ impl<'tree> TraitBounds<'tree> {
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::Type_HigherRankedTraitBound_Lifetime_RemovedTraitBound,
+                anon_unions::Type_HigherRankedTraitBound_Lifetime_RemovedTraitBound<'tree>,
             >,
         >,
     > + 'a {
         self.0.named_children(c).map(|n| {
             <type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::Type_HigherRankedTraitBound_Lifetime_RemovedTraitBound,
+                anon_unions::Type_HigherRankedTraitBound_Lifetime_RemovedTraitBound<'tree>,
             > as TryFrom<_>>::try_from(n)
         })
     }
@@ -8787,14 +9494,14 @@ impl<'tree> TraitBounds<'tree> {
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::Type_HigherRankedTraitBound_Lifetime_RemovedTraitBound,
+                anon_unions::Type_HigherRankedTraitBound_Lifetime_RemovedTraitBound<'tree>,
             >,
         >,
     > {
         self.0.named_child(i).map(
             <type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::Type_HigherRankedTraitBound_Lifetime_RemovedTraitBound,
+                anon_unions::Type_HigherRankedTraitBound_Lifetime_RemovedTraitBound<'tree>,
             > as TryFrom<_>>::try_from,
         )
     }
@@ -8824,6 +9531,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TraitBounds<'tree> {
     #[inline]
     fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
         &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
     }
     #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -8869,13 +9580,13 @@ impl<'tree> TraitItem<'tree> {
     #[doc = "Get the node's named children"]
     #[doc = "This is guaranteed to return at least one child"]
     #[allow(dead_code)]
-    #[inline]    pub fn children < 'a > (& self , c : & 'a mut tree_sitter :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: VisibilityModifier_WhereClause_DeclarationList_TraitBounds_TypeIdentifier_TypeParameters > >> + 'a{
-        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: VisibilityModifier_WhereClause_DeclarationList_TraitBounds_TypeIdentifier_TypeParameters > as TryFrom < _ >> :: try_from (n))
+    #[inline]    pub fn children < 'a > (& self , c : & 'a mut tree_sitter :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: VisibilityModifier_WhereClause_DeclarationList_TraitBounds_TypeIdentifier_TypeParameters < 'tree > > >> + 'a{
+        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: VisibilityModifier_WhereClause_DeclarationList_TraitBounds_TypeIdentifier_TypeParameters < 'tree > > as TryFrom < _ >> :: try_from (n))
     }
     #[doc = "Get the node's named child #i"]
     #[allow(dead_code)]
-    #[inline]    pub fn child (& self , i : usize) -> Option < type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: VisibilityModifier_WhereClause_DeclarationList_TraitBounds_TypeIdentifier_TypeParameters > >>{
-        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: VisibilityModifier_WhereClause_DeclarationList_TraitBounds_TypeIdentifier_TypeParameters > as TryFrom < _ >> :: try_from)
+    #[inline]    pub fn child (& self , i : usize) -> Option < type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: VisibilityModifier_WhereClause_DeclarationList_TraitBounds_TypeIdentifier_TypeParameters < 'tree > > >>{
+        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: VisibilityModifier_WhereClause_DeclarationList_TraitBounds_TypeIdentifier_TypeParameters < 'tree > > as TryFrom < _ >> :: try_from)
     }
 }
 #[automatically_derived]
@@ -8903,6 +9614,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TraitItem<'tree> {
     #[inline]
     fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
         &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
     }
     #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -8949,6 +9664,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TryExpression<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -8969,10 +9688,10 @@ impl<'tree> TupleExpression<'tree> {
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::Expression_AttributeItem>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::Expression_AttributeItem<'tree>>,
         >,
     > + 'a {
-        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Expression_AttributeItem > as TryFrom < _ >> :: try_from (n))
+        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Expression_AttributeItem < 'tree > > as TryFrom < _ >> :: try_from (n))
     }
     #[doc = "Get the node's named child #i"]
     #[allow(dead_code)]
@@ -8983,14 +9702,10 @@ impl<'tree> TupleExpression<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::Expression_AttributeItem>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::Expression_AttributeItem<'tree>>,
         >,
     > {
-        self.0.named_child(i).map(
-            <type_sitter_lib::ExtraOr<'tree, anon_unions::Expression_AttributeItem> as TryFrom<
-                _,
-            >>::try_from,
-        )
+        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Expression_AttributeItem < 'tree > > as TryFrom < _ >> :: try_from)
     }
 }
 #[automatically_derived]
@@ -9018,6 +9733,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TupleExpression<'tree> {
     #[inline]
     fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
         &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
     }
     #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -9083,6 +9802,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TuplePattern<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -9098,8 +9821,8 @@ impl<'tree> TupleStructPattern<'tree> {
     #[inline]
     pub fn r#type(
         &self,
-    ) -> type_sitter_lib::NodeResult<'tree, anon_unions::Identifier_ScopedIdentifier> {
-        self . 0 . child_by_field_name ("type") . map (< anon_unions :: Identifier_ScopedIdentifier as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
+    ) -> type_sitter_lib::NodeResult<'tree, anon_unions::Identifier_ScopedIdentifier<'tree>> {
+        self . 0 . child_by_field_name ("type") . map (< anon_unions :: Identifier_ScopedIdentifier < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
     #[doc = "Get the node's named children"]
     #[doc = "This is guaranteed to return at least one child"]
@@ -9111,10 +9834,13 @@ impl<'tree> TupleStructPattern<'tree> {
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::Pattern_Identifier_ScopedIdentifier>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::Pattern_Identifier_ScopedIdentifier<'tree>,
+            >,
         >,
     > + 'a {
-        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Pattern_Identifier_ScopedIdentifier > as TryFrom < _ >> :: try_from (n))
+        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Pattern_Identifier_ScopedIdentifier < 'tree > > as TryFrom < _ >> :: try_from (n))
     }
     #[doc = "Get the node's named child #i"]
     #[allow(dead_code)]
@@ -9125,10 +9851,18 @@ impl<'tree> TupleStructPattern<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::Pattern_Identifier_ScopedIdentifier>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::Pattern_Identifier_ScopedIdentifier<'tree>,
+            >,
         >,
     > {
-        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Pattern_Identifier_ScopedIdentifier > as TryFrom < _ >> :: try_from)
+        self.0.named_child(i).map(
+            <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::Pattern_Identifier_ScopedIdentifier<'tree>,
+            > as TryFrom<_>>::try_from,
+        )
     }
 }
 #[automatically_derived]
@@ -9156,6 +9890,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TupleStructPattern<'tree> {
     #[inline]
     fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
         &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
     }
     #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -9222,6 +9960,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TupleType<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -9242,10 +9984,18 @@ impl<'tree> TypeArguments<'tree> {
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::Literal_Type_Block_Lifetime_TypeBinding>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::Literal_Type_Block_Lifetime_TypeBinding<'tree>,
+            >,
         >,
     > + 'a {
-        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Literal_Type_Block_Lifetime_TypeBinding > as TryFrom < _ >> :: try_from (n))
+        self.0.named_children(c).map(|n| {
+            <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::Literal_Type_Block_Lifetime_TypeBinding<'tree>,
+            > as TryFrom<_>>::try_from(n)
+        })
     }
     #[doc = "Get the node's named child #i"]
     #[allow(dead_code)]
@@ -9256,10 +10006,18 @@ impl<'tree> TypeArguments<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::Literal_Type_Block_Lifetime_TypeBinding>,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::Literal_Type_Block_Lifetime_TypeBinding<'tree>,
+            >,
         >,
     > {
-        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Literal_Type_Block_Lifetime_TypeBinding > as TryFrom < _ >> :: try_from)
+        self.0.named_child(i).map(
+            <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::Literal_Type_Block_Lifetime_TypeBinding<'tree>,
+            > as TryFrom<_>>::try_from,
+        )
     }
 }
 #[automatically_derived]
@@ -9287,6 +10045,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TypeArguments<'tree> {
     #[inline]
     fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
         &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
     }
     #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -9349,6 +10111,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TypeBinding<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -9399,6 +10165,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TypeCastExpression<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -9443,14 +10213,14 @@ impl<'tree> TypeItem<'tree> {
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::VisibilityModifier_TypeIdentifier_Type_TypeParameters,
+                anon_unions::VisibilityModifier_TypeIdentifier_Type_TypeParameters<'tree>,
             >,
         >,
     > + 'a {
         self.0.named_children(c).map(|n| {
             <type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::VisibilityModifier_TypeIdentifier_Type_TypeParameters,
+                anon_unions::VisibilityModifier_TypeIdentifier_Type_TypeParameters<'tree>,
             > as TryFrom<_>>::try_from(n)
         })
     }
@@ -9465,14 +10235,14 @@ impl<'tree> TypeItem<'tree> {
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::VisibilityModifier_TypeIdentifier_Type_TypeParameters,
+                anon_unions::VisibilityModifier_TypeIdentifier_Type_TypeParameters<'tree>,
             >,
         >,
     > {
         self.0.named_child(i).map(
             <type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::VisibilityModifier_TypeIdentifier_Type_TypeParameters,
+                anon_unions::VisibilityModifier_TypeIdentifier_Type_TypeParameters<'tree>,
             > as TryFrom<_>>::try_from,
         )
     }
@@ -9504,6 +10274,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TypeItem<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -9517,13 +10291,13 @@ impl<'tree> TypeParameters<'tree> {
     #[doc = "Get the node's named children"]
     #[doc = "This is guaranteed to return at least one child"]
     #[allow(dead_code)]
-    #[inline]    pub fn children < 'a > (& self , c : & 'a mut tree_sitter :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: ConstParameter_ConstrainedTypeParameter_Lifetime_Metavariable_OptionalTypeParameter_TypeIdentifier > >> + 'a{
-        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: ConstParameter_ConstrainedTypeParameter_Lifetime_Metavariable_OptionalTypeParameter_TypeIdentifier > as TryFrom < _ >> :: try_from (n))
+    #[inline]    pub fn children < 'a > (& self , c : & 'a mut tree_sitter :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: ConstParameter_ConstrainedTypeParameter_Lifetime_Metavariable_OptionalTypeParameter_TypeIdentifier < 'tree > > >> + 'a{
+        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: ConstParameter_ConstrainedTypeParameter_Lifetime_Metavariable_OptionalTypeParameter_TypeIdentifier < 'tree > > as TryFrom < _ >> :: try_from (n))
     }
     #[doc = "Get the node's named child #i"]
     #[allow(dead_code)]
-    #[inline]    pub fn child (& self , i : usize) -> Option < type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: ConstParameter_ConstrainedTypeParameter_Lifetime_Metavariable_OptionalTypeParameter_TypeIdentifier > >>{
-        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: ConstParameter_ConstrainedTypeParameter_Lifetime_Metavariable_OptionalTypeParameter_TypeIdentifier > as TryFrom < _ >> :: try_from)
+    #[inline]    pub fn child (& self , i : usize) -> Option < type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: ConstParameter_ConstrainedTypeParameter_Lifetime_Metavariable_OptionalTypeParameter_TypeIdentifier < 'tree > > >>{
+        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: ConstParameter_ConstrainedTypeParameter_Lifetime_Metavariable_OptionalTypeParameter_TypeIdentifier < 'tree > > as TryFrom < _ >> :: try_from)
     }
 }
 #[automatically_derived]
@@ -9551,6 +10325,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TypeParameters<'tree> {
     #[inline]
     fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
         &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
     }
     #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -9597,6 +10375,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for UnaryExpression<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -9632,13 +10414,13 @@ impl<'tree> UnionItem<'tree> {
     #[doc = "Get the node's named children"]
     #[doc = "This is guaranteed to return at least one child"]
     #[allow(dead_code)]
-    #[inline]    pub fn children < 'a > (& self , c : & 'a mut tree_sitter :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: VisibilityModifier_WhereClause_FieldDeclarationList_TypeIdentifier_TypeParameters > >> + 'a{
-        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: VisibilityModifier_WhereClause_FieldDeclarationList_TypeIdentifier_TypeParameters > as TryFrom < _ >> :: try_from (n))
+    #[inline]    pub fn children < 'a > (& self , c : & 'a mut tree_sitter :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: VisibilityModifier_WhereClause_FieldDeclarationList_TypeIdentifier_TypeParameters < 'tree > > >> + 'a{
+        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: VisibilityModifier_WhereClause_FieldDeclarationList_TypeIdentifier_TypeParameters < 'tree > > as TryFrom < _ >> :: try_from (n))
     }
     #[doc = "Get the node's named child #i"]
     #[allow(dead_code)]
-    #[inline]    pub fn child (& self , i : usize) -> Option < type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: VisibilityModifier_WhereClause_FieldDeclarationList_TypeIdentifier_TypeParameters > >>{
-        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: VisibilityModifier_WhereClause_FieldDeclarationList_TypeIdentifier_TypeParameters > as TryFrom < _ >> :: try_from)
+    #[inline]    pub fn child (& self , i : usize) -> Option < type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: VisibilityModifier_WhereClause_FieldDeclarationList_TypeIdentifier_TypeParameters < 'tree > > >>{
+        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: VisibilityModifier_WhereClause_FieldDeclarationList_TypeIdentifier_TypeParameters < 'tree > > as TryFrom < _ >> :: try_from)
     }
 }
 #[automatically_derived]
@@ -9666,6 +10448,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for UnionItem<'tree> {
     #[inline]
     fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
         &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
     }
     #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -9705,6 +10491,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for UnitExpression<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -9740,6 +10530,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for UnitType<'tree> {
     #[inline]
     fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
         &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
     }
     #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -9786,6 +10580,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for UnsafeBlock<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -9809,9 +10607,9 @@ impl<'tree> UseAsClause<'tree> {
         &self,
     ) -> type_sitter_lib::NodeResult<
         'tree,
-        anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super,
+        anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super<'tree>,
     > {
-        self . 0 . child_by_field_name ("path") . map (< anon_unions :: Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
+        self . 0 . child_by_field_name ("path") . map (< anon_unions :: Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
 }
 #[automatically_derived]
@@ -9841,6 +10639,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for UseAsClause<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -9853,19 +10655,19 @@ pub struct UseDeclaration<'tree>(tree_sitter::Node<'tree>);
 impl<'tree> UseDeclaration<'tree> {
     #[doc = "Get the field `argument`"]
     #[allow(dead_code)]
-    #[inline]    pub fn argument (& self) -> type_sitter_lib :: NodeResult < 'tree , anon_unions :: Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard >{
-        self . 0 . child_by_field_name ("argument") . map (< anon_unions :: Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
+    #[inline]    pub fn argument (& self) -> type_sitter_lib :: NodeResult < 'tree , anon_unions :: Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard < 'tree > >{
+        self . 0 . child_by_field_name ("argument") . map (< anon_unions :: Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
     #[doc = "Get the node's named children"]
     #[doc = "This is guaranteed to return at least one child"]
     #[allow(dead_code)]
-    #[inline]    pub fn children < 'a > (& self , c : & 'a mut tree_sitter :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: VisibilityModifier_Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard > >> + 'a{
-        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: VisibilityModifier_Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard > as TryFrom < _ >> :: try_from (n))
+    #[inline]    pub fn children < 'a > (& self , c : & 'a mut tree_sitter :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: VisibilityModifier_Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard < 'tree > > >> + 'a{
+        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: VisibilityModifier_Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard < 'tree > > as TryFrom < _ >> :: try_from (n))
     }
     #[doc = "Get the node's named child #i"]
     #[allow(dead_code)]
-    #[inline]    pub fn child (& self , i : usize) -> Option < type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: VisibilityModifier_Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard > >>{
-        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: VisibilityModifier_Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard > as TryFrom < _ >> :: try_from)
+    #[inline]    pub fn child (& self , i : usize) -> Option < type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: VisibilityModifier_Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard < 'tree > > >>{
+        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: VisibilityModifier_Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard < 'tree > > as TryFrom < _ >> :: try_from)
     }
 }
 #[automatically_derived]
@@ -9895,6 +10697,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for UseDeclaration<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -9907,13 +10713,13 @@ pub struct UseList<'tree>(tree_sitter::Node<'tree>);
 impl<'tree> UseList<'tree> {
     #[doc = "Get the node's named children"]
     #[allow(dead_code)]
-    #[inline]    pub fn children < 'a > (& self , c : & 'a mut tree_sitter :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard > >> + 'a{
-        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard > as TryFrom < _ >> :: try_from (n))
+    #[inline]    pub fn children < 'a > (& self , c : & 'a mut tree_sitter :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard < 'tree > > >> + 'a{
+        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard < 'tree > > as TryFrom < _ >> :: try_from (n))
     }
     #[doc = "Get the node's named child #i"]
     #[allow(dead_code)]
-    #[inline]    pub fn child (& self , i : usize) -> Option < type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard > >>{
-        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard > as TryFrom < _ >> :: try_from)
+    #[inline]    pub fn child (& self , i : usize) -> Option < type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard < 'tree > > >>{
+        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard < 'tree > > as TryFrom < _ >> :: try_from)
     }
 }
 #[automatically_derived]
@@ -9943,6 +10749,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for UseList<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -9961,14 +10771,10 @@ impl<'tree> UseWildcard<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super,
+            anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super<'tree>,
         >,
     > {
-        self.0.named_child(0).map(
-            <anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super as TryFrom<
-                _,
-            >>::try_from,
-        )
+        self . 0 . named_child (0) . map (< anon_unions :: Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super < 'tree > as TryFrom < _ >> :: try_from)
     }
 }
 #[automatically_derived]
@@ -9996,6 +10802,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for UseWildcard<'tree> {
     #[inline]
     fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
         &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
     }
     #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -10035,6 +10845,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for VariadicParameter<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -10053,14 +10867,10 @@ impl<'tree> VisibilityModifier<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super,
+            anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super<'tree>,
         >,
     > {
-        self.0.named_child(0).map(
-            <anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super as TryFrom<
-                _,
-            >>::try_from,
-        )
+        self . 0 . named_child (0) . map (< anon_unions :: Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super < 'tree > as TryFrom < _ >> :: try_from)
     }
 }
 #[automatically_derived]
@@ -10088,6 +10898,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for VisibilityModifier<'tree> {
     #[inline]
     fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
         &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
     }
     #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -10158,6 +10972,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for WhereClause<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -10176,8 +10994,8 @@ impl<'tree> WherePredicate<'tree> {
     }
     #[doc = "Get the field `left`"]
     #[allow(dead_code)]
-    #[inline]    pub fn left (& self) -> type_sitter_lib :: NodeResult < 'tree , anon_unions :: ArrayType_GenericType_HigherRankedTraitBound_Lifetime_PointerType_PrimitiveType_ReferenceType_ScopedTypeIdentifier_TupleType_TypeIdentifier >{
-        self . 0 . child_by_field_name ("left") . map (< anon_unions :: ArrayType_GenericType_HigherRankedTraitBound_Lifetime_PointerType_PrimitiveType_ReferenceType_ScopedTypeIdentifier_TupleType_TypeIdentifier as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
+    #[inline]    pub fn left (& self) -> type_sitter_lib :: NodeResult < 'tree , anon_unions :: ArrayType_GenericType_HigherRankedTraitBound_Lifetime_PointerType_PrimitiveType_ReferenceType_ScopedTypeIdentifier_TupleType_TypeIdentifier < 'tree > >{
+        self . 0 . child_by_field_name ("left") . map (< anon_unions :: ArrayType_GenericType_HigherRankedTraitBound_Lifetime_PointerType_PrimitiveType_ReferenceType_ScopedTypeIdentifier_TupleType_TypeIdentifier < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
 }
 #[automatically_derived]
@@ -10207,6 +11025,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for WherePredicate<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -10228,8 +11050,9 @@ impl<'tree> WhileExpression<'tree> {
     #[inline]
     pub fn condition(
         &self,
-    ) -> type_sitter_lib::NodeResult<'tree, anon_unions::Expression_LetChain_LetCondition> {
-        self . 0 . child_by_field_name ("condition") . map (< anon_unions :: Expression_LetChain_LetCondition as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
+    ) -> type_sitter_lib::NodeResult<'tree, anon_unions::Expression_LetChain_LetCondition<'tree>>
+    {
+        self . 0 . child_by_field_name ("condition") . map (< anon_unions :: Expression_LetChain_LetCondition < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
     #[doc = "Get the node's named children"]
     #[doc = "This is guaranteed to return at least one child"]
@@ -10243,14 +11066,14 @@ impl<'tree> WhileExpression<'tree> {
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::LoopLabel_Block_Expression_LetChain_LetCondition,
+                anon_unions::LoopLabel_Block_Expression_LetChain_LetCondition<'tree>,
             >,
         >,
     > + 'a {
         self.0.named_children(c).map(|n| {
             <type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::LoopLabel_Block_Expression_LetChain_LetCondition,
+                anon_unions::LoopLabel_Block_Expression_LetChain_LetCondition<'tree>,
             > as TryFrom<_>>::try_from(n)
         })
     }
@@ -10265,14 +11088,14 @@ impl<'tree> WhileExpression<'tree> {
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::LoopLabel_Block_Expression_LetChain_LetCondition,
+                anon_unions::LoopLabel_Block_Expression_LetChain_LetCondition<'tree>,
             >,
         >,
     > {
         self.0.named_child(i).map(
             <type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::LoopLabel_Block_Expression_LetChain_LetCondition,
+                anon_unions::LoopLabel_Block_Expression_LetChain_LetCondition<'tree>,
             > as TryFrom<_>>::try_from,
         )
     }
@@ -10302,6 +11125,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for WhileExpression<'tree> {
     #[inline]
     fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
         &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
     }
     #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -10350,6 +11177,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for YieldExpression<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -10385,6 +11216,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for BlockComment<'tree> {
     #[inline]
     fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
         &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
     }
     #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -10424,6 +11259,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for CharLiteral<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -10459,6 +11298,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Crate<'tree> {
     #[inline]
     fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
         &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
     }
     #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -10498,6 +11341,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for EscapeSequence<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -10533,6 +11380,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for FieldIdentifier<'tree> {
     #[inline]
     fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
         &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
     }
     #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -10572,6 +11423,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for FloatLiteral<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -10607,6 +11462,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Identifier<'tree> {
     #[inline]
     fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
         &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
     }
     #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -10646,6 +11505,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for IntegerLiteral<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -10681,6 +11544,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for LineComment<'tree> {
     #[inline]
     fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
         &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
     }
     #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -10720,6 +11587,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Metavariable<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -10755,6 +11626,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for MutableSpecifier<'tree> {
     #[inline]
     fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
         &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
     }
     #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -10794,6 +11669,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for PrimitiveType<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -10829,6 +11708,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for RawStringLiteral<'tree> {
     #[inline]
     fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
         &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
     }
     #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -10868,6 +11751,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for _Self<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -10903,6 +11790,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ShorthandFieldIdentifier<'tree
     #[inline]
     fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
         &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
     }
     #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -10942,6 +11833,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Super<'tree> {
         &mut self.0
     }
     #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
         Self(node)
     }
@@ -10977,6 +11872,10 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TypeIdentifier<'tree> {
     #[inline]
     fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
         &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> tree_sitter::Node<'tree> {
+        self.0
     }
     #[inline]
     unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -11019,6 +11918,10 @@ pub mod unnamed {
             &mut self.0
         }
         #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
+        }
+        #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
             Self(node)
         }
@@ -11054,6 +11957,10 @@ pub mod unnamed {
         #[inline]
         fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
             &mut self.0
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
         }
         #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -11093,6 +12000,10 @@ pub mod unnamed {
             &mut self.0
         }
         #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
+        }
+        #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
             Self(node)
         }
@@ -11128,6 +12039,10 @@ pub mod unnamed {
         #[inline]
         fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
             &mut self.0
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
         }
         #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -11167,6 +12082,10 @@ pub mod unnamed {
             &mut self.0
         }
         #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
+        }
+        #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
             Self(node)
         }
@@ -11202,6 +12121,10 @@ pub mod unnamed {
         #[inline]
         fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
             &mut self.0
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
         }
         #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -11241,6 +12164,10 @@ pub mod unnamed {
             &mut self.0
         }
         #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
+        }
+        #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
             Self(node)
         }
@@ -11276,6 +12203,10 @@ pub mod unnamed {
         #[inline]
         fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
             &mut self.0
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
         }
         #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -11315,6 +12246,10 @@ pub mod unnamed {
             &mut self.0
         }
         #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
+        }
+        #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
             Self(node)
         }
@@ -11350,6 +12285,10 @@ pub mod unnamed {
         #[inline]
         fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
             &mut self.0
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
         }
         #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -11389,6 +12328,10 @@ pub mod unnamed {
             &mut self.0
         }
         #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
+        }
+        #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
             Self(node)
         }
@@ -11424,6 +12367,10 @@ pub mod unnamed {
         #[inline]
         fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
             &mut self.0
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
         }
         #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -11463,6 +12410,10 @@ pub mod unnamed {
             &mut self.0
         }
         #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
+        }
+        #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
             Self(node)
         }
@@ -11498,6 +12449,10 @@ pub mod unnamed {
         #[inline]
         fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
             &mut self.0
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
         }
         #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -11537,6 +12492,10 @@ pub mod unnamed {
             &mut self.0
         }
         #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
+        }
+        #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
             Self(node)
         }
@@ -11572,6 +12531,10 @@ pub mod unnamed {
         #[inline]
         fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
             &mut self.0
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
         }
         #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -11611,6 +12574,10 @@ pub mod unnamed {
             &mut self.0
         }
         #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
+        }
+        #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
             Self(node)
         }
@@ -11646,6 +12613,10 @@ pub mod unnamed {
         #[inline]
         fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
             &mut self.0
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
         }
         #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -11685,6 +12656,10 @@ pub mod unnamed {
             &mut self.0
         }
         #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
+        }
+        #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
             Self(node)
         }
@@ -11720,6 +12695,10 @@ pub mod unnamed {
         #[inline]
         fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
             &mut self.0
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
         }
         #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -11759,6 +12738,10 @@ pub mod unnamed {
             &mut self.0
         }
         #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
+        }
+        #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
             Self(node)
         }
@@ -11794,6 +12777,10 @@ pub mod unnamed {
         #[inline]
         fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
             &mut self.0
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
         }
         #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -11833,6 +12820,10 @@ pub mod unnamed {
             &mut self.0
         }
         #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
+        }
+        #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
             Self(node)
         }
@@ -11868,6 +12859,10 @@ pub mod unnamed {
         #[inline]
         fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
             &mut self.0
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
         }
         #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -11907,6 +12902,10 @@ pub mod unnamed {
             &mut self.0
         }
         #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
+        }
+        #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
             Self(node)
         }
@@ -11942,6 +12941,10 @@ pub mod unnamed {
         #[inline]
         fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
             &mut self.0
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
         }
         #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -11981,6 +12984,10 @@ pub mod unnamed {
             &mut self.0
         }
         #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
+        }
+        #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
             Self(node)
         }
@@ -12016,6 +13023,10 @@ pub mod unnamed {
         #[inline]
         fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
             &mut self.0
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
         }
         #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -12055,6 +13066,10 @@ pub mod unnamed {
             &mut self.0
         }
         #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
+        }
+        #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
             Self(node)
         }
@@ -12090,6 +13105,10 @@ pub mod unnamed {
         #[inline]
         fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
             &mut self.0
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
         }
         #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -12129,6 +13148,10 @@ pub mod unnamed {
             &mut self.0
         }
         #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
+        }
+        #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
             Self(node)
         }
@@ -12164,6 +13187,10 @@ pub mod unnamed {
         #[inline]
         fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
             &mut self.0
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
         }
         #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -12203,6 +13230,10 @@ pub mod unnamed {
             &mut self.0
         }
         #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
+        }
+        #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
             Self(node)
         }
@@ -12238,6 +13269,10 @@ pub mod unnamed {
         #[inline]
         fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
             &mut self.0
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
         }
         #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -12277,6 +13312,10 @@ pub mod unnamed {
             &mut self.0
         }
         #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
+        }
+        #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
             Self(node)
         }
@@ -12312,6 +13351,10 @@ pub mod unnamed {
         #[inline]
         fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
             &mut self.0
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
         }
         #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -12351,6 +13394,10 @@ pub mod unnamed {
             &mut self.0
         }
         #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
+        }
+        #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
             Self(node)
         }
@@ -12386,6 +13433,10 @@ pub mod unnamed {
         #[inline]
         fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
             &mut self.0
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
         }
         #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -12425,6 +13476,10 @@ pub mod unnamed {
             &mut self.0
         }
         #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
+        }
+        #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
             Self(node)
         }
@@ -12460,6 +13515,10 @@ pub mod unnamed {
         #[inline]
         fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
             &mut self.0
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
         }
         #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -12499,6 +13558,10 @@ pub mod unnamed {
             &mut self.0
         }
         #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
+        }
+        #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
             Self(node)
         }
@@ -12534,6 +13597,10 @@ pub mod unnamed {
         #[inline]
         fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
             &mut self.0
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
         }
         #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -12573,6 +13640,10 @@ pub mod unnamed {
             &mut self.0
         }
         #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
+        }
+        #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
             Self(node)
         }
@@ -12608,6 +13679,10 @@ pub mod unnamed {
         #[inline]
         fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
             &mut self.0
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
         }
         #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -12647,6 +13722,10 @@ pub mod unnamed {
             &mut self.0
         }
         #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
+        }
+        #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
             Self(node)
         }
@@ -12682,6 +13761,10 @@ pub mod unnamed {
         #[inline]
         fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
             &mut self.0
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
         }
         #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -12721,6 +13804,10 @@ pub mod unnamed {
             &mut self.0
         }
         #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
+        }
+        #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
             Self(node)
         }
@@ -12758,6 +13845,10 @@ pub mod unnamed {
             &mut self.0
         }
         #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
+        }
+        #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
             Self(node)
         }
@@ -12793,6 +13884,10 @@ pub mod unnamed {
         #[inline]
         fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
             &mut self.0
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
         }
         #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -12836,6 +13931,10 @@ pub mod symbols {
             &mut self.0
         }
         #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
+        }
+        #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
             Self(node)
         }
@@ -12871,6 +13970,10 @@ pub mod symbols {
         #[inline]
         fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
             &mut self.0
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
         }
         #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -12910,6 +14013,10 @@ pub mod symbols {
             &mut self.0
         }
         #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
+        }
+        #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
             Self(node)
         }
@@ -12945,6 +14052,10 @@ pub mod symbols {
         #[inline]
         fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
             &mut self.0
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
         }
         #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -12984,6 +14095,10 @@ pub mod symbols {
             &mut self.0
         }
         #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
+        }
+        #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
             Self(node)
         }
@@ -13019,6 +14134,10 @@ pub mod symbols {
         #[inline]
         fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
             &mut self.0
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
         }
         #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -13058,6 +14177,10 @@ pub mod symbols {
             &mut self.0
         }
         #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
+        }
+        #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
             Self(node)
         }
@@ -13093,6 +14216,10 @@ pub mod symbols {
         #[inline]
         fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
             &mut self.0
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
         }
         #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -13132,6 +14259,10 @@ pub mod symbols {
             &mut self.0
         }
         #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
+        }
+        #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
             Self(node)
         }
@@ -13167,6 +14298,10 @@ pub mod symbols {
         #[inline]
         fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
             &mut self.0
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
         }
         #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -13206,6 +14341,10 @@ pub mod symbols {
             &mut self.0
         }
         #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
+        }
+        #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
             Self(node)
         }
@@ -13241,6 +14380,10 @@ pub mod symbols {
         #[inline]
         fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
             &mut self.0
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
         }
         #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -13280,6 +14423,10 @@ pub mod symbols {
             &mut self.0
         }
         #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
+        }
+        #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
             Self(node)
         }
@@ -13315,6 +14462,10 @@ pub mod symbols {
         #[inline]
         fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
             &mut self.0
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
         }
         #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -13354,6 +14505,10 @@ pub mod symbols {
             &mut self.0
         }
         #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
+        }
+        #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
             Self(node)
         }
@@ -13389,6 +14544,10 @@ pub mod symbols {
         #[inline]
         fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
             &mut self.0
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
         }
         #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -13428,6 +14587,10 @@ pub mod symbols {
             &mut self.0
         }
         #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
+        }
+        #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
             Self(node)
         }
@@ -13463,6 +14626,10 @@ pub mod symbols {
         #[inline]
         fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
             &mut self.0
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
         }
         #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -13502,6 +14669,10 @@ pub mod symbols {
             &mut self.0
         }
         #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
+        }
+        #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
             Self(node)
         }
@@ -13537,6 +14708,10 @@ pub mod symbols {
         #[inline]
         fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
             &mut self.0
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
         }
         #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -13576,6 +14751,10 @@ pub mod symbols {
             &mut self.0
         }
         #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
+        }
+        #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
             Self(node)
         }
@@ -13611,6 +14790,10 @@ pub mod symbols {
         #[inline]
         fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
             &mut self.0
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
         }
         #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -13650,6 +14833,10 @@ pub mod symbols {
             &mut self.0
         }
         #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
+        }
+        #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
             Self(node)
         }
@@ -13685,6 +14872,10 @@ pub mod symbols {
         #[inline]
         fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
             &mut self.0
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
         }
         #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -13724,6 +14915,10 @@ pub mod symbols {
             &mut self.0
         }
         #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
+        }
+        #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
             Self(node)
         }
@@ -13759,6 +14954,10 @@ pub mod symbols {
         #[inline]
         fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
             &mut self.0
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
         }
         #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -13798,6 +14997,10 @@ pub mod symbols {
             &mut self.0
         }
         #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
+        }
+        #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
             Self(node)
         }
@@ -13833,6 +15036,10 @@ pub mod symbols {
         #[inline]
         fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
             &mut self.0
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
         }
         #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -13872,6 +15079,10 @@ pub mod symbols {
             &mut self.0
         }
         #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
+        }
+        #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
             Self(node)
         }
@@ -13907,6 +15118,10 @@ pub mod symbols {
         #[inline]
         fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
             &mut self.0
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
         }
         #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -13946,6 +15161,10 @@ pub mod symbols {
             &mut self.0
         }
         #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
+        }
+        #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
             Self(node)
         }
@@ -13981,6 +15200,10 @@ pub mod symbols {
         #[inline]
         fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
             &mut self.0
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
         }
         #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -14020,6 +15243,10 @@ pub mod symbols {
             &mut self.0
         }
         #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
+        }
+        #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
             Self(node)
         }
@@ -14055,6 +15282,10 @@ pub mod symbols {
         #[inline]
         fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
             &mut self.0
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
         }
         #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -14094,6 +15325,10 @@ pub mod symbols {
             &mut self.0
         }
         #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
+        }
+        #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
             Self(node)
         }
@@ -14129,6 +15364,10 @@ pub mod symbols {
         #[inline]
         fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
             &mut self.0
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
         }
         #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -14168,6 +15407,10 @@ pub mod symbols {
             &mut self.0
         }
         #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
+        }
+        #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
             Self(node)
         }
@@ -14203,6 +15446,10 @@ pub mod symbols {
         #[inline]
         fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
             &mut self.0
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
         }
         #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -14242,6 +15489,10 @@ pub mod symbols {
             &mut self.0
         }
         #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
+        }
+        #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
             Self(node)
         }
@@ -14277,6 +15528,10 @@ pub mod symbols {
         #[inline]
         fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
             &mut self.0
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
         }
         #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -14316,6 +15571,10 @@ pub mod symbols {
             &mut self.0
         }
         #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
+        }
+        #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
             Self(node)
         }
@@ -14351,6 +15610,10 @@ pub mod symbols {
         #[inline]
         fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
             &mut self.0
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
         }
         #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -14390,6 +15653,10 @@ pub mod symbols {
             &mut self.0
         }
         #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
+        }
+        #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
             Self(node)
         }
@@ -14425,6 +15692,10 @@ pub mod symbols {
         #[inline]
         fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
             &mut self.0
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
         }
         #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -14464,6 +15735,10 @@ pub mod symbols {
             &mut self.0
         }
         #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
+        }
+        #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
             Self(node)
         }
@@ -14499,6 +15774,10 @@ pub mod symbols {
         #[inline]
         fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
             &mut self.0
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
         }
         #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -14538,6 +15817,10 @@ pub mod symbols {
             &mut self.0
         }
         #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
+        }
+        #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
             Self(node)
         }
@@ -14573,6 +15856,10 @@ pub mod symbols {
         #[inline]
         fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
             &mut self.0
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
         }
         #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -14612,6 +15899,10 @@ pub mod symbols {
             &mut self.0
         }
         #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
+        }
+        #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
             Self(node)
         }
@@ -14647,6 +15938,10 @@ pub mod symbols {
         #[inline]
         fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
             &mut self.0
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
         }
         #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -14686,6 +15981,10 @@ pub mod symbols {
             &mut self.0
         }
         #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
+        }
+        #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
             Self(node)
         }
@@ -14721,6 +16020,10 @@ pub mod symbols {
         #[inline]
         fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
             &mut self.0
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
         }
         #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -14760,6 +16063,10 @@ pub mod symbols {
             &mut self.0
         }
         #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
+        }
+        #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
             Self(node)
         }
@@ -14795,6 +16102,10 @@ pub mod symbols {
         #[inline]
         fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
             &mut self.0
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            self.0
         }
         #[inline]
         unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
@@ -14906,6 +16217,15 @@ pub mod anon_unions {
                 Self::TypeIdentifier(x) => x.node_mut(),
             }
         }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            match self {
+                Self::FunctionType(x) => x.into_node(),
+                Self::GenericType(x) => x.into_node(),
+                Self::ScopedTypeIdentifier(x) => x.into_node(),
+                Self::TypeIdentifier(x) => x.into_node(),
+            }
+        }
     }
     #[doc = "one of `{_expression | attribute_item}`"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -14967,6 +16287,13 @@ pub mod anon_unions {
             match self {
                 Self::Expression(x) => x.node_mut(),
                 Self::AttributeItem(x) => x.node_mut(),
+            }
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            match self {
+                Self::Expression(x) => x.into_node(),
+                Self::AttributeItem(x) => x.into_node(),
             }
         }
     }
@@ -15124,6 +16451,19 @@ pub mod anon_unions {
                 Self::Super(x) => x.node_mut(),
                 Self::TokenTree(x) => x.node_mut(),
                 Self::Expression(x) => x.node_mut(),
+            }
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            match self {
+                Self::Crate(x) => x.into_node(),
+                Self::Identifier(x) => x.into_node(),
+                Self::Metavariable(x) => x.into_node(),
+                Self::ScopedIdentifier(x) => x.into_node(),
+                Self::_Self(x) => x.into_node(),
+                Self::Super(x) => x.into_node(),
+                Self::TokenTree(x) => x.into_node(),
+                Self::Expression(x) => x.into_node(),
             }
         }
     }
@@ -15462,6 +16802,29 @@ pub mod anon_unions {
                 Self::OrOr(x) => x.node_mut(),
             }
         }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            match self {
+                Self::NotEq(x) => x.into_node(),
+                Self::Mod(x) => x.into_node(),
+                Self::And(x) => x.into_node(),
+                Self::AndAnd(x) => x.into_node(),
+                Self::Mul(x) => x.into_node(),
+                Self::Add(x) => x.into_node(),
+                Self::Sub(x) => x.into_node(),
+                Self::Div(x) => x.into_node(),
+                Self::Lt(x) => x.into_node(),
+                Self::LtLt(x) => x.into_node(),
+                Self::LtEq(x) => x.into_node(),
+                Self::EqEq(x) => x.into_node(),
+                Self::Gt(x) => x.into_node(),
+                Self::GtEq(x) => x.into_node(),
+                Self::GtGt(x) => x.into_node(),
+                Self::BitXor(x) => x.into_node(),
+                Self::Or(x) => x.into_node(),
+                Self::OrOr(x) => x.into_node(),
+            }
+        }
     }
     #[doc = "one of `{_declaration_statement | _expression | expression_statement}`"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -15544,6 +16907,14 @@ pub mod anon_unions {
                 Self::ExpressionStatement(x) => x.node_mut(),
             }
         }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            match self {
+                Self::DeclarationStatement(x) => x.into_node(),
+                Self::Expression(x) => x.into_node(),
+                Self::ExpressionStatement(x) => x.into_node(),
+            }
+        }
     }
     #[doc = "one of `{_type | lifetime}`"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -15605,6 +16976,13 @@ pub mod anon_unions {
             match self {
                 Self::Type(x) => x.node_mut(),
                 Self::Lifetime(x) => x.node_mut(),
+            }
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            match self {
+                Self::Type(x) => x.into_node(),
+                Self::Lifetime(x) => x.into_node(),
             }
         }
     }
@@ -15670,6 +17048,13 @@ pub mod anon_unions {
                 Self::QualifiedType(x) => x.node_mut(),
             }
         }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            match self {
+                Self::Type(x) => x.into_node(),
+                Self::QualifiedType(x) => x.into_node(),
+            }
+        }
     }
     #[doc = "one of `{_expression | loop_label}`"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -15733,6 +17118,13 @@ pub mod anon_unions {
                 Self::LoopLabel(x) => x.node_mut(),
             }
         }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            match self {
+                Self::Expression(x) => x.into_node(),
+                Self::LoopLabel(x) => x.into_node(),
+            }
+        }
     }
     #[doc = "one of `{_literal | array_expression | assignment_expression | async_block | await_expression | binary_expression | block | break_expression | call_expression | closure_expression | compound_assignment_expr | const_block | continue_expression | field_expression | for_expression | generic_function | identifier | if_expression | index_expression | loop_expression | macro_invocation | match_expression | metavariable | parenthesized_expression | reference_expression | return_expression | scoped_identifier | self | struct_expression | try_expression | tuple_expression | type_cast_expression | unary_expression | unit_expression | unsafe_block | while_expression | yield_expression}`"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -15783,7 +17175,7 @@ pub mod anon_unions {
     #[automatically_derived]
     impl < 'tree > TryFrom < tree_sitter :: Node < 'tree >> for Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier__Self_StructExpression_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression < 'tree > { type Error = type_sitter_lib :: IncorrectKind < 'tree > ; # [inline] fn try_from (node : tree_sitter :: Node < 'tree >) -> Result < Self , Self :: Error > { if let Ok (this) = < Literal < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Literal (this)) ; } if let Ok (this) = < ArrayExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: ArrayExpression (this)) ; } if let Ok (this) = < AssignmentExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: AssignmentExpression (this)) ; } if let Ok (this) = < AsyncBlock < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: AsyncBlock (this)) ; } if let Ok (this) = < AwaitExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: AwaitExpression (this)) ; } if let Ok (this) = < BinaryExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: BinaryExpression (this)) ; } if let Ok (this) = < Block < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Block (this)) ; } if let Ok (this) = < BreakExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: BreakExpression (this)) ; } if let Ok (this) = < CallExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: CallExpression (this)) ; } if let Ok (this) = < ClosureExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: ClosureExpression (this)) ; } if let Ok (this) = < CompoundAssignmentExpr < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: CompoundAssignmentExpr (this)) ; } if let Ok (this) = < ConstBlock < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: ConstBlock (this)) ; } if let Ok (this) = < ContinueExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: ContinueExpression (this)) ; } if let Ok (this) = < FieldExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: FieldExpression (this)) ; } if let Ok (this) = < ForExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: ForExpression (this)) ; } if let Ok (this) = < GenericFunction < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: GenericFunction (this)) ; } if let Ok (this) = < Identifier < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Identifier (this)) ; } if let Ok (this) = < IfExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: IfExpression (this)) ; } if let Ok (this) = < IndexExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: IndexExpression (this)) ; } if let Ok (this) = < LoopExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: LoopExpression (this)) ; } if let Ok (this) = < MacroInvocation < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: MacroInvocation (this)) ; } if let Ok (this) = < MatchExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: MatchExpression (this)) ; } if let Ok (this) = < Metavariable < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Metavariable (this)) ; } if let Ok (this) = < ParenthesizedExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: ParenthesizedExpression (this)) ; } if let Ok (this) = < ReferenceExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: ReferenceExpression (this)) ; } if let Ok (this) = < ReturnExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: ReturnExpression (this)) ; } if let Ok (this) = < ScopedIdentifier < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: ScopedIdentifier (this)) ; } if let Ok (this) = < _Self < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: _Self (this)) ; } if let Ok (this) = < StructExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: StructExpression (this)) ; } if let Ok (this) = < TryExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: TryExpression (this)) ; } if let Ok (this) = < TupleExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: TupleExpression (this)) ; } if let Ok (this) = < TypeCastExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: TypeCastExpression (this)) ; } if let Ok (this) = < UnaryExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: UnaryExpression (this)) ; } if let Ok (this) = < UnitExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: UnitExpression (this)) ; } if let Ok (this) = < UnsafeBlock < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: UnsafeBlock (this)) ; } if let Ok (this) = < WhileExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: WhileExpression (this)) ; } if let Ok (this) = < YieldExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: YieldExpression (this)) ; } Err (type_sitter_lib :: IncorrectKind { node , kind : < Self as type_sitter_lib :: TypedNode < 'tree >> :: KIND , }) } }
     #[automatically_derived]
-    impl < 'tree > type_sitter_lib :: TypedNode < 'tree > for Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier__Self_StructExpression_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression < 'tree > { const KIND : & 'static str = "{_literal | array_expression | assignment_expression | async_block | await_expression | binary_expression | block | break_expression | call_expression | closure_expression | compound_assignment_expr | const_block | continue_expression | field_expression | for_expression | generic_function | identifier | if_expression | index_expression | loop_expression | macro_invocation | match_expression | metavariable | parenthesized_expression | reference_expression | return_expression | scoped_identifier | self | struct_expression | try_expression | tuple_expression | type_cast_expression | unary_expression | unit_expression | unsafe_block | while_expression | yield_expression}" ; # [inline] fn node (& self) -> & tree_sitter :: Node < 'tree > { match self { Self :: Literal (x) => x . node () , Self :: ArrayExpression (x) => x . node () , Self :: AssignmentExpression (x) => x . node () , Self :: AsyncBlock (x) => x . node () , Self :: AwaitExpression (x) => x . node () , Self :: BinaryExpression (x) => x . node () , Self :: Block (x) => x . node () , Self :: BreakExpression (x) => x . node () , Self :: CallExpression (x) => x . node () , Self :: ClosureExpression (x) => x . node () , Self :: CompoundAssignmentExpr (x) => x . node () , Self :: ConstBlock (x) => x . node () , Self :: ContinueExpression (x) => x . node () , Self :: FieldExpression (x) => x . node () , Self :: ForExpression (x) => x . node () , Self :: GenericFunction (x) => x . node () , Self :: Identifier (x) => x . node () , Self :: IfExpression (x) => x . node () , Self :: IndexExpression (x) => x . node () , Self :: LoopExpression (x) => x . node () , Self :: MacroInvocation (x) => x . node () , Self :: MatchExpression (x) => x . node () , Self :: Metavariable (x) => x . node () , Self :: ParenthesizedExpression (x) => x . node () , Self :: ReferenceExpression (x) => x . node () , Self :: ReturnExpression (x) => x . node () , Self :: ScopedIdentifier (x) => x . node () , Self :: _Self (x) => x . node () , Self :: StructExpression (x) => x . node () , Self :: TryExpression (x) => x . node () , Self :: TupleExpression (x) => x . node () , Self :: TypeCastExpression (x) => x . node () , Self :: UnaryExpression (x) => x . node () , Self :: UnitExpression (x) => x . node () , Self :: UnsafeBlock (x) => x . node () , Self :: WhileExpression (x) => x . node () , Self :: YieldExpression (x) => x . node () , } } # [inline] fn node_mut (& mut self) -> & mut tree_sitter :: Node < 'tree > { match self { Self :: Literal (x) => x . node_mut () , Self :: ArrayExpression (x) => x . node_mut () , Self :: AssignmentExpression (x) => x . node_mut () , Self :: AsyncBlock (x) => x . node_mut () , Self :: AwaitExpression (x) => x . node_mut () , Self :: BinaryExpression (x) => x . node_mut () , Self :: Block (x) => x . node_mut () , Self :: BreakExpression (x) => x . node_mut () , Self :: CallExpression (x) => x . node_mut () , Self :: ClosureExpression (x) => x . node_mut () , Self :: CompoundAssignmentExpr (x) => x . node_mut () , Self :: ConstBlock (x) => x . node_mut () , Self :: ContinueExpression (x) => x . node_mut () , Self :: FieldExpression (x) => x . node_mut () , Self :: ForExpression (x) => x . node_mut () , Self :: GenericFunction (x) => x . node_mut () , Self :: Identifier (x) => x . node_mut () , Self :: IfExpression (x) => x . node_mut () , Self :: IndexExpression (x) => x . node_mut () , Self :: LoopExpression (x) => x . node_mut () , Self :: MacroInvocation (x) => x . node_mut () , Self :: MatchExpression (x) => x . node_mut () , Self :: Metavariable (x) => x . node_mut () , Self :: ParenthesizedExpression (x) => x . node_mut () , Self :: ReferenceExpression (x) => x . node_mut () , Self :: ReturnExpression (x) => x . node_mut () , Self :: ScopedIdentifier (x) => x . node_mut () , Self :: _Self (x) => x . node_mut () , Self :: StructExpression (x) => x . node_mut () , Self :: TryExpression (x) => x . node_mut () , Self :: TupleExpression (x) => x . node_mut () , Self :: TypeCastExpression (x) => x . node_mut () , Self :: UnaryExpression (x) => x . node_mut () , Self :: UnitExpression (x) => x . node_mut () , Self :: UnsafeBlock (x) => x . node_mut () , Self :: WhileExpression (x) => x . node_mut () , Self :: YieldExpression (x) => x . node_mut () , } } }
+    impl < 'tree > type_sitter_lib :: TypedNode < 'tree > for Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier__Self_StructExpression_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression < 'tree > { const KIND : & 'static str = "{_literal | array_expression | assignment_expression | async_block | await_expression | binary_expression | block | break_expression | call_expression | closure_expression | compound_assignment_expr | const_block | continue_expression | field_expression | for_expression | generic_function | identifier | if_expression | index_expression | loop_expression | macro_invocation | match_expression | metavariable | parenthesized_expression | reference_expression | return_expression | scoped_identifier | self | struct_expression | try_expression | tuple_expression | type_cast_expression | unary_expression | unit_expression | unsafe_block | while_expression | yield_expression}" ; # [inline] fn node (& self) -> & tree_sitter :: Node < 'tree > { match self { Self :: Literal (x) => x . node () , Self :: ArrayExpression (x) => x . node () , Self :: AssignmentExpression (x) => x . node () , Self :: AsyncBlock (x) => x . node () , Self :: AwaitExpression (x) => x . node () , Self :: BinaryExpression (x) => x . node () , Self :: Block (x) => x . node () , Self :: BreakExpression (x) => x . node () , Self :: CallExpression (x) => x . node () , Self :: ClosureExpression (x) => x . node () , Self :: CompoundAssignmentExpr (x) => x . node () , Self :: ConstBlock (x) => x . node () , Self :: ContinueExpression (x) => x . node () , Self :: FieldExpression (x) => x . node () , Self :: ForExpression (x) => x . node () , Self :: GenericFunction (x) => x . node () , Self :: Identifier (x) => x . node () , Self :: IfExpression (x) => x . node () , Self :: IndexExpression (x) => x . node () , Self :: LoopExpression (x) => x . node () , Self :: MacroInvocation (x) => x . node () , Self :: MatchExpression (x) => x . node () , Self :: Metavariable (x) => x . node () , Self :: ParenthesizedExpression (x) => x . node () , Self :: ReferenceExpression (x) => x . node () , Self :: ReturnExpression (x) => x . node () , Self :: ScopedIdentifier (x) => x . node () , Self :: _Self (x) => x . node () , Self :: StructExpression (x) => x . node () , Self :: TryExpression (x) => x . node () , Self :: TupleExpression (x) => x . node () , Self :: TypeCastExpression (x) => x . node () , Self :: UnaryExpression (x) => x . node () , Self :: UnitExpression (x) => x . node () , Self :: UnsafeBlock (x) => x . node () , Self :: WhileExpression (x) => x . node () , Self :: YieldExpression (x) => x . node () , } } # [inline] fn node_mut (& mut self) -> & mut tree_sitter :: Node < 'tree > { match self { Self :: Literal (x) => x . node_mut () , Self :: ArrayExpression (x) => x . node_mut () , Self :: AssignmentExpression (x) => x . node_mut () , Self :: AsyncBlock (x) => x . node_mut () , Self :: AwaitExpression (x) => x . node_mut () , Self :: BinaryExpression (x) => x . node_mut () , Self :: Block (x) => x . node_mut () , Self :: BreakExpression (x) => x . node_mut () , Self :: CallExpression (x) => x . node_mut () , Self :: ClosureExpression (x) => x . node_mut () , Self :: CompoundAssignmentExpr (x) => x . node_mut () , Self :: ConstBlock (x) => x . node_mut () , Self :: ContinueExpression (x) => x . node_mut () , Self :: FieldExpression (x) => x . node_mut () , Self :: ForExpression (x) => x . node_mut () , Self :: GenericFunction (x) => x . node_mut () , Self :: Identifier (x) => x . node_mut () , Self :: IfExpression (x) => x . node_mut () , Self :: IndexExpression (x) => x . node_mut () , Self :: LoopExpression (x) => x . node_mut () , Self :: MacroInvocation (x) => x . node_mut () , Self :: MatchExpression (x) => x . node_mut () , Self :: Metavariable (x) => x . node_mut () , Self :: ParenthesizedExpression (x) => x . node_mut () , Self :: ReferenceExpression (x) => x . node_mut () , Self :: ReturnExpression (x) => x . node_mut () , Self :: ScopedIdentifier (x) => x . node_mut () , Self :: _Self (x) => x . node_mut () , Self :: StructExpression (x) => x . node_mut () , Self :: TryExpression (x) => x . node_mut () , Self :: TupleExpression (x) => x . node_mut () , Self :: TypeCastExpression (x) => x . node_mut () , Self :: UnaryExpression (x) => x . node_mut () , Self :: UnitExpression (x) => x . node_mut () , Self :: UnsafeBlock (x) => x . node_mut () , Self :: WhileExpression (x) => x . node_mut () , Self :: YieldExpression (x) => x . node_mut () , } } # [inline] fn into_node (self) -> tree_sitter :: Node < 'tree > { match self { Self :: Literal (x) => x . into_node () , Self :: ArrayExpression (x) => x . into_node () , Self :: AssignmentExpression (x) => x . into_node () , Self :: AsyncBlock (x) => x . into_node () , Self :: AwaitExpression (x) => x . into_node () , Self :: BinaryExpression (x) => x . into_node () , Self :: Block (x) => x . into_node () , Self :: BreakExpression (x) => x . into_node () , Self :: CallExpression (x) => x . into_node () , Self :: ClosureExpression (x) => x . into_node () , Self :: CompoundAssignmentExpr (x) => x . into_node () , Self :: ConstBlock (x) => x . into_node () , Self :: ContinueExpression (x) => x . into_node () , Self :: FieldExpression (x) => x . into_node () , Self :: ForExpression (x) => x . into_node () , Self :: GenericFunction (x) => x . into_node () , Self :: Identifier (x) => x . into_node () , Self :: IfExpression (x) => x . into_node () , Self :: IndexExpression (x) => x . into_node () , Self :: LoopExpression (x) => x . into_node () , Self :: MacroInvocation (x) => x . into_node () , Self :: MatchExpression (x) => x . into_node () , Self :: Metavariable (x) => x . into_node () , Self :: ParenthesizedExpression (x) => x . into_node () , Self :: ReferenceExpression (x) => x . into_node () , Self :: ReturnExpression (x) => x . into_node () , Self :: ScopedIdentifier (x) => x . into_node () , Self :: _Self (x) => x . into_node () , Self :: StructExpression (x) => x . into_node () , Self :: TryExpression (x) => x . into_node () , Self :: TupleExpression (x) => x . into_node () , Self :: TypeCastExpression (x) => x . into_node () , Self :: UnaryExpression (x) => x . into_node () , Self :: UnitExpression (x) => x . into_node () , Self :: UnsafeBlock (x) => x . into_node () , Self :: WhileExpression (x) => x . into_node () , Self :: YieldExpression (x) => x . into_node () , } } }
     #[doc = "one of `{_pattern | parameter}`"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
@@ -15844,6 +17236,13 @@ pub mod anon_unions {
             match self {
                 Self::Pattern(x) => x.node_mut(),
                 Self::Parameter(x) => x.node_mut(),
+            }
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            match self {
+                Self::Pattern(x) => x.into_node(),
+                Self::Parameter(x) => x.into_node(),
             }
         }
     }
@@ -16055,6 +17454,21 @@ pub mod anon_unions {
                 Self::OrEq(x) => x.node_mut(),
             }
         }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            match self {
+                Self::ModEq(x) => x.into_node(),
+                Self::AndEq(x) => x.into_node(),
+                Self::MulEq(x) => x.into_node(),
+                Self::AddEq(x) => x.into_node(),
+                Self::SubEq(x) => x.into_node(),
+                Self::DivEq(x) => x.into_node(),
+                Self::LtLtEq(x) => x.into_node(),
+                Self::GtGtEq(x) => x.into_node(),
+                Self::BitXorEq(x) => x.into_node(),
+                Self::OrEq(x) => x.into_node(),
+            }
+        }
     }
     #[doc = "one of `{visibility_modifier | identifier | _type | _expression}`"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -16152,6 +17566,15 @@ pub mod anon_unions {
                 Self::Expression(x) => x.node_mut(),
             }
         }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            match self {
+                Self::VisibilityModifier(x) => x.into_node(),
+                Self::Identifier(x) => x.into_node(),
+                Self::Type(x) => x.into_node(),
+                Self::Expression(x) => x.into_node(),
+            }
+        }
     }
     #[doc = "one of `{lifetime | type_identifier}`"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -16221,6 +17644,13 @@ pub mod anon_unions {
                 Self::TypeIdentifier(x) => x.node_mut(),
             }
         }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            match self {
+                Self::Lifetime(x) => x.into_node(),
+                Self::TypeIdentifier(x) => x.into_node(),
+            }
+        }
     }
     #[doc = "one of `{block | if_expression}`"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -16286,6 +17716,13 @@ pub mod anon_unions {
             match self {
                 Self::Block(x) => x.node_mut(),
                 Self::IfExpression(x) => x.node_mut(),
+            }
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            match self {
+                Self::Block(x) => x.into_node(),
+                Self::IfExpression(x) => x.into_node(),
             }
         }
     }
@@ -16408,6 +17845,16 @@ pub mod anon_unions {
                 Self::TypeParameters(x) => x.node_mut(),
             }
         }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            match self {
+                Self::VisibilityModifier(x) => x.into_node(),
+                Self::WhereClause(x) => x.into_node(),
+                Self::EnumVariantList(x) => x.into_node(),
+                Self::TypeIdentifier(x) => x.into_node(),
+                Self::TypeParameters(x) => x.into_node(),
+            }
+        }
     }
     #[doc = "one of `{visibility_modifier | field_declaration_list | ordered_field_declaration_list | identifier | _expression}`"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -16476,7 +17923,7 @@ pub mod anon_unions {
     #[automatically_derived]
     impl < 'tree > TryFrom < tree_sitter :: Node < 'tree >> for VisibilityModifier_FieldDeclarationList_OrderedFieldDeclarationList_Identifier_Expression < 'tree > { type Error = type_sitter_lib :: IncorrectKind < 'tree > ; # [inline] fn try_from (node : tree_sitter :: Node < 'tree >) -> Result < Self , Self :: Error > { if let Ok (this) = < VisibilityModifier < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: VisibilityModifier (this)) ; } if let Ok (this) = < FieldDeclarationList < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: FieldDeclarationList (this)) ; } if let Ok (this) = < OrderedFieldDeclarationList < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: OrderedFieldDeclarationList (this)) ; } if let Ok (this) = < Identifier < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Identifier (this)) ; } if let Ok (this) = < Expression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Expression (this)) ; } Err (type_sitter_lib :: IncorrectKind { node , kind : < Self as type_sitter_lib :: TypedNode < 'tree >> :: KIND , }) } }
     #[automatically_derived]
-    impl < 'tree > type_sitter_lib :: TypedNode < 'tree > for VisibilityModifier_FieldDeclarationList_OrderedFieldDeclarationList_Identifier_Expression < 'tree > { const KIND : & 'static str = "{visibility_modifier | field_declaration_list | ordered_field_declaration_list | identifier | _expression}" ; # [inline] fn node (& self) -> & tree_sitter :: Node < 'tree > { match self { Self :: VisibilityModifier (x) => x . node () , Self :: FieldDeclarationList (x) => x . node () , Self :: OrderedFieldDeclarationList (x) => x . node () , Self :: Identifier (x) => x . node () , Self :: Expression (x) => x . node () , } } # [inline] fn node_mut (& mut self) -> & mut tree_sitter :: Node < 'tree > { match self { Self :: VisibilityModifier (x) => x . node_mut () , Self :: FieldDeclarationList (x) => x . node_mut () , Self :: OrderedFieldDeclarationList (x) => x . node_mut () , Self :: Identifier (x) => x . node_mut () , Self :: Expression (x) => x . node_mut () , } } }
+    impl < 'tree > type_sitter_lib :: TypedNode < 'tree > for VisibilityModifier_FieldDeclarationList_OrderedFieldDeclarationList_Identifier_Expression < 'tree > { const KIND : & 'static str = "{visibility_modifier | field_declaration_list | ordered_field_declaration_list | identifier | _expression}" ; # [inline] fn node (& self) -> & tree_sitter :: Node < 'tree > { match self { Self :: VisibilityModifier (x) => x . node () , Self :: FieldDeclarationList (x) => x . node () , Self :: OrderedFieldDeclarationList (x) => x . node () , Self :: Identifier (x) => x . node () , Self :: Expression (x) => x . node () , } } # [inline] fn node_mut (& mut self) -> & mut tree_sitter :: Node < 'tree > { match self { Self :: VisibilityModifier (x) => x . node_mut () , Self :: FieldDeclarationList (x) => x . node_mut () , Self :: OrderedFieldDeclarationList (x) => x . node_mut () , Self :: Identifier (x) => x . node_mut () , Self :: Expression (x) => x . node_mut () , } } # [inline] fn into_node (self) -> tree_sitter :: Node < 'tree > { match self { Self :: VisibilityModifier (x) => x . into_node () , Self :: FieldDeclarationList (x) => x . into_node () , Self :: OrderedFieldDeclarationList (x) => x . into_node () , Self :: Identifier (x) => x . into_node () , Self :: Expression (x) => x . into_node () , } } }
     #[doc = "one of `{field_declaration_list | ordered_field_declaration_list}`"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
@@ -16545,6 +17992,13 @@ pub mod anon_unions {
                 Self::OrderedFieldDeclarationList(x) => x.node_mut(),
             }
         }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            match self {
+                Self::FieldDeclarationList(x) => x.into_node(),
+                Self::OrderedFieldDeclarationList(x) => x.into_node(),
+            }
+        }
     }
     #[doc = "one of `{attribute_item | enum_variant}`"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -16610,6 +18064,13 @@ pub mod anon_unions {
             match self {
                 Self::AttributeItem(x) => x.node_mut(),
                 Self::EnumVariant(x) => x.node_mut(),
+            }
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            match self {
+                Self::AttributeItem(x) => x.into_node(),
+                Self::EnumVariant(x) => x.into_node(),
             }
         }
     }
@@ -16694,6 +18155,14 @@ pub mod anon_unions {
                 Self::Identifier(x) => x.node_mut(),
             }
         }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            match self {
+                Self::Crate(x) => x.into_node(),
+                Self::VisibilityModifier(x) => x.into_node(),
+                Self::Identifier(x) => x.into_node(),
+            }
+        }
     }
     #[doc = "one of `{visibility_modifier | field_identifier | _type}`"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -16772,6 +18241,14 @@ pub mod anon_unions {
                 Self::Type(x) => x.node_mut(),
             }
         }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            match self {
+                Self::VisibilityModifier(x) => x.into_node(),
+                Self::FieldIdentifier(x) => x.into_node(),
+                Self::Type(x) => x.into_node(),
+            }
+        }
     }
     #[doc = "one of `{attribute_item | field_declaration}`"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -16837,6 +18314,13 @@ pub mod anon_unions {
             match self {
                 Self::AttributeItem(x) => x.node_mut(),
                 Self::FieldDeclaration(x) => x.node_mut(),
+            }
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            match self {
+                Self::AttributeItem(x) => x.into_node(),
+                Self::FieldDeclaration(x) => x.into_node(),
             }
         }
     }
@@ -16906,6 +18390,13 @@ pub mod anon_unions {
             match self {
                 Self::FieldIdentifier(x) => x.node_mut(),
                 Self::IntegerLiteral(x) => x.node_mut(),
+            }
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            match self {
+                Self::FieldIdentifier(x) => x.into_node(),
+                Self::IntegerLiteral(x) => x.into_node(),
             }
         }
     }
@@ -16984,6 +18475,14 @@ pub mod anon_unions {
                 Self::AttributeItem(x) => x.node_mut(),
                 Self::FieldIdentifier(x) => x.node_mut(),
                 Self::Expression(x) => x.node_mut(),
+            }
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            match self {
+                Self::AttributeItem(x) => x.into_node(),
+                Self::FieldIdentifier(x) => x.into_node(),
+                Self::Expression(x) => x.into_node(),
             }
         }
     }
@@ -17069,6 +18568,14 @@ pub mod anon_unions {
                 Self::BaseFieldInitializer(x) => x.node_mut(),
                 Self::FieldInitializer(x) => x.node_mut(),
                 Self::ShorthandFieldInitializer(x) => x.node_mut(),
+            }
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            match self {
+                Self::BaseFieldInitializer(x) => x.into_node(),
+                Self::FieldInitializer(x) => x.into_node(),
+                Self::ShorthandFieldInitializer(x) => x.into_node(),
             }
         }
     }
@@ -17169,6 +18676,15 @@ pub mod anon_unions {
                 Self::Pattern(x) => x.node_mut(),
             }
         }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            match self {
+                Self::MutableSpecifier(x) => x.into_node(),
+                Self::FieldIdentifier(x) => x.into_node(),
+                Self::ShorthandFieldIdentifier(x) => x.into_node(),
+                Self::Pattern(x) => x.into_node(),
+            }
+        }
     }
     #[doc = "one of `{field_identifier | shorthand_field_identifier}`"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -17234,6 +18750,13 @@ pub mod anon_unions {
             match self {
                 Self::FieldIdentifier(x) => x.node_mut(),
                 Self::ShorthandFieldIdentifier(x) => x.node_mut(),
+            }
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            match self {
+                Self::FieldIdentifier(x) => x.into_node(),
+                Self::ShorthandFieldIdentifier(x) => x.into_node(),
             }
         }
     }
@@ -17329,6 +18852,15 @@ pub mod anon_unions {
                 Self::Expression(x) => x.node_mut(),
             }
         }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            match self {
+                Self::LoopLabel(x) => x.into_node(),
+                Self::Block(x) => x.into_node(),
+                Self::Pattern(x) => x.into_node(),
+                Self::Expression(x) => x.into_node(),
+            }
+        }
     }
     #[doc = "one of `{extern_modifier | visibility_modifier | declaration_list}`"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -17417,6 +18949,14 @@ pub mod anon_unions {
                 Self::DeclarationList(x) => x.node_mut(),
             }
         }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            match self {
+                Self::ExternModifier(x) => x.into_node(),
+                Self::VisibilityModifier(x) => x.into_node(),
+                Self::DeclarationList(x) => x.into_node(),
+            }
+        }
     }
     #[doc = "one of `{function_modifiers | visibility_modifier | where_clause | block | identifier | metavariable | parameters | _type | type_parameters}`"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -17439,7 +18979,7 @@ pub mod anon_unions {
     #[automatically_derived]
     impl < 'tree > TryFrom < tree_sitter :: Node < 'tree >> for FunctionModifiers_VisibilityModifier_WhereClause_Block_Identifier_Metavariable_Parameters_Type_TypeParameters < 'tree > { type Error = type_sitter_lib :: IncorrectKind < 'tree > ; # [inline] fn try_from (node : tree_sitter :: Node < 'tree >) -> Result < Self , Self :: Error > { if let Ok (this) = < FunctionModifiers < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: FunctionModifiers (this)) ; } if let Ok (this) = < VisibilityModifier < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: VisibilityModifier (this)) ; } if let Ok (this) = < WhereClause < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: WhereClause (this)) ; } if let Ok (this) = < Block < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Block (this)) ; } if let Ok (this) = < Identifier < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Identifier (this)) ; } if let Ok (this) = < Metavariable < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Metavariable (this)) ; } if let Ok (this) = < Parameters < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Parameters (this)) ; } if let Ok (this) = < Type < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Type (this)) ; } if let Ok (this) = < TypeParameters < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: TypeParameters (this)) ; } Err (type_sitter_lib :: IncorrectKind { node , kind : < Self as type_sitter_lib :: TypedNode < 'tree >> :: KIND , }) } }
     #[automatically_derived]
-    impl < 'tree > type_sitter_lib :: TypedNode < 'tree > for FunctionModifiers_VisibilityModifier_WhereClause_Block_Identifier_Metavariable_Parameters_Type_TypeParameters < 'tree > { const KIND : & 'static str = "{function_modifiers | visibility_modifier | where_clause | block | identifier | metavariable | parameters | _type | type_parameters}" ; # [inline] fn node (& self) -> & tree_sitter :: Node < 'tree > { match self { Self :: FunctionModifiers (x) => x . node () , Self :: VisibilityModifier (x) => x . node () , Self :: WhereClause (x) => x . node () , Self :: Block (x) => x . node () , Self :: Identifier (x) => x . node () , Self :: Metavariable (x) => x . node () , Self :: Parameters (x) => x . node () , Self :: Type (x) => x . node () , Self :: TypeParameters (x) => x . node () , } } # [inline] fn node_mut (& mut self) -> & mut tree_sitter :: Node < 'tree > { match self { Self :: FunctionModifiers (x) => x . node_mut () , Self :: VisibilityModifier (x) => x . node_mut () , Self :: WhereClause (x) => x . node_mut () , Self :: Block (x) => x . node_mut () , Self :: Identifier (x) => x . node_mut () , Self :: Metavariable (x) => x . node_mut () , Self :: Parameters (x) => x . node_mut () , Self :: Type (x) => x . node_mut () , Self :: TypeParameters (x) => x . node_mut () , } } }
+    impl < 'tree > type_sitter_lib :: TypedNode < 'tree > for FunctionModifiers_VisibilityModifier_WhereClause_Block_Identifier_Metavariable_Parameters_Type_TypeParameters < 'tree > { const KIND : & 'static str = "{function_modifiers | visibility_modifier | where_clause | block | identifier | metavariable | parameters | _type | type_parameters}" ; # [inline] fn node (& self) -> & tree_sitter :: Node < 'tree > { match self { Self :: FunctionModifiers (x) => x . node () , Self :: VisibilityModifier (x) => x . node () , Self :: WhereClause (x) => x . node () , Self :: Block (x) => x . node () , Self :: Identifier (x) => x . node () , Self :: Metavariable (x) => x . node () , Self :: Parameters (x) => x . node () , Self :: Type (x) => x . node () , Self :: TypeParameters (x) => x . node () , } } # [inline] fn node_mut (& mut self) -> & mut tree_sitter :: Node < 'tree > { match self { Self :: FunctionModifiers (x) => x . node_mut () , Self :: VisibilityModifier (x) => x . node_mut () , Self :: WhereClause (x) => x . node_mut () , Self :: Block (x) => x . node_mut () , Self :: Identifier (x) => x . node_mut () , Self :: Metavariable (x) => x . node_mut () , Self :: Parameters (x) => x . node_mut () , Self :: Type (x) => x . node_mut () , Self :: TypeParameters (x) => x . node_mut () , } } # [inline] fn into_node (self) -> tree_sitter :: Node < 'tree > { match self { Self :: FunctionModifiers (x) => x . into_node () , Self :: VisibilityModifier (x) => x . into_node () , Self :: WhereClause (x) => x . into_node () , Self :: Block (x) => x . into_node () , Self :: Identifier (x) => x . into_node () , Self :: Metavariable (x) => x . into_node () , Self :: Parameters (x) => x . into_node () , Self :: Type (x) => x . into_node () , Self :: TypeParameters (x) => x . into_node () , } } }
     #[doc = "one of `{identifier | metavariable}`"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
@@ -17504,6 +19044,13 @@ pub mod anon_unions {
                 Self::Metavariable(x) => x.node_mut(),
             }
         }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            match self {
+                Self::Identifier(x) => x.into_node(),
+                Self::Metavariable(x) => x.into_node(),
+            }
+        }
     }
     #[doc = "one of `{function_modifiers | visibility_modifier | where_clause | identifier | metavariable | parameters | _type | type_parameters}`"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -17525,7 +19072,7 @@ pub mod anon_unions {
     #[automatically_derived]
     impl < 'tree > TryFrom < tree_sitter :: Node < 'tree >> for FunctionModifiers_VisibilityModifier_WhereClause_Identifier_Metavariable_Parameters_Type_TypeParameters < 'tree > { type Error = type_sitter_lib :: IncorrectKind < 'tree > ; # [inline] fn try_from (node : tree_sitter :: Node < 'tree >) -> Result < Self , Self :: Error > { if let Ok (this) = < FunctionModifiers < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: FunctionModifiers (this)) ; } if let Ok (this) = < VisibilityModifier < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: VisibilityModifier (this)) ; } if let Ok (this) = < WhereClause < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: WhereClause (this)) ; } if let Ok (this) = < Identifier < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Identifier (this)) ; } if let Ok (this) = < Metavariable < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Metavariable (this)) ; } if let Ok (this) = < Parameters < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Parameters (this)) ; } if let Ok (this) = < Type < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Type (this)) ; } if let Ok (this) = < TypeParameters < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: TypeParameters (this)) ; } Err (type_sitter_lib :: IncorrectKind { node , kind : < Self as type_sitter_lib :: TypedNode < 'tree >> :: KIND , }) } }
     #[automatically_derived]
-    impl < 'tree > type_sitter_lib :: TypedNode < 'tree > for FunctionModifiers_VisibilityModifier_WhereClause_Identifier_Metavariable_Parameters_Type_TypeParameters < 'tree > { const KIND : & 'static str = "{function_modifiers | visibility_modifier | where_clause | identifier | metavariable | parameters | _type | type_parameters}" ; # [inline] fn node (& self) -> & tree_sitter :: Node < 'tree > { match self { Self :: FunctionModifiers (x) => x . node () , Self :: VisibilityModifier (x) => x . node () , Self :: WhereClause (x) => x . node () , Self :: Identifier (x) => x . node () , Self :: Metavariable (x) => x . node () , Self :: Parameters (x) => x . node () , Self :: Type (x) => x . node () , Self :: TypeParameters (x) => x . node () , } } # [inline] fn node_mut (& mut self) -> & mut tree_sitter :: Node < 'tree > { match self { Self :: FunctionModifiers (x) => x . node_mut () , Self :: VisibilityModifier (x) => x . node_mut () , Self :: WhereClause (x) => x . node_mut () , Self :: Identifier (x) => x . node_mut () , Self :: Metavariable (x) => x . node_mut () , Self :: Parameters (x) => x . node_mut () , Self :: Type (x) => x . node_mut () , Self :: TypeParameters (x) => x . node_mut () , } } }
+    impl < 'tree > type_sitter_lib :: TypedNode < 'tree > for FunctionModifiers_VisibilityModifier_WhereClause_Identifier_Metavariable_Parameters_Type_TypeParameters < 'tree > { const KIND : & 'static str = "{function_modifiers | visibility_modifier | where_clause | identifier | metavariable | parameters | _type | type_parameters}" ; # [inline] fn node (& self) -> & tree_sitter :: Node < 'tree > { match self { Self :: FunctionModifiers (x) => x . node () , Self :: VisibilityModifier (x) => x . node () , Self :: WhereClause (x) => x . node () , Self :: Identifier (x) => x . node () , Self :: Metavariable (x) => x . node () , Self :: Parameters (x) => x . node () , Self :: Type (x) => x . node () , Self :: TypeParameters (x) => x . node () , } } # [inline] fn node_mut (& mut self) -> & mut tree_sitter :: Node < 'tree > { match self { Self :: FunctionModifiers (x) => x . node_mut () , Self :: VisibilityModifier (x) => x . node_mut () , Self :: WhereClause (x) => x . node_mut () , Self :: Identifier (x) => x . node_mut () , Self :: Metavariable (x) => x . node_mut () , Self :: Parameters (x) => x . node_mut () , Self :: Type (x) => x . node_mut () , Self :: TypeParameters (x) => x . node_mut () , } } # [inline] fn into_node (self) -> tree_sitter :: Node < 'tree > { match self { Self :: FunctionModifiers (x) => x . into_node () , Self :: VisibilityModifier (x) => x . into_node () , Self :: WhereClause (x) => x . into_node () , Self :: Identifier (x) => x . into_node () , Self :: Metavariable (x) => x . into_node () , Self :: Parameters (x) => x . into_node () , Self :: Type (x) => x . into_node () , Self :: TypeParameters (x) => x . into_node () , } } }
     #[doc = "one of `{for_lifetimes | function_modifiers | parameters | _type | scoped_type_identifier | type_identifier}`"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
@@ -17660,6 +19207,17 @@ pub mod anon_unions {
                 Self::TypeIdentifier(x) => x.node_mut(),
             }
         }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            match self {
+                Self::ForLifetimes(x) => x.into_node(),
+                Self::FunctionModifiers(x) => x.into_node(),
+                Self::Parameters(x) => x.into_node(),
+                Self::Type(x) => x.into_node(),
+                Self::ScopedTypeIdentifier(x) => x.into_node(),
+                Self::TypeIdentifier(x) => x.into_node(),
+            }
+        }
     }
     #[doc = "one of `{scoped_type_identifier | type_identifier}`"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -17725,6 +19283,13 @@ pub mod anon_unions {
             match self {
                 Self::ScopedTypeIdentifier(x) => x.node_mut(),
                 Self::TypeIdentifier(x) => x.node_mut(),
+            }
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            match self {
+                Self::ScopedTypeIdentifier(x) => x.into_node(),
+                Self::TypeIdentifier(x) => x.into_node(),
             }
         }
     }
@@ -17813,6 +19378,14 @@ pub mod anon_unions {
                 Self::ScopedIdentifier(x) => x.node_mut(),
             }
         }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            match self {
+                Self::FieldExpression(x) => x.into_node(),
+                Self::Identifier(x) => x.into_node(),
+                Self::ScopedIdentifier(x) => x.into_node(),
+            }
+        }
     }
     #[doc = "one of `{scoped_identifier | scoped_type_identifier | type_identifier}`"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -17899,6 +19472,14 @@ pub mod anon_unions {
                 Self::TypeIdentifier(x) => x.node_mut(),
             }
         }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            match self {
+                Self::ScopedIdentifier(x) => x.into_node(),
+                Self::ScopedTypeIdentifier(x) => x.into_node(),
+                Self::TypeIdentifier(x) => x.into_node(),
+            }
+        }
     }
     #[doc = "one of `{scoped_identifier | type_identifier}`"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -17964,6 +19545,13 @@ pub mod anon_unions {
             match self {
                 Self::ScopedIdentifier(x) => x.node_mut(),
                 Self::TypeIdentifier(x) => x.node_mut(),
+            }
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            match self {
+                Self::ScopedIdentifier(x) => x.into_node(),
+                Self::TypeIdentifier(x) => x.into_node(),
             }
         }
     }
@@ -18044,6 +19632,14 @@ pub mod anon_unions {
                 Self::LetCondition(x) => x.node_mut(),
             }
         }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            match self {
+                Self::Expression(x) => x.into_node(),
+                Self::LetChain(x) => x.into_node(),
+                Self::LetCondition(x) => x.into_node(),
+            }
+        }
     }
     #[doc = "one of `{where_clause | declaration_list | generic_type | scoped_type_identifier | type_identifier | _type | type_parameters}`"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -18064,7 +19660,7 @@ pub mod anon_unions {
     #[automatically_derived]
     impl < 'tree > TryFrom < tree_sitter :: Node < 'tree >> for WhereClause_DeclarationList_GenericType_ScopedTypeIdentifier_TypeIdentifier_Type_TypeParameters < 'tree > { type Error = type_sitter_lib :: IncorrectKind < 'tree > ; # [inline] fn try_from (node : tree_sitter :: Node < 'tree >) -> Result < Self , Self :: Error > { if let Ok (this) = < WhereClause < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: WhereClause (this)) ; } if let Ok (this) = < DeclarationList < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: DeclarationList (this)) ; } if let Ok (this) = < GenericType < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: GenericType (this)) ; } if let Ok (this) = < ScopedTypeIdentifier < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: ScopedTypeIdentifier (this)) ; } if let Ok (this) = < TypeIdentifier < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: TypeIdentifier (this)) ; } if let Ok (this) = < Type < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Type (this)) ; } if let Ok (this) = < TypeParameters < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: TypeParameters (this)) ; } Err (type_sitter_lib :: IncorrectKind { node , kind : < Self as type_sitter_lib :: TypedNode < 'tree >> :: KIND , }) } }
     #[automatically_derived]
-    impl < 'tree > type_sitter_lib :: TypedNode < 'tree > for WhereClause_DeclarationList_GenericType_ScopedTypeIdentifier_TypeIdentifier_Type_TypeParameters < 'tree > { const KIND : & 'static str = "{where_clause | declaration_list | generic_type | scoped_type_identifier | type_identifier | _type | type_parameters}" ; # [inline] fn node (& self) -> & tree_sitter :: Node < 'tree > { match self { Self :: WhereClause (x) => x . node () , Self :: DeclarationList (x) => x . node () , Self :: GenericType (x) => x . node () , Self :: ScopedTypeIdentifier (x) => x . node () , Self :: TypeIdentifier (x) => x . node () , Self :: Type (x) => x . node () , Self :: TypeParameters (x) => x . node () , } } # [inline] fn node_mut (& mut self) -> & mut tree_sitter :: Node < 'tree > { match self { Self :: WhereClause (x) => x . node_mut () , Self :: DeclarationList (x) => x . node_mut () , Self :: GenericType (x) => x . node_mut () , Self :: ScopedTypeIdentifier (x) => x . node_mut () , Self :: TypeIdentifier (x) => x . node_mut () , Self :: Type (x) => x . node_mut () , Self :: TypeParameters (x) => x . node_mut () , } } }
+    impl < 'tree > type_sitter_lib :: TypedNode < 'tree > for WhereClause_DeclarationList_GenericType_ScopedTypeIdentifier_TypeIdentifier_Type_TypeParameters < 'tree > { const KIND : & 'static str = "{where_clause | declaration_list | generic_type | scoped_type_identifier | type_identifier | _type | type_parameters}" ; # [inline] fn node (& self) -> & tree_sitter :: Node < 'tree > { match self { Self :: WhereClause (x) => x . node () , Self :: DeclarationList (x) => x . node () , Self :: GenericType (x) => x . node () , Self :: ScopedTypeIdentifier (x) => x . node () , Self :: TypeIdentifier (x) => x . node () , Self :: Type (x) => x . node () , Self :: TypeParameters (x) => x . node () , } } # [inline] fn node_mut (& mut self) -> & mut tree_sitter :: Node < 'tree > { match self { Self :: WhereClause (x) => x . node_mut () , Self :: DeclarationList (x) => x . node_mut () , Self :: GenericType (x) => x . node_mut () , Self :: ScopedTypeIdentifier (x) => x . node_mut () , Self :: TypeIdentifier (x) => x . node_mut () , Self :: Type (x) => x . node_mut () , Self :: TypeParameters (x) => x . node_mut () , } } # [inline] fn into_node (self) -> tree_sitter :: Node < 'tree > { match self { Self :: WhereClause (x) => x . into_node () , Self :: DeclarationList (x) => x . into_node () , Self :: GenericType (x) => x . into_node () , Self :: ScopedTypeIdentifier (x) => x . into_node () , Self :: TypeIdentifier (x) => x . into_node () , Self :: Type (x) => x . into_node () , Self :: TypeParameters (x) => x . into_node () , } } }
     #[doc = "one of `{generic_type | scoped_type_identifier | type_identifier}`"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
@@ -18150,6 +19746,14 @@ pub mod anon_unions {
                 Self::TypeIdentifier(x) => x.node_mut(),
             }
         }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            match self {
+                Self::GenericType(x) => x.into_node(),
+                Self::ScopedTypeIdentifier(x) => x.into_node(),
+                Self::TypeIdentifier(x) => x.into_node(),
+            }
+        }
     }
     #[doc = "one of `{_expression | let_condition}`"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -18211,6 +19815,13 @@ pub mod anon_unions {
             match self {
                 Self::Expression(x) => x.node_mut(),
                 Self::LetCondition(x) => x.node_mut(),
+            }
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            match self {
+                Self::Expression(x) => x.into_node(),
+                Self::LetCondition(x) => x.into_node(),
             }
         }
     }
@@ -18325,6 +19936,16 @@ pub mod anon_unions {
                 Self::Expression(x) => x.node_mut(),
             }
         }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            match self {
+                Self::MutableSpecifier(x) => x.into_node(),
+                Self::Block(x) => x.into_node(),
+                Self::Pattern(x) => x.into_node(),
+                Self::Type(x) => x.into_node(),
+                Self::Expression(x) => x.into_node(),
+            }
+        }
     }
     #[doc = "one of `{loop_label | block}`"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -18392,6 +20013,13 @@ pub mod anon_unions {
                 Self::Block(x) => x.node_mut(),
             }
         }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            match self {
+                Self::LoopLabel(x) => x.into_node(),
+                Self::Block(x) => x.into_node(),
+            }
+        }
     }
     #[doc = "one of `{macro_rule | identifier}`"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -18455,6 +20083,13 @@ pub mod anon_unions {
             match self {
                 Self::MacroRule(x) => x.node_mut(),
                 Self::Identifier(x) => x.node_mut(),
+            }
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            match self {
+                Self::MacroRule(x) => x.into_node(),
+                Self::Identifier(x) => x.into_node(),
             }
         }
     }
@@ -18537,6 +20172,14 @@ pub mod anon_unions {
                 Self::ScopedIdentifier(x) => x.node_mut(),
             }
         }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            match self {
+                Self::TokenTree(x) => x.into_node(),
+                Self::Identifier(x) => x.into_node(),
+                Self::ScopedIdentifier(x) => x.into_node(),
+            }
+        }
     }
     #[doc = "one of `{identifier | scoped_identifier}`"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -18600,6 +20243,13 @@ pub mod anon_unions {
             match self {
                 Self::Identifier(x) => x.node_mut(),
                 Self::ScopedIdentifier(x) => x.node_mut(),
+            }
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            match self {
+                Self::Identifier(x) => x.into_node(),
+                Self::ScopedIdentifier(x) => x.into_node(),
             }
         }
     }
@@ -18678,6 +20328,14 @@ pub mod anon_unions {
                 Self::AttributeItem(x) => x.node_mut(),
                 Self::MatchPattern(x) => x.node_mut(),
                 Self::Expression(x) => x.node_mut(),
+            }
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            match self {
+                Self::AttributeItem(x) => x.into_node(),
+                Self::MatchPattern(x) => x.into_node(),
+                Self::Expression(x) => x.into_node(),
             }
         }
     }
@@ -18773,6 +20431,15 @@ pub mod anon_unions {
                 Self::LetCondition(x) => x.node_mut(),
             }
         }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            match self {
+                Self::Pattern(x) => x.into_node(),
+                Self::Expression(x) => x.into_node(),
+                Self::LetChain(x) => x.into_node(),
+                Self::LetCondition(x) => x.into_node(),
+            }
+        }
     }
     #[doc = "one of `{visibility_modifier | declaration_list | identifier}`"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -18859,6 +20526,14 @@ pub mod anon_unions {
                 Self::Identifier(x) => x.node_mut(),
             }
         }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            match self {
+                Self::VisibilityModifier(x) => x.into_node(),
+                Self::DeclarationList(x) => x.into_node(),
+                Self::Identifier(x) => x.into_node(),
+            }
+        }
     }
     #[doc = "one of `{_pattern | mutable_specifier}`"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -18920,6 +20595,13 @@ pub mod anon_unions {
             match self {
                 Self::Pattern(x) => x.node_mut(),
                 Self::MutableSpecifier(x) => x.node_mut(),
+            }
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            match self {
+                Self::Pattern(x) => x.into_node(),
+                Self::MutableSpecifier(x) => x.into_node(),
             }
         }
     }
@@ -18989,6 +20671,13 @@ pub mod anon_unions {
                 Self::IntegerLiteral(x) => x.node_mut(),
             }
         }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            match self {
+                Self::FloatLiteral(x) => x.into_node(),
+                Self::IntegerLiteral(x) => x.into_node(),
+            }
+        }
     }
     #[doc = "one of `{constrained_type_parameter | type_identifier}`"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -19054,6 +20743,13 @@ pub mod anon_unions {
             match self {
                 Self::ConstrainedTypeParameter(x) => x.node_mut(),
                 Self::TypeIdentifier(x) => x.node_mut(),
+            }
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            match self {
+                Self::ConstrainedTypeParameter(x) => x.into_node(),
+                Self::TypeIdentifier(x) => x.into_node(),
             }
         }
     }
@@ -19132,6 +20828,14 @@ pub mod anon_unions {
                 Self::AttributeItem(x) => x.node_mut(),
                 Self::VisibilityModifier(x) => x.node_mut(),
                 Self::Type(x) => x.node_mut(),
+            }
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            match self {
+                Self::AttributeItem(x) => x.into_node(),
+                Self::VisibilityModifier(x) => x.into_node(),
+                Self::Type(x) => x.into_node(),
             }
         }
     }
@@ -19227,6 +20931,15 @@ pub mod anon_unions {
                 Self::Type(x) => x.node_mut(),
             }
         }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            match self {
+                Self::MutableSpecifier(x) => x.into_node(),
+                Self::Pattern(x) => x.into_node(),
+                Self::_Self(x) => x.into_node(),
+                Self::Type(x) => x.into_node(),
+            }
+        }
     }
     #[doc = "one of `{_pattern | self}`"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -19288,6 +21001,13 @@ pub mod anon_unions {
             match self {
                 Self::Pattern(x) => x.node_mut(),
                 Self::_Self(x) => x.node_mut(),
+            }
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            match self {
+                Self::Pattern(x) => x.into_node(),
+                Self::_Self(x) => x.into_node(),
             }
         }
     }
@@ -19403,6 +21123,16 @@ pub mod anon_unions {
                 Self::VariadicParameter(x) => x.node_mut(),
             }
         }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            match self {
+                Self::Type(x) => x.into_node(),
+                Self::AttributeItem(x) => x.into_node(),
+                Self::Parameter(x) => x.into_node(),
+                Self::SelfParameter(x) => x.into_node(),
+                Self::VariadicParameter(x) => x.into_node(),
+            }
+        }
     }
     #[doc = "one of `{mutable_specifier | _type}`"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -19464,6 +21194,13 @@ pub mod anon_unions {
             match self {
                 Self::MutableSpecifier(x) => x.node_mut(),
                 Self::Type(x) => x.node_mut(),
+            }
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            match self {
+                Self::MutableSpecifier(x) => x.into_node(),
+                Self::Type(x) => x.into_node(),
             }
         }
     }
@@ -19608,6 +21345,18 @@ pub mod anon_unions {
                 Self::Super(x) => x.node_mut(),
             }
         }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            match self {
+                Self::LiteralPattern(x) => x.into_node(),
+                Self::Crate(x) => x.into_node(),
+                Self::Identifier(x) => x.into_node(),
+                Self::Metavariable(x) => x.into_node(),
+                Self::ScopedIdentifier(x) => x.into_node(),
+                Self::_Self(x) => x.into_node(),
+                Self::Super(x) => x.into_node(),
+            }
+        }
     }
     #[doc = "one of `{mutable_specifier | _expression}`"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -19669,6 +21418,13 @@ pub mod anon_unions {
             match self {
                 Self::MutableSpecifier(x) => x.node_mut(),
                 Self::Expression(x) => x.node_mut(),
+            }
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            match self {
+                Self::MutableSpecifier(x) => x.into_node(),
+                Self::Expression(x) => x.into_node(),
             }
         }
     }
@@ -19747,6 +21503,14 @@ pub mod anon_unions {
                 Self::Lifetime(x) => x.node_mut(),
                 Self::MutableSpecifier(x) => x.node_mut(),
                 Self::Type(x) => x.node_mut(),
+            }
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            match self {
+                Self::Lifetime(x) => x.into_node(),
+                Self::MutableSpecifier(x) => x.into_node(),
+                Self::Type(x) => x.into_node(),
             }
         }
     }
@@ -19924,6 +21688,19 @@ pub mod anon_unions {
                 Self::Super(x) => x.node_mut(),
             }
         }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            match self {
+                Self::BracketedType(x) => x.into_node(),
+                Self::Crate(x) => x.into_node(),
+                Self::GenericType(x) => x.into_node(),
+                Self::Identifier(x) => x.into_node(),
+                Self::Metavariable(x) => x.into_node(),
+                Self::ScopedIdentifier(x) => x.into_node(),
+                Self::_Self(x) => x.into_node(),
+                Self::Super(x) => x.into_node(),
+            }
+        }
     }
     #[doc = "one of `{crate | identifier | metavariable | scoped_identifier | self | super}`"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -20060,6 +21837,17 @@ pub mod anon_unions {
                 Self::Super(x) => x.node_mut(),
             }
         }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            match self {
+                Self::Crate(x) => x.into_node(),
+                Self::Identifier(x) => x.into_node(),
+                Self::Metavariable(x) => x.into_node(),
+                Self::ScopedIdentifier(x) => x.into_node(),
+                Self::_Self(x) => x.into_node(),
+                Self::Super(x) => x.into_node(),
+            }
+        }
     }
     #[doc = "one of `{lifetime | mutable_specifier | self}`"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -20144,6 +21932,14 @@ pub mod anon_unions {
                 Self::_Self(x) => x.node_mut(),
             }
         }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            match self {
+                Self::Lifetime(x) => x.into_node(),
+                Self::MutableSpecifier(x) => x.into_node(),
+                Self::_Self(x) => x.into_node(),
+            }
+        }
     }
     #[doc = "one of `{attribute_item | identifier}`"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -20211,6 +22007,13 @@ pub mod anon_unions {
                 Self::Identifier(x) => x.node_mut(),
             }
         }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            match self {
+                Self::AttributeItem(x) => x.into_node(),
+                Self::Identifier(x) => x.into_node(),
+            }
+        }
     }
     #[doc = "one of `{_declaration_statement | expression_statement}`"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -20272,6 +22075,13 @@ pub mod anon_unions {
             match self {
                 Self::DeclarationStatement(x) => x.node_mut(),
                 Self::ExpressionStatement(x) => x.node_mut(),
+            }
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            match self {
+                Self::DeclarationStatement(x) => x.into_node(),
+                Self::ExpressionStatement(x) => x.into_node(),
             }
         }
     }
@@ -20387,6 +22197,16 @@ pub mod anon_unions {
                 Self::Expression(x) => x.node_mut(),
             }
         }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            match self {
+                Self::MutableSpecifier(x) => x.into_node(),
+                Self::VisibilityModifier(x) => x.into_node(),
+                Self::Identifier(x) => x.into_node(),
+                Self::Type(x) => x.into_node(),
+                Self::Expression(x) => x.into_node(),
+            }
+        }
     }
     #[doc = "one of `{generic_type_with_turbofish | scoped_type_identifier | type_identifier}`"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -20474,6 +22294,14 @@ pub mod anon_unions {
                 Self::TypeIdentifier(x) => x.node_mut(),
             }
         }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            match self {
+                Self::GenericTypeWithTurbofish(x) => x.into_node(),
+                Self::ScopedTypeIdentifier(x) => x.into_node(),
+                Self::TypeIdentifier(x) => x.into_node(),
+            }
+        }
     }
     #[doc = "one of `{visibility_modifier | where_clause | field_declaration_list | ordered_field_declaration_list | type_identifier | type_parameters}`"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -20493,7 +22321,7 @@ pub mod anon_unions {
     #[automatically_derived]
     impl < 'tree > TryFrom < tree_sitter :: Node < 'tree >> for VisibilityModifier_WhereClause_FieldDeclarationList_OrderedFieldDeclarationList_TypeIdentifier_TypeParameters < 'tree > { type Error = type_sitter_lib :: IncorrectKind < 'tree > ; # [inline] fn try_from (node : tree_sitter :: Node < 'tree >) -> Result < Self , Self :: Error > { match node . kind () { "visibility_modifier" => Ok (unsafe { Self :: VisibilityModifier (< VisibilityModifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "where_clause" => Ok (unsafe { Self :: WhereClause (< WhereClause < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "field_declaration_list" => Ok (unsafe { Self :: FieldDeclarationList (< FieldDeclarationList < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "ordered_field_declaration_list" => Ok (unsafe { Self :: OrderedFieldDeclarationList (< OrderedFieldDeclarationList < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "type_identifier" => Ok (unsafe { Self :: TypeIdentifier (< TypeIdentifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "type_parameters" => Ok (unsafe { Self :: TypeParameters (< TypeParameters < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , _ => Err (type_sitter_lib :: IncorrectKind { node , kind : < Self as type_sitter_lib :: TypedNode < 'tree >> :: KIND , }) } } }
     #[automatically_derived]
-    impl < 'tree > type_sitter_lib :: TypedNode < 'tree > for VisibilityModifier_WhereClause_FieldDeclarationList_OrderedFieldDeclarationList_TypeIdentifier_TypeParameters < 'tree > { const KIND : & 'static str = "{visibility_modifier | where_clause | field_declaration_list | ordered_field_declaration_list | type_identifier | type_parameters}" ; # [inline] fn node (& self) -> & tree_sitter :: Node < 'tree > { match self { Self :: VisibilityModifier (x) => x . node () , Self :: WhereClause (x) => x . node () , Self :: FieldDeclarationList (x) => x . node () , Self :: OrderedFieldDeclarationList (x) => x . node () , Self :: TypeIdentifier (x) => x . node () , Self :: TypeParameters (x) => x . node () , } } # [inline] fn node_mut (& mut self) -> & mut tree_sitter :: Node < 'tree > { match self { Self :: VisibilityModifier (x) => x . node_mut () , Self :: WhereClause (x) => x . node_mut () , Self :: FieldDeclarationList (x) => x . node_mut () , Self :: OrderedFieldDeclarationList (x) => x . node_mut () , Self :: TypeIdentifier (x) => x . node_mut () , Self :: TypeParameters (x) => x . node_mut () , } } }
+    impl < 'tree > type_sitter_lib :: TypedNode < 'tree > for VisibilityModifier_WhereClause_FieldDeclarationList_OrderedFieldDeclarationList_TypeIdentifier_TypeParameters < 'tree > { const KIND : & 'static str = "{visibility_modifier | where_clause | field_declaration_list | ordered_field_declaration_list | type_identifier | type_parameters}" ; # [inline] fn node (& self) -> & tree_sitter :: Node < 'tree > { match self { Self :: VisibilityModifier (x) => x . node () , Self :: WhereClause (x) => x . node () , Self :: FieldDeclarationList (x) => x . node () , Self :: OrderedFieldDeclarationList (x) => x . node () , Self :: TypeIdentifier (x) => x . node () , Self :: TypeParameters (x) => x . node () , } } # [inline] fn node_mut (& mut self) -> & mut tree_sitter :: Node < 'tree > { match self { Self :: VisibilityModifier (x) => x . node_mut () , Self :: WhereClause (x) => x . node_mut () , Self :: FieldDeclarationList (x) => x . node_mut () , Self :: OrderedFieldDeclarationList (x) => x . node_mut () , Self :: TypeIdentifier (x) => x . node_mut () , Self :: TypeParameters (x) => x . node_mut () , } } # [inline] fn into_node (self) -> tree_sitter :: Node < 'tree > { match self { Self :: VisibilityModifier (x) => x . into_node () , Self :: WhereClause (x) => x . into_node () , Self :: FieldDeclarationList (x) => x . into_node () , Self :: OrderedFieldDeclarationList (x) => x . into_node () , Self :: TypeIdentifier (x) => x . into_node () , Self :: TypeParameters (x) => x . into_node () , } } }
     #[doc = "one of `{field_pattern | remaining_field_pattern | scoped_type_identifier | type_identifier}`"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
@@ -20595,6 +22423,15 @@ pub mod anon_unions {
                 Self::TypeIdentifier(x) => x.node_mut(),
             }
         }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            match self {
+                Self::FieldPattern(x) => x.into_node(),
+                Self::RemainingFieldPattern(x) => x.into_node(),
+                Self::ScopedTypeIdentifier(x) => x.into_node(),
+                Self::TypeIdentifier(x) => x.into_node(),
+            }
+        }
     }
     #[doc = "one of `{_literal | crate | identifier | metavariable | mutable_specifier | primitive_type | self | super | token_repetition | token_tree}`"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -20618,7 +22455,7 @@ pub mod anon_unions {
     #[automatically_derived]
     impl < 'tree > TryFrom < tree_sitter :: Node < 'tree >> for Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenRepetition_TokenTree < 'tree > { type Error = type_sitter_lib :: IncorrectKind < 'tree > ; # [inline] fn try_from (node : tree_sitter :: Node < 'tree >) -> Result < Self , Self :: Error > { if let Ok (this) = < Literal < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Literal (this)) ; } if let Ok (this) = < Crate < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Crate (this)) ; } if let Ok (this) = < Identifier < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Identifier (this)) ; } if let Ok (this) = < Metavariable < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Metavariable (this)) ; } if let Ok (this) = < MutableSpecifier < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: MutableSpecifier (this)) ; } if let Ok (this) = < PrimitiveType < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: PrimitiveType (this)) ; } if let Ok (this) = < _Self < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: _Self (this)) ; } if let Ok (this) = < Super < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Super (this)) ; } if let Ok (this) = < TokenRepetition < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: TokenRepetition (this)) ; } if let Ok (this) = < TokenTree < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: TokenTree (this)) ; } Err (type_sitter_lib :: IncorrectKind { node , kind : < Self as type_sitter_lib :: TypedNode < 'tree >> :: KIND , }) } }
     #[automatically_derived]
-    impl < 'tree > type_sitter_lib :: TypedNode < 'tree > for Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenRepetition_TokenTree < 'tree > { const KIND : & 'static str = "{_literal | crate | identifier | metavariable | mutable_specifier | primitive_type | self | super | token_repetition | token_tree}" ; # [inline] fn node (& self) -> & tree_sitter :: Node < 'tree > { match self { Self :: Literal (x) => x . node () , Self :: Crate (x) => x . node () , Self :: Identifier (x) => x . node () , Self :: Metavariable (x) => x . node () , Self :: MutableSpecifier (x) => x . node () , Self :: PrimitiveType (x) => x . node () , Self :: _Self (x) => x . node () , Self :: Super (x) => x . node () , Self :: TokenRepetition (x) => x . node () , Self :: TokenTree (x) => x . node () , } } # [inline] fn node_mut (& mut self) -> & mut tree_sitter :: Node < 'tree > { match self { Self :: Literal (x) => x . node_mut () , Self :: Crate (x) => x . node_mut () , Self :: Identifier (x) => x . node_mut () , Self :: Metavariable (x) => x . node_mut () , Self :: MutableSpecifier (x) => x . node_mut () , Self :: PrimitiveType (x) => x . node_mut () , Self :: _Self (x) => x . node_mut () , Self :: Super (x) => x . node_mut () , Self :: TokenRepetition (x) => x . node_mut () , Self :: TokenTree (x) => x . node_mut () , } } }
+    impl < 'tree > type_sitter_lib :: TypedNode < 'tree > for Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenRepetition_TokenTree < 'tree > { const KIND : & 'static str = "{_literal | crate | identifier | metavariable | mutable_specifier | primitive_type | self | super | token_repetition | token_tree}" ; # [inline] fn node (& self) -> & tree_sitter :: Node < 'tree > { match self { Self :: Literal (x) => x . node () , Self :: Crate (x) => x . node () , Self :: Identifier (x) => x . node () , Self :: Metavariable (x) => x . node () , Self :: MutableSpecifier (x) => x . node () , Self :: PrimitiveType (x) => x . node () , Self :: _Self (x) => x . node () , Self :: Super (x) => x . node () , Self :: TokenRepetition (x) => x . node () , Self :: TokenTree (x) => x . node () , } } # [inline] fn node_mut (& mut self) -> & mut tree_sitter :: Node < 'tree > { match self { Self :: Literal (x) => x . node_mut () , Self :: Crate (x) => x . node_mut () , Self :: Identifier (x) => x . node_mut () , Self :: Metavariable (x) => x . node_mut () , Self :: MutableSpecifier (x) => x . node_mut () , Self :: PrimitiveType (x) => x . node_mut () , Self :: _Self (x) => x . node_mut () , Self :: Super (x) => x . node_mut () , Self :: TokenRepetition (x) => x . node_mut () , Self :: TokenTree (x) => x . node_mut () , } } # [inline] fn into_node (self) -> tree_sitter :: Node < 'tree > { match self { Self :: Literal (x) => x . into_node () , Self :: Crate (x) => x . into_node () , Self :: Identifier (x) => x . into_node () , Self :: Metavariable (x) => x . into_node () , Self :: MutableSpecifier (x) => x . into_node () , Self :: PrimitiveType (x) => x . into_node () , Self :: _Self (x) => x . into_node () , Self :: Super (x) => x . into_node () , Self :: TokenRepetition (x) => x . into_node () , Self :: TokenTree (x) => x . into_node () , } } }
     #[doc = "one of `{_literal | crate | identifier | metavariable | mutable_specifier | primitive_type | self | super | token_binding_pattern | token_repetition_pattern | token_tree_pattern}`"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
@@ -20642,7 +22479,7 @@ pub mod anon_unions {
     #[automatically_derived]
     impl < 'tree > TryFrom < tree_sitter :: Node < 'tree >> for Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern < 'tree > { type Error = type_sitter_lib :: IncorrectKind < 'tree > ; # [inline] fn try_from (node : tree_sitter :: Node < 'tree >) -> Result < Self , Self :: Error > { if let Ok (this) = < Literal < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Literal (this)) ; } if let Ok (this) = < Crate < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Crate (this)) ; } if let Ok (this) = < Identifier < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Identifier (this)) ; } if let Ok (this) = < Metavariable < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Metavariable (this)) ; } if let Ok (this) = < MutableSpecifier < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: MutableSpecifier (this)) ; } if let Ok (this) = < PrimitiveType < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: PrimitiveType (this)) ; } if let Ok (this) = < _Self < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: _Self (this)) ; } if let Ok (this) = < Super < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Super (this)) ; } if let Ok (this) = < TokenBindingPattern < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: TokenBindingPattern (this)) ; } if let Ok (this) = < TokenRepetitionPattern < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: TokenRepetitionPattern (this)) ; } if let Ok (this) = < TokenTreePattern < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: TokenTreePattern (this)) ; } Err (type_sitter_lib :: IncorrectKind { node , kind : < Self as type_sitter_lib :: TypedNode < 'tree >> :: KIND , }) } }
     #[automatically_derived]
-    impl < 'tree > type_sitter_lib :: TypedNode < 'tree > for Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern < 'tree > { const KIND : & 'static str = "{_literal | crate | identifier | metavariable | mutable_specifier | primitive_type | self | super | token_binding_pattern | token_repetition_pattern | token_tree_pattern}" ; # [inline] fn node (& self) -> & tree_sitter :: Node < 'tree > { match self { Self :: Literal (x) => x . node () , Self :: Crate (x) => x . node () , Self :: Identifier (x) => x . node () , Self :: Metavariable (x) => x . node () , Self :: MutableSpecifier (x) => x . node () , Self :: PrimitiveType (x) => x . node () , Self :: _Self (x) => x . node () , Self :: Super (x) => x . node () , Self :: TokenBindingPattern (x) => x . node () , Self :: TokenRepetitionPattern (x) => x . node () , Self :: TokenTreePattern (x) => x . node () , } } # [inline] fn node_mut (& mut self) -> & mut tree_sitter :: Node < 'tree > { match self { Self :: Literal (x) => x . node_mut () , Self :: Crate (x) => x . node_mut () , Self :: Identifier (x) => x . node_mut () , Self :: Metavariable (x) => x . node_mut () , Self :: MutableSpecifier (x) => x . node_mut () , Self :: PrimitiveType (x) => x . node_mut () , Self :: _Self (x) => x . node_mut () , Self :: Super (x) => x . node_mut () , Self :: TokenBindingPattern (x) => x . node_mut () , Self :: TokenRepetitionPattern (x) => x . node_mut () , Self :: TokenTreePattern (x) => x . node_mut () , } } }
+    impl < 'tree > type_sitter_lib :: TypedNode < 'tree > for Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern < 'tree > { const KIND : & 'static str = "{_literal | crate | identifier | metavariable | mutable_specifier | primitive_type | self | super | token_binding_pattern | token_repetition_pattern | token_tree_pattern}" ; # [inline] fn node (& self) -> & tree_sitter :: Node < 'tree > { match self { Self :: Literal (x) => x . node () , Self :: Crate (x) => x . node () , Self :: Identifier (x) => x . node () , Self :: Metavariable (x) => x . node () , Self :: MutableSpecifier (x) => x . node () , Self :: PrimitiveType (x) => x . node () , Self :: _Self (x) => x . node () , Self :: Super (x) => x . node () , Self :: TokenBindingPattern (x) => x . node () , Self :: TokenRepetitionPattern (x) => x . node () , Self :: TokenTreePattern (x) => x . node () , } } # [inline] fn node_mut (& mut self) -> & mut tree_sitter :: Node < 'tree > { match self { Self :: Literal (x) => x . node_mut () , Self :: Crate (x) => x . node_mut () , Self :: Identifier (x) => x . node_mut () , Self :: Metavariable (x) => x . node_mut () , Self :: MutableSpecifier (x) => x . node_mut () , Self :: PrimitiveType (x) => x . node_mut () , Self :: _Self (x) => x . node_mut () , Self :: Super (x) => x . node_mut () , Self :: TokenBindingPattern (x) => x . node_mut () , Self :: TokenRepetitionPattern (x) => x . node_mut () , Self :: TokenTreePattern (x) => x . node_mut () , } } # [inline] fn into_node (self) -> tree_sitter :: Node < 'tree > { match self { Self :: Literal (x) => x . into_node () , Self :: Crate (x) => x . into_node () , Self :: Identifier (x) => x . into_node () , Self :: Metavariable (x) => x . into_node () , Self :: MutableSpecifier (x) => x . into_node () , Self :: PrimitiveType (x) => x . into_node () , Self :: _Self (x) => x . into_node () , Self :: Super (x) => x . into_node () , Self :: TokenBindingPattern (x) => x . into_node () , Self :: TokenRepetitionPattern (x) => x . into_node () , Self :: TokenTreePattern (x) => x . into_node () , } } }
     #[doc = "one of `{_type | higher_ranked_trait_bound | lifetime | removed_trait_bound}`"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
@@ -20738,6 +22575,15 @@ pub mod anon_unions {
                 Self::HigherRankedTraitBound(x) => x.node_mut(),
                 Self::Lifetime(x) => x.node_mut(),
                 Self::RemovedTraitBound(x) => x.node_mut(),
+            }
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            match self {
+                Self::Type(x) => x.into_node(),
+                Self::HigherRankedTraitBound(x) => x.into_node(),
+                Self::Lifetime(x) => x.into_node(),
+                Self::RemovedTraitBound(x) => x.into_node(),
             }
         }
     }
@@ -20885,6 +22731,17 @@ pub mod anon_unions {
                 Self::TypeParameters(x) => x.node_mut(),
             }
         }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            match self {
+                Self::VisibilityModifier(x) => x.into_node(),
+                Self::WhereClause(x) => x.into_node(),
+                Self::DeclarationList(x) => x.into_node(),
+                Self::TraitBounds(x) => x.into_node(),
+                Self::TypeIdentifier(x) => x.into_node(),
+                Self::TypeParameters(x) => x.into_node(),
+            }
+        }
     }
     #[doc = "one of `{_pattern | identifier | scoped_identifier}`"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -20961,6 +22818,14 @@ pub mod anon_unions {
                 Self::Pattern(x) => x.node_mut(),
                 Self::Identifier(x) => x.node_mut(),
                 Self::ScopedIdentifier(x) => x.node_mut(),
+            }
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            match self {
+                Self::Pattern(x) => x.into_node(),
+                Self::Identifier(x) => x.into_node(),
+                Self::ScopedIdentifier(x) => x.into_node(),
             }
         }
     }
@@ -21071,6 +22936,16 @@ pub mod anon_unions {
                 Self::TypeBinding(x) => x.node_mut(),
             }
         }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            match self {
+                Self::Literal(x) => x.into_node(),
+                Self::Type(x) => x.into_node(),
+                Self::Block(x) => x.into_node(),
+                Self::Lifetime(x) => x.into_node(),
+                Self::TypeBinding(x) => x.into_node(),
+            }
+        }
     }
     #[doc = "one of `{visibility_modifier | type_identifier | _type | type_parameters}`"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -21169,6 +23044,15 @@ pub mod anon_unions {
                 Self::TypeParameters(x) => x.node_mut(),
             }
         }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            match self {
+                Self::VisibilityModifier(x) => x.into_node(),
+                Self::TypeIdentifier(x) => x.into_node(),
+                Self::Type(x) => x.into_node(),
+                Self::TypeParameters(x) => x.into_node(),
+            }
+        }
     }
     #[doc = "one of `{const_parameter | constrained_type_parameter | lifetime | metavariable | optional_type_parameter | type_identifier}`"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -21188,7 +23072,7 @@ pub mod anon_unions {
     #[automatically_derived]
     impl < 'tree > TryFrom < tree_sitter :: Node < 'tree >> for ConstParameter_ConstrainedTypeParameter_Lifetime_Metavariable_OptionalTypeParameter_TypeIdentifier < 'tree > { type Error = type_sitter_lib :: IncorrectKind < 'tree > ; # [inline] fn try_from (node : tree_sitter :: Node < 'tree >) -> Result < Self , Self :: Error > { match node . kind () { "const_parameter" => Ok (unsafe { Self :: ConstParameter (< ConstParameter < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "constrained_type_parameter" => Ok (unsafe { Self :: ConstrainedTypeParameter (< ConstrainedTypeParameter < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "lifetime" => Ok (unsafe { Self :: Lifetime (< Lifetime < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "metavariable" => Ok (unsafe { Self :: Metavariable (< Metavariable < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "optional_type_parameter" => Ok (unsafe { Self :: OptionalTypeParameter (< OptionalTypeParameter < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "type_identifier" => Ok (unsafe { Self :: TypeIdentifier (< TypeIdentifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , _ => Err (type_sitter_lib :: IncorrectKind { node , kind : < Self as type_sitter_lib :: TypedNode < 'tree >> :: KIND , }) } } }
     #[automatically_derived]
-    impl < 'tree > type_sitter_lib :: TypedNode < 'tree > for ConstParameter_ConstrainedTypeParameter_Lifetime_Metavariable_OptionalTypeParameter_TypeIdentifier < 'tree > { const KIND : & 'static str = "{const_parameter | constrained_type_parameter | lifetime | metavariable | optional_type_parameter | type_identifier}" ; # [inline] fn node (& self) -> & tree_sitter :: Node < 'tree > { match self { Self :: ConstParameter (x) => x . node () , Self :: ConstrainedTypeParameter (x) => x . node () , Self :: Lifetime (x) => x . node () , Self :: Metavariable (x) => x . node () , Self :: OptionalTypeParameter (x) => x . node () , Self :: TypeIdentifier (x) => x . node () , } } # [inline] fn node_mut (& mut self) -> & mut tree_sitter :: Node < 'tree > { match self { Self :: ConstParameter (x) => x . node_mut () , Self :: ConstrainedTypeParameter (x) => x . node_mut () , Self :: Lifetime (x) => x . node_mut () , Self :: Metavariable (x) => x . node_mut () , Self :: OptionalTypeParameter (x) => x . node_mut () , Self :: TypeIdentifier (x) => x . node_mut () , } } }
+    impl < 'tree > type_sitter_lib :: TypedNode < 'tree > for ConstParameter_ConstrainedTypeParameter_Lifetime_Metavariable_OptionalTypeParameter_TypeIdentifier < 'tree > { const KIND : & 'static str = "{const_parameter | constrained_type_parameter | lifetime | metavariable | optional_type_parameter | type_identifier}" ; # [inline] fn node (& self) -> & tree_sitter :: Node < 'tree > { match self { Self :: ConstParameter (x) => x . node () , Self :: ConstrainedTypeParameter (x) => x . node () , Self :: Lifetime (x) => x . node () , Self :: Metavariable (x) => x . node () , Self :: OptionalTypeParameter (x) => x . node () , Self :: TypeIdentifier (x) => x . node () , } } # [inline] fn node_mut (& mut self) -> & mut tree_sitter :: Node < 'tree > { match self { Self :: ConstParameter (x) => x . node_mut () , Self :: ConstrainedTypeParameter (x) => x . node_mut () , Self :: Lifetime (x) => x . node_mut () , Self :: Metavariable (x) => x . node_mut () , Self :: OptionalTypeParameter (x) => x . node_mut () , Self :: TypeIdentifier (x) => x . node_mut () , } } # [inline] fn into_node (self) -> tree_sitter :: Node < 'tree > { match self { Self :: ConstParameter (x) => x . into_node () , Self :: ConstrainedTypeParameter (x) => x . into_node () , Self :: Lifetime (x) => x . into_node () , Self :: Metavariable (x) => x . into_node () , Self :: OptionalTypeParameter (x) => x . into_node () , Self :: TypeIdentifier (x) => x . into_node () , } } }
     #[doc = "one of `{visibility_modifier | where_clause | field_declaration_list | type_identifier | type_parameters}`"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
@@ -21310,6 +23194,16 @@ pub mod anon_unions {
                 Self::TypeParameters(x) => x.node_mut(),
             }
         }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            match self {
+                Self::VisibilityModifier(x) => x.into_node(),
+                Self::WhereClause(x) => x.into_node(),
+                Self::FieldDeclarationList(x) => x.into_node(),
+                Self::TypeIdentifier(x) => x.into_node(),
+                Self::TypeParameters(x) => x.into_node(),
+            }
+        }
     }
     #[doc = "one of `{visibility_modifier | crate | identifier | metavariable | scoped_identifier | scoped_use_list | self | super | use_as_clause | use_list | use_wildcard}`"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -21334,7 +23228,7 @@ pub mod anon_unions {
     #[automatically_derived]
     impl < 'tree > TryFrom < tree_sitter :: Node < 'tree >> for VisibilityModifier_Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard < 'tree > { type Error = type_sitter_lib :: IncorrectKind < 'tree > ; # [inline] fn try_from (node : tree_sitter :: Node < 'tree >) -> Result < Self , Self :: Error > { match node . kind () { "visibility_modifier" => Ok (unsafe { Self :: VisibilityModifier (< VisibilityModifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "crate" => Ok (unsafe { Self :: Crate (< Crate < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "identifier" => Ok (unsafe { Self :: Identifier (< Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "metavariable" => Ok (unsafe { Self :: Metavariable (< Metavariable < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "scoped_identifier" => Ok (unsafe { Self :: ScopedIdentifier (< ScopedIdentifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "scoped_use_list" => Ok (unsafe { Self :: ScopedUseList (< ScopedUseList < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "self" => Ok (unsafe { Self :: _Self (< _Self < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "super" => Ok (unsafe { Self :: Super (< Super < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "use_as_clause" => Ok (unsafe { Self :: UseAsClause (< UseAsClause < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "use_list" => Ok (unsafe { Self :: UseList (< UseList < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "use_wildcard" => Ok (unsafe { Self :: UseWildcard (< UseWildcard < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , _ => Err (type_sitter_lib :: IncorrectKind { node , kind : < Self as type_sitter_lib :: TypedNode < 'tree >> :: KIND , }) } } }
     #[automatically_derived]
-    impl < 'tree > type_sitter_lib :: TypedNode < 'tree > for VisibilityModifier_Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard < 'tree > { const KIND : & 'static str = "{visibility_modifier | crate | identifier | metavariable | scoped_identifier | scoped_use_list | self | super | use_as_clause | use_list | use_wildcard}" ; # [inline] fn node (& self) -> & tree_sitter :: Node < 'tree > { match self { Self :: VisibilityModifier (x) => x . node () , Self :: Crate (x) => x . node () , Self :: Identifier (x) => x . node () , Self :: Metavariable (x) => x . node () , Self :: ScopedIdentifier (x) => x . node () , Self :: ScopedUseList (x) => x . node () , Self :: _Self (x) => x . node () , Self :: Super (x) => x . node () , Self :: UseAsClause (x) => x . node () , Self :: UseList (x) => x . node () , Self :: UseWildcard (x) => x . node () , } } # [inline] fn node_mut (& mut self) -> & mut tree_sitter :: Node < 'tree > { match self { Self :: VisibilityModifier (x) => x . node_mut () , Self :: Crate (x) => x . node_mut () , Self :: Identifier (x) => x . node_mut () , Self :: Metavariable (x) => x . node_mut () , Self :: ScopedIdentifier (x) => x . node_mut () , Self :: ScopedUseList (x) => x . node_mut () , Self :: _Self (x) => x . node_mut () , Self :: Super (x) => x . node_mut () , Self :: UseAsClause (x) => x . node_mut () , Self :: UseList (x) => x . node_mut () , Self :: UseWildcard (x) => x . node_mut () , } } }
+    impl < 'tree > type_sitter_lib :: TypedNode < 'tree > for VisibilityModifier_Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard < 'tree > { const KIND : & 'static str = "{visibility_modifier | crate | identifier | metavariable | scoped_identifier | scoped_use_list | self | super | use_as_clause | use_list | use_wildcard}" ; # [inline] fn node (& self) -> & tree_sitter :: Node < 'tree > { match self { Self :: VisibilityModifier (x) => x . node () , Self :: Crate (x) => x . node () , Self :: Identifier (x) => x . node () , Self :: Metavariable (x) => x . node () , Self :: ScopedIdentifier (x) => x . node () , Self :: ScopedUseList (x) => x . node () , Self :: _Self (x) => x . node () , Self :: Super (x) => x . node () , Self :: UseAsClause (x) => x . node () , Self :: UseList (x) => x . node () , Self :: UseWildcard (x) => x . node () , } } # [inline] fn node_mut (& mut self) -> & mut tree_sitter :: Node < 'tree > { match self { Self :: VisibilityModifier (x) => x . node_mut () , Self :: Crate (x) => x . node_mut () , Self :: Identifier (x) => x . node_mut () , Self :: Metavariable (x) => x . node_mut () , Self :: ScopedIdentifier (x) => x . node_mut () , Self :: ScopedUseList (x) => x . node_mut () , Self :: _Self (x) => x . node_mut () , Self :: Super (x) => x . node_mut () , Self :: UseAsClause (x) => x . node_mut () , Self :: UseList (x) => x . node_mut () , Self :: UseWildcard (x) => x . node_mut () , } } # [inline] fn into_node (self) -> tree_sitter :: Node < 'tree > { match self { Self :: VisibilityModifier (x) => x . into_node () , Self :: Crate (x) => x . into_node () , Self :: Identifier (x) => x . into_node () , Self :: Metavariable (x) => x . into_node () , Self :: ScopedIdentifier (x) => x . into_node () , Self :: ScopedUseList (x) => x . into_node () , Self :: _Self (x) => x . into_node () , Self :: Super (x) => x . into_node () , Self :: UseAsClause (x) => x . into_node () , Self :: UseList (x) => x . into_node () , Self :: UseWildcard (x) => x . into_node () , } } }
     #[doc = "one of `{crate | identifier | metavariable | scoped_identifier | scoped_use_list | self | super | use_as_clause | use_list | use_wildcard}`"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
@@ -21357,7 +23251,7 @@ pub mod anon_unions {
     #[automatically_derived]
     impl < 'tree > TryFrom < tree_sitter :: Node < 'tree >> for Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard < 'tree > { type Error = type_sitter_lib :: IncorrectKind < 'tree > ; # [inline] fn try_from (node : tree_sitter :: Node < 'tree >) -> Result < Self , Self :: Error > { match node . kind () { "crate" => Ok (unsafe { Self :: Crate (< Crate < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "identifier" => Ok (unsafe { Self :: Identifier (< Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "metavariable" => Ok (unsafe { Self :: Metavariable (< Metavariable < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "scoped_identifier" => Ok (unsafe { Self :: ScopedIdentifier (< ScopedIdentifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "scoped_use_list" => Ok (unsafe { Self :: ScopedUseList (< ScopedUseList < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "self" => Ok (unsafe { Self :: _Self (< _Self < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "super" => Ok (unsafe { Self :: Super (< Super < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "use_as_clause" => Ok (unsafe { Self :: UseAsClause (< UseAsClause < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "use_list" => Ok (unsafe { Self :: UseList (< UseList < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "use_wildcard" => Ok (unsafe { Self :: UseWildcard (< UseWildcard < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , _ => Err (type_sitter_lib :: IncorrectKind { node , kind : < Self as type_sitter_lib :: TypedNode < 'tree >> :: KIND , }) } } }
     #[automatically_derived]
-    impl < 'tree > type_sitter_lib :: TypedNode < 'tree > for Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard < 'tree > { const KIND : & 'static str = "{crate | identifier | metavariable | scoped_identifier | scoped_use_list | self | super | use_as_clause | use_list | use_wildcard}" ; # [inline] fn node (& self) -> & tree_sitter :: Node < 'tree > { match self { Self :: Crate (x) => x . node () , Self :: Identifier (x) => x . node () , Self :: Metavariable (x) => x . node () , Self :: ScopedIdentifier (x) => x . node () , Self :: ScopedUseList (x) => x . node () , Self :: _Self (x) => x . node () , Self :: Super (x) => x . node () , Self :: UseAsClause (x) => x . node () , Self :: UseList (x) => x . node () , Self :: UseWildcard (x) => x . node () , } } # [inline] fn node_mut (& mut self) -> & mut tree_sitter :: Node < 'tree > { match self { Self :: Crate (x) => x . node_mut () , Self :: Identifier (x) => x . node_mut () , Self :: Metavariable (x) => x . node_mut () , Self :: ScopedIdentifier (x) => x . node_mut () , Self :: ScopedUseList (x) => x . node_mut () , Self :: _Self (x) => x . node_mut () , Self :: Super (x) => x . node_mut () , Self :: UseAsClause (x) => x . node_mut () , Self :: UseList (x) => x . node_mut () , Self :: UseWildcard (x) => x . node_mut () , } } }
+    impl < 'tree > type_sitter_lib :: TypedNode < 'tree > for Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard < 'tree > { const KIND : & 'static str = "{crate | identifier | metavariable | scoped_identifier | scoped_use_list | self | super | use_as_clause | use_list | use_wildcard}" ; # [inline] fn node (& self) -> & tree_sitter :: Node < 'tree > { match self { Self :: Crate (x) => x . node () , Self :: Identifier (x) => x . node () , Self :: Metavariable (x) => x . node () , Self :: ScopedIdentifier (x) => x . node () , Self :: ScopedUseList (x) => x . node () , Self :: _Self (x) => x . node () , Self :: Super (x) => x . node () , Self :: UseAsClause (x) => x . node () , Self :: UseList (x) => x . node () , Self :: UseWildcard (x) => x . node () , } } # [inline] fn node_mut (& mut self) -> & mut tree_sitter :: Node < 'tree > { match self { Self :: Crate (x) => x . node_mut () , Self :: Identifier (x) => x . node_mut () , Self :: Metavariable (x) => x . node_mut () , Self :: ScopedIdentifier (x) => x . node_mut () , Self :: ScopedUseList (x) => x . node_mut () , Self :: _Self (x) => x . node_mut () , Self :: Super (x) => x . node_mut () , Self :: UseAsClause (x) => x . node_mut () , Self :: UseList (x) => x . node_mut () , Self :: UseWildcard (x) => x . node_mut () , } } # [inline] fn into_node (self) -> tree_sitter :: Node < 'tree > { match self { Self :: Crate (x) => x . into_node () , Self :: Identifier (x) => x . into_node () , Self :: Metavariable (x) => x . into_node () , Self :: ScopedIdentifier (x) => x . into_node () , Self :: ScopedUseList (x) => x . into_node () , Self :: _Self (x) => x . into_node () , Self :: Super (x) => x . into_node () , Self :: UseAsClause (x) => x . into_node () , Self :: UseList (x) => x . into_node () , Self :: UseWildcard (x) => x . into_node () , } } }
     #[doc = "one of `{array_type | generic_type | higher_ranked_trait_bound | lifetime | pointer_type | primitive_type | reference_type | scoped_type_identifier | tuple_type | type_identifier}`"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
@@ -21380,7 +23274,7 @@ pub mod anon_unions {
     #[automatically_derived]
     impl < 'tree > TryFrom < tree_sitter :: Node < 'tree >> for ArrayType_GenericType_HigherRankedTraitBound_Lifetime_PointerType_PrimitiveType_ReferenceType_ScopedTypeIdentifier_TupleType_TypeIdentifier < 'tree > { type Error = type_sitter_lib :: IncorrectKind < 'tree > ; # [inline] fn try_from (node : tree_sitter :: Node < 'tree >) -> Result < Self , Self :: Error > { match node . kind () { "array_type" => Ok (unsafe { Self :: ArrayType (< ArrayType < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "generic_type" => Ok (unsafe { Self :: GenericType (< GenericType < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "higher_ranked_trait_bound" => Ok (unsafe { Self :: HigherRankedTraitBound (< HigherRankedTraitBound < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "lifetime" => Ok (unsafe { Self :: Lifetime (< Lifetime < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "pointer_type" => Ok (unsafe { Self :: PointerType (< PointerType < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "primitive_type" => Ok (unsafe { Self :: PrimitiveType (< PrimitiveType < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "reference_type" => Ok (unsafe { Self :: ReferenceType (< ReferenceType < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "scoped_type_identifier" => Ok (unsafe { Self :: ScopedTypeIdentifier (< ScopedTypeIdentifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "tuple_type" => Ok (unsafe { Self :: TupleType (< TupleType < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "type_identifier" => Ok (unsafe { Self :: TypeIdentifier (< TypeIdentifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , _ => Err (type_sitter_lib :: IncorrectKind { node , kind : < Self as type_sitter_lib :: TypedNode < 'tree >> :: KIND , }) } } }
     #[automatically_derived]
-    impl < 'tree > type_sitter_lib :: TypedNode < 'tree > for ArrayType_GenericType_HigherRankedTraitBound_Lifetime_PointerType_PrimitiveType_ReferenceType_ScopedTypeIdentifier_TupleType_TypeIdentifier < 'tree > { const KIND : & 'static str = "{array_type | generic_type | higher_ranked_trait_bound | lifetime | pointer_type | primitive_type | reference_type | scoped_type_identifier | tuple_type | type_identifier}" ; # [inline] fn node (& self) -> & tree_sitter :: Node < 'tree > { match self { Self :: ArrayType (x) => x . node () , Self :: GenericType (x) => x . node () , Self :: HigherRankedTraitBound (x) => x . node () , Self :: Lifetime (x) => x . node () , Self :: PointerType (x) => x . node () , Self :: PrimitiveType (x) => x . node () , Self :: ReferenceType (x) => x . node () , Self :: ScopedTypeIdentifier (x) => x . node () , Self :: TupleType (x) => x . node () , Self :: TypeIdentifier (x) => x . node () , } } # [inline] fn node_mut (& mut self) -> & mut tree_sitter :: Node < 'tree > { match self { Self :: ArrayType (x) => x . node_mut () , Self :: GenericType (x) => x . node_mut () , Self :: HigherRankedTraitBound (x) => x . node_mut () , Self :: Lifetime (x) => x . node_mut () , Self :: PointerType (x) => x . node_mut () , Self :: PrimitiveType (x) => x . node_mut () , Self :: ReferenceType (x) => x . node_mut () , Self :: ScopedTypeIdentifier (x) => x . node_mut () , Self :: TupleType (x) => x . node_mut () , Self :: TypeIdentifier (x) => x . node_mut () , } } }
+    impl < 'tree > type_sitter_lib :: TypedNode < 'tree > for ArrayType_GenericType_HigherRankedTraitBound_Lifetime_PointerType_PrimitiveType_ReferenceType_ScopedTypeIdentifier_TupleType_TypeIdentifier < 'tree > { const KIND : & 'static str = "{array_type | generic_type | higher_ranked_trait_bound | lifetime | pointer_type | primitive_type | reference_type | scoped_type_identifier | tuple_type | type_identifier}" ; # [inline] fn node (& self) -> & tree_sitter :: Node < 'tree > { match self { Self :: ArrayType (x) => x . node () , Self :: GenericType (x) => x . node () , Self :: HigherRankedTraitBound (x) => x . node () , Self :: Lifetime (x) => x . node () , Self :: PointerType (x) => x . node () , Self :: PrimitiveType (x) => x . node () , Self :: ReferenceType (x) => x . node () , Self :: ScopedTypeIdentifier (x) => x . node () , Self :: TupleType (x) => x . node () , Self :: TypeIdentifier (x) => x . node () , } } # [inline] fn node_mut (& mut self) -> & mut tree_sitter :: Node < 'tree > { match self { Self :: ArrayType (x) => x . node_mut () , Self :: GenericType (x) => x . node_mut () , Self :: HigherRankedTraitBound (x) => x . node_mut () , Self :: Lifetime (x) => x . node_mut () , Self :: PointerType (x) => x . node_mut () , Self :: PrimitiveType (x) => x . node_mut () , Self :: ReferenceType (x) => x . node_mut () , Self :: ScopedTypeIdentifier (x) => x . node_mut () , Self :: TupleType (x) => x . node_mut () , Self :: TypeIdentifier (x) => x . node_mut () , } } # [inline] fn into_node (self) -> tree_sitter :: Node < 'tree > { match self { Self :: ArrayType (x) => x . into_node () , Self :: GenericType (x) => x . into_node () , Self :: HigherRankedTraitBound (x) => x . into_node () , Self :: Lifetime (x) => x . into_node () , Self :: PointerType (x) => x . into_node () , Self :: PrimitiveType (x) => x . into_node () , Self :: ReferenceType (x) => x . into_node () , Self :: ScopedTypeIdentifier (x) => x . into_node () , Self :: TupleType (x) => x . into_node () , Self :: TypeIdentifier (x) => x . into_node () , } } }
     #[doc = "one of `{loop_label | block | _expression | let_chain | let_condition}`"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
@@ -21490,6 +23384,16 @@ pub mod anon_unions {
                 Self::Expression(x) => x.node_mut(),
                 Self::LetChain(x) => x.node_mut(),
                 Self::LetCondition(x) => x.node_mut(),
+            }
+        }
+        #[inline]
+        fn into_node(self) -> tree_sitter::Node<'tree> {
+            match self {
+                Self::LoopLabel(x) => x.into_node(),
+                Self::Block(x) => x.into_node(),
+                Self::Expression(x) => x.into_node(),
+                Self::LetChain(x) => x.into_node(),
+                Self::LetCondition(x) => x.into_node(),
             }
         }
     }

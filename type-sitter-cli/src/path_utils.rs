@@ -6,14 +6,15 @@ use std::ffi::OsString;
 use lazy_static::lazy_static;
 use rust_format::{RustFmt, Formatter};
 use crate::errors;
+use crate::errors::Error;
 
 lazy_static! {
     static ref RUST_FMT: RustFmt = RustFmt::new();
 }
 
 pub fn write(path: &Path, contents: impl Display) -> errors::Result<()> {
-    let mut file = File::create(path)?;
-    write!(file, "{}", contents)?;
+    let mut file = File::create(path).map_err(Error::io("creating file for generated code"))?;
+    write!(file, "{}", contents).map_err(Error::io("writing generated code"))?;
     RUST_FMT.format_file(path)?;
     Ok(())
 }
