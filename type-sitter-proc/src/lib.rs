@@ -36,7 +36,7 @@ pub fn generate_nodes(item: proc_macro::TokenStream) -> proc_macro::TokenStream 
     type_sitter_gen::generate_nodes(
         &args.path,
         &args.tree_sitter
-    ).unwrap_or_else(|err| err.to_compile_error()).into()
+    ).map(|g| g.collapse()).unwrap_or_else(|err| err.to_compile_error()).into()
 }
 
 /// Generate typed wrappers for tree-sitter queries.
@@ -72,5 +72,5 @@ pub fn generate_queries(item: proc_macro::TokenStream) -> proc_macro::TokenStrea
             false => tree_sitter(),
             true => type_sitter_lib_wrapper(),
         })
-    ).unwrap_or_else(|err| err.to_compile_error()).into()
+    ).map(|g| g.collapse(&args.nodes)).unwrap_or_else(|err| err.to_compile_error()).into()
 }

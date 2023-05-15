@@ -1,5 +1,6 @@
 use std::fmt::Debug;
 use tree_sitter::TextProvider;
+use streaming_iterator::{StreamingIterator, StreamingIteratorMut};
 #[cfg(feature = "tree-sitter-wrapper")]
 use crate::tree_sitter_wrapper::{Range, Tree};
 #[cfg(not(feature = "tree-sitter-wrapper"))]
@@ -8,10 +9,15 @@ use crate::typed_query::match_captures::TypedQueryMatchCaptures;
 use crate::TypedQuery;
 
 /// Iterate a typed query's matches (see [tree_sitter::QueryMatches])
+///
+/// [tree_sitter::QueryMatches] is NOT a real iterator, it's a [StreamingIterator] (see
+///     https://github.com/tree-sitter/tree-sitter/issues/608). Therefore this doesn't implement
+///     [Iterator]
 #[cfg(feature = "tree-sitter-wrapper")]
 pub struct TypedQueryMatches<'cursor, 'tree: 'cursor, Query: TypedQuery, Text: TextProvider<'cursor> = &'cursor Tree> {
     typed_query: &'cursor Query,
     untyped_matches: tree_sitter::QueryMatches<'cursor, 'tree, Text>,
+    current_match: Option<Query::Match<'cursor, 'tree>>,
     tree: &'tree Tree,
 }
 
@@ -67,7 +73,12 @@ impl<'cursor, 'tree: 'cursor, Query: TypedQuery, Text: TextProvider<'cursor>> Ty
         #[cfg(feature = "tree-sitter-wrapper")]
         tree: &'tree Tree,
     ) -> Self {
-        Self { typed_query, untyped_matches, #[cfg(feature = "tree-sitter-wrapper")] tree }
+        Self {
+            typed_query,
+            untyped_matches,
+            current_match: None,
+            #[cfg(feature = "tree-sitter-wrapper")] tree
+        }
     }
 
     /// Limit matches to a byte range
@@ -97,20 +108,34 @@ impl<'cursor, 'tree: 'cursor, Query: TypedQuery, Text: TextProvider<'cursor>> Ty
     }
 }
 
-impl<'cursor, 'tree, Query: TypedQuery, Text: TextProvider<'cursor>> Iterator for TypedQueryMatches<'cursor, 'tree, Query, Text> {
+impl<'cursor, 'tree, Query: TypedQuery, Text: TextProvider<'cursor>> StreamingIterator for TypedQueryMatches<'cursor, 'tree, Query, Text> {
     type Item = Query::Match<'cursor, 'tree>;
 
     #[inline]
-    fn next(&mut self) -> Option<Self::Item> {
+    fn advance(&mut self) {
         // SAFETY: Matches come from the same query
-        unsafe { self.untyped_matches.next().map(|m| self.typed_query.wrap_match(
-            m,
-            #[cfg(feature = "tree-sitter-wrapper")] self.tree
-        )) }
+        self.current_match = unsafe {
+            self.untyped_matches.next().map(|m| self.typed_query.wrap_match(
+                m,
+                #[cfg(feature = "tree-sitter-wrapper")] self.tree
+            ))
+        }
+    }
+
+    #[inline]
+    fn get(&self) -> Option<&Self::Item> {
+        self.current_match.as_ref()
     }
 
     #[inline]
     fn size_hint(&self) -> (usize, Option<usize>) {
         self.untyped_matches.size_hint()
+    }
+}
+
+impl<'cursor, 'tree: 'cursor, Query: TypedQuery, Text: TextProvider<'cursor>> StreamingIteratorMut for TypedQueryMatches<'cursor, 'tree, Query, Text> {
+    #[inline]
+    fn get_mut(&mut self) -> Option<&mut Self::Item> {
+        self.current_match.as_mut()
     }
 }

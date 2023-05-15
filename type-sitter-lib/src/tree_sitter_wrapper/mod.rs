@@ -4,6 +4,7 @@ use std::error::Error;
 use std::fmt::{Debug, Display};
 use std::path::Path;
 use std::iter::{FusedIterator, once, Once};
+use streaming_iterator::{StreamingIterator, StreamingIteratorMut};
 use std::str::Utf8Error;
 use std::hash::{Hash, Hasher};
 use std::os::fd::AsRawFd;
@@ -63,8 +64,13 @@ pub struct QueryCursor {
 }
 
 /// Wrapper around [tree_sitter::QueryMatches]
+///
+/// [tree_sitter::QueryMatches] is NOT a real iterator, it's a [StreamingIterator] (see
+///     https://github.com/tree-sitter/tree-sitter/issues/608). Therefore this doesn't implement
+///     [Iterator]
 pub struct QueryMatches<'query, 'tree: 'query> {
     query_matches: tree_sitter::QueryMatches<'query, 'tree, &'query Tree>,
+    current_match: Option<QueryMatch<'query, 'tree>>,
     tree: &'tree Tree,
     query: &'query Query
 }
@@ -948,6 +954,7 @@ impl QueryCursor {
     pub fn matches<'query, 'tree: 'query>(&'query mut self, query: &'query Query, node: Node<'tree>) -> QueryMatches<'query, 'tree> {
         QueryMatches {
             query_matches: self.query_cursor.matches(&query, node.node, node.tree),
+            current_match: None,
             tree: node.tree,
             query
         }
@@ -1015,16 +1022,31 @@ impl<'cursor, 'tree: 'cursor> QueryMatches<'cursor, 'tree> {
     }
 }
 
-impl<'cursor, 'tree: 'cursor> Iterator for QueryMatches<'cursor, 'tree> {
+impl<'cursor, 'tree: 'cursor> StreamingIterator for QueryMatches<'cursor, 'tree> {
     type Item = QueryMatch<'cursor, 'tree>;
 
     #[inline]
-    fn next(&mut self) -> Option<Self::Item> {
-        self.query_matches.next().map(|query_match| QueryMatch {
+    fn advance(&mut self) {
+        self.current_match = self.query_matches.next().map(|query_match| QueryMatch {
             query_match,
             tree: self.tree,
             query: self.query
-        })
+        });
+    }
+
+    #[inline]
+    fn get(&self) -> Option<&Self::Item> {
+        self.current_match.as_ref()
+    }
+
+    fn size_hint(&self) -> (usize, Option<usize>) {
+        self.query_matches.size_hint()
+    }
+}
+
+impl<'cursor, 'tree: 'cursor> StreamingIteratorMut for QueryMatches<'cursor, 'tree> {
+    fn get_mut(&mut self) -> Option<&mut Self::Item> {
+        self.current_match.as_mut()
     }
 }
 

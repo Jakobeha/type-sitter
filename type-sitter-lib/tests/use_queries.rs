@@ -3,8 +3,8 @@
 mod json;
 mod rust;
 
-use std::iter::zip;
 use std::path::Path;
+use streaming_iterator::StreamingIterator;
 use type_sitter_lib::tree_sitter_wrapper::Parser;
 use type_sitter_lib::{OptionNodeResultExtraOrExt, TypedNode, TypedQueryCursor};
 use crate::rust::queries::Tags;
@@ -20,17 +20,10 @@ pub fn text_use_queries_new() {
     let mut q = TypedQueryCursor::new();
     let mut q2 = TypedQueryCursor::new();
     q.set_match_limit(100);
-    let matches = q.matches(&Tags, code_root);
-    let mut matches_text = Vec::new();
+    let mut matches = q.matches(&Tags, code_root);
     eprintln!("Matches:");
-    for match_ in matches {
+    while let Some(match_) = matches.next() {
         eprintln!("  {:?}", match_);
-        matches_text.push(format!("{:?}", match_));
-    }
-    let matches = q.matches(&Tags, code_root).collect::<Vec<_>>();
-    assert_eq!(matches.len(), matches_text.len(), "# of matches changed when we collected them!");
-    for (match_, old_match_text) in zip(&matches, &matches_text) {
-        assert_eq!(&format!("{:?}", match_), old_match_text, "match changed when we stored it with others! (tree-sitter bug)")
     }
     let captures = q2.captures(&Tags, code_root).collect::<Vec<_>>();
     eprintln!("Captures:");
@@ -38,24 +31,37 @@ pub fn text_use_queries_new() {
         eprintln!("  {:?}", capture_)
     }
 
-    assert_eq!(matches[0].definition_function().unwrap().name().unwrap().identifier().unwrap().text(), "language");
-    assert_eq!(matches[0].name().unwrap().identifier().unwrap().text(), "language");
-    assert_eq!(matches[1].reference_call().unwrap().call_expression().unwrap().function().unwrap().identifier().unwrap().text(), "tree_sitter_rust");
-    assert_eq!(matches[1].name().unwrap().identifier().unwrap().text(), "tree_sitter_rust");
-    for i in 2..=5 {
-        assert_eq!(matches[i].reference_call().unwrap().macro_invocation().unwrap().r#macro().unwrap().identifier().unwrap().text(), "include_str");
-        assert_eq!(matches[i].name().unwrap().identifier().unwrap().text(), "include_str");
+    let mut matches = q.matches(&Tags, code_root);
+    let match_ = matches.next().unwrap();
+    assert_eq!(match_.definition_function().unwrap().name().unwrap().identifier().unwrap().text(), "language");
+    assert_eq!(match_.name().unwrap().identifier().unwrap().text(), "language");
+    let match_ = matches.next().unwrap();
+    assert_eq!(match_.reference_call().unwrap().call_expression().unwrap().function().unwrap().identifier().unwrap().text(), "tree_sitter_rust");
+    assert_eq!(match_.name().unwrap().identifier().unwrap().text(), "tree_sitter_rust");
+    for _ in 2..=5 {
+        let match_ = matches.next().unwrap();
+        assert_eq!(match_.reference_call().unwrap().macro_invocation().unwrap().r#macro().unwrap().identifier().unwrap().text(), "include_str");
+        assert_eq!(match_.name().unwrap().identifier().unwrap().text(), "include_str");
     }
-    assert_eq!(matches[6].definition_module().unwrap().name().unwrap().text(), "tests");
-    assert_eq!(matches[6].name().unwrap().identifier().unwrap().text(), "tests");
-    assert_eq!(matches[7].definition_method().unwrap().child(0).unwrap3().function_item().unwrap().name().unwrap().identifier().unwrap().text(), "can_load_grammar");
-    assert_eq!(matches[7].name().unwrap().identifier().unwrap().text(), "can_load_grammar");
-    assert_eq!(matches[8].definition_function().unwrap().name().unwrap().identifier().unwrap().text(), "can_load_grammar");
-    assert_eq!(matches[8].name().unwrap().identifier().unwrap().text(), "can_load_grammar");
-    assert_eq!(matches[9].reference_call().unwrap().call_expression().unwrap().function().unwrap().field_expression().unwrap().field().unwrap().text(), "set_language");
-    assert_eq!(matches[9].name().unwrap().field_identifier().unwrap().text(), "set_language");
-    assert_eq!(matches[10].reference_call().unwrap().call_expression().unwrap().function().unwrap().field_expression().unwrap().field().unwrap().text(), "expect");
-    assert_eq!(matches[10].name().unwrap().field_identifier().unwrap().text(), "expect");
-    assert_eq!(matches.len(), 11);
+    let match_ = matches.next().unwrap();
+    assert_eq!(match_.definition_module().unwrap().name().unwrap().text(), "tests");
+    assert_eq!(match_.name().unwrap().identifier().unwrap().text(), "tests");
+    let match_ = matches.next().unwrap();
+    assert_eq!(match_.definition_method().unwrap().child(0).unwrap3().attribute_item().unwrap().child().unwrap().child(0).unwrap3().identifier().unwrap().text(), "test");
+    assert!(match_.definition_method().unwrap().child(0).unwrap3().attribute_item().unwrap().child().unwrap().child(1).is_none());
+    assert_eq!(match_.definition_method().unwrap().child(1).unwrap3().function_item().unwrap().name().unwrap().identifier().unwrap().text(), "can_load_grammar");
+    assert!(match_.definition_method().unwrap().child(2).is_none());
+    assert_eq!(match_.name().unwrap().identifier().unwrap().text(), "can_load_grammar");
+    let match_ = matches.next().unwrap();
+    assert_eq!(match_.definition_function().unwrap().name().unwrap().identifier().unwrap().text(), "can_load_grammar");
+    assert_eq!(match_.name().unwrap().identifier().unwrap().text(), "can_load_grammar");
+    let match_ = matches.next().unwrap();
+    assert_eq!(match_.reference_call().unwrap().call_expression().unwrap().function().unwrap().field_expression().unwrap().field().unwrap().text(), "set_language");
+    assert_eq!(match_.name().unwrap().field_identifier().unwrap().text(), "set_language");
+    let match_ = matches.next().unwrap();
+    assert_eq!(match_.reference_call().unwrap().call_expression().unwrap().function().unwrap().field_expression().unwrap().field().unwrap().text(), "expect");
+    assert_eq!(match_.name().unwrap().field_identifier().unwrap().text(), "expect");
+    assert!(matches.next().is_none());
+    // ???: Individual captures tests?
     assert_eq!(captures.len(), 22);
 }

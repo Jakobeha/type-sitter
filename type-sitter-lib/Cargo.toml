@@ -14,6 +14,7 @@ tree-sitter-wrapper = []
 [dependencies]
 tree-sitter = "0.20.10"
 once_cell = "1.17.1"
+streaming-iterator = "0.1.9"
 
 [dev-dependencies]
 tree-sitter-rust = { path = "../vendor/tree-sitter-rust", version = "0.20.3" }
