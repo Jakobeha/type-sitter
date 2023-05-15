@@ -1,4 +1,7 @@
+use std::borrow::Cow;
 use std::collections::VecDeque;
+use quote::ToTokens;
+use syn::Path;
 use crate::names::NodeName;
 use crate::node_types::types::NodeModule;
 use crate::queries::sexp::{Atom, GroupType, SExp};
@@ -57,6 +60,18 @@ impl SExpNodeType {
             Self::Untyped { is_named } => *is_named,
             Self::Single { name } => matches!(name.module, NodeModule::Toplevel),
             Self::Union { are_all_variants_named, .. } => *are_all_variants_named
+        }
+    }
+
+    // ???: Remove unnecessary allocating in all these path methods, especially this one?
+    pub(super) fn rust_type_path(&self, nodes: &Path, capture_variant_name: &str) -> Cow<'_, str> {
+        match self {
+            Self::Untyped { is_named } => match is_named {
+                false => Cow::Borrowed("type_sitter_lib::UntypedNode"),
+                true => Cow::Borrowed("type_sitter_lib::UntypedNamedNode"),
+            },
+            Self::Single { name } => Cow::Owned(format!("{}::{}", nodes.to_token_stream().to_string().replace(" ", ""), name.rust_type_path())),
+            Self::Union { .. } => Cow::Owned(format!("anon_unions::{}", capture_variant_name))
         }
     }
 }

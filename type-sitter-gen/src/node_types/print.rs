@@ -8,6 +8,7 @@ use syn::{Ident, LitStr, Path};
 use crate::anon_unions::{AnonUnionId, AnonUnions};
 use crate::mk_syntax::{concat_doc, ident, lit_str, modularize};
 use crate::names::NodeName;
+use crate::node_types::detail_doc::{DetailDoc, ChildrenKind};
 use crate::node_types::generated_tokens::GeneratedNodeTokens;
 use crate::node_types::types::{Children, NodeModule, NodeType, NodeTypeKind};
 
@@ -18,7 +19,7 @@ impl NodeType {
         // Node type names are always valid identifiers
         let ident = ident!(rust_type_name, "node kind (rust type name)").unwrap();
         let kind = lit_str(sexp_name);
-        let doc = concat_doc!("Typed node `", sexp_name, "`");
+        let doc = concat_doc!("Typed node `", sexp_name, "`\n\n", DetailDoc::new(self).to_string());
 
         let definition = match &self.kind {
             NodeTypeKind::Supertype { subtypes } => {
@@ -144,13 +145,13 @@ impl NodeName {
             field.print(
                 (
                     Cow::Owned(format!("{}s", name)),
-                    concat_doc!("Get the field `", name, "`"),
+                    concat_doc!("Get the field `", name, "` which has kind ", ChildrenKind::new(field, false).to_string()),
                     quote! { self.0.children_by_field_name(#name_sexp, c) },
                     false
                 ),
                 (
                     Cow::Borrowed(name),
-                    concat_doc!("Get the field `", name, "`"),
+                    concat_doc!("Get the field `", name, "` which has kind ", ChildrenKind::new(field, false).to_string()),
                     quote! { self.0.child_by_field_name(#name_sexp) }
                 ),
                 None,
@@ -381,10 +382,11 @@ impl NodeName {
                 let anon_union_id = mk_anon_union_id();
                 let anon_union_name = ident!(anon_union_id.name, "generated (anon union name)").unwrap();
                 if !anon_unions.contains_key(&anon_union_id) {
-                    let kind_str = format!("{{{}}}", " | ".join(names.iter().map(|n| &n.sexp_name)));
+                    let kind_str = NodeName::kind(names);
+                    let kind_refs = format!("- [{}]", "]\n- [".join(names.iter().map(NodeName::rust_type_path)));
                     let kind = lit_str(&kind_str);
                     let definition = NodeName::print_sum_definition(
-                        concat_doc!("one of `", kind_str, "`"),
+                        concat_doc!("one of `", kind_str, "`:\n", kind_refs),
                         &anon_union_name,
                         &kind,
                         names,
@@ -418,7 +420,7 @@ impl NodeName {
         let ident = self.rust_type_ident();
         let type_ = self.print_type();
         let method = self.rust_method_ident();
-        let doc = concat_doc!("Returns the node if it is of kind `", self.sexp_name, "`, otherwise returns None");
+        let doc = concat_doc!("Returns the node if it is of kind `", self.sexp_name, "` ([", self.rust_type_path(), "]), otherwise returns None");
         quote! {
             #[doc = #doc]
             #[inline]

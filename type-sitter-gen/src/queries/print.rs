@@ -371,14 +371,17 @@ impl<'tree> SExpSeq<'tree> {
         let captured_sexps = self.captured_patterns(capture_name).collect::<Vec<_>>();
         let captured_sexp_strs = captured_sexps.iter().map(|s| &query_str[s.span()]);
         let capture_node_type = captured_sexps.iter().map(|s| s.node_type(false))
-            .collect::<SExpNodeType>()
+            .collect::<SExpNodeType>();
+        let capture_node_type_tokens = capture_node_type
             .print(&capture_variant_name, nodes, tree_sitter, anon_unions);
+
+        let capture_doc = format!("`{}` ([{}])", capture_name, capture_node_type.rust_type_path(nodes, &capture_variant_name));
 
         let capture_quantifier = capture_idxs.iter()
             .flat_map(|capture_idx| ts_query.capture_quantifiers(*capture_idx)).copied()
             .reduce(CaptureQuantifierExt::union)
             .unwrap_or(CaptureQuantifier::Zero);
-        let captured_type = capture_quantifier.print_type(&capture_node_type);
+        let captured_type = capture_quantifier.print_type(&capture_node_type_tokens);
         let captured_nonempty_iterator_doc = capture_quantifier.print_nonempty_iterator_doc();
         let capture_expr_n = match use_wrapper {
             false => quote! { n },
@@ -388,7 +391,7 @@ impl<'tree> SExpSeq<'tree> {
         let captured_expr = capture_quantifier.print_expr(&quote! {
             #capture_idxs_array.into_iter().flat_map(|i| self.match_.nodes_for_capture_index(i))
             // SAFETY: Query only captures nodes of the correct type and tree
-                .map(|n| unsafe { <#capture_node_type as type_sitter_lib::TypedNode<'tree>>::from_node_unchecked(#capture_expr_n) })
+                .map(|n| unsafe { <#capture_node_type_tokens as type_sitter_lib::TypedNode<'tree>>::from_node_unchecked(#capture_expr_n) })
         });
 
         let full_capture_pattern_doc = captured_sexp_strs.map(|captured_sexp_str| {
@@ -403,7 +406,7 @@ impl<'tree> SExpSeq<'tree> {
             #[doc = "```"]
         };
 
-        let capture_method_doc = concat_doc!("Returns an iterator over the nodes captured by `", capture_name, "`");
+        let capture_method_doc = concat_doc!("Returns an iterator over the nodes captured by ", capture_doc);
         let capture_method = quote! {
             #[doc = #capture_method_doc]
             #captured_nonempty_iterator_doc
@@ -414,13 +417,13 @@ impl<'tree> SExpSeq<'tree> {
                 #captured_expr
             }
         };
-        let capture_variant_extract_method_doc = concat_doc!("Try to interpret this capture as a `", capture_name, "`");
+        let capture_variant_extract_method_doc = concat_doc!("Try to interpret this capture as a ", capture_doc);
         let capture_variant_extract_method = quote! {
             #[doc = #capture_variant_extract_method_doc]
             #full_capture_documentation
             #[inline]
             #[allow(unused, non_snake_case)]
-            pub fn #capture_method_ident(&self) -> Option<&#capture_node_type> {
+            pub fn #capture_method_ident(&self) -> Option<&#capture_node_type_tokens> {
                 match self {
                     Self::#capture_variant_ident { node, .. } => Some(node),
                     #[allow(unreachable_patterns)]
@@ -428,12 +431,12 @@ impl<'tree> SExpSeq<'tree> {
                 }
             }
         };
-        let capture_variant_main_doc = concat_doc!("A `", capture_name, "`");
+        let capture_variant_main_doc = concat_doc!("A ", capture_doc);
         let capture_variant_documentation = quote! {
             #[doc = #capture_variant_main_doc]
             #full_capture_documentation
         };
-        (capture_method, capture_variant_extract_method, capture_variant_ident, capture_variant_documentation, capture_node_type)
+        (capture_method, capture_variant_extract_method, capture_variant_ident, capture_variant_documentation, capture_node_type_tokens)
     }
 }
 

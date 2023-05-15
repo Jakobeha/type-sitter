@@ -139,7 +139,7 @@ pub struct HighlightsMatch<'cursor, 'tree> {
 
 ```*/
 pub enum HighlightsCapture<'cursor, 'tree> {
-    ///A `string.special.key`
+    ///A `string.special.key` ([type_sitter_lib::UntypedNamedNode])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -149,7 +149,7 @@ pub enum HighlightsCapture<'cursor, 'tree> {
         node: type_sitter_lib::UntypedNamedNode<'tree>,
         match_: Option<HighlightsMatch<'cursor, 'tree>>,
     },
-    ///A `string`
+    ///A `string` ([super::nodes::String])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -159,7 +159,7 @@ pub enum HighlightsCapture<'cursor, 'tree> {
         node: super::nodes::String<'tree>,
         match_: Option<HighlightsMatch<'cursor, 'tree>>,
     },
-    ///A `number`
+    ///A `number` ([super::nodes::Number])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -169,7 +169,7 @@ pub enum HighlightsCapture<'cursor, 'tree> {
         node: super::nodes::Number<'tree>,
         match_: Option<HighlightsMatch<'cursor, 'tree>>,
     },
-    ///A `constant.builtin`
+    ///A `constant.builtin` ([anon_unions::ConstantBuiltin])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -183,7 +183,7 @@ pub enum HighlightsCapture<'cursor, 'tree> {
         node: anon_unions::ConstantBuiltin<'tree>,
         match_: Option<HighlightsMatch<'cursor, 'tree>>,
     },
-    ///A `escape`
+    ///A `escape` ([super::nodes::EscapeSequence])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -193,7 +193,7 @@ pub enum HighlightsCapture<'cursor, 'tree> {
         node: super::nodes::EscapeSequence<'tree>,
         match_: Option<HighlightsMatch<'cursor, 'tree>>,
     },
-    ///A `comment`
+    ///A `comment` ([super::nodes::Comment])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -326,7 +326,7 @@ impl type_sitter_lib::TypedQuery for Highlights {
 }
 #[automatically_derived]
 impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
-    ///Returns an iterator over the nodes captured by `string.special.key`
+    ///Returns an iterator over the nodes captured by `string.special.key` ([type_sitter_lib::UntypedNamedNode])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -353,7 +353,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         }
             .next()
     }
-    ///Returns an iterator over the nodes captured by `string`
+    ///Returns an iterator over the nodes captured by `string` ([super::nodes::String])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -378,7 +378,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         }
             .next()
     }
-    ///Returns an iterator over the nodes captured by `number`
+    ///Returns an iterator over the nodes captured by `number` ([super::nodes::Number])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -403,7 +403,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         }
             .next()
     }
-    ///Returns an iterator over the nodes captured by `constant.builtin`
+    ///Returns an iterator over the nodes captured by `constant.builtin` ([anon_unions::ConstantBuiltin])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -432,7 +432,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         }
             .next()
     }
-    ///Returns an iterator over the nodes captured by `escape`
+    ///Returns an iterator over the nodes captured by `escape` ([super::nodes::EscapeSequence])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -457,7 +457,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         }
             .next()
     }
-    ///Returns an iterator over the nodes captured by `comment`
+    ///Returns an iterator over the nodes captured by `comment` ([super::nodes::Comment])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -514,7 +514,7 @@ for HighlightsMatch<'cursor, 'tree> {
 }
 #[automatically_derived]
 impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
-    ///Try to interpret this capture as a `string.special.key`
+    ///Try to interpret this capture as a `string.special.key` ([type_sitter_lib::UntypedNamedNode])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -531,7 +531,7 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
             _ => None,
         }
     }
-    ///Try to interpret this capture as a `string`
+    ///Try to interpret this capture as a `string` ([super::nodes::String])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -546,7 +546,7 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
             _ => None,
         }
     }
-    ///Try to interpret this capture as a `number`
+    ///Try to interpret this capture as a `number` ([super::nodes::Number])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -561,7 +561,7 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
             _ => None,
         }
     }
-    ///Try to interpret this capture as a `constant.builtin`
+    ///Try to interpret this capture as a `constant.builtin` ([anon_unions::ConstantBuiltin])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -580,7 +580,7 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
             _ => None,
         }
     }
-    ///Try to interpret this capture as a `escape`
+    ///Try to interpret this capture as a `escape` ([super::nodes::EscapeSequence])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -595,7 +595,7 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
             _ => None,
         }
     }
-    ///Try to interpret this capture as a `comment`
+    ///Try to interpret this capture as a `comment` ([super::nodes::Comment])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -843,7 +843,10 @@ for HighlightsCapture<'cursor, 'tree> {
 pub mod anon_unions {
     #[allow(unused_imports)]
     use super::super::nodes::*;
-    ///one of `{false | null | true}`
+    /**one of `{false | null | true}`:
+- [False]
+- [Null]
+- [True]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum ConstantBuiltin<'tree> {
@@ -853,7 +856,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> ConstantBuiltin<'tree> {
-        ///Returns the node if it is of kind `false`, otherwise returns None
+        ///Returns the node if it is of kind `false` ([False]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#false(self) -> Option<False<'tree>> {
@@ -862,7 +865,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `null`, otherwise returns None
+        ///Returns the node if it is of kind `null` ([Null]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn null(self) -> Option<Null<'tree>> {
@@ -871,7 +874,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `true`, otherwise returns None
+        ///Returns the node if it is of kind `true` ([True]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#true(self) -> Option<True<'tree>> {

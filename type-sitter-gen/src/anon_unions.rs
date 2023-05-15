@@ -1,6 +1,5 @@
 use std::fmt::{Display, Formatter};
 use indexmap::IndexMap;
-use join_lazy_fmt::Join;
 use proc_macro2::TokenStream;
 use crate::names::NodeName;
 
@@ -17,7 +16,7 @@ impl AnonUnionId {
     /// Create an id for the anonymous union of `names`
     pub fn new(names: &[NodeName]) -> Self {
         Self {
-            name: "_".join(names.iter().map(|name| name.rust_type_name.clone())).to_string()
+            name: NodeName::anon_union_type_name(names).to_string()
         }
     }
 

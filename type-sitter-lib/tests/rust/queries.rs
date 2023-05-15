@@ -357,7 +357,7 @@ pub struct TagsMatch<'cursor, 'tree> {
 
 ```*/
 pub enum TagsCapture<'cursor, 'tree> {
-    ///A `name`
+    ///A `name` ([anon_unions::Name])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -377,7 +377,7 @@ pub enum TagsCapture<'cursor, 'tree> {
     ///(type_identifier) @name
     ///```
     Name { node: anon_unions::Name<'tree>, match_: Option<TagsMatch<'cursor, 'tree>> },
-    ///A `definition.class`
+    ///A `definition.class` ([anon_unions::DefinitionClass])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -394,7 +394,7 @@ pub enum TagsCapture<'cursor, 'tree> {
         node: anon_unions::DefinitionClass<'tree>,
         match_: Option<TagsMatch<'cursor, 'tree>>,
     },
-    ///A `definition.method`
+    ///A `definition.method` ([super::nodes::DeclarationList])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -406,7 +406,7 @@ pub enum TagsCapture<'cursor, 'tree> {
         node: super::nodes::DeclarationList<'tree>,
         match_: Option<TagsMatch<'cursor, 'tree>>,
     },
-    ///A `definition.function`
+    ///A `definition.function` ([super::nodes::FunctionItem])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -417,7 +417,7 @@ pub enum TagsCapture<'cursor, 'tree> {
         node: super::nodes::FunctionItem<'tree>,
         match_: Option<TagsMatch<'cursor, 'tree>>,
     },
-    ///A `definition.interface`
+    ///A `definition.interface` ([super::nodes::TraitItem])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -428,7 +428,7 @@ pub enum TagsCapture<'cursor, 'tree> {
         node: super::nodes::TraitItem<'tree>,
         match_: Option<TagsMatch<'cursor, 'tree>>,
     },
-    ///A `definition.module`
+    ///A `definition.module` ([super::nodes::ModItem])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -439,7 +439,7 @@ pub enum TagsCapture<'cursor, 'tree> {
         node: super::nodes::ModItem<'tree>,
         match_: Option<TagsMatch<'cursor, 'tree>>,
     },
-    ///A `definition.macro`
+    ///A `definition.macro` ([super::nodes::MacroDefinition])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -450,7 +450,7 @@ pub enum TagsCapture<'cursor, 'tree> {
         node: super::nodes::MacroDefinition<'tree>,
         match_: Option<TagsMatch<'cursor, 'tree>>,
     },
-    ///A `reference.call`
+    ///A `reference.call` ([anon_unions::ReferenceCall])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -466,7 +466,7 @@ pub enum TagsCapture<'cursor, 'tree> {
         node: anon_unions::ReferenceCall<'tree>,
         match_: Option<TagsMatch<'cursor, 'tree>>,
     },
-    ///A `reference.implementation`
+    ///A `reference.implementation` ([anon_unions::ReferenceImplementation])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -648,7 +648,7 @@ impl type_sitter_lib::TypedQuery for Tags {
 }
 #[automatically_derived]
 impl<'cursor, 'tree> TagsMatch<'cursor, 'tree> {
-    ///Returns an iterator over the nodes captured by `name`
+    ///Returns an iterator over the nodes captured by `name` ([anon_unions::Name])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -686,7 +686,7 @@ impl<'cursor, 'tree> TagsMatch<'cursor, 'tree> {
         }
             .next()
     }
-    ///Returns an iterator over the nodes captured by `definition.class`
+    ///Returns an iterator over the nodes captured by `definition.class` ([anon_unions::DefinitionClass])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -718,7 +718,7 @@ impl<'cursor, 'tree> TagsMatch<'cursor, 'tree> {
         }
             .next()
     }
-    ///Returns an iterator over the nodes captured by `definition.method`
+    ///Returns an iterator over the nodes captured by `definition.method` ([super::nodes::DeclarationList])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -745,7 +745,7 @@ impl<'cursor, 'tree> TagsMatch<'cursor, 'tree> {
         }
             .next()
     }
-    ///Returns an iterator over the nodes captured by `definition.function`
+    ///Returns an iterator over the nodes captured by `definition.function` ([super::nodes::FunctionItem])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -771,7 +771,7 @@ impl<'cursor, 'tree> TagsMatch<'cursor, 'tree> {
         }
             .next()
     }
-    ///Returns an iterator over the nodes captured by `definition.interface`
+    ///Returns an iterator over the nodes captured by `definition.interface` ([super::nodes::TraitItem])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -797,7 +797,7 @@ impl<'cursor, 'tree> TagsMatch<'cursor, 'tree> {
         }
             .next()
     }
-    ///Returns an iterator over the nodes captured by `definition.module`
+    ///Returns an iterator over the nodes captured by `definition.module` ([super::nodes::ModItem])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -823,7 +823,7 @@ impl<'cursor, 'tree> TagsMatch<'cursor, 'tree> {
         }
             .next()
     }
-    ///Returns an iterator over the nodes captured by `definition.macro`
+    ///Returns an iterator over the nodes captured by `definition.macro` ([super::nodes::MacroDefinition])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -849,7 +849,7 @@ impl<'cursor, 'tree> TagsMatch<'cursor, 'tree> {
         }
             .next()
     }
-    ///Returns an iterator over the nodes captured by `reference.call`
+    ///Returns an iterator over the nodes captured by `reference.call` ([anon_unions::ReferenceCall])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -880,7 +880,7 @@ impl<'cursor, 'tree> TagsMatch<'cursor, 'tree> {
         }
             .next()
     }
-    ///Returns an iterator over the nodes captured by `reference.implementation`
+    ///Returns an iterator over the nodes captured by `reference.implementation` ([anon_unions::ReferenceImplementation])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -939,7 +939,7 @@ for TagsMatch<'cursor, 'tree> {
 }
 #[automatically_derived]
 impl<'cursor, 'tree> TagsCapture<'cursor, 'tree> {
-    ///Try to interpret this capture as a `name`
+    ///Try to interpret this capture as a `name` ([anon_unions::Name])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -967,7 +967,7 @@ impl<'cursor, 'tree> TagsCapture<'cursor, 'tree> {
             _ => None,
         }
     }
-    ///Try to interpret this capture as a `definition.class`
+    ///Try to interpret this capture as a `definition.class` ([anon_unions::DefinitionClass])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -989,7 +989,7 @@ impl<'cursor, 'tree> TagsCapture<'cursor, 'tree> {
             _ => None,
         }
     }
-    ///Try to interpret this capture as a `definition.method`
+    ///Try to interpret this capture as a `definition.method` ([super::nodes::DeclarationList])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -1006,7 +1006,7 @@ impl<'cursor, 'tree> TagsCapture<'cursor, 'tree> {
             _ => None,
         }
     }
-    ///Try to interpret this capture as a `definition.function`
+    ///Try to interpret this capture as a `definition.function` ([super::nodes::FunctionItem])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -1022,7 +1022,7 @@ impl<'cursor, 'tree> TagsCapture<'cursor, 'tree> {
             _ => None,
         }
     }
-    ///Try to interpret this capture as a `definition.interface`
+    ///Try to interpret this capture as a `definition.interface` ([super::nodes::TraitItem])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -1038,7 +1038,7 @@ impl<'cursor, 'tree> TagsCapture<'cursor, 'tree> {
             _ => None,
         }
     }
-    ///Try to interpret this capture as a `definition.module`
+    ///Try to interpret this capture as a `definition.module` ([super::nodes::ModItem])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -1054,7 +1054,7 @@ impl<'cursor, 'tree> TagsCapture<'cursor, 'tree> {
             _ => None,
         }
     }
-    ///Try to interpret this capture as a `definition.macro`
+    ///Try to interpret this capture as a `definition.macro` ([super::nodes::MacroDefinition])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -1070,7 +1070,7 @@ impl<'cursor, 'tree> TagsCapture<'cursor, 'tree> {
             _ => None,
         }
     }
-    ///Try to interpret this capture as a `reference.call`
+    ///Try to interpret this capture as a `reference.call` ([anon_unions::ReferenceCall])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -1091,7 +1091,7 @@ impl<'cursor, 'tree> TagsCapture<'cursor, 'tree> {
             _ => None,
         }
     }
-    ///Try to interpret this capture as a `reference.implementation`
+    ///Try to interpret this capture as a `reference.implementation` ([anon_unions::ReferenceImplementation])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -2262,7 +2262,7 @@ pub struct HighlightsMatch<'cursor, 'tree> {
 
 ```*/
 pub enum HighlightsCapture<'cursor, 'tree> {
-    ///A `constant`
+    ///A `constant` ([super::nodes::Identifier])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -2272,7 +2272,7 @@ pub enum HighlightsCapture<'cursor, 'tree> {
         node: super::nodes::Identifier<'tree>,
         match_: Option<HighlightsMatch<'cursor, 'tree>>,
     },
-    ///A `type`
+    ///A `type` ([anon_unions::Type])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -2286,7 +2286,7 @@ pub enum HighlightsCapture<'cursor, 'tree> {
         node: anon_unions::Type<'tree>,
         match_: Option<HighlightsMatch<'cursor, 'tree>>,
     },
-    ///A `constructor`
+    ///A `constructor` ([anon_unions::Constructor])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -2297,7 +2297,7 @@ pub enum HighlightsCapture<'cursor, 'tree> {
         node: anon_unions::Constructor<'tree>,
         match_: Option<HighlightsMatch<'cursor, 'tree>>,
     },
-    ///A `function`
+    ///A `function` ([anon_unions::Function])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -2312,7 +2312,7 @@ pub enum HighlightsCapture<'cursor, 'tree> {
         node: super::nodes::Identifier<'tree>,
         match_: Option<HighlightsMatch<'cursor, 'tree>>,
     },
-    ///A `function.method`
+    ///A `function.method` ([anon_unions::FunctionMethod])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -2323,7 +2323,7 @@ pub enum HighlightsCapture<'cursor, 'tree> {
         node: super::nodes::FieldIdentifier<'tree>,
         match_: Option<HighlightsMatch<'cursor, 'tree>>,
     },
-    ///A `function.macro`
+    ///A `function.macro` ([anon_unions::FunctionMacro])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -2334,7 +2334,7 @@ pub enum HighlightsCapture<'cursor, 'tree> {
         node: anon_unions::FunctionMacro<'tree>,
         match_: Option<HighlightsMatch<'cursor, 'tree>>,
     },
-    ///A `type.builtin`
+    ///A `type.builtin` ([super::nodes::PrimitiveType])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -2344,7 +2344,7 @@ pub enum HighlightsCapture<'cursor, 'tree> {
         node: super::nodes::PrimitiveType<'tree>,
         match_: Option<HighlightsMatch<'cursor, 'tree>>,
     },
-    ///A `property`
+    ///A `property` ([super::nodes::FieldIdentifier])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -2354,7 +2354,7 @@ pub enum HighlightsCapture<'cursor, 'tree> {
         node: super::nodes::FieldIdentifier<'tree>,
         match_: Option<HighlightsMatch<'cursor, 'tree>>,
     },
-    ///A `comment`
+    ///A `comment` ([anon_unions::Comment])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -2365,7 +2365,7 @@ pub enum HighlightsCapture<'cursor, 'tree> {
         node: anon_unions::Comment<'tree>,
         match_: Option<HighlightsMatch<'cursor, 'tree>>,
     },
-    ///A `punctuation.bracket`
+    ///A `punctuation.bracket` ([anon_unions::PunctuationBracket])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -2384,7 +2384,7 @@ pub enum HighlightsCapture<'cursor, 'tree> {
         node: anon_unions::PunctuationBracket<'tree>,
         match_: Option<HighlightsMatch<'cursor, 'tree>>,
     },
-    ///A `punctuation.delimiter`
+    ///A `punctuation.delimiter` ([anon_unions::PunctuationDelimiter])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -2398,7 +2398,7 @@ pub enum HighlightsCapture<'cursor, 'tree> {
         node: anon_unions::PunctuationDelimiter<'tree>,
         match_: Option<HighlightsMatch<'cursor, 'tree>>,
     },
-    ///A `variable.parameter`
+    ///A `variable.parameter` ([super::nodes::Identifier])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -2408,7 +2408,7 @@ pub enum HighlightsCapture<'cursor, 'tree> {
         node: super::nodes::Identifier<'tree>,
         match_: Option<HighlightsMatch<'cursor, 'tree>>,
     },
-    ///A `label`
+    ///A `label` ([super::nodes::Identifier])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -2418,7 +2418,7 @@ pub enum HighlightsCapture<'cursor, 'tree> {
         node: super::nodes::Identifier<'tree>,
         match_: Option<HighlightsMatch<'cursor, 'tree>>,
     },
-    ///A `keyword`
+    ///A `keyword` ([anon_unions::Keyword])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -2467,7 +2467,7 @@ pub enum HighlightsCapture<'cursor, 'tree> {
         node: anon_unions::Keyword<'tree>,
         match_: Option<HighlightsMatch<'cursor, 'tree>>,
     },
-    ///A `variable.builtin`
+    ///A `variable.builtin` ([super::nodes::_Self])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -2477,7 +2477,7 @@ pub enum HighlightsCapture<'cursor, 'tree> {
         node: super::nodes::_Self<'tree>,
         match_: Option<HighlightsMatch<'cursor, 'tree>>,
     },
-    ///A `string`
+    ///A `string` ([anon_unions::String])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -2489,7 +2489,7 @@ pub enum HighlightsCapture<'cursor, 'tree> {
         node: anon_unions::String<'tree>,
         match_: Option<HighlightsMatch<'cursor, 'tree>>,
     },
-    ///A `constant.builtin`
+    ///A `constant.builtin` ([anon_unions::ConstantBuiltin])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -2501,7 +2501,7 @@ pub enum HighlightsCapture<'cursor, 'tree> {
         node: anon_unions::ConstantBuiltin<'tree>,
         match_: Option<HighlightsMatch<'cursor, 'tree>>,
     },
-    ///A `escape`
+    ///A `escape` ([super::nodes::EscapeSequence])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -2511,7 +2511,7 @@ pub enum HighlightsCapture<'cursor, 'tree> {
         node: super::nodes::EscapeSequence<'tree>,
         match_: Option<HighlightsMatch<'cursor, 'tree>>,
     },
-    ///A `attribute`
+    ///A `attribute` ([anon_unions::Attribute])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -2522,7 +2522,7 @@ pub enum HighlightsCapture<'cursor, 'tree> {
         node: anon_unions::Attribute<'tree>,
         match_: Option<HighlightsMatch<'cursor, 'tree>>,
     },
-    ///A `operator`
+    ///A `operator` ([anon_unions::Operator])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -2867,7 +2867,7 @@ impl type_sitter_lib::TypedQuery for Highlights {
 }
 #[automatically_derived]
 impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
-    ///Returns an iterator over the nodes captured by `constant`
+    ///Returns an iterator over the nodes captured by `constant` ([super::nodes::Identifier])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -2892,7 +2892,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         }
             .next()
     }
-    ///Returns an iterator over the nodes captured by `type`
+    ///Returns an iterator over the nodes captured by `type` ([anon_unions::Type])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -2921,7 +2921,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         }
             .next()
     }
-    ///Returns an iterator over the nodes captured by `constructor`
+    ///Returns an iterator over the nodes captured by `constructor` ([anon_unions::Constructor])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -2947,7 +2947,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         }
             .next()
     }
-    ///Returns an iterator over the nodes captured by `function`
+    ///Returns an iterator over the nodes captured by `function` ([anon_unions::Function])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -2977,7 +2977,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         }
             .next()
     }
-    ///Returns an iterator over the nodes captured by `function.method`
+    ///Returns an iterator over the nodes captured by `function.method` ([anon_unions::FunctionMethod])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -3003,7 +3003,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         }
             .next()
     }
-    ///Returns an iterator over the nodes captured by `function.macro`
+    ///Returns an iterator over the nodes captured by `function.macro` ([anon_unions::FunctionMacro])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -3029,7 +3029,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         }
             .next()
     }
-    ///Returns an iterator over the nodes captured by `type.builtin`
+    ///Returns an iterator over the nodes captured by `type.builtin` ([super::nodes::PrimitiveType])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -3054,7 +3054,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         }
             .next()
     }
-    ///Returns an iterator over the nodes captured by `property`
+    ///Returns an iterator over the nodes captured by `property` ([super::nodes::FieldIdentifier])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -3079,7 +3079,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         }
             .next()
     }
-    ///Returns an iterator over the nodes captured by `comment`
+    ///Returns an iterator over the nodes captured by `comment` ([anon_unions::Comment])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -3105,7 +3105,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         }
             .next()
     }
-    ///Returns an iterator over the nodes captured by `punctuation.bracket`
+    ///Returns an iterator over the nodes captured by `punctuation.bracket` ([anon_unions::PunctuationBracket])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -3139,7 +3139,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         }
             .next()
     }
-    ///Returns an iterator over the nodes captured by `punctuation.delimiter`
+    ///Returns an iterator over the nodes captured by `punctuation.delimiter` ([anon_unions::PunctuationDelimiter])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -3170,7 +3170,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         }
             .next()
     }
-    ///Returns an iterator over the nodes captured by `variable.parameter`
+    ///Returns an iterator over the nodes captured by `variable.parameter` ([super::nodes::Identifier])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -3195,7 +3195,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         }
             .next()
     }
-    ///Returns an iterator over the nodes captured by `label`
+    ///Returns an iterator over the nodes captured by `label` ([super::nodes::Identifier])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -3220,7 +3220,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         }
             .next()
     }
-    ///Returns an iterator over the nodes captured by `keyword`
+    ///Returns an iterator over the nodes captured by `keyword` ([anon_unions::Keyword])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -3283,7 +3283,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
                 })
         }
     }
-    ///Returns an iterator over the nodes captured by `variable.builtin`
+    ///Returns an iterator over the nodes captured by `variable.builtin` ([super::nodes::_Self])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -3308,7 +3308,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         }
             .next()
     }
-    ///Returns an iterator over the nodes captured by `string`
+    ///Returns an iterator over the nodes captured by `string` ([anon_unions::String])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -3335,7 +3335,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         }
             .next()
     }
-    ///Returns an iterator over the nodes captured by `constant.builtin`
+    ///Returns an iterator over the nodes captured by `constant.builtin` ([anon_unions::ConstantBuiltin])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -3362,7 +3362,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         }
             .next()
     }
-    ///Returns an iterator over the nodes captured by `escape`
+    ///Returns an iterator over the nodes captured by `escape` ([super::nodes::EscapeSequence])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -3387,7 +3387,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         }
             .next()
     }
-    ///Returns an iterator over the nodes captured by `attribute`
+    ///Returns an iterator over the nodes captured by `attribute` ([anon_unions::Attribute])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -3413,7 +3413,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         }
             .next()
     }
-    ///Returns an iterator over the nodes captured by `operator`
+    ///Returns an iterator over the nodes captured by `operator` ([anon_unions::Operator])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -3472,7 +3472,7 @@ for HighlightsMatch<'cursor, 'tree> {
 }
 #[automatically_derived]
 impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
-    ///Try to interpret this capture as a `constant`
+    ///Try to interpret this capture as a `constant` ([super::nodes::Identifier])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -3487,7 +3487,7 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
             _ => None,
         }
     }
-    ///Try to interpret this capture as a `type`
+    ///Try to interpret this capture as a `type` ([anon_unions::Type])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -3506,7 +3506,7 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
             _ => None,
         }
     }
-    ///Try to interpret this capture as a `constructor`
+    ///Try to interpret this capture as a `constructor` ([anon_unions::Constructor])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -3522,7 +3522,7 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
             _ => None,
         }
     }
-    ///Try to interpret this capture as a `function`
+    ///Try to interpret this capture as a `function` ([anon_unions::Function])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -3542,7 +3542,7 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
             _ => None,
         }
     }
-    ///Try to interpret this capture as a `function.method`
+    ///Try to interpret this capture as a `function.method` ([anon_unions::FunctionMethod])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -3558,7 +3558,7 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
             _ => None,
         }
     }
-    ///Try to interpret this capture as a `function.macro`
+    ///Try to interpret this capture as a `function.macro` ([anon_unions::FunctionMacro])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -3574,7 +3574,7 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
             _ => None,
         }
     }
-    ///Try to interpret this capture as a `type.builtin`
+    ///Try to interpret this capture as a `type.builtin` ([super::nodes::PrimitiveType])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -3589,7 +3589,7 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
             _ => None,
         }
     }
-    ///Try to interpret this capture as a `property`
+    ///Try to interpret this capture as a `property` ([super::nodes::FieldIdentifier])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -3604,7 +3604,7 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
             _ => None,
         }
     }
-    ///Try to interpret this capture as a `comment`
+    ///Try to interpret this capture as a `comment` ([anon_unions::Comment])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -3620,7 +3620,7 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
             _ => None,
         }
     }
-    ///Try to interpret this capture as a `punctuation.bracket`
+    ///Try to interpret this capture as a `punctuation.bracket` ([anon_unions::PunctuationBracket])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -3646,7 +3646,7 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
             _ => None,
         }
     }
-    ///Try to interpret this capture as a `punctuation.delimiter`
+    ///Try to interpret this capture as a `punctuation.delimiter` ([anon_unions::PunctuationDelimiter])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -3667,7 +3667,7 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
             _ => None,
         }
     }
-    ///Try to interpret this capture as a `variable.parameter`
+    ///Try to interpret this capture as a `variable.parameter` ([super::nodes::Identifier])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -3682,7 +3682,7 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
             _ => None,
         }
     }
-    ///Try to interpret this capture as a `label`
+    ///Try to interpret this capture as a `label` ([super::nodes::Identifier])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -3697,7 +3697,7 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
             _ => None,
         }
     }
-    ///Try to interpret this capture as a `keyword`
+    ///Try to interpret this capture as a `keyword` ([anon_unions::Keyword])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -3751,7 +3751,7 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
             _ => None,
         }
     }
-    ///Try to interpret this capture as a `variable.builtin`
+    ///Try to interpret this capture as a `variable.builtin` ([super::nodes::_Self])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -3766,7 +3766,7 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
             _ => None,
         }
     }
-    ///Try to interpret this capture as a `string`
+    ///Try to interpret this capture as a `string` ([anon_unions::String])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -3783,7 +3783,7 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
             _ => None,
         }
     }
-    ///Try to interpret this capture as a `constant.builtin`
+    ///Try to interpret this capture as a `constant.builtin` ([anon_unions::ConstantBuiltin])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -3800,7 +3800,7 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
             _ => None,
         }
     }
-    ///Try to interpret this capture as a `escape`
+    ///Try to interpret this capture as a `escape` ([super::nodes::EscapeSequence])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -3815,7 +3815,7 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
             _ => None,
         }
     }
-    ///Try to interpret this capture as a `attribute`
+    ///Try to interpret this capture as a `attribute` ([anon_unions::Attribute])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -3831,7 +3831,7 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
             _ => None,
         }
     }
-    ///Try to interpret this capture as a `operator`
+    ///Try to interpret this capture as a `operator` ([anon_unions::Operator])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -4577,7 +4577,7 @@ pub struct InjectionsMatch<'cursor, 'tree> {
 
 ```*/
 pub enum InjectionsCapture<'cursor, 'tree> {
-    ///A `injection.content`
+    ///A `injection.content` ([anon_unions::InjectionContent])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -4636,7 +4636,7 @@ impl type_sitter_lib::TypedQuery for Injections {
 }
 #[automatically_derived]
 impl<'cursor, 'tree> InjectionsMatch<'cursor, 'tree> {
-    ///Returns an iterator over the nodes captured by `injection.content`
+    ///Returns an iterator over the nodes captured by `injection.content` ([anon_unions::InjectionContent])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -4703,7 +4703,7 @@ for InjectionsMatch<'cursor, 'tree> {
 }
 #[automatically_derived]
 impl<'cursor, 'tree> InjectionsCapture<'cursor, 'tree> {
-    ///Try to interpret this capture as a `injection.content`
+    ///Try to interpret this capture as a `injection.content` ([anon_unions::InjectionContent])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -4819,7 +4819,10 @@ for InjectionsCapture<'cursor, 'tree> {
 pub mod anon_unions {
     #[allow(unused_imports)]
     use super::super::nodes::*;
-    ///one of `{field_identifier | identifier | type_identifier}`
+    /**one of `{field_identifier | identifier | type_identifier}`:
+- [FieldIdentifier]
+- [Identifier]
+- [TypeIdentifier]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum Name<'tree> {
@@ -4829,7 +4832,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> Name<'tree> {
-        ///Returns the node if it is of kind `field_identifier`, otherwise returns None
+        ///Returns the node if it is of kind `field_identifier` ([FieldIdentifier]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn field_identifier(self) -> Option<FieldIdentifier<'tree>> {
@@ -4838,7 +4841,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `identifier`, otherwise returns None
+        ///Returns the node if it is of kind `identifier` ([Identifier]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn identifier(self) -> Option<Identifier<'tree>> {
@@ -4847,7 +4850,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `type_identifier`, otherwise returns None
+        ///Returns the node if it is of kind `type_identifier` ([TypeIdentifier]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn type_identifier(self) -> Option<TypeIdentifier<'tree>> {
@@ -4938,7 +4941,11 @@ pub mod anon_unions {
             }
         }
     }
-    ///one of `{enum_item | struct_item | type_item | union_item}`
+    /**one of `{enum_item | struct_item | type_item | union_item}`:
+- [EnumItem]
+- [StructItem]
+- [TypeItem]
+- [UnionItem]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum DefinitionClass<'tree> {
@@ -4949,7 +4956,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> DefinitionClass<'tree> {
-        ///Returns the node if it is of kind `enum_item`, otherwise returns None
+        ///Returns the node if it is of kind `enum_item` ([EnumItem]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn enum_item(self) -> Option<EnumItem<'tree>> {
@@ -4958,7 +4965,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `struct_item`, otherwise returns None
+        ///Returns the node if it is of kind `struct_item` ([StructItem]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn struct_item(self) -> Option<StructItem<'tree>> {
@@ -4967,7 +4974,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `type_item`, otherwise returns None
+        ///Returns the node if it is of kind `type_item` ([TypeItem]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn type_item(self) -> Option<TypeItem<'tree>> {
@@ -4976,7 +4983,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `union_item`, otherwise returns None
+        ///Returns the node if it is of kind `union_item` ([UnionItem]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn union_item(self) -> Option<UnionItem<'tree>> {
@@ -5081,7 +5088,9 @@ pub mod anon_unions {
             }
         }
     }
-    ///one of `{call_expression | macro_invocation}`
+    /**one of `{call_expression | macro_invocation}`:
+- [CallExpression]
+- [MacroInvocation]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum ReferenceCall<'tree> {
@@ -5090,7 +5099,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> ReferenceCall<'tree> {
-        ///Returns the node if it is of kind `call_expression`, otherwise returns None
+        ///Returns the node if it is of kind `call_expression` ([CallExpression]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn call_expression(self) -> Option<CallExpression<'tree>> {
@@ -5099,7 +5108,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `macro_invocation`, otherwise returns None
+        ///Returns the node if it is of kind `macro_invocation` ([MacroInvocation]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn macro_invocation(self) -> Option<MacroInvocation<'tree>> {
@@ -5176,7 +5185,9 @@ pub mod anon_unions {
             }
         }
     }
-    ///one of `{identifier | type_identifier}`
+    /**one of `{identifier | type_identifier}`:
+- [Identifier]
+- [TypeIdentifier]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum Type<'tree> {
@@ -5185,7 +5196,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> Type<'tree> {
-        ///Returns the node if it is of kind `identifier`, otherwise returns None
+        ///Returns the node if it is of kind `identifier` ([Identifier]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn identifier(self) -> Option<Identifier<'tree>> {
@@ -5194,7 +5205,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `type_identifier`, otherwise returns None
+        ///Returns the node if it is of kind `type_identifier` ([TypeIdentifier]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn type_identifier(self) -> Option<TypeIdentifier<'tree>> {
@@ -5271,7 +5282,9 @@ pub mod anon_unions {
             }
         }
     }
-    ///one of `{identifier | type_identifier}`
+    /**one of `{identifier | type_identifier}`:
+- [Identifier]
+- [TypeIdentifier]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum Constructor<'tree> {
@@ -5280,7 +5293,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> Constructor<'tree> {
-        ///Returns the node if it is of kind `identifier`, otherwise returns None
+        ///Returns the node if it is of kind `identifier` ([Identifier]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn identifier(self) -> Option<Identifier<'tree>> {
@@ -5289,7 +5302,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `type_identifier`, otherwise returns None
+        ///Returns the node if it is of kind `type_identifier` ([TypeIdentifier]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn type_identifier(self) -> Option<TypeIdentifier<'tree>> {
@@ -5366,7 +5379,9 @@ pub mod anon_unions {
             }
         }
     }
-    ///one of `{! | identifier}`
+    /**one of `{! | identifier}`:
+- [symbols::Not]
+- [Identifier]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum FunctionMacro<'tree> {
@@ -5375,7 +5390,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> FunctionMacro<'tree> {
-        ///Returns the node if it is of kind `!`, otherwise returns None
+        ///Returns the node if it is of kind `!` ([symbols::Not]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn not(self) -> Option<symbols::Not<'tree>> {
@@ -5384,7 +5399,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `identifier`, otherwise returns None
+        ///Returns the node if it is of kind `identifier` ([Identifier]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn identifier(self) -> Option<Identifier<'tree>> {
@@ -5461,7 +5476,9 @@ pub mod anon_unions {
             }
         }
     }
-    ///one of `{block_comment | line_comment}`
+    /**one of `{block_comment | line_comment}`:
+- [BlockComment]
+- [LineComment]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum Comment<'tree> {
@@ -5470,7 +5487,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> Comment<'tree> {
-        ///Returns the node if it is of kind `block_comment`, otherwise returns None
+        ///Returns the node if it is of kind `block_comment` ([BlockComment]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn block_comment(self) -> Option<BlockComment<'tree>> {
@@ -5479,7 +5496,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `line_comment`, otherwise returns None
+        ///Returns the node if it is of kind `line_comment` ([LineComment]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn line_comment(self) -> Option<LineComment<'tree>> {
@@ -5556,7 +5573,15 @@ pub mod anon_unions {
             }
         }
     }
-    ///one of `{( | ) | < | > | [ | ] | { | }}`
+    /**one of `{( | ) | < | > | [ | ] | { | }}`:
+- [symbols::LParen]
+- [symbols::RParen]
+- [symbols::Lt]
+- [symbols::Gt]
+- [symbols::LBracket]
+- [symbols::RBracket]
+- [symbols::LBrace]
+- [symbols::RBrace]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum PunctuationBracket<'tree> {
@@ -5571,7 +5596,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> PunctuationBracket<'tree> {
-        ///Returns the node if it is of kind `(`, otherwise returns None
+        ///Returns the node if it is of kind `(` ([symbols::LParen]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn l_paren(self) -> Option<symbols::LParen<'tree>> {
@@ -5580,7 +5605,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `)`, otherwise returns None
+        ///Returns the node if it is of kind `)` ([symbols::RParen]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r_paren(self) -> Option<symbols::RParen<'tree>> {
@@ -5589,7 +5614,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `<`, otherwise returns None
+        ///Returns the node if it is of kind `<` ([symbols::Lt]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn lt(self) -> Option<symbols::Lt<'tree>> {
@@ -5598,7 +5623,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `>`, otherwise returns None
+        ///Returns the node if it is of kind `>` ([symbols::Gt]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn gt(self) -> Option<symbols::Gt<'tree>> {
@@ -5607,7 +5632,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `[`, otherwise returns None
+        ///Returns the node if it is of kind `[` ([symbols::LBracket]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn l_bracket(self) -> Option<symbols::LBracket<'tree>> {
@@ -5616,7 +5641,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `]`, otherwise returns None
+        ///Returns the node if it is of kind `]` ([symbols::RBracket]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r_bracket(self) -> Option<symbols::RBracket<'tree>> {
@@ -5625,7 +5650,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `{`, otherwise returns None
+        ///Returns the node if it is of kind `{` ([symbols::LBrace]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn l_brace(self) -> Option<symbols::LBrace<'tree>> {
@@ -5634,7 +5659,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `}`, otherwise returns None
+        ///Returns the node if it is of kind `}` ([symbols::RBrace]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r_brace(self) -> Option<symbols::RBrace<'tree>> {
@@ -5795,7 +5820,12 @@ pub mod anon_unions {
             }
         }
     }
-    ///one of `{, | . | : | :: | ;}`
+    /**one of `{, | . | : | :: | ;}`:
+- [symbols::Comma]
+- [symbols::Dot]
+- [symbols::Colon]
+- [symbols::ColonColon]
+- [symbols::Semicolon]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum PunctuationDelimiter<'tree> {
@@ -5807,7 +5837,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> PunctuationDelimiter<'tree> {
-        ///Returns the node if it is of kind `,`, otherwise returns None
+        ///Returns the node if it is of kind `,` ([symbols::Comma]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn comma(self) -> Option<symbols::Comma<'tree>> {
@@ -5816,7 +5846,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `.`, otherwise returns None
+        ///Returns the node if it is of kind `.` ([symbols::Dot]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn dot(self) -> Option<symbols::Dot<'tree>> {
@@ -5825,7 +5855,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `:`, otherwise returns None
+        ///Returns the node if it is of kind `:` ([symbols::Colon]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn colon(self) -> Option<symbols::Colon<'tree>> {
@@ -5834,7 +5864,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `::`, otherwise returns None
+        ///Returns the node if it is of kind `::` ([symbols::ColonColon]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn colon_colon(self) -> Option<symbols::ColonColon<'tree>> {
@@ -5843,7 +5873,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `;`, otherwise returns None
+        ///Returns the node if it is of kind `;` ([symbols::Semicolon]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn semicolon(self) -> Option<symbols::Semicolon<'tree>> {
@@ -5962,7 +5992,45 @@ pub mod anon_unions {
             }
         }
     }
-    ///one of `{as | async | await | break | const | continue | crate | default | dyn | else | enum | extern | fn | for | if | impl | in | let | loop | macro_rules! | match | mod | move | mutable_specifier | pub | ref | return | self | static | struct | super | trait | type | union | unsafe | use | where | while}`
+    /**one of `{as | async | await | break | const | continue | crate | default | dyn | else | enum | extern | fn | for | if | impl | in | let | loop | macro_rules! | match | mod | move | mutable_specifier | pub | ref | return | self | static | struct | super | trait | type | union | unsafe | use | where | while}`:
+- [unnamed::As]
+- [unnamed::Async]
+- [unnamed::Await]
+- [unnamed::Break]
+- [unnamed::Const]
+- [unnamed::Continue]
+- [Crate]
+- [unnamed::Default]
+- [unnamed::Dyn]
+- [unnamed::Else]
+- [unnamed::Enum]
+- [unnamed::Extern]
+- [unnamed::Fn]
+- [unnamed::For]
+- [unnamed::If]
+- [unnamed::Impl]
+- [unnamed::In]
+- [unnamed::Let]
+- [unnamed::Loop]
+- [symbols::MacroRulesNot]
+- [unnamed::Match]
+- [unnamed::Mod]
+- [unnamed::Move]
+- [MutableSpecifier]
+- [unnamed::Pub]
+- [unnamed::Ref]
+- [unnamed::Return]
+- [_Self]
+- [unnamed::Static]
+- [unnamed::Struct]
+- [Super]
+- [unnamed::Trait]
+- [unnamed::Type]
+- [unnamed::Union]
+- [unnamed::Unsafe]
+- [unnamed::Use]
+- [unnamed::Where]
+- [unnamed::While]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum Keyword<'tree> {
@@ -6007,7 +6075,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> Keyword<'tree> {
-        ///Returns the node if it is of kind `as`, otherwise returns None
+        ///Returns the node if it is of kind `as` ([unnamed::As]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#as(self) -> Option<unnamed::As<'tree>> {
@@ -6016,7 +6084,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `async`, otherwise returns None
+        ///Returns the node if it is of kind `async` ([unnamed::Async]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#async(self) -> Option<unnamed::Async<'tree>> {
@@ -6025,7 +6093,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `await`, otherwise returns None
+        ///Returns the node if it is of kind `await` ([unnamed::Await]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#await(self) -> Option<unnamed::Await<'tree>> {
@@ -6034,7 +6102,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `break`, otherwise returns None
+        ///Returns the node if it is of kind `break` ([unnamed::Break]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#break(self) -> Option<unnamed::Break<'tree>> {
@@ -6043,7 +6111,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `const`, otherwise returns None
+        ///Returns the node if it is of kind `const` ([unnamed::Const]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#const(self) -> Option<unnamed::Const<'tree>> {
@@ -6052,7 +6120,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `continue`, otherwise returns None
+        ///Returns the node if it is of kind `continue` ([unnamed::Continue]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#continue(self) -> Option<unnamed::Continue<'tree>> {
@@ -6061,7 +6129,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `crate`, otherwise returns None
+        ///Returns the node if it is of kind `crate` ([Crate]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn crate_(self) -> Option<Crate<'tree>> {
@@ -6070,7 +6138,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `default`, otherwise returns None
+        ///Returns the node if it is of kind `default` ([unnamed::Default]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn default(self) -> Option<unnamed::Default<'tree>> {
@@ -6079,7 +6147,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `dyn`, otherwise returns None
+        ///Returns the node if it is of kind `dyn` ([unnamed::Dyn]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#dyn(self) -> Option<unnamed::Dyn<'tree>> {
@@ -6088,7 +6156,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `else`, otherwise returns None
+        ///Returns the node if it is of kind `else` ([unnamed::Else]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#else(self) -> Option<unnamed::Else<'tree>> {
@@ -6097,7 +6165,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `enum`, otherwise returns None
+        ///Returns the node if it is of kind `enum` ([unnamed::Enum]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#enum(self) -> Option<unnamed::Enum<'tree>> {
@@ -6106,7 +6174,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `extern`, otherwise returns None
+        ///Returns the node if it is of kind `extern` ([unnamed::Extern]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#extern(self) -> Option<unnamed::Extern<'tree>> {
@@ -6115,7 +6183,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `fn`, otherwise returns None
+        ///Returns the node if it is of kind `fn` ([unnamed::Fn]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#fn(self) -> Option<unnamed::Fn<'tree>> {
@@ -6124,7 +6192,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `for`, otherwise returns None
+        ///Returns the node if it is of kind `for` ([unnamed::For]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#for(self) -> Option<unnamed::For<'tree>> {
@@ -6133,7 +6201,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `if`, otherwise returns None
+        ///Returns the node if it is of kind `if` ([unnamed::If]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#if(self) -> Option<unnamed::If<'tree>> {
@@ -6142,7 +6210,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `impl`, otherwise returns None
+        ///Returns the node if it is of kind `impl` ([unnamed::Impl]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#impl(self) -> Option<unnamed::Impl<'tree>> {
@@ -6151,7 +6219,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `in`, otherwise returns None
+        ///Returns the node if it is of kind `in` ([unnamed::In]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#in(self) -> Option<unnamed::In<'tree>> {
@@ -6160,7 +6228,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `let`, otherwise returns None
+        ///Returns the node if it is of kind `let` ([unnamed::Let]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#let(self) -> Option<unnamed::Let<'tree>> {
@@ -6169,7 +6237,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `loop`, otherwise returns None
+        ///Returns the node if it is of kind `loop` ([unnamed::Loop]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#loop(self) -> Option<unnamed::Loop<'tree>> {
@@ -6178,7 +6246,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `macro_rules!`, otherwise returns None
+        ///Returns the node if it is of kind `macro_rules!` ([symbols::MacroRulesNot]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn macro_rules_not(self) -> Option<symbols::MacroRulesNot<'tree>> {
@@ -6187,7 +6255,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `match`, otherwise returns None
+        ///Returns the node if it is of kind `match` ([unnamed::Match]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#match(self) -> Option<unnamed::Match<'tree>> {
@@ -6196,7 +6264,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `mod`, otherwise returns None
+        ///Returns the node if it is of kind `mod` ([unnamed::Mod]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#mod(self) -> Option<unnamed::Mod<'tree>> {
@@ -6205,7 +6273,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `move`, otherwise returns None
+        ///Returns the node if it is of kind `move` ([unnamed::Move]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#move(self) -> Option<unnamed::Move<'tree>> {
@@ -6214,7 +6282,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `mutable_specifier`, otherwise returns None
+        ///Returns the node if it is of kind `mutable_specifier` ([MutableSpecifier]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn mutable_specifier(self) -> Option<MutableSpecifier<'tree>> {
@@ -6223,7 +6291,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `pub`, otherwise returns None
+        ///Returns the node if it is of kind `pub` ([unnamed::Pub]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#pub(self) -> Option<unnamed::Pub<'tree>> {
@@ -6232,7 +6300,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `ref`, otherwise returns None
+        ///Returns the node if it is of kind `ref` ([unnamed::Ref]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#ref(self) -> Option<unnamed::Ref<'tree>> {
@@ -6241,7 +6309,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `return`, otherwise returns None
+        ///Returns the node if it is of kind `return` ([unnamed::Return]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#return(self) -> Option<unnamed::Return<'tree>> {
@@ -6250,7 +6318,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `self`, otherwise returns None
+        ///Returns the node if it is of kind `self` ([_Self]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn _self(self) -> Option<_Self<'tree>> {
@@ -6259,7 +6327,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `static`, otherwise returns None
+        ///Returns the node if it is of kind `static` ([unnamed::Static]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#static(self) -> Option<unnamed::Static<'tree>> {
@@ -6268,7 +6336,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `struct`, otherwise returns None
+        ///Returns the node if it is of kind `struct` ([unnamed::Struct]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#struct(self) -> Option<unnamed::Struct<'tree>> {
@@ -6277,7 +6345,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `super`, otherwise returns None
+        ///Returns the node if it is of kind `super` ([Super]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn super_(self) -> Option<Super<'tree>> {
@@ -6286,7 +6354,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `trait`, otherwise returns None
+        ///Returns the node if it is of kind `trait` ([unnamed::Trait]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#trait(self) -> Option<unnamed::Trait<'tree>> {
@@ -6295,7 +6363,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `type`, otherwise returns None
+        ///Returns the node if it is of kind `type` ([unnamed::Type]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#type(self) -> Option<unnamed::Type<'tree>> {
@@ -6304,7 +6372,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `union`, otherwise returns None
+        ///Returns the node if it is of kind `union` ([unnamed::Union]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn union(self) -> Option<unnamed::Union<'tree>> {
@@ -6313,7 +6381,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `unsafe`, otherwise returns None
+        ///Returns the node if it is of kind `unsafe` ([unnamed::Unsafe]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#unsafe(self) -> Option<unnamed::Unsafe<'tree>> {
@@ -6322,7 +6390,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `use`, otherwise returns None
+        ///Returns the node if it is of kind `use` ([unnamed::Use]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#use(self) -> Option<unnamed::Use<'tree>> {
@@ -6331,7 +6399,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `where`, otherwise returns None
+        ///Returns the node if it is of kind `where` ([unnamed::Where]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#where(self) -> Option<unnamed::Where<'tree>> {
@@ -6340,7 +6408,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `while`, otherwise returns None
+        ///Returns the node if it is of kind `while` ([unnamed::While]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#while(self) -> Option<unnamed::While<'tree>> {
@@ -6921,7 +6989,10 @@ pub mod anon_unions {
             }
         }
     }
-    ///one of `{char_literal | raw_string_literal | string_literal}`
+    /**one of `{char_literal | raw_string_literal | string_literal}`:
+- [CharLiteral]
+- [RawStringLiteral]
+- [StringLiteral]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum String<'tree> {
@@ -6931,7 +7002,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> String<'tree> {
-        ///Returns the node if it is of kind `char_literal`, otherwise returns None
+        ///Returns the node if it is of kind `char_literal` ([CharLiteral]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn char_literal(self) -> Option<CharLiteral<'tree>> {
@@ -6940,7 +7011,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `raw_string_literal`, otherwise returns None
+        ///Returns the node if it is of kind `raw_string_literal` ([RawStringLiteral]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn raw_string_literal(self) -> Option<RawStringLiteral<'tree>> {
@@ -6949,7 +7020,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `string_literal`, otherwise returns None
+        ///Returns the node if it is of kind `string_literal` ([StringLiteral]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn string_literal(self) -> Option<StringLiteral<'tree>> {
@@ -7040,7 +7111,10 @@ pub mod anon_unions {
             }
         }
     }
-    ///one of `{boolean_literal | float_literal | integer_literal}`
+    /**one of `{boolean_literal | float_literal | integer_literal}`:
+- [BooleanLiteral]
+- [FloatLiteral]
+- [IntegerLiteral]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum ConstantBuiltin<'tree> {
@@ -7050,7 +7124,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> ConstantBuiltin<'tree> {
-        ///Returns the node if it is of kind `boolean_literal`, otherwise returns None
+        ///Returns the node if it is of kind `boolean_literal` ([BooleanLiteral]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn boolean_literal(self) -> Option<BooleanLiteral<'tree>> {
@@ -7059,7 +7133,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `float_literal`, otherwise returns None
+        ///Returns the node if it is of kind `float_literal` ([FloatLiteral]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn float_literal(self) -> Option<FloatLiteral<'tree>> {
@@ -7068,7 +7142,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `integer_literal`, otherwise returns None
+        ///Returns the node if it is of kind `integer_literal` ([IntegerLiteral]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn integer_literal(self) -> Option<IntegerLiteral<'tree>> {
@@ -7159,7 +7233,9 @@ pub mod anon_unions {
             }
         }
     }
-    ///one of `{attribute_item | inner_attribute_item}`
+    /**one of `{attribute_item | inner_attribute_item}`:
+- [AttributeItem]
+- [InnerAttributeItem]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum Attribute<'tree> {
@@ -7168,7 +7244,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> Attribute<'tree> {
-        ///Returns the node if it is of kind `attribute_item`, otherwise returns None
+        ///Returns the node if it is of kind `attribute_item` ([AttributeItem]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn attribute_item(self) -> Option<AttributeItem<'tree>> {
@@ -7177,7 +7253,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `inner_attribute_item`, otherwise returns None
+        ///Returns the node if it is of kind `inner_attribute_item` ([InnerAttributeItem]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn inner_attribute_item(self) -> Option<InnerAttributeItem<'tree>> {
@@ -7254,7 +7330,10 @@ pub mod anon_unions {
             }
         }
     }
-    ///one of `{& | ' | *}`
+    /**one of `{& | ' | *}`:
+- [symbols::And]
+- [symbols::Quote]
+- [symbols::Mul]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum Operator<'tree> {
@@ -7264,7 +7343,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> Operator<'tree> {
-        ///Returns the node if it is of kind `&`, otherwise returns None
+        ///Returns the node if it is of kind `&` ([symbols::And]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn and(self) -> Option<symbols::And<'tree>> {
@@ -7273,7 +7352,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `'`, otherwise returns None
+        ///Returns the node if it is of kind `'` ([symbols::Quote]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn quote(self) -> Option<symbols::Quote<'tree>> {
@@ -7282,7 +7361,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `*`, otherwise returns None
+        ///Returns the node if it is of kind `*` ([symbols::Mul]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn mul(self) -> Option<symbols::Mul<'tree>> {

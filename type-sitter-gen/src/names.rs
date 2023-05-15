@@ -1,5 +1,7 @@
+use std::borrow::Cow;
 use convert_case::{Case, Casing};
-use std::fmt::Write;
+use std::fmt::{Display, Write};
+use join_lazy_fmt::Join;
 use serde::Deserialize;
 use crate::node_types::types::NodeModule;
 
@@ -65,6 +67,34 @@ impl NodeName {
             true => NodeModule::Toplevel
         };
         Self { sexp_name, rust_type_name, rust_method_name, is_implicit, module }
+    }
+
+    pub fn kind(names: &[NodeName]) -> Cow<'_, str> {
+        match names.len() {
+            0 => Cow::Borrowed("{}"),
+            1 => Cow::Borrowed(&names[0].sexp_name),
+            _ => Cow::Owned(format!("{{{}}}", " | ".join(names.iter().map(|n| &n.sexp_name))))
+        }
+    }
+
+    pub fn rust_type_path(&self) -> Cow<'_, str> {
+        match self.module {
+            NodeModule::Toplevel => Cow::Borrowed(&self.rust_type_name),
+            NodeModule::Unnamed => Cow::Owned(format!("unnamed::{}", self.rust_type_name)),
+            NodeModule::Symbols => Cow::Owned(format!("symbols::{}", self.rust_type_name))
+        }
+    }
+
+    pub fn rust_type_path_of(names: &[NodeName]) -> Cow<'_, str> {
+        match names.len() {
+            0 => Cow::Borrowed("type_sitter_lib::Never"),
+            1 => names[0].rust_type_path(),
+            _ => Cow::Owned(format!("anon_unions::{}", Self::anon_union_type_name(names)))
+        }
+    }
+
+    pub(super) fn anon_union_type_name(names: &[NodeName]) -> impl Display + '_ {
+        "_".join(names.iter().map(|name| &name.rust_type_name))
     }
 }
 

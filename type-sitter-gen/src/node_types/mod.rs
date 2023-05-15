@@ -1,5 +1,6 @@
 /// From https://github.com/serde-rs/json/issues/404#issuecomment-892957228
 mod deserialize_json_array_as_stream;
+mod detail_doc;
 pub(crate) mod types;
 pub(crate) mod print;
 mod generated_tokens;
