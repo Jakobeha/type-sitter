@@ -12,7 +12,7 @@ edition = "2021"
 [dependencies]
 clap = { version = "4.2.7", features = ["derive"] }
 thiserror = "1.0.40"
-type-sitter-gen = { path = "../type-sitter-gen", version = "0.2.0" }
+type-sitter-gen = { path = "../type-sitter-gen", version = "0.2.1" }
 lazy_static = "1.4.0"
 rust-format = "0.3.4"
 syn = "2.0.15"
