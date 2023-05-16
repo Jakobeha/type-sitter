@@ -404,7 +404,7 @@ impl Index<Span> for str {
 impl<'a> Index<&'a Span> for str {
     type Output = str;
 
-    fn index(&self, index: Span) -> &Self::Output {
+    fn index(&self, index: &'a Span) -> &Self::Output {
         &self[index.range()]
     }
 }
