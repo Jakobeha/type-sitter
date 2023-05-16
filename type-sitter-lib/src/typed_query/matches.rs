@@ -11,7 +11,7 @@ use crate::TypedQuery;
 /// Iterate a typed query's matches (see [tree_sitter::QueryMatches])
 ///
 /// [tree_sitter::QueryMatches] is NOT a real iterator, it's a [StreamingIterator] (see
-///     https://github.com/tree-sitter/tree-sitter/issues/608). Therefore this doesn't implement
+///     <https://github.com/tree-sitter/tree-sitter/issues/608>). Therefore this doesn't implement
 ///     [Iterator]
 #[cfg(feature = "tree-sitter-wrapper")]
 pub struct TypedQueryMatches<'cursor, 'tree: 'cursor, Query: TypedQuery, Text: TextProvider<'cursor> = &'cursor Tree> {
@@ -22,6 +22,10 @@ pub struct TypedQueryMatches<'cursor, 'tree: 'cursor, Query: TypedQuery, Text: T
 }
 
 /// Iterate a typed query's matches (see [tree_sitter::QueryMatches])
+///
+/// [tree_sitter::QueryMatches] is NOT a real iterator, it's a [StreamingIterator] (see
+///     <https://github.com/tree-sitter/tree-sitter/issues/608>). Therefore this doesn't implement
+///     [Iterator]
 #[cfg(not(feature = "tree-sitter-wrapper"))]
 pub struct TypedQueryMatches<'cursor, 'tree, Query: TypedQuery, Text: TextProvider<'cursor>> {
     typed_query: &'cursor Query,
@@ -29,7 +33,7 @@ pub struct TypedQueryMatches<'cursor, 'tree, Query: TypedQuery, Text: TextProvid
     current_match: Option<Query::Match<'cursor, 'tree>>,
 }
 
-/// A match from a [TypedQuery] with [TypedNode]s
+/// A match from a [TypedQuery] with [crate::TypedNode]s
 pub trait TypedQueryMatch<'cursor, 'tree: 'cursor>: Debug {
     /// The type of query this match came from
     type Query: TypedQuery<Match<'cursor, 'tree> = Self>;

@@ -19,7 +19,7 @@ impl<'tree> UntypedNode<'tree> {
         Self(node)
     }
 
-    /// Try to upcast to the given type. See [TypedNode::try_from]
+    /// Try to upcast to the given type. See [TypedNode]
     #[inline]
     pub fn to<Type: TypedNode<'tree>>(&self) -> NodeResult<Type> {
         Type::try_from(self.0)
@@ -66,7 +66,7 @@ impl<'tree> UntypedNamedNode<'tree> {
         Self(node)
     }
 
-    /// Try to upcast to the given type. See [TypedNode::try_from]
+    /// Try to upcast to the given type. See [TypedNode]
     #[inline]
     pub fn to<Type: TypedNode<'tree>>(&self) -> NodeResult<Type> {
         Type::try_from(self.0)

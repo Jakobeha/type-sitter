@@ -67,7 +67,7 @@ pub struct QueryCursor {
 /// Wrapper around [tree_sitter::QueryMatches]
 ///
 /// [tree_sitter::QueryMatches] is NOT a real iterator, it's a [StreamingIterator] (see
-///     https://github.com/tree-sitter/tree-sitter/issues/608). Therefore this doesn't implement
+///     <https://github.com/tree-sitter/tree-sitter/issues/608>). Therefore this doesn't implement
 ///     [Iterator]
 pub struct QueryMatches<'query, 'tree: 'query> {
     query_matches: tree_sitter::QueryMatches<'query, 'tree, &'query Tree>,

@@ -4,7 +4,7 @@ test -z "$(git status --porcelain)" || (echo "Working directory is not clean" &&
 echo "*** PUBLISHING type-sitter-gen"
 cargo publish -p type-sitter-gen
 echo "*** PUBLISHING type-sitter-lib"
-cargo publish -p type-sitter-lib --features tree-sitter-wrapper
+cargo publish -p type-sitter-lib
 echo "*** PUBLISHING type-sitter-proc"
 cargo publish -p type-sitter-proc
 echo "*** PUBLISHING type-sitter-cli"

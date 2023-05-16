@@ -11,7 +11,7 @@ edition = "2021"
 
 [dev-dependencies]
 type-sitter-proc = { path = "../type-sitter-proc", version = "0.2.0" }
-type-sitter-lib = { path = "../type-sitter-lib", version = "0.2.0" }
+type-sitter-lib = { path = "../type-sitter-lib", version = "0.2.0", default-features = false }
 tree-sitter-json = { path = "../vendor/tree-sitter-json", version = "0.20.0" }
 tree-sitter-rust = { path = "../vendor/tree-sitter-rust", version = "0.20.3" }
 tree-sitter = "0.20.10"

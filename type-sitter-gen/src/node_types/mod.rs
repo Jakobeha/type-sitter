@@ -1,4 +1,4 @@
-/// From https://github.com/serde-rs/json/issues/404#issuecomment-892957228
+/// From <https://github.com/serde-rs/json/issues/404#issuecomment-892957228>
 mod deserialize_json_array_as_stream;
 mod detail_doc;
 pub(crate) mod types;
@@ -17,9 +17,8 @@ pub use generated_tokens::GeneratedNodeTokens;
 ///
 /// # Parameters
 /// - `path`: Path to the `node-types.json` file of the language.
-/// - `tree_sitter`: Path to the `tree_sitter` crate. Typically either
-///   [type_sitter_gen::tree_sitter] or [type_sitter_gen::type_sitter_lib_wrapper], but you can
-///   provide a path to your own wrapper as well.
+/// - `tree_sitter`: Path to the `tree_sitter` crate. Typically either [crate::tree_sitter] or
+///   [crate::type_sitter_lib_wrapper], but you can provide a path to your own wrapper as well.
 ///
 /// # Example
 ///

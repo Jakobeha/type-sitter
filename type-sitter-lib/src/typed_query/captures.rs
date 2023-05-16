@@ -21,7 +21,7 @@ pub struct TypedQueryCaptures<'cursor, 'tree, Query: TypedQuery, Text: TextProvi
     untyped_captures: tree_sitter::QueryCaptures<'cursor, 'tree, Text>,
 }
 
-/// A capture from a [TypedQuery] with [TypedNode]s
+/// A capture from a [TypedQuery] with [crate::TypedNode]s
 pub trait TypedQueryCapture<'cursor, 'tree: 'cursor>: Debug + Clone {
     /// The type of query this capture came from
     type Query: TypedQuery<Capture<'cursor, 'tree> = Self>;
@@ -30,11 +30,11 @@ pub trait TypedQueryCapture<'cursor, 'tree: 'cursor>: Debug + Clone {
     fn query(&self) -> &'cursor Self::Query;
 
     /// This capture's match, if iterating via [TypedQueryCaptures].
-    /// If iterating via [TypedQueryMatchCaptures] this will be `None`.
+    /// If iterating via [crate::TypedQueryMatchCaptures] this will be `None`.
     fn match_(&self) -> Option<&<Self::Query as TypedQuery>::Match<'cursor, 'tree>>;
 
     /// Destruct into this capture's match, if iterating via [TypedQueryCaptures].
-    /// If iterating via [TypedQueryMatchCaptures] this will be `None`.
+    /// If iterating via [crate::TypedQueryMatchCaptures] this will be `None`.
     fn into_match(self) -> Option<<Self::Query as TypedQuery>::Match<'cursor, 'tree>>
         where <Self::Query as TypedQuery>::Match<'cursor, 'tree>: Sized;
 

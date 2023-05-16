@@ -9,6 +9,7 @@ keywords = ["type-sitter", "tree-sitter"]
 edition = "2021"
 
 [features]
+default = ["tree-sitter-wrapper"]
 tree-sitter-wrapper = []
 
 [dependencies]

@@ -21,7 +21,12 @@ mod unwrap_and_flatten_multi;
 /// Untyped "typed" nodes (implement [TypedNode] but don't actually have a type)
 mod untyped_nodes;
 
-/// Typed node wrapper
+/// Typed node wrapper.
+///
+/// This implements `TryFrom<Node<'tree>>`, which will succeed iff the node is of the correct type.
+/// That is how you convert untyped nodes into types nodes. If you're absolutely sure the node is
+/// correct, you may also use [TypedNode::from_node_unchecked], though it's honestly probably not
+/// worth the possible performance gain.
 pub trait TypedNode<'tree>: TryFrom<Node<'tree>, Error=IncorrectKind<'tree>> + Debug + Clone + Copy + PartialEq + Eq + Hash {
     /// Kind of nodes this wraps. Note that it can wrap sub-kinds, so an instance's node's kind may
     /// not be this exact value

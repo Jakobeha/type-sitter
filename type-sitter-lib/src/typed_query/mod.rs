@@ -15,7 +15,7 @@ mod matches;
 mod captures;
 
 /// A query which can generate type-safe matches and captures,
-/// which contain [TypedNode]s
+/// which contain [crate::TypedNode]s
 pub trait TypedQuery {
     /// A match of this typed query (runtime pattern index)
     type Match<'cursor, 'tree: 'cursor>: TypedQueryMatch<'cursor, 'tree>;

@@ -1,6 +1,6 @@
 /// Print query
 mod print;
-/// Dynamically-load a [Language] to create [Query]s
+/// Dynamically-load a [tree_sitter::Language] to create [Query]s
 mod dyload_language;
 /// Tree-sitter query s-expression dialect
 mod sexp;
@@ -23,13 +23,12 @@ pub use generated_tokens::GeneratedQueryTokens;
 /// # Parameters
 /// - `path`: Path to the queries. Must point to a `.scm` or directory of `.scm` files. If a
 ///   directory, this function will generate submodules for each `.scm`.
-/// - `language_path`: path to the tree-sitter language module, where the [Language] will be
-///   dynamically loaded
-/// - `nodes`: Path to the crate with the typed node wrappers. Typically
-///   [type_sitter_gen::super_nodes]
+/// - `language_path`: path to the tree-sitter language module, where the [tree_sitter::Language]
+///   will be dynamically loaded
+/// - `nodes`: Path to the crate with the typed node wrappers. Typically [crate::super_nodes]
 /// - `use_wrapper`: Whether to use `tree_sitter_wrapper` or `tree_sitter`
-/// - `tree_sitter`: Path to the crate with the tree-sitter API. Typically [tree_sitter] if
-///    `use_wrapper` is false, or [type_sitter_gen::tree_sitter_wrapper] if `use_wrapper` is true
+/// - `tree_sitter`: Path to the crate with the tree-sitter API. Typically [crate::tree_sitter] if
+///    `use_wrapper` is false, or [crate::type_sitter_lib_wrapper] if `use_wrapper` is true
 ///
 /// # Example
 ///
@@ -61,13 +60,12 @@ pub fn generate_queries(
 /// # Parameters
 /// - `path`: Path to the queries. Must point to directory of `.scm` files. This function will
 ///   generate submodules for each `.scm`.
-/// - `language_path`: path to the tree-sitter language module, where the [Language] will be
-///   dynamically loaded
-/// - `nodes`: Path to the crate with the typed node wrappers. Typically
-///   [type_sitter_gen::super_nodes]
+/// - `language_path`: path to the tree-sitter language module, where the [tree_sitter::Language]
+///   will be dynamically loaded
+/// - `nodes`: Path to the crate with the typed node wrappers. Typically [crate::super_nodes]
 /// - `use_wrapper`: Whether to use `tree_sitter_wrapper` or `tree_sitter`
-/// - `tree_sitter`: Path to the crate with the tree-sitter API. Typically [tree_sitter] if
-///   `use_wrapper` is false, or [type_sitter_gen::tree_sitter_wrapper] if `use_wrapper` is true
+/// - `tree_sitter`: Path to the crate with the tree-sitter API. Typically [crate::tree_sitter] if
+///   `use_wrapper` is false, or [crate::type_sitter_lib_wrapper] if `use_wrapper` is true
 ///
 /// # Example
 ///
@@ -116,17 +114,17 @@ pub fn generate_queries_from_dir(
 ///
 /// # Parameters
 /// - `path`: Path to the query. Must point to a `.scm` file.
-/// - `language_path`: path to the tree-sitter language module, where the [Language] will be
-///   dynamically loaded
+/// - `language_path`: path to the tree-sitter language module, where the [tree_sitter::Language]
+///   will be dynamically loaded
 /// - `disabled_patterns`: Patterns to disable. See [Query::disable_pattern].
 /// - `disabled_capture_names`: List of capture names to ignore on the query
 /// - `disabled_capture_idxs`: List of capture indices to ignore on the query (both these and
 ///   all indices with names in `disabled_capture_names` are disabled)
 /// - `nodes`: Path to the crate with the typed node wrappers. Typically
-///   [type_sitter_gen::super_nodes]
+///   [crate::super_nodes]
 /// - `use_wrapper`: Whether to use `tree_sitter_wrapper` or `tree_sitter`
 /// - `tree_sitter`: Path to the crate with the tree-sitter API. Typically [tree_sitter] if
-///    `use_wrapper` is false, or [type_sitter_gen::tree_sitter_wrapper] if `use_wrapper` is true
+///    `use_wrapper` is false, or [crate::type_sitter_lib_wrapper] if `use_wrapper` is true
 ///
 /// # Example
 ///

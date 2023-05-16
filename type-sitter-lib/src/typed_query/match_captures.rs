@@ -3,7 +3,7 @@ use std::iter::FusedIterator;
 use crate::tree_sitter_wrapper::Tree;
 use crate::TypedQuery;
 
-/// Captures from a [TypedQueryMatch]
+/// Captures from a [crate::TypedQueryMatch]
 pub struct TypedQueryMatchCaptures<'cursor, 'tree, Query: TypedQuery> {
     query: &'cursor Query,
     captures: &'cursor [tree_sitter::QueryCapture<'tree>],
@@ -11,7 +11,7 @@ pub struct TypedQueryMatchCaptures<'cursor, 'tree, Query: TypedQuery> {
     tree: &'tree Tree
 }
 
-/// Iterate captures from a [TypedQueryMatch]
+/// Iterate captures from a [crate::TypedQueryMatch]
 pub struct TypedQueryMatchCapturesIntoIter<'cursor, 'tree, Query: TypedQuery> {
     captures: TypedQueryMatchCaptures<'cursor, 'tree, Query>,
     index: usize,
