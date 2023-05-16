@@ -3,6 +3,7 @@ use std::fmt::{Display, Formatter};
 use std::iter::{empty, zip};
 use std::ops::{Bound, Index, RangeBounds};
 use logos::Logos;
+use tree_sitter::CaptureQuantifier;
 
 /// Parsed tree-sitter query = sequence of s-expressions
 #[derive(Debug, Clone, PartialEq, Eq)]
@@ -11,8 +12,8 @@ pub struct SExpSeq<'a>(Vec<SExp<'a>>);
 /// Tree-sitter query s-expression
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum SExp<'a> {
-    Atom { span: Span, atom: Atom<'a> },
-    Group { span: Span, group_type: GroupType, items: SExpSeq<'a> }
+    Atom { span: Span, quantifier: CaptureQuantifier, atom: Atom<'a> },
+    Group { span: Span, quantifier: CaptureQuantifier, group_type: GroupType, items: SExpSeq<'a> }
 }
 
 /// S-expression "parenthesis type"
@@ -70,6 +71,12 @@ enum Token<'a> {
     Wildcard,
     #[token(".")]
     Anchor,
+    #[token("?")]
+    QuantifyZeroOrOne,
+    #[token("*")]
+    QuantifyZeroOrMore,
+    #[token("+")]
+    QuantifyOneOrMore,
     #[regex(r#"[a-zA-Z_][a-zA-Z0-9_\-+\.!?@#$%^&*|'/<>]*:"#, lex_snoc)]
     Field(&'a str),
     #[regex(r#"[a-zA-Z_][a-zA-Z0-9_\-+\.!?@#$%^&*|'/<>]*"#, Lexer::slice)]
@@ -90,7 +97,8 @@ pub enum ParseError {
     Eof { span: Span },
     BadToken { span: Span },
     IllegalGroupClose { span: Span, group_type: GroupType },
-    UnclosedGroup { span: Span, group_type: GroupType }
+    UnclosedGroup { span: Span, group_type: GroupType },
+    IllegalQuantifierPosition { span: Span, quantifier: CaptureQuantifier }
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -125,7 +133,16 @@ impl<'a> TryFrom<&'a str> for SExpSeq<'a> {
     type Error = ParseError;
 
     fn try_from(source: &'a str) -> Result<Self, Self::Error> {
-        Parser::new(source).collect()
+        let mut parser = Parser::new(source);
+        let mut this = Vec::new();
+        loop {
+            match parser.parse_next(this.last_mut()) {
+                Ok(next) => this.push(next),
+                Err(ParseError::Eof { .. }) => break,
+                Err(err) => return Err(err)
+            }
+        }
+        Ok(SExpSeq(this))
     }
 }
 
@@ -164,10 +181,31 @@ impl<'a> SExp<'a> {
         }
     }
 
-    pub fn span(&self) -> Span {
+    pub fn span(&self) -> &Span {
         match self {
-            Self::Atom { span, .. } => *span,
-            Self::Group { span, .. } => *span
+            Self::Atom { span, .. } => span,
+            Self::Group { span, .. } => span
+        }
+    }
+
+    pub fn span_mut(&mut self) -> &mut Span {
+        match self {
+            Self::Atom { span, .. } => span,
+            Self::Group { span, .. } => span
+        }
+    }
+
+    pub fn quantifier(&self) -> &CaptureQuantifier {
+        match self {
+            SExp::Atom { quantifier, .. } => quantifier,
+            SExp::Group { quantifier, .. } => quantifier
+        }
+    }
+
+    pub fn quantifier_mut(&mut self) -> &mut CaptureQuantifier {
+        match self {
+            SExp::Atom { quantifier, .. } => quantifier,
+            SExp::Group { quantifier, .. } => quantifier
         }
     }
 }
@@ -246,21 +284,39 @@ impl<'a> Parser<'a> {
         Self { lexer: Lexer::new(source) }
     }
 
-    fn parse_next(&mut self) -> Result<SExp<'a>, ParseError> {
+    fn parse_next(&mut self, prev: Option<&mut SExp<'a>>) -> Result<SExp<'a>, ParseError> {
         let next = self.lexer.next();
         let span = Span::of(&self.lexer);
         match next {
             None => Err(ParseError::Eof { span }),
             Some(Err(())) => Err(ParseError::BadToken { span }),
             Some(Ok(token)) => match Atom::try_from(token) {
-                Ok(atom) => Ok(SExp::Atom { span, atom }),
+                Ok(atom) => Ok(SExp::Atom { span, quantifier: CaptureQuantifier::One, atom }),
                 Err(token) => match token {
                     Token::LParen => self.finish_parsing_group(GroupType::Paren),
                     Token::LBracket => self.finish_parsing_group(GroupType::Bracket),
                     Token::RParen => Err(ParseError::IllegalGroupClose { span, group_type: GroupType::Paren }),
                     Token::RBracket => Err(ParseError::IllegalGroupClose { span, group_type: GroupType::Bracket }),
+                    Token::QuantifyZeroOrOne => self.parse_quantifier(prev, span, CaptureQuantifier::ZeroOrOne),
+                    Token::QuantifyZeroOrMore => self.parse_quantifier(prev, span, CaptureQuantifier::ZeroOrMore),
+                    Token::QuantifyOneOrMore => self.parse_quantifier(prev, span, CaptureQuantifier::OneOrMore),
                     _ => unreachable!("should've been handled by atom or group")
                 }
+            }
+        }
+    }
+
+    fn parse_quantifier(
+        &mut self,
+        prev: Option<&mut SExp<'a>>,
+        span: Span,
+        quantifier: CaptureQuantifier
+    ) -> Result<SExp<'a>, ParseError> {
+        match prev {
+            None => Err(ParseError::IllegalQuantifierPosition { span, quantifier }),
+            Some(prev) => {
+                *prev.quantifier_mut() = quantifier;
+                self.parse_next(None)
             }
         }
     }
@@ -269,12 +325,12 @@ impl<'a> Parser<'a> {
         let span_start = Span::of(&self.lexer).start;
         let mut items = SExpSeq::new();
         loop {
-            match self.parse_next() {
+            match self.parse_next(None) {
                 Ok(item) => items.push(item),
                 Err(ParseError::IllegalGroupClose { span, group_type: close_type }) if group_type == close_type => {
                     let span_end = span.end;
                     let span = Span { start: span_start, end: span_end };
-                    break Ok(SExp::Group { span, group_type, items })
+                    break Ok(SExp::Group { span, quantifier: CaptureQuantifier::One, group_type, items })
                 },
                 Err(ParseError::Eof { span }) => {
                     let span_end = span.end;
@@ -287,24 +343,14 @@ impl<'a> Parser<'a> {
     }
 }
 
-impl<'a> Iterator for Parser<'a> {
-    type Item = Result<SExp<'a>, ParseError>;
-
-    fn next(&mut self) -> Option<Self::Item> {
-        match self.parse_next() {
-            Err(ParseError::Eof { .. }) => None,
-            next => Some(next)
-        }
-    }
-}
-
 impl ParseError {
     pub fn span(&self) -> &Span {
         match self {
             Self::Eof { span } => span,
             Self::BadToken { span } => span,
             Self::IllegalGroupClose { span, .. } => span,
-            Self::UnclosedGroup { span, .. } => span
+            Self::UnclosedGroup { span, .. } => span,
+            Self::IllegalQuantifierPosition { span, .. } => span,
         }
     }
 }
@@ -315,7 +361,8 @@ impl Display for ParseError {
             Self::Eof { span } => write!(f, "unexpected end of input at {}", span),
             Self::BadToken { span } => write!(f, "bad token at {}", span),
             Self::IllegalGroupClose { span, group_type } => write!(f, "illegal group close at {} (expected {})", span, group_type),
-            Self::UnclosedGroup { span, group_type } => write!(f, "unclosed group at {} (expected {})", span, group_type)
+            Self::UnclosedGroup { span, group_type } => write!(f, "unclosed group at {} (expected {})", span, group_type),
+            Self::IllegalQuantifierPosition { span, quantifier } => write!(f, "illegal quantifier position at {} ({})", span, quantifier.print())
         }
     }
 }
@@ -354,9 +401,33 @@ impl Index<Span> for str {
     }
 }
 
+impl<'a> Index<&'a Span> for str {
+    type Output = str;
+
+    fn index(&self, index: Span) -> &Self::Output {
+        &self[index.range()]
+    }
+}
+
 impl Display for Span {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
         write!(f, "{}..{}", self.start, self.end)
+    }
+}
+
+trait CaptureQuantifierExt {
+    fn print(&self) -> &'static str;
+}
+
+impl CaptureQuantifierExt for CaptureQuantifier {
+    fn print(&self) -> &'static str {
+        match self {
+            Self::Zero => panic!("zero quantifier should never be printed (it isn't even possible)"),
+            Self::One => "",
+            Self::ZeroOrOne => "?",
+            Self::ZeroOrMore => "*",
+            Self::OneOrMore => "+"
+        }
     }
 }
 

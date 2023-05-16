@@ -1,6 +1,6 @@
 [package]
 name = "type-sitter-lib"
-version = "0.2.0"
+version = "0.2.2"
 description = "library code for type-sitter generated / downstream code"
 license = "MIT OR Apache-2.0"
 repository = "https://github.com/Jakobeha/type-sitter/"
