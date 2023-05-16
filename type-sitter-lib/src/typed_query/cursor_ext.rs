@@ -1,7 +1,7 @@
 #[cfg(feature = "tree-sitter-wrapper")]
-use crate::tree_sitter_wrapper::{QueryCursor, Range};
+use crate::tree_sitter_wrapper::{QueryCursor, PointRange};
 #[cfg(not(feature = "tree-sitter-wrapper"))]
-use tree_sitter::{QueryCursor, Range, TextProvider};
+use tree_sitter::{Point, QueryCursor, TextProvider};
 use crate::{TypedNode, TypedQuery, TypedQueryCaptures, TypedQueryMatches};
 
 /// Wraps [QueryCursor] where `matches` and `captures` are always typed
@@ -185,7 +185,7 @@ impl TypedQueryCursor {
     /// Returns `self` for convenience (builder pattern)
     #[inline]
     #[cfg(feature = "tree-sitter-wrapper")]
-    pub fn set_point_range(&mut self, range: Range) -> &mut Self {
+    pub fn set_point_range(&mut self, range: PointRange) -> &mut Self {
         self.0.set_point_range(range);
         self
     }
@@ -195,8 +195,8 @@ impl TypedQueryCursor {
     /// Returns `self` for convenience (builder pattern)
     #[inline]
     #[cfg(not(feature = "tree-sitter-wrapper"))]
-    pub fn set_point_range(&mut self, range: Range) -> &mut Self {
-        self.0.set_point_range(range.start_point..range.end_point);
+    pub fn set_point_range(&mut self, range: std::ops::Range<Point>) -> &mut Self {
+        self.0.set_point_range(range);
         self
     }
 

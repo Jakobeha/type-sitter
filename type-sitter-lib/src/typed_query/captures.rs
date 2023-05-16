@@ -1,9 +1,9 @@
 use std::fmt::Debug;
 use tree_sitter::TextProvider;
 #[cfg(feature = "tree-sitter-wrapper")]
-use crate::tree_sitter_wrapper::{Node, QueryCapture, Range, Tree};
+use crate::tree_sitter_wrapper::{Node, QueryCapture, PointRange, Tree};
 #[cfg(not(feature = "tree-sitter-wrapper"))]
-use tree_sitter::{Node, QueryCapture, Range};
+use tree_sitter::{Point, Node, QueryCapture};
 use crate::TypedQuery;
 
 /// Iterate a query's captures (see [tree_sitter::QueryCaptures])
@@ -83,21 +83,15 @@ impl<'cursor, 'tree: 'cursor, Query: TypedQuery, Text: TextProvider<'cursor>> Ty
     /// Limit captures to a point range
     #[inline]
     #[cfg(feature = "tree-sitter-wrapper")]
-    pub fn set_point_range(&mut self, range: Range) {
-        self.untyped_captures.set_point_range(std::ops::Range {
-            start: range.start_point().into(),
-            end: range.end_point().into()
-        })
+    pub fn set_point_range(&mut self, range: PointRange) {
+        self.untyped_captures.set_point_range(range.to_ts_point_range())
     }
 
     /// Limit captures to a point range
     #[inline]
     #[cfg(not(feature = "tree-sitter-wrapper"))]
-    pub fn set_point_range(&mut self, range: Range) {
-        self.untyped_captures.set_point_range(std::ops::Range {
-            start: range.start_point,
-            end: range.end_point
-        })
+    pub fn set_point_range(&mut self, range: std::ops::Range<Point>) {
+        self.untyped_captures.set_point_range(range)
     }
 }
 

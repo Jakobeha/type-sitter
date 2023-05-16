@@ -1,5 +1,5 @@
 use std::cell::RefCell;
-use std::collections::{HashMap, HashSet};
+use std::collections::{Bound, HashMap, HashSet};
 use std::error::Error;
 use std::fmt::{Debug, Display};
 use std::path::Path;
@@ -7,6 +7,7 @@ use std::iter::{FusedIterator, once, Once};
 use streaming_iterator::{StreamingIterator, StreamingIteratorMut};
 use std::str::Utf8Error;
 use std::hash::{Hash, Hasher};
+use std::ops::RangeBounds;
 use std::os::fd::AsRawFd;
 use std::ptr::NonNull;
 use utf8_error_offset_by::Utf8ErrorOffsetBy;
@@ -97,10 +98,12 @@ pub struct QueryCapture<'query, 'tree> {
     pub name: &'query str,
 }
 
-/// Wrapper around [tree_sitter::Range], which displays as `:line:column-:line:column`
+/// Variant of [std::ops::Range] which can be copied and displays as `:line:column-:line:column`
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
-#[repr(transparent)]
-pub struct Range(tree_sitter::Range);
+pub struct PointRange {
+    pub start: Point,
+    pub end: Point,
+}
 
 /// Wrapper around [tree_sitter::Point], which displays as `:line:column`
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
@@ -111,6 +114,8 @@ pub struct Point(tree_sitter::Point);
 #[repr(transparent)]
 pub struct Parser(tree_sitter::Parser);
 
+/// A byte and point range in one data-structure. Re-exports [tree_sitter::Range]
+pub type Range = tree_sitter::Range;
 /// Re-exports [tree_sitter::Language]
 pub type Language = tree_sitter::Language;
 /// Re-exports [tree_sitter::LanguageError]
@@ -418,10 +423,19 @@ impl<'tree> Node<'tree> {
         self.node.byte_range()
     }
 
-    /// Get the row and column range where this node is located.
+    /// Get the row and column range where this node is located
+    #[inline]
+    pub fn point_range(&self) -> PointRange {
+        PointRange {
+            start: self.start_position(),
+            end: self.end_position()
+        }
+    }
+
+    /// Get the byte range and row and column range where this node is located.
     #[inline]
     pub fn range(&self) -> Range {
-        Range(self.node.range())
+        self.node.range()
     }
 
     /// Get the node's text as a byte string.
@@ -864,9 +878,9 @@ impl<'tree> TreeCursor<'tree> {
         })
     }
 
-    /// Move the cursor to the first child of the current node that extends beyond the given point
-    /// offset, and return its index. Returns `false` if the current node has no children past that
-    /// offset.
+    /// Move the cursor to the first child of the current node that extends beyond the given row
+    /// and column, and return its index. Returns `false` if the current node has no children past
+    /// that row and column.
     #[inline]
     pub fn goto_first_child_for_point(&mut self, point: Point) -> Option<usize> {
         self.cursor.goto_first_child_for_point(point.0).map(|index| {
@@ -1002,8 +1016,8 @@ impl QueryCursor {
     ///
     /// Returns `self` for convenience (builder pattern)
     #[inline]
-    pub fn set_point_range(&mut self, range: Range) -> &mut Self {
-        self.query_cursor.set_point_range(range.start_point().0..range.end_point().0);
+    pub fn set_point_range(&mut self, range: PointRange) -> &mut Self {
+        self.query_cursor.set_point_range(range.to_ts_point_range());
         self
     }
 }
@@ -1162,31 +1176,44 @@ impl<'query, 'tree> QueryCapture<'query, 'tree> {
     }
 }
 
-impl Range {
-    /// Get the start point
+impl PointRange {
+    /// Convert this into an [std::ops::Range]
     #[inline]
-    pub fn start_point(&self) -> Point {
-        Point(self.0.start_point)
+    pub fn to_ops_range(self) -> std::ops::Range<Point> {
+        self.start..self.end
     }
 
-    /// Get the end point
+    /// Convert this into an [std::ops::Range] of [tree_sitter::Point]s
     #[inline]
-    pub fn end_point(&self) -> Point {
-        Point(self.0.end_point)
+    pub(crate) fn to_ts_point_range(self) -> std::ops::Range<tree_sitter::Point> {
+        self.start.0..self.end.0
     }
 }
 
-impl Display for Range {
+impl RangeBounds<Point> for PointRange {
+    fn start_bound(&self) -> Bound<&Point> {
+        Bound::Excluded(&self.start)
+    }
+
+    fn end_bound(&self) -> Bound<&Point> {
+        Bound::Excluded(&self.end)
+    }
+}
+
+impl Display for PointRange {
     #[inline]
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        write!(f, "{}-{}", Point(self.0.start_point), Point(self.0.end_point))
+        write!(f, "{}-{}", self.start, self.end)
     }
 }
 
-impl Into<tree_sitter::Range> for Range {
+impl From<std::ops::Range<Point>> for PointRange {
     #[inline]
-    fn into(self) -> tree_sitter::Range {
-        self.0
+    fn from(value: std::ops::Range<Point>) -> Self {
+        Self {
+            start: value.start,
+            end: value.end
+        }
     }
 }
 

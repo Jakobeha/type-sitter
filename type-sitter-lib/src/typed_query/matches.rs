@@ -2,9 +2,9 @@ use std::fmt::Debug;
 use tree_sitter::TextProvider;
 use streaming_iterator::{StreamingIterator, StreamingIteratorMut};
 #[cfg(feature = "tree-sitter-wrapper")]
-use crate::tree_sitter_wrapper::{Range, Tree};
+use crate::tree_sitter_wrapper::{PointRange, Tree};
 #[cfg(not(feature = "tree-sitter-wrapper"))]
-use tree_sitter::Range;
+use tree_sitter::Point;
 use crate::typed_query::match_captures::TypedQueryMatchCaptures;
 use crate::TypedQuery;
 
@@ -91,21 +91,15 @@ impl<'cursor, 'tree: 'cursor, Query: TypedQuery, Text: TextProvider<'cursor>> Ty
     /// Limit matches to a point range
     #[inline]
     #[cfg(feature = "tree-sitter-wrapper")]
-    pub fn set_point_range(&mut self, range: Range) {
-        self.untyped_matches.set_point_range(std::ops::Range {
-            start: range.start_point().into(),
-            end: range.end_point().into()
-        })
+    pub fn set_point_range(&mut self, range: PointRange) {
+        self.untyped_matches.set_point_range(range.to_ts_point_range())
     }
 
     /// Limit matches to a point range
     #[inline]
     #[cfg(not(feature = "tree-sitter-wrapper"))]
-    pub fn set_point_range(&mut self, range: Range) {
-        self.untyped_matches.set_point_range(std::ops::Range {
-            start: range.start_point,
-            end: range.end_point
-        })
+    pub fn set_point_range(&mut self, range: std::ops::Range<Point>) {
+        self.untyped_matches.set_point_range(range)
     }
 }
 

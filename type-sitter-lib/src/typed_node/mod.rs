@@ -1,7 +1,7 @@
 use std::fmt::Debug;
 use std::hash::Hash;
 #[cfg(feature = "tree-sitter-wrapper")]
-use crate::tree_sitter_wrapper::{Bitmask, InputEdit, Node, Point, Range, TreeCursor};
+use crate::tree_sitter_wrapper::{Bitmask, InputEdit, Node, Point, PointRange, Range, TreeCursor};
 #[cfg(not(feature = "tree-sitter-wrapper"))]
 use std::str::Utf8Error;
 #[cfg(not(feature = "tree-sitter-wrapper"))]
@@ -171,6 +171,13 @@ pub trait TypedNode<'tree>: TryFrom<Node<'tree>, Error=IncorrectKind<'tree>> + D
     #[inline]
     fn byte_range(&self) -> std::ops::Range<usize> {
         self.node().byte_range()
+    }
+
+    /// See [Node::point_range]
+    #[inline]
+    #[cfg(feature = "tree-sitter-wrapper")]
+    fn point_range(&self) -> PointRange {
+        self.node().point_range()
     }
 
     /// See [Node::edit]

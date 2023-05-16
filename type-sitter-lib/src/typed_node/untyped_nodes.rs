@@ -2,7 +2,7 @@
 use crate::tree_sitter_wrapper::Node;
 #[cfg(not(feature = "tree-sitter-wrapper"))]
 use tree_sitter::Node;
-use crate::{IncorrectKind, TypedNode};
+use crate::{IncorrectKind, NodeResult, TypedNode};
 
 /// Untyped "typed" named or anonymous node (implements [TypedNode] but don't actually have a type)
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -13,9 +13,16 @@ pub struct UntypedNode<'tree>(Node<'tree>);
 pub struct UntypedNamedNode<'tree>(Node<'tree>);
 
 impl<'tree> UntypedNode<'tree> {
+    /// Wrap the node so that it can be used wherever a [TypedNode] can, but provides no type guarantees
     #[inline]
     pub fn new(node: Node<'tree>) -> Self {
         Self(node)
+    }
+
+    /// Try to upcast to the given type. See [TypedNode::try_from]
+    #[inline]
+    pub fn to<Type: TypedNode<'tree>>(&self) -> NodeResult<Type> {
+        Type::try_from(self.0)
     }
 }
 
@@ -53,9 +60,16 @@ impl<'tree> TypedNode<'tree> for UntypedNode<'tree> {
 }
 
 impl<'tree> UntypedNamedNode<'tree> {
+    /// Wrap the node so that it can be used wherever a [TypedNode] can, but provides no type guarantees
     #[inline]
     pub fn new(node: Node<'tree>) -> Self {
         Self(node)
+    }
+
+    /// Try to upcast to the given type. See [TypedNode::try_from]
+    #[inline]
+    pub fn to<Type: TypedNode<'tree>>(&self) -> NodeResult<Type> {
+        Type::try_from(self.0)
     }
 }
 

@@ -1,7 +1,7 @@
 use std::borrow::Cow;
 use std::fmt::{Display, Formatter};
 use std::iter::{empty, zip};
-use std::ops::Index;
+use std::ops::{Bound, Index, RangeBounds};
 use logos::Logos;
 
 /// Parsed tree-sitter query = sequence of s-expressions
@@ -327,6 +327,16 @@ impl Span {
 
     pub fn range(&self) -> std::ops::Range<usize> {
         self.start..self.end
+    }
+}
+
+impl RangeBounds<usize> for Span {
+    fn start_bound(&self) -> Bound<&usize> {
+        Bound::Included(&self.start)
+    }
+
+    fn end_bound(&self) -> Bound<&usize> {
+        Bound::Excluded(&self.end)
     }
 }
 
