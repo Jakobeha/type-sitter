@@ -23,10 +23,6 @@ impl NodeType {
 
         let definition = match &self.kind {
             NodeTypeKind::Supertype { subtypes } => {
-                if !is_implicit {
-                    panic!("Node types with subtypes must be implicit (start with \"_\"): _{}", sexp_name)
-                }
-
                 NodeName::print_sum_definition(
                     doc,
                     &ident,
@@ -37,7 +33,7 @@ impl NodeType {
             }
             NodeTypeKind::Regular { fields, children } => {
                 if *is_implicit {
-                    panic!("Node types without subtypes must not be implicit (not start with \"_\"): _{}", sexp_name)
+                    panic!("Node types without subtypes must not be implicit (not start with \"_\"): {}", sexp_name)
                 }
 
                 NodeName::print_product_definition(

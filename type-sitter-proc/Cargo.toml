@@ -13,6 +13,6 @@ edition = "2021"
 proc-macro = true
 
 [dependencies]
-type-sitter-gen = { path = "../type-sitter-gen", version = "0.2.0" }
+type-sitter-gen = { path = "../type-sitter-gen", version = "0.2.1" }
 proc-macro2 = "1.0.56"
 syn = "2.0.15"
