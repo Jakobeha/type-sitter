@@ -183,10 +183,14 @@ pub fn generate_query_from_file(
 }
 
 fn language_name(path: &Path) -> Result<String, Error> {
-    Ok(path.file_name()
+    let mut name = path.file_name()
         .and_then(|s| s.to_str())
         .ok_or(Error::IllegalTSLanguageSymbolName)?
-        .replace("-", "_"))
+        .replace("-", "_");
+    if !name.starts_with("tree_sitter_") {
+        name = format!("tree_sitter_{}", name);
+    }
+    Ok(name)
 }
 
 /// Check if the path has the given extension
