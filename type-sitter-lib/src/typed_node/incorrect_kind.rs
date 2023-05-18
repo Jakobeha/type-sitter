@@ -7,7 +7,7 @@ use tree_sitter::{Node, Tree};
 pub type NodeResult<'tree, T> = Result<T, IncorrectKind<'tree>>;
 
 /// Error when attempting to wrap a tree whose root node is the wrong kind
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+#[derive(Debug)]
 pub struct IncorrectTreeKind {
     /// Tree attempted to be wrapped
     pub tree: Tree,

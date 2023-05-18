@@ -8,16 +8,46 @@ use crate::{IncorrectKind, IncorrectTreeKind, TypedNode};
 
 /// Tree whose root is a typed node. Currently we don't know which node is the root, so you must
 /// manually construct this with the correct type argument (still checked though).
-pub struct TypedTree<Root: TypedNode> {
+///
+/// Unfortunately, [Higher-Rank Trait Bounds](https://doc.rust-lang.org/nomicon/hrtb.html) are
+/// necessary here but not supported by structs. As a workaround, we define the trait [TypedNodeGAT]
+/// which has you specify the intended typed node as an associated type. It's a bit verbose
+/// unfortunately, but safe and works for arbitrary typed nodes.
+///
+/// ## Example
+///
+/// ```
+/// # #![cfg(feature = "tree-sitter-wrapper")]
+/// use type_sitter_lib::tree_sitter_wrapper::{Node, Tree};
+/// use type_sitter_lib::{TypedNodeGAT, TypedTree};
+///
+/// pub struct Program<'tree>(Node<'tree>);
+/// pub struct ProgramGAT;
+///
+/// impl TypedNodeGAT for ProgramGAT {
+///   type This<'tree> = Program<'tree>;
+/// }
+///
+/// fn wrap(tree: Tree) -> TypedTree<ProgramGAT> {
+///   TypedTree::try_from(tree).unwrap()
+/// }
+/// ```
+///
+/// The type of `Root` must have the `'static` lifetime (e.g. `Program<'static>`). Notice the bound
+/// `for<'tree> TypedNode<'tree>`; this requires that `Root` must implement `TypedNode<'tree>` for
+/// every `'tree`. Fortunately, a typed node should be covariant in its lifetime, so `'static` can
+/// be reduced to an arbitrary lifetime, and thus it satisfies the bound
+#[derive(Debug)]
+pub struct TypedTree<Root: TypedNodeGAT> {
     tree: Tree,
     node_type: PhantomData<Root>
 }
 
-impl<Root: TypedNode> TryFrom<Tree> for TypedTree<Root> {
+impl<Root: TypedNodeGAT> TryFrom<Tree> for TypedTree<Root> {
     type Error = IncorrectTreeKind;
 
     fn try_from(tree: Tree) -> Result<Self, Self::Error> {
-        match Root::try_from(tree.root_node()) {
+        match Root::This::try_from(tree.root_node()) {
             Ok(_) => Ok(Self {
                 tree,
                 node_type: PhantomData
@@ -30,11 +60,11 @@ impl<Root: TypedNode> TryFrom<Tree> for TypedTree<Root> {
     }
 }
 
-impl<Root: TypedNode> TypedTree<Root> {
+impl<Root: TypedNodeGAT> TypedTree<Root> {
     /// Get the root node of this tree
     #[inline]
-    pub fn root(&self) -> Root {
-        Root::try_from(self.tree.root_node()).unwrap()
+    pub fn root(&self) -> Root::This<'_> {
+        Root::This::try_from(self.tree.root_node()).unwrap()
     }
 
     /// Get the underlying tree-sitter tree
@@ -72,7 +102,7 @@ impl<Root: TypedNode> TypedTree<Root> {
     /// Get the included ranges used to parse the tree.
     #[inline]
     pub fn included_ranges(&self) -> Vec<Range> {
-        self.included_ranges()
+        self.tree.included_ranges()
     }
 
     /// Get the changed ranges. See [tree_sitter::Tree::changed_ranges]
@@ -108,4 +138,56 @@ impl<Root: TypedNode> TypedTree<Root> {
         self.tree.display_skipping(include_mark, exclude_mark)
     }
     // endregion
+}
+
+/// Workaround to specify [TypedNode] types which are lifetime-irrelevant
+///
+/// Unfortunately, [Higher-Rank Trait Bounds](https://doc.rust-lang.org/nomicon/hrtb.html) are
+/// needed in [TypedTree] but not supported by structs. As a workaround, we define this trait,
+/// which has you specify the intended typed node as an associated type. It's a bit verbose
+/// unfortunately, but safe and works for arbitrary typed nodes.
+///
+/// ## Example
+///
+/// ```
+/// # #![cfg(feature = "tree-sitter-wrapper")]
+/// use type_sitter_lib::tree_sitter_wrapper::{Node, Tree};
+/// use type_sitter_lib::{TypedNodeGAT, TypedTree};
+///
+/// pub struct Program<'tree>(Node<'tree>);
+/// pub struct ProgramGAT;
+///
+/// impl TypedNodeGAT for ProgramGAT {
+///   type This<'tree> = Program<'tree>;
+/// }
+///
+/// fn wrap(tree: Tree) -> TypedTree<ProgramGAT> {
+///   TypedTree::try_from(tree).unwrap()
+/// }
+/// ```
+pub trait TypedNodeGAT {
+    /// The lifetime-irrelevant node type
+    type This<'tree>: TypedNode<'tree>;
+}
+
+#[cfg(test)]
+#[cfg(not(feature = "tree-sitter-wrapper"))]
+mod tests {
+    use tree_sitter::Parser;
+    use crate::{TypedNodeGAT, TypedNode, TypedTree, UntypedNode};
+
+    pub struct UntypedNodeGAT;
+    impl TypedNodeGAT for UntypedNodeGAT {
+        type This<'tree> = UntypedNode<'tree>;
+    }
+
+    #[test]
+    fn test_static_lifetime() {
+        let mut parser = Parser::new();
+        parser.set_language(tree_sitter_json::language()).expect("failed to set JSON language (?)");
+        let json_str = r#"{ "key": [{ "key2": "value" }] }"#;
+        let untyped_tree = parser.parse(json_str, None).expect("failed to parse test JSON");
+        let tree = TypedTree::<UntypedNodeGAT>::try_from(untyped_tree).expect("failed to create typed tree of an untyped node");
+        assert_eq!(tree.root().utf8_text(json_str.as_bytes()).expect("failed to get parsed source"), json_str);
+    }
 }
