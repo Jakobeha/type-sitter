@@ -21,7 +21,7 @@ use crate::{IncorrectKind, IncorrectTreeKind, TypedNode};
 /// use type_sitter_lib::tree_sitter_wrapper::{Node, Tree};
 /// use type_sitter_lib::{TypedNodeGAT, TypedTree};
 ///
-/// pub struct Program<'tree>(Node<'tree>);
+/// # pub struct Program<'tree>(Node<'tree>);
 /// pub struct ProgramGAT;
 ///
 /// impl TypedNodeGAT for ProgramGAT {
@@ -154,7 +154,8 @@ impl<Root: TypedNodeGAT> TypedTree<Root> {
 /// use type_sitter_lib::tree_sitter_wrapper::{Node, Tree};
 /// use type_sitter_lib::{TypedNodeGAT, TypedTree};
 ///
-/// pub struct Program<'tree>(Node<'tree>);
+///
+/// # pub struct Program<'tree>(Node<'tree>);
 /// pub struct ProgramGAT;
 ///
 /// impl TypedNodeGAT for ProgramGAT {
