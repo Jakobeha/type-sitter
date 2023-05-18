@@ -206,8 +206,7 @@ impl Parser {
     /// [tree_sitter::Parser::set_included_ranges]
     #[inline]
     pub fn set_included_ranges(&mut self, ranges: &[Range]) -> Result<(), IncludedRangesError> {
-        // SAFETY: Same repr
-        self.0.set_included_ranges(unsafe { std::mem::transmute(ranges) })
+        self.0.set_included_ranges(ranges)
     }
 
     /// Parse a file. See [tree_sitter::Parser::parse]
@@ -279,15 +278,13 @@ impl Tree {
     /// Get the included ranges used to parse the tree.
     #[inline]
     pub fn included_ranges(&self) -> Vec<Range> {
-        // SAFETY: Same repr
-        unsafe { std::mem::transmute(self.tree.included_ranges()) }
+        self.tree.included_ranges()
     }
 
     /// Get the changed ranges. See [tree_sitter::Tree::changed_ranges]
     #[inline]
     pub fn changed_ranges(&self, other: &Tree) -> impl ExactSizeIterator<Item=Range> {
-        // SAFETY: Same repr
-        self.tree.changed_ranges(&other.tree).map(|r| unsafe { std::mem::transmute(r) })
+        self.tree.changed_ranges(&other.tree)
     }
 
     /// Get the language used to parse the tree.

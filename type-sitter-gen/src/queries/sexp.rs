@@ -213,9 +213,9 @@ impl<'a> SExp<'a> {
 impl<'a> Display for SExp<'a> {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
         match self {
-            Self::Atom { atom, .. } => write!(f, "{}", atom),
-            Self::Group { items, group_type, .. } => {
-                write!(f, "{}{}{}", group_type.start_char(), items, group_type.end_char())
+            Self::Atom { quantifier, atom, .. } => write!(f, "{}{}", atom, quantifier.print()),
+            Self::Group { quantifier, items, group_type, .. } => {
+                write!(f, "{}{}{}{}", group_type.start_char(), items, group_type.end_char(), quantifier.print())
             }
         }
     }
@@ -325,7 +325,7 @@ impl<'a> Parser<'a> {
         let span_start = Span::of(&self.lexer).start;
         let mut items = SExpSeq::new();
         loop {
-            match self.parse_next(None) {
+            match self.parse_next(items.last_mut()) {
                 Ok(item) => items.push(item),
                 Err(ParseError::IllegalGroupClose { span, group_type: close_type }) if group_type == close_type => {
                     let span_end = span.end;
@@ -362,7 +362,7 @@ impl Display for ParseError {
             Self::BadToken { span } => write!(f, "bad token at {}", span),
             Self::IllegalGroupClose { span, group_type } => write!(f, "illegal group close at {} (expected {})", span, group_type),
             Self::UnclosedGroup { span, group_type } => write!(f, "unclosed group at {} (expected {})", span, group_type),
-            Self::IllegalQuantifierPosition { span, quantifier } => write!(f, "illegal quantifier position at {} ({})", span, quantifier.print())
+            Self::IllegalQuantifierPosition { span, .. } => write!(f, "illegal quantifier position at {}", span)
         }
     }
 }
@@ -469,6 +469,10 @@ impl<'a> SExpSeq<'a> {
 
     pub fn push(&mut self, item: SExp<'a>) {
         self.0.push(item);
+    }
+
+    pub fn last_mut(&mut self) -> Option<&mut SExp<'a>> {
+        self.0.last_mut()
     }
 
     pub fn iter(&self) -> impl Iterator<Item=&SExp<'a>> {
