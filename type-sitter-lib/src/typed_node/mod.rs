@@ -43,6 +43,12 @@ pub trait TypedNode<'tree>: TryFrom<Node<'tree>, Error=IncorrectKind<'tree>> + D
         Self::try_from(node).expect("from_node_unchecked failed")
     }
 
+    /// Upcast into an untyped node
+    #[inline]
+    fn untyped(self) -> UntypedNode<'tree> {
+        UntypedNode::new(self.into_node())
+    }
+
     // region [Node] delegate
     /// See [Node::text]
     #[cfg(feature = "tree-sitter-wrapper")]

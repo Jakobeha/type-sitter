@@ -7,7 +7,7 @@ use std::iter::{FusedIterator, once, Once};
 use streaming_iterator::{StreamingIterator, StreamingIteratorMut};
 use std::str::Utf8Error;
 use std::hash::{Hash, Hasher};
-use std::ops::RangeBounds;
+use std::ops::{BitAnd, BitOr, BitOrAssign, RangeBounds};
 use std::os::fd::AsRawFd;
 use std::ptr::NonNull;
 use utf8_error_offset_by::Utf8ErrorOffsetBy;
@@ -99,23 +99,27 @@ pub struct QueryCapture<'query, 'tree> {
 }
 
 /// Variant of [std::ops::Range] which can be copied and displays as `:line:column-:line:column`
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct PointRange {
     pub start: Point,
     pub end: Point,
 }
 
 /// Wrapper around [tree_sitter::Point], which displays as `:line:column`
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Debug, Default, Clone, Copy, PartialEq, Eq, Hash, PartialOrd, Ord)]
 #[repr(transparent)]
 pub struct Point(tree_sitter::Point);
+
+/// A byte and point range in one data-structure. Wrapper around [tree_sitter::Range] which displays
+/// as `:line:column-:line:column`
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[repr(transparent)]
+pub struct Range(tree_sitter::Range);
 
 /// Wrapper around [tree_sitter::Parser]
 #[repr(transparent)]
 pub struct Parser(tree_sitter::Parser);
 
-/// A byte and point range in one data-structure. Re-exports [tree_sitter::Range]
-pub type Range = tree_sitter::Range;
 /// Re-exports [tree_sitter::Language]
 pub type Language = tree_sitter::Language;
 /// Re-exports [tree_sitter::LanguageError]
@@ -206,7 +210,7 @@ impl Parser {
     /// [tree_sitter::Parser::set_included_ranges]
     #[inline]
     pub fn set_included_ranges(&mut self, ranges: &[Range]) -> Result<(), IncludedRangesError> {
-        self.0.set_included_ranges(ranges)
+        self.0.set_included_ranges(Range::slice_as_ts(ranges))
     }
 
     /// Parse a file. See [tree_sitter::Parser::parse]
@@ -278,13 +282,13 @@ impl Tree {
     /// Get the included ranges used to parse the tree.
     #[inline]
     pub fn included_ranges(&self) -> Vec<Range> {
-        self.tree.included_ranges()
+        Range::vec_from_ts(self.tree.included_ranges())
     }
 
     /// Get the changed ranges. See [tree_sitter::Tree::changed_ranges]
     #[inline]
     pub fn changed_ranges(&self, other: &Tree) -> impl ExactSizeIterator<Item=Range> {
-        self.tree.changed_ranges(&other.tree)
+        self.tree.changed_ranges(&other.tree).map(Range)
     }
 
     /// Get the language used to parse the tree.
@@ -432,7 +436,7 @@ impl<'tree> Node<'tree> {
     /// Get the byte range and row and column range where this node is located.
     #[inline]
     pub fn range(&self) -> Range {
-        self.node.range()
+        Range(self.node.range())
     }
 
     /// Get the node's text as a byte string.
@@ -1214,6 +1218,26 @@ impl From<std::ops::Range<Point>> for PointRange {
     }
 }
 
+impl Point {
+    /// Create a new point
+    #[inline]
+    pub fn new(row: usize, column: usize) -> Self {
+        Self(tree_sitter::Point { row, column })
+    }
+
+    /// Get the row of this point
+    #[inline]
+    pub fn row(&self) -> usize {
+        self.0.row
+    }
+
+    /// Get the column of this point
+    #[inline]
+    pub fn column(&self) -> usize {
+        self.0.column
+    }
+}
+
 impl Display for Point {
     #[inline]
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
@@ -1225,6 +1249,104 @@ impl Into<tree_sitter::Point> for Point {
     #[inline]
     fn into(self) -> tree_sitter::Point {
         self.0
+    }
+}
+
+impl Range {
+    #[inline]
+    fn vec_from_ts(range: Vec<tree_sitter::Range>) -> Vec<Self> {
+        // SAFETY: Same repr
+        unsafe { std::mem::transmute(range) }
+    }
+
+    #[inline]
+    fn slice_as_ts(ranges: &[Self]) -> &[tree_sitter::Range] {
+        // SAFETY: Same repr
+        unsafe { std::mem::transmute(ranges) }
+    }
+
+    /// Creates a new range
+    #[inline]
+    pub fn new(start_byte: usize, end_byte: usize, start_point: Point, end_point: Point) -> Self {
+        Self(tree_sitter::Range {
+            start_byte,
+            end_byte,
+            start_point: start_point.0,
+            end_point: end_point.0
+        })
+    }
+
+    /// Start byte
+    #[inline]
+    pub fn start_byte(&self) -> usize {
+        self.0.start_byte
+    }
+
+    /// End byte
+    #[inline]
+    pub fn end_byte(&self) -> usize {
+        self.0.end_byte
+    }
+
+    /// Start point
+    #[inline]
+    pub fn start_point(&self) -> Point {
+        Point(self.0.start_point)
+    }
+
+    /// End point
+    #[inline]
+    pub fn end_point(&self) -> Point {
+        Point(self.0.end_point)
+    }
+}
+
+impl BitOr for Range {
+    type Output = Range;
+
+    /// Smallest range which contains both ranges
+    #[inline]
+    fn bitor(self, rhs: Self) -> Self::Output {
+         Range::new(
+            self.start_byte().min(rhs.start_byte()),
+            self.end_byte().max(rhs.end_byte()),
+            self.start_point().min(rhs.start_point()),
+            self.end_point().max(rhs.end_point()),
+         )
+    }
+}
+
+impl BitOrAssign for Range {
+    /// Smallest range which contains both ranges
+    #[inline]
+    fn bitor_assign(&mut self, rhs: Self) {
+        *self = *self | rhs;
+    }
+}
+
+impl BitAnd for Range {
+    type Output = Option<Range>;
+
+    /// Largest range which both ranges contain if not disjoint, otherwise [None]
+    #[inline]
+    fn bitand(self, rhs: Self) -> Self::Output {
+        let start_byte = self.start_byte().max(rhs.start_byte());
+        let end_byte = self.end_byte().min(rhs.end_byte());
+        let start_point = self.start_point().max(rhs.start_point());
+        let end_point = self.end_point().min(rhs.end_point());
+
+        if start_byte <= end_byte && start_point <= end_point {
+            Some(Range::new(start_byte, end_byte, start_point, end_point))
+        } else {
+            None
+        }
+    }
+}
+
+impl Display for Range {
+    #[inline]
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "{}-{}", self.start_point(), self.end_point())
     }
 }
 
