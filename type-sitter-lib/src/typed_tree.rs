@@ -17,11 +17,26 @@ use crate::{IncorrectKind, IncorrectTreeKind, TypedNode};
 /// ## Example
 ///
 /// ```
-/// # #![cfg(feature = "tree-sitter-wrapper")]
+/// #[cfg(feature = "tree-sitter-wrapper")]
 /// use type_sitter_lib::tree_sitter_wrapper::{Node, Tree};
+/// #[cfg(not(feature = "tree-sitter-wrapper"))]
+/// use tree_sitter::{Node, Tree};
 /// use type_sitter_lib::{TypedNodeGAT, TypedTree};
-///
+/// # use type_sitter_lib::{TypedNode, IncorrectKind};
+/// #
+/// # #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 /// # pub struct Program<'tree>(Node<'tree>);
+/// # impl<'tree> TryFrom<Node<'tree>> for Program<'tree> {
+/// #     type Error = IncorrectKind<'tree>;
+/// #     fn try_from(node: Node<'tree>) -> Result<Self, Self::Error> { todo!() }
+/// # }
+/// # impl<'tree> TypedNode<'tree> for Program<'tree> {
+/// #   const KIND: &'static str = "program";
+/// #   fn node(&self) -> &Node<'tree> { todo!() }
+/// #   fn node_mut(&mut self) -> &mut Node<'tree> { todo!() }
+/// #   fn into_node(self) -> Node<'tree> { todo!() }
+/// # }
+///
 /// pub struct ProgramGAT;
 ///
 /// impl TypedNodeGAT for ProgramGAT {
@@ -31,6 +46,8 @@ use crate::{IncorrectKind, IncorrectTreeKind, TypedNode};
 /// fn wrap(tree: Tree) -> TypedTree<ProgramGAT> {
 ///   TypedTree::try_from(tree).unwrap()
 /// }
+/// #
+/// # fn main() { println!("it works") }
 /// ```
 ///
 /// The type of `Root` must have the `'static` lifetime (e.g. `Program<'static>`). Notice the bound
@@ -150,12 +167,26 @@ impl<Root: TypedNodeGAT> TypedTree<Root> {
 /// ## Example
 ///
 /// ```
-/// # #![cfg(feature = "tree-sitter-wrapper")]
+/// #[cfg(feature = "tree-sitter-wrapper")]
 /// use type_sitter_lib::tree_sitter_wrapper::{Node, Tree};
+/// #[cfg(not(feature = "tree-sitter-wrapper"))]
+/// use tree_sitter::{Node, Tree};
 /// use type_sitter_lib::{TypedNodeGAT, TypedTree};
-///
-///
+/// # use type_sitter_lib::{TypedNode, IncorrectKind};
+/// #
+/// # #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 /// # pub struct Program<'tree>(Node<'tree>);
+/// # impl<'tree> TryFrom<Node<'tree>> for Program<'tree> {
+/// #     type Error = IncorrectKind<'tree>;
+/// #     fn try_from(node: Node<'tree>) -> Result<Self, Self::Error> { todo!() }
+/// # }
+/// # impl<'tree> TypedNode<'tree> for Program<'tree> {
+/// #   const KIND: &'static str = "program";
+/// #   fn node(&self) -> &Node<'tree> { todo!() }
+/// #   fn node_mut(&mut self) -> &mut Node<'tree> { todo!() }
+/// #   fn into_node(self) -> Node<'tree> { todo!() }
+/// # }
+///
 /// pub struct ProgramGAT;
 ///
 /// impl TypedNodeGAT for ProgramGAT {
@@ -165,6 +196,8 @@ impl<Root: TypedNodeGAT> TypedTree<Root> {
 /// fn wrap(tree: Tree) -> TypedTree<ProgramGAT> {
 ///   TypedTree::try_from(tree).unwrap()
 /// }
+/// #
+/// # fn main() { println!("it works") }
 /// ```
 pub trait TypedNodeGAT {
     /// The lifetime-irrelevant node type
