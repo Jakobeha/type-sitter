@@ -184,11 +184,11 @@ pub trait TypedNode<'tree>: TryFrom<Node<'tree>, Error=IncorrectKind<'tree>> + D
         self.node().byte_range()
     }
 
-    /// See [Node::point_range]
+    /// See [Node::position_range]
     #[inline]
     #[cfg(feature = "tree-sitter-wrapper")]
-    fn point_range(&self) -> PointRange {
-        self.node().point_range()
+    fn position_range(&self) -> PointRange {
+        self.node().position_range()
     }
 
     /// See [Node::edit]

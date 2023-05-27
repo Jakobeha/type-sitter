@@ -1,8 +1,9 @@
 use std::cell::RefCell;
+use std::cmp::Ordering;
 use std::collections::{Bound, HashMap, HashSet};
 use std::error::Error;
 use std::fmt::{Debug, Display};
-use std::path::Path;
+use std::path::{Path, PathBuf};
 use std::iter::{FusedIterator, once, Once};
 use streaming_iterator::{StreamingIterator, StreamingIteratorMut};
 use std::str::Utf8Error;
@@ -144,8 +145,12 @@ pub enum TreeParseError {
 /// Unfortunately this is just done by storing the text and range, there's not much else we can do
 #[derive(Debug, Clone)]
 pub struct SubTree {
+    /// Node's text
     pub text: String,
+    /// Node's range within the tree
     pub range: Range,
+    /// Tree's virtual path (if any)
+    pub path: Option<PathBuf>,
     /// Node which can be dereferenced in case the tree is still alive,
     /// otherwise it is dangling
     pub root: Option<NodePtr>,
@@ -214,23 +219,30 @@ impl Parser {
     }
 
     /// Parse a file. See [tree_sitter::Parser::parse]
+    ///
+    /// The file must be valid utf-8 or this will return `Err`. The file's path is used for stable
+    /// node comparison between trees.
     #[inline]
     pub fn parse_file(&mut self, path: &Path, old_tree: Option<&Tree>) -> Result<Tree, TreeParseError> {
-        self.parse_bytes(std::fs::read(path)?, old_tree)
+        self.parse_bytes(std::fs::read(path)?, Some(path), old_tree)
     }
 
     /// Parse a string. See [tree_sitter::Parser::parse]
+    ///
+    /// The path may be virtual, it's used for stable node comparison between trees.
     #[inline]
-    pub fn parse_string(&mut self, text: String, old_tree: Option<&Tree>) -> Result<Tree, TreeParseError> {
-        self.parse_bytes(text.into_bytes(), old_tree)
+    pub fn parse_string(&mut self, text: String, path: Option<impl AsRef<Path>>, old_tree: Option<&Tree>) -> Result<Tree, TreeParseError> {
+        self.parse_bytes(text.into_bytes(), path, old_tree)
     }
 
-    /// Parse a byte string. See [tree_sitter::Parser::parse]. Note that the wrappers expect and
-    /// assume UTF-8, so this will fail if the text is not valid UTF-8.
+    /// Parse a byte string. See [tree_sitter::Parser::parse].
+    ///
+    /// Note that the wrappers expect and assume UTF-8, so this will fail if the text is not valid
+    /// UTF-8. The path may be virtual, it's used for stable node comparison between trees.
     #[inline]
-    pub fn parse_bytes(&mut self, byte_text: Vec<u8>, old_tree: Option<&Tree>) -> Result<Tree, TreeParseError> {
+    pub fn parse_bytes(&mut self, byte_text: Vec<u8>, path: Option<impl AsRef<Path>>, old_tree: Option<&Tree>) -> Result<Tree, TreeParseError> {
         let tree = self.0.parse(&byte_text, old_tree.map(|t| &t.tree)).ok_or(TreeParseError::ParsingFailed)?;
-        Ok(Tree::new(tree, byte_text)?)
+        Ok(Tree::new(tree, byte_text, path.map(|p| p.as_ref().to_path_buf()))?)
     }
 }
 
@@ -238,9 +250,9 @@ impl Tree {
     /// Wrap the tree and its associated text. Note that the wrappers expect and assume UTF-8, so
     /// this will fail if the text is not valid UTF-8.
     #[inline]
-    fn new(tree: tree_sitter::Tree, byte_text: Vec<u8>) -> Result<Self, Utf8Error> {
+    fn new(tree: tree_sitter::Tree, byte_text: Vec<u8>, path: Option<PathBuf>) -> Result<Self, Utf8Error> {
         Self::validate_utf8(&tree, &byte_text)?;
-        Ok(Self { tree, byte_text, marked_nodes: RefCell::default() })
+        Ok(Self { tree, byte_text, path, marked_nodes: RefCell::default() })
     }
 
     fn validate_utf8(tree: &tree_sitter::Tree, byte_text: &[u8]) -> Result<(), Utf8Error> {
@@ -264,6 +276,14 @@ impl Tree {
     pub fn text(&self) -> &str {
         // SAFETY: we ran validate_utf8 before constructing so the text is valid UTF-8
         unsafe { std::str::from_utf8_unchecked(&self.byte_text) }
+    }
+
+    /// Get the path the tree is associated with, if any.
+    ///
+    /// The path may be virtual, it's used for stable node comparison between trees.
+    #[inline]
+    pub fn path(&self) -> Option<&Path> {
+        self.path.as_deref()
     }
 
     /// Get the root node.
@@ -340,7 +360,13 @@ impl<'tree> Node<'tree> {
         Self { node, tree }
     }
 
-    /// Get a tree-unique node id. See [tree_sitter::Node::id]
+    /// Gets the node id which is a pointer. This means that nodes from separate trees are
+    /// guaranteed to have different ids iff both trees are alive, but a node which is no longer
+    /// alive may have the same id as a different node which is. The tree-sitter docs specifically
+    /// mention that a if a tree is created from an older tree, nodes may be reused and from the old
+    /// tree and these will have the same id.
+    ///
+    /// See [tree_sitter::Node::id]
     #[inline]
     pub fn id(&self) -> NodeId {
         NodeId::of_ts(self.node)
@@ -426,7 +452,7 @@ impl<'tree> Node<'tree> {
 
     /// Get the row and column range where this node is located
     #[inline]
-    pub fn point_range(&self) -> PointRange {
+    pub fn position_range(&self) -> PointRange {
         PointRange {
             start: self.start_position(),
             end: self.end_position()
@@ -454,6 +480,14 @@ impl<'tree> Node<'tree> {
     pub fn text(&self) -> &'tree str {
         // SAFETY: we ran validate_utf8 before constructing so all nodes are valid UTF-8
         unsafe { std::str::from_utf8_unchecked(self.byte_text()) }
+    }
+
+    /// Path of the node's tree.
+    ///
+    /// This is the virtual path set on the tree's creation, used primarily for consistent ordering.
+    #[inline]
+    pub fn path(&self) -> Option<&'tree Path> {
+        self.tree.path()
     }
 
     /// Get the node's named and unnamed children. See [tree_sitter::Node::children]
@@ -641,6 +675,7 @@ impl<'tree> Node<'tree> {
         SubTree {
             text: self.text().to_string(),
             range: self.range(),
+            path: self.path().map(|p| p.to_path_buf()),
             root: Some(self.to_ptr()),
         }
     }
@@ -742,7 +777,9 @@ impl<'tree> Node<'tree> {
     }
 }
 
-impl<'tree> PartialEq<Node<'tree>> for Node<'tree> {
+impl<'tree> PartialEq for Node<'tree> {
+    /// Equal if both nodes have the same id, which is a pointer. This means that nodes from
+    /// separate trees are guaranteed to not be equal.
     #[inline]
     fn eq(&self, other: &Node<'tree>) -> bool {
         self.id() == other.id()
@@ -750,6 +787,33 @@ impl<'tree> PartialEq<Node<'tree>> for Node<'tree> {
 }
 
 impl<'tree> Eq for Node<'tree> {}
+
+impl<'tree> PartialOrd for Node<'tree> {
+    /// Equal if both nodes are the same (have the same id).
+    ///
+    /// Otherwise, compares based
+    #[inline]
+    fn partial_cmp(&self, other: &Self) -> Option<Ordering> {
+        Some(self.cmp(other))
+    }
+}
+
+impl<'tree> Ord for Node<'tree> {
+    /// Equal if both nodes are the same (have the same id).
+    ///
+    /// Otherwise, compares based
+    fn cmp(&self, other: &Self) -> Ordering {
+        if self.id() == other.id() {
+            Ordering::Equal
+        } else if self.tree == other.tree {
+            self.start_byte().cmp(&other.start_byte())
+                .then(self.end_byte().cmp(&other.end_byte()))
+        } else {
+            self.path().cmp(&other.path())
+                .then(self.id().0.cmp(&other.id().0))
+        }
+    }
+}
 
 impl<'tree> Hash for Node<'tree> {
     #[inline]
