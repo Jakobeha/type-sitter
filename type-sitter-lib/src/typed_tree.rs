@@ -1,7 +1,7 @@
 use std::marker::PhantomData;
 use std::os::fd::AsRawFd;
 #[cfg(feature = "tree-sitter-wrapper")]
-use crate::tree_sitter_wrapper::{Bitmask, DisplayTree, InputEdit, Language, Range, Tree, TreeCursor};
+use crate::tree_sitter_wrapper::{InputEdit, Language, Range, Tree, TreeCursor};
 #[cfg(not(feature = "tree-sitter-wrapper"))]
 use tree_sitter::{InputEdit, Language, Range, Tree, TreeCursor};
 use crate::{IncorrectKind, IncorrectTreeKind, TypedNode};
@@ -144,15 +144,6 @@ impl<Root: TypedNodeGAT> TypedTree<Root> {
     #[inline]
     pub fn edit(&mut self, edit: &InputEdit) {
         self.tree.edit(edit)
-    }
-
-    /// Re-print this tree, skipping nodes without `include_mark` and with `exclude_mark`.
-    /// This will reuse the parsed text when possible, but if a lot of nodes are skipped you may
-    /// still need to format to produce something readable.
-    #[inline]
-    #[cfg(feature = "tree-sitter-wrapper")]
-    pub fn display_skipping(&self, include_mark: Bitmask, exclude_mark: Bitmask) -> DisplayTree<'_> {
-        self.tree.display_skipping(include_mark, exclude_mark)
     }
     // endregion
 }

@@ -1,6 +1,5 @@
-use std::cell::RefCell;
 use std::cmp::Ordering;
-use std::collections::{Bound, HashMap, HashSet};
+use std::collections::Bound;
 use std::error::Error;
 use std::fmt::{Debug, Display};
 use std::path::{Path, PathBuf};
@@ -15,38 +14,46 @@ use utf8_error_offset_by::Utf8ErrorOffsetBy;
 
 mod utf8_error_offset_by;
 
-/// Wrapper around [tree_sitter::Tree] which stores the text and marked nodes
+/// Wrapper around [tree_sitter::Tree] which stores its text, filepath, and extra data that is
+/// accessible from any node. It also uses and is used by [tree_sitter_wrapper] wrapper classes.
 #[derive(Debug)]
-pub struct Tree {
+pub struct Tree<Custom = ()> {
     tree: tree_sitter::Tree,
     byte_text: Vec<u8>,
-    marked_nodes: RefCell<HashMap<NodeId, Bitmask>>
+    path: Option<PathBuf>,
+    /// Custom data which you can access behind a shared reference from any [Node]
+    pub custom: Custom
 }
 
-/// Wrapper around [tree_sitter::Node]
+/// Wrapper around [tree_sitter::Node] which can access its text, tree's filepath, and tree's
+/// `Custom` data behind a shared reference. It also uses and is used by [tree_sitter_wrapper]
+/// wrapper classes.
 #[derive(Clone, Copy)]
-pub struct Node<'tree> {
+pub struct Node<'tree, Custom = ()> {
     node: tree_sitter::Node<'tree>,
-    tree: &'tree Tree,
+    tree: &'tree Tree<Custom>,
 }
 
-/// Raw pointer equivalent of [Node]
+/// Raw pointer equivalent of [Node].
+///
+/// `Custom` is still in the type signature, but you can safely `transmute` between different
+/// `Custom` types and this is exposed via [NodePtr::cast_custom].
 #[derive(Clone, Copy)]
-pub struct NodePtr {
+pub struct NodePtr<Custom = ()> {
     node_data: NodeData,
-    tree: NonNull<Tree>
+    tree: NonNull<Tree<Custom>>
 }
 
+/// Taken straight from [tree_sitter::ffi::TSNode]. This must maintain the same layout
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(C)]
-/// Taken straight from [tree_sitter::ffi::TSNode]. This must maintain the same layout
 struct NodeData {
     context: [u32; 4usize],
     id: *const (),
     tree: *const (),
 }
 
-/// Wrapper around `usize` (aka node id)
+/// Wrapper around `usize` (aka node id).
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
 pub struct NodeId(usize);
@@ -54,9 +61,9 @@ pub struct NodeId(usize);
 /// Wrapper around [tree_sitter::TreeCursor], which can actually go outside of its "local" node,
 /// albeit with degraded performance (we just do standard lookups)
 #[derive(Clone)]
-pub struct TreeCursor<'tree> {
+pub struct TreeCursor<'tree, Custom = ()> {
     cursor: tree_sitter::TreeCursor<'tree>,
-    tree: &'tree Tree,
+    tree: &'tree Tree<Custom>,
     child_depth: usize,
 }
 
@@ -70,31 +77,31 @@ pub struct QueryCursor {
 /// [tree_sitter::QueryMatches] is NOT a real iterator, it's a [StreamingIterator] (see
 ///     <https://github.com/tree-sitter/tree-sitter/issues/608>). Therefore this doesn't implement
 ///     [Iterator]
-pub struct QueryMatches<'query, 'tree: 'query> {
-    query_matches: tree_sitter::QueryMatches<'query, 'tree, &'query Tree>,
-    current_match: Option<QueryMatch<'query, 'tree>>,
-    tree: &'tree Tree,
+pub struct QueryMatches<'query, 'tree: 'query, Custom = ()> {
+    query_matches: tree_sitter::QueryMatches<'query, 'tree, &'query Tree<Custom>>,
+    current_match: Option<QueryMatch<'query, 'tree, Custom>>,
+    tree: &'tree Tree<Custom>,
     query: &'query Query
 }
 
 /// Wrapper around [tree_sitter::QueryMatch]
-pub struct QueryMatch<'query, 'tree> {
+pub struct QueryMatch<'query, 'tree, Custom = ()> {
     query_match: tree_sitter::QueryMatch<'query, 'tree>,
-    tree: &'tree Tree,
+    tree: &'tree Tree<Custom>,
     query: &'query Query
 }
 
 /// Wrapper around [tree_sitter::QueryCapture]
-pub struct QueryCaptures<'query, 'tree> {
-    query_captures: tree_sitter::QueryCaptures<'query, 'tree, &'query Tree>,
-    tree: &'tree Tree,
+pub struct QueryCaptures<'query, 'tree, Custom = ()> {
+    query_captures: tree_sitter::QueryCaptures<'query, 'tree, &'query Tree<Custom>>,
+    tree: &'tree Tree<Custom>,
     query: &'query Query
 }
 
 /// Wrapper around [tree_sitter::QueryCapture]
 #[derive(Debug, Clone, Copy)]
-pub struct QueryCapture<'query, 'tree> {
-    pub node: Node<'tree>,
+pub struct QueryCapture<'query, 'tree, Custom = ()> {
+    pub node: Node<'tree, Custom>,
     pub index: usize,
     pub name: &'query str,
 }
@@ -134,6 +141,7 @@ pub type IncludedRangesError = tree_sitter::IncludedRangesError;
 /// Re-exports [tree_sitter::InputEdit]
 pub type InputEdit = tree_sitter::InputEdit;
 
+/// Error from parsing a tree
 #[derive(Debug)]
 pub enum TreeParseError {
     IO(std::io::Error),
@@ -144,7 +152,7 @@ pub enum TreeParseError {
 /// General-purpose way to store TSNode separately from the tree, e.g. if you need to serialize it.
 /// Unfortunately this is just done by storing the text and range, there's not much else we can do
 #[derive(Debug, Clone)]
-pub struct SubTree {
+pub struct SubTree<Custom = ()> {
     /// Node's text
     pub text: String,
     /// Node's range within the tree
@@ -153,7 +161,7 @@ pub struct SubTree {
     pub path: Option<PathBuf>,
     /// Node which can be dereferenced in case the tree is still alive,
     /// otherwise it is dangling
-    pub root: Option<NodePtr>,
+    pub root: Option<NodePtr<Custom>>,
 }
 
 /// Describes the previous traversal action in a pre-order traversal which iterates nodes with
@@ -169,32 +177,21 @@ pub enum TraversalState {
 
 /// Iterator over a tree in pre-order traversal which iterates nodes with children both up and down
 #[derive(Clone)]
-pub struct PreorderTraversal<'tree> {
-    cursor: TreeCursor<'tree>,
+pub struct PreorderTraversal<'tree, Custom = ()> {
+    cursor: TreeCursor<'tree, Custom>,
     last_state: TraversalState
 }
 
 /// Iterated node in a traversal (includes field name and last state)
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-pub struct TraversalItem<'tree> {
+pub struct TraversalItem<'tree, Custom = ()> {
     /// The node
-    pub node: Node<'tree>,
+    pub node: Node<'tree, Custom>,
     /// The node's field name
     pub field_name: Option<&'static str>,
     /// Last traversal state to reach this node
     pub last_state: TraversalState
 }
-
-/// Reprint a [Tree] with or without nodes with and without certain markings
-#[derive(Debug)]
-pub struct DisplayTree<'a> {
-    tree: &'a Tree,
-    include_mark: Bitmask,
-    exclude_mark: Bitmask,
-}
-
-/// Primitive bitmask
-pub type Bitmask = u64;
 
 impl Parser {
     /// Create a new parser for the given language. See [tree_sitter::Parser::set_language]
@@ -223,36 +220,63 @@ impl Parser {
     /// The file must be valid utf-8 or this will return `Err`. The file's path is used for stable
     /// node comparison between trees.
     #[inline]
-    pub fn parse_file(&mut self, path: &Path, old_tree: Option<&Tree>) -> Result<Tree, TreeParseError> {
-        self.parse_bytes(std::fs::read(path)?, Some(path), old_tree)
+    pub fn parse_file<Custom>(
+        &mut self, 
+        path: &Path, 
+        old_tree: Option<&Tree<Custom>>, 
+        custom: Custom
+    ) -> Result<Tree<Custom>, TreeParseError> {
+        let byte_text = std::fs::read(path)?;
+        self.parse_bytes(byte_text, Some(path), old_tree, custom)
     }
 
     /// Parse a string. See [tree_sitter::Parser::parse]
     ///
-    /// The path may be virtual, it's used for stable node comparison between trees.
+    /// The path is passed to [TsCustom::new]. If your [TsCustom] doesn't use paths, jusrt pass
+    /// `None`.
     #[inline]
-    pub fn parse_string(&mut self, text: String, path: Option<impl AsRef<Path>>, old_tree: Option<&Tree>) -> Result<Tree, TreeParseError> {
-        self.parse_bytes(text.into_bytes(), path, old_tree)
+    pub fn parse_string<Custom>(
+        &mut self, 
+        text: String, 
+        path: Option<impl AsRef<Path>>, 
+        old_tree: Option<&Tree<Custom>>, 
+        custom: Custom
+    ) -> Result<Tree<Custom>, TreeParseError> {
+        self.parse_bytes(text.into_bytes(), path, old_tree, custom)
     }
 
     /// Parse a byte string. See [tree_sitter::Parser::parse].
     ///
     /// Note that the wrappers expect and assume UTF-8, so this will fail if the text is not valid
-    /// UTF-8. The path may be virtual, it's used for stable node comparison between trees.
+    /// UTF-8.
+    ///
+    /// The path is passed to [TsCustom::new]. If your [TsCustom] doesn't use paths, jusrt pass
+    /// `None`.
     #[inline]
-    pub fn parse_bytes(&mut self, byte_text: Vec<u8>, path: Option<impl AsRef<Path>>, old_tree: Option<&Tree>) -> Result<Tree, TreeParseError> {
+    pub fn parse_bytes<Custom>(
+        &mut self,
+        byte_text: Vec<u8>, 
+        path: Option<impl AsRef<Path>>,
+        old_tree: Option<&Tree<Custom>>,
+        custom: Custom
+    ) -> Result<Tree<Custom>, TreeParseError> {
         let tree = self.0.parse(&byte_text, old_tree.map(|t| &t.tree)).ok_or(TreeParseError::ParsingFailed)?;
-        Ok(Tree::new(tree, byte_text, path.map(|p| p.as_ref().to_path_buf()))?)
+        Ok(Tree::new(tree, byte_text, path.map(|p| p.as_ref().to_path_buf()), custom)?)
     }
 }
 
-impl Tree {
+impl<Custom> Tree<Custom> {
     /// Wrap the tree and its associated text. Note that the wrappers expect and assume UTF-8, so
     /// this will fail if the text is not valid UTF-8.
     #[inline]
-    fn new(tree: tree_sitter::Tree, byte_text: Vec<u8>, path: Option<PathBuf>) -> Result<Self, Utf8Error> {
+    fn new(
+        tree: tree_sitter::Tree,
+        byte_text: Vec<u8>, 
+        path: Option<PathBuf>,
+        custom: Custom
+    ) -> Result<Self, Utf8Error> {
         Self::validate_utf8(&tree, &byte_text)?;
-        Ok(Self { tree, byte_text, path, marked_nodes: RefCell::default() })
+        Ok(Self { tree, byte_text, path, custom })
     }
 
     fn validate_utf8(tree: &tree_sitter::Tree, byte_text: &[u8]) -> Result<(), Utf8Error> {
@@ -288,14 +312,14 @@ impl Tree {
 
     /// Get the root node.
     #[inline]
-    pub fn root_node(&self) -> Node<'_> {
+    pub fn root_node(&self) -> Node<'_, Custom> {
         // SAFETY: The node is from this tree
         unsafe { Node::new(self.tree.root_node(), self) }
     }
 
     /// Create a [TreeCursor] starting at the root node.
     #[inline]
-    pub fn walk(&self) -> TreeCursor<'_> {
+    pub fn walk(&self) -> TreeCursor<'_, Custom> {
         TreeCursor::new(self.tree.walk(), self, true)
     }
 
@@ -328,21 +352,9 @@ impl Tree {
     pub fn edit(&mut self, edit: &InputEdit) {
         self.tree.edit(edit)
     }
-
-    /// Re-print this tree, skipping nodes without `include_mark` and with `exclude_mark`.
-    /// This will reuse the parsed text when possible, but if a lot of nodes are skipped you may
-    /// still need to format to produce something readable.
-    #[inline]
-    pub fn display_skipping(&self, include_mark: Bitmask, exclude_mark: Bitmask) -> DisplayTree<'_> {
-        DisplayTree {
-            tree: self,
-            include_mark,
-            exclude_mark,
-        }
-    }
 }
 
-impl<'tree> tree_sitter::TextProvider<'tree> for &'tree Tree {
+impl<'tree, Custom> tree_sitter::TextProvider<'tree> for &'tree Tree<Custom> {
     type I = Once<&'tree [u8]>;
 
     #[inline]
@@ -351,12 +363,12 @@ impl<'tree> tree_sitter::TextProvider<'tree> for &'tree Tree {
     }
 }
 
-impl<'tree> Node<'tree> {
+impl<'tree, Custom> Node<'tree, Custom> {
     /// Wrap a [tree_sitter::Node]. Requires its associated [Tree] for convenience methods.
     ///
     /// SAFETY: The node must be from the given tree.
     #[inline]
-    pub unsafe fn new(node: tree_sitter::Node<'tree>, tree: &'tree Tree) -> Self {
+    pub unsafe fn new(node: tree_sitter::Node<'tree>, tree: &'tree Tree<Custom>) -> Self {
         Self { node, tree }
     }
 
@@ -490,9 +502,19 @@ impl<'tree> Node<'tree> {
         self.tree.path()
     }
 
+    /// Custom data on the node's tree.
+    ///
+    /// Nodes can only get shared references to this since they have a shared reference on the tree
+    /// itself. You must use a mutable reference to the tree or owned tree to get mutable or owned
+    /// custom data.
+    #[inline]
+    pub fn custom(&self) -> &'tree Custom {
+        &self.tree.custom
+    }
+
     /// Get the node's named and unnamed children. See [tree_sitter::Node::children]
     #[inline]
-    pub fn all_children<'a>(&self, cursor: &'a mut TreeCursor<'tree>) -> impl ExactSizeIterator<Item = Node<'tree>> + 'a {
+    pub fn all_children<'a>(&self, cursor: &'a mut TreeCursor<'tree, Custom>) -> impl ExactSizeIterator<Item = Node<'tree, Custom>> + 'a {
         let tree = self.tree;
         // SAFETY: Same tree
         self.node.children(&mut cursor.cursor).map(move |node| unsafe { Node::new(node, tree) })
@@ -500,7 +522,7 @@ impl<'tree> Node<'tree> {
 
     /// Get the node's named children. See [tree_sitter::Node::named_children]
     #[inline]
-    pub fn named_children<'a>(&self, cursor: &'a mut TreeCursor<'tree>) -> impl ExactSizeIterator<Item = Node<'tree>> + 'a {
+    pub fn named_children<'a>(&self, cursor: &'a mut TreeCursor<'tree, Custom>) -> impl ExactSizeIterator<Item = Node<'tree, Custom>> + 'a {
         let tree = self.tree;
         // SAFETY: Same tree
         self.node.named_children(&mut cursor.cursor).map(move |node| unsafe { Node::new(node, tree) })
@@ -520,56 +542,56 @@ impl<'tree> Node<'tree> {
 
     /// Get the node's immediate parent.
     #[inline]
-    pub fn parent(&self) -> Option<Node<'tree>> {
+    pub fn parent(&self) -> Option<Node<'tree, Custom>> {
         // SAFETY: Same tree
         self.node.parent().map(|node| unsafe { Node::new(node, self.tree) })
     }
 
     /// Get the node's immediate next sibling, named or unnamed.
     #[inline]
-    pub fn next_any_sibling(&self) -> Option<Node<'tree>> {
+    pub fn next_any_sibling(&self) -> Option<Node<'tree, Custom>> {
         // SAFETY: Same tree
         self.node.next_sibling().map(|node| unsafe { Node::new(node, self.tree) })
     }
 
     /// Get the node's immediate named next sibling.
     #[inline]
-    pub fn next_named_sibling(&self) -> Option<Node<'tree>> {
+    pub fn next_named_sibling(&self) -> Option<Node<'tree, Custom>> {
         // SAFETY: Same tree
         self.node.next_named_sibling().map(|node| unsafe { Node::new(node, self.tree) })
     }
 
     /// Get the node's immediate previous sibling, named or unnamed.
     #[inline]
-    pub fn prev_any_sibling(&self) -> Option<Node<'tree>> {
+    pub fn prev_any_sibling(&self) -> Option<Node<'tree, Custom>> {
         // SAFETY: Same tree
         self.node.prev_sibling().map(|node| unsafe { Node::new(node, self.tree) })
     }
 
     /// Get the node's immediate named previous sibling.
     #[inline]
-    pub fn prev_named_sibling(&self) -> Option<Node<'tree>> {
+    pub fn prev_named_sibling(&self) -> Option<Node<'tree, Custom>> {
         // SAFETY: Same tree
         self.node.prev_named_sibling().map(|node| unsafe { Node::new(node, self.tree) })
     }
 
     /// Get the node's child at the given index, named or unnamed. See [tree_sitter::Node::child]
     #[inline]
-    pub fn any_child(&self, i: usize) -> Option<Node<'tree>> {
+    pub fn any_child(&self, i: usize) -> Option<Node<'tree, Custom>> {
         // SAFETY: Same tree
         self.node.child(i).map(|node| unsafe { Node::new(node, self.tree) })
     }
 
     /// Get the node's named child at the given index. See [tree_sitter::Node::named_child]
     #[inline]
-    pub fn named_child(&self, i: usize) -> Option<Node<'tree>> {
+    pub fn named_child(&self, i: usize) -> Option<Node<'tree, Custom>> {
         // SAFETY: Same tree
         self.node.named_child(i).map(|node| unsafe { Node::new(node, self.tree) })
     }
 
     /// Get the node's last child, named or unnamed.
     #[inline]
-    pub fn last_any_child(&self) -> Option<Node<'tree>> {
+    pub fn last_any_child(&self) -> Option<Node<'tree, Custom>> {
         // .child is already bounds-checked so we use wrapping_sub for iff the count is 0
         // SAFETY: Same tree
         self.node.child(self.any_child_count().wrapping_sub(1)).map(|node| unsafe { Node::new(node, self.tree) })
@@ -577,7 +599,7 @@ impl<'tree> Node<'tree> {
 
     /// Get the node's last named child.
     #[inline]
-    pub fn last_named_child(&self) -> Option<Node<'tree>> {
+    pub fn last_named_child(&self) -> Option<Node<'tree, Custom>> {
         // .named_child is already bounds-checked so we use wrapping_sub for iff the count is 0
         // SAFETY: Same tree
         self.node.named_child(self.named_child_count().wrapping_sub(1)).map(|node| unsafe { Node::new(node, self.tree) })
@@ -589,8 +611,8 @@ impl<'tree> Node<'tree> {
     pub fn child_of_kind(
         &self,
         kind: &str,
-        cursor: &mut TreeCursor<'tree>
-    ) -> Option<Node<'tree>> {
+        cursor: &mut TreeCursor<'tree, Custom>
+    ) -> Option<Node<'tree, Custom>> {
         // SAFETY: Same tree
         self.node.named_children(&mut cursor.cursor)
             .find(|node| node.kind() == kind)
@@ -603,8 +625,8 @@ impl<'tree> Node<'tree> {
     pub fn children_of_kind<'a>(
         &self,
         kind: &'a str,
-        cursor: &'a mut TreeCursor<'tree>
-    ) -> impl Iterator<Item = Node<'tree>> + 'a {
+        cursor: &'a mut TreeCursor<'tree, Custom>
+    ) -> impl Iterator<Item = Node<'tree, Custom>> + 'a {
         // SAFETY: Same tree
         self.node.named_children(&mut cursor.cursor)
             .filter(move |node| node.kind() == kind)
@@ -613,7 +635,7 @@ impl<'tree> Node<'tree> {
 
     /// Get the first child with the given field name.
     #[inline]
-    pub fn child_by_field_name(&self, field_name: &str) -> Option<Node<'tree>> {
+    pub fn child_by_field_name(&self, field_name: &str) -> Option<Node<'tree, Custom>> {
         // SAFETY: Same tree
         self.node.child_by_field_name(field_name).map(|node| unsafe { Node::new(node, self.tree) })
     }
@@ -623,8 +645,8 @@ impl<'tree> Node<'tree> {
     pub fn children_by_field_name<'a>(
         &self,
         field_name: &str,
-        c: &'a mut TreeCursor<'tree>
-    ) -> impl Iterator<Item = Node<'tree>> + 'a {
+        c: &'a mut TreeCursor<'tree, Custom>
+    ) -> impl Iterator<Item = Node<'tree, Custom>> + 'a {
         // SAFETY: Same tree
         self.node.children_by_field_name(field_name, &mut c.cursor).map(|node| unsafe { Node::new(node, self.tree) })
     }
@@ -637,7 +659,7 @@ impl<'tree> Node<'tree> {
 
     /// Get the node's field name. This is done by looking at the parent's children and finding the
     /// one that matches this node, then returning its field name, hence the need for a cursor.
-    pub fn field_name(&self, cursor: &mut TreeCursor<'tree>) -> Option<&'static str> {
+    pub fn field_name(&self, cursor: &mut TreeCursor<'tree, Custom>) -> Option<&'static str> {
         self.parent().and_then(|parent| {
             let i = parent.all_children(cursor)
                 .position(|x| x == *self)
@@ -648,7 +670,7 @@ impl<'tree> Node<'tree> {
 
     /// Get a [TreeCursor] that points to this node.
     #[inline]
-    pub fn walk(&self) -> TreeCursor<'tree> {
+    pub fn walk(&self) -> TreeCursor<'tree, Custom> {
         TreeCursor::new(self.node.walk(), self.tree, false)
     }
 
@@ -660,7 +682,7 @@ impl<'tree> Node<'tree> {
 
     /// Get a raw pointer to this node (remove the 'tree lifetime).
     #[inline]
-    pub fn to_ptr(&self) -> NodePtr {
+    pub fn to_ptr(&self) -> NodePtr<Custom> {
         NodePtr {
             node_data: NodeData::from(self.node),
             tree: NonNull::from(self.tree),
@@ -671,7 +693,7 @@ impl<'tree> Node<'tree> {
     /// The text and range will persist even after this node's tree is deallocated,
     /// and if we know for certain it isn't, the original node can be `unsafe`ly recovered
     #[inline]
-    pub fn to_subtree(&self) -> SubTree {
+    pub fn to_subtree(&self) -> SubTree<Custom> {
         SubTree {
             text: self.text().to_string(),
             range: self.range(),
@@ -679,116 +701,20 @@ impl<'tree> Node<'tree> {
             root: Some(self.to_ptr()),
         }
     }
-
-    /// Bit-or the mark to this node. Returns the old mark
-    pub fn mark(&self, mark: Bitmask) -> Bitmask {
-        let mut old_mark = 0;
-        self.tree.marked_nodes.borrow_mut().entry(self.id())
-            .and_modify(|m| {
-                old_mark = *m;
-                *m |= mark
-            })
-            .or_insert(mark);
-        old_mark
-    }
-
-    /// Bit-and-not the mark to this node. Returns the old mark
-    pub fn unmark(&self, mark: Bitmask) -> Bitmask {
-        let mut old_mark = 0;
-        self.tree.marked_nodes.borrow_mut().entry(self.id())
-            .and_modify(|m| {
-                old_mark = *m;
-                *m &= !mark
-            })
-            .or_insert(0);
-        old_mark
-    }
-
-    /// Bit-xor the mark to this node. Returns the old mark
-    pub fn toggle_mark(&self, mark: Bitmask) -> Bitmask {
-        let mut old_mark = 0;
-        self.tree.marked_nodes.borrow_mut().entry(self.id())
-            .and_modify(|m| {
-                old_mark = *m;
-                *m ^= mark
-            })
-            .or_insert(mark);
-        old_mark
-    }
-
-    /// Bit-and the mark to this node. Returns the old mark
-    pub fn filter_mark(&self, mark: Bitmask) -> Bitmask {
-        let mut old_mark = 0;
-        self.tree.marked_nodes.borrow_mut().entry(self.id())
-            .and_modify(|m| {
-                old_mark = *m;
-                *m &= mark
-            })
-            .or_insert(0);
-        old_mark
-    }
-
-    /// Get the node's mark
-    #[inline]
-    pub fn get_mark(&self) -> Bitmask {
-        self.tree.marked_nodes.borrow().get(&self.id()).cloned().unwrap_or(0)
-    }
-
-    /// Bit-or the mark to all of the children except the given one. Returns if (any, all) child
-    /// nodes were already marked with the entire mark.
-    pub fn mark_children_except(&self, mark: Bitmask, except: Node<'tree>, cursor: &mut TreeCursor<'tree>) -> (bool, bool) {
-        let mut marked_nodes = self.tree.marked_nodes.borrow_mut();
-        let mut already_marked = (false, true);
-        for child in self.all_children(cursor) {
-            if child.id() != except.id() {
-                let mut already_marked1 = false;
-                marked_nodes.entry(child.id())
-                    .and_modify(|m| {
-                        already_marked1 = *m & mark == mark;
-                        *m |= mark
-                    })
-                    .or_insert(mark);
-                already_marked.0 |= already_marked1;
-                already_marked.1 &= already_marked1;
-            }
-        }
-        already_marked
-    }
-
-    /// Bit-and the mark to all of the children except the given one. Returns if (any, all) child
-    /// nodes were already not marked with the entire mark.
-    pub fn unmark_children_except(&self, mark: Bitmask, except: Node<'tree>, cursor: &mut TreeCursor<'tree>) -> (bool, bool) {
-        let mut marked_nodes = self.tree.marked_nodes.borrow_mut();
-        let mut already_unmarked = (false, true);
-        for child in self.all_children(cursor) {
-            if child.id() != except.id() {
-                let mut already_unmarked1 = false;
-                marked_nodes.entry(child.id())
-                    .and_modify(|m| {
-                        already_unmarked1 |= *m & mark == 0;
-                        *m &= !mark
-                    })
-                    .or_insert(mark);
-                already_unmarked.0 |= already_unmarked1;
-                already_unmarked.1 &= already_unmarked1;
-            }
-        }
-        already_unmarked
-    }
 }
 
-impl<'tree> PartialEq for Node<'tree> {
+impl<'tree, Custom> PartialEq for Node<'tree, Custom> {
     /// Equal if both nodes have the same id, which is a pointer. This means that nodes from
     /// separate trees are guaranteed to not be equal.
     #[inline]
-    fn eq(&self, other: &Node<'tree>) -> bool {
+    fn eq(&self, other: &Node<'tree, Custom>) -> bool {
         self.id() == other.id()
     }
 }
 
-impl<'tree> Eq for Node<'tree> {}
+impl<'tree, Custom> Eq for Node<'tree, Custom> {}
 
-impl<'tree> PartialOrd for Node<'tree> {
+impl<'tree, Custom> PartialOrd for Node<'tree, Custom> {
     /// Equal if both nodes are the same (have the same id).
     ///
     /// Otherwise, compares based
@@ -798,14 +724,14 @@ impl<'tree> PartialOrd for Node<'tree> {
     }
 }
 
-impl<'tree> Ord for Node<'tree> {
+impl<'tree, Custom> Ord for Node<'tree, Custom> {
     /// Equal if both nodes are the same (have the same id).
     ///
     /// Otherwise, compares based
     fn cmp(&self, other: &Self) -> Ordering {
         if self.id() == other.id() {
             Ordering::Equal
-        } else if self.tree == other.tree {
+        } else if std::ptr::eq(self.tree as *const _, other.tree as *const _) {
             self.start_byte().cmp(&other.start_byte())
                 .then(self.end_byte().cmp(&other.end_byte()))
         } else {
@@ -815,34 +741,43 @@ impl<'tree> Ord for Node<'tree> {
     }
 }
 
-impl<'tree> Hash for Node<'tree> {
+impl<'tree, Custom> Hash for Node<'tree, Custom> {
     #[inline]
     fn hash<H: Hasher>(&self, state: &mut H) {
         self.id().hash(state)
     }
 }
 
-impl NodePtr {
+impl<Custom> NodePtr<Custom> {
     /// SAFETY: You must ensure that the tree the node came from is alive
     #[inline]
-    pub unsafe fn to_node(&self) -> Node {
+    pub unsafe fn to_node<'a>(self) -> Node<'a, Custom> {
         Node {
             node: self.node_data.to_node(),
             tree: self.tree.as_ref(),
         }
     }
+
+    /// Cast `Custom` to a different type. This is safe because it's behind a pointer within a
+    /// fixed-size struct, so the repr is the exact same and `Custom` can't be accessed without
+    /// calling [Self::to_node] first
+    #[inline]
+    pub fn cast_custom<NewCustom>(self) -> NodePtr<NewCustom> {
+        // SAFETY: See method documentation, same repr and impossible to access `Custom`
+        unsafe { std::mem::transmute(self) }
+    }
 }
 
-impl PartialEq<NodePtr> for NodePtr {
+impl<Custom> PartialEq for NodePtr<Custom> {
     #[inline]
-    fn eq(&self, other: &NodePtr) -> bool {
+    fn eq(&self, other: &NodePtr<Custom>) -> bool {
         self.node_data == other.node_data
     }
 }
 
-impl Eq for NodePtr {}
+impl<Custom> Eq for NodePtr<Custom> {}
 
-impl Hash for NodePtr {
+impl<Custom> Hash for NodePtr<Custom> {
     #[inline]
     fn hash<H: Hasher>(&self, state: &mut H) {
         self.node_data.hash(state)
@@ -868,11 +803,11 @@ impl<'tree> From<tree_sitter::Node<'tree>> for NodeData {
     }
 }
 
-impl<'tree> TreeCursor<'tree> {
+impl<'tree, Custom> TreeCursor<'tree, Custom> {
     /// Wrap a [tree-sitter::TreeCursor]. You must also provide the tree and whether the cursor is
     /// at the root node.
     #[inline]
-    fn new(cursor: tree_sitter::TreeCursor<'tree>, tree: &'tree Tree, is_rooted: bool) -> Self {
+    fn new(cursor: tree_sitter::TreeCursor<'tree>, tree: &'tree Tree<Custom>, is_rooted: bool) -> Self {
         Self {
             cursor,
             tree,
@@ -885,7 +820,7 @@ impl<'tree> TreeCursor<'tree> {
 
     /// Gets the cursor's current [Node].
     #[inline]
-    pub fn node(&self) -> Node<'tree> {
+    pub fn node(&self) -> Node<'tree, Custom> {
         // SAFETY: Same tree
         unsafe { Node::new(self.cursor.node(), self.tree) }
     }
@@ -912,7 +847,7 @@ impl<'tree> TreeCursor<'tree> {
 
     /// Re-initialize the cursor to point to the given node.
     #[inline]
-    pub fn goto(&mut self, node: Node<'tree>) {
+    pub fn goto(&mut self, node: Node<'tree, Custom>) {
         if self.cursor.node() != node.node {
             self.cursor.reset(node.node);
             self.child_depth = 0;
@@ -1030,7 +965,11 @@ impl QueryCursor {
     /// Iterate over all matches in the order they were found. See
     /// [tree_sitter::QueryCursor::matches]
     #[inline]
-    pub fn matches<'query, 'tree: 'query>(&'query mut self, query: &'query Query, node: Node<'tree>) -> QueryMatches<'query, 'tree> {
+    pub fn matches<'query, 'tree: 'query, Custom>(
+        &'query mut self,
+        query: &'query Query,
+        node: Node<'tree, Custom>
+    ) -> QueryMatches<'query, 'tree, Custom> {
         QueryMatches {
             query_matches: self.query_cursor.matches(&query, node.node, node.tree),
             current_match: None,
@@ -1041,7 +980,11 @@ impl QueryCursor {
 
     /// Iterate over all captures in the order they appear. See [tree_sitter::QueryCursor::captures]
     #[inline]
-    pub fn captures<'query, 'tree: 'query>(&'query mut self, query: &'query Query, node: Node<'tree>) -> QueryCaptures<'query, 'tree> {
+    pub fn captures<'query, 'tree: 'query, Custom>(
+        &'query mut self,
+        query: &'query Query,
+        node: Node<'tree, Custom>
+    ) -> QueryCaptures<'query, 'tree, Custom> {
         QueryCaptures {
             query_captures: self.query_cursor.captures(&query, node.node, node.tree),
             tree: node.tree,
@@ -1087,28 +1030,28 @@ impl QueryCursor {
     }
 }
 
-impl<'cursor, 'tree: 'cursor> QueryMatches<'cursor, 'tree> {
+impl<'cursor, 'tree: 'cursor, Custom> QueryMatches<'cursor, 'tree, Custom> {
     /// Get the underlying [tree_sitter::QueryMatches]
     #[inline]
-    pub fn as_inner(&self) -> &tree_sitter::QueryMatches<'cursor, 'tree, &'cursor Tree> {
+    pub fn as_inner(&self) -> &tree_sitter::QueryMatches<'cursor, 'tree, &'cursor Tree<Custom>> {
         &self.query_matches
     }
 
     /// Get the underlying [tree_sitter::QueryMatches]
     #[inline]
-    pub fn as_inner_mut(&mut self) -> &mut tree_sitter::QueryMatches<'cursor, 'tree, &'cursor Tree> {
+    pub fn as_inner_mut(&mut self) -> &mut tree_sitter::QueryMatches<'cursor, 'tree, &'cursor Tree<Custom>> {
         &mut self.query_matches
     }
 
     /// Destruct into the underlying [tree_sitter::QueryMatches], query, and tree
     #[inline]
-    pub fn into_inner(self) -> (tree_sitter::QueryMatches<'cursor, 'tree, &'cursor Tree>, &'cursor Query, &'tree Tree) {
+    pub fn into_inner(self) -> (tree_sitter::QueryMatches<'cursor, 'tree, &'cursor Tree<Custom>>, &'cursor Query, &'tree Tree<Custom>) {
         (self.query_matches, self.query, self.tree)
     }
 }
 
-impl<'cursor, 'tree: 'cursor> StreamingIterator for QueryMatches<'cursor, 'tree> {
-    type Item = QueryMatch<'cursor, 'tree>;
+impl<'cursor, 'tree: 'cursor, Custom> StreamingIterator for QueryMatches<'cursor, 'tree, Custom> {
+    type Item = QueryMatch<'cursor, 'tree, Custom>;
 
     #[inline]
     fn advance(&mut self) {
@@ -1129,34 +1072,34 @@ impl<'cursor, 'tree: 'cursor> StreamingIterator for QueryMatches<'cursor, 'tree>
     }
 }
 
-impl<'cursor, 'tree: 'cursor> StreamingIteratorMut for QueryMatches<'cursor, 'tree> {
+impl<'cursor, 'tree: 'cursor, Custom> StreamingIteratorMut for QueryMatches<'cursor, 'tree, Custom> {
     fn get_mut(&mut self) -> Option<&mut Self::Item> {
         self.current_match.as_mut()
     }
 }
 
-impl<'cursor, 'tree: 'cursor> QueryCaptures<'cursor, 'tree> {
+impl<'cursor, 'tree: 'cursor, Custom> QueryCaptures<'cursor, 'tree, Custom> {
     /// Get the underlying [tree_sitter::QueryCaptures]
     #[inline]
-    pub fn as_inner(&self) -> &tree_sitter::QueryCaptures<'cursor, 'tree, &'cursor Tree> {
+    pub fn as_inner(&self) -> &tree_sitter::QueryCaptures<'cursor, 'tree, &'cursor Tree<Custom>> {
         &self.query_captures
     }
 
     /// Get the underlying [tree_sitter::QueryCaptures]
     #[inline]
-    pub fn as_inner_mut(&mut self) -> &mut tree_sitter::QueryCaptures<'cursor, 'tree, &'cursor Tree> {
+    pub fn as_inner_mut(&mut self) -> &mut tree_sitter::QueryCaptures<'cursor, 'tree, &'cursor Tree<Custom>> {
         &mut self.query_captures
     }
 
     /// Destruct into the underlying [tree_sitter::QueryCaptures], query, and tree
     #[inline]
-    pub fn into_inner(self) -> (tree_sitter::QueryCaptures<'cursor, 'tree, &'cursor Tree>, &'cursor Query, &'tree Tree) {
+    pub fn into_inner(self) -> (tree_sitter::QueryCaptures<'cursor, 'tree, &'cursor Tree<Custom>>, &'cursor Query, &'tree Tree<Custom>) {
         (self.query_captures, self.query, self.tree)
     }
 }
 
-impl<'cursor, 'tree: 'cursor> Iterator for QueryCaptures<'cursor, 'tree> {
-    type Item = QueryCapture<'cursor, 'tree>;
+impl<'cursor, 'tree: 'cursor, Custom> Iterator for QueryCaptures<'cursor, 'tree, Custom> {
+    type Item = QueryCapture<'cursor, 'tree, Custom>;
 
     #[inline]
     fn next(&mut self) -> Option<Self::Item> {
@@ -1165,30 +1108,30 @@ impl<'cursor, 'tree: 'cursor> Iterator for QueryCaptures<'cursor, 'tree> {
     }
 }
 
-impl<'query, 'tree> QueryMatch<'query, 'tree> {
+impl<'query, 'tree, Custom> QueryMatch<'query, 'tree, Custom> {
     /// Iterate all captures in the order they appear.
     #[inline]
-    pub fn iter_captures(&self) -> impl Iterator<Item = QueryCapture<'query, 'tree>> {
+    pub fn iter_captures(&self) -> impl Iterator<Item = QueryCapture<'query, 'tree, Custom>> {
         self.query_match.captures.iter().map(|&query_capture|
             QueryCapture::new(query_capture, self.tree, self.query))
     }
 
     /// Get the capture at the given index (order it appears).
     #[inline]
-    pub fn capture(&self, index: usize) -> Option<QueryCapture<'query, 'tree>> {
+    pub fn capture(&self, index: usize) -> Option<QueryCapture<'query, 'tree, Custom>> {
         self.query_match.captures.get(index).map(|&query_capture|
             QueryCapture::new(query_capture, self.tree, self.query))
     }
 
     /// Get the first occurrence of the capture with the given name.
     #[inline]
-    pub fn capture_named(&self, name: &str) -> Option<QueryCapture<'query, 'tree>> {
+    pub fn capture_named(&self, name: &str) -> Option<QueryCapture<'query, 'tree, Custom>> {
         self.iter_captures().find(|capture| capture.name == name)
     }
 
     /// Get every occurrence of the captures with the given name.
     #[inline]
-    pub fn captures_named<'a>(&'a self, name: &'a str) -> impl Iterator<Item = QueryCapture<'query, 'tree>> + 'a {
+    pub fn captures_named<'a>(&'a self, name: &'a str) -> impl Iterator<Item = QueryCapture<'query, 'tree, Custom>> + 'a {
         self.iter_captures().filter(move |capture| capture.name == name)
     }
 
@@ -1218,7 +1161,7 @@ impl<'query, 'tree> QueryMatch<'query, 'tree> {
 
     /// Get the nodes that were captures by the capture at the given index.
     #[inline]
-    pub fn nodes_for_capture_index(&self, capture_index: u32) -> impl Iterator<Item = Node<'tree>> + '_ {
+    pub fn nodes_for_capture_index(&self, capture_index: u32) -> impl Iterator<Item = Node<'tree, Custom>> + '_ {
         // SAFETY: Same tree
         self.query_match
             .nodes_for_capture_index(capture_index)
@@ -1226,10 +1169,10 @@ impl<'query, 'tree> QueryMatch<'query, 'tree> {
     }
 }
 
-impl<'query, 'tree> QueryCapture<'query, 'tree> {
+impl<'query, 'tree, Custom> QueryCapture<'query, 'tree, Custom> {
     /// Wrap a [tree_sitter::QueryCapture]. This also needs the tree and query for helper methods.
     #[inline]
-    fn new(query_capture: tree_sitter::QueryCapture<'tree>, tree: &'tree Tree, query: &'query Query) -> Self {
+    fn new(query_capture: tree_sitter::QueryCapture<'tree>, tree: &'tree Tree<Custom>, query: &'query Query) -> Self {
         // SAFETY: fn is internal so the provided tree is always the same as the node's tree
         unsafe {
             Self {
@@ -1491,17 +1434,17 @@ impl Error for TreeParseError {
     }
 }
 
-impl PartialEq<SubTree> for SubTree {
+impl<Custom> PartialEq for SubTree<Custom> {
     #[inline]
-    fn eq(&self, other: &SubTree) -> bool {
+    fn eq(&self, other: &SubTree<Custom>) -> bool {
         self.text == other.text &&
             self.range == other.range
     }
 }
 
-impl Eq for SubTree {}
+impl<Custom> Eq for SubTree<Custom> {}
 
-impl Display for SubTree {
+impl<Custom> Display for SubTree<Custom> {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         write!(f, "{}", self.text)
     }
@@ -1527,10 +1470,10 @@ impl TraversalState {
     }
 }
 
-impl<'tree> PreorderTraversal<'tree> {
+impl<'tree, Custom> PreorderTraversal<'tree, Custom> {
     /// Create a new preorder traversal which will use the given [TreeCursor].
     #[inline]
-    pub fn with_cursor(cursor: TreeCursor<'tree>) -> Self {
+    pub fn with_cursor(cursor: TreeCursor<'tree, Custom>) -> Self {
         Self {
             cursor,
             last_state: TraversalState::Start,
@@ -1539,19 +1482,19 @@ impl<'tree> PreorderTraversal<'tree> {
 
     /// Create a new preorder traversal which will traverse the given [Tree].
     #[inline]
-    pub fn of_tree(tree: &'tree Tree) -> Self {
+    pub fn of_tree(tree: &'tree Tree<Custom>) -> Self {
         Self::with_cursor(tree.walk())
     }
 
     /// Create a new preorder traversal which will traverse the given [Node].
     #[inline]
-    pub fn of_node(node: Node<'tree>) -> Self {
+    pub fn of_node(node: Node<'tree, Custom>) -> Self {
         Self::with_cursor(node.walk())
     }
 
     /// Get the current item without advancing the traversal.
     #[inline]
-    pub fn peek(&mut self) -> TraversalItem<'tree> {
+    pub fn peek(&mut self) -> TraversalItem<'tree, Custom> {
         TraversalItem {
             node: self.cursor.node(),
             field_name: self.cursor.field_name(),
@@ -1571,11 +1514,11 @@ impl<'tree> PreorderTraversal<'tree> {
     }
 }
 
-impl<'tree> Iterator for PreorderTraversal<'tree> {
-    type Item = TraversalItem<'tree>;
+impl<'tree, Custom> Iterator for PreorderTraversal<'tree, Custom> {
+    type Item = TraversalItem<'tree, Custom>;
 
     #[inline]
-    fn next(&mut self) -> Option<TraversalItem<'tree>> {
+    fn next(&mut self) -> Option<TraversalItem<'tree, Custom>> {
         if self.last_state.is_end() {
             return None
         }
@@ -1585,90 +1528,21 @@ impl<'tree> Iterator for PreorderTraversal<'tree> {
     }
 }
 
-impl<'tree> FusedIterator for PreorderTraversal<'tree> {}
+impl<'tree, Custom> FusedIterator for PreorderTraversal<'tree, Custom> {}
 
-impl<'a> Display for DisplayTree<'a> {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        let mut nodes_with_marked_child = HashSet::new();
-        let mut did_write = false;
-        let mut c = self.tree.walk();
-        let mut c2 = self.tree.walk();
-        let mut state = TraversalState::Start;
-        let mut state2 = c2.goto_preorder(TraversalState::Start);
-        loop {
-            state = c.goto_preorder(state);
-            debug_assert_eq!(state, state2);
-            if state.is_end() {
-                break
-            }
-
-            let mut has_marked_child = false;
-            state2 = c2.goto_preorder(state2);
-            if matches!(state2, TraversalState::Down) {
-                let mut depth = 1;
-                while depth > 0 {
-                    if nodes_with_marked_child.contains(&c2.node().id()) {
-                        // Child is marked and we already recorded that parents are too
-                        has_marked_child = true;
-                        while depth > 0 {
-                            c2.goto_parent();
-                            depth -= 1;
-                        }
-                        continue // `break`s since depth == 0
-                    }
-                    let mark = c2.node().get_mark();
-                    if mark & self.include_mark == self.include_mark && mark & self.exclude_mark == 0 {
-                        // Marked and not recorded, so we must record this and children
-                        has_marked_child = true;
-                        nodes_with_marked_child.insert(c2.node().id());
-                        while depth > 0 {
-                            c2.goto_parent();
-                            nodes_with_marked_child.insert(c2.node().id());
-                            depth -= 1;
-                        }
-                        continue // `break`s since depth == 0
-                    }
-                    // Haven't found a marked child yet
-                    state2 = c2.goto_preorder(state2);
-                    match state2 {
-                        TraversalState::Down => depth += 1,
-                        TraversalState::Up => depth -= 1,
-                        _ => {}
-                    }
-                }
-            }
-            if !has_marked_child {
-                if did_write {
-                    write!(f, " ")?;
-                } else {
-                    did_write = true;
-                }
-                write!(f, "{}", c.node().text())?;
-
-                // Skip children
-                if matches!(state2, TraversalState::Down) {
-                    state = TraversalState::Up;
-                    state2 = TraversalState::Up;
-                }
-            }
-        }
-        Ok(())
-    }
-}
-
-impl<'tree> Debug for Node<'tree> {
+impl<'tree, Custom> Debug for Node<'tree, Custom> {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         write!(f, "{:?}", self.node)
     }
 }
 
-impl Debug for NodePtr {
+impl<Custom> Debug for NodePtr<Custom> {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         write!(f, "{:?}", self.node_data)
     }
 }
 
-impl<'query, 'tree> Debug for QueryMatch<'query, 'tree> {
+impl<'query, 'tree, Custom> Debug for QueryMatch<'query, 'tree, Custom> {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         write!(f, "{:?}", self.query_match)
     }

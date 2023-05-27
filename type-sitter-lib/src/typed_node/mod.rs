@@ -1,7 +1,7 @@
 use std::fmt::Debug;
 use std::hash::Hash;
 #[cfg(feature = "tree-sitter-wrapper")]
-use crate::tree_sitter_wrapper::{Bitmask, InputEdit, Node, Point, PointRange, Range, TreeCursor};
+use crate::tree_sitter_wrapper::{InputEdit, Node, Point, PointRange, Range, TreeCursor};
 #[cfg(not(feature = "tree-sitter-wrapper"))]
 use std::str::Utf8Error;
 #[cfg(not(feature = "tree-sitter-wrapper"))]
@@ -54,24 +54,6 @@ pub trait TypedNode<'tree>: TryFrom<Node<'tree>, Error=IncorrectKind<'tree>> + D
     #[cfg(feature = "tree-sitter-wrapper")]
     fn text(&self) -> &'tree str {
         self.node().text()
-    }
-
-    /// See [Node::mark]
-    #[cfg(feature = "tree-sitter-wrapper")]
-    fn mark(&self, mark: Bitmask) -> Bitmask {
-        self.node().mark(mark)
-    }
-
-    /// See [Node::unmark]
-    #[cfg(feature = "tree-sitter-wrapper")]
-    fn unmark(&self, mark: Bitmask) -> Bitmask {
-        self.node().unmark(mark)
-    }
-
-    /// See [Node::get_mark]
-    #[cfg(feature = "tree-sitter-wrapper")]
-    fn get_mark(&self) -> Bitmask {
-        self.node().get_mark()
     }
 
     /// See [Node::utf8_text]
