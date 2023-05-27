@@ -26,9 +26,9 @@ pub use generated_tokens::GeneratedQueryTokens;
 /// - `language_path`: path to the tree-sitter language module, where the [tree_sitter::Language]
 ///   will be dynamically loaded
 /// - `nodes`: Path to the crate with the typed node wrappers. Typically [crate::super_nodes]
-/// - `use_wrapper`: Whether to use `tree_sitter_wrapper` or `tree_sitter`
+/// - `use_yak_sitter`: Whether to use `yak_sitter` or `tree_sitter`
 /// - `tree_sitter`: Path to the crate with the tree-sitter API. Typically [crate::tree_sitter] if
-///    `use_wrapper` is false, or [crate::type_sitter_lib_wrapper] if `use_wrapper` is true
+///    `use_yak_sitter` is false, or [crate::type_sitter_lib_wrapper] if `use_yak_sitter` is true
 ///
 /// # Example
 ///
@@ -44,14 +44,14 @@ pub fn generate_queries(
     path: impl AsRef<Path>,
     language_path: impl AsRef<Path>,
     nodes: &syn::Path,
-    use_wrapper: bool,
+    use_yak_sitter: bool,
     tree_sitter: &syn::Path
 ) -> Result<GeneratedQueryTokens, Error> {
     let path = path.as_ref();
     if path.is_dir() {
-        generate_queries_from_dir(path, language_path, nodes, use_wrapper, tree_sitter)
+        generate_queries_from_dir(path, language_path, nodes, use_yak_sitter, tree_sitter)
     } else {
-        generate_query_from_file(path, language_path, &[], &[], &[], nodes, use_wrapper, tree_sitter)
+        generate_query_from_file(path, language_path, &[], &[], &[], nodes, use_yak_sitter, tree_sitter)
     }
 }
 
@@ -63,9 +63,9 @@ pub fn generate_queries(
 /// - `language_path`: path to the tree-sitter language module, where the [tree_sitter::Language]
 ///   will be dynamically loaded
 /// - `nodes`: Path to the crate with the typed node wrappers. Typically [crate::super_nodes]
-/// - `use_wrapper`: Whether to use `tree_sitter_wrapper` or `tree_sitter`
+/// - `use_yak_sitter`: Whether to use `yak_sitter` or `tree_sitter`
 /// - `tree_sitter`: Path to the crate with the tree-sitter API. Typically [crate::tree_sitter] if
-///   `use_wrapper` is false, or [crate::type_sitter_lib_wrapper] if `use_wrapper` is true
+///   `use_yak_sitter` is false, or [crate::type_sitter_lib_wrapper] if `use_yak_sitter` is true
 ///
 /// # Example
 ///
@@ -80,7 +80,7 @@ pub fn generate_queries_from_dir(
     path: impl AsRef<Path>,
     language_path: impl AsRef<Path>,
     nodes: &syn::Path,
-    use_wrapper: bool,
+    use_yak_sitter: bool,
     tree_sitter: &syn::Path,
 ) -> Result<GeneratedQueryTokens, Error> {
     let path = path.as_ref();
@@ -92,7 +92,7 @@ pub fn generate_queries_from_dir(
         let entry_is_dir = entry.metadata()?.is_dir();
         if entry_is_dir || has_extension(&entry_path, "scm") {
             let entry_name = entry_path.file_stem().unwrap().to_string_lossy();
-            let entry_code = generate_queries(&entry_path, language_path, nodes, use_wrapper, tree_sitter)?;
+            let entry_code = generate_queries(&entry_path, language_path, nodes, use_yak_sitter, tree_sitter)?;
             match entry_is_dir {
                 false => queries.append(entry_code),
                 true => {
@@ -122,9 +122,9 @@ pub fn generate_queries_from_dir(
 ///   all indices with names in `disabled_capture_names` are disabled)
 /// - `nodes`: Path to the crate with the typed node wrappers. Typically
 ///   [crate::super_nodes]
-/// - `use_wrapper`: Whether to use `tree_sitter_wrapper` or `tree_sitter`
+/// - `use_yak_sitter`: Whether to use `yak_sitter` or `tree_sitter`
 /// - `tree_sitter`: Path to the crate with the tree-sitter API. Typically [tree_sitter] if
-///    `use_wrapper` is false, or [crate::type_sitter_lib_wrapper] if `use_wrapper` is true
+///    `use_yak_sitter` is false, or [crate::type_sitter_lib_wrapper] if `use_yak_sitter` is true
 ///
 /// # Example
 ///
@@ -142,7 +142,7 @@ pub fn generate_query_from_file(
     disabled_capture_names: &[&str],
     disabled_capture_idxs: &[usize],
     nodes: &syn::Path,
-    use_wrapper: bool,
+    use_yak_sitter: bool,
     tree_sitter: &syn::Path,
 ) -> Result<GeneratedQueryTokens, Error> {
     let path = path.as_ref();
@@ -174,7 +174,7 @@ pub fn generate_query_from_file(
         disabled_capture_names,
         disabled_capture_idxs,
         nodes,
-        use_wrapper,
+        use_yak_sitter,
         tree_sitter,
         &mut generated.anon_unions,
     );

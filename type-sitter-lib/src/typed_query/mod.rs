@@ -1,5 +1,5 @@
-#[cfg(feature = "tree-sitter-wrapper")]
-use crate::tree_sitter_wrapper::Tree;
+#[cfg(feature = "yak-sitter")]
+use yak_sitter::Tree;
 pub use cursor_ext::*;
 pub use match_captures::*;
 pub use matches::*;
@@ -34,7 +34,7 @@ pub trait TypedQuery {
     unsafe fn wrap_match<'cursor, 'tree>(
         &self,
         match_: tree_sitter::QueryMatch<'cursor, 'tree>,
-        #[cfg(feature = "tree-sitter-wrapper")]
+        #[cfg(feature = "yak-sitter")]
         tree: &'tree Tree,
     ) -> Self::Match<'cursor, 'tree>;
 
@@ -48,7 +48,7 @@ pub trait TypedQuery {
         &self,
         capture: tree_sitter::QueryCapture<'tree>,
         match_: Option<Self::Match<'cursor, 'tree>>,
-        #[cfg(feature = "tree-sitter-wrapper")]
+        #[cfg(feature = "yak-sitter")]
         tree: &'tree Tree,
     ) -> Self::Capture<'cursor, 'tree>;
 }

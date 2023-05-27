@@ -1,11 +1,12 @@
 [workspace]
 
 members = [
-    "type-sitter-lib",
-    "type-sitter-gen",
     "type-sitter-cli",
+    "type-sitter-gen",
+    "type-sitter-lib",
     "type-sitter-proc",
-    "type-sitter-proc-tests"
+    "type-sitter-proc-tests",
+    "yak-sitter",
 ]
 exclude = [
     "vendor"

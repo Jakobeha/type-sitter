@@ -23,9 +23,9 @@ impl<'tree> SExpSeq<'tree> {
     ///   all indices with names in `disabled_capture_names` are disabled)
     /// - `nodes`: Path to the crate with the typed node wrappers. Typically
     ///   [type_sitter_gen::super_nodes]
-    /// - `use_wrapper`: Whether to use `tree_sitter_wrapper` or `tree_sitter`
+    /// - `use_yak_sitter`: Whether to use `yak_sitter` or `tree_sitter`
     /// - `tree_sitter`: Path to the crate with the tree-sitter bindings. Typically [tree_sitter]
-    ///   if `use_wrapper` is false, or [type_sitter_lib::tree_sitter_wrapper] if `use_wrapper` is
+    ///   if `use_yak_sitter` is false, or [yak_sitter] if `use_yak_sitter` is
     ///   true
     /// - `anon_unions`: Anonymous unions for query capture type
     pub fn print(
@@ -38,7 +38,7 @@ impl<'tree> SExpSeq<'tree> {
         disabled_capture_names: &[&str],
         disabled_capture_idxs: &[usize],
         nodes: &Path,
-        use_wrapper: bool,
+        use_yak_sitter: bool,
         tree_sitter: &Path,
         anon_unions: &mut AnonUnions
     ) -> TokenStream {
@@ -84,7 +84,7 @@ impl<'tree> SExpSeq<'tree> {
             tree_fn,
             tree_static,
             tree_to_raws
-        ) = match use_wrapper {
+        ) = match use_yak_sitter {
             false => (
                 quote! { , Text },
                 quote! {},
@@ -101,15 +101,15 @@ impl<'tree> SExpSeq<'tree> {
             ),
             true => (
                 quote! {},
-                quote! { tree: &'tree type_sitter_lib::tree_sitter_wrapper::Tree },
+                quote! { tree: &'tree yak_sitter::Tree },
                 quote! { tree },
                 quote! {
                     // SAFETY: Same tree
-                    unsafe { type_sitter_lib::tree_sitter_wrapper::Node::new(capture.node, tree) }
+                    unsafe { yak_sitter::Node::new(capture.node, tree) }
                 },
                 quote! {
                     #[inline]
-                    fn tree(&self) -> &'tree type_sitter_lib::tree_sitter_wrapper::Tree {
+                    fn tree(&self) -> &'tree yak_sitter::Tree {
                         self.tree
                     }
                 },
@@ -117,7 +117,7 @@ impl<'tree> SExpSeq<'tree> {
                 capture_idxs_and_names.iter()
                     .map(|(i, c)| (*i, lit_str(c)))
                     .map(|(capture_idx, capture_name)| quote! {
-                        type_sitter_lib::tree_sitter_wrapper::QueryCapture {
+                        yak_sitter::QueryCapture {
                             node: *node.node(),
                             index: #capture_idx,
                             name: #capture_name,
@@ -135,7 +135,7 @@ impl<'tree> SExpSeq<'tree> {
             .map(|capture_idxs_and_name| {
                 let capture_idxs = capture_idxs_and_name.iter().map(|(capture_idx, _)| *capture_idx).collect::<Vec<_>>();
                 let capture_name = capture_idxs_and_name[0].1;
-                self.print_capture_method_and_variant(capture_name, &capture_idxs, query_str, &ts_query, nodes, use_wrapper, tree_sitter, anon_unions)
+                self.print_capture_method_and_variant(capture_name, &capture_idxs, query_str, &ts_query, nodes, use_yak_sitter, tree_sitter, anon_unions)
             })
             .collect::<Vec<_>>();
         let capture_methods = capture_methods_and_variants.iter().map(|x| &x.0).collect::<Vec<_>>();
@@ -358,7 +358,7 @@ impl<'tree> SExpSeq<'tree> {
         query_str: &str,
         ts_query: &tree_sitter::Query,
         nodes: &Path,
-        use_wrapper: bool,
+        use_yak_sitter: bool,
         tree_sitter: &Path,
         anon_unions: &mut AnonUnions
     ) -> (TokenStream, TokenStream, Ident, TokenStream, TokenStream) {
@@ -383,9 +383,9 @@ impl<'tree> SExpSeq<'tree> {
             .unwrap_or(CaptureQuantifier::Zero);
         let captured_type = capture_quantifier.print_type(&capture_node_type_tokens);
         let captured_nonempty_iterator_doc = capture_quantifier.print_nonempty_iterator_doc();
-        let capture_expr_n = match use_wrapper {
+        let capture_expr_n = match use_yak_sitter {
             false => quote! { n },
-            true => quote! { type_sitter_lib::tree_sitter_wrapper::Node::new(n, self.tree) }
+            true => quote! { yak_sitter::Node::new(n, self.tree) }
         };
         let capture_idxs_array = lit_array(capture_idxs.iter().map(|i| *i as u32));
         let captured_expr = capture_quantifier.print_expr(&quote! {

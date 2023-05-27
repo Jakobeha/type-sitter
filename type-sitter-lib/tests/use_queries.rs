@@ -1,11 +1,11 @@
-#![cfg(feature = "tree-sitter-wrapper")]
+#![cfg(feature = "yak-sitter")]
 
 mod json;
 mod rust;
 
 use std::path::Path;
 use streaming_iterator::StreamingIterator;
-use type_sitter_lib::tree_sitter_wrapper::Parser;
+use yak_sitter::Parser;
 use type_sitter_lib::{OptionNodeResultExtraOrExt, TypedNode, TypedQueryCursor};
 use crate::rust::queries::Tags;
 

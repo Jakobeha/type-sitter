@@ -1,6 +1,6 @@
-#[cfg(feature = "tree-sitter-wrapper")]
-use crate::tree_sitter_wrapper::{QueryCursor, PointRange};
-#[cfg(not(feature = "tree-sitter-wrapper"))]
+#[cfg(feature = "yak-sitter")]
+use yak_sitter::{QueryCursor, PointRange};
+#[cfg(not(feature = "yak-sitter"))]
 use tree_sitter::{Point, QueryCursor, TextProvider};
 use crate::{TypedNode, TypedQuery, TypedQueryCaptures, TypedQueryMatches};
 
@@ -14,7 +14,7 @@ pub trait QueryCursorExt {
     /// Each match contains the index of the pattern that matched, and a list of captures. Because
     /// multiple patterns can match the same set of nodes, one match may contain captures that
     /// appear before some of the captures from a previous match.
-    #[cfg(feature = "tree-sitter-wrapper")]
+    #[cfg(feature = "yak-sitter")]
     fn typed_matches<'cursor, 'tree: 'cursor, Query: TypedQuery>(
         &'cursor mut self,
         query: &'cursor Query,
@@ -26,7 +26,7 @@ pub trait QueryCursorExt {
     /// Each match contains the index of the pattern that matched, and a list of captures. Because
     /// multiple patterns can match the same set of nodes, one match may contain captures that
     /// appear before some of the captures from a previous match.
-    #[cfg(not(feature = "tree-sitter-wrapper"))]
+    #[cfg(not(feature = "yak-sitter"))]
     fn typed_matches<'cursor, 'tree, Query: TypedQuery, Text: TextProvider<'cursor> + 'cursor>(
         &'cursor mut self,
         query: &'cursor Query,
@@ -38,7 +38,7 @@ pub trait QueryCursorExt {
     ///
     /// This is useful if you don’t care about which pattern matched, and just want a single,
     /// ordered sequence of captures.
-    #[cfg(feature = "tree-sitter-wrapper")]
+    #[cfg(feature = "yak-sitter")]
     fn typed_captures<'cursor, 'tree: 'cursor, Query: TypedQuery>(
         &'cursor mut self,
         query: &'cursor Query,
@@ -49,7 +49,7 @@ pub trait QueryCursorExt {
     ///
     /// This is useful if you don’t care about which pattern matched, and just want a single,
     /// ordered sequence of captures.
-    #[cfg(not(feature = "tree-sitter-wrapper"))]
+    #[cfg(not(feature = "yak-sitter"))]
     fn typed_captures<'cursor, 'tree, Query: TypedQuery, Text: TextProvider<'cursor> + 'cursor>(
         &'cursor mut self,
         query: &'cursor Query,
@@ -59,7 +59,7 @@ pub trait QueryCursorExt {
 }
 
 impl QueryCursorExt for QueryCursor {
-    #[cfg(feature = "tree-sitter-wrapper")]
+    #[cfg(feature = "yak-sitter")]
     #[inline]
     fn typed_matches<'cursor, 'tree: 'cursor, Query: TypedQuery>(
         &'cursor mut self,
@@ -77,7 +77,7 @@ impl QueryCursorExt for QueryCursor {
         }
     }
 
-    #[cfg(not(feature = "tree-sitter-wrapper"))]
+    #[cfg(not(feature = "yak-sitter"))]
     #[inline]
     fn typed_matches<'cursor, 'tree, Query: TypedQuery, Text: TextProvider<'cursor> + 'cursor>(
         &'cursor mut self,
@@ -93,7 +93,7 @@ impl QueryCursorExt for QueryCursor {
         }
     }
 
-    #[cfg(feature = "tree-sitter-wrapper")]
+    #[cfg(feature = "yak-sitter")]
     #[inline]
     fn typed_captures<'cursor, 'tree: 'cursor, Query: TypedQuery>(
         &'cursor mut self,
@@ -111,7 +111,7 @@ impl QueryCursorExt for QueryCursor {
         }
     }
 
-    #[cfg(not(feature = "tree-sitter-wrapper"))]
+    #[cfg(not(feature = "yak-sitter"))]
     #[inline]
     fn typed_captures<'cursor, 'tree, Query: TypedQuery, Text: TextProvider<'cursor> + 'cursor>(
         &'cursor mut self,
@@ -139,28 +139,28 @@ impl TypedQueryCursor {
 
     /// Return the maximum number of in-progress matches for this cursor.
     #[inline]
-    #[cfg(feature = "tree-sitter-wrapper")]
+    #[cfg(feature = "yak-sitter")]
     pub fn match_limit(&self) -> u16 {
         self.0.match_limit()
     }
 
     /// Return the maximum number of in-progress matches for this cursor.
     #[inline]
-    #[cfg(not(feature = "tree-sitter-wrapper"))]
+    #[cfg(not(feature = "yak-sitter"))]
     pub fn match_limit(&self) -> u16 {
         self.0.match_limit() as u16
     }
 
     /// Set the maximum number of in-progress matches for this cursor.
     #[inline]
-    #[cfg(feature = "tree-sitter-wrapper")]
+    #[cfg(feature = "yak-sitter")]
     pub fn set_match_limit(&mut self, limit: u16) {
         self.0.set_match_limit(limit)
     }
 
     /// Set the maximum number of in-progress matches for this cursor.
     #[inline]
-    #[cfg(not(feature = "tree-sitter-wrapper"))]
+    #[cfg(not(feature = "yak-sitter"))]
     pub fn set_match_limit(&mut self, limit: u16) {
         self.0.set_match_limit(limit as u32)
     }
@@ -184,7 +184,7 @@ impl TypedQueryCursor {
     ///
     /// Returns `self` for convenience (builder pattern)
     #[inline]
-    #[cfg(feature = "tree-sitter-wrapper")]
+    #[cfg(feature = "yak-sitter")]
     pub fn set_point_range(&mut self, range: PointRange) -> &mut Self {
         self.0.set_point_range(range);
         self
@@ -194,7 +194,7 @@ impl TypedQueryCursor {
     ///
     /// Returns `self` for convenience (builder pattern)
     #[inline]
-    #[cfg(not(feature = "tree-sitter-wrapper"))]
+    #[cfg(not(feature = "yak-sitter"))]
     pub fn set_point_range(&mut self, range: std::ops::Range<Point>) -> &mut Self {
         self.0.set_point_range(range);
         self
@@ -206,7 +206,7 @@ impl TypedQueryCursor {
     /// multiple patterns can match the same set of nodes, one match may contain captures that
     /// appear before some of the captures from a previous match.
     #[inline]
-    #[cfg(feature = "tree-sitter-wrapper")]
+    #[cfg(feature = "yak-sitter")]
     pub fn matches<'cursor, 'tree: 'cursor, Query: TypedQuery>(
         &'cursor mut self,
         query: &'cursor Query,
@@ -221,7 +221,7 @@ impl TypedQueryCursor {
     /// multiple patterns can match the same set of nodes, one match may contain captures that
     /// appear before some of the captures from a previous match.
     #[inline]
-    #[cfg(not(feature = "tree-sitter-wrapper"))]
+    #[cfg(not(feature = "yak-sitter"))]
     pub fn matches<'cursor, 'tree: 'cursor, Query: TypedQuery, Text: TextProvider<'cursor> + 'cursor>(
         &'cursor mut self,
         query: &'cursor Query,
@@ -236,7 +236,7 @@ impl TypedQueryCursor {
     /// This is useful if you don’t care about which pattern matched, and just want a single,
     /// ordered sequence of captures.
     #[inline]
-    #[cfg(feature = "tree-sitter-wrapper")]
+    #[cfg(feature = "yak-sitter")]
     pub fn captures<'cursor, 'tree: 'cursor, Query: TypedQuery>(
         &'cursor mut self,
         query: &'cursor Query,
@@ -250,7 +250,7 @@ impl TypedQueryCursor {
     /// This is useful if you don’t care about which pattern matched, and just want a single,
     /// ordered sequence of captures.
     #[inline]
-    #[cfg(not(feature = "tree-sitter-wrapper"))]
+    #[cfg(not(feature = "yak-sitter"))]
     pub fn captures<'cursor, 'tree: 'cursor, Query: TypedQuery, Text: TextProvider<'cursor> + 'cursor>(
         &'cursor mut self,
         query: &'cursor Query,

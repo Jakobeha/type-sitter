@@ -34,18 +34,18 @@ fn run(args: Args) -> errors::Result<()> {
     create_dir_all(&args.output_dir).map_err(Error::io("creating output directory"))?;
 
     // Get common arg data
-    let (tree_sitter, use_wrapper) = match (args.wrapper_namespace.as_ref(), args.no_wrapper) {
-        (None, false) => (type_sitter_lib_wrapper(), true),
-        (None, true) => (tree_sitter(), false),
+    let tree_sitter = match (args.wrapper_namespace.as_ref(), args.use_yak_sitter) {
+        (None, false) => type_sitter_lib_wrapper(),
+        (None, true) => tree_sitter(),
         (Some(wrapper_namespace), _) => {
-            (syn::parse_str(wrapper_namespace).map_err(Error::CouldntParseWrapperNamespace)?, true)
+            syn::parse_str(wrapper_namespace).map_err(Error::CouldntParseWrapperNamespace)?
         },
     };
 
     // Process
     let mut had_some_failures = false;
     for item in &args.items {
-        if let Err(err) = process::process(item, &args, use_wrapper, &tree_sitter) {
+        if let Err(err) = process::process(item, &args, args.use_yak_sitter, &tree_sitter) {
             eprintln!("Error processing {}: {}", item.input.display(), err);
             had_some_failures = true;
         }

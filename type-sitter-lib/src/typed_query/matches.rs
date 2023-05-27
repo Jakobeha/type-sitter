@@ -1,9 +1,9 @@
 use std::fmt::Debug;
 use tree_sitter::TextProvider;
 use streaming_iterator::{StreamingIterator, StreamingIteratorMut};
-#[cfg(feature = "tree-sitter-wrapper")]
-use crate::tree_sitter_wrapper::{PointRange, Tree};
-#[cfg(not(feature = "tree-sitter-wrapper"))]
+#[cfg(feature = "yak-sitter")]
+use yak_sitter::{PointRange, Tree};
+#[cfg(not(feature = "yak-sitter"))]
 use tree_sitter::Point;
 use crate::typed_query::match_captures::TypedQueryMatchCaptures;
 use crate::TypedQuery;
@@ -13,7 +13,7 @@ use crate::TypedQuery;
 /// [tree_sitter::QueryMatches] is NOT a real iterator, it's a [StreamingIterator] (see
 ///     <https://github.com/tree-sitter/tree-sitter/issues/608>). Therefore this doesn't implement
 ///     [Iterator]
-#[cfg(feature = "tree-sitter-wrapper")]
+#[cfg(feature = "yak-sitter")]
 pub struct TypedQueryMatches<'cursor, 'tree: 'cursor, Query: TypedQuery, Text: TextProvider<'cursor> = &'cursor Tree> {
     typed_query: &'cursor Query,
     untyped_matches: tree_sitter::QueryMatches<'cursor, 'tree, Text>,
@@ -26,7 +26,7 @@ pub struct TypedQueryMatches<'cursor, 'tree: 'cursor, Query: TypedQuery, Text: T
 /// [tree_sitter::QueryMatches] is NOT a real iterator, it's a [StreamingIterator] (see
 ///     <https://github.com/tree-sitter/tree-sitter/issues/608>). Therefore this doesn't implement
 ///     [Iterator]
-#[cfg(not(feature = "tree-sitter-wrapper"))]
+#[cfg(not(feature = "yak-sitter"))]
 pub struct TypedQueryMatches<'cursor, 'tree, Query: TypedQuery, Text: TextProvider<'cursor>> {
     typed_query: &'cursor Query,
     untyped_matches: tree_sitter::QueryMatches<'cursor, 'tree, Text>,
@@ -42,7 +42,7 @@ pub trait TypedQueryMatch<'cursor, 'tree: 'cursor>: Debug {
     fn query(&self) -> &'cursor Self::Query;
 
     /// The tree this match came from
-    #[cfg(feature = "tree-sitter-wrapper")]
+    #[cfg(feature = "yak-sitter")]
     fn tree(&self) -> &'tree Tree;
 
     /// The underlying [tree_sitter::QueryMatch]
@@ -58,7 +58,7 @@ pub trait TypedQueryMatch<'cursor, 'tree: 'cursor>: Debug {
         unsafe { TypedQueryMatchCaptures::new(
             self.query(),
             self.raw().captures,
-            #[cfg(feature = "tree-sitter-wrapper")] self.tree()
+            #[cfg(feature = "yak-sitter")] self.tree()
         ) }
     }
 
@@ -75,14 +75,14 @@ impl<'cursor, 'tree: 'cursor, Query: TypedQuery, Text: TextProvider<'cursor>> Ty
     pub(super) unsafe fn new(
         typed_query: &'cursor Query,
         untyped_matches: tree_sitter::QueryMatches<'cursor, 'tree, Text>,
-        #[cfg(feature = "tree-sitter-wrapper")]
+        #[cfg(feature = "yak-sitter")]
         tree: &'tree Tree,
     ) -> Self {
         Self {
             typed_query,
             untyped_matches,
             current_match: None,
-            #[cfg(feature = "tree-sitter-wrapper")] tree
+            #[cfg(feature = "yak-sitter")] tree
         }
     }
 
@@ -94,14 +94,14 @@ impl<'cursor, 'tree: 'cursor, Query: TypedQuery, Text: TextProvider<'cursor>> Ty
 
     /// Limit matches to a point range
     #[inline]
-    #[cfg(feature = "tree-sitter-wrapper")]
+    #[cfg(feature = "yak-sitter")]
     pub fn set_point_range(&mut self, range: PointRange) {
         self.untyped_matches.set_point_range(range.to_ts_point_range())
     }
 
     /// Limit matches to a point range
     #[inline]
-    #[cfg(not(feature = "tree-sitter-wrapper"))]
+    #[cfg(not(feature = "yak-sitter"))]
     pub fn set_point_range(&mut self, range: std::ops::Range<Point>) {
         self.untyped_matches.set_point_range(range)
     }
@@ -116,7 +116,7 @@ impl<'cursor, 'tree, Query: TypedQuery, Text: TextProvider<'cursor>> StreamingIt
         self.current_match = unsafe {
             self.untyped_matches.next().map(|m| self.typed_query.wrap_match(
                 m,
-                #[cfg(feature = "tree-sitter-wrapper")] self.tree
+                #[cfg(feature = "yak-sitter")] self.tree
             ))
         }
     }

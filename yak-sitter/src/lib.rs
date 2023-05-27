@@ -13,6 +13,7 @@ use std::ptr::NonNull;
 use utf8_error_offset_by::Utf8ErrorOffsetBy;
 
 mod utf8_error_offset_by;
+mod define_custom_wrapper;
 
 /// Wrapper around [tree_sitter::Tree] which stores its text, filepath, and extra data that is
 /// accessible from any node. It also uses and is used by [tree_sitter_wrapper] wrapper classes.
@@ -1193,7 +1194,7 @@ impl PointRange {
 
     /// Convert this into an [std::ops::Range] of [tree_sitter::Point]s
     #[inline]
-    pub(crate) fn to_ts_point_range(self) -> std::ops::Range<tree_sitter::Point> {
+    pub fn to_ts_point_range(self) -> std::ops::Range<tree_sitter::Point> {
         self.start.0..self.end.0
     }
 }

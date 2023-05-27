@@ -6,7 +6,7 @@ use crate::errors;
 use crate::errors::Error;
 use crate::path_utils::{language_name, write};
 
-pub fn process(item: &InOutPair, args: &Args, use_wrapper: bool, tree_sitter: &syn::Path) -> errors::Result<()> {
+pub fn process(item: &InOutPair, args: &Args, use_yak_sitter: bool, tree_sitter: &syn::Path) -> errors::Result<()> {
     // Get input type
     let input_type = args.input_type
         .map_or_else(|| InputType::infer(&item.input), Ok)?;
@@ -21,7 +21,7 @@ pub fn process(item: &InOutPair, args: &Args, use_wrapper: bool, tree_sitter: &s
     if !input_type.is_output_a_dir() {
         output_path.set_extension("rs");
     }
-    do_process(&item.input, &output_path, input_type, language_dir.as_deref(), use_wrapper, tree_sitter)
+    do_process(&item.input, &output_path, input_type, language_dir.as_deref(), use_yak_sitter, tree_sitter)
 }
 
 fn do_process(
@@ -29,7 +29,7 @@ fn do_process(
     output_path: &Path,
     input_type: InputType,
     language_dir: Option<&Path>,
-    use_wrapper: bool,
+    use_yak_sitter: bool,
     tree_sitter: &syn::Path
 ) -> errors::Result<()> {
     match input_type {
@@ -38,7 +38,7 @@ fn do_process(
         }
         InputType::Query => {
             let language_dir = language_dir.ok_or(Error::CouldntInferLanguage)?;
-            write(&output_path, type_sitter_gen::generate_queries(input_path, language_dir, &super_nodes(), use_wrapper, &tree_sitter)?)?;
+            write(&output_path, type_sitter_gen::generate_queries(input_path, language_dir, &super_nodes(), use_yak_sitter, &tree_sitter)?)?;
         }
         InputType::LanguageRoot => {
             create_dir(&output_path).map_err(Error::io("creating language codegen directory"))?;
@@ -52,7 +52,7 @@ pub mod queries;
                 &output_path.join("nodes.rs"),
                 InputType::NodeTypes,
                 language_dir,
-                use_wrapper,
+                use_yak_sitter,
                 tree_sitter
             ).map_err(|e| e.nested("node types"))?;
             do_process(
@@ -60,7 +60,7 @@ pub mod queries;
                 &output_path.join("queries.rs"),
                 InputType::Query,
                 language_dir,
-                use_wrapper,
+                use_yak_sitter,
                 tree_sitter
             ).map_err(|e| e.nested("queries"))?;
         }

@@ -26,19 +26,14 @@ pub struct Args {
     /// Language directory. Not used/needed when generating node wrappers. Inferred by default
     #[arg(short = 'l', long = "language")]
     pub language_dir: Option<PathBuf>,
-    /// Namespace to use for wrapper types. Defaults to `type_sitter_lib::tree_sitter_wrapper` if
-    /// `no-wrapper` is unset and `tree_sitter` if it is. However, you may want a custom wrapper
-    /// type particularly if you're using `Custom` in `tree_sitter_wrapper`. This gets parsed as a
-    /// Rust path.
-    ///
-    /// Setting this makes `no-wrapper` ignored and a wrapper will be used regardless.
+    /// Namespace to use for wrapper types. Defaults to `yak_sitter` if
+    /// `use-yak-sitter` is unset and `tree_sitter` if it is. However, you may want a custom wrapper
+    /// type particularly if you're using `Custom` in `yak-sitter`. This gets parsed as a Rust path.
     #[arg(long = "wrapper-namespace")]
     pub wrapper_namespace: Option<String>,
-    /// Generate code which uses native tree-sitter instead of tree-sitter-wrapper.
-    ///
-    /// If `wrapper-namespace` is set, this flag is ignored.
-    #[arg(long = "no-wrapper")]
-    pub no_wrapper: bool,
+    /// Generate code which uses native tree-sitter instead of yak-sitter.
+    #[arg(long = "use-yak-sitter")]
+    pub use_yak_sitter: bool,
     /// Input path(s): must be node-types.json, query file, query folder, or tree-sitter language
     /// roots.
     ///

@@ -1,7 +1,7 @@
 use std::fmt::Debug;
-#[cfg(feature = "tree-sitter-wrapper")]
-use crate::tree_sitter_wrapper::Node;
-#[cfg(not(feature = "tree-sitter-wrapper"))]
+#[cfg(feature = "yak-sitter")]
+use yak_sitter::Node;
+#[cfg(not(feature = "yak-sitter"))]
 use tree_sitter::Node;
 use crate::{IncorrectKind, TypedNode};
 

@@ -1,13 +1,13 @@
 use std::iter::FusedIterator;
-#[cfg(feature = "tree-sitter-wrapper")]
-use crate::tree_sitter_wrapper::Tree;
+#[cfg(feature = "yak-sitter")]
+use yak_sitter::Tree;
 use crate::TypedQuery;
 
 /// Captures from a [crate::TypedQueryMatch]
 pub struct TypedQueryMatchCaptures<'cursor, 'tree, Query: TypedQuery> {
     query: &'cursor Query,
     captures: &'cursor [tree_sitter::QueryCapture<'tree>],
-    #[cfg(feature = "tree-sitter-wrapper")]
+    #[cfg(feature = "yak-sitter")]
     tree: &'tree Tree
 }
 
@@ -23,10 +23,10 @@ impl<'cursor, 'tree, Query: TypedQuery> TypedQueryMatchCaptures<'cursor, 'tree, 
     pub(super) unsafe fn new(
         query: &'cursor Query,
         captures: &'cursor [tree_sitter::QueryCapture<'tree>],
-        #[cfg(feature = "tree-sitter-wrapper")]
+        #[cfg(feature = "yak-sitter")]
         tree: &'tree Tree
     ) -> Self {
-        Self { query, captures, #[cfg(feature = "tree-sitter-wrapper")] tree }
+        Self { query, captures, #[cfg(feature = "yak-sitter")] tree }
     }
 
     /// Iterate the captures
@@ -36,7 +36,7 @@ impl<'cursor, 'tree, Query: TypedQuery> TypedQueryMatchCaptures<'cursor, 'tree, 
             unsafe { self.query.wrap_capture(
                 *capture,
                 None,
-                #[cfg(feature = "tree-sitter-wrapper")] self.tree
+                #[cfg(feature = "yak-sitter")] self.tree
             ) }
         })
     }
@@ -48,7 +48,7 @@ impl<'cursor, 'tree, Query: TypedQuery> TypedQueryMatchCaptures<'cursor, 'tree, 
             unsafe { self.query.wrap_capture(
                 *capture,
                 None,
-                #[cfg(feature = "tree-sitter-wrapper")] self.tree
+                #[cfg(feature = "yak-sitter")] self.tree
             ) }
         })
     }
@@ -59,7 +59,7 @@ impl<'cursor, 'tree, Query: TypedQuery> TypedQueryMatchCaptures<'cursor, 'tree, 
         unsafe { self.query.wrap_capture(
             self.captures[index],
             None,
-            #[cfg(feature = "tree-sitter-wrapper")] self.tree
+            #[cfg(feature = "yak-sitter")] self.tree
         ) }
     }
 

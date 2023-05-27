@@ -13,7 +13,7 @@ mod generate_queries_args;
 /// # Parameters
 /// - `0`: Path to the `node-types.json` file of the language.
 /// - `1`: Path to the `tree_sitter` crate. Typically either `tree_sitter` or
-///   `type_sitter_lib::tree_sitter_wrapper`, but you can provide a path to your own wrapper as
+///   `yak_sitter`, but you can provide a path to your own wrapper as
 ///   well.
 ///
 /// # Note
@@ -46,9 +46,9 @@ pub fn generate_nodes(item: proc_macro::TokenStream) -> proc_macro::TokenStream 
 ///   directory, this function will generate submodules for each `.scm`.
 /// - `1`: the path to the tree-sitter language root. Typically `vendor/tree-sitter-<language>`.
 /// - `2`: Path to the crate with the typed node wrappers. Typically `super::nodes`
-/// - `3`: Whether to use `tree_sitter` or `type_sitter_lib::tree_sitter_wrapper`
-/// - `4` (optional): Path to the `tree_sitter` crate. Defaults to `tree_sitter` (if `use_wrapper`
-///   is true) or `type_sitter_lib::tree_sitter_wrapper` (if `use_wrapper` is false), but you can
+/// - `3`: Whether to use `tree_sitter` or `yak_sitter`
+/// - `4` (optional): Path to the `tree_sitter` crate. Defaults to `tree_sitter` (if `use_yak_sitter`
+///   is true) or `yak_sitter` (if `use_yak_sitter` is false), but you can
 ///   provide a path to your own wrapper.
 ///
 /// # Example
@@ -58,7 +58,7 @@ pub fn generate_nodes(item: proc_macro::TokenStream) -> proc_macro::TokenStream 
 /// use type_sitter_proc::generate_queries;
 ///
 /// generate_queries!("vendor/tree-sitter-typescript/queries/tags.scm", "vendor/tree-sitter-typescript", super::typescript_nodes, false);
-/// generate_queries!("vendor/tree-sitter-rust/queries", "vendor/tree-sitter-rust", super::rust_nodes, true, type_sitter_lib::tree_sitter_wrapper);
+/// generate_queries!("vendor/tree-sitter-rust/queries", "vendor/tree-sitter-rust", super::rust_nodes, true, yak_sitter);
 /// ```
 #[proc_macro]
 pub fn generate_queries(item: proc_macro::TokenStream) -> proc_macro::TokenStream {
@@ -67,8 +67,8 @@ pub fn generate_queries(item: proc_macro::TokenStream) -> proc_macro::TokenStrea
         &args.path,
         &args.language_path,
         &args.nodes,
-        args.use_wrapper.value,
-        &args.tree_sitter.unwrap_or_else(|| match args.use_wrapper.value {
+        args.use_yak_sitter.value,
+        &args.tree_sitter.unwrap_or_else(|| match args.use_yak_sitter.value {
             false => tree_sitter(),
             true => type_sitter_lib_wrapper(),
         })

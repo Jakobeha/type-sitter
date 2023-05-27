@@ -14,7 +14,7 @@ pub struct GenerateQueriesArgs {
     comma2: Token![,],
     pub nodes: syn::Path,
     comma3: Token![,],
-    pub use_wrapper: syn::LitBool,
+    pub use_yak_sitter: syn::LitBool,
     comma4: Option<Token![,]>,
     pub tree_sitter: Option<syn::Path>,
 }
@@ -27,7 +27,7 @@ impl Parse for GenerateQueriesArgs {
         let comma2: Token![,] = input.parse()?;
         let nodes: syn::Path = input.parse()?;
         let comma3: Token![,] = input.parse()?;
-        let use_wrapper: syn::LitBool = input.parse()?;
+        let use_yak_sitter: syn::LitBool = input.parse()?;
         let (comma4, tree_sitter): (Option<Token![,]>, Option<syn::Path>) = match input.is_empty() {
             false => {
                 let comma4: Token![,] = input.parse()?;
@@ -47,7 +47,7 @@ impl Parse for GenerateQueriesArgs {
             comma2,
             nodes,
             comma3,
-            use_wrapper,
+            use_yak_sitter,
             comma4,
             tree_sitter,
         })

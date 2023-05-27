@@ -1,13 +1,13 @@
 use std::fmt::Debug;
 use tree_sitter::TextProvider;
-#[cfg(feature = "tree-sitter-wrapper")]
-use crate::tree_sitter_wrapper::{Node, QueryCapture, PointRange, Tree};
-#[cfg(not(feature = "tree-sitter-wrapper"))]
+#[cfg(feature = "yak-sitter")]
+use yak_sitter::{Node, QueryCapture, PointRange, Tree};
+#[cfg(not(feature = "yak-sitter"))]
 use tree_sitter::{Point, Node, QueryCapture};
 use crate::TypedQuery;
 
 /// Iterate a query's captures (see [tree_sitter::QueryCaptures])
-#[cfg(feature = "tree-sitter-wrapper")]
+#[cfg(feature = "yak-sitter")]
 pub struct TypedQueryCaptures<'cursor, 'tree: 'cursor, Query: TypedQuery, Text: TextProvider<'cursor> = &'cursor Tree> {
     typed_query: &'cursor Query,
     untyped_captures: tree_sitter::QueryCaptures<'cursor, 'tree, Text>,
@@ -15,7 +15,7 @@ pub struct TypedQueryCaptures<'cursor, 'tree: 'cursor, Query: TypedQuery, Text: 
 }
 
 /// Iterate a query's captures (see [tree_sitter::QueryCaptures])
-#[cfg(not(feature = "tree-sitter-wrapper"))]
+#[cfg(not(feature = "yak-sitter"))]
 pub struct TypedQueryCaptures<'cursor, 'tree, Query: TypedQuery, Text: TextProvider<'cursor>> {
     typed_query: &'cursor Query,
     untyped_captures: tree_sitter::QueryCaptures<'cursor, 'tree, Text>,
@@ -39,11 +39,11 @@ pub trait TypedQueryCapture<'cursor, 'tree: 'cursor>: Debug + Clone {
         where <Self::Query as TypedQuery>::Match<'cursor, 'tree>: Sized;
 
     /// Get the equivalent [tree_sitter::QueryCapture]
-    #[cfg(feature = "tree-sitter-wrapper")]
+    #[cfg(feature = "yak-sitter")]
     fn to_raw(&self) -> QueryCapture<'static, 'tree>;
 
     /// Get the equivalent [tree_sitter::QueryCapture]
-    #[cfg(not(feature = "tree-sitter-wrapper"))]
+    #[cfg(not(feature = "yak-sitter"))]
     fn to_raw(&self) -> QueryCapture<'tree>;
 
     /// Get the captured untyped node
@@ -68,10 +68,10 @@ impl<'cursor, 'tree: 'cursor, Query: TypedQuery, Text: TextProvider<'cursor>> Ty
     pub(super) unsafe fn new(
         typed_query: &'cursor Query,
         untyped_captures: tree_sitter::QueryCaptures<'cursor, 'tree, Text>,
-        #[cfg(feature = "tree-sitter-wrapper")]
+        #[cfg(feature = "yak-sitter")]
         tree: &'tree Tree,
     ) -> Self {
-        Self { typed_query, untyped_captures, #[cfg(feature = "tree-sitter-wrapper")] tree }
+        Self { typed_query, untyped_captures, #[cfg(feature = "yak-sitter")] tree }
     }
 
     /// Limit captures to a byte range
@@ -82,14 +82,14 @@ impl<'cursor, 'tree: 'cursor, Query: TypedQuery, Text: TextProvider<'cursor>> Ty
 
     /// Limit captures to a point range
     #[inline]
-    #[cfg(feature = "tree-sitter-wrapper")]
+    #[cfg(feature = "yak-sitter")]
     pub fn set_point_range(&mut self, range: PointRange) {
         self.untyped_captures.set_point_range(range.to_ts_point_range())
     }
 
     /// Limit captures to a point range
     #[inline]
-    #[cfg(not(feature = "tree-sitter-wrapper"))]
+    #[cfg(not(feature = "yak-sitter"))]
     pub fn set_point_range(&mut self, range: std::ops::Range<Point>) {
         self.untyped_captures.set_point_range(range)
     }
@@ -106,9 +106,9 @@ impl<'cursor, 'tree, Query: TypedQuery, Text: TextProvider<'cursor>> Iterator fo
                 m.captures[index],
                 Some(self.typed_query.wrap_match(
                     m,
-                    #[cfg(feature = "tree-sitter-wrapper")] self.tree
+                    #[cfg(feature = "yak-sitter")] self.tree
                 )),
-                #[cfg(feature = "tree-sitter-wrapper")] self.tree
+                #[cfg(feature = "yak-sitter")] self.tree
             )
         }) }
     }

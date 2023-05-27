@@ -1,6 +1,6 @@
-#[cfg(feature = "tree-sitter-wrapper")]
-use crate::tree_sitter_wrapper::{Node, Tree};
-#[cfg(not(feature = "tree-sitter-wrapper"))]
+#[cfg(feature = "yak-sitter")]
+use yak_sitter::{Node, Tree};
+#[cfg(not(feature = "yak-sitter"))]
 use tree_sitter::{Node, Tree};
 
 /// Result of attempting to wrap a node

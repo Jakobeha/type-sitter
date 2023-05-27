@@ -1,10 +1,10 @@
 use std::fmt::Debug;
 use std::hash::Hash;
-#[cfg(feature = "tree-sitter-wrapper")]
-use crate::tree_sitter_wrapper::{InputEdit, Node, Point, PointRange, Range, TreeCursor};
-#[cfg(not(feature = "tree-sitter-wrapper"))]
+#[cfg(feature = "yak-sitter")]
+use yak_sitter::{InputEdit, Node, Point, PointRange, Range, TreeCursor};
+#[cfg(not(feature = "yak-sitter"))]
 use std::str::Utf8Error;
-#[cfg(not(feature = "tree-sitter-wrapper"))]
+#[cfg(not(feature = "yak-sitter"))]
 use tree_sitter::{InputEdit, Node, Point, Range, TreeCursor};
 pub use extra_or::*;
 pub use incorrect_kind::*;
@@ -51,21 +51,21 @@ pub trait TypedNode<'tree>: TryFrom<Node<'tree>, Error=IncorrectKind<'tree>> + D
 
     // region [Node] delegate
     /// See [Node::text]
-    #[cfg(feature = "tree-sitter-wrapper")]
+    #[cfg(feature = "yak-sitter")]
     fn text(&self) -> &'tree str {
         self.node().text()
     }
 
     /// See [Node::utf8_text]
     #[inline]
-    #[cfg(not(feature = "tree-sitter-wrapper"))]
+    #[cfg(not(feature = "yak-sitter"))]
     fn utf8_text<'a>(&self, source: &'a [u8]) -> Result<&'a str, Utf8Error> {
         self.node().utf8_text(source)
     }
 
     /// See [Node::utf16_text]
     #[inline]
-    #[cfg(not(feature = "tree-sitter-wrapper"))]
+    #[cfg(not(feature = "yak-sitter"))]
     fn utf16_text<'a>(&self, source: &'a [u16]) -> &'a [u16] {
         self.node().utf16_text(source)
     }
@@ -168,7 +168,7 @@ pub trait TypedNode<'tree>: TryFrom<Node<'tree>, Error=IncorrectKind<'tree>> + D
 
     /// See [Node::position_range]
     #[inline]
-    #[cfg(feature = "tree-sitter-wrapper")]
+    #[cfg(feature = "yak-sitter")]
     fn position_range(&self) -> PointRange {
         self.node().position_range()
     }

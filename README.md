@@ -16,11 +16,7 @@ type-sitter is a library, CLI tool, and procedural-macro which generates type-sa
 
 These wrappers contain methods to access the node's fields and children, and query's captures, as well as pattern-matching and selectors for union and supertype nodes. They even have documentation! The wrappers also encourage good practices by explicitly handling "error" and "extra" nodes, so you won't forget; but also provide convenience methods like [`unwrap2()`](https://docs.rs/type-sitter-lib/latest/type_sitter_lib/trait.NodeResultExtraOrExt.html#tymethod.unwrap2) and [`flatten()`](https://docs.rs/type-sitter-lib/latest/type_sitter_lib/trait.NodeResultExtraOrExt.html#tymethod.flatten) to ease some of the verbosity.
 
-### tree-sitter-wrapper
-
-Additionally, in `type-sitter-lib`, the [`tree-sitter-wrapper`](https://docs.rs/type-sitter-lib/latest/type_sitter_lib/tree_sitter_wrapper) feature/module (enabled by default) provides *another* wrapper over tree-sitter nodes and queries, as well as all other `tree-sitter` data-structures (to the point you won't need to explicitly `use tree-sitter` at all). This wrapper is general-purpose: it provides the ability to get node's text directly from the node itself as a `&str`, assign arbitrary bitmasks ("marks") to each node, and other convenience methods. It also makes [`QueryMatches`](https://docs.rs/type-sitter-lib/latest/type_sitter_lib/tree_sitter_wrapper/struct.QueryMatches.html) a streaming iterator [because it's not a real iterator](https://github.com/tree-sitter/tree-sitter/issues/608) ([`TypedQueryMatches`](https://docs.rs/type-sitter-lib/latest/type_sitter_lib/struct.TypedQueryMatches.html) is also only a streaming iterator).
-
-`type-sitter` can generate typed wrappers for `tree_sitter_wrapper::Node` *or* plain `tree_sitter::Node`. Using the library `type-sitter-gen`, have much more customization options, including the ability to generate nodes which wrap an arbitrary `...::Node` datatype.
+Type-sitter also allows you to use different facades (underlying wrappers) for the core tree-sitter data-structures, such as [`tree-sitter-facade`](https://crates.io/crates/tree-sitter-facade) or [`yak-sitter`](./yak-sitter/README.md). There are additional CLI options and more flexibility in the library [`type-sitter-gen`](./type-sitter-gen/README.md).
 
 ## Drawbacks
 
@@ -28,9 +24,7 @@ Additionally, in `type-sitter-lib`, the [`tree-sitter-wrapper`](https://docs.rs/
 
 Another issue is that some grammars may generate duplicate datatype definitions (see [Naming Rules](#naming-rules)): this should be very uncommon because it will only happen if their names are weirdly similar, but if it does, there is currently no workaround as there is no way to rename generated datatypes.
 
-`tree-sitter-wrapper`'s drawbacks are slightly lower performance and limitations. The lower performance is because `tree-sitter-wrapper` requires all nodes and most other datatypes to have an additional reference to `tree_sitter_wrapper::Tree` for capabilities like the ability for nodes to get their own text. The limitations are that `tree_sitter_wrapper` requires the parsed source code to be UTF-8 compliant and be stored along with the tree itself, and certain aspects of incremental parsing may not work with the convenience methods (this is planned to be fixed to be fixed in the future).
-
-Lastly, keep in mind that both libraries are still in the early stages of development, so they will have bugs and API may change (though will try to preserve naming rules).
+Lastly, keep in mind that both this and [`yak-sitter`](yak-sitter/README.md) are still in the early stages of development, so they will have bugs and API may change.
 
 ## Naming Rules
 
@@ -157,15 +151,17 @@ cargo add type-sitter-lib
 #### Advanced usage
 
 ```shell
-# Add type-sitter-lib with the tree-sitter-wrapper feature (see above section)
-cargo add type-sitter-lib --features tree-sitter-wrapper
-# Specify a custom output directory and use tree-sitter-wrapper
-type-sitter-cli vendor/tree-sitter-foobar-lang/node-types.json -o generated_src --use-wrapper
+# Add type-sitter-lib with the yak-sitter feature (see above section)
+cargo add type-sitter-lib --features yak-sitter
+# Specify a custom output directory and use yak-sitter
+type-sitter-cli vendor/tree-sitter-foobar-lang/node-types.json -o generated_src --use-yak-sitter
+# Specify a custom tree-sitter facade
+type-sitter-cli vendor/tree-sitter-foobar-lang/node-types.json -o generated_src --use-yak-sitter --facade "crate::my_tree_sitter"
 # Generate only node-types or queries
-type-sitter-cli vendor/tree-sitter-rust/node-types.json -o generated_src/rust_nodes.rs --use-wrapper
-type-sitter-cli vendor/tree-sitter-rust/queries -o generated_src/rust_queries.rs --use-wrapper
+type-sitter-cli vendor/tree-sitter-rust/node-types.json -o generated_src/rust_nodes.rs --use-yak-sitter
+type-sitter-cli vendor/tree-sitter-rust/queries -o generated_src/rust_queries.rs --use-yak-sitter
 # You can generate bindings for multiple grammars in the same project
-type-sitter-cli vendor/tree-sitter-typescript/node-types.json -o generated_src --use-wrapper
+type-sitter-cli vendor/tree-sitter-typescript/node-types.json -o generated_src --use-yak-sitter
 # To see help for the CLI program
 type-sitter-cli --help
 ```
@@ -178,7 +174,7 @@ Advantages of type-sitter:
 
 - arbitrary tree-sitter grammars, not only ones written in Rust
 - Error node and incremental parsing support, since typed nodes directly wrap `tree-sitter` nodes
-- Less API difference from the native tree-sitter API: if you don't use `tree-sitter-wrapper` feature it only provides typed wrappers for nodes, and even `tree-sitter-wrapper` really only provides convenience methods on top of the base API
+- Less API difference from the native tree-sitter API: if you don't use the `yak-sitter` feature it only provides typed wrappers for nodes (and even `yak-sitter` isn't much different)
 - Less complexity because of the above
 
 Advantages of rust-sitter:

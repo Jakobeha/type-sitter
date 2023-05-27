@@ -1,8 +1,8 @@
 use std::marker::PhantomData;
 use std::os::fd::AsRawFd;
-#[cfg(feature = "tree-sitter-wrapper")]
-use crate::tree_sitter_wrapper::{InputEdit, Language, Range, Tree, TreeCursor};
-#[cfg(not(feature = "tree-sitter-wrapper"))]
+#[cfg(feature = "yak-sitter")]
+use yak_sitter::{InputEdit, Language, Range, Tree, TreeCursor};
+#[cfg(not(feature = "yak-sitter"))]
 use tree_sitter::{InputEdit, Language, Range, Tree, TreeCursor};
 use crate::{IncorrectKind, IncorrectTreeKind, TypedNode};
 
@@ -17,9 +17,9 @@ use crate::{IncorrectKind, IncorrectTreeKind, TypedNode};
 /// ## Example
 ///
 /// ```
-/// #[cfg(feature = "tree-sitter-wrapper")]
-/// use type_sitter_lib::tree_sitter_wrapper::{Node, Tree};
-/// #[cfg(not(feature = "tree-sitter-wrapper"))]
+/// #[cfg(feature = "yak-sitter")]
+/// use yak_sitter::{Node, Tree};
+/// #[cfg(not(feature = "yak-sitter"))]
 /// use tree_sitter::{Node, Tree};
 /// use type_sitter_lib::{TypedNodeGAT, TypedTree};
 /// # use type_sitter_lib::{TypedNode, IncorrectKind};
@@ -105,7 +105,7 @@ impl<Root: TypedNodeGAT> TypedTree<Root> {
     // region Tree delegate
     /// Get the underlying text. This includes text which isn't in the [Self::included_ranges].
     #[inline]
-    #[cfg(feature = "tree-sitter-wrapper")]
+    #[cfg(feature = "yak-sitter")]
     pub fn text(&self) -> &str {
         self.tree.text()
     }
@@ -158,9 +158,9 @@ impl<Root: TypedNodeGAT> TypedTree<Root> {
 /// ## Example
 ///
 /// ```
-/// #[cfg(feature = "tree-sitter-wrapper")]
-/// use type_sitter_lib::tree_sitter_wrapper::{Node, Tree};
-/// #[cfg(not(feature = "tree-sitter-wrapper"))]
+/// #[cfg(feature = "yak-sitter")]
+/// use yak_sitter::{Node, Tree};
+/// #[cfg(not(feature = "yak-sitter"))]
 /// use tree_sitter::{Node, Tree};
 /// use type_sitter_lib::{TypedNodeGAT, TypedTree};
 /// # use type_sitter_lib::{TypedNode, IncorrectKind};
@@ -196,7 +196,7 @@ pub trait TypedNodeGAT {
 }
 
 #[cfg(test)]
-#[cfg(not(feature = "tree-sitter-wrapper"))]
+#[cfg(not(feature = "yak-sitter"))]
 mod tests {
     use tree_sitter::Parser;
     use crate::{TypedNodeGAT, TypedNode, TypedTree, UntypedNode};
