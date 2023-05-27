@@ -29,8 +29,8 @@ pub struct Args {
     /// Namespace to use for wrapper types. Defaults to `yak_sitter` if
     /// `use-yak-sitter` is unset and `tree_sitter` if it is. However, you may want a custom wrapper
     /// type particularly if you're using `Custom` in `yak-sitter`. This gets parsed as a Rust path.
-    #[arg(long = "wrapper-namespace")]
-    pub wrapper_namespace: Option<String>,
+    #[arg(long = "facade")]
+    pub facade: Option<String>,
     /// Generate code which uses native tree-sitter instead of yak-sitter.
     #[arg(long = "use-yak-sitter")]
     pub use_yak_sitter: bool,

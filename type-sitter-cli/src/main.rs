@@ -34,11 +34,11 @@ fn run(args: Args) -> errors::Result<()> {
     create_dir_all(&args.output_dir).map_err(Error::io("creating output directory"))?;
 
     // Get common arg data
-    let tree_sitter = match (args.wrapper_namespace.as_ref(), args.use_yak_sitter) {
+    let tree_sitter = match (args.facade.as_ref(), args.use_yak_sitter) {
         (None, false) => type_sitter_lib_wrapper(),
         (None, true) => tree_sitter(),
-        (Some(wrapper_namespace), _) => {
-            syn::parse_str(wrapper_namespace).map_err(Error::CouldntParseWrapperNamespace)?
+        (Some(facade), _) => {
+            syn::parse_str(facade).map_err(Error::CouldntParseWrapperNamespace)?
         },
     };
 
