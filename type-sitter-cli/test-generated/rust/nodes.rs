@@ -217,10 +217,14 @@ impl<'tree> DeclarationStatement<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for DeclarationStatement<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for DeclarationStatement<'tree>
+{
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         match node.kind() {
             "associated_type" => Ok(unsafe {
                 Self::AssociatedType(<AssociatedType<'tree> as type_sitter_lib::TypedNode<
@@ -340,7 +344,7 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for DeclarationStatement<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for DeclarationStatement<'tree> {
     const KIND: &'static str = "_declaration_statement";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         match self {
             Self::AssociatedType(x) => x.node(),
             Self::AttributeItem(x) => x.node(),
@@ -366,7 +370,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for DeclarationStatement<'tree> {
         }
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         match self {
             Self::AssociatedType(x) => x.node_mut(),
             Self::AttributeItem(x) => x.node_mut(),
@@ -392,7 +396,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for DeclarationStatement<'tree> {
         }
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         match self {
             Self::AssociatedType(x) => x.into_node(),
             Self::AttributeItem(x) => x.into_node(),
@@ -807,10 +811,12 @@ impl<'tree> Expression<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Expression<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Expression<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if let Ok(this) = <Literal<'tree> as TryFrom<_>>::try_from(node) {
             return Ok(Self::Literal(this));
         }
@@ -935,7 +941,7 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Expression<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for Expression<'tree> {
     const KIND: &'static str = "_expression";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         match self {
             Self::Literal(x) => x.node(),
             Self::ArrayExpression(x) => x.node(),
@@ -978,7 +984,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Expression<'tree> {
         }
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         match self {
             Self::Literal(x) => x.node_mut(),
             Self::ArrayExpression(x) => x.node_mut(),
@@ -1021,7 +1027,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Expression<'tree> {
         }
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         match self {
             Self::Literal(x) => x.into_node(),
             Self::ArrayExpression(x) => x.into_node(),
@@ -1133,10 +1139,12 @@ impl<'tree> Literal<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Literal<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Literal<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         match node.kind() {
             "boolean_literal" => Ok(unsafe {
                 Self::BooleanLiteral(<BooleanLiteral<'tree> as type_sitter_lib::TypedNode<
@@ -1179,7 +1187,7 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Literal<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for Literal<'tree> {
     const KIND: &'static str = "_literal";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         match self {
             Self::BooleanLiteral(x) => x.node(),
             Self::CharLiteral(x) => x.node(),
@@ -1190,7 +1198,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Literal<'tree> {
         }
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         match self {
             Self::BooleanLiteral(x) => x.node_mut(),
             Self::CharLiteral(x) => x.node_mut(),
@@ -1201,7 +1209,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Literal<'tree> {
         }
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         match self {
             Self::BooleanLiteral(x) => x.into_node(),
             Self::CharLiteral(x) => x.into_node(),
@@ -1291,10 +1299,12 @@ impl<'tree> LiteralPattern<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for LiteralPattern<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for LiteralPattern<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         match node.kind() {
             "boolean_literal" => Ok(unsafe {
                 Self::BooleanLiteral(<BooleanLiteral<'tree> as type_sitter_lib::TypedNode<
@@ -1342,7 +1352,7 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for LiteralPattern<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for LiteralPattern<'tree> {
     const KIND: &'static str = "_literal_pattern";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         match self {
             Self::BooleanLiteral(x) => x.node(),
             Self::CharLiteral(x) => x.node(),
@@ -1354,7 +1364,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for LiteralPattern<'tree> {
         }
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         match self {
             Self::BooleanLiteral(x) => x.node_mut(),
             Self::CharLiteral(x) => x.node_mut(),
@@ -1366,7 +1376,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for LiteralPattern<'tree> {
         }
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         match self {
             Self::BooleanLiteral(x) => x.into_node(),
             Self::CharLiteral(x) => x.into_node(),
@@ -1557,10 +1567,12 @@ impl<'tree> Pattern<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Pattern<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Pattern<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if let Ok(this) = <symbols::__<'tree> as TryFrom<_>>::try_from(node) {
             return Ok(Self::__(this));
         }
@@ -1622,7 +1634,7 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Pattern<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for Pattern<'tree> {
     const KIND: &'static str = "_pattern";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         match self {
             Self::__(x) => x.node(),
             Self::LiteralPattern(x) => x.node(),
@@ -1644,7 +1656,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Pattern<'tree> {
         }
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         match self {
             Self::__(x) => x.node_mut(),
             Self::LiteralPattern(x) => x.node_mut(),
@@ -1666,7 +1678,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Pattern<'tree> {
         }
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         match self {
             Self::__(x) => x.into_node(),
             Self::LiteralPattern(x) => x.into_node(),
@@ -1857,10 +1869,12 @@ impl<'tree> Type<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Type<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Type<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         match node.kind() {
             "abstract_type" => {
                 Ok(unsafe {
@@ -1953,7 +1967,7 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Type<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for Type<'tree> {
     const KIND: &'static str = "_type";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         match self {
             Self::AbstractType(x) => x.node(),
             Self::ArrayType(x) => x.node(),
@@ -1974,7 +1988,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Type<'tree> {
         }
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         match self {
             Self::AbstractType(x) => x.node_mut(),
             Self::ArrayType(x) => x.node_mut(),
@@ -1995,7 +2009,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Type<'tree> {
         }
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         match self {
             Self::AbstractType(x) => x.into_node(),
             Self::ArrayType(x) => x.into_node(),
@@ -2019,7 +2033,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Type<'tree> {
 #[doc = "Typed node `abstract_type`\n\nThis node has these fields:\n- `trait`: `{function_type | generic_type | scoped_type_identifier | type_identifier}` ([anon_unions::FunctionType_GenericType_ScopedTypeIdentifier_TypeIdentifier])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct AbstractType<'tree>(tree_sitter::Node<'tree>);
+pub struct AbstractType<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> AbstractType<'tree> {
     #[doc = "Get the field `trait` which has kind `{function_type | generic_type | scoped_type_identifier | type_identifier}` ([anon_unions::FunctionType_GenericType_ScopedTypeIdentifier_TypeIdentifier])"]
@@ -2035,10 +2049,12 @@ impl<'tree> AbstractType<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for AbstractType<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for AbstractType<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "abstract_type" {
             Ok(Self(node))
         } else {
@@ -2053,26 +2069,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for AbstractType<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for AbstractType<'tree> {
     const KIND: &'static str = "abstract_type";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `arguments`\n\nThis node has children: `{_expression | attribute_item}*`:\n- [Expression]\n- [AttributeItem]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct Arguments<'tree>(tree_sitter::Node<'tree>);
+pub struct Arguments<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> Arguments<'tree> {
     #[doc = "Get the node's named children"]
@@ -2080,7 +2096,7 @@ impl<'tree> Arguments<'tree> {
     #[inline]
     pub fn children<'a>(
         &self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
@@ -2105,10 +2121,12 @@ impl<'tree> Arguments<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Arguments<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Arguments<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "arguments" {
             Ok(Self(node))
         } else {
@@ -2123,26 +2141,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Arguments<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for Arguments<'tree> {
     const KIND: &'static str = "arguments";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `array_expression`\n\nThis node has these fields:\n- `length`: `_expression?` ([Expression])\n\nAnd additional children: `{_expression | attribute_item}*`:\n- [Expression]\n- [AttributeItem]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct ArrayExpression<'tree>(tree_sitter::Node<'tree>);
+pub struct ArrayExpression<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ArrayExpression<'tree> {
     #[doc = "Get the field `length` which has kind `_expression?` ([Expression])"]
@@ -2158,7 +2176,7 @@ impl<'tree> ArrayExpression<'tree> {
     #[inline]
     pub fn children<'a>(
         &self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
@@ -2183,10 +2201,12 @@ impl<'tree> ArrayExpression<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ArrayExpression<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for ArrayExpression<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "array_expression" {
             Ok(Self(node))
         } else {
@@ -2201,26 +2221,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ArrayExpression<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for ArrayExpression<'tree> {
     const KIND: &'static str = "array_expression";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `array_type`\n\nThis node has these fields:\n- `element`: `_type` ([Type])\n- `length`: `_expression?` ([Expression])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct ArrayType<'tree>(tree_sitter::Node<'tree>);
+pub struct ArrayType<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ArrayType<'tree> {
     #[doc = "Get the field `element` which has kind `_type` ([Type])"]
@@ -2239,10 +2259,12 @@ impl<'tree> ArrayType<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ArrayType<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for ArrayType<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "array_type" {
             Ok(Self(node))
         } else {
@@ -2257,26 +2279,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ArrayType<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for ArrayType<'tree> {
     const KIND: &'static str = "array_type";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `assignment_expression`\n\nThis node has these fields:\n- `left`: `_expression` ([Expression])\n- `right`: `_expression` ([Expression])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct AssignmentExpression<'tree>(tree_sitter::Node<'tree>);
+pub struct AssignmentExpression<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> AssignmentExpression<'tree> {
     #[doc = "Get the field `left` which has kind `_expression` ([Expression])"]
@@ -2293,10 +2315,14 @@ impl<'tree> AssignmentExpression<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for AssignmentExpression<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for AssignmentExpression<'tree>
+{
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "assignment_expression" {
             Ok(Self(node))
         } else {
@@ -2311,26 +2337,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for AssignmentExpression<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for AssignmentExpression<'tree> {
     const KIND: &'static str = "assignment_expression";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `associated_type`\n\nThis node has these fields:\n- `bounds`: `trait_bounds?` ([TraitBounds])\n- `name`: `type_identifier` ([TypeIdentifier])\n- `type_parameters`: `type_parameters?` ([TypeParameters])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct AssociatedType<'tree>(tree_sitter::Node<'tree>);
+pub struct AssociatedType<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> AssociatedType<'tree> {
     #[doc = "Get the field `bounds` which has kind `trait_bounds?` ([TraitBounds])"]
@@ -2359,10 +2385,12 @@ impl<'tree> AssociatedType<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for AssociatedType<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for AssociatedType<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "associated_type" {
             Ok(Self(node))
         } else {
@@ -2377,26 +2405,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for AssociatedType<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for AssociatedType<'tree> {
     const KIND: &'static str = "associated_type";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `async_block`\n\nThis node has a child: `block` ([Block])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct AsyncBlock<'tree>(tree_sitter::Node<'tree>);
+pub struct AsyncBlock<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> AsyncBlock<'tree> {
     #[doc = "Get the node's only named child"]
@@ -2407,10 +2435,12 @@ impl<'tree> AsyncBlock<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for AsyncBlock<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for AsyncBlock<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "async_block" {
             Ok(Self(node))
         } else {
@@ -2425,26 +2455,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for AsyncBlock<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for AsyncBlock<'tree> {
     const KIND: &'static str = "async_block";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `attribute`\n\nThis node has these fields:\n- `arguments`: `token_tree?` ([TokenTree])\n- `value`: `_expression?` ([Expression])\n\nAnd an additional child: `{crate | identifier | metavariable | scoped_identifier | self | super}`:\n- [Crate]\n- [Identifier]\n- [Metavariable]\n- [ScopedIdentifier]\n- [_Self]\n- [Super]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct Attribute<'tree>(tree_sitter::Node<'tree>);
+pub struct Attribute<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> Attribute<'tree> {
     #[doc = "Get the field `arguments` which has kind `token_tree?` ([TokenTree])"]
@@ -2466,7 +2496,7 @@ impl<'tree> Attribute<'tree> {
     #[doc = "Get the node's named children"]
     #[doc = "This is guaranteed to return at least one child"]
     #[allow(dead_code)]
-    #[inline]    pub fn children < 'a > (& self , c : & 'a mut tree_sitter :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super_TokenTree_Expression < 'tree > > >> + 'a{
+    #[inline]    pub fn children < 'a > (& self , c : & 'a mut type_sitter_lib :: tree_sitter_wrapper :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super_TokenTree_Expression < 'tree > > >> + 'a{
         self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super_TokenTree_Expression < 'tree > > as TryFrom < _ >> :: try_from (n))
     }
     #[doc = "Get the node's named child #i"]
@@ -2476,10 +2506,12 @@ impl<'tree> Attribute<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Attribute<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Attribute<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "attribute" {
             Ok(Self(node))
         } else {
@@ -2494,26 +2526,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Attribute<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for Attribute<'tree> {
     const KIND: &'static str = "attribute";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `attribute_item`\n\nThis node has a child: `attribute` ([Attribute])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct AttributeItem<'tree>(tree_sitter::Node<'tree>);
+pub struct AttributeItem<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> AttributeItem<'tree> {
     #[doc = "Get the node's only named child"]
@@ -2524,10 +2556,12 @@ impl<'tree> AttributeItem<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for AttributeItem<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for AttributeItem<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "attribute_item" {
             Ok(Self(node))
         } else {
@@ -2542,26 +2576,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for AttributeItem<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for AttributeItem<'tree> {
     const KIND: &'static str = "attribute_item";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `await_expression`\n\nThis node has a child: `_expression` ([Expression])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct AwaitExpression<'tree>(tree_sitter::Node<'tree>);
+pub struct AwaitExpression<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> AwaitExpression<'tree> {
     #[doc = "Get the node's only named child"]
@@ -2572,10 +2606,12 @@ impl<'tree> AwaitExpression<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for AwaitExpression<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for AwaitExpression<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "await_expression" {
             Ok(Self(node))
         } else {
@@ -2590,26 +2626,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for AwaitExpression<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for AwaitExpression<'tree> {
     const KIND: &'static str = "await_expression";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `base_field_initializer`\n\nThis node has a child: `_expression` ([Expression])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct BaseFieldInitializer<'tree>(tree_sitter::Node<'tree>);
+pub struct BaseFieldInitializer<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> BaseFieldInitializer<'tree> {
     #[doc = "Get the node's only named child"]
@@ -2620,10 +2656,14 @@ impl<'tree> BaseFieldInitializer<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for BaseFieldInitializer<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for BaseFieldInitializer<'tree>
+{
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "base_field_initializer" {
             Ok(Self(node))
         } else {
@@ -2638,26 +2678,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for BaseFieldInitializer<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for BaseFieldInitializer<'tree> {
     const KIND: &'static str = "base_field_initializer";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `binary_expression`\n\nThis node has these fields:\n- `left`: `_expression` ([Expression])\n- `operator`: `{!= | % | & | && | * | + | - | / | < | << | <= | == | > | >= | >> | ^ | | | ||}` ([anon_unions::NotEq_Mod_And_AndAnd_Mul_Add_Sub_Div_Lt_LtLt_LtEq_EqEq_Gt_GtEq_GtGt_BitXor_Or_OrOr])\n- `right`: `_expression` ([Expression])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct BinaryExpression<'tree>(tree_sitter::Node<'tree>);
+pub struct BinaryExpression<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> BinaryExpression<'tree> {
     #[doc = "Get the field `left` which has kind `_expression` ([Expression])"]
@@ -2679,10 +2719,12 @@ impl<'tree> BinaryExpression<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for BinaryExpression<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for BinaryExpression<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "binary_expression" {
             Ok(Self(node))
         } else {
@@ -2697,26 +2739,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for BinaryExpression<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for BinaryExpression<'tree> {
     const KIND: &'static str = "binary_expression";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `block`\n\nThis node has children: `{_declaration_statement | _expression | expression_statement}*`:\n- [DeclarationStatement]\n- [Expression]\n- [ExpressionStatement]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct Block<'tree>(tree_sitter::Node<'tree>);
+pub struct Block<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> Block<'tree> {
     #[doc = "Get the node's named children"]
@@ -2724,7 +2766,7 @@ impl<'tree> Block<'tree> {
     #[inline]
     pub fn children<'a>(
         &self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
@@ -2765,10 +2807,12 @@ impl<'tree> Block<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Block<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Block<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "block" {
             Ok(Self(node))
         } else {
@@ -2783,33 +2827,35 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Block<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for Block<'tree> {
     const KIND: &'static str = "block";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `boolean_literal`\n\nThis node has no children\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct BooleanLiteral<'tree>(tree_sitter::Node<'tree>);
+pub struct BooleanLiteral<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> BooleanLiteral<'tree> {}
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for BooleanLiteral<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for BooleanLiteral<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "boolean_literal" {
             Ok(Self(node))
         } else {
@@ -2824,26 +2870,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for BooleanLiteral<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for BooleanLiteral<'tree> {
     const KIND: &'static str = "boolean_literal";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `bounded_type`\n\nThis node has children: `{_type | lifetime}+`:\n- [Type]\n- [Lifetime]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct BoundedType<'tree>(tree_sitter::Node<'tree>);
+pub struct BoundedType<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> BoundedType<'tree> {
     #[doc = "Get the node's named children"]
@@ -2852,7 +2898,7 @@ impl<'tree> BoundedType<'tree> {
     #[inline]
     pub fn children<'a>(
         &self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
@@ -2877,10 +2923,12 @@ impl<'tree> BoundedType<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for BoundedType<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for BoundedType<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "bounded_type" {
             Ok(Self(node))
         } else {
@@ -2895,26 +2943,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for BoundedType<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for BoundedType<'tree> {
     const KIND: &'static str = "bounded_type";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `bracketed_type`\n\nThis node has a child: `{_type | qualified_type}`:\n- [Type]\n- [QualifiedType]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct BracketedType<'tree>(tree_sitter::Node<'tree>);
+pub struct BracketedType<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> BracketedType<'tree> {
     #[doc = "Get the node's only named child"]
@@ -2927,10 +2975,12 @@ impl<'tree> BracketedType<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for BracketedType<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for BracketedType<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "bracketed_type" {
             Ok(Self(node))
         } else {
@@ -2945,26 +2995,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for BracketedType<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for BracketedType<'tree> {
     const KIND: &'static str = "bracketed_type";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `break_expression`\n\nThis node has children: `{_expression | loop_label}*`:\n- [Expression]\n- [LoopLabel]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct BreakExpression<'tree>(tree_sitter::Node<'tree>);
+pub struct BreakExpression<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> BreakExpression<'tree> {
     #[doc = "Get the node's named children"]
@@ -2972,7 +3022,7 @@ impl<'tree> BreakExpression<'tree> {
     #[inline]
     pub fn children<'a>(
         &self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
@@ -3001,10 +3051,12 @@ impl<'tree> BreakExpression<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for BreakExpression<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for BreakExpression<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "break_expression" {
             Ok(Self(node))
         } else {
@@ -3019,26 +3071,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for BreakExpression<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for BreakExpression<'tree> {
     const KIND: &'static str = "break_expression";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `call_expression`\n\nThis node has these fields:\n- `arguments`: `arguments` ([Arguments])\n- `function`: `{_literal | array_expression | assignment_expression | async_block | await_expression | binary_expression | block | break_expression | call_expression | closure_expression | compound_assignment_expr | const_block | continue_expression | field_expression | for_expression | generic_function | identifier | if_expression | index_expression | loop_expression | macro_invocation | match_expression | metavariable | parenthesized_expression | reference_expression | return_expression | scoped_identifier | self | struct_expression | try_expression | tuple_expression | type_cast_expression | unary_expression | unit_expression | unsafe_block | while_expression | yield_expression}` ([anon_unions::Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier__Self_StructExpression_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct CallExpression<'tree>(tree_sitter::Node<'tree>);
+pub struct CallExpression<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> CallExpression<'tree> {
     #[doc = "Get the field `arguments` which has kind `arguments` ([Arguments])"]
@@ -3054,10 +3106,12 @@ impl<'tree> CallExpression<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for CallExpression<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for CallExpression<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "call_expression" {
             Ok(Self(node))
         } else {
@@ -3072,26 +3126,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for CallExpression<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for CallExpression<'tree> {
     const KIND: &'static str = "call_expression";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `captured_pattern`\n\nThis node has children: `_pattern+` ([Pattern])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct CapturedPattern<'tree>(tree_sitter::Node<'tree>);
+pub struct CapturedPattern<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> CapturedPattern<'tree> {
     #[doc = "Get the node's named children"]
@@ -3100,7 +3154,7 @@ impl<'tree> CapturedPattern<'tree> {
     #[inline]
     pub fn children<'a>(
         &self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<'tree, type_sitter_lib::ExtraOr<'tree, Pattern<'tree>>>,
     > + 'a {
@@ -3122,10 +3176,12 @@ impl<'tree> CapturedPattern<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for CapturedPattern<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for CapturedPattern<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "captured_pattern" {
             Ok(Self(node))
         } else {
@@ -3140,26 +3196,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for CapturedPattern<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for CapturedPattern<'tree> {
     const KIND: &'static str = "captured_pattern";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `closure_expression`\n\nThis node has these fields:\n- `body`: `_expression` ([Expression])\n- `parameters`: `closure_parameters` ([ClosureParameters])\n- `return_type`: `_type?` ([Type])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct ClosureExpression<'tree>(tree_sitter::Node<'tree>);
+pub struct ClosureExpression<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ClosureExpression<'tree> {
     #[doc = "Get the field `body` which has kind `_expression` ([Expression])"]
@@ -3184,10 +3240,14 @@ impl<'tree> ClosureExpression<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ClosureExpression<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for ClosureExpression<'tree>
+{
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "closure_expression" {
             Ok(Self(node))
         } else {
@@ -3202,26 +3262,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ClosureExpression<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for ClosureExpression<'tree> {
     const KIND: &'static str = "closure_expression";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `closure_parameters`\n\nThis node has children: `{_pattern | parameter}*`:\n- [Pattern]\n- [Parameter]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct ClosureParameters<'tree>(tree_sitter::Node<'tree>);
+pub struct ClosureParameters<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ClosureParameters<'tree> {
     #[doc = "Get the node's named children"]
@@ -3229,7 +3289,7 @@ impl<'tree> ClosureParameters<'tree> {
     #[inline]
     pub fn children<'a>(
         &self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
@@ -3258,10 +3318,14 @@ impl<'tree> ClosureParameters<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ClosureParameters<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for ClosureParameters<'tree>
+{
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "closure_parameters" {
             Ok(Self(node))
         } else {
@@ -3276,26 +3340,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ClosureParameters<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for ClosureParameters<'tree> {
     const KIND: &'static str = "closure_parameters";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `compound_assignment_expr`\n\nThis node has these fields:\n- `left`: `_expression` ([Expression])\n- `operator`: `{%= | &= | *= | += | -= | /= | <<= | >>= | ^= | |=}` ([anon_unions::ModEq_AndEq_MulEq_AddEq_SubEq_DivEq_LtLtEq_GtGtEq_BitXorEq_OrEq])\n- `right`: `_expression` ([Expression])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct CompoundAssignmentExpr<'tree>(tree_sitter::Node<'tree>);
+pub struct CompoundAssignmentExpr<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> CompoundAssignmentExpr<'tree> {
     #[doc = "Get the field `left` which has kind `_expression` ([Expression])"]
@@ -3323,10 +3387,14 @@ impl<'tree> CompoundAssignmentExpr<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for CompoundAssignmentExpr<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for CompoundAssignmentExpr<'tree>
+{
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "compound_assignment_expr" {
             Ok(Self(node))
         } else {
@@ -3341,26 +3409,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for CompoundAssignmentExpr<'tree> 
 impl<'tree> type_sitter_lib::TypedNode<'tree> for CompoundAssignmentExpr<'tree> {
     const KIND: &'static str = "compound_assignment_expr";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `const_block`\n\nThis node has these fields:\n- `body`: `block` ([Block])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct ConstBlock<'tree>(tree_sitter::Node<'tree>);
+pub struct ConstBlock<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ConstBlock<'tree> {
     #[doc = "Get the field `body` which has kind `block` ([Block])"]
@@ -3371,10 +3439,12 @@ impl<'tree> ConstBlock<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ConstBlock<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for ConstBlock<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "const_block" {
             Ok(Self(node))
         } else {
@@ -3389,26 +3459,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ConstBlock<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for ConstBlock<'tree> {
     const KIND: &'static str = "const_block";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `const_item`\n\nThis node has these fields:\n- `name`: `identifier` ([Identifier])\n- `type`: `_type` ([Type])\n- `value`: `_expression?` ([Expression])\n\nAnd an additional (optional) child: `visibility_modifier?` ([VisibilityModifier])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct ConstItem<'tree>(tree_sitter::Node<'tree>);
+pub struct ConstItem<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ConstItem<'tree> {
     #[doc = "Get the field `name` which has kind `identifier` ([Identifier])"]
@@ -3437,7 +3507,7 @@ impl<'tree> ConstItem<'tree> {
     #[inline]
     pub fn children<'a>(
         &self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
@@ -3478,10 +3548,12 @@ impl<'tree> ConstItem<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ConstItem<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for ConstItem<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "const_item" {
             Ok(Self(node))
         } else {
@@ -3496,26 +3568,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ConstItem<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for ConstItem<'tree> {
     const KIND: &'static str = "const_item";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `const_parameter`\n\nThis node has these fields:\n- `name`: `identifier` ([Identifier])\n- `type`: `_type` ([Type])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct ConstParameter<'tree>(tree_sitter::Node<'tree>);
+pub struct ConstParameter<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ConstParameter<'tree> {
     #[doc = "Get the field `name` which has kind `identifier` ([Identifier])"]
@@ -3532,10 +3604,12 @@ impl<'tree> ConstParameter<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ConstParameter<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for ConstParameter<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "const_parameter" {
             Ok(Self(node))
         } else {
@@ -3550,26 +3624,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ConstParameter<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for ConstParameter<'tree> {
     const KIND: &'static str = "const_parameter";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `constrained_type_parameter`\n\nThis node has these fields:\n- `bounds`: `trait_bounds` ([TraitBounds])\n- `left`: `{lifetime | type_identifier}` ([anon_unions::Lifetime_TypeIdentifier])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct ConstrainedTypeParameter<'tree>(tree_sitter::Node<'tree>);
+pub struct ConstrainedTypeParameter<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ConstrainedTypeParameter<'tree> {
     #[doc = "Get the field `bounds` which has kind `trait_bounds` ([TraitBounds])"]
@@ -3588,10 +3662,14 @@ impl<'tree> ConstrainedTypeParameter<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ConstrainedTypeParameter<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for ConstrainedTypeParameter<'tree>
+{
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "constrained_type_parameter" {
             Ok(Self(node))
         } else {
@@ -3606,26 +3684,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ConstrainedTypeParameter<'tree
 impl<'tree> type_sitter_lib::TypedNode<'tree> for ConstrainedTypeParameter<'tree> {
     const KIND: &'static str = "constrained_type_parameter";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `continue_expression`\n\nThis node has an (optional) child: `loop_label?` ([LoopLabel])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct ContinueExpression<'tree>(tree_sitter::Node<'tree>);
+pub struct ContinueExpression<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ContinueExpression<'tree> {
     #[doc = "Get the node's only named child"]
@@ -3638,10 +3716,14 @@ impl<'tree> ContinueExpression<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ContinueExpression<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for ContinueExpression<'tree>
+{
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "continue_expression" {
             Ok(Self(node))
         } else {
@@ -3656,26 +3738,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ContinueExpression<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for ContinueExpression<'tree> {
     const KIND: &'static str = "continue_expression";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `declaration_list`\n\nThis node has children: `_declaration_statement*` ([DeclarationStatement])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct DeclarationList<'tree>(tree_sitter::Node<'tree>);
+pub struct DeclarationList<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> DeclarationList<'tree> {
     #[doc = "Get the node's named children"]
@@ -3683,7 +3765,7 @@ impl<'tree> DeclarationList<'tree> {
     #[inline]
     pub fn children<'a>(
         &self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
@@ -3714,10 +3796,12 @@ impl<'tree> DeclarationList<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for DeclarationList<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for DeclarationList<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "declaration_list" {
             Ok(Self(node))
         } else {
@@ -3732,26 +3816,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for DeclarationList<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for DeclarationList<'tree> {
     const KIND: &'static str = "declaration_list";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `dynamic_type`\n\nThis node has these fields:\n- `trait`: `{function_type | generic_type | scoped_type_identifier | type_identifier}` ([anon_unions::FunctionType_GenericType_ScopedTypeIdentifier_TypeIdentifier])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct DynamicType<'tree>(tree_sitter::Node<'tree>);
+pub struct DynamicType<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> DynamicType<'tree> {
     #[doc = "Get the field `trait` which has kind `{function_type | generic_type | scoped_type_identifier | type_identifier}` ([anon_unions::FunctionType_GenericType_ScopedTypeIdentifier_TypeIdentifier])"]
@@ -3767,10 +3851,12 @@ impl<'tree> DynamicType<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for DynamicType<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for DynamicType<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "dynamic_type" {
             Ok(Self(node))
         } else {
@@ -3785,26 +3871,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for DynamicType<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for DynamicType<'tree> {
     const KIND: &'static str = "dynamic_type";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `else_clause`\n\nThis node has a child: `{block | if_expression}`:\n- [Block]\n- [IfExpression]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct ElseClause<'tree>(tree_sitter::Node<'tree>);
+pub struct ElseClause<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ElseClause<'tree> {
     #[doc = "Get the node's only named child"]
@@ -3817,10 +3903,12 @@ impl<'tree> ElseClause<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ElseClause<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for ElseClause<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "else_clause" {
             Ok(Self(node))
         } else {
@@ -3835,33 +3923,35 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ElseClause<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for ElseClause<'tree> {
     const KIND: &'static str = "else_clause";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `empty_statement`\n\nThis node has no children\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct EmptyStatement<'tree>(tree_sitter::Node<'tree>);
+pub struct EmptyStatement<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> EmptyStatement<'tree> {}
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for EmptyStatement<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for EmptyStatement<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "empty_statement" {
             Ok(Self(node))
         } else {
@@ -3876,33 +3966,35 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for EmptyStatement<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for EmptyStatement<'tree> {
     const KIND: &'static str = "empty_statement";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `empty_type`\n\nThis node has no children\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct EmptyType<'tree>(tree_sitter::Node<'tree>);
+pub struct EmptyType<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> EmptyType<'tree> {}
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for EmptyType<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for EmptyType<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "empty_type" {
             Ok(Self(node))
         } else {
@@ -3917,26 +4009,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for EmptyType<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for EmptyType<'tree> {
     const KIND: &'static str = "empty_type";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `enum_item`\n\nThis node has these fields:\n- `body`: `enum_variant_list` ([EnumVariantList])\n- `name`: `type_identifier` ([TypeIdentifier])\n- `type_parameters`: `type_parameters?` ([TypeParameters])\n\nAnd additional children: `{visibility_modifier | where_clause}*`:\n- [VisibilityModifier]\n- [WhereClause]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct EnumItem<'tree>(tree_sitter::Node<'tree>);
+pub struct EnumItem<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> EnumItem<'tree> {
     #[doc = "Get the field `body` which has kind `enum_variant_list` ([EnumVariantList])"]
@@ -3964,7 +4056,7 @@ impl<'tree> EnumItem<'tree> {
     #[doc = "Get the node's named children"]
     #[doc = "This is guaranteed to return at least one child"]
     #[allow(dead_code)]
-    #[inline]    pub fn children < 'a > (& self , c : & 'a mut tree_sitter :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: VisibilityModifier_WhereClause_EnumVariantList_TypeIdentifier_TypeParameters < 'tree > > >> + 'a{
+    #[inline]    pub fn children < 'a > (& self , c : & 'a mut type_sitter_lib :: tree_sitter_wrapper :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: VisibilityModifier_WhereClause_EnumVariantList_TypeIdentifier_TypeParameters < 'tree > > >> + 'a{
         self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: VisibilityModifier_WhereClause_EnumVariantList_TypeIdentifier_TypeParameters < 'tree > > as TryFrom < _ >> :: try_from (n))
     }
     #[doc = "Get the node's named child #i"]
@@ -3974,10 +4066,12 @@ impl<'tree> EnumItem<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for EnumItem<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for EnumItem<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "enum_item" {
             Ok(Self(node))
         } else {
@@ -3992,26 +4086,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for EnumItem<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for EnumItem<'tree> {
     const KIND: &'static str = "enum_item";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `enum_variant`\n\nThis node has these fields:\n- `body`: `{field_declaration_list | ordered_field_declaration_list}?` ([anon_unions::FieldDeclarationList_OrderedFieldDeclarationList])\n- `name`: `identifier` ([Identifier])\n- `value`: `_expression?` ([Expression])\n\nAnd an additional (optional) child: `visibility_modifier?` ([VisibilityModifier])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct EnumVariant<'tree>(tree_sitter::Node<'tree>);
+pub struct EnumVariant<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> EnumVariant<'tree> {
     #[doc = "Get the field `body` which has kind `{field_declaration_list | ordered_field_declaration_list}?` ([anon_unions::FieldDeclarationList_OrderedFieldDeclarationList])"]
@@ -4044,7 +4138,7 @@ impl<'tree> EnumVariant<'tree> {
     #[doc = "Get the node's named children"]
     #[doc = "This is guaranteed to return at least one child"]
     #[allow(dead_code)]
-    #[inline]    pub fn children < 'a > (& self , c : & 'a mut tree_sitter :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: VisibilityModifier_FieldDeclarationList_OrderedFieldDeclarationList_Identifier_Expression < 'tree > > >> + 'a{
+    #[inline]    pub fn children < 'a > (& self , c : & 'a mut type_sitter_lib :: tree_sitter_wrapper :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: VisibilityModifier_FieldDeclarationList_OrderedFieldDeclarationList_Identifier_Expression < 'tree > > >> + 'a{
         self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: VisibilityModifier_FieldDeclarationList_OrderedFieldDeclarationList_Identifier_Expression < 'tree > > as TryFrom < _ >> :: try_from (n))
     }
     #[doc = "Get the node's named child #i"]
@@ -4054,10 +4148,12 @@ impl<'tree> EnumVariant<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for EnumVariant<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for EnumVariant<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "enum_variant" {
             Ok(Self(node))
         } else {
@@ -4072,26 +4168,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for EnumVariant<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for EnumVariant<'tree> {
     const KIND: &'static str = "enum_variant";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `enum_variant_list`\n\nThis node has children: `{attribute_item | enum_variant}*`:\n- [AttributeItem]\n- [EnumVariant]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct EnumVariantList<'tree>(tree_sitter::Node<'tree>);
+pub struct EnumVariantList<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> EnumVariantList<'tree> {
     #[doc = "Get the node's named children"]
@@ -4099,7 +4195,7 @@ impl<'tree> EnumVariantList<'tree> {
     #[inline]
     pub fn children<'a>(
         &self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
@@ -4124,10 +4220,12 @@ impl<'tree> EnumVariantList<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for EnumVariantList<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for EnumVariantList<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "enum_variant_list" {
             Ok(Self(node))
         } else {
@@ -4142,26 +4240,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for EnumVariantList<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for EnumVariantList<'tree> {
     const KIND: &'static str = "enum_variant_list";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `expression_statement`\n\nThis node has a child: `_expression` ([Expression])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct ExpressionStatement<'tree>(tree_sitter::Node<'tree>);
+pub struct ExpressionStatement<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ExpressionStatement<'tree> {
     #[doc = "Get the node's only named child"]
@@ -4172,10 +4270,14 @@ impl<'tree> ExpressionStatement<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ExpressionStatement<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for ExpressionStatement<'tree>
+{
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "expression_statement" {
             Ok(Self(node))
         } else {
@@ -4190,26 +4292,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ExpressionStatement<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for ExpressionStatement<'tree> {
     const KIND: &'static str = "expression_statement";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `extern_crate_declaration`\n\nThis node has these fields:\n- `alias`: `identifier?` ([Identifier])\n- `name`: `identifier` ([Identifier])\n\nAnd additional children: `{crate | visibility_modifier}+`:\n- [Crate]\n- [VisibilityModifier]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct ExternCrateDeclaration<'tree>(tree_sitter::Node<'tree>);
+pub struct ExternCrateDeclaration<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ExternCrateDeclaration<'tree> {
     #[doc = "Get the field `alias` which has kind `identifier?` ([Identifier])"]
@@ -4232,7 +4334,7 @@ impl<'tree> ExternCrateDeclaration<'tree> {
     #[inline]
     pub fn children<'a>(
         &self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
@@ -4268,10 +4370,14 @@ impl<'tree> ExternCrateDeclaration<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ExternCrateDeclaration<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for ExternCrateDeclaration<'tree>
+{
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "extern_crate_declaration" {
             Ok(Self(node))
         } else {
@@ -4286,26 +4392,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ExternCrateDeclaration<'tree> 
 impl<'tree> type_sitter_lib::TypedNode<'tree> for ExternCrateDeclaration<'tree> {
     const KIND: &'static str = "extern_crate_declaration";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `extern_modifier`\n\nThis node has an (optional) child: `string_literal?` ([StringLiteral])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct ExternModifier<'tree>(tree_sitter::Node<'tree>);
+pub struct ExternModifier<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ExternModifier<'tree> {
     #[doc = "Get the node's only named child"]
@@ -4318,10 +4424,12 @@ impl<'tree> ExternModifier<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ExternModifier<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for ExternModifier<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "extern_modifier" {
             Ok(Self(node))
         } else {
@@ -4336,26 +4444,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ExternModifier<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for ExternModifier<'tree> {
     const KIND: &'static str = "extern_modifier";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `field_declaration`\n\nThis node has these fields:\n- `name`: `field_identifier` ([FieldIdentifier])\n- `type`: `_type` ([Type])\n\nAnd an additional (optional) child: `visibility_modifier?` ([VisibilityModifier])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct FieldDeclaration<'tree>(tree_sitter::Node<'tree>);
+pub struct FieldDeclaration<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> FieldDeclaration<'tree> {
     #[doc = "Get the field `name` which has kind `field_identifier` ([FieldIdentifier])"]
@@ -4376,7 +4484,7 @@ impl<'tree> FieldDeclaration<'tree> {
     #[inline]
     pub fn children<'a>(
         &self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
@@ -4417,10 +4525,12 @@ impl<'tree> FieldDeclaration<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for FieldDeclaration<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for FieldDeclaration<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "field_declaration" {
             Ok(Self(node))
         } else {
@@ -4435,26 +4545,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for FieldDeclaration<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for FieldDeclaration<'tree> {
     const KIND: &'static str = "field_declaration";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `field_declaration_list`\n\nThis node has children: `{attribute_item | field_declaration}*`:\n- [AttributeItem]\n- [FieldDeclaration]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct FieldDeclarationList<'tree>(tree_sitter::Node<'tree>);
+pub struct FieldDeclarationList<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> FieldDeclarationList<'tree> {
     #[doc = "Get the node's named children"]
@@ -4462,7 +4572,7 @@ impl<'tree> FieldDeclarationList<'tree> {
     #[inline]
     pub fn children<'a>(
         &self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
@@ -4487,10 +4597,14 @@ impl<'tree> FieldDeclarationList<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for FieldDeclarationList<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for FieldDeclarationList<'tree>
+{
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "field_declaration_list" {
             Ok(Self(node))
         } else {
@@ -4505,26 +4619,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for FieldDeclarationList<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for FieldDeclarationList<'tree> {
     const KIND: &'static str = "field_declaration_list";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `field_expression`\n\nThis node has these fields:\n- `field`: `{field_identifier | integer_literal}` ([anon_unions::FieldIdentifier_IntegerLiteral])\n- `value`: `_expression` ([Expression])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct FieldExpression<'tree>(tree_sitter::Node<'tree>);
+pub struct FieldExpression<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> FieldExpression<'tree> {
     #[doc = "Get the field `field` which has kind `{field_identifier | integer_literal}` ([anon_unions::FieldIdentifier_IntegerLiteral])"]
@@ -4544,10 +4658,12 @@ impl<'tree> FieldExpression<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for FieldExpression<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for FieldExpression<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "field_expression" {
             Ok(Self(node))
         } else {
@@ -4562,26 +4678,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for FieldExpression<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for FieldExpression<'tree> {
     const KIND: &'static str = "field_expression";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `field_initializer`\n\nThis node has these fields:\n- `name`: `field_identifier` ([FieldIdentifier])\n- `value`: `_expression` ([Expression])\n\nAnd additional children: `attribute_item*` ([AttributeItem])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct FieldInitializer<'tree>(tree_sitter::Node<'tree>);
+pub struct FieldInitializer<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> FieldInitializer<'tree> {
     #[doc = "Get the field `name` which has kind `field_identifier` ([FieldIdentifier])"]
@@ -4602,7 +4718,7 @@ impl<'tree> FieldInitializer<'tree> {
     #[inline]
     pub fn children<'a>(
         &self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
@@ -4643,10 +4759,12 @@ impl<'tree> FieldInitializer<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for FieldInitializer<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for FieldInitializer<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "field_initializer" {
             Ok(Self(node))
         } else {
@@ -4661,26 +4779,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for FieldInitializer<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for FieldInitializer<'tree> {
     const KIND: &'static str = "field_initializer";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `field_initializer_list`\n\nThis node has children: `{base_field_initializer | field_initializer | shorthand_field_initializer}*`:\n- [BaseFieldInitializer]\n- [FieldInitializer]\n- [ShorthandFieldInitializer]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct FieldInitializerList<'tree>(tree_sitter::Node<'tree>);
+pub struct FieldInitializerList<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> FieldInitializerList<'tree> {
     #[doc = "Get the node's named children"]
@@ -4688,7 +4806,7 @@ impl<'tree> FieldInitializerList<'tree> {
     #[inline]
     pub fn children<'a>(
         &self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
@@ -4729,10 +4847,14 @@ impl<'tree> FieldInitializerList<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for FieldInitializerList<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for FieldInitializerList<'tree>
+{
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "field_initializer_list" {
             Ok(Self(node))
         } else {
@@ -4747,26 +4869,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for FieldInitializerList<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for FieldInitializerList<'tree> {
     const KIND: &'static str = "field_initializer_list";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `field_pattern`\n\nThis node has these fields:\n- `name`: `{field_identifier | shorthand_field_identifier}` ([anon_unions::FieldIdentifier_ShorthandFieldIdentifier])\n- `pattern`: `_pattern?` ([Pattern])\n\nAnd an additional (optional) child: `mutable_specifier?` ([MutableSpecifier])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct FieldPattern<'tree>(tree_sitter::Node<'tree>);
+pub struct FieldPattern<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> FieldPattern<'tree> {
     #[doc = "Get the field `name` which has kind `{field_identifier | shorthand_field_identifier}` ([anon_unions::FieldIdentifier_ShorthandFieldIdentifier])"]
@@ -4794,7 +4916,7 @@ impl<'tree> FieldPattern<'tree> {
     #[inline]
     pub fn children<'a>(
         &self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
@@ -4843,10 +4965,12 @@ impl<'tree> FieldPattern<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for FieldPattern<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for FieldPattern<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "field_pattern" {
             Ok(Self(node))
         } else {
@@ -4861,26 +4985,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for FieldPattern<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for FieldPattern<'tree> {
     const KIND: &'static str = "field_pattern";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `for_expression`\n\nThis node has these fields:\n- `body`: `block` ([Block])\n- `pattern`: `_pattern` ([Pattern])\n- `value`: `_expression` ([Expression])\n\nAnd an additional (optional) child: `loop_label?` ([LoopLabel])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct ForExpression<'tree>(tree_sitter::Node<'tree>);
+pub struct ForExpression<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ForExpression<'tree> {
     #[doc = "Get the field `body` which has kind `block` ([Block])"]
@@ -4907,7 +5031,7 @@ impl<'tree> ForExpression<'tree> {
     #[inline]
     pub fn children<'a>(
         &self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
@@ -4932,10 +5056,12 @@ impl<'tree> ForExpression<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ForExpression<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for ForExpression<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "for_expression" {
             Ok(Self(node))
         } else {
@@ -4950,26 +5076,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ForExpression<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for ForExpression<'tree> {
     const KIND: &'static str = "for_expression";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `for_lifetimes`\n\nThis node has children: `lifetime+` ([Lifetime])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct ForLifetimes<'tree>(tree_sitter::Node<'tree>);
+pub struct ForLifetimes<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ForLifetimes<'tree> {
     #[doc = "Get the node's named children"]
@@ -4978,7 +5104,7 @@ impl<'tree> ForLifetimes<'tree> {
     #[inline]
     pub fn children<'a>(
         &self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<'tree, type_sitter_lib::ExtraOr<'tree, Lifetime<'tree>>>,
     > + 'a {
@@ -5000,10 +5126,12 @@ impl<'tree> ForLifetimes<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ForLifetimes<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for ForLifetimes<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "for_lifetimes" {
             Ok(Self(node))
         } else {
@@ -5018,26 +5146,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ForLifetimes<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for ForLifetimes<'tree> {
     const KIND: &'static str = "for_lifetimes";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `foreign_mod_item`\n\nThis node has these fields:\n- `body`: `declaration_list?` ([DeclarationList])\n\nAnd additional children: `{extern_modifier | visibility_modifier}+`:\n- [ExternModifier]\n- [VisibilityModifier]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct ForeignModItem<'tree>(tree_sitter::Node<'tree>);
+pub struct ForeignModItem<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ForeignModItem<'tree> {
     #[doc = "Get the field `body` which has kind `declaration_list?` ([DeclarationList])"]
@@ -5054,7 +5182,7 @@ impl<'tree> ForeignModItem<'tree> {
     #[inline]
     pub fn children<'a>(
         &self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
@@ -5095,10 +5223,12 @@ impl<'tree> ForeignModItem<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ForeignModItem<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for ForeignModItem<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "foreign_mod_item" {
             Ok(Self(node))
         } else {
@@ -5113,33 +5243,37 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ForeignModItem<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for ForeignModItem<'tree> {
     const KIND: &'static str = "foreign_mod_item";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `fragment_specifier`\n\nThis node has no children\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct FragmentSpecifier<'tree>(tree_sitter::Node<'tree>);
+pub struct FragmentSpecifier<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> FragmentSpecifier<'tree> {}
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for FragmentSpecifier<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for FragmentSpecifier<'tree>
+{
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "fragment_specifier" {
             Ok(Self(node))
         } else {
@@ -5154,26 +5288,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for FragmentSpecifier<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for FragmentSpecifier<'tree> {
     const KIND: &'static str = "fragment_specifier";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `function_item`\n\nThis node has these fields:\n- `body`: `block` ([Block])\n- `name`: `{identifier | metavariable}` ([anon_unions::Identifier_Metavariable])\n- `parameters`: `parameters` ([Parameters])\n- `return_type`: `_type?` ([Type])\n- `type_parameters`: `type_parameters?` ([TypeParameters])\n\nAnd additional children: `{function_modifiers | visibility_modifier | where_clause}*`:\n- [FunctionModifiers]\n- [VisibilityModifier]\n- [WhereClause]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct FunctionItem<'tree>(tree_sitter::Node<'tree>);
+pub struct FunctionItem<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> FunctionItem<'tree> {
     #[doc = "Get the field `body` which has kind `block` ([Block])"]
@@ -5217,7 +5351,7 @@ impl<'tree> FunctionItem<'tree> {
     #[doc = "Get the node's named children"]
     #[doc = "This is guaranteed to return at least one child"]
     #[allow(dead_code)]
-    #[inline]    pub fn children < 'a > (& self , c : & 'a mut tree_sitter :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: FunctionModifiers_VisibilityModifier_WhereClause_Block_Identifier_Metavariable_Parameters_Type_TypeParameters < 'tree > > >> + 'a{
+    #[inline]    pub fn children < 'a > (& self , c : & 'a mut type_sitter_lib :: tree_sitter_wrapper :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: FunctionModifiers_VisibilityModifier_WhereClause_Block_Identifier_Metavariable_Parameters_Type_TypeParameters < 'tree > > >> + 'a{
         self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: FunctionModifiers_VisibilityModifier_WhereClause_Block_Identifier_Metavariable_Parameters_Type_TypeParameters < 'tree > > as TryFrom < _ >> :: try_from (n))
     }
     #[doc = "Get the node's named child #i"]
@@ -5227,10 +5361,12 @@ impl<'tree> FunctionItem<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for FunctionItem<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for FunctionItem<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "function_item" {
             Ok(Self(node))
         } else {
@@ -5245,26 +5381,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for FunctionItem<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for FunctionItem<'tree> {
     const KIND: &'static str = "function_item";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `function_modifiers`\n\nThis node has children: `extern_modifier*` ([ExternModifier])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct FunctionModifiers<'tree>(tree_sitter::Node<'tree>);
+pub struct FunctionModifiers<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> FunctionModifiers<'tree> {
     #[doc = "Get the node's named children"]
@@ -5272,7 +5408,7 @@ impl<'tree> FunctionModifiers<'tree> {
     #[inline]
     pub fn children<'a>(
         &self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
@@ -5298,10 +5434,14 @@ impl<'tree> FunctionModifiers<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for FunctionModifiers<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for FunctionModifiers<'tree>
+{
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "function_modifiers" {
             Ok(Self(node))
         } else {
@@ -5316,26 +5456,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for FunctionModifiers<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for FunctionModifiers<'tree> {
     const KIND: &'static str = "function_modifiers";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `function_signature_item`\n\nThis node has these fields:\n- `name`: `{identifier | metavariable}` ([anon_unions::Identifier_Metavariable])\n- `parameters`: `parameters` ([Parameters])\n- `return_type`: `_type?` ([Type])\n- `type_parameters`: `type_parameters?` ([TypeParameters])\n\nAnd additional children: `{function_modifiers | visibility_modifier | where_clause}*`:\n- [FunctionModifiers]\n- [VisibilityModifier]\n- [WhereClause]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct FunctionSignatureItem<'tree>(tree_sitter::Node<'tree>);
+pub struct FunctionSignatureItem<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> FunctionSignatureItem<'tree> {
     #[doc = "Get the field `name` which has kind `{identifier | metavariable}` ([anon_unions::Identifier_Metavariable])"]
@@ -5373,7 +5513,7 @@ impl<'tree> FunctionSignatureItem<'tree> {
     #[doc = "Get the node's named children"]
     #[doc = "This is guaranteed to return at least one child"]
     #[allow(dead_code)]
-    #[inline]    pub fn children < 'a > (& self , c : & 'a mut tree_sitter :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: FunctionModifiers_VisibilityModifier_WhereClause_Identifier_Metavariable_Parameters_Type_TypeParameters < 'tree > > >> + 'a{
+    #[inline]    pub fn children < 'a > (& self , c : & 'a mut type_sitter_lib :: tree_sitter_wrapper :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: FunctionModifiers_VisibilityModifier_WhereClause_Identifier_Metavariable_Parameters_Type_TypeParameters < 'tree > > >> + 'a{
         self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: FunctionModifiers_VisibilityModifier_WhereClause_Identifier_Metavariable_Parameters_Type_TypeParameters < 'tree > > as TryFrom < _ >> :: try_from (n))
     }
     #[doc = "Get the node's named child #i"]
@@ -5383,10 +5523,14 @@ impl<'tree> FunctionSignatureItem<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for FunctionSignatureItem<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for FunctionSignatureItem<'tree>
+{
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "function_signature_item" {
             Ok(Self(node))
         } else {
@@ -5401,26 +5545,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for FunctionSignatureItem<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for FunctionSignatureItem<'tree> {
     const KIND: &'static str = "function_signature_item";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `function_type`\n\nThis node has these fields:\n- `parameters`: `parameters` ([Parameters])\n- `return_type`: `_type?` ([Type])\n- `trait`: `{scoped_type_identifier | type_identifier}?` ([anon_unions::ScopedTypeIdentifier_TypeIdentifier])\n\nAnd additional children: `{for_lifetimes | function_modifiers}*`:\n- [ForLifetimes]\n- [FunctionModifiers]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct FunctionType<'tree>(tree_sitter::Node<'tree>);
+pub struct FunctionType<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> FunctionType<'tree> {
     #[doc = "Get the field `parameters` which has kind `parameters` ([Parameters])"]
@@ -5452,7 +5596,7 @@ impl<'tree> FunctionType<'tree> {
     #[doc = "Get the node's named children"]
     #[doc = "This is guaranteed to return at least one child"]
     #[allow(dead_code)]
-    #[inline]    pub fn children < 'a > (& self , c : & 'a mut tree_sitter :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: ForLifetimes_FunctionModifiers_Parameters_Type_ScopedTypeIdentifier_TypeIdentifier < 'tree > > >> + 'a{
+    #[inline]    pub fn children < 'a > (& self , c : & 'a mut type_sitter_lib :: tree_sitter_wrapper :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: ForLifetimes_FunctionModifiers_Parameters_Type_ScopedTypeIdentifier_TypeIdentifier < 'tree > > >> + 'a{
         self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: ForLifetimes_FunctionModifiers_Parameters_Type_ScopedTypeIdentifier_TypeIdentifier < 'tree > > as TryFrom < _ >> :: try_from (n))
     }
     #[doc = "Get the node's named child #i"]
@@ -5462,10 +5606,12 @@ impl<'tree> FunctionType<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for FunctionType<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for FunctionType<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "function_type" {
             Ok(Self(node))
         } else {
@@ -5480,26 +5626,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for FunctionType<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for FunctionType<'tree> {
     const KIND: &'static str = "function_type";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `generic_function`\n\nThis node has these fields:\n- `function`: `{field_expression | identifier | scoped_identifier}` ([anon_unions::FieldExpression_Identifier_ScopedIdentifier])\n- `type_arguments`: `type_arguments` ([TypeArguments])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct GenericFunction<'tree>(tree_sitter::Node<'tree>);
+pub struct GenericFunction<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> GenericFunction<'tree> {
     #[doc = "Get the field `function` which has kind `{field_expression | identifier | scoped_identifier}` ([anon_unions::FieldExpression_Identifier_ScopedIdentifier])"]
@@ -5521,10 +5667,12 @@ impl<'tree> GenericFunction<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for GenericFunction<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for GenericFunction<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "generic_function" {
             Ok(Self(node))
         } else {
@@ -5539,26 +5687,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for GenericFunction<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for GenericFunction<'tree> {
     const KIND: &'static str = "generic_function";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `generic_type`\n\nThis node has these fields:\n- `type`: `{scoped_identifier | scoped_type_identifier | type_identifier}` ([anon_unions::ScopedIdentifier_ScopedTypeIdentifier_TypeIdentifier])\n- `type_arguments`: `type_arguments` ([TypeArguments])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct GenericType<'tree>(tree_sitter::Node<'tree>);
+pub struct GenericType<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> GenericType<'tree> {
     #[doc = "Get the field `type` which has kind `{scoped_identifier | scoped_type_identifier | type_identifier}` ([anon_unions::ScopedIdentifier_ScopedTypeIdentifier_TypeIdentifier])"]
@@ -5580,10 +5728,12 @@ impl<'tree> GenericType<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for GenericType<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for GenericType<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "generic_type" {
             Ok(Self(node))
         } else {
@@ -5598,26 +5748,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for GenericType<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for GenericType<'tree> {
     const KIND: &'static str = "generic_type";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `generic_type_with_turbofish`\n\nThis node has these fields:\n- `type`: `{scoped_identifier | type_identifier}` ([anon_unions::ScopedIdentifier_TypeIdentifier])\n- `type_arguments`: `type_arguments` ([TypeArguments])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct GenericTypeWithTurbofish<'tree>(tree_sitter::Node<'tree>);
+pub struct GenericTypeWithTurbofish<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> GenericTypeWithTurbofish<'tree> {
     #[doc = "Get the field `type` which has kind `{scoped_identifier | type_identifier}` ([anon_unions::ScopedIdentifier_TypeIdentifier])"]
@@ -5637,10 +5787,14 @@ impl<'tree> GenericTypeWithTurbofish<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for GenericTypeWithTurbofish<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for GenericTypeWithTurbofish<'tree>
+{
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "generic_type_with_turbofish" {
             Ok(Self(node))
         } else {
@@ -5655,26 +5809,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for GenericTypeWithTurbofish<'tree
 impl<'tree> type_sitter_lib::TypedNode<'tree> for GenericTypeWithTurbofish<'tree> {
     const KIND: &'static str = "generic_type_with_turbofish";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `higher_ranked_trait_bound`\n\nThis node has these fields:\n- `type`: `_type` ([Type])\n- `type_parameters`: `type_parameters` ([TypeParameters])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct HigherRankedTraitBound<'tree>(tree_sitter::Node<'tree>);
+pub struct HigherRankedTraitBound<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> HigherRankedTraitBound<'tree> {
     #[doc = "Get the field `type` which has kind `_type` ([Type])"]
@@ -5691,10 +5845,14 @@ impl<'tree> HigherRankedTraitBound<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for HigherRankedTraitBound<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for HigherRankedTraitBound<'tree>
+{
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "higher_ranked_trait_bound" {
             Ok(Self(node))
         } else {
@@ -5709,26 +5867,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for HigherRankedTraitBound<'tree> 
 impl<'tree> type_sitter_lib::TypedNode<'tree> for HigherRankedTraitBound<'tree> {
     const KIND: &'static str = "higher_ranked_trait_bound";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `if_expression`\n\nThis node has these fields:\n- `alternative`: `else_clause?` ([ElseClause])\n- `condition`: `{_expression | let_chain | let_condition}` ([anon_unions::Expression_LetChain_LetCondition])\n- `consequence`: `block` ([Block])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct IfExpression<'tree>(tree_sitter::Node<'tree>);
+pub struct IfExpression<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> IfExpression<'tree> {
     #[doc = "Get the field `alternative` which has kind `else_clause?` ([ElseClause])"]
@@ -5756,10 +5914,12 @@ impl<'tree> IfExpression<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for IfExpression<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for IfExpression<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "if_expression" {
             Ok(Self(node))
         } else {
@@ -5774,26 +5934,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for IfExpression<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for IfExpression<'tree> {
     const KIND: &'static str = "if_expression";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `impl_item`\n\nThis node has these fields:\n- `body`: `declaration_list?` ([DeclarationList])\n- `trait`: `{generic_type | scoped_type_identifier | type_identifier}?` ([anon_unions::GenericType_ScopedTypeIdentifier_TypeIdentifier])\n- `type`: `_type` ([Type])\n- `type_parameters`: `type_parameters?` ([TypeParameters])\n\nAnd an additional (optional) child: `where_clause?` ([WhereClause])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct ImplItem<'tree>(tree_sitter::Node<'tree>);
+pub struct ImplItem<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ImplItem<'tree> {
     #[doc = "Get the field `body` which has kind `declaration_list?` ([DeclarationList])"]
@@ -5836,7 +5996,7 @@ impl<'tree> ImplItem<'tree> {
     #[doc = "Get the node's named children"]
     #[doc = "This is guaranteed to return at least one child"]
     #[allow(dead_code)]
-    #[inline]    pub fn children < 'a > (& self , c : & 'a mut tree_sitter :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: WhereClause_DeclarationList_GenericType_ScopedTypeIdentifier_TypeIdentifier_Type_TypeParameters < 'tree > > >> + 'a{
+    #[inline]    pub fn children < 'a > (& self , c : & 'a mut type_sitter_lib :: tree_sitter_wrapper :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: WhereClause_DeclarationList_GenericType_ScopedTypeIdentifier_TypeIdentifier_Type_TypeParameters < 'tree > > >> + 'a{
         self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: WhereClause_DeclarationList_GenericType_ScopedTypeIdentifier_TypeIdentifier_Type_TypeParameters < 'tree > > as TryFrom < _ >> :: try_from (n))
     }
     #[doc = "Get the node's named child #i"]
@@ -5846,10 +6006,12 @@ impl<'tree> ImplItem<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ImplItem<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for ImplItem<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "impl_item" {
             Ok(Self(node))
         } else {
@@ -5864,26 +6026,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ImplItem<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for ImplItem<'tree> {
     const KIND: &'static str = "impl_item";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `index_expression`\n\nThis node has children: `_expression+` ([Expression])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct IndexExpression<'tree>(tree_sitter::Node<'tree>);
+pub struct IndexExpression<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> IndexExpression<'tree> {
     #[doc = "Get the node's named children"]
@@ -5892,7 +6054,7 @@ impl<'tree> IndexExpression<'tree> {
     #[inline]
     pub fn children<'a>(
         &self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
@@ -5918,10 +6080,12 @@ impl<'tree> IndexExpression<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for IndexExpression<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for IndexExpression<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "index_expression" {
             Ok(Self(node))
         } else {
@@ -5936,26 +6100,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for IndexExpression<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for IndexExpression<'tree> {
     const KIND: &'static str = "index_expression";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `inner_attribute_item`\n\nThis node has a child: `attribute` ([Attribute])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct InnerAttributeItem<'tree>(tree_sitter::Node<'tree>);
+pub struct InnerAttributeItem<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> InnerAttributeItem<'tree> {
     #[doc = "Get the node's only named child"]
@@ -5966,10 +6130,14 @@ impl<'tree> InnerAttributeItem<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for InnerAttributeItem<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for InnerAttributeItem<'tree>
+{
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "inner_attribute_item" {
             Ok(Self(node))
         } else {
@@ -5984,26 +6152,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for InnerAttributeItem<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for InnerAttributeItem<'tree> {
     const KIND: &'static str = "inner_attribute_item";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `let_chain`\n\nThis node has children: `{_expression | let_condition}+`:\n- [Expression]\n- [LetCondition]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct LetChain<'tree>(tree_sitter::Node<'tree>);
+pub struct LetChain<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> LetChain<'tree> {
     #[doc = "Get the node's named children"]
@@ -6012,7 +6180,7 @@ impl<'tree> LetChain<'tree> {
     #[inline]
     pub fn children<'a>(
         &self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
@@ -6037,10 +6205,12 @@ impl<'tree> LetChain<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for LetChain<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for LetChain<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "let_chain" {
             Ok(Self(node))
         } else {
@@ -6055,26 +6225,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for LetChain<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for LetChain<'tree> {
     const KIND: &'static str = "let_chain";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `let_condition`\n\nThis node has these fields:\n- `pattern`: `_pattern` ([Pattern])\n- `value`: `_expression` ([Expression])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct LetCondition<'tree>(tree_sitter::Node<'tree>);
+pub struct LetCondition<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> LetCondition<'tree> {
     #[doc = "Get the field `pattern` which has kind `_pattern` ([Pattern])"]
@@ -6091,10 +6261,12 @@ impl<'tree> LetCondition<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for LetCondition<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for LetCondition<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "let_condition" {
             Ok(Self(node))
         } else {
@@ -6109,26 +6281,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for LetCondition<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for LetCondition<'tree> {
     const KIND: &'static str = "let_condition";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `let_declaration`\n\nThis node has these fields:\n- `alternative`: `block?` ([Block])\n- `pattern`: `_pattern` ([Pattern])\n- `type`: `_type?` ([Type])\n- `value`: `_expression?` ([Expression])\n\nAnd an additional (optional) child: `mutable_specifier?` ([MutableSpecifier])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct LetDeclaration<'tree>(tree_sitter::Node<'tree>);
+pub struct LetDeclaration<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> LetDeclaration<'tree> {
     #[doc = "Get the field `alternative` which has kind `block?` ([Block])"]
@@ -6167,7 +6339,7 @@ impl<'tree> LetDeclaration<'tree> {
     #[inline]
     pub fn children<'a>(
         &self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
@@ -6208,10 +6380,12 @@ impl<'tree> LetDeclaration<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for LetDeclaration<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for LetDeclaration<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "let_declaration" {
             Ok(Self(node))
         } else {
@@ -6226,26 +6400,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for LetDeclaration<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for LetDeclaration<'tree> {
     const KIND: &'static str = "let_declaration";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `lifetime`\n\nThis node has a child: `identifier` ([Identifier])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct Lifetime<'tree>(tree_sitter::Node<'tree>);
+pub struct Lifetime<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> Lifetime<'tree> {
     #[doc = "Get the node's only named child"]
@@ -6256,10 +6430,12 @@ impl<'tree> Lifetime<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Lifetime<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Lifetime<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "lifetime" {
             Ok(Self(node))
         } else {
@@ -6274,26 +6450,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Lifetime<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for Lifetime<'tree> {
     const KIND: &'static str = "lifetime";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `loop_expression`\n\nThis node has these fields:\n- `body`: `block` ([Block])\n\nAnd an additional (optional) child: `loop_label?` ([LoopLabel])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct LoopExpression<'tree>(tree_sitter::Node<'tree>);
+pub struct LoopExpression<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> LoopExpression<'tree> {
     #[doc = "Get the field `body` which has kind `block` ([Block])"]
@@ -6308,7 +6484,7 @@ impl<'tree> LoopExpression<'tree> {
     #[inline]
     pub fn children<'a>(
         &self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
@@ -6333,10 +6509,12 @@ impl<'tree> LoopExpression<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for LoopExpression<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for LoopExpression<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "loop_expression" {
             Ok(Self(node))
         } else {
@@ -6351,26 +6529,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for LoopExpression<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for LoopExpression<'tree> {
     const KIND: &'static str = "loop_expression";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `loop_label`\n\nThis node has a child: `identifier` ([Identifier])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct LoopLabel<'tree>(tree_sitter::Node<'tree>);
+pub struct LoopLabel<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> LoopLabel<'tree> {
     #[doc = "Get the node's only named child"]
@@ -6381,10 +6559,12 @@ impl<'tree> LoopLabel<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for LoopLabel<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for LoopLabel<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "loop_label" {
             Ok(Self(node))
         } else {
@@ -6399,26 +6579,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for LoopLabel<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for LoopLabel<'tree> {
     const KIND: &'static str = "loop_label";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `macro_definition`\n\nThis node has these fields:\n- `name`: `identifier` ([Identifier])\n\nAnd additional children: `macro_rule*` ([MacroRule])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct MacroDefinition<'tree>(tree_sitter::Node<'tree>);
+pub struct MacroDefinition<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> MacroDefinition<'tree> {
     #[doc = "Get the field `name` which has kind `identifier` ([Identifier])"]
@@ -6433,7 +6613,7 @@ impl<'tree> MacroDefinition<'tree> {
     #[inline]
     pub fn children<'a>(
         &self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
@@ -6462,10 +6642,12 @@ impl<'tree> MacroDefinition<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for MacroDefinition<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for MacroDefinition<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "macro_definition" {
             Ok(Self(node))
         } else {
@@ -6480,26 +6662,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for MacroDefinition<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for MacroDefinition<'tree> {
     const KIND: &'static str = "macro_definition";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `macro_invocation`\n\nThis node has these fields:\n- `macro`: `{identifier | scoped_identifier}` ([anon_unions::Identifier_ScopedIdentifier])\n\nAnd an additional child: `token_tree` ([TokenTree])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct MacroInvocation<'tree>(tree_sitter::Node<'tree>);
+pub struct MacroInvocation<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> MacroInvocation<'tree> {
     #[doc = "Get the field `macro` which has kind `{identifier | scoped_identifier}` ([anon_unions::Identifier_ScopedIdentifier])"]
@@ -6516,7 +6698,7 @@ impl<'tree> MacroInvocation<'tree> {
     #[inline]
     pub fn children<'a>(
         &self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
@@ -6557,10 +6739,12 @@ impl<'tree> MacroInvocation<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for MacroInvocation<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for MacroInvocation<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "macro_invocation" {
             Ok(Self(node))
         } else {
@@ -6575,26 +6759,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for MacroInvocation<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for MacroInvocation<'tree> {
     const KIND: &'static str = "macro_invocation";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `macro_rule`\n\nThis node has these fields:\n- `left`: `token_tree_pattern` ([TokenTreePattern])\n- `right`: `token_tree` ([TokenTree])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct MacroRule<'tree>(tree_sitter::Node<'tree>);
+pub struct MacroRule<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> MacroRule<'tree> {
     #[doc = "Get the field `left` which has kind `token_tree_pattern` ([TokenTreePattern])"]
@@ -6611,10 +6795,12 @@ impl<'tree> MacroRule<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for MacroRule<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for MacroRule<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "macro_rule" {
             Ok(Self(node))
         } else {
@@ -6629,26 +6815,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for MacroRule<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for MacroRule<'tree> {
     const KIND: &'static str = "macro_rule";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `match_arm`\n\nThis node has these fields:\n- `pattern`: `match_pattern` ([MatchPattern])\n- `value`: `_expression` ([Expression])\n\nAnd additional children: `attribute_item*` ([AttributeItem])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct MatchArm<'tree>(tree_sitter::Node<'tree>);
+pub struct MatchArm<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> MatchArm<'tree> {
     #[doc = "Get the field `pattern` which has kind `match_pattern` ([MatchPattern])"]
@@ -6669,7 +6855,7 @@ impl<'tree> MatchArm<'tree> {
     #[inline]
     pub fn children<'a>(
         &self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
@@ -6710,10 +6896,12 @@ impl<'tree> MatchArm<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for MatchArm<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for MatchArm<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "match_arm" {
             Ok(Self(node))
         } else {
@@ -6728,26 +6916,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for MatchArm<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for MatchArm<'tree> {
     const KIND: &'static str = "match_arm";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `match_block`\n\nThis node has children: `match_arm*` ([MatchArm])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct MatchBlock<'tree>(tree_sitter::Node<'tree>);
+pub struct MatchBlock<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> MatchBlock<'tree> {
     #[doc = "Get the node's named children"]
@@ -6755,7 +6943,7 @@ impl<'tree> MatchBlock<'tree> {
     #[inline]
     pub fn children<'a>(
         &self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<'tree, type_sitter_lib::ExtraOr<'tree, MatchArm<'tree>>>,
     > + 'a {
@@ -6777,10 +6965,12 @@ impl<'tree> MatchBlock<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for MatchBlock<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for MatchBlock<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "match_block" {
             Ok(Self(node))
         } else {
@@ -6795,26 +6985,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for MatchBlock<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for MatchBlock<'tree> {
     const KIND: &'static str = "match_block";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `match_expression`\n\nThis node has these fields:\n- `body`: `match_block` ([MatchBlock])\n- `value`: `_expression` ([Expression])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct MatchExpression<'tree>(tree_sitter::Node<'tree>);
+pub struct MatchExpression<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> MatchExpression<'tree> {
     #[doc = "Get the field `body` which has kind `match_block` ([MatchBlock])"]
@@ -6831,10 +7021,12 @@ impl<'tree> MatchExpression<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for MatchExpression<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for MatchExpression<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "match_expression" {
             Ok(Self(node))
         } else {
@@ -6849,26 +7041,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for MatchExpression<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for MatchExpression<'tree> {
     const KIND: &'static str = "match_expression";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `match_pattern`\n\nThis node has these fields:\n- `condition`: `{_expression | let_chain | let_condition}?` ([anon_unions::Expression_LetChain_LetCondition])\n\nAnd an additional child: `_pattern` ([Pattern])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct MatchPattern<'tree>(tree_sitter::Node<'tree>);
+pub struct MatchPattern<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> MatchPattern<'tree> {
     #[doc = "Get the field `condition` which has kind `{_expression | let_chain | let_condition}?` ([anon_unions::Expression_LetChain_LetCondition])"]
@@ -6889,7 +7081,7 @@ impl<'tree> MatchPattern<'tree> {
     #[inline]
     pub fn children<'a>(
         &self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
@@ -6930,10 +7122,12 @@ impl<'tree> MatchPattern<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for MatchPattern<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for MatchPattern<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "match_pattern" {
             Ok(Self(node))
         } else {
@@ -6948,26 +7142,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for MatchPattern<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for MatchPattern<'tree> {
     const KIND: &'static str = "match_pattern";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `mod_item`\n\nThis node has these fields:\n- `body`: `declaration_list?` ([DeclarationList])\n- `name`: `identifier` ([Identifier])\n\nAnd an additional (optional) child: `visibility_modifier?` ([VisibilityModifier])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct ModItem<'tree>(tree_sitter::Node<'tree>);
+pub struct ModItem<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ModItem<'tree> {
     #[doc = "Get the field `body` which has kind `declaration_list?` ([DeclarationList])"]
@@ -6990,7 +7184,7 @@ impl<'tree> ModItem<'tree> {
     #[inline]
     pub fn children<'a>(
         &self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
@@ -7031,10 +7225,12 @@ impl<'tree> ModItem<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ModItem<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for ModItem<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "mod_item" {
             Ok(Self(node))
         } else {
@@ -7049,26 +7245,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ModItem<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for ModItem<'tree> {
     const KIND: &'static str = "mod_item";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `mut_pattern`\n\nThis node has children: `{_pattern | mutable_specifier}+`:\n- [Pattern]\n- [MutableSpecifier]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct MutPattern<'tree>(tree_sitter::Node<'tree>);
+pub struct MutPattern<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> MutPattern<'tree> {
     #[doc = "Get the node's named children"]
@@ -7077,7 +7273,7 @@ impl<'tree> MutPattern<'tree> {
     #[inline]
     pub fn children<'a>(
         &self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
@@ -7102,10 +7298,12 @@ impl<'tree> MutPattern<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for MutPattern<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for MutPattern<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "mut_pattern" {
             Ok(Self(node))
         } else {
@@ -7120,26 +7318,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for MutPattern<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for MutPattern<'tree> {
     const KIND: &'static str = "mut_pattern";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `negative_literal`\n\nThis node has a child: `{float_literal | integer_literal}`:\n- [FloatLiteral]\n- [IntegerLiteral]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct NegativeLiteral<'tree>(tree_sitter::Node<'tree>);
+pub struct NegativeLiteral<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> NegativeLiteral<'tree> {
     #[doc = "Get the node's only named child"]
@@ -7152,10 +7350,12 @@ impl<'tree> NegativeLiteral<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for NegativeLiteral<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for NegativeLiteral<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "negative_literal" {
             Ok(Self(node))
         } else {
@@ -7170,26 +7370,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for NegativeLiteral<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for NegativeLiteral<'tree> {
     const KIND: &'static str = "negative_literal";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `optional_type_parameter`\n\nThis node has these fields:\n- `default_type`: `_type` ([Type])\n- `name`: `{constrained_type_parameter | type_identifier}` ([anon_unions::ConstrainedTypeParameter_TypeIdentifier])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct OptionalTypeParameter<'tree>(tree_sitter::Node<'tree>);
+pub struct OptionalTypeParameter<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> OptionalTypeParameter<'tree> {
     #[doc = "Get the field `default_type` which has kind `_type` ([Type])"]
@@ -7211,10 +7411,14 @@ impl<'tree> OptionalTypeParameter<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for OptionalTypeParameter<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for OptionalTypeParameter<'tree>
+{
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "optional_type_parameter" {
             Ok(Self(node))
         } else {
@@ -7229,26 +7433,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for OptionalTypeParameter<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for OptionalTypeParameter<'tree> {
     const KIND: &'static str = "optional_type_parameter";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `or_pattern`\n\nThis node has children: `_pattern+` ([Pattern])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct OrPattern<'tree>(tree_sitter::Node<'tree>);
+pub struct OrPattern<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> OrPattern<'tree> {
     #[doc = "Get the node's named children"]
@@ -7257,7 +7461,7 @@ impl<'tree> OrPattern<'tree> {
     #[inline]
     pub fn children<'a>(
         &self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<'tree, type_sitter_lib::ExtraOr<'tree, Pattern<'tree>>>,
     > + 'a {
@@ -7279,10 +7483,12 @@ impl<'tree> OrPattern<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for OrPattern<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for OrPattern<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "or_pattern" {
             Ok(Self(node))
         } else {
@@ -7297,26 +7503,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for OrPattern<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for OrPattern<'tree> {
     const KIND: &'static str = "or_pattern";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `ordered_field_declaration_list`\n\nThis node has these fields:\n- `type`: `_type*` ([Type])\n\nAnd additional children: `{attribute_item | visibility_modifier}*`:\n- [AttributeItem]\n- [VisibilityModifier]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct OrderedFieldDeclarationList<'tree>(tree_sitter::Node<'tree>);
+pub struct OrderedFieldDeclarationList<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> OrderedFieldDeclarationList<'tree> {
     #[doc = "Get the field `type` which has kind `_type*` ([Type])"]
@@ -7324,7 +7530,7 @@ impl<'tree> OrderedFieldDeclarationList<'tree> {
     #[inline]
     pub fn types<'a>(
         &self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<'tree, type_sitter_lib::ExtraOr<'tree, Type<'tree>>>,
     > + 'a {
@@ -7337,7 +7543,7 @@ impl<'tree> OrderedFieldDeclarationList<'tree> {
     #[inline]
     pub fn children<'a>(
         &self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
@@ -7378,10 +7584,14 @@ impl<'tree> OrderedFieldDeclarationList<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for OrderedFieldDeclarationList<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for OrderedFieldDeclarationList<'tree>
+{
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "ordered_field_declaration_list" {
             Ok(Self(node))
         } else {
@@ -7396,26 +7606,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for OrderedFieldDeclarationList<'t
 impl<'tree> type_sitter_lib::TypedNode<'tree> for OrderedFieldDeclarationList<'tree> {
     const KIND: &'static str = "ordered_field_declaration_list";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `parameter`\n\nThis node has these fields:\n- `pattern`: `{_pattern | self}` ([anon_unions::Pattern__Self])\n- `type`: `_type` ([Type])\n\nAnd an additional (optional) child: `mutable_specifier?` ([MutableSpecifier])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct Parameter<'tree>(tree_sitter::Node<'tree>);
+pub struct Parameter<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> Parameter<'tree> {
     #[doc = "Get the field `pattern` which has kind `{_pattern | self}` ([anon_unions::Pattern__Self])"]
@@ -7436,7 +7646,7 @@ impl<'tree> Parameter<'tree> {
     #[inline]
     pub fn children<'a>(
         &self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
@@ -7472,10 +7682,12 @@ impl<'tree> Parameter<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Parameter<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Parameter<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "parameter" {
             Ok(Self(node))
         } else {
@@ -7490,26 +7702,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Parameter<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for Parameter<'tree> {
     const KIND: &'static str = "parameter";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `parameters`\n\nThis node has children: `{_type | attribute_item | parameter | self_parameter | variadic_parameter}*`:\n- [Type]\n- [AttributeItem]\n- [Parameter]\n- [SelfParameter]\n- [VariadicParameter]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct Parameters<'tree>(tree_sitter::Node<'tree>);
+pub struct Parameters<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> Parameters<'tree> {
     #[doc = "Get the node's named children"]
@@ -7517,7 +7729,7 @@ impl<'tree> Parameters<'tree> {
     #[inline]
     pub fn children<'a>(
         &self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
@@ -7558,10 +7770,12 @@ impl<'tree> Parameters<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Parameters<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Parameters<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "parameters" {
             Ok(Self(node))
         } else {
@@ -7576,26 +7790,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Parameters<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for Parameters<'tree> {
     const KIND: &'static str = "parameters";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `parenthesized_expression`\n\nThis node has a child: `_expression` ([Expression])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct ParenthesizedExpression<'tree>(tree_sitter::Node<'tree>);
+pub struct ParenthesizedExpression<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ParenthesizedExpression<'tree> {
     #[doc = "Get the node's only named child"]
@@ -7606,10 +7820,14 @@ impl<'tree> ParenthesizedExpression<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ParenthesizedExpression<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for ParenthesizedExpression<'tree>
+{
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "parenthesized_expression" {
             Ok(Self(node))
         } else {
@@ -7624,26 +7842,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ParenthesizedExpression<'tree>
 impl<'tree> type_sitter_lib::TypedNode<'tree> for ParenthesizedExpression<'tree> {
     const KIND: &'static str = "parenthesized_expression";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `pointer_type`\n\nThis node has these fields:\n- `type`: `_type` ([Type])\n\nAnd an additional (optional) child: `mutable_specifier?` ([MutableSpecifier])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct PointerType<'tree>(tree_sitter::Node<'tree>);
+pub struct PointerType<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> PointerType<'tree> {
     #[doc = "Get the field `type` which has kind `_type` ([Type])"]
@@ -7658,7 +7876,7 @@ impl<'tree> PointerType<'tree> {
     #[inline]
     pub fn children<'a>(
         &self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
@@ -7683,10 +7901,12 @@ impl<'tree> PointerType<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for PointerType<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for PointerType<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "pointer_type" {
             Ok(Self(node))
         } else {
@@ -7701,26 +7921,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for PointerType<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for PointerType<'tree> {
     const KIND: &'static str = "pointer_type";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `qualified_type`\n\nThis node has these fields:\n- `alias`: `_type` ([Type])\n- `type`: `_type` ([Type])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct QualifiedType<'tree>(tree_sitter::Node<'tree>);
+pub struct QualifiedType<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> QualifiedType<'tree> {
     #[doc = "Get the field `alias` which has kind `_type` ([Type])"]
@@ -7737,10 +7957,12 @@ impl<'tree> QualifiedType<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for QualifiedType<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for QualifiedType<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "qualified_type" {
             Ok(Self(node))
         } else {
@@ -7755,26 +7977,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for QualifiedType<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for QualifiedType<'tree> {
     const KIND: &'static str = "qualified_type";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `range_expression`\n\nThis node has children: `_expression*` ([Expression])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct RangeExpression<'tree>(tree_sitter::Node<'tree>);
+pub struct RangeExpression<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> RangeExpression<'tree> {
     #[doc = "Get the node's named children"]
@@ -7782,7 +8004,7 @@ impl<'tree> RangeExpression<'tree> {
     #[inline]
     pub fn children<'a>(
         &self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
@@ -7808,10 +8030,12 @@ impl<'tree> RangeExpression<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for RangeExpression<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for RangeExpression<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "range_expression" {
             Ok(Self(node))
         } else {
@@ -7826,32 +8050,32 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for RangeExpression<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for RangeExpression<'tree> {
     const KIND: &'static str = "range_expression";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `range_pattern`\n\nThis node has children: `{_literal_pattern | crate | identifier | metavariable | scoped_identifier | self | super}+`:\n- [LiteralPattern]\n- [Crate]\n- [Identifier]\n- [Metavariable]\n- [ScopedIdentifier]\n- [_Self]\n- [Super]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct RangePattern<'tree>(tree_sitter::Node<'tree>);
+pub struct RangePattern<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> RangePattern<'tree> {
     #[doc = "Get the node's named children"]
     #[doc = "This is guaranteed to return at least one child"]
     #[allow(dead_code)]
-    #[inline]    pub fn children < 'a > (& self , c : & 'a mut tree_sitter :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: LiteralPattern_Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super < 'tree > > >> + 'a{
+    #[inline]    pub fn children < 'a > (& self , c : & 'a mut type_sitter_lib :: tree_sitter_wrapper :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: LiteralPattern_Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super < 'tree > > >> + 'a{
         self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: LiteralPattern_Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super < 'tree > > as TryFrom < _ >> :: try_from (n))
     }
     #[doc = "Get the node's named child #i"]
@@ -7861,10 +8085,12 @@ impl<'tree> RangePattern<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for RangePattern<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for RangePattern<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "range_pattern" {
             Ok(Self(node))
         } else {
@@ -7879,26 +8105,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for RangePattern<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for RangePattern<'tree> {
     const KIND: &'static str = "range_pattern";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `ref_pattern`\n\nThis node has a child: `_pattern` ([Pattern])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct RefPattern<'tree>(tree_sitter::Node<'tree>);
+pub struct RefPattern<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> RefPattern<'tree> {
     #[doc = "Get the node's only named child"]
@@ -7909,10 +8135,12 @@ impl<'tree> RefPattern<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for RefPattern<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for RefPattern<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "ref_pattern" {
             Ok(Self(node))
         } else {
@@ -7927,26 +8155,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for RefPattern<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for RefPattern<'tree> {
     const KIND: &'static str = "ref_pattern";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `reference_expression`\n\nThis node has these fields:\n- `value`: `_expression` ([Expression])\n\nAnd an additional (optional) child: `mutable_specifier?` ([MutableSpecifier])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct ReferenceExpression<'tree>(tree_sitter::Node<'tree>);
+pub struct ReferenceExpression<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ReferenceExpression<'tree> {
     #[doc = "Get the field `value` which has kind `_expression` ([Expression])"]
@@ -7961,7 +8189,7 @@ impl<'tree> ReferenceExpression<'tree> {
     #[inline]
     pub fn children<'a>(
         &self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
@@ -7986,10 +8214,14 @@ impl<'tree> ReferenceExpression<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ReferenceExpression<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for ReferenceExpression<'tree>
+{
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "reference_expression" {
             Ok(Self(node))
         } else {
@@ -8004,26 +8236,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ReferenceExpression<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for ReferenceExpression<'tree> {
     const KIND: &'static str = "reference_expression";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `reference_pattern`\n\nThis node has children: `{_pattern | mutable_specifier}+`:\n- [Pattern]\n- [MutableSpecifier]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct ReferencePattern<'tree>(tree_sitter::Node<'tree>);
+pub struct ReferencePattern<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ReferencePattern<'tree> {
     #[doc = "Get the node's named children"]
@@ -8032,7 +8264,7 @@ impl<'tree> ReferencePattern<'tree> {
     #[inline]
     pub fn children<'a>(
         &self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
@@ -8057,10 +8289,12 @@ impl<'tree> ReferencePattern<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ReferencePattern<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for ReferencePattern<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "reference_pattern" {
             Ok(Self(node))
         } else {
@@ -8075,26 +8309,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ReferencePattern<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for ReferencePattern<'tree> {
     const KIND: &'static str = "reference_pattern";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `reference_type`\n\nThis node has these fields:\n- `type`: `_type` ([Type])\n\nAnd additional children: `{lifetime | mutable_specifier}*`:\n- [Lifetime]\n- [MutableSpecifier]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct ReferenceType<'tree>(tree_sitter::Node<'tree>);
+pub struct ReferenceType<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ReferenceType<'tree> {
     #[doc = "Get the field `type` which has kind `_type` ([Type])"]
@@ -8109,7 +8343,7 @@ impl<'tree> ReferenceType<'tree> {
     #[inline]
     pub fn children<'a>(
         &self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
@@ -8134,10 +8368,12 @@ impl<'tree> ReferenceType<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ReferenceType<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for ReferenceType<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "reference_type" {
             Ok(Self(node))
         } else {
@@ -8152,33 +8388,37 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ReferenceType<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for ReferenceType<'tree> {
     const KIND: &'static str = "reference_type";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `remaining_field_pattern`\n\nThis node has no children\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct RemainingFieldPattern<'tree>(tree_sitter::Node<'tree>);
+pub struct RemainingFieldPattern<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> RemainingFieldPattern<'tree> {}
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for RemainingFieldPattern<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for RemainingFieldPattern<'tree>
+{
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "remaining_field_pattern" {
             Ok(Self(node))
         } else {
@@ -8193,26 +8433,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for RemainingFieldPattern<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for RemainingFieldPattern<'tree> {
     const KIND: &'static str = "remaining_field_pattern";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `removed_trait_bound`\n\nThis node has a child: `_type` ([Type])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct RemovedTraitBound<'tree>(tree_sitter::Node<'tree>);
+pub struct RemovedTraitBound<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> RemovedTraitBound<'tree> {
     #[doc = "Get the node's only named child"]
@@ -8223,10 +8463,14 @@ impl<'tree> RemovedTraitBound<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for RemovedTraitBound<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for RemovedTraitBound<'tree>
+{
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "removed_trait_bound" {
             Ok(Self(node))
         } else {
@@ -8241,26 +8485,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for RemovedTraitBound<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for RemovedTraitBound<'tree> {
     const KIND: &'static str = "removed_trait_bound";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `return_expression`\n\nThis node has an (optional) child: `_expression?` ([Expression])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct ReturnExpression<'tree>(tree_sitter::Node<'tree>);
+pub struct ReturnExpression<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ReturnExpression<'tree> {
     #[doc = "Get the node's only named child"]
@@ -8273,10 +8517,12 @@ impl<'tree> ReturnExpression<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ReturnExpression<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for ReturnExpression<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "return_expression" {
             Ok(Self(node))
         } else {
@@ -8291,26 +8537,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ReturnExpression<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for ReturnExpression<'tree> {
     const KIND: &'static str = "return_expression";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `scoped_identifier`\n\nThis node has these fields:\n- `name`: `identifier` ([Identifier])\n- `path`: `{bracketed_type | crate | generic_type | identifier | metavariable | scoped_identifier | self | super}?` ([anon_unions::BracketedType_Crate_GenericType_Identifier_Metavariable_ScopedIdentifier__Self_Super])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct ScopedIdentifier<'tree>(tree_sitter::Node<'tree>);
+pub struct ScopedIdentifier<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ScopedIdentifier<'tree> {
     #[doc = "Get the field `name` which has kind `identifier` ([Identifier])"]
@@ -8326,10 +8572,12 @@ impl<'tree> ScopedIdentifier<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ScopedIdentifier<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for ScopedIdentifier<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "scoped_identifier" {
             Ok(Self(node))
         } else {
@@ -8344,26 +8592,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ScopedIdentifier<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for ScopedIdentifier<'tree> {
     const KIND: &'static str = "scoped_identifier";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `scoped_type_identifier`\n\nThis node has these fields:\n- `name`: `type_identifier` ([TypeIdentifier])\n- `path`: `{bracketed_type | crate | generic_type | identifier | metavariable | scoped_identifier | self | super}?` ([anon_unions::BracketedType_Crate_GenericType_Identifier_Metavariable_ScopedIdentifier__Self_Super])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct ScopedTypeIdentifier<'tree>(tree_sitter::Node<'tree>);
+pub struct ScopedTypeIdentifier<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ScopedTypeIdentifier<'tree> {
     #[doc = "Get the field `name` which has kind `type_identifier` ([TypeIdentifier])"]
@@ -8379,10 +8627,14 @@ impl<'tree> ScopedTypeIdentifier<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ScopedTypeIdentifier<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for ScopedTypeIdentifier<'tree>
+{
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "scoped_type_identifier" {
             Ok(Self(node))
         } else {
@@ -8397,26 +8649,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ScopedTypeIdentifier<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for ScopedTypeIdentifier<'tree> {
     const KIND: &'static str = "scoped_type_identifier";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `scoped_use_list`\n\nThis node has these fields:\n- `list`: `use_list` ([UseList])\n- `path`: `{crate | identifier | metavariable | scoped_identifier | self | super}?` ([anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct ScopedUseList<'tree>(tree_sitter::Node<'tree>);
+pub struct ScopedUseList<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ScopedUseList<'tree> {
     #[doc = "Get the field `list` which has kind `use_list` ([UseList])"]
@@ -8440,10 +8692,12 @@ impl<'tree> ScopedUseList<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ScopedUseList<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for ScopedUseList<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "scoped_use_list" {
             Ok(Self(node))
         } else {
@@ -8458,26 +8712,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ScopedUseList<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for ScopedUseList<'tree> {
     const KIND: &'static str = "scoped_use_list";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `self_parameter`\n\nThis node has children: `{lifetime | mutable_specifier | self}+`:\n- [Lifetime]\n- [MutableSpecifier]\n- [_Self]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct SelfParameter<'tree>(tree_sitter::Node<'tree>);
+pub struct SelfParameter<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> SelfParameter<'tree> {
     #[doc = "Get the node's named children"]
@@ -8486,7 +8740,7 @@ impl<'tree> SelfParameter<'tree> {
     #[inline]
     pub fn children<'a>(
         &self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
@@ -8511,10 +8765,12 @@ impl<'tree> SelfParameter<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for SelfParameter<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for SelfParameter<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "self_parameter" {
             Ok(Self(node))
         } else {
@@ -8529,26 +8785,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for SelfParameter<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for SelfParameter<'tree> {
     const KIND: &'static str = "self_parameter";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `shorthand_field_initializer`\n\nThis node has children: `{attribute_item | identifier}+`:\n- [AttributeItem]\n- [Identifier]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct ShorthandFieldInitializer<'tree>(tree_sitter::Node<'tree>);
+pub struct ShorthandFieldInitializer<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ShorthandFieldInitializer<'tree> {
     #[doc = "Get the node's named children"]
@@ -8557,7 +8813,7 @@ impl<'tree> ShorthandFieldInitializer<'tree> {
     #[inline]
     pub fn children<'a>(
         &self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
@@ -8582,10 +8838,14 @@ impl<'tree> ShorthandFieldInitializer<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ShorthandFieldInitializer<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for ShorthandFieldInitializer<'tree>
+{
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "shorthand_field_initializer" {
             Ok(Self(node))
         } else {
@@ -8600,26 +8860,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ShorthandFieldInitializer<'tre
 impl<'tree> type_sitter_lib::TypedNode<'tree> for ShorthandFieldInitializer<'tree> {
     const KIND: &'static str = "shorthand_field_initializer";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `slice_pattern`\n\nThis node has children: `_pattern*` ([Pattern])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct SlicePattern<'tree>(tree_sitter::Node<'tree>);
+pub struct SlicePattern<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> SlicePattern<'tree> {
     #[doc = "Get the node's named children"]
@@ -8627,7 +8887,7 @@ impl<'tree> SlicePattern<'tree> {
     #[inline]
     pub fn children<'a>(
         &self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<'tree, type_sitter_lib::ExtraOr<'tree, Pattern<'tree>>>,
     > + 'a {
@@ -8649,10 +8909,12 @@ impl<'tree> SlicePattern<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for SlicePattern<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for SlicePattern<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "slice_pattern" {
             Ok(Self(node))
         } else {
@@ -8667,26 +8929,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for SlicePattern<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for SlicePattern<'tree> {
     const KIND: &'static str = "slice_pattern";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `source_file`\n\nThis node has children: `{_declaration_statement | expression_statement}*`:\n- [DeclarationStatement]\n- [ExpressionStatement]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct SourceFile<'tree>(tree_sitter::Node<'tree>);
+pub struct SourceFile<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> SourceFile<'tree> {
     #[doc = "Get the node's named children"]
@@ -8694,7 +8956,7 @@ impl<'tree> SourceFile<'tree> {
     #[inline]
     pub fn children<'a>(
         &self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
@@ -8735,10 +8997,12 @@ impl<'tree> SourceFile<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for SourceFile<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for SourceFile<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "source_file" {
             Ok(Self(node))
         } else {
@@ -8753,26 +9017,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for SourceFile<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for SourceFile<'tree> {
     const KIND: &'static str = "source_file";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `static_item`\n\nThis node has these fields:\n- `name`: `identifier` ([Identifier])\n- `type`: `_type` ([Type])\n- `value`: `_expression?` ([Expression])\n\nAnd additional children: `{mutable_specifier | visibility_modifier}*`:\n- [MutableSpecifier]\n- [VisibilityModifier]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct StaticItem<'tree>(tree_sitter::Node<'tree>);
+pub struct StaticItem<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> StaticItem<'tree> {
     #[doc = "Get the field `name` which has kind `identifier` ([Identifier])"]
@@ -8801,7 +9065,7 @@ impl<'tree> StaticItem<'tree> {
     #[inline]
     pub fn children<'a>(
         &self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
@@ -8842,10 +9106,12 @@ impl<'tree> StaticItem<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for StaticItem<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for StaticItem<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "static_item" {
             Ok(Self(node))
         } else {
@@ -8860,26 +9126,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for StaticItem<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for StaticItem<'tree> {
     const KIND: &'static str = "static_item";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `string_literal`\n\nThis node has children: `escape_sequence*` ([EscapeSequence])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct StringLiteral<'tree>(tree_sitter::Node<'tree>);
+pub struct StringLiteral<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> StringLiteral<'tree> {
     #[doc = "Get the node's named children"]
@@ -8887,7 +9153,7 @@ impl<'tree> StringLiteral<'tree> {
     #[inline]
     pub fn children<'a>(
         &self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
@@ -8913,10 +9179,12 @@ impl<'tree> StringLiteral<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for StringLiteral<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for StringLiteral<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "string_literal" {
             Ok(Self(node))
         } else {
@@ -8931,26 +9199,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for StringLiteral<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for StringLiteral<'tree> {
     const KIND: &'static str = "string_literal";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `struct_expression`\n\nThis node has these fields:\n- `body`: `field_initializer_list` ([FieldInitializerList])\n- `name`: `{generic_type_with_turbofish | scoped_type_identifier | type_identifier}` ([anon_unions::GenericTypeWithTurbofish_ScopedTypeIdentifier_TypeIdentifier])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct StructExpression<'tree>(tree_sitter::Node<'tree>);
+pub struct StructExpression<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> StructExpression<'tree> {
     #[doc = "Get the field `body` which has kind `field_initializer_list` ([FieldInitializerList])"]
@@ -8972,10 +9240,12 @@ impl<'tree> StructExpression<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for StructExpression<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for StructExpression<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "struct_expression" {
             Ok(Self(node))
         } else {
@@ -8990,26 +9260,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for StructExpression<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for StructExpression<'tree> {
     const KIND: &'static str = "struct_expression";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `struct_item`\n\nThis node has these fields:\n- `body`: `{field_declaration_list | ordered_field_declaration_list}?` ([anon_unions::FieldDeclarationList_OrderedFieldDeclarationList])\n- `name`: `type_identifier` ([TypeIdentifier])\n- `type_parameters`: `type_parameters?` ([TypeParameters])\n\nAnd additional children: `{visibility_modifier | where_clause}*`:\n- [VisibilityModifier]\n- [WhereClause]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct StructItem<'tree>(tree_sitter::Node<'tree>);
+pub struct StructItem<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> StructItem<'tree> {
     #[doc = "Get the field `body` which has kind `{field_declaration_list | ordered_field_declaration_list}?` ([anon_unions::FieldDeclarationList_OrderedFieldDeclarationList])"]
@@ -9044,7 +9314,7 @@ impl<'tree> StructItem<'tree> {
     #[doc = "Get the node's named children"]
     #[doc = "This is guaranteed to return at least one child"]
     #[allow(dead_code)]
-    #[inline]    pub fn children < 'a > (& self , c : & 'a mut tree_sitter :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: VisibilityModifier_WhereClause_FieldDeclarationList_OrderedFieldDeclarationList_TypeIdentifier_TypeParameters < 'tree > > >> + 'a{
+    #[inline]    pub fn children < 'a > (& self , c : & 'a mut type_sitter_lib :: tree_sitter_wrapper :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: VisibilityModifier_WhereClause_FieldDeclarationList_OrderedFieldDeclarationList_TypeIdentifier_TypeParameters < 'tree > > >> + 'a{
         self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: VisibilityModifier_WhereClause_FieldDeclarationList_OrderedFieldDeclarationList_TypeIdentifier_TypeParameters < 'tree > > as TryFrom < _ >> :: try_from (n))
     }
     #[doc = "Get the node's named child #i"]
@@ -9054,10 +9324,12 @@ impl<'tree> StructItem<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for StructItem<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for StructItem<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "struct_item" {
             Ok(Self(node))
         } else {
@@ -9072,26 +9344,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for StructItem<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for StructItem<'tree> {
     const KIND: &'static str = "struct_item";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `struct_pattern`\n\nThis node has these fields:\n- `type`: `{scoped_type_identifier | type_identifier}` ([anon_unions::ScopedTypeIdentifier_TypeIdentifier])\n\nAnd additional children: `{field_pattern | remaining_field_pattern}*`:\n- [FieldPattern]\n- [RemainingFieldPattern]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct StructPattern<'tree>(tree_sitter::Node<'tree>);
+pub struct StructPattern<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> StructPattern<'tree> {
     #[doc = "Get the field `type` which has kind `{scoped_type_identifier | type_identifier}` ([anon_unions::ScopedTypeIdentifier_TypeIdentifier])"]
@@ -9109,7 +9381,7 @@ impl<'tree> StructPattern<'tree> {
     #[inline]
     pub fn children<'a>(
         &self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
@@ -9158,10 +9430,12 @@ impl<'tree> StructPattern<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for StructPattern<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for StructPattern<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "struct_pattern" {
             Ok(Self(node))
         } else {
@@ -9176,26 +9450,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for StructPattern<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for StructPattern<'tree> {
     const KIND: &'static str = "struct_pattern";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `token_binding_pattern`\n\nThis node has these fields:\n- `name`: `metavariable` ([Metavariable])\n- `type`: `fragment_specifier` ([FragmentSpecifier])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct TokenBindingPattern<'tree>(tree_sitter::Node<'tree>);
+pub struct TokenBindingPattern<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TokenBindingPattern<'tree> {
     #[doc = "Get the field `name` which has kind `metavariable` ([Metavariable])"]
@@ -9212,10 +9486,14 @@ impl<'tree> TokenBindingPattern<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for TokenBindingPattern<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for TokenBindingPattern<'tree>
+{
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "token_binding_pattern" {
             Ok(Self(node))
         } else {
@@ -9230,31 +9508,31 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for TokenBindingPattern<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for TokenBindingPattern<'tree> {
     const KIND: &'static str = "token_binding_pattern";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `token_repetition`\n\nThis node has children: `{_literal | crate | identifier | metavariable | mutable_specifier | primitive_type | self | super | token_repetition | token_tree}*`:\n- [Literal]\n- [Crate]\n- [Identifier]\n- [Metavariable]\n- [MutableSpecifier]\n- [PrimitiveType]\n- [_Self]\n- [Super]\n- [TokenRepetition]\n- [TokenTree]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct TokenRepetition<'tree>(tree_sitter::Node<'tree>);
+pub struct TokenRepetition<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TokenRepetition<'tree> {
     #[doc = "Get the node's named children"]
     #[allow(dead_code)]
-    #[inline]    pub fn children < 'a > (& self , c : & 'a mut tree_sitter :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenRepetition_TokenTree < 'tree > > >> + 'a{
+    #[inline]    pub fn children < 'a > (& self , c : & 'a mut type_sitter_lib :: tree_sitter_wrapper :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenRepetition_TokenTree < 'tree > > >> + 'a{
         self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenRepetition_TokenTree < 'tree > > as TryFrom < _ >> :: try_from (n))
     }
     #[doc = "Get the node's named child #i"]
@@ -9264,10 +9542,12 @@ impl<'tree> TokenRepetition<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for TokenRepetition<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for TokenRepetition<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "token_repetition" {
             Ok(Self(node))
         } else {
@@ -9282,31 +9562,31 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for TokenRepetition<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for TokenRepetition<'tree> {
     const KIND: &'static str = "token_repetition";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `token_repetition_pattern`\n\nThis node has children: `{_literal | crate | identifier | metavariable | mutable_specifier | primitive_type | self | super | token_binding_pattern | token_repetition_pattern | token_tree_pattern}*`:\n- [Literal]\n- [Crate]\n- [Identifier]\n- [Metavariable]\n- [MutableSpecifier]\n- [PrimitiveType]\n- [_Self]\n- [Super]\n- [TokenBindingPattern]\n- [TokenRepetitionPattern]\n- [TokenTreePattern]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct TokenRepetitionPattern<'tree>(tree_sitter::Node<'tree>);
+pub struct TokenRepetitionPattern<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TokenRepetitionPattern<'tree> {
     #[doc = "Get the node's named children"]
     #[allow(dead_code)]
-    #[inline]    pub fn children < 'a > (& self , c : & 'a mut tree_sitter :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern < 'tree > > >> + 'a{
+    #[inline]    pub fn children < 'a > (& self , c : & 'a mut type_sitter_lib :: tree_sitter_wrapper :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern < 'tree > > >> + 'a{
         self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern < 'tree > > as TryFrom < _ >> :: try_from (n))
     }
     #[doc = "Get the node's named child #i"]
@@ -9316,10 +9596,14 @@ impl<'tree> TokenRepetitionPattern<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for TokenRepetitionPattern<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for TokenRepetitionPattern<'tree>
+{
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "token_repetition_pattern" {
             Ok(Self(node))
         } else {
@@ -9334,31 +9618,31 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for TokenRepetitionPattern<'tree> 
 impl<'tree> type_sitter_lib::TypedNode<'tree> for TokenRepetitionPattern<'tree> {
     const KIND: &'static str = "token_repetition_pattern";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `token_tree`\n\nThis node has children: `{_literal | crate | identifier | metavariable | mutable_specifier | primitive_type | self | super | token_repetition | token_tree}*`:\n- [Literal]\n- [Crate]\n- [Identifier]\n- [Metavariable]\n- [MutableSpecifier]\n- [PrimitiveType]\n- [_Self]\n- [Super]\n- [TokenRepetition]\n- [TokenTree]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct TokenTree<'tree>(tree_sitter::Node<'tree>);
+pub struct TokenTree<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TokenTree<'tree> {
     #[doc = "Get the node's named children"]
     #[allow(dead_code)]
-    #[inline]    pub fn children < 'a > (& self , c : & 'a mut tree_sitter :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenRepetition_TokenTree < 'tree > > >> + 'a{
+    #[inline]    pub fn children < 'a > (& self , c : & 'a mut type_sitter_lib :: tree_sitter_wrapper :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenRepetition_TokenTree < 'tree > > >> + 'a{
         self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenRepetition_TokenTree < 'tree > > as TryFrom < _ >> :: try_from (n))
     }
     #[doc = "Get the node's named child #i"]
@@ -9368,10 +9652,12 @@ impl<'tree> TokenTree<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for TokenTree<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for TokenTree<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "token_tree" {
             Ok(Self(node))
         } else {
@@ -9386,31 +9672,31 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for TokenTree<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for TokenTree<'tree> {
     const KIND: &'static str = "token_tree";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `token_tree_pattern`\n\nThis node has children: `{_literal | crate | identifier | metavariable | mutable_specifier | primitive_type | self | super | token_binding_pattern | token_repetition_pattern | token_tree_pattern}*`:\n- [Literal]\n- [Crate]\n- [Identifier]\n- [Metavariable]\n- [MutableSpecifier]\n- [PrimitiveType]\n- [_Self]\n- [Super]\n- [TokenBindingPattern]\n- [TokenRepetitionPattern]\n- [TokenTreePattern]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct TokenTreePattern<'tree>(tree_sitter::Node<'tree>);
+pub struct TokenTreePattern<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TokenTreePattern<'tree> {
     #[doc = "Get the node's named children"]
     #[allow(dead_code)]
-    #[inline]    pub fn children < 'a > (& self , c : & 'a mut tree_sitter :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern < 'tree > > >> + 'a{
+    #[inline]    pub fn children < 'a > (& self , c : & 'a mut type_sitter_lib :: tree_sitter_wrapper :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern < 'tree > > >> + 'a{
         self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern < 'tree > > as TryFrom < _ >> :: try_from (n))
     }
     #[doc = "Get the node's named child #i"]
@@ -9420,10 +9706,12 @@ impl<'tree> TokenTreePattern<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for TokenTreePattern<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for TokenTreePattern<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "token_tree_pattern" {
             Ok(Self(node))
         } else {
@@ -9438,26 +9726,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for TokenTreePattern<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for TokenTreePattern<'tree> {
     const KIND: &'static str = "token_tree_pattern";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `trait_bounds`\n\nThis node has children: `{_type | higher_ranked_trait_bound | lifetime | removed_trait_bound}+`:\n- [Type]\n- [HigherRankedTraitBound]\n- [Lifetime]\n- [RemovedTraitBound]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct TraitBounds<'tree>(tree_sitter::Node<'tree>);
+pub struct TraitBounds<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TraitBounds<'tree> {
     #[doc = "Get the node's named children"]
@@ -9466,7 +9754,7 @@ impl<'tree> TraitBounds<'tree> {
     #[inline]
     pub fn children<'a>(
         &self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
@@ -9507,10 +9795,12 @@ impl<'tree> TraitBounds<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for TraitBounds<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for TraitBounds<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "trait_bounds" {
             Ok(Self(node))
         } else {
@@ -9525,26 +9815,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for TraitBounds<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for TraitBounds<'tree> {
     const KIND: &'static str = "trait_bounds";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `trait_item`\n\nThis node has these fields:\n- `body`: `declaration_list` ([DeclarationList])\n- `bounds`: `trait_bounds?` ([TraitBounds])\n- `name`: `type_identifier` ([TypeIdentifier])\n- `type_parameters`: `type_parameters?` ([TypeParameters])\n\nAnd additional children: `{visibility_modifier | where_clause}*`:\n- [VisibilityModifier]\n- [WhereClause]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct TraitItem<'tree>(tree_sitter::Node<'tree>);
+pub struct TraitItem<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TraitItem<'tree> {
     #[doc = "Get the field `body` which has kind `declaration_list` ([DeclarationList])"]
@@ -9580,7 +9870,7 @@ impl<'tree> TraitItem<'tree> {
     #[doc = "Get the node's named children"]
     #[doc = "This is guaranteed to return at least one child"]
     #[allow(dead_code)]
-    #[inline]    pub fn children < 'a > (& self , c : & 'a mut tree_sitter :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: VisibilityModifier_WhereClause_DeclarationList_TraitBounds_TypeIdentifier_TypeParameters < 'tree > > >> + 'a{
+    #[inline]    pub fn children < 'a > (& self , c : & 'a mut type_sitter_lib :: tree_sitter_wrapper :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: VisibilityModifier_WhereClause_DeclarationList_TraitBounds_TypeIdentifier_TypeParameters < 'tree > > >> + 'a{
         self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: VisibilityModifier_WhereClause_DeclarationList_TraitBounds_TypeIdentifier_TypeParameters < 'tree > > as TryFrom < _ >> :: try_from (n))
     }
     #[doc = "Get the node's named child #i"]
@@ -9590,10 +9880,12 @@ impl<'tree> TraitItem<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for TraitItem<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for TraitItem<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "trait_item" {
             Ok(Self(node))
         } else {
@@ -9608,26 +9900,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for TraitItem<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for TraitItem<'tree> {
     const KIND: &'static str = "trait_item";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `try_expression`\n\nThis node has a child: `_expression` ([Expression])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct TryExpression<'tree>(tree_sitter::Node<'tree>);
+pub struct TryExpression<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TryExpression<'tree> {
     #[doc = "Get the node's only named child"]
@@ -9638,10 +9930,12 @@ impl<'tree> TryExpression<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for TryExpression<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for TryExpression<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "try_expression" {
             Ok(Self(node))
         } else {
@@ -9656,26 +9950,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for TryExpression<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for TryExpression<'tree> {
     const KIND: &'static str = "try_expression";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `tuple_expression`\n\nThis node has children: `{_expression | attribute_item}+`:\n- [Expression]\n- [AttributeItem]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct TupleExpression<'tree>(tree_sitter::Node<'tree>);
+pub struct TupleExpression<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TupleExpression<'tree> {
     #[doc = "Get the node's named children"]
@@ -9684,7 +9978,7 @@ impl<'tree> TupleExpression<'tree> {
     #[inline]
     pub fn children<'a>(
         &self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
@@ -9709,10 +10003,12 @@ impl<'tree> TupleExpression<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for TupleExpression<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for TupleExpression<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "tuple_expression" {
             Ok(Self(node))
         } else {
@@ -9727,26 +10023,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for TupleExpression<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for TupleExpression<'tree> {
     const KIND: &'static str = "tuple_expression";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `tuple_pattern`\n\nThis node has children: `_pattern*` ([Pattern])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct TuplePattern<'tree>(tree_sitter::Node<'tree>);
+pub struct TuplePattern<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TuplePattern<'tree> {
     #[doc = "Get the node's named children"]
@@ -9754,7 +10050,7 @@ impl<'tree> TuplePattern<'tree> {
     #[inline]
     pub fn children<'a>(
         &self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<'tree, type_sitter_lib::ExtraOr<'tree, Pattern<'tree>>>,
     > + 'a {
@@ -9776,10 +10072,12 @@ impl<'tree> TuplePattern<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for TuplePattern<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for TuplePattern<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "tuple_pattern" {
             Ok(Self(node))
         } else {
@@ -9794,26 +10092,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for TuplePattern<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for TuplePattern<'tree> {
     const KIND: &'static str = "tuple_pattern";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `tuple_struct_pattern`\n\nThis node has these fields:\n- `type`: `{identifier | scoped_identifier}` ([anon_unions::Identifier_ScopedIdentifier])\n\nAnd additional children: `_pattern*` ([Pattern])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct TupleStructPattern<'tree>(tree_sitter::Node<'tree>);
+pub struct TupleStructPattern<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TupleStructPattern<'tree> {
     #[doc = "Get the field `type` which has kind `{identifier | scoped_identifier}` ([anon_unions::Identifier_ScopedIdentifier])"]
@@ -9830,7 +10128,7 @@ impl<'tree> TupleStructPattern<'tree> {
     #[inline]
     pub fn children<'a>(
         &self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
@@ -9866,10 +10164,14 @@ impl<'tree> TupleStructPattern<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for TupleStructPattern<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for TupleStructPattern<'tree>
+{
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "tuple_struct_pattern" {
             Ok(Self(node))
         } else {
@@ -9884,26 +10186,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for TupleStructPattern<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for TupleStructPattern<'tree> {
     const KIND: &'static str = "tuple_struct_pattern";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `tuple_type`\n\nThis node has children: `_type+` ([Type])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct TupleType<'tree>(tree_sitter::Node<'tree>);
+pub struct TupleType<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TupleType<'tree> {
     #[doc = "Get the node's named children"]
@@ -9912,7 +10214,7 @@ impl<'tree> TupleType<'tree> {
     #[inline]
     pub fn children<'a>(
         &self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<'tree, type_sitter_lib::ExtraOr<'tree, Type<'tree>>>,
     > + 'a {
@@ -9934,10 +10236,12 @@ impl<'tree> TupleType<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for TupleType<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for TupleType<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "tuple_type" {
             Ok(Self(node))
         } else {
@@ -9952,26 +10256,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for TupleType<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for TupleType<'tree> {
     const KIND: &'static str = "tuple_type";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `type_arguments`\n\nThis node has children: `{_literal | _type | block | lifetime | type_binding}+`:\n- [Literal]\n- [Type]\n- [Block]\n- [Lifetime]\n- [TypeBinding]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct TypeArguments<'tree>(tree_sitter::Node<'tree>);
+pub struct TypeArguments<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TypeArguments<'tree> {
     #[doc = "Get the node's named children"]
@@ -9980,7 +10284,7 @@ impl<'tree> TypeArguments<'tree> {
     #[inline]
     pub fn children<'a>(
         &self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
@@ -10021,10 +10325,12 @@ impl<'tree> TypeArguments<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for TypeArguments<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for TypeArguments<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "type_arguments" {
             Ok(Self(node))
         } else {
@@ -10039,26 +10345,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for TypeArguments<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for TypeArguments<'tree> {
     const KIND: &'static str = "type_arguments";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `type_binding`\n\nThis node has these fields:\n- `name`: `type_identifier` ([TypeIdentifier])\n- `type`: `_type` ([Type])\n- `type_arguments`: `type_arguments?` ([TypeArguments])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct TypeBinding<'tree>(tree_sitter::Node<'tree>);
+pub struct TypeBinding<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TypeBinding<'tree> {
     #[doc = "Get the field `name` which has kind `type_identifier` ([TypeIdentifier])"]
@@ -10085,10 +10391,12 @@ impl<'tree> TypeBinding<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for TypeBinding<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for TypeBinding<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "type_binding" {
             Ok(Self(node))
         } else {
@@ -10103,26 +10411,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for TypeBinding<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for TypeBinding<'tree> {
     const KIND: &'static str = "type_binding";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `type_cast_expression`\n\nThis node has these fields:\n- `type`: `_type` ([Type])\n- `value`: `_expression` ([Expression])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct TypeCastExpression<'tree>(tree_sitter::Node<'tree>);
+pub struct TypeCastExpression<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TypeCastExpression<'tree> {
     #[doc = "Get the field `type` which has kind `_type` ([Type])"]
@@ -10139,10 +10447,14 @@ impl<'tree> TypeCastExpression<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for TypeCastExpression<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for TypeCastExpression<'tree>
+{
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "type_cast_expression" {
             Ok(Self(node))
         } else {
@@ -10157,26 +10469,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for TypeCastExpression<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for TypeCastExpression<'tree> {
     const KIND: &'static str = "type_cast_expression";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `type_item`\n\nThis node has these fields:\n- `name`: `type_identifier` ([TypeIdentifier])\n- `type`: `_type` ([Type])\n- `type_parameters`: `type_parameters?` ([TypeParameters])\n\nAnd an additional (optional) child: `visibility_modifier?` ([VisibilityModifier])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct TypeItem<'tree>(tree_sitter::Node<'tree>);
+pub struct TypeItem<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TypeItem<'tree> {
     #[doc = "Get the field `name` which has kind `type_identifier` ([TypeIdentifier])"]
@@ -10207,7 +10519,7 @@ impl<'tree> TypeItem<'tree> {
     #[inline]
     pub fn children<'a>(
         &self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
@@ -10248,10 +10560,12 @@ impl<'tree> TypeItem<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for TypeItem<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for TypeItem<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "type_item" {
             Ok(Self(node))
         } else {
@@ -10266,32 +10580,32 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for TypeItem<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for TypeItem<'tree> {
     const KIND: &'static str = "type_item";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `type_parameters`\n\nThis node has children: `{const_parameter | constrained_type_parameter | lifetime | metavariable | optional_type_parameter | type_identifier}+`:\n- [ConstParameter]\n- [ConstrainedTypeParameter]\n- [Lifetime]\n- [Metavariable]\n- [OptionalTypeParameter]\n- [TypeIdentifier]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct TypeParameters<'tree>(tree_sitter::Node<'tree>);
+pub struct TypeParameters<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TypeParameters<'tree> {
     #[doc = "Get the node's named children"]
     #[doc = "This is guaranteed to return at least one child"]
     #[allow(dead_code)]
-    #[inline]    pub fn children < 'a > (& self , c : & 'a mut tree_sitter :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: ConstParameter_ConstrainedTypeParameter_Lifetime_Metavariable_OptionalTypeParameter_TypeIdentifier < 'tree > > >> + 'a{
+    #[inline]    pub fn children < 'a > (& self , c : & 'a mut type_sitter_lib :: tree_sitter_wrapper :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: ConstParameter_ConstrainedTypeParameter_Lifetime_Metavariable_OptionalTypeParameter_TypeIdentifier < 'tree > > >> + 'a{
         self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: ConstParameter_ConstrainedTypeParameter_Lifetime_Metavariable_OptionalTypeParameter_TypeIdentifier < 'tree > > as TryFrom < _ >> :: try_from (n))
     }
     #[doc = "Get the node's named child #i"]
@@ -10301,10 +10615,12 @@ impl<'tree> TypeParameters<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for TypeParameters<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for TypeParameters<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "type_parameters" {
             Ok(Self(node))
         } else {
@@ -10319,26 +10635,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for TypeParameters<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for TypeParameters<'tree> {
     const KIND: &'static str = "type_parameters";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `unary_expression`\n\nThis node has a child: `_expression` ([Expression])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct UnaryExpression<'tree>(tree_sitter::Node<'tree>);
+pub struct UnaryExpression<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> UnaryExpression<'tree> {
     #[doc = "Get the node's only named child"]
@@ -10349,10 +10665,12 @@ impl<'tree> UnaryExpression<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for UnaryExpression<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for UnaryExpression<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "unary_expression" {
             Ok(Self(node))
         } else {
@@ -10367,26 +10685,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for UnaryExpression<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for UnaryExpression<'tree> {
     const KIND: &'static str = "unary_expression";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `union_item`\n\nThis node has these fields:\n- `body`: `field_declaration_list` ([FieldDeclarationList])\n- `name`: `type_identifier` ([TypeIdentifier])\n- `type_parameters`: `type_parameters?` ([TypeParameters])\n\nAnd additional children: `{visibility_modifier | where_clause}*`:\n- [VisibilityModifier]\n- [WhereClause]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct UnionItem<'tree>(tree_sitter::Node<'tree>);
+pub struct UnionItem<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> UnionItem<'tree> {
     #[doc = "Get the field `body` which has kind `field_declaration_list` ([FieldDeclarationList])"]
@@ -10414,7 +10732,7 @@ impl<'tree> UnionItem<'tree> {
     #[doc = "Get the node's named children"]
     #[doc = "This is guaranteed to return at least one child"]
     #[allow(dead_code)]
-    #[inline]    pub fn children < 'a > (& self , c : & 'a mut tree_sitter :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: VisibilityModifier_WhereClause_FieldDeclarationList_TypeIdentifier_TypeParameters < 'tree > > >> + 'a{
+    #[inline]    pub fn children < 'a > (& self , c : & 'a mut type_sitter_lib :: tree_sitter_wrapper :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: VisibilityModifier_WhereClause_FieldDeclarationList_TypeIdentifier_TypeParameters < 'tree > > >> + 'a{
         self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: VisibilityModifier_WhereClause_FieldDeclarationList_TypeIdentifier_TypeParameters < 'tree > > as TryFrom < _ >> :: try_from (n))
     }
     #[doc = "Get the node's named child #i"]
@@ -10424,10 +10742,12 @@ impl<'tree> UnionItem<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for UnionItem<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for UnionItem<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "union_item" {
             Ok(Self(node))
         } else {
@@ -10442,33 +10762,35 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for UnionItem<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for UnionItem<'tree> {
     const KIND: &'static str = "union_item";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `unit_expression`\n\nThis node has no children\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct UnitExpression<'tree>(tree_sitter::Node<'tree>);
+pub struct UnitExpression<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> UnitExpression<'tree> {}
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for UnitExpression<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for UnitExpression<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "unit_expression" {
             Ok(Self(node))
         } else {
@@ -10483,33 +10805,35 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for UnitExpression<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for UnitExpression<'tree> {
     const KIND: &'static str = "unit_expression";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `unit_type`\n\nThis node has no children\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct UnitType<'tree>(tree_sitter::Node<'tree>);
+pub struct UnitType<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> UnitType<'tree> {}
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for UnitType<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for UnitType<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "unit_type" {
             Ok(Self(node))
         } else {
@@ -10524,26 +10848,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for UnitType<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for UnitType<'tree> {
     const KIND: &'static str = "unit_type";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `unsafe_block`\n\nThis node has a child: `block` ([Block])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct UnsafeBlock<'tree>(tree_sitter::Node<'tree>);
+pub struct UnsafeBlock<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> UnsafeBlock<'tree> {
     #[doc = "Get the node's only named child"]
@@ -10554,10 +10878,12 @@ impl<'tree> UnsafeBlock<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for UnsafeBlock<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for UnsafeBlock<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "unsafe_block" {
             Ok(Self(node))
         } else {
@@ -10572,26 +10898,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for UnsafeBlock<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for UnsafeBlock<'tree> {
     const KIND: &'static str = "unsafe_block";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `use_as_clause`\n\nThis node has these fields:\n- `alias`: `identifier` ([Identifier])\n- `path`: `{crate | identifier | metavariable | scoped_identifier | self | super}` ([anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct UseAsClause<'tree>(tree_sitter::Node<'tree>);
+pub struct UseAsClause<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> UseAsClause<'tree> {
     #[doc = "Get the field `alias` which has kind `identifier` ([Identifier])"]
@@ -10613,10 +10939,12 @@ impl<'tree> UseAsClause<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for UseAsClause<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for UseAsClause<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "use_as_clause" {
             Ok(Self(node))
         } else {
@@ -10631,26 +10959,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for UseAsClause<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for UseAsClause<'tree> {
     const KIND: &'static str = "use_as_clause";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `use_declaration`\n\nThis node has these fields:\n- `argument`: `{crate | identifier | metavariable | scoped_identifier | scoped_use_list | self | super | use_as_clause | use_list | use_wildcard}` ([anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard])\n\nAnd an additional (optional) child: `visibility_modifier?` ([VisibilityModifier])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct UseDeclaration<'tree>(tree_sitter::Node<'tree>);
+pub struct UseDeclaration<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> UseDeclaration<'tree> {
     #[doc = "Get the field `argument` which has kind `{crate | identifier | metavariable | scoped_identifier | scoped_use_list | self | super | use_as_clause | use_list | use_wildcard}` ([anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard])"]
@@ -10661,7 +10989,7 @@ impl<'tree> UseDeclaration<'tree> {
     #[doc = "Get the node's named children"]
     #[doc = "This is guaranteed to return at least one child"]
     #[allow(dead_code)]
-    #[inline]    pub fn children < 'a > (& self , c : & 'a mut tree_sitter :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: VisibilityModifier_Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard < 'tree > > >> + 'a{
+    #[inline]    pub fn children < 'a > (& self , c : & 'a mut type_sitter_lib :: tree_sitter_wrapper :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: VisibilityModifier_Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard < 'tree > > >> + 'a{
         self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: VisibilityModifier_Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard < 'tree > > as TryFrom < _ >> :: try_from (n))
     }
     #[doc = "Get the node's named child #i"]
@@ -10671,10 +10999,12 @@ impl<'tree> UseDeclaration<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for UseDeclaration<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for UseDeclaration<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "use_declaration" {
             Ok(Self(node))
         } else {
@@ -10689,31 +11019,31 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for UseDeclaration<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for UseDeclaration<'tree> {
     const KIND: &'static str = "use_declaration";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `use_list`\n\nThis node has children: `{crate | identifier | metavariable | scoped_identifier | scoped_use_list | self | super | use_as_clause | use_list | use_wildcard}*`:\n- [Crate]\n- [Identifier]\n- [Metavariable]\n- [ScopedIdentifier]\n- [ScopedUseList]\n- [_Self]\n- [Super]\n- [UseAsClause]\n- [UseList]\n- [UseWildcard]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct UseList<'tree>(tree_sitter::Node<'tree>);
+pub struct UseList<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> UseList<'tree> {
     #[doc = "Get the node's named children"]
     #[allow(dead_code)]
-    #[inline]    pub fn children < 'a > (& self , c : & 'a mut tree_sitter :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard < 'tree > > >> + 'a{
+    #[inline]    pub fn children < 'a > (& self , c : & 'a mut type_sitter_lib :: tree_sitter_wrapper :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard < 'tree > > >> + 'a{
         self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard < 'tree > > as TryFrom < _ >> :: try_from (n))
     }
     #[doc = "Get the node's named child #i"]
@@ -10723,10 +11053,12 @@ impl<'tree> UseList<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for UseList<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for UseList<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "use_list" {
             Ok(Self(node))
         } else {
@@ -10741,26 +11073,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for UseList<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for UseList<'tree> {
     const KIND: &'static str = "use_list";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `use_wildcard`\n\nThis node has an (optional) child: `{crate | identifier | metavariable | scoped_identifier | self | super}?`:\n- [Crate]\n- [Identifier]\n- [Metavariable]\n- [ScopedIdentifier]\n- [_Self]\n- [Super]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct UseWildcard<'tree>(tree_sitter::Node<'tree>);
+pub struct UseWildcard<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> UseWildcard<'tree> {
     #[doc = "Get the node's only named child"]
@@ -10778,10 +11110,12 @@ impl<'tree> UseWildcard<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for UseWildcard<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for UseWildcard<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "use_wildcard" {
             Ok(Self(node))
         } else {
@@ -10796,33 +11130,37 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for UseWildcard<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for UseWildcard<'tree> {
     const KIND: &'static str = "use_wildcard";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `variadic_parameter`\n\nThis node has no children\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct VariadicParameter<'tree>(tree_sitter::Node<'tree>);
+pub struct VariadicParameter<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> VariadicParameter<'tree> {}
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for VariadicParameter<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for VariadicParameter<'tree>
+{
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "variadic_parameter" {
             Ok(Self(node))
         } else {
@@ -10837,26 +11175,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for VariadicParameter<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for VariadicParameter<'tree> {
     const KIND: &'static str = "variadic_parameter";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `visibility_modifier`\n\nThis node has an (optional) child: `{crate | identifier | metavariable | scoped_identifier | self | super}?`:\n- [Crate]\n- [Identifier]\n- [Metavariable]\n- [ScopedIdentifier]\n- [_Self]\n- [Super]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct VisibilityModifier<'tree>(tree_sitter::Node<'tree>);
+pub struct VisibilityModifier<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> VisibilityModifier<'tree> {
     #[doc = "Get the node's only named child"]
@@ -10874,10 +11212,14 @@ impl<'tree> VisibilityModifier<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for VisibilityModifier<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for VisibilityModifier<'tree>
+{
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "visibility_modifier" {
             Ok(Self(node))
         } else {
@@ -10892,26 +11234,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for VisibilityModifier<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for VisibilityModifier<'tree> {
     const KIND: &'static str = "visibility_modifier";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `where_clause`\n\nThis node has children: `where_predicate+` ([WherePredicate])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct WhereClause<'tree>(tree_sitter::Node<'tree>);
+pub struct WhereClause<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> WhereClause<'tree> {
     #[doc = "Get the node's named children"]
@@ -10920,7 +11262,7 @@ impl<'tree> WhereClause<'tree> {
     #[inline]
     pub fn children<'a>(
         &self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
@@ -10946,10 +11288,12 @@ impl<'tree> WhereClause<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for WhereClause<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for WhereClause<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "where_clause" {
             Ok(Self(node))
         } else {
@@ -10964,26 +11308,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for WhereClause<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for WhereClause<'tree> {
     const KIND: &'static str = "where_clause";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `where_predicate`\n\nThis node has these fields:\n- `bounds`: `trait_bounds` ([TraitBounds])\n- `left`: `{array_type | generic_type | higher_ranked_trait_bound | lifetime | pointer_type | primitive_type | reference_type | scoped_type_identifier | tuple_type | type_identifier}` ([anon_unions::ArrayType_GenericType_HigherRankedTraitBound_Lifetime_PointerType_PrimitiveType_ReferenceType_ScopedTypeIdentifier_TupleType_TypeIdentifier])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct WherePredicate<'tree>(tree_sitter::Node<'tree>);
+pub struct WherePredicate<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> WherePredicate<'tree> {
     #[doc = "Get the field `bounds` which has kind `trait_bounds` ([TraitBounds])"]
@@ -10999,10 +11343,12 @@ impl<'tree> WherePredicate<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for WherePredicate<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for WherePredicate<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "where_predicate" {
             Ok(Self(node))
         } else {
@@ -11017,26 +11363,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for WherePredicate<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for WherePredicate<'tree> {
     const KIND: &'static str = "where_predicate";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `while_expression`\n\nThis node has these fields:\n- `body`: `block` ([Block])\n- `condition`: `{_expression | let_chain | let_condition}` ([anon_unions::Expression_LetChain_LetCondition])\n\nAnd an additional (optional) child: `loop_label?` ([LoopLabel])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct WhileExpression<'tree>(tree_sitter::Node<'tree>);
+pub struct WhileExpression<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> WhileExpression<'tree> {
     #[doc = "Get the field `body` which has kind `block` ([Block])"]
@@ -11060,7 +11406,7 @@ impl<'tree> WhileExpression<'tree> {
     #[inline]
     pub fn children<'a>(
         &self,
-        c: &'a mut tree_sitter::TreeCursor<'tree>,
+        c: &'a mut type_sitter_lib::tree_sitter_wrapper::TreeCursor<'tree>,
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
@@ -11101,10 +11447,12 @@ impl<'tree> WhileExpression<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for WhileExpression<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for WhileExpression<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "while_expression" {
             Ok(Self(node))
         } else {
@@ -11119,26 +11467,26 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for WhileExpression<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for WhileExpression<'tree> {
     const KIND: &'static str = "while_expression";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `yield_expression`\n\nThis node has an (optional) child: `_expression?` ([Expression])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct YieldExpression<'tree>(tree_sitter::Node<'tree>);
+pub struct YieldExpression<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> YieldExpression<'tree> {
     #[doc = "Get the node's only named child"]
@@ -11151,10 +11499,12 @@ impl<'tree> YieldExpression<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for YieldExpression<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for YieldExpression<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "yield_expression" {
             Ok(Self(node))
         } else {
@@ -11169,33 +11519,35 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for YieldExpression<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for YieldExpression<'tree> {
     const KIND: &'static str = "yield_expression";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `block_comment`\n\nThis node has no children\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct BlockComment<'tree>(tree_sitter::Node<'tree>);
+pub struct BlockComment<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> BlockComment<'tree> {}
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for BlockComment<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for BlockComment<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "block_comment" {
             Ok(Self(node))
         } else {
@@ -11210,33 +11562,35 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for BlockComment<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for BlockComment<'tree> {
     const KIND: &'static str = "block_comment";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `char_literal`\n\nThis node has no children\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct CharLiteral<'tree>(tree_sitter::Node<'tree>);
+pub struct CharLiteral<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> CharLiteral<'tree> {}
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for CharLiteral<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for CharLiteral<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "char_literal" {
             Ok(Self(node))
         } else {
@@ -11251,33 +11605,35 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for CharLiteral<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for CharLiteral<'tree> {
     const KIND: &'static str = "char_literal";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `crate`\n\nThis node has no children\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct Crate<'tree>(tree_sitter::Node<'tree>);
+pub struct Crate<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> Crate<'tree> {}
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Crate<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Crate<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "crate" {
             Ok(Self(node))
         } else {
@@ -11292,33 +11648,35 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Crate<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for Crate<'tree> {
     const KIND: &'static str = "crate";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `escape_sequence`\n\nThis node has no children\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct EscapeSequence<'tree>(tree_sitter::Node<'tree>);
+pub struct EscapeSequence<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> EscapeSequence<'tree> {}
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for EscapeSequence<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for EscapeSequence<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "escape_sequence" {
             Ok(Self(node))
         } else {
@@ -11333,33 +11691,35 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for EscapeSequence<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for EscapeSequence<'tree> {
     const KIND: &'static str = "escape_sequence";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `field_identifier`\n\nThis node has no children\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct FieldIdentifier<'tree>(tree_sitter::Node<'tree>);
+pub struct FieldIdentifier<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> FieldIdentifier<'tree> {}
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for FieldIdentifier<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for FieldIdentifier<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "field_identifier" {
             Ok(Self(node))
         } else {
@@ -11374,33 +11734,35 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for FieldIdentifier<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for FieldIdentifier<'tree> {
     const KIND: &'static str = "field_identifier";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `float_literal`\n\nThis node has no children\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct FloatLiteral<'tree>(tree_sitter::Node<'tree>);
+pub struct FloatLiteral<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> FloatLiteral<'tree> {}
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for FloatLiteral<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for FloatLiteral<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "float_literal" {
             Ok(Self(node))
         } else {
@@ -11415,33 +11777,35 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for FloatLiteral<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for FloatLiteral<'tree> {
     const KIND: &'static str = "float_literal";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `identifier`\n\nThis node has no children\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct Identifier<'tree>(tree_sitter::Node<'tree>);
+pub struct Identifier<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> Identifier<'tree> {}
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Identifier<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Identifier<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "identifier" {
             Ok(Self(node))
         } else {
@@ -11456,33 +11820,35 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Identifier<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for Identifier<'tree> {
     const KIND: &'static str = "identifier";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `integer_literal`\n\nThis node has no children\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct IntegerLiteral<'tree>(tree_sitter::Node<'tree>);
+pub struct IntegerLiteral<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> IntegerLiteral<'tree> {}
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for IntegerLiteral<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for IntegerLiteral<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "integer_literal" {
             Ok(Self(node))
         } else {
@@ -11497,33 +11863,35 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for IntegerLiteral<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for IntegerLiteral<'tree> {
     const KIND: &'static str = "integer_literal";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `line_comment`\n\nThis node has no children\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct LineComment<'tree>(tree_sitter::Node<'tree>);
+pub struct LineComment<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> LineComment<'tree> {}
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for LineComment<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for LineComment<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "line_comment" {
             Ok(Self(node))
         } else {
@@ -11538,33 +11906,35 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for LineComment<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for LineComment<'tree> {
     const KIND: &'static str = "line_comment";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `metavariable`\n\nThis node has no children\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct Metavariable<'tree>(tree_sitter::Node<'tree>);
+pub struct Metavariable<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> Metavariable<'tree> {}
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Metavariable<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Metavariable<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "metavariable" {
             Ok(Self(node))
         } else {
@@ -11579,33 +11949,35 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Metavariable<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for Metavariable<'tree> {
     const KIND: &'static str = "metavariable";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `mutable_specifier`\n\nThis node has no children\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct MutableSpecifier<'tree>(tree_sitter::Node<'tree>);
+pub struct MutableSpecifier<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> MutableSpecifier<'tree> {}
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for MutableSpecifier<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for MutableSpecifier<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "mutable_specifier" {
             Ok(Self(node))
         } else {
@@ -11620,33 +11992,35 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for MutableSpecifier<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for MutableSpecifier<'tree> {
     const KIND: &'static str = "mutable_specifier";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `primitive_type`\n\nThis node has no children\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct PrimitiveType<'tree>(tree_sitter::Node<'tree>);
+pub struct PrimitiveType<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> PrimitiveType<'tree> {}
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for PrimitiveType<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for PrimitiveType<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "primitive_type" {
             Ok(Self(node))
         } else {
@@ -11661,33 +12035,35 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for PrimitiveType<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for PrimitiveType<'tree> {
     const KIND: &'static str = "primitive_type";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `raw_string_literal`\n\nThis node has no children\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct RawStringLiteral<'tree>(tree_sitter::Node<'tree>);
+pub struct RawStringLiteral<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> RawStringLiteral<'tree> {}
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for RawStringLiteral<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for RawStringLiteral<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "raw_string_literal" {
             Ok(Self(node))
         } else {
@@ -11702,33 +12078,35 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for RawStringLiteral<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for RawStringLiteral<'tree> {
     const KIND: &'static str = "raw_string_literal";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `self`\n\nThis node has no children\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct _Self<'tree>(tree_sitter::Node<'tree>);
+pub struct _Self<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> _Self<'tree> {}
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for _Self<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for _Self<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "self" {
             Ok(Self(node))
         } else {
@@ -11743,33 +12121,37 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for _Self<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for _Self<'tree> {
     const KIND: &'static str = "self";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `shorthand_field_identifier`\n\nThis node has no children\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct ShorthandFieldIdentifier<'tree>(tree_sitter::Node<'tree>);
+pub struct ShorthandFieldIdentifier<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ShorthandFieldIdentifier<'tree> {}
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ShorthandFieldIdentifier<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+    for ShorthandFieldIdentifier<'tree>
+{
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "shorthand_field_identifier" {
             Ok(Self(node))
         } else {
@@ -11784,33 +12166,35 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ShorthandFieldIdentifier<'tree
 impl<'tree> type_sitter_lib::TypedNode<'tree> for ShorthandFieldIdentifier<'tree> {
     const KIND: &'static str = "shorthand_field_identifier";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `super`\n\nThis node has no children\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct Super<'tree>(tree_sitter::Node<'tree>);
+pub struct Super<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> Super<'tree> {}
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Super<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Super<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "super" {
             Ok(Self(node))
         } else {
@@ -11825,33 +12209,35 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Super<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for Super<'tree> {
     const KIND: &'static str = "super";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
 #[doc = "Typed node `type_identifier`\n\nThis node has no children\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct TypeIdentifier<'tree>(tree_sitter::Node<'tree>);
+pub struct TypeIdentifier<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TypeIdentifier<'tree> {}
 #[automatically_derived]
-impl<'tree> TryFrom<tree_sitter::Node<'tree>> for TypeIdentifier<'tree> {
+impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for TypeIdentifier<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+    fn try_from(
+        node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+    ) -> Result<Self, Self::Error> {
         if node.kind() == "type_identifier" {
             Ok(Self(node))
         } else {
@@ -11866,19 +12252,19 @@ impl<'tree> TryFrom<tree_sitter::Node<'tree>> for TypeIdentifier<'tree> {
 impl<'tree> type_sitter_lib::TypedNode<'tree> for TypeIdentifier<'tree> {
     const KIND: &'static str = "type_identifier";
     #[inline]
-    fn node(&self) -> &tree_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &self.0
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         &mut self.0
     }
     #[inline]
-    fn into_node(self) -> tree_sitter::Node<'tree> {
+    fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+    unsafe fn from_node_unchecked(node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -11888,14 +12274,16 @@ pub mod unnamed {
     #[doc = "Typed node `as`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct As<'tree>(tree_sitter::Node<'tree>);
+    pub struct As<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> As<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for As<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for As<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "as" {
                 Ok(Self(node))
             } else {
@@ -11910,33 +12298,37 @@ pub mod unnamed {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for As<'tree> {
         const KIND: &'static str = "as";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `async`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct Async<'tree>(tree_sitter::Node<'tree>);
+    pub struct Async<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> Async<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Async<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Async<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "async" {
                 Ok(Self(node))
             } else {
@@ -11951,33 +12343,37 @@ pub mod unnamed {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Async<'tree> {
         const KIND: &'static str = "async";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `await`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct Await<'tree>(tree_sitter::Node<'tree>);
+    pub struct Await<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> Await<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Await<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Await<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "await" {
                 Ok(Self(node))
             } else {
@@ -11992,33 +12388,37 @@ pub mod unnamed {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Await<'tree> {
         const KIND: &'static str = "await";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `block`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct Block<'tree>(tree_sitter::Node<'tree>);
+    pub struct Block<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> Block<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Block<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Block<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "block" {
                 Ok(Self(node))
             } else {
@@ -12033,33 +12433,37 @@ pub mod unnamed {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Block<'tree> {
         const KIND: &'static str = "block";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `break`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct Break<'tree>(tree_sitter::Node<'tree>);
+    pub struct Break<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> Break<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Break<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Break<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "break" {
                 Ok(Self(node))
             } else {
@@ -12074,33 +12478,37 @@ pub mod unnamed {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Break<'tree> {
         const KIND: &'static str = "break";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `const`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct Const<'tree>(tree_sitter::Node<'tree>);
+    pub struct Const<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> Const<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Const<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Const<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "const" {
                 Ok(Self(node))
             } else {
@@ -12115,33 +12523,37 @@ pub mod unnamed {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Const<'tree> {
         const KIND: &'static str = "const";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `continue`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct Continue<'tree>(tree_sitter::Node<'tree>);
+    pub struct Continue<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> Continue<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Continue<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Continue<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "continue" {
                 Ok(Self(node))
             } else {
@@ -12156,33 +12568,37 @@ pub mod unnamed {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Continue<'tree> {
         const KIND: &'static str = "continue";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `default`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct Default<'tree>(tree_sitter::Node<'tree>);
+    pub struct Default<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> Default<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Default<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Default<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "default" {
                 Ok(Self(node))
             } else {
@@ -12197,33 +12613,37 @@ pub mod unnamed {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Default<'tree> {
         const KIND: &'static str = "default";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `dyn`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct Dyn<'tree>(tree_sitter::Node<'tree>);
+    pub struct Dyn<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> Dyn<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Dyn<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Dyn<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "dyn" {
                 Ok(Self(node))
             } else {
@@ -12238,33 +12658,37 @@ pub mod unnamed {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Dyn<'tree> {
         const KIND: &'static str = "dyn";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `else`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct Else<'tree>(tree_sitter::Node<'tree>);
+    pub struct Else<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> Else<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Else<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Else<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "else" {
                 Ok(Self(node))
             } else {
@@ -12279,33 +12703,37 @@ pub mod unnamed {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Else<'tree> {
         const KIND: &'static str = "else";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `enum`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct Enum<'tree>(tree_sitter::Node<'tree>);
+    pub struct Enum<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> Enum<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Enum<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Enum<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "enum" {
                 Ok(Self(node))
             } else {
@@ -12320,33 +12748,37 @@ pub mod unnamed {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Enum<'tree> {
         const KIND: &'static str = "enum";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `expr`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct Expr<'tree>(tree_sitter::Node<'tree>);
+    pub struct Expr<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> Expr<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Expr<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Expr<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "expr" {
                 Ok(Self(node))
             } else {
@@ -12361,33 +12793,37 @@ pub mod unnamed {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Expr<'tree> {
         const KIND: &'static str = "expr";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `extern`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct Extern<'tree>(tree_sitter::Node<'tree>);
+    pub struct Extern<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> Extern<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Extern<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Extern<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "extern" {
                 Ok(Self(node))
             } else {
@@ -12402,33 +12838,37 @@ pub mod unnamed {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Extern<'tree> {
         const KIND: &'static str = "extern";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `false`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct False<'tree>(tree_sitter::Node<'tree>);
+    pub struct False<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> False<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for False<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for False<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "false" {
                 Ok(Self(node))
             } else {
@@ -12443,33 +12883,37 @@ pub mod unnamed {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for False<'tree> {
         const KIND: &'static str = "false";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `fn`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct Fn<'tree>(tree_sitter::Node<'tree>);
+    pub struct Fn<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> Fn<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Fn<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Fn<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "fn" {
                 Ok(Self(node))
             } else {
@@ -12484,33 +12928,37 @@ pub mod unnamed {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Fn<'tree> {
         const KIND: &'static str = "fn";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `for`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct For<'tree>(tree_sitter::Node<'tree>);
+    pub struct For<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> For<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for For<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for For<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "for" {
                 Ok(Self(node))
             } else {
@@ -12525,33 +12973,37 @@ pub mod unnamed {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for For<'tree> {
         const KIND: &'static str = "for";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `ident`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct Ident<'tree>(tree_sitter::Node<'tree>);
+    pub struct Ident<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> Ident<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Ident<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Ident<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "ident" {
                 Ok(Self(node))
             } else {
@@ -12566,33 +13018,37 @@ pub mod unnamed {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Ident<'tree> {
         const KIND: &'static str = "ident";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `if`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct If<'tree>(tree_sitter::Node<'tree>);
+    pub struct If<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> If<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for If<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for If<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "if" {
                 Ok(Self(node))
             } else {
@@ -12607,33 +13063,37 @@ pub mod unnamed {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for If<'tree> {
         const KIND: &'static str = "if";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `impl`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct Impl<'tree>(tree_sitter::Node<'tree>);
+    pub struct Impl<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> Impl<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Impl<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Impl<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "impl" {
                 Ok(Self(node))
             } else {
@@ -12648,33 +13108,37 @@ pub mod unnamed {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Impl<'tree> {
         const KIND: &'static str = "impl";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `in`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct In<'tree>(tree_sitter::Node<'tree>);
+    pub struct In<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> In<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for In<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for In<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "in" {
                 Ok(Self(node))
             } else {
@@ -12689,33 +13153,37 @@ pub mod unnamed {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for In<'tree> {
         const KIND: &'static str = "in";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `item`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct Item<'tree>(tree_sitter::Node<'tree>);
+    pub struct Item<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> Item<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Item<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Item<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "item" {
                 Ok(Self(node))
             } else {
@@ -12730,33 +13198,37 @@ pub mod unnamed {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Item<'tree> {
         const KIND: &'static str = "item";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `let`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct Let<'tree>(tree_sitter::Node<'tree>);
+    pub struct Let<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> Let<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Let<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Let<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "let" {
                 Ok(Self(node))
             } else {
@@ -12771,33 +13243,37 @@ pub mod unnamed {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Let<'tree> {
         const KIND: &'static str = "let";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `lifetime`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct Lifetime<'tree>(tree_sitter::Node<'tree>);
+    pub struct Lifetime<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> Lifetime<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Lifetime<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Lifetime<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "lifetime" {
                 Ok(Self(node))
             } else {
@@ -12812,33 +13288,37 @@ pub mod unnamed {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Lifetime<'tree> {
         const KIND: &'static str = "lifetime";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `literal`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct Literal<'tree>(tree_sitter::Node<'tree>);
+    pub struct Literal<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> Literal<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Literal<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Literal<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "literal" {
                 Ok(Self(node))
             } else {
@@ -12853,33 +13333,37 @@ pub mod unnamed {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Literal<'tree> {
         const KIND: &'static str = "literal";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `loop`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct Loop<'tree>(tree_sitter::Node<'tree>);
+    pub struct Loop<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> Loop<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Loop<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Loop<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "loop" {
                 Ok(Self(node))
             } else {
@@ -12894,33 +13378,37 @@ pub mod unnamed {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Loop<'tree> {
         const KIND: &'static str = "loop";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `match`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct Match<'tree>(tree_sitter::Node<'tree>);
+    pub struct Match<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> Match<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Match<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Match<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "match" {
                 Ok(Self(node))
             } else {
@@ -12935,33 +13423,37 @@ pub mod unnamed {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Match<'tree> {
         const KIND: &'static str = "match";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `meta`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct Meta<'tree>(tree_sitter::Node<'tree>);
+    pub struct Meta<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> Meta<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Meta<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Meta<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "meta" {
                 Ok(Self(node))
             } else {
@@ -12976,33 +13468,37 @@ pub mod unnamed {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Meta<'tree> {
         const KIND: &'static str = "meta";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `mod`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct Mod<'tree>(tree_sitter::Node<'tree>);
+    pub struct Mod<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> Mod<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Mod<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Mod<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "mod" {
                 Ok(Self(node))
             } else {
@@ -13017,33 +13513,37 @@ pub mod unnamed {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Mod<'tree> {
         const KIND: &'static str = "mod";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `move`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct Move<'tree>(tree_sitter::Node<'tree>);
+    pub struct Move<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> Move<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Move<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Move<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "move" {
                 Ok(Self(node))
             } else {
@@ -13058,33 +13558,37 @@ pub mod unnamed {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Move<'tree> {
         const KIND: &'static str = "move";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `pat`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct Pat<'tree>(tree_sitter::Node<'tree>);
+    pub struct Pat<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> Pat<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Pat<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Pat<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "pat" {
                 Ok(Self(node))
             } else {
@@ -13099,33 +13603,37 @@ pub mod unnamed {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Pat<'tree> {
         const KIND: &'static str = "pat";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `path`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct Path<'tree>(tree_sitter::Node<'tree>);
+    pub struct Path<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> Path<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Path<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Path<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "path" {
                 Ok(Self(node))
             } else {
@@ -13140,33 +13648,37 @@ pub mod unnamed {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Path<'tree> {
         const KIND: &'static str = "path";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `pub`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct Pub<'tree>(tree_sitter::Node<'tree>);
+    pub struct Pub<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> Pub<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Pub<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Pub<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "pub" {
                 Ok(Self(node))
             } else {
@@ -13181,33 +13693,37 @@ pub mod unnamed {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Pub<'tree> {
         const KIND: &'static str = "pub";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `ref`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct Ref<'tree>(tree_sitter::Node<'tree>);
+    pub struct Ref<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> Ref<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Ref<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Ref<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "ref" {
                 Ok(Self(node))
             } else {
@@ -13222,33 +13738,37 @@ pub mod unnamed {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Ref<'tree> {
         const KIND: &'static str = "ref";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `return`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct Return<'tree>(tree_sitter::Node<'tree>);
+    pub struct Return<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> Return<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Return<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Return<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "return" {
                 Ok(Self(node))
             } else {
@@ -13263,33 +13783,37 @@ pub mod unnamed {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Return<'tree> {
         const KIND: &'static str = "return";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `static`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct Static<'tree>(tree_sitter::Node<'tree>);
+    pub struct Static<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> Static<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Static<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Static<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "static" {
                 Ok(Self(node))
             } else {
@@ -13304,33 +13828,37 @@ pub mod unnamed {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Static<'tree> {
         const KIND: &'static str = "static";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `stmt`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct Stmt<'tree>(tree_sitter::Node<'tree>);
+    pub struct Stmt<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> Stmt<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Stmt<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Stmt<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "stmt" {
                 Ok(Self(node))
             } else {
@@ -13345,33 +13873,37 @@ pub mod unnamed {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Stmt<'tree> {
         const KIND: &'static str = "stmt";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `struct`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct Struct<'tree>(tree_sitter::Node<'tree>);
+    pub struct Struct<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> Struct<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Struct<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Struct<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "struct" {
                 Ok(Self(node))
             } else {
@@ -13386,33 +13918,37 @@ pub mod unnamed {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Struct<'tree> {
         const KIND: &'static str = "struct";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `trait`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct Trait<'tree>(tree_sitter::Node<'tree>);
+    pub struct Trait<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> Trait<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Trait<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Trait<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "trait" {
                 Ok(Self(node))
             } else {
@@ -13427,33 +13963,37 @@ pub mod unnamed {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Trait<'tree> {
         const KIND: &'static str = "trait";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `true`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct True<'tree>(tree_sitter::Node<'tree>);
+    pub struct True<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> True<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for True<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for True<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "true" {
                 Ok(Self(node))
             } else {
@@ -13468,33 +14008,37 @@ pub mod unnamed {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for True<'tree> {
         const KIND: &'static str = "true";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `tt`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct Tt<'tree>(tree_sitter::Node<'tree>);
+    pub struct Tt<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> Tt<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Tt<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Tt<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "tt" {
                 Ok(Self(node))
             } else {
@@ -13509,33 +14053,37 @@ pub mod unnamed {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Tt<'tree> {
         const KIND: &'static str = "tt";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `ty`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct Ty<'tree>(tree_sitter::Node<'tree>);
+    pub struct Ty<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> Ty<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Ty<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Ty<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "ty" {
                 Ok(Self(node))
             } else {
@@ -13550,33 +14098,37 @@ pub mod unnamed {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Ty<'tree> {
         const KIND: &'static str = "ty";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `type`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct Type<'tree>(tree_sitter::Node<'tree>);
+    pub struct Type<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> Type<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Type<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Type<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "type" {
                 Ok(Self(node))
             } else {
@@ -13591,33 +14143,37 @@ pub mod unnamed {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Type<'tree> {
         const KIND: &'static str = "type";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `union`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct Union<'tree>(tree_sitter::Node<'tree>);
+    pub struct Union<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> Union<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Union<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Union<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "union" {
                 Ok(Self(node))
             } else {
@@ -13632,33 +14188,37 @@ pub mod unnamed {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Union<'tree> {
         const KIND: &'static str = "union";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `unsafe`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct Unsafe<'tree>(tree_sitter::Node<'tree>);
+    pub struct Unsafe<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> Unsafe<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Unsafe<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Unsafe<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "unsafe" {
                 Ok(Self(node))
             } else {
@@ -13673,33 +14233,37 @@ pub mod unnamed {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Unsafe<'tree> {
         const KIND: &'static str = "unsafe";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `use`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct Use<'tree>(tree_sitter::Node<'tree>);
+    pub struct Use<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> Use<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Use<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Use<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "use" {
                 Ok(Self(node))
             } else {
@@ -13714,33 +14278,37 @@ pub mod unnamed {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Use<'tree> {
         const KIND: &'static str = "use";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `vis`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct Vis<'tree>(tree_sitter::Node<'tree>);
+    pub struct Vis<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> Vis<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Vis<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Vis<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "vis" {
                 Ok(Self(node))
             } else {
@@ -13755,33 +14323,37 @@ pub mod unnamed {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Vis<'tree> {
         const KIND: &'static str = "vis";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `where`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct Where<'tree>(tree_sitter::Node<'tree>);
+    pub struct Where<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> Where<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Where<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Where<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "where" {
                 Ok(Self(node))
             } else {
@@ -13796,33 +14368,37 @@ pub mod unnamed {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Where<'tree> {
         const KIND: &'static str = "where";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `while`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct While<'tree>(tree_sitter::Node<'tree>);
+    pub struct While<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> While<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for While<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for While<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "while" {
                 Ok(Self(node))
             } else {
@@ -13837,33 +14413,37 @@ pub mod unnamed {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for While<'tree> {
         const KIND: &'static str = "while";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `yield`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct Yield<'tree>(tree_sitter::Node<'tree>);
+    pub struct Yield<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> Yield<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Yield<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Yield<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "yield" {
                 Ok(Self(node))
             } else {
@@ -13878,19 +14458,21 @@ pub mod unnamed {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Yield<'tree> {
         const KIND: &'static str = "yield";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
@@ -13901,14 +14483,16 @@ pub mod symbols {
     #[doc = "Typed node `!`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct Not<'tree>(tree_sitter::Node<'tree>);
+    pub struct Not<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> Not<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Not<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Not<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "!" {
                 Ok(Self(node))
             } else {
@@ -13923,33 +14507,37 @@ pub mod symbols {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Not<'tree> {
         const KIND: &'static str = "!";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `!=`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct NotEq<'tree>(tree_sitter::Node<'tree>);
+    pub struct NotEq<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> NotEq<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for NotEq<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for NotEq<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "!=" {
                 Ok(Self(node))
             } else {
@@ -13964,33 +14552,37 @@ pub mod symbols {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for NotEq<'tree> {
         const KIND: &'static str = "!=";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `\"`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct DoubleQuote<'tree>(tree_sitter::Node<'tree>);
+    pub struct DoubleQuote<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> DoubleQuote<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for DoubleQuote<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for DoubleQuote<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "\"" {
                 Ok(Self(node))
             } else {
@@ -14005,33 +14597,37 @@ pub mod symbols {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for DoubleQuote<'tree> {
         const KIND: &'static str = "\"";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `#`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct Hash<'tree>(tree_sitter::Node<'tree>);
+    pub struct Hash<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> Hash<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Hash<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Hash<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "#" {
                 Ok(Self(node))
             } else {
@@ -14046,33 +14642,37 @@ pub mod symbols {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Hash<'tree> {
         const KIND: &'static str = "#";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `$`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct Dollar<'tree>(tree_sitter::Node<'tree>);
+    pub struct Dollar<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> Dollar<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Dollar<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Dollar<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "$" {
                 Ok(Self(node))
             } else {
@@ -14087,33 +14687,37 @@ pub mod symbols {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Dollar<'tree> {
         const KIND: &'static str = "$";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `%`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct Mod<'tree>(tree_sitter::Node<'tree>);
+    pub struct Mod<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> Mod<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Mod<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Mod<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "%" {
                 Ok(Self(node))
             } else {
@@ -14128,33 +14732,37 @@ pub mod symbols {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Mod<'tree> {
         const KIND: &'static str = "%";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `%=`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct ModEq<'tree>(tree_sitter::Node<'tree>);
+    pub struct ModEq<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> ModEq<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ModEq<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for ModEq<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "%=" {
                 Ok(Self(node))
             } else {
@@ -14169,33 +14777,37 @@ pub mod symbols {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for ModEq<'tree> {
         const KIND: &'static str = "%=";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `&`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct And<'tree>(tree_sitter::Node<'tree>);
+    pub struct And<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> And<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for And<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for And<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "&" {
                 Ok(Self(node))
             } else {
@@ -14210,33 +14822,37 @@ pub mod symbols {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for And<'tree> {
         const KIND: &'static str = "&";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `&&`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct AndAnd<'tree>(tree_sitter::Node<'tree>);
+    pub struct AndAnd<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> AndAnd<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for AndAnd<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for AndAnd<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "&&" {
                 Ok(Self(node))
             } else {
@@ -14251,33 +14867,37 @@ pub mod symbols {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for AndAnd<'tree> {
         const KIND: &'static str = "&&";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `&=`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct AndEq<'tree>(tree_sitter::Node<'tree>);
+    pub struct AndEq<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> AndEq<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for AndEq<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for AndEq<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "&=" {
                 Ok(Self(node))
             } else {
@@ -14292,33 +14912,37 @@ pub mod symbols {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for AndEq<'tree> {
         const KIND: &'static str = "&=";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `'`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct Quote<'tree>(tree_sitter::Node<'tree>);
+    pub struct Quote<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> Quote<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Quote<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Quote<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "'" {
                 Ok(Self(node))
             } else {
@@ -14333,33 +14957,37 @@ pub mod symbols {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Quote<'tree> {
         const KIND: &'static str = "'";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `(`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct LParen<'tree>(tree_sitter::Node<'tree>);
+    pub struct LParen<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> LParen<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for LParen<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for LParen<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "(" {
                 Ok(Self(node))
             } else {
@@ -14374,33 +15002,37 @@ pub mod symbols {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for LParen<'tree> {
         const KIND: &'static str = "(";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `)`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct RParen<'tree>(tree_sitter::Node<'tree>);
+    pub struct RParen<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> RParen<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for RParen<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for RParen<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == ")" {
                 Ok(Self(node))
             } else {
@@ -14415,33 +15047,37 @@ pub mod symbols {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for RParen<'tree> {
         const KIND: &'static str = ")";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `*`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct Mul<'tree>(tree_sitter::Node<'tree>);
+    pub struct Mul<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> Mul<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Mul<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Mul<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "*" {
                 Ok(Self(node))
             } else {
@@ -14456,33 +15092,37 @@ pub mod symbols {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Mul<'tree> {
         const KIND: &'static str = "*";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `*=`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct MulEq<'tree>(tree_sitter::Node<'tree>);
+    pub struct MulEq<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> MulEq<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for MulEq<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for MulEq<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "*=" {
                 Ok(Self(node))
             } else {
@@ -14497,33 +15137,37 @@ pub mod symbols {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for MulEq<'tree> {
         const KIND: &'static str = "*=";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `+`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct Add<'tree>(tree_sitter::Node<'tree>);
+    pub struct Add<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> Add<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Add<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Add<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "+" {
                 Ok(Self(node))
             } else {
@@ -14538,33 +15182,37 @@ pub mod symbols {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Add<'tree> {
         const KIND: &'static str = "+";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `+=`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct AddEq<'tree>(tree_sitter::Node<'tree>);
+    pub struct AddEq<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> AddEq<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for AddEq<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for AddEq<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "+=" {
                 Ok(Self(node))
             } else {
@@ -14579,33 +15227,37 @@ pub mod symbols {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for AddEq<'tree> {
         const KIND: &'static str = "+=";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `,`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct Comma<'tree>(tree_sitter::Node<'tree>);
+    pub struct Comma<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> Comma<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Comma<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Comma<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "," {
                 Ok(Self(node))
             } else {
@@ -14620,33 +15272,37 @@ pub mod symbols {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Comma<'tree> {
         const KIND: &'static str = ",";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `-`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct Sub<'tree>(tree_sitter::Node<'tree>);
+    pub struct Sub<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> Sub<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Sub<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Sub<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "-" {
                 Ok(Self(node))
             } else {
@@ -14661,33 +15317,37 @@ pub mod symbols {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Sub<'tree> {
         const KIND: &'static str = "-";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `-=`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct SubEq<'tree>(tree_sitter::Node<'tree>);
+    pub struct SubEq<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> SubEq<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for SubEq<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for SubEq<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "-=" {
                 Ok(Self(node))
             } else {
@@ -14702,33 +15362,37 @@ pub mod symbols {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for SubEq<'tree> {
         const KIND: &'static str = "-=";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `->`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct SubGt<'tree>(tree_sitter::Node<'tree>);
+    pub struct SubGt<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> SubGt<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for SubGt<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for SubGt<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "->" {
                 Ok(Self(node))
             } else {
@@ -14743,33 +15407,37 @@ pub mod symbols {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for SubGt<'tree> {
         const KIND: &'static str = "->";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `.`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct Dot<'tree>(tree_sitter::Node<'tree>);
+    pub struct Dot<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> Dot<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Dot<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Dot<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "." {
                 Ok(Self(node))
             } else {
@@ -14784,33 +15452,37 @@ pub mod symbols {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Dot<'tree> {
         const KIND: &'static str = ".";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `..`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct DotDot<'tree>(tree_sitter::Node<'tree>);
+    pub struct DotDot<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> DotDot<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for DotDot<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for DotDot<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == ".." {
                 Ok(Self(node))
             } else {
@@ -14825,33 +15497,37 @@ pub mod symbols {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for DotDot<'tree> {
         const KIND: &'static str = "..";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `...`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct DotDotDot<'tree>(tree_sitter::Node<'tree>);
+    pub struct DotDotDot<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> DotDotDot<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for DotDotDot<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for DotDotDot<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "..." {
                 Ok(Self(node))
             } else {
@@ -14866,33 +15542,37 @@ pub mod symbols {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for DotDotDot<'tree> {
         const KIND: &'static str = "...";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `..=`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct DotDotEq<'tree>(tree_sitter::Node<'tree>);
+    pub struct DotDotEq<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> DotDotEq<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for DotDotEq<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for DotDotEq<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "..=" {
                 Ok(Self(node))
             } else {
@@ -14907,33 +15587,37 @@ pub mod symbols {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for DotDotEq<'tree> {
         const KIND: &'static str = "..=";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `/`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct Div<'tree>(tree_sitter::Node<'tree>);
+    pub struct Div<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> Div<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Div<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Div<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "/" {
                 Ok(Self(node))
             } else {
@@ -14948,33 +15632,37 @@ pub mod symbols {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Div<'tree> {
         const KIND: &'static str = "/";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `/=`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct DivEq<'tree>(tree_sitter::Node<'tree>);
+    pub struct DivEq<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> DivEq<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for DivEq<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for DivEq<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "/=" {
                 Ok(Self(node))
             } else {
@@ -14989,33 +15677,37 @@ pub mod symbols {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for DivEq<'tree> {
         const KIND: &'static str = "/=";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `:`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct Colon<'tree>(tree_sitter::Node<'tree>);
+    pub struct Colon<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> Colon<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Colon<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Colon<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == ":" {
                 Ok(Self(node))
             } else {
@@ -15030,33 +15722,37 @@ pub mod symbols {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Colon<'tree> {
         const KIND: &'static str = ":";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `::`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct ColonColon<'tree>(tree_sitter::Node<'tree>);
+    pub struct ColonColon<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> ColonColon<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ColonColon<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for ColonColon<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "::" {
                 Ok(Self(node))
             } else {
@@ -15071,33 +15767,37 @@ pub mod symbols {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for ColonColon<'tree> {
         const KIND: &'static str = "::";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `;`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct Semicolon<'tree>(tree_sitter::Node<'tree>);
+    pub struct Semicolon<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> Semicolon<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Semicolon<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Semicolon<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == ";" {
                 Ok(Self(node))
             } else {
@@ -15112,33 +15812,37 @@ pub mod symbols {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Semicolon<'tree> {
         const KIND: &'static str = ";";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `<`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct Lt<'tree>(tree_sitter::Node<'tree>);
+    pub struct Lt<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> Lt<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Lt<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Lt<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "<" {
                 Ok(Self(node))
             } else {
@@ -15153,33 +15857,37 @@ pub mod symbols {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Lt<'tree> {
         const KIND: &'static str = "<";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `<<`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct LtLt<'tree>(tree_sitter::Node<'tree>);
+    pub struct LtLt<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> LtLt<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for LtLt<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for LtLt<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "<<" {
                 Ok(Self(node))
             } else {
@@ -15194,33 +15902,37 @@ pub mod symbols {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for LtLt<'tree> {
         const KIND: &'static str = "<<";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `<<=`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct LtLtEq<'tree>(tree_sitter::Node<'tree>);
+    pub struct LtLtEq<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> LtLtEq<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for LtLtEq<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for LtLtEq<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "<<=" {
                 Ok(Self(node))
             } else {
@@ -15235,33 +15947,37 @@ pub mod symbols {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for LtLtEq<'tree> {
         const KIND: &'static str = "<<=";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `<=`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct LtEq<'tree>(tree_sitter::Node<'tree>);
+    pub struct LtEq<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> LtEq<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for LtEq<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for LtEq<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "<=" {
                 Ok(Self(node))
             } else {
@@ -15276,33 +15992,37 @@ pub mod symbols {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for LtEq<'tree> {
         const KIND: &'static str = "<=";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `=`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct Eq<'tree>(tree_sitter::Node<'tree>);
+    pub struct Eq<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> Eq<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Eq<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Eq<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "=" {
                 Ok(Self(node))
             } else {
@@ -15317,33 +16037,37 @@ pub mod symbols {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Eq<'tree> {
         const KIND: &'static str = "=";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `==`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct EqEq<'tree>(tree_sitter::Node<'tree>);
+    pub struct EqEq<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> EqEq<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for EqEq<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for EqEq<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "==" {
                 Ok(Self(node))
             } else {
@@ -15358,33 +16082,37 @@ pub mod symbols {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for EqEq<'tree> {
         const KIND: &'static str = "==";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `=>`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct EqGt<'tree>(tree_sitter::Node<'tree>);
+    pub struct EqGt<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> EqGt<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for EqGt<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for EqGt<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "=>" {
                 Ok(Self(node))
             } else {
@@ -15399,33 +16127,37 @@ pub mod symbols {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for EqGt<'tree> {
         const KIND: &'static str = "=>";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `>`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct Gt<'tree>(tree_sitter::Node<'tree>);
+    pub struct Gt<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> Gt<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Gt<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Gt<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == ">" {
                 Ok(Self(node))
             } else {
@@ -15440,33 +16172,37 @@ pub mod symbols {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Gt<'tree> {
         const KIND: &'static str = ">";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `>=`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct GtEq<'tree>(tree_sitter::Node<'tree>);
+    pub struct GtEq<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> GtEq<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for GtEq<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for GtEq<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == ">=" {
                 Ok(Self(node))
             } else {
@@ -15481,33 +16217,37 @@ pub mod symbols {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for GtEq<'tree> {
         const KIND: &'static str = ">=";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `>>`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct GtGt<'tree>(tree_sitter::Node<'tree>);
+    pub struct GtGt<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> GtGt<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for GtGt<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for GtGt<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == ">>" {
                 Ok(Self(node))
             } else {
@@ -15522,33 +16262,37 @@ pub mod symbols {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for GtGt<'tree> {
         const KIND: &'static str = ">>";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `>>=`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct GtGtEq<'tree>(tree_sitter::Node<'tree>);
+    pub struct GtGtEq<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> GtGtEq<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for GtGtEq<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for GtGtEq<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == ">>=" {
                 Ok(Self(node))
             } else {
@@ -15563,33 +16307,37 @@ pub mod symbols {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for GtGtEq<'tree> {
         const KIND: &'static str = ">>=";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `?`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct Question<'tree>(tree_sitter::Node<'tree>);
+    pub struct Question<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> Question<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Question<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Question<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "?" {
                 Ok(Self(node))
             } else {
@@ -15604,33 +16352,37 @@ pub mod symbols {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Question<'tree> {
         const KIND: &'static str = "?";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `@`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct At<'tree>(tree_sitter::Node<'tree>);
+    pub struct At<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> At<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for At<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for At<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "@" {
                 Ok(Self(node))
             } else {
@@ -15645,33 +16397,37 @@ pub mod symbols {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for At<'tree> {
         const KIND: &'static str = "@";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `[`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct LBracket<'tree>(tree_sitter::Node<'tree>);
+    pub struct LBracket<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> LBracket<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for LBracket<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for LBracket<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "[" {
                 Ok(Self(node))
             } else {
@@ -15686,33 +16442,37 @@ pub mod symbols {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for LBracket<'tree> {
         const KIND: &'static str = "[";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `]`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct RBracket<'tree>(tree_sitter::Node<'tree>);
+    pub struct RBracket<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> RBracket<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for RBracket<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for RBracket<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "]" {
                 Ok(Self(node))
             } else {
@@ -15727,33 +16487,37 @@ pub mod symbols {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for RBracket<'tree> {
         const KIND: &'static str = "]";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `^`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct BitXor<'tree>(tree_sitter::Node<'tree>);
+    pub struct BitXor<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> BitXor<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for BitXor<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for BitXor<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "^" {
                 Ok(Self(node))
             } else {
@@ -15768,33 +16532,37 @@ pub mod symbols {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for BitXor<'tree> {
         const KIND: &'static str = "^";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `^=`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct BitXorEq<'tree>(tree_sitter::Node<'tree>);
+    pub struct BitXorEq<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> BitXorEq<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for BitXorEq<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for BitXorEq<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "^=" {
                 Ok(Self(node))
             } else {
@@ -15809,33 +16577,37 @@ pub mod symbols {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for BitXorEq<'tree> {
         const KIND: &'static str = "^=";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `_`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct __<'tree>(tree_sitter::Node<'tree>);
+    pub struct __<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> __<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for __<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for __<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "_" {
                 Ok(Self(node))
             } else {
@@ -15850,33 +16622,37 @@ pub mod symbols {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for __<'tree> {
         const KIND: &'static str = "_";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `macro_rules!`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct MacroRulesNot<'tree>(tree_sitter::Node<'tree>);
+    pub struct MacroRulesNot<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> MacroRulesNot<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for MacroRulesNot<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for MacroRulesNot<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "macro_rules!" {
                 Ok(Self(node))
             } else {
@@ -15891,33 +16667,37 @@ pub mod symbols {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for MacroRulesNot<'tree> {
         const KIND: &'static str = "macro_rules!";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `{`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct LBrace<'tree>(tree_sitter::Node<'tree>);
+    pub struct LBrace<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> LBrace<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for LBrace<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for LBrace<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "{" {
                 Ok(Self(node))
             } else {
@@ -15932,33 +16712,37 @@ pub mod symbols {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for LBrace<'tree> {
         const KIND: &'static str = "{";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `|`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct Or<'tree>(tree_sitter::Node<'tree>);
+    pub struct Or<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> Or<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Or<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Or<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "|" {
                 Ok(Self(node))
             } else {
@@ -15973,33 +16757,37 @@ pub mod symbols {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Or<'tree> {
         const KIND: &'static str = "|";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `|=`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct OrEq<'tree>(tree_sitter::Node<'tree>);
+    pub struct OrEq<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> OrEq<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for OrEq<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for OrEq<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "|=" {
                 Ok(Self(node))
             } else {
@@ -16014,33 +16802,37 @@ pub mod symbols {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for OrEq<'tree> {
         const KIND: &'static str = "|=";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `||`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct OrOr<'tree>(tree_sitter::Node<'tree>);
+    pub struct OrOr<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> OrOr<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for OrOr<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for OrOr<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "||" {
                 Ok(Self(node))
             } else {
@@ -16055,33 +16847,37 @@ pub mod symbols {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for OrOr<'tree> {
         const KIND: &'static str = "||";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
     #[doc = "Typed node `}`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct RBrace<'tree>(tree_sitter::Node<'tree>);
+    pub struct RBrace<'tree>(type_sitter_lib::tree_sitter_wrapper::Node<'tree>);
     #[automatically_derived]
     impl<'tree> RBrace<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for RBrace<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for RBrace<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if node.kind() == "}" {
                 Ok(Self(node))
             } else {
@@ -16096,19 +16892,21 @@ pub mod symbols {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for RBrace<'tree> {
         const KIND: &'static str = "}";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &self.0
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             &mut self.0
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(node: tree_sitter::Node<'tree>) -> Self {
+        unsafe fn from_node_unchecked(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Self {
             Self(node)
         }
     }
@@ -16165,12 +16963,14 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>>
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
         for FunctionType_GenericType_ScopedTypeIdentifier_TypeIdentifier<'tree>
     {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             match node.kind() {
                 "function_type" => Ok(unsafe {
                     Self :: FunctionType (< FunctionType < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node))
@@ -16200,7 +17000,7 @@ pub mod anon_unions {
         const KIND: &'static str =
             "{function_type | generic_type | scoped_type_identifier | type_identifier}";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::FunctionType(x) => x.node(),
                 Self::GenericType(x) => x.node(),
@@ -16209,7 +17009,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::FunctionType(x) => x.node_mut(),
                 Self::GenericType(x) => x.node_mut(),
@@ -16218,7 +17018,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::FunctionType(x) => x.into_node(),
                 Self::GenericType(x) => x.into_node(),
@@ -16256,10 +17056,14 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Expression_AttributeItem<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+        for Expression_AttributeItem<'tree>
+    {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if let Ok(this) = <Expression<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::Expression(this));
             }
@@ -16276,21 +17080,21 @@ pub mod anon_unions {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Expression_AttributeItem<'tree> {
         const KIND: &'static str = "{_expression | attribute_item}";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::Expression(x) => x.node(),
                 Self::AttributeItem(x) => x.node(),
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::Expression(x) => x.node_mut(),
                 Self::AttributeItem(x) => x.node_mut(),
             }
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::Expression(x) => x.into_node(),
                 Self::AttributeItem(x) => x.into_node(),
@@ -16386,12 +17190,14 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>>
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
         for Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super_TokenTree_Expression<'tree>
     {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if let Ok(this) = <Crate<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::Crate(this));
             }
@@ -16428,7 +17234,7 @@ pub mod anon_unions {
     {
         const KIND : & 'static str = "{crate | identifier | metavariable | scoped_identifier | self | super | token_tree | _expression}" ;
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::Crate(x) => x.node(),
                 Self::Identifier(x) => x.node(),
@@ -16441,7 +17247,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::Crate(x) => x.node_mut(),
                 Self::Identifier(x) => x.node_mut(),
@@ -16454,7 +17260,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::Crate(x) => x.into_node(),
                 Self::Identifier(x) => x.into_node(),
@@ -16660,14 +17466,16 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>>
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
         for NotEq_Mod_And_AndAnd_Mul_Add_Sub_Div_Lt_LtLt_LtEq_EqEq_Gt_GtEq_GtGt_BitXor_Or_OrOr<
             'tree,
         >
     {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             match node.kind() {
                 "!=" => Ok(unsafe {
                     Self::NotEq(<symbols::NotEq<'tree> as type_sitter_lib::TypedNode<
@@ -16757,7 +17565,7 @@ pub mod anon_unions {
         const KIND: &'static str =
             "{!= | % | & | && | * | + | - | / | < | << | <= | == | > | >= | >> | ^ | | | ||}";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::NotEq(x) => x.node(),
                 Self::Mod(x) => x.node(),
@@ -16780,7 +17588,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::NotEq(x) => x.node_mut(),
                 Self::Mod(x) => x.node_mut(),
@@ -16803,7 +17611,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::NotEq(x) => x.into_node(),
                 Self::Mod(x) => x.into_node(),
@@ -16865,12 +17673,14 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>>
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
         for DeclarationStatement_Expression_ExpressionStatement<'tree>
     {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if let Ok(this) = <DeclarationStatement<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::DeclarationStatement(this));
             }
@@ -16892,7 +17702,7 @@ pub mod anon_unions {
     {
         const KIND: &'static str = "{_declaration_statement | _expression | expression_statement}";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::DeclarationStatement(x) => x.node(),
                 Self::Expression(x) => x.node(),
@@ -16900,7 +17710,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::DeclarationStatement(x) => x.node_mut(),
                 Self::Expression(x) => x.node_mut(),
@@ -16908,7 +17718,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::DeclarationStatement(x) => x.into_node(),
                 Self::Expression(x) => x.into_node(),
@@ -16945,10 +17755,12 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Type_Lifetime<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Type_Lifetime<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if let Ok(this) = <Type<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::Type(this));
             }
@@ -16965,21 +17777,21 @@ pub mod anon_unions {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Type_Lifetime<'tree> {
         const KIND: &'static str = "{_type | lifetime}";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::Type(x) => x.node(),
                 Self::Lifetime(x) => x.node(),
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::Type(x) => x.node_mut(),
                 Self::Lifetime(x) => x.node_mut(),
             }
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::Type(x) => x.into_node(),
                 Self::Lifetime(x) => x.into_node(),
@@ -17015,10 +17827,14 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Type_QualifiedType<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+        for Type_QualifiedType<'tree>
+    {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if let Ok(this) = <Type<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::Type(this));
             }
@@ -17035,21 +17851,21 @@ pub mod anon_unions {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Type_QualifiedType<'tree> {
         const KIND: &'static str = "{_type | qualified_type}";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::Type(x) => x.node(),
                 Self::QualifiedType(x) => x.node(),
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::Type(x) => x.node_mut(),
                 Self::QualifiedType(x) => x.node_mut(),
             }
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::Type(x) => x.into_node(),
                 Self::QualifiedType(x) => x.into_node(),
@@ -17085,10 +17901,14 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Expression_LoopLabel<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+        for Expression_LoopLabel<'tree>
+    {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if let Ok(this) = <Expression<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::Expression(this));
             }
@@ -17105,21 +17925,21 @@ pub mod anon_unions {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Expression_LoopLabel<'tree> {
         const KIND: &'static str = "{_expression | loop_label}";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::Expression(x) => x.node(),
                 Self::LoopLabel(x) => x.node(),
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::Expression(x) => x.node_mut(),
                 Self::LoopLabel(x) => x.node_mut(),
             }
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::Expression(x) => x.into_node(),
                 Self::LoopLabel(x) => x.into_node(),
@@ -17173,9 +17993,9 @@ pub mod anon_unions {
     #[automatically_derived]
     impl < 'tree > Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier__Self_StructExpression_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression < 'tree > { # [doc = "Returns the node if it is of kind `_literal` ([Literal]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn literal (self) -> Option < Literal < 'tree > > { match self { Self :: Literal (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `array_expression` ([ArrayExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn array_expression (self) -> Option < ArrayExpression < 'tree > > { match self { Self :: ArrayExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `assignment_expression` ([AssignmentExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn assignment_expression (self) -> Option < AssignmentExpression < 'tree > > { match self { Self :: AssignmentExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `async_block` ([AsyncBlock]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn async_block (self) -> Option < AsyncBlock < 'tree > > { match self { Self :: AsyncBlock (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `await_expression` ([AwaitExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn await_expression (self) -> Option < AwaitExpression < 'tree > > { match self { Self :: AwaitExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `binary_expression` ([BinaryExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn binary_expression (self) -> Option < BinaryExpression < 'tree > > { match self { Self :: BinaryExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `block` ([Block]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn block (self) -> Option < Block < 'tree > > { match self { Self :: Block (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `break_expression` ([BreakExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn break_expression (self) -> Option < BreakExpression < 'tree > > { match self { Self :: BreakExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `call_expression` ([CallExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn call_expression (self) -> Option < CallExpression < 'tree > > { match self { Self :: CallExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `closure_expression` ([ClosureExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn closure_expression (self) -> Option < ClosureExpression < 'tree > > { match self { Self :: ClosureExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `compound_assignment_expr` ([CompoundAssignmentExpr]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn compound_assignment_expr (self) -> Option < CompoundAssignmentExpr < 'tree > > { match self { Self :: CompoundAssignmentExpr (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `const_block` ([ConstBlock]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn const_block (self) -> Option < ConstBlock < 'tree > > { match self { Self :: ConstBlock (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `continue_expression` ([ContinueExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn continue_expression (self) -> Option < ContinueExpression < 'tree > > { match self { Self :: ContinueExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `field_expression` ([FieldExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn field_expression (self) -> Option < FieldExpression < 'tree > > { match self { Self :: FieldExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `for_expression` ([ForExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn for_expression (self) -> Option < ForExpression < 'tree > > { match self { Self :: ForExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `generic_function` ([GenericFunction]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn generic_function (self) -> Option < GenericFunction < 'tree > > { match self { Self :: GenericFunction (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `identifier` ([Identifier]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn identifier (self) -> Option < Identifier < 'tree > > { match self { Self :: Identifier (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `if_expression` ([IfExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn if_expression (self) -> Option < IfExpression < 'tree > > { match self { Self :: IfExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `index_expression` ([IndexExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn index_expression (self) -> Option < IndexExpression < 'tree > > { match self { Self :: IndexExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `loop_expression` ([LoopExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn loop_expression (self) -> Option < LoopExpression < 'tree > > { match self { Self :: LoopExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `macro_invocation` ([MacroInvocation]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn macro_invocation (self) -> Option < MacroInvocation < 'tree > > { match self { Self :: MacroInvocation (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `match_expression` ([MatchExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn match_expression (self) -> Option < MatchExpression < 'tree > > { match self { Self :: MatchExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `metavariable` ([Metavariable]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn metavariable (self) -> Option < Metavariable < 'tree > > { match self { Self :: Metavariable (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `parenthesized_expression` ([ParenthesizedExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn parenthesized_expression (self) -> Option < ParenthesizedExpression < 'tree > > { match self { Self :: ParenthesizedExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `reference_expression` ([ReferenceExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn reference_expression (self) -> Option < ReferenceExpression < 'tree > > { match self { Self :: ReferenceExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `return_expression` ([ReturnExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn return_expression (self) -> Option < ReturnExpression < 'tree > > { match self { Self :: ReturnExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `scoped_identifier` ([ScopedIdentifier]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn scoped_identifier (self) -> Option < ScopedIdentifier < 'tree > > { match self { Self :: ScopedIdentifier (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `self` ([_Self]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn _self (self) -> Option < _Self < 'tree > > { match self { Self :: _Self (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `struct_expression` ([StructExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn struct_expression (self) -> Option < StructExpression < 'tree > > { match self { Self :: StructExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `try_expression` ([TryExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn try_expression (self) -> Option < TryExpression < 'tree > > { match self { Self :: TryExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `tuple_expression` ([TupleExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn tuple_expression (self) -> Option < TupleExpression < 'tree > > { match self { Self :: TupleExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `type_cast_expression` ([TypeCastExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn type_cast_expression (self) -> Option < TypeCastExpression < 'tree > > { match self { Self :: TypeCastExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `unary_expression` ([UnaryExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn unary_expression (self) -> Option < UnaryExpression < 'tree > > { match self { Self :: UnaryExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `unit_expression` ([UnitExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn unit_expression (self) -> Option < UnitExpression < 'tree > > { match self { Self :: UnitExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `unsafe_block` ([UnsafeBlock]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn unsafe_block (self) -> Option < UnsafeBlock < 'tree > > { match self { Self :: UnsafeBlock (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `while_expression` ([WhileExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn while_expression (self) -> Option < WhileExpression < 'tree > > { match self { Self :: WhileExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `yield_expression` ([YieldExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn yield_expression (self) -> Option < YieldExpression < 'tree > > { match self { Self :: YieldExpression (x) => Some (x) , _ => None , } } }
     #[automatically_derived]
-    impl < 'tree > TryFrom < tree_sitter :: Node < 'tree >> for Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier__Self_StructExpression_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression < 'tree > { type Error = type_sitter_lib :: IncorrectKind < 'tree > ; # [inline] fn try_from (node : tree_sitter :: Node < 'tree >) -> Result < Self , Self :: Error > { if let Ok (this) = < Literal < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Literal (this)) ; } if let Ok (this) = < ArrayExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: ArrayExpression (this)) ; } if let Ok (this) = < AssignmentExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: AssignmentExpression (this)) ; } if let Ok (this) = < AsyncBlock < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: AsyncBlock (this)) ; } if let Ok (this) = < AwaitExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: AwaitExpression (this)) ; } if let Ok (this) = < BinaryExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: BinaryExpression (this)) ; } if let Ok (this) = < Block < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Block (this)) ; } if let Ok (this) = < BreakExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: BreakExpression (this)) ; } if let Ok (this) = < CallExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: CallExpression (this)) ; } if let Ok (this) = < ClosureExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: ClosureExpression (this)) ; } if let Ok (this) = < CompoundAssignmentExpr < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: CompoundAssignmentExpr (this)) ; } if let Ok (this) = < ConstBlock < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: ConstBlock (this)) ; } if let Ok (this) = < ContinueExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: ContinueExpression (this)) ; } if let Ok (this) = < FieldExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: FieldExpression (this)) ; } if let Ok (this) = < ForExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: ForExpression (this)) ; } if let Ok (this) = < GenericFunction < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: GenericFunction (this)) ; } if let Ok (this) = < Identifier < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Identifier (this)) ; } if let Ok (this) = < IfExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: IfExpression (this)) ; } if let Ok (this) = < IndexExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: IndexExpression (this)) ; } if let Ok (this) = < LoopExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: LoopExpression (this)) ; } if let Ok (this) = < MacroInvocation < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: MacroInvocation (this)) ; } if let Ok (this) = < MatchExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: MatchExpression (this)) ; } if let Ok (this) = < Metavariable < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Metavariable (this)) ; } if let Ok (this) = < ParenthesizedExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: ParenthesizedExpression (this)) ; } if let Ok (this) = < ReferenceExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: ReferenceExpression (this)) ; } if let Ok (this) = < ReturnExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: ReturnExpression (this)) ; } if let Ok (this) = < ScopedIdentifier < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: ScopedIdentifier (this)) ; } if let Ok (this) = < _Self < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: _Self (this)) ; } if let Ok (this) = < StructExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: StructExpression (this)) ; } if let Ok (this) = < TryExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: TryExpression (this)) ; } if let Ok (this) = < TupleExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: TupleExpression (this)) ; } if let Ok (this) = < TypeCastExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: TypeCastExpression (this)) ; } if let Ok (this) = < UnaryExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: UnaryExpression (this)) ; } if let Ok (this) = < UnitExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: UnitExpression (this)) ; } if let Ok (this) = < UnsafeBlock < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: UnsafeBlock (this)) ; } if let Ok (this) = < WhileExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: WhileExpression (this)) ; } if let Ok (this) = < YieldExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: YieldExpression (this)) ; } Err (type_sitter_lib :: IncorrectKind { node , kind : < Self as type_sitter_lib :: TypedNode < 'tree >> :: KIND , }) } }
+    impl < 'tree > TryFrom < type_sitter_lib :: tree_sitter_wrapper :: Node < 'tree >> for Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier__Self_StructExpression_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression < 'tree > { type Error = type_sitter_lib :: IncorrectKind < 'tree > ; # [inline] fn try_from (node : type_sitter_lib :: tree_sitter_wrapper :: Node < 'tree >) -> Result < Self , Self :: Error > { if let Ok (this) = < Literal < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Literal (this)) ; } if let Ok (this) = < ArrayExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: ArrayExpression (this)) ; } if let Ok (this) = < AssignmentExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: AssignmentExpression (this)) ; } if let Ok (this) = < AsyncBlock < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: AsyncBlock (this)) ; } if let Ok (this) = < AwaitExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: AwaitExpression (this)) ; } if let Ok (this) = < BinaryExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: BinaryExpression (this)) ; } if let Ok (this) = < Block < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Block (this)) ; } if let Ok (this) = < BreakExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: BreakExpression (this)) ; } if let Ok (this) = < CallExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: CallExpression (this)) ; } if let Ok (this) = < ClosureExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: ClosureExpression (this)) ; } if let Ok (this) = < CompoundAssignmentExpr < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: CompoundAssignmentExpr (this)) ; } if let Ok (this) = < ConstBlock < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: ConstBlock (this)) ; } if let Ok (this) = < ContinueExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: ContinueExpression (this)) ; } if let Ok (this) = < FieldExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: FieldExpression (this)) ; } if let Ok (this) = < ForExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: ForExpression (this)) ; } if let Ok (this) = < GenericFunction < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: GenericFunction (this)) ; } if let Ok (this) = < Identifier < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Identifier (this)) ; } if let Ok (this) = < IfExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: IfExpression (this)) ; } if let Ok (this) = < IndexExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: IndexExpression (this)) ; } if let Ok (this) = < LoopExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: LoopExpression (this)) ; } if let Ok (this) = < MacroInvocation < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: MacroInvocation (this)) ; } if let Ok (this) = < MatchExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: MatchExpression (this)) ; } if let Ok (this) = < Metavariable < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Metavariable (this)) ; } if let Ok (this) = < ParenthesizedExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: ParenthesizedExpression (this)) ; } if let Ok (this) = < ReferenceExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: ReferenceExpression (this)) ; } if let Ok (this) = < ReturnExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: ReturnExpression (this)) ; } if let Ok (this) = < ScopedIdentifier < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: ScopedIdentifier (this)) ; } if let Ok (this) = < _Self < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: _Self (this)) ; } if let Ok (this) = < StructExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: StructExpression (this)) ; } if let Ok (this) = < TryExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: TryExpression (this)) ; } if let Ok (this) = < TupleExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: TupleExpression (this)) ; } if let Ok (this) = < TypeCastExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: TypeCastExpression (this)) ; } if let Ok (this) = < UnaryExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: UnaryExpression (this)) ; } if let Ok (this) = < UnitExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: UnitExpression (this)) ; } if let Ok (this) = < UnsafeBlock < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: UnsafeBlock (this)) ; } if let Ok (this) = < WhileExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: WhileExpression (this)) ; } if let Ok (this) = < YieldExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: YieldExpression (this)) ; } Err (type_sitter_lib :: IncorrectKind { node , kind : < Self as type_sitter_lib :: TypedNode < 'tree >> :: KIND , }) } }
     #[automatically_derived]
-    impl < 'tree > type_sitter_lib :: TypedNode < 'tree > for Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier__Self_StructExpression_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression < 'tree > { const KIND : & 'static str = "{_literal | array_expression | assignment_expression | async_block | await_expression | binary_expression | block | break_expression | call_expression | closure_expression | compound_assignment_expr | const_block | continue_expression | field_expression | for_expression | generic_function | identifier | if_expression | index_expression | loop_expression | macro_invocation | match_expression | metavariable | parenthesized_expression | reference_expression | return_expression | scoped_identifier | self | struct_expression | try_expression | tuple_expression | type_cast_expression | unary_expression | unit_expression | unsafe_block | while_expression | yield_expression}" ; # [inline] fn node (& self) -> & tree_sitter :: Node < 'tree > { match self { Self :: Literal (x) => x . node () , Self :: ArrayExpression (x) => x . node () , Self :: AssignmentExpression (x) => x . node () , Self :: AsyncBlock (x) => x . node () , Self :: AwaitExpression (x) => x . node () , Self :: BinaryExpression (x) => x . node () , Self :: Block (x) => x . node () , Self :: BreakExpression (x) => x . node () , Self :: CallExpression (x) => x . node () , Self :: ClosureExpression (x) => x . node () , Self :: CompoundAssignmentExpr (x) => x . node () , Self :: ConstBlock (x) => x . node () , Self :: ContinueExpression (x) => x . node () , Self :: FieldExpression (x) => x . node () , Self :: ForExpression (x) => x . node () , Self :: GenericFunction (x) => x . node () , Self :: Identifier (x) => x . node () , Self :: IfExpression (x) => x . node () , Self :: IndexExpression (x) => x . node () , Self :: LoopExpression (x) => x . node () , Self :: MacroInvocation (x) => x . node () , Self :: MatchExpression (x) => x . node () , Self :: Metavariable (x) => x . node () , Self :: ParenthesizedExpression (x) => x . node () , Self :: ReferenceExpression (x) => x . node () , Self :: ReturnExpression (x) => x . node () , Self :: ScopedIdentifier (x) => x . node () , Self :: _Self (x) => x . node () , Self :: StructExpression (x) => x . node () , Self :: TryExpression (x) => x . node () , Self :: TupleExpression (x) => x . node () , Self :: TypeCastExpression (x) => x . node () , Self :: UnaryExpression (x) => x . node () , Self :: UnitExpression (x) => x . node () , Self :: UnsafeBlock (x) => x . node () , Self :: WhileExpression (x) => x . node () , Self :: YieldExpression (x) => x . node () , } } # [inline] fn node_mut (& mut self) -> & mut tree_sitter :: Node < 'tree > { match self { Self :: Literal (x) => x . node_mut () , Self :: ArrayExpression (x) => x . node_mut () , Self :: AssignmentExpression (x) => x . node_mut () , Self :: AsyncBlock (x) => x . node_mut () , Self :: AwaitExpression (x) => x . node_mut () , Self :: BinaryExpression (x) => x . node_mut () , Self :: Block (x) => x . node_mut () , Self :: BreakExpression (x) => x . node_mut () , Self :: CallExpression (x) => x . node_mut () , Self :: ClosureExpression (x) => x . node_mut () , Self :: CompoundAssignmentExpr (x) => x . node_mut () , Self :: ConstBlock (x) => x . node_mut () , Self :: ContinueExpression (x) => x . node_mut () , Self :: FieldExpression (x) => x . node_mut () , Self :: ForExpression (x) => x . node_mut () , Self :: GenericFunction (x) => x . node_mut () , Self :: Identifier (x) => x . node_mut () , Self :: IfExpression (x) => x . node_mut () , Self :: IndexExpression (x) => x . node_mut () , Self :: LoopExpression (x) => x . node_mut () , Self :: MacroInvocation (x) => x . node_mut () , Self :: MatchExpression (x) => x . node_mut () , Self :: Metavariable (x) => x . node_mut () , Self :: ParenthesizedExpression (x) => x . node_mut () , Self :: ReferenceExpression (x) => x . node_mut () , Self :: ReturnExpression (x) => x . node_mut () , Self :: ScopedIdentifier (x) => x . node_mut () , Self :: _Self (x) => x . node_mut () , Self :: StructExpression (x) => x . node_mut () , Self :: TryExpression (x) => x . node_mut () , Self :: TupleExpression (x) => x . node_mut () , Self :: TypeCastExpression (x) => x . node_mut () , Self :: UnaryExpression (x) => x . node_mut () , Self :: UnitExpression (x) => x . node_mut () , Self :: UnsafeBlock (x) => x . node_mut () , Self :: WhileExpression (x) => x . node_mut () , Self :: YieldExpression (x) => x . node_mut () , } } # [inline] fn into_node (self) -> tree_sitter :: Node < 'tree > { match self { Self :: Literal (x) => x . into_node () , Self :: ArrayExpression (x) => x . into_node () , Self :: AssignmentExpression (x) => x . into_node () , Self :: AsyncBlock (x) => x . into_node () , Self :: AwaitExpression (x) => x . into_node () , Self :: BinaryExpression (x) => x . into_node () , Self :: Block (x) => x . into_node () , Self :: BreakExpression (x) => x . into_node () , Self :: CallExpression (x) => x . into_node () , Self :: ClosureExpression (x) => x . into_node () , Self :: CompoundAssignmentExpr (x) => x . into_node () , Self :: ConstBlock (x) => x . into_node () , Self :: ContinueExpression (x) => x . into_node () , Self :: FieldExpression (x) => x . into_node () , Self :: ForExpression (x) => x . into_node () , Self :: GenericFunction (x) => x . into_node () , Self :: Identifier (x) => x . into_node () , Self :: IfExpression (x) => x . into_node () , Self :: IndexExpression (x) => x . into_node () , Self :: LoopExpression (x) => x . into_node () , Self :: MacroInvocation (x) => x . into_node () , Self :: MatchExpression (x) => x . into_node () , Self :: Metavariable (x) => x . into_node () , Self :: ParenthesizedExpression (x) => x . into_node () , Self :: ReferenceExpression (x) => x . into_node () , Self :: ReturnExpression (x) => x . into_node () , Self :: ScopedIdentifier (x) => x . into_node () , Self :: _Self (x) => x . into_node () , Self :: StructExpression (x) => x . into_node () , Self :: TryExpression (x) => x . into_node () , Self :: TupleExpression (x) => x . into_node () , Self :: TypeCastExpression (x) => x . into_node () , Self :: UnaryExpression (x) => x . into_node () , Self :: UnitExpression (x) => x . into_node () , Self :: UnsafeBlock (x) => x . into_node () , Self :: WhileExpression (x) => x . into_node () , Self :: YieldExpression (x) => x . into_node () , } } }
+    impl < 'tree > type_sitter_lib :: TypedNode < 'tree > for Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier__Self_StructExpression_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression < 'tree > { const KIND : & 'static str = "{_literal | array_expression | assignment_expression | async_block | await_expression | binary_expression | block | break_expression | call_expression | closure_expression | compound_assignment_expr | const_block | continue_expression | field_expression | for_expression | generic_function | identifier | if_expression | index_expression | loop_expression | macro_invocation | match_expression | metavariable | parenthesized_expression | reference_expression | return_expression | scoped_identifier | self | struct_expression | try_expression | tuple_expression | type_cast_expression | unary_expression | unit_expression | unsafe_block | while_expression | yield_expression}" ; # [inline] fn node (& self) -> & type_sitter_lib :: tree_sitter_wrapper :: Node < 'tree > { match self { Self :: Literal (x) => x . node () , Self :: ArrayExpression (x) => x . node () , Self :: AssignmentExpression (x) => x . node () , Self :: AsyncBlock (x) => x . node () , Self :: AwaitExpression (x) => x . node () , Self :: BinaryExpression (x) => x . node () , Self :: Block (x) => x . node () , Self :: BreakExpression (x) => x . node () , Self :: CallExpression (x) => x . node () , Self :: ClosureExpression (x) => x . node () , Self :: CompoundAssignmentExpr (x) => x . node () , Self :: ConstBlock (x) => x . node () , Self :: ContinueExpression (x) => x . node () , Self :: FieldExpression (x) => x . node () , Self :: ForExpression (x) => x . node () , Self :: GenericFunction (x) => x . node () , Self :: Identifier (x) => x . node () , Self :: IfExpression (x) => x . node () , Self :: IndexExpression (x) => x . node () , Self :: LoopExpression (x) => x . node () , Self :: MacroInvocation (x) => x . node () , Self :: MatchExpression (x) => x . node () , Self :: Metavariable (x) => x . node () , Self :: ParenthesizedExpression (x) => x . node () , Self :: ReferenceExpression (x) => x . node () , Self :: ReturnExpression (x) => x . node () , Self :: ScopedIdentifier (x) => x . node () , Self :: _Self (x) => x . node () , Self :: StructExpression (x) => x . node () , Self :: TryExpression (x) => x . node () , Self :: TupleExpression (x) => x . node () , Self :: TypeCastExpression (x) => x . node () , Self :: UnaryExpression (x) => x . node () , Self :: UnitExpression (x) => x . node () , Self :: UnsafeBlock (x) => x . node () , Self :: WhileExpression (x) => x . node () , Self :: YieldExpression (x) => x . node () , } } # [inline] fn node_mut (& mut self) -> & mut type_sitter_lib :: tree_sitter_wrapper :: Node < 'tree > { match self { Self :: Literal (x) => x . node_mut () , Self :: ArrayExpression (x) => x . node_mut () , Self :: AssignmentExpression (x) => x . node_mut () , Self :: AsyncBlock (x) => x . node_mut () , Self :: AwaitExpression (x) => x . node_mut () , Self :: BinaryExpression (x) => x . node_mut () , Self :: Block (x) => x . node_mut () , Self :: BreakExpression (x) => x . node_mut () , Self :: CallExpression (x) => x . node_mut () , Self :: ClosureExpression (x) => x . node_mut () , Self :: CompoundAssignmentExpr (x) => x . node_mut () , Self :: ConstBlock (x) => x . node_mut () , Self :: ContinueExpression (x) => x . node_mut () , Self :: FieldExpression (x) => x . node_mut () , Self :: ForExpression (x) => x . node_mut () , Self :: GenericFunction (x) => x . node_mut () , Self :: Identifier (x) => x . node_mut () , Self :: IfExpression (x) => x . node_mut () , Self :: IndexExpression (x) => x . node_mut () , Self :: LoopExpression (x) => x . node_mut () , Self :: MacroInvocation (x) => x . node_mut () , Self :: MatchExpression (x) => x . node_mut () , Self :: Metavariable (x) => x . node_mut () , Self :: ParenthesizedExpression (x) => x . node_mut () , Self :: ReferenceExpression (x) => x . node_mut () , Self :: ReturnExpression (x) => x . node_mut () , Self :: ScopedIdentifier (x) => x . node_mut () , Self :: _Self (x) => x . node_mut () , Self :: StructExpression (x) => x . node_mut () , Self :: TryExpression (x) => x . node_mut () , Self :: TupleExpression (x) => x . node_mut () , Self :: TypeCastExpression (x) => x . node_mut () , Self :: UnaryExpression (x) => x . node_mut () , Self :: UnitExpression (x) => x . node_mut () , Self :: UnsafeBlock (x) => x . node_mut () , Self :: WhileExpression (x) => x . node_mut () , Self :: YieldExpression (x) => x . node_mut () , } } # [inline] fn into_node (self) -> type_sitter_lib :: tree_sitter_wrapper :: Node < 'tree > { match self { Self :: Literal (x) => x . into_node () , Self :: ArrayExpression (x) => x . into_node () , Self :: AssignmentExpression (x) => x . into_node () , Self :: AsyncBlock (x) => x . into_node () , Self :: AwaitExpression (x) => x . into_node () , Self :: BinaryExpression (x) => x . into_node () , Self :: Block (x) => x . into_node () , Self :: BreakExpression (x) => x . into_node () , Self :: CallExpression (x) => x . into_node () , Self :: ClosureExpression (x) => x . into_node () , Self :: CompoundAssignmentExpr (x) => x . into_node () , Self :: ConstBlock (x) => x . into_node () , Self :: ContinueExpression (x) => x . into_node () , Self :: FieldExpression (x) => x . into_node () , Self :: ForExpression (x) => x . into_node () , Self :: GenericFunction (x) => x . into_node () , Self :: Identifier (x) => x . into_node () , Self :: IfExpression (x) => x . into_node () , Self :: IndexExpression (x) => x . into_node () , Self :: LoopExpression (x) => x . into_node () , Self :: MacroInvocation (x) => x . into_node () , Self :: MatchExpression (x) => x . into_node () , Self :: Metavariable (x) => x . into_node () , Self :: ParenthesizedExpression (x) => x . into_node () , Self :: ReferenceExpression (x) => x . into_node () , Self :: ReturnExpression (x) => x . into_node () , Self :: ScopedIdentifier (x) => x . into_node () , Self :: _Self (x) => x . into_node () , Self :: StructExpression (x) => x . into_node () , Self :: TryExpression (x) => x . into_node () , Self :: TupleExpression (x) => x . into_node () , Self :: TypeCastExpression (x) => x . into_node () , Self :: UnaryExpression (x) => x . into_node () , Self :: UnitExpression (x) => x . into_node () , Self :: UnsafeBlock (x) => x . into_node () , Self :: WhileExpression (x) => x . into_node () , Self :: YieldExpression (x) => x . into_node () , } } }
     #[doc = "one of `{_pattern | parameter}`:\n- [Pattern]\n- [Parameter]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
@@ -17205,10 +18025,14 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Pattern_Parameter<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+        for Pattern_Parameter<'tree>
+    {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if let Ok(this) = <Pattern<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::Pattern(this));
             }
@@ -17225,21 +18049,21 @@ pub mod anon_unions {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Pattern_Parameter<'tree> {
         const KIND: &'static str = "{_pattern | parameter}";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::Pattern(x) => x.node(),
                 Self::Parameter(x) => x.node(),
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::Pattern(x) => x.node_mut(),
                 Self::Parameter(x) => x.node_mut(),
             }
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::Pattern(x) => x.into_node(),
                 Self::Parameter(x) => x.into_node(),
@@ -17355,12 +18179,14 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>>
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
         for ModEq_AndEq_MulEq_AddEq_SubEq_DivEq_LtLtEq_GtGtEq_BitXorEq_OrEq<'tree>
     {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             match node.kind() {
                 "%=" => Ok(unsafe {
                     Self::ModEq(<symbols::ModEq<'tree> as type_sitter_lib::TypedNode<
@@ -17425,7 +18251,7 @@ pub mod anon_unions {
     {
         const KIND: &'static str = "{%= | &= | *= | += | -= | /= | <<= | >>= | ^= | |=}";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::ModEq(x) => x.node(),
                 Self::AndEq(x) => x.node(),
@@ -17440,7 +18266,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::ModEq(x) => x.node_mut(),
                 Self::AndEq(x) => x.node_mut(),
@@ -17455,7 +18281,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::ModEq(x) => x.into_node(),
                 Self::AndEq(x) => x.into_node(),
@@ -17519,12 +18345,14 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>>
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
         for VisibilityModifier_Identifier_Type_Expression<'tree>
     {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if let Ok(this) = <VisibilityModifier<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::VisibilityModifier(this));
             }
@@ -17549,7 +18377,7 @@ pub mod anon_unions {
     {
         const KIND: &'static str = "{visibility_modifier | identifier | _type | _expression}";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::VisibilityModifier(x) => x.node(),
                 Self::Identifier(x) => x.node(),
@@ -17558,7 +18386,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::VisibilityModifier(x) => x.node_mut(),
                 Self::Identifier(x) => x.node_mut(),
@@ -17567,7 +18395,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::VisibilityModifier(x) => x.into_node(),
                 Self::Identifier(x) => x.into_node(),
@@ -17605,10 +18433,14 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Lifetime_TypeIdentifier<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+        for Lifetime_TypeIdentifier<'tree>
+    {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             match node.kind() {
                 "lifetime" => {
                     Ok(unsafe {
@@ -17631,21 +18463,21 @@ pub mod anon_unions {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Lifetime_TypeIdentifier<'tree> {
         const KIND: &'static str = "{lifetime | type_identifier}";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::Lifetime(x) => x.node(),
                 Self::TypeIdentifier(x) => x.node(),
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::Lifetime(x) => x.node_mut(),
                 Self::TypeIdentifier(x) => x.node_mut(),
             }
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::Lifetime(x) => x.into_node(),
                 Self::TypeIdentifier(x) => x.into_node(),
@@ -17681,10 +18513,14 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Block_IfExpression<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+        for Block_IfExpression<'tree>
+    {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             match node.kind() {
                 "block" => {
                     Ok(unsafe {
@@ -17705,21 +18541,21 @@ pub mod anon_unions {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Block_IfExpression<'tree> {
         const KIND: &'static str = "{block | if_expression}";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::Block(x) => x.node(),
                 Self::IfExpression(x) => x.node(),
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::Block(x) => x.node_mut(),
                 Self::IfExpression(x) => x.node_mut(),
             }
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::Block(x) => x.into_node(),
                 Self::IfExpression(x) => x.into_node(),
@@ -17785,12 +18621,14 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>>
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
         for VisibilityModifier_WhereClause_EnumVariantList_TypeIdentifier_TypeParameters<'tree>
     {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             match node.kind() {
                 "visibility_modifier" => Ok(unsafe {
                     Self :: VisibilityModifier (< VisibilityModifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node))
@@ -17826,7 +18664,7 @@ pub mod anon_unions {
     {
         const KIND : & 'static str = "{visibility_modifier | where_clause | enum_variant_list | type_identifier | type_parameters}" ;
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::VisibilityModifier(x) => x.node(),
                 Self::WhereClause(x) => x.node(),
@@ -17836,7 +18674,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::VisibilityModifier(x) => x.node_mut(),
                 Self::WhereClause(x) => x.node_mut(),
@@ -17846,7 +18684,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::VisibilityModifier(x) => x.into_node(),
                 Self::WhereClause(x) => x.into_node(),
@@ -17921,9 +18759,9 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl < 'tree > TryFrom < tree_sitter :: Node < 'tree >> for VisibilityModifier_FieldDeclarationList_OrderedFieldDeclarationList_Identifier_Expression < 'tree > { type Error = type_sitter_lib :: IncorrectKind < 'tree > ; # [inline] fn try_from (node : tree_sitter :: Node < 'tree >) -> Result < Self , Self :: Error > { if let Ok (this) = < VisibilityModifier < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: VisibilityModifier (this)) ; } if let Ok (this) = < FieldDeclarationList < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: FieldDeclarationList (this)) ; } if let Ok (this) = < OrderedFieldDeclarationList < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: OrderedFieldDeclarationList (this)) ; } if let Ok (this) = < Identifier < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Identifier (this)) ; } if let Ok (this) = < Expression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Expression (this)) ; } Err (type_sitter_lib :: IncorrectKind { node , kind : < Self as type_sitter_lib :: TypedNode < 'tree >> :: KIND , }) } }
+    impl < 'tree > TryFrom < type_sitter_lib :: tree_sitter_wrapper :: Node < 'tree >> for VisibilityModifier_FieldDeclarationList_OrderedFieldDeclarationList_Identifier_Expression < 'tree > { type Error = type_sitter_lib :: IncorrectKind < 'tree > ; # [inline] fn try_from (node : type_sitter_lib :: tree_sitter_wrapper :: Node < 'tree >) -> Result < Self , Self :: Error > { if let Ok (this) = < VisibilityModifier < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: VisibilityModifier (this)) ; } if let Ok (this) = < FieldDeclarationList < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: FieldDeclarationList (this)) ; } if let Ok (this) = < OrderedFieldDeclarationList < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: OrderedFieldDeclarationList (this)) ; } if let Ok (this) = < Identifier < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Identifier (this)) ; } if let Ok (this) = < Expression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Expression (this)) ; } Err (type_sitter_lib :: IncorrectKind { node , kind : < Self as type_sitter_lib :: TypedNode < 'tree >> :: KIND , }) } }
     #[automatically_derived]
-    impl < 'tree > type_sitter_lib :: TypedNode < 'tree > for VisibilityModifier_FieldDeclarationList_OrderedFieldDeclarationList_Identifier_Expression < 'tree > { const KIND : & 'static str = "{visibility_modifier | field_declaration_list | ordered_field_declaration_list | identifier | _expression}" ; # [inline] fn node (& self) -> & tree_sitter :: Node < 'tree > { match self { Self :: VisibilityModifier (x) => x . node () , Self :: FieldDeclarationList (x) => x . node () , Self :: OrderedFieldDeclarationList (x) => x . node () , Self :: Identifier (x) => x . node () , Self :: Expression (x) => x . node () , } } # [inline] fn node_mut (& mut self) -> & mut tree_sitter :: Node < 'tree > { match self { Self :: VisibilityModifier (x) => x . node_mut () , Self :: FieldDeclarationList (x) => x . node_mut () , Self :: OrderedFieldDeclarationList (x) => x . node_mut () , Self :: Identifier (x) => x . node_mut () , Self :: Expression (x) => x . node_mut () , } } # [inline] fn into_node (self) -> tree_sitter :: Node < 'tree > { match self { Self :: VisibilityModifier (x) => x . into_node () , Self :: FieldDeclarationList (x) => x . into_node () , Self :: OrderedFieldDeclarationList (x) => x . into_node () , Self :: Identifier (x) => x . into_node () , Self :: Expression (x) => x . into_node () , } } }
+    impl < 'tree > type_sitter_lib :: TypedNode < 'tree > for VisibilityModifier_FieldDeclarationList_OrderedFieldDeclarationList_Identifier_Expression < 'tree > { const KIND : & 'static str = "{visibility_modifier | field_declaration_list | ordered_field_declaration_list | identifier | _expression}" ; # [inline] fn node (& self) -> & type_sitter_lib :: tree_sitter_wrapper :: Node < 'tree > { match self { Self :: VisibilityModifier (x) => x . node () , Self :: FieldDeclarationList (x) => x . node () , Self :: OrderedFieldDeclarationList (x) => x . node () , Self :: Identifier (x) => x . node () , Self :: Expression (x) => x . node () , } } # [inline] fn node_mut (& mut self) -> & mut type_sitter_lib :: tree_sitter_wrapper :: Node < 'tree > { match self { Self :: VisibilityModifier (x) => x . node_mut () , Self :: FieldDeclarationList (x) => x . node_mut () , Self :: OrderedFieldDeclarationList (x) => x . node_mut () , Self :: Identifier (x) => x . node_mut () , Self :: Expression (x) => x . node_mut () , } } # [inline] fn into_node (self) -> type_sitter_lib :: tree_sitter_wrapper :: Node < 'tree > { match self { Self :: VisibilityModifier (x) => x . into_node () , Self :: FieldDeclarationList (x) => x . into_node () , Self :: OrderedFieldDeclarationList (x) => x . into_node () , Self :: Identifier (x) => x . into_node () , Self :: Expression (x) => x . into_node () , } } }
     #[doc = "one of `{field_declaration_list | ordered_field_declaration_list}`:\n- [FieldDeclarationList]\n- [OrderedFieldDeclarationList]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
@@ -17953,12 +18791,14 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>>
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
         for FieldDeclarationList_OrderedFieldDeclarationList<'tree>
     {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             match node.kind() {
                 "field_declaration_list" => Ok(unsafe {
                     Self :: FieldDeclarationList (< FieldDeclarationList < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node))
@@ -17979,21 +18819,21 @@ pub mod anon_unions {
     {
         const KIND: &'static str = "{field_declaration_list | ordered_field_declaration_list}";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::FieldDeclarationList(x) => x.node(),
                 Self::OrderedFieldDeclarationList(x) => x.node(),
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::FieldDeclarationList(x) => x.node_mut(),
                 Self::OrderedFieldDeclarationList(x) => x.node_mut(),
             }
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::FieldDeclarationList(x) => x.into_node(),
                 Self::OrderedFieldDeclarationList(x) => x.into_node(),
@@ -18029,10 +18869,14 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for AttributeItem_EnumVariant<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+        for AttributeItem_EnumVariant<'tree>
+    {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             match node.kind() {
                 "attribute_item" => Ok(unsafe {
                     Self::AttributeItem(<AttributeItem<'tree> as type_sitter_lib::TypedNode<
@@ -18053,21 +18897,21 @@ pub mod anon_unions {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for AttributeItem_EnumVariant<'tree> {
         const KIND: &'static str = "{attribute_item | enum_variant}";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::AttributeItem(x) => x.node(),
                 Self::EnumVariant(x) => x.node(),
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::AttributeItem(x) => x.node_mut(),
                 Self::EnumVariant(x) => x.node_mut(),
             }
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::AttributeItem(x) => x.into_node(),
                 Self::EnumVariant(x) => x.into_node(),
@@ -18113,10 +18957,14 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Crate_VisibilityModifier_Identifier<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+        for Crate_VisibilityModifier_Identifier<'tree>
+    {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             match node.kind() {
                 "crate" => {
                     Ok(unsafe {
@@ -18140,7 +18988,7 @@ pub mod anon_unions {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Crate_VisibilityModifier_Identifier<'tree> {
         const KIND: &'static str = "{crate | visibility_modifier | identifier}";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::Crate(x) => x.node(),
                 Self::VisibilityModifier(x) => x.node(),
@@ -18148,7 +18996,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::Crate(x) => x.node_mut(),
                 Self::VisibilityModifier(x) => x.node_mut(),
@@ -18156,7 +19004,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::Crate(x) => x.into_node(),
                 Self::VisibilityModifier(x) => x.into_node(),
@@ -18203,10 +19051,14 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for VisibilityModifier_FieldIdentifier_Type<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+        for VisibilityModifier_FieldIdentifier_Type<'tree>
+    {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if let Ok(this) = <VisibilityModifier<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::VisibilityModifier(this));
             }
@@ -18226,7 +19078,7 @@ pub mod anon_unions {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for VisibilityModifier_FieldIdentifier_Type<'tree> {
         const KIND: &'static str = "{visibility_modifier | field_identifier | _type}";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::VisibilityModifier(x) => x.node(),
                 Self::FieldIdentifier(x) => x.node(),
@@ -18234,7 +19086,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::VisibilityModifier(x) => x.node_mut(),
                 Self::FieldIdentifier(x) => x.node_mut(),
@@ -18242,7 +19094,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::VisibilityModifier(x) => x.into_node(),
                 Self::FieldIdentifier(x) => x.into_node(),
@@ -18279,10 +19131,14 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for AttributeItem_FieldDeclaration<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+        for AttributeItem_FieldDeclaration<'tree>
+    {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             match node.kind() {
                 "attribute_item" => Ok(unsafe {
                     Self::AttributeItem(<AttributeItem<'tree> as type_sitter_lib::TypedNode<
@@ -18303,21 +19159,21 @@ pub mod anon_unions {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for AttributeItem_FieldDeclaration<'tree> {
         const KIND: &'static str = "{attribute_item | field_declaration}";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::AttributeItem(x) => x.node(),
                 Self::FieldDeclaration(x) => x.node(),
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::AttributeItem(x) => x.node_mut(),
                 Self::FieldDeclaration(x) => x.node_mut(),
             }
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::AttributeItem(x) => x.into_node(),
                 Self::FieldDeclaration(x) => x.into_node(),
@@ -18353,10 +19209,14 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for FieldIdentifier_IntegerLiteral<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+        for FieldIdentifier_IntegerLiteral<'tree>
+    {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             match node.kind() {
                 "field_identifier" => {
                     Ok(unsafe {
@@ -18379,21 +19239,21 @@ pub mod anon_unions {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for FieldIdentifier_IntegerLiteral<'tree> {
         const KIND: &'static str = "{field_identifier | integer_literal}";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::FieldIdentifier(x) => x.node(),
                 Self::IntegerLiteral(x) => x.node(),
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::FieldIdentifier(x) => x.node_mut(),
                 Self::IntegerLiteral(x) => x.node_mut(),
             }
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::FieldIdentifier(x) => x.into_node(),
                 Self::IntegerLiteral(x) => x.into_node(),
@@ -18439,10 +19299,14 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for AttributeItem_FieldIdentifier_Expression<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+        for AttributeItem_FieldIdentifier_Expression<'tree>
+    {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if let Ok(this) = <AttributeItem<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::AttributeItem(this));
             }
@@ -18462,7 +19326,7 @@ pub mod anon_unions {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for AttributeItem_FieldIdentifier_Expression<'tree> {
         const KIND: &'static str = "{attribute_item | field_identifier | _expression}";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::AttributeItem(x) => x.node(),
                 Self::FieldIdentifier(x) => x.node(),
@@ -18470,7 +19334,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::AttributeItem(x) => x.node_mut(),
                 Self::FieldIdentifier(x) => x.node_mut(),
@@ -18478,7 +19342,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::AttributeItem(x) => x.into_node(),
                 Self::FieldIdentifier(x) => x.into_node(),
@@ -18525,12 +19389,14 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>>
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
         for BaseFieldInitializer_FieldInitializer_ShorthandFieldInitializer<'tree>
     {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             match node.kind() {
                 "base_field_initializer" => Ok(unsafe {
                     Self :: BaseFieldInitializer (< BaseFieldInitializer < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node))
@@ -18555,7 +19421,7 @@ pub mod anon_unions {
         const KIND: &'static str =
             "{base_field_initializer | field_initializer | shorthand_field_initializer}";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::BaseFieldInitializer(x) => x.node(),
                 Self::FieldInitializer(x) => x.node(),
@@ -18563,7 +19429,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::BaseFieldInitializer(x) => x.node_mut(),
                 Self::FieldInitializer(x) => x.node_mut(),
@@ -18571,7 +19437,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::BaseFieldInitializer(x) => x.into_node(),
                 Self::FieldInitializer(x) => x.into_node(),
@@ -18628,12 +19494,14 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>>
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
         for MutableSpecifier_FieldIdentifier_ShorthandFieldIdentifier_Pattern<'tree>
     {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if let Ok(this) = <MutableSpecifier<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::MutableSpecifier(this));
             }
@@ -18659,7 +19527,7 @@ pub mod anon_unions {
         const KIND: &'static str =
             "{mutable_specifier | field_identifier | shorthand_field_identifier | _pattern}";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::MutableSpecifier(x) => x.node(),
                 Self::FieldIdentifier(x) => x.node(),
@@ -18668,7 +19536,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::MutableSpecifier(x) => x.node_mut(),
                 Self::FieldIdentifier(x) => x.node_mut(),
@@ -18677,7 +19545,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::MutableSpecifier(x) => x.into_node(),
                 Self::FieldIdentifier(x) => x.into_node(),
@@ -18715,10 +19583,14 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for FieldIdentifier_ShorthandFieldIdentifier<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+        for FieldIdentifier_ShorthandFieldIdentifier<'tree>
+    {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             match node.kind() {
                 "field_identifier" => {
                     Ok(unsafe {
@@ -18739,21 +19611,21 @@ pub mod anon_unions {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for FieldIdentifier_ShorthandFieldIdentifier<'tree> {
         const KIND: &'static str = "{field_identifier | shorthand_field_identifier}";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::FieldIdentifier(x) => x.node(),
                 Self::ShorthandFieldIdentifier(x) => x.node(),
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::FieldIdentifier(x) => x.node_mut(),
                 Self::ShorthandFieldIdentifier(x) => x.node_mut(),
             }
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::FieldIdentifier(x) => x.into_node(),
                 Self::ShorthandFieldIdentifier(x) => x.into_node(),
@@ -18809,10 +19681,14 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for LoopLabel_Block_Pattern_Expression<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+        for LoopLabel_Block_Pattern_Expression<'tree>
+    {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if let Ok(this) = <LoopLabel<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::LoopLabel(this));
             }
@@ -18835,7 +19711,7 @@ pub mod anon_unions {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for LoopLabel_Block_Pattern_Expression<'tree> {
         const KIND: &'static str = "{loop_label | block | _pattern | _expression}";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::LoopLabel(x) => x.node(),
                 Self::Block(x) => x.node(),
@@ -18844,7 +19720,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::LoopLabel(x) => x.node_mut(),
                 Self::Block(x) => x.node_mut(),
@@ -18853,7 +19729,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::LoopLabel(x) => x.into_node(),
                 Self::Block(x) => x.into_node(),
@@ -18901,12 +19777,14 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>>
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
         for ExternModifier_VisibilityModifier_DeclarationList<'tree>
     {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             match node.kind() {
                 "extern_modifier" => {
                     Ok(unsafe {
@@ -18934,7 +19812,7 @@ pub mod anon_unions {
     {
         const KIND: &'static str = "{extern_modifier | visibility_modifier | declaration_list}";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::ExternModifier(x) => x.node(),
                 Self::VisibilityModifier(x) => x.node(),
@@ -18942,7 +19820,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::ExternModifier(x) => x.node_mut(),
                 Self::VisibilityModifier(x) => x.node_mut(),
@@ -18950,7 +19828,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::ExternModifier(x) => x.into_node(),
                 Self::VisibilityModifier(x) => x.into_node(),
@@ -18977,9 +19855,9 @@ pub mod anon_unions {
     #[automatically_derived]
     impl < 'tree > FunctionModifiers_VisibilityModifier_WhereClause_Block_Identifier_Metavariable_Parameters_Type_TypeParameters < 'tree > { # [doc = "Returns the node if it is of kind `function_modifiers` ([FunctionModifiers]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn function_modifiers (self) -> Option < FunctionModifiers < 'tree > > { match self { Self :: FunctionModifiers (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `visibility_modifier` ([VisibilityModifier]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn visibility_modifier (self) -> Option < VisibilityModifier < 'tree > > { match self { Self :: VisibilityModifier (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `where_clause` ([WhereClause]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn where_clause (self) -> Option < WhereClause < 'tree > > { match self { Self :: WhereClause (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `block` ([Block]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn block (self) -> Option < Block < 'tree > > { match self { Self :: Block (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `identifier` ([Identifier]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn identifier (self) -> Option < Identifier < 'tree > > { match self { Self :: Identifier (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `metavariable` ([Metavariable]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn metavariable (self) -> Option < Metavariable < 'tree > > { match self { Self :: Metavariable (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `parameters` ([Parameters]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn parameters (self) -> Option < Parameters < 'tree > > { match self { Self :: Parameters (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `_type` ([Type]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn r#type (self) -> Option < Type < 'tree > > { match self { Self :: Type (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `type_parameters` ([TypeParameters]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn type_parameters (self) -> Option < TypeParameters < 'tree > > { match self { Self :: TypeParameters (x) => Some (x) , _ => None , } } }
     #[automatically_derived]
-    impl < 'tree > TryFrom < tree_sitter :: Node < 'tree >> for FunctionModifiers_VisibilityModifier_WhereClause_Block_Identifier_Metavariable_Parameters_Type_TypeParameters < 'tree > { type Error = type_sitter_lib :: IncorrectKind < 'tree > ; # [inline] fn try_from (node : tree_sitter :: Node < 'tree >) -> Result < Self , Self :: Error > { if let Ok (this) = < FunctionModifiers < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: FunctionModifiers (this)) ; } if let Ok (this) = < VisibilityModifier < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: VisibilityModifier (this)) ; } if let Ok (this) = < WhereClause < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: WhereClause (this)) ; } if let Ok (this) = < Block < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Block (this)) ; } if let Ok (this) = < Identifier < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Identifier (this)) ; } if let Ok (this) = < Metavariable < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Metavariable (this)) ; } if let Ok (this) = < Parameters < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Parameters (this)) ; } if let Ok (this) = < Type < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Type (this)) ; } if let Ok (this) = < TypeParameters < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: TypeParameters (this)) ; } Err (type_sitter_lib :: IncorrectKind { node , kind : < Self as type_sitter_lib :: TypedNode < 'tree >> :: KIND , }) } }
+    impl < 'tree > TryFrom < type_sitter_lib :: tree_sitter_wrapper :: Node < 'tree >> for FunctionModifiers_VisibilityModifier_WhereClause_Block_Identifier_Metavariable_Parameters_Type_TypeParameters < 'tree > { type Error = type_sitter_lib :: IncorrectKind < 'tree > ; # [inline] fn try_from (node : type_sitter_lib :: tree_sitter_wrapper :: Node < 'tree >) -> Result < Self , Self :: Error > { if let Ok (this) = < FunctionModifiers < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: FunctionModifiers (this)) ; } if let Ok (this) = < VisibilityModifier < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: VisibilityModifier (this)) ; } if let Ok (this) = < WhereClause < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: WhereClause (this)) ; } if let Ok (this) = < Block < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Block (this)) ; } if let Ok (this) = < Identifier < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Identifier (this)) ; } if let Ok (this) = < Metavariable < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Metavariable (this)) ; } if let Ok (this) = < Parameters < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Parameters (this)) ; } if let Ok (this) = < Type < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Type (this)) ; } if let Ok (this) = < TypeParameters < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: TypeParameters (this)) ; } Err (type_sitter_lib :: IncorrectKind { node , kind : < Self as type_sitter_lib :: TypedNode < 'tree >> :: KIND , }) } }
     #[automatically_derived]
-    impl < 'tree > type_sitter_lib :: TypedNode < 'tree > for FunctionModifiers_VisibilityModifier_WhereClause_Block_Identifier_Metavariable_Parameters_Type_TypeParameters < 'tree > { const KIND : & 'static str = "{function_modifiers | visibility_modifier | where_clause | block | identifier | metavariable | parameters | _type | type_parameters}" ; # [inline] fn node (& self) -> & tree_sitter :: Node < 'tree > { match self { Self :: FunctionModifiers (x) => x . node () , Self :: VisibilityModifier (x) => x . node () , Self :: WhereClause (x) => x . node () , Self :: Block (x) => x . node () , Self :: Identifier (x) => x . node () , Self :: Metavariable (x) => x . node () , Self :: Parameters (x) => x . node () , Self :: Type (x) => x . node () , Self :: TypeParameters (x) => x . node () , } } # [inline] fn node_mut (& mut self) -> & mut tree_sitter :: Node < 'tree > { match self { Self :: FunctionModifiers (x) => x . node_mut () , Self :: VisibilityModifier (x) => x . node_mut () , Self :: WhereClause (x) => x . node_mut () , Self :: Block (x) => x . node_mut () , Self :: Identifier (x) => x . node_mut () , Self :: Metavariable (x) => x . node_mut () , Self :: Parameters (x) => x . node_mut () , Self :: Type (x) => x . node_mut () , Self :: TypeParameters (x) => x . node_mut () , } } # [inline] fn into_node (self) -> tree_sitter :: Node < 'tree > { match self { Self :: FunctionModifiers (x) => x . into_node () , Self :: VisibilityModifier (x) => x . into_node () , Self :: WhereClause (x) => x . into_node () , Self :: Block (x) => x . into_node () , Self :: Identifier (x) => x . into_node () , Self :: Metavariable (x) => x . into_node () , Self :: Parameters (x) => x . into_node () , Self :: Type (x) => x . into_node () , Self :: TypeParameters (x) => x . into_node () , } } }
+    impl < 'tree > type_sitter_lib :: TypedNode < 'tree > for FunctionModifiers_VisibilityModifier_WhereClause_Block_Identifier_Metavariable_Parameters_Type_TypeParameters < 'tree > { const KIND : & 'static str = "{function_modifiers | visibility_modifier | where_clause | block | identifier | metavariable | parameters | _type | type_parameters}" ; # [inline] fn node (& self) -> & type_sitter_lib :: tree_sitter_wrapper :: Node < 'tree > { match self { Self :: FunctionModifiers (x) => x . node () , Self :: VisibilityModifier (x) => x . node () , Self :: WhereClause (x) => x . node () , Self :: Block (x) => x . node () , Self :: Identifier (x) => x . node () , Self :: Metavariable (x) => x . node () , Self :: Parameters (x) => x . node () , Self :: Type (x) => x . node () , Self :: TypeParameters (x) => x . node () , } } # [inline] fn node_mut (& mut self) -> & mut type_sitter_lib :: tree_sitter_wrapper :: Node < 'tree > { match self { Self :: FunctionModifiers (x) => x . node_mut () , Self :: VisibilityModifier (x) => x . node_mut () , Self :: WhereClause (x) => x . node_mut () , Self :: Block (x) => x . node_mut () , Self :: Identifier (x) => x . node_mut () , Self :: Metavariable (x) => x . node_mut () , Self :: Parameters (x) => x . node_mut () , Self :: Type (x) => x . node_mut () , Self :: TypeParameters (x) => x . node_mut () , } } # [inline] fn into_node (self) -> type_sitter_lib :: tree_sitter_wrapper :: Node < 'tree > { match self { Self :: FunctionModifiers (x) => x . into_node () , Self :: VisibilityModifier (x) => x . into_node () , Self :: WhereClause (x) => x . into_node () , Self :: Block (x) => x . into_node () , Self :: Identifier (x) => x . into_node () , Self :: Metavariable (x) => x . into_node () , Self :: Parameters (x) => x . into_node () , Self :: Type (x) => x . into_node () , Self :: TypeParameters (x) => x . into_node () , } } }
     #[doc = "one of `{identifier | metavariable}`:\n- [Identifier]\n- [Metavariable]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
@@ -19009,10 +19887,14 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Identifier_Metavariable<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+        for Identifier_Metavariable<'tree>
+    {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             match node.kind() {
                 "identifier" => Ok(unsafe {
                     Self :: Identifier (< Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node))
@@ -19031,21 +19913,21 @@ pub mod anon_unions {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Identifier_Metavariable<'tree> {
         const KIND: &'static str = "{identifier | metavariable}";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::Identifier(x) => x.node(),
                 Self::Metavariable(x) => x.node(),
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::Identifier(x) => x.node_mut(),
                 Self::Metavariable(x) => x.node_mut(),
             }
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::Identifier(x) => x.into_node(),
                 Self::Metavariable(x) => x.into_node(),
@@ -19070,9 +19952,9 @@ pub mod anon_unions {
     #[automatically_derived]
     impl < 'tree > FunctionModifiers_VisibilityModifier_WhereClause_Identifier_Metavariable_Parameters_Type_TypeParameters < 'tree > { # [doc = "Returns the node if it is of kind `function_modifiers` ([FunctionModifiers]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn function_modifiers (self) -> Option < FunctionModifiers < 'tree > > { match self { Self :: FunctionModifiers (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `visibility_modifier` ([VisibilityModifier]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn visibility_modifier (self) -> Option < VisibilityModifier < 'tree > > { match self { Self :: VisibilityModifier (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `where_clause` ([WhereClause]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn where_clause (self) -> Option < WhereClause < 'tree > > { match self { Self :: WhereClause (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `identifier` ([Identifier]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn identifier (self) -> Option < Identifier < 'tree > > { match self { Self :: Identifier (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `metavariable` ([Metavariable]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn metavariable (self) -> Option < Metavariable < 'tree > > { match self { Self :: Metavariable (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `parameters` ([Parameters]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn parameters (self) -> Option < Parameters < 'tree > > { match self { Self :: Parameters (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `_type` ([Type]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn r#type (self) -> Option < Type < 'tree > > { match self { Self :: Type (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `type_parameters` ([TypeParameters]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn type_parameters (self) -> Option < TypeParameters < 'tree > > { match self { Self :: TypeParameters (x) => Some (x) , _ => None , } } }
     #[automatically_derived]
-    impl < 'tree > TryFrom < tree_sitter :: Node < 'tree >> for FunctionModifiers_VisibilityModifier_WhereClause_Identifier_Metavariable_Parameters_Type_TypeParameters < 'tree > { type Error = type_sitter_lib :: IncorrectKind < 'tree > ; # [inline] fn try_from (node : tree_sitter :: Node < 'tree >) -> Result < Self , Self :: Error > { if let Ok (this) = < FunctionModifiers < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: FunctionModifiers (this)) ; } if let Ok (this) = < VisibilityModifier < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: VisibilityModifier (this)) ; } if let Ok (this) = < WhereClause < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: WhereClause (this)) ; } if let Ok (this) = < Identifier < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Identifier (this)) ; } if let Ok (this) = < Metavariable < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Metavariable (this)) ; } if let Ok (this) = < Parameters < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Parameters (this)) ; } if let Ok (this) = < Type < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Type (this)) ; } if let Ok (this) = < TypeParameters < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: TypeParameters (this)) ; } Err (type_sitter_lib :: IncorrectKind { node , kind : < Self as type_sitter_lib :: TypedNode < 'tree >> :: KIND , }) } }
+    impl < 'tree > TryFrom < type_sitter_lib :: tree_sitter_wrapper :: Node < 'tree >> for FunctionModifiers_VisibilityModifier_WhereClause_Identifier_Metavariable_Parameters_Type_TypeParameters < 'tree > { type Error = type_sitter_lib :: IncorrectKind < 'tree > ; # [inline] fn try_from (node : type_sitter_lib :: tree_sitter_wrapper :: Node < 'tree >) -> Result < Self , Self :: Error > { if let Ok (this) = < FunctionModifiers < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: FunctionModifiers (this)) ; } if let Ok (this) = < VisibilityModifier < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: VisibilityModifier (this)) ; } if let Ok (this) = < WhereClause < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: WhereClause (this)) ; } if let Ok (this) = < Identifier < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Identifier (this)) ; } if let Ok (this) = < Metavariable < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Metavariable (this)) ; } if let Ok (this) = < Parameters < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Parameters (this)) ; } if let Ok (this) = < Type < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Type (this)) ; } if let Ok (this) = < TypeParameters < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: TypeParameters (this)) ; } Err (type_sitter_lib :: IncorrectKind { node , kind : < Self as type_sitter_lib :: TypedNode < 'tree >> :: KIND , }) } }
     #[automatically_derived]
-    impl < 'tree > type_sitter_lib :: TypedNode < 'tree > for FunctionModifiers_VisibilityModifier_WhereClause_Identifier_Metavariable_Parameters_Type_TypeParameters < 'tree > { const KIND : & 'static str = "{function_modifiers | visibility_modifier | where_clause | identifier | metavariable | parameters | _type | type_parameters}" ; # [inline] fn node (& self) -> & tree_sitter :: Node < 'tree > { match self { Self :: FunctionModifiers (x) => x . node () , Self :: VisibilityModifier (x) => x . node () , Self :: WhereClause (x) => x . node () , Self :: Identifier (x) => x . node () , Self :: Metavariable (x) => x . node () , Self :: Parameters (x) => x . node () , Self :: Type (x) => x . node () , Self :: TypeParameters (x) => x . node () , } } # [inline] fn node_mut (& mut self) -> & mut tree_sitter :: Node < 'tree > { match self { Self :: FunctionModifiers (x) => x . node_mut () , Self :: VisibilityModifier (x) => x . node_mut () , Self :: WhereClause (x) => x . node_mut () , Self :: Identifier (x) => x . node_mut () , Self :: Metavariable (x) => x . node_mut () , Self :: Parameters (x) => x . node_mut () , Self :: Type (x) => x . node_mut () , Self :: TypeParameters (x) => x . node_mut () , } } # [inline] fn into_node (self) -> tree_sitter :: Node < 'tree > { match self { Self :: FunctionModifiers (x) => x . into_node () , Self :: VisibilityModifier (x) => x . into_node () , Self :: WhereClause (x) => x . into_node () , Self :: Identifier (x) => x . into_node () , Self :: Metavariable (x) => x . into_node () , Self :: Parameters (x) => x . into_node () , Self :: Type (x) => x . into_node () , Self :: TypeParameters (x) => x . into_node () , } } }
+    impl < 'tree > type_sitter_lib :: TypedNode < 'tree > for FunctionModifiers_VisibilityModifier_WhereClause_Identifier_Metavariable_Parameters_Type_TypeParameters < 'tree > { const KIND : & 'static str = "{function_modifiers | visibility_modifier | where_clause | identifier | metavariable | parameters | _type | type_parameters}" ; # [inline] fn node (& self) -> & type_sitter_lib :: tree_sitter_wrapper :: Node < 'tree > { match self { Self :: FunctionModifiers (x) => x . node () , Self :: VisibilityModifier (x) => x . node () , Self :: WhereClause (x) => x . node () , Self :: Identifier (x) => x . node () , Self :: Metavariable (x) => x . node () , Self :: Parameters (x) => x . node () , Self :: Type (x) => x . node () , Self :: TypeParameters (x) => x . node () , } } # [inline] fn node_mut (& mut self) -> & mut type_sitter_lib :: tree_sitter_wrapper :: Node < 'tree > { match self { Self :: FunctionModifiers (x) => x . node_mut () , Self :: VisibilityModifier (x) => x . node_mut () , Self :: WhereClause (x) => x . node_mut () , Self :: Identifier (x) => x . node_mut () , Self :: Metavariable (x) => x . node_mut () , Self :: Parameters (x) => x . node_mut () , Self :: Type (x) => x . node_mut () , Self :: TypeParameters (x) => x . node_mut () , } } # [inline] fn into_node (self) -> type_sitter_lib :: tree_sitter_wrapper :: Node < 'tree > { match self { Self :: FunctionModifiers (x) => x . into_node () , Self :: VisibilityModifier (x) => x . into_node () , Self :: WhereClause (x) => x . into_node () , Self :: Identifier (x) => x . into_node () , Self :: Metavariable (x) => x . into_node () , Self :: Parameters (x) => x . into_node () , Self :: Type (x) => x . into_node () , Self :: TypeParameters (x) => x . into_node () , } } }
     #[doc = "one of `{for_lifetimes | function_modifiers | parameters | _type | scoped_type_identifier | type_identifier}`:\n- [ForLifetimes]\n- [FunctionModifiers]\n- [Parameters]\n- [Type]\n- [ScopedTypeIdentifier]\n- [TypeIdentifier]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
@@ -19146,14 +20028,16 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>>
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
         for ForLifetimes_FunctionModifiers_Parameters_Type_ScopedTypeIdentifier_TypeIdentifier<
             'tree,
         >
     {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if let Ok(this) = <ForLifetimes<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::ForLifetimes(this));
             }
@@ -19186,7 +20070,7 @@ pub mod anon_unions {
     {
         const KIND : & 'static str = "{for_lifetimes | function_modifiers | parameters | _type | scoped_type_identifier | type_identifier}" ;
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::ForLifetimes(x) => x.node(),
                 Self::FunctionModifiers(x) => x.node(),
@@ -19197,7 +20081,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::ForLifetimes(x) => x.node_mut(),
                 Self::FunctionModifiers(x) => x.node_mut(),
@@ -19208,7 +20092,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::ForLifetimes(x) => x.into_node(),
                 Self::FunctionModifiers(x) => x.into_node(),
@@ -19248,10 +20132,14 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ScopedTypeIdentifier_TypeIdentifier<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+        for ScopedTypeIdentifier_TypeIdentifier<'tree>
+    {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             match node.kind() {
                 "scoped_type_identifier" => Ok(unsafe {
                     Self :: ScopedTypeIdentifier (< ScopedTypeIdentifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node))
@@ -19272,21 +20160,21 @@ pub mod anon_unions {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for ScopedTypeIdentifier_TypeIdentifier<'tree> {
         const KIND: &'static str = "{scoped_type_identifier | type_identifier}";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::ScopedTypeIdentifier(x) => x.node(),
                 Self::TypeIdentifier(x) => x.node(),
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::ScopedTypeIdentifier(x) => x.node_mut(),
                 Self::TypeIdentifier(x) => x.node_mut(),
             }
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::ScopedTypeIdentifier(x) => x.into_node(),
                 Self::TypeIdentifier(x) => x.into_node(),
@@ -19332,12 +20220,14 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>>
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
         for FieldExpression_Identifier_ScopedIdentifier<'tree>
     {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             match node.kind() {
                 "field_expression" => {
                     Ok(unsafe {
@@ -19363,7 +20253,7 @@ pub mod anon_unions {
     {
         const KIND: &'static str = "{field_expression | identifier | scoped_identifier}";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::FieldExpression(x) => x.node(),
                 Self::Identifier(x) => x.node(),
@@ -19371,7 +20261,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::FieldExpression(x) => x.node_mut(),
                 Self::Identifier(x) => x.node_mut(),
@@ -19379,7 +20269,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::FieldExpression(x) => x.into_node(),
                 Self::Identifier(x) => x.into_node(),
@@ -19426,12 +20316,14 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>>
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
         for ScopedIdentifier_ScopedTypeIdentifier_TypeIdentifier<'tree>
     {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             match node.kind() {
                 "scoped_identifier" => Ok(unsafe {
                     Self :: ScopedIdentifier (< ScopedIdentifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node))
@@ -19457,7 +20349,7 @@ pub mod anon_unions {
     {
         const KIND: &'static str = "{scoped_identifier | scoped_type_identifier | type_identifier}";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::ScopedIdentifier(x) => x.node(),
                 Self::ScopedTypeIdentifier(x) => x.node(),
@@ -19465,7 +20357,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::ScopedIdentifier(x) => x.node_mut(),
                 Self::ScopedTypeIdentifier(x) => x.node_mut(),
@@ -19473,7 +20365,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::ScopedIdentifier(x) => x.into_node(),
                 Self::ScopedTypeIdentifier(x) => x.into_node(),
@@ -19510,10 +20402,14 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ScopedIdentifier_TypeIdentifier<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+        for ScopedIdentifier_TypeIdentifier<'tree>
+    {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             match node.kind() {
                 "scoped_identifier" => Ok(unsafe {
                     Self :: ScopedIdentifier (< ScopedIdentifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node))
@@ -19534,21 +20430,21 @@ pub mod anon_unions {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for ScopedIdentifier_TypeIdentifier<'tree> {
         const KIND: &'static str = "{scoped_identifier | type_identifier}";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::ScopedIdentifier(x) => x.node(),
                 Self::TypeIdentifier(x) => x.node(),
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::ScopedIdentifier(x) => x.node_mut(),
                 Self::TypeIdentifier(x) => x.node_mut(),
             }
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::ScopedIdentifier(x) => x.into_node(),
                 Self::TypeIdentifier(x) => x.into_node(),
@@ -19594,10 +20490,14 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Expression_LetChain_LetCondition<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+        for Expression_LetChain_LetCondition<'tree>
+    {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if let Ok(this) = <Expression<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::Expression(this));
             }
@@ -19617,7 +20517,7 @@ pub mod anon_unions {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Expression_LetChain_LetCondition<'tree> {
         const KIND: &'static str = "{_expression | let_chain | let_condition}";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::Expression(x) => x.node(),
                 Self::LetChain(x) => x.node(),
@@ -19625,7 +20525,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::Expression(x) => x.node_mut(),
                 Self::LetChain(x) => x.node_mut(),
@@ -19633,7 +20533,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::Expression(x) => x.into_node(),
                 Self::LetChain(x) => x.into_node(),
@@ -19658,9 +20558,9 @@ pub mod anon_unions {
     #[automatically_derived]
     impl < 'tree > WhereClause_DeclarationList_GenericType_ScopedTypeIdentifier_TypeIdentifier_Type_TypeParameters < 'tree > { # [doc = "Returns the node if it is of kind `where_clause` ([WhereClause]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn where_clause (self) -> Option < WhereClause < 'tree > > { match self { Self :: WhereClause (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `declaration_list` ([DeclarationList]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn declaration_list (self) -> Option < DeclarationList < 'tree > > { match self { Self :: DeclarationList (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `generic_type` ([GenericType]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn generic_type (self) -> Option < GenericType < 'tree > > { match self { Self :: GenericType (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `scoped_type_identifier` ([ScopedTypeIdentifier]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn scoped_type_identifier (self) -> Option < ScopedTypeIdentifier < 'tree > > { match self { Self :: ScopedTypeIdentifier (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `type_identifier` ([TypeIdentifier]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn type_identifier (self) -> Option < TypeIdentifier < 'tree > > { match self { Self :: TypeIdentifier (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `_type` ([Type]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn r#type (self) -> Option < Type < 'tree > > { match self { Self :: Type (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `type_parameters` ([TypeParameters]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn type_parameters (self) -> Option < TypeParameters < 'tree > > { match self { Self :: TypeParameters (x) => Some (x) , _ => None , } } }
     #[automatically_derived]
-    impl < 'tree > TryFrom < tree_sitter :: Node < 'tree >> for WhereClause_DeclarationList_GenericType_ScopedTypeIdentifier_TypeIdentifier_Type_TypeParameters < 'tree > { type Error = type_sitter_lib :: IncorrectKind < 'tree > ; # [inline] fn try_from (node : tree_sitter :: Node < 'tree >) -> Result < Self , Self :: Error > { if let Ok (this) = < WhereClause < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: WhereClause (this)) ; } if let Ok (this) = < DeclarationList < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: DeclarationList (this)) ; } if let Ok (this) = < GenericType < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: GenericType (this)) ; } if let Ok (this) = < ScopedTypeIdentifier < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: ScopedTypeIdentifier (this)) ; } if let Ok (this) = < TypeIdentifier < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: TypeIdentifier (this)) ; } if let Ok (this) = < Type < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Type (this)) ; } if let Ok (this) = < TypeParameters < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: TypeParameters (this)) ; } Err (type_sitter_lib :: IncorrectKind { node , kind : < Self as type_sitter_lib :: TypedNode < 'tree >> :: KIND , }) } }
+    impl < 'tree > TryFrom < type_sitter_lib :: tree_sitter_wrapper :: Node < 'tree >> for WhereClause_DeclarationList_GenericType_ScopedTypeIdentifier_TypeIdentifier_Type_TypeParameters < 'tree > { type Error = type_sitter_lib :: IncorrectKind < 'tree > ; # [inline] fn try_from (node : type_sitter_lib :: tree_sitter_wrapper :: Node < 'tree >) -> Result < Self , Self :: Error > { if let Ok (this) = < WhereClause < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: WhereClause (this)) ; } if let Ok (this) = < DeclarationList < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: DeclarationList (this)) ; } if let Ok (this) = < GenericType < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: GenericType (this)) ; } if let Ok (this) = < ScopedTypeIdentifier < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: ScopedTypeIdentifier (this)) ; } if let Ok (this) = < TypeIdentifier < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: TypeIdentifier (this)) ; } if let Ok (this) = < Type < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Type (this)) ; } if let Ok (this) = < TypeParameters < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: TypeParameters (this)) ; } Err (type_sitter_lib :: IncorrectKind { node , kind : < Self as type_sitter_lib :: TypedNode < 'tree >> :: KIND , }) } }
     #[automatically_derived]
-    impl < 'tree > type_sitter_lib :: TypedNode < 'tree > for WhereClause_DeclarationList_GenericType_ScopedTypeIdentifier_TypeIdentifier_Type_TypeParameters < 'tree > { const KIND : & 'static str = "{where_clause | declaration_list | generic_type | scoped_type_identifier | type_identifier | _type | type_parameters}" ; # [inline] fn node (& self) -> & tree_sitter :: Node < 'tree > { match self { Self :: WhereClause (x) => x . node () , Self :: DeclarationList (x) => x . node () , Self :: GenericType (x) => x . node () , Self :: ScopedTypeIdentifier (x) => x . node () , Self :: TypeIdentifier (x) => x . node () , Self :: Type (x) => x . node () , Self :: TypeParameters (x) => x . node () , } } # [inline] fn node_mut (& mut self) -> & mut tree_sitter :: Node < 'tree > { match self { Self :: WhereClause (x) => x . node_mut () , Self :: DeclarationList (x) => x . node_mut () , Self :: GenericType (x) => x . node_mut () , Self :: ScopedTypeIdentifier (x) => x . node_mut () , Self :: TypeIdentifier (x) => x . node_mut () , Self :: Type (x) => x . node_mut () , Self :: TypeParameters (x) => x . node_mut () , } } # [inline] fn into_node (self) -> tree_sitter :: Node < 'tree > { match self { Self :: WhereClause (x) => x . into_node () , Self :: DeclarationList (x) => x . into_node () , Self :: GenericType (x) => x . into_node () , Self :: ScopedTypeIdentifier (x) => x . into_node () , Self :: TypeIdentifier (x) => x . into_node () , Self :: Type (x) => x . into_node () , Self :: TypeParameters (x) => x . into_node () , } } }
+    impl < 'tree > type_sitter_lib :: TypedNode < 'tree > for WhereClause_DeclarationList_GenericType_ScopedTypeIdentifier_TypeIdentifier_Type_TypeParameters < 'tree > { const KIND : & 'static str = "{where_clause | declaration_list | generic_type | scoped_type_identifier | type_identifier | _type | type_parameters}" ; # [inline] fn node (& self) -> & type_sitter_lib :: tree_sitter_wrapper :: Node < 'tree > { match self { Self :: WhereClause (x) => x . node () , Self :: DeclarationList (x) => x . node () , Self :: GenericType (x) => x . node () , Self :: ScopedTypeIdentifier (x) => x . node () , Self :: TypeIdentifier (x) => x . node () , Self :: Type (x) => x . node () , Self :: TypeParameters (x) => x . node () , } } # [inline] fn node_mut (& mut self) -> & mut type_sitter_lib :: tree_sitter_wrapper :: Node < 'tree > { match self { Self :: WhereClause (x) => x . node_mut () , Self :: DeclarationList (x) => x . node_mut () , Self :: GenericType (x) => x . node_mut () , Self :: ScopedTypeIdentifier (x) => x . node_mut () , Self :: TypeIdentifier (x) => x . node_mut () , Self :: Type (x) => x . node_mut () , Self :: TypeParameters (x) => x . node_mut () , } } # [inline] fn into_node (self) -> type_sitter_lib :: tree_sitter_wrapper :: Node < 'tree > { match self { Self :: WhereClause (x) => x . into_node () , Self :: DeclarationList (x) => x . into_node () , Self :: GenericType (x) => x . into_node () , Self :: ScopedTypeIdentifier (x) => x . into_node () , Self :: TypeIdentifier (x) => x . into_node () , Self :: Type (x) => x . into_node () , Self :: TypeParameters (x) => x . into_node () , } } }
     #[doc = "one of `{generic_type | scoped_type_identifier | type_identifier}`:\n- [GenericType]\n- [ScopedTypeIdentifier]\n- [TypeIdentifier]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
@@ -19700,12 +20600,14 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>>
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
         for GenericType_ScopedTypeIdentifier_TypeIdentifier<'tree>
     {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             match node.kind() {
                 "generic_type" => Ok(unsafe {
                     Self :: GenericType (< GenericType < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node))
@@ -19731,7 +20633,7 @@ pub mod anon_unions {
     {
         const KIND: &'static str = "{generic_type | scoped_type_identifier | type_identifier}";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::GenericType(x) => x.node(),
                 Self::ScopedTypeIdentifier(x) => x.node(),
@@ -19739,7 +20641,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::GenericType(x) => x.node_mut(),
                 Self::ScopedTypeIdentifier(x) => x.node_mut(),
@@ -19747,7 +20649,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::GenericType(x) => x.into_node(),
                 Self::ScopedTypeIdentifier(x) => x.into_node(),
@@ -19784,10 +20686,14 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Expression_LetCondition<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+        for Expression_LetCondition<'tree>
+    {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if let Ok(this) = <Expression<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::Expression(this));
             }
@@ -19804,21 +20710,21 @@ pub mod anon_unions {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Expression_LetCondition<'tree> {
         const KIND: &'static str = "{_expression | let_condition}";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::Expression(x) => x.node(),
                 Self::LetCondition(x) => x.node(),
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::Expression(x) => x.node_mut(),
                 Self::LetCondition(x) => x.node_mut(),
             }
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::Expression(x) => x.into_node(),
                 Self::LetCondition(x) => x.into_node(),
@@ -19884,12 +20790,14 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>>
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
         for MutableSpecifier_Block_Pattern_Type_Expression<'tree>
     {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if let Ok(this) = <MutableSpecifier<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::MutableSpecifier(this));
             }
@@ -19917,7 +20825,7 @@ pub mod anon_unions {
     {
         const KIND: &'static str = "{mutable_specifier | block | _pattern | _type | _expression}";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::MutableSpecifier(x) => x.node(),
                 Self::Block(x) => x.node(),
@@ -19927,7 +20835,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::MutableSpecifier(x) => x.node_mut(),
                 Self::Block(x) => x.node_mut(),
@@ -19937,7 +20845,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::MutableSpecifier(x) => x.into_node(),
                 Self::Block(x) => x.into_node(),
@@ -19976,10 +20884,12 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for LoopLabel_Block<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for LoopLabel_Block<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             match node.kind() {
                 "loop_label" => Ok(unsafe {
                     Self :: LoopLabel (< LoopLabel < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node))
@@ -20000,21 +20910,21 @@ pub mod anon_unions {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for LoopLabel_Block<'tree> {
         const KIND: &'static str = "{loop_label | block}";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::LoopLabel(x) => x.node(),
                 Self::Block(x) => x.node(),
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::LoopLabel(x) => x.node_mut(),
                 Self::Block(x) => x.node_mut(),
             }
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::LoopLabel(x) => x.into_node(),
                 Self::Block(x) => x.into_node(),
@@ -20050,10 +20960,14 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for MacroRule_Identifier<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+        for MacroRule_Identifier<'tree>
+    {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             match node.kind() {
                 "macro_rule" => Ok(unsafe {
                     Self :: MacroRule (< MacroRule < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node))
@@ -20072,21 +20986,21 @@ pub mod anon_unions {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for MacroRule_Identifier<'tree> {
         const KIND: &'static str = "{macro_rule | identifier}";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::MacroRule(x) => x.node(),
                 Self::Identifier(x) => x.node(),
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::MacroRule(x) => x.node_mut(),
                 Self::Identifier(x) => x.node_mut(),
             }
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::MacroRule(x) => x.into_node(),
                 Self::Identifier(x) => x.into_node(),
@@ -20132,10 +21046,14 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for TokenTree_Identifier_ScopedIdentifier<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+        for TokenTree_Identifier_ScopedIdentifier<'tree>
+    {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             match node.kind() {
                 "token_tree" => Ok(unsafe {
                     Self :: TokenTree (< TokenTree < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node))
@@ -20157,7 +21075,7 @@ pub mod anon_unions {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for TokenTree_Identifier_ScopedIdentifier<'tree> {
         const KIND: &'static str = "{token_tree | identifier | scoped_identifier}";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::TokenTree(x) => x.node(),
                 Self::Identifier(x) => x.node(),
@@ -20165,7 +21083,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::TokenTree(x) => x.node_mut(),
                 Self::Identifier(x) => x.node_mut(),
@@ -20173,7 +21091,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::TokenTree(x) => x.into_node(),
                 Self::Identifier(x) => x.into_node(),
@@ -20210,10 +21128,14 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Identifier_ScopedIdentifier<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+        for Identifier_ScopedIdentifier<'tree>
+    {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             match node.kind() {
                 "identifier" => Ok(unsafe {
                     Self :: Identifier (< Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node))
@@ -20232,21 +21154,21 @@ pub mod anon_unions {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Identifier_ScopedIdentifier<'tree> {
         const KIND: &'static str = "{identifier | scoped_identifier}";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::Identifier(x) => x.node(),
                 Self::ScopedIdentifier(x) => x.node(),
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::Identifier(x) => x.node_mut(),
                 Self::ScopedIdentifier(x) => x.node_mut(),
             }
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::Identifier(x) => x.into_node(),
                 Self::ScopedIdentifier(x) => x.into_node(),
@@ -20292,10 +21214,14 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for AttributeItem_MatchPattern_Expression<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+        for AttributeItem_MatchPattern_Expression<'tree>
+    {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if let Ok(this) = <AttributeItem<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::AttributeItem(this));
             }
@@ -20315,7 +21241,7 @@ pub mod anon_unions {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for AttributeItem_MatchPattern_Expression<'tree> {
         const KIND: &'static str = "{attribute_item | match_pattern | _expression}";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::AttributeItem(x) => x.node(),
                 Self::MatchPattern(x) => x.node(),
@@ -20323,7 +21249,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::AttributeItem(x) => x.node_mut(),
                 Self::MatchPattern(x) => x.node_mut(),
@@ -20331,7 +21257,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::AttributeItem(x) => x.into_node(),
                 Self::MatchPattern(x) => x.into_node(),
@@ -20388,10 +21314,14 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Pattern_Expression_LetChain_LetCondition<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+        for Pattern_Expression_LetChain_LetCondition<'tree>
+    {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if let Ok(this) = <Pattern<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::Pattern(this));
             }
@@ -20414,7 +21344,7 @@ pub mod anon_unions {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Pattern_Expression_LetChain_LetCondition<'tree> {
         const KIND: &'static str = "{_pattern | _expression | let_chain | let_condition}";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::Pattern(x) => x.node(),
                 Self::Expression(x) => x.node(),
@@ -20423,7 +21353,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::Pattern(x) => x.node_mut(),
                 Self::Expression(x) => x.node_mut(),
@@ -20432,7 +21362,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::Pattern(x) => x.into_node(),
                 Self::Expression(x) => x.into_node(),
@@ -20480,12 +21410,14 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>>
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
         for VisibilityModifier_DeclarationList_Identifier<'tree>
     {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             match node.kind() {
                 "visibility_modifier" => Ok(unsafe {
                     Self :: VisibilityModifier (< VisibilityModifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node))
@@ -20511,7 +21443,7 @@ pub mod anon_unions {
     {
         const KIND: &'static str = "{visibility_modifier | declaration_list | identifier}";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::VisibilityModifier(x) => x.node(),
                 Self::DeclarationList(x) => x.node(),
@@ -20519,7 +21451,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::VisibilityModifier(x) => x.node_mut(),
                 Self::DeclarationList(x) => x.node_mut(),
@@ -20527,7 +21459,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::VisibilityModifier(x) => x.into_node(),
                 Self::DeclarationList(x) => x.into_node(),
@@ -20564,10 +21496,14 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Pattern_MutableSpecifier<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+        for Pattern_MutableSpecifier<'tree>
+    {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if let Ok(this) = <Pattern<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::Pattern(this));
             }
@@ -20584,21 +21520,21 @@ pub mod anon_unions {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Pattern_MutableSpecifier<'tree> {
         const KIND: &'static str = "{_pattern | mutable_specifier}";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::Pattern(x) => x.node(),
                 Self::MutableSpecifier(x) => x.node(),
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::Pattern(x) => x.node_mut(),
                 Self::MutableSpecifier(x) => x.node_mut(),
             }
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::Pattern(x) => x.into_node(),
                 Self::MutableSpecifier(x) => x.into_node(),
@@ -20634,10 +21570,14 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for FloatLiteral_IntegerLiteral<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+        for FloatLiteral_IntegerLiteral<'tree>
+    {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             match node.kind() {
                 "float_literal" => Ok(unsafe {
                     Self :: FloatLiteral (< FloatLiteral < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node))
@@ -20658,21 +21598,21 @@ pub mod anon_unions {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for FloatLiteral_IntegerLiteral<'tree> {
         const KIND: &'static str = "{float_literal | integer_literal}";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::FloatLiteral(x) => x.node(),
                 Self::IntegerLiteral(x) => x.node(),
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::FloatLiteral(x) => x.node_mut(),
                 Self::IntegerLiteral(x) => x.node_mut(),
             }
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::FloatLiteral(x) => x.into_node(),
                 Self::IntegerLiteral(x) => x.into_node(),
@@ -20708,10 +21648,14 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for ConstrainedTypeParameter_TypeIdentifier<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+        for ConstrainedTypeParameter_TypeIdentifier<'tree>
+    {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             match node.kind() {
                 "constrained_type_parameter" => Ok(unsafe {
                     Self :: ConstrainedTypeParameter (< ConstrainedTypeParameter < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node))
@@ -20732,21 +21676,21 @@ pub mod anon_unions {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for ConstrainedTypeParameter_TypeIdentifier<'tree> {
         const KIND: &'static str = "{constrained_type_parameter | type_identifier}";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::ConstrainedTypeParameter(x) => x.node(),
                 Self::TypeIdentifier(x) => x.node(),
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::ConstrainedTypeParameter(x) => x.node_mut(),
                 Self::TypeIdentifier(x) => x.node_mut(),
             }
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::ConstrainedTypeParameter(x) => x.into_node(),
                 Self::TypeIdentifier(x) => x.into_node(),
@@ -20792,10 +21736,14 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for AttributeItem_VisibilityModifier_Type<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+        for AttributeItem_VisibilityModifier_Type<'tree>
+    {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if let Ok(this) = <AttributeItem<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::AttributeItem(this));
             }
@@ -20815,7 +21763,7 @@ pub mod anon_unions {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for AttributeItem_VisibilityModifier_Type<'tree> {
         const KIND: &'static str = "{attribute_item | visibility_modifier | _type}";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::AttributeItem(x) => x.node(),
                 Self::VisibilityModifier(x) => x.node(),
@@ -20823,7 +21771,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::AttributeItem(x) => x.node_mut(),
                 Self::VisibilityModifier(x) => x.node_mut(),
@@ -20831,7 +21779,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::AttributeItem(x) => x.into_node(),
                 Self::VisibilityModifier(x) => x.into_node(),
@@ -20888,10 +21836,14 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for MutableSpecifier_Pattern__Self_Type<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+        for MutableSpecifier_Pattern__Self_Type<'tree>
+    {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if let Ok(this) = <MutableSpecifier<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::MutableSpecifier(this));
             }
@@ -20914,7 +21866,7 @@ pub mod anon_unions {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for MutableSpecifier_Pattern__Self_Type<'tree> {
         const KIND: &'static str = "{mutable_specifier | _pattern | self | _type}";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::MutableSpecifier(x) => x.node(),
                 Self::Pattern(x) => x.node(),
@@ -20923,7 +21875,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::MutableSpecifier(x) => x.node_mut(),
                 Self::Pattern(x) => x.node_mut(),
@@ -20932,7 +21884,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::MutableSpecifier(x) => x.into_node(),
                 Self::Pattern(x) => x.into_node(),
@@ -20970,10 +21922,12 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Pattern__Self<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>> for Pattern__Self<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if let Ok(this) = <Pattern<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::Pattern(this));
             }
@@ -20990,21 +21944,21 @@ pub mod anon_unions {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Pattern__Self<'tree> {
         const KIND: &'static str = "{_pattern | self}";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::Pattern(x) => x.node(),
                 Self::_Self(x) => x.node(),
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::Pattern(x) => x.node_mut(),
                 Self::_Self(x) => x.node_mut(),
             }
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::Pattern(x) => x.into_node(),
                 Self::_Self(x) => x.into_node(),
@@ -21070,12 +22024,14 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>>
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
         for Type_AttributeItem_Parameter_SelfParameter_VariadicParameter<'tree>
     {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if let Ok(this) = <Type<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::Type(this));
             }
@@ -21104,7 +22060,7 @@ pub mod anon_unions {
         const KIND: &'static str =
             "{_type | attribute_item | parameter | self_parameter | variadic_parameter}";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::Type(x) => x.node(),
                 Self::AttributeItem(x) => x.node(),
@@ -21114,7 +22070,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::Type(x) => x.node_mut(),
                 Self::AttributeItem(x) => x.node_mut(),
@@ -21124,7 +22080,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::Type(x) => x.into_node(),
                 Self::AttributeItem(x) => x.into_node(),
@@ -21163,10 +22119,14 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for MutableSpecifier_Type<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+        for MutableSpecifier_Type<'tree>
+    {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if let Ok(this) = <MutableSpecifier<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::MutableSpecifier(this));
             }
@@ -21183,21 +22143,21 @@ pub mod anon_unions {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for MutableSpecifier_Type<'tree> {
         const KIND: &'static str = "{mutable_specifier | _type}";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::MutableSpecifier(x) => x.node(),
                 Self::Type(x) => x.node(),
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::MutableSpecifier(x) => x.node_mut(),
                 Self::Type(x) => x.node_mut(),
             }
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::MutableSpecifier(x) => x.into_node(),
                 Self::Type(x) => x.into_node(),
@@ -21283,12 +22243,14 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>>
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
         for LiteralPattern_Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super<'tree>
     {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if let Ok(this) = <LiteralPattern<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::LiteralPattern(this));
             }
@@ -21322,7 +22284,7 @@ pub mod anon_unions {
     {
         const KIND : & 'static str = "{_literal_pattern | crate | identifier | metavariable | scoped_identifier | self | super}" ;
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::LiteralPattern(x) => x.node(),
                 Self::Crate(x) => x.node(),
@@ -21334,7 +22296,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::LiteralPattern(x) => x.node_mut(),
                 Self::Crate(x) => x.node_mut(),
@@ -21346,7 +22308,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::LiteralPattern(x) => x.into_node(),
                 Self::Crate(x) => x.into_node(),
@@ -21387,10 +22349,14 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for MutableSpecifier_Expression<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+        for MutableSpecifier_Expression<'tree>
+    {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if let Ok(this) = <MutableSpecifier<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::MutableSpecifier(this));
             }
@@ -21407,21 +22373,21 @@ pub mod anon_unions {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for MutableSpecifier_Expression<'tree> {
         const KIND: &'static str = "{mutable_specifier | _expression}";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::MutableSpecifier(x) => x.node(),
                 Self::Expression(x) => x.node(),
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::MutableSpecifier(x) => x.node_mut(),
                 Self::Expression(x) => x.node_mut(),
             }
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::MutableSpecifier(x) => x.into_node(),
                 Self::Expression(x) => x.into_node(),
@@ -21467,10 +22433,14 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Lifetime_MutableSpecifier_Type<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+        for Lifetime_MutableSpecifier_Type<'tree>
+    {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if let Ok(this) = <Lifetime<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::Lifetime(this));
             }
@@ -21490,7 +22460,7 @@ pub mod anon_unions {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Lifetime_MutableSpecifier_Type<'tree> {
         const KIND: &'static str = "{lifetime | mutable_specifier | _type}";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::Lifetime(x) => x.node(),
                 Self::MutableSpecifier(x) => x.node(),
@@ -21498,7 +22468,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::Lifetime(x) => x.node_mut(),
                 Self::MutableSpecifier(x) => x.node_mut(),
@@ -21506,7 +22476,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::Lifetime(x) => x.into_node(),
                 Self::MutableSpecifier(x) => x.into_node(),
@@ -21607,14 +22577,16 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>>
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
         for BracketedType_Crate_GenericType_Identifier_Metavariable_ScopedIdentifier__Self_Super<
             'tree,
         >
     {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             match node.kind() {
                 "bracketed_type" => Ok(unsafe {
                     Self::BracketedType(<BracketedType<'tree> as type_sitter_lib::TypedNode<
@@ -21663,7 +22635,7 @@ pub mod anon_unions {
     {
         const KIND : & 'static str = "{bracketed_type | crate | generic_type | identifier | metavariable | scoped_identifier | self | super}" ;
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::BracketedType(x) => x.node(),
                 Self::Crate(x) => x.node(),
@@ -21676,7 +22648,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::BracketedType(x) => x.node_mut(),
                 Self::Crate(x) => x.node_mut(),
@@ -21689,7 +22661,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::BracketedType(x) => x.into_node(),
                 Self::Crate(x) => x.into_node(),
@@ -21771,12 +22743,14 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>>
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
         for Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super<'tree>
     {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             match node.kind() {
                 "crate" => {
                     Ok(unsafe {
@@ -21816,7 +22790,7 @@ pub mod anon_unions {
         const KIND: &'static str =
             "{crate | identifier | metavariable | scoped_identifier | self | super}";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::Crate(x) => x.node(),
                 Self::Identifier(x) => x.node(),
@@ -21827,7 +22801,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::Crate(x) => x.node_mut(),
                 Self::Identifier(x) => x.node_mut(),
@@ -21838,7 +22812,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::Crate(x) => x.into_node(),
                 Self::Identifier(x) => x.into_node(),
@@ -21888,10 +22862,14 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Lifetime_MutableSpecifier__Self<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+        for Lifetime_MutableSpecifier__Self<'tree>
+    {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             match node.kind() {
                 "lifetime" => {
                     Ok(unsafe {
@@ -21917,7 +22895,7 @@ pub mod anon_unions {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Lifetime_MutableSpecifier__Self<'tree> {
         const KIND: &'static str = "{lifetime | mutable_specifier | self}";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::Lifetime(x) => x.node(),
                 Self::MutableSpecifier(x) => x.node(),
@@ -21925,7 +22903,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::Lifetime(x) => x.node_mut(),
                 Self::MutableSpecifier(x) => x.node_mut(),
@@ -21933,7 +22911,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::Lifetime(x) => x.into_node(),
                 Self::MutableSpecifier(x) => x.into_node(),
@@ -21970,10 +22948,14 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for AttributeItem_Identifier<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+        for AttributeItem_Identifier<'tree>
+    {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             match node.kind() {
                 "attribute_item" => Ok(unsafe {
                     Self::AttributeItem(<AttributeItem<'tree> as type_sitter_lib::TypedNode<
@@ -21994,21 +22976,21 @@ pub mod anon_unions {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for AttributeItem_Identifier<'tree> {
         const KIND: &'static str = "{attribute_item | identifier}";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::AttributeItem(x) => x.node(),
                 Self::Identifier(x) => x.node(),
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::AttributeItem(x) => x.node_mut(),
                 Self::Identifier(x) => x.node_mut(),
             }
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::AttributeItem(x) => x.into_node(),
                 Self::Identifier(x) => x.into_node(),
@@ -22044,10 +23026,14 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for DeclarationStatement_ExpressionStatement<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+        for DeclarationStatement_ExpressionStatement<'tree>
+    {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if let Ok(this) = <DeclarationStatement<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::DeclarationStatement(this));
             }
@@ -22064,21 +23050,21 @@ pub mod anon_unions {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for DeclarationStatement_ExpressionStatement<'tree> {
         const KIND: &'static str = "{_declaration_statement | expression_statement}";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::DeclarationStatement(x) => x.node(),
                 Self::ExpressionStatement(x) => x.node(),
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::DeclarationStatement(x) => x.node_mut(),
                 Self::ExpressionStatement(x) => x.node_mut(),
             }
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::DeclarationStatement(x) => x.into_node(),
                 Self::ExpressionStatement(x) => x.into_node(),
@@ -22144,12 +23130,14 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>>
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
         for MutableSpecifier_VisibilityModifier_Identifier_Type_Expression<'tree>
     {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if let Ok(this) = <MutableSpecifier<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::MutableSpecifier(this));
             }
@@ -22178,7 +23166,7 @@ pub mod anon_unions {
         const KIND: &'static str =
             "{mutable_specifier | visibility_modifier | identifier | _type | _expression}";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::MutableSpecifier(x) => x.node(),
                 Self::VisibilityModifier(x) => x.node(),
@@ -22188,7 +23176,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::MutableSpecifier(x) => x.node_mut(),
                 Self::VisibilityModifier(x) => x.node_mut(),
@@ -22198,7 +23186,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::MutableSpecifier(x) => x.into_node(),
                 Self::VisibilityModifier(x) => x.into_node(),
@@ -22247,12 +23235,14 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>>
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
         for GenericTypeWithTurbofish_ScopedTypeIdentifier_TypeIdentifier<'tree>
     {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             match node.kind() {
                 "generic_type_with_turbofish" => Ok(unsafe {
                     Self :: GenericTypeWithTurbofish (< GenericTypeWithTurbofish < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node))
@@ -22279,7 +23269,7 @@ pub mod anon_unions {
         const KIND: &'static str =
             "{generic_type_with_turbofish | scoped_type_identifier | type_identifier}";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::GenericTypeWithTurbofish(x) => x.node(),
                 Self::ScopedTypeIdentifier(x) => x.node(),
@@ -22287,7 +23277,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::GenericTypeWithTurbofish(x) => x.node_mut(),
                 Self::ScopedTypeIdentifier(x) => x.node_mut(),
@@ -22295,7 +23285,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::GenericTypeWithTurbofish(x) => x.into_node(),
                 Self::ScopedTypeIdentifier(x) => x.into_node(),
@@ -22319,9 +23309,9 @@ pub mod anon_unions {
     #[automatically_derived]
     impl < 'tree > VisibilityModifier_WhereClause_FieldDeclarationList_OrderedFieldDeclarationList_TypeIdentifier_TypeParameters < 'tree > { # [doc = "Returns the node if it is of kind `visibility_modifier` ([VisibilityModifier]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn visibility_modifier (self) -> Option < VisibilityModifier < 'tree > > { match self { Self :: VisibilityModifier (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `where_clause` ([WhereClause]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn where_clause (self) -> Option < WhereClause < 'tree > > { match self { Self :: WhereClause (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `field_declaration_list` ([FieldDeclarationList]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn field_declaration_list (self) -> Option < FieldDeclarationList < 'tree > > { match self { Self :: FieldDeclarationList (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `ordered_field_declaration_list` ([OrderedFieldDeclarationList]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn ordered_field_declaration_list (self) -> Option < OrderedFieldDeclarationList < 'tree > > { match self { Self :: OrderedFieldDeclarationList (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `type_identifier` ([TypeIdentifier]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn type_identifier (self) -> Option < TypeIdentifier < 'tree > > { match self { Self :: TypeIdentifier (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `type_parameters` ([TypeParameters]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn type_parameters (self) -> Option < TypeParameters < 'tree > > { match self { Self :: TypeParameters (x) => Some (x) , _ => None , } } }
     #[automatically_derived]
-    impl < 'tree > TryFrom < tree_sitter :: Node < 'tree >> for VisibilityModifier_WhereClause_FieldDeclarationList_OrderedFieldDeclarationList_TypeIdentifier_TypeParameters < 'tree > { type Error = type_sitter_lib :: IncorrectKind < 'tree > ; # [inline] fn try_from (node : tree_sitter :: Node < 'tree >) -> Result < Self , Self :: Error > { match node . kind () { "visibility_modifier" => Ok (unsafe { Self :: VisibilityModifier (< VisibilityModifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "where_clause" => Ok (unsafe { Self :: WhereClause (< WhereClause < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "field_declaration_list" => Ok (unsafe { Self :: FieldDeclarationList (< FieldDeclarationList < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "ordered_field_declaration_list" => Ok (unsafe { Self :: OrderedFieldDeclarationList (< OrderedFieldDeclarationList < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "type_identifier" => Ok (unsafe { Self :: TypeIdentifier (< TypeIdentifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "type_parameters" => Ok (unsafe { Self :: TypeParameters (< TypeParameters < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , _ => Err (type_sitter_lib :: IncorrectKind { node , kind : < Self as type_sitter_lib :: TypedNode < 'tree >> :: KIND , }) } } }
+    impl < 'tree > TryFrom < type_sitter_lib :: tree_sitter_wrapper :: Node < 'tree >> for VisibilityModifier_WhereClause_FieldDeclarationList_OrderedFieldDeclarationList_TypeIdentifier_TypeParameters < 'tree > { type Error = type_sitter_lib :: IncorrectKind < 'tree > ; # [inline] fn try_from (node : type_sitter_lib :: tree_sitter_wrapper :: Node < 'tree >) -> Result < Self , Self :: Error > { match node . kind () { "visibility_modifier" => Ok (unsafe { Self :: VisibilityModifier (< VisibilityModifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "where_clause" => Ok (unsafe { Self :: WhereClause (< WhereClause < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "field_declaration_list" => Ok (unsafe { Self :: FieldDeclarationList (< FieldDeclarationList < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "ordered_field_declaration_list" => Ok (unsafe { Self :: OrderedFieldDeclarationList (< OrderedFieldDeclarationList < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "type_identifier" => Ok (unsafe { Self :: TypeIdentifier (< TypeIdentifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "type_parameters" => Ok (unsafe { Self :: TypeParameters (< TypeParameters < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , _ => Err (type_sitter_lib :: IncorrectKind { node , kind : < Self as type_sitter_lib :: TypedNode < 'tree >> :: KIND , }) } } }
     #[automatically_derived]
-    impl < 'tree > type_sitter_lib :: TypedNode < 'tree > for VisibilityModifier_WhereClause_FieldDeclarationList_OrderedFieldDeclarationList_TypeIdentifier_TypeParameters < 'tree > { const KIND : & 'static str = "{visibility_modifier | where_clause | field_declaration_list | ordered_field_declaration_list | type_identifier | type_parameters}" ; # [inline] fn node (& self) -> & tree_sitter :: Node < 'tree > { match self { Self :: VisibilityModifier (x) => x . node () , Self :: WhereClause (x) => x . node () , Self :: FieldDeclarationList (x) => x . node () , Self :: OrderedFieldDeclarationList (x) => x . node () , Self :: TypeIdentifier (x) => x . node () , Self :: TypeParameters (x) => x . node () , } } # [inline] fn node_mut (& mut self) -> & mut tree_sitter :: Node < 'tree > { match self { Self :: VisibilityModifier (x) => x . node_mut () , Self :: WhereClause (x) => x . node_mut () , Self :: FieldDeclarationList (x) => x . node_mut () , Self :: OrderedFieldDeclarationList (x) => x . node_mut () , Self :: TypeIdentifier (x) => x . node_mut () , Self :: TypeParameters (x) => x . node_mut () , } } # [inline] fn into_node (self) -> tree_sitter :: Node < 'tree > { match self { Self :: VisibilityModifier (x) => x . into_node () , Self :: WhereClause (x) => x . into_node () , Self :: FieldDeclarationList (x) => x . into_node () , Self :: OrderedFieldDeclarationList (x) => x . into_node () , Self :: TypeIdentifier (x) => x . into_node () , Self :: TypeParameters (x) => x . into_node () , } } }
+    impl < 'tree > type_sitter_lib :: TypedNode < 'tree > for VisibilityModifier_WhereClause_FieldDeclarationList_OrderedFieldDeclarationList_TypeIdentifier_TypeParameters < 'tree > { const KIND : & 'static str = "{visibility_modifier | where_clause | field_declaration_list | ordered_field_declaration_list | type_identifier | type_parameters}" ; # [inline] fn node (& self) -> & type_sitter_lib :: tree_sitter_wrapper :: Node < 'tree > { match self { Self :: VisibilityModifier (x) => x . node () , Self :: WhereClause (x) => x . node () , Self :: FieldDeclarationList (x) => x . node () , Self :: OrderedFieldDeclarationList (x) => x . node () , Self :: TypeIdentifier (x) => x . node () , Self :: TypeParameters (x) => x . node () , } } # [inline] fn node_mut (& mut self) -> & mut type_sitter_lib :: tree_sitter_wrapper :: Node < 'tree > { match self { Self :: VisibilityModifier (x) => x . node_mut () , Self :: WhereClause (x) => x . node_mut () , Self :: FieldDeclarationList (x) => x . node_mut () , Self :: OrderedFieldDeclarationList (x) => x . node_mut () , Self :: TypeIdentifier (x) => x . node_mut () , Self :: TypeParameters (x) => x . node_mut () , } } # [inline] fn into_node (self) -> type_sitter_lib :: tree_sitter_wrapper :: Node < 'tree > { match self { Self :: VisibilityModifier (x) => x . into_node () , Self :: WhereClause (x) => x . into_node () , Self :: FieldDeclarationList (x) => x . into_node () , Self :: OrderedFieldDeclarationList (x) => x . into_node () , Self :: TypeIdentifier (x) => x . into_node () , Self :: TypeParameters (x) => x . into_node () , } } }
     #[doc = "one of `{field_pattern | remaining_field_pattern | scoped_type_identifier | type_identifier}`:\n- [FieldPattern]\n- [RemainingFieldPattern]\n- [ScopedTypeIdentifier]\n- [TypeIdentifier]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
@@ -22371,12 +23361,14 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>>
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
         for FieldPattern_RemainingFieldPattern_ScopedTypeIdentifier_TypeIdentifier<'tree>
     {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             match node.kind() {
                 "field_pattern" => Ok(unsafe {
                     Self :: FieldPattern (< FieldPattern < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node))
@@ -22406,7 +23398,7 @@ pub mod anon_unions {
         const KIND: &'static str =
             "{field_pattern | remaining_field_pattern | scoped_type_identifier | type_identifier}";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::FieldPattern(x) => x.node(),
                 Self::RemainingFieldPattern(x) => x.node(),
@@ -22415,7 +23407,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::FieldPattern(x) => x.node_mut(),
                 Self::RemainingFieldPattern(x) => x.node_mut(),
@@ -22424,7 +23416,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::FieldPattern(x) => x.into_node(),
                 Self::RemainingFieldPattern(x) => x.into_node(),
@@ -22453,9 +23445,9 @@ pub mod anon_unions {
     #[automatically_derived]
     impl < 'tree > Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenRepetition_TokenTree < 'tree > { # [doc = "Returns the node if it is of kind `_literal` ([Literal]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn literal (self) -> Option < Literal < 'tree > > { match self { Self :: Literal (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `crate` ([Crate]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn crate_ (self) -> Option < Crate < 'tree > > { match self { Self :: Crate (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `identifier` ([Identifier]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn identifier (self) -> Option < Identifier < 'tree > > { match self { Self :: Identifier (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `metavariable` ([Metavariable]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn metavariable (self) -> Option < Metavariable < 'tree > > { match self { Self :: Metavariable (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `mutable_specifier` ([MutableSpecifier]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn mutable_specifier (self) -> Option < MutableSpecifier < 'tree > > { match self { Self :: MutableSpecifier (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `primitive_type` ([PrimitiveType]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn primitive_type (self) -> Option < PrimitiveType < 'tree > > { match self { Self :: PrimitiveType (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `self` ([_Self]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn _self (self) -> Option < _Self < 'tree > > { match self { Self :: _Self (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `super` ([Super]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn super_ (self) -> Option < Super < 'tree > > { match self { Self :: Super (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `token_repetition` ([TokenRepetition]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn token_repetition (self) -> Option < TokenRepetition < 'tree > > { match self { Self :: TokenRepetition (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `token_tree` ([TokenTree]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn token_tree (self) -> Option < TokenTree < 'tree > > { match self { Self :: TokenTree (x) => Some (x) , _ => None , } } }
     #[automatically_derived]
-    impl < 'tree > TryFrom < tree_sitter :: Node < 'tree >> for Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenRepetition_TokenTree < 'tree > { type Error = type_sitter_lib :: IncorrectKind < 'tree > ; # [inline] fn try_from (node : tree_sitter :: Node < 'tree >) -> Result < Self , Self :: Error > { if let Ok (this) = < Literal < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Literal (this)) ; } if let Ok (this) = < Crate < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Crate (this)) ; } if let Ok (this) = < Identifier < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Identifier (this)) ; } if let Ok (this) = < Metavariable < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Metavariable (this)) ; } if let Ok (this) = < MutableSpecifier < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: MutableSpecifier (this)) ; } if let Ok (this) = < PrimitiveType < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: PrimitiveType (this)) ; } if let Ok (this) = < _Self < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: _Self (this)) ; } if let Ok (this) = < Super < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Super (this)) ; } if let Ok (this) = < TokenRepetition < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: TokenRepetition (this)) ; } if let Ok (this) = < TokenTree < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: TokenTree (this)) ; } Err (type_sitter_lib :: IncorrectKind { node , kind : < Self as type_sitter_lib :: TypedNode < 'tree >> :: KIND , }) } }
+    impl < 'tree > TryFrom < type_sitter_lib :: tree_sitter_wrapper :: Node < 'tree >> for Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenRepetition_TokenTree < 'tree > { type Error = type_sitter_lib :: IncorrectKind < 'tree > ; # [inline] fn try_from (node : type_sitter_lib :: tree_sitter_wrapper :: Node < 'tree >) -> Result < Self , Self :: Error > { if let Ok (this) = < Literal < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Literal (this)) ; } if let Ok (this) = < Crate < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Crate (this)) ; } if let Ok (this) = < Identifier < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Identifier (this)) ; } if let Ok (this) = < Metavariable < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Metavariable (this)) ; } if let Ok (this) = < MutableSpecifier < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: MutableSpecifier (this)) ; } if let Ok (this) = < PrimitiveType < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: PrimitiveType (this)) ; } if let Ok (this) = < _Self < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: _Self (this)) ; } if let Ok (this) = < Super < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Super (this)) ; } if let Ok (this) = < TokenRepetition < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: TokenRepetition (this)) ; } if let Ok (this) = < TokenTree < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: TokenTree (this)) ; } Err (type_sitter_lib :: IncorrectKind { node , kind : < Self as type_sitter_lib :: TypedNode < 'tree >> :: KIND , }) } }
     #[automatically_derived]
-    impl < 'tree > type_sitter_lib :: TypedNode < 'tree > for Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenRepetition_TokenTree < 'tree > { const KIND : & 'static str = "{_literal | crate | identifier | metavariable | mutable_specifier | primitive_type | self | super | token_repetition | token_tree}" ; # [inline] fn node (& self) -> & tree_sitter :: Node < 'tree > { match self { Self :: Literal (x) => x . node () , Self :: Crate (x) => x . node () , Self :: Identifier (x) => x . node () , Self :: Metavariable (x) => x . node () , Self :: MutableSpecifier (x) => x . node () , Self :: PrimitiveType (x) => x . node () , Self :: _Self (x) => x . node () , Self :: Super (x) => x . node () , Self :: TokenRepetition (x) => x . node () , Self :: TokenTree (x) => x . node () , } } # [inline] fn node_mut (& mut self) -> & mut tree_sitter :: Node < 'tree > { match self { Self :: Literal (x) => x . node_mut () , Self :: Crate (x) => x . node_mut () , Self :: Identifier (x) => x . node_mut () , Self :: Metavariable (x) => x . node_mut () , Self :: MutableSpecifier (x) => x . node_mut () , Self :: PrimitiveType (x) => x . node_mut () , Self :: _Self (x) => x . node_mut () , Self :: Super (x) => x . node_mut () , Self :: TokenRepetition (x) => x . node_mut () , Self :: TokenTree (x) => x . node_mut () , } } # [inline] fn into_node (self) -> tree_sitter :: Node < 'tree > { match self { Self :: Literal (x) => x . into_node () , Self :: Crate (x) => x . into_node () , Self :: Identifier (x) => x . into_node () , Self :: Metavariable (x) => x . into_node () , Self :: MutableSpecifier (x) => x . into_node () , Self :: PrimitiveType (x) => x . into_node () , Self :: _Self (x) => x . into_node () , Self :: Super (x) => x . into_node () , Self :: TokenRepetition (x) => x . into_node () , Self :: TokenTree (x) => x . into_node () , } } }
+    impl < 'tree > type_sitter_lib :: TypedNode < 'tree > for Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenRepetition_TokenTree < 'tree > { const KIND : & 'static str = "{_literal | crate | identifier | metavariable | mutable_specifier | primitive_type | self | super | token_repetition | token_tree}" ; # [inline] fn node (& self) -> & type_sitter_lib :: tree_sitter_wrapper :: Node < 'tree > { match self { Self :: Literal (x) => x . node () , Self :: Crate (x) => x . node () , Self :: Identifier (x) => x . node () , Self :: Metavariable (x) => x . node () , Self :: MutableSpecifier (x) => x . node () , Self :: PrimitiveType (x) => x . node () , Self :: _Self (x) => x . node () , Self :: Super (x) => x . node () , Self :: TokenRepetition (x) => x . node () , Self :: TokenTree (x) => x . node () , } } # [inline] fn node_mut (& mut self) -> & mut type_sitter_lib :: tree_sitter_wrapper :: Node < 'tree > { match self { Self :: Literal (x) => x . node_mut () , Self :: Crate (x) => x . node_mut () , Self :: Identifier (x) => x . node_mut () , Self :: Metavariable (x) => x . node_mut () , Self :: MutableSpecifier (x) => x . node_mut () , Self :: PrimitiveType (x) => x . node_mut () , Self :: _Self (x) => x . node_mut () , Self :: Super (x) => x . node_mut () , Self :: TokenRepetition (x) => x . node_mut () , Self :: TokenTree (x) => x . node_mut () , } } # [inline] fn into_node (self) -> type_sitter_lib :: tree_sitter_wrapper :: Node < 'tree > { match self { Self :: Literal (x) => x . into_node () , Self :: Crate (x) => x . into_node () , Self :: Identifier (x) => x . into_node () , Self :: Metavariable (x) => x . into_node () , Self :: MutableSpecifier (x) => x . into_node () , Self :: PrimitiveType (x) => x . into_node () , Self :: _Self (x) => x . into_node () , Self :: Super (x) => x . into_node () , Self :: TokenRepetition (x) => x . into_node () , Self :: TokenTree (x) => x . into_node () , } } }
     #[doc = "one of `{_literal | crate | identifier | metavariable | mutable_specifier | primitive_type | self | super | token_binding_pattern | token_repetition_pattern | token_tree_pattern}`:\n- [Literal]\n- [Crate]\n- [Identifier]\n- [Metavariable]\n- [MutableSpecifier]\n- [PrimitiveType]\n- [_Self]\n- [Super]\n- [TokenBindingPattern]\n- [TokenRepetitionPattern]\n- [TokenTreePattern]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
@@ -22477,9 +23469,9 @@ pub mod anon_unions {
     #[automatically_derived]
     impl < 'tree > Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern < 'tree > { # [doc = "Returns the node if it is of kind `_literal` ([Literal]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn literal (self) -> Option < Literal < 'tree > > { match self { Self :: Literal (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `crate` ([Crate]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn crate_ (self) -> Option < Crate < 'tree > > { match self { Self :: Crate (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `identifier` ([Identifier]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn identifier (self) -> Option < Identifier < 'tree > > { match self { Self :: Identifier (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `metavariable` ([Metavariable]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn metavariable (self) -> Option < Metavariable < 'tree > > { match self { Self :: Metavariable (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `mutable_specifier` ([MutableSpecifier]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn mutable_specifier (self) -> Option < MutableSpecifier < 'tree > > { match self { Self :: MutableSpecifier (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `primitive_type` ([PrimitiveType]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn primitive_type (self) -> Option < PrimitiveType < 'tree > > { match self { Self :: PrimitiveType (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `self` ([_Self]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn _self (self) -> Option < _Self < 'tree > > { match self { Self :: _Self (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `super` ([Super]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn super_ (self) -> Option < Super < 'tree > > { match self { Self :: Super (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `token_binding_pattern` ([TokenBindingPattern]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn token_binding_pattern (self) -> Option < TokenBindingPattern < 'tree > > { match self { Self :: TokenBindingPattern (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `token_repetition_pattern` ([TokenRepetitionPattern]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn token_repetition_pattern (self) -> Option < TokenRepetitionPattern < 'tree > > { match self { Self :: TokenRepetitionPattern (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `token_tree_pattern` ([TokenTreePattern]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn token_tree_pattern (self) -> Option < TokenTreePattern < 'tree > > { match self { Self :: TokenTreePattern (x) => Some (x) , _ => None , } } }
     #[automatically_derived]
-    impl < 'tree > TryFrom < tree_sitter :: Node < 'tree >> for Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern < 'tree > { type Error = type_sitter_lib :: IncorrectKind < 'tree > ; # [inline] fn try_from (node : tree_sitter :: Node < 'tree >) -> Result < Self , Self :: Error > { if let Ok (this) = < Literal < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Literal (this)) ; } if let Ok (this) = < Crate < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Crate (this)) ; } if let Ok (this) = < Identifier < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Identifier (this)) ; } if let Ok (this) = < Metavariable < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Metavariable (this)) ; } if let Ok (this) = < MutableSpecifier < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: MutableSpecifier (this)) ; } if let Ok (this) = < PrimitiveType < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: PrimitiveType (this)) ; } if let Ok (this) = < _Self < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: _Self (this)) ; } if let Ok (this) = < Super < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Super (this)) ; } if let Ok (this) = < TokenBindingPattern < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: TokenBindingPattern (this)) ; } if let Ok (this) = < TokenRepetitionPattern < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: TokenRepetitionPattern (this)) ; } if let Ok (this) = < TokenTreePattern < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: TokenTreePattern (this)) ; } Err (type_sitter_lib :: IncorrectKind { node , kind : < Self as type_sitter_lib :: TypedNode < 'tree >> :: KIND , }) } }
+    impl < 'tree > TryFrom < type_sitter_lib :: tree_sitter_wrapper :: Node < 'tree >> for Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern < 'tree > { type Error = type_sitter_lib :: IncorrectKind < 'tree > ; # [inline] fn try_from (node : type_sitter_lib :: tree_sitter_wrapper :: Node < 'tree >) -> Result < Self , Self :: Error > { if let Ok (this) = < Literal < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Literal (this)) ; } if let Ok (this) = < Crate < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Crate (this)) ; } if let Ok (this) = < Identifier < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Identifier (this)) ; } if let Ok (this) = < Metavariable < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Metavariable (this)) ; } if let Ok (this) = < MutableSpecifier < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: MutableSpecifier (this)) ; } if let Ok (this) = < PrimitiveType < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: PrimitiveType (this)) ; } if let Ok (this) = < _Self < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: _Self (this)) ; } if let Ok (this) = < Super < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Super (this)) ; } if let Ok (this) = < TokenBindingPattern < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: TokenBindingPattern (this)) ; } if let Ok (this) = < TokenRepetitionPattern < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: TokenRepetitionPattern (this)) ; } if let Ok (this) = < TokenTreePattern < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: TokenTreePattern (this)) ; } Err (type_sitter_lib :: IncorrectKind { node , kind : < Self as type_sitter_lib :: TypedNode < 'tree >> :: KIND , }) } }
     #[automatically_derived]
-    impl < 'tree > type_sitter_lib :: TypedNode < 'tree > for Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern < 'tree > { const KIND : & 'static str = "{_literal | crate | identifier | metavariable | mutable_specifier | primitive_type | self | super | token_binding_pattern | token_repetition_pattern | token_tree_pattern}" ; # [inline] fn node (& self) -> & tree_sitter :: Node < 'tree > { match self { Self :: Literal (x) => x . node () , Self :: Crate (x) => x . node () , Self :: Identifier (x) => x . node () , Self :: Metavariable (x) => x . node () , Self :: MutableSpecifier (x) => x . node () , Self :: PrimitiveType (x) => x . node () , Self :: _Self (x) => x . node () , Self :: Super (x) => x . node () , Self :: TokenBindingPattern (x) => x . node () , Self :: TokenRepetitionPattern (x) => x . node () , Self :: TokenTreePattern (x) => x . node () , } } # [inline] fn node_mut (& mut self) -> & mut tree_sitter :: Node < 'tree > { match self { Self :: Literal (x) => x . node_mut () , Self :: Crate (x) => x . node_mut () , Self :: Identifier (x) => x . node_mut () , Self :: Metavariable (x) => x . node_mut () , Self :: MutableSpecifier (x) => x . node_mut () , Self :: PrimitiveType (x) => x . node_mut () , Self :: _Self (x) => x . node_mut () , Self :: Super (x) => x . node_mut () , Self :: TokenBindingPattern (x) => x . node_mut () , Self :: TokenRepetitionPattern (x) => x . node_mut () , Self :: TokenTreePattern (x) => x . node_mut () , } } # [inline] fn into_node (self) -> tree_sitter :: Node < 'tree > { match self { Self :: Literal (x) => x . into_node () , Self :: Crate (x) => x . into_node () , Self :: Identifier (x) => x . into_node () , Self :: Metavariable (x) => x . into_node () , Self :: MutableSpecifier (x) => x . into_node () , Self :: PrimitiveType (x) => x . into_node () , Self :: _Self (x) => x . into_node () , Self :: Super (x) => x . into_node () , Self :: TokenBindingPattern (x) => x . into_node () , Self :: TokenRepetitionPattern (x) => x . into_node () , Self :: TokenTreePattern (x) => x . into_node () , } } }
+    impl < 'tree > type_sitter_lib :: TypedNode < 'tree > for Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern < 'tree > { const KIND : & 'static str = "{_literal | crate | identifier | metavariable | mutable_specifier | primitive_type | self | super | token_binding_pattern | token_repetition_pattern | token_tree_pattern}" ; # [inline] fn node (& self) -> & type_sitter_lib :: tree_sitter_wrapper :: Node < 'tree > { match self { Self :: Literal (x) => x . node () , Self :: Crate (x) => x . node () , Self :: Identifier (x) => x . node () , Self :: Metavariable (x) => x . node () , Self :: MutableSpecifier (x) => x . node () , Self :: PrimitiveType (x) => x . node () , Self :: _Self (x) => x . node () , Self :: Super (x) => x . node () , Self :: TokenBindingPattern (x) => x . node () , Self :: TokenRepetitionPattern (x) => x . node () , Self :: TokenTreePattern (x) => x . node () , } } # [inline] fn node_mut (& mut self) -> & mut type_sitter_lib :: tree_sitter_wrapper :: Node < 'tree > { match self { Self :: Literal (x) => x . node_mut () , Self :: Crate (x) => x . node_mut () , Self :: Identifier (x) => x . node_mut () , Self :: Metavariable (x) => x . node_mut () , Self :: MutableSpecifier (x) => x . node_mut () , Self :: PrimitiveType (x) => x . node_mut () , Self :: _Self (x) => x . node_mut () , Self :: Super (x) => x . node_mut () , Self :: TokenBindingPattern (x) => x . node_mut () , Self :: TokenRepetitionPattern (x) => x . node_mut () , Self :: TokenTreePattern (x) => x . node_mut () , } } # [inline] fn into_node (self) -> type_sitter_lib :: tree_sitter_wrapper :: Node < 'tree > { match self { Self :: Literal (x) => x . into_node () , Self :: Crate (x) => x . into_node () , Self :: Identifier (x) => x . into_node () , Self :: Metavariable (x) => x . into_node () , Self :: MutableSpecifier (x) => x . into_node () , Self :: PrimitiveType (x) => x . into_node () , Self :: _Self (x) => x . into_node () , Self :: Super (x) => x . into_node () , Self :: TokenBindingPattern (x) => x . into_node () , Self :: TokenRepetitionPattern (x) => x . into_node () , Self :: TokenTreePattern (x) => x . into_node () , } } }
     #[doc = "one of `{_type | higher_ranked_trait_bound | lifetime | removed_trait_bound}`:\n- [Type]\n- [HigherRankedTraitBound]\n- [Lifetime]\n- [RemovedTraitBound]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
@@ -22529,12 +23521,14 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>>
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
         for Type_HigherRankedTraitBound_Lifetime_RemovedTraitBound<'tree>
     {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if let Ok(this) = <Type<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::Type(this));
             }
@@ -22560,7 +23554,7 @@ pub mod anon_unions {
         const KIND: &'static str =
             "{_type | higher_ranked_trait_bound | lifetime | removed_trait_bound}";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::Type(x) => x.node(),
                 Self::HigherRankedTraitBound(x) => x.node(),
@@ -22569,7 +23563,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::Type(x) => x.node_mut(),
                 Self::HigherRankedTraitBound(x) => x.node_mut(),
@@ -22578,7 +23572,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::Type(x) => x.into_node(),
                 Self::HigherRankedTraitBound(x) => x.into_node(),
@@ -22662,14 +23656,16 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>>
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
         for VisibilityModifier_WhereClause_DeclarationList_TraitBounds_TypeIdentifier_TypeParameters<
             'tree,
         >
     {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             match node.kind() {
                 "visibility_modifier" => Ok(unsafe {
                     Self :: VisibilityModifier (< VisibilityModifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node))
@@ -22710,7 +23706,7 @@ pub mod anon_unions {
     {
         const KIND : & 'static str = "{visibility_modifier | where_clause | declaration_list | trait_bounds | type_identifier | type_parameters}" ;
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::VisibilityModifier(x) => x.node(),
                 Self::WhereClause(x) => x.node(),
@@ -22721,7 +23717,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::VisibilityModifier(x) => x.node_mut(),
                 Self::WhereClause(x) => x.node_mut(),
@@ -22732,7 +23728,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::VisibilityModifier(x) => x.into_node(),
                 Self::WhereClause(x) => x.into_node(),
@@ -22782,10 +23778,14 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Pattern_Identifier_ScopedIdentifier<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+        for Pattern_Identifier_ScopedIdentifier<'tree>
+    {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if let Ok(this) = <Pattern<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::Pattern(this));
             }
@@ -22805,7 +23805,7 @@ pub mod anon_unions {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Pattern_Identifier_ScopedIdentifier<'tree> {
         const KIND: &'static str = "{_pattern | identifier | scoped_identifier}";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::Pattern(x) => x.node(),
                 Self::Identifier(x) => x.node(),
@@ -22813,7 +23813,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::Pattern(x) => x.node_mut(),
                 Self::Identifier(x) => x.node_mut(),
@@ -22821,7 +23821,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::Pattern(x) => x.into_node(),
                 Self::Identifier(x) => x.into_node(),
@@ -22888,10 +23888,14 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>> for Literal_Type_Block_Lifetime_TypeBinding<'tree> {
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
+        for Literal_Type_Block_Lifetime_TypeBinding<'tree>
+    {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if let Ok(this) = <Literal<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::Literal(this));
             }
@@ -22917,7 +23921,7 @@ pub mod anon_unions {
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Literal_Type_Block_Lifetime_TypeBinding<'tree> {
         const KIND: &'static str = "{_literal | _type | block | lifetime | type_binding}";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::Literal(x) => x.node(),
                 Self::Type(x) => x.node(),
@@ -22927,7 +23931,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::Literal(x) => x.node_mut(),
                 Self::Type(x) => x.node_mut(),
@@ -22937,7 +23941,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::Literal(x) => x.into_node(),
                 Self::Type(x) => x.into_node(),
@@ -22996,12 +24000,14 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>>
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
         for VisibilityModifier_TypeIdentifier_Type_TypeParameters<'tree>
     {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if let Ok(this) = <VisibilityModifier<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::VisibilityModifier(this));
             }
@@ -23027,7 +24033,7 @@ pub mod anon_unions {
         const KIND: &'static str =
             "{visibility_modifier | type_identifier | _type | type_parameters}";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::VisibilityModifier(x) => x.node(),
                 Self::TypeIdentifier(x) => x.node(),
@@ -23036,7 +24042,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::VisibilityModifier(x) => x.node_mut(),
                 Self::TypeIdentifier(x) => x.node_mut(),
@@ -23045,7 +24051,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::VisibilityModifier(x) => x.into_node(),
                 Self::TypeIdentifier(x) => x.into_node(),
@@ -23070,9 +24076,9 @@ pub mod anon_unions {
     #[automatically_derived]
     impl < 'tree > ConstParameter_ConstrainedTypeParameter_Lifetime_Metavariable_OptionalTypeParameter_TypeIdentifier < 'tree > { # [doc = "Returns the node if it is of kind `const_parameter` ([ConstParameter]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn const_parameter (self) -> Option < ConstParameter < 'tree > > { match self { Self :: ConstParameter (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `constrained_type_parameter` ([ConstrainedTypeParameter]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn constrained_type_parameter (self) -> Option < ConstrainedTypeParameter < 'tree > > { match self { Self :: ConstrainedTypeParameter (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `lifetime` ([Lifetime]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn lifetime (self) -> Option < Lifetime < 'tree > > { match self { Self :: Lifetime (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `metavariable` ([Metavariable]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn metavariable (self) -> Option < Metavariable < 'tree > > { match self { Self :: Metavariable (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `optional_type_parameter` ([OptionalTypeParameter]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn optional_type_parameter (self) -> Option < OptionalTypeParameter < 'tree > > { match self { Self :: OptionalTypeParameter (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `type_identifier` ([TypeIdentifier]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn type_identifier (self) -> Option < TypeIdentifier < 'tree > > { match self { Self :: TypeIdentifier (x) => Some (x) , _ => None , } } }
     #[automatically_derived]
-    impl < 'tree > TryFrom < tree_sitter :: Node < 'tree >> for ConstParameter_ConstrainedTypeParameter_Lifetime_Metavariable_OptionalTypeParameter_TypeIdentifier < 'tree > { type Error = type_sitter_lib :: IncorrectKind < 'tree > ; # [inline] fn try_from (node : tree_sitter :: Node < 'tree >) -> Result < Self , Self :: Error > { match node . kind () { "const_parameter" => Ok (unsafe { Self :: ConstParameter (< ConstParameter < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "constrained_type_parameter" => Ok (unsafe { Self :: ConstrainedTypeParameter (< ConstrainedTypeParameter < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "lifetime" => Ok (unsafe { Self :: Lifetime (< Lifetime < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "metavariable" => Ok (unsafe { Self :: Metavariable (< Metavariable < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "optional_type_parameter" => Ok (unsafe { Self :: OptionalTypeParameter (< OptionalTypeParameter < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "type_identifier" => Ok (unsafe { Self :: TypeIdentifier (< TypeIdentifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , _ => Err (type_sitter_lib :: IncorrectKind { node , kind : < Self as type_sitter_lib :: TypedNode < 'tree >> :: KIND , }) } } }
+    impl < 'tree > TryFrom < type_sitter_lib :: tree_sitter_wrapper :: Node < 'tree >> for ConstParameter_ConstrainedTypeParameter_Lifetime_Metavariable_OptionalTypeParameter_TypeIdentifier < 'tree > { type Error = type_sitter_lib :: IncorrectKind < 'tree > ; # [inline] fn try_from (node : type_sitter_lib :: tree_sitter_wrapper :: Node < 'tree >) -> Result < Self , Self :: Error > { match node . kind () { "const_parameter" => Ok (unsafe { Self :: ConstParameter (< ConstParameter < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "constrained_type_parameter" => Ok (unsafe { Self :: ConstrainedTypeParameter (< ConstrainedTypeParameter < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "lifetime" => Ok (unsafe { Self :: Lifetime (< Lifetime < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "metavariable" => Ok (unsafe { Self :: Metavariable (< Metavariable < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "optional_type_parameter" => Ok (unsafe { Self :: OptionalTypeParameter (< OptionalTypeParameter < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "type_identifier" => Ok (unsafe { Self :: TypeIdentifier (< TypeIdentifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , _ => Err (type_sitter_lib :: IncorrectKind { node , kind : < Self as type_sitter_lib :: TypedNode < 'tree >> :: KIND , }) } } }
     #[automatically_derived]
-    impl < 'tree > type_sitter_lib :: TypedNode < 'tree > for ConstParameter_ConstrainedTypeParameter_Lifetime_Metavariable_OptionalTypeParameter_TypeIdentifier < 'tree > { const KIND : & 'static str = "{const_parameter | constrained_type_parameter | lifetime | metavariable | optional_type_parameter | type_identifier}" ; # [inline] fn node (& self) -> & tree_sitter :: Node < 'tree > { match self { Self :: ConstParameter (x) => x . node () , Self :: ConstrainedTypeParameter (x) => x . node () , Self :: Lifetime (x) => x . node () , Self :: Metavariable (x) => x . node () , Self :: OptionalTypeParameter (x) => x . node () , Self :: TypeIdentifier (x) => x . node () , } } # [inline] fn node_mut (& mut self) -> & mut tree_sitter :: Node < 'tree > { match self { Self :: ConstParameter (x) => x . node_mut () , Self :: ConstrainedTypeParameter (x) => x . node_mut () , Self :: Lifetime (x) => x . node_mut () , Self :: Metavariable (x) => x . node_mut () , Self :: OptionalTypeParameter (x) => x . node_mut () , Self :: TypeIdentifier (x) => x . node_mut () , } } # [inline] fn into_node (self) -> tree_sitter :: Node < 'tree > { match self { Self :: ConstParameter (x) => x . into_node () , Self :: ConstrainedTypeParameter (x) => x . into_node () , Self :: Lifetime (x) => x . into_node () , Self :: Metavariable (x) => x . into_node () , Self :: OptionalTypeParameter (x) => x . into_node () , Self :: TypeIdentifier (x) => x . into_node () , } } }
+    impl < 'tree > type_sitter_lib :: TypedNode < 'tree > for ConstParameter_ConstrainedTypeParameter_Lifetime_Metavariable_OptionalTypeParameter_TypeIdentifier < 'tree > { const KIND : & 'static str = "{const_parameter | constrained_type_parameter | lifetime | metavariable | optional_type_parameter | type_identifier}" ; # [inline] fn node (& self) -> & type_sitter_lib :: tree_sitter_wrapper :: Node < 'tree > { match self { Self :: ConstParameter (x) => x . node () , Self :: ConstrainedTypeParameter (x) => x . node () , Self :: Lifetime (x) => x . node () , Self :: Metavariable (x) => x . node () , Self :: OptionalTypeParameter (x) => x . node () , Self :: TypeIdentifier (x) => x . node () , } } # [inline] fn node_mut (& mut self) -> & mut type_sitter_lib :: tree_sitter_wrapper :: Node < 'tree > { match self { Self :: ConstParameter (x) => x . node_mut () , Self :: ConstrainedTypeParameter (x) => x . node_mut () , Self :: Lifetime (x) => x . node_mut () , Self :: Metavariable (x) => x . node_mut () , Self :: OptionalTypeParameter (x) => x . node_mut () , Self :: TypeIdentifier (x) => x . node_mut () , } } # [inline] fn into_node (self) -> type_sitter_lib :: tree_sitter_wrapper :: Node < 'tree > { match self { Self :: ConstParameter (x) => x . into_node () , Self :: ConstrainedTypeParameter (x) => x . into_node () , Self :: Lifetime (x) => x . into_node () , Self :: Metavariable (x) => x . into_node () , Self :: OptionalTypeParameter (x) => x . into_node () , Self :: TypeIdentifier (x) => x . into_node () , } } }
     #[doc = "one of `{visibility_modifier | where_clause | field_declaration_list | type_identifier | type_parameters}`:\n- [VisibilityModifier]\n- [WhereClause]\n- [FieldDeclarationList]\n- [TypeIdentifier]\n- [TypeParameters]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
@@ -23136,12 +24142,14 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>>
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
         for VisibilityModifier_WhereClause_FieldDeclarationList_TypeIdentifier_TypeParameters<'tree>
     {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             match node.kind() {
                 "visibility_modifier" => Ok(unsafe {
                     Self :: VisibilityModifier (< VisibilityModifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node))
@@ -23175,7 +24183,7 @@ pub mod anon_unions {
     {
         const KIND : & 'static str = "{visibility_modifier | where_clause | field_declaration_list | type_identifier | type_parameters}" ;
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::VisibilityModifier(x) => x.node(),
                 Self::WhereClause(x) => x.node(),
@@ -23185,7 +24193,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::VisibilityModifier(x) => x.node_mut(),
                 Self::WhereClause(x) => x.node_mut(),
@@ -23195,7 +24203,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::VisibilityModifier(x) => x.into_node(),
                 Self::WhereClause(x) => x.into_node(),
@@ -23226,9 +24234,9 @@ pub mod anon_unions {
     #[automatically_derived]
     impl < 'tree > VisibilityModifier_Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard < 'tree > { # [doc = "Returns the node if it is of kind `visibility_modifier` ([VisibilityModifier]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn visibility_modifier (self) -> Option < VisibilityModifier < 'tree > > { match self { Self :: VisibilityModifier (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `crate` ([Crate]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn crate_ (self) -> Option < Crate < 'tree > > { match self { Self :: Crate (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `identifier` ([Identifier]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn identifier (self) -> Option < Identifier < 'tree > > { match self { Self :: Identifier (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `metavariable` ([Metavariable]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn metavariable (self) -> Option < Metavariable < 'tree > > { match self { Self :: Metavariable (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `scoped_identifier` ([ScopedIdentifier]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn scoped_identifier (self) -> Option < ScopedIdentifier < 'tree > > { match self { Self :: ScopedIdentifier (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `scoped_use_list` ([ScopedUseList]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn scoped_use_list (self) -> Option < ScopedUseList < 'tree > > { match self { Self :: ScopedUseList (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `self` ([_Self]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn _self (self) -> Option < _Self < 'tree > > { match self { Self :: _Self (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `super` ([Super]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn super_ (self) -> Option < Super < 'tree > > { match self { Self :: Super (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `use_as_clause` ([UseAsClause]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn use_as_clause (self) -> Option < UseAsClause < 'tree > > { match self { Self :: UseAsClause (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `use_list` ([UseList]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn use_list (self) -> Option < UseList < 'tree > > { match self { Self :: UseList (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `use_wildcard` ([UseWildcard]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn use_wildcard (self) -> Option < UseWildcard < 'tree > > { match self { Self :: UseWildcard (x) => Some (x) , _ => None , } } }
     #[automatically_derived]
-    impl < 'tree > TryFrom < tree_sitter :: Node < 'tree >> for VisibilityModifier_Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard < 'tree > { type Error = type_sitter_lib :: IncorrectKind < 'tree > ; # [inline] fn try_from (node : tree_sitter :: Node < 'tree >) -> Result < Self , Self :: Error > { match node . kind () { "visibility_modifier" => Ok (unsafe { Self :: VisibilityModifier (< VisibilityModifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "crate" => Ok (unsafe { Self :: Crate (< Crate < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "identifier" => Ok (unsafe { Self :: Identifier (< Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "metavariable" => Ok (unsafe { Self :: Metavariable (< Metavariable < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "scoped_identifier" => Ok (unsafe { Self :: ScopedIdentifier (< ScopedIdentifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "scoped_use_list" => Ok (unsafe { Self :: ScopedUseList (< ScopedUseList < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "self" => Ok (unsafe { Self :: _Self (< _Self < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "super" => Ok (unsafe { Self :: Super (< Super < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "use_as_clause" => Ok (unsafe { Self :: UseAsClause (< UseAsClause < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "use_list" => Ok (unsafe { Self :: UseList (< UseList < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "use_wildcard" => Ok (unsafe { Self :: UseWildcard (< UseWildcard < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , _ => Err (type_sitter_lib :: IncorrectKind { node , kind : < Self as type_sitter_lib :: TypedNode < 'tree >> :: KIND , }) } } }
+    impl < 'tree > TryFrom < type_sitter_lib :: tree_sitter_wrapper :: Node < 'tree >> for VisibilityModifier_Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard < 'tree > { type Error = type_sitter_lib :: IncorrectKind < 'tree > ; # [inline] fn try_from (node : type_sitter_lib :: tree_sitter_wrapper :: Node < 'tree >) -> Result < Self , Self :: Error > { match node . kind () { "visibility_modifier" => Ok (unsafe { Self :: VisibilityModifier (< VisibilityModifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "crate" => Ok (unsafe { Self :: Crate (< Crate < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "identifier" => Ok (unsafe { Self :: Identifier (< Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "metavariable" => Ok (unsafe { Self :: Metavariable (< Metavariable < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "scoped_identifier" => Ok (unsafe { Self :: ScopedIdentifier (< ScopedIdentifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "scoped_use_list" => Ok (unsafe { Self :: ScopedUseList (< ScopedUseList < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "self" => Ok (unsafe { Self :: _Self (< _Self < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "super" => Ok (unsafe { Self :: Super (< Super < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "use_as_clause" => Ok (unsafe { Self :: UseAsClause (< UseAsClause < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "use_list" => Ok (unsafe { Self :: UseList (< UseList < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "use_wildcard" => Ok (unsafe { Self :: UseWildcard (< UseWildcard < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , _ => Err (type_sitter_lib :: IncorrectKind { node , kind : < Self as type_sitter_lib :: TypedNode < 'tree >> :: KIND , }) } } }
     #[automatically_derived]
-    impl < 'tree > type_sitter_lib :: TypedNode < 'tree > for VisibilityModifier_Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard < 'tree > { const KIND : & 'static str = "{visibility_modifier | crate | identifier | metavariable | scoped_identifier | scoped_use_list | self | super | use_as_clause | use_list | use_wildcard}" ; # [inline] fn node (& self) -> & tree_sitter :: Node < 'tree > { match self { Self :: VisibilityModifier (x) => x . node () , Self :: Crate (x) => x . node () , Self :: Identifier (x) => x . node () , Self :: Metavariable (x) => x . node () , Self :: ScopedIdentifier (x) => x . node () , Self :: ScopedUseList (x) => x . node () , Self :: _Self (x) => x . node () , Self :: Super (x) => x . node () , Self :: UseAsClause (x) => x . node () , Self :: UseList (x) => x . node () , Self :: UseWildcard (x) => x . node () , } } # [inline] fn node_mut (& mut self) -> & mut tree_sitter :: Node < 'tree > { match self { Self :: VisibilityModifier (x) => x . node_mut () , Self :: Crate (x) => x . node_mut () , Self :: Identifier (x) => x . node_mut () , Self :: Metavariable (x) => x . node_mut () , Self :: ScopedIdentifier (x) => x . node_mut () , Self :: ScopedUseList (x) => x . node_mut () , Self :: _Self (x) => x . node_mut () , Self :: Super (x) => x . node_mut () , Self :: UseAsClause (x) => x . node_mut () , Self :: UseList (x) => x . node_mut () , Self :: UseWildcard (x) => x . node_mut () , } } # [inline] fn into_node (self) -> tree_sitter :: Node < 'tree > { match self { Self :: VisibilityModifier (x) => x . into_node () , Self :: Crate (x) => x . into_node () , Self :: Identifier (x) => x . into_node () , Self :: Metavariable (x) => x . into_node () , Self :: ScopedIdentifier (x) => x . into_node () , Self :: ScopedUseList (x) => x . into_node () , Self :: _Self (x) => x . into_node () , Self :: Super (x) => x . into_node () , Self :: UseAsClause (x) => x . into_node () , Self :: UseList (x) => x . into_node () , Self :: UseWildcard (x) => x . into_node () , } } }
+    impl < 'tree > type_sitter_lib :: TypedNode < 'tree > for VisibilityModifier_Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard < 'tree > { const KIND : & 'static str = "{visibility_modifier | crate | identifier | metavariable | scoped_identifier | scoped_use_list | self | super | use_as_clause | use_list | use_wildcard}" ; # [inline] fn node (& self) -> & type_sitter_lib :: tree_sitter_wrapper :: Node < 'tree > { match self { Self :: VisibilityModifier (x) => x . node () , Self :: Crate (x) => x . node () , Self :: Identifier (x) => x . node () , Self :: Metavariable (x) => x . node () , Self :: ScopedIdentifier (x) => x . node () , Self :: ScopedUseList (x) => x . node () , Self :: _Self (x) => x . node () , Self :: Super (x) => x . node () , Self :: UseAsClause (x) => x . node () , Self :: UseList (x) => x . node () , Self :: UseWildcard (x) => x . node () , } } # [inline] fn node_mut (& mut self) -> & mut type_sitter_lib :: tree_sitter_wrapper :: Node < 'tree > { match self { Self :: VisibilityModifier (x) => x . node_mut () , Self :: Crate (x) => x . node_mut () , Self :: Identifier (x) => x . node_mut () , Self :: Metavariable (x) => x . node_mut () , Self :: ScopedIdentifier (x) => x . node_mut () , Self :: ScopedUseList (x) => x . node_mut () , Self :: _Self (x) => x . node_mut () , Self :: Super (x) => x . node_mut () , Self :: UseAsClause (x) => x . node_mut () , Self :: UseList (x) => x . node_mut () , Self :: UseWildcard (x) => x . node_mut () , } } # [inline] fn into_node (self) -> type_sitter_lib :: tree_sitter_wrapper :: Node < 'tree > { match self { Self :: VisibilityModifier (x) => x . into_node () , Self :: Crate (x) => x . into_node () , Self :: Identifier (x) => x . into_node () , Self :: Metavariable (x) => x . into_node () , Self :: ScopedIdentifier (x) => x . into_node () , Self :: ScopedUseList (x) => x . into_node () , Self :: _Self (x) => x . into_node () , Self :: Super (x) => x . into_node () , Self :: UseAsClause (x) => x . into_node () , Self :: UseList (x) => x . into_node () , Self :: UseWildcard (x) => x . into_node () , } } }
     #[doc = "one of `{crate | identifier | metavariable | scoped_identifier | scoped_use_list | self | super | use_as_clause | use_list | use_wildcard}`:\n- [Crate]\n- [Identifier]\n- [Metavariable]\n- [ScopedIdentifier]\n- [ScopedUseList]\n- [_Self]\n- [Super]\n- [UseAsClause]\n- [UseList]\n- [UseWildcard]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
@@ -23249,9 +24257,9 @@ pub mod anon_unions {
     #[automatically_derived]
     impl < 'tree > Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard < 'tree > { # [doc = "Returns the node if it is of kind `crate` ([Crate]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn crate_ (self) -> Option < Crate < 'tree > > { match self { Self :: Crate (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `identifier` ([Identifier]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn identifier (self) -> Option < Identifier < 'tree > > { match self { Self :: Identifier (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `metavariable` ([Metavariable]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn metavariable (self) -> Option < Metavariable < 'tree > > { match self { Self :: Metavariable (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `scoped_identifier` ([ScopedIdentifier]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn scoped_identifier (self) -> Option < ScopedIdentifier < 'tree > > { match self { Self :: ScopedIdentifier (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `scoped_use_list` ([ScopedUseList]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn scoped_use_list (self) -> Option < ScopedUseList < 'tree > > { match self { Self :: ScopedUseList (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `self` ([_Self]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn _self (self) -> Option < _Self < 'tree > > { match self { Self :: _Self (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `super` ([Super]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn super_ (self) -> Option < Super < 'tree > > { match self { Self :: Super (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `use_as_clause` ([UseAsClause]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn use_as_clause (self) -> Option < UseAsClause < 'tree > > { match self { Self :: UseAsClause (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `use_list` ([UseList]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn use_list (self) -> Option < UseList < 'tree > > { match self { Self :: UseList (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `use_wildcard` ([UseWildcard]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn use_wildcard (self) -> Option < UseWildcard < 'tree > > { match self { Self :: UseWildcard (x) => Some (x) , _ => None , } } }
     #[automatically_derived]
-    impl < 'tree > TryFrom < tree_sitter :: Node < 'tree >> for Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard < 'tree > { type Error = type_sitter_lib :: IncorrectKind < 'tree > ; # [inline] fn try_from (node : tree_sitter :: Node < 'tree >) -> Result < Self , Self :: Error > { match node . kind () { "crate" => Ok (unsafe { Self :: Crate (< Crate < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "identifier" => Ok (unsafe { Self :: Identifier (< Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "metavariable" => Ok (unsafe { Self :: Metavariable (< Metavariable < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "scoped_identifier" => Ok (unsafe { Self :: ScopedIdentifier (< ScopedIdentifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "scoped_use_list" => Ok (unsafe { Self :: ScopedUseList (< ScopedUseList < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "self" => Ok (unsafe { Self :: _Self (< _Self < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "super" => Ok (unsafe { Self :: Super (< Super < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "use_as_clause" => Ok (unsafe { Self :: UseAsClause (< UseAsClause < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "use_list" => Ok (unsafe { Self :: UseList (< UseList < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "use_wildcard" => Ok (unsafe { Self :: UseWildcard (< UseWildcard < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , _ => Err (type_sitter_lib :: IncorrectKind { node , kind : < Self as type_sitter_lib :: TypedNode < 'tree >> :: KIND , }) } } }
+    impl < 'tree > TryFrom < type_sitter_lib :: tree_sitter_wrapper :: Node < 'tree >> for Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard < 'tree > { type Error = type_sitter_lib :: IncorrectKind < 'tree > ; # [inline] fn try_from (node : type_sitter_lib :: tree_sitter_wrapper :: Node < 'tree >) -> Result < Self , Self :: Error > { match node . kind () { "crate" => Ok (unsafe { Self :: Crate (< Crate < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "identifier" => Ok (unsafe { Self :: Identifier (< Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "metavariable" => Ok (unsafe { Self :: Metavariable (< Metavariable < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "scoped_identifier" => Ok (unsafe { Self :: ScopedIdentifier (< ScopedIdentifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "scoped_use_list" => Ok (unsafe { Self :: ScopedUseList (< ScopedUseList < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "self" => Ok (unsafe { Self :: _Self (< _Self < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "super" => Ok (unsafe { Self :: Super (< Super < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "use_as_clause" => Ok (unsafe { Self :: UseAsClause (< UseAsClause < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "use_list" => Ok (unsafe { Self :: UseList (< UseList < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "use_wildcard" => Ok (unsafe { Self :: UseWildcard (< UseWildcard < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , _ => Err (type_sitter_lib :: IncorrectKind { node , kind : < Self as type_sitter_lib :: TypedNode < 'tree >> :: KIND , }) } } }
     #[automatically_derived]
-    impl < 'tree > type_sitter_lib :: TypedNode < 'tree > for Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard < 'tree > { const KIND : & 'static str = "{crate | identifier | metavariable | scoped_identifier | scoped_use_list | self | super | use_as_clause | use_list | use_wildcard}" ; # [inline] fn node (& self) -> & tree_sitter :: Node < 'tree > { match self { Self :: Crate (x) => x . node () , Self :: Identifier (x) => x . node () , Self :: Metavariable (x) => x . node () , Self :: ScopedIdentifier (x) => x . node () , Self :: ScopedUseList (x) => x . node () , Self :: _Self (x) => x . node () , Self :: Super (x) => x . node () , Self :: UseAsClause (x) => x . node () , Self :: UseList (x) => x . node () , Self :: UseWildcard (x) => x . node () , } } # [inline] fn node_mut (& mut self) -> & mut tree_sitter :: Node < 'tree > { match self { Self :: Crate (x) => x . node_mut () , Self :: Identifier (x) => x . node_mut () , Self :: Metavariable (x) => x . node_mut () , Self :: ScopedIdentifier (x) => x . node_mut () , Self :: ScopedUseList (x) => x . node_mut () , Self :: _Self (x) => x . node_mut () , Self :: Super (x) => x . node_mut () , Self :: UseAsClause (x) => x . node_mut () , Self :: UseList (x) => x . node_mut () , Self :: UseWildcard (x) => x . node_mut () , } } # [inline] fn into_node (self) -> tree_sitter :: Node < 'tree > { match self { Self :: Crate (x) => x . into_node () , Self :: Identifier (x) => x . into_node () , Self :: Metavariable (x) => x . into_node () , Self :: ScopedIdentifier (x) => x . into_node () , Self :: ScopedUseList (x) => x . into_node () , Self :: _Self (x) => x . into_node () , Self :: Super (x) => x . into_node () , Self :: UseAsClause (x) => x . into_node () , Self :: UseList (x) => x . into_node () , Self :: UseWildcard (x) => x . into_node () , } } }
+    impl < 'tree > type_sitter_lib :: TypedNode < 'tree > for Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard < 'tree > { const KIND : & 'static str = "{crate | identifier | metavariable | scoped_identifier | scoped_use_list | self | super | use_as_clause | use_list | use_wildcard}" ; # [inline] fn node (& self) -> & type_sitter_lib :: tree_sitter_wrapper :: Node < 'tree > { match self { Self :: Crate (x) => x . node () , Self :: Identifier (x) => x . node () , Self :: Metavariable (x) => x . node () , Self :: ScopedIdentifier (x) => x . node () , Self :: ScopedUseList (x) => x . node () , Self :: _Self (x) => x . node () , Self :: Super (x) => x . node () , Self :: UseAsClause (x) => x . node () , Self :: UseList (x) => x . node () , Self :: UseWildcard (x) => x . node () , } } # [inline] fn node_mut (& mut self) -> & mut type_sitter_lib :: tree_sitter_wrapper :: Node < 'tree > { match self { Self :: Crate (x) => x . node_mut () , Self :: Identifier (x) => x . node_mut () , Self :: Metavariable (x) => x . node_mut () , Self :: ScopedIdentifier (x) => x . node_mut () , Self :: ScopedUseList (x) => x . node_mut () , Self :: _Self (x) => x . node_mut () , Self :: Super (x) => x . node_mut () , Self :: UseAsClause (x) => x . node_mut () , Self :: UseList (x) => x . node_mut () , Self :: UseWildcard (x) => x . node_mut () , } } # [inline] fn into_node (self) -> type_sitter_lib :: tree_sitter_wrapper :: Node < 'tree > { match self { Self :: Crate (x) => x . into_node () , Self :: Identifier (x) => x . into_node () , Self :: Metavariable (x) => x . into_node () , Self :: ScopedIdentifier (x) => x . into_node () , Self :: ScopedUseList (x) => x . into_node () , Self :: _Self (x) => x . into_node () , Self :: Super (x) => x . into_node () , Self :: UseAsClause (x) => x . into_node () , Self :: UseList (x) => x . into_node () , Self :: UseWildcard (x) => x . into_node () , } } }
     #[doc = "one of `{array_type | generic_type | higher_ranked_trait_bound | lifetime | pointer_type | primitive_type | reference_type | scoped_type_identifier | tuple_type | type_identifier}`:\n- [ArrayType]\n- [GenericType]\n- [HigherRankedTraitBound]\n- [Lifetime]\n- [PointerType]\n- [PrimitiveType]\n- [ReferenceType]\n- [ScopedTypeIdentifier]\n- [TupleType]\n- [TypeIdentifier]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
@@ -23272,9 +24280,9 @@ pub mod anon_unions {
     #[automatically_derived]
     impl < 'tree > ArrayType_GenericType_HigherRankedTraitBound_Lifetime_PointerType_PrimitiveType_ReferenceType_ScopedTypeIdentifier_TupleType_TypeIdentifier < 'tree > { # [doc = "Returns the node if it is of kind `array_type` ([ArrayType]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn array_type (self) -> Option < ArrayType < 'tree > > { match self { Self :: ArrayType (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `generic_type` ([GenericType]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn generic_type (self) -> Option < GenericType < 'tree > > { match self { Self :: GenericType (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `higher_ranked_trait_bound` ([HigherRankedTraitBound]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn higher_ranked_trait_bound (self) -> Option < HigherRankedTraitBound < 'tree > > { match self { Self :: HigherRankedTraitBound (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `lifetime` ([Lifetime]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn lifetime (self) -> Option < Lifetime < 'tree > > { match self { Self :: Lifetime (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `pointer_type` ([PointerType]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn pointer_type (self) -> Option < PointerType < 'tree > > { match self { Self :: PointerType (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `primitive_type` ([PrimitiveType]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn primitive_type (self) -> Option < PrimitiveType < 'tree > > { match self { Self :: PrimitiveType (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `reference_type` ([ReferenceType]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn reference_type (self) -> Option < ReferenceType < 'tree > > { match self { Self :: ReferenceType (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `scoped_type_identifier` ([ScopedTypeIdentifier]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn scoped_type_identifier (self) -> Option < ScopedTypeIdentifier < 'tree > > { match self { Self :: ScopedTypeIdentifier (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `tuple_type` ([TupleType]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn tuple_type (self) -> Option < TupleType < 'tree > > { match self { Self :: TupleType (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `type_identifier` ([TypeIdentifier]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn type_identifier (self) -> Option < TypeIdentifier < 'tree > > { match self { Self :: TypeIdentifier (x) => Some (x) , _ => None , } } }
     #[automatically_derived]
-    impl < 'tree > TryFrom < tree_sitter :: Node < 'tree >> for ArrayType_GenericType_HigherRankedTraitBound_Lifetime_PointerType_PrimitiveType_ReferenceType_ScopedTypeIdentifier_TupleType_TypeIdentifier < 'tree > { type Error = type_sitter_lib :: IncorrectKind < 'tree > ; # [inline] fn try_from (node : tree_sitter :: Node < 'tree >) -> Result < Self , Self :: Error > { match node . kind () { "array_type" => Ok (unsafe { Self :: ArrayType (< ArrayType < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "generic_type" => Ok (unsafe { Self :: GenericType (< GenericType < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "higher_ranked_trait_bound" => Ok (unsafe { Self :: HigherRankedTraitBound (< HigherRankedTraitBound < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "lifetime" => Ok (unsafe { Self :: Lifetime (< Lifetime < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "pointer_type" => Ok (unsafe { Self :: PointerType (< PointerType < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "primitive_type" => Ok (unsafe { Self :: PrimitiveType (< PrimitiveType < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "reference_type" => Ok (unsafe { Self :: ReferenceType (< ReferenceType < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "scoped_type_identifier" => Ok (unsafe { Self :: ScopedTypeIdentifier (< ScopedTypeIdentifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "tuple_type" => Ok (unsafe { Self :: TupleType (< TupleType < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "type_identifier" => Ok (unsafe { Self :: TypeIdentifier (< TypeIdentifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , _ => Err (type_sitter_lib :: IncorrectKind { node , kind : < Self as type_sitter_lib :: TypedNode < 'tree >> :: KIND , }) } } }
+    impl < 'tree > TryFrom < type_sitter_lib :: tree_sitter_wrapper :: Node < 'tree >> for ArrayType_GenericType_HigherRankedTraitBound_Lifetime_PointerType_PrimitiveType_ReferenceType_ScopedTypeIdentifier_TupleType_TypeIdentifier < 'tree > { type Error = type_sitter_lib :: IncorrectKind < 'tree > ; # [inline] fn try_from (node : type_sitter_lib :: tree_sitter_wrapper :: Node < 'tree >) -> Result < Self , Self :: Error > { match node . kind () { "array_type" => Ok (unsafe { Self :: ArrayType (< ArrayType < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "generic_type" => Ok (unsafe { Self :: GenericType (< GenericType < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "higher_ranked_trait_bound" => Ok (unsafe { Self :: HigherRankedTraitBound (< HigherRankedTraitBound < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "lifetime" => Ok (unsafe { Self :: Lifetime (< Lifetime < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "pointer_type" => Ok (unsafe { Self :: PointerType (< PointerType < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "primitive_type" => Ok (unsafe { Self :: PrimitiveType (< PrimitiveType < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "reference_type" => Ok (unsafe { Self :: ReferenceType (< ReferenceType < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "scoped_type_identifier" => Ok (unsafe { Self :: ScopedTypeIdentifier (< ScopedTypeIdentifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "tuple_type" => Ok (unsafe { Self :: TupleType (< TupleType < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "type_identifier" => Ok (unsafe { Self :: TypeIdentifier (< TypeIdentifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , _ => Err (type_sitter_lib :: IncorrectKind { node , kind : < Self as type_sitter_lib :: TypedNode < 'tree >> :: KIND , }) } } }
     #[automatically_derived]
-    impl < 'tree > type_sitter_lib :: TypedNode < 'tree > for ArrayType_GenericType_HigherRankedTraitBound_Lifetime_PointerType_PrimitiveType_ReferenceType_ScopedTypeIdentifier_TupleType_TypeIdentifier < 'tree > { const KIND : & 'static str = "{array_type | generic_type | higher_ranked_trait_bound | lifetime | pointer_type | primitive_type | reference_type | scoped_type_identifier | tuple_type | type_identifier}" ; # [inline] fn node (& self) -> & tree_sitter :: Node < 'tree > { match self { Self :: ArrayType (x) => x . node () , Self :: GenericType (x) => x . node () , Self :: HigherRankedTraitBound (x) => x . node () , Self :: Lifetime (x) => x . node () , Self :: PointerType (x) => x . node () , Self :: PrimitiveType (x) => x . node () , Self :: ReferenceType (x) => x . node () , Self :: ScopedTypeIdentifier (x) => x . node () , Self :: TupleType (x) => x . node () , Self :: TypeIdentifier (x) => x . node () , } } # [inline] fn node_mut (& mut self) -> & mut tree_sitter :: Node < 'tree > { match self { Self :: ArrayType (x) => x . node_mut () , Self :: GenericType (x) => x . node_mut () , Self :: HigherRankedTraitBound (x) => x . node_mut () , Self :: Lifetime (x) => x . node_mut () , Self :: PointerType (x) => x . node_mut () , Self :: PrimitiveType (x) => x . node_mut () , Self :: ReferenceType (x) => x . node_mut () , Self :: ScopedTypeIdentifier (x) => x . node_mut () , Self :: TupleType (x) => x . node_mut () , Self :: TypeIdentifier (x) => x . node_mut () , } } # [inline] fn into_node (self) -> tree_sitter :: Node < 'tree > { match self { Self :: ArrayType (x) => x . into_node () , Self :: GenericType (x) => x . into_node () , Self :: HigherRankedTraitBound (x) => x . into_node () , Self :: Lifetime (x) => x . into_node () , Self :: PointerType (x) => x . into_node () , Self :: PrimitiveType (x) => x . into_node () , Self :: ReferenceType (x) => x . into_node () , Self :: ScopedTypeIdentifier (x) => x . into_node () , Self :: TupleType (x) => x . into_node () , Self :: TypeIdentifier (x) => x . into_node () , } } }
+    impl < 'tree > type_sitter_lib :: TypedNode < 'tree > for ArrayType_GenericType_HigherRankedTraitBound_Lifetime_PointerType_PrimitiveType_ReferenceType_ScopedTypeIdentifier_TupleType_TypeIdentifier < 'tree > { const KIND : & 'static str = "{array_type | generic_type | higher_ranked_trait_bound | lifetime | pointer_type | primitive_type | reference_type | scoped_type_identifier | tuple_type | type_identifier}" ; # [inline] fn node (& self) -> & type_sitter_lib :: tree_sitter_wrapper :: Node < 'tree > { match self { Self :: ArrayType (x) => x . node () , Self :: GenericType (x) => x . node () , Self :: HigherRankedTraitBound (x) => x . node () , Self :: Lifetime (x) => x . node () , Self :: PointerType (x) => x . node () , Self :: PrimitiveType (x) => x . node () , Self :: ReferenceType (x) => x . node () , Self :: ScopedTypeIdentifier (x) => x . node () , Self :: TupleType (x) => x . node () , Self :: TypeIdentifier (x) => x . node () , } } # [inline] fn node_mut (& mut self) -> & mut type_sitter_lib :: tree_sitter_wrapper :: Node < 'tree > { match self { Self :: ArrayType (x) => x . node_mut () , Self :: GenericType (x) => x . node_mut () , Self :: HigherRankedTraitBound (x) => x . node_mut () , Self :: Lifetime (x) => x . node_mut () , Self :: PointerType (x) => x . node_mut () , Self :: PrimitiveType (x) => x . node_mut () , Self :: ReferenceType (x) => x . node_mut () , Self :: ScopedTypeIdentifier (x) => x . node_mut () , Self :: TupleType (x) => x . node_mut () , Self :: TypeIdentifier (x) => x . node_mut () , } } # [inline] fn into_node (self) -> type_sitter_lib :: tree_sitter_wrapper :: Node < 'tree > { match self { Self :: ArrayType (x) => x . into_node () , Self :: GenericType (x) => x . into_node () , Self :: HigherRankedTraitBound (x) => x . into_node () , Self :: Lifetime (x) => x . into_node () , Self :: PointerType (x) => x . into_node () , Self :: PrimitiveType (x) => x . into_node () , Self :: ReferenceType (x) => x . into_node () , Self :: ScopedTypeIdentifier (x) => x . into_node () , Self :: TupleType (x) => x . into_node () , Self :: TypeIdentifier (x) => x . into_node () , } } }
     #[doc = "one of `{loop_label | block | _expression | let_chain | let_condition}`:\n- [LoopLabel]\n- [Block]\n- [Expression]\n- [LetChain]\n- [LetCondition]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
@@ -23334,12 +24342,14 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<tree_sitter::Node<'tree>>
+    impl<'tree> TryFrom<type_sitter_lib::tree_sitter_wrapper::Node<'tree>>
         for LoopLabel_Block_Expression_LetChain_LetCondition<'tree>
     {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(node: tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from(
+            node: type_sitter_lib::tree_sitter_wrapper::Node<'tree>,
+        ) -> Result<Self, Self::Error> {
             if let Ok(this) = <LoopLabel<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::LoopLabel(this));
             }
@@ -23367,7 +24377,7 @@ pub mod anon_unions {
     {
         const KIND: &'static str = "{loop_label | block | _expression | let_chain | let_condition}";
         #[inline]
-        fn node(&self) -> &tree_sitter::Node<'tree> {
+        fn node(&self) -> &type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::LoopLabel(x) => x.node(),
                 Self::Block(x) => x.node(),
@@ -23377,7 +24387,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut tree_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::LoopLabel(x) => x.node_mut(),
                 Self::Block(x) => x.node_mut(),
@@ -23387,7 +24397,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn into_node(self) -> tree_sitter::Node<'tree> {
+        fn into_node(self) -> type_sitter_lib::tree_sitter_wrapper::Node<'tree> {
             match self {
                 Self::LoopLabel(x) => x.into_node(),
                 Self::Block(x) => x.into_node(),

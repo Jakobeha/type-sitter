@@ -3,7 +3,6 @@ use std::process::exit;
 
 use clap::Parser;
 
-use thiserror::Error;
 use args::Args;
 use errors::Error;
 use type_sitter_gen::{tree_sitter, type_sitter_lib_wrapper};
@@ -35,15 +34,18 @@ fn run(args: Args) -> errors::Result<()> {
     create_dir_all(&args.output_dir).map_err(Error::io("creating output directory"))?;
 
     // Get common arg data
-    let tree_sitter = match args.use_wrapper {
-        false => tree_sitter(),
-        true => type_sitter_lib_wrapper()
+    let (tree_sitter, use_wrapper) = match (args.wrapper_namespace.as_ref(), args.no_wrapper) {
+        (None, false) => (type_sitter_lib_wrapper(), true),
+        (None, true) => (tree_sitter(), false),
+        (Some(wrapper_namespace), _) => {
+            (syn::parse_str(wrapper_namespace).map_err(Error::CouldntParseWrapperNamespace)?, true)
+        },
     };
 
     // Process
     let mut had_some_failures = false;
     for item in &args.items {
-        if let Err(err) = process::process(item, &args, args.use_wrapper, &tree_sitter) {
+        if let Err(err) = process::process(item, &args, use_wrapper, &tree_sitter) {
             eprintln!("Error processing {}: {}", item.input.display(), err);
             had_some_failures = true;
         }

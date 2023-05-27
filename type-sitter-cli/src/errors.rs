@@ -4,13 +4,15 @@ use thiserror::Error;
 pub enum Error {
     #[error("Need at least one input (see --help)")]
     NoInputs,
-    #[error("IO error {action}; {source}")]
+    #[error("IO error {action}: {source}")]
     IO { action: String, #[source] source: std::io::Error },
-    #[error("codegen error; {0}")]
+    #[error("Couldn't parse wrapper namespace: {0}")]
+    CouldntParseWrapperNamespace(syn::Error),
+    #[error("codegen error: {0}")]
     GeneratingTokens(#[from] type_sitter_gen::Error),
-    #[error("codegen formatting (rustfmt) error; {0}")]
+    #[error("codegen formatting (rustfmt) error: {0}")]
     Formatting(#[from] rust_format::Error),
-    #[error("in {location}; {source}")]
+    #[error("in {location}: {source}")]
     Nested { location: String, #[source] source: Box<Error> },
     #[error("couldn't infer input type")]
     CouldntInferInputType,
