@@ -143,6 +143,15 @@ impl<'tree> SExpSeq<'tree> {
         let capture_variant_idents = capture_methods_and_variants.iter().map(|x| &x.2).collect::<Vec<_>>();
         let capture_variant_documentations = capture_methods_and_variants.iter().map(|x| &x.3).collect::<Vec<_>>();
         let capture_node_types = capture_methods_and_variants.iter().map(|x| &x.4).collect::<Vec<_>>();
+        let non_existent_variant = match capture_methods_and_variants.is_empty() {
+            false => quote! {},
+            true => quote! {
+                /// This node has no captures so the enum has no instantiable variants. This variant
+                /// is necessary keep lifetime parameters, but the [type_sitter_lib::Never] type
+                /// means it can't be instantiated.
+                __NonExistent(type_sitter_lib::Never, std::marker::PhantomData<&'cursor &'tree ()>)
+            }
+        };
 
         quote! {
             #[allow(non_upper_case_globals)]
@@ -182,6 +191,7 @@ impl<'tree> SExpSeq<'tree> {
                     node: #capture_node_types,
                     r#match: Option<#query_match_ident<'cursor, 'tree>>
                 },)*
+                #non_existent_variant
             }
 
             #[automatically_derived]

@@ -22,7 +22,7 @@ Type-sitter also allows you to use different facades (underlying wrappers) for t
 
 `type-sitter`'s main drawback is that as of now, the generated wrapper code is very large: the generated node wrappers for `tree-sitter-rust` are 33217 LOC. There are potential future steps to reduce code size such as replacing enums with generic types, but these have their own drawbacks (more complex resolution, may not be effective). Though on my M1 Macbook Air running IntelliJ, building and IntelliJ code analysis is still pretty fast: cold starts are a few seconds, incremental builds are <1 second and hints are not sluggish. Your mileage may vary.
 
-Another issue is that some grammars may generate duplicate datatype definitions (see [Naming Rules](#naming-rules)): this should be very uncommon because it will only happen if their names are weirdly similar, but if it does, there is currently no workaround as there is no way to rename generated datatypes.
+Another issue is that certain grammars and options will cause `type-sitter` to generate invalid code. For example, `type-sitter` will generate invalid code if grammars generate duplicate datatype definitions (see [Naming Rules](#naming-rules)), although this is uncommon because it only happens if their names are weirdly similar. Moreover, there are various bugs which will cause invalid code generation. If this happens, the only workaround is to use `type-sitter-cli` and fix the code manually.
 
 Lastly, keep in mind that both this and [`yak-sitter`](yak-sitter/README.md) are still in the early stages of development, so they will have bugs and API may change.
 
