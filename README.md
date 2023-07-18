@@ -2,7 +2,7 @@
 
 ***Note:** type-sitter is still in the early stages and as such the API is subject to change.*
 
-<!-- [![Build status](https://github.com/Jakobeha/type-sitter/workflows/ci/badge.svg)](https://github.com/Jakobeha/type-sitter/actions) -->
+[![Build status](https://github.com/Jakobeha/type-sitter/workflows/ci/badge.svg)](https://github.com/Jakobeha/type-sitter/actions)
 [![Crates.io](https://img.shields.io/crates/v/type-sitter-cli.svg?label=type-sitter-cli)](https://crates.io/crates/type-sitter-cli)
 [![Crates.io](https://img.shields.io/crates/v/type-sitter-cli.svg?label=type-sitter-proc)](https://crates.io/crates/type-sitter-proc)
 [![Crates.io](https://img.shields.io/crates/v/type-sitter-cli.svg?label=type-sitter-gen)](https://crates.io/crates/type-sitter-gen)
