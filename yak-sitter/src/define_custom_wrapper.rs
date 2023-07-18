@@ -23,6 +23,6 @@ macro_rules! define_custom_wrapper {
         pub type QueryMatch<'query, 'tree> = $crate::QueryMatch<'query, 'tree, $Custom>;
         pub type QueryCaptures<'query, 'tree> = $crate::QueryCaptures<'query, 'tree, $Custom>;
         pub type QueryCapture<'query, 'tree> = $crate::QueryCapture<'query, 'tree, $Custom>;
-        pub type SubTree<'tree> = $crate::SubTree<'tree, $Custom>;
+        pub type SubTree<'tree> = $crate::SubTree<$Custom>;
     };
 }

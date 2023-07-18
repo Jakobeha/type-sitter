@@ -1,4 +1,6 @@
 set -e
+echo "*** TESTING yak-sitter"
+cargo test -p yak-sitter
 echo "*** TESTING type-sitter-gen"
 cargo test -p type-sitter-gen
 echo "*** TESTING type-sitter-lib"
