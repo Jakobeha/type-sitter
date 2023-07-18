@@ -1,7 +1,7 @@
 use std::cmp::Ordering;
 use std::collections::Bound;
 use std::error::Error;
-use std::fmt::{Debug, Display};
+use std::fmt::{Debug, Display, Formatter};
 use std::path::{Path, PathBuf};
 use std::iter::{FusedIterator, once, Once};
 use streaming_iterator::{StreamingIterator, StreamingIteratorMut};
@@ -29,7 +29,6 @@ pub struct Tree<Custom = ()> {
 /// Wrapper around [tree_sitter::Node] which can access its text, tree's filepath, and tree's
 /// `Custom` data behind a shared reference. It also uses and is used by [tree_sitter_wrapper]
 /// wrapper classes.
-#[derive(Clone, Copy)]
 pub struct Node<'tree, Custom = ()> {
     node: tree_sitter::Node<'tree>,
     tree: &'tree Tree<Custom>,
@@ -39,7 +38,6 @@ pub struct Node<'tree, Custom = ()> {
 ///
 /// `Custom` is still in the type signature, but you can safely `transmute` between different
 /// `Custom` types and this is exposed via [NodePtr::cast_custom].
-#[derive(Clone, Copy)]
 pub struct NodePtr<Custom = ()> {
     node_data: NodeData,
     tree: NonNull<Tree<Custom>>
@@ -61,7 +59,6 @@ pub struct NodeId(usize);
 
 /// Wrapper around [tree_sitter::TreeCursor], which can actually go outside of its "local" node,
 /// albeit with degraded performance (we just do standard lookups)
-#[derive(Clone)]
 pub struct TreeCursor<'tree, Custom = ()> {
     cursor: tree_sitter::TreeCursor<'tree>,
     tree: &'tree Tree<Custom>,
@@ -100,7 +97,6 @@ pub struct QueryCaptures<'query, 'tree, Custom = ()> {
 }
 
 /// Wrapper around [tree_sitter::QueryCapture]
-#[derive(Debug, Clone, Copy)]
 pub struct QueryCapture<'query, 'tree, Custom = ()> {
     pub node: Node<'tree, Custom>,
     pub index: usize,
@@ -152,7 +148,6 @@ pub enum TreeParseError {
 
 /// General-purpose way to store TSNode separately from the tree, e.g. if you need to serialize it.
 /// Unfortunately this is just done by storing the text and range, there's not much else we can do
-#[derive(Debug, Clone)]
 pub struct SubTree<Custom = ()> {
     /// Node's text
     pub text: String,
@@ -177,14 +172,12 @@ pub enum TraversalState {
 }
 
 /// Iterator over a tree in pre-order traversal which iterates nodes with children both up and down
-#[derive(Clone)]
 pub struct PreorderTraversal<'tree, Custom = ()> {
     cursor: TreeCursor<'tree, Custom>,
     last_state: TraversalState
 }
 
 /// Iterated node in a traversal (includes field name and last state)
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub struct TraversalItem<'tree, Custom = ()> {
     /// The node
     pub node: Node<'tree, Custom>,
@@ -1211,7 +1204,7 @@ impl RangeBounds<Point> for PointRange {
 
 impl Display for PointRange {
     #[inline]
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
         write!(f, "{}-{}", self.start, self.end)
     }
 }
@@ -1248,7 +1241,7 @@ impl Point {
 
 impl Display for Point {
     #[inline]
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
         write!(f, "{}:{}", self.0.row + 1, self.0.column + 1)
     }
 }
@@ -1353,7 +1346,7 @@ impl BitAnd for Range {
 
 impl Display for Range {
     #[inline]
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
         write!(f, "{}-{}", self.start_point(), self.end_point())
     }
 }
@@ -1387,7 +1380,7 @@ impl Into<u64> for NodeId {
 }
 
 impl Display for NodeId {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
         write!(f, "#{}", self.0)
     }
 }
@@ -1416,7 +1409,7 @@ impl From<Utf8Error> for TreeParseError {
 }
 
 impl Display for TreeParseError {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
         match self {
             TreeParseError::IO(e) => write!(f, "IO error: {}", e),
             TreeParseError::ParsingFailed => write!(f, "Parsing failed"),
@@ -1446,7 +1439,7 @@ impl<Custom> PartialEq for SubTree<Custom> {
 impl<Custom> Eq for SubTree<Custom> {}
 
 impl<Custom> Display for SubTree<Custom> {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
         write!(f, "{}", self.text)
     }
 }
@@ -1531,20 +1524,148 @@ impl<'tree, Custom> Iterator for PreorderTraversal<'tree, Custom> {
 
 impl<'tree, Custom> FusedIterator for PreorderTraversal<'tree, Custom> {}
 
+// region special "boilerplate" impls
 impl<'tree, Custom> Debug for Node<'tree, Custom> {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
         write!(f, "{:?}", self.node)
     }
 }
 
 impl<Custom> Debug for NodePtr<Custom> {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
         write!(f, "{:?}", self.node_data)
     }
 }
 
 impl<'query, 'tree, Custom> Debug for QueryMatch<'query, 'tree, Custom> {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
         write!(f, "{:?}", self.query_match)
     }
 }
+// endregion
+
+// region boilerplate impls, because Custom doesn't need to be bounded
+impl<'tree, Custom> PartialEq for TraversalItem<'tree, Custom> {
+    fn eq(&self, other: &Self) -> bool {
+        if self.node == other.node {
+            debug_assert_eq!(self.field_name, other.field_name, "field_name must be the same if node is the same");
+        }
+        self.node == other.node && self.last_state == other.last_state
+    }
+}
+
+impl<'tree, Custom> Eq for TraversalItem<'tree, Custom> {}
+
+impl<'tree, Custom> Clone for Node<'tree, Custom> {
+    fn clone(&self) -> Self {
+        Self {
+            node: self.node,
+            tree: self.tree
+        }
+    }
+}
+
+impl<'tree, Custom> Copy for Node<'tree, Custom> {}
+
+impl<Custom> Clone for NodePtr<Custom> {
+    fn clone(&self) -> Self {
+        Self {
+            node_data: self.node_data,
+            tree: self.tree
+        }
+    }
+}
+
+impl<Custom> Copy for NodePtr<Custom> {}
+
+impl<'tree, Custom> Clone for TreeCursor<'tree, Custom> {
+    fn clone(&self) -> Self {
+        Self {
+            cursor: self.cursor.clone(),
+            tree: self.tree,
+            child_depth: self.child_depth
+        }
+    }
+}
+
+impl<'query, 'tree, Custom> Debug for QueryCapture<'query, 'tree, Custom> {
+    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
+        f.debug_struct("QueryCapture")
+            .field("node", &self.node)
+            .field("index", &self.index)
+            .field("name", &self.name)
+            .finish()
+    }
+}
+
+impl<'query, 'tree, Custom> Clone for QueryCapture<'query, 'tree, Custom> {
+    fn clone(&self) -> Self {
+        Self {
+            node: self.node,
+            index: self.index,
+            name: self.name
+        }
+    }
+}
+
+impl<'query, 'tree, Custom> Copy for QueryCapture<'query, 'tree, Custom> {}
+
+impl<Custom> Debug for SubTree<Custom> {
+    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
+        f.debug_struct("SubTree")
+            .field("text", &self.text)
+            .field("range", &self.range)
+            .field("path", &self.path)
+            .finish()
+    }
+}
+
+impl<Custom> Clone for SubTree<Custom> {
+    fn clone(&self) -> Self {
+        Self {
+            text: self.text.clone(),
+            range: self.range,
+            path: self.path.clone(),
+            root: self.root
+        }
+    }
+}
+
+impl<'tree, Custom> Clone for PreorderTraversal<'tree, Custom> {
+    fn clone(&self) -> Self {
+        Self {
+            cursor: self.cursor.clone(),
+            last_state: self.last_state
+        }
+    }
+}
+
+impl<'tree, Custom> Debug for TraversalItem<'tree, Custom> {
+    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
+        f.debug_struct("TraversalItem")
+            .field("node", &self.node)
+            .field("field_name", &self.field_name)
+            .field("last_state", &self.last_state)
+            .finish()
+    }
+}
+
+impl<'tree, Custom> Clone for TraversalItem<'tree, Custom> {
+    fn clone(&self) -> Self {
+        Self {
+            node: self.node,
+            field_name: self.field_name,
+            last_state: self.last_state
+        }
+    }
+}
+
+impl<'tree, Custom> Copy for TraversalItem<'tree, Custom> {}
+
+impl<'tree, Custom> Hash for TraversalItem<'tree, Custom> {
+    fn hash<H: Hasher>(&self, state: &mut H) {
+        self.node.hash(state);
+        self.last_state.hash(state);
+    }
+}
+// endregion
