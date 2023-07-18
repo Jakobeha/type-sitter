@@ -50,18 +50,18 @@ fn test_queries() {
 
     let mut q = TypedQueryCursor::new();
     let mut matches = q.matches(&json::queries::Highlights, json_document, JSON_STR.as_bytes());
-    let match_ = matches.next().unwrap();
-    assert_eq!(match_.string_special_key().unwrap().to::<json::String>().unwrap().byte_range(), 6..12);
-    let match_ = matches.next().unwrap();
-    assert_eq!(match_.string().unwrap().byte_range(), 6..12);
-    let match_ = matches.next().unwrap();
-    assert_eq!(match_.string().unwrap().byte_range(), 14..21);
-    let match_ = matches.next().unwrap();
-    assert_eq!(match_.string_special_key().unwrap().to::<json::String>().unwrap().byte_range(), 27..36);
-    let match_ = matches.next().unwrap();
-    assert_eq!(match_.string().unwrap().byte_range(), 27..36);
-    let match_ = matches.next().unwrap();
-    assert_eq!(match_.string().unwrap().byte_range(), 38..45);
+    let r#match = matches.next().unwrap();
+    assert_eq!(r#match.string_special_key().unwrap().to::<json::String>().unwrap().byte_range(), 6..12);
+    let r#match = matches.next().unwrap();
+    assert_eq!(r#match.string().unwrap().byte_range(), 6..12);
+    let r#match = matches.next().unwrap();
+    assert_eq!(r#match.string().unwrap().byte_range(), 14..21);
+    let r#match = matches.next().unwrap();
+    assert_eq!(r#match.string_special_key().unwrap().to::<json::String>().unwrap().byte_range(), 27..36);
+    let r#match = matches.next().unwrap();
+    assert_eq!(r#match.string().unwrap().byte_range(), 27..36);
+    let r#match = matches.next().unwrap();
+    assert_eq!(r#match.string().unwrap().byte_range(), 38..45);
     assert!(matches.next().is_none());
 
     let captures = q.captures(&json::queries::Highlights, json_document, JSON_STR.as_bytes()).collect::<Vec<_>>();

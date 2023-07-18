@@ -173,14 +173,14 @@ impl<'tree> SExpSeq<'tree> {
             pub type #query_captures_ident<'cursor, 'tree #tree_t> = type_sitter_lib::TypedQueryCaptures<'cursor, 'tree, #def_ident #tree_t>;
             #[doc = #query_match_doc]
             pub struct #query_match_ident<'cursor, 'tree> {
-                match_: tree_sitter::QueryMatch<'cursor, 'tree>,
+                r#match: tree_sitter::QueryMatch<'cursor, 'tree>,
                 #tree_arg
             }
             #[doc = #query_capture_doc]
             pub enum #query_capture_ident<'cursor, 'tree> {
                 #(#capture_variant_documentations #capture_variant_idents {
                     node: #capture_node_types,
-                    match_: Option<#query_match_ident<'cursor, 'tree>>
+                    r#match: Option<#query_match_ident<'cursor, 'tree>>
                 },)*
             }
 
@@ -200,17 +200,17 @@ impl<'tree> SExpSeq<'tree> {
                 #[inline]
                 unsafe fn wrap_match<'cursor, 'tree>(
                     &self,
-                    match_: tree_sitter::QueryMatch<'cursor, 'tree>,
+                    r#match: tree_sitter::QueryMatch<'cursor, 'tree>,
                     #tree_arg
                 ) -> Self::Match<'cursor, 'tree> {
-                    Self::Match { match_, #tree_ident }
+                    Self::Match { r#match, #tree_ident }
                 }
 
                 #[inline]
                 unsafe fn wrap_capture<'cursor, 'tree>(
                     &self,
                     capture: tree_sitter::QueryCapture<'tree>,
-                    match_: Option<Self::Match<'cursor, 'tree>>,
+                    r#match: Option<Self::Match<'cursor, 'tree>>,
                     #tree_arg
                 ) -> Self::Capture<'cursor, 'tree> {
                     // SAFETY: As long as the capture came from the query this is safe, because the
@@ -218,7 +218,7 @@ impl<'tree> SExpSeq<'tree> {
                     match capture.index as usize {
                         #(#capture_idxs => Self::Capture::#capture_variant_idents {
                             node: <#capture_node_types as type_sitter_lib::TypedNode<'tree>>::from_node_unchecked(#tree_capture_node),
-                            match_
+                            r#match
                         },)*
                         capture_index => unreachable!("Invalid capture index: {}", capture_index)
                     }
@@ -234,7 +234,7 @@ impl<'tree> SExpSeq<'tree> {
             impl<'cursor, 'tree> std::fmt::Debug for #query_match_ident<'cursor, 'tree> {
                 fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                     f.debug_struct(stringify!(#query_match_ident))
-                        .field("match_", &self.match_)
+                        .field("r#match", &self.r#match)
                         .finish()
                 }
             }
@@ -252,12 +252,12 @@ impl<'tree> SExpSeq<'tree> {
 
                 #[inline]
                 fn raw(&self) -> &tree_sitter::QueryMatch<'cursor, 'tree> {
-                    &self.match_
+                    &self.r#match
                 }
 
                 #[inline]
                 fn into_raw(self) -> tree_sitter::QueryMatch<'cursor, 'tree> {
-                    self.match_
+                    self.r#match
                 }
             }
 
@@ -272,7 +272,10 @@ impl<'tree> SExpSeq<'tree> {
                     match self {
                         #(Self::#capture_variant_idents { node, .. } => f.debug_struct(concat!(stringify!(#query_capture_ident), "::", stringify!(#capture_variant_idents)))
                             .field("node", node)
-                            .finish()),*
+                            .finish(),)*
+                        // https://github.com/rust-lang/rust/issues/78123 for empty enums is why this exists
+                        #[allow(unreachable_patterns)]
+                        _ => unreachable!()
                     }
                 }
             }
@@ -281,7 +284,10 @@ impl<'tree> SExpSeq<'tree> {
             impl<'cursor, 'tree> Clone for #query_capture_ident<'cursor, 'tree> {
                 fn clone(&self) -> Self {
                     match self {
-                        #(Self::#capture_variant_idents { node, .. } => Self::#capture_variant_idents { node: *node, match_: None }),*
+                        #(Self::#capture_variant_idents { node, .. } => Self::#capture_variant_idents { node: *node, r#match: None },)*
+                        // https://github.com/rust-lang/rust/issues/78123 for empty enums is why this exists
+                        #[allow(unreachable_patterns)]
+                        _ => unreachable!()
                     }
                 }
             }
@@ -296,40 +302,58 @@ impl<'tree> SExpSeq<'tree> {
                 }
 
                 #[inline]
-                fn match_(&self) -> Option<&<Self::Query as type_sitter_lib::TypedQuery>::Match<'cursor, 'tree>> {
+                fn r#match(&self) -> Option<&<Self::Query as type_sitter_lib::TypedQuery>::Match<'cursor, 'tree>> {
                     match self {
-                        #(Self::#capture_variant_idents { match_, .. } => match_.as_ref()),*
+                        #(Self::#capture_variant_idents { r#match, .. } => r#match.as_ref(),)*
+                        // https://github.com/rust-lang/rust/issues/78123 for empty enums is why this exists
+                        #[allow(unreachable_patterns)]
+                        _ => unreachable!()
                     }
                 }
 
                 #[inline]
                 fn into_match(self) -> Option<<Self::Query as type_sitter_lib::TypedQuery>::Match<'cursor, 'tree>> {
                     match self {
-                        #(Self::#capture_variant_idents { match_, .. } => match_),*
+                        #(Self::#capture_variant_idents { r#match, .. } => r#match,)*
+                        // https://github.com/rust-lang/rust/issues/78123 for empty enums is why this exists
+                        #[allow(unreachable_patterns)]
+                        _ => unreachable!()
                     }
                 }
 
                 #[inline]
                 fn to_raw(&self) -> #tree_sitter::QueryCapture<#tree_static 'tree> {
+                    #[allow(unused_imports)]
                     use type_sitter_lib::TypedNode;
                     match self {
                         #(Self::#capture_variant_idents { node, .. } => #tree_to_raws,)*
+                        // https://github.com/rust-lang/rust/issues/78123 for empty enums is why this exists
+                        #[allow(unreachable_patterns)]
+                        _ => unreachable!()
                     }
                 }
 
                 #[inline]
                 fn node(&self) -> &#tree_sitter::Node<'tree> {
+                    #[allow(unused_imports)]
                     use type_sitter_lib::TypedNode;
                     match self {
-                        #(Self::#capture_variant_idents { node, .. } => node.node()),*
+                        #(Self::#capture_variant_idents { node, .. } => node.node(),)*
+                        // https://github.com/rust-lang/rust/issues/78123 for empty enums is why this exists
+                        #[allow(unreachable_patterns)]
+                        _ => unreachable!()
                     }
                 }
 
                 #[inline]
                 fn node_mut(&mut self) -> &mut #tree_sitter::Node<'tree> {
+                    #[allow(unused_imports)]
                     use type_sitter_lib::TypedNode;
                     match self {
-                        #(Self::#capture_variant_idents { node, .. } => node.node_mut()),*
+                        #(Self::#capture_variant_idents { node, .. } => node.node_mut(),)*
+                        // https://github.com/rust-lang/rust/issues/78123 for empty enums is why this exists
+                        #[allow(unreachable_patterns)]
+                        _ => unreachable!()
                     }
                 }
 
@@ -337,6 +361,9 @@ impl<'tree> SExpSeq<'tree> {
                 fn name(&self) -> &'static str {
                     match self {
                         #(Self::#capture_variant_idents { .. } => #capture_names,)*
+                        // https://github.com/rust-lang/rust/issues/78123 for empty enums is why this exists
+                        #[allow(unreachable_patterns)]
+                        _ => unreachable!()
                     }
                 }
 
@@ -344,6 +371,9 @@ impl<'tree> SExpSeq<'tree> {
                 fn index(&self) -> usize {
                     match self {
                         #(Self::#capture_variant_idents { .. } => #capture_idxs,)*
+                        // https://github.com/rust-lang/rust/issues/78123 for empty enums is why this exists
+                        #[allow(unreachable_patterns)]
+                        _ => unreachable!()
                     }
                 }
             }
@@ -389,7 +419,7 @@ impl<'tree> SExpSeq<'tree> {
         };
         let capture_idxs_array = lit_array(capture_idxs.iter().map(|i| *i as u32));
         let captured_expr = capture_quantifier.print_expr(&quote! {
-            #capture_idxs_array.into_iter().flat_map(|i| self.match_.nodes_for_capture_index(i))
+            #capture_idxs_array.into_iter().flat_map(|i| self.r#match.nodes_for_capture_index(i))
             // SAFETY: Query only captures nodes of the correct type and tree
                 .map(|n| unsafe { <#capture_node_type_tokens as type_sitter_lib::TypedNode<'tree>>::from_node_unchecked(#capture_expr_n) })
         });
@@ -553,7 +583,7 @@ impl GeneratedQueryTokens {
     pub fn collapse(self, nodes: &Path) -> TokenStream {
         let nodes = match nodes.segments.first().map_or(false, |s| s.ident.to_string() == "super") {
             false => quote! { #nodes },
-            true => quote! { super::#nodes }
+            true => quote! { super::#nodes },
         };
         let GeneratedQueryTokens {
             toplevel,

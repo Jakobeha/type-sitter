@@ -33,21 +33,21 @@ pub trait TypedQuery {
     /// SAFETY: The match must have come from this query
     unsafe fn wrap_match<'cursor, 'tree>(
         &self,
-        match_: tree_sitter::QueryMatch<'cursor, 'tree>,
+        r#match: tree_sitter::QueryMatch<'cursor, 'tree>,
         #[cfg(feature = "yak-sitter")]
         tree: &'tree Tree,
     ) -> Self::Match<'cursor, 'tree>;
 
     /// Wrap a capture which you know came from this query.
-    /// If iterating [TypedQueryCaptures], `match_` will contain the current match,
-    /// but if iterating [TypedQueryMatchCaptures], `match_` will be `None`.
+    /// If iterating [TypedQueryCaptures], `r#match` will contain the current match,
+    /// but if iterating [TypedQueryMatchCaptures], `r#match` will be `None`.
     ///
     /// SAFETY: The capture must have come from this query.
-    /// If `match_` is `Some`, it must contain the capture.
+    /// If `r#match` is `Some`, it must contain the capture.
     unsafe fn wrap_capture<'cursor, 'tree>(
         &self,
         capture: tree_sitter::QueryCapture<'tree>,
-        match_: Option<Self::Match<'cursor, 'tree>>,
+        r#match: Option<Self::Match<'cursor, 'tree>>,
         #[cfg(feature = "yak-sitter")]
         tree: &'tree Tree,
     ) -> Self::Capture<'cursor, 'tree>;

@@ -241,13 +241,10 @@ impl<'tree> DeclarationStatement<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for DeclarationStatement<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for DeclarationStatement<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         match node.kind() {
             "associated_type" => {
                 Ok(unsafe {
@@ -1001,13 +998,10 @@ impl<'tree> Expression<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for Expression<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Expression<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if let Ok(this) = <Literal<'tree> as TryFrom<_>>::try_from(node) {
             return Ok(Self::Literal(this));
         }
@@ -1340,13 +1334,10 @@ impl<'tree> Literal<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for Literal<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Literal<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         match node.kind() {
             "boolean_literal" => {
                 Ok(unsafe {
@@ -1549,13 +1540,10 @@ impl<'tree> LiteralPattern<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for LiteralPattern<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for LiteralPattern<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         match node.kind() {
             "boolean_literal" => {
                 Ok(unsafe {
@@ -1882,13 +1870,10 @@ impl<'tree> Pattern<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for Pattern<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Pattern<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if let Ok(this) = <symbols::__<'tree> as TryFrom<_>>::try_from(node) {
             return Ok(Self::__(this));
         }
@@ -2207,9 +2192,7 @@ impl<'tree> Type<'tree> {
 impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Type<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         match node.kind() {
             "abstract_type" => {
                 Ok(unsafe {
@@ -2495,13 +2478,10 @@ impl<'tree> AbstractType<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for AbstractType<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for AbstractType<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "abstract_type" {
             Ok(Self(node))
         } else {
@@ -2528,9 +2508,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for AbstractType<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -2588,13 +2566,10 @@ impl<'tree> Arguments<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for Arguments<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Arguments<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "arguments" {
             Ok(Self(node))
         } else {
@@ -2621,9 +2596,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Arguments<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -2694,13 +2667,10 @@ impl<'tree> ArrayExpression<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for ArrayExpression<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for ArrayExpression<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "array_expression" {
             Ok(Self(node))
         } else {
@@ -2727,9 +2697,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ArrayExpression<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -2767,13 +2735,10 @@ impl<'tree> ArrayType<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for ArrayType<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for ArrayType<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "array_type" {
             Ok(Self(node))
         } else {
@@ -2800,9 +2765,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ArrayType<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -2814,9 +2777,7 @@ This node has these fields:
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct AssignmentExpression<'tree>(
-    yak_sitter::Node<'tree>,
-);
+pub struct AssignmentExpression<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> AssignmentExpression<'tree> {
     ///Get the field `left` which has kind `_expression` ([Expression])
@@ -2843,13 +2804,10 @@ impl<'tree> AssignmentExpression<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for AssignmentExpression<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for AssignmentExpression<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "assignment_expression" {
             Ok(Self(node))
         } else {
@@ -2876,9 +2834,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for AssignmentExpression<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -2927,13 +2883,10 @@ impl<'tree> AssociatedType<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for AssociatedType<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for AssociatedType<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "associated_type" {
             Ok(Self(node))
         } else {
@@ -2960,9 +2913,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for AssociatedType<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -2988,13 +2939,10 @@ impl<'tree> AsyncBlock<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for AsyncBlock<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for AsyncBlock<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "async_block" {
             Ok(Self(node))
         } else {
@@ -3021,9 +2969,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for AsyncBlock<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -3124,13 +3070,10 @@ impl<'tree> Attribute<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for Attribute<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Attribute<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "attribute" {
             Ok(Self(node))
         } else {
@@ -3157,9 +3100,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Attribute<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -3185,13 +3126,10 @@ impl<'tree> AttributeItem<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for AttributeItem<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for AttributeItem<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "attribute_item" {
             Ok(Self(node))
         } else {
@@ -3218,9 +3156,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for AttributeItem<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -3246,13 +3182,10 @@ impl<'tree> AwaitExpression<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for AwaitExpression<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for AwaitExpression<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "await_expression" {
             Ok(Self(node))
         } else {
@@ -3279,9 +3212,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for AwaitExpression<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -3291,9 +3222,7 @@ This node has a child: `_expression` ([Expression])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct BaseFieldInitializer<'tree>(
-    yak_sitter::Node<'tree>,
-);
+pub struct BaseFieldInitializer<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> BaseFieldInitializer<'tree> {
     ///Get the node's only named child
@@ -3309,13 +3238,10 @@ impl<'tree> BaseFieldInitializer<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for BaseFieldInitializer<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for BaseFieldInitializer<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "base_field_initializer" {
             Ok(Self(node))
         } else {
@@ -3342,9 +3268,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for BaseFieldInitializer<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -3406,13 +3330,10 @@ impl<'tree> BinaryExpression<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for BinaryExpression<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for BinaryExpression<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "binary_expression" {
             Ok(Self(node))
         } else {
@@ -3439,9 +3360,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for BinaryExpression<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -3511,9 +3430,7 @@ impl<'tree> Block<'tree> {
 impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Block<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "block" {
             Ok(Self(node))
         } else {
@@ -3540,9 +3457,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Block<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -3556,13 +3471,10 @@ pub struct BooleanLiteral<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> BooleanLiteral<'tree> {}
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for BooleanLiteral<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for BooleanLiteral<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "boolean_literal" {
             Ok(Self(node))
         } else {
@@ -3589,9 +3501,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for BooleanLiteral<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -3650,13 +3560,10 @@ impl<'tree> BoundedType<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for BoundedType<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for BoundedType<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "bounded_type" {
             Ok(Self(node))
         } else {
@@ -3683,9 +3590,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for BoundedType<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -3716,13 +3621,10 @@ impl<'tree> BracketedType<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for BracketedType<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for BracketedType<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "bracketed_type" {
             Ok(Self(node))
         } else {
@@ -3749,9 +3651,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for BracketedType<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -3809,13 +3709,10 @@ impl<'tree> BreakExpression<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for BreakExpression<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for BreakExpression<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "break_expression" {
             Ok(Self(node))
         } else {
@@ -3842,9 +3739,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for BreakExpression<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -3894,13 +3789,10 @@ impl<'tree> CallExpression<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for CallExpression<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for CallExpression<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "call_expression" {
             Ok(Self(node))
         } else {
@@ -3927,9 +3819,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for CallExpression<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -3982,13 +3872,10 @@ impl<'tree> CapturedPattern<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for CapturedPattern<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for CapturedPattern<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "captured_pattern" {
             Ok(Self(node))
         } else {
@@ -4015,9 +3902,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for CapturedPattern<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -4069,13 +3954,10 @@ impl<'tree> ClosureExpression<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for ClosureExpression<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for ClosureExpression<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "closure_expression" {
             Ok(Self(node))
         } else {
@@ -4102,9 +3984,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ClosureExpression<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -4162,13 +4042,10 @@ impl<'tree> ClosureParameters<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for ClosureParameters<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for ClosureParameters<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "closure_parameters" {
             Ok(Self(node))
         } else {
@@ -4195,9 +4072,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ClosureParameters<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -4210,9 +4085,7 @@ This node has these fields:
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct CompoundAssignmentExpr<'tree>(
-    yak_sitter::Node<'tree>,
-);
+pub struct CompoundAssignmentExpr<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> CompoundAssignmentExpr<'tree> {
     ///Get the field `left` which has kind `_expression` ([Expression])
@@ -4261,13 +4134,10 @@ impl<'tree> CompoundAssignmentExpr<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for CompoundAssignmentExpr<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for CompoundAssignmentExpr<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "compound_assignment_expr" {
             Ok(Self(node))
         } else {
@@ -4294,9 +4164,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for CompoundAssignmentExpr<'tree> 
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -4323,13 +4191,10 @@ impl<'tree> ConstBlock<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for ConstBlock<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for ConstBlock<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "const_block" {
             Ok(Self(node))
         } else {
@@ -4356,9 +4221,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ConstBlock<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -4457,13 +4320,10 @@ impl<'tree> ConstItem<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for ConstItem<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for ConstItem<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "const_item" {
             Ok(Self(node))
         } else {
@@ -4490,9 +4350,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ConstItem<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -4531,13 +4389,10 @@ impl<'tree> ConstParameter<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for ConstParameter<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for ConstParameter<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "const_parameter" {
             Ok(Self(node))
         } else {
@@ -4564,9 +4419,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ConstParameter<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -4578,9 +4431,7 @@ This node has these fields:
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct ConstrainedTypeParameter<'tree>(
-    yak_sitter::Node<'tree>,
-);
+pub struct ConstrainedTypeParameter<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ConstrainedTypeParameter<'tree> {
     ///Get the field `bounds` which has kind `trait_bounds` ([TraitBounds])
@@ -4612,13 +4463,10 @@ impl<'tree> ConstrainedTypeParameter<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for ConstrainedTypeParameter<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for ConstrainedTypeParameter<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "constrained_type_parameter" {
             Ok(Self(node))
         } else {
@@ -4645,9 +4493,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ConstrainedTypeParameter<'tree
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -4668,13 +4514,10 @@ impl<'tree> ContinueExpression<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for ContinueExpression<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for ContinueExpression<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "continue_expression" {
             Ok(Self(node))
         } else {
@@ -4701,9 +4544,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ContinueExpression<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -4758,13 +4599,10 @@ impl<'tree> DeclarationList<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for DeclarationList<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for DeclarationList<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "declaration_list" {
             Ok(Self(node))
         } else {
@@ -4791,9 +4629,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for DeclarationList<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -4829,13 +4665,10 @@ impl<'tree> DynamicType<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for DynamicType<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for DynamicType<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "dynamic_type" {
             Ok(Self(node))
         } else {
@@ -4862,9 +4695,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for DynamicType<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -4895,13 +4726,10 @@ impl<'tree> ElseClause<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for ElseClause<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for ElseClause<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "else_clause" {
             Ok(Self(node))
         } else {
@@ -4928,9 +4756,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ElseClause<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -4944,13 +4770,10 @@ pub struct EmptyStatement<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> EmptyStatement<'tree> {}
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for EmptyStatement<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for EmptyStatement<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "empty_statement" {
             Ok(Self(node))
         } else {
@@ -4977,9 +4800,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for EmptyStatement<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -4993,13 +4814,10 @@ pub struct EmptyType<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> EmptyType<'tree> {}
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for EmptyType<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for EmptyType<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "empty_type" {
             Ok(Self(node))
         } else {
@@ -5026,9 +4844,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for EmptyType<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -5138,13 +4954,10 @@ impl<'tree> EnumItem<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for EnumItem<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for EnumItem<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "enum_item" {
             Ok(Self(node))
         } else {
@@ -5171,9 +4984,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for EnumItem<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -5288,13 +5099,10 @@ impl<'tree> EnumVariant<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for EnumVariant<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for EnumVariant<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "enum_variant" {
             Ok(Self(node))
         } else {
@@ -5321,9 +5129,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for EnumVariant<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -5387,13 +5193,10 @@ impl<'tree> EnumVariantList<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for EnumVariantList<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for EnumVariantList<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "enum_variant_list" {
             Ok(Self(node))
         } else {
@@ -5420,9 +5223,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for EnumVariantList<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -5448,13 +5249,10 @@ impl<'tree> ExpressionStatement<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for ExpressionStatement<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for ExpressionStatement<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "expression_statement" {
             Ok(Self(node))
         } else {
@@ -5481,9 +5279,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ExpressionStatement<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -5500,9 +5296,7 @@ And additional children: `{crate | visibility_modifier}+`:
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct ExternCrateDeclaration<'tree>(
-    yak_sitter::Node<'tree>,
-);
+pub struct ExternCrateDeclaration<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ExternCrateDeclaration<'tree> {
     ///Get the field `alias` which has kind `identifier?` ([Identifier])
@@ -5575,13 +5369,10 @@ impl<'tree> ExternCrateDeclaration<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for ExternCrateDeclaration<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for ExternCrateDeclaration<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "extern_crate_declaration" {
             Ok(Self(node))
         } else {
@@ -5608,9 +5399,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ExternCrateDeclaration<'tree> 
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -5633,13 +5422,10 @@ impl<'tree> ExternModifier<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for ExternModifier<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for ExternModifier<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "extern_modifier" {
             Ok(Self(node))
         } else {
@@ -5666,9 +5452,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ExternModifier<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -5756,13 +5540,10 @@ impl<'tree> FieldDeclaration<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for FieldDeclaration<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for FieldDeclaration<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "field_declaration" {
             Ok(Self(node))
         } else {
@@ -5789,9 +5570,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for FieldDeclaration<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -5804,9 +5583,7 @@ This node has children: `{attribute_item | field_declaration}*`:
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct FieldDeclarationList<'tree>(
-    yak_sitter::Node<'tree>,
-);
+pub struct FieldDeclarationList<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> FieldDeclarationList<'tree> {
     ///Get the node's named children
@@ -5857,13 +5634,10 @@ impl<'tree> FieldDeclarationList<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for FieldDeclarationList<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for FieldDeclarationList<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "field_declaration_list" {
             Ok(Self(node))
         } else {
@@ -5890,9 +5664,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for FieldDeclarationList<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -5940,13 +5712,10 @@ impl<'tree> FieldExpression<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for FieldExpression<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for FieldExpression<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "field_expression" {
             Ok(Self(node))
         } else {
@@ -5973,9 +5742,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for FieldExpression<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -6063,13 +5830,10 @@ impl<'tree> FieldInitializer<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for FieldInitializer<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for FieldInitializer<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "field_initializer" {
             Ok(Self(node))
         } else {
@@ -6096,9 +5860,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for FieldInitializer<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -6112,9 +5874,7 @@ This node has children: `{base_field_initializer | field_initializer | shorthand
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct FieldInitializerList<'tree>(
-    yak_sitter::Node<'tree>,
-);
+pub struct FieldInitializerList<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> FieldInitializerList<'tree> {
     ///Get the node's named children
@@ -6173,13 +5933,10 @@ impl<'tree> FieldInitializerList<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for FieldInitializerList<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for FieldInitializerList<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "field_initializer_list" {
             Ok(Self(node))
         } else {
@@ -6206,9 +5963,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for FieldInitializerList<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -6310,13 +6065,10 @@ impl<'tree> FieldPattern<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for FieldPattern<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for FieldPattern<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "field_pattern" {
             Ok(Self(node))
         } else {
@@ -6343,9 +6095,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for FieldPattern<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -6445,13 +6195,10 @@ impl<'tree> ForExpression<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for ForExpression<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for ForExpression<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "for_expression" {
             Ok(Self(node))
         } else {
@@ -6478,9 +6225,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ForExpression<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -6536,13 +6281,10 @@ impl<'tree> ForLifetimes<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for ForLifetimes<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for ForLifetimes<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "for_lifetimes" {
             Ok(Self(node))
         } else {
@@ -6569,9 +6311,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ForLifetimes<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -6649,13 +6389,10 @@ impl<'tree> ForeignModItem<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for ForeignModItem<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for ForeignModItem<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "foreign_mod_item" {
             Ok(Self(node))
         } else {
@@ -6682,9 +6419,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ForeignModItem<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -6698,13 +6433,10 @@ pub struct FragmentSpecifier<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> FragmentSpecifier<'tree> {}
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for FragmentSpecifier<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for FragmentSpecifier<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "fragment_specifier" {
             Ok(Self(node))
         } else {
@@ -6731,9 +6463,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for FragmentSpecifier<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -6872,13 +6602,10 @@ impl<'tree> FunctionItem<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for FunctionItem<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for FunctionItem<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "function_item" {
             Ok(Self(node))
         } else {
@@ -6905,9 +6632,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for FunctionItem<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -6962,13 +6687,10 @@ impl<'tree> FunctionModifiers<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for FunctionModifiers<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for FunctionModifiers<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "function_modifiers" {
             Ok(Self(node))
         } else {
@@ -6995,9 +6717,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for FunctionModifiers<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -7017,9 +6737,7 @@ And additional children: `{function_modifiers | visibility_modifier | where_clau
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct FunctionSignatureItem<'tree>(
-    yak_sitter::Node<'tree>,
-);
+pub struct FunctionSignatureItem<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> FunctionSignatureItem<'tree> {
     ///Get the field `name` which has kind `{identifier | metavariable}` ([anon_unions::Identifier_Metavariable])
@@ -7126,13 +6844,10 @@ impl<'tree> FunctionSignatureItem<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for FunctionSignatureItem<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for FunctionSignatureItem<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "function_signature_item" {
             Ok(Self(node))
         } else {
@@ -7159,9 +6874,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for FunctionSignatureItem<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -7279,13 +6992,10 @@ impl<'tree> FunctionType<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for FunctionType<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for FunctionType<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "function_type" {
             Ok(Self(node))
         } else {
@@ -7312,9 +7022,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for FunctionType<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -7364,13 +7072,10 @@ impl<'tree> GenericFunction<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for GenericFunction<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for GenericFunction<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "generic_function" {
             Ok(Self(node))
         } else {
@@ -7397,9 +7102,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for GenericFunction<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -7449,13 +7152,10 @@ impl<'tree> GenericType<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for GenericType<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for GenericType<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "generic_type" {
             Ok(Self(node))
         } else {
@@ -7482,9 +7182,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for GenericType<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -7496,9 +7194,7 @@ This node has these fields:
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct GenericTypeWithTurbofish<'tree>(
-    yak_sitter::Node<'tree>,
-);
+pub struct GenericTypeWithTurbofish<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> GenericTypeWithTurbofish<'tree> {
     ///Get the field `type` which has kind `{scoped_identifier | type_identifier}` ([anon_unions::ScopedIdentifier_TypeIdentifier])
@@ -7536,13 +7232,10 @@ impl<'tree> GenericTypeWithTurbofish<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for GenericTypeWithTurbofish<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for GenericTypeWithTurbofish<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "generic_type_with_turbofish" {
             Ok(Self(node))
         } else {
@@ -7569,9 +7262,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for GenericTypeWithTurbofish<'tree
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -7583,9 +7274,7 @@ This node has these fields:
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct HigherRankedTraitBound<'tree>(
-    yak_sitter::Node<'tree>,
-);
+pub struct HigherRankedTraitBound<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> HigherRankedTraitBound<'tree> {
     ///Get the field `type` which has kind `_type` ([Type])
@@ -7614,13 +7303,10 @@ impl<'tree> HigherRankedTraitBound<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for HigherRankedTraitBound<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for HigherRankedTraitBound<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "higher_ranked_trait_bound" {
             Ok(Self(node))
         } else {
@@ -7647,9 +7333,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for HigherRankedTraitBound<'tree> 
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -7708,13 +7392,10 @@ impl<'tree> IfExpression<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for IfExpression<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for IfExpression<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "if_expression" {
             Ok(Self(node))
         } else {
@@ -7741,9 +7422,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for IfExpression<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -7869,13 +7548,10 @@ impl<'tree> ImplItem<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for ImplItem<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for ImplItem<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "impl_item" {
             Ok(Self(node))
         } else {
@@ -7902,9 +7578,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ImplItem<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -7960,13 +7634,10 @@ impl<'tree> IndexExpression<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for IndexExpression<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for IndexExpression<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "index_expression" {
             Ok(Self(node))
         } else {
@@ -7993,9 +7664,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for IndexExpression<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -8021,13 +7690,10 @@ impl<'tree> InnerAttributeItem<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for InnerAttributeItem<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for InnerAttributeItem<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "inner_attribute_item" {
             Ok(Self(node))
         } else {
@@ -8054,9 +7720,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for InnerAttributeItem<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -8115,13 +7779,10 @@ impl<'tree> LetChain<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for LetChain<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for LetChain<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "let_chain" {
             Ok(Self(node))
         } else {
@@ -8148,9 +7809,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for LetChain<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -8189,13 +7848,10 @@ impl<'tree> LetCondition<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for LetCondition<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for LetCondition<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "let_condition" {
             Ok(Self(node))
         } else {
@@ -8222,9 +7878,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for LetCondition<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -8329,13 +7983,10 @@ impl<'tree> LetDeclaration<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for LetDeclaration<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for LetDeclaration<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "let_declaration" {
             Ok(Self(node))
         } else {
@@ -8362,9 +8013,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for LetDeclaration<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -8390,13 +8039,10 @@ impl<'tree> Lifetime<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for Lifetime<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Lifetime<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "lifetime" {
             Ok(Self(node))
         } else {
@@ -8423,9 +8069,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Lifetime<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -8495,13 +8139,10 @@ impl<'tree> LoopExpression<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for LoopExpression<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for LoopExpression<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "loop_expression" {
             Ok(Self(node))
         } else {
@@ -8528,9 +8169,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for LoopExpression<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -8556,13 +8195,10 @@ impl<'tree> LoopLabel<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for LoopLabel<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for LoopLabel<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "loop_label" {
             Ok(Self(node))
         } else {
@@ -8589,9 +8225,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for LoopLabel<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -8661,13 +8295,10 @@ impl<'tree> MacroDefinition<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for MacroDefinition<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for MacroDefinition<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "macro_definition" {
             Ok(Self(node))
         } else {
@@ -8694,9 +8325,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for MacroDefinition<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -8779,13 +8408,10 @@ impl<'tree> MacroInvocation<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for MacroInvocation<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for MacroInvocation<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "macro_invocation" {
             Ok(Self(node))
         } else {
@@ -8812,9 +8438,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for MacroInvocation<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -8853,13 +8477,10 @@ impl<'tree> MacroRule<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for MacroRule<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for MacroRule<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "macro_rule" {
             Ok(Self(node))
         } else {
@@ -8886,9 +8507,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for MacroRule<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -8976,13 +8595,10 @@ impl<'tree> MatchArm<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for MatchArm<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for MatchArm<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "match_arm" {
             Ok(Self(node))
         } else {
@@ -9009,9 +8625,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for MatchArm<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -9066,13 +8680,10 @@ impl<'tree> MatchBlock<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for MatchBlock<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for MatchBlock<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "match_block" {
             Ok(Self(node))
         } else {
@@ -9099,9 +8710,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for MatchBlock<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -9140,13 +8749,10 @@ impl<'tree> MatchExpression<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for MatchExpression<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for MatchExpression<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "match_expression" {
             Ok(Self(node))
         } else {
@@ -9173,9 +8779,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for MatchExpression<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -9259,13 +8863,10 @@ impl<'tree> MatchPattern<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for MatchPattern<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for MatchPattern<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "match_pattern" {
             Ok(Self(node))
         } else {
@@ -9292,9 +8893,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for MatchPattern<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -9381,13 +8980,10 @@ impl<'tree> ModItem<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for ModItem<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for ModItem<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "mod_item" {
             Ok(Self(node))
         } else {
@@ -9414,9 +9010,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ModItem<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -9475,13 +9069,10 @@ impl<'tree> MutPattern<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for MutPattern<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for MutPattern<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "mut_pattern" {
             Ok(Self(node))
         } else {
@@ -9508,9 +9099,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for MutPattern<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -9546,13 +9135,10 @@ impl<'tree> NegativeLiteral<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for NegativeLiteral<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for NegativeLiteral<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "negative_literal" {
             Ok(Self(node))
         } else {
@@ -9579,9 +9165,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for NegativeLiteral<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -9593,9 +9177,7 @@ This node has these fields:
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct OptionalTypeParameter<'tree>(
-    yak_sitter::Node<'tree>,
-);
+pub struct OptionalTypeParameter<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> OptionalTypeParameter<'tree> {
     ///Get the field `default_type` which has kind `_type` ([Type])
@@ -9631,13 +9213,10 @@ impl<'tree> OptionalTypeParameter<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for OptionalTypeParameter<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for OptionalTypeParameter<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "optional_type_parameter" {
             Ok(Self(node))
         } else {
@@ -9664,9 +9243,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for OptionalTypeParameter<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -9719,13 +9296,10 @@ impl<'tree> OrPattern<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for OrPattern<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for OrPattern<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "or_pattern" {
             Ok(Self(node))
         } else {
@@ -9752,9 +9326,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for OrPattern<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -9770,9 +9342,7 @@ And additional children: `{attribute_item | visibility_modifier}*`:
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct OrderedFieldDeclarationList<'tree>(
-    yak_sitter::Node<'tree>,
-);
+pub struct OrderedFieldDeclarationList<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> OrderedFieldDeclarationList<'tree> {
     ///Get the field `type` which has kind `_type*` ([Type])
@@ -9842,13 +9412,10 @@ impl<'tree> OrderedFieldDeclarationList<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for OrderedFieldDeclarationList<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for OrderedFieldDeclarationList<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "ordered_field_declaration_list" {
             Ok(Self(node))
         } else {
@@ -9875,9 +9442,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for OrderedFieldDeclarationList<'t
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -9967,13 +9532,10 @@ impl<'tree> Parameter<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for Parameter<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Parameter<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "parameter" {
             Ok(Self(node))
         } else {
@@ -10000,9 +9562,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Parameter<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -10077,13 +9637,10 @@ impl<'tree> Parameters<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for Parameters<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Parameters<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "parameters" {
             Ok(Self(node))
         } else {
@@ -10110,9 +9667,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Parameters<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -10122,9 +9677,7 @@ This node has a child: `_expression` ([Expression])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct ParenthesizedExpression<'tree>(
-    yak_sitter::Node<'tree>,
-);
+pub struct ParenthesizedExpression<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ParenthesizedExpression<'tree> {
     ///Get the node's only named child
@@ -10140,13 +9693,10 @@ impl<'tree> ParenthesizedExpression<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for ParenthesizedExpression<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for ParenthesizedExpression<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "parenthesized_expression" {
             Ok(Self(node))
         } else {
@@ -10173,9 +9723,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ParenthesizedExpression<'tree>
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -10245,13 +9793,10 @@ impl<'tree> PointerType<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for PointerType<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for PointerType<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "pointer_type" {
             Ok(Self(node))
         } else {
@@ -10278,9 +9823,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for PointerType<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -10319,13 +9862,10 @@ impl<'tree> QualifiedType<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for QualifiedType<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for QualifiedType<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "qualified_type" {
             Ok(Self(node))
         } else {
@@ -10352,9 +9892,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for QualifiedType<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -10409,13 +9947,10 @@ impl<'tree> RangeExpression<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for RangeExpression<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for RangeExpression<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "range_expression" {
             Ok(Self(node))
         } else {
@@ -10442,9 +9977,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for RangeExpression<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -10522,13 +10055,10 @@ impl<'tree> RangePattern<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for RangePattern<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for RangePattern<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "range_pattern" {
             Ok(Self(node))
         } else {
@@ -10555,9 +10085,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for RangePattern<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -10583,13 +10111,10 @@ impl<'tree> RefPattern<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for RefPattern<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for RefPattern<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "ref_pattern" {
             Ok(Self(node))
         } else {
@@ -10616,9 +10141,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for RefPattern<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -10694,13 +10217,10 @@ impl<'tree> ReferenceExpression<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for ReferenceExpression<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for ReferenceExpression<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "reference_expression" {
             Ok(Self(node))
         } else {
@@ -10727,9 +10247,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ReferenceExpression<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -10788,13 +10306,10 @@ impl<'tree> ReferencePattern<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for ReferencePattern<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for ReferencePattern<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "reference_pattern" {
             Ok(Self(node))
         } else {
@@ -10821,9 +10336,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ReferencePattern<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -10902,13 +10415,10 @@ impl<'tree> ReferenceType<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for ReferenceType<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for ReferenceType<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "reference_type" {
             Ok(Self(node))
         } else {
@@ -10935,9 +10445,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ReferenceType<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -10947,19 +10455,14 @@ This node has no children
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct RemainingFieldPattern<'tree>(
-    yak_sitter::Node<'tree>,
-);
+pub struct RemainingFieldPattern<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> RemainingFieldPattern<'tree> {}
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for RemainingFieldPattern<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for RemainingFieldPattern<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "remaining_field_pattern" {
             Ok(Self(node))
         } else {
@@ -10986,9 +10489,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for RemainingFieldPattern<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -11014,13 +10515,10 @@ impl<'tree> RemovedTraitBound<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for RemovedTraitBound<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for RemovedTraitBound<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "removed_trait_bound" {
             Ok(Self(node))
         } else {
@@ -11047,9 +10545,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for RemovedTraitBound<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -11072,13 +10568,10 @@ impl<'tree> ReturnExpression<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for ReturnExpression<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for ReturnExpression<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "return_expression" {
             Ok(Self(node))
         } else {
@@ -11105,9 +10598,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ReturnExpression<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -11156,13 +10647,10 @@ impl<'tree> ScopedIdentifier<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for ScopedIdentifier<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for ScopedIdentifier<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "scoped_identifier" {
             Ok(Self(node))
         } else {
@@ -11189,9 +10677,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ScopedIdentifier<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -11203,9 +10689,7 @@ This node has these fields:
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct ScopedTypeIdentifier<'tree>(
-    yak_sitter::Node<'tree>,
-);
+pub struct ScopedTypeIdentifier<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ScopedTypeIdentifier<'tree> {
     ///Get the field `name` which has kind `type_identifier` ([TypeIdentifier])
@@ -11242,13 +10726,10 @@ impl<'tree> ScopedTypeIdentifier<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for ScopedTypeIdentifier<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for ScopedTypeIdentifier<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "scoped_type_identifier" {
             Ok(Self(node))
         } else {
@@ -11275,9 +10756,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ScopedTypeIdentifier<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -11326,13 +10805,10 @@ impl<'tree> ScopedUseList<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for ScopedUseList<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for ScopedUseList<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "scoped_use_list" {
             Ok(Self(node))
         } else {
@@ -11359,9 +10835,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ScopedUseList<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -11427,13 +10901,10 @@ impl<'tree> SelfParameter<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for SelfParameter<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for SelfParameter<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "self_parameter" {
             Ok(Self(node))
         } else {
@@ -11460,9 +10931,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for SelfParameter<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -11475,9 +10944,7 @@ This node has children: `{attribute_item | identifier}+`:
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct ShorthandFieldInitializer<'tree>(
-    yak_sitter::Node<'tree>,
-);
+pub struct ShorthandFieldInitializer<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ShorthandFieldInitializer<'tree> {
     ///Get the node's named children
@@ -11523,13 +10990,10 @@ impl<'tree> ShorthandFieldInitializer<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for ShorthandFieldInitializer<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for ShorthandFieldInitializer<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "shorthand_field_initializer" {
             Ok(Self(node))
         } else {
@@ -11556,9 +11020,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ShorthandFieldInitializer<'tre
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -11610,13 +11072,10 @@ impl<'tree> SlicePattern<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for SlicePattern<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for SlicePattern<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "slice_pattern" {
             Ok(Self(node))
         } else {
@@ -11643,9 +11102,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for SlicePattern<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -11709,13 +11166,10 @@ impl<'tree> SourceFile<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for SourceFile<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for SourceFile<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "source_file" {
             Ok(Self(node))
         } else {
@@ -11742,9 +11196,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for SourceFile<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -11854,13 +11306,10 @@ impl<'tree> StaticItem<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for StaticItem<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for StaticItem<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "static_item" {
             Ok(Self(node))
         } else {
@@ -11887,9 +11336,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for StaticItem<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -11944,13 +11391,10 @@ impl<'tree> StringLiteral<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for StringLiteral<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for StringLiteral<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "string_literal" {
             Ok(Self(node))
         } else {
@@ -11977,9 +11421,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for StringLiteral<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -12029,13 +11471,10 @@ impl<'tree> StructExpression<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for StructExpression<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for StructExpression<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "struct_expression" {
             Ok(Self(node))
         } else {
@@ -12062,9 +11501,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for StructExpression<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -12182,13 +11619,10 @@ impl<'tree> StructItem<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for StructItem<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for StructItem<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "struct_item" {
             Ok(Self(node))
         } else {
@@ -12215,9 +11649,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for StructItem<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -12313,13 +11745,10 @@ impl<'tree> StructPattern<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for StructPattern<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for StructPattern<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "struct_pattern" {
             Ok(Self(node))
         } else {
@@ -12346,9 +11775,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for StructPattern<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -12389,13 +11816,10 @@ impl<'tree> TokenBindingPattern<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for TokenBindingPattern<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for TokenBindingPattern<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "token_binding_pattern" {
             Ok(Self(node))
         } else {
@@ -12422,9 +11846,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TokenBindingPattern<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -12504,13 +11926,10 @@ impl<'tree> TokenRepetition<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for TokenRepetition<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for TokenRepetition<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "token_repetition" {
             Ok(Self(node))
         } else {
@@ -12537,9 +11956,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TokenRepetition<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -12561,9 +11978,7 @@ This node has children: `{_literal | crate | identifier | metavariable | mutable
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct TokenRepetitionPattern<'tree>(
-    yak_sitter::Node<'tree>,
-);
+pub struct TokenRepetitionPattern<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TokenRepetitionPattern<'tree> {
     ///Get the node's named children
@@ -12622,13 +12037,10 @@ impl<'tree> TokenRepetitionPattern<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for TokenRepetitionPattern<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for TokenRepetitionPattern<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "token_repetition_pattern" {
             Ok(Self(node))
         } else {
@@ -12655,9 +12067,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TokenRepetitionPattern<'tree> 
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -12737,13 +12147,10 @@ impl<'tree> TokenTree<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for TokenTree<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for TokenTree<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "token_tree" {
             Ok(Self(node))
         } else {
@@ -12770,9 +12177,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TokenTree<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -12853,13 +12258,10 @@ impl<'tree> TokenTreePattern<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for TokenTreePattern<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for TokenTreePattern<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "token_tree_pattern" {
             Ok(Self(node))
         } else {
@@ -12886,9 +12288,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TokenTreePattern<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -12963,13 +12363,10 @@ impl<'tree> TraitBounds<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for TraitBounds<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for TraitBounds<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "trait_bounds" {
             Ok(Self(node))
         } else {
@@ -12996,9 +12393,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TraitBounds<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -13119,13 +12514,10 @@ impl<'tree> TraitItem<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for TraitItem<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for TraitItem<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "trait_item" {
             Ok(Self(node))
         } else {
@@ -13152,9 +12544,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TraitItem<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -13180,13 +12570,10 @@ impl<'tree> TryExpression<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for TryExpression<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for TryExpression<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "try_expression" {
             Ok(Self(node))
         } else {
@@ -13213,9 +12600,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TryExpression<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -13274,13 +12659,10 @@ impl<'tree> TupleExpression<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for TupleExpression<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for TupleExpression<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "tuple_expression" {
             Ok(Self(node))
         } else {
@@ -13307,9 +12689,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TupleExpression<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -13361,13 +12741,10 @@ impl<'tree> TuplePattern<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for TuplePattern<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for TuplePattern<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "tuple_pattern" {
             Ok(Self(node))
         } else {
@@ -13394,9 +12771,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TuplePattern<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -13479,13 +12854,10 @@ impl<'tree> TupleStructPattern<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for TupleStructPattern<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for TupleStructPattern<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "tuple_struct_pattern" {
             Ok(Self(node))
         } else {
@@ -13512,9 +12884,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TupleStructPattern<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -13562,13 +12932,10 @@ impl<'tree> TupleType<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for TupleType<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for TupleType<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "tuple_type" {
             Ok(Self(node))
         } else {
@@ -13595,9 +12962,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TupleType<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -13665,13 +13030,10 @@ impl<'tree> TypeArguments<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for TypeArguments<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for TypeArguments<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "type_arguments" {
             Ok(Self(node))
         } else {
@@ -13698,9 +13060,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TypeArguments<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -13750,13 +13110,10 @@ impl<'tree> TypeBinding<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for TypeBinding<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for TypeBinding<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "type_binding" {
             Ok(Self(node))
         } else {
@@ -13783,9 +13140,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TypeBinding<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -13824,13 +13179,10 @@ impl<'tree> TypeCastExpression<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for TypeCastExpression<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for TypeCastExpression<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "type_cast_expression" {
             Ok(Self(node))
         } else {
@@ -13857,9 +13209,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TypeCastExpression<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -13960,13 +13310,10 @@ impl<'tree> TypeItem<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for TypeItem<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for TypeItem<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "type_item" {
             Ok(Self(node))
         } else {
@@ -13993,9 +13340,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TypeItem<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -14072,13 +13417,10 @@ impl<'tree> TypeParameters<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for TypeParameters<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for TypeParameters<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "type_parameters" {
             Ok(Self(node))
         } else {
@@ -14105,9 +13447,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TypeParameters<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -14133,13 +13473,10 @@ impl<'tree> UnaryExpression<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for UnaryExpression<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for UnaryExpression<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "unary_expression" {
             Ok(Self(node))
         } else {
@@ -14166,9 +13503,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for UnaryExpression<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -14280,13 +13615,10 @@ impl<'tree> UnionItem<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for UnionItem<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for UnionItem<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "union_item" {
             Ok(Self(node))
         } else {
@@ -14313,9 +13645,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for UnionItem<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -14329,13 +13659,10 @@ pub struct UnitExpression<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> UnitExpression<'tree> {}
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for UnitExpression<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for UnitExpression<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "unit_expression" {
             Ok(Self(node))
         } else {
@@ -14362,9 +13689,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for UnitExpression<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -14378,13 +13703,10 @@ pub struct UnitType<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> UnitType<'tree> {}
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for UnitType<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for UnitType<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "unit_type" {
             Ok(Self(node))
         } else {
@@ -14411,9 +13733,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for UnitType<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -14439,13 +13759,10 @@ impl<'tree> UnsafeBlock<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for UnsafeBlock<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for UnsafeBlock<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "unsafe_block" {
             Ok(Self(node))
         } else {
@@ -14472,9 +13789,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for UnsafeBlock<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -14522,13 +13837,10 @@ impl<'tree> UseAsClause<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for UseAsClause<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for UseAsClause<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "use_as_clause" {
             Ok(Self(node))
         } else {
@@ -14555,9 +13867,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for UseAsClause<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -14652,13 +13962,10 @@ impl<'tree> UseDeclaration<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for UseDeclaration<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for UseDeclaration<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "use_declaration" {
             Ok(Self(node))
         } else {
@@ -14685,9 +13992,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for UseDeclaration<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -14767,13 +14072,10 @@ impl<'tree> UseList<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for UseList<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for UseList<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "use_list" {
             Ok(Self(node))
         } else {
@@ -14800,9 +14102,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for UseList<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -14845,13 +14145,10 @@ impl<'tree> UseWildcard<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for UseWildcard<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for UseWildcard<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "use_wildcard" {
             Ok(Self(node))
         } else {
@@ -14878,9 +14175,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for UseWildcard<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -14894,13 +14189,10 @@ pub struct VariadicParameter<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> VariadicParameter<'tree> {}
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for VariadicParameter<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for VariadicParameter<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "variadic_parameter" {
             Ok(Self(node))
         } else {
@@ -14927,9 +14219,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for VariadicParameter<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -14972,13 +14262,10 @@ impl<'tree> VisibilityModifier<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for VisibilityModifier<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for VisibilityModifier<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "visibility_modifier" {
             Ok(Self(node))
         } else {
@@ -15005,9 +14292,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for VisibilityModifier<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -15063,13 +14348,10 @@ impl<'tree> WhereClause<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for WhereClause<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for WhereClause<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "where_clause" {
             Ok(Self(node))
         } else {
@@ -15096,9 +14378,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for WhereClause<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -15148,13 +14428,10 @@ impl<'tree> WherePredicate<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for WherePredicate<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for WherePredicate<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "where_predicate" {
             Ok(Self(node))
         } else {
@@ -15181,9 +14458,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for WherePredicate<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -15280,13 +14555,10 @@ impl<'tree> WhileExpression<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for WhileExpression<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for WhileExpression<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "while_expression" {
             Ok(Self(node))
         } else {
@@ -15313,9 +14585,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for WhileExpression<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -15338,13 +14608,10 @@ impl<'tree> YieldExpression<'tree> {
     }
 }
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for YieldExpression<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for YieldExpression<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "yield_expression" {
             Ok(Self(node))
         } else {
@@ -15371,9 +14638,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for YieldExpression<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -15387,13 +14652,10 @@ pub struct BlockComment<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> BlockComment<'tree> {}
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for BlockComment<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for BlockComment<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "block_comment" {
             Ok(Self(node))
         } else {
@@ -15420,9 +14682,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for BlockComment<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -15436,13 +14696,10 @@ pub struct CharLiteral<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> CharLiteral<'tree> {}
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for CharLiteral<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for CharLiteral<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "char_literal" {
             Ok(Self(node))
         } else {
@@ -15469,9 +14726,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for CharLiteral<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -15488,9 +14743,7 @@ impl<'tree> Crate<'tree> {}
 impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Crate<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "crate" {
             Ok(Self(node))
         } else {
@@ -15517,9 +14770,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Crate<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -15533,13 +14784,10 @@ pub struct EscapeSequence<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> EscapeSequence<'tree> {}
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for EscapeSequence<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for EscapeSequence<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "escape_sequence" {
             Ok(Self(node))
         } else {
@@ -15566,9 +14814,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for EscapeSequence<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -15582,13 +14828,10 @@ pub struct FieldIdentifier<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> FieldIdentifier<'tree> {}
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for FieldIdentifier<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for FieldIdentifier<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "field_identifier" {
             Ok(Self(node))
         } else {
@@ -15615,9 +14858,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for FieldIdentifier<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -15631,13 +14872,10 @@ pub struct FloatLiteral<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> FloatLiteral<'tree> {}
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for FloatLiteral<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for FloatLiteral<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "float_literal" {
             Ok(Self(node))
         } else {
@@ -15664,9 +14902,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for FloatLiteral<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -15680,13 +14916,10 @@ pub struct Identifier<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> Identifier<'tree> {}
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for Identifier<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Identifier<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "identifier" {
             Ok(Self(node))
         } else {
@@ -15713,9 +14946,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Identifier<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -15729,13 +14960,10 @@ pub struct IntegerLiteral<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> IntegerLiteral<'tree> {}
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for IntegerLiteral<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for IntegerLiteral<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "integer_literal" {
             Ok(Self(node))
         } else {
@@ -15762,9 +14990,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for IntegerLiteral<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -15778,13 +15004,10 @@ pub struct LineComment<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> LineComment<'tree> {}
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for LineComment<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for LineComment<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "line_comment" {
             Ok(Self(node))
         } else {
@@ -15811,9 +15034,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for LineComment<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -15827,13 +15048,10 @@ pub struct Metavariable<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> Metavariable<'tree> {}
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for Metavariable<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Metavariable<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "metavariable" {
             Ok(Self(node))
         } else {
@@ -15860,9 +15078,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Metavariable<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -15876,13 +15092,10 @@ pub struct MutableSpecifier<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> MutableSpecifier<'tree> {}
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for MutableSpecifier<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for MutableSpecifier<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "mutable_specifier" {
             Ok(Self(node))
         } else {
@@ -15909,9 +15122,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for MutableSpecifier<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -15925,13 +15136,10 @@ pub struct PrimitiveType<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> PrimitiveType<'tree> {}
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for PrimitiveType<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for PrimitiveType<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "primitive_type" {
             Ok(Self(node))
         } else {
@@ -15958,9 +15166,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for PrimitiveType<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -15974,13 +15180,10 @@ pub struct RawStringLiteral<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> RawStringLiteral<'tree> {}
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for RawStringLiteral<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for RawStringLiteral<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "raw_string_literal" {
             Ok(Self(node))
         } else {
@@ -16007,9 +15210,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for RawStringLiteral<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -16026,9 +15227,7 @@ impl<'tree> _Self<'tree> {}
 impl<'tree> TryFrom<yak_sitter::Node<'tree>> for _Self<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "self" {
             Ok(Self(node))
         } else {
@@ -16055,9 +15254,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for _Self<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -16067,19 +15264,14 @@ This node has no children
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
-pub struct ShorthandFieldIdentifier<'tree>(
-    yak_sitter::Node<'tree>,
-);
+pub struct ShorthandFieldIdentifier<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ShorthandFieldIdentifier<'tree> {}
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for ShorthandFieldIdentifier<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for ShorthandFieldIdentifier<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "shorthand_field_identifier" {
             Ok(Self(node))
         } else {
@@ -16106,9 +15298,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ShorthandFieldIdentifier<'tree
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -16125,9 +15315,7 @@ impl<'tree> Super<'tree> {}
 impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Super<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "super" {
             Ok(Self(node))
         } else {
@@ -16154,9 +15342,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Super<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -16170,13 +15356,10 @@ pub struct TypeIdentifier<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TypeIdentifier<'tree> {}
 #[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-for TypeIdentifier<'tree> {
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for TypeIdentifier<'tree> {
     type Error = type_sitter_lib::IncorrectKind<'tree>;
     #[inline]
-    fn try_from(
-        node: yak_sitter::Node<'tree>,
-    ) -> Result<Self, Self::Error> {
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
         if node.kind() == "type_identifier" {
             Ok(Self(node))
         } else {
@@ -16203,9 +15386,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TypeIdentifier<'tree> {
         self.0
     }
     #[inline]
-    unsafe fn from_node_unchecked(
-        node: yak_sitter::Node<'tree>,
-    ) -> Self {
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         Self(node)
     }
 }
@@ -16222,13 +15403,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> As<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for As<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for As<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "as" {
                 Ok(Self(node))
             } else {
@@ -16247,9 +15425,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -16257,9 +15433,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -16273,13 +15447,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> Async<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Async<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Async<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "async" {
                 Ok(Self(node))
             } else {
@@ -16298,9 +15469,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -16308,9 +15477,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -16324,13 +15491,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> Await<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Await<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Await<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "await" {
                 Ok(Self(node))
             } else {
@@ -16349,9 +15513,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -16359,9 +15521,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -16375,13 +15535,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> Block<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Block<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Block<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "block" {
                 Ok(Self(node))
             } else {
@@ -16400,9 +15557,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -16410,9 +15565,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -16426,13 +15579,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> Break<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Break<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Break<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "break" {
                 Ok(Self(node))
             } else {
@@ -16451,9 +15601,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -16461,9 +15609,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -16477,13 +15623,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> Const<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Const<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Const<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "const" {
                 Ok(Self(node))
             } else {
@@ -16502,9 +15645,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -16512,9 +15653,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -16528,13 +15667,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> Continue<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Continue<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Continue<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "continue" {
                 Ok(Self(node))
             } else {
@@ -16553,9 +15689,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -16563,9 +15697,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -16579,13 +15711,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> Default<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Default<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Default<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "default" {
                 Ok(Self(node))
             } else {
@@ -16604,9 +15733,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -16614,9 +15741,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -16630,13 +15755,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> Dyn<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Dyn<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Dyn<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "dyn" {
                 Ok(Self(node))
             } else {
@@ -16655,9 +15777,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -16665,9 +15785,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -16681,13 +15799,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> Else<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Else<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Else<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "else" {
                 Ok(Self(node))
             } else {
@@ -16706,9 +15821,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -16716,9 +15829,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -16732,13 +15843,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> Enum<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Enum<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Enum<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "enum" {
                 Ok(Self(node))
             } else {
@@ -16757,9 +15865,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -16767,9 +15873,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -16783,13 +15887,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> Expr<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Expr<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Expr<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "expr" {
                 Ok(Self(node))
             } else {
@@ -16808,9 +15909,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -16818,9 +15917,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -16834,13 +15931,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> Extern<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Extern<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Extern<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "extern" {
                 Ok(Self(node))
             } else {
@@ -16859,9 +15953,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -16869,9 +15961,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -16885,13 +15975,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> False<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for False<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for False<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "false" {
                 Ok(Self(node))
             } else {
@@ -16910,9 +15997,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -16920,9 +16005,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -16936,13 +16019,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> Fn<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Fn<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Fn<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "fn" {
                 Ok(Self(node))
             } else {
@@ -16961,9 +16041,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -16971,9 +16049,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -16987,13 +16063,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> For<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for For<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for For<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "for" {
                 Ok(Self(node))
             } else {
@@ -17012,9 +16085,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -17022,9 +16093,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -17038,13 +16107,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> Ident<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Ident<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Ident<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "ident" {
                 Ok(Self(node))
             } else {
@@ -17063,9 +16129,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -17073,9 +16137,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -17089,13 +16151,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> If<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for If<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for If<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "if" {
                 Ok(Self(node))
             } else {
@@ -17114,9 +16173,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -17124,9 +16181,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -17140,13 +16195,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> Impl<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Impl<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Impl<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "impl" {
                 Ok(Self(node))
             } else {
@@ -17165,9 +16217,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -17175,9 +16225,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -17191,13 +16239,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> In<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for In<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for In<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "in" {
                 Ok(Self(node))
             } else {
@@ -17216,9 +16261,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -17226,9 +16269,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -17242,13 +16283,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> Item<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Item<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Item<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "item" {
                 Ok(Self(node))
             } else {
@@ -17267,9 +16305,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -17277,9 +16313,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -17293,13 +16327,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> Let<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Let<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Let<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "let" {
                 Ok(Self(node))
             } else {
@@ -17318,9 +16349,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -17328,9 +16357,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -17344,13 +16371,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> Lifetime<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Lifetime<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Lifetime<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "lifetime" {
                 Ok(Self(node))
             } else {
@@ -17369,9 +16393,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -17379,9 +16401,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -17395,13 +16415,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> Literal<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Literal<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Literal<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "literal" {
                 Ok(Self(node))
             } else {
@@ -17420,9 +16437,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -17430,9 +16445,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -17446,13 +16459,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> Loop<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Loop<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Loop<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "loop" {
                 Ok(Self(node))
             } else {
@@ -17471,9 +16481,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -17481,9 +16489,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -17497,13 +16503,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> Match<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Match<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Match<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "match" {
                 Ok(Self(node))
             } else {
@@ -17522,9 +16525,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -17532,9 +16533,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -17548,13 +16547,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> Meta<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Meta<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Meta<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "meta" {
                 Ok(Self(node))
             } else {
@@ -17573,9 +16569,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -17583,9 +16577,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -17599,13 +16591,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> Mod<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Mod<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Mod<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "mod" {
                 Ok(Self(node))
             } else {
@@ -17624,9 +16613,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -17634,9 +16621,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -17650,13 +16635,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> Move<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Move<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Move<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "move" {
                 Ok(Self(node))
             } else {
@@ -17675,9 +16657,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -17685,9 +16665,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -17701,13 +16679,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> Pat<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Pat<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Pat<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "pat" {
                 Ok(Self(node))
             } else {
@@ -17726,9 +16701,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -17736,9 +16709,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -17752,13 +16723,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> Path<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Path<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Path<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "path" {
                 Ok(Self(node))
             } else {
@@ -17777,9 +16745,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -17787,9 +16753,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -17803,13 +16767,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> Pub<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Pub<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Pub<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "pub" {
                 Ok(Self(node))
             } else {
@@ -17828,9 +16789,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -17838,9 +16797,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -17854,13 +16811,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> Ref<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Ref<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Ref<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "ref" {
                 Ok(Self(node))
             } else {
@@ -17879,9 +16833,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -17889,9 +16841,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -17905,13 +16855,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> Return<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Return<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Return<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "return" {
                 Ok(Self(node))
             } else {
@@ -17930,9 +16877,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -17940,9 +16885,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -17956,13 +16899,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> Static<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Static<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Static<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "static" {
                 Ok(Self(node))
             } else {
@@ -17981,9 +16921,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -17991,9 +16929,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -18007,13 +16943,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> Stmt<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Stmt<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Stmt<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "stmt" {
                 Ok(Self(node))
             } else {
@@ -18032,9 +16965,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -18042,9 +16973,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -18058,13 +16987,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> Struct<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Struct<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Struct<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "struct" {
                 Ok(Self(node))
             } else {
@@ -18083,9 +17009,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -18093,9 +17017,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -18109,13 +17031,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> Trait<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Trait<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Trait<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "trait" {
                 Ok(Self(node))
             } else {
@@ -18134,9 +17053,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -18144,9 +17061,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -18160,13 +17075,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> True<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for True<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for True<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "true" {
                 Ok(Self(node))
             } else {
@@ -18185,9 +17097,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -18195,9 +17105,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -18211,13 +17119,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> Tt<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Tt<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Tt<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "tt" {
                 Ok(Self(node))
             } else {
@@ -18236,9 +17141,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -18246,9 +17149,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -18262,13 +17163,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> Ty<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Ty<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Ty<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "ty" {
                 Ok(Self(node))
             } else {
@@ -18287,9 +17185,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -18297,9 +17193,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -18313,13 +17207,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> Type<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Type<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Type<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "type" {
                 Ok(Self(node))
             } else {
@@ -18338,9 +17229,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -18348,9 +17237,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -18364,13 +17251,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> Union<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Union<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Union<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "union" {
                 Ok(Self(node))
             } else {
@@ -18389,9 +17273,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -18399,9 +17281,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -18415,13 +17295,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> Unsafe<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Unsafe<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Unsafe<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "unsafe" {
                 Ok(Self(node))
             } else {
@@ -18440,9 +17317,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -18450,9 +17325,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -18466,13 +17339,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> Use<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Use<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Use<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "use" {
                 Ok(Self(node))
             } else {
@@ -18491,9 +17361,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -18501,9 +17369,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -18517,13 +17383,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> Vis<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Vis<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Vis<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "vis" {
                 Ok(Self(node))
             } else {
@@ -18542,9 +17405,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -18552,9 +17413,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -18568,13 +17427,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> Where<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Where<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Where<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "where" {
                 Ok(Self(node))
             } else {
@@ -18593,9 +17449,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -18603,9 +17457,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -18619,13 +17471,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> While<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for While<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for While<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "while" {
                 Ok(Self(node))
             } else {
@@ -18644,9 +17493,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -18654,9 +17501,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -18670,13 +17515,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> Yield<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Yield<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Yield<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "yield" {
                 Ok(Self(node))
             } else {
@@ -18695,9 +17537,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -18705,9 +17545,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -18725,13 +17563,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> Not<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Not<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Not<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "!" {
                 Ok(Self(node))
             } else {
@@ -18750,9 +17585,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -18760,9 +17593,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -18776,13 +17607,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> NotEq<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for NotEq<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for NotEq<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "!=" {
                 Ok(Self(node))
             } else {
@@ -18801,9 +17629,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -18811,9 +17637,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -18827,13 +17651,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> DoubleQuote<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for DoubleQuote<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for DoubleQuote<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "\"" {
                 Ok(Self(node))
             } else {
@@ -18852,9 +17673,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -18862,9 +17681,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -18878,13 +17695,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> Hash<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Hash<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Hash<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "#" {
                 Ok(Self(node))
             } else {
@@ -18903,9 +17717,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -18913,9 +17725,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -18929,13 +17739,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> Dollar<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Dollar<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Dollar<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "$" {
                 Ok(Self(node))
             } else {
@@ -18954,9 +17761,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -18964,9 +17769,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -18980,13 +17783,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> Mod<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Mod<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Mod<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "%" {
                 Ok(Self(node))
             } else {
@@ -19005,9 +17805,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -19015,9 +17813,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -19031,13 +17827,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> ModEq<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for ModEq<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for ModEq<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "%=" {
                 Ok(Self(node))
             } else {
@@ -19056,9 +17849,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -19066,9 +17857,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -19082,13 +17871,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> And<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for And<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for And<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "&" {
                 Ok(Self(node))
             } else {
@@ -19107,9 +17893,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -19117,9 +17901,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -19133,13 +17915,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> AndAnd<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for AndAnd<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for AndAnd<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "&&" {
                 Ok(Self(node))
             } else {
@@ -19158,9 +17937,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -19168,9 +17945,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -19184,13 +17959,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> AndEq<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for AndEq<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for AndEq<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "&=" {
                 Ok(Self(node))
             } else {
@@ -19209,9 +17981,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -19219,9 +17989,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -19235,13 +18003,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> Quote<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Quote<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Quote<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "'" {
                 Ok(Self(node))
             } else {
@@ -19260,9 +18025,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -19270,9 +18033,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -19286,13 +18047,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> LParen<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for LParen<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for LParen<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "(" {
                 Ok(Self(node))
             } else {
@@ -19311,9 +18069,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -19321,9 +18077,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -19337,13 +18091,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> RParen<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for RParen<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for RParen<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == ")" {
                 Ok(Self(node))
             } else {
@@ -19362,9 +18113,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -19372,9 +18121,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -19388,13 +18135,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> Mul<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Mul<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Mul<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "*" {
                 Ok(Self(node))
             } else {
@@ -19413,9 +18157,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -19423,9 +18165,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -19439,13 +18179,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> MulEq<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for MulEq<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for MulEq<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "*=" {
                 Ok(Self(node))
             } else {
@@ -19464,9 +18201,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -19474,9 +18209,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -19490,13 +18223,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> Add<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Add<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Add<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "+" {
                 Ok(Self(node))
             } else {
@@ -19515,9 +18245,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -19525,9 +18253,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -19541,13 +18267,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> AddEq<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for AddEq<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for AddEq<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "+=" {
                 Ok(Self(node))
             } else {
@@ -19566,9 +18289,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -19576,9 +18297,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -19592,13 +18311,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> Comma<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Comma<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Comma<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "," {
                 Ok(Self(node))
             } else {
@@ -19617,9 +18333,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -19627,9 +18341,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -19643,13 +18355,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> Sub<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Sub<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Sub<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "-" {
                 Ok(Self(node))
             } else {
@@ -19668,9 +18377,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -19678,9 +18385,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -19694,13 +18399,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> SubEq<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for SubEq<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for SubEq<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "-=" {
                 Ok(Self(node))
             } else {
@@ -19719,9 +18421,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -19729,9 +18429,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -19745,13 +18443,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> SubGt<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for SubGt<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for SubGt<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "->" {
                 Ok(Self(node))
             } else {
@@ -19770,9 +18465,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -19780,9 +18473,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -19796,13 +18487,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> Dot<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Dot<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Dot<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "." {
                 Ok(Self(node))
             } else {
@@ -19821,9 +18509,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -19831,9 +18517,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -19847,13 +18531,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> DotDot<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for DotDot<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for DotDot<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == ".." {
                 Ok(Self(node))
             } else {
@@ -19872,9 +18553,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -19882,9 +18561,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -19898,13 +18575,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> DotDotDot<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for DotDotDot<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for DotDotDot<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "..." {
                 Ok(Self(node))
             } else {
@@ -19923,9 +18597,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -19933,9 +18605,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -19949,13 +18619,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> DotDotEq<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for DotDotEq<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for DotDotEq<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "..=" {
                 Ok(Self(node))
             } else {
@@ -19974,9 +18641,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -19984,9 +18649,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -20000,13 +18663,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> Div<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Div<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Div<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "/" {
                 Ok(Self(node))
             } else {
@@ -20025,9 +18685,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -20035,9 +18693,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -20051,13 +18707,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> DivEq<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for DivEq<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for DivEq<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "/=" {
                 Ok(Self(node))
             } else {
@@ -20076,9 +18729,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -20086,9 +18737,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -20102,13 +18751,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> Colon<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Colon<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Colon<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == ":" {
                 Ok(Self(node))
             } else {
@@ -20127,9 +18773,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -20137,9 +18781,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -20153,13 +18795,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> ColonColon<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for ColonColon<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for ColonColon<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "::" {
                 Ok(Self(node))
             } else {
@@ -20178,9 +18817,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -20188,9 +18825,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -20204,13 +18839,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> Semicolon<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Semicolon<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Semicolon<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == ";" {
                 Ok(Self(node))
             } else {
@@ -20229,9 +18861,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -20239,9 +18869,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -20255,13 +18883,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> Lt<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Lt<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Lt<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "<" {
                 Ok(Self(node))
             } else {
@@ -20280,9 +18905,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -20290,9 +18913,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -20306,13 +18927,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> LtLt<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for LtLt<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for LtLt<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "<<" {
                 Ok(Self(node))
             } else {
@@ -20331,9 +18949,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -20341,9 +18957,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -20357,13 +18971,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> LtLtEq<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for LtLtEq<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for LtLtEq<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "<<=" {
                 Ok(Self(node))
             } else {
@@ -20382,9 +18993,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -20392,9 +19001,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -20408,13 +19015,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> LtEq<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for LtEq<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for LtEq<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "<=" {
                 Ok(Self(node))
             } else {
@@ -20433,9 +19037,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -20443,9 +19045,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -20459,13 +19059,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> Eq<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Eq<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Eq<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "=" {
                 Ok(Self(node))
             } else {
@@ -20484,9 +19081,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -20494,9 +19089,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -20510,13 +19103,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> EqEq<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for EqEq<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for EqEq<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "==" {
                 Ok(Self(node))
             } else {
@@ -20535,9 +19125,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -20545,9 +19133,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -20561,13 +19147,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> EqGt<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for EqGt<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for EqGt<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "=>" {
                 Ok(Self(node))
             } else {
@@ -20586,9 +19169,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -20596,9 +19177,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -20612,13 +19191,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> Gt<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Gt<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Gt<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == ">" {
                 Ok(Self(node))
             } else {
@@ -20637,9 +19213,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -20647,9 +19221,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -20663,13 +19235,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> GtEq<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for GtEq<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for GtEq<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == ">=" {
                 Ok(Self(node))
             } else {
@@ -20688,9 +19257,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -20698,9 +19265,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -20714,13 +19279,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> GtGt<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for GtGt<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for GtGt<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == ">>" {
                 Ok(Self(node))
             } else {
@@ -20739,9 +19301,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -20749,9 +19309,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -20765,13 +19323,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> GtGtEq<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for GtGtEq<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for GtGtEq<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == ">>=" {
                 Ok(Self(node))
             } else {
@@ -20790,9 +19345,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -20800,9 +19353,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -20816,13 +19367,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> Question<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Question<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Question<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "?" {
                 Ok(Self(node))
             } else {
@@ -20841,9 +19389,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -20851,9 +19397,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -20867,13 +19411,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> At<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for At<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for At<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "@" {
                 Ok(Self(node))
             } else {
@@ -20892,9 +19433,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -20902,9 +19441,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -20918,13 +19455,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> LBracket<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for LBracket<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for LBracket<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "[" {
                 Ok(Self(node))
             } else {
@@ -20943,9 +19477,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -20953,9 +19485,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -20969,13 +19499,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> RBracket<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for RBracket<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for RBracket<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "]" {
                 Ok(Self(node))
             } else {
@@ -20994,9 +19521,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -21004,9 +19529,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -21020,13 +19543,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> BitXor<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for BitXor<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for BitXor<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "^" {
                 Ok(Self(node))
             } else {
@@ -21045,9 +19565,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -21055,9 +19573,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -21071,13 +19587,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> BitXorEq<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for BitXorEq<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for BitXorEq<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "^=" {
                 Ok(Self(node))
             } else {
@@ -21096,9 +19609,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -21106,9 +19617,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -21122,13 +19631,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> __<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for __<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for __<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "_" {
                 Ok(Self(node))
             } else {
@@ -21147,9 +19653,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -21157,9 +19661,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -21173,13 +19675,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> MacroRulesNot<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for MacroRulesNot<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for MacroRulesNot<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "macro_rules!" {
                 Ok(Self(node))
             } else {
@@ -21198,9 +19697,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -21208,9 +19705,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -21224,13 +19719,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> LBrace<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for LBrace<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for LBrace<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "{" {
                 Ok(Self(node))
             } else {
@@ -21249,9 +19741,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -21259,9 +19749,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -21275,13 +19763,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> Or<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Or<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Or<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "|" {
                 Ok(Self(node))
             } else {
@@ -21300,9 +19785,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -21310,9 +19793,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -21326,13 +19807,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> OrEq<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for OrEq<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for OrEq<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "|=" {
                 Ok(Self(node))
             } else {
@@ -21351,9 +19829,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -21361,9 +19837,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -21377,13 +19851,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> OrOr<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for OrOr<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for OrOr<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "||" {
                 Ok(Self(node))
             } else {
@@ -21402,9 +19873,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -21412,9 +19881,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -21428,13 +19895,10 @@ This node has no children
     #[automatically_derived]
     impl<'tree> RBrace<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for RBrace<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for RBrace<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if node.kind() == "}" {
                 Ok(Self(node))
             } else {
@@ -21453,9 +19917,7 @@ This node has no children
             &self.0
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             &mut self.0
         }
         #[inline]
@@ -21463,9 +19925,7 @@ This node has no children
             self.0
         }
         #[inline]
-        unsafe fn from_node_unchecked(
-            node: yak_sitter::Node<'tree>,
-        ) -> Self {
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
         }
     }
@@ -21530,9 +19990,7 @@ pub mod anon_unions {
     for FunctionType_GenericType_ScopedTypeIdentifier_TypeIdentifier<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             match node.kind() {
                 "function_type" => {
                     Ok(unsafe {
@@ -21601,9 +20059,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::FunctionType(x) => x.node_mut(),
                 Self::GenericType(x) => x.node_mut(),
@@ -21652,13 +20108,10 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Expression_AttributeItem<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Expression_AttributeItem<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if let Ok(this) = <Expression<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::Expression(this));
             }
@@ -21682,9 +20135,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::Expression(x) => x.node_mut(),
                 Self::AttributeItem(x) => x.node_mut(),
@@ -21807,9 +20258,7 @@ pub mod anon_unions {
     > {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if let Ok(this) = <Crate<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::Crate(this));
             }
@@ -21860,9 +20309,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::Crate(x) => x.node_mut(),
                 Self::Identifier(x) => x.node_mut(),
@@ -22107,9 +20554,7 @@ pub mod anon_unions {
     > {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             match node.kind() {
                 "!=" => {
                     Ok(unsafe {
@@ -22348,9 +20793,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::NotEq(x) => x.node_mut(),
                 Self::Mod(x) => x.node_mut(),
@@ -22442,9 +20885,7 @@ pub mod anon_unions {
     for DeclarationStatement_Expression_ExpressionStatement<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if let Ok(this)
                 = <DeclarationStatement<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::DeclarationStatement(this));
@@ -22475,9 +20916,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::DeclarationStatement(x) => x.node_mut(),
                 Self::Expression(x) => x.node_mut(),
@@ -22524,13 +20963,10 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Type_Lifetime<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Type_Lifetime<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if let Ok(this) = <Type<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::Type(this));
             }
@@ -22554,9 +20990,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::Type(x) => x.node_mut(),
                 Self::Lifetime(x) => x.node_mut(),
@@ -22601,13 +21035,10 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Type_QualifiedType<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Type_QualifiedType<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if let Ok(this) = <Type<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::Type(this));
             }
@@ -22631,9 +21062,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::Type(x) => x.node_mut(),
                 Self::QualifiedType(x) => x.node_mut(),
@@ -22678,13 +21107,10 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Expression_LoopLabel<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Expression_LoopLabel<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if let Ok(this) = <Expression<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::Expression(this));
             }
@@ -22708,9 +21134,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::Expression(x) => x.node_mut(),
                 Self::LoopLabel(x) => x.node_mut(),
@@ -23152,9 +21576,7 @@ pub mod anon_unions {
     > {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if let Ok(this) = <Literal<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::Literal(this));
             }
@@ -23325,9 +21747,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::Literal(x) => x.node_mut(),
                 Self::ArrayExpression(x) => x.node_mut(),
@@ -23442,13 +21862,10 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Pattern_Parameter<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Pattern_Parameter<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if let Ok(this) = <Pattern<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::Pattern(this));
             }
@@ -23472,9 +21889,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::Pattern(x) => x.node_mut(),
                 Self::Parameter(x) => x.node_mut(),
@@ -23611,9 +22026,7 @@ pub mod anon_unions {
     for ModEq_AndEq_MulEq_AddEq_SubEq_DivEq_LtLtEq_GtGtEq_BitXorEq_OrEq<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             match node.kind() {
                 "%=" => {
                     Ok(unsafe {
@@ -23754,9 +22167,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::ModEq(x) => x.node_mut(),
                 Self::AndEq(x) => x.node_mut(),
@@ -23843,9 +22254,7 @@ pub mod anon_unions {
     for VisibilityModifier_Identifier_Type_Expression<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if let Ok(this) = <VisibilityModifier<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::VisibilityModifier(this));
             }
@@ -23878,9 +22287,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::VisibilityModifier(x) => x.node_mut(),
                 Self::Identifier(x) => x.node_mut(),
@@ -23929,13 +22336,10 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Lifetime_TypeIdentifier<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Lifetime_TypeIdentifier<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             match node.kind() {
                 "lifetime" => {
                     Ok(unsafe {
@@ -23979,9 +22383,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::Lifetime(x) => x.node_mut(),
                 Self::TypeIdentifier(x) => x.node_mut(),
@@ -24026,13 +22428,10 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Block_IfExpression<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Block_IfExpression<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             match node.kind() {
                 "block" => {
                     Ok(unsafe {
@@ -24076,9 +22475,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::Block(x) => x.node_mut(),
                 Self::IfExpression(x) => x.node_mut(),
@@ -24168,9 +22565,7 @@ pub mod anon_unions {
     > {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             match node.kind() {
                 "visibility_modifier" => {
                     Ok(unsafe {
@@ -24253,9 +22648,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::VisibilityModifier(x) => x.node_mut(),
                 Self::WhereClause(x) => x.node_mut(),
@@ -24353,9 +22746,7 @@ pub mod anon_unions {
     > {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if let Ok(this) = <VisibilityModifier<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::VisibilityModifier(this));
             }
@@ -24396,9 +22787,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::VisibilityModifier(x) => x.node_mut(),
                 Self::FieldDeclarationList(x) => x.node_mut(),
@@ -24455,9 +22844,7 @@ pub mod anon_unions {
     for FieldDeclarationList_OrderedFieldDeclarationList<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             match node.kind() {
                 "field_declaration_list" => {
                     Ok(unsafe {
@@ -24502,9 +22889,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::FieldDeclarationList(x) => x.node_mut(),
                 Self::OrderedFieldDeclarationList(x) => x.node_mut(),
@@ -24549,13 +22934,10 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for AttributeItem_EnumVariant<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for AttributeItem_EnumVariant<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             match node.kind() {
                 "attribute_item" => {
                     Ok(unsafe {
@@ -24599,9 +22981,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::AttributeItem(x) => x.node_mut(),
                 Self::EnumVariant(x) => x.node_mut(),
@@ -24661,9 +23041,7 @@ pub mod anon_unions {
     for Crate_VisibilityModifier_Identifier<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             match node.kind() {
                 "crate" => {
                     Ok(unsafe {
@@ -24720,9 +23098,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::Crate(x) => x.node_mut(),
                 Self::VisibilityModifier(x) => x.node_mut(),
@@ -24784,9 +23160,7 @@ pub mod anon_unions {
     for VisibilityModifier_FieldIdentifier_Type<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if let Ok(this) = <VisibilityModifier<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::VisibilityModifier(this));
             }
@@ -24815,9 +23189,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::VisibilityModifier(x) => x.node_mut(),
                 Self::FieldIdentifier(x) => x.node_mut(),
@@ -24868,9 +23240,7 @@ pub mod anon_unions {
     for AttributeItem_FieldDeclaration<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             match node.kind() {
                 "attribute_item" => {
                     Ok(unsafe {
@@ -24915,9 +23285,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::AttributeItem(x) => x.node_mut(),
                 Self::FieldDeclaration(x) => x.node_mut(),
@@ -24966,9 +23334,7 @@ pub mod anon_unions {
     for FieldIdentifier_IntegerLiteral<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             match node.kind() {
                 "field_identifier" => {
                     Ok(unsafe {
@@ -25013,9 +23379,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::FieldIdentifier(x) => x.node_mut(),
                 Self::IntegerLiteral(x) => x.node_mut(),
@@ -25075,9 +23439,7 @@ pub mod anon_unions {
     for AttributeItem_FieldIdentifier_Expression<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if let Ok(this) = <AttributeItem<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::AttributeItem(this));
             }
@@ -25106,9 +23468,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::AttributeItem(x) => x.node_mut(),
                 Self::FieldIdentifier(x) => x.node_mut(),
@@ -25172,9 +23532,7 @@ pub mod anon_unions {
     for BaseFieldInitializer_FieldInitializer_ShorthandFieldInitializer<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             match node.kind() {
                 "base_field_initializer" => {
                     Ok(unsafe {
@@ -25231,9 +23589,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::BaseFieldInitializer(x) => x.node_mut(),
                 Self::FieldInitializer(x) => x.node_mut(),
@@ -25310,9 +23666,7 @@ pub mod anon_unions {
     for MutableSpecifier_FieldIdentifier_ShorthandFieldIdentifier_Pattern<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if let Ok(this) = <MutableSpecifier<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::MutableSpecifier(this));
             }
@@ -25346,9 +23700,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::MutableSpecifier(x) => x.node_mut(),
                 Self::FieldIdentifier(x) => x.node_mut(),
@@ -25403,9 +23755,7 @@ pub mod anon_unions {
     for FieldIdentifier_ShorthandFieldIdentifier<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             match node.kind() {
                 "field_identifier" => {
                     Ok(unsafe {
@@ -25450,9 +23800,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::FieldIdentifier(x) => x.node_mut(),
                 Self::ShorthandFieldIdentifier(x) => x.node_mut(),
@@ -25523,9 +23871,7 @@ pub mod anon_unions {
     for LoopLabel_Block_Pattern_Expression<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if let Ok(this) = <LoopLabel<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::LoopLabel(this));
             }
@@ -25558,9 +23904,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::LoopLabel(x) => x.node_mut(),
                 Self::Block(x) => x.node_mut(),
@@ -25624,9 +23968,7 @@ pub mod anon_unions {
     for ExternModifier_VisibilityModifier_DeclarationList<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             match node.kind() {
                 "extern_modifier" => {
                     Ok(unsafe {
@@ -25683,9 +24025,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::ExternModifier(x) => x.node_mut(),
                 Self::VisibilityModifier(x) => x.node_mut(),
@@ -25821,9 +24161,7 @@ pub mod anon_unions {
     > {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if let Ok(this) = <FunctionModifiers<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::FunctionModifiers(this));
             }
@@ -25878,9 +24216,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::FunctionModifiers(x) => x.node_mut(),
                 Self::VisibilityModifier(x) => x.node_mut(),
@@ -25939,13 +24275,10 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Identifier_Metavariable<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Identifier_Metavariable<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             match node.kind() {
                 "identifier" => {
                     Ok(unsafe {
@@ -25989,9 +24322,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::Identifier(x) => x.node_mut(),
                 Self::Metavariable(x) => x.node_mut(),
@@ -26114,9 +24445,7 @@ pub mod anon_unions {
     > {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if let Ok(this) = <FunctionModifiers<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::FunctionModifiers(this));
             }
@@ -26167,9 +24496,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::FunctionModifiers(x) => x.node_mut(),
                 Self::VisibilityModifier(x) => x.node_mut(),
@@ -26282,9 +24609,7 @@ pub mod anon_unions {
     > {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if let Ok(this) = <ForLifetimes<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::ForLifetimes(this));
             }
@@ -26328,9 +24653,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::ForLifetimes(x) => x.node_mut(),
                 Self::FunctionModifiers(x) => x.node_mut(),
@@ -26387,9 +24710,7 @@ pub mod anon_unions {
     for ScopedTypeIdentifier_TypeIdentifier<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             match node.kind() {
                 "scoped_type_identifier" => {
                     Ok(unsafe {
@@ -26434,9 +24755,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::ScopedTypeIdentifier(x) => x.node_mut(),
                 Self::TypeIdentifier(x) => x.node_mut(),
@@ -26496,9 +24815,7 @@ pub mod anon_unions {
     for FieldExpression_Identifier_ScopedIdentifier<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             match node.kind() {
                 "field_expression" => {
                     Ok(unsafe {
@@ -26555,9 +24872,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::FieldExpression(x) => x.node_mut(),
                 Self::Identifier(x) => x.node_mut(),
@@ -26619,9 +24934,7 @@ pub mod anon_unions {
     for ScopedIdentifier_ScopedTypeIdentifier_TypeIdentifier<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             match node.kind() {
                 "scoped_identifier" => {
                     Ok(unsafe {
@@ -26678,9 +24991,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::ScopedIdentifier(x) => x.node_mut(),
                 Self::ScopedTypeIdentifier(x) => x.node_mut(),
@@ -26731,9 +25042,7 @@ pub mod anon_unions {
     for ScopedIdentifier_TypeIdentifier<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             match node.kind() {
                 "scoped_identifier" => {
                     Ok(unsafe {
@@ -26778,9 +25087,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::ScopedIdentifier(x) => x.node_mut(),
                 Self::TypeIdentifier(x) => x.node_mut(),
@@ -26840,9 +25147,7 @@ pub mod anon_unions {
     for Expression_LetChain_LetCondition<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if let Ok(this) = <Expression<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::Expression(this));
             }
@@ -26871,9 +25176,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::Expression(x) => x.node_mut(),
                 Self::LetChain(x) => x.node_mut(),
@@ -26987,9 +25290,7 @@ pub mod anon_unions {
     > {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if let Ok(this) = <WhereClause<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::WhereClause(this));
             }
@@ -27037,9 +25338,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::WhereClause(x) => x.node_mut(),
                 Self::DeclarationList(x) => x.node_mut(),
@@ -27109,9 +25408,7 @@ pub mod anon_unions {
     for GenericType_ScopedTypeIdentifier_TypeIdentifier<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             match node.kind() {
                 "generic_type" => {
                     Ok(unsafe {
@@ -27168,9 +25465,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::GenericType(x) => x.node_mut(),
                 Self::ScopedTypeIdentifier(x) => x.node_mut(),
@@ -27217,13 +25512,10 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Expression_LetCondition<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Expression_LetCondition<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if let Ok(this) = <Expression<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::Expression(this));
             }
@@ -27247,9 +25539,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::Expression(x) => x.node_mut(),
                 Self::LetCondition(x) => x.node_mut(),
@@ -27331,9 +25621,7 @@ pub mod anon_unions {
     for MutableSpecifier_Block_Pattern_Type_Expression<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if let Ok(this) = <MutableSpecifier<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::MutableSpecifier(this));
             }
@@ -27370,9 +25658,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::MutableSpecifier(x) => x.node_mut(),
                 Self::Block(x) => x.node_mut(),
@@ -27423,13 +25709,10 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for LoopLabel_Block<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for LoopLabel_Block<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             match node.kind() {
                 "loop_label" => {
                     Ok(unsafe {
@@ -27473,9 +25756,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::LoopLabel(x) => x.node_mut(),
                 Self::Block(x) => x.node_mut(),
@@ -27520,13 +25801,10 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for MacroRule_Identifier<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for MacroRule_Identifier<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             match node.kind() {
                 "macro_rule" => {
                     Ok(unsafe {
@@ -27570,9 +25848,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::MacroRule(x) => x.node_mut(),
                 Self::Identifier(x) => x.node_mut(),
@@ -27632,9 +25908,7 @@ pub mod anon_unions {
     for TokenTree_Identifier_ScopedIdentifier<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             match node.kind() {
                 "token_tree" => {
                     Ok(unsafe {
@@ -27691,9 +25965,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::TokenTree(x) => x.node_mut(),
                 Self::Identifier(x) => x.node_mut(),
@@ -27740,13 +26012,10 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Identifier_ScopedIdentifier<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Identifier_ScopedIdentifier<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             match node.kind() {
                 "identifier" => {
                     Ok(unsafe {
@@ -27791,9 +26060,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::Identifier(x) => x.node_mut(),
                 Self::ScopedIdentifier(x) => x.node_mut(),
@@ -27853,9 +26120,7 @@ pub mod anon_unions {
     for AttributeItem_MatchPattern_Expression<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if let Ok(this) = <AttributeItem<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::AttributeItem(this));
             }
@@ -27884,9 +26149,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::AttributeItem(x) => x.node_mut(),
                 Self::MatchPattern(x) => x.node_mut(),
@@ -27959,9 +26222,7 @@ pub mod anon_unions {
     for Pattern_Expression_LetChain_LetCondition<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if let Ok(this) = <Pattern<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::Pattern(this));
             }
@@ -27994,9 +26255,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::Pattern(x) => x.node_mut(),
                 Self::Expression(x) => x.node_mut(),
@@ -28060,9 +26319,7 @@ pub mod anon_unions {
     for VisibilityModifier_DeclarationList_Identifier<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             match node.kind() {
                 "visibility_modifier" => {
                     Ok(unsafe {
@@ -28119,9 +26376,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::VisibilityModifier(x) => x.node_mut(),
                 Self::DeclarationList(x) => x.node_mut(),
@@ -28168,13 +26423,10 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Pattern_MutableSpecifier<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Pattern_MutableSpecifier<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if let Ok(this) = <Pattern<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::Pattern(this));
             }
@@ -28198,9 +26450,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::Pattern(x) => x.node_mut(),
                 Self::MutableSpecifier(x) => x.node_mut(),
@@ -28245,13 +26495,10 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for FloatLiteral_IntegerLiteral<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for FloatLiteral_IntegerLiteral<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             match node.kind() {
                 "float_literal" => {
                     Ok(unsafe {
@@ -28296,9 +26543,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::FloatLiteral(x) => x.node_mut(),
                 Self::IntegerLiteral(x) => x.node_mut(),
@@ -28349,9 +26594,7 @@ pub mod anon_unions {
     for ConstrainedTypeParameter_TypeIdentifier<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             match node.kind() {
                 "constrained_type_parameter" => {
                     Ok(unsafe {
@@ -28396,9 +26639,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::ConstrainedTypeParameter(x) => x.node_mut(),
                 Self::TypeIdentifier(x) => x.node_mut(),
@@ -28458,9 +26699,7 @@ pub mod anon_unions {
     for AttributeItem_VisibilityModifier_Type<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if let Ok(this) = <AttributeItem<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::AttributeItem(this));
             }
@@ -28489,9 +26728,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::AttributeItem(x) => x.node_mut(),
                 Self::VisibilityModifier(x) => x.node_mut(),
@@ -28564,9 +26801,7 @@ pub mod anon_unions {
     for MutableSpecifier_Pattern__Self_Type<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if let Ok(this) = <MutableSpecifier<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::MutableSpecifier(this));
             }
@@ -28599,9 +26834,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::MutableSpecifier(x) => x.node_mut(),
                 Self::Pattern(x) => x.node_mut(),
@@ -28650,13 +26883,10 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Pattern__Self<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Pattern__Self<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if let Ok(this) = <Pattern<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::Pattern(this));
             }
@@ -28680,9 +26910,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::Pattern(x) => x.node_mut(),
                 Self::_Self(x) => x.node_mut(),
@@ -28764,9 +26992,7 @@ pub mod anon_unions {
     for Type_AttributeItem_Parameter_SelfParameter_VariadicParameter<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if let Ok(this) = <Type<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::Type(this));
             }
@@ -28803,9 +27029,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::Type(x) => x.node_mut(),
                 Self::AttributeItem(x) => x.node_mut(),
@@ -28856,13 +27080,10 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for MutableSpecifier_Type<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for MutableSpecifier_Type<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if let Ok(this) = <MutableSpecifier<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::MutableSpecifier(this));
             }
@@ -28886,9 +27107,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::MutableSpecifier(x) => x.node_mut(),
                 Self::Type(x) => x.node_mut(),
@@ -28998,9 +27217,7 @@ pub mod anon_unions {
     > {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if let Ok(this) = <LiteralPattern<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::LiteralPattern(this));
             }
@@ -29047,9 +27264,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::LiteralPattern(x) => x.node_mut(),
                 Self::Crate(x) => x.node_mut(),
@@ -29104,13 +27319,10 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for MutableSpecifier_Expression<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for MutableSpecifier_Expression<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if let Ok(this) = <MutableSpecifier<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::MutableSpecifier(this));
             }
@@ -29135,9 +27347,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::MutableSpecifier(x) => x.node_mut(),
                 Self::Expression(x) => x.node_mut(),
@@ -29197,9 +27407,7 @@ pub mod anon_unions {
     for Lifetime_MutableSpecifier_Type<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if let Ok(this) = <Lifetime<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::Lifetime(this));
             }
@@ -29228,9 +27436,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::Lifetime(x) => x.node_mut(),
                 Self::MutableSpecifier(x) => x.node_mut(),
@@ -29355,9 +27561,7 @@ pub mod anon_unions {
     > {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             match node.kind() {
                 "bracketed_type" => {
                     Ok(unsafe {
@@ -29476,9 +27680,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::BracketedType(x) => x.node_mut(),
                 Self::Crate(x) => x.node_mut(),
@@ -29583,9 +27785,7 @@ pub mod anon_unions {
     for Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             match node.kind() {
                 "crate" => {
                     Ok(unsafe {
@@ -29678,9 +27878,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::Crate(x) => x.node_mut(),
                 Self::Identifier(x) => x.node_mut(),
@@ -29748,9 +27946,7 @@ pub mod anon_unions {
     for Lifetime_MutableSpecifier__Self<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             match node.kind() {
                 "lifetime" => {
                     Ok(unsafe {
@@ -29807,9 +28003,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::Lifetime(x) => x.node_mut(),
                 Self::MutableSpecifier(x) => x.node_mut(),
@@ -29856,13 +28050,10 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for AttributeItem_Identifier<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for AttributeItem_Identifier<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             match node.kind() {
                 "attribute_item" => {
                     Ok(unsafe {
@@ -29906,9 +28097,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::AttributeItem(x) => x.node_mut(),
                 Self::Identifier(x) => x.node_mut(),
@@ -29957,9 +28146,7 @@ pub mod anon_unions {
     for DeclarationStatement_ExpressionStatement<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if let Ok(this)
                 = <DeclarationStatement<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::DeclarationStatement(this));
@@ -29986,9 +28173,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::DeclarationStatement(x) => x.node_mut(),
                 Self::ExpressionStatement(x) => x.node_mut(),
@@ -30070,9 +28255,7 @@ pub mod anon_unions {
     for MutableSpecifier_VisibilityModifier_Identifier_Type_Expression<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if let Ok(this) = <MutableSpecifier<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::MutableSpecifier(this));
             }
@@ -30109,9 +28292,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::MutableSpecifier(x) => x.node_mut(),
                 Self::VisibilityModifier(x) => x.node_mut(),
@@ -30179,9 +28360,7 @@ pub mod anon_unions {
     for GenericTypeWithTurbofish_ScopedTypeIdentifier_TypeIdentifier<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             match node.kind() {
                 "generic_type_with_turbofish" => {
                     Ok(unsafe {
@@ -30238,9 +28417,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::GenericTypeWithTurbofish(x) => x.node_mut(),
                 Self::ScopedTypeIdentifier(x) => x.node_mut(),
@@ -30345,9 +28522,7 @@ pub mod anon_unions {
     > {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             match node.kind() {
                 "visibility_modifier" => {
                     Ok(unsafe {
@@ -30442,9 +28617,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::VisibilityModifier(x) => x.node_mut(),
                 Self::WhereClause(x) => x.node_mut(),
@@ -30527,9 +28700,7 @@ pub mod anon_unions {
     for FieldPattern_RemainingFieldPattern_ScopedTypeIdentifier_TypeIdentifier<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             match node.kind() {
                 "field_pattern" => {
                     Ok(unsafe {
@@ -30598,9 +28769,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::FieldPattern(x) => x.node_mut(),
                 Self::RemainingFieldPattern(x) => x.node_mut(),
@@ -30749,9 +28918,7 @@ pub mod anon_unions {
     > {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if let Ok(this) = <Literal<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::Literal(this));
             }
@@ -30810,9 +28977,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::Literal(x) => x.node_mut(),
                 Self::Crate(x) => x.node_mut(),
@@ -30984,9 +29149,7 @@ pub mod anon_unions {
     > {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if let Ok(this) = <Literal<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::Literal(this));
             }
@@ -31051,9 +29214,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::Literal(x) => x.node_mut(),
                 Self::Crate(x) => x.node_mut(),
@@ -31142,9 +29303,7 @@ pub mod anon_unions {
     for Type_HigherRankedTraitBound_Lifetime_RemovedTraitBound<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if let Ok(this) = <Type<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::Type(this));
             }
@@ -31178,9 +29337,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::Type(x) => x.node_mut(),
                 Self::HigherRankedTraitBound(x) => x.node_mut(),
@@ -31285,9 +29442,7 @@ pub mod anon_unions {
     > {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             match node.kind() {
                 "visibility_modifier" => {
                     Ok(unsafe {
@@ -31382,9 +29537,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::VisibilityModifier(x) => x.node_mut(),
                 Self::WhereClause(x) => x.node_mut(),
@@ -31452,9 +29605,7 @@ pub mod anon_unions {
     for Pattern_Identifier_ScopedIdentifier<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if let Ok(this) = <Pattern<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::Pattern(this));
             }
@@ -31483,9 +29634,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::Pattern(x) => x.node_mut(),
                 Self::Identifier(x) => x.node_mut(),
@@ -31569,9 +29718,7 @@ pub mod anon_unions {
     for Literal_Type_Block_Lifetime_TypeBinding<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if let Ok(this) = <Literal<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::Literal(this));
             }
@@ -31608,9 +29755,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::Literal(x) => x.node_mut(),
                 Self::Type(x) => x.node_mut(),
@@ -31687,9 +29832,7 @@ pub mod anon_unions {
     for VisibilityModifier_TypeIdentifier_Type_TypeParameters<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if let Ok(this) = <VisibilityModifier<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::VisibilityModifier(this));
             }
@@ -31722,9 +29865,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::VisibilityModifier(x) => x.node_mut(),
                 Self::TypeIdentifier(x) => x.node_mut(),
@@ -31831,9 +29972,7 @@ pub mod anon_unions {
     > {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             match node.kind() {
                 "const_parameter" => {
                     Ok(unsafe {
@@ -31928,9 +30067,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::ConstParameter(x) => x.node_mut(),
                 Self::ConstrainedTypeParameter(x) => x.node_mut(),
@@ -32028,9 +30165,7 @@ pub mod anon_unions {
     > {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             match node.kind() {
                 "visibility_modifier" => {
                     Ok(unsafe {
@@ -32113,9 +30248,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::VisibilityModifier(x) => x.node_mut(),
                 Self::WhereClause(x) => x.node_mut(),
@@ -32277,9 +30410,7 @@ pub mod anon_unions {
     > {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             match node.kind() {
                 "visibility_modifier" => {
                     Ok(unsafe {
@@ -32434,9 +30565,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::VisibilityModifier(x) => x.node_mut(),
                 Self::Crate(x) => x.node_mut(),
@@ -32599,9 +30728,7 @@ pub mod anon_unions {
     > {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             match node.kind() {
                 "crate" => {
                     Ok(unsafe {
@@ -32744,9 +30871,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::Crate(x) => x.node_mut(),
                 Self::Identifier(x) => x.node_mut(),
@@ -32907,9 +31032,7 @@ pub mod anon_unions {
     > {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             match node.kind() {
                 "array_type" => {
                     Ok(unsafe {
@@ -33052,9 +31175,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::ArrayType(x) => x.node_mut(),
                 Self::GenericType(x) => x.node_mut(),
@@ -33152,9 +31273,7 @@ pub mod anon_unions {
     for LoopLabel_Block_Expression_LetChain_LetCondition<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if let Ok(this) = <LoopLabel<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::LoopLabel(this));
             }
@@ -33191,9 +31310,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::LoopLabel(x) => x.node_mut(),
                 Self::Block(x) => x.node_mut(),

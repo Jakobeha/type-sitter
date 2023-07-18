@@ -31,7 +31,7 @@ pub trait TypedQueryCapture<'cursor, 'tree: 'cursor>: Debug + Clone {
 
     /// This capture's match, if iterating via [TypedQueryCaptures].
     /// If iterating via [crate::TypedQueryMatchCaptures] this will be `None`.
-    fn match_(&self) -> Option<&<Self::Query as TypedQuery>::Match<'cursor, 'tree>>;
+    fn r#match(&self) -> Option<&<Self::Query as TypedQuery>::Match<'cursor, 'tree>>;
 
     /// Destruct into this capture's match, if iterating via [TypedQueryCaptures].
     /// If iterating via [crate::TypedQueryMatchCaptures] this will be `None`.

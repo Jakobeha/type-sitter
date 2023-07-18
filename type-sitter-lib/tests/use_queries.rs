@@ -22,8 +22,8 @@ pub fn text_use_queries_new() {
     q.set_match_limit(100);
     let mut matches = q.matches(&Tags, code_root);
     eprintln!("Matches:");
-    while let Some(match_) = matches.next() {
-        eprintln!("  {:?}", match_);
+    while let Some(r#match) = matches.next() {
+        eprintln!("  {:?}", r#match);
     }
     let captures = q2.captures(&Tags, code_root).collect::<Vec<_>>();
     eprintln!("Captures:");
@@ -32,35 +32,35 @@ pub fn text_use_queries_new() {
     }
 
     let mut matches = q.matches(&Tags, code_root);
-    let match_ = matches.next().unwrap();
-    assert_eq!(match_.definition_function().unwrap().name().unwrap().identifier().unwrap().text(), "language");
-    assert_eq!(match_.name().unwrap().identifier().unwrap().text(), "language");
-    let match_ = matches.next().unwrap();
-    assert_eq!(match_.reference_call().unwrap().call_expression().unwrap().function().unwrap().identifier().unwrap().text(), "tree_sitter_rust");
-    assert_eq!(match_.name().unwrap().identifier().unwrap().text(), "tree_sitter_rust");
+    let r#match = matches.next().unwrap();
+    assert_eq!(r#match.definition_function().unwrap().name().unwrap().identifier().unwrap().text(), "language");
+    assert_eq!(r#match.name().unwrap().identifier().unwrap().text(), "language");
+    let r#match = matches.next().unwrap();
+    assert_eq!(r#match.reference_call().unwrap().call_expression().unwrap().function().unwrap().identifier().unwrap().text(), "tree_sitter_rust");
+    assert_eq!(r#match.name().unwrap().identifier().unwrap().text(), "tree_sitter_rust");
     for _ in 2..=5 {
-        let match_ = matches.next().unwrap();
-        assert_eq!(match_.reference_call().unwrap().macro_invocation().unwrap().r#macro().unwrap().identifier().unwrap().text(), "include_str");
-        assert_eq!(match_.name().unwrap().identifier().unwrap().text(), "include_str");
+        let r#match = matches.next().unwrap();
+        assert_eq!(r#match.reference_call().unwrap().macro_invocation().unwrap().r#macro().unwrap().identifier().unwrap().text(), "include_str");
+        assert_eq!(r#match.name().unwrap().identifier().unwrap().text(), "include_str");
     }
-    let match_ = matches.next().unwrap();
-    assert_eq!(match_.definition_module().unwrap().name().unwrap().text(), "tests");
-    assert_eq!(match_.name().unwrap().identifier().unwrap().text(), "tests");
-    let match_ = matches.next().unwrap();
-    assert_eq!(match_.definition_method().unwrap().child(0).unwrap3().attribute_item().unwrap().child().unwrap().child(0).unwrap3().identifier().unwrap().text(), "test");
-    assert!(match_.definition_method().unwrap().child(0).unwrap3().attribute_item().unwrap().child().unwrap().child(1).is_none());
-    assert_eq!(match_.definition_method().unwrap().child(1).unwrap3().function_item().unwrap().name().unwrap().identifier().unwrap().text(), "can_load_grammar");
-    assert!(match_.definition_method().unwrap().child(2).is_none());
-    assert_eq!(match_.name().unwrap().identifier().unwrap().text(), "can_load_grammar");
-    let match_ = matches.next().unwrap();
-    assert_eq!(match_.definition_function().unwrap().name().unwrap().identifier().unwrap().text(), "can_load_grammar");
-    assert_eq!(match_.name().unwrap().identifier().unwrap().text(), "can_load_grammar");
-    let match_ = matches.next().unwrap();
-    assert_eq!(match_.reference_call().unwrap().call_expression().unwrap().function().unwrap().field_expression().unwrap().field().unwrap().text(), "set_language");
-    assert_eq!(match_.name().unwrap().field_identifier().unwrap().text(), "set_language");
-    let match_ = matches.next().unwrap();
-    assert_eq!(match_.reference_call().unwrap().call_expression().unwrap().function().unwrap().field_expression().unwrap().field().unwrap().text(), "expect");
-    assert_eq!(match_.name().unwrap().field_identifier().unwrap().text(), "expect");
+    let r#match = matches.next().unwrap();
+    assert_eq!(r#match.definition_module().unwrap().name().unwrap().text(), "tests");
+    assert_eq!(r#match.name().unwrap().identifier().unwrap().text(), "tests");
+    let r#match = matches.next().unwrap();
+    assert_eq!(r#match.definition_method().unwrap().child(0).unwrap3().attribute_item().unwrap().child().unwrap().child(0).unwrap3().identifier().unwrap().text(), "test");
+    assert!(r#match.definition_method().unwrap().child(0).unwrap3().attribute_item().unwrap().child().unwrap().child(1).is_none());
+    assert_eq!(r#match.definition_method().unwrap().child(1).unwrap3().function_item().unwrap().name().unwrap().identifier().unwrap().text(), "can_load_grammar");
+    assert!(r#match.definition_method().unwrap().child(2).is_none());
+    assert_eq!(r#match.name().unwrap().identifier().unwrap().text(), "can_load_grammar");
+    let r#match = matches.next().unwrap();
+    assert_eq!(r#match.definition_function().unwrap().name().unwrap().identifier().unwrap().text(), "can_load_grammar");
+    assert_eq!(r#match.name().unwrap().identifier().unwrap().text(), "can_load_grammar");
+    let r#match = matches.next().unwrap();
+    assert_eq!(r#match.reference_call().unwrap().call_expression().unwrap().function().unwrap().field_expression().unwrap().field().unwrap().text(), "set_language");
+    assert_eq!(r#match.name().unwrap().field_identifier().unwrap().text(), "set_language");
+    let r#match = matches.next().unwrap();
+    assert_eq!(r#match.reference_call().unwrap().call_expression().unwrap().function().unwrap().field_expression().unwrap().field().unwrap().text(), "expect");
+    assert_eq!(r#match.name().unwrap().field_identifier().unwrap().text(), "expect");
     assert!(matches.next().is_none());
     // ???: Individual captures tests?
     assert_eq!(captures.len(), 22);

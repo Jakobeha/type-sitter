@@ -288,7 +288,7 @@ pub type TagsCaptures<'cursor, 'tree> = type_sitter_lib::TypedQueryCaptures<
 
 ```*/
 pub struct TagsMatch<'cursor, 'tree> {
-    match_: tree_sitter::QueryMatch<'cursor, 'tree>,
+    r#match: tree_sitter::QueryMatch<'cursor, 'tree>,
     tree: &'tree yak_sitter::Tree,
 }
 /**A capture returned by the query [Tags]:
@@ -376,7 +376,7 @@ pub enum TagsCapture<'cursor, 'tree> {
     ///(type_identifier) @name
     ///(type_identifier) @name
     ///```
-    Name { node: anon_unions::Name<'tree>, match_: Option<TagsMatch<'cursor, 'tree>> },
+    Name { node: anon_unions::Name<'tree>, r#match: Option<TagsMatch<'cursor, 'tree>> },
     ///A `definition.class` ([anon_unions::DefinitionClass])
     ///
     ///The full capture including pattern(s) is:
@@ -392,7 +392,7 @@ pub enum TagsCapture<'cursor, 'tree> {
     ///```
     DefinitionClass {
         node: anon_unions::DefinitionClass<'tree>,
-        match_: Option<TagsMatch<'cursor, 'tree>>,
+        r#match: Option<TagsMatch<'cursor, 'tree>>,
     },
     ///A `definition.method` ([super::nodes::DeclarationList])
     ///
@@ -404,7 +404,7 @@ pub enum TagsCapture<'cursor, 'tree> {
     ///```
     DefinitionMethod {
         node: super::nodes::DeclarationList<'tree>,
-        match_: Option<TagsMatch<'cursor, 'tree>>,
+        r#match: Option<TagsMatch<'cursor, 'tree>>,
     },
     ///A `definition.function` ([super::nodes::FunctionItem])
     ///
@@ -415,7 +415,7 @@ pub enum TagsCapture<'cursor, 'tree> {
     ///```
     DefinitionFunction {
         node: super::nodes::FunctionItem<'tree>,
-        match_: Option<TagsMatch<'cursor, 'tree>>,
+        r#match: Option<TagsMatch<'cursor, 'tree>>,
     },
     ///A `definition.interface` ([super::nodes::TraitItem])
     ///
@@ -426,7 +426,7 @@ pub enum TagsCapture<'cursor, 'tree> {
     ///```
     DefinitionInterface {
         node: super::nodes::TraitItem<'tree>,
-        match_: Option<TagsMatch<'cursor, 'tree>>,
+        r#match: Option<TagsMatch<'cursor, 'tree>>,
     },
     ///A `definition.module` ([super::nodes::ModItem])
     ///
@@ -437,7 +437,7 @@ pub enum TagsCapture<'cursor, 'tree> {
     ///```
     DefinitionModule {
         node: super::nodes::ModItem<'tree>,
-        match_: Option<TagsMatch<'cursor, 'tree>>,
+        r#match: Option<TagsMatch<'cursor, 'tree>>,
     },
     ///A `definition.macro` ([super::nodes::MacroDefinition])
     ///
@@ -448,7 +448,7 @@ pub enum TagsCapture<'cursor, 'tree> {
     ///```
     DefinitionMacro {
         node: super::nodes::MacroDefinition<'tree>,
-        match_: Option<TagsMatch<'cursor, 'tree>>,
+        r#match: Option<TagsMatch<'cursor, 'tree>>,
     },
     ///A `reference.call` ([anon_unions::ReferenceCall])
     ///
@@ -464,7 +464,7 @@ pub enum TagsCapture<'cursor, 'tree> {
     ///```
     ReferenceCall {
         node: anon_unions::ReferenceCall<'tree>,
-        match_: Option<TagsMatch<'cursor, 'tree>>,
+        r#match: Option<TagsMatch<'cursor, 'tree>>,
     },
     ///A `reference.implementation` ([anon_unions::ReferenceImplementation])
     ///
@@ -478,7 +478,7 @@ pub enum TagsCapture<'cursor, 'tree> {
     ///```
     ReferenceImplementation {
         node: super::nodes::ImplItem<'tree>,
-        match_: Option<TagsMatch<'cursor, 'tree>>,
+        r#match: Option<TagsMatch<'cursor, 'tree>>,
     },
 }
 #[automatically_derived]
@@ -494,16 +494,16 @@ impl type_sitter_lib::TypedQuery for Tags {
     #[inline]
     unsafe fn wrap_match<'cursor, 'tree>(
         &self,
-        match_: tree_sitter::QueryMatch<'cursor, 'tree>,
+        r#match: tree_sitter::QueryMatch<'cursor, 'tree>,
         tree: &'tree yak_sitter::Tree,
     ) -> Self::Match<'cursor, 'tree> {
-        Self::Match { match_, tree }
+        Self::Match { r#match, tree }
     }
     #[inline]
     unsafe fn wrap_capture<'cursor, 'tree>(
         &self,
         capture: tree_sitter::QueryCapture<'tree>,
-        match_: Option<Self::Match<'cursor, 'tree>>,
+        r#match: Option<Self::Match<'cursor, 'tree>>,
         tree: &'tree yak_sitter::Tree,
     ) -> Self::Capture<'cursor, 'tree> {
         match capture.index as usize {
@@ -514,12 +514,9 @@ impl type_sitter_lib::TypedQuery for Tags {
                     > as type_sitter_lib::TypedNode<
                         'tree,
                     >>::from_node_unchecked(unsafe {
-                        yak_sitter::Node::new(
-                            capture.node,
-                            tree,
-                        )
+                        yak_sitter::Node::new(capture.node, tree)
                     }),
-                    match_,
+                    r#match,
                 }
             }
             1usize => {
@@ -529,12 +526,9 @@ impl type_sitter_lib::TypedQuery for Tags {
                     > as type_sitter_lib::TypedNode<
                         'tree,
                     >>::from_node_unchecked(unsafe {
-                        yak_sitter::Node::new(
-                            capture.node,
-                            tree,
-                        )
+                        yak_sitter::Node::new(capture.node, tree)
                     }),
-                    match_,
+                    r#match,
                 }
             }
             2usize => {
@@ -544,12 +538,9 @@ impl type_sitter_lib::TypedQuery for Tags {
                     > as type_sitter_lib::TypedNode<
                         'tree,
                     >>::from_node_unchecked(unsafe {
-                        yak_sitter::Node::new(
-                            capture.node,
-                            tree,
-                        )
+                        yak_sitter::Node::new(capture.node, tree)
                     }),
-                    match_,
+                    r#match,
                 }
             }
             3usize => {
@@ -559,12 +550,9 @@ impl type_sitter_lib::TypedQuery for Tags {
                     > as type_sitter_lib::TypedNode<
                         'tree,
                     >>::from_node_unchecked(unsafe {
-                        yak_sitter::Node::new(
-                            capture.node,
-                            tree,
-                        )
+                        yak_sitter::Node::new(capture.node, tree)
                     }),
-                    match_,
+                    r#match,
                 }
             }
             4usize => {
@@ -574,12 +562,9 @@ impl type_sitter_lib::TypedQuery for Tags {
                     > as type_sitter_lib::TypedNode<
                         'tree,
                     >>::from_node_unchecked(unsafe {
-                        yak_sitter::Node::new(
-                            capture.node,
-                            tree,
-                        )
+                        yak_sitter::Node::new(capture.node, tree)
                     }),
-                    match_,
+                    r#match,
                 }
             }
             5usize => {
@@ -589,12 +574,9 @@ impl type_sitter_lib::TypedQuery for Tags {
                     > as type_sitter_lib::TypedNode<
                         'tree,
                     >>::from_node_unchecked(unsafe {
-                        yak_sitter::Node::new(
-                            capture.node,
-                            tree,
-                        )
+                        yak_sitter::Node::new(capture.node, tree)
                     }),
-                    match_,
+                    r#match,
                 }
             }
             6usize => {
@@ -604,12 +586,9 @@ impl type_sitter_lib::TypedQuery for Tags {
                     > as type_sitter_lib::TypedNode<
                         'tree,
                     >>::from_node_unchecked(unsafe {
-                        yak_sitter::Node::new(
-                            capture.node,
-                            tree,
-                        )
+                        yak_sitter::Node::new(capture.node, tree)
                     }),
-                    match_,
+                    r#match,
                 }
             }
             7usize => {
@@ -619,12 +598,9 @@ impl type_sitter_lib::TypedQuery for Tags {
                     > as type_sitter_lib::TypedNode<
                         'tree,
                     >>::from_node_unchecked(unsafe {
-                        yak_sitter::Node::new(
-                            capture.node,
-                            tree,
-                        )
+                        yak_sitter::Node::new(capture.node, tree)
                     }),
-                    match_,
+                    r#match,
                 }
             }
             8usize => {
@@ -634,12 +610,9 @@ impl type_sitter_lib::TypedQuery for Tags {
                     > as type_sitter_lib::TypedNode<
                         'tree,
                     >>::from_node_unchecked(unsafe {
-                        yak_sitter::Node::new(
-                            capture.node,
-                            tree,
-                        )
+                        yak_sitter::Node::new(capture.node, tree)
                     }),
-                    match_,
+                    r#match,
                 }
             }
             capture_index => unreachable!("Invalid capture index: {}", capture_index),
@@ -673,15 +646,13 @@ impl<'cursor, 'tree> TagsMatch<'cursor, 'tree> {
         {
             [0u32]
                 .into_iter()
-                .flat_map(|i| self.match_.nodes_for_capture_index(i))
+                .flat_map(|i| self.r#match.nodes_for_capture_index(i))
                 .map(|n| unsafe {
                     <anon_unions::Name<
                         'tree,
                     > as type_sitter_lib::TypedNode<
                         'tree,
-                    >>::from_node_unchecked(
-                        yak_sitter::Node::new(n, self.tree),
-                    )
+                    >>::from_node_unchecked(yak_sitter::Node::new(n, self.tree))
                 })
         }
             .next()
@@ -705,15 +676,13 @@ impl<'cursor, 'tree> TagsMatch<'cursor, 'tree> {
         {
             [1u32]
                 .into_iter()
-                .flat_map(|i| self.match_.nodes_for_capture_index(i))
+                .flat_map(|i| self.r#match.nodes_for_capture_index(i))
                 .map(|n| unsafe {
                     <anon_unions::DefinitionClass<
                         'tree,
                     > as type_sitter_lib::TypedNode<
                         'tree,
-                    >>::from_node_unchecked(
-                        yak_sitter::Node::new(n, self.tree),
-                    )
+                    >>::from_node_unchecked(yak_sitter::Node::new(n, self.tree))
                 })
         }
             .next()
@@ -732,15 +701,13 @@ impl<'cursor, 'tree> TagsMatch<'cursor, 'tree> {
         {
             [2u32]
                 .into_iter()
-                .flat_map(|i| self.match_.nodes_for_capture_index(i))
+                .flat_map(|i| self.r#match.nodes_for_capture_index(i))
                 .map(|n| unsafe {
                     <super::nodes::DeclarationList<
                         'tree,
                     > as type_sitter_lib::TypedNode<
                         'tree,
-                    >>::from_node_unchecked(
-                        yak_sitter::Node::new(n, self.tree),
-                    )
+                    >>::from_node_unchecked(yak_sitter::Node::new(n, self.tree))
                 })
         }
             .next()
@@ -758,15 +725,13 @@ impl<'cursor, 'tree> TagsMatch<'cursor, 'tree> {
         {
             [3u32]
                 .into_iter()
-                .flat_map(|i| self.match_.nodes_for_capture_index(i))
+                .flat_map(|i| self.r#match.nodes_for_capture_index(i))
                 .map(|n| unsafe {
                     <super::nodes::FunctionItem<
                         'tree,
                     > as type_sitter_lib::TypedNode<
                         'tree,
-                    >>::from_node_unchecked(
-                        yak_sitter::Node::new(n, self.tree),
-                    )
+                    >>::from_node_unchecked(yak_sitter::Node::new(n, self.tree))
                 })
         }
             .next()
@@ -784,15 +749,13 @@ impl<'cursor, 'tree> TagsMatch<'cursor, 'tree> {
         {
             [4u32]
                 .into_iter()
-                .flat_map(|i| self.match_.nodes_for_capture_index(i))
+                .flat_map(|i| self.r#match.nodes_for_capture_index(i))
                 .map(|n| unsafe {
                     <super::nodes::TraitItem<
                         'tree,
                     > as type_sitter_lib::TypedNode<
                         'tree,
-                    >>::from_node_unchecked(
-                        yak_sitter::Node::new(n, self.tree),
-                    )
+                    >>::from_node_unchecked(yak_sitter::Node::new(n, self.tree))
                 })
         }
             .next()
@@ -810,15 +773,13 @@ impl<'cursor, 'tree> TagsMatch<'cursor, 'tree> {
         {
             [5u32]
                 .into_iter()
-                .flat_map(|i| self.match_.nodes_for_capture_index(i))
+                .flat_map(|i| self.r#match.nodes_for_capture_index(i))
                 .map(|n| unsafe {
                     <super::nodes::ModItem<
                         'tree,
                     > as type_sitter_lib::TypedNode<
                         'tree,
-                    >>::from_node_unchecked(
-                        yak_sitter::Node::new(n, self.tree),
-                    )
+                    >>::from_node_unchecked(yak_sitter::Node::new(n, self.tree))
                 })
         }
             .next()
@@ -836,15 +797,13 @@ impl<'cursor, 'tree> TagsMatch<'cursor, 'tree> {
         {
             [6u32]
                 .into_iter()
-                .flat_map(|i| self.match_.nodes_for_capture_index(i))
+                .flat_map(|i| self.r#match.nodes_for_capture_index(i))
                 .map(|n| unsafe {
                     <super::nodes::MacroDefinition<
                         'tree,
                     > as type_sitter_lib::TypedNode<
                         'tree,
-                    >>::from_node_unchecked(
-                        yak_sitter::Node::new(n, self.tree),
-                    )
+                    >>::from_node_unchecked(yak_sitter::Node::new(n, self.tree))
                 })
         }
             .next()
@@ -867,15 +826,13 @@ impl<'cursor, 'tree> TagsMatch<'cursor, 'tree> {
         {
             [7u32]
                 .into_iter()
-                .flat_map(|i| self.match_.nodes_for_capture_index(i))
+                .flat_map(|i| self.r#match.nodes_for_capture_index(i))
                 .map(|n| unsafe {
                     <anon_unions::ReferenceCall<
                         'tree,
                     > as type_sitter_lib::TypedNode<
                         'tree,
-                    >>::from_node_unchecked(
-                        yak_sitter::Node::new(n, self.tree),
-                    )
+                    >>::from_node_unchecked(yak_sitter::Node::new(n, self.tree))
                 })
         }
             .next()
@@ -896,15 +853,13 @@ impl<'cursor, 'tree> TagsMatch<'cursor, 'tree> {
         {
             [8u32]
                 .into_iter()
-                .flat_map(|i| self.match_.nodes_for_capture_index(i))
+                .flat_map(|i| self.r#match.nodes_for_capture_index(i))
                 .map(|n| unsafe {
                     <super::nodes::ImplItem<
                         'tree,
                     > as type_sitter_lib::TypedNode<
                         'tree,
-                    >>::from_node_unchecked(
-                        yak_sitter::Node::new(n, self.tree),
-                    )
+                    >>::from_node_unchecked(yak_sitter::Node::new(n, self.tree))
                 })
         }
             .next()
@@ -913,7 +868,7 @@ impl<'cursor, 'tree> TagsMatch<'cursor, 'tree> {
 #[automatically_derived]
 impl<'cursor, 'tree> std::fmt::Debug for TagsMatch<'cursor, 'tree> {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        f.debug_struct(stringify!(TagsMatch)).field("match_", &self.match_).finish()
+        f.debug_struct(stringify!(TagsMatch)).field("r#match", &self.r#match).finish()
     }
 }
 #[automatically_derived]
@@ -930,11 +885,11 @@ for TagsMatch<'cursor, 'tree> {
     }
     #[inline]
     fn raw(&self) -> &tree_sitter::QueryMatch<'cursor, 'tree> {
-        &self.match_
+        &self.r#match
     }
     #[inline]
     fn into_raw(self) -> tree_sitter::QueryMatch<'cursor, 'tree> {
-        self.match_
+        self.r#match
     }
 }
 #[automatically_derived]
@@ -1192,6 +1147,8 @@ impl<'cursor, 'tree> std::fmt::Debug for TagsCapture<'cursor, 'tree> {
                     .field("node", node)
                     .finish()
             }
+            #[allow(unreachable_patterns)]
+            _ => unreachable!(),
         }
     }
 }
@@ -1202,57 +1159,59 @@ impl<'cursor, 'tree> Clone for TagsCapture<'cursor, 'tree> {
             Self::Name { node, .. } => {
                 Self::Name {
                     node: *node,
-                    match_: None,
+                    r#match: None,
                 }
             }
             Self::DefinitionClass { node, .. } => {
                 Self::DefinitionClass {
                     node: *node,
-                    match_: None,
+                    r#match: None,
                 }
             }
             Self::DefinitionMethod { node, .. } => {
                 Self::DefinitionMethod {
                     node: *node,
-                    match_: None,
+                    r#match: None,
                 }
             }
             Self::DefinitionFunction { node, .. } => {
                 Self::DefinitionFunction {
                     node: *node,
-                    match_: None,
+                    r#match: None,
                 }
             }
             Self::DefinitionInterface { node, .. } => {
                 Self::DefinitionInterface {
                     node: *node,
-                    match_: None,
+                    r#match: None,
                 }
             }
             Self::DefinitionModule { node, .. } => {
                 Self::DefinitionModule {
                     node: *node,
-                    match_: None,
+                    r#match: None,
                 }
             }
             Self::DefinitionMacro { node, .. } => {
                 Self::DefinitionMacro {
                     node: *node,
-                    match_: None,
+                    r#match: None,
                 }
             }
             Self::ReferenceCall { node, .. } => {
                 Self::ReferenceCall {
                     node: *node,
-                    match_: None,
+                    r#match: None,
                 }
             }
             Self::ReferenceImplementation { node, .. } => {
                 Self::ReferenceImplementation {
                     node: *node,
-                    match_: None,
+                    r#match: None,
                 }
             }
+            #[allow(unreachable_patterns)]
+            _ => unreachable!(),
         }
     }
 }
@@ -1265,19 +1224,21 @@ for TagsCapture<'cursor, 'tree> {
         &Tags
     }
     #[inline]
-    fn match_(
+    fn r#match(
         &self,
     ) -> Option<&<Self::Query as type_sitter_lib::TypedQuery>::Match<'cursor, 'tree>> {
         match self {
-            Self::Name { match_, .. } => match_.as_ref(),
-            Self::DefinitionClass { match_, .. } => match_.as_ref(),
-            Self::DefinitionMethod { match_, .. } => match_.as_ref(),
-            Self::DefinitionFunction { match_, .. } => match_.as_ref(),
-            Self::DefinitionInterface { match_, .. } => match_.as_ref(),
-            Self::DefinitionModule { match_, .. } => match_.as_ref(),
-            Self::DefinitionMacro { match_, .. } => match_.as_ref(),
-            Self::ReferenceCall { match_, .. } => match_.as_ref(),
-            Self::ReferenceImplementation { match_, .. } => match_.as_ref(),
+            Self::Name { r#match, .. } => r#match.as_ref(),
+            Self::DefinitionClass { r#match, .. } => r#match.as_ref(),
+            Self::DefinitionMethod { r#match, .. } => r#match.as_ref(),
+            Self::DefinitionFunction { r#match, .. } => r#match.as_ref(),
+            Self::DefinitionInterface { r#match, .. } => r#match.as_ref(),
+            Self::DefinitionModule { r#match, .. } => r#match.as_ref(),
+            Self::DefinitionMacro { r#match, .. } => r#match.as_ref(),
+            Self::ReferenceCall { r#match, .. } => r#match.as_ref(),
+            Self::ReferenceImplementation { r#match, .. } => r#match.as_ref(),
+            #[allow(unreachable_patterns)]
+            _ => unreachable!(),
         }
     }
     #[inline]
@@ -1285,21 +1246,22 @@ for TagsCapture<'cursor, 'tree> {
         self,
     ) -> Option<<Self::Query as type_sitter_lib::TypedQuery>::Match<'cursor, 'tree>> {
         match self {
-            Self::Name { match_, .. } => match_,
-            Self::DefinitionClass { match_, .. } => match_,
-            Self::DefinitionMethod { match_, .. } => match_,
-            Self::DefinitionFunction { match_, .. } => match_,
-            Self::DefinitionInterface { match_, .. } => match_,
-            Self::DefinitionModule { match_, .. } => match_,
-            Self::DefinitionMacro { match_, .. } => match_,
-            Self::ReferenceCall { match_, .. } => match_,
-            Self::ReferenceImplementation { match_, .. } => match_,
+            Self::Name { r#match, .. } => r#match,
+            Self::DefinitionClass { r#match, .. } => r#match,
+            Self::DefinitionMethod { r#match, .. } => r#match,
+            Self::DefinitionFunction { r#match, .. } => r#match,
+            Self::DefinitionInterface { r#match, .. } => r#match,
+            Self::DefinitionModule { r#match, .. } => r#match,
+            Self::DefinitionMacro { r#match, .. } => r#match,
+            Self::ReferenceCall { r#match, .. } => r#match,
+            Self::ReferenceImplementation { r#match, .. } => r#match,
+            #[allow(unreachable_patterns)]
+            _ => unreachable!(),
         }
     }
     #[inline]
-    fn to_raw(
-        &self,
-    ) -> yak_sitter::QueryCapture<'static, 'tree> {
+    fn to_raw(&self) -> yak_sitter::QueryCapture<'static, 'tree> {
+        #[allow(unused_imports)]
         use type_sitter_lib::TypedNode;
         match self {
             Self::Name { node, .. } => {
@@ -1365,10 +1327,13 @@ for TagsCapture<'cursor, 'tree> {
                     name: "reference.implementation",
                 }
             }
+            #[allow(unreachable_patterns)]
+            _ => unreachable!(),
         }
     }
     #[inline]
     fn node(&self) -> &yak_sitter::Node<'tree> {
+        #[allow(unused_imports)]
         use type_sitter_lib::TypedNode;
         match self {
             Self::Name { node, .. } => node.node(),
@@ -1380,10 +1345,13 @@ for TagsCapture<'cursor, 'tree> {
             Self::DefinitionMacro { node, .. } => node.node(),
             Self::ReferenceCall { node, .. } => node.node(),
             Self::ReferenceImplementation { node, .. } => node.node(),
+            #[allow(unreachable_patterns)]
+            _ => unreachable!(),
         }
     }
     #[inline]
     fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
+        #[allow(unused_imports)]
         use type_sitter_lib::TypedNode;
         match self {
             Self::Name { node, .. } => node.node_mut(),
@@ -1395,6 +1363,8 @@ for TagsCapture<'cursor, 'tree> {
             Self::DefinitionMacro { node, .. } => node.node_mut(),
             Self::ReferenceCall { node, .. } => node.node_mut(),
             Self::ReferenceImplementation { node, .. } => node.node_mut(),
+            #[allow(unreachable_patterns)]
+            _ => unreachable!(),
         }
     }
     #[inline]
@@ -1409,6 +1379,8 @@ for TagsCapture<'cursor, 'tree> {
             Self::DefinitionMacro { .. } => "definition.macro",
             Self::ReferenceCall { .. } => "reference.call",
             Self::ReferenceImplementation { .. } => "reference.implementation",
+            #[allow(unreachable_patterns)]
+            _ => unreachable!(),
         }
     }
     #[inline]
@@ -1423,6 +1395,8 @@ for TagsCapture<'cursor, 'tree> {
             Self::DefinitionMacro { .. } => 6usize,
             Self::ReferenceCall { .. } => 7usize,
             Self::ReferenceImplementation { .. } => 8usize,
+            #[allow(unreachable_patterns)]
+            _ => unreachable!(),
         }
     }
 }
@@ -2098,7 +2072,7 @@ pub type HighlightsCaptures<'cursor, 'tree> = type_sitter_lib::TypedQueryCapture
 
 ```*/
 pub struct HighlightsMatch<'cursor, 'tree> {
-    match_: tree_sitter::QueryMatch<'cursor, 'tree>,
+    r#match: tree_sitter::QueryMatch<'cursor, 'tree>,
     tree: &'tree yak_sitter::Tree,
 }
 /**A capture returned by the query [Highlights]:
@@ -2270,7 +2244,7 @@ pub enum HighlightsCapture<'cursor, 'tree> {
     ///```
     Constant {
         node: super::nodes::Identifier<'tree>,
-        match_: Option<HighlightsMatch<'cursor, 'tree>>,
+        r#match: Option<HighlightsMatch<'cursor, 'tree>>,
     },
     ///A `type` ([anon_unions::Type])
     ///
@@ -2284,7 +2258,7 @@ pub enum HighlightsCapture<'cursor, 'tree> {
     ///```
     Type {
         node: anon_unions::Type<'tree>,
-        match_: Option<HighlightsMatch<'cursor, 'tree>>,
+        r#match: Option<HighlightsMatch<'cursor, 'tree>>,
     },
     ///A `constructor` ([anon_unions::Constructor])
     ///
@@ -2295,7 +2269,7 @@ pub enum HighlightsCapture<'cursor, 'tree> {
     ///```
     Constructor {
         node: anon_unions::Constructor<'tree>,
-        match_: Option<HighlightsMatch<'cursor, 'tree>>,
+        r#match: Option<HighlightsMatch<'cursor, 'tree>>,
     },
     ///A `function` ([anon_unions::Function])
     ///
@@ -2310,7 +2284,7 @@ pub enum HighlightsCapture<'cursor, 'tree> {
     ///```
     Function {
         node: super::nodes::Identifier<'tree>,
-        match_: Option<HighlightsMatch<'cursor, 'tree>>,
+        r#match: Option<HighlightsMatch<'cursor, 'tree>>,
     },
     ///A `function.method` ([anon_unions::FunctionMethod])
     ///
@@ -2321,7 +2295,7 @@ pub enum HighlightsCapture<'cursor, 'tree> {
     ///```
     FunctionMethod {
         node: super::nodes::FieldIdentifier<'tree>,
-        match_: Option<HighlightsMatch<'cursor, 'tree>>,
+        r#match: Option<HighlightsMatch<'cursor, 'tree>>,
     },
     ///A `function.macro` ([anon_unions::FunctionMacro])
     ///
@@ -2332,7 +2306,7 @@ pub enum HighlightsCapture<'cursor, 'tree> {
     ///```
     FunctionMacro {
         node: anon_unions::FunctionMacro<'tree>,
-        match_: Option<HighlightsMatch<'cursor, 'tree>>,
+        r#match: Option<HighlightsMatch<'cursor, 'tree>>,
     },
     ///A `type.builtin` ([super::nodes::PrimitiveType])
     ///
@@ -2342,7 +2316,7 @@ pub enum HighlightsCapture<'cursor, 'tree> {
     ///```
     TypeBuiltin {
         node: super::nodes::PrimitiveType<'tree>,
-        match_: Option<HighlightsMatch<'cursor, 'tree>>,
+        r#match: Option<HighlightsMatch<'cursor, 'tree>>,
     },
     ///A `property` ([super::nodes::FieldIdentifier])
     ///
@@ -2352,7 +2326,7 @@ pub enum HighlightsCapture<'cursor, 'tree> {
     ///```
     Property {
         node: super::nodes::FieldIdentifier<'tree>,
-        match_: Option<HighlightsMatch<'cursor, 'tree>>,
+        r#match: Option<HighlightsMatch<'cursor, 'tree>>,
     },
     ///A `comment` ([anon_unions::Comment])
     ///
@@ -2363,7 +2337,7 @@ pub enum HighlightsCapture<'cursor, 'tree> {
     ///```
     Comment {
         node: anon_unions::Comment<'tree>,
-        match_: Option<HighlightsMatch<'cursor, 'tree>>,
+        r#match: Option<HighlightsMatch<'cursor, 'tree>>,
     },
     ///A `punctuation.bracket` ([anon_unions::PunctuationBracket])
     ///
@@ -2382,7 +2356,7 @@ pub enum HighlightsCapture<'cursor, 'tree> {
     ///```
     PunctuationBracket {
         node: anon_unions::PunctuationBracket<'tree>,
-        match_: Option<HighlightsMatch<'cursor, 'tree>>,
+        r#match: Option<HighlightsMatch<'cursor, 'tree>>,
     },
     ///A `punctuation.delimiter` ([anon_unions::PunctuationDelimiter])
     ///
@@ -2396,7 +2370,7 @@ pub enum HighlightsCapture<'cursor, 'tree> {
     ///```
     PunctuationDelimiter {
         node: anon_unions::PunctuationDelimiter<'tree>,
-        match_: Option<HighlightsMatch<'cursor, 'tree>>,
+        r#match: Option<HighlightsMatch<'cursor, 'tree>>,
     },
     ///A `variable.parameter` ([super::nodes::Identifier])
     ///
@@ -2406,7 +2380,7 @@ pub enum HighlightsCapture<'cursor, 'tree> {
     ///```
     VariableParameter {
         node: super::nodes::Identifier<'tree>,
-        match_: Option<HighlightsMatch<'cursor, 'tree>>,
+        r#match: Option<HighlightsMatch<'cursor, 'tree>>,
     },
     ///A `label` ([super::nodes::Identifier])
     ///
@@ -2416,7 +2390,7 @@ pub enum HighlightsCapture<'cursor, 'tree> {
     ///```
     Label {
         node: super::nodes::Identifier<'tree>,
-        match_: Option<HighlightsMatch<'cursor, 'tree>>,
+        r#match: Option<HighlightsMatch<'cursor, 'tree>>,
     },
     ///A `keyword` ([anon_unions::Keyword])
     ///
@@ -2465,7 +2439,7 @@ pub enum HighlightsCapture<'cursor, 'tree> {
     ///```
     Keyword {
         node: anon_unions::Keyword<'tree>,
-        match_: Option<HighlightsMatch<'cursor, 'tree>>,
+        r#match: Option<HighlightsMatch<'cursor, 'tree>>,
     },
     ///A `variable.builtin` ([super::nodes::_Self])
     ///
@@ -2475,7 +2449,7 @@ pub enum HighlightsCapture<'cursor, 'tree> {
     ///```
     VariableBuiltin {
         node: super::nodes::_Self<'tree>,
-        match_: Option<HighlightsMatch<'cursor, 'tree>>,
+        r#match: Option<HighlightsMatch<'cursor, 'tree>>,
     },
     ///A `string` ([anon_unions::String])
     ///
@@ -2487,7 +2461,7 @@ pub enum HighlightsCapture<'cursor, 'tree> {
     ///```
     String {
         node: anon_unions::String<'tree>,
-        match_: Option<HighlightsMatch<'cursor, 'tree>>,
+        r#match: Option<HighlightsMatch<'cursor, 'tree>>,
     },
     ///A `constant.builtin` ([anon_unions::ConstantBuiltin])
     ///
@@ -2499,7 +2473,7 @@ pub enum HighlightsCapture<'cursor, 'tree> {
     ///```
     ConstantBuiltin {
         node: anon_unions::ConstantBuiltin<'tree>,
-        match_: Option<HighlightsMatch<'cursor, 'tree>>,
+        r#match: Option<HighlightsMatch<'cursor, 'tree>>,
     },
     ///A `escape` ([super::nodes::EscapeSequence])
     ///
@@ -2509,7 +2483,7 @@ pub enum HighlightsCapture<'cursor, 'tree> {
     ///```
     Escape {
         node: super::nodes::EscapeSequence<'tree>,
-        match_: Option<HighlightsMatch<'cursor, 'tree>>,
+        r#match: Option<HighlightsMatch<'cursor, 'tree>>,
     },
     ///A `attribute` ([anon_unions::Attribute])
     ///
@@ -2520,7 +2494,7 @@ pub enum HighlightsCapture<'cursor, 'tree> {
     ///```
     Attribute {
         node: anon_unions::Attribute<'tree>,
-        match_: Option<HighlightsMatch<'cursor, 'tree>>,
+        r#match: Option<HighlightsMatch<'cursor, 'tree>>,
     },
     ///A `operator` ([anon_unions::Operator])
     ///
@@ -2532,7 +2506,7 @@ pub enum HighlightsCapture<'cursor, 'tree> {
     ///```
     Operator {
         node: anon_unions::Operator<'tree>,
-        match_: Option<HighlightsMatch<'cursor, 'tree>>,
+        r#match: Option<HighlightsMatch<'cursor, 'tree>>,
     },
 }
 #[automatically_derived]
@@ -2548,16 +2522,16 @@ impl type_sitter_lib::TypedQuery for Highlights {
     #[inline]
     unsafe fn wrap_match<'cursor, 'tree>(
         &self,
-        match_: tree_sitter::QueryMatch<'cursor, 'tree>,
+        r#match: tree_sitter::QueryMatch<'cursor, 'tree>,
         tree: &'tree yak_sitter::Tree,
     ) -> Self::Match<'cursor, 'tree> {
-        Self::Match { match_, tree }
+        Self::Match { r#match, tree }
     }
     #[inline]
     unsafe fn wrap_capture<'cursor, 'tree>(
         &self,
         capture: tree_sitter::QueryCapture<'tree>,
-        match_: Option<Self::Match<'cursor, 'tree>>,
+        r#match: Option<Self::Match<'cursor, 'tree>>,
         tree: &'tree yak_sitter::Tree,
     ) -> Self::Capture<'cursor, 'tree> {
         match capture.index as usize {
@@ -2568,12 +2542,9 @@ impl type_sitter_lib::TypedQuery for Highlights {
                     > as type_sitter_lib::TypedNode<
                         'tree,
                     >>::from_node_unchecked(unsafe {
-                        yak_sitter::Node::new(
-                            capture.node,
-                            tree,
-                        )
+                        yak_sitter::Node::new(capture.node, tree)
                     }),
-                    match_,
+                    r#match,
                 }
             }
             1usize => {
@@ -2583,12 +2554,9 @@ impl type_sitter_lib::TypedQuery for Highlights {
                     > as type_sitter_lib::TypedNode<
                         'tree,
                     >>::from_node_unchecked(unsafe {
-                        yak_sitter::Node::new(
-                            capture.node,
-                            tree,
-                        )
+                        yak_sitter::Node::new(capture.node, tree)
                     }),
-                    match_,
+                    r#match,
                 }
             }
             2usize => {
@@ -2598,12 +2566,9 @@ impl type_sitter_lib::TypedQuery for Highlights {
                     > as type_sitter_lib::TypedNode<
                         'tree,
                     >>::from_node_unchecked(unsafe {
-                        yak_sitter::Node::new(
-                            capture.node,
-                            tree,
-                        )
+                        yak_sitter::Node::new(capture.node, tree)
                     }),
-                    match_,
+                    r#match,
                 }
             }
             3usize => {
@@ -2613,12 +2578,9 @@ impl type_sitter_lib::TypedQuery for Highlights {
                     > as type_sitter_lib::TypedNode<
                         'tree,
                     >>::from_node_unchecked(unsafe {
-                        yak_sitter::Node::new(
-                            capture.node,
-                            tree,
-                        )
+                        yak_sitter::Node::new(capture.node, tree)
                     }),
-                    match_,
+                    r#match,
                 }
             }
             4usize => {
@@ -2628,12 +2590,9 @@ impl type_sitter_lib::TypedQuery for Highlights {
                     > as type_sitter_lib::TypedNode<
                         'tree,
                     >>::from_node_unchecked(unsafe {
-                        yak_sitter::Node::new(
-                            capture.node,
-                            tree,
-                        )
+                        yak_sitter::Node::new(capture.node, tree)
                     }),
-                    match_,
+                    r#match,
                 }
             }
             5usize => {
@@ -2643,12 +2602,9 @@ impl type_sitter_lib::TypedQuery for Highlights {
                     > as type_sitter_lib::TypedNode<
                         'tree,
                     >>::from_node_unchecked(unsafe {
-                        yak_sitter::Node::new(
-                            capture.node,
-                            tree,
-                        )
+                        yak_sitter::Node::new(capture.node, tree)
                     }),
-                    match_,
+                    r#match,
                 }
             }
             6usize => {
@@ -2658,12 +2614,9 @@ impl type_sitter_lib::TypedQuery for Highlights {
                     > as type_sitter_lib::TypedNode<
                         'tree,
                     >>::from_node_unchecked(unsafe {
-                        yak_sitter::Node::new(
-                            capture.node,
-                            tree,
-                        )
+                        yak_sitter::Node::new(capture.node, tree)
                     }),
-                    match_,
+                    r#match,
                 }
             }
             7usize => {
@@ -2673,12 +2626,9 @@ impl type_sitter_lib::TypedQuery for Highlights {
                     > as type_sitter_lib::TypedNode<
                         'tree,
                     >>::from_node_unchecked(unsafe {
-                        yak_sitter::Node::new(
-                            capture.node,
-                            tree,
-                        )
+                        yak_sitter::Node::new(capture.node, tree)
                     }),
-                    match_,
+                    r#match,
                 }
             }
             8usize => {
@@ -2688,12 +2638,9 @@ impl type_sitter_lib::TypedQuery for Highlights {
                     > as type_sitter_lib::TypedNode<
                         'tree,
                     >>::from_node_unchecked(unsafe {
-                        yak_sitter::Node::new(
-                            capture.node,
-                            tree,
-                        )
+                        yak_sitter::Node::new(capture.node, tree)
                     }),
-                    match_,
+                    r#match,
                 }
             }
             9usize => {
@@ -2703,12 +2650,9 @@ impl type_sitter_lib::TypedQuery for Highlights {
                     > as type_sitter_lib::TypedNode<
                         'tree,
                     >>::from_node_unchecked(unsafe {
-                        yak_sitter::Node::new(
-                            capture.node,
-                            tree,
-                        )
+                        yak_sitter::Node::new(capture.node, tree)
                     }),
-                    match_,
+                    r#match,
                 }
             }
             10usize => {
@@ -2718,12 +2662,9 @@ impl type_sitter_lib::TypedQuery for Highlights {
                     > as type_sitter_lib::TypedNode<
                         'tree,
                     >>::from_node_unchecked(unsafe {
-                        yak_sitter::Node::new(
-                            capture.node,
-                            tree,
-                        )
+                        yak_sitter::Node::new(capture.node, tree)
                     }),
-                    match_,
+                    r#match,
                 }
             }
             11usize => {
@@ -2733,12 +2674,9 @@ impl type_sitter_lib::TypedQuery for Highlights {
                     > as type_sitter_lib::TypedNode<
                         'tree,
                     >>::from_node_unchecked(unsafe {
-                        yak_sitter::Node::new(
-                            capture.node,
-                            tree,
-                        )
+                        yak_sitter::Node::new(capture.node, tree)
                     }),
-                    match_,
+                    r#match,
                 }
             }
             12usize => {
@@ -2748,12 +2686,9 @@ impl type_sitter_lib::TypedQuery for Highlights {
                     > as type_sitter_lib::TypedNode<
                         'tree,
                     >>::from_node_unchecked(unsafe {
-                        yak_sitter::Node::new(
-                            capture.node,
-                            tree,
-                        )
+                        yak_sitter::Node::new(capture.node, tree)
                     }),
-                    match_,
+                    r#match,
                 }
             }
             13usize => {
@@ -2763,12 +2698,9 @@ impl type_sitter_lib::TypedQuery for Highlights {
                     > as type_sitter_lib::TypedNode<
                         'tree,
                     >>::from_node_unchecked(unsafe {
-                        yak_sitter::Node::new(
-                            capture.node,
-                            tree,
-                        )
+                        yak_sitter::Node::new(capture.node, tree)
                     }),
-                    match_,
+                    r#match,
                 }
             }
             14usize => {
@@ -2778,12 +2710,9 @@ impl type_sitter_lib::TypedQuery for Highlights {
                     > as type_sitter_lib::TypedNode<
                         'tree,
                     >>::from_node_unchecked(unsafe {
-                        yak_sitter::Node::new(
-                            capture.node,
-                            tree,
-                        )
+                        yak_sitter::Node::new(capture.node, tree)
                     }),
-                    match_,
+                    r#match,
                 }
             }
             15usize => {
@@ -2793,12 +2722,9 @@ impl type_sitter_lib::TypedQuery for Highlights {
                     > as type_sitter_lib::TypedNode<
                         'tree,
                     >>::from_node_unchecked(unsafe {
-                        yak_sitter::Node::new(
-                            capture.node,
-                            tree,
-                        )
+                        yak_sitter::Node::new(capture.node, tree)
                     }),
-                    match_,
+                    r#match,
                 }
             }
             16usize => {
@@ -2808,12 +2734,9 @@ impl type_sitter_lib::TypedQuery for Highlights {
                     > as type_sitter_lib::TypedNode<
                         'tree,
                     >>::from_node_unchecked(unsafe {
-                        yak_sitter::Node::new(
-                            capture.node,
-                            tree,
-                        )
+                        yak_sitter::Node::new(capture.node, tree)
                     }),
-                    match_,
+                    r#match,
                 }
             }
             17usize => {
@@ -2823,12 +2746,9 @@ impl type_sitter_lib::TypedQuery for Highlights {
                     > as type_sitter_lib::TypedNode<
                         'tree,
                     >>::from_node_unchecked(unsafe {
-                        yak_sitter::Node::new(
-                            capture.node,
-                            tree,
-                        )
+                        yak_sitter::Node::new(capture.node, tree)
                     }),
-                    match_,
+                    r#match,
                 }
             }
             18usize => {
@@ -2838,12 +2758,9 @@ impl type_sitter_lib::TypedQuery for Highlights {
                     > as type_sitter_lib::TypedNode<
                         'tree,
                     >>::from_node_unchecked(unsafe {
-                        yak_sitter::Node::new(
-                            capture.node,
-                            tree,
-                        )
+                        yak_sitter::Node::new(capture.node, tree)
                     }),
-                    match_,
+                    r#match,
                 }
             }
             19usize => {
@@ -2853,12 +2770,9 @@ impl type_sitter_lib::TypedQuery for Highlights {
                     > as type_sitter_lib::TypedNode<
                         'tree,
                     >>::from_node_unchecked(unsafe {
-                        yak_sitter::Node::new(
-                            capture.node,
-                            tree,
-                        )
+                        yak_sitter::Node::new(capture.node, tree)
                     }),
-                    match_,
+                    r#match,
                 }
             }
             capture_index => unreachable!("Invalid capture index: {}", capture_index),
@@ -2879,15 +2793,13 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         {
             [0u32]
                 .into_iter()
-                .flat_map(|i| self.match_.nodes_for_capture_index(i))
+                .flat_map(|i| self.r#match.nodes_for_capture_index(i))
                 .map(|n| unsafe {
                     <super::nodes::Identifier<
                         'tree,
                     > as type_sitter_lib::TypedNode<
                         'tree,
-                    >>::from_node_unchecked(
-                        yak_sitter::Node::new(n, self.tree),
-                    )
+                    >>::from_node_unchecked(yak_sitter::Node::new(n, self.tree))
                 })
         }
             .next()
@@ -2908,15 +2820,13 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         {
             [1u32]
                 .into_iter()
-                .flat_map(|i| self.match_.nodes_for_capture_index(i))
+                .flat_map(|i| self.r#match.nodes_for_capture_index(i))
                 .map(|n| unsafe {
                     <anon_unions::Type<
                         'tree,
                     > as type_sitter_lib::TypedNode<
                         'tree,
-                    >>::from_node_unchecked(
-                        yak_sitter::Node::new(n, self.tree),
-                    )
+                    >>::from_node_unchecked(yak_sitter::Node::new(n, self.tree))
                 })
         }
             .next()
@@ -2934,15 +2844,13 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         {
             [2u32]
                 .into_iter()
-                .flat_map(|i| self.match_.nodes_for_capture_index(i))
+                .flat_map(|i| self.r#match.nodes_for_capture_index(i))
                 .map(|n| unsafe {
                     <anon_unions::Constructor<
                         'tree,
                     > as type_sitter_lib::TypedNode<
                         'tree,
-                    >>::from_node_unchecked(
-                        yak_sitter::Node::new(n, self.tree),
-                    )
+                    >>::from_node_unchecked(yak_sitter::Node::new(n, self.tree))
                 })
         }
             .next()
@@ -2964,15 +2872,13 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         {
             [3u32]
                 .into_iter()
-                .flat_map(|i| self.match_.nodes_for_capture_index(i))
+                .flat_map(|i| self.r#match.nodes_for_capture_index(i))
                 .map(|n| unsafe {
                     <super::nodes::Identifier<
                         'tree,
                     > as type_sitter_lib::TypedNode<
                         'tree,
-                    >>::from_node_unchecked(
-                        yak_sitter::Node::new(n, self.tree),
-                    )
+                    >>::from_node_unchecked(yak_sitter::Node::new(n, self.tree))
                 })
         }
             .next()
@@ -2990,15 +2896,13 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         {
             [4u32]
                 .into_iter()
-                .flat_map(|i| self.match_.nodes_for_capture_index(i))
+                .flat_map(|i| self.r#match.nodes_for_capture_index(i))
                 .map(|n| unsafe {
                     <super::nodes::FieldIdentifier<
                         'tree,
                     > as type_sitter_lib::TypedNode<
                         'tree,
-                    >>::from_node_unchecked(
-                        yak_sitter::Node::new(n, self.tree),
-                    )
+                    >>::from_node_unchecked(yak_sitter::Node::new(n, self.tree))
                 })
         }
             .next()
@@ -3016,15 +2920,13 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         {
             [5u32]
                 .into_iter()
-                .flat_map(|i| self.match_.nodes_for_capture_index(i))
+                .flat_map(|i| self.r#match.nodes_for_capture_index(i))
                 .map(|n| unsafe {
                     <anon_unions::FunctionMacro<
                         'tree,
                     > as type_sitter_lib::TypedNode<
                         'tree,
-                    >>::from_node_unchecked(
-                        yak_sitter::Node::new(n, self.tree),
-                    )
+                    >>::from_node_unchecked(yak_sitter::Node::new(n, self.tree))
                 })
         }
             .next()
@@ -3041,15 +2943,13 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         {
             [6u32]
                 .into_iter()
-                .flat_map(|i| self.match_.nodes_for_capture_index(i))
+                .flat_map(|i| self.r#match.nodes_for_capture_index(i))
                 .map(|n| unsafe {
                     <super::nodes::PrimitiveType<
                         'tree,
                     > as type_sitter_lib::TypedNode<
                         'tree,
-                    >>::from_node_unchecked(
-                        yak_sitter::Node::new(n, self.tree),
-                    )
+                    >>::from_node_unchecked(yak_sitter::Node::new(n, self.tree))
                 })
         }
             .next()
@@ -3066,15 +2966,13 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         {
             [7u32]
                 .into_iter()
-                .flat_map(|i| self.match_.nodes_for_capture_index(i))
+                .flat_map(|i| self.r#match.nodes_for_capture_index(i))
                 .map(|n| unsafe {
                     <super::nodes::FieldIdentifier<
                         'tree,
                     > as type_sitter_lib::TypedNode<
                         'tree,
-                    >>::from_node_unchecked(
-                        yak_sitter::Node::new(n, self.tree),
-                    )
+                    >>::from_node_unchecked(yak_sitter::Node::new(n, self.tree))
                 })
         }
             .next()
@@ -3092,15 +2990,13 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         {
             [8u32]
                 .into_iter()
-                .flat_map(|i| self.match_.nodes_for_capture_index(i))
+                .flat_map(|i| self.r#match.nodes_for_capture_index(i))
                 .map(|n| unsafe {
                     <anon_unions::Comment<
                         'tree,
                     > as type_sitter_lib::TypedNode<
                         'tree,
-                    >>::from_node_unchecked(
-                        yak_sitter::Node::new(n, self.tree),
-                    )
+                    >>::from_node_unchecked(yak_sitter::Node::new(n, self.tree))
                 })
         }
             .next()
@@ -3126,15 +3022,13 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         {
             [9u32]
                 .into_iter()
-                .flat_map(|i| self.match_.nodes_for_capture_index(i))
+                .flat_map(|i| self.r#match.nodes_for_capture_index(i))
                 .map(|n| unsafe {
                     <anon_unions::PunctuationBracket<
                         'tree,
                     > as type_sitter_lib::TypedNode<
                         'tree,
-                    >>::from_node_unchecked(
-                        yak_sitter::Node::new(n, self.tree),
-                    )
+                    >>::from_node_unchecked(yak_sitter::Node::new(n, self.tree))
                 })
         }
             .next()
@@ -3157,15 +3051,13 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         {
             [10u32]
                 .into_iter()
-                .flat_map(|i| self.match_.nodes_for_capture_index(i))
+                .flat_map(|i| self.r#match.nodes_for_capture_index(i))
                 .map(|n| unsafe {
                     <anon_unions::PunctuationDelimiter<
                         'tree,
                     > as type_sitter_lib::TypedNode<
                         'tree,
-                    >>::from_node_unchecked(
-                        yak_sitter::Node::new(n, self.tree),
-                    )
+                    >>::from_node_unchecked(yak_sitter::Node::new(n, self.tree))
                 })
         }
             .next()
@@ -3182,15 +3074,13 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         {
             [11u32]
                 .into_iter()
-                .flat_map(|i| self.match_.nodes_for_capture_index(i))
+                .flat_map(|i| self.r#match.nodes_for_capture_index(i))
                 .map(|n| unsafe {
                     <super::nodes::Identifier<
                         'tree,
                     > as type_sitter_lib::TypedNode<
                         'tree,
-                    >>::from_node_unchecked(
-                        yak_sitter::Node::new(n, self.tree),
-                    )
+                    >>::from_node_unchecked(yak_sitter::Node::new(n, self.tree))
                 })
         }
             .next()
@@ -3207,15 +3097,13 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         {
             [12u32]
                 .into_iter()
-                .flat_map(|i| self.match_.nodes_for_capture_index(i))
+                .flat_map(|i| self.r#match.nodes_for_capture_index(i))
                 .map(|n| unsafe {
                     <super::nodes::Identifier<
                         'tree,
                     > as type_sitter_lib::TypedNode<
                         'tree,
-                    >>::from_node_unchecked(
-                        yak_sitter::Node::new(n, self.tree),
-                    )
+                    >>::from_node_unchecked(yak_sitter::Node::new(n, self.tree))
                 })
         }
             .next()
@@ -3271,15 +3159,13 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         {
             [13u32]
                 .into_iter()
-                .flat_map(|i| self.match_.nodes_for_capture_index(i))
+                .flat_map(|i| self.r#match.nodes_for_capture_index(i))
                 .map(|n| unsafe {
                     <anon_unions::Keyword<
                         'tree,
                     > as type_sitter_lib::TypedNode<
                         'tree,
-                    >>::from_node_unchecked(
-                        yak_sitter::Node::new(n, self.tree),
-                    )
+                    >>::from_node_unchecked(yak_sitter::Node::new(n, self.tree))
                 })
         }
     }
@@ -3295,15 +3181,13 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         {
             [14u32]
                 .into_iter()
-                .flat_map(|i| self.match_.nodes_for_capture_index(i))
+                .flat_map(|i| self.r#match.nodes_for_capture_index(i))
                 .map(|n| unsafe {
                     <super::nodes::_Self<
                         'tree,
                     > as type_sitter_lib::TypedNode<
                         'tree,
-                    >>::from_node_unchecked(
-                        yak_sitter::Node::new(n, self.tree),
-                    )
+                    >>::from_node_unchecked(yak_sitter::Node::new(n, self.tree))
                 })
         }
             .next()
@@ -3322,15 +3206,13 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         {
             [15u32]
                 .into_iter()
-                .flat_map(|i| self.match_.nodes_for_capture_index(i))
+                .flat_map(|i| self.r#match.nodes_for_capture_index(i))
                 .map(|n| unsafe {
                     <anon_unions::String<
                         'tree,
                     > as type_sitter_lib::TypedNode<
                         'tree,
-                    >>::from_node_unchecked(
-                        yak_sitter::Node::new(n, self.tree),
-                    )
+                    >>::from_node_unchecked(yak_sitter::Node::new(n, self.tree))
                 })
         }
             .next()
@@ -3349,15 +3231,13 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         {
             [16u32]
                 .into_iter()
-                .flat_map(|i| self.match_.nodes_for_capture_index(i))
+                .flat_map(|i| self.r#match.nodes_for_capture_index(i))
                 .map(|n| unsafe {
                     <anon_unions::ConstantBuiltin<
                         'tree,
                     > as type_sitter_lib::TypedNode<
                         'tree,
-                    >>::from_node_unchecked(
-                        yak_sitter::Node::new(n, self.tree),
-                    )
+                    >>::from_node_unchecked(yak_sitter::Node::new(n, self.tree))
                 })
         }
             .next()
@@ -3374,15 +3254,13 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         {
             [17u32]
                 .into_iter()
-                .flat_map(|i| self.match_.nodes_for_capture_index(i))
+                .flat_map(|i| self.r#match.nodes_for_capture_index(i))
                 .map(|n| unsafe {
                     <super::nodes::EscapeSequence<
                         'tree,
                     > as type_sitter_lib::TypedNode<
                         'tree,
-                    >>::from_node_unchecked(
-                        yak_sitter::Node::new(n, self.tree),
-                    )
+                    >>::from_node_unchecked(yak_sitter::Node::new(n, self.tree))
                 })
         }
             .next()
@@ -3400,15 +3278,13 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         {
             [18u32]
                 .into_iter()
-                .flat_map(|i| self.match_.nodes_for_capture_index(i))
+                .flat_map(|i| self.r#match.nodes_for_capture_index(i))
                 .map(|n| unsafe {
                     <anon_unions::Attribute<
                         'tree,
                     > as type_sitter_lib::TypedNode<
                         'tree,
-                    >>::from_node_unchecked(
-                        yak_sitter::Node::new(n, self.tree),
-                    )
+                    >>::from_node_unchecked(yak_sitter::Node::new(n, self.tree))
                 })
         }
             .next()
@@ -3427,15 +3303,13 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         {
             [19u32]
                 .into_iter()
-                .flat_map(|i| self.match_.nodes_for_capture_index(i))
+                .flat_map(|i| self.r#match.nodes_for_capture_index(i))
                 .map(|n| unsafe {
                     <anon_unions::Operator<
                         'tree,
                     > as type_sitter_lib::TypedNode<
                         'tree,
-                    >>::from_node_unchecked(
-                        yak_sitter::Node::new(n, self.tree),
-                    )
+                    >>::from_node_unchecked(yak_sitter::Node::new(n, self.tree))
                 })
         }
             .next()
@@ -3445,7 +3319,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
 impl<'cursor, 'tree> std::fmt::Debug for HighlightsMatch<'cursor, 'tree> {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         f.debug_struct(stringify!(HighlightsMatch))
-            .field("match_", &self.match_)
+            .field("r#match", &self.r#match)
             .finish()
     }
 }
@@ -3463,11 +3337,11 @@ for HighlightsMatch<'cursor, 'tree> {
     }
     #[inline]
     fn raw(&self) -> &tree_sitter::QueryMatch<'cursor, 'tree> {
-        &self.match_
+        &self.r#match
     }
     #[inline]
     fn into_raw(self) -> tree_sitter::QueryMatch<'cursor, 'tree> {
-        self.match_
+        self.r#match
     }
 }
 #[automatically_derived]
@@ -4028,6 +3902,8 @@ impl<'cursor, 'tree> std::fmt::Debug for HighlightsCapture<'cursor, 'tree> {
                     .field("node", node)
                     .finish()
             }
+            #[allow(unreachable_patterns)]
+            _ => unreachable!(),
         }
     }
 }
@@ -4038,123 +3914,125 @@ impl<'cursor, 'tree> Clone for HighlightsCapture<'cursor, 'tree> {
             Self::Constant { node, .. } => {
                 Self::Constant {
                     node: *node,
-                    match_: None,
+                    r#match: None,
                 }
             }
             Self::Type { node, .. } => {
                 Self::Type {
                     node: *node,
-                    match_: None,
+                    r#match: None,
                 }
             }
             Self::Constructor { node, .. } => {
                 Self::Constructor {
                     node: *node,
-                    match_: None,
+                    r#match: None,
                 }
             }
             Self::Function { node, .. } => {
                 Self::Function {
                     node: *node,
-                    match_: None,
+                    r#match: None,
                 }
             }
             Self::FunctionMethod { node, .. } => {
                 Self::FunctionMethod {
                     node: *node,
-                    match_: None,
+                    r#match: None,
                 }
             }
             Self::FunctionMacro { node, .. } => {
                 Self::FunctionMacro {
                     node: *node,
-                    match_: None,
+                    r#match: None,
                 }
             }
             Self::TypeBuiltin { node, .. } => {
                 Self::TypeBuiltin {
                     node: *node,
-                    match_: None,
+                    r#match: None,
                 }
             }
             Self::Property { node, .. } => {
                 Self::Property {
                     node: *node,
-                    match_: None,
+                    r#match: None,
                 }
             }
             Self::Comment { node, .. } => {
                 Self::Comment {
                     node: *node,
-                    match_: None,
+                    r#match: None,
                 }
             }
             Self::PunctuationBracket { node, .. } => {
                 Self::PunctuationBracket {
                     node: *node,
-                    match_: None,
+                    r#match: None,
                 }
             }
             Self::PunctuationDelimiter { node, .. } => {
                 Self::PunctuationDelimiter {
                     node: *node,
-                    match_: None,
+                    r#match: None,
                 }
             }
             Self::VariableParameter { node, .. } => {
                 Self::VariableParameter {
                     node: *node,
-                    match_: None,
+                    r#match: None,
                 }
             }
             Self::Label { node, .. } => {
                 Self::Label {
                     node: *node,
-                    match_: None,
+                    r#match: None,
                 }
             }
             Self::Keyword { node, .. } => {
                 Self::Keyword {
                     node: *node,
-                    match_: None,
+                    r#match: None,
                 }
             }
             Self::VariableBuiltin { node, .. } => {
                 Self::VariableBuiltin {
                     node: *node,
-                    match_: None,
+                    r#match: None,
                 }
             }
             Self::String { node, .. } => {
                 Self::String {
                     node: *node,
-                    match_: None,
+                    r#match: None,
                 }
             }
             Self::ConstantBuiltin { node, .. } => {
                 Self::ConstantBuiltin {
                     node: *node,
-                    match_: None,
+                    r#match: None,
                 }
             }
             Self::Escape { node, .. } => {
                 Self::Escape {
                     node: *node,
-                    match_: None,
+                    r#match: None,
                 }
             }
             Self::Attribute { node, .. } => {
                 Self::Attribute {
                     node: *node,
-                    match_: None,
+                    r#match: None,
                 }
             }
             Self::Operator { node, .. } => {
                 Self::Operator {
                     node: *node,
-                    match_: None,
+                    r#match: None,
                 }
             }
+            #[allow(unreachable_patterns)]
+            _ => unreachable!(),
         }
     }
 }
@@ -4167,30 +4045,32 @@ for HighlightsCapture<'cursor, 'tree> {
         &Highlights
     }
     #[inline]
-    fn match_(
+    fn r#match(
         &self,
     ) -> Option<&<Self::Query as type_sitter_lib::TypedQuery>::Match<'cursor, 'tree>> {
         match self {
-            Self::Constant { match_, .. } => match_.as_ref(),
-            Self::Type { match_, .. } => match_.as_ref(),
-            Self::Constructor { match_, .. } => match_.as_ref(),
-            Self::Function { match_, .. } => match_.as_ref(),
-            Self::FunctionMethod { match_, .. } => match_.as_ref(),
-            Self::FunctionMacro { match_, .. } => match_.as_ref(),
-            Self::TypeBuiltin { match_, .. } => match_.as_ref(),
-            Self::Property { match_, .. } => match_.as_ref(),
-            Self::Comment { match_, .. } => match_.as_ref(),
-            Self::PunctuationBracket { match_, .. } => match_.as_ref(),
-            Self::PunctuationDelimiter { match_, .. } => match_.as_ref(),
-            Self::VariableParameter { match_, .. } => match_.as_ref(),
-            Self::Label { match_, .. } => match_.as_ref(),
-            Self::Keyword { match_, .. } => match_.as_ref(),
-            Self::VariableBuiltin { match_, .. } => match_.as_ref(),
-            Self::String { match_, .. } => match_.as_ref(),
-            Self::ConstantBuiltin { match_, .. } => match_.as_ref(),
-            Self::Escape { match_, .. } => match_.as_ref(),
-            Self::Attribute { match_, .. } => match_.as_ref(),
-            Self::Operator { match_, .. } => match_.as_ref(),
+            Self::Constant { r#match, .. } => r#match.as_ref(),
+            Self::Type { r#match, .. } => r#match.as_ref(),
+            Self::Constructor { r#match, .. } => r#match.as_ref(),
+            Self::Function { r#match, .. } => r#match.as_ref(),
+            Self::FunctionMethod { r#match, .. } => r#match.as_ref(),
+            Self::FunctionMacro { r#match, .. } => r#match.as_ref(),
+            Self::TypeBuiltin { r#match, .. } => r#match.as_ref(),
+            Self::Property { r#match, .. } => r#match.as_ref(),
+            Self::Comment { r#match, .. } => r#match.as_ref(),
+            Self::PunctuationBracket { r#match, .. } => r#match.as_ref(),
+            Self::PunctuationDelimiter { r#match, .. } => r#match.as_ref(),
+            Self::VariableParameter { r#match, .. } => r#match.as_ref(),
+            Self::Label { r#match, .. } => r#match.as_ref(),
+            Self::Keyword { r#match, .. } => r#match.as_ref(),
+            Self::VariableBuiltin { r#match, .. } => r#match.as_ref(),
+            Self::String { r#match, .. } => r#match.as_ref(),
+            Self::ConstantBuiltin { r#match, .. } => r#match.as_ref(),
+            Self::Escape { r#match, .. } => r#match.as_ref(),
+            Self::Attribute { r#match, .. } => r#match.as_ref(),
+            Self::Operator { r#match, .. } => r#match.as_ref(),
+            #[allow(unreachable_patterns)]
+            _ => unreachable!(),
         }
     }
     #[inline]
@@ -4198,32 +4078,33 @@ for HighlightsCapture<'cursor, 'tree> {
         self,
     ) -> Option<<Self::Query as type_sitter_lib::TypedQuery>::Match<'cursor, 'tree>> {
         match self {
-            Self::Constant { match_, .. } => match_,
-            Self::Type { match_, .. } => match_,
-            Self::Constructor { match_, .. } => match_,
-            Self::Function { match_, .. } => match_,
-            Self::FunctionMethod { match_, .. } => match_,
-            Self::FunctionMacro { match_, .. } => match_,
-            Self::TypeBuiltin { match_, .. } => match_,
-            Self::Property { match_, .. } => match_,
-            Self::Comment { match_, .. } => match_,
-            Self::PunctuationBracket { match_, .. } => match_,
-            Self::PunctuationDelimiter { match_, .. } => match_,
-            Self::VariableParameter { match_, .. } => match_,
-            Self::Label { match_, .. } => match_,
-            Self::Keyword { match_, .. } => match_,
-            Self::VariableBuiltin { match_, .. } => match_,
-            Self::String { match_, .. } => match_,
-            Self::ConstantBuiltin { match_, .. } => match_,
-            Self::Escape { match_, .. } => match_,
-            Self::Attribute { match_, .. } => match_,
-            Self::Operator { match_, .. } => match_,
+            Self::Constant { r#match, .. } => r#match,
+            Self::Type { r#match, .. } => r#match,
+            Self::Constructor { r#match, .. } => r#match,
+            Self::Function { r#match, .. } => r#match,
+            Self::FunctionMethod { r#match, .. } => r#match,
+            Self::FunctionMacro { r#match, .. } => r#match,
+            Self::TypeBuiltin { r#match, .. } => r#match,
+            Self::Property { r#match, .. } => r#match,
+            Self::Comment { r#match, .. } => r#match,
+            Self::PunctuationBracket { r#match, .. } => r#match,
+            Self::PunctuationDelimiter { r#match, .. } => r#match,
+            Self::VariableParameter { r#match, .. } => r#match,
+            Self::Label { r#match, .. } => r#match,
+            Self::Keyword { r#match, .. } => r#match,
+            Self::VariableBuiltin { r#match, .. } => r#match,
+            Self::String { r#match, .. } => r#match,
+            Self::ConstantBuiltin { r#match, .. } => r#match,
+            Self::Escape { r#match, .. } => r#match,
+            Self::Attribute { r#match, .. } => r#match,
+            Self::Operator { r#match, .. } => r#match,
+            #[allow(unreachable_patterns)]
+            _ => unreachable!(),
         }
     }
     #[inline]
-    fn to_raw(
-        &self,
-    ) -> yak_sitter::QueryCapture<'static, 'tree> {
+    fn to_raw(&self) -> yak_sitter::QueryCapture<'static, 'tree> {
+        #[allow(unused_imports)]
         use type_sitter_lib::TypedNode;
         match self {
             Self::Constant { node, .. } => {
@@ -4366,10 +4247,13 @@ for HighlightsCapture<'cursor, 'tree> {
                     name: "operator",
                 }
             }
+            #[allow(unreachable_patterns)]
+            _ => unreachable!(),
         }
     }
     #[inline]
     fn node(&self) -> &yak_sitter::Node<'tree> {
+        #[allow(unused_imports)]
         use type_sitter_lib::TypedNode;
         match self {
             Self::Constant { node, .. } => node.node(),
@@ -4392,10 +4276,13 @@ for HighlightsCapture<'cursor, 'tree> {
             Self::Escape { node, .. } => node.node(),
             Self::Attribute { node, .. } => node.node(),
             Self::Operator { node, .. } => node.node(),
+            #[allow(unreachable_patterns)]
+            _ => unreachable!(),
         }
     }
     #[inline]
     fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
+        #[allow(unused_imports)]
         use type_sitter_lib::TypedNode;
         match self {
             Self::Constant { node, .. } => node.node_mut(),
@@ -4418,6 +4305,8 @@ for HighlightsCapture<'cursor, 'tree> {
             Self::Escape { node, .. } => node.node_mut(),
             Self::Attribute { node, .. } => node.node_mut(),
             Self::Operator { node, .. } => node.node_mut(),
+            #[allow(unreachable_patterns)]
+            _ => unreachable!(),
         }
     }
     #[inline]
@@ -4443,6 +4332,8 @@ for HighlightsCapture<'cursor, 'tree> {
             Self::Escape { .. } => "escape",
             Self::Attribute { .. } => "attribute",
             Self::Operator { .. } => "operator",
+            #[allow(unreachable_patterns)]
+            _ => unreachable!(),
         }
     }
     #[inline]
@@ -4468,6 +4359,8 @@ for HighlightsCapture<'cursor, 'tree> {
             Self::Escape { .. } => 17usize,
             Self::Attribute { .. } => 18usize,
             Self::Operator { .. } => 19usize,
+            #[allow(unreachable_patterns)]
+            _ => unreachable!(),
         }
     }
 }
@@ -4559,7 +4452,7 @@ pub type InjectionsCaptures<'cursor, 'tree> = type_sitter_lib::TypedQueryCapture
 
 ```*/
 pub struct InjectionsMatch<'cursor, 'tree> {
-    match_: tree_sitter::QueryMatch<'cursor, 'tree>,
+    r#match: tree_sitter::QueryMatch<'cursor, 'tree>,
     tree: &'tree yak_sitter::Tree,
 }
 /**A capture returned by the query [Injections]:
@@ -4586,7 +4479,7 @@ pub enum InjectionsCapture<'cursor, 'tree> {
     ///```
     InjectionContent {
         node: super::nodes::TokenTree<'tree>,
-        match_: Option<InjectionsMatch<'cursor, 'tree>>,
+        r#match: Option<InjectionsMatch<'cursor, 'tree>>,
     },
 }
 #[automatically_derived]
@@ -4602,16 +4495,16 @@ impl type_sitter_lib::TypedQuery for Injections {
     #[inline]
     unsafe fn wrap_match<'cursor, 'tree>(
         &self,
-        match_: tree_sitter::QueryMatch<'cursor, 'tree>,
+        r#match: tree_sitter::QueryMatch<'cursor, 'tree>,
         tree: &'tree yak_sitter::Tree,
     ) -> Self::Match<'cursor, 'tree> {
-        Self::Match { match_, tree }
+        Self::Match { r#match, tree }
     }
     #[inline]
     unsafe fn wrap_capture<'cursor, 'tree>(
         &self,
         capture: tree_sitter::QueryCapture<'tree>,
-        match_: Option<Self::Match<'cursor, 'tree>>,
+        r#match: Option<Self::Match<'cursor, 'tree>>,
         tree: &'tree yak_sitter::Tree,
     ) -> Self::Capture<'cursor, 'tree> {
         match capture.index as usize {
@@ -4622,12 +4515,9 @@ impl type_sitter_lib::TypedQuery for Injections {
                     > as type_sitter_lib::TypedNode<
                         'tree,
                     >>::from_node_unchecked(unsafe {
-                        yak_sitter::Node::new(
-                            capture.node,
-                            tree,
-                        )
+                        yak_sitter::Node::new(capture.node, tree)
                     }),
-                    match_,
+                    r#match,
                 }
             }
             capture_index => unreachable!("Invalid capture index: {}", capture_index),
@@ -4649,25 +4539,23 @@ impl<'cursor, 'tree> InjectionsMatch<'cursor, 'tree> {
         let result = {
             [0u32]
                 .into_iter()
-                .flat_map(|i| self.match_.nodes_for_capture_index(i))
+                .flat_map(|i| self.r#match.nodes_for_capture_index(i))
                 .map(|n| unsafe {
                     <super::nodes::TokenTree<
                         'tree,
                     > as type_sitter_lib::TypedNode<
                         'tree,
-                    >>::from_node_unchecked(
-                        yak_sitter::Node::new(n, self.tree),
-                    )
+                    >>::from_node_unchecked(yak_sitter::Node::new(n, self.tree))
                 })
         }
             .next()
             .expect("one quantifier returned nothing");
         debug_assert!(
-            { [0u32].into_iter().flat_map(| i | self.match_.nodes_for_capture_index(i))
+            { [0u32].into_iter().flat_map(| i | self.r#match.nodes_for_capture_index(i))
             .map(| n | unsafe { < super::nodes::TokenTree < 'tree > as
             type_sitter_lib::TypedNode < 'tree >>
-            ::from_node_unchecked(yak_sitter::Node::new(n, self
-            .tree)) }) } .next().is_none(), "one quantifier returned more than one item"
+            ::from_node_unchecked(yak_sitter::Node::new(n, self.tree)) }) } .next()
+            .is_none(), "one quantifier returned more than one item"
         );
         result
     }
@@ -4676,7 +4564,7 @@ impl<'cursor, 'tree> InjectionsMatch<'cursor, 'tree> {
 impl<'cursor, 'tree> std::fmt::Debug for InjectionsMatch<'cursor, 'tree> {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         f.debug_struct(stringify!(InjectionsMatch))
-            .field("match_", &self.match_)
+            .field("r#match", &self.r#match)
             .finish()
     }
 }
@@ -4694,11 +4582,11 @@ for InjectionsMatch<'cursor, 'tree> {
     }
     #[inline]
     fn raw(&self) -> &tree_sitter::QueryMatch<'cursor, 'tree> {
-        &self.match_
+        &self.r#match
     }
     #[inline]
     fn into_raw(self) -> tree_sitter::QueryMatch<'cursor, 'tree> {
-        self.match_
+        self.r#match
     }
 }
 #[automatically_derived]
@@ -4734,6 +4622,8 @@ impl<'cursor, 'tree> std::fmt::Debug for InjectionsCapture<'cursor, 'tree> {
                     .field("node", node)
                     .finish()
             }
+            #[allow(unreachable_patterns)]
+            _ => unreachable!(),
         }
     }
 }
@@ -4744,9 +4634,11 @@ impl<'cursor, 'tree> Clone for InjectionsCapture<'cursor, 'tree> {
             Self::InjectionContent { node, .. } => {
                 Self::InjectionContent {
                     node: *node,
-                    match_: None,
+                    r#match: None,
                 }
             }
+            #[allow(unreachable_patterns)]
+            _ => unreachable!(),
         }
     }
 }
@@ -4759,11 +4651,13 @@ for InjectionsCapture<'cursor, 'tree> {
         &Injections
     }
     #[inline]
-    fn match_(
+    fn r#match(
         &self,
     ) -> Option<&<Self::Query as type_sitter_lib::TypedQuery>::Match<'cursor, 'tree>> {
         match self {
-            Self::InjectionContent { match_, .. } => match_.as_ref(),
+            Self::InjectionContent { r#match, .. } => r#match.as_ref(),
+            #[allow(unreachable_patterns)]
+            _ => unreachable!(),
         }
     }
     #[inline]
@@ -4771,13 +4665,14 @@ for InjectionsCapture<'cursor, 'tree> {
         self,
     ) -> Option<<Self::Query as type_sitter_lib::TypedQuery>::Match<'cursor, 'tree>> {
         match self {
-            Self::InjectionContent { match_, .. } => match_,
+            Self::InjectionContent { r#match, .. } => r#match,
+            #[allow(unreachable_patterns)]
+            _ => unreachable!(),
         }
     }
     #[inline]
-    fn to_raw(
-        &self,
-    ) -> yak_sitter::QueryCapture<'static, 'tree> {
+    fn to_raw(&self) -> yak_sitter::QueryCapture<'static, 'tree> {
+        #[allow(unused_imports)]
         use type_sitter_lib::TypedNode;
         match self {
             Self::InjectionContent { node, .. } => {
@@ -4787,32 +4682,44 @@ for InjectionsCapture<'cursor, 'tree> {
                     name: "injection.content",
                 }
             }
+            #[allow(unreachable_patterns)]
+            _ => unreachable!(),
         }
     }
     #[inline]
     fn node(&self) -> &yak_sitter::Node<'tree> {
+        #[allow(unused_imports)]
         use type_sitter_lib::TypedNode;
         match self {
             Self::InjectionContent { node, .. } => node.node(),
+            #[allow(unreachable_patterns)]
+            _ => unreachable!(),
         }
     }
     #[inline]
     fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
+        #[allow(unused_imports)]
         use type_sitter_lib::TypedNode;
         match self {
             Self::InjectionContent { node, .. } => node.node_mut(),
+            #[allow(unreachable_patterns)]
+            _ => unreachable!(),
         }
     }
     #[inline]
     fn name(&self) -> &'static str {
         match self {
             Self::InjectionContent { .. } => "injection.content",
+            #[allow(unreachable_patterns)]
+            _ => unreachable!(),
         }
     }
     #[inline]
     fn index(&self) -> usize {
         match self {
             Self::InjectionContent { .. } => 0usize,
+            #[allow(unreachable_patterns)]
+            _ => unreachable!(),
         }
     }
 }
@@ -4861,13 +4768,10 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Name<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Name<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             match node.kind() {
                 "field_identifier" => {
                     Ok(unsafe {
@@ -4923,9 +4827,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::FieldIdentifier(x) => x.node_mut(),
                 Self::Identifier(x) => x.node_mut(),
@@ -4994,13 +4896,10 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for DefinitionClass<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for DefinitionClass<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             match node.kind() {
                 "enum_item" => {
                     Ok(unsafe {
@@ -5068,9 +4967,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::EnumItem(x) => x.node_mut(),
                 Self::StructItem(x) => x.node_mut(),
@@ -5119,13 +5016,10 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for ReferenceCall<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for ReferenceCall<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             match node.kind() {
                 "call_expression" => {
                     Ok(unsafe {
@@ -5169,9 +5063,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::CallExpression(x) => x.node_mut(),
                 Self::MacroInvocation(x) => x.node_mut(),
@@ -5216,13 +5108,10 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Type<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Type<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             match node.kind() {
                 "identifier" => {
                     Ok(unsafe {
@@ -5266,9 +5155,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::Identifier(x) => x.node_mut(),
                 Self::TypeIdentifier(x) => x.node_mut(),
@@ -5313,13 +5200,10 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Constructor<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Constructor<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             match node.kind() {
                 "identifier" => {
                     Ok(unsafe {
@@ -5363,9 +5247,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::Identifier(x) => x.node_mut(),
                 Self::TypeIdentifier(x) => x.node_mut(),
@@ -5410,13 +5292,10 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for FunctionMacro<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for FunctionMacro<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             match node.kind() {
                 "!" => {
                     Ok(unsafe {
@@ -5460,9 +5339,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::Not(x) => x.node_mut(),
                 Self::Identifier(x) => x.node_mut(),
@@ -5507,13 +5384,10 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Comment<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Comment<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             match node.kind() {
                 "block_comment" => {
                     Ok(unsafe {
@@ -5557,9 +5431,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::BlockComment(x) => x.node_mut(),
                 Self::LineComment(x) => x.node_mut(),
@@ -5670,13 +5542,10 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for PunctuationBracket<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for PunctuationBracket<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             match node.kind() {
                 "(" => {
                     Ok(unsafe {
@@ -5792,9 +5661,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::LParen(x) => x.node_mut(),
                 Self::RParen(x) => x.node_mut(),
@@ -5884,13 +5751,10 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for PunctuationDelimiter<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for PunctuationDelimiter<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             match node.kind() {
                 "," => {
                     Ok(unsafe {
@@ -5970,9 +5834,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::Comma(x) => x.node_mut(),
                 Self::Dot(x) => x.node_mut(),
@@ -6419,13 +6281,10 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Keyword<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Keyword<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             match node.kind() {
                 "as" => {
                     Ok(unsafe {
@@ -6901,9 +6760,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::As(x) => x.node_mut(),
                 Self::Async(x) => x.node_mut(),
@@ -7031,13 +6888,10 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for String<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for String<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             match node.kind() {
                 "char_literal" => {
                     Ok(unsafe {
@@ -7093,9 +6947,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::CharLiteral(x) => x.node_mut(),
                 Self::RawStringLiteral(x) => x.node_mut(),
@@ -7153,13 +7005,10 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for ConstantBuiltin<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for ConstantBuiltin<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             match node.kind() {
                 "boolean_literal" => {
                     Ok(unsafe {
@@ -7215,9 +7064,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::BooleanLiteral(x) => x.node_mut(),
                 Self::FloatLiteral(x) => x.node_mut(),
@@ -7264,13 +7111,10 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Attribute<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Attribute<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             match node.kind() {
                 "attribute_item" => {
                     Ok(unsafe {
@@ -7314,9 +7158,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::AttributeItem(x) => x.node_mut(),
                 Self::InnerAttributeItem(x) => x.node_mut(),
@@ -7372,13 +7214,10 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-    for Operator<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Operator<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
-        fn try_from(
-            node: yak_sitter::Node<'tree>,
-        ) -> Result<Self, Self::Error> {
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             match node.kind() {
                 "&" => {
                     Ok(unsafe {
@@ -7434,9 +7273,7 @@ pub mod anon_unions {
             }
         }
         #[inline]
-        fn node_mut(
-            &mut self,
-        ) -> &mut yak_sitter::Node<'tree> {
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::And(x) => x.node_mut(),
                 Self::Quote(x) => x.node_mut(),
