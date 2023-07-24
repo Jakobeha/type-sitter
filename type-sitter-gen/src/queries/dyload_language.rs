@@ -79,9 +79,10 @@ fn dylib_path(path: &Path) -> PathBuf {
 fn build_dylib(path: &Path, dylib_path: &Path) -> Result<(), Error> {
     let dylib_dir = dylib_path.parent().unwrap();
     create_dir_all(dylib_dir)?;
+
     // Derived from tree-sitter-rust's build.rs
-    let src_dir = path.join("src");
     eprintln!("Building {}...", dylib_path.display());
+    let src_dir = path.join("src");
     let sources = src_dir.read_dir()?
         .filter_map(|e| e.ok())
         .map(|e| e.path())
@@ -99,26 +100,37 @@ fn build_dylib(path: &Path, dylib_path: &Path) -> Result<(), Error> {
         // Include sources
         .include(&src_dir)
         .files(sources)
-        // Set to compile a shared object (doesn't work on macOS)
+        // Set to compile a shared object (doesn't work on macOS and Unix)
         .shared_flag(true)
         .cargo_metadata(false)
         // Compile dylib in dylib dir
         .out_dir(&dylib_dir)
         .try_compile("tree-sitter")?;
-    if cfg!(target_os = "macos") {
-        // Oops, we're on macOS and compiled a static library because clang doesn't support -shared.
-        // Let's fix that.
-        eprintln!("Dynamic linking {}...", dylib_path.display());
-        let status = Command::new("/usr/bin/clang")
+
+    // Even though shared-flag is true it doesn't actually do anything, so we need to manually
+    // compile the dylib on macOS and Unix
+    eprintln!("Dynamic linking {}...", dylib_path.display());
+    let status = if cfg!(target_os = "macos") {
+        Command::new("/usr/bin/clang")
             .args(["-dynamiclib", "-undefined", "error", "-o"])
             .arg(&dylib_path)
             .args(find_object_files_in(dylib_dir))
             .status()
-            .map_err(Error::LinkDylibCmdFailed)?;
-        if !status.success() {
-            return Err(Error::LinkDylibFailed { exit_status: status });
-        }
+            .map_err(Error::LinkDylibCmdFailed)?
+    } else if cfg!(target_family = "unix") {
+        Command::new("/usr/bin/ld")
+            .args(["-shared", "-o"])
+            .arg(&dylib_path)
+            .args(find_object_files_in(dylib_dir))
+            .status()
+            .map_err(Error::LinkDylibCmdFailed)?
+    } else {
+        return Err(Error::LinkDylibUnsupported);
+    };
+    if !status.success() {
+        return Err(Error::LinkDylibFailed { exit_status: status });
     }
+
     Ok(())
 }
 
