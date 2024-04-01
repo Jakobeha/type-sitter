@@ -1,12 +1,13 @@
 use std::path::{Path, PathBuf};
-use std::fs::create_dir;
+use std::fs::{create_dir, remove_dir_all};
 use type_sitter_gen::super_nodes;
 use crate::args::{Args, InOutPair, InputType};
-use crate::errors;
+use crate::{errors, path_utils};
 use crate::errors::Error;
 use crate::path_utils::{language_name, write};
 
-pub fn process(item: &InOutPair, args: &Args, use_yak_sitter: bool, tree_sitter: &syn::Path) -> errors::Result<()> {
+/** Process `item` configured with the other arguments, overwriting old data if it exists. */
+pub fn reprocess(item: &InOutPair, args: &Args, use_yak_sitter: bool, tree_sitter: &syn::Path) -> errors::Result<()> {
     // Get input type
     let input_type = args.input_type
         .map_or_else(|| InputType::infer(&item.input), Ok)?;
@@ -21,6 +22,17 @@ pub fn process(item: &InOutPair, args: &Args, use_yak_sitter: bool, tree_sitter:
     if !input_type.is_output_a_dir() {
         output_path.set_extension("rs");
     }
+
+    // Clear output path.
+    // For safety, we only clear rust files.
+    if output_path.exists() {
+        if !path_utils::is_dir_of_only_rust_files(&output_path) {
+            return Err(Error::OutputDirNotOnlyRustFiles);
+        }
+        remove_dir_all(&output_path).map_err(Error::io("removing old output path"))?;
+    }
+
+    // Process
     do_process(&item.input, &output_path, input_type, language_dir.as_deref(), use_yak_sitter, tree_sitter)
 }
 

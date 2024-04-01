@@ -418,7 +418,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for DeclarationStatement<'tree> {
         }
     }
 }
-#[doc = "Typed node `_expression`\n\nThis node type is a supertype of:\n- `_literal` ([Literal])\n- `array_expression` ([ArrayExpression])\n- `assignment_expression` ([AssignmentExpression])\n- `async_block` ([AsyncBlock])\n- `await_expression` ([AwaitExpression])\n- `binary_expression` ([BinaryExpression])\n- `block` ([Block])\n- `break_expression` ([BreakExpression])\n- `call_expression` ([CallExpression])\n- `closure_expression` ([ClosureExpression])\n- `compound_assignment_expr` ([CompoundAssignmentExpr])\n- `const_block` ([ConstBlock])\n- `continue_expression` ([ContinueExpression])\n- `field_expression` ([FieldExpression])\n- `for_expression` ([ForExpression])\n- `generic_function` ([GenericFunction])\n- `identifier` ([Identifier])\n- `if_expression` ([IfExpression])\n- `index_expression` ([IndexExpression])\n- `loop_expression` ([LoopExpression])\n- `macro_invocation` ([MacroInvocation])\n- `match_expression` ([MatchExpression])\n- `metavariable` ([Metavariable])\n- `parenthesized_expression` ([ParenthesizedExpression])\n- `range_expression` ([RangeExpression])\n- `reference_expression` ([ReferenceExpression])\n- `return_expression` ([ReturnExpression])\n- `scoped_identifier` ([ScopedIdentifier])\n- `self` ([_Self])\n- `struct_expression` ([StructExpression])\n- `try_expression` ([TryExpression])\n- `tuple_expression` ([TupleExpression])\n- `type_cast_expression` ([TypeCastExpression])\n- `unary_expression` ([UnaryExpression])\n- `unit_expression` ([UnitExpression])\n- `unsafe_block` ([UnsafeBlock])\n- `while_expression` ([WhileExpression])\n- `yield_expression` ([YieldExpression])\n"]
+#[doc = "Typed node `_expression`\n\nThis node type is a supertype of:\n- `_literal` ([Literal])\n- `array_expression` ([ArrayExpression])\n- `assignment_expression` ([AssignmentExpression])\n- `async_block` ([AsyncBlock])\n- `await_expression` ([AwaitExpression])\n- `binary_expression` ([BinaryExpression])\n- `block` ([Block])\n- `break_expression` ([BreakExpression])\n- `call_expression` ([CallExpression])\n- `closure_expression` ([ClosureExpression])\n- `compound_assignment_expr` ([CompoundAssignmentExpr])\n- `const_block` ([ConstBlock])\n- `continue_expression` ([ContinueExpression])\n- `field_expression` ([FieldExpression])\n- `for_expression` ([ForExpression])\n- `generic_function` ([GenericFunction])\n- `identifier` ([Identifier])\n- `if_expression` ([IfExpression])\n- `index_expression` ([IndexExpression])\n- `loop_expression` ([LoopExpression])\n- `macro_invocation` ([MacroInvocation])\n- `match_expression` ([MatchExpression])\n- `metavariable` ([Metavariable])\n- `parenthesized_expression` ([ParenthesizedExpression])\n- `range_expression` ([RangeExpression])\n- `reference_expression` ([ReferenceExpression])\n- `return_expression` ([ReturnExpression])\n- `scoped_identifier` ([ScopedIdentifier])\n- `self` ([_Self])\n- `struct_expression` ([StructExpression])\n- `try_block` ([TryBlock])\n- `try_expression` ([TryExpression])\n- `tuple_expression` ([TupleExpression])\n- `type_cast_expression` ([TypeCastExpression])\n- `unary_expression` ([UnaryExpression])\n- `unit_expression` ([UnitExpression])\n- `unsafe_block` ([UnsafeBlock])\n- `while_expression` ([WhileExpression])\n- `yield_expression` ([YieldExpression])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub enum Expression<'tree> {
@@ -452,6 +452,7 @@ pub enum Expression<'tree> {
     ScopedIdentifier(ScopedIdentifier<'tree>),
     _Self(_Self<'tree>),
     StructExpression(StructExpression<'tree>),
+    TryBlock(TryBlock<'tree>),
     TryExpression(TryExpression<'tree>),
     TupleExpression(TupleExpression<'tree>),
     TypeCastExpression(TypeCastExpression<'tree>),
@@ -733,6 +734,15 @@ impl<'tree> Expression<'tree> {
             _ => None,
         }
     }
+    #[doc = "Returns the node if it is of kind `try_block` ([TryBlock]), otherwise returns None"]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn try_block(self) -> Option<TryBlock<'tree>> {
+        match self {
+            Self::TryBlock(x) => Some(x),
+            _ => None,
+        }
+    }
     #[doc = "Returns the node if it is of kind `try_expression` ([TryExpression]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
@@ -901,6 +911,9 @@ impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Expression<'tree> {
         if let Ok(this) = <StructExpression<'tree> as TryFrom<_>>::try_from(node) {
             return Ok(Self::StructExpression(this));
         }
+        if let Ok(this) = <TryBlock<'tree> as TryFrom<_>>::try_from(node) {
+            return Ok(Self::TryBlock(this));
+        }
         if let Ok(this) = <TryExpression<'tree> as TryFrom<_>>::try_from(node) {
             return Ok(Self::TryExpression(this));
         }
@@ -967,6 +980,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Expression<'tree> {
             Self::ScopedIdentifier(x) => x.node(),
             Self::_Self(x) => x.node(),
             Self::StructExpression(x) => x.node(),
+            Self::TryBlock(x) => x.node(),
             Self::TryExpression(x) => x.node(),
             Self::TupleExpression(x) => x.node(),
             Self::TypeCastExpression(x) => x.node(),
@@ -1010,6 +1024,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Expression<'tree> {
             Self::ScopedIdentifier(x) => x.node_mut(),
             Self::_Self(x) => x.node_mut(),
             Self::StructExpression(x) => x.node_mut(),
+            Self::TryBlock(x) => x.node_mut(),
             Self::TryExpression(x) => x.node_mut(),
             Self::TupleExpression(x) => x.node_mut(),
             Self::TypeCastExpression(x) => x.node_mut(),
@@ -1053,6 +1068,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Expression<'tree> {
             Self::ScopedIdentifier(x) => x.into_node(),
             Self::_Self(x) => x.into_node(),
             Self::StructExpression(x) => x.into_node(),
+            Self::TryBlock(x) => x.into_node(),
             Self::TryExpression(x) => x.into_node(),
             Self::TupleExpression(x) => x.into_node(),
             Self::TypeCastExpression(x) => x.into_node(),
@@ -2016,7 +2032,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Type<'tree> {
         }
     }
 }
-#[doc = "Typed node `abstract_type`\n\nThis node has these fields:\n- `trait`: `{function_type | generic_type | scoped_type_identifier | type_identifier}` ([anon_unions::FunctionType_GenericType_ScopedTypeIdentifier_TypeIdentifier])\n"]
+#[doc = "Typed node `abstract_type`\n\nThis node has these fields:\n- `trait`: `{function_type | generic_type | scoped_type_identifier | type_identifier}` ([anon_unions::FunctionType_GenericType_ScopedTypeIdentifier_TypeIdentifier])\n\nAnd an additional (optional) child: `type_parameters?` ([TypeParameters])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct AbstractType<'tree>(yak_sitter::Node<'tree>);
@@ -2032,6 +2048,17 @@ impl<'tree> AbstractType<'tree> {
         anon_unions::FunctionType_GenericType_ScopedTypeIdentifier_TypeIdentifier<'tree>,
     > {
         self . 0 . child_by_field_name ("trait") . map (< anon_unions :: FunctionType_GenericType_ScopedTypeIdentifier_TypeIdentifier < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
+    }
+    #[doc = "Get the node's named children"]
+    #[doc = "This is guaranteed to return at least one child"]
+    #[allow(dead_code)]
+    #[inline]    pub fn children < 'a > (& self , c : & 'a mut yak_sitter :: TreeCursor < 'tree >) -> impl ExactSizeIterator < Item = type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: TypeParameters_FunctionType_GenericType_ScopedTypeIdentifier_TypeIdentifier < 'tree > > >> + 'a{
+        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: TypeParameters_FunctionType_GenericType_ScopedTypeIdentifier_TypeIdentifier < 'tree > > as TryFrom < _ >> :: try_from (n))
+    }
+    #[doc = "Get the node's named child #i"]
+    #[allow(dead_code)]
+    #[inline]    pub fn child (& self , i : usize) -> Option < type_sitter_lib :: NodeResult < 'tree , type_sitter_lib :: ExtraOr < 'tree , anon_unions :: TypeParameters_FunctionType_GenericType_ScopedTypeIdentifier_TypeIdentifier < 'tree > > >>{
+        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: TypeParameters_FunctionType_GenericType_ScopedTypeIdentifier_TypeIdentifier < 'tree > > as TryFrom < _ >> :: try_from)
     }
 }
 #[automatically_derived]
@@ -2713,7 +2740,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for BinaryExpression<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `block`\n\nThis node has children: `{_declaration_statement | _expression | expression_statement}*`:\n- [DeclarationStatement]\n- [Expression]\n- [ExpressionStatement]\n\n"]
+#[doc = "Typed node `block`\n\nThis node has children: `{_declaration_statement | _expression | expression_statement | label}*`:\n- [DeclarationStatement]\n- [Expression]\n- [ExpressionStatement]\n- [Label]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct Block<'tree>(yak_sitter::Node<'tree>);
@@ -2730,14 +2757,14 @@ impl<'tree> Block<'tree> {
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::DeclarationStatement_Expression_ExpressionStatement<'tree>,
+                anon_unions::DeclarationStatement_Expression_ExpressionStatement_Label<'tree>,
             >,
         >,
     > + 'a {
         self.0.named_children(c).map(|n| {
             <type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::DeclarationStatement_Expression_ExpressionStatement<'tree>,
+                anon_unions::DeclarationStatement_Expression_ExpressionStatement_Label<'tree>,
             > as TryFrom<_>>::try_from(n)
         })
     }
@@ -2752,14 +2779,14 @@ impl<'tree> Block<'tree> {
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::DeclarationStatement_Expression_ExpressionStatement<'tree>,
+                anon_unions::DeclarationStatement_Expression_ExpressionStatement_Label<'tree>,
             >,
         >,
     > {
         self.0.named_child(i).map(
             <type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::DeclarationStatement_Expression_ExpressionStatement<'tree>,
+                anon_unions::DeclarationStatement_Expression_ExpressionStatement_Label<'tree>,
             > as TryFrom<_>>::try_from,
         )
     }
@@ -2782,6 +2809,56 @@ impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Block<'tree> {
 #[automatically_derived]
 impl<'tree> type_sitter_lib::TypedNode<'tree> for Block<'tree> {
     const KIND: &'static str = "block";
+    #[inline]
+    fn node(&self) -> &yak_sitter::Node<'tree> {
+        &self.0
+    }
+    #[inline]
+    fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
+        &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> yak_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
+        Self(node)
+    }
+}
+#[doc = "Typed node `block_comment`\n\nThis node has these fields:\n- `doc`: `doc_comment?` ([DocComment])\n"]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+pub struct BlockComment<'tree>(yak_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> BlockComment<'tree> {
+    #[doc = "Get the field `doc` which has kind `doc_comment?` ([DocComment])"]
+    #[allow(dead_code)]
+    #[inline]
+    pub fn doc(&self) -> Option<type_sitter_lib::NodeResult<'tree, DocComment<'tree>>> {
+        self.0
+            .child_by_field_name("doc")
+            .map(<DocComment<'tree> as TryFrom<_>>::try_from)
+    }
+}
+#[automatically_derived]
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for BlockComment<'tree> {
+    type Error = type_sitter_lib::IncorrectKind<'tree>;
+    #[inline]
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        if node.kind() == "block_comment" {
+            Ok(Self(node))
+        } else {
+            Err(type_sitter_lib::IncorrectKind {
+                node,
+                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+            })
+        }
+    }
+}
+#[automatically_derived]
+impl<'tree> type_sitter_lib::TypedNode<'tree> for BlockComment<'tree> {
+    const KIND: &'static str = "block_comment";
     #[inline]
     fn node(&self) -> &yak_sitter::Node<'tree> {
         &self.0
@@ -2961,7 +3038,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for BracketedType<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `break_expression`\n\nThis node has children: `{_expression | loop_label}*`:\n- [Expression]\n- [LoopLabel]\n\n"]
+#[doc = "Typed node `break_expression`\n\nThis node has children: `{_expression | label}*`:\n- [Expression]\n- [Label]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct BreakExpression<'tree>(yak_sitter::Node<'tree>);
@@ -2976,14 +3053,10 @@ impl<'tree> BreakExpression<'tree> {
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::Expression_LoopLabel<'tree>>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::Expression_Label<'tree>>,
         >,
     > + 'a {
-        self.0.named_children(c).map(|n| {
-            <type_sitter_lib::ExtraOr<'tree, anon_unions::Expression_LoopLabel<'tree>> as TryFrom<
-                _,
-            >>::try_from(n)
-        })
+        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Expression_Label < 'tree > > as TryFrom < _ >> :: try_from (n))
     }
     #[doc = "Get the node's named child #i"]
     #[allow(dead_code)]
@@ -2994,10 +3067,10 @@ impl<'tree> BreakExpression<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::Expression_LoopLabel<'tree>>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::Expression_Label<'tree>>,
         >,
     > {
-        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Expression_LoopLabel < 'tree > > as TryFrom < _ >> :: try_from)
+        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Expression_Label < 'tree > > as TryFrom < _ >> :: try_from)
     }
 }
 #[automatically_derived]
@@ -3035,7 +3108,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for BreakExpression<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `call_expression`\n\nThis node has these fields:\n- `arguments`: `arguments` ([Arguments])\n- `function`: `{_literal | array_expression | assignment_expression | async_block | await_expression | binary_expression | block | break_expression | call_expression | closure_expression | compound_assignment_expr | const_block | continue_expression | field_expression | for_expression | generic_function | identifier | if_expression | index_expression | loop_expression | macro_invocation | match_expression | metavariable | parenthesized_expression | reference_expression | return_expression | scoped_identifier | self | struct_expression | try_expression | tuple_expression | type_cast_expression | unary_expression | unit_expression | unsafe_block | while_expression | yield_expression}` ([anon_unions::Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier__Self_StructExpression_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression])\n"]
+#[doc = "Typed node `call_expression`\n\nThis node has these fields:\n- `arguments`: `arguments` ([Arguments])\n- `function`: `{_literal | array_expression | assignment_expression | async_block | await_expression | binary_expression | block | break_expression | call_expression | closure_expression | compound_assignment_expr | const_block | continue_expression | field_expression | for_expression | generic_function | identifier | if_expression | index_expression | loop_expression | macro_invocation | match_expression | metavariable | parenthesized_expression | reference_expression | return_expression | scoped_identifier | self | struct_expression | try_block | try_expression | tuple_expression | type_cast_expression | unary_expression | unit_expression | unsafe_block | while_expression | yield_expression}` ([anon_unions::Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier__Self_StructExpression_TryBlock_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct CallExpression<'tree>(yak_sitter::Node<'tree>);
@@ -3047,10 +3120,10 @@ impl<'tree> CallExpression<'tree> {
     pub fn arguments(&self) -> type_sitter_lib::NodeResult<'tree, Arguments<'tree>> {
         self . 0 . child_by_field_name ("arguments") . map (< Arguments < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
-    #[doc = "Get the field `function` which has kind `{_literal | array_expression | assignment_expression | async_block | await_expression | binary_expression | block | break_expression | call_expression | closure_expression | compound_assignment_expr | const_block | continue_expression | field_expression | for_expression | generic_function | identifier | if_expression | index_expression | loop_expression | macro_invocation | match_expression | metavariable | parenthesized_expression | reference_expression | return_expression | scoped_identifier | self | struct_expression | try_expression | tuple_expression | type_cast_expression | unary_expression | unit_expression | unsafe_block | while_expression | yield_expression}` ([anon_unions::Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier__Self_StructExpression_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression])"]
+    #[doc = "Get the field `function` which has kind `{_literal | array_expression | assignment_expression | async_block | await_expression | binary_expression | block | break_expression | call_expression | closure_expression | compound_assignment_expr | const_block | continue_expression | field_expression | for_expression | generic_function | identifier | if_expression | index_expression | loop_expression | macro_invocation | match_expression | metavariable | parenthesized_expression | reference_expression | return_expression | scoped_identifier | self | struct_expression | try_block | try_expression | tuple_expression | type_cast_expression | unary_expression | unit_expression | unsafe_block | while_expression | yield_expression}` ([anon_unions::Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier__Self_StructExpression_TryBlock_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression])"]
     #[allow(dead_code)]
-    #[inline]    pub fn function (& self) -> type_sitter_lib :: NodeResult < 'tree , anon_unions :: Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier__Self_StructExpression_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression < 'tree > >{
-        self . 0 . child_by_field_name ("function") . map (< anon_unions :: Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier__Self_StructExpression_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
+    #[inline]    pub fn function (& self) -> type_sitter_lib :: NodeResult < 'tree , anon_unions :: Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier__Self_StructExpression_TryBlock_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression < 'tree > >{
+        self . 0 . child_by_field_name ("function") . map (< anon_unions :: Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier__Self_StructExpression_TryBlock_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
 }
 #[automatically_derived]
@@ -3156,17 +3229,17 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for CapturedPattern<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `closure_expression`\n\nThis node has these fields:\n- `body`: `_expression` ([Expression])\n- `parameters`: `closure_parameters` ([ClosureParameters])\n- `return_type`: `_type?` ([Type])\n"]
+#[doc = "Typed node `closure_expression`\n\nThis node has these fields:\n- `body`: `{_ | _expression}` ([anon_unions::___Expression])\n- `parameters`: `closure_parameters` ([ClosureParameters])\n- `return_type`: `_type?` ([Type])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct ClosureExpression<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ClosureExpression<'tree> {
-    #[doc = "Get the field `body` which has kind `_expression` ([Expression])"]
+    #[doc = "Get the field `body` which has kind `{_ | _expression}` ([anon_unions::___Expression])"]
     #[allow(dead_code)]
     #[inline]
-    pub fn body(&self) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
-        self . 0 . child_by_field_name ("body") . map (< Expression < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
+    pub fn body(&self) -> type_sitter_lib::NodeResult<'tree, anon_unions::___Expression<'tree>> {
+        self . 0 . child_by_field_name ("body") . map (< anon_unions :: ___Expression < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
     #[doc = "Get the field `parameters` which has kind `closure_parameters` ([ClosureParameters])"]
     #[allow(dead_code)]
@@ -3275,6 +3348,68 @@ impl<'tree> TryFrom<yak_sitter::Node<'tree>> for ClosureParameters<'tree> {
 #[automatically_derived]
 impl<'tree> type_sitter_lib::TypedNode<'tree> for ClosureParameters<'tree> {
     const KIND: &'static str = "closure_parameters";
+    #[inline]
+    fn node(&self) -> &yak_sitter::Node<'tree> {
+        &self.0
+    }
+    #[inline]
+    fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
+        &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> yak_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
+        Self(node)
+    }
+}
+#[doc = "Typed node `closure_pattern`\n\nThis node has these fields:\n- `body`: `{_ | _expression}` ([anon_unions::___Expression])\n- `parameters`: `closure_parameters` ([ClosureParameters])\n- `return_type`: `_type?` ([Type])\n"]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+pub struct ClosurePattern<'tree>(yak_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> ClosurePattern<'tree> {
+    #[doc = "Get the field `body` which has kind `{_ | _expression}` ([anon_unions::___Expression])"]
+    #[allow(dead_code)]
+    #[inline]
+    pub fn body(&self) -> type_sitter_lib::NodeResult<'tree, anon_unions::___Expression<'tree>> {
+        self . 0 . child_by_field_name ("body") . map (< anon_unions :: ___Expression < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
+    }
+    #[doc = "Get the field `parameters` which has kind `closure_parameters` ([ClosureParameters])"]
+    #[allow(dead_code)]
+    #[inline]
+    pub fn parameters(&self) -> type_sitter_lib::NodeResult<'tree, ClosureParameters<'tree>> {
+        self . 0 . child_by_field_name ("parameters") . map (< ClosureParameters < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
+    }
+    #[doc = "Get the field `return_type` which has kind `_type?` ([Type])"]
+    #[allow(dead_code)]
+    #[inline]
+    pub fn return_type(&self) -> Option<type_sitter_lib::NodeResult<'tree, Type<'tree>>> {
+        self.0
+            .child_by_field_name("return_type")
+            .map(<Type<'tree> as TryFrom<_>>::try_from)
+    }
+}
+#[automatically_derived]
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for ClosurePattern<'tree> {
+    type Error = type_sitter_lib::IncorrectKind<'tree>;
+    #[inline]
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        if node.kind() == "closure_pattern" {
+            Ok(Self(node))
+        } else {
+            Err(type_sitter_lib::IncorrectKind {
+                node,
+                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+            })
+        }
+    }
+}
+#[automatically_derived]
+impl<'tree> type_sitter_lib::TypedNode<'tree> for ClosurePattern<'tree> {
+    const KIND: &'static str = "closure_pattern";
     #[inline]
     fn node(&self) -> &yak_sitter::Node<'tree> {
         &self.0
@@ -3622,7 +3757,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ConstrainedTypeParameter<'tree
         Self(node)
     }
 }
-#[doc = "Typed node `continue_expression`\n\nThis node has an (optional) child: `loop_label?` ([LoopLabel])\n"]
+#[doc = "Typed node `continue_expression`\n\nThis node has an (optional) child: `label?` ([Label])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct ContinueExpression<'tree>(yak_sitter::Node<'tree>);
@@ -3631,10 +3766,10 @@ impl<'tree> ContinueExpression<'tree> {
     #[doc = "Get the node's only named child"]
     #[allow(dead_code)]
     #[inline]
-    pub fn child(&self) -> Option<type_sitter_lib::NodeResult<'tree, LoopLabel<'tree>>> {
+    pub fn child(&self) -> Option<type_sitter_lib::NodeResult<'tree, Label<'tree>>> {
         self.0
             .named_child(0)
-            .map(<LoopLabel<'tree> as TryFrom<_>>::try_from)
+            .map(<Label<'tree> as TryFrom<_>>::try_from)
     }
 }
 #[automatically_derived]
@@ -3731,6 +3866,64 @@ impl<'tree> TryFrom<yak_sitter::Node<'tree>> for DeclarationList<'tree> {
 #[automatically_derived]
 impl<'tree> type_sitter_lib::TypedNode<'tree> for DeclarationList<'tree> {
     const KIND: &'static str = "declaration_list";
+    #[inline]
+    fn node(&self) -> &yak_sitter::Node<'tree> {
+        &self.0
+    }
+    #[inline]
+    fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
+        &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> yak_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
+        Self(node)
+    }
+}
+#[doc = "Typed node `doc_comment`\n\nThis node has these fields:\n- `inner`: `inner_doc_comment?` ([InnerDocComment])\n- `outer`: `outer_doc_comment?` ([OuterDocComment])\n"]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+pub struct DocComment<'tree>(yak_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> DocComment<'tree> {
+    #[doc = "Get the field `inner` which has kind `inner_doc_comment?` ([InnerDocComment])"]
+    #[allow(dead_code)]
+    #[inline]
+    pub fn inner(&self) -> Option<type_sitter_lib::NodeResult<'tree, InnerDocComment<'tree>>> {
+        self.0
+            .child_by_field_name("inner")
+            .map(<InnerDocComment<'tree> as TryFrom<_>>::try_from)
+    }
+    #[doc = "Get the field `outer` which has kind `outer_doc_comment?` ([OuterDocComment])"]
+    #[allow(dead_code)]
+    #[inline]
+    pub fn outer(&self) -> Option<type_sitter_lib::NodeResult<'tree, OuterDocComment<'tree>>> {
+        self.0
+            .child_by_field_name("outer")
+            .map(<OuterDocComment<'tree> as TryFrom<_>>::try_from)
+    }
+}
+#[automatically_derived]
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for DocComment<'tree> {
+    type Error = type_sitter_lib::IncorrectKind<'tree>;
+    #[inline]
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        if node.kind() == "doc_comment" {
+            Ok(Self(node))
+        } else {
+            Err(type_sitter_lib::IncorrectKind {
+                node,
+                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+            })
+        }
+    }
+}
+#[automatically_derived]
+impl<'tree> type_sitter_lib::TypedNode<'tree> for DocComment<'tree> {
+    const KIND: &'static str = "doc_comment";
     #[inline]
     fn node(&self) -> &yak_sitter::Node<'tree> {
         &self.0
@@ -4877,7 +5070,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for FieldPattern<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `for_expression`\n\nThis node has these fields:\n- `body`: `block` ([Block])\n- `pattern`: `_pattern` ([Pattern])\n- `value`: `_expression` ([Expression])\n\nAnd an additional (optional) child: `loop_label?` ([LoopLabel])\n"]
+#[doc = "Typed node `for_expression`\n\nThis node has these fields:\n- `body`: `block` ([Block])\n- `pattern`: `_pattern` ([Pattern])\n- `value`: `_expression` ([Expression])\n\nAnd an additional (optional) child: `label?` ([Label])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct ForExpression<'tree>(yak_sitter::Node<'tree>);
@@ -4911,10 +5104,10 @@ impl<'tree> ForExpression<'tree> {
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::LoopLabel_Block_Pattern_Expression<'tree>>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::Label_Block_Pattern_Expression<'tree>>,
         >,
     > + 'a {
-        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: LoopLabel_Block_Pattern_Expression < 'tree > > as TryFrom < _ >> :: try_from (n))
+        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Label_Block_Pattern_Expression < 'tree > > as TryFrom < _ >> :: try_from (n))
     }
     #[doc = "Get the node's named child #i"]
     #[allow(dead_code)]
@@ -4925,10 +5118,10 @@ impl<'tree> ForExpression<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::LoopLabel_Block_Pattern_Expression<'tree>>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::Label_Block_Pattern_Expression<'tree>>,
         >,
     > {
-        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: LoopLabel_Block_Pattern_Expression < 'tree > > as TryFrom < _ >> :: try_from)
+        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Label_Block_Pattern_Expression < 'tree > > as TryFrom < _ >> :: try_from)
     }
 }
 #[automatically_derived]
@@ -5555,22 +5748,22 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for GenericFunction<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `generic_type`\n\nThis node has these fields:\n- `type`: `{scoped_identifier | scoped_type_identifier | type_identifier}` ([anon_unions::ScopedIdentifier_ScopedTypeIdentifier_TypeIdentifier])\n- `type_arguments`: `type_arguments` ([TypeArguments])\n"]
+#[doc = "Typed node `generic_type`\n\nThis node has these fields:\n- `type`: `{identifier | scoped_identifier | scoped_type_identifier | type_identifier}` ([anon_unions::Identifier_ScopedIdentifier_ScopedTypeIdentifier_TypeIdentifier])\n- `type_arguments`: `type_arguments` ([TypeArguments])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct GenericType<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> GenericType<'tree> {
-    #[doc = "Get the field `type` which has kind `{scoped_identifier | scoped_type_identifier | type_identifier}` ([anon_unions::ScopedIdentifier_ScopedTypeIdentifier_TypeIdentifier])"]
+    #[doc = "Get the field `type` which has kind `{identifier | scoped_identifier | scoped_type_identifier | type_identifier}` ([anon_unions::Identifier_ScopedIdentifier_ScopedTypeIdentifier_TypeIdentifier])"]
     #[allow(dead_code)]
     #[inline]
     pub fn r#type(
         &self,
     ) -> type_sitter_lib::NodeResult<
         'tree,
-        anon_unions::ScopedIdentifier_ScopedTypeIdentifier_TypeIdentifier<'tree>,
+        anon_unions::Identifier_ScopedIdentifier_ScopedTypeIdentifier_TypeIdentifier<'tree>,
     > {
-        self . 0 . child_by_field_name ("type") . map (< anon_unions :: ScopedIdentifier_ScopedTypeIdentifier_TypeIdentifier < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
+        self . 0 . child_by_field_name ("type") . map (< anon_unions :: Identifier_ScopedIdentifier_ScopedTypeIdentifier_TypeIdentifier < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
     #[doc = "Get the field `type_arguments` which has kind `type_arguments` ([TypeArguments])"]
     #[allow(dead_code)]
@@ -6000,6 +6193,54 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for InnerAttributeItem<'tree> {
         Self(node)
     }
 }
+#[doc = "Typed node `label`\n\nThis node has a child: `identifier` ([Identifier])\n"]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+pub struct Label<'tree>(yak_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> Label<'tree> {
+    #[doc = "Get the node's only named child"]
+    #[allow(dead_code)]
+    #[inline]
+    pub fn child(&self) -> type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
+        self . 0 . named_child (0) . map (< Identifier < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
+    }
+}
+#[automatically_derived]
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Label<'tree> {
+    type Error = type_sitter_lib::IncorrectKind<'tree>;
+    #[inline]
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        if node.kind() == "label" {
+            Ok(Self(node))
+        } else {
+            Err(type_sitter_lib::IncorrectKind {
+                node,
+                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+            })
+        }
+    }
+}
+#[automatically_derived]
+impl<'tree> type_sitter_lib::TypedNode<'tree> for Label<'tree> {
+    const KIND: &'static str = "label";
+    #[inline]
+    fn node(&self) -> &yak_sitter::Node<'tree> {
+        &self.0
+    }
+    #[inline]
+    fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
+        &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> yak_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
+        Self(node)
+    }
+}
 #[doc = "Typed node `let_chain`\n\nThis node has children: `{_expression | let_condition}+`:\n- [Expression]\n- [LetCondition]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
@@ -6290,7 +6531,57 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Lifetime<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `loop_expression`\n\nThis node has these fields:\n- `body`: `block` ([Block])\n\nAnd an additional (optional) child: `loop_label?` ([LoopLabel])\n"]
+#[doc = "Typed node `line_comment`\n\nThis node has these fields:\n- `doc`: `doc_comment?` ([DocComment])\n"]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+pub struct LineComment<'tree>(yak_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> LineComment<'tree> {
+    #[doc = "Get the field `doc` which has kind `doc_comment?` ([DocComment])"]
+    #[allow(dead_code)]
+    #[inline]
+    pub fn doc(&self) -> Option<type_sitter_lib::NodeResult<'tree, DocComment<'tree>>> {
+        self.0
+            .child_by_field_name("doc")
+            .map(<DocComment<'tree> as TryFrom<_>>::try_from)
+    }
+}
+#[automatically_derived]
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for LineComment<'tree> {
+    type Error = type_sitter_lib::IncorrectKind<'tree>;
+    #[inline]
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        if node.kind() == "line_comment" {
+            Ok(Self(node))
+        } else {
+            Err(type_sitter_lib::IncorrectKind {
+                node,
+                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+            })
+        }
+    }
+}
+#[automatically_derived]
+impl<'tree> type_sitter_lib::TypedNode<'tree> for LineComment<'tree> {
+    const KIND: &'static str = "line_comment";
+    #[inline]
+    fn node(&self) -> &yak_sitter::Node<'tree> {
+        &self.0
+    }
+    #[inline]
+    fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
+        &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> yak_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
+        Self(node)
+    }
+}
+#[doc = "Typed node `loop_expression`\n\nThis node has these fields:\n- `body`: `block` ([Block])\n\nAnd an additional (optional) child: `label?` ([Label])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct LoopExpression<'tree>(yak_sitter::Node<'tree>);
@@ -6312,10 +6603,10 @@ impl<'tree> LoopExpression<'tree> {
     ) -> impl ExactSizeIterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::LoopLabel_Block<'tree>>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::Label_Block<'tree>>,
         >,
     > + 'a {
-        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: LoopLabel_Block < 'tree > > as TryFrom < _ >> :: try_from (n))
+        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Label_Block < 'tree > > as TryFrom < _ >> :: try_from (n))
     }
     #[doc = "Get the node's named child #i"]
     #[allow(dead_code)]
@@ -6326,10 +6617,10 @@ impl<'tree> LoopExpression<'tree> {
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            type_sitter_lib::ExtraOr<'tree, anon_unions::LoopLabel_Block<'tree>>,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::Label_Block<'tree>>,
         >,
     > {
-        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: LoopLabel_Block < 'tree > > as TryFrom < _ >> :: try_from)
+        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Label_Block < 'tree > > as TryFrom < _ >> :: try_from)
     }
 }
 #[automatically_derived]
@@ -6350,54 +6641,6 @@ impl<'tree> TryFrom<yak_sitter::Node<'tree>> for LoopExpression<'tree> {
 #[automatically_derived]
 impl<'tree> type_sitter_lib::TypedNode<'tree> for LoopExpression<'tree> {
     const KIND: &'static str = "loop_expression";
-    #[inline]
-    fn node(&self) -> &yak_sitter::Node<'tree> {
-        &self.0
-    }
-    #[inline]
-    fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
-        &mut self.0
-    }
-    #[inline]
-    fn into_node(self) -> yak_sitter::Node<'tree> {
-        self.0
-    }
-    #[inline]
-    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
-        Self(node)
-    }
-}
-#[doc = "Typed node `loop_label`\n\nThis node has a child: `identifier` ([Identifier])\n"]
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-#[allow(non_camel_case_types)]
-pub struct LoopLabel<'tree>(yak_sitter::Node<'tree>);
-#[automatically_derived]
-impl<'tree> LoopLabel<'tree> {
-    #[doc = "Get the node's only named child"]
-    #[allow(dead_code)]
-    #[inline]
-    pub fn child(&self) -> type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
-        self . 0 . named_child (0) . map (< Identifier < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
-    }
-}
-#[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>> for LoopLabel<'tree> {
-    type Error = type_sitter_lib::IncorrectKind<'tree>;
-    #[inline]
-    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
-        if node.kind() == "loop_label" {
-            Ok(Self(node))
-        } else {
-            Err(type_sitter_lib::IncorrectKind {
-                node,
-                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-            })
-        }
-    }
-}
-#[automatically_derived]
-impl<'tree> type_sitter_lib::TypedNode<'tree> for LoopLabel<'tree> {
-    const KIND: &'static str = "loop_label";
     #[inline]
     fn node(&self) -> &yak_sitter::Node<'tree> {
         &self.0
@@ -6865,7 +7108,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for MatchExpression<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `match_pattern`\n\nThis node has these fields:\n- `condition`: `{_expression | let_chain | let_condition}?` ([anon_unions::Expression_LetChain_LetCondition])\n\nAnd an additional child: `_pattern` ([Pattern])\n"]
+#[doc = "Typed node `match_pattern`\n\nThis node has these fields:\n- `condition`: `{_expression | let_chain | let_condition}?` ([anon_unions::Expression_LetChain_LetCondition])\n\nAnd an additional child: `{_pattern | closure_pattern}`:\n- [Pattern]\n- [ClosurePattern]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct MatchPattern<'tree>(yak_sitter::Node<'tree>);
@@ -6895,14 +7138,14 @@ impl<'tree> MatchPattern<'tree> {
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::Pattern_Expression_LetChain_LetCondition<'tree>,
+                anon_unions::Pattern_ClosurePattern_Expression_LetChain_LetCondition<'tree>,
             >,
         >,
     > + 'a {
         self.0.named_children(c).map(|n| {
             <type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::Pattern_Expression_LetChain_LetCondition<'tree>,
+                anon_unions::Pattern_ClosurePattern_Expression_LetChain_LetCondition<'tree>,
             > as TryFrom<_>>::try_from(n)
         })
     }
@@ -6917,14 +7160,14 @@ impl<'tree> MatchPattern<'tree> {
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::Pattern_Expression_LetChain_LetCondition<'tree>,
+                anon_unions::Pattern_ClosurePattern_Expression_LetChain_LetCondition<'tree>,
             >,
         >,
     > {
         self.0.named_child(i).map(
             <type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::Pattern_Expression_LetChain_LetCondition<'tree>,
+                anon_unions::Pattern_ClosurePattern_Expression_LetChain_LetCondition<'tree>,
             > as TryFrom<_>>::try_from,
         )
     }
@@ -8307,17 +8550,17 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for ReturnExpression<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `scoped_identifier`\n\nThis node has these fields:\n- `name`: `identifier` ([Identifier])\n- `path`: `{bracketed_type | crate | generic_type | identifier | metavariable | scoped_identifier | self | super}?` ([anon_unions::BracketedType_Crate_GenericType_Identifier_Metavariable_ScopedIdentifier__Self_Super])\n"]
+#[doc = "Typed node `scoped_identifier`\n\nThis node has these fields:\n- `name`: `{identifier | super}` ([anon_unions::Identifier_Super])\n- `path`: `{bracketed_type | crate | generic_type | identifier | metavariable | scoped_identifier | self | super}?` ([anon_unions::BracketedType_Crate_GenericType_Identifier_Metavariable_ScopedIdentifier__Self_Super])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct ScopedIdentifier<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ScopedIdentifier<'tree> {
-    #[doc = "Get the field `name` which has kind `identifier` ([Identifier])"]
+    #[doc = "Get the field `name` which has kind `{identifier | super}` ([anon_unions::Identifier_Super])"]
     #[allow(dead_code)]
     #[inline]
-    pub fn name(&self) -> type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
-        self . 0 . child_by_field_name ("name") . map (< Identifier < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
+    pub fn name(&self) -> type_sitter_lib::NodeResult<'tree, anon_unions::Identifier_Super<'tree>> {
+        self . 0 . child_by_field_name ("name") . map (< anon_unions :: Identifier_Super < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
     }
     #[doc = "Get the field `path` which has kind `{bracketed_type | crate | generic_type | identifier | metavariable | scoped_identifier | self | super}?` ([anon_unions::BracketedType_Crate_GenericType_Identifier_Metavariable_ScopedIdentifier__Self_Super])"]
     #[allow(dead_code)]
@@ -8683,7 +8926,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for SlicePattern<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `source_file`\n\nThis node has children: `{_declaration_statement | expression_statement}*`:\n- [DeclarationStatement]\n- [ExpressionStatement]\n\n"]
+#[doc = "Typed node `source_file`\n\nThis node has children: `{_declaration_statement | expression_statement | shebang}*`:\n- [DeclarationStatement]\n- [ExpressionStatement]\n- [Shebang]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct SourceFile<'tree>(yak_sitter::Node<'tree>);
@@ -8700,14 +8943,14 @@ impl<'tree> SourceFile<'tree> {
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::DeclarationStatement_ExpressionStatement<'tree>,
+                anon_unions::DeclarationStatement_ExpressionStatement_Shebang<'tree>,
             >,
         >,
     > + 'a {
         self.0.named_children(c).map(|n| {
             <type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::DeclarationStatement_ExpressionStatement<'tree>,
+                anon_unions::DeclarationStatement_ExpressionStatement_Shebang<'tree>,
             > as TryFrom<_>>::try_from(n)
         })
     }
@@ -8722,14 +8965,14 @@ impl<'tree> SourceFile<'tree> {
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::DeclarationStatement_ExpressionStatement<'tree>,
+                anon_unions::DeclarationStatement_ExpressionStatement_Shebang<'tree>,
             >,
         >,
     > {
         self.0.named_child(i).map(
             <type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::DeclarationStatement_ExpressionStatement<'tree>,
+                anon_unions::DeclarationStatement_ExpressionStatement_Shebang<'tree>,
             > as TryFrom<_>>::try_from,
         )
     }
@@ -9624,6 +9867,54 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TraitItem<'tree> {
         Self(node)
     }
 }
+#[doc = "Typed node `try_block`\n\nThis node has a child: `block` ([Block])\n"]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+pub struct TryBlock<'tree>(yak_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> TryBlock<'tree> {
+    #[doc = "Get the node's only named child"]
+    #[allow(dead_code)]
+    #[inline]
+    pub fn child(&self) -> type_sitter_lib::NodeResult<'tree, Block<'tree>> {
+        self . 0 . named_child (0) . map (< Block < 'tree > as TryFrom < _ >> :: try_from) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
+    }
+}
+#[automatically_derived]
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for TryBlock<'tree> {
+    type Error = type_sitter_lib::IncorrectKind<'tree>;
+    #[inline]
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        if node.kind() == "try_block" {
+            Ok(Self(node))
+        } else {
+            Err(type_sitter_lib::IncorrectKind {
+                node,
+                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+            })
+        }
+    }
+}
+#[automatically_derived]
+impl<'tree> type_sitter_lib::TypedNode<'tree> for TryBlock<'tree> {
+    const KIND: &'static str = "try_block";
+    #[inline]
+    fn node(&self) -> &yak_sitter::Node<'tree> {
+        &self.0
+    }
+    #[inline]
+    fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
+        &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> yak_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
+        Self(node)
+    }
+}
 #[doc = "Typed node `try_expression`\n\nThis node has a child: `_expression` ([Expression])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
@@ -9743,7 +10034,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TupleExpression<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `tuple_pattern`\n\nThis node has children: `_pattern*` ([Pattern])\n"]
+#[doc = "Typed node `tuple_pattern`\n\nThis node has children: `{_pattern | closure_expression}*`:\n- [Pattern]\n- [ClosureExpression]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct TuplePattern<'tree>(yak_sitter::Node<'tree>);
@@ -9756,11 +10047,12 @@ impl<'tree> TuplePattern<'tree> {
         &self,
         c: &'a mut yak_sitter::TreeCursor<'tree>,
     ) -> impl ExactSizeIterator<
-        Item = type_sitter_lib::NodeResult<'tree, type_sitter_lib::ExtraOr<'tree, Pattern<'tree>>>,
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::Pattern_ClosureExpression<'tree>>,
+        >,
     > + 'a {
-        self.0
-            .named_children(c)
-            .map(|n| <type_sitter_lib::ExtraOr<'tree, Pattern<'tree>> as TryFrom<_>>::try_from(n))
+        self . 0 . named_children (c) . map (| n | < type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Pattern_ClosureExpression < 'tree > > as TryFrom < _ >> :: try_from (n))
     }
     #[doc = "Get the node's named child #i"]
     #[allow(dead_code)]
@@ -9768,11 +10060,13 @@ impl<'tree> TuplePattern<'tree> {
     pub fn child(
         &self,
         i: usize,
-    ) -> Option<type_sitter_lib::NodeResult<'tree, type_sitter_lib::ExtraOr<'tree, Pattern<'tree>>>>
-    {
-        self.0
-            .named_child(i)
-            .map(<type_sitter_lib::ExtraOr<'tree, Pattern<'tree>> as TryFrom<_>>::try_from)
+    ) -> Option<
+        type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<'tree, anon_unions::Pattern_ClosureExpression<'tree>>,
+        >,
+    > {
+        self . 0 . named_child (i) . map (< type_sitter_lib :: ExtraOr < 'tree , anon_unions :: Pattern_ClosureExpression < 'tree > > as TryFrom < _ >> :: try_from)
     }
 }
 #[automatically_derived]
@@ -10173,7 +10467,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for TypeCastExpression<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `type_item`\n\nThis node has these fields:\n- `name`: `type_identifier` ([TypeIdentifier])\n- `type`: `_type` ([Type])\n- `type_parameters`: `type_parameters?` ([TypeParameters])\n\nAnd an additional (optional) child: `visibility_modifier?` ([VisibilityModifier])\n"]
+#[doc = "Typed node `type_item`\n\nThis node has these fields:\n- `name`: `type_identifier` ([TypeIdentifier])\n- `type`: `_type` ([Type])\n- `type_parameters`: `type_parameters?` ([TypeParameters])\n\nAnd additional children: `{visibility_modifier | where_clause}*`:\n- [VisibilityModifier]\n- [WhereClause]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct TypeItem<'tree>(yak_sitter::Node<'tree>);
@@ -10213,14 +10507,18 @@ impl<'tree> TypeItem<'tree> {
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::VisibilityModifier_TypeIdentifier_Type_TypeParameters<'tree>,
+                anon_unions::VisibilityModifier_WhereClause_TypeIdentifier_Type_TypeParameters<
+                    'tree,
+                >,
             >,
         >,
     > + 'a {
         self.0.named_children(c).map(|n| {
             <type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::VisibilityModifier_TypeIdentifier_Type_TypeParameters<'tree>,
+                anon_unions::VisibilityModifier_WhereClause_TypeIdentifier_Type_TypeParameters<
+                    'tree,
+                >,
             > as TryFrom<_>>::try_from(n)
         })
     }
@@ -10235,14 +10533,18 @@ impl<'tree> TypeItem<'tree> {
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::VisibilityModifier_TypeIdentifier_Type_TypeParameters<'tree>,
+                anon_unions::VisibilityModifier_WhereClause_TypeIdentifier_Type_TypeParameters<
+                    'tree,
+                >,
             >,
         >,
     > {
         self.0.named_child(i).map(
             <type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::VisibilityModifier_TypeIdentifier_Type_TypeParameters<'tree>,
+                anon_unions::VisibilityModifier_WhereClause_TypeIdentifier_Type_TypeParameters<
+                    'tree,
+                >,
             > as TryFrom<_>>::try_from,
         )
     }
@@ -11033,7 +11335,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for WherePredicate<'tree> {
         Self(node)
     }
 }
-#[doc = "Typed node `while_expression`\n\nThis node has these fields:\n- `body`: `block` ([Block])\n- `condition`: `{_expression | let_chain | let_condition}` ([anon_unions::Expression_LetChain_LetCondition])\n\nAnd an additional (optional) child: `loop_label?` ([LoopLabel])\n"]
+#[doc = "Typed node `while_expression`\n\nThis node has these fields:\n- `body`: `block` ([Block])\n- `condition`: `{_expression | let_chain | let_condition}` ([anon_unions::Expression_LetChain_LetCondition])\n\nAnd an additional (optional) child: `label?` ([Label])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct WhileExpression<'tree>(yak_sitter::Node<'tree>);
@@ -11066,14 +11368,14 @@ impl<'tree> WhileExpression<'tree> {
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::LoopLabel_Block_Expression_LetChain_LetCondition<'tree>,
+                anon_unions::Label_Block_Expression_LetChain_LetCondition<'tree>,
             >,
         >,
     > + 'a {
         self.0.named_children(c).map(|n| {
             <type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::LoopLabel_Block_Expression_LetChain_LetCondition<'tree>,
+                anon_unions::Label_Block_Expression_LetChain_LetCondition<'tree>,
             > as TryFrom<_>>::try_from(n)
         })
     }
@@ -11088,14 +11390,14 @@ impl<'tree> WhileExpression<'tree> {
             'tree,
             type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::LoopLabel_Block_Expression_LetChain_LetCondition<'tree>,
+                anon_unions::Label_Block_Expression_LetChain_LetCondition<'tree>,
             >,
         >,
     > {
         self.0.named_child(i).map(
             <type_sitter_lib::ExtraOr<
                 'tree,
-                anon_unions::LoopLabel_Block_Expression_LetChain_LetCondition<'tree>,
+                anon_unions::Label_Block_Expression_LetChain_LetCondition<'tree>,
             > as TryFrom<_>>::try_from,
         )
     }
@@ -11168,47 +11470,6 @@ impl<'tree> TryFrom<yak_sitter::Node<'tree>> for YieldExpression<'tree> {
 #[automatically_derived]
 impl<'tree> type_sitter_lib::TypedNode<'tree> for YieldExpression<'tree> {
     const KIND: &'static str = "yield_expression";
-    #[inline]
-    fn node(&self) -> &yak_sitter::Node<'tree> {
-        &self.0
-    }
-    #[inline]
-    fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
-        &mut self.0
-    }
-    #[inline]
-    fn into_node(self) -> yak_sitter::Node<'tree> {
-        self.0
-    }
-    #[inline]
-    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
-        Self(node)
-    }
-}
-#[doc = "Typed node `block_comment`\n\nThis node has no children\n"]
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-#[allow(non_camel_case_types)]
-pub struct BlockComment<'tree>(yak_sitter::Node<'tree>);
-#[automatically_derived]
-impl<'tree> BlockComment<'tree> {}
-#[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>> for BlockComment<'tree> {
-    type Error = type_sitter_lib::IncorrectKind<'tree>;
-    #[inline]
-    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
-        if node.kind() == "block_comment" {
-            Ok(Self(node))
-        } else {
-            Err(type_sitter_lib::IncorrectKind {
-                node,
-                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-            })
-        }
-    }
-}
-#[automatically_derived]
-impl<'tree> type_sitter_lib::TypedNode<'tree> for BlockComment<'tree> {
-    const KIND: &'static str = "block_comment";
     #[inline]
     fn node(&self) -> &yak_sitter::Node<'tree> {
         &self.0
@@ -11472,6 +11733,47 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Identifier<'tree> {
         Self(node)
     }
 }
+#[doc = "Typed node `inner_doc_comment`\n\nThis node has no children\n"]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+pub struct InnerDocComment<'tree>(yak_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> InnerDocComment<'tree> {}
+#[automatically_derived]
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for InnerDocComment<'tree> {
+    type Error = type_sitter_lib::IncorrectKind<'tree>;
+    #[inline]
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        if node.kind() == "inner_doc_comment" {
+            Ok(Self(node))
+        } else {
+            Err(type_sitter_lib::IncorrectKind {
+                node,
+                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+            })
+        }
+    }
+}
+#[automatically_derived]
+impl<'tree> type_sitter_lib::TypedNode<'tree> for InnerDocComment<'tree> {
+    const KIND: &'static str = "inner_doc_comment";
+    #[inline]
+    fn node(&self) -> &yak_sitter::Node<'tree> {
+        &self.0
+    }
+    #[inline]
+    fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
+        &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> yak_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
+        Self(node)
+    }
+}
 #[doc = "Typed node `integer_literal`\n\nThis node has no children\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
@@ -11496,47 +11798,6 @@ impl<'tree> TryFrom<yak_sitter::Node<'tree>> for IntegerLiteral<'tree> {
 #[automatically_derived]
 impl<'tree> type_sitter_lib::TypedNode<'tree> for IntegerLiteral<'tree> {
     const KIND: &'static str = "integer_literal";
-    #[inline]
-    fn node(&self) -> &yak_sitter::Node<'tree> {
-        &self.0
-    }
-    #[inline]
-    fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
-        &mut self.0
-    }
-    #[inline]
-    fn into_node(self) -> yak_sitter::Node<'tree> {
-        self.0
-    }
-    #[inline]
-    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
-        Self(node)
-    }
-}
-#[doc = "Typed node `line_comment`\n\nThis node has no children\n"]
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-#[allow(non_camel_case_types)]
-pub struct LineComment<'tree>(yak_sitter::Node<'tree>);
-#[automatically_derived]
-impl<'tree> LineComment<'tree> {}
-#[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>> for LineComment<'tree> {
-    type Error = type_sitter_lib::IncorrectKind<'tree>;
-    #[inline]
-    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
-        if node.kind() == "line_comment" {
-            Ok(Self(node))
-        } else {
-            Err(type_sitter_lib::IncorrectKind {
-                node,
-                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-            })
-        }
-    }
-}
-#[automatically_derived]
-impl<'tree> type_sitter_lib::TypedNode<'tree> for LineComment<'tree> {
-    const KIND: &'static str = "line_comment";
     #[inline]
     fn node(&self) -> &yak_sitter::Node<'tree> {
         &self.0
@@ -11619,6 +11880,47 @@ impl<'tree> TryFrom<yak_sitter::Node<'tree>> for MutableSpecifier<'tree> {
 #[automatically_derived]
 impl<'tree> type_sitter_lib::TypedNode<'tree> for MutableSpecifier<'tree> {
     const KIND: &'static str = "mutable_specifier";
+    #[inline]
+    fn node(&self) -> &yak_sitter::Node<'tree> {
+        &self.0
+    }
+    #[inline]
+    fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
+        &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> yak_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
+        Self(node)
+    }
+}
+#[doc = "Typed node `outer_doc_comment`\n\nThis node has no children\n"]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+pub struct OuterDocComment<'tree>(yak_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> OuterDocComment<'tree> {}
+#[automatically_derived]
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for OuterDocComment<'tree> {
+    type Error = type_sitter_lib::IncorrectKind<'tree>;
+    #[inline]
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        if node.kind() == "outer_doc_comment" {
+            Ok(Self(node))
+        } else {
+            Err(type_sitter_lib::IncorrectKind {
+                node,
+                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+            })
+        }
+    }
+}
+#[automatically_derived]
+impl<'tree> type_sitter_lib::TypedNode<'tree> for OuterDocComment<'tree> {
+    const KIND: &'static str = "outer_doc_comment";
     #[inline]
     fn node(&self) -> &yak_sitter::Node<'tree> {
         &self.0
@@ -11742,6 +12044,47 @@ impl<'tree> TryFrom<yak_sitter::Node<'tree>> for _Self<'tree> {
 #[automatically_derived]
 impl<'tree> type_sitter_lib::TypedNode<'tree> for _Self<'tree> {
     const KIND: &'static str = "self";
+    #[inline]
+    fn node(&self) -> &yak_sitter::Node<'tree> {
+        &self.0
+    }
+    #[inline]
+    fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
+        &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> yak_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
+        Self(node)
+    }
+}
+#[doc = "Typed node `shebang`\n\nThis node has no children\n"]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+pub struct Shebang<'tree>(yak_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> Shebang<'tree> {}
+#[automatically_derived]
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Shebang<'tree> {
+    type Error = type_sitter_lib::IncorrectKind<'tree>;
+    #[inline]
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        if node.kind() == "shebang" {
+            Ok(Self(node))
+        } else {
+            Err(type_sitter_lib::IncorrectKind {
+                node,
+                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+            })
+        }
+    }
+}
+#[automatically_derived]
+impl<'tree> type_sitter_lib::TypedNode<'tree> for Shebang<'tree> {
+    const KIND: &'static str = "shebang";
     #[inline]
     fn node(&self) -> &yak_sitter::Node<'tree> {
         &self.0
@@ -13484,6 +13827,47 @@ pub mod unnamed {
             Self(node)
         }
     }
+    #[doc = "Typed node `try`\n\nThis node has no children\n"]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub struct Try<'tree>(yak_sitter::Node<'tree>);
+    #[automatically_derived]
+    impl<'tree> Try<'tree> {}
+    #[automatically_derived]
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Try<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+            if node.kind() == "try" {
+                Ok(Self(node))
+            } else {
+                Err(type_sitter_lib::IncorrectKind {
+                    node,
+                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                })
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for Try<'tree> {
+        const KIND: &'static str = "try";
+        #[inline]
+        fn node(&self) -> &yak_sitter::Node<'tree> {
+            &self.0
+        }
+        #[inline]
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
+            &mut self.0
+        }
+        #[inline]
+        fn into_node(self) -> yak_sitter::Node<'tree> {
+            self.0
+        }
+        #[inline]
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
+            Self(node)
+        }
+    }
     #[doc = "Typed node `tt`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
@@ -14472,6 +14856,47 @@ pub mod symbols {
             Self(node)
         }
     }
+    #[doc = "Typed node `*/`\n\nThis node has no children\n"]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub struct MulDiv<'tree>(yak_sitter::Node<'tree>);
+    #[automatically_derived]
+    impl<'tree> MulDiv<'tree> {}
+    #[automatically_derived]
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for MulDiv<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+            if node.kind() == "*/" {
+                Ok(Self(node))
+            } else {
+                Err(type_sitter_lib::IncorrectKind {
+                    node,
+                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                })
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for MulDiv<'tree> {
+        const KIND: &'static str = "*/";
+        #[inline]
+        fn node(&self) -> &yak_sitter::Node<'tree> {
+            &self.0
+        }
+        #[inline]
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
+            &mut self.0
+        }
+        #[inline]
+        fn into_node(self) -> yak_sitter::Node<'tree> {
+            self.0
+        }
+        #[inline]
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
+            Self(node)
+        }
+    }
     #[doc = "Typed node `*=`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
@@ -14947,6 +15372,88 @@ pub mod symbols {
     #[automatically_derived]
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Div<'tree> {
         const KIND: &'static str = "/";
+        #[inline]
+        fn node(&self) -> &yak_sitter::Node<'tree> {
+            &self.0
+        }
+        #[inline]
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
+            &mut self.0
+        }
+        #[inline]
+        fn into_node(self) -> yak_sitter::Node<'tree> {
+            self.0
+        }
+        #[inline]
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
+            Self(node)
+        }
+    }
+    #[doc = "Typed node `/*`\n\nThis node has no children\n"]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub struct DivMul<'tree>(yak_sitter::Node<'tree>);
+    #[automatically_derived]
+    impl<'tree> DivMul<'tree> {}
+    #[automatically_derived]
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for DivMul<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+            if node.kind() == "/*" {
+                Ok(Self(node))
+            } else {
+                Err(type_sitter_lib::IncorrectKind {
+                    node,
+                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                })
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for DivMul<'tree> {
+        const KIND: &'static str = "/*";
+        #[inline]
+        fn node(&self) -> &yak_sitter::Node<'tree> {
+            &self.0
+        }
+        #[inline]
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
+            &mut self.0
+        }
+        #[inline]
+        fn into_node(self) -> yak_sitter::Node<'tree> {
+            self.0
+        }
+        #[inline]
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
+            Self(node)
+        }
+    }
+    #[doc = "Typed node `//`\n\nThis node has no children\n"]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub struct DivDiv<'tree>(yak_sitter::Node<'tree>);
+    #[automatically_derived]
+    impl<'tree> DivDiv<'tree> {}
+    #[automatically_derived]
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for DivDiv<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+            if node.kind() == "//" {
+                Ok(Self(node))
+            } else {
+                Err(type_sitter_lib::IncorrectKind {
+                    node,
+                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                })
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for DivDiv<'tree> {
+        const KIND: &'static str = "//";
         #[inline]
         fn node(&self) -> &yak_sitter::Node<'tree> {
             &self.0
@@ -15702,6 +16209,47 @@ pub mod symbols {
             Self(node)
         }
     }
+    #[doc = "Typed node `\\`\n\nThis node has no children\n"]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub struct Backslash<'tree>(yak_sitter::Node<'tree>);
+    #[automatically_derived]
+    impl<'tree> Backslash<'tree> {}
+    #[automatically_derived]
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Backslash<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+            if node.kind() == "\\" {
+                Ok(Self(node))
+            } else {
+                Err(type_sitter_lib::IncorrectKind {
+                    node,
+                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                })
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for Backslash<'tree> {
+        const KIND: &'static str = "\\";
+        #[inline]
+        fn node(&self) -> &yak_sitter::Node<'tree> {
+            &self.0
+        }
+        #[inline]
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
+            &mut self.0
+        }
+        #[inline]
+        fn into_node(self) -> yak_sitter::Node<'tree> {
+            self.0
+        }
+        #[inline]
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
+            Self(node)
+        }
+    }
     #[doc = "Typed node `]`\n\nThis node has no children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
@@ -16112,10 +16660,179 @@ pub mod symbols {
             Self(node)
         }
     }
+    #[doc = "Typed node `~`\n\nThis node has no children\n"]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub struct BitNot<'tree>(yak_sitter::Node<'tree>);
+    #[automatically_derived]
+    impl<'tree> BitNot<'tree> {}
+    #[automatically_derived]
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for BitNot<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+            if node.kind() == "~" {
+                Ok(Self(node))
+            } else {
+                Err(type_sitter_lib::IncorrectKind {
+                    node,
+                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                })
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for BitNot<'tree> {
+        const KIND: &'static str = "~";
+        #[inline]
+        fn node(&self) -> &yak_sitter::Node<'tree> {
+            &self.0
+        }
+        #[inline]
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
+            &mut self.0
+        }
+        #[inline]
+        fn into_node(self) -> yak_sitter::Node<'tree> {
+            self.0
+        }
+        #[inline]
+        unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
+            Self(node)
+        }
+    }
 }
 pub mod anon_unions {
     #[allow(unused_imports)]
     use super::*;
+    #[doc = "one of `{type_parameters | function_type | generic_type | scoped_type_identifier | type_identifier}`:\n- [TypeParameters]\n- [FunctionType]\n- [GenericType]\n- [ScopedTypeIdentifier]\n- [TypeIdentifier]"]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub enum TypeParameters_FunctionType_GenericType_ScopedTypeIdentifier_TypeIdentifier<'tree> {
+        TypeParameters(TypeParameters<'tree>),
+        FunctionType(FunctionType<'tree>),
+        GenericType(GenericType<'tree>),
+        ScopedTypeIdentifier(ScopedTypeIdentifier<'tree>),
+        TypeIdentifier(TypeIdentifier<'tree>),
+    }
+    #[automatically_derived]
+    impl<'tree> TypeParameters_FunctionType_GenericType_ScopedTypeIdentifier_TypeIdentifier<'tree> {
+        #[doc = "Returns the node if it is of kind `type_parameters` ([TypeParameters]), otherwise returns None"]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn type_parameters(self) -> Option<TypeParameters<'tree>> {
+            match self {
+                Self::TypeParameters(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = "Returns the node if it is of kind `function_type` ([FunctionType]), otherwise returns None"]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn function_type(self) -> Option<FunctionType<'tree>> {
+            match self {
+                Self::FunctionType(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = "Returns the node if it is of kind `generic_type` ([GenericType]), otherwise returns None"]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn generic_type(self) -> Option<GenericType<'tree>> {
+            match self {
+                Self::GenericType(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = "Returns the node if it is of kind `scoped_type_identifier` ([ScopedTypeIdentifier]), otherwise returns None"]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn scoped_type_identifier(self) -> Option<ScopedTypeIdentifier<'tree>> {
+            match self {
+                Self::ScopedTypeIdentifier(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = "Returns the node if it is of kind `type_identifier` ([TypeIdentifier]), otherwise returns None"]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn type_identifier(self) -> Option<TypeIdentifier<'tree>> {
+            match self {
+                Self::TypeIdentifier(x) => Some(x),
+                _ => None,
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
+        for TypeParameters_FunctionType_GenericType_ScopedTypeIdentifier_TypeIdentifier<'tree>
+    {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+            match node.kind() {
+                "type_parameters" => {
+                    Ok(unsafe {
+                        Self :: TypeParameters (< TypeParameters < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node))
+                    })
+                }
+                "function_type" => Ok(unsafe {
+                    Self :: FunctionType (< FunctionType < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node))
+                }),
+                "generic_type" => Ok(unsafe {
+                    Self :: GenericType (< GenericType < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node))
+                }),
+                "scoped_type_identifier" => Ok(unsafe {
+                    Self :: ScopedTypeIdentifier (< ScopedTypeIdentifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node))
+                }),
+                "type_identifier" => {
+                    Ok(unsafe {
+                        Self :: TypeIdentifier (< TypeIdentifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node))
+                    })
+                }
+                _ => Err(type_sitter_lib::IncorrectKind {
+                    node,
+                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                }),
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree>
+        for TypeParameters_FunctionType_GenericType_ScopedTypeIdentifier_TypeIdentifier<'tree>
+    {
+        const KIND : & 'static str = "{type_parameters | function_type | generic_type | scoped_type_identifier | type_identifier}" ;
+        #[inline]
+        fn node(&self) -> &yak_sitter::Node<'tree> {
+            match self {
+                Self::TypeParameters(x) => x.node(),
+                Self::FunctionType(x) => x.node(),
+                Self::GenericType(x) => x.node(),
+                Self::ScopedTypeIdentifier(x) => x.node(),
+                Self::TypeIdentifier(x) => x.node(),
+            }
+        }
+        #[inline]
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
+            match self {
+                Self::TypeParameters(x) => x.node_mut(),
+                Self::FunctionType(x) => x.node_mut(),
+                Self::GenericType(x) => x.node_mut(),
+                Self::ScopedTypeIdentifier(x) => x.node_mut(),
+                Self::TypeIdentifier(x) => x.node_mut(),
+            }
+        }
+        #[inline]
+        fn into_node(self) -> yak_sitter::Node<'tree> {
+            match self {
+                Self::TypeParameters(x) => x.into_node(),
+                Self::FunctionType(x) => x.into_node(),
+                Self::GenericType(x) => x.into_node(),
+                Self::ScopedTypeIdentifier(x) => x.into_node(),
+                Self::TypeIdentifier(x) => x.into_node(),
+            }
+        }
+    }
     #[doc = "one of `{function_type | generic_type | scoped_type_identifier | type_identifier}`:\n- [FunctionType]\n- [GenericType]\n- [ScopedTypeIdentifier]\n- [TypeIdentifier]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
@@ -16826,16 +17543,17 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{_declaration_statement | _expression | expression_statement}`:\n- [DeclarationStatement]\n- [Expression]\n- [ExpressionStatement]"]
+    #[doc = "one of `{_declaration_statement | _expression | expression_statement | label}`:\n- [DeclarationStatement]\n- [Expression]\n- [ExpressionStatement]\n- [Label]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub enum DeclarationStatement_Expression_ExpressionStatement<'tree> {
+    pub enum DeclarationStatement_Expression_ExpressionStatement_Label<'tree> {
         DeclarationStatement(DeclarationStatement<'tree>),
         Expression(Expression<'tree>),
         ExpressionStatement(ExpressionStatement<'tree>),
+        Label(Label<'tree>),
     }
     #[automatically_derived]
-    impl<'tree> DeclarationStatement_Expression_ExpressionStatement<'tree> {
+    impl<'tree> DeclarationStatement_Expression_ExpressionStatement_Label<'tree> {
         #[doc = "Returns the node if it is of kind `_declaration_statement` ([DeclarationStatement]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
@@ -16863,10 +17581,19 @@ pub mod anon_unions {
                 _ => None,
             }
         }
+        #[doc = "Returns the node if it is of kind `label` ([Label]), otherwise returns None"]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn label(self) -> Option<Label<'tree>> {
+            match self {
+                Self::Label(x) => Some(x),
+                _ => None,
+            }
+        }
     }
     #[automatically_derived]
     impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-        for DeclarationStatement_Expression_ExpressionStatement<'tree>
+        for DeclarationStatement_Expression_ExpressionStatement_Label<'tree>
     {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
@@ -16880,6 +17607,9 @@ pub mod anon_unions {
             if let Ok(this) = <ExpressionStatement<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::ExpressionStatement(this));
             }
+            if let Ok(this) = <Label<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Label(this));
+            }
             Err(type_sitter_lib::IncorrectKind {
                 node,
                 kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
@@ -16888,15 +17618,17 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> type_sitter_lib::TypedNode<'tree>
-        for DeclarationStatement_Expression_ExpressionStatement<'tree>
+        for DeclarationStatement_Expression_ExpressionStatement_Label<'tree>
     {
-        const KIND: &'static str = "{_declaration_statement | _expression | expression_statement}";
+        const KIND: &'static str =
+            "{_declaration_statement | _expression | expression_statement | label}";
         #[inline]
         fn node(&self) -> &yak_sitter::Node<'tree> {
             match self {
                 Self::DeclarationStatement(x) => x.node(),
                 Self::Expression(x) => x.node(),
                 Self::ExpressionStatement(x) => x.node(),
+                Self::Label(x) => x.node(),
             }
         }
         #[inline]
@@ -16905,6 +17637,7 @@ pub mod anon_unions {
                 Self::DeclarationStatement(x) => x.node_mut(),
                 Self::Expression(x) => x.node_mut(),
                 Self::ExpressionStatement(x) => x.node_mut(),
+                Self::Label(x) => x.node_mut(),
             }
         }
         #[inline]
@@ -16913,6 +17646,7 @@ pub mod anon_unions {
                 Self::DeclarationStatement(x) => x.into_node(),
                 Self::Expression(x) => x.into_node(),
                 Self::ExpressionStatement(x) => x.into_node(),
+                Self::Label(x) => x.into_node(),
             }
         }
     }
@@ -17056,15 +17790,15 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{_expression | loop_label}`:\n- [Expression]\n- [LoopLabel]"]
+    #[doc = "one of `{_expression | label}`:\n- [Expression]\n- [Label]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub enum Expression_LoopLabel<'tree> {
+    pub enum Expression_Label<'tree> {
         Expression(Expression<'tree>),
-        LoopLabel(LoopLabel<'tree>),
+        Label(Label<'tree>),
     }
     #[automatically_derived]
-    impl<'tree> Expression_LoopLabel<'tree> {
+    impl<'tree> Expression_Label<'tree> {
         #[doc = "Returns the node if it is of kind `_expression` ([Expression]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
@@ -17074,26 +17808,26 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `loop_label` ([LoopLabel]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `label` ([Label]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn loop_label(self) -> Option<LoopLabel<'tree>> {
+        pub fn label(self) -> Option<Label<'tree>> {
             match self {
-                Self::LoopLabel(x) => Some(x),
+                Self::Label(x) => Some(x),
                 _ => None,
             }
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Expression_LoopLabel<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Expression_Label<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
         fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if let Ok(this) = <Expression<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::Expression(this));
             }
-            if let Ok(this) = <LoopLabel<'tree> as TryFrom<_>>::try_from(node) {
-                return Ok(Self::LoopLabel(this));
+            if let Ok(this) = <Label<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Label(this));
             }
             Err(type_sitter_lib::IncorrectKind {
                 node,
@@ -17102,34 +17836,34 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for Expression_LoopLabel<'tree> {
-        const KIND: &'static str = "{_expression | loop_label}";
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for Expression_Label<'tree> {
+        const KIND: &'static str = "{_expression | label}";
         #[inline]
         fn node(&self) -> &yak_sitter::Node<'tree> {
             match self {
                 Self::Expression(x) => x.node(),
-                Self::LoopLabel(x) => x.node(),
+                Self::Label(x) => x.node(),
             }
         }
         #[inline]
         fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::Expression(x) => x.node_mut(),
-                Self::LoopLabel(x) => x.node_mut(),
+                Self::Label(x) => x.node_mut(),
             }
         }
         #[inline]
         fn into_node(self) -> yak_sitter::Node<'tree> {
             match self {
                 Self::Expression(x) => x.into_node(),
-                Self::LoopLabel(x) => x.into_node(),
+                Self::Label(x) => x.into_node(),
             }
         }
     }
-    #[doc = "one of `{_literal | array_expression | assignment_expression | async_block | await_expression | binary_expression | block | break_expression | call_expression | closure_expression | compound_assignment_expr | const_block | continue_expression | field_expression | for_expression | generic_function | identifier | if_expression | index_expression | loop_expression | macro_invocation | match_expression | metavariable | parenthesized_expression | reference_expression | return_expression | scoped_identifier | self | struct_expression | try_expression | tuple_expression | type_cast_expression | unary_expression | unit_expression | unsafe_block | while_expression | yield_expression}`:\n- [Literal]\n- [ArrayExpression]\n- [AssignmentExpression]\n- [AsyncBlock]\n- [AwaitExpression]\n- [BinaryExpression]\n- [Block]\n- [BreakExpression]\n- [CallExpression]\n- [ClosureExpression]\n- [CompoundAssignmentExpr]\n- [ConstBlock]\n- [ContinueExpression]\n- [FieldExpression]\n- [ForExpression]\n- [GenericFunction]\n- [Identifier]\n- [IfExpression]\n- [IndexExpression]\n- [LoopExpression]\n- [MacroInvocation]\n- [MatchExpression]\n- [Metavariable]\n- [ParenthesizedExpression]\n- [ReferenceExpression]\n- [ReturnExpression]\n- [ScopedIdentifier]\n- [_Self]\n- [StructExpression]\n- [TryExpression]\n- [TupleExpression]\n- [TypeCastExpression]\n- [UnaryExpression]\n- [UnitExpression]\n- [UnsafeBlock]\n- [WhileExpression]\n- [YieldExpression]"]
+    #[doc = "one of `{_literal | array_expression | assignment_expression | async_block | await_expression | binary_expression | block | break_expression | call_expression | closure_expression | compound_assignment_expr | const_block | continue_expression | field_expression | for_expression | generic_function | identifier | if_expression | index_expression | loop_expression | macro_invocation | match_expression | metavariable | parenthesized_expression | reference_expression | return_expression | scoped_identifier | self | struct_expression | try_block | try_expression | tuple_expression | type_cast_expression | unary_expression | unit_expression | unsafe_block | while_expression | yield_expression}`:\n- [Literal]\n- [ArrayExpression]\n- [AssignmentExpression]\n- [AsyncBlock]\n- [AwaitExpression]\n- [BinaryExpression]\n- [Block]\n- [BreakExpression]\n- [CallExpression]\n- [ClosureExpression]\n- [CompoundAssignmentExpr]\n- [ConstBlock]\n- [ContinueExpression]\n- [FieldExpression]\n- [ForExpression]\n- [GenericFunction]\n- [Identifier]\n- [IfExpression]\n- [IndexExpression]\n- [LoopExpression]\n- [MacroInvocation]\n- [MatchExpression]\n- [Metavariable]\n- [ParenthesizedExpression]\n- [ReferenceExpression]\n- [ReturnExpression]\n- [ScopedIdentifier]\n- [_Self]\n- [StructExpression]\n- [TryBlock]\n- [TryExpression]\n- [TupleExpression]\n- [TypeCastExpression]\n- [UnaryExpression]\n- [UnitExpression]\n- [UnsafeBlock]\n- [WhileExpression]\n- [YieldExpression]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub enum Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier__Self_StructExpression_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression<
+    pub enum Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier__Self_StructExpression_TryBlock_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression<
         'tree,
     > {
         Literal(Literal<'tree>),
@@ -17161,6 +17895,7 @@ pub mod anon_unions {
         ScopedIdentifier(ScopedIdentifier<'tree>),
         _Self(_Self<'tree>),
         StructExpression(StructExpression<'tree>),
+        TryBlock(TryBlock<'tree>),
         TryExpression(TryExpression<'tree>),
         TupleExpression(TupleExpression<'tree>),
         TypeCastExpression(TypeCastExpression<'tree>),
@@ -17171,11 +17906,81 @@ pub mod anon_unions {
         YieldExpression(YieldExpression<'tree>),
     }
     #[automatically_derived]
-    impl < 'tree > Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier__Self_StructExpression_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression < 'tree > { # [doc = "Returns the node if it is of kind `_literal` ([Literal]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn literal (self) -> Option < Literal < 'tree > > { match self { Self :: Literal (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `array_expression` ([ArrayExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn array_expression (self) -> Option < ArrayExpression < 'tree > > { match self { Self :: ArrayExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `assignment_expression` ([AssignmentExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn assignment_expression (self) -> Option < AssignmentExpression < 'tree > > { match self { Self :: AssignmentExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `async_block` ([AsyncBlock]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn async_block (self) -> Option < AsyncBlock < 'tree > > { match self { Self :: AsyncBlock (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `await_expression` ([AwaitExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn await_expression (self) -> Option < AwaitExpression < 'tree > > { match self { Self :: AwaitExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `binary_expression` ([BinaryExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn binary_expression (self) -> Option < BinaryExpression < 'tree > > { match self { Self :: BinaryExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `block` ([Block]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn block (self) -> Option < Block < 'tree > > { match self { Self :: Block (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `break_expression` ([BreakExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn break_expression (self) -> Option < BreakExpression < 'tree > > { match self { Self :: BreakExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `call_expression` ([CallExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn call_expression (self) -> Option < CallExpression < 'tree > > { match self { Self :: CallExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `closure_expression` ([ClosureExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn closure_expression (self) -> Option < ClosureExpression < 'tree > > { match self { Self :: ClosureExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `compound_assignment_expr` ([CompoundAssignmentExpr]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn compound_assignment_expr (self) -> Option < CompoundAssignmentExpr < 'tree > > { match self { Self :: CompoundAssignmentExpr (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `const_block` ([ConstBlock]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn const_block (self) -> Option < ConstBlock < 'tree > > { match self { Self :: ConstBlock (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `continue_expression` ([ContinueExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn continue_expression (self) -> Option < ContinueExpression < 'tree > > { match self { Self :: ContinueExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `field_expression` ([FieldExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn field_expression (self) -> Option < FieldExpression < 'tree > > { match self { Self :: FieldExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `for_expression` ([ForExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn for_expression (self) -> Option < ForExpression < 'tree > > { match self { Self :: ForExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `generic_function` ([GenericFunction]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn generic_function (self) -> Option < GenericFunction < 'tree > > { match self { Self :: GenericFunction (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `identifier` ([Identifier]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn identifier (self) -> Option < Identifier < 'tree > > { match self { Self :: Identifier (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `if_expression` ([IfExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn if_expression (self) -> Option < IfExpression < 'tree > > { match self { Self :: IfExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `index_expression` ([IndexExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn index_expression (self) -> Option < IndexExpression < 'tree > > { match self { Self :: IndexExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `loop_expression` ([LoopExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn loop_expression (self) -> Option < LoopExpression < 'tree > > { match self { Self :: LoopExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `macro_invocation` ([MacroInvocation]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn macro_invocation (self) -> Option < MacroInvocation < 'tree > > { match self { Self :: MacroInvocation (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `match_expression` ([MatchExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn match_expression (self) -> Option < MatchExpression < 'tree > > { match self { Self :: MatchExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `metavariable` ([Metavariable]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn metavariable (self) -> Option < Metavariable < 'tree > > { match self { Self :: Metavariable (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `parenthesized_expression` ([ParenthesizedExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn parenthesized_expression (self) -> Option < ParenthesizedExpression < 'tree > > { match self { Self :: ParenthesizedExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `reference_expression` ([ReferenceExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn reference_expression (self) -> Option < ReferenceExpression < 'tree > > { match self { Self :: ReferenceExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `return_expression` ([ReturnExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn return_expression (self) -> Option < ReturnExpression < 'tree > > { match self { Self :: ReturnExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `scoped_identifier` ([ScopedIdentifier]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn scoped_identifier (self) -> Option < ScopedIdentifier < 'tree > > { match self { Self :: ScopedIdentifier (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `self` ([_Self]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn _self (self) -> Option < _Self < 'tree > > { match self { Self :: _Self (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `struct_expression` ([StructExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn struct_expression (self) -> Option < StructExpression < 'tree > > { match self { Self :: StructExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `try_expression` ([TryExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn try_expression (self) -> Option < TryExpression < 'tree > > { match self { Self :: TryExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `tuple_expression` ([TupleExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn tuple_expression (self) -> Option < TupleExpression < 'tree > > { match self { Self :: TupleExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `type_cast_expression` ([TypeCastExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn type_cast_expression (self) -> Option < TypeCastExpression < 'tree > > { match self { Self :: TypeCastExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `unary_expression` ([UnaryExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn unary_expression (self) -> Option < UnaryExpression < 'tree > > { match self { Self :: UnaryExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `unit_expression` ([UnitExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn unit_expression (self) -> Option < UnitExpression < 'tree > > { match self { Self :: UnitExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `unsafe_block` ([UnsafeBlock]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn unsafe_block (self) -> Option < UnsafeBlock < 'tree > > { match self { Self :: UnsafeBlock (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `while_expression` ([WhileExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn while_expression (self) -> Option < WhileExpression < 'tree > > { match self { Self :: WhileExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `yield_expression` ([YieldExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn yield_expression (self) -> Option < YieldExpression < 'tree > > { match self { Self :: YieldExpression (x) => Some (x) , _ => None , } } }
+    impl < 'tree > Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier__Self_StructExpression_TryBlock_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression < 'tree > { # [doc = "Returns the node if it is of kind `_literal` ([Literal]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn literal (self) -> Option < Literal < 'tree > > { match self { Self :: Literal (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `array_expression` ([ArrayExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn array_expression (self) -> Option < ArrayExpression < 'tree > > { match self { Self :: ArrayExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `assignment_expression` ([AssignmentExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn assignment_expression (self) -> Option < AssignmentExpression < 'tree > > { match self { Self :: AssignmentExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `async_block` ([AsyncBlock]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn async_block (self) -> Option < AsyncBlock < 'tree > > { match self { Self :: AsyncBlock (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `await_expression` ([AwaitExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn await_expression (self) -> Option < AwaitExpression < 'tree > > { match self { Self :: AwaitExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `binary_expression` ([BinaryExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn binary_expression (self) -> Option < BinaryExpression < 'tree > > { match self { Self :: BinaryExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `block` ([Block]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn block (self) -> Option < Block < 'tree > > { match self { Self :: Block (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `break_expression` ([BreakExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn break_expression (self) -> Option < BreakExpression < 'tree > > { match self { Self :: BreakExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `call_expression` ([CallExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn call_expression (self) -> Option < CallExpression < 'tree > > { match self { Self :: CallExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `closure_expression` ([ClosureExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn closure_expression (self) -> Option < ClosureExpression < 'tree > > { match self { Self :: ClosureExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `compound_assignment_expr` ([CompoundAssignmentExpr]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn compound_assignment_expr (self) -> Option < CompoundAssignmentExpr < 'tree > > { match self { Self :: CompoundAssignmentExpr (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `const_block` ([ConstBlock]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn const_block (self) -> Option < ConstBlock < 'tree > > { match self { Self :: ConstBlock (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `continue_expression` ([ContinueExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn continue_expression (self) -> Option < ContinueExpression < 'tree > > { match self { Self :: ContinueExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `field_expression` ([FieldExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn field_expression (self) -> Option < FieldExpression < 'tree > > { match self { Self :: FieldExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `for_expression` ([ForExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn for_expression (self) -> Option < ForExpression < 'tree > > { match self { Self :: ForExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `generic_function` ([GenericFunction]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn generic_function (self) -> Option < GenericFunction < 'tree > > { match self { Self :: GenericFunction (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `identifier` ([Identifier]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn identifier (self) -> Option < Identifier < 'tree > > { match self { Self :: Identifier (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `if_expression` ([IfExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn if_expression (self) -> Option < IfExpression < 'tree > > { match self { Self :: IfExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `index_expression` ([IndexExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn index_expression (self) -> Option < IndexExpression < 'tree > > { match self { Self :: IndexExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `loop_expression` ([LoopExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn loop_expression (self) -> Option < LoopExpression < 'tree > > { match self { Self :: LoopExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `macro_invocation` ([MacroInvocation]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn macro_invocation (self) -> Option < MacroInvocation < 'tree > > { match self { Self :: MacroInvocation (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `match_expression` ([MatchExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn match_expression (self) -> Option < MatchExpression < 'tree > > { match self { Self :: MatchExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `metavariable` ([Metavariable]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn metavariable (self) -> Option < Metavariable < 'tree > > { match self { Self :: Metavariable (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `parenthesized_expression` ([ParenthesizedExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn parenthesized_expression (self) -> Option < ParenthesizedExpression < 'tree > > { match self { Self :: ParenthesizedExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `reference_expression` ([ReferenceExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn reference_expression (self) -> Option < ReferenceExpression < 'tree > > { match self { Self :: ReferenceExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `return_expression` ([ReturnExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn return_expression (self) -> Option < ReturnExpression < 'tree > > { match self { Self :: ReturnExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `scoped_identifier` ([ScopedIdentifier]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn scoped_identifier (self) -> Option < ScopedIdentifier < 'tree > > { match self { Self :: ScopedIdentifier (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `self` ([_Self]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn _self (self) -> Option < _Self < 'tree > > { match self { Self :: _Self (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `struct_expression` ([StructExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn struct_expression (self) -> Option < StructExpression < 'tree > > { match self { Self :: StructExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `try_block` ([TryBlock]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn try_block (self) -> Option < TryBlock < 'tree > > { match self { Self :: TryBlock (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `try_expression` ([TryExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn try_expression (self) -> Option < TryExpression < 'tree > > { match self { Self :: TryExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `tuple_expression` ([TupleExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn tuple_expression (self) -> Option < TupleExpression < 'tree > > { match self { Self :: TupleExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `type_cast_expression` ([TypeCastExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn type_cast_expression (self) -> Option < TypeCastExpression < 'tree > > { match self { Self :: TypeCastExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `unary_expression` ([UnaryExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn unary_expression (self) -> Option < UnaryExpression < 'tree > > { match self { Self :: UnaryExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `unit_expression` ([UnitExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn unit_expression (self) -> Option < UnitExpression < 'tree > > { match self { Self :: UnitExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `unsafe_block` ([UnsafeBlock]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn unsafe_block (self) -> Option < UnsafeBlock < 'tree > > { match self { Self :: UnsafeBlock (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `while_expression` ([WhileExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn while_expression (self) -> Option < WhileExpression < 'tree > > { match self { Self :: WhileExpression (x) => Some (x) , _ => None , } } # [doc = "Returns the node if it is of kind `yield_expression` ([YieldExpression]), otherwise returns None"] # [inline] # [allow (unused , non_snake_case)] pub fn yield_expression (self) -> Option < YieldExpression < 'tree > > { match self { Self :: YieldExpression (x) => Some (x) , _ => None , } } }
     #[automatically_derived]
-    impl < 'tree > TryFrom < yak_sitter :: Node < 'tree >> for Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier__Self_StructExpression_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression < 'tree > { type Error = type_sitter_lib :: IncorrectKind < 'tree > ; # [inline] fn try_from (node : yak_sitter :: Node < 'tree >) -> Result < Self , Self :: Error > { if let Ok (this) = < Literal < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Literal (this)) ; } if let Ok (this) = < ArrayExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: ArrayExpression (this)) ; } if let Ok (this) = < AssignmentExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: AssignmentExpression (this)) ; } if let Ok (this) = < AsyncBlock < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: AsyncBlock (this)) ; } if let Ok (this) = < AwaitExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: AwaitExpression (this)) ; } if let Ok (this) = < BinaryExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: BinaryExpression (this)) ; } if let Ok (this) = < Block < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Block (this)) ; } if let Ok (this) = < BreakExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: BreakExpression (this)) ; } if let Ok (this) = < CallExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: CallExpression (this)) ; } if let Ok (this) = < ClosureExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: ClosureExpression (this)) ; } if let Ok (this) = < CompoundAssignmentExpr < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: CompoundAssignmentExpr (this)) ; } if let Ok (this) = < ConstBlock < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: ConstBlock (this)) ; } if let Ok (this) = < ContinueExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: ContinueExpression (this)) ; } if let Ok (this) = < FieldExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: FieldExpression (this)) ; } if let Ok (this) = < ForExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: ForExpression (this)) ; } if let Ok (this) = < GenericFunction < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: GenericFunction (this)) ; } if let Ok (this) = < Identifier < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Identifier (this)) ; } if let Ok (this) = < IfExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: IfExpression (this)) ; } if let Ok (this) = < IndexExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: IndexExpression (this)) ; } if let Ok (this) = < LoopExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: LoopExpression (this)) ; } if let Ok (this) = < MacroInvocation < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: MacroInvocation (this)) ; } if let Ok (this) = < MatchExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: MatchExpression (this)) ; } if let Ok (this) = < Metavariable < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Metavariable (this)) ; } if let Ok (this) = < ParenthesizedExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: ParenthesizedExpression (this)) ; } if let Ok (this) = < ReferenceExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: ReferenceExpression (this)) ; } if let Ok (this) = < ReturnExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: ReturnExpression (this)) ; } if let Ok (this) = < ScopedIdentifier < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: ScopedIdentifier (this)) ; } if let Ok (this) = < _Self < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: _Self (this)) ; } if let Ok (this) = < StructExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: StructExpression (this)) ; } if let Ok (this) = < TryExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: TryExpression (this)) ; } if let Ok (this) = < TupleExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: TupleExpression (this)) ; } if let Ok (this) = < TypeCastExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: TypeCastExpression (this)) ; } if let Ok (this) = < UnaryExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: UnaryExpression (this)) ; } if let Ok (this) = < UnitExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: UnitExpression (this)) ; } if let Ok (this) = < UnsafeBlock < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: UnsafeBlock (this)) ; } if let Ok (this) = < WhileExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: WhileExpression (this)) ; } if let Ok (this) = < YieldExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: YieldExpression (this)) ; } Err (type_sitter_lib :: IncorrectKind { node , kind : < Self as type_sitter_lib :: TypedNode < 'tree >> :: KIND , }) } }
+    impl < 'tree > TryFrom < yak_sitter :: Node < 'tree >> for Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier__Self_StructExpression_TryBlock_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression < 'tree > { type Error = type_sitter_lib :: IncorrectKind < 'tree > ; # [inline] fn try_from (node : yak_sitter :: Node < 'tree >) -> Result < Self , Self :: Error > { if let Ok (this) = < Literal < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Literal (this)) ; } if let Ok (this) = < ArrayExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: ArrayExpression (this)) ; } if let Ok (this) = < AssignmentExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: AssignmentExpression (this)) ; } if let Ok (this) = < AsyncBlock < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: AsyncBlock (this)) ; } if let Ok (this) = < AwaitExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: AwaitExpression (this)) ; } if let Ok (this) = < BinaryExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: BinaryExpression (this)) ; } if let Ok (this) = < Block < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Block (this)) ; } if let Ok (this) = < BreakExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: BreakExpression (this)) ; } if let Ok (this) = < CallExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: CallExpression (this)) ; } if let Ok (this) = < ClosureExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: ClosureExpression (this)) ; } if let Ok (this) = < CompoundAssignmentExpr < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: CompoundAssignmentExpr (this)) ; } if let Ok (this) = < ConstBlock < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: ConstBlock (this)) ; } if let Ok (this) = < ContinueExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: ContinueExpression (this)) ; } if let Ok (this) = < FieldExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: FieldExpression (this)) ; } if let Ok (this) = < ForExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: ForExpression (this)) ; } if let Ok (this) = < GenericFunction < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: GenericFunction (this)) ; } if let Ok (this) = < Identifier < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Identifier (this)) ; } if let Ok (this) = < IfExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: IfExpression (this)) ; } if let Ok (this) = < IndexExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: IndexExpression (this)) ; } if let Ok (this) = < LoopExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: LoopExpression (this)) ; } if let Ok (this) = < MacroInvocation < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: MacroInvocation (this)) ; } if let Ok (this) = < MatchExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: MatchExpression (this)) ; } if let Ok (this) = < Metavariable < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: Metavariable (this)) ; } if let Ok (this) = < ParenthesizedExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: ParenthesizedExpression (this)) ; } if let Ok (this) = < ReferenceExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: ReferenceExpression (this)) ; } if let Ok (this) = < ReturnExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: ReturnExpression (this)) ; } if let Ok (this) = < ScopedIdentifier < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: ScopedIdentifier (this)) ; } if let Ok (this) = < _Self < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: _Self (this)) ; } if let Ok (this) = < StructExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: StructExpression (this)) ; } if let Ok (this) = < TryBlock < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: TryBlock (this)) ; } if let Ok (this) = < TryExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: TryExpression (this)) ; } if let Ok (this) = < TupleExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: TupleExpression (this)) ; } if let Ok (this) = < TypeCastExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: TypeCastExpression (this)) ; } if let Ok (this) = < UnaryExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: UnaryExpression (this)) ; } if let Ok (this) = < UnitExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: UnitExpression (this)) ; } if let Ok (this) = < UnsafeBlock < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: UnsafeBlock (this)) ; } if let Ok (this) = < WhileExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: WhileExpression (this)) ; } if let Ok (this) = < YieldExpression < 'tree > as TryFrom < _ >> :: try_from (node) { return Ok (Self :: YieldExpression (this)) ; } Err (type_sitter_lib :: IncorrectKind { node , kind : < Self as type_sitter_lib :: TypedNode < 'tree >> :: KIND , }) } }
     #[automatically_derived]
-    impl < 'tree > type_sitter_lib :: TypedNode < 'tree > for Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier__Self_StructExpression_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression < 'tree > { const KIND : & 'static str = "{_literal | array_expression | assignment_expression | async_block | await_expression | binary_expression | block | break_expression | call_expression | closure_expression | compound_assignment_expr | const_block | continue_expression | field_expression | for_expression | generic_function | identifier | if_expression | index_expression | loop_expression | macro_invocation | match_expression | metavariable | parenthesized_expression | reference_expression | return_expression | scoped_identifier | self | struct_expression | try_expression | tuple_expression | type_cast_expression | unary_expression | unit_expression | unsafe_block | while_expression | yield_expression}" ; # [inline] fn node (& self) -> & yak_sitter :: Node < 'tree > { match self { Self :: Literal (x) => x . node () , Self :: ArrayExpression (x) => x . node () , Self :: AssignmentExpression (x) => x . node () , Self :: AsyncBlock (x) => x . node () , Self :: AwaitExpression (x) => x . node () , Self :: BinaryExpression (x) => x . node () , Self :: Block (x) => x . node () , Self :: BreakExpression (x) => x . node () , Self :: CallExpression (x) => x . node () , Self :: ClosureExpression (x) => x . node () , Self :: CompoundAssignmentExpr (x) => x . node () , Self :: ConstBlock (x) => x . node () , Self :: ContinueExpression (x) => x . node () , Self :: FieldExpression (x) => x . node () , Self :: ForExpression (x) => x . node () , Self :: GenericFunction (x) => x . node () , Self :: Identifier (x) => x . node () , Self :: IfExpression (x) => x . node () , Self :: IndexExpression (x) => x . node () , Self :: LoopExpression (x) => x . node () , Self :: MacroInvocation (x) => x . node () , Self :: MatchExpression (x) => x . node () , Self :: Metavariable (x) => x . node () , Self :: ParenthesizedExpression (x) => x . node () , Self :: ReferenceExpression (x) => x . node () , Self :: ReturnExpression (x) => x . node () , Self :: ScopedIdentifier (x) => x . node () , Self :: _Self (x) => x . node () , Self :: StructExpression (x) => x . node () , Self :: TryExpression (x) => x . node () , Self :: TupleExpression (x) => x . node () , Self :: TypeCastExpression (x) => x . node () , Self :: UnaryExpression (x) => x . node () , Self :: UnitExpression (x) => x . node () , Self :: UnsafeBlock (x) => x . node () , Self :: WhileExpression (x) => x . node () , Self :: YieldExpression (x) => x . node () , } } # [inline] fn node_mut (& mut self) -> & mut yak_sitter :: Node < 'tree > { match self { Self :: Literal (x) => x . node_mut () , Self :: ArrayExpression (x) => x . node_mut () , Self :: AssignmentExpression (x) => x . node_mut () , Self :: AsyncBlock (x) => x . node_mut () , Self :: AwaitExpression (x) => x . node_mut () , Self :: BinaryExpression (x) => x . node_mut () , Self :: Block (x) => x . node_mut () , Self :: BreakExpression (x) => x . node_mut () , Self :: CallExpression (x) => x . node_mut () , Self :: ClosureExpression (x) => x . node_mut () , Self :: CompoundAssignmentExpr (x) => x . node_mut () , Self :: ConstBlock (x) => x . node_mut () , Self :: ContinueExpression (x) => x . node_mut () , Self :: FieldExpression (x) => x . node_mut () , Self :: ForExpression (x) => x . node_mut () , Self :: GenericFunction (x) => x . node_mut () , Self :: Identifier (x) => x . node_mut () , Self :: IfExpression (x) => x . node_mut () , Self :: IndexExpression (x) => x . node_mut () , Self :: LoopExpression (x) => x . node_mut () , Self :: MacroInvocation (x) => x . node_mut () , Self :: MatchExpression (x) => x . node_mut () , Self :: Metavariable (x) => x . node_mut () , Self :: ParenthesizedExpression (x) => x . node_mut () , Self :: ReferenceExpression (x) => x . node_mut () , Self :: ReturnExpression (x) => x . node_mut () , Self :: ScopedIdentifier (x) => x . node_mut () , Self :: _Self (x) => x . node_mut () , Self :: StructExpression (x) => x . node_mut () , Self :: TryExpression (x) => x . node_mut () , Self :: TupleExpression (x) => x . node_mut () , Self :: TypeCastExpression (x) => x . node_mut () , Self :: UnaryExpression (x) => x . node_mut () , Self :: UnitExpression (x) => x . node_mut () , Self :: UnsafeBlock (x) => x . node_mut () , Self :: WhileExpression (x) => x . node_mut () , Self :: YieldExpression (x) => x . node_mut () , } } # [inline] fn into_node (self) -> yak_sitter :: Node < 'tree > { match self { Self :: Literal (x) => x . into_node () , Self :: ArrayExpression (x) => x . into_node () , Self :: AssignmentExpression (x) => x . into_node () , Self :: AsyncBlock (x) => x . into_node () , Self :: AwaitExpression (x) => x . into_node () , Self :: BinaryExpression (x) => x . into_node () , Self :: Block (x) => x . into_node () , Self :: BreakExpression (x) => x . into_node () , Self :: CallExpression (x) => x . into_node () , Self :: ClosureExpression (x) => x . into_node () , Self :: CompoundAssignmentExpr (x) => x . into_node () , Self :: ConstBlock (x) => x . into_node () , Self :: ContinueExpression (x) => x . into_node () , Self :: FieldExpression (x) => x . into_node () , Self :: ForExpression (x) => x . into_node () , Self :: GenericFunction (x) => x . into_node () , Self :: Identifier (x) => x . into_node () , Self :: IfExpression (x) => x . into_node () , Self :: IndexExpression (x) => x . into_node () , Self :: LoopExpression (x) => x . into_node () , Self :: MacroInvocation (x) => x . into_node () , Self :: MatchExpression (x) => x . into_node () , Self :: Metavariable (x) => x . into_node () , Self :: ParenthesizedExpression (x) => x . into_node () , Self :: ReferenceExpression (x) => x . into_node () , Self :: ReturnExpression (x) => x . into_node () , Self :: ScopedIdentifier (x) => x . into_node () , Self :: _Self (x) => x . into_node () , Self :: StructExpression (x) => x . into_node () , Self :: TryExpression (x) => x . into_node () , Self :: TupleExpression (x) => x . into_node () , Self :: TypeCastExpression (x) => x . into_node () , Self :: UnaryExpression (x) => x . into_node () , Self :: UnitExpression (x) => x . into_node () , Self :: UnsafeBlock (x) => x . into_node () , Self :: WhileExpression (x) => x . into_node () , Self :: YieldExpression (x) => x . into_node () , } } }
+    impl < 'tree > type_sitter_lib :: TypedNode < 'tree > for Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier__Self_StructExpression_TryBlock_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression < 'tree > { const KIND : & 'static str = "{_literal | array_expression | assignment_expression | async_block | await_expression | binary_expression | block | break_expression | call_expression | closure_expression | compound_assignment_expr | const_block | continue_expression | field_expression | for_expression | generic_function | identifier | if_expression | index_expression | loop_expression | macro_invocation | match_expression | metavariable | parenthesized_expression | reference_expression | return_expression | scoped_identifier | self | struct_expression | try_block | try_expression | tuple_expression | type_cast_expression | unary_expression | unit_expression | unsafe_block | while_expression | yield_expression}" ; # [inline] fn node (& self) -> & yak_sitter :: Node < 'tree > { match self { Self :: Literal (x) => x . node () , Self :: ArrayExpression (x) => x . node () , Self :: AssignmentExpression (x) => x . node () , Self :: AsyncBlock (x) => x . node () , Self :: AwaitExpression (x) => x . node () , Self :: BinaryExpression (x) => x . node () , Self :: Block (x) => x . node () , Self :: BreakExpression (x) => x . node () , Self :: CallExpression (x) => x . node () , Self :: ClosureExpression (x) => x . node () , Self :: CompoundAssignmentExpr (x) => x . node () , Self :: ConstBlock (x) => x . node () , Self :: ContinueExpression (x) => x . node () , Self :: FieldExpression (x) => x . node () , Self :: ForExpression (x) => x . node () , Self :: GenericFunction (x) => x . node () , Self :: Identifier (x) => x . node () , Self :: IfExpression (x) => x . node () , Self :: IndexExpression (x) => x . node () , Self :: LoopExpression (x) => x . node () , Self :: MacroInvocation (x) => x . node () , Self :: MatchExpression (x) => x . node () , Self :: Metavariable (x) => x . node () , Self :: ParenthesizedExpression (x) => x . node () , Self :: ReferenceExpression (x) => x . node () , Self :: ReturnExpression (x) => x . node () , Self :: ScopedIdentifier (x) => x . node () , Self :: _Self (x) => x . node () , Self :: StructExpression (x) => x . node () , Self :: TryBlock (x) => x . node () , Self :: TryExpression (x) => x . node () , Self :: TupleExpression (x) => x . node () , Self :: TypeCastExpression (x) => x . node () , Self :: UnaryExpression (x) => x . node () , Self :: UnitExpression (x) => x . node () , Self :: UnsafeBlock (x) => x . node () , Self :: WhileExpression (x) => x . node () , Self :: YieldExpression (x) => x . node () , } } # [inline] fn node_mut (& mut self) -> & mut yak_sitter :: Node < 'tree > { match self { Self :: Literal (x) => x . node_mut () , Self :: ArrayExpression (x) => x . node_mut () , Self :: AssignmentExpression (x) => x . node_mut () , Self :: AsyncBlock (x) => x . node_mut () , Self :: AwaitExpression (x) => x . node_mut () , Self :: BinaryExpression (x) => x . node_mut () , Self :: Block (x) => x . node_mut () , Self :: BreakExpression (x) => x . node_mut () , Self :: CallExpression (x) => x . node_mut () , Self :: ClosureExpression (x) => x . node_mut () , Self :: CompoundAssignmentExpr (x) => x . node_mut () , Self :: ConstBlock (x) => x . node_mut () , Self :: ContinueExpression (x) => x . node_mut () , Self :: FieldExpression (x) => x . node_mut () , Self :: ForExpression (x) => x . node_mut () , Self :: GenericFunction (x) => x . node_mut () , Self :: Identifier (x) => x . node_mut () , Self :: IfExpression (x) => x . node_mut () , Self :: IndexExpression (x) => x . node_mut () , Self :: LoopExpression (x) => x . node_mut () , Self :: MacroInvocation (x) => x . node_mut () , Self :: MatchExpression (x) => x . node_mut () , Self :: Metavariable (x) => x . node_mut () , Self :: ParenthesizedExpression (x) => x . node_mut () , Self :: ReferenceExpression (x) => x . node_mut () , Self :: ReturnExpression (x) => x . node_mut () , Self :: ScopedIdentifier (x) => x . node_mut () , Self :: _Self (x) => x . node_mut () , Self :: StructExpression (x) => x . node_mut () , Self :: TryBlock (x) => x . node_mut () , Self :: TryExpression (x) => x . node_mut () , Self :: TupleExpression (x) => x . node_mut () , Self :: TypeCastExpression (x) => x . node_mut () , Self :: UnaryExpression (x) => x . node_mut () , Self :: UnitExpression (x) => x . node_mut () , Self :: UnsafeBlock (x) => x . node_mut () , Self :: WhileExpression (x) => x . node_mut () , Self :: YieldExpression (x) => x . node_mut () , } } # [inline] fn into_node (self) -> yak_sitter :: Node < 'tree > { match self { Self :: Literal (x) => x . into_node () , Self :: ArrayExpression (x) => x . into_node () , Self :: AssignmentExpression (x) => x . into_node () , Self :: AsyncBlock (x) => x . into_node () , Self :: AwaitExpression (x) => x . into_node () , Self :: BinaryExpression (x) => x . into_node () , Self :: Block (x) => x . into_node () , Self :: BreakExpression (x) => x . into_node () , Self :: CallExpression (x) => x . into_node () , Self :: ClosureExpression (x) => x . into_node () , Self :: CompoundAssignmentExpr (x) => x . into_node () , Self :: ConstBlock (x) => x . into_node () , Self :: ContinueExpression (x) => x . into_node () , Self :: FieldExpression (x) => x . into_node () , Self :: ForExpression (x) => x . into_node () , Self :: GenericFunction (x) => x . into_node () , Self :: Identifier (x) => x . into_node () , Self :: IfExpression (x) => x . into_node () , Self :: IndexExpression (x) => x . into_node () , Self :: LoopExpression (x) => x . into_node () , Self :: MacroInvocation (x) => x . into_node () , Self :: MatchExpression (x) => x . into_node () , Self :: Metavariable (x) => x . into_node () , Self :: ParenthesizedExpression (x) => x . into_node () , Self :: ReferenceExpression (x) => x . into_node () , Self :: ReturnExpression (x) => x . into_node () , Self :: ScopedIdentifier (x) => x . into_node () , Self :: _Self (x) => x . into_node () , Self :: StructExpression (x) => x . into_node () , Self :: TryBlock (x) => x . into_node () , Self :: TryExpression (x) => x . into_node () , Self :: TupleExpression (x) => x . into_node () , Self :: TypeCastExpression (x) => x . into_node () , Self :: UnaryExpression (x) => x . into_node () , Self :: UnitExpression (x) => x . into_node () , Self :: UnsafeBlock (x) => x . into_node () , Self :: WhileExpression (x) => x . into_node () , Self :: YieldExpression (x) => x . into_node () , } } }
+    #[doc = "one of `{_ | _expression}`:\n- [symbols::__]\n- [Expression]"]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub enum ___Expression<'tree> {
+        __(symbols::__<'tree>),
+        Expression(Expression<'tree>),
+    }
+    #[automatically_derived]
+    impl<'tree> ___Expression<'tree> {
+        #[doc = "Returns the node if it is of kind `_` ([symbols::__]), otherwise returns None"]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn __(self) -> Option<symbols::__<'tree>> {
+            match self {
+                Self::__(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = "Returns the node if it is of kind `_expression` ([Expression]), otherwise returns None"]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn expression(self) -> Option<Expression<'tree>> {
+            match self {
+                Self::Expression(x) => Some(x),
+                _ => None,
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for ___Expression<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+            if let Ok(this) = <symbols::__<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::__(this));
+            }
+            if let Ok(this) = <Expression<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Expression(this));
+            }
+            Err(type_sitter_lib::IncorrectKind {
+                node,
+                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+            })
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for ___Expression<'tree> {
+        const KIND: &'static str = "{_ | _expression}";
+        #[inline]
+        fn node(&self) -> &yak_sitter::Node<'tree> {
+            match self {
+                Self::__(x) => x.node(),
+                Self::Expression(x) => x.node(),
+            }
+        }
+        #[inline]
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
+            match self {
+                Self::__(x) => x.node_mut(),
+                Self::Expression(x) => x.node_mut(),
+            }
+        }
+        #[inline]
+        fn into_node(self) -> yak_sitter::Node<'tree> {
+            match self {
+                Self::__(x) => x.into_node(),
+                Self::Expression(x) => x.into_node(),
+            }
+        }
+    }
     #[doc = "one of `{_pattern | parameter}`:\n- [Pattern]\n- [Parameter]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
@@ -18760,23 +19565,23 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{loop_label | block | _pattern | _expression}`:\n- [LoopLabel]\n- [Block]\n- [Pattern]\n- [Expression]"]
+    #[doc = "one of `{label | block | _pattern | _expression}`:\n- [Label]\n- [Block]\n- [Pattern]\n- [Expression]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub enum LoopLabel_Block_Pattern_Expression<'tree> {
-        LoopLabel(LoopLabel<'tree>),
+    pub enum Label_Block_Pattern_Expression<'tree> {
+        Label(Label<'tree>),
         Block(Block<'tree>),
         Pattern(Pattern<'tree>),
         Expression(Expression<'tree>),
     }
     #[automatically_derived]
-    impl<'tree> LoopLabel_Block_Pattern_Expression<'tree> {
-        #[doc = "Returns the node if it is of kind `loop_label` ([LoopLabel]), otherwise returns None"]
+    impl<'tree> Label_Block_Pattern_Expression<'tree> {
+        #[doc = "Returns the node if it is of kind `label` ([Label]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn loop_label(self) -> Option<LoopLabel<'tree>> {
+        pub fn label(self) -> Option<Label<'tree>> {
             match self {
-                Self::LoopLabel(x) => Some(x),
+                Self::Label(x) => Some(x),
                 _ => None,
             }
         }
@@ -18809,12 +19614,12 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for LoopLabel_Block_Pattern_Expression<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Label_Block_Pattern_Expression<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
         fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
-            if let Ok(this) = <LoopLabel<'tree> as TryFrom<_>>::try_from(node) {
-                return Ok(Self::LoopLabel(this));
+            if let Ok(this) = <Label<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Label(this));
             }
             if let Ok(this) = <Block<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::Block(this));
@@ -18832,12 +19637,12 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for LoopLabel_Block_Pattern_Expression<'tree> {
-        const KIND: &'static str = "{loop_label | block | _pattern | _expression}";
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for Label_Block_Pattern_Expression<'tree> {
+        const KIND: &'static str = "{label | block | _pattern | _expression}";
         #[inline]
         fn node(&self) -> &yak_sitter::Node<'tree> {
             match self {
-                Self::LoopLabel(x) => x.node(),
+                Self::Label(x) => x.node(),
                 Self::Block(x) => x.node(),
                 Self::Pattern(x) => x.node(),
                 Self::Expression(x) => x.node(),
@@ -18846,7 +19651,7 @@ pub mod anon_unions {
         #[inline]
         fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
-                Self::LoopLabel(x) => x.node_mut(),
+                Self::Label(x) => x.node_mut(),
                 Self::Block(x) => x.node_mut(),
                 Self::Pattern(x) => x.node_mut(),
                 Self::Expression(x) => x.node_mut(),
@@ -18855,7 +19660,7 @@ pub mod anon_unions {
         #[inline]
         fn into_node(self) -> yak_sitter::Node<'tree> {
             match self {
-                Self::LoopLabel(x) => x.into_node(),
+                Self::Label(x) => x.into_node(),
                 Self::Block(x) => x.into_node(),
                 Self::Pattern(x) => x.into_node(),
                 Self::Expression(x) => x.into_node(),
@@ -19387,16 +20192,26 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{scoped_identifier | scoped_type_identifier | type_identifier}`:\n- [ScopedIdentifier]\n- [ScopedTypeIdentifier]\n- [TypeIdentifier]"]
+    #[doc = "one of `{identifier | scoped_identifier | scoped_type_identifier | type_identifier}`:\n- [Identifier]\n- [ScopedIdentifier]\n- [ScopedTypeIdentifier]\n- [TypeIdentifier]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub enum ScopedIdentifier_ScopedTypeIdentifier_TypeIdentifier<'tree> {
+    pub enum Identifier_ScopedIdentifier_ScopedTypeIdentifier_TypeIdentifier<'tree> {
+        Identifier(Identifier<'tree>),
         ScopedIdentifier(ScopedIdentifier<'tree>),
         ScopedTypeIdentifier(ScopedTypeIdentifier<'tree>),
         TypeIdentifier(TypeIdentifier<'tree>),
     }
     #[automatically_derived]
-    impl<'tree> ScopedIdentifier_ScopedTypeIdentifier_TypeIdentifier<'tree> {
+    impl<'tree> Identifier_ScopedIdentifier_ScopedTypeIdentifier_TypeIdentifier<'tree> {
+        #[doc = "Returns the node if it is of kind `identifier` ([Identifier]), otherwise returns None"]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn identifier(self) -> Option<Identifier<'tree>> {
+            match self {
+                Self::Identifier(x) => Some(x),
+                _ => None,
+            }
+        }
         #[doc = "Returns the node if it is of kind `scoped_identifier` ([ScopedIdentifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
@@ -19427,12 +20242,15 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-        for ScopedIdentifier_ScopedTypeIdentifier_TypeIdentifier<'tree>
+        for Identifier_ScopedIdentifier_ScopedTypeIdentifier_TypeIdentifier<'tree>
     {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
         fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             match node.kind() {
+                "identifier" => Ok(unsafe {
+                    Self :: Identifier (< Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node))
+                }),
                 "scoped_identifier" => Ok(unsafe {
                     Self :: ScopedIdentifier (< ScopedIdentifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node))
                 }),
@@ -19453,12 +20271,14 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> type_sitter_lib::TypedNode<'tree>
-        for ScopedIdentifier_ScopedTypeIdentifier_TypeIdentifier<'tree>
+        for Identifier_ScopedIdentifier_ScopedTypeIdentifier_TypeIdentifier<'tree>
     {
-        const KIND: &'static str = "{scoped_identifier | scoped_type_identifier | type_identifier}";
+        const KIND: &'static str =
+            "{identifier | scoped_identifier | scoped_type_identifier | type_identifier}";
         #[inline]
         fn node(&self) -> &yak_sitter::Node<'tree> {
             match self {
+                Self::Identifier(x) => x.node(),
                 Self::ScopedIdentifier(x) => x.node(),
                 Self::ScopedTypeIdentifier(x) => x.node(),
                 Self::TypeIdentifier(x) => x.node(),
@@ -19467,6 +20287,7 @@ pub mod anon_unions {
         #[inline]
         fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
+                Self::Identifier(x) => x.node_mut(),
                 Self::ScopedIdentifier(x) => x.node_mut(),
                 Self::ScopedTypeIdentifier(x) => x.node_mut(),
                 Self::TypeIdentifier(x) => x.node_mut(),
@@ -19475,6 +20296,7 @@ pub mod anon_unions {
         #[inline]
         fn into_node(self) -> yak_sitter::Node<'tree> {
             match self {
+                Self::Identifier(x) => x.into_node(),
                 Self::ScopedIdentifier(x) => x.into_node(),
                 Self::ScopedTypeIdentifier(x) => x.into_node(),
                 Self::TypeIdentifier(x) => x.into_node(),
@@ -19947,21 +20769,21 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{loop_label | block}`:\n- [LoopLabel]\n- [Block]"]
+    #[doc = "one of `{label | block}`:\n- [Label]\n- [Block]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub enum LoopLabel_Block<'tree> {
-        LoopLabel(LoopLabel<'tree>),
+    pub enum Label_Block<'tree> {
+        Label(Label<'tree>),
         Block(Block<'tree>),
     }
     #[automatically_derived]
-    impl<'tree> LoopLabel_Block<'tree> {
-        #[doc = "Returns the node if it is of kind `loop_label` ([LoopLabel]), otherwise returns None"]
+    impl<'tree> Label_Block<'tree> {
+        #[doc = "Returns the node if it is of kind `label` ([Label]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn loop_label(self) -> Option<LoopLabel<'tree>> {
+        pub fn label(self) -> Option<Label<'tree>> {
             match self {
-                Self::LoopLabel(x) => Some(x),
+                Self::Label(x) => Some(x),
                 _ => None,
             }
         }
@@ -19976,14 +20798,16 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for LoopLabel_Block<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Label_Block<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
         fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             match node.kind() {
-                "loop_label" => Ok(unsafe {
-                    Self :: LoopLabel (< LoopLabel < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node))
-                }),
+                "label" => {
+                    Ok(unsafe {
+                        Self :: Label (< Label < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node))
+                    })
+                }
                 "block" => {
                     Ok(unsafe {
                         Self :: Block (< Block < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node))
@@ -19997,26 +20821,26 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for LoopLabel_Block<'tree> {
-        const KIND: &'static str = "{loop_label | block}";
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for Label_Block<'tree> {
+        const KIND: &'static str = "{label | block}";
         #[inline]
         fn node(&self) -> &yak_sitter::Node<'tree> {
             match self {
-                Self::LoopLabel(x) => x.node(),
+                Self::Label(x) => x.node(),
                 Self::Block(x) => x.node(),
             }
         }
         #[inline]
         fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
-                Self::LoopLabel(x) => x.node_mut(),
+                Self::Label(x) => x.node_mut(),
                 Self::Block(x) => x.node_mut(),
             }
         }
         #[inline]
         fn into_node(self) -> yak_sitter::Node<'tree> {
             match self {
-                Self::LoopLabel(x) => x.into_node(),
+                Self::Label(x) => x.into_node(),
                 Self::Block(x) => x.into_node(),
             }
         }
@@ -20339,23 +21163,33 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{_pattern | _expression | let_chain | let_condition}`:\n- [Pattern]\n- [Expression]\n- [LetChain]\n- [LetCondition]"]
+    #[doc = "one of `{_pattern | closure_pattern | _expression | let_chain | let_condition}`:\n- [Pattern]\n- [ClosurePattern]\n- [Expression]\n- [LetChain]\n- [LetCondition]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub enum Pattern_Expression_LetChain_LetCondition<'tree> {
+    pub enum Pattern_ClosurePattern_Expression_LetChain_LetCondition<'tree> {
         Pattern(Pattern<'tree>),
+        ClosurePattern(ClosurePattern<'tree>),
         Expression(Expression<'tree>),
         LetChain(LetChain<'tree>),
         LetCondition(LetCondition<'tree>),
     }
     #[automatically_derived]
-    impl<'tree> Pattern_Expression_LetChain_LetCondition<'tree> {
+    impl<'tree> Pattern_ClosurePattern_Expression_LetChain_LetCondition<'tree> {
         #[doc = "Returns the node if it is of kind `_pattern` ([Pattern]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn pattern(self) -> Option<Pattern<'tree>> {
             match self {
                 Self::Pattern(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = "Returns the node if it is of kind `closure_pattern` ([ClosurePattern]), otherwise returns None"]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn closure_pattern(self) -> Option<ClosurePattern<'tree>> {
+            match self {
+                Self::ClosurePattern(x) => Some(x),
                 _ => None,
             }
         }
@@ -20388,12 +21222,17 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Pattern_Expression_LetChain_LetCondition<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
+        for Pattern_ClosurePattern_Expression_LetChain_LetCondition<'tree>
+    {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
         fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if let Ok(this) = <Pattern<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::Pattern(this));
+            }
+            if let Ok(this) = <ClosurePattern<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::ClosurePattern(this));
             }
             if let Ok(this) = <Expression<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::Expression(this));
@@ -20411,12 +21250,16 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for Pattern_Expression_LetChain_LetCondition<'tree> {
-        const KIND: &'static str = "{_pattern | _expression | let_chain | let_condition}";
+    impl<'tree> type_sitter_lib::TypedNode<'tree>
+        for Pattern_ClosurePattern_Expression_LetChain_LetCondition<'tree>
+    {
+        const KIND: &'static str =
+            "{_pattern | closure_pattern | _expression | let_chain | let_condition}";
         #[inline]
         fn node(&self) -> &yak_sitter::Node<'tree> {
             match self {
                 Self::Pattern(x) => x.node(),
+                Self::ClosurePattern(x) => x.node(),
                 Self::Expression(x) => x.node(),
                 Self::LetChain(x) => x.node(),
                 Self::LetCondition(x) => x.node(),
@@ -20426,6 +21269,7 @@ pub mod anon_unions {
         fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::Pattern(x) => x.node_mut(),
+                Self::ClosurePattern(x) => x.node_mut(),
                 Self::Expression(x) => x.node_mut(),
                 Self::LetChain(x) => x.node_mut(),
                 Self::LetCondition(x) => x.node_mut(),
@@ -20435,6 +21279,7 @@ pub mod anon_unions {
         fn into_node(self) -> yak_sitter::Node<'tree> {
             match self {
                 Self::Pattern(x) => x.into_node(),
+                Self::ClosurePattern(x) => x.into_node(),
                 Self::Expression(x) => x.into_node(),
                 Self::LetChain(x) => x.into_node(),
                 Self::LetCondition(x) => x.into_node(),
@@ -21514,6 +22359,80 @@ pub mod anon_unions {
             }
         }
     }
+    #[doc = "one of `{identifier | super}`:\n- [Identifier]\n- [Super]"]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub enum Identifier_Super<'tree> {
+        Identifier(Identifier<'tree>),
+        Super(Super<'tree>),
+    }
+    #[automatically_derived]
+    impl<'tree> Identifier_Super<'tree> {
+        #[doc = "Returns the node if it is of kind `identifier` ([Identifier]), otherwise returns None"]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn identifier(self) -> Option<Identifier<'tree>> {
+            match self {
+                Self::Identifier(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = "Returns the node if it is of kind `super` ([Super]), otherwise returns None"]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn super_(self) -> Option<Super<'tree>> {
+            match self {
+                Self::Super(x) => Some(x),
+                _ => None,
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Identifier_Super<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+            match node.kind() {
+                "identifier" => Ok(unsafe {
+                    Self :: Identifier (< Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node))
+                }),
+                "super" => {
+                    Ok(unsafe {
+                        Self :: Super (< Super < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node))
+                    })
+                }
+                _ => Err(type_sitter_lib::IncorrectKind {
+                    node,
+                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                }),
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for Identifier_Super<'tree> {
+        const KIND: &'static str = "{identifier | super}";
+        #[inline]
+        fn node(&self) -> &yak_sitter::Node<'tree> {
+            match self {
+                Self::Identifier(x) => x.node(),
+                Self::Super(x) => x.node(),
+            }
+        }
+        #[inline]
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
+            match self {
+                Self::Identifier(x) => x.node_mut(),
+                Self::Super(x) => x.node_mut(),
+            }
+        }
+        #[inline]
+        fn into_node(self) -> yak_sitter::Node<'tree> {
+            match self {
+                Self::Identifier(x) => x.into_node(),
+                Self::Super(x) => x.into_node(),
+            }
+        }
+    }
     #[doc = "one of `{bracketed_type | crate | generic_type | identifier | metavariable | scoped_identifier | self | super}`:\n- [BracketedType]\n- [Crate]\n- [GenericType]\n- [Identifier]\n- [Metavariable]\n- [ScopedIdentifier]\n- [_Self]\n- [Super]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
@@ -22015,15 +22934,16 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{_declaration_statement | expression_statement}`:\n- [DeclarationStatement]\n- [ExpressionStatement]"]
+    #[doc = "one of `{_declaration_statement | expression_statement | shebang}`:\n- [DeclarationStatement]\n- [ExpressionStatement]\n- [Shebang]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub enum DeclarationStatement_ExpressionStatement<'tree> {
+    pub enum DeclarationStatement_ExpressionStatement_Shebang<'tree> {
         DeclarationStatement(DeclarationStatement<'tree>),
         ExpressionStatement(ExpressionStatement<'tree>),
+        Shebang(Shebang<'tree>),
     }
     #[automatically_derived]
-    impl<'tree> DeclarationStatement_ExpressionStatement<'tree> {
+    impl<'tree> DeclarationStatement_ExpressionStatement_Shebang<'tree> {
         #[doc = "Returns the node if it is of kind `_declaration_statement` ([DeclarationStatement]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
@@ -22042,9 +22962,20 @@ pub mod anon_unions {
                 _ => None,
             }
         }
+        #[doc = "Returns the node if it is of kind `shebang` ([Shebang]), otherwise returns None"]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn shebang(self) -> Option<Shebang<'tree>> {
+            match self {
+                Self::Shebang(x) => Some(x),
+                _ => None,
+            }
+        }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for DeclarationStatement_ExpressionStatement<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
+        for DeclarationStatement_ExpressionStatement_Shebang<'tree>
+    {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
         fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
@@ -22054,6 +22985,9 @@ pub mod anon_unions {
             if let Ok(this) = <ExpressionStatement<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::ExpressionStatement(this));
             }
+            if let Ok(this) = <Shebang<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Shebang(this));
+            }
             Err(type_sitter_lib::IncorrectKind {
                 node,
                 kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
@@ -22061,13 +22995,16 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for DeclarationStatement_ExpressionStatement<'tree> {
-        const KIND: &'static str = "{_declaration_statement | expression_statement}";
+    impl<'tree> type_sitter_lib::TypedNode<'tree>
+        for DeclarationStatement_ExpressionStatement_Shebang<'tree>
+    {
+        const KIND: &'static str = "{_declaration_statement | expression_statement | shebang}";
         #[inline]
         fn node(&self) -> &yak_sitter::Node<'tree> {
             match self {
                 Self::DeclarationStatement(x) => x.node(),
                 Self::ExpressionStatement(x) => x.node(),
+                Self::Shebang(x) => x.node(),
             }
         }
         #[inline]
@@ -22075,6 +23012,7 @@ pub mod anon_unions {
             match self {
                 Self::DeclarationStatement(x) => x.node_mut(),
                 Self::ExpressionStatement(x) => x.node_mut(),
+                Self::Shebang(x) => x.node_mut(),
             }
         }
         #[inline]
@@ -22082,6 +23020,7 @@ pub mod anon_unions {
             match self {
                 Self::DeclarationStatement(x) => x.into_node(),
                 Self::ExpressionStatement(x) => x.into_node(),
+                Self::Shebang(x) => x.into_node(),
             }
         }
     }
@@ -22743,6 +23682,76 @@ pub mod anon_unions {
             }
         }
     }
+    #[doc = "one of `{_pattern | closure_expression}`:\n- [Pattern]\n- [ClosureExpression]"]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub enum Pattern_ClosureExpression<'tree> {
+        Pattern(Pattern<'tree>),
+        ClosureExpression(ClosureExpression<'tree>),
+    }
+    #[automatically_derived]
+    impl<'tree> Pattern_ClosureExpression<'tree> {
+        #[doc = "Returns the node if it is of kind `_pattern` ([Pattern]), otherwise returns None"]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn pattern(self) -> Option<Pattern<'tree>> {
+            match self {
+                Self::Pattern(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = "Returns the node if it is of kind `closure_expression` ([ClosureExpression]), otherwise returns None"]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn closure_expression(self) -> Option<ClosureExpression<'tree>> {
+            match self {
+                Self::ClosureExpression(x) => Some(x),
+                _ => None,
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Pattern_ClosureExpression<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+            if let Ok(this) = <Pattern<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Pattern(this));
+            }
+            if let Ok(this) = <ClosureExpression<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::ClosureExpression(this));
+            }
+            Err(type_sitter_lib::IncorrectKind {
+                node,
+                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+            })
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for Pattern_ClosureExpression<'tree> {
+        const KIND: &'static str = "{_pattern | closure_expression}";
+        #[inline]
+        fn node(&self) -> &yak_sitter::Node<'tree> {
+            match self {
+                Self::Pattern(x) => x.node(),
+                Self::ClosureExpression(x) => x.node(),
+            }
+        }
+        #[inline]
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
+            match self {
+                Self::Pattern(x) => x.node_mut(),
+                Self::ClosureExpression(x) => x.node_mut(),
+            }
+        }
+        #[inline]
+        fn into_node(self) -> yak_sitter::Node<'tree> {
+            match self {
+                Self::Pattern(x) => x.into_node(),
+                Self::ClosureExpression(x) => x.into_node(),
+            }
+        }
+    }
     #[doc = "one of `{_pattern | identifier | scoped_identifier}`:\n- [Pattern]\n- [Identifier]\n- [ScopedIdentifier]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
@@ -22947,23 +23956,33 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{visibility_modifier | type_identifier | _type | type_parameters}`:\n- [VisibilityModifier]\n- [TypeIdentifier]\n- [Type]\n- [TypeParameters]"]
+    #[doc = "one of `{visibility_modifier | where_clause | type_identifier | _type | type_parameters}`:\n- [VisibilityModifier]\n- [WhereClause]\n- [TypeIdentifier]\n- [Type]\n- [TypeParameters]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub enum VisibilityModifier_TypeIdentifier_Type_TypeParameters<'tree> {
+    pub enum VisibilityModifier_WhereClause_TypeIdentifier_Type_TypeParameters<'tree> {
         VisibilityModifier(VisibilityModifier<'tree>),
+        WhereClause(WhereClause<'tree>),
         TypeIdentifier(TypeIdentifier<'tree>),
         Type(Type<'tree>),
         TypeParameters(TypeParameters<'tree>),
     }
     #[automatically_derived]
-    impl<'tree> VisibilityModifier_TypeIdentifier_Type_TypeParameters<'tree> {
+    impl<'tree> VisibilityModifier_WhereClause_TypeIdentifier_Type_TypeParameters<'tree> {
         #[doc = "Returns the node if it is of kind `visibility_modifier` ([VisibilityModifier]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn visibility_modifier(self) -> Option<VisibilityModifier<'tree>> {
             match self {
                 Self::VisibilityModifier(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = "Returns the node if it is of kind `where_clause` ([WhereClause]), otherwise returns None"]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn where_clause(self) -> Option<WhereClause<'tree>> {
+            match self {
+                Self::WhereClause(x) => Some(x),
                 _ => None,
             }
         }
@@ -22997,13 +24016,16 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-        for VisibilityModifier_TypeIdentifier_Type_TypeParameters<'tree>
+        for VisibilityModifier_WhereClause_TypeIdentifier_Type_TypeParameters<'tree>
     {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
         fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
             if let Ok(this) = <VisibilityModifier<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::VisibilityModifier(this));
+            }
+            if let Ok(this) = <WhereClause<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::WhereClause(this));
             }
             if let Ok(this) = <TypeIdentifier<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::TypeIdentifier(this));
@@ -23022,14 +24044,15 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> type_sitter_lib::TypedNode<'tree>
-        for VisibilityModifier_TypeIdentifier_Type_TypeParameters<'tree>
+        for VisibilityModifier_WhereClause_TypeIdentifier_Type_TypeParameters<'tree>
     {
         const KIND: &'static str =
-            "{visibility_modifier | type_identifier | _type | type_parameters}";
+            "{visibility_modifier | where_clause | type_identifier | _type | type_parameters}";
         #[inline]
         fn node(&self) -> &yak_sitter::Node<'tree> {
             match self {
                 Self::VisibilityModifier(x) => x.node(),
+                Self::WhereClause(x) => x.node(),
                 Self::TypeIdentifier(x) => x.node(),
                 Self::Type(x) => x.node(),
                 Self::TypeParameters(x) => x.node(),
@@ -23039,6 +24062,7 @@ pub mod anon_unions {
         fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::VisibilityModifier(x) => x.node_mut(),
+                Self::WhereClause(x) => x.node_mut(),
                 Self::TypeIdentifier(x) => x.node_mut(),
                 Self::Type(x) => x.node_mut(),
                 Self::TypeParameters(x) => x.node_mut(),
@@ -23048,6 +24072,7 @@ pub mod anon_unions {
         fn into_node(self) -> yak_sitter::Node<'tree> {
             match self {
                 Self::VisibilityModifier(x) => x.into_node(),
+                Self::WhereClause(x) => x.into_node(),
                 Self::TypeIdentifier(x) => x.into_node(),
                 Self::Type(x) => x.into_node(),
                 Self::TypeParameters(x) => x.into_node(),
@@ -23275,24 +24300,24 @@ pub mod anon_unions {
     impl < 'tree > TryFrom < yak_sitter :: Node < 'tree >> for ArrayType_GenericType_HigherRankedTraitBound_Lifetime_PointerType_PrimitiveType_ReferenceType_ScopedTypeIdentifier_TupleType_TypeIdentifier < 'tree > { type Error = type_sitter_lib :: IncorrectKind < 'tree > ; # [inline] fn try_from (node : yak_sitter :: Node < 'tree >) -> Result < Self , Self :: Error > { match node . kind () { "array_type" => Ok (unsafe { Self :: ArrayType (< ArrayType < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "generic_type" => Ok (unsafe { Self :: GenericType (< GenericType < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "higher_ranked_trait_bound" => Ok (unsafe { Self :: HigherRankedTraitBound (< HigherRankedTraitBound < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "lifetime" => Ok (unsafe { Self :: Lifetime (< Lifetime < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "pointer_type" => Ok (unsafe { Self :: PointerType (< PointerType < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "primitive_type" => Ok (unsafe { Self :: PrimitiveType (< PrimitiveType < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "reference_type" => Ok (unsafe { Self :: ReferenceType (< ReferenceType < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "scoped_type_identifier" => Ok (unsafe { Self :: ScopedTypeIdentifier (< ScopedTypeIdentifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "tuple_type" => Ok (unsafe { Self :: TupleType (< TupleType < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , "type_identifier" => Ok (unsafe { Self :: TypeIdentifier (< TypeIdentifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node)) }) , _ => Err (type_sitter_lib :: IncorrectKind { node , kind : < Self as type_sitter_lib :: TypedNode < 'tree >> :: KIND , }) } } }
     #[automatically_derived]
     impl < 'tree > type_sitter_lib :: TypedNode < 'tree > for ArrayType_GenericType_HigherRankedTraitBound_Lifetime_PointerType_PrimitiveType_ReferenceType_ScopedTypeIdentifier_TupleType_TypeIdentifier < 'tree > { const KIND : & 'static str = "{array_type | generic_type | higher_ranked_trait_bound | lifetime | pointer_type | primitive_type | reference_type | scoped_type_identifier | tuple_type | type_identifier}" ; # [inline] fn node (& self) -> & yak_sitter :: Node < 'tree > { match self { Self :: ArrayType (x) => x . node () , Self :: GenericType (x) => x . node () , Self :: HigherRankedTraitBound (x) => x . node () , Self :: Lifetime (x) => x . node () , Self :: PointerType (x) => x . node () , Self :: PrimitiveType (x) => x . node () , Self :: ReferenceType (x) => x . node () , Self :: ScopedTypeIdentifier (x) => x . node () , Self :: TupleType (x) => x . node () , Self :: TypeIdentifier (x) => x . node () , } } # [inline] fn node_mut (& mut self) -> & mut yak_sitter :: Node < 'tree > { match self { Self :: ArrayType (x) => x . node_mut () , Self :: GenericType (x) => x . node_mut () , Self :: HigherRankedTraitBound (x) => x . node_mut () , Self :: Lifetime (x) => x . node_mut () , Self :: PointerType (x) => x . node_mut () , Self :: PrimitiveType (x) => x . node_mut () , Self :: ReferenceType (x) => x . node_mut () , Self :: ScopedTypeIdentifier (x) => x . node_mut () , Self :: TupleType (x) => x . node_mut () , Self :: TypeIdentifier (x) => x . node_mut () , } } # [inline] fn into_node (self) -> yak_sitter :: Node < 'tree > { match self { Self :: ArrayType (x) => x . into_node () , Self :: GenericType (x) => x . into_node () , Self :: HigherRankedTraitBound (x) => x . into_node () , Self :: Lifetime (x) => x . into_node () , Self :: PointerType (x) => x . into_node () , Self :: PrimitiveType (x) => x . into_node () , Self :: ReferenceType (x) => x . into_node () , Self :: ScopedTypeIdentifier (x) => x . into_node () , Self :: TupleType (x) => x . into_node () , Self :: TypeIdentifier (x) => x . into_node () , } } }
-    #[doc = "one of `{loop_label | block | _expression | let_chain | let_condition}`:\n- [LoopLabel]\n- [Block]\n- [Expression]\n- [LetChain]\n- [LetCondition]"]
+    #[doc = "one of `{label | block | _expression | let_chain | let_condition}`:\n- [Label]\n- [Block]\n- [Expression]\n- [LetChain]\n- [LetCondition]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub enum LoopLabel_Block_Expression_LetChain_LetCondition<'tree> {
-        LoopLabel(LoopLabel<'tree>),
+    pub enum Label_Block_Expression_LetChain_LetCondition<'tree> {
+        Label(Label<'tree>),
         Block(Block<'tree>),
         Expression(Expression<'tree>),
         LetChain(LetChain<'tree>),
         LetCondition(LetCondition<'tree>),
     }
     #[automatically_derived]
-    impl<'tree> LoopLabel_Block_Expression_LetChain_LetCondition<'tree> {
-        #[doc = "Returns the node if it is of kind `loop_label` ([LoopLabel]), otherwise returns None"]
+    impl<'tree> Label_Block_Expression_LetChain_LetCondition<'tree> {
+        #[doc = "Returns the node if it is of kind `label` ([Label]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn loop_label(self) -> Option<LoopLabel<'tree>> {
+        pub fn label(self) -> Option<Label<'tree>> {
             match self {
-                Self::LoopLabel(x) => Some(x),
+                Self::Label(x) => Some(x),
                 _ => None,
             }
         }
@@ -23335,13 +24360,13 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> TryFrom<yak_sitter::Node<'tree>>
-        for LoopLabel_Block_Expression_LetChain_LetCondition<'tree>
+        for Label_Block_Expression_LetChain_LetCondition<'tree>
     {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
         fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
-            if let Ok(this) = <LoopLabel<'tree> as TryFrom<_>>::try_from(node) {
-                return Ok(Self::LoopLabel(this));
+            if let Ok(this) = <Label<'tree> as TryFrom<_>>::try_from(node) {
+                return Ok(Self::Label(this));
             }
             if let Ok(this) = <Block<'tree> as TryFrom<_>>::try_from(node) {
                 return Ok(Self::Block(this));
@@ -23363,13 +24388,13 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> type_sitter_lib::TypedNode<'tree>
-        for LoopLabel_Block_Expression_LetChain_LetCondition<'tree>
+        for Label_Block_Expression_LetChain_LetCondition<'tree>
     {
-        const KIND: &'static str = "{loop_label | block | _expression | let_chain | let_condition}";
+        const KIND: &'static str = "{label | block | _expression | let_chain | let_condition}";
         #[inline]
         fn node(&self) -> &yak_sitter::Node<'tree> {
             match self {
-                Self::LoopLabel(x) => x.node(),
+                Self::Label(x) => x.node(),
                 Self::Block(x) => x.node(),
                 Self::Expression(x) => x.node(),
                 Self::LetChain(x) => x.node(),
@@ -23379,7 +24404,7 @@ pub mod anon_unions {
         #[inline]
         fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
-                Self::LoopLabel(x) => x.node_mut(),
+                Self::Label(x) => x.node_mut(),
                 Self::Block(x) => x.node_mut(),
                 Self::Expression(x) => x.node_mut(),
                 Self::LetChain(x) => x.node_mut(),
@@ -23389,7 +24414,7 @@ pub mod anon_unions {
         #[inline]
         fn into_node(self) -> yak_sitter::Node<'tree> {
             match self {
-                Self::LoopLabel(x) => x.into_node(),
+                Self::Label(x) => x.into_node(),
                 Self::Block(x) => x.into_node(),
                 Self::Expression(x) => x.into_node(),
                 Self::LetChain(x) => x.into_node(),

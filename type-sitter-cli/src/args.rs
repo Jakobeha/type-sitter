@@ -16,6 +16,11 @@ pub struct Args {
     pub input_type: Option<InputType>,
     /// Output directory. Defaults to "src/type_sitter".
     ///
+    /// **You must explicitly create the module file for this directory (e.g. `src/type_sitter.rs`
+    /// or `src/type_sitter/mod.rs`) and export the submodules. `type-sitter-cli` won't do this
+    /// itself, so otherwise, you won't be able to import the generated sources.** Typically you
+    /// would do `pub mod <language>;`, but you may choose to export them differently.
+    ///
     /// The output module name for each input will be the language name, unless overridden by
     /// specifying the input as a `input/path=output/path` pair.
     #[arg(short = 'o', long = "output-dir", default_value = "src/type_sitter")]
@@ -82,13 +87,11 @@ impl InputType {
 
     pub fn infer_language_dir(&self, input_path: &Path) -> Option<PathBuf> {
         match self {
-            // Doesn't need language dir
-            InputType::NodeTypes => None,
-            InputType::Query => {
+            InputType::NodeTypes | InputType::Query => {
                 successors(input_path.parent(), |p| p.parent())
                     .find(|parent| {
-                        Self::read_parent_dir(parent, Error::io("inferring language")).ok()
-                            .map_or(false, |mut i| i.any(|e| e.path().ends_with( "src")))
+                        Self::read_parent_dir(parent, Error::io("inferring language directory")).ok()
+                            .map_or(false, |mut i| i.any(|e| e.path().ends_with( "package.json")))
                     })
                     .map(|p| p.to_path_buf())
             }
