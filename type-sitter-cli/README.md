@@ -48,10 +48,12 @@ type-sitter-cli --help
 - **Q:** I can't import the generated sources.
 - **A:** `type-sitter-cli` doesn't generate the root module for generated sources itself, you must do so manually. e.g. if the root module is the default (`src/type_sitter`), either create `src/type_sitter.rs` or `src/type_sitter/mod.rs` and add `pub mod <my_language>;` to it.
 
+<br/>
 
 - **Q:** I get build errors for missing symbols within `type_sitter-lib`.
-- **A:** Make sure you have the `type-sitter-lib` dependency in your `Cargo.toml`
+- **A:** Make sure you have the `type-sitter-lib` dependency in your `Cargo.toml`.
 
+<br/>
 
 - **Q:** I get build errors for symbols within `tree-sitter`.
 - **A:** Make sure you are using tree-sitter `0.22`.

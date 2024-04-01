@@ -1,5 +1,5 @@
 /// Macro which lets you generate your own `tree-sitter` wrappers, which will be versions of the
-/// [yak_sitter] ones with a defined `Custom`.
+/// yak-sitter ones with a defined `Custom`.
 ///
 /// ## Usage
 /// ```rust

@@ -130,6 +130,7 @@ pub struct Parser(tree_sitter::Parser);
 
 /// Re-exports [tree_sitter::Language]
 pub type Language = tree_sitter::Language;
+/// Re-exports [tree_sitter::LanguageRef]
 pub type LanguageRef<'a> = tree_sitter::LanguageRef<'a>;
 /// Re-exports [tree_sitter::LanguageError]
 pub type LanguageError = tree_sitter::LanguageError;
