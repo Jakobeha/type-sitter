@@ -1,9 +1,9 @@
 use std::marker::PhantomData;
 use std::os::fd::AsRawFd;
 #[cfg(feature = "yak-sitter")]
-use yak_sitter::{InputEdit, Language, Range, Tree, TreeCursor};
+use yak_sitter::{InputEdit, LanguageRef, Range, Tree, TreeCursor};
 #[cfg(not(feature = "yak-sitter"))]
-use tree_sitter::{InputEdit, Language, Range, Tree, TreeCursor};
+use tree_sitter::{InputEdit, LanguageRef, Range, Tree, TreeCursor};
 use crate::{IncorrectKind, IncorrectTreeKind, TypedNode};
 
 /// Tree whose root is a typed node. Currently we don't know which node is the root, so you must
@@ -130,7 +130,7 @@ impl<Root: TypedNodeGAT> TypedTree<Root> {
 
     /// Get the language used to parse the tree.
     #[inline]
-    pub fn language(&self) -> Language {
+    pub fn language(&self) -> LanguageRef<'_> {
         self.tree.language()
     }
 
@@ -209,7 +209,7 @@ mod tests {
     #[test]
     fn test_static_lifetime() {
         let mut parser = Parser::new();
-        parser.set_language(tree_sitter_json::language()).expect("failed to set JSON language (?)");
+        parser.set_language(&tree_sitter_json::language()).expect("failed to set JSON language (?)");
         let json_str = r#"{ "key": [{ "key2": "value" }] }"#;
         let untyped_tree = parser.parse(json_str, None).expect("failed to parse test JSON");
         let tree = TypedTree::<UntypedNodeGAT>::try_from(untyped_tree).expect("failed to create typed tree of an untyped node");

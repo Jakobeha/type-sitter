@@ -67,7 +67,7 @@ enum Token<'a> {
     #[token("]")]
     RBracket,
     // Atom types (can't be merged with [Atom] because logos is limited)
-    #[token("_")]
+    #[token("_", priority = 1)]
     Wildcard,
     #[token(".")]
     Anchor,
@@ -79,7 +79,7 @@ enum Token<'a> {
     QuantifyOneOrMore,
     #[regex(r#"[a-zA-Z_][a-zA-Z0-9_\-+\.!?@#$%^&*|'/<>]*:"#, lex_snoc)]
     Field(&'a str),
-    #[regex(r#"[a-zA-Z_][a-zA-Z0-9_\-+\.!?@#$%^&*|'/<>]*"#, Lexer::slice)]
+    #[regex(r#"[a-zA-Z_][a-zA-Z0-9_\-+\.!?@#$%^&*|'/<>]*"#, Lexer::slice, priority = 0)]
     Ident(&'a str),
     #[regex(r#""([^"\\]|\\.)*""#, unquote_simple)]
     String(Cow<'a, str>),

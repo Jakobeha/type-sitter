@@ -452,7 +452,7 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Object<'tree> {
 /**Typed node `pair`
 
 This node has these fields:
-- `key`: `{number | string}` ([anon_unions::Number_String])
+- `key`: `string` ([String])
 - `value`: `_value` ([Value])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -460,15 +460,13 @@ This node has these fields:
 pub struct Pair<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> Pair<'tree> {
-    ///Get the field `key` which has kind `{number | string}` ([anon_unions::Number_String])
+    ///Get the field `key` which has kind `string` ([String])
     #[allow(dead_code)]
     #[inline]
-    pub fn key(
-        &self,
-    ) -> type_sitter_lib::NodeResult<'tree, anon_unions::Number_String<'tree>> {
+    pub fn key(&self) -> type_sitter_lib::NodeResult<'tree, String<'tree>> {
         self.0
             .child_by_field_name("key")
-            .map(<anon_unions::Number_String<'tree> as TryFrom<_>>::try_from)
+            .map(<String<'tree> as TryFrom<_>>::try_from)
             .expect(
                 "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
             )
@@ -1231,102 +1229,6 @@ This node has no children
         #[inline]
         unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
-        }
-    }
-}
-pub mod anon_unions {
-    #[allow(unused_imports)]
-    use super::*;
-    /**one of `{number | string}`:
-- [Number]
-- [String]*/
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[allow(non_camel_case_types)]
-    pub enum Number_String<'tree> {
-        Number(Number<'tree>),
-        String(String<'tree>),
-    }
-    #[automatically_derived]
-    impl<'tree> Number_String<'tree> {
-        ///Returns the node if it is of kind `number` ([Number]), otherwise returns None
-        #[inline]
-        #[allow(unused, non_snake_case)]
-        pub fn number(self) -> Option<Number<'tree>> {
-            match self {
-                Self::Number(x) => Some(x),
-                _ => None,
-            }
-        }
-        ///Returns the node if it is of kind `string` ([String]), otherwise returns None
-        #[inline]
-        #[allow(unused, non_snake_case)]
-        pub fn string(self) -> Option<String<'tree>> {
-            match self {
-                Self::String(x) => Some(x),
-                _ => None,
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Number_String<'tree> {
-        type Error = type_sitter_lib::IncorrectKind<'tree>;
-        #[inline]
-        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
-            match node.kind() {
-                "number" => {
-                    Ok(unsafe {
-                        Self::Number(
-                            <Number<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                "string" => {
-                    Ok(unsafe {
-                        Self::String(
-                            <String<
-                                'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
-                        )
-                    })
-                }
-                _ => {
-                    Err(type_sitter_lib::IncorrectKind {
-                        node,
-                        kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                    })
-                }
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for Number_String<'tree> {
-        const KIND: &'static str = "{number | string}";
-        #[inline]
-        fn node(&self) -> &yak_sitter::Node<'tree> {
-            match self {
-                Self::Number(x) => x.node(),
-                Self::String(x) => x.node(),
-            }
-        }
-        #[inline]
-        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
-            match self {
-                Self::Number(x) => x.node_mut(),
-                Self::String(x) => x.node_mut(),
-            }
-        }
-        #[inline]
-        fn into_node(self) -> yak_sitter::Node<'tree> {
-            match self {
-                Self::Number(x) => x.into_node(),
-                Self::String(x) => x.into_node(),
-            }
         }
     }
 }

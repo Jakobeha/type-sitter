@@ -8,17 +8,17 @@ use crate::TypedQuery;
 
 /// Iterate a query's captures (see [tree_sitter::QueryCaptures])
 #[cfg(feature = "yak-sitter")]
-pub struct TypedQueryCaptures<'cursor, 'tree: 'cursor, Query: TypedQuery, Text: TextProvider<'cursor> = &'cursor Tree> {
+pub struct TypedQueryCaptures<'cursor, 'tree: 'cursor, Query: TypedQuery, Text: TextProvider<I> = &'cursor Tree, I: AsRef<[u8]> = &'cursor str> {
     typed_query: &'cursor Query,
-    untyped_captures: tree_sitter::QueryCaptures<'cursor, 'tree, Text>,
+    untyped_captures: tree_sitter::QueryCaptures<'cursor, 'tree, Text, I>,
     tree: &'tree Tree,
 }
 
 /// Iterate a query's captures (see [tree_sitter::QueryCaptures])
 #[cfg(not(feature = "yak-sitter"))]
-pub struct TypedQueryCaptures<'cursor, 'tree, Query: TypedQuery, Text: TextProvider<'cursor>> {
+pub struct TypedQueryCaptures<'cursor, 'tree: 'cursor, Query: TypedQuery, Text: TextProvider<I>, I: AsRef<[u8]>> {
     typed_query: &'cursor Query,
-    untyped_captures: tree_sitter::QueryCaptures<'cursor, 'tree, Text>,
+    untyped_captures: tree_sitter::QueryCaptures<'cursor, 'tree, Text, I>,
 }
 
 /// A capture from a [TypedQuery] with [crate::TypedNode]s
@@ -62,12 +62,12 @@ pub trait TypedQueryCapture<'cursor, 'tree: 'cursor>: Debug + Clone {
     }
 }
 
-impl<'cursor, 'tree: 'cursor, Query: TypedQuery, Text: TextProvider<'cursor>> TypedQueryCaptures<'cursor, 'tree, Query, Text> {
+impl<'cursor, 'tree: 'cursor, Query: TypedQuery, Text: TextProvider<I>, I: AsRef<[u8]>> TypedQueryCaptures<'cursor, 'tree, Query, Text, I> {
     /// SAFETY: The captures must have come from the same query
     #[inline]
     pub(super) unsafe fn new(
         typed_query: &'cursor Query,
-        untyped_captures: tree_sitter::QueryCaptures<'cursor, 'tree, Text>,
+        untyped_captures: tree_sitter::QueryCaptures<'cursor, 'tree, Text, I>,
         #[cfg(feature = "yak-sitter")]
         tree: &'tree Tree,
     ) -> Self {
@@ -95,7 +95,7 @@ impl<'cursor, 'tree: 'cursor, Query: TypedQuery, Text: TextProvider<'cursor>> Ty
     }
 }
 
-impl<'cursor, 'tree, Query: TypedQuery, Text: TextProvider<'cursor>> Iterator for TypedQueryCaptures<'cursor, 'tree, Query, Text> {
+impl<'cursor, 'tree: 'cursor, Query: TypedQuery, Text: TextProvider<I>, I: AsRef<[u8]>> Iterator for TypedQueryCaptures<'cursor, 'tree, Query, Text, I> {
     type Item = Query::Capture<'cursor, 'tree>;
 
     #[inline]

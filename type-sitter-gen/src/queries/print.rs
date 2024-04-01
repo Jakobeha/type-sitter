@@ -46,14 +46,14 @@ impl<'tree> SExpSeq<'tree> {
             .copied()
             .chain(disabled_capture_names.iter().flat_map(|&name| {
                 ts_query.capture_names().iter().enumerate()
-                    .filter(move |(_, n)| n.as_str() == name)
+                    .filter(move |(_, n)| **n == name)
                     .map(|(idx, _)| idx)
             }))
             .collect::<Vec<_>>();
         let capture_idxs_and_names = ts_query.capture_names().iter().enumerate()
             .filter(|(capture_idx, _)| !disabled_captures.contains(capture_idx))
             .collect::<Vec<_>>();
-        let (capture_idxs, capture_names) = capture_idxs_and_names.iter().copied().unzip::<_, _, Vec<_>, Vec<_>>();
+        let (capture_idxs, capture_names) = capture_idxs_and_names.iter().map(|(idx, name)| (*idx, **name)).unzip::<_, _, Vec<_>, Vec<_>>();
 
         let def_name = def_ident.to_string();
         let language_name = language_ident.to_string();
@@ -86,7 +86,7 @@ impl<'tree> SExpSeq<'tree> {
             tree_to_raws
         ) = match use_yak_sitter {
             false => (
-                quote! { , Text },
+                quote! { , Text, I },
                 quote! {},
                 quote! {},
                 quote! { capture.node },
@@ -161,7 +161,7 @@ impl<'tree> SExpSeq<'tree> {
             fn #mk_internal_query_ident() -> Box<tree_sitter::Query> {
                 #[allow(unused_mut)]
                 let mut query = tree_sitter::Query::new(
-                    #language_ident::language(),
+                    &#language_ident::language(),
                     #query_str
                 ).expect(#query_parse_error);
                 #(query.disable_capture(#disabled_captures);)*

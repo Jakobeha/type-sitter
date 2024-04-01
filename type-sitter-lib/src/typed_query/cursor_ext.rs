@@ -27,12 +27,12 @@ pub trait QueryCursorExt {
     /// multiple patterns can match the same set of nodes, one match may contain captures that
     /// appear before some of the captures from a previous match.
     #[cfg(not(feature = "yak-sitter"))]
-    fn typed_matches<'cursor, 'tree, Query: TypedQuery, Text: TextProvider<'cursor> + 'cursor>(
+    fn typed_matches<'cursor, 'tree, Query: TypedQuery, Text: TextProvider<I> + 'cursor, I: AsRef<[u8]>>(
         &'cursor mut self,
         query: &'cursor Query,
         node: impl TypedNode<'tree>,
         text: Text
-    ) -> TypedQueryMatches<'cursor, 'tree, Query, Text>;
+    ) -> TypedQueryMatches<'cursor, 'tree, Query, Text, I>;
 
     /// Run a typed query on the cursor, iterating over the captures in order they appear.
     ///
@@ -50,12 +50,12 @@ pub trait QueryCursorExt {
     /// This is useful if you don’t care about which pattern matched, and just want a single,
     /// ordered sequence of captures.
     #[cfg(not(feature = "yak-sitter"))]
-    fn typed_captures<'cursor, 'tree, Query: TypedQuery, Text: TextProvider<'cursor> + 'cursor>(
+    fn typed_captures<'cursor, 'tree, Query: TypedQuery, Text: TextProvider<I> + 'cursor, I: AsRef<[u8]>>(
         &'cursor mut self,
         query: &'cursor Query,
         node: impl TypedNode<'tree>,
         text: Text
-    ) -> TypedQueryCaptures<'cursor, 'tree, Query, Text>;
+    ) -> TypedQueryCaptures<'cursor, 'tree, Query, Text, I>;
 }
 
 impl QueryCursorExt for QueryCursor {
@@ -79,12 +79,12 @@ impl QueryCursorExt for QueryCursor {
 
     #[cfg(not(feature = "yak-sitter"))]
     #[inline]
-    fn typed_matches<'cursor, 'tree, Query: TypedQuery, Text: TextProvider<'cursor> + 'cursor>(
+    fn typed_matches<'cursor, 'tree, Query: TypedQuery, Text: TextProvider<I> + 'cursor, I: AsRef<[u8]>>(
         &'cursor mut self,
         query: &'cursor Query,
         node: impl TypedNode<'tree>,
         text: Text
-    ) -> TypedQueryMatches<'cursor, 'tree, Query, Text> {
+    ) -> TypedQueryMatches<'cursor, 'tree, Query, Text, I> {
         unsafe {
             TypedQueryMatches::new(
                 query,
@@ -113,12 +113,12 @@ impl QueryCursorExt for QueryCursor {
 
     #[cfg(not(feature = "yak-sitter"))]
     #[inline]
-    fn typed_captures<'cursor, 'tree, Query: TypedQuery, Text: TextProvider<'cursor> + 'cursor>(
+    fn typed_captures<'cursor, 'tree, Query: TypedQuery, Text: TextProvider<I> + 'cursor, I: AsRef<[u8]>>(
         &'cursor mut self,
         query: &'cursor Query,
         node: impl TypedNode<'tree>,
         text: Text
-    ) -> TypedQueryCaptures<'cursor, 'tree, Query, Text> {
+    ) -> TypedQueryCaptures<'cursor, 'tree, Query, Text, I> {
         unsafe {
             TypedQueryCaptures::new(
                 query,
@@ -222,12 +222,12 @@ impl TypedQueryCursor {
     /// appear before some of the captures from a previous match.
     #[inline]
     #[cfg(not(feature = "yak-sitter"))]
-    pub fn matches<'cursor, 'tree: 'cursor, Query: TypedQuery, Text: TextProvider<'cursor> + 'cursor>(
+    pub fn matches<'cursor, 'tree: 'cursor, Query: TypedQuery, Text: TextProvider<I> + 'cursor, I: AsRef<[u8]>>(
         &'cursor mut self,
         query: &'cursor Query,
         node: impl TypedNode<'tree>,
         text: Text
-    ) -> TypedQueryMatches<'cursor, 'tree, Query, Text> {
+    ) -> TypedQueryMatches<'cursor, 'tree, Query, Text, I> {
         self.0.typed_matches(query, node, text)
     }
 
@@ -251,12 +251,12 @@ impl TypedQueryCursor {
     /// ordered sequence of captures.
     #[inline]
     #[cfg(not(feature = "yak-sitter"))]
-    pub fn captures<'cursor, 'tree: 'cursor, Query: TypedQuery, Text: TextProvider<'cursor> + 'cursor>(
+    pub fn captures<'cursor, 'tree: 'cursor, Query: TypedQuery, Text: TextProvider<I> + 'cursor, I: AsRef<[u8]>>(
         &'cursor mut self,
         query: &'cursor Query,
         node: impl TypedNode<'tree>,
         text: Text
-    ) -> TypedQueryCaptures<'cursor, 'tree, Query, Text> {
+    ) -> TypedQueryCaptures<'cursor, 'tree, Query, Text, I> {
         self.0.typed_captures(query, node, text)
     }
 }

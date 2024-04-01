@@ -14,9 +14,9 @@ use crate::TypedQuery;
 ///     <https://github.com/tree-sitter/tree-sitter/issues/608>). Therefore this doesn't implement
 ///     [Iterator]
 #[cfg(feature = "yak-sitter")]
-pub struct TypedQueryMatches<'cursor, 'tree: 'cursor, Query: TypedQuery, Text: TextProvider<'cursor> = &'cursor Tree> {
+pub struct TypedQueryMatches<'cursor, 'tree: 'cursor, Query: TypedQuery, Text: TextProvider<I> = &'cursor Tree, I: AsRef<[u8]> = &'cursor str> {
     typed_query: &'cursor Query,
-    untyped_matches: tree_sitter::QueryMatches<'cursor, 'tree, Text>,
+    untyped_matches: tree_sitter::QueryMatches<'cursor, 'tree, Text, I>,
     current_match: Option<Query::Match<'cursor, 'tree>>,
     tree: &'tree Tree,
 }
@@ -27,9 +27,9 @@ pub struct TypedQueryMatches<'cursor, 'tree: 'cursor, Query: TypedQuery, Text: T
 ///     <https://github.com/tree-sitter/tree-sitter/issues/608>). Therefore this doesn't implement
 ///     [Iterator]
 #[cfg(not(feature = "yak-sitter"))]
-pub struct TypedQueryMatches<'cursor, 'tree, Query: TypedQuery, Text: TextProvider<'cursor>> {
+pub struct TypedQueryMatches<'cursor, 'tree: 'cursor, Query: TypedQuery, Text: TextProvider<I>, I: AsRef<[u8]>> {
     typed_query: &'cursor Query,
-    untyped_matches: tree_sitter::QueryMatches<'cursor, 'tree, Text>,
+    untyped_matches: tree_sitter::QueryMatches<'cursor, 'tree, Text, I>,
     current_match: Option<Query::Match<'cursor, 'tree>>,
 }
 
@@ -69,12 +69,12 @@ pub trait TypedQueryMatch<'cursor, 'tree: 'cursor>: Debug {
     }
 }
 
-impl<'cursor, 'tree: 'cursor, Query: TypedQuery, Text: TextProvider<'cursor>> TypedQueryMatches<'cursor, 'tree, Query, Text> {
+impl<'cursor, 'tree: 'cursor, Query: TypedQuery, Text: TextProvider<I>, I: AsRef<[u8]>> TypedQueryMatches<'cursor, 'tree, Query, Text, I> {
     /// SAFETY: The matches must have come from the same query
     #[inline]
     pub(super) unsafe fn new(
         typed_query: &'cursor Query,
-        untyped_matches: tree_sitter::QueryMatches<'cursor, 'tree, Text>,
+        untyped_matches: tree_sitter::QueryMatches<'cursor, 'tree, Text, I>,
         #[cfg(feature = "yak-sitter")]
         tree: &'tree Tree,
     ) -> Self {
@@ -107,7 +107,7 @@ impl<'cursor, 'tree: 'cursor, Query: TypedQuery, Text: TextProvider<'cursor>> Ty
     }
 }
 
-impl<'cursor, 'tree, Query: TypedQuery, Text: TextProvider<'cursor>> StreamingIterator for TypedQueryMatches<'cursor, 'tree, Query, Text> {
+impl<'cursor, 'tree: 'cursor, Query: TypedQuery, Text: TextProvider<I>, I: AsRef<[u8]>> StreamingIterator for TypedQueryMatches<'cursor, 'tree, Query, Text, I> {
     type Item = Query::Match<'cursor, 'tree>;
 
     #[inline]
@@ -132,7 +132,7 @@ impl<'cursor, 'tree, Query: TypedQuery, Text: TextProvider<'cursor>> StreamingIt
     }
 }
 
-impl<'cursor, 'tree: 'cursor, Query: TypedQuery, Text: TextProvider<'cursor>> StreamingIteratorMut for TypedQueryMatches<'cursor, 'tree, Query, Text> {
+impl<'cursor, 'tree: 'cursor, Query: TypedQuery, Text: TextProvider<I>, I: AsRef<[u8]>> StreamingIteratorMut for TypedQueryMatches<'cursor, 'tree, Query, Text, I> {
     #[inline]
     fn get_mut(&mut self) -> Option<&mut Self::Item> {
         self.current_match.as_mut()

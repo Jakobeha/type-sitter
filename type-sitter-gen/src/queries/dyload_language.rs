@@ -21,14 +21,15 @@ pub fn dyload_language(path: impl AsRef<Path>) -> Result<Language, Error> {
     let path = path.as_ref();
     // Check if the language has already been loaded
     if let Some((_, language)) = LOADED_LANGUAGES.read().unwrap().get(path) {
-        return Ok(*language);
+        return Ok(language.clone());
     }
 
     // Load the language
     let (library, language) = dyload_new_language(path)?;
     // Cache the language
+    let language_clone = language.clone();
     LOADED_LANGUAGES.write().unwrap().insert(path.to_path_buf(), (library, language));
-    Ok(language)
+    Ok(language_clone)
 }
 
 fn dyload_new_language(path: &Path) -> Result<(Library, Language), Error> {

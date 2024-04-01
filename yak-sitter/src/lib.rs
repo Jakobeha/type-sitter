@@ -8,7 +8,10 @@ use streaming_iterator::{StreamingIterator, StreamingIteratorMut};
 use std::str::Utf8Error;
 use std::hash::{Hash, Hasher};
 use std::ops::{BitAnd, BitOr, BitOrAssign, RangeBounds};
+#[cfg(unix)]
 use std::os::fd::AsRawFd;
+#[cfg(windows)]
+use std::os::fd::AsRawHandle;
 use std::ptr::NonNull;
 use utf8_error_offset_by::Utf8ErrorOffsetBy;
 
@@ -76,7 +79,7 @@ pub struct QueryCursor {
 ///     <https://github.com/tree-sitter/tree-sitter/issues/608>). Therefore this doesn't implement
 ///     [Iterator]
 pub struct QueryMatches<'query, 'tree: 'query, Custom = ()> {
-    query_matches: tree_sitter::QueryMatches<'query, 'tree, &'query Tree<Custom>>,
+    query_matches: tree_sitter::QueryMatches<'query, 'tree, &'query Tree<Custom>, &'query str>,
     current_match: Option<QueryMatch<'query, 'tree, Custom>>,
     tree: &'tree Tree<Custom>,
     query: &'query Query
@@ -91,7 +94,7 @@ pub struct QueryMatch<'query, 'tree, Custom = ()> {
 
 /// Wrapper around [tree_sitter::QueryCapture]
 pub struct QueryCaptures<'query, 'tree, Custom = ()> {
-    query_captures: tree_sitter::QueryCaptures<'query, 'tree, &'query Tree<Custom>>,
+    query_captures: tree_sitter::QueryCaptures<'query, 'tree, &'query Tree<Custom>, &'query str>,
     tree: &'tree Tree<Custom>,
     query: &'query Query
 }
@@ -117,7 +120,7 @@ pub struct Point(tree_sitter::Point);
 
 /// A byte and point range in one data-structure. Wrapper around [tree_sitter::Range] which displays
 /// as `:line:column-:line:column`
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, PartialOrd, Ord)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
 pub struct Range(tree_sitter::Range);
 
@@ -127,6 +130,7 @@ pub struct Parser(tree_sitter::Parser);
 
 /// Re-exports [tree_sitter::Language]
 pub type Language = tree_sitter::Language;
+pub type LanguageRef<'a> = tree_sitter::LanguageRef<'a>;
 /// Re-exports [tree_sitter::LanguageError]
 pub type LanguageError = tree_sitter::LanguageError;
 /// Re-exports [tree_sitter::QueryError]
@@ -190,7 +194,7 @@ pub struct TraversalItem<'tree, Custom = ()> {
 impl Parser {
     /// Create a new parser for the given language. See [tree_sitter::Parser::set_language]
     #[inline]
-    pub fn new(language: tree_sitter::Language) -> Result<Self, LanguageError> {
+    pub fn new(language: &Language) -> Result<Self, LanguageError> {
         let mut parser = tree_sitter::Parser::new();
         parser.set_language(language)?;
         Ok(Self(parser))
@@ -198,7 +202,7 @@ impl Parser {
 
     /// Set the language of the parser. See [tree_sitter::Parser::set_language]
     #[inline]
-    pub fn set_language(&mut self, language: Language) -> Result<(), LanguageError> {
+    pub fn set_language(&mut self, language: &Language) -> Result<(), LanguageError> {
         self.0.set_language(language)
     }
 
@@ -331,13 +335,17 @@ impl<Custom> Tree<Custom> {
 
     /// Get the language used to parse the tree.
     #[inline]
-    pub fn language(&self) -> Language {
+    pub fn language(&self) -> LanguageRef<'_> {
         self.tree.language()
     }
 
     /// Print a dot graph of the tree to the given file. See [tree_sitter::Tree::print_dot_graph]
     #[inline]
-    pub fn print_dot_graph(&self, file: &impl AsRawFd) {
+    pub fn print_dot_graph(
+        &self,
+        #[cfg(unix)] file: &impl AsRawFd,
+        #[cfg(windows)] file: &impl AsRawHandle,
+    ) {
         self.tree.print_dot_graph(file)
     }
 
@@ -348,12 +356,13 @@ impl<Custom> Tree<Custom> {
     }
 }
 
-impl<'tree, Custom> tree_sitter::TextProvider<'tree> for &'tree Tree<Custom> {
-    type I = Once<&'tree [u8]>;
+impl<'tree, Custom> tree_sitter::TextProvider<&'tree str> for &'tree Tree<Custom> {
+    type I = Once<&'tree str>;
 
     #[inline]
     fn text(&mut self, node: tree_sitter::Node<'_>) -> Self::I {
-        once(&self.byte_text[node.byte_range()])
+        // SAFETY: we ran validate_utf8 before constructing so every node's text is valid UTF-8
+        once(unsafe { std::str::from_utf8_unchecked(&self.byte_text[node.byte_range()]) })
     }
 }
 
@@ -484,7 +493,7 @@ impl<'tree, Custom> Node<'tree, Custom> {
     /// **Warning:** the return value is unspecified if the tree is edited.
     #[inline]
     pub fn text(&self) -> &'tree str {
-        // SAFETY: we ran validate_utf8 before constructing so all nodes are valid UTF-8
+        // SAFETY: we ran validate_utf8 before constructing so every node's text is valid UTF-8
         unsafe { std::str::from_utf8_unchecked(self.byte_text()) }
     }
 
@@ -1024,28 +1033,28 @@ impl QueryCursor {
     }
 }
 
-impl<'cursor, 'tree: 'cursor, Custom> QueryMatches<'cursor, 'tree, Custom> {
+impl<'query, 'tree: 'query, Custom> QueryMatches<'query, 'tree, Custom> {
     /// Get the underlying [tree_sitter::QueryMatches]
     #[inline]
-    pub fn as_inner(&self) -> &tree_sitter::QueryMatches<'cursor, 'tree, &'cursor Tree<Custom>> {
+    pub fn as_inner(&self) -> &tree_sitter::QueryMatches<'query, 'tree, &'query Tree<Custom>, &'query str> {
         &self.query_matches
     }
 
     /// Get the underlying [tree_sitter::QueryMatches]
     #[inline]
-    pub fn as_inner_mut(&mut self) -> &mut tree_sitter::QueryMatches<'cursor, 'tree, &'cursor Tree<Custom>> {
+    pub fn as_inner_mut(&mut self) -> &mut tree_sitter::QueryMatches<'query, 'tree, &'query Tree<Custom>, &'query str> {
         &mut self.query_matches
     }
 
     /// Destruct into the underlying [tree_sitter::QueryMatches], query, and tree
     #[inline]
-    pub fn into_inner(self) -> (tree_sitter::QueryMatches<'cursor, 'tree, &'cursor Tree<Custom>>, &'cursor Query, &'tree Tree<Custom>) {
+    pub fn into_inner(self) -> (tree_sitter::QueryMatches<'query, 'tree, &'query Tree<Custom>, &'query str>, &'query Query, &'tree Tree<Custom>) {
         (self.query_matches, self.query, self.tree)
     }
 }
 
-impl<'cursor, 'tree: 'cursor, Custom> StreamingIterator for QueryMatches<'cursor, 'tree, Custom> {
-    type Item = QueryMatch<'cursor, 'tree, Custom>;
+impl<'query, 'tree: 'query, Custom> StreamingIterator for QueryMatches<'query, 'tree, Custom> {
+    type Item = QueryMatch<'query, 'tree, Custom>;
 
     #[inline]
     fn advance(&mut self) {
@@ -1066,34 +1075,34 @@ impl<'cursor, 'tree: 'cursor, Custom> StreamingIterator for QueryMatches<'cursor
     }
 }
 
-impl<'cursor, 'tree: 'cursor, Custom> StreamingIteratorMut for QueryMatches<'cursor, 'tree, Custom> {
+impl<'query, 'tree: 'query, Custom> StreamingIteratorMut for QueryMatches<'query, 'tree, Custom> {
     fn get_mut(&mut self) -> Option<&mut Self::Item> {
         self.current_match.as_mut()
     }
 }
 
-impl<'cursor, 'tree: 'cursor, Custom> QueryCaptures<'cursor, 'tree, Custom> {
+impl<'query, 'tree: 'query, Custom> QueryCaptures<'query, 'tree, Custom> {
     /// Get the underlying [tree_sitter::QueryCaptures]
     #[inline]
-    pub fn as_inner(&self) -> &tree_sitter::QueryCaptures<'cursor, 'tree, &'cursor Tree<Custom>> {
+    pub fn as_inner(&self) -> &tree_sitter::QueryCaptures<'query, 'tree, &'query Tree<Custom>, &'query str> {
         &self.query_captures
     }
 
     /// Get the underlying [tree_sitter::QueryCaptures]
     #[inline]
-    pub fn as_inner_mut(&mut self) -> &mut tree_sitter::QueryCaptures<'cursor, 'tree, &'cursor Tree<Custom>> {
+    pub fn as_inner_mut(&mut self) -> &mut tree_sitter::QueryCaptures<'query, 'tree, &'query Tree<Custom>, &'query str> {
         &mut self.query_captures
     }
 
     /// Destruct into the underlying [tree_sitter::QueryCaptures], query, and tree
     #[inline]
-    pub fn into_inner(self) -> (tree_sitter::QueryCaptures<'cursor, 'tree, &'cursor Tree<Custom>>, &'cursor Query, &'tree Tree<Custom>) {
+    pub fn into_inner(self) -> (tree_sitter::QueryCaptures<'query, 'tree, &'query Tree<Custom>, &'query str>, &'query Query, &'tree Tree<Custom>) {
         (self.query_captures, self.query, self.tree)
     }
 }
 
-impl<'cursor, 'tree: 'cursor, Custom> Iterator for QueryCaptures<'cursor, 'tree, Custom> {
-    type Item = QueryCapture<'cursor, 'tree, Custom>;
+impl<'query, 'tree: 'query, Custom> Iterator for QueryCaptures<'query, 'tree, Custom> {
+    type Item = QueryCapture<'query, 'tree, Custom>;
 
     #[inline]
     fn next(&mut self) -> Option<Self::Item> {

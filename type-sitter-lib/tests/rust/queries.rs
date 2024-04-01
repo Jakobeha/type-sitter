@@ -6,8 +6,8 @@ static __Highlights__: type_sitter_lib::gen_internal::TypedQueryOnceBox<
 fn __Mk__Highlights() -> Box<tree_sitter::Query> {
     #[allow(unused_mut)]
     let mut query = tree_sitter::Query::new(
-            tree_sitter_rust::language(),
-            "; Identifier conventions\n\n; Assume all-caps names are constants\n((identifier) @constant\n (#match? @constant \"^[A-Z][A-Z\\\\d_]+$'\"))\n\n; Assume that uppercase names in paths are types\n((scoped_identifier\n  path: (identifier) @type)\n (#match? @type \"^[A-Z]\"))\n((scoped_identifier\n  path: (scoped_identifier\n    name: (identifier) @type))\n (#match? @type \"^[A-Z]\"))\n((scoped_type_identifier\n  path: (identifier) @type)\n (#match? @type \"^[A-Z]\"))\n((scoped_type_identifier\n  path: (scoped_identifier\n    name: (identifier) @type))\n (#match? @type \"^[A-Z]\"))\n\n; Assume other uppercase names are enum constructors\n((identifier) @constructor\n (#match? @constructor \"^[A-Z]\"))\n\n; Assume all qualified names in struct patterns are enum constructors. (They're\n; either that, or struct names; highlighting both as constructors seems to be\n; the less glaring choice of error, visually.)\n(struct_pattern\n  type: (scoped_type_identifier\n    name: (type_identifier) @constructor))\n\n; Function calls\n\n(call_expression\n  function: (identifier) @function)\n(call_expression\n  function: (field_expression\n    field: (field_identifier) @function.method))\n(call_expression\n  function: (scoped_identifier\n    \"::\"\n    name: (identifier) @function))\n\n(generic_function\n  function: (identifier) @function)\n(generic_function\n  function: (scoped_identifier\n    name: (identifier) @function))\n(generic_function\n  function: (field_expression\n    field: (field_identifier) @function.method))\n\n(macro_invocation\n  macro: (identifier) @function.macro\n  \"!\" @function.macro)\n\n; Function definitions\n\n(function_item (identifier) @function)\n(function_signature_item (identifier) @function)\n\n; Other identifiers\n\n(type_identifier) @type\n(primitive_type) @type.builtin\n(field_identifier) @property\n\n(line_comment) @comment\n(block_comment) @comment\n\n\"(\" @punctuation.bracket\n\")\" @punctuation.bracket\n\"[\" @punctuation.bracket\n\"]\" @punctuation.bracket\n\"{\" @punctuation.bracket\n\"}\" @punctuation.bracket\n\n(type_arguments\n  \"<\" @punctuation.bracket\n  \">\" @punctuation.bracket)\n(type_parameters\n  \"<\" @punctuation.bracket\n  \">\" @punctuation.bracket)\n\n\"::\" @punctuation.delimiter\n\":\" @punctuation.delimiter\n\".\" @punctuation.delimiter\n\",\" @punctuation.delimiter\n\";\" @punctuation.delimiter\n\n(parameter (identifier) @variable.parameter)\n\n(lifetime (identifier) @label)\n\n\"as\" @keyword\n\"async\" @keyword\n\"await\" @keyword\n\"break\" @keyword\n\"const\" @keyword\n\"continue\" @keyword\n\"default\" @keyword\n\"dyn\" @keyword\n\"else\" @keyword\n\"enum\" @keyword\n\"extern\" @keyword\n\"fn\" @keyword\n\"for\" @keyword\n\"if\" @keyword\n\"impl\" @keyword\n\"in\" @keyword\n\"let\" @keyword\n\"loop\" @keyword\n\"macro_rules!\" @keyword\n\"match\" @keyword\n\"mod\" @keyword\n\"move\" @keyword\n\"pub\" @keyword\n\"ref\" @keyword\n\"return\" @keyword\n\"static\" @keyword\n\"struct\" @keyword\n\"trait\" @keyword\n\"type\" @keyword\n\"union\" @keyword\n\"unsafe\" @keyword\n\"use\" @keyword\n\"where\" @keyword\n\"while\" @keyword\n(crate) @keyword\n(mutable_specifier) @keyword\n(use_list (self) @keyword)\n(scoped_use_list (self) @keyword)\n(scoped_identifier (self) @keyword)\n(super) @keyword\n\n(self) @variable.builtin\n\n(char_literal) @string\n(string_literal) @string\n(raw_string_literal) @string\n\n(boolean_literal) @constant.builtin\n(integer_literal) @constant.builtin\n(float_literal) @constant.builtin\n\n(escape_sequence) @escape\n\n(attribute_item) @attribute\n(inner_attribute_item) @attribute\n\n\"*\" @operator\n\"&\" @operator\n\"'\" @operator\n",
+            &tree_sitter_rust::language(),
+            "; Identifiers\n\n(type_identifier) @type\n(primitive_type) @type.builtin\n(field_identifier) @property\n\n; Identifier conventions\n\n; Assume all-caps names are constants\n((identifier) @constant\n (#match? @constant \"^[A-Z][A-Z\\\\d_]+$'\"))\n\n; Assume uppercase names are enum constructors\n((identifier) @constructor\n (#match? @constructor \"^[A-Z]\"))\n\n; Assume that uppercase names in paths are types\n((scoped_identifier\n  path: (identifier) @type)\n (#match? @type \"^[A-Z]\"))\n((scoped_identifier\n  path: (scoped_identifier\n    name: (identifier) @type))\n (#match? @type \"^[A-Z]\"))\n((scoped_type_identifier\n  path: (identifier) @type)\n (#match? @type \"^[A-Z]\"))\n((scoped_type_identifier\n  path: (scoped_identifier\n    name: (identifier) @type))\n (#match? @type \"^[A-Z]\"))\n\n; Assume all qualified names in struct patterns are enum constructors. (They're\n; either that, or struct names; highlighting both as constructors seems to be\n; the less glaring choice of error, visually.)\n(struct_pattern\n  type: (scoped_type_identifier\n    name: (type_identifier) @constructor))\n\n; Function calls\n\n(call_expression\n  function: (identifier) @function)\n(call_expression\n  function: (field_expression\n    field: (field_identifier) @function.method))\n(call_expression\n  function: (scoped_identifier\n    \"::\"\n    name: (identifier) @function))\n\n(generic_function\n  function: (identifier) @function)\n(generic_function\n  function: (scoped_identifier\n    name: (identifier) @function))\n(generic_function\n  function: (field_expression\n    field: (field_identifier) @function.method))\n\n(macro_invocation\n  macro: (identifier) @function.macro\n  \"!\" @function.macro)\n\n; Function definitions\n\n(function_item (identifier) @function)\n(function_signature_item (identifier) @function)\n\n(line_comment) @comment\n(block_comment) @comment\n\n(line_comment (doc_comment)) @comment.documentation\n(block_comment (doc_comment)) @comment.documentation\n\n\"(\" @punctuation.bracket\n\")\" @punctuation.bracket\n\"[\" @punctuation.bracket\n\"]\" @punctuation.bracket\n\"{\" @punctuation.bracket\n\"}\" @punctuation.bracket\n\n(type_arguments\n  \"<\" @punctuation.bracket\n  \">\" @punctuation.bracket)\n(type_parameters\n  \"<\" @punctuation.bracket\n  \">\" @punctuation.bracket)\n\n\"::\" @punctuation.delimiter\n\":\" @punctuation.delimiter\n\".\" @punctuation.delimiter\n\",\" @punctuation.delimiter\n\";\" @punctuation.delimiter\n\n(parameter (identifier) @variable.parameter)\n\n(lifetime (identifier) @label)\n\n\"as\" @keyword\n\"async\" @keyword\n\"await\" @keyword\n\"break\" @keyword\n\"const\" @keyword\n\"continue\" @keyword\n\"default\" @keyword\n\"dyn\" @keyword\n\"else\" @keyword\n\"enum\" @keyword\n\"extern\" @keyword\n\"fn\" @keyword\n\"for\" @keyword\n\"if\" @keyword\n\"impl\" @keyword\n\"in\" @keyword\n\"let\" @keyword\n\"loop\" @keyword\n\"macro_rules!\" @keyword\n\"match\" @keyword\n\"mod\" @keyword\n\"move\" @keyword\n\"pub\" @keyword\n\"ref\" @keyword\n\"return\" @keyword\n\"static\" @keyword\n\"struct\" @keyword\n\"trait\" @keyword\n\"type\" @keyword\n\"union\" @keyword\n\"unsafe\" @keyword\n\"use\" @keyword\n\"where\" @keyword\n\"while\" @keyword\n(crate) @keyword\n(mutable_specifier) @keyword\n(use_list (self) @keyword)\n(scoped_use_list (self) @keyword)\n(scoped_identifier (self) @keyword)\n(super) @keyword\n\n(self) @variable.builtin\n\n(char_literal) @string\n(string_literal) @string\n(raw_string_literal) @string\n\n(boolean_literal) @constant.builtin\n(integer_literal) @constant.builtin\n(float_literal) @constant.builtin\n\n(escape_sequence) @escape\n\n(attribute_item) @attribute\n(inner_attribute_item) @attribute\n\n\"*\" @operator\n\"&\" @operator\n\"'\" @operator\n",
         )
         .expect(
             "query parsed at compile-time but failed at runtime. Is the language 'tree_sitter_rust' correct, and did you use the same tree-sitter / tree_sitter_rust version?",
@@ -17,11 +17,21 @@ fn __Mk__Highlights() -> Box<tree_sitter::Query> {
 /**Typed version of the query:
 
 ```sexp
+; Identifiers
+
+(type_identifier) @type
+(primitive_type) @type.builtin
+(field_identifier) @property
+
 ; Identifier conventions
 
 ; Assume all-caps names are constants
 ((identifier) @constant
  (#match? @constant "^[A-Z][A-Z\\d_]+$'"))
+
+; Assume uppercase names are enum constructors
+((identifier) @constructor
+ (#match? @constructor "^[A-Z]"))
 
 ; Assume that uppercase names in paths are types
 ((scoped_identifier
@@ -38,10 +48,6 @@ fn __Mk__Highlights() -> Box<tree_sitter::Query> {
   path: (scoped_identifier
     name: (identifier) @type))
  (#match? @type "^[A-Z]"))
-
-; Assume other uppercase names are enum constructors
-((identifier) @constructor
- (#match? @constructor "^[A-Z]"))
 
 ; Assume all qualified names in struct patterns are enum constructors. (They're
 ; either that, or struct names; highlighting both as constructors seems to be
@@ -80,14 +86,11 @@ fn __Mk__Highlights() -> Box<tree_sitter::Query> {
 (function_item (identifier) @function)
 (function_signature_item (identifier) @function)
 
-; Other identifiers
-
-(type_identifier) @type
-(primitive_type) @type.builtin
-(field_identifier) @property
-
 (line_comment) @comment
 (block_comment) @comment
+
+(line_comment (doc_comment)) @comment.documentation
+(block_comment (doc_comment)) @comment.documentation
 
 "(" @punctuation.bracket
 ")" @punctuation.bracket
@@ -180,11 +183,21 @@ pub struct Highlights;
 /**Matches returned by a query cursor running the query [Highlights]:
 
 ```sexp
+; Identifiers
+
+(type_identifier) @type
+(primitive_type) @type.builtin
+(field_identifier) @property
+
 ; Identifier conventions
 
 ; Assume all-caps names are constants
 ((identifier) @constant
  (#match? @constant "^[A-Z][A-Z\\d_]+$'"))
+
+; Assume uppercase names are enum constructors
+((identifier) @constructor
+ (#match? @constructor "^[A-Z]"))
 
 ; Assume that uppercase names in paths are types
 ((scoped_identifier
@@ -201,10 +214,6 @@ pub struct Highlights;
   path: (scoped_identifier
     name: (identifier) @type))
  (#match? @type "^[A-Z]"))
-
-; Assume other uppercase names are enum constructors
-((identifier) @constructor
- (#match? @constructor "^[A-Z]"))
 
 ; Assume all qualified names in struct patterns are enum constructors. (They're
 ; either that, or struct names; highlighting both as constructors seems to be
@@ -243,14 +252,11 @@ pub struct Highlights;
 (function_item (identifier) @function)
 (function_signature_item (identifier) @function)
 
-; Other identifiers
-
-(type_identifier) @type
-(primitive_type) @type.builtin
-(field_identifier) @property
-
 (line_comment) @comment
 (block_comment) @comment
+
+(line_comment (doc_comment)) @comment.documentation
+(block_comment (doc_comment)) @comment.documentation
 
 "(" @punctuation.bracket
 ")" @punctuation.bracket
@@ -346,11 +352,21 @@ pub type HighlightsMatches<'cursor, 'tree> = type_sitter_lib::TypedQueryMatches<
 /**Captures returned by a query cursor running the query [Highlights]:
 
 ```sexp
+; Identifiers
+
+(type_identifier) @type
+(primitive_type) @type.builtin
+(field_identifier) @property
+
 ; Identifier conventions
 
 ; Assume all-caps names are constants
 ((identifier) @constant
  (#match? @constant "^[A-Z][A-Z\\d_]+$'"))
+
+; Assume uppercase names are enum constructors
+((identifier) @constructor
+ (#match? @constructor "^[A-Z]"))
 
 ; Assume that uppercase names in paths are types
 ((scoped_identifier
@@ -367,10 +383,6 @@ pub type HighlightsMatches<'cursor, 'tree> = type_sitter_lib::TypedQueryMatches<
   path: (scoped_identifier
     name: (identifier) @type))
  (#match? @type "^[A-Z]"))
-
-; Assume other uppercase names are enum constructors
-((identifier) @constructor
- (#match? @constructor "^[A-Z]"))
 
 ; Assume all qualified names in struct patterns are enum constructors. (They're
 ; either that, or struct names; highlighting both as constructors seems to be
@@ -409,14 +421,11 @@ pub type HighlightsMatches<'cursor, 'tree> = type_sitter_lib::TypedQueryMatches<
 (function_item (identifier) @function)
 (function_signature_item (identifier) @function)
 
-; Other identifiers
-
-(type_identifier) @type
-(primitive_type) @type.builtin
-(field_identifier) @property
-
 (line_comment) @comment
 (block_comment) @comment
+
+(line_comment (doc_comment)) @comment.documentation
+(block_comment (doc_comment)) @comment.documentation
 
 "(" @punctuation.bracket
 ")" @punctuation.bracket
@@ -512,11 +521,21 @@ pub type HighlightsCaptures<'cursor, 'tree> = type_sitter_lib::TypedQueryCapture
 /**A match returned by the query [Highlights]:
 
 ```sexp
+; Identifiers
+
+(type_identifier) @type
+(primitive_type) @type.builtin
+(field_identifier) @property
+
 ; Identifier conventions
 
 ; Assume all-caps names are constants
 ((identifier) @constant
  (#match? @constant "^[A-Z][A-Z\\d_]+$'"))
+
+; Assume uppercase names are enum constructors
+((identifier) @constructor
+ (#match? @constructor "^[A-Z]"))
 
 ; Assume that uppercase names in paths are types
 ((scoped_identifier
@@ -533,10 +552,6 @@ pub type HighlightsCaptures<'cursor, 'tree> = type_sitter_lib::TypedQueryCapture
   path: (scoped_identifier
     name: (identifier) @type))
  (#match? @type "^[A-Z]"))
-
-; Assume other uppercase names are enum constructors
-((identifier) @constructor
- (#match? @constructor "^[A-Z]"))
 
 ; Assume all qualified names in struct patterns are enum constructors. (They're
 ; either that, or struct names; highlighting both as constructors seems to be
@@ -575,14 +590,11 @@ pub type HighlightsCaptures<'cursor, 'tree> = type_sitter_lib::TypedQueryCapture
 (function_item (identifier) @function)
 (function_signature_item (identifier) @function)
 
-; Other identifiers
-
-(type_identifier) @type
-(primitive_type) @type.builtin
-(field_identifier) @property
-
 (line_comment) @comment
 (block_comment) @comment
+
+(line_comment (doc_comment)) @comment.documentation
+(block_comment (doc_comment)) @comment.documentation
 
 "(" @punctuation.bracket
 ")" @punctuation.bracket
@@ -676,11 +688,21 @@ pub struct HighlightsMatch<'cursor, 'tree> {
 /**A capture returned by the query [Highlights]:
 
 ```sexp
+; Identifiers
+
+(type_identifier) @type
+(primitive_type) @type.builtin
+(field_identifier) @property
+
 ; Identifier conventions
 
 ; Assume all-caps names are constants
 ((identifier) @constant
  (#match? @constant "^[A-Z][A-Z\\d_]+$'"))
+
+; Assume uppercase names are enum constructors
+((identifier) @constructor
+ (#match? @constructor "^[A-Z]"))
 
 ; Assume that uppercase names in paths are types
 ((scoped_identifier
@@ -697,10 +719,6 @@ pub struct HighlightsMatch<'cursor, 'tree> {
   path: (scoped_identifier
     name: (identifier) @type))
  (#match? @type "^[A-Z]"))
-
-; Assume other uppercase names are enum constructors
-((identifier) @constructor
- (#match? @constructor "^[A-Z]"))
 
 ; Assume all qualified names in struct patterns are enum constructors. (They're
 ; either that, or struct names; highlighting both as constructors seems to be
@@ -739,14 +757,11 @@ pub struct HighlightsMatch<'cursor, 'tree> {
 (function_item (identifier) @function)
 (function_signature_item (identifier) @function)
 
-; Other identifiers
-
-(type_identifier) @type
-(primitive_type) @type.builtin
-(field_identifier) @property
-
 (line_comment) @comment
 (block_comment) @comment
+
+(line_comment (doc_comment)) @comment.documentation
+(block_comment (doc_comment)) @comment.documentation
 
 "(" @punctuation.bracket
 ")" @punctuation.bracket
@@ -834,16 +849,6 @@ pub struct HighlightsMatch<'cursor, 'tree> {
 
 ```*/
 pub enum HighlightsCapture<'cursor, 'tree> {
-    ///A `constant` ([super::nodes::Identifier])
-    ///
-    ///The full capture including pattern(s) is:
-    ///```sexp
-    ///(identifier) @constant
-    ///```
-    Constant {
-        node: super::nodes::Identifier<'tree>,
-        r#match: Option<HighlightsMatch<'cursor, 'tree>>,
-    },
     ///A `type` ([anon_unions::Type])
     ///
     ///The full capture including pattern(s) is:
@@ -856,6 +861,36 @@ pub enum HighlightsCapture<'cursor, 'tree> {
     ///```
     Type {
         node: anon_unions::Type<'tree>,
+        r#match: Option<HighlightsMatch<'cursor, 'tree>>,
+    },
+    ///A `type.builtin` ([super::nodes::PrimitiveType])
+    ///
+    ///The full capture including pattern(s) is:
+    ///```sexp
+    ///(primitive_type) @type.builtin
+    ///```
+    TypeBuiltin {
+        node: super::nodes::PrimitiveType<'tree>,
+        r#match: Option<HighlightsMatch<'cursor, 'tree>>,
+    },
+    ///A `property` ([super::nodes::FieldIdentifier])
+    ///
+    ///The full capture including pattern(s) is:
+    ///```sexp
+    ///(field_identifier) @property
+    ///```
+    Property {
+        node: super::nodes::FieldIdentifier<'tree>,
+        r#match: Option<HighlightsMatch<'cursor, 'tree>>,
+    },
+    ///A `constant` ([super::nodes::Identifier])
+    ///
+    ///The full capture including pattern(s) is:
+    ///```sexp
+    ///(identifier) @constant
+    ///```
+    Constant {
+        node: super::nodes::Identifier<'tree>,
         r#match: Option<HighlightsMatch<'cursor, 'tree>>,
     },
     ///A `constructor` ([anon_unions::Constructor])
@@ -906,26 +941,6 @@ pub enum HighlightsCapture<'cursor, 'tree> {
         node: anon_unions::FunctionMacro<'tree>,
         r#match: Option<HighlightsMatch<'cursor, 'tree>>,
     },
-    ///A `type.builtin` ([super::nodes::PrimitiveType])
-    ///
-    ///The full capture including pattern(s) is:
-    ///```sexp
-    ///(primitive_type) @type.builtin
-    ///```
-    TypeBuiltin {
-        node: super::nodes::PrimitiveType<'tree>,
-        r#match: Option<HighlightsMatch<'cursor, 'tree>>,
-    },
-    ///A `property` ([super::nodes::FieldIdentifier])
-    ///
-    ///The full capture including pattern(s) is:
-    ///```sexp
-    ///(field_identifier) @property
-    ///```
-    Property {
-        node: super::nodes::FieldIdentifier<'tree>,
-        r#match: Option<HighlightsMatch<'cursor, 'tree>>,
-    },
     ///A `comment` ([anon_unions::Comment])
     ///
     ///The full capture including pattern(s) is:
@@ -935,6 +950,17 @@ pub enum HighlightsCapture<'cursor, 'tree> {
     ///```
     Comment {
         node: anon_unions::Comment<'tree>,
+        r#match: Option<HighlightsMatch<'cursor, 'tree>>,
+    },
+    ///A `comment.documentation` ([anon_unions::CommentDocumentation])
+    ///
+    ///The full capture including pattern(s) is:
+    ///```sexp
+    ///(line_comment (doc_comment)) @comment.documentation
+    ///(block_comment (doc_comment)) @comment.documentation
+    ///```
+    CommentDocumentation {
+        node: anon_unions::CommentDocumentation<'tree>,
         r#match: Option<HighlightsMatch<'cursor, 'tree>>,
     },
     ///A `punctuation.bracket` ([anon_unions::PunctuationBracket])
@@ -1112,7 +1138,7 @@ impl type_sitter_lib::TypedQuery for Highlights {
     type Match<'cursor, 'tree: 'cursor> = HighlightsMatch<'cursor, 'tree>;
     type Capture<'cursor, 'tree: 'cursor> = HighlightsCapture<'cursor, 'tree>;
     fn query_str(&self) -> &'static str {
-        "; Identifier conventions\n\n; Assume all-caps names are constants\n((identifier) @constant\n (#match? @constant \"^[A-Z][A-Z\\\\d_]+$'\"))\n\n; Assume that uppercase names in paths are types\n((scoped_identifier\n  path: (identifier) @type)\n (#match? @type \"^[A-Z]\"))\n((scoped_identifier\n  path: (scoped_identifier\n    name: (identifier) @type))\n (#match? @type \"^[A-Z]\"))\n((scoped_type_identifier\n  path: (identifier) @type)\n (#match? @type \"^[A-Z]\"))\n((scoped_type_identifier\n  path: (scoped_identifier\n    name: (identifier) @type))\n (#match? @type \"^[A-Z]\"))\n\n; Assume other uppercase names are enum constructors\n((identifier) @constructor\n (#match? @constructor \"^[A-Z]\"))\n\n; Assume all qualified names in struct patterns are enum constructors. (They're\n; either that, or struct names; highlighting both as constructors seems to be\n; the less glaring choice of error, visually.)\n(struct_pattern\n  type: (scoped_type_identifier\n    name: (type_identifier) @constructor))\n\n; Function calls\n\n(call_expression\n  function: (identifier) @function)\n(call_expression\n  function: (field_expression\n    field: (field_identifier) @function.method))\n(call_expression\n  function: (scoped_identifier\n    \"::\"\n    name: (identifier) @function))\n\n(generic_function\n  function: (identifier) @function)\n(generic_function\n  function: (scoped_identifier\n    name: (identifier) @function))\n(generic_function\n  function: (field_expression\n    field: (field_identifier) @function.method))\n\n(macro_invocation\n  macro: (identifier) @function.macro\n  \"!\" @function.macro)\n\n; Function definitions\n\n(function_item (identifier) @function)\n(function_signature_item (identifier) @function)\n\n; Other identifiers\n\n(type_identifier) @type\n(primitive_type) @type.builtin\n(field_identifier) @property\n\n(line_comment) @comment\n(block_comment) @comment\n\n\"(\" @punctuation.bracket\n\")\" @punctuation.bracket\n\"[\" @punctuation.bracket\n\"]\" @punctuation.bracket\n\"{\" @punctuation.bracket\n\"}\" @punctuation.bracket\n\n(type_arguments\n  \"<\" @punctuation.bracket\n  \">\" @punctuation.bracket)\n(type_parameters\n  \"<\" @punctuation.bracket\n  \">\" @punctuation.bracket)\n\n\"::\" @punctuation.delimiter\n\":\" @punctuation.delimiter\n\".\" @punctuation.delimiter\n\",\" @punctuation.delimiter\n\";\" @punctuation.delimiter\n\n(parameter (identifier) @variable.parameter)\n\n(lifetime (identifier) @label)\n\n\"as\" @keyword\n\"async\" @keyword\n\"await\" @keyword\n\"break\" @keyword\n\"const\" @keyword\n\"continue\" @keyword\n\"default\" @keyword\n\"dyn\" @keyword\n\"else\" @keyword\n\"enum\" @keyword\n\"extern\" @keyword\n\"fn\" @keyword\n\"for\" @keyword\n\"if\" @keyword\n\"impl\" @keyword\n\"in\" @keyword\n\"let\" @keyword\n\"loop\" @keyword\n\"macro_rules!\" @keyword\n\"match\" @keyword\n\"mod\" @keyword\n\"move\" @keyword\n\"pub\" @keyword\n\"ref\" @keyword\n\"return\" @keyword\n\"static\" @keyword\n\"struct\" @keyword\n\"trait\" @keyword\n\"type\" @keyword\n\"union\" @keyword\n\"unsafe\" @keyword\n\"use\" @keyword\n\"where\" @keyword\n\"while\" @keyword\n(crate) @keyword\n(mutable_specifier) @keyword\n(use_list (self) @keyword)\n(scoped_use_list (self) @keyword)\n(scoped_identifier (self) @keyword)\n(super) @keyword\n\n(self) @variable.builtin\n\n(char_literal) @string\n(string_literal) @string\n(raw_string_literal) @string\n\n(boolean_literal) @constant.builtin\n(integer_literal) @constant.builtin\n(float_literal) @constant.builtin\n\n(escape_sequence) @escape\n\n(attribute_item) @attribute\n(inner_attribute_item) @attribute\n\n\"*\" @operator\n\"&\" @operator\n\"'\" @operator\n"
+        "; Identifiers\n\n(type_identifier) @type\n(primitive_type) @type.builtin\n(field_identifier) @property\n\n; Identifier conventions\n\n; Assume all-caps names are constants\n((identifier) @constant\n (#match? @constant \"^[A-Z][A-Z\\\\d_]+$'\"))\n\n; Assume uppercase names are enum constructors\n((identifier) @constructor\n (#match? @constructor \"^[A-Z]\"))\n\n; Assume that uppercase names in paths are types\n((scoped_identifier\n  path: (identifier) @type)\n (#match? @type \"^[A-Z]\"))\n((scoped_identifier\n  path: (scoped_identifier\n    name: (identifier) @type))\n (#match? @type \"^[A-Z]\"))\n((scoped_type_identifier\n  path: (identifier) @type)\n (#match? @type \"^[A-Z]\"))\n((scoped_type_identifier\n  path: (scoped_identifier\n    name: (identifier) @type))\n (#match? @type \"^[A-Z]\"))\n\n; Assume all qualified names in struct patterns are enum constructors. (They're\n; either that, or struct names; highlighting both as constructors seems to be\n; the less glaring choice of error, visually.)\n(struct_pattern\n  type: (scoped_type_identifier\n    name: (type_identifier) @constructor))\n\n; Function calls\n\n(call_expression\n  function: (identifier) @function)\n(call_expression\n  function: (field_expression\n    field: (field_identifier) @function.method))\n(call_expression\n  function: (scoped_identifier\n    \"::\"\n    name: (identifier) @function))\n\n(generic_function\n  function: (identifier) @function)\n(generic_function\n  function: (scoped_identifier\n    name: (identifier) @function))\n(generic_function\n  function: (field_expression\n    field: (field_identifier) @function.method))\n\n(macro_invocation\n  macro: (identifier) @function.macro\n  \"!\" @function.macro)\n\n; Function definitions\n\n(function_item (identifier) @function)\n(function_signature_item (identifier) @function)\n\n(line_comment) @comment\n(block_comment) @comment\n\n(line_comment (doc_comment)) @comment.documentation\n(block_comment (doc_comment)) @comment.documentation\n\n\"(\" @punctuation.bracket\n\")\" @punctuation.bracket\n\"[\" @punctuation.bracket\n\"]\" @punctuation.bracket\n\"{\" @punctuation.bracket\n\"}\" @punctuation.bracket\n\n(type_arguments\n  \"<\" @punctuation.bracket\n  \">\" @punctuation.bracket)\n(type_parameters\n  \"<\" @punctuation.bracket\n  \">\" @punctuation.bracket)\n\n\"::\" @punctuation.delimiter\n\":\" @punctuation.delimiter\n\".\" @punctuation.delimiter\n\",\" @punctuation.delimiter\n\";\" @punctuation.delimiter\n\n(parameter (identifier) @variable.parameter)\n\n(lifetime (identifier) @label)\n\n\"as\" @keyword\n\"async\" @keyword\n\"await\" @keyword\n\"break\" @keyword\n\"const\" @keyword\n\"continue\" @keyword\n\"default\" @keyword\n\"dyn\" @keyword\n\"else\" @keyword\n\"enum\" @keyword\n\"extern\" @keyword\n\"fn\" @keyword\n\"for\" @keyword\n\"if\" @keyword\n\"impl\" @keyword\n\"in\" @keyword\n\"let\" @keyword\n\"loop\" @keyword\n\"macro_rules!\" @keyword\n\"match\" @keyword\n\"mod\" @keyword\n\"move\" @keyword\n\"pub\" @keyword\n\"ref\" @keyword\n\"return\" @keyword\n\"static\" @keyword\n\"struct\" @keyword\n\"trait\" @keyword\n\"type\" @keyword\n\"union\" @keyword\n\"unsafe\" @keyword\n\"use\" @keyword\n\"where\" @keyword\n\"while\" @keyword\n(crate) @keyword\n(mutable_specifier) @keyword\n(use_list (self) @keyword)\n(scoped_use_list (self) @keyword)\n(scoped_identifier (self) @keyword)\n(super) @keyword\n\n(self) @variable.builtin\n\n(char_literal) @string\n(string_literal) @string\n(raw_string_literal) @string\n\n(boolean_literal) @constant.builtin\n(integer_literal) @constant.builtin\n(float_literal) @constant.builtin\n\n(escape_sequence) @escape\n\n(attribute_item) @attribute\n(inner_attribute_item) @attribute\n\n\"*\" @operator\n\"&\" @operator\n\"'\" @operator\n"
     }
     fn query(&self) -> &'static tree_sitter::Query {
         __Highlights__.get_or_init(__Mk__Highlights)
@@ -1134,18 +1160,6 @@ impl type_sitter_lib::TypedQuery for Highlights {
     ) -> Self::Capture<'cursor, 'tree> {
         match capture.index as usize {
             0usize => {
-                Self::Capture::Constant {
-                    node: <super::nodes::Identifier<
-                        'tree,
-                    > as type_sitter_lib::TypedNode<
-                        'tree,
-                    >>::from_node_unchecked(unsafe {
-                        yak_sitter::Node::new(capture.node, tree)
-                    }),
-                    r#match,
-                }
-            }
-            1usize => {
                 Self::Capture::Type {
                     node: <anon_unions::Type<
                         'tree,
@@ -1157,55 +1171,7 @@ impl type_sitter_lib::TypedQuery for Highlights {
                     r#match,
                 }
             }
-            2usize => {
-                Self::Capture::Constructor {
-                    node: <anon_unions::Constructor<
-                        'tree,
-                    > as type_sitter_lib::TypedNode<
-                        'tree,
-                    >>::from_node_unchecked(unsafe {
-                        yak_sitter::Node::new(capture.node, tree)
-                    }),
-                    r#match,
-                }
-            }
-            3usize => {
-                Self::Capture::Function {
-                    node: <super::nodes::Identifier<
-                        'tree,
-                    > as type_sitter_lib::TypedNode<
-                        'tree,
-                    >>::from_node_unchecked(unsafe {
-                        yak_sitter::Node::new(capture.node, tree)
-                    }),
-                    r#match,
-                }
-            }
-            4usize => {
-                Self::Capture::FunctionMethod {
-                    node: <super::nodes::FieldIdentifier<
-                        'tree,
-                    > as type_sitter_lib::TypedNode<
-                        'tree,
-                    >>::from_node_unchecked(unsafe {
-                        yak_sitter::Node::new(capture.node, tree)
-                    }),
-                    r#match,
-                }
-            }
-            5usize => {
-                Self::Capture::FunctionMacro {
-                    node: <anon_unions::FunctionMacro<
-                        'tree,
-                    > as type_sitter_lib::TypedNode<
-                        'tree,
-                    >>::from_node_unchecked(unsafe {
-                        yak_sitter::Node::new(capture.node, tree)
-                    }),
-                    r#match,
-                }
-            }
-            6usize => {
+            1usize => {
                 Self::Capture::TypeBuiltin {
                     node: <super::nodes::PrimitiveType<
                         'tree,
@@ -1217,9 +1183,69 @@ impl type_sitter_lib::TypedQuery for Highlights {
                     r#match,
                 }
             }
-            7usize => {
+            2usize => {
                 Self::Capture::Property {
                     node: <super::nodes::FieldIdentifier<
+                        'tree,
+                    > as type_sitter_lib::TypedNode<
+                        'tree,
+                    >>::from_node_unchecked(unsafe {
+                        yak_sitter::Node::new(capture.node, tree)
+                    }),
+                    r#match,
+                }
+            }
+            3usize => {
+                Self::Capture::Constant {
+                    node: <super::nodes::Identifier<
+                        'tree,
+                    > as type_sitter_lib::TypedNode<
+                        'tree,
+                    >>::from_node_unchecked(unsafe {
+                        yak_sitter::Node::new(capture.node, tree)
+                    }),
+                    r#match,
+                }
+            }
+            4usize => {
+                Self::Capture::Constructor {
+                    node: <anon_unions::Constructor<
+                        'tree,
+                    > as type_sitter_lib::TypedNode<
+                        'tree,
+                    >>::from_node_unchecked(unsafe {
+                        yak_sitter::Node::new(capture.node, tree)
+                    }),
+                    r#match,
+                }
+            }
+            5usize => {
+                Self::Capture::Function {
+                    node: <super::nodes::Identifier<
+                        'tree,
+                    > as type_sitter_lib::TypedNode<
+                        'tree,
+                    >>::from_node_unchecked(unsafe {
+                        yak_sitter::Node::new(capture.node, tree)
+                    }),
+                    r#match,
+                }
+            }
+            6usize => {
+                Self::Capture::FunctionMethod {
+                    node: <super::nodes::FieldIdentifier<
+                        'tree,
+                    > as type_sitter_lib::TypedNode<
+                        'tree,
+                    >>::from_node_unchecked(unsafe {
+                        yak_sitter::Node::new(capture.node, tree)
+                    }),
+                    r#match,
+                }
+            }
+            7usize => {
+                Self::Capture::FunctionMacro {
+                    node: <anon_unions::FunctionMacro<
                         'tree,
                     > as type_sitter_lib::TypedNode<
                         'tree,
@@ -1242,6 +1268,18 @@ impl type_sitter_lib::TypedQuery for Highlights {
                 }
             }
             9usize => {
+                Self::Capture::CommentDocumentation {
+                    node: <anon_unions::CommentDocumentation<
+                        'tree,
+                    > as type_sitter_lib::TypedNode<
+                        'tree,
+                    >>::from_node_unchecked(unsafe {
+                        yak_sitter::Node::new(capture.node, tree)
+                    }),
+                    r#match,
+                }
+            }
+            10usize => {
                 Self::Capture::PunctuationBracket {
                     node: <anon_unions::PunctuationBracket<
                         'tree,
@@ -1253,7 +1291,7 @@ impl type_sitter_lib::TypedQuery for Highlights {
                     r#match,
                 }
             }
-            10usize => {
+            11usize => {
                 Self::Capture::PunctuationDelimiter {
                     node: <anon_unions::PunctuationDelimiter<
                         'tree,
@@ -1265,7 +1303,7 @@ impl type_sitter_lib::TypedQuery for Highlights {
                     r#match,
                 }
             }
-            11usize => {
+            12usize => {
                 Self::Capture::VariableParameter {
                     node: <super::nodes::Identifier<
                         'tree,
@@ -1277,7 +1315,7 @@ impl type_sitter_lib::TypedQuery for Highlights {
                     r#match,
                 }
             }
-            12usize => {
+            13usize => {
                 Self::Capture::Label {
                     node: <super::nodes::Identifier<
                         'tree,
@@ -1289,7 +1327,7 @@ impl type_sitter_lib::TypedQuery for Highlights {
                     r#match,
                 }
             }
-            13usize => {
+            14usize => {
                 Self::Capture::Keyword {
                     node: <anon_unions::Keyword<
                         'tree,
@@ -1301,7 +1339,7 @@ impl type_sitter_lib::TypedQuery for Highlights {
                     r#match,
                 }
             }
-            14usize => {
+            15usize => {
                 Self::Capture::VariableBuiltin {
                     node: <super::nodes::_Self<
                         'tree,
@@ -1313,7 +1351,7 @@ impl type_sitter_lib::TypedQuery for Highlights {
                     r#match,
                 }
             }
-            15usize => {
+            16usize => {
                 Self::Capture::String {
                     node: <anon_unions::String<
                         'tree,
@@ -1325,7 +1363,7 @@ impl type_sitter_lib::TypedQuery for Highlights {
                     r#match,
                 }
             }
-            16usize => {
+            17usize => {
                 Self::Capture::ConstantBuiltin {
                     node: <anon_unions::ConstantBuiltin<
                         'tree,
@@ -1337,7 +1375,7 @@ impl type_sitter_lib::TypedQuery for Highlights {
                     r#match,
                 }
             }
-            17usize => {
+            18usize => {
                 Self::Capture::Escape {
                     node: <super::nodes::EscapeSequence<
                         'tree,
@@ -1349,7 +1387,7 @@ impl type_sitter_lib::TypedQuery for Highlights {
                     r#match,
                 }
             }
-            18usize => {
+            19usize => {
                 Self::Capture::Attribute {
                     node: <anon_unions::Attribute<
                         'tree,
@@ -1361,7 +1399,7 @@ impl type_sitter_lib::TypedQuery for Highlights {
                     r#match,
                 }
             }
-            19usize => {
+            20usize => {
                 Self::Capture::Operator {
                     node: <anon_unions::Operator<
                         'tree,
@@ -1379,29 +1417,6 @@ impl type_sitter_lib::TypedQuery for Highlights {
 }
 #[automatically_derived]
 impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
-    ///Returns an iterator over the nodes captured by `constant` ([super::nodes::Identifier])
-    ///
-    ///The full capture including pattern(s) is:
-    ///```sexp
-    ///(identifier) @constant
-    ///```
-    #[inline]
-    #[allow(unused, non_snake_case)]
-    pub fn constant(&self) -> Option<super::nodes::Identifier<'tree>> {
-        {
-            [0u32]
-                .into_iter()
-                .flat_map(|i| self.r#match.nodes_for_capture_index(i))
-                .map(|n| unsafe {
-                    <super::nodes::Identifier<
-                        'tree,
-                    > as type_sitter_lib::TypedNode<
-                        'tree,
-                    >>::from_node_unchecked(yak_sitter::Node::new(n, self.tree))
-                })
-        }
-            .next()
-    }
     ///Returns an iterator over the nodes captured by `type` ([anon_unions::Type])
     ///
     ///The full capture including pattern(s) is:
@@ -1416,11 +1431,80 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
     #[allow(unused, non_snake_case)]
     pub fn r#type(&self) -> Option<anon_unions::Type<'tree>> {
         {
-            [1u32]
+            [0u32]
                 .into_iter()
                 .flat_map(|i| self.r#match.nodes_for_capture_index(i))
                 .map(|n| unsafe {
                     <anon_unions::Type<
+                        'tree,
+                    > as type_sitter_lib::TypedNode<
+                        'tree,
+                    >>::from_node_unchecked(yak_sitter::Node::new(n, self.tree))
+                })
+        }
+            .next()
+    }
+    ///Returns an iterator over the nodes captured by `type.builtin` ([super::nodes::PrimitiveType])
+    ///
+    ///The full capture including pattern(s) is:
+    ///```sexp
+    ///(primitive_type) @type.builtin
+    ///```
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn type_builtin(&self) -> Option<super::nodes::PrimitiveType<'tree>> {
+        {
+            [1u32]
+                .into_iter()
+                .flat_map(|i| self.r#match.nodes_for_capture_index(i))
+                .map(|n| unsafe {
+                    <super::nodes::PrimitiveType<
+                        'tree,
+                    > as type_sitter_lib::TypedNode<
+                        'tree,
+                    >>::from_node_unchecked(yak_sitter::Node::new(n, self.tree))
+                })
+        }
+            .next()
+    }
+    ///Returns an iterator over the nodes captured by `property` ([super::nodes::FieldIdentifier])
+    ///
+    ///The full capture including pattern(s) is:
+    ///```sexp
+    ///(field_identifier) @property
+    ///```
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn property(&self) -> Option<super::nodes::FieldIdentifier<'tree>> {
+        {
+            [2u32]
+                .into_iter()
+                .flat_map(|i| self.r#match.nodes_for_capture_index(i))
+                .map(|n| unsafe {
+                    <super::nodes::FieldIdentifier<
+                        'tree,
+                    > as type_sitter_lib::TypedNode<
+                        'tree,
+                    >>::from_node_unchecked(yak_sitter::Node::new(n, self.tree))
+                })
+        }
+            .next()
+    }
+    ///Returns an iterator over the nodes captured by `constant` ([super::nodes::Identifier])
+    ///
+    ///The full capture including pattern(s) is:
+    ///```sexp
+    ///(identifier) @constant
+    ///```
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn constant(&self) -> Option<super::nodes::Identifier<'tree>> {
+        {
+            [3u32]
+                .into_iter()
+                .flat_map(|i| self.r#match.nodes_for_capture_index(i))
+                .map(|n| unsafe {
+                    <super::nodes::Identifier<
                         'tree,
                     > as type_sitter_lib::TypedNode<
                         'tree,
@@ -1440,7 +1524,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
     #[allow(unused, non_snake_case)]
     pub fn constructor(&self) -> Option<anon_unions::Constructor<'tree>> {
         {
-            [2u32]
+            [4u32]
                 .into_iter()
                 .flat_map(|i| self.r#match.nodes_for_capture_index(i))
                 .map(|n| unsafe {
@@ -1468,7 +1552,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
     #[allow(unused, non_snake_case)]
     pub fn function(&self) -> Option<super::nodes::Identifier<'tree>> {
         {
-            [3u32]
+            [5u32]
                 .into_iter()
                 .flat_map(|i| self.r#match.nodes_for_capture_index(i))
                 .map(|n| unsafe {
@@ -1492,7 +1576,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
     #[allow(unused, non_snake_case)]
     pub fn function_method(&self) -> Option<super::nodes::FieldIdentifier<'tree>> {
         {
-            [4u32]
+            [6u32]
                 .into_iter()
                 .flat_map(|i| self.r#match.nodes_for_capture_index(i))
                 .map(|n| unsafe {
@@ -1516,57 +1600,11 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
     #[allow(unused, non_snake_case)]
     pub fn function_macro(&self) -> Option<anon_unions::FunctionMacro<'tree>> {
         {
-            [5u32]
-                .into_iter()
-                .flat_map(|i| self.r#match.nodes_for_capture_index(i))
-                .map(|n| unsafe {
-                    <anon_unions::FunctionMacro<
-                        'tree,
-                    > as type_sitter_lib::TypedNode<
-                        'tree,
-                    >>::from_node_unchecked(yak_sitter::Node::new(n, self.tree))
-                })
-        }
-            .next()
-    }
-    ///Returns an iterator over the nodes captured by `type.builtin` ([super::nodes::PrimitiveType])
-    ///
-    ///The full capture including pattern(s) is:
-    ///```sexp
-    ///(primitive_type) @type.builtin
-    ///```
-    #[inline]
-    #[allow(unused, non_snake_case)]
-    pub fn type_builtin(&self) -> Option<super::nodes::PrimitiveType<'tree>> {
-        {
-            [6u32]
-                .into_iter()
-                .flat_map(|i| self.r#match.nodes_for_capture_index(i))
-                .map(|n| unsafe {
-                    <super::nodes::PrimitiveType<
-                        'tree,
-                    > as type_sitter_lib::TypedNode<
-                        'tree,
-                    >>::from_node_unchecked(yak_sitter::Node::new(n, self.tree))
-                })
-        }
-            .next()
-    }
-    ///Returns an iterator over the nodes captured by `property` ([super::nodes::FieldIdentifier])
-    ///
-    ///The full capture including pattern(s) is:
-    ///```sexp
-    ///(field_identifier) @property
-    ///```
-    #[inline]
-    #[allow(unused, non_snake_case)]
-    pub fn property(&self) -> Option<super::nodes::FieldIdentifier<'tree>> {
-        {
             [7u32]
                 .into_iter()
                 .flat_map(|i| self.r#match.nodes_for_capture_index(i))
                 .map(|n| unsafe {
-                    <super::nodes::FieldIdentifier<
+                    <anon_unions::FunctionMacro<
                         'tree,
                     > as type_sitter_lib::TypedNode<
                         'tree,
@@ -1599,6 +1637,32 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         }
             .next()
     }
+    ///Returns an iterator over the nodes captured by `comment.documentation` ([anon_unions::CommentDocumentation])
+    ///
+    ///The full capture including pattern(s) is:
+    ///```sexp
+    ///(line_comment (doc_comment)) @comment.documentation
+    ///(block_comment (doc_comment)) @comment.documentation
+    ///```
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn comment_documentation(
+        &self,
+    ) -> Option<anon_unions::CommentDocumentation<'tree>> {
+        {
+            [9u32]
+                .into_iter()
+                .flat_map(|i| self.r#match.nodes_for_capture_index(i))
+                .map(|n| unsafe {
+                    <anon_unions::CommentDocumentation<
+                        'tree,
+                    > as type_sitter_lib::TypedNode<
+                        'tree,
+                    >>::from_node_unchecked(yak_sitter::Node::new(n, self.tree))
+                })
+        }
+            .next()
+    }
     ///Returns an iterator over the nodes captured by `punctuation.bracket` ([anon_unions::PunctuationBracket])
     ///
     ///The full capture including pattern(s) is:
@@ -1618,7 +1682,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
     #[allow(unused, non_snake_case)]
     pub fn punctuation_bracket(&self) -> Option<anon_unions::PunctuationBracket<'tree>> {
         {
-            [9u32]
+            [10u32]
                 .into_iter()
                 .flat_map(|i| self.r#match.nodes_for_capture_index(i))
                 .map(|n| unsafe {
@@ -1647,7 +1711,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         &self,
     ) -> Option<anon_unions::PunctuationDelimiter<'tree>> {
         {
-            [10u32]
+            [11u32]
                 .into_iter()
                 .flat_map(|i| self.r#match.nodes_for_capture_index(i))
                 .map(|n| unsafe {
@@ -1670,7 +1734,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
     #[allow(unused, non_snake_case)]
     pub fn variable_parameter(&self) -> Option<super::nodes::Identifier<'tree>> {
         {
-            [11u32]
+            [12u32]
                 .into_iter()
                 .flat_map(|i| self.r#match.nodes_for_capture_index(i))
                 .map(|n| unsafe {
@@ -1693,7 +1757,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
     #[allow(unused, non_snake_case)]
     pub fn label(&self) -> Option<super::nodes::Identifier<'tree>> {
         {
-            [12u32]
+            [13u32]
                 .into_iter()
                 .flat_map(|i| self.r#match.nodes_for_capture_index(i))
                 .map(|n| unsafe {
@@ -1753,9 +1817,9 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
     ///```
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn keyword(&self) -> impl Iterator<Item = anon_unions::Keyword<'tree>> + '_ {
+    pub fn keyword(&self) -> Option<anon_unions::Keyword<'tree>> {
         {
-            [13u32]
+            [14u32]
                 .into_iter()
                 .flat_map(|i| self.r#match.nodes_for_capture_index(i))
                 .map(|n| unsafe {
@@ -1766,6 +1830,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
                     >>::from_node_unchecked(yak_sitter::Node::new(n, self.tree))
                 })
         }
+            .next()
     }
     ///Returns an iterator over the nodes captured by `variable.builtin` ([super::nodes::_Self])
     ///
@@ -1777,7 +1842,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
     #[allow(unused, non_snake_case)]
     pub fn variable_builtin(&self) -> Option<super::nodes::_Self<'tree>> {
         {
-            [14u32]
+            [15u32]
                 .into_iter()
                 .flat_map(|i| self.r#match.nodes_for_capture_index(i))
                 .map(|n| unsafe {
@@ -1800,9 +1865,9 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
     ///```
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn string(&self) -> Option<anon_unions::String<'tree>> {
+    pub fn string(&self) -> impl Iterator<Item = anon_unions::String<'tree>> + '_ {
         {
-            [15u32]
+            [16u32]
                 .into_iter()
                 .flat_map(|i| self.r#match.nodes_for_capture_index(i))
                 .map(|n| unsafe {
@@ -1813,7 +1878,6 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
                     >>::from_node_unchecked(yak_sitter::Node::new(n, self.tree))
                 })
         }
-            .next()
     }
     ///Returns an iterator over the nodes captured by `constant.builtin` ([anon_unions::ConstantBuiltin])
     ///
@@ -1827,7 +1891,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
     #[allow(unused, non_snake_case)]
     pub fn constant_builtin(&self) -> Option<anon_unions::ConstantBuiltin<'tree>> {
         {
-            [16u32]
+            [17u32]
                 .into_iter()
                 .flat_map(|i| self.r#match.nodes_for_capture_index(i))
                 .map(|n| unsafe {
@@ -1850,7 +1914,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
     #[allow(unused, non_snake_case)]
     pub fn escape(&self) -> Option<super::nodes::EscapeSequence<'tree>> {
         {
-            [17u32]
+            [18u32]
                 .into_iter()
                 .flat_map(|i| self.r#match.nodes_for_capture_index(i))
                 .map(|n| unsafe {
@@ -1874,7 +1938,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
     #[allow(unused, non_snake_case)]
     pub fn attribute(&self) -> Option<anon_unions::Attribute<'tree>> {
         {
-            [18u32]
+            [19u32]
                 .into_iter()
                 .flat_map(|i| self.r#match.nodes_for_capture_index(i))
                 .map(|n| unsafe {
@@ -1899,7 +1963,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
     #[allow(unused, non_snake_case)]
     pub fn operator(&self) -> Option<anon_unions::Operator<'tree>> {
         {
-            [19u32]
+            [20u32]
                 .into_iter()
                 .flat_map(|i| self.r#match.nodes_for_capture_index(i))
                 .map(|n| unsafe {
@@ -1944,21 +2008,6 @@ for HighlightsMatch<'cursor, 'tree> {
 }
 #[automatically_derived]
 impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
-    ///Try to interpret this capture as a `constant` ([super::nodes::Identifier])
-    ///
-    ///The full capture including pattern(s) is:
-    ///```sexp
-    ///(identifier) @constant
-    ///```
-    #[inline]
-    #[allow(unused, non_snake_case)]
-    pub fn constant(&self) -> Option<&super::nodes::Identifier<'tree>> {
-        match self {
-            Self::Constant { node, .. } => Some(node),
-            #[allow(unreachable_patterns)]
-            _ => None,
-        }
-    }
     ///Try to interpret this capture as a `type` ([anon_unions::Type])
     ///
     ///The full capture including pattern(s) is:
@@ -1974,6 +2023,51 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
     pub fn r#type(&self) -> Option<&anon_unions::Type<'tree>> {
         match self {
             Self::Type { node, .. } => Some(node),
+            #[allow(unreachable_patterns)]
+            _ => None,
+        }
+    }
+    ///Try to interpret this capture as a `type.builtin` ([super::nodes::PrimitiveType])
+    ///
+    ///The full capture including pattern(s) is:
+    ///```sexp
+    ///(primitive_type) @type.builtin
+    ///```
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn type_builtin(&self) -> Option<&super::nodes::PrimitiveType<'tree>> {
+        match self {
+            Self::TypeBuiltin { node, .. } => Some(node),
+            #[allow(unreachable_patterns)]
+            _ => None,
+        }
+    }
+    ///Try to interpret this capture as a `property` ([super::nodes::FieldIdentifier])
+    ///
+    ///The full capture including pattern(s) is:
+    ///```sexp
+    ///(field_identifier) @property
+    ///```
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn property(&self) -> Option<&super::nodes::FieldIdentifier<'tree>> {
+        match self {
+            Self::Property { node, .. } => Some(node),
+            #[allow(unreachable_patterns)]
+            _ => None,
+        }
+    }
+    ///Try to interpret this capture as a `constant` ([super::nodes::Identifier])
+    ///
+    ///The full capture including pattern(s) is:
+    ///```sexp
+    ///(identifier) @constant
+    ///```
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn constant(&self) -> Option<&super::nodes::Identifier<'tree>> {
+        match self {
+            Self::Constant { node, .. } => Some(node),
             #[allow(unreachable_patterns)]
             _ => None,
         }
@@ -2046,36 +2140,6 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
             _ => None,
         }
     }
-    ///Try to interpret this capture as a `type.builtin` ([super::nodes::PrimitiveType])
-    ///
-    ///The full capture including pattern(s) is:
-    ///```sexp
-    ///(primitive_type) @type.builtin
-    ///```
-    #[inline]
-    #[allow(unused, non_snake_case)]
-    pub fn type_builtin(&self) -> Option<&super::nodes::PrimitiveType<'tree>> {
-        match self {
-            Self::TypeBuiltin { node, .. } => Some(node),
-            #[allow(unreachable_patterns)]
-            _ => None,
-        }
-    }
-    ///Try to interpret this capture as a `property` ([super::nodes::FieldIdentifier])
-    ///
-    ///The full capture including pattern(s) is:
-    ///```sexp
-    ///(field_identifier) @property
-    ///```
-    #[inline]
-    #[allow(unused, non_snake_case)]
-    pub fn property(&self) -> Option<&super::nodes::FieldIdentifier<'tree>> {
-        match self {
-            Self::Property { node, .. } => Some(node),
-            #[allow(unreachable_patterns)]
-            _ => None,
-        }
-    }
     ///Try to interpret this capture as a `comment` ([anon_unions::Comment])
     ///
     ///The full capture including pattern(s) is:
@@ -2088,6 +2152,24 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
     pub fn comment(&self) -> Option<&anon_unions::Comment<'tree>> {
         match self {
             Self::Comment { node, .. } => Some(node),
+            #[allow(unreachable_patterns)]
+            _ => None,
+        }
+    }
+    ///Try to interpret this capture as a `comment.documentation` ([anon_unions::CommentDocumentation])
+    ///
+    ///The full capture including pattern(s) is:
+    ///```sexp
+    ///(line_comment (doc_comment)) @comment.documentation
+    ///(block_comment (doc_comment)) @comment.documentation
+    ///```
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn comment_documentation(
+        &self,
+    ) -> Option<&anon_unions::CommentDocumentation<'tree>> {
+        match self {
+            Self::CommentDocumentation { node, .. } => Some(node),
             #[allow(unreachable_patterns)]
             _ => None,
         }
@@ -2325,18 +2407,36 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
 impl<'cursor, 'tree> std::fmt::Debug for HighlightsCapture<'cursor, 'tree> {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
-            Self::Constant { node, .. } => {
+            Self::Type { node, .. } => {
+                f.debug_struct(
+                        concat!(stringify!(HighlightsCapture), "::", stringify!(Type)),
+                    )
+                    .field("node", node)
+                    .finish()
+            }
+            Self::TypeBuiltin { node, .. } => {
                 f.debug_struct(
                         concat!(
-                            stringify!(HighlightsCapture), "::", stringify!(Constant)
+                            stringify!(HighlightsCapture), "::", stringify!(TypeBuiltin)
                         ),
                     )
                     .field("node", node)
                     .finish()
             }
-            Self::Type { node, .. } => {
+            Self::Property { node, .. } => {
                 f.debug_struct(
-                        concat!(stringify!(HighlightsCapture), "::", stringify!(Type)),
+                        concat!(
+                            stringify!(HighlightsCapture), "::", stringify!(Property)
+                        ),
+                    )
+                    .field("node", node)
+                    .finish()
+            }
+            Self::Constant { node, .. } => {
+                f.debug_struct(
+                        concat!(
+                            stringify!(HighlightsCapture), "::", stringify!(Constant)
+                        ),
                     )
                     .field("node", node)
                     .finish()
@@ -2379,27 +2479,19 @@ impl<'cursor, 'tree> std::fmt::Debug for HighlightsCapture<'cursor, 'tree> {
                     .field("node", node)
                     .finish()
             }
-            Self::TypeBuiltin { node, .. } => {
-                f.debug_struct(
-                        concat!(
-                            stringify!(HighlightsCapture), "::", stringify!(TypeBuiltin)
-                        ),
-                    )
-                    .field("node", node)
-                    .finish()
-            }
-            Self::Property { node, .. } => {
-                f.debug_struct(
-                        concat!(
-                            stringify!(HighlightsCapture), "::", stringify!(Property)
-                        ),
-                    )
-                    .field("node", node)
-                    .finish()
-            }
             Self::Comment { node, .. } => {
                 f.debug_struct(
                         concat!(stringify!(HighlightsCapture), "::", stringify!(Comment)),
+                    )
+                    .field("node", node)
+                    .finish()
+            }
+            Self::CommentDocumentation { node, .. } => {
+                f.debug_struct(
+                        concat!(
+                            stringify!(HighlightsCapture), "::",
+                            stringify!(CommentDocumentation)
+                        ),
                     )
                     .field("node", node)
                     .finish()
@@ -2509,14 +2601,26 @@ impl<'cursor, 'tree> std::fmt::Debug for HighlightsCapture<'cursor, 'tree> {
 impl<'cursor, 'tree> Clone for HighlightsCapture<'cursor, 'tree> {
     fn clone(&self) -> Self {
         match self {
-            Self::Constant { node, .. } => {
-                Self::Constant {
+            Self::Type { node, .. } => {
+                Self::Type {
                     node: *node,
                     r#match: None,
                 }
             }
-            Self::Type { node, .. } => {
-                Self::Type {
+            Self::TypeBuiltin { node, .. } => {
+                Self::TypeBuiltin {
+                    node: *node,
+                    r#match: None,
+                }
+            }
+            Self::Property { node, .. } => {
+                Self::Property {
+                    node: *node,
+                    r#match: None,
+                }
+            }
+            Self::Constant { node, .. } => {
+                Self::Constant {
                     node: *node,
                     r#match: None,
                 }
@@ -2545,20 +2649,14 @@ impl<'cursor, 'tree> Clone for HighlightsCapture<'cursor, 'tree> {
                     r#match: None,
                 }
             }
-            Self::TypeBuiltin { node, .. } => {
-                Self::TypeBuiltin {
-                    node: *node,
-                    r#match: None,
-                }
-            }
-            Self::Property { node, .. } => {
-                Self::Property {
-                    node: *node,
-                    r#match: None,
-                }
-            }
             Self::Comment { node, .. } => {
                 Self::Comment {
+                    node: *node,
+                    r#match: None,
+                }
+            }
+            Self::CommentDocumentation { node, .. } => {
+                Self::CommentDocumentation {
                     node: *node,
                     r#match: None,
                 }
@@ -2647,15 +2745,16 @@ for HighlightsCapture<'cursor, 'tree> {
         &self,
     ) -> Option<&<Self::Query as type_sitter_lib::TypedQuery>::Match<'cursor, 'tree>> {
         match self {
-            Self::Constant { r#match, .. } => r#match.as_ref(),
             Self::Type { r#match, .. } => r#match.as_ref(),
+            Self::TypeBuiltin { r#match, .. } => r#match.as_ref(),
+            Self::Property { r#match, .. } => r#match.as_ref(),
+            Self::Constant { r#match, .. } => r#match.as_ref(),
             Self::Constructor { r#match, .. } => r#match.as_ref(),
             Self::Function { r#match, .. } => r#match.as_ref(),
             Self::FunctionMethod { r#match, .. } => r#match.as_ref(),
             Self::FunctionMacro { r#match, .. } => r#match.as_ref(),
-            Self::TypeBuiltin { r#match, .. } => r#match.as_ref(),
-            Self::Property { r#match, .. } => r#match.as_ref(),
             Self::Comment { r#match, .. } => r#match.as_ref(),
+            Self::CommentDocumentation { r#match, .. } => r#match.as_ref(),
             Self::PunctuationBracket { r#match, .. } => r#match.as_ref(),
             Self::PunctuationDelimiter { r#match, .. } => r#match.as_ref(),
             Self::VariableParameter { r#match, .. } => r#match.as_ref(),
@@ -2676,15 +2775,16 @@ for HighlightsCapture<'cursor, 'tree> {
         self,
     ) -> Option<<Self::Query as type_sitter_lib::TypedQuery>::Match<'cursor, 'tree>> {
         match self {
-            Self::Constant { r#match, .. } => r#match,
             Self::Type { r#match, .. } => r#match,
+            Self::TypeBuiltin { r#match, .. } => r#match,
+            Self::Property { r#match, .. } => r#match,
+            Self::Constant { r#match, .. } => r#match,
             Self::Constructor { r#match, .. } => r#match,
             Self::Function { r#match, .. } => r#match,
             Self::FunctionMethod { r#match, .. } => r#match,
             Self::FunctionMacro { r#match, .. } => r#match,
-            Self::TypeBuiltin { r#match, .. } => r#match,
-            Self::Property { r#match, .. } => r#match,
             Self::Comment { r#match, .. } => r#match,
+            Self::CommentDocumentation { r#match, .. } => r#match,
             Self::PunctuationBracket { r#match, .. } => r#match,
             Self::PunctuationDelimiter { r#match, .. } => r#match,
             Self::VariableParameter { r#match, .. } => r#match,
@@ -2705,60 +2805,60 @@ for HighlightsCapture<'cursor, 'tree> {
         #[allow(unused_imports)]
         use type_sitter_lib::TypedNode;
         match self {
-            Self::Constant { node, .. } => {
-                yak_sitter::QueryCapture {
-                    node: *node.node(),
-                    index: 0usize,
-                    name: "constant",
-                }
-            }
             Self::Type { node, .. } => {
                 yak_sitter::QueryCapture {
                     node: *node.node(),
-                    index: 1usize,
+                    index: 0usize,
                     name: "type",
-                }
-            }
-            Self::Constructor { node, .. } => {
-                yak_sitter::QueryCapture {
-                    node: *node.node(),
-                    index: 2usize,
-                    name: "constructor",
-                }
-            }
-            Self::Function { node, .. } => {
-                yak_sitter::QueryCapture {
-                    node: *node.node(),
-                    index: 3usize,
-                    name: "function",
-                }
-            }
-            Self::FunctionMethod { node, .. } => {
-                yak_sitter::QueryCapture {
-                    node: *node.node(),
-                    index: 4usize,
-                    name: "function.method",
-                }
-            }
-            Self::FunctionMacro { node, .. } => {
-                yak_sitter::QueryCapture {
-                    node: *node.node(),
-                    index: 5usize,
-                    name: "function.macro",
                 }
             }
             Self::TypeBuiltin { node, .. } => {
                 yak_sitter::QueryCapture {
                     node: *node.node(),
-                    index: 6usize,
+                    index: 1usize,
                     name: "type.builtin",
                 }
             }
             Self::Property { node, .. } => {
                 yak_sitter::QueryCapture {
                     node: *node.node(),
-                    index: 7usize,
+                    index: 2usize,
                     name: "property",
+                }
+            }
+            Self::Constant { node, .. } => {
+                yak_sitter::QueryCapture {
+                    node: *node.node(),
+                    index: 3usize,
+                    name: "constant",
+                }
+            }
+            Self::Constructor { node, .. } => {
+                yak_sitter::QueryCapture {
+                    node: *node.node(),
+                    index: 4usize,
+                    name: "constructor",
+                }
+            }
+            Self::Function { node, .. } => {
+                yak_sitter::QueryCapture {
+                    node: *node.node(),
+                    index: 5usize,
+                    name: "function",
+                }
+            }
+            Self::FunctionMethod { node, .. } => {
+                yak_sitter::QueryCapture {
+                    node: *node.node(),
+                    index: 6usize,
+                    name: "function.method",
+                }
+            }
+            Self::FunctionMacro { node, .. } => {
+                yak_sitter::QueryCapture {
+                    node: *node.node(),
+                    index: 7usize,
+                    name: "function.macro",
                 }
             }
             Self::Comment { node, .. } => {
@@ -2768,80 +2868,87 @@ for HighlightsCapture<'cursor, 'tree> {
                     name: "comment",
                 }
             }
-            Self::PunctuationBracket { node, .. } => {
+            Self::CommentDocumentation { node, .. } => {
                 yak_sitter::QueryCapture {
                     node: *node.node(),
                     index: 9usize,
+                    name: "comment.documentation",
+                }
+            }
+            Self::PunctuationBracket { node, .. } => {
+                yak_sitter::QueryCapture {
+                    node: *node.node(),
+                    index: 10usize,
                     name: "punctuation.bracket",
                 }
             }
             Self::PunctuationDelimiter { node, .. } => {
                 yak_sitter::QueryCapture {
                     node: *node.node(),
-                    index: 10usize,
+                    index: 11usize,
                     name: "punctuation.delimiter",
                 }
             }
             Self::VariableParameter { node, .. } => {
                 yak_sitter::QueryCapture {
                     node: *node.node(),
-                    index: 11usize,
+                    index: 12usize,
                     name: "variable.parameter",
                 }
             }
             Self::Label { node, .. } => {
                 yak_sitter::QueryCapture {
                     node: *node.node(),
-                    index: 12usize,
+                    index: 13usize,
                     name: "label",
                 }
             }
             Self::Keyword { node, .. } => {
                 yak_sitter::QueryCapture {
                     node: *node.node(),
-                    index: 13usize,
+                    index: 14usize,
                     name: "keyword",
                 }
             }
             Self::VariableBuiltin { node, .. } => {
                 yak_sitter::QueryCapture {
                     node: *node.node(),
-                    index: 14usize,
+                    index: 15usize,
                     name: "variable.builtin",
                 }
             }
             Self::String { node, .. } => {
                 yak_sitter::QueryCapture {
                     node: *node.node(),
-                    index: 15usize,
+                    index: 16usize,
                     name: "string",
                 }
             }
             Self::ConstantBuiltin { node, .. } => {
                 yak_sitter::QueryCapture {
                     node: *node.node(),
-                    index: 16usize,
+                    index: 17usize,
                     name: "constant.builtin",
                 }
             }
             Self::Escape { node, .. } => {
                 yak_sitter::QueryCapture {
                     node: *node.node(),
-                    index: 17usize,
+                    index: 18usize,
                     name: "escape",
                 }
             }
             Self::Attribute { node, .. } => {
                 yak_sitter::QueryCapture {
                     node: *node.node(),
-                    index: 18usize,
+                    index: 19usize,
                     name: "attribute",
                 }
             }
             Self::Operator { node, .. } => {
                 yak_sitter::QueryCapture {
                     node: *node.node(),
-                    index: 19usize,
+                    index: 20usize,
                     name: "operator",
                 }
             }
@@ -2854,15 +2961,16 @@ for HighlightsCapture<'cursor, 'tree> {
         #[allow(unused_imports)]
         use type_sitter_lib::TypedNode;
         match self {
-            Self::Constant { node, .. } => node.node(),
             Self::Type { node, .. } => node.node(),
+            Self::TypeBuiltin { node, .. } => node.node(),
+            Self::Property { node, .. } => node.node(),
+            Self::Constant { node, .. } => node.node(),
             Self::Constructor { node, .. } => node.node(),
             Self::Function { node, .. } => node.node(),
             Self::FunctionMethod { node, .. } => node.node(),
             Self::FunctionMacro { node, .. } => node.node(),
-            Self::TypeBuiltin { node, .. } => node.node(),
-            Self::Property { node, .. } => node.node(),
             Self::Comment { node, .. } => node.node(),
+            Self::CommentDocumentation { node, .. } => node.node(),
             Self::PunctuationBracket { node, .. } => node.node(),
             Self::PunctuationDelimiter { node, .. } => node.node(),
             Self::VariableParameter { node, .. } => node.node(),
@@ -2883,15 +2991,16 @@ for HighlightsCapture<'cursor, 'tree> {
         #[allow(unused_imports)]
         use type_sitter_lib::TypedNode;
         match self {
-            Self::Constant { node, .. } => node.node_mut(),
             Self::Type { node, .. } => node.node_mut(),
+            Self::TypeBuiltin { node, .. } => node.node_mut(),
+            Self::Property { node, .. } => node.node_mut(),
+            Self::Constant { node, .. } => node.node_mut(),
             Self::Constructor { node, .. } => node.node_mut(),
             Self::Function { node, .. } => node.node_mut(),
             Self::FunctionMethod { node, .. } => node.node_mut(),
             Self::FunctionMacro { node, .. } => node.node_mut(),
-            Self::TypeBuiltin { node, .. } => node.node_mut(),
-            Self::Property { node, .. } => node.node_mut(),
             Self::Comment { node, .. } => node.node_mut(),
+            Self::CommentDocumentation { node, .. } => node.node_mut(),
             Self::PunctuationBracket { node, .. } => node.node_mut(),
             Self::PunctuationDelimiter { node, .. } => node.node_mut(),
             Self::VariableParameter { node, .. } => node.node_mut(),
@@ -2910,15 +3019,16 @@ for HighlightsCapture<'cursor, 'tree> {
     #[inline]
     fn name(&self) -> &'static str {
         match self {
-            Self::Constant { .. } => "constant",
             Self::Type { .. } => "type",
+            Self::TypeBuiltin { .. } => "type.builtin",
+            Self::Property { .. } => "property",
+            Self::Constant { .. } => "constant",
             Self::Constructor { .. } => "constructor",
             Self::Function { .. } => "function",
             Self::FunctionMethod { .. } => "function.method",
             Self::FunctionMacro { .. } => "function.macro",
-            Self::TypeBuiltin { .. } => "type.builtin",
-            Self::Property { .. } => "property",
             Self::Comment { .. } => "comment",
+            Self::CommentDocumentation { .. } => "comment.documentation",
             Self::PunctuationBracket { .. } => "punctuation.bracket",
             Self::PunctuationDelimiter { .. } => "punctuation.delimiter",
             Self::VariableParameter { .. } => "variable.parameter",
@@ -2937,26 +3047,27 @@ for HighlightsCapture<'cursor, 'tree> {
     #[inline]
     fn index(&self) -> usize {
         match self {
-            Self::Constant { .. } => 0usize,
-            Self::Type { .. } => 1usize,
-            Self::Constructor { .. } => 2usize,
-            Self::Function { .. } => 3usize,
-            Self::FunctionMethod { .. } => 4usize,
-            Self::FunctionMacro { .. } => 5usize,
-            Self::TypeBuiltin { .. } => 6usize,
-            Self::Property { .. } => 7usize,
+            Self::Type { .. } => 0usize,
+            Self::TypeBuiltin { .. } => 1usize,
+            Self::Property { .. } => 2usize,
+            Self::Constant { .. } => 3usize,
+            Self::Constructor { .. } => 4usize,
+            Self::Function { .. } => 5usize,
+            Self::FunctionMethod { .. } => 6usize,
+            Self::FunctionMacro { .. } => 7usize,
             Self::Comment { .. } => 8usize,
-            Self::PunctuationBracket { .. } => 9usize,
-            Self::PunctuationDelimiter { .. } => 10usize,
-            Self::VariableParameter { .. } => 11usize,
-            Self::Label { .. } => 12usize,
-            Self::Keyword { .. } => 13usize,
-            Self::VariableBuiltin { .. } => 14usize,
-            Self::String { .. } => 15usize,
-            Self::ConstantBuiltin { .. } => 16usize,
-            Self::Escape { .. } => 17usize,
-            Self::Attribute { .. } => 18usize,
-            Self::Operator { .. } => 19usize,
+            Self::CommentDocumentation { .. } => 9usize,
+            Self::PunctuationBracket { .. } => 10usize,
+            Self::PunctuationDelimiter { .. } => 11usize,
+            Self::VariableParameter { .. } => 12usize,
+            Self::Label { .. } => 13usize,
+            Self::Keyword { .. } => 14usize,
+            Self::VariableBuiltin { .. } => 15usize,
+            Self::String { .. } => 16usize,
+            Self::ConstantBuiltin { .. } => 17usize,
+            Self::Escape { .. } => 18usize,
+            Self::Attribute { .. } => 19usize,
+            Self::Operator { .. } => 20usize,
             #[allow(unreachable_patterns)]
             _ => unreachable!(),
         }
@@ -2970,7 +3081,7 @@ static __Injections__: type_sitter_lib::gen_internal::TypedQueryOnceBox<
 fn __Mk__Injections() -> Box<tree_sitter::Query> {
     #[allow(unused_mut)]
     let mut query = tree_sitter::Query::new(
-            tree_sitter_rust::language(),
+            &tree_sitter_rust::language(),
             "((macro_invocation\n  (token_tree) @injection.content)\n (#set! injection.language \"rust\")\n (#set! injection.include-children))\n\n((macro_rule\n  (token_tree) @injection.content)\n (#set! injection.language \"rust\")\n (#set! injection.include-children))\n",
         )
         .expect(
@@ -3327,7 +3438,7 @@ static __Tags__: type_sitter_lib::gen_internal::TypedQueryOnceBox<tree_sitter::Q
 fn __Mk__Tags() -> Box<tree_sitter::Query> {
     #[allow(unused_mut)]
     let mut query = tree_sitter::Query::new(
-            tree_sitter_rust::language(),
+            &tree_sitter_rust::language(),
             "; ADT definitions\n\n(struct_item\n    name: (type_identifier) @name) @definition.class\n\n(enum_item\n    name: (type_identifier) @name) @definition.class\n\n(union_item\n    name: (type_identifier) @name) @definition.class\n\n; type aliases\n\n(type_item\n    name: (type_identifier) @name) @definition.class\n\n; method definitions\n\n(declaration_list\n    (function_item\n        name: (identifier) @name)) @definition.method\n\n; function definitions\n\n(function_item\n    name: (identifier) @name) @definition.function\n\n; trait definitions\n(trait_item\n    name: (type_identifier) @name) @definition.interface\n\n; module definitions\n(mod_item\n    name: (identifier) @name) @definition.module\n\n; macro definitions\n\n(macro_definition\n    name: (identifier) @name) @definition.macro\n\n; references\n\n(call_expression\n    function: (identifier) @name) @reference.call\n\n(call_expression\n    function: (field_expression\n        field: (field_identifier) @name)) @reference.call\n\n(macro_invocation\n    macro: (identifier) @name) @reference.call\n\n; implementations\n\n(impl_item\n    trait: (type_identifier) @name) @reference.implementation\n\n(impl_item\n    type: (type_identifier) @name\n    !trait) @reference.implementation\n",
         )
         .expect(
@@ -5071,6 +5182,98 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Comment<'tree> {
+        const KIND: &'static str = "{block_comment | line_comment}";
+        #[inline]
+        fn node(&self) -> &yak_sitter::Node<'tree> {
+            match self {
+                Self::BlockComment(x) => x.node(),
+                Self::LineComment(x) => x.node(),
+            }
+        }
+        #[inline]
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
+            match self {
+                Self::BlockComment(x) => x.node_mut(),
+                Self::LineComment(x) => x.node_mut(),
+            }
+        }
+        #[inline]
+        fn into_node(self) -> yak_sitter::Node<'tree> {
+            match self {
+                Self::BlockComment(x) => x.into_node(),
+                Self::LineComment(x) => x.into_node(),
+            }
+        }
+    }
+    /**one of `{block_comment | line_comment}`:
+- [BlockComment]
+- [LineComment]*/
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub enum CommentDocumentation<'tree> {
+        BlockComment(BlockComment<'tree>),
+        LineComment(LineComment<'tree>),
+    }
+    #[automatically_derived]
+    impl<'tree> CommentDocumentation<'tree> {
+        ///Returns the node if it is of kind `block_comment` ([BlockComment]), otherwise returns None
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn block_comment(self) -> Option<BlockComment<'tree>> {
+            match self {
+                Self::BlockComment(x) => Some(x),
+                _ => None,
+            }
+        }
+        ///Returns the node if it is of kind `line_comment` ([LineComment]), otherwise returns None
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn line_comment(self) -> Option<LineComment<'tree>> {
+            match self {
+                Self::LineComment(x) => Some(x),
+                _ => None,
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for CommentDocumentation<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+            match node.kind() {
+                "block_comment" => {
+                    Ok(unsafe {
+                        Self::BlockComment(
+                            <BlockComment<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
+                                'tree,
+                            >>::from_node_unchecked(node),
+                        )
+                    })
+                }
+                "line_comment" => {
+                    Ok(unsafe {
+                        Self::LineComment(
+                            <LineComment<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
+                                'tree,
+                            >>::from_node_unchecked(node),
+                        )
+                    })
+                }
+                _ => {
+                    Err(type_sitter_lib::IncorrectKind {
+                        node,
+                        kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                    })
+                }
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for CommentDocumentation<'tree> {
         const KIND: &'static str = "{block_comment | line_comment}";
         #[inline]
         fn node(&self) -> &yak_sitter::Node<'tree> {

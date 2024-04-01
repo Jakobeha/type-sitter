@@ -23,7 +23,7 @@ const JSON_STR: &'static str = "\
 
 fn json_tree() -> Tree {
     let mut parser = tree_sitter::Parser::new();
-    parser.set_language(tree_sitter_json::language()).unwrap();
+    parser.set_language(&tree_sitter_json::language()).unwrap();
     parser.parse(&JSON_STR, None).unwrap()
 }
 
@@ -36,10 +36,10 @@ fn test_node_types() {
     let json_root = json_document.child(0).unwrap3().object().unwrap();
     assert_eq!(json_root.children(&mut json_tree.walk()).len(), 2);
     let json_type = json_root.child(0).unwrap3();
-    assert_eq!(json_type.key().unwrap().string().unwrap().child().unwrap2().utf8_text(JSON_STR.as_bytes()).unwrap(), "type");
+    assert_eq!(json_type.key().unwrap().child().unwrap2().utf8_text(JSON_STR.as_bytes()).unwrap(), "type");
     assert_eq!(json_type.value().unwrap().string().unwrap().child().unwrap2().utf8_text(JSON_STR.as_bytes()).unwrap(), "array");
     let json_content = json_root.child(1).unwrap3();
-    assert_eq!(json_content.key().unwrap().string().unwrap().child().unwrap2().utf8_text(JSON_STR.as_bytes()).unwrap(), "content");
+    assert_eq!(json_content.key().unwrap().child().unwrap2().utf8_text(JSON_STR.as_bytes()).unwrap(), "content");
     assert_eq!(json_content.value().unwrap().string().unwrap().child().unwrap2().utf8_text(JSON_STR.as_bytes()).unwrap(), "value");
 }
 

@@ -10,9 +10,9 @@ use type_sitter_lib::{OptionNodeResultExtraOrExt, TypedNode, TypedQueryCursor};
 use crate::rust::queries::Tags;
 
 #[test]
-pub fn text_use_queries_new() {
+pub fn test_use_queries_new() {
     // ???: Abstract with use_node_types?
-    let mut parser = Parser::new(tree_sitter_rust::language()).unwrap();
+    let mut parser = Parser::new(&tree_sitter_rust::language()).unwrap();
     let code_path = Path::new(env!("CARGO_MANIFEST_DIR")).join("../vendor/tree-sitter-rust/bindings/rust/lib.rs");
     let code_ast = parser.parse_file(&code_path, None, ()).expect("Failed to parse code");
     let code_root = rust::nodes::SourceFile::try_from(code_ast.root_node()).expect("Failed to wrap code root node");
@@ -38,7 +38,7 @@ pub fn text_use_queries_new() {
     let r#match = matches.next().unwrap();
     assert_eq!(r#match.reference_call().unwrap().call_expression().unwrap().function().unwrap().identifier().unwrap().text(), "tree_sitter_rust");
     assert_eq!(r#match.name().unwrap().identifier().unwrap().text(), "tree_sitter_rust");
-    for _ in 2..=5 {
+    for _ in 2..=6 {
         let r#match = matches.next().unwrap();
         assert_eq!(r#match.reference_call().unwrap().macro_invocation().unwrap().r#macro().unwrap().identifier().unwrap().text(), "include_str");
         assert_eq!(r#match.name().unwrap().identifier().unwrap().text(), "include_str");
@@ -63,5 +63,5 @@ pub fn text_use_queries_new() {
     assert_eq!(r#match.name().unwrap().field_identifier().unwrap().text(), "expect");
     assert!(matches.next().is_none());
     // ???: Individual captures tests?
-    assert_eq!(captures.len(), 22);
+    assert_eq!(captures.len(), 24);
 }
