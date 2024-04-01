@@ -1,765 +1,4 @@
 #[allow(non_upper_case_globals)]
-static __Tags__: type_sitter_lib::gen_internal::TypedQueryOnceBox<tree_sitter::Query> =
-    type_sitter_lib::gen_internal::TypedQueryOnceBox::new();
-#[allow(non_snake_case)]
-fn __Mk__Tags() -> Box<tree_sitter::Query> {
-    # [allow (unused_mut)] let mut query = tree_sitter :: Query :: new (tree_sitter_rust :: language () , "; ADT definitions\n\n(struct_item\n    name: (type_identifier) @name) @definition.class\n\n(enum_item\n    name: (type_identifier) @name) @definition.class\n\n(union_item\n    name: (type_identifier) @name) @definition.class\n\n; type aliases\n\n(type_item\n    name: (type_identifier) @name) @definition.class\n\n; method definitions\n\n(declaration_list\n    (function_item\n        name: (identifier) @name)) @definition.method\n\n; function definitions\n\n(function_item\n    name: (identifier) @name) @definition.function\n\n; trait definitions\n(trait_item\n    name: (type_identifier) @name) @definition.interface\n\n; module definitions\n(mod_item\n    name: (identifier) @name) @definition.module\n\n; macro definitions\n\n(macro_definition\n    name: (identifier) @name) @definition.macro\n\n; references\n\n(call_expression\n    function: (identifier) @name) @reference.call\n\n(call_expression\n    function: (field_expression\n        field: (field_identifier) @name)) @reference.call\n\n(macro_invocation\n    macro: (identifier) @name) @reference.call\n\n; implementations\n\n(impl_item\n    trait: (type_identifier) @name) @reference.implementation\n\n(impl_item\n    type: (type_identifier) @name\n    !trait) @reference.implementation\n") . expect ("query parsed at compile-time but failed at runtime. Is the language 'tree_sitter_rust' correct, and did you use the same tree-sitter / tree_sitter_rust version?") ;
-    Box::new(query)
-}
-#[doc = "Typed version of the query:\n\n```sexp\n; ADT definitions\n\n(struct_item\n    name: (type_identifier) @name) @definition.class\n\n(enum_item\n    name: (type_identifier) @name) @definition.class\n\n(union_item\n    name: (type_identifier) @name) @definition.class\n\n; type aliases\n\n(type_item\n    name: (type_identifier) @name) @definition.class\n\n; method definitions\n\n(declaration_list\n    (function_item\n        name: (identifier) @name)) @definition.method\n\n; function definitions\n\n(function_item\n    name: (identifier) @name) @definition.function\n\n; trait definitions\n(trait_item\n    name: (type_identifier) @name) @definition.interface\n\n; module definitions\n(mod_item\n    name: (identifier) @name) @definition.module\n\n; macro definitions\n\n(macro_definition\n    name: (identifier) @name) @definition.macro\n\n; references\n\n(call_expression\n    function: (identifier) @name) @reference.call\n\n(call_expression\n    function: (field_expression\n        field: (field_identifier) @name)) @reference.call\n\n(macro_invocation\n    macro: (identifier) @name) @reference.call\n\n; implementations\n\n(impl_item\n    trait: (type_identifier) @name) @reference.implementation\n\n(impl_item\n    type: (type_identifier) @name\n    !trait) @reference.implementation\n\n```"]
-#[allow(non_camel_case_types)]
-#[derive(Debug, Clone, Copy)]
-pub struct Tags;
-#[doc = "Matches returned by a query cursor running the query [Tags]:\n\n```sexp\n; ADT definitions\n\n(struct_item\n    name: (type_identifier) @name) @definition.class\n\n(enum_item\n    name: (type_identifier) @name) @definition.class\n\n(union_item\n    name: (type_identifier) @name) @definition.class\n\n; type aliases\n\n(type_item\n    name: (type_identifier) @name) @definition.class\n\n; method definitions\n\n(declaration_list\n    (function_item\n        name: (identifier) @name)) @definition.method\n\n; function definitions\n\n(function_item\n    name: (identifier) @name) @definition.function\n\n; trait definitions\n(trait_item\n    name: (type_identifier) @name) @definition.interface\n\n; module definitions\n(mod_item\n    name: (identifier) @name) @definition.module\n\n; macro definitions\n\n(macro_definition\n    name: (identifier) @name) @definition.macro\n\n; references\n\n(call_expression\n    function: (identifier) @name) @reference.call\n\n(call_expression\n    function: (field_expression\n        field: (field_identifier) @name)) @reference.call\n\n(macro_invocation\n    macro: (identifier) @name) @reference.call\n\n; implementations\n\n(impl_item\n    trait: (type_identifier) @name) @reference.implementation\n\n(impl_item\n    type: (type_identifier) @name\n    !trait) @reference.implementation\n\n```"]
-#[allow(unused, non_camel_case_types)]
-pub type TagsMatches<'cursor, 'tree> = type_sitter_lib::TypedQueryMatches<'cursor, 'tree, Tags>;
-#[doc = "Captures returned by a query cursor running the query [Tags]:\n\n```sexp\n; ADT definitions\n\n(struct_item\n    name: (type_identifier) @name) @definition.class\n\n(enum_item\n    name: (type_identifier) @name) @definition.class\n\n(union_item\n    name: (type_identifier) @name) @definition.class\n\n; type aliases\n\n(type_item\n    name: (type_identifier) @name) @definition.class\n\n; method definitions\n\n(declaration_list\n    (function_item\n        name: (identifier) @name)) @definition.method\n\n; function definitions\n\n(function_item\n    name: (identifier) @name) @definition.function\n\n; trait definitions\n(trait_item\n    name: (type_identifier) @name) @definition.interface\n\n; module definitions\n(mod_item\n    name: (identifier) @name) @definition.module\n\n; macro definitions\n\n(macro_definition\n    name: (identifier) @name) @definition.macro\n\n; references\n\n(call_expression\n    function: (identifier) @name) @reference.call\n\n(call_expression\n    function: (field_expression\n        field: (field_identifier) @name)) @reference.call\n\n(macro_invocation\n    macro: (identifier) @name) @reference.call\n\n; implementations\n\n(impl_item\n    trait: (type_identifier) @name) @reference.implementation\n\n(impl_item\n    type: (type_identifier) @name\n    !trait) @reference.implementation\n\n```"]
-#[allow(unused, non_camel_case_types)]
-pub type TagsCaptures<'cursor, 'tree> = type_sitter_lib::TypedQueryCaptures<'cursor, 'tree, Tags>;
-#[doc = "A match returned by the query [Tags]:\n\n```sexp\n; ADT definitions\n\n(struct_item\n    name: (type_identifier) @name) @definition.class\n\n(enum_item\n    name: (type_identifier) @name) @definition.class\n\n(union_item\n    name: (type_identifier) @name) @definition.class\n\n; type aliases\n\n(type_item\n    name: (type_identifier) @name) @definition.class\n\n; method definitions\n\n(declaration_list\n    (function_item\n        name: (identifier) @name)) @definition.method\n\n; function definitions\n\n(function_item\n    name: (identifier) @name) @definition.function\n\n; trait definitions\n(trait_item\n    name: (type_identifier) @name) @definition.interface\n\n; module definitions\n(mod_item\n    name: (identifier) @name) @definition.module\n\n; macro definitions\n\n(macro_definition\n    name: (identifier) @name) @definition.macro\n\n; references\n\n(call_expression\n    function: (identifier) @name) @reference.call\n\n(call_expression\n    function: (field_expression\n        field: (field_identifier) @name)) @reference.call\n\n(macro_invocation\n    macro: (identifier) @name) @reference.call\n\n; implementations\n\n(impl_item\n    trait: (type_identifier) @name) @reference.implementation\n\n(impl_item\n    type: (type_identifier) @name\n    !trait) @reference.implementation\n\n```"]
-pub struct TagsMatch<'cursor, 'tree> {
-    r#match: tree_sitter::QueryMatch<'cursor, 'tree>,
-    tree: &'tree yak_sitter::Tree,
-}
-#[doc = "A capture returned by the query [Tags]:\n\n```sexp\n; ADT definitions\n\n(struct_item\n    name: (type_identifier) @name) @definition.class\n\n(enum_item\n    name: (type_identifier) @name) @definition.class\n\n(union_item\n    name: (type_identifier) @name) @definition.class\n\n; type aliases\n\n(type_item\n    name: (type_identifier) @name) @definition.class\n\n; method definitions\n\n(declaration_list\n    (function_item\n        name: (identifier) @name)) @definition.method\n\n; function definitions\n\n(function_item\n    name: (identifier) @name) @definition.function\n\n; trait definitions\n(trait_item\n    name: (type_identifier) @name) @definition.interface\n\n; module definitions\n(mod_item\n    name: (identifier) @name) @definition.module\n\n; macro definitions\n\n(macro_definition\n    name: (identifier) @name) @definition.macro\n\n; references\n\n(call_expression\n    function: (identifier) @name) @reference.call\n\n(call_expression\n    function: (field_expression\n        field: (field_identifier) @name)) @reference.call\n\n(macro_invocation\n    macro: (identifier) @name) @reference.call\n\n; implementations\n\n(impl_item\n    trait: (type_identifier) @name) @reference.implementation\n\n(impl_item\n    type: (type_identifier) @name\n    !trait) @reference.implementation\n\n```"]
-pub enum TagsCapture<'cursor, 'tree> {
-    #[doc = "A `name` ([anon_unions::Name])"]
-    #[doc = ""]
-    #[doc = "The full capture including pattern(s) is:"]
-    #[doc = "```sexp"]
-    #[doc = "(type_identifier) @name"]
-    #[doc = "(type_identifier) @name"]
-    #[doc = "(type_identifier) @name"]
-    #[doc = "(type_identifier) @name"]
-    #[doc = "(identifier) @name"]
-    #[doc = "(identifier) @name"]
-    #[doc = "(type_identifier) @name"]
-    #[doc = "(identifier) @name"]
-    #[doc = "(identifier) @name"]
-    #[doc = "(identifier) @name"]
-    #[doc = "(field_identifier) @name"]
-    #[doc = "(identifier) @name"]
-    #[doc = "(type_identifier) @name"]
-    #[doc = "(type_identifier) @name"]
-    #[doc = "```"]
-    Name {
-        node: anon_unions::Name<'tree>,
-        r#match: Option<TagsMatch<'cursor, 'tree>>,
-    },
-    #[doc = "A `definition.class` ([anon_unions::DefinitionClass])"]
-    #[doc = ""]
-    #[doc = "The full capture including pattern(s) is:"]
-    #[doc = "```sexp"]
-    #[doc = "(struct_item\n    name: (type_identifier) @name) @definition.class"]
-    #[doc = "(enum_item\n    name: (type_identifier) @name) @definition.class"]
-    #[doc = "(union_item\n    name: (type_identifier) @name) @definition.class"]
-    #[doc = "(type_item\n    name: (type_identifier) @name) @definition.class"]
-    #[doc = "```"]
-    DefinitionClass {
-        node: anon_unions::DefinitionClass<'tree>,
-        r#match: Option<TagsMatch<'cursor, 'tree>>,
-    },
-    #[doc = "A `definition.method` ([super::nodes::DeclarationList])"]
-    #[doc = ""]
-    #[doc = "The full capture including pattern(s) is:"]
-    #[doc = "```sexp"]
-    #[doc = "(declaration_list\n    (function_item\n        name: (identifier) @name)) @definition.method"]
-    #[doc = "```"]
-    DefinitionMethod {
-        node: super::nodes::DeclarationList<'tree>,
-        r#match: Option<TagsMatch<'cursor, 'tree>>,
-    },
-    #[doc = "A `definition.function` ([super::nodes::FunctionItem])"]
-    #[doc = ""]
-    #[doc = "The full capture including pattern(s) is:"]
-    #[doc = "```sexp"]
-    #[doc = "(function_item\n    name: (identifier) @name) @definition.function"]
-    #[doc = "```"]
-    DefinitionFunction {
-        node: super::nodes::FunctionItem<'tree>,
-        r#match: Option<TagsMatch<'cursor, 'tree>>,
-    },
-    #[doc = "A `definition.interface` ([super::nodes::TraitItem])"]
-    #[doc = ""]
-    #[doc = "The full capture including pattern(s) is:"]
-    #[doc = "```sexp"]
-    #[doc = "(trait_item\n    name: (type_identifier) @name) @definition.interface"]
-    #[doc = "```"]
-    DefinitionInterface {
-        node: super::nodes::TraitItem<'tree>,
-        r#match: Option<TagsMatch<'cursor, 'tree>>,
-    },
-    #[doc = "A `definition.module` ([super::nodes::ModItem])"]
-    #[doc = ""]
-    #[doc = "The full capture including pattern(s) is:"]
-    #[doc = "```sexp"]
-    #[doc = "(mod_item\n    name: (identifier) @name) @definition.module"]
-    #[doc = "```"]
-    DefinitionModule {
-        node: super::nodes::ModItem<'tree>,
-        r#match: Option<TagsMatch<'cursor, 'tree>>,
-    },
-    #[doc = "A `definition.macro` ([super::nodes::MacroDefinition])"]
-    #[doc = ""]
-    #[doc = "The full capture including pattern(s) is:"]
-    #[doc = "```sexp"]
-    #[doc = "(macro_definition\n    name: (identifier) @name) @definition.macro"]
-    #[doc = "```"]
-    DefinitionMacro {
-        node: super::nodes::MacroDefinition<'tree>,
-        r#match: Option<TagsMatch<'cursor, 'tree>>,
-    },
-    #[doc = "A `reference.call` ([anon_unions::ReferenceCall])"]
-    #[doc = ""]
-    #[doc = "The full capture including pattern(s) is:"]
-    #[doc = "```sexp"]
-    #[doc = "(call_expression\n    function: (identifier) @name) @reference.call"]
-    #[doc = "(call_expression\n    function: (field_expression\n        field: (field_identifier) @name)) @reference.call"]
-    #[doc = "(macro_invocation\n    macro: (identifier) @name) @reference.call"]
-    #[doc = "```"]
-    ReferenceCall {
-        node: anon_unions::ReferenceCall<'tree>,
-        r#match: Option<TagsMatch<'cursor, 'tree>>,
-    },
-    #[doc = "A `reference.implementation` ([anon_unions::ReferenceImplementation])"]
-    #[doc = ""]
-    #[doc = "The full capture including pattern(s) is:"]
-    #[doc = "```sexp"]
-    #[doc = "(impl_item\n    trait: (type_identifier) @name) @reference.implementation"]
-    #[doc = "(impl_item\n    type: (type_identifier) @name\n    !trait) @reference.implementation"]
-    #[doc = "```"]
-    ReferenceImplementation {
-        node: super::nodes::ImplItem<'tree>,
-        r#match: Option<TagsMatch<'cursor, 'tree>>,
-    },
-}
-#[automatically_derived]
-impl type_sitter_lib::TypedQuery for Tags {
-    type Match<'cursor, 'tree: 'cursor> = TagsMatch<'cursor, 'tree>;
-    type Capture<'cursor, 'tree: 'cursor> = TagsCapture<'cursor, 'tree>;
-    fn query_str(&self) -> &'static str {
-        "; ADT definitions\n\n(struct_item\n    name: (type_identifier) @name) @definition.class\n\n(enum_item\n    name: (type_identifier) @name) @definition.class\n\n(union_item\n    name: (type_identifier) @name) @definition.class\n\n; type aliases\n\n(type_item\n    name: (type_identifier) @name) @definition.class\n\n; method definitions\n\n(declaration_list\n    (function_item\n        name: (identifier) @name)) @definition.method\n\n; function definitions\n\n(function_item\n    name: (identifier) @name) @definition.function\n\n; trait definitions\n(trait_item\n    name: (type_identifier) @name) @definition.interface\n\n; module definitions\n(mod_item\n    name: (identifier) @name) @definition.module\n\n; macro definitions\n\n(macro_definition\n    name: (identifier) @name) @definition.macro\n\n; references\n\n(call_expression\n    function: (identifier) @name) @reference.call\n\n(call_expression\n    function: (field_expression\n        field: (field_identifier) @name)) @reference.call\n\n(macro_invocation\n    macro: (identifier) @name) @reference.call\n\n; implementations\n\n(impl_item\n    trait: (type_identifier) @name) @reference.implementation\n\n(impl_item\n    type: (type_identifier) @name\n    !trait) @reference.implementation\n"
-    }
-    fn query(&self) -> &'static tree_sitter::Query {
-        __Tags__.get_or_init(__Mk__Tags)
-    }
-    #[inline]
-    unsafe fn wrap_match<'cursor, 'tree>(
-        &self,
-        r#match: tree_sitter::QueryMatch<'cursor, 'tree>,
-        tree: &'tree yak_sitter::Tree,
-    ) -> Self::Match<'cursor, 'tree> {
-        Self::Match { r#match, tree }
-    }
-    #[inline]
-    unsafe fn wrap_capture<'cursor, 'tree>(
-        &self,
-        capture: tree_sitter::QueryCapture<'tree>,
-        r#match: Option<Self::Match<'cursor, 'tree>>,
-        tree: &'tree yak_sitter::Tree,
-    ) -> Self::Capture<'cursor, 'tree> {
-        match capture . index as usize { 0usize => Self :: Capture :: Name { node : < anon_unions :: Name < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (unsafe { yak_sitter :: Node :: new (capture . node , tree) }) , r#match } , 1usize => Self :: Capture :: DefinitionClass { node : < anon_unions :: DefinitionClass < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (unsafe { yak_sitter :: Node :: new (capture . node , tree) }) , r#match } , 2usize => Self :: Capture :: DefinitionMethod { node : < super :: nodes :: DeclarationList < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (unsafe { yak_sitter :: Node :: new (capture . node , tree) }) , r#match } , 3usize => Self :: Capture :: DefinitionFunction { node : < super :: nodes :: FunctionItem < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (unsafe { yak_sitter :: Node :: new (capture . node , tree) }) , r#match } , 4usize => Self :: Capture :: DefinitionInterface { node : < super :: nodes :: TraitItem < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (unsafe { yak_sitter :: Node :: new (capture . node , tree) }) , r#match } , 5usize => Self :: Capture :: DefinitionModule { node : < super :: nodes :: ModItem < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (unsafe { yak_sitter :: Node :: new (capture . node , tree) }) , r#match } , 6usize => Self :: Capture :: DefinitionMacro { node : < super :: nodes :: MacroDefinition < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (unsafe { yak_sitter :: Node :: new (capture . node , tree) }) , r#match } , 7usize => Self :: Capture :: ReferenceCall { node : < anon_unions :: ReferenceCall < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (unsafe { yak_sitter :: Node :: new (capture . node , tree) }) , r#match } , 8usize => Self :: Capture :: ReferenceImplementation { node : < super :: nodes :: ImplItem < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (unsafe { yak_sitter :: Node :: new (capture . node , tree) }) , r#match } , capture_index => unreachable ! ("Invalid capture index: {}" , capture_index) }
-    }
-}
-#[automatically_derived]
-impl<'cursor, 'tree> TagsMatch<'cursor, 'tree> {
-    #[doc = "Returns an iterator over the nodes captured by `name` ([anon_unions::Name])"]
-    #[doc = ""]
-    #[doc = "The full capture including pattern(s) is:"]
-    #[doc = "```sexp"]
-    #[doc = "(type_identifier) @name"]
-    #[doc = "(type_identifier) @name"]
-    #[doc = "(type_identifier) @name"]
-    #[doc = "(type_identifier) @name"]
-    #[doc = "(identifier) @name"]
-    #[doc = "(identifier) @name"]
-    #[doc = "(type_identifier) @name"]
-    #[doc = "(identifier) @name"]
-    #[doc = "(identifier) @name"]
-    #[doc = "(identifier) @name"]
-    #[doc = "(field_identifier) @name"]
-    #[doc = "(identifier) @name"]
-    #[doc = "(type_identifier) @name"]
-    #[doc = "(type_identifier) @name"]
-    #[doc = "```"]
-    #[inline]
-    #[allow(unused, non_snake_case)]
-    pub fn name(&self) -> Option<anon_unions::Name<'tree>> {
-        { [0u32] . into_iter () . flat_map (| i | self . r#match . nodes_for_capture_index (i)) . map (| n | unsafe { < anon_unions :: Name < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (yak_sitter :: Node :: new (n , self . tree)) }) } . next ()
-    }
-    #[doc = "Returns an iterator over the nodes captured by `definition.class` ([anon_unions::DefinitionClass])"]
-    #[doc = ""]
-    #[doc = "The full capture including pattern(s) is:"]
-    #[doc = "```sexp"]
-    #[doc = "(struct_item\n    name: (type_identifier) @name) @definition.class"]
-    #[doc = "(enum_item\n    name: (type_identifier) @name) @definition.class"]
-    #[doc = "(union_item\n    name: (type_identifier) @name) @definition.class"]
-    #[doc = "(type_item\n    name: (type_identifier) @name) @definition.class"]
-    #[doc = "```"]
-    #[inline]
-    #[allow(unused, non_snake_case)]
-    pub fn definition_class(&self) -> Option<anon_unions::DefinitionClass<'tree>> {
-        { [1u32] . into_iter () . flat_map (| i | self . r#match . nodes_for_capture_index (i)) . map (| n | unsafe { < anon_unions :: DefinitionClass < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (yak_sitter :: Node :: new (n , self . tree)) }) } . next ()
-    }
-    #[doc = "Returns an iterator over the nodes captured by `definition.method` ([super::nodes::DeclarationList])"]
-    #[doc = ""]
-    #[doc = "The full capture including pattern(s) is:"]
-    #[doc = "```sexp"]
-    #[doc = "(declaration_list\n    (function_item\n        name: (identifier) @name)) @definition.method"]
-    #[doc = "```"]
-    #[inline]
-    #[allow(unused, non_snake_case)]
-    pub fn definition_method(&self) -> Option<super::nodes::DeclarationList<'tree>> {
-        { [2u32] . into_iter () . flat_map (| i | self . r#match . nodes_for_capture_index (i)) . map (| n | unsafe { < super :: nodes :: DeclarationList < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (yak_sitter :: Node :: new (n , self . tree)) }) } . next ()
-    }
-    #[doc = "Returns an iterator over the nodes captured by `definition.function` ([super::nodes::FunctionItem])"]
-    #[doc = ""]
-    #[doc = "The full capture including pattern(s) is:"]
-    #[doc = "```sexp"]
-    #[doc = "(function_item\n    name: (identifier) @name) @definition.function"]
-    #[doc = "```"]
-    #[inline]
-    #[allow(unused, non_snake_case)]
-    pub fn definition_function(&self) -> Option<super::nodes::FunctionItem<'tree>> {
-        { [3u32] . into_iter () . flat_map (| i | self . r#match . nodes_for_capture_index (i)) . map (| n | unsafe { < super :: nodes :: FunctionItem < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (yak_sitter :: Node :: new (n , self . tree)) }) } . next ()
-    }
-    #[doc = "Returns an iterator over the nodes captured by `definition.interface` ([super::nodes::TraitItem])"]
-    #[doc = ""]
-    #[doc = "The full capture including pattern(s) is:"]
-    #[doc = "```sexp"]
-    #[doc = "(trait_item\n    name: (type_identifier) @name) @definition.interface"]
-    #[doc = "```"]
-    #[inline]
-    #[allow(unused, non_snake_case)]
-    pub fn definition_interface(&self) -> Option<super::nodes::TraitItem<'tree>> {
-        { [4u32] . into_iter () . flat_map (| i | self . r#match . nodes_for_capture_index (i)) . map (| n | unsafe { < super :: nodes :: TraitItem < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (yak_sitter :: Node :: new (n , self . tree)) }) } . next ()
-    }
-    #[doc = "Returns an iterator over the nodes captured by `definition.module` ([super::nodes::ModItem])"]
-    #[doc = ""]
-    #[doc = "The full capture including pattern(s) is:"]
-    #[doc = "```sexp"]
-    #[doc = "(mod_item\n    name: (identifier) @name) @definition.module"]
-    #[doc = "```"]
-    #[inline]
-    #[allow(unused, non_snake_case)]
-    pub fn definition_module(&self) -> Option<super::nodes::ModItem<'tree>> {
-        { [5u32] . into_iter () . flat_map (| i | self . r#match . nodes_for_capture_index (i)) . map (| n | unsafe { < super :: nodes :: ModItem < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (yak_sitter :: Node :: new (n , self . tree)) }) } . next ()
-    }
-    #[doc = "Returns an iterator over the nodes captured by `definition.macro` ([super::nodes::MacroDefinition])"]
-    #[doc = ""]
-    #[doc = "The full capture including pattern(s) is:"]
-    #[doc = "```sexp"]
-    #[doc = "(macro_definition\n    name: (identifier) @name) @definition.macro"]
-    #[doc = "```"]
-    #[inline]
-    #[allow(unused, non_snake_case)]
-    pub fn definition_macro(&self) -> Option<super::nodes::MacroDefinition<'tree>> {
-        { [6u32] . into_iter () . flat_map (| i | self . r#match . nodes_for_capture_index (i)) . map (| n | unsafe { < super :: nodes :: MacroDefinition < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (yak_sitter :: Node :: new (n , self . tree)) }) } . next ()
-    }
-    #[doc = "Returns an iterator over the nodes captured by `reference.call` ([anon_unions::ReferenceCall])"]
-    #[doc = ""]
-    #[doc = "The full capture including pattern(s) is:"]
-    #[doc = "```sexp"]
-    #[doc = "(call_expression\n    function: (identifier) @name) @reference.call"]
-    #[doc = "(call_expression\n    function: (field_expression\n        field: (field_identifier) @name)) @reference.call"]
-    #[doc = "(macro_invocation\n    macro: (identifier) @name) @reference.call"]
-    #[doc = "```"]
-    #[inline]
-    #[allow(unused, non_snake_case)]
-    pub fn reference_call(&self) -> Option<anon_unions::ReferenceCall<'tree>> {
-        { [7u32] . into_iter () . flat_map (| i | self . r#match . nodes_for_capture_index (i)) . map (| n | unsafe { < anon_unions :: ReferenceCall < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (yak_sitter :: Node :: new (n , self . tree)) }) } . next ()
-    }
-    #[doc = "Returns an iterator over the nodes captured by `reference.implementation` ([anon_unions::ReferenceImplementation])"]
-    #[doc = ""]
-    #[doc = "The full capture including pattern(s) is:"]
-    #[doc = "```sexp"]
-    #[doc = "(impl_item\n    trait: (type_identifier) @name) @reference.implementation"]
-    #[doc = "(impl_item\n    type: (type_identifier) @name\n    !trait) @reference.implementation"]
-    #[doc = "```"]
-    #[inline]
-    #[allow(unused, non_snake_case)]
-    pub fn reference_implementation(&self) -> Option<super::nodes::ImplItem<'tree>> {
-        { [8u32] . into_iter () . flat_map (| i | self . r#match . nodes_for_capture_index (i)) . map (| n | unsafe { < super :: nodes :: ImplItem < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (yak_sitter :: Node :: new (n , self . tree)) }) } . next ()
-    }
-}
-#[automatically_derived]
-impl<'cursor, 'tree> std::fmt::Debug for TagsMatch<'cursor, 'tree> {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        f.debug_struct(stringify!(TagsMatch))
-            .field("r#match", &self.r#match)
-            .finish()
-    }
-}
-#[automatically_derived]
-impl<'cursor, 'tree> type_sitter_lib::TypedQueryMatch<'cursor, 'tree>
-    for TagsMatch<'cursor, 'tree>
-{
-    type Query = Tags;
-    #[inline]
-    fn query(&self) -> &'cursor Self::Query {
-        &Tags
-    }
-    #[inline]
-    fn tree(&self) -> &'tree yak_sitter::Tree {
-        self.tree
-    }
-    #[inline]
-    fn raw(&self) -> &tree_sitter::QueryMatch<'cursor, 'tree> {
-        &self.r#match
-    }
-    #[inline]
-    fn into_raw(self) -> tree_sitter::QueryMatch<'cursor, 'tree> {
-        self.r#match
-    }
-}
-#[automatically_derived]
-impl<'cursor, 'tree> TagsCapture<'cursor, 'tree> {
-    #[doc = "Try to interpret this capture as a `name` ([anon_unions::Name])"]
-    #[doc = ""]
-    #[doc = "The full capture including pattern(s) is:"]
-    #[doc = "```sexp"]
-    #[doc = "(type_identifier) @name"]
-    #[doc = "(type_identifier) @name"]
-    #[doc = "(type_identifier) @name"]
-    #[doc = "(type_identifier) @name"]
-    #[doc = "(identifier) @name"]
-    #[doc = "(identifier) @name"]
-    #[doc = "(type_identifier) @name"]
-    #[doc = "(identifier) @name"]
-    #[doc = "(identifier) @name"]
-    #[doc = "(identifier) @name"]
-    #[doc = "(field_identifier) @name"]
-    #[doc = "(identifier) @name"]
-    #[doc = "(type_identifier) @name"]
-    #[doc = "(type_identifier) @name"]
-    #[doc = "```"]
-    #[inline]
-    #[allow(unused, non_snake_case)]
-    pub fn name(&self) -> Option<&anon_unions::Name<'tree>> {
-        match self {
-            Self::Name { node, .. } => Some(node),
-            #[allow(unreachable_patterns)]
-            _ => None,
-        }
-    }
-    #[doc = "Try to interpret this capture as a `definition.class` ([anon_unions::DefinitionClass])"]
-    #[doc = ""]
-    #[doc = "The full capture including pattern(s) is:"]
-    #[doc = "```sexp"]
-    #[doc = "(struct_item\n    name: (type_identifier) @name) @definition.class"]
-    #[doc = "(enum_item\n    name: (type_identifier) @name) @definition.class"]
-    #[doc = "(union_item\n    name: (type_identifier) @name) @definition.class"]
-    #[doc = "(type_item\n    name: (type_identifier) @name) @definition.class"]
-    #[doc = "```"]
-    #[inline]
-    #[allow(unused, non_snake_case)]
-    pub fn definition_class(&self) -> Option<&anon_unions::DefinitionClass<'tree>> {
-        match self {
-            Self::DefinitionClass { node, .. } => Some(node),
-            #[allow(unreachable_patterns)]
-            _ => None,
-        }
-    }
-    #[doc = "Try to interpret this capture as a `definition.method` ([super::nodes::DeclarationList])"]
-    #[doc = ""]
-    #[doc = "The full capture including pattern(s) is:"]
-    #[doc = "```sexp"]
-    #[doc = "(declaration_list\n    (function_item\n        name: (identifier) @name)) @definition.method"]
-    #[doc = "```"]
-    #[inline]
-    #[allow(unused, non_snake_case)]
-    pub fn definition_method(&self) -> Option<&super::nodes::DeclarationList<'tree>> {
-        match self {
-            Self::DefinitionMethod { node, .. } => Some(node),
-            #[allow(unreachable_patterns)]
-            _ => None,
-        }
-    }
-    #[doc = "Try to interpret this capture as a `definition.function` ([super::nodes::FunctionItem])"]
-    #[doc = ""]
-    #[doc = "The full capture including pattern(s) is:"]
-    #[doc = "```sexp"]
-    #[doc = "(function_item\n    name: (identifier) @name) @definition.function"]
-    #[doc = "```"]
-    #[inline]
-    #[allow(unused, non_snake_case)]
-    pub fn definition_function(&self) -> Option<&super::nodes::FunctionItem<'tree>> {
-        match self {
-            Self::DefinitionFunction { node, .. } => Some(node),
-            #[allow(unreachable_patterns)]
-            _ => None,
-        }
-    }
-    #[doc = "Try to interpret this capture as a `definition.interface` ([super::nodes::TraitItem])"]
-    #[doc = ""]
-    #[doc = "The full capture including pattern(s) is:"]
-    #[doc = "```sexp"]
-    #[doc = "(trait_item\n    name: (type_identifier) @name) @definition.interface"]
-    #[doc = "```"]
-    #[inline]
-    #[allow(unused, non_snake_case)]
-    pub fn definition_interface(&self) -> Option<&super::nodes::TraitItem<'tree>> {
-        match self {
-            Self::DefinitionInterface { node, .. } => Some(node),
-            #[allow(unreachable_patterns)]
-            _ => None,
-        }
-    }
-    #[doc = "Try to interpret this capture as a `definition.module` ([super::nodes::ModItem])"]
-    #[doc = ""]
-    #[doc = "The full capture including pattern(s) is:"]
-    #[doc = "```sexp"]
-    #[doc = "(mod_item\n    name: (identifier) @name) @definition.module"]
-    #[doc = "```"]
-    #[inline]
-    #[allow(unused, non_snake_case)]
-    pub fn definition_module(&self) -> Option<&super::nodes::ModItem<'tree>> {
-        match self {
-            Self::DefinitionModule { node, .. } => Some(node),
-            #[allow(unreachable_patterns)]
-            _ => None,
-        }
-    }
-    #[doc = "Try to interpret this capture as a `definition.macro` ([super::nodes::MacroDefinition])"]
-    #[doc = ""]
-    #[doc = "The full capture including pattern(s) is:"]
-    #[doc = "```sexp"]
-    #[doc = "(macro_definition\n    name: (identifier) @name) @definition.macro"]
-    #[doc = "```"]
-    #[inline]
-    #[allow(unused, non_snake_case)]
-    pub fn definition_macro(&self) -> Option<&super::nodes::MacroDefinition<'tree>> {
-        match self {
-            Self::DefinitionMacro { node, .. } => Some(node),
-            #[allow(unreachable_patterns)]
-            _ => None,
-        }
-    }
-    #[doc = "Try to interpret this capture as a `reference.call` ([anon_unions::ReferenceCall])"]
-    #[doc = ""]
-    #[doc = "The full capture including pattern(s) is:"]
-    #[doc = "```sexp"]
-    #[doc = "(call_expression\n    function: (identifier) @name) @reference.call"]
-    #[doc = "(call_expression\n    function: (field_expression\n        field: (field_identifier) @name)) @reference.call"]
-    #[doc = "(macro_invocation\n    macro: (identifier) @name) @reference.call"]
-    #[doc = "```"]
-    #[inline]
-    #[allow(unused, non_snake_case)]
-    pub fn reference_call(&self) -> Option<&anon_unions::ReferenceCall<'tree>> {
-        match self {
-            Self::ReferenceCall { node, .. } => Some(node),
-            #[allow(unreachable_patterns)]
-            _ => None,
-        }
-    }
-    #[doc = "Try to interpret this capture as a `reference.implementation` ([anon_unions::ReferenceImplementation])"]
-    #[doc = ""]
-    #[doc = "The full capture including pattern(s) is:"]
-    #[doc = "```sexp"]
-    #[doc = "(impl_item\n    trait: (type_identifier) @name) @reference.implementation"]
-    #[doc = "(impl_item\n    type: (type_identifier) @name\n    !trait) @reference.implementation"]
-    #[doc = "```"]
-    #[inline]
-    #[allow(unused, non_snake_case)]
-    pub fn reference_implementation(&self) -> Option<&super::nodes::ImplItem<'tree>> {
-        match self {
-            Self::ReferenceImplementation { node, .. } => Some(node),
-            #[allow(unreachable_patterns)]
-            _ => None,
-        }
-    }
-}
-#[automatically_derived]
-impl<'cursor, 'tree> std::fmt::Debug for TagsCapture<'cursor, 'tree> {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        match self {
-            Self::Name { node, .. } => f
-                .debug_struct(concat!(stringify!(TagsCapture), "::", stringify!(Name)))
-                .field("node", node)
-                .finish(),
-            Self::DefinitionClass { node, .. } => f
-                .debug_struct(concat!(
-                    stringify!(TagsCapture),
-                    "::",
-                    stringify!(DefinitionClass)
-                ))
-                .field("node", node)
-                .finish(),
-            Self::DefinitionMethod { node, .. } => f
-                .debug_struct(concat!(
-                    stringify!(TagsCapture),
-                    "::",
-                    stringify!(DefinitionMethod)
-                ))
-                .field("node", node)
-                .finish(),
-            Self::DefinitionFunction { node, .. } => f
-                .debug_struct(concat!(
-                    stringify!(TagsCapture),
-                    "::",
-                    stringify!(DefinitionFunction)
-                ))
-                .field("node", node)
-                .finish(),
-            Self::DefinitionInterface { node, .. } => f
-                .debug_struct(concat!(
-                    stringify!(TagsCapture),
-                    "::",
-                    stringify!(DefinitionInterface)
-                ))
-                .field("node", node)
-                .finish(),
-            Self::DefinitionModule { node, .. } => f
-                .debug_struct(concat!(
-                    stringify!(TagsCapture),
-                    "::",
-                    stringify!(DefinitionModule)
-                ))
-                .field("node", node)
-                .finish(),
-            Self::DefinitionMacro { node, .. } => f
-                .debug_struct(concat!(
-                    stringify!(TagsCapture),
-                    "::",
-                    stringify!(DefinitionMacro)
-                ))
-                .field("node", node)
-                .finish(),
-            Self::ReferenceCall { node, .. } => f
-                .debug_struct(concat!(
-                    stringify!(TagsCapture),
-                    "::",
-                    stringify!(ReferenceCall)
-                ))
-                .field("node", node)
-                .finish(),
-            Self::ReferenceImplementation { node, .. } => f
-                .debug_struct(concat!(
-                    stringify!(TagsCapture),
-                    "::",
-                    stringify!(ReferenceImplementation)
-                ))
-                .field("node", node)
-                .finish(),
-            #[allow(unreachable_patterns)]
-            _ => unreachable!(),
-        }
-    }
-}
-#[automatically_derived]
-impl<'cursor, 'tree> Clone for TagsCapture<'cursor, 'tree> {
-    fn clone(&self) -> Self {
-        match self {
-            Self::Name { node, .. } => Self::Name {
-                node: *node,
-                r#match: None,
-            },
-            Self::DefinitionClass { node, .. } => Self::DefinitionClass {
-                node: *node,
-                r#match: None,
-            },
-            Self::DefinitionMethod { node, .. } => Self::DefinitionMethod {
-                node: *node,
-                r#match: None,
-            },
-            Self::DefinitionFunction { node, .. } => Self::DefinitionFunction {
-                node: *node,
-                r#match: None,
-            },
-            Self::DefinitionInterface { node, .. } => Self::DefinitionInterface {
-                node: *node,
-                r#match: None,
-            },
-            Self::DefinitionModule { node, .. } => Self::DefinitionModule {
-                node: *node,
-                r#match: None,
-            },
-            Self::DefinitionMacro { node, .. } => Self::DefinitionMacro {
-                node: *node,
-                r#match: None,
-            },
-            Self::ReferenceCall { node, .. } => Self::ReferenceCall {
-                node: *node,
-                r#match: None,
-            },
-            Self::ReferenceImplementation { node, .. } => Self::ReferenceImplementation {
-                node: *node,
-                r#match: None,
-            },
-            #[allow(unreachable_patterns)]
-            _ => unreachable!(),
-        }
-    }
-}
-#[automatically_derived]
-impl<'cursor, 'tree> type_sitter_lib::TypedQueryCapture<'cursor, 'tree>
-    for TagsCapture<'cursor, 'tree>
-{
-    type Query = Tags;
-    #[inline]
-    fn query(&self) -> &'cursor Self::Query {
-        &Tags
-    }
-    #[inline]
-    fn r#match(
-        &self,
-    ) -> Option<&<Self::Query as type_sitter_lib::TypedQuery>::Match<'cursor, 'tree>> {
-        match self {
-            Self::Name { r#match, .. } => r#match.as_ref(),
-            Self::DefinitionClass { r#match, .. } => r#match.as_ref(),
-            Self::DefinitionMethod { r#match, .. } => r#match.as_ref(),
-            Self::DefinitionFunction { r#match, .. } => r#match.as_ref(),
-            Self::DefinitionInterface { r#match, .. } => r#match.as_ref(),
-            Self::DefinitionModule { r#match, .. } => r#match.as_ref(),
-            Self::DefinitionMacro { r#match, .. } => r#match.as_ref(),
-            Self::ReferenceCall { r#match, .. } => r#match.as_ref(),
-            Self::ReferenceImplementation { r#match, .. } => r#match.as_ref(),
-            #[allow(unreachable_patterns)]
-            _ => unreachable!(),
-        }
-    }
-    #[inline]
-    fn into_match(
-        self,
-    ) -> Option<<Self::Query as type_sitter_lib::TypedQuery>::Match<'cursor, 'tree>> {
-        match self {
-            Self::Name { r#match, .. } => r#match,
-            Self::DefinitionClass { r#match, .. } => r#match,
-            Self::DefinitionMethod { r#match, .. } => r#match,
-            Self::DefinitionFunction { r#match, .. } => r#match,
-            Self::DefinitionInterface { r#match, .. } => r#match,
-            Self::DefinitionModule { r#match, .. } => r#match,
-            Self::DefinitionMacro { r#match, .. } => r#match,
-            Self::ReferenceCall { r#match, .. } => r#match,
-            Self::ReferenceImplementation { r#match, .. } => r#match,
-            #[allow(unreachable_patterns)]
-            _ => unreachable!(),
-        }
-    }
-    #[inline]
-    fn to_raw(&self) -> yak_sitter::QueryCapture<'static, 'tree> {
-        #[allow(unused_imports)]
-        use type_sitter_lib::TypedNode;
-        match self {
-            Self::Name { node, .. } => yak_sitter::QueryCapture {
-                node: *node.node(),
-                index: 0usize,
-                name: "name",
-            },
-            Self::DefinitionClass { node, .. } => yak_sitter::QueryCapture {
-                node: *node.node(),
-                index: 1usize,
-                name: "definition.class",
-            },
-            Self::DefinitionMethod { node, .. } => yak_sitter::QueryCapture {
-                node: *node.node(),
-                index: 2usize,
-                name: "definition.method",
-            },
-            Self::DefinitionFunction { node, .. } => yak_sitter::QueryCapture {
-                node: *node.node(),
-                index: 3usize,
-                name: "definition.function",
-            },
-            Self::DefinitionInterface { node, .. } => yak_sitter::QueryCapture {
-                node: *node.node(),
-                index: 4usize,
-                name: "definition.interface",
-            },
-            Self::DefinitionModule { node, .. } => yak_sitter::QueryCapture {
-                node: *node.node(),
-                index: 5usize,
-                name: "definition.module",
-            },
-            Self::DefinitionMacro { node, .. } => yak_sitter::QueryCapture {
-                node: *node.node(),
-                index: 6usize,
-                name: "definition.macro",
-            },
-            Self::ReferenceCall { node, .. } => yak_sitter::QueryCapture {
-                node: *node.node(),
-                index: 7usize,
-                name: "reference.call",
-            },
-            Self::ReferenceImplementation { node, .. } => yak_sitter::QueryCapture {
-                node: *node.node(),
-                index: 8usize,
-                name: "reference.implementation",
-            },
-            #[allow(unreachable_patterns)]
-            _ => unreachable!(),
-        }
-    }
-    #[inline]
-    fn node(&self) -> &yak_sitter::Node<'tree> {
-        #[allow(unused_imports)]
-        use type_sitter_lib::TypedNode;
-        match self {
-            Self::Name { node, .. } => node.node(),
-            Self::DefinitionClass { node, .. } => node.node(),
-            Self::DefinitionMethod { node, .. } => node.node(),
-            Self::DefinitionFunction { node, .. } => node.node(),
-            Self::DefinitionInterface { node, .. } => node.node(),
-            Self::DefinitionModule { node, .. } => node.node(),
-            Self::DefinitionMacro { node, .. } => node.node(),
-            Self::ReferenceCall { node, .. } => node.node(),
-            Self::ReferenceImplementation { node, .. } => node.node(),
-            #[allow(unreachable_patterns)]
-            _ => unreachable!(),
-        }
-    }
-    #[inline]
-    fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
-        #[allow(unused_imports)]
-        use type_sitter_lib::TypedNode;
-        match self {
-            Self::Name { node, .. } => node.node_mut(),
-            Self::DefinitionClass { node, .. } => node.node_mut(),
-            Self::DefinitionMethod { node, .. } => node.node_mut(),
-            Self::DefinitionFunction { node, .. } => node.node_mut(),
-            Self::DefinitionInterface { node, .. } => node.node_mut(),
-            Self::DefinitionModule { node, .. } => node.node_mut(),
-            Self::DefinitionMacro { node, .. } => node.node_mut(),
-            Self::ReferenceCall { node, .. } => node.node_mut(),
-            Self::ReferenceImplementation { node, .. } => node.node_mut(),
-            #[allow(unreachable_patterns)]
-            _ => unreachable!(),
-        }
-    }
-    #[inline]
-    fn name(&self) -> &'static str {
-        match self {
-            Self::Name { .. } => "name",
-            Self::DefinitionClass { .. } => "definition.class",
-            Self::DefinitionMethod { .. } => "definition.method",
-            Self::DefinitionFunction { .. } => "definition.function",
-            Self::DefinitionInterface { .. } => "definition.interface",
-            Self::DefinitionModule { .. } => "definition.module",
-            Self::DefinitionMacro { .. } => "definition.macro",
-            Self::ReferenceCall { .. } => "reference.call",
-            Self::ReferenceImplementation { .. } => "reference.implementation",
-            #[allow(unreachable_patterns)]
-            _ => unreachable!(),
-        }
-    }
-    #[inline]
-    fn index(&self) -> usize {
-        match self {
-            Self::Name { .. } => 0usize,
-            Self::DefinitionClass { .. } => 1usize,
-            Self::DefinitionMethod { .. } => 2usize,
-            Self::DefinitionFunction { .. } => 3usize,
-            Self::DefinitionInterface { .. } => 4usize,
-            Self::DefinitionModule { .. } => 5usize,
-            Self::DefinitionMacro { .. } => 6usize,
-            Self::ReferenceCall { .. } => 7usize,
-            Self::ReferenceImplementation { .. } => 8usize,
-            #[allow(unreachable_patterns)]
-            _ => unreachable!(),
-        }
-    }
-}
-#[allow(non_upper_case_globals)]
 static __Highlights__: type_sitter_lib::gen_internal::TypedQueryOnceBox<tree_sitter::Query> =
     type_sitter_lib::gen_internal::TypedQueryOnceBox::new();
 #[allow(non_snake_case)]
@@ -2589,285 +1828,770 @@ impl<'cursor, 'tree> type_sitter_lib::TypedQueryCapture<'cursor, 'tree>
         }
     }
 }
+#[allow(non_upper_case_globals)]
+static __Tags__: type_sitter_lib::gen_internal::TypedQueryOnceBox<tree_sitter::Query> =
+    type_sitter_lib::gen_internal::TypedQueryOnceBox::new();
+#[allow(non_snake_case)]
+fn __Mk__Tags() -> Box<tree_sitter::Query> {
+    # [allow (unused_mut)] let mut query = tree_sitter :: Query :: new (tree_sitter_rust :: language () , "; ADT definitions\n\n(struct_item\n    name: (type_identifier) @name) @definition.class\n\n(enum_item\n    name: (type_identifier) @name) @definition.class\n\n(union_item\n    name: (type_identifier) @name) @definition.class\n\n; type aliases\n\n(type_item\n    name: (type_identifier) @name) @definition.class\n\n; method definitions\n\n(declaration_list\n    (function_item\n        name: (identifier) @name)) @definition.method\n\n; function definitions\n\n(function_item\n    name: (identifier) @name) @definition.function\n\n; trait definitions\n(trait_item\n    name: (type_identifier) @name) @definition.interface\n\n; module definitions\n(mod_item\n    name: (identifier) @name) @definition.module\n\n; macro definitions\n\n(macro_definition\n    name: (identifier) @name) @definition.macro\n\n; references\n\n(call_expression\n    function: (identifier) @name) @reference.call\n\n(call_expression\n    function: (field_expression\n        field: (field_identifier) @name)) @reference.call\n\n(macro_invocation\n    macro: (identifier) @name) @reference.call\n\n; implementations\n\n(impl_item\n    trait: (type_identifier) @name) @reference.implementation\n\n(impl_item\n    type: (type_identifier) @name\n    !trait) @reference.implementation\n") . expect ("query parsed at compile-time but failed at runtime. Is the language 'tree_sitter_rust' correct, and did you use the same tree-sitter / tree_sitter_rust version?") ;
+    Box::new(query)
+}
+#[doc = "Typed version of the query:\n\n```sexp\n; ADT definitions\n\n(struct_item\n    name: (type_identifier) @name) @definition.class\n\n(enum_item\n    name: (type_identifier) @name) @definition.class\n\n(union_item\n    name: (type_identifier) @name) @definition.class\n\n; type aliases\n\n(type_item\n    name: (type_identifier) @name) @definition.class\n\n; method definitions\n\n(declaration_list\n    (function_item\n        name: (identifier) @name)) @definition.method\n\n; function definitions\n\n(function_item\n    name: (identifier) @name) @definition.function\n\n; trait definitions\n(trait_item\n    name: (type_identifier) @name) @definition.interface\n\n; module definitions\n(mod_item\n    name: (identifier) @name) @definition.module\n\n; macro definitions\n\n(macro_definition\n    name: (identifier) @name) @definition.macro\n\n; references\n\n(call_expression\n    function: (identifier) @name) @reference.call\n\n(call_expression\n    function: (field_expression\n        field: (field_identifier) @name)) @reference.call\n\n(macro_invocation\n    macro: (identifier) @name) @reference.call\n\n; implementations\n\n(impl_item\n    trait: (type_identifier) @name) @reference.implementation\n\n(impl_item\n    type: (type_identifier) @name\n    !trait) @reference.implementation\n\n```"]
+#[allow(non_camel_case_types)]
+#[derive(Debug, Clone, Copy)]
+pub struct Tags;
+#[doc = "Matches returned by a query cursor running the query [Tags]:\n\n```sexp\n; ADT definitions\n\n(struct_item\n    name: (type_identifier) @name) @definition.class\n\n(enum_item\n    name: (type_identifier) @name) @definition.class\n\n(union_item\n    name: (type_identifier) @name) @definition.class\n\n; type aliases\n\n(type_item\n    name: (type_identifier) @name) @definition.class\n\n; method definitions\n\n(declaration_list\n    (function_item\n        name: (identifier) @name)) @definition.method\n\n; function definitions\n\n(function_item\n    name: (identifier) @name) @definition.function\n\n; trait definitions\n(trait_item\n    name: (type_identifier) @name) @definition.interface\n\n; module definitions\n(mod_item\n    name: (identifier) @name) @definition.module\n\n; macro definitions\n\n(macro_definition\n    name: (identifier) @name) @definition.macro\n\n; references\n\n(call_expression\n    function: (identifier) @name) @reference.call\n\n(call_expression\n    function: (field_expression\n        field: (field_identifier) @name)) @reference.call\n\n(macro_invocation\n    macro: (identifier) @name) @reference.call\n\n; implementations\n\n(impl_item\n    trait: (type_identifier) @name) @reference.implementation\n\n(impl_item\n    type: (type_identifier) @name\n    !trait) @reference.implementation\n\n```"]
+#[allow(unused, non_camel_case_types)]
+pub type TagsMatches<'cursor, 'tree> = type_sitter_lib::TypedQueryMatches<'cursor, 'tree, Tags>;
+#[doc = "Captures returned by a query cursor running the query [Tags]:\n\n```sexp\n; ADT definitions\n\n(struct_item\n    name: (type_identifier) @name) @definition.class\n\n(enum_item\n    name: (type_identifier) @name) @definition.class\n\n(union_item\n    name: (type_identifier) @name) @definition.class\n\n; type aliases\n\n(type_item\n    name: (type_identifier) @name) @definition.class\n\n; method definitions\n\n(declaration_list\n    (function_item\n        name: (identifier) @name)) @definition.method\n\n; function definitions\n\n(function_item\n    name: (identifier) @name) @definition.function\n\n; trait definitions\n(trait_item\n    name: (type_identifier) @name) @definition.interface\n\n; module definitions\n(mod_item\n    name: (identifier) @name) @definition.module\n\n; macro definitions\n\n(macro_definition\n    name: (identifier) @name) @definition.macro\n\n; references\n\n(call_expression\n    function: (identifier) @name) @reference.call\n\n(call_expression\n    function: (field_expression\n        field: (field_identifier) @name)) @reference.call\n\n(macro_invocation\n    macro: (identifier) @name) @reference.call\n\n; implementations\n\n(impl_item\n    trait: (type_identifier) @name) @reference.implementation\n\n(impl_item\n    type: (type_identifier) @name\n    !trait) @reference.implementation\n\n```"]
+#[allow(unused, non_camel_case_types)]
+pub type TagsCaptures<'cursor, 'tree> = type_sitter_lib::TypedQueryCaptures<'cursor, 'tree, Tags>;
+#[doc = "A match returned by the query [Tags]:\n\n```sexp\n; ADT definitions\n\n(struct_item\n    name: (type_identifier) @name) @definition.class\n\n(enum_item\n    name: (type_identifier) @name) @definition.class\n\n(union_item\n    name: (type_identifier) @name) @definition.class\n\n; type aliases\n\n(type_item\n    name: (type_identifier) @name) @definition.class\n\n; method definitions\n\n(declaration_list\n    (function_item\n        name: (identifier) @name)) @definition.method\n\n; function definitions\n\n(function_item\n    name: (identifier) @name) @definition.function\n\n; trait definitions\n(trait_item\n    name: (type_identifier) @name) @definition.interface\n\n; module definitions\n(mod_item\n    name: (identifier) @name) @definition.module\n\n; macro definitions\n\n(macro_definition\n    name: (identifier) @name) @definition.macro\n\n; references\n\n(call_expression\n    function: (identifier) @name) @reference.call\n\n(call_expression\n    function: (field_expression\n        field: (field_identifier) @name)) @reference.call\n\n(macro_invocation\n    macro: (identifier) @name) @reference.call\n\n; implementations\n\n(impl_item\n    trait: (type_identifier) @name) @reference.implementation\n\n(impl_item\n    type: (type_identifier) @name\n    !trait) @reference.implementation\n\n```"]
+pub struct TagsMatch<'cursor, 'tree> {
+    r#match: tree_sitter::QueryMatch<'cursor, 'tree>,
+    tree: &'tree yak_sitter::Tree,
+}
+#[doc = "A capture returned by the query [Tags]:\n\n```sexp\n; ADT definitions\n\n(struct_item\n    name: (type_identifier) @name) @definition.class\n\n(enum_item\n    name: (type_identifier) @name) @definition.class\n\n(union_item\n    name: (type_identifier) @name) @definition.class\n\n; type aliases\n\n(type_item\n    name: (type_identifier) @name) @definition.class\n\n; method definitions\n\n(declaration_list\n    (function_item\n        name: (identifier) @name)) @definition.method\n\n; function definitions\n\n(function_item\n    name: (identifier) @name) @definition.function\n\n; trait definitions\n(trait_item\n    name: (type_identifier) @name) @definition.interface\n\n; module definitions\n(mod_item\n    name: (identifier) @name) @definition.module\n\n; macro definitions\n\n(macro_definition\n    name: (identifier) @name) @definition.macro\n\n; references\n\n(call_expression\n    function: (identifier) @name) @reference.call\n\n(call_expression\n    function: (field_expression\n        field: (field_identifier) @name)) @reference.call\n\n(macro_invocation\n    macro: (identifier) @name) @reference.call\n\n; implementations\n\n(impl_item\n    trait: (type_identifier) @name) @reference.implementation\n\n(impl_item\n    type: (type_identifier) @name\n    !trait) @reference.implementation\n\n```"]
+pub enum TagsCapture<'cursor, 'tree> {
+    #[doc = "A `name` ([anon_unions::Name])"]
+    #[doc = ""]
+    #[doc = "The full capture including pattern(s) is:"]
+    #[doc = "```sexp"]
+    #[doc = "(type_identifier) @name"]
+    #[doc = "(type_identifier) @name"]
+    #[doc = "(type_identifier) @name"]
+    #[doc = "(type_identifier) @name"]
+    #[doc = "(identifier) @name"]
+    #[doc = "(identifier) @name"]
+    #[doc = "(type_identifier) @name"]
+    #[doc = "(identifier) @name"]
+    #[doc = "(identifier) @name"]
+    #[doc = "(identifier) @name"]
+    #[doc = "(field_identifier) @name"]
+    #[doc = "(identifier) @name"]
+    #[doc = "(type_identifier) @name"]
+    #[doc = "(type_identifier) @name"]
+    #[doc = "```"]
+    Name {
+        node: anon_unions::Name<'tree>,
+        r#match: Option<TagsMatch<'cursor, 'tree>>,
+    },
+    #[doc = "A `definition.class` ([anon_unions::DefinitionClass])"]
+    #[doc = ""]
+    #[doc = "The full capture including pattern(s) is:"]
+    #[doc = "```sexp"]
+    #[doc = "(struct_item\n    name: (type_identifier) @name) @definition.class"]
+    #[doc = "(enum_item\n    name: (type_identifier) @name) @definition.class"]
+    #[doc = "(union_item\n    name: (type_identifier) @name) @definition.class"]
+    #[doc = "(type_item\n    name: (type_identifier) @name) @definition.class"]
+    #[doc = "```"]
+    DefinitionClass {
+        node: anon_unions::DefinitionClass<'tree>,
+        r#match: Option<TagsMatch<'cursor, 'tree>>,
+    },
+    #[doc = "A `definition.method` ([super::nodes::DeclarationList])"]
+    #[doc = ""]
+    #[doc = "The full capture including pattern(s) is:"]
+    #[doc = "```sexp"]
+    #[doc = "(declaration_list\n    (function_item\n        name: (identifier) @name)) @definition.method"]
+    #[doc = "```"]
+    DefinitionMethod {
+        node: super::nodes::DeclarationList<'tree>,
+        r#match: Option<TagsMatch<'cursor, 'tree>>,
+    },
+    #[doc = "A `definition.function` ([super::nodes::FunctionItem])"]
+    #[doc = ""]
+    #[doc = "The full capture including pattern(s) is:"]
+    #[doc = "```sexp"]
+    #[doc = "(function_item\n    name: (identifier) @name) @definition.function"]
+    #[doc = "```"]
+    DefinitionFunction {
+        node: super::nodes::FunctionItem<'tree>,
+        r#match: Option<TagsMatch<'cursor, 'tree>>,
+    },
+    #[doc = "A `definition.interface` ([super::nodes::TraitItem])"]
+    #[doc = ""]
+    #[doc = "The full capture including pattern(s) is:"]
+    #[doc = "```sexp"]
+    #[doc = "(trait_item\n    name: (type_identifier) @name) @definition.interface"]
+    #[doc = "```"]
+    DefinitionInterface {
+        node: super::nodes::TraitItem<'tree>,
+        r#match: Option<TagsMatch<'cursor, 'tree>>,
+    },
+    #[doc = "A `definition.module` ([super::nodes::ModItem])"]
+    #[doc = ""]
+    #[doc = "The full capture including pattern(s) is:"]
+    #[doc = "```sexp"]
+    #[doc = "(mod_item\n    name: (identifier) @name) @definition.module"]
+    #[doc = "```"]
+    DefinitionModule {
+        node: super::nodes::ModItem<'tree>,
+        r#match: Option<TagsMatch<'cursor, 'tree>>,
+    },
+    #[doc = "A `definition.macro` ([super::nodes::MacroDefinition])"]
+    #[doc = ""]
+    #[doc = "The full capture including pattern(s) is:"]
+    #[doc = "```sexp"]
+    #[doc = "(macro_definition\n    name: (identifier) @name) @definition.macro"]
+    #[doc = "```"]
+    DefinitionMacro {
+        node: super::nodes::MacroDefinition<'tree>,
+        r#match: Option<TagsMatch<'cursor, 'tree>>,
+    },
+    #[doc = "A `reference.call` ([anon_unions::ReferenceCall])"]
+    #[doc = ""]
+    #[doc = "The full capture including pattern(s) is:"]
+    #[doc = "```sexp"]
+    #[doc = "(call_expression\n    function: (identifier) @name) @reference.call"]
+    #[doc = "(call_expression\n    function: (field_expression\n        field: (field_identifier) @name)) @reference.call"]
+    #[doc = "(macro_invocation\n    macro: (identifier) @name) @reference.call"]
+    #[doc = "```"]
+    ReferenceCall {
+        node: anon_unions::ReferenceCall<'tree>,
+        r#match: Option<TagsMatch<'cursor, 'tree>>,
+    },
+    #[doc = "A `reference.implementation` ([anon_unions::ReferenceImplementation])"]
+    #[doc = ""]
+    #[doc = "The full capture including pattern(s) is:"]
+    #[doc = "```sexp"]
+    #[doc = "(impl_item\n    trait: (type_identifier) @name) @reference.implementation"]
+    #[doc = "(impl_item\n    type: (type_identifier) @name\n    !trait) @reference.implementation"]
+    #[doc = "```"]
+    ReferenceImplementation {
+        node: super::nodes::ImplItem<'tree>,
+        r#match: Option<TagsMatch<'cursor, 'tree>>,
+    },
+}
+#[automatically_derived]
+impl type_sitter_lib::TypedQuery for Tags {
+    type Match<'cursor, 'tree: 'cursor> = TagsMatch<'cursor, 'tree>;
+    type Capture<'cursor, 'tree: 'cursor> = TagsCapture<'cursor, 'tree>;
+    fn query_str(&self) -> &'static str {
+        "; ADT definitions\n\n(struct_item\n    name: (type_identifier) @name) @definition.class\n\n(enum_item\n    name: (type_identifier) @name) @definition.class\n\n(union_item\n    name: (type_identifier) @name) @definition.class\n\n; type aliases\n\n(type_item\n    name: (type_identifier) @name) @definition.class\n\n; method definitions\n\n(declaration_list\n    (function_item\n        name: (identifier) @name)) @definition.method\n\n; function definitions\n\n(function_item\n    name: (identifier) @name) @definition.function\n\n; trait definitions\n(trait_item\n    name: (type_identifier) @name) @definition.interface\n\n; module definitions\n(mod_item\n    name: (identifier) @name) @definition.module\n\n; macro definitions\n\n(macro_definition\n    name: (identifier) @name) @definition.macro\n\n; references\n\n(call_expression\n    function: (identifier) @name) @reference.call\n\n(call_expression\n    function: (field_expression\n        field: (field_identifier) @name)) @reference.call\n\n(macro_invocation\n    macro: (identifier) @name) @reference.call\n\n; implementations\n\n(impl_item\n    trait: (type_identifier) @name) @reference.implementation\n\n(impl_item\n    type: (type_identifier) @name\n    !trait) @reference.implementation\n"
+    }
+    fn query(&self) -> &'static tree_sitter::Query {
+        __Tags__.get_or_init(__Mk__Tags)
+    }
+    #[inline]
+    unsafe fn wrap_match<'cursor, 'tree>(
+        &self,
+        r#match: tree_sitter::QueryMatch<'cursor, 'tree>,
+        tree: &'tree yak_sitter::Tree,
+    ) -> Self::Match<'cursor, 'tree> {
+        Self::Match { r#match, tree }
+    }
+    #[inline]
+    unsafe fn wrap_capture<'cursor, 'tree>(
+        &self,
+        capture: tree_sitter::QueryCapture<'tree>,
+        r#match: Option<Self::Match<'cursor, 'tree>>,
+        tree: &'tree yak_sitter::Tree,
+    ) -> Self::Capture<'cursor, 'tree> {
+        match capture . index as usize { 0usize => Self :: Capture :: Name { node : < anon_unions :: Name < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (unsafe { yak_sitter :: Node :: new (capture . node , tree) }) , r#match } , 1usize => Self :: Capture :: DefinitionClass { node : < anon_unions :: DefinitionClass < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (unsafe { yak_sitter :: Node :: new (capture . node , tree) }) , r#match } , 2usize => Self :: Capture :: DefinitionMethod { node : < super :: nodes :: DeclarationList < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (unsafe { yak_sitter :: Node :: new (capture . node , tree) }) , r#match } , 3usize => Self :: Capture :: DefinitionFunction { node : < super :: nodes :: FunctionItem < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (unsafe { yak_sitter :: Node :: new (capture . node , tree) }) , r#match } , 4usize => Self :: Capture :: DefinitionInterface { node : < super :: nodes :: TraitItem < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (unsafe { yak_sitter :: Node :: new (capture . node , tree) }) , r#match } , 5usize => Self :: Capture :: DefinitionModule { node : < super :: nodes :: ModItem < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (unsafe { yak_sitter :: Node :: new (capture . node , tree) }) , r#match } , 6usize => Self :: Capture :: DefinitionMacro { node : < super :: nodes :: MacroDefinition < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (unsafe { yak_sitter :: Node :: new (capture . node , tree) }) , r#match } , 7usize => Self :: Capture :: ReferenceCall { node : < anon_unions :: ReferenceCall < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (unsafe { yak_sitter :: Node :: new (capture . node , tree) }) , r#match } , 8usize => Self :: Capture :: ReferenceImplementation { node : < super :: nodes :: ImplItem < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (unsafe { yak_sitter :: Node :: new (capture . node , tree) }) , r#match } , capture_index => unreachable ! ("Invalid capture index: {}" , capture_index) }
+    }
+}
+#[automatically_derived]
+impl<'cursor, 'tree> TagsMatch<'cursor, 'tree> {
+    #[doc = "Returns an iterator over the nodes captured by `name` ([anon_unions::Name])"]
+    #[doc = ""]
+    #[doc = "The full capture including pattern(s) is:"]
+    #[doc = "```sexp"]
+    #[doc = "(type_identifier) @name"]
+    #[doc = "(type_identifier) @name"]
+    #[doc = "(type_identifier) @name"]
+    #[doc = "(type_identifier) @name"]
+    #[doc = "(identifier) @name"]
+    #[doc = "(identifier) @name"]
+    #[doc = "(type_identifier) @name"]
+    #[doc = "(identifier) @name"]
+    #[doc = "(identifier) @name"]
+    #[doc = "(identifier) @name"]
+    #[doc = "(field_identifier) @name"]
+    #[doc = "(identifier) @name"]
+    #[doc = "(type_identifier) @name"]
+    #[doc = "(type_identifier) @name"]
+    #[doc = "```"]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn name(&self) -> Option<anon_unions::Name<'tree>> {
+        { [0u32] . into_iter () . flat_map (| i | self . r#match . nodes_for_capture_index (i)) . map (| n | unsafe { < anon_unions :: Name < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (yak_sitter :: Node :: new (n , self . tree)) }) } . next ()
+    }
+    #[doc = "Returns an iterator over the nodes captured by `definition.class` ([anon_unions::DefinitionClass])"]
+    #[doc = ""]
+    #[doc = "The full capture including pattern(s) is:"]
+    #[doc = "```sexp"]
+    #[doc = "(struct_item\n    name: (type_identifier) @name) @definition.class"]
+    #[doc = "(enum_item\n    name: (type_identifier) @name) @definition.class"]
+    #[doc = "(union_item\n    name: (type_identifier) @name) @definition.class"]
+    #[doc = "(type_item\n    name: (type_identifier) @name) @definition.class"]
+    #[doc = "```"]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn definition_class(&self) -> Option<anon_unions::DefinitionClass<'tree>> {
+        { [1u32] . into_iter () . flat_map (| i | self . r#match . nodes_for_capture_index (i)) . map (| n | unsafe { < anon_unions :: DefinitionClass < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (yak_sitter :: Node :: new (n , self . tree)) }) } . next ()
+    }
+    #[doc = "Returns an iterator over the nodes captured by `definition.method` ([super::nodes::DeclarationList])"]
+    #[doc = ""]
+    #[doc = "The full capture including pattern(s) is:"]
+    #[doc = "```sexp"]
+    #[doc = "(declaration_list\n    (function_item\n        name: (identifier) @name)) @definition.method"]
+    #[doc = "```"]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn definition_method(&self) -> Option<super::nodes::DeclarationList<'tree>> {
+        { [2u32] . into_iter () . flat_map (| i | self . r#match . nodes_for_capture_index (i)) . map (| n | unsafe { < super :: nodes :: DeclarationList < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (yak_sitter :: Node :: new (n , self . tree)) }) } . next ()
+    }
+    #[doc = "Returns an iterator over the nodes captured by `definition.function` ([super::nodes::FunctionItem])"]
+    #[doc = ""]
+    #[doc = "The full capture including pattern(s) is:"]
+    #[doc = "```sexp"]
+    #[doc = "(function_item\n    name: (identifier) @name) @definition.function"]
+    #[doc = "```"]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn definition_function(&self) -> Option<super::nodes::FunctionItem<'tree>> {
+        { [3u32] . into_iter () . flat_map (| i | self . r#match . nodes_for_capture_index (i)) . map (| n | unsafe { < super :: nodes :: FunctionItem < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (yak_sitter :: Node :: new (n , self . tree)) }) } . next ()
+    }
+    #[doc = "Returns an iterator over the nodes captured by `definition.interface` ([super::nodes::TraitItem])"]
+    #[doc = ""]
+    #[doc = "The full capture including pattern(s) is:"]
+    #[doc = "```sexp"]
+    #[doc = "(trait_item\n    name: (type_identifier) @name) @definition.interface"]
+    #[doc = "```"]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn definition_interface(&self) -> Option<super::nodes::TraitItem<'tree>> {
+        { [4u32] . into_iter () . flat_map (| i | self . r#match . nodes_for_capture_index (i)) . map (| n | unsafe { < super :: nodes :: TraitItem < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (yak_sitter :: Node :: new (n , self . tree)) }) } . next ()
+    }
+    #[doc = "Returns an iterator over the nodes captured by `definition.module` ([super::nodes::ModItem])"]
+    #[doc = ""]
+    #[doc = "The full capture including pattern(s) is:"]
+    #[doc = "```sexp"]
+    #[doc = "(mod_item\n    name: (identifier) @name) @definition.module"]
+    #[doc = "```"]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn definition_module(&self) -> Option<super::nodes::ModItem<'tree>> {
+        { [5u32] . into_iter () . flat_map (| i | self . r#match . nodes_for_capture_index (i)) . map (| n | unsafe { < super :: nodes :: ModItem < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (yak_sitter :: Node :: new (n , self . tree)) }) } . next ()
+    }
+    #[doc = "Returns an iterator over the nodes captured by `definition.macro` ([super::nodes::MacroDefinition])"]
+    #[doc = ""]
+    #[doc = "The full capture including pattern(s) is:"]
+    #[doc = "```sexp"]
+    #[doc = "(macro_definition\n    name: (identifier) @name) @definition.macro"]
+    #[doc = "```"]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn definition_macro(&self) -> Option<super::nodes::MacroDefinition<'tree>> {
+        { [6u32] . into_iter () . flat_map (| i | self . r#match . nodes_for_capture_index (i)) . map (| n | unsafe { < super :: nodes :: MacroDefinition < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (yak_sitter :: Node :: new (n , self . tree)) }) } . next ()
+    }
+    #[doc = "Returns an iterator over the nodes captured by `reference.call` ([anon_unions::ReferenceCall])"]
+    #[doc = ""]
+    #[doc = "The full capture including pattern(s) is:"]
+    #[doc = "```sexp"]
+    #[doc = "(call_expression\n    function: (identifier) @name) @reference.call"]
+    #[doc = "(call_expression\n    function: (field_expression\n        field: (field_identifier) @name)) @reference.call"]
+    #[doc = "(macro_invocation\n    macro: (identifier) @name) @reference.call"]
+    #[doc = "```"]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn reference_call(&self) -> Option<anon_unions::ReferenceCall<'tree>> {
+        { [7u32] . into_iter () . flat_map (| i | self . r#match . nodes_for_capture_index (i)) . map (| n | unsafe { < anon_unions :: ReferenceCall < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (yak_sitter :: Node :: new (n , self . tree)) }) } . next ()
+    }
+    #[doc = "Returns an iterator over the nodes captured by `reference.implementation` ([anon_unions::ReferenceImplementation])"]
+    #[doc = ""]
+    #[doc = "The full capture including pattern(s) is:"]
+    #[doc = "```sexp"]
+    #[doc = "(impl_item\n    trait: (type_identifier) @name) @reference.implementation"]
+    #[doc = "(impl_item\n    type: (type_identifier) @name\n    !trait) @reference.implementation"]
+    #[doc = "```"]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn reference_implementation(&self) -> Option<super::nodes::ImplItem<'tree>> {
+        { [8u32] . into_iter () . flat_map (| i | self . r#match . nodes_for_capture_index (i)) . map (| n | unsafe { < super :: nodes :: ImplItem < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (yak_sitter :: Node :: new (n , self . tree)) }) } . next ()
+    }
+}
+#[automatically_derived]
+impl<'cursor, 'tree> std::fmt::Debug for TagsMatch<'cursor, 'tree> {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.debug_struct(stringify!(TagsMatch))
+            .field("r#match", &self.r#match)
+            .finish()
+    }
+}
+#[automatically_derived]
+impl<'cursor, 'tree> type_sitter_lib::TypedQueryMatch<'cursor, 'tree>
+    for TagsMatch<'cursor, 'tree>
+{
+    type Query = Tags;
+    #[inline]
+    fn query(&self) -> &'cursor Self::Query {
+        &Tags
+    }
+    #[inline]
+    fn tree(&self) -> &'tree yak_sitter::Tree {
+        self.tree
+    }
+    #[inline]
+    fn raw(&self) -> &tree_sitter::QueryMatch<'cursor, 'tree> {
+        &self.r#match
+    }
+    #[inline]
+    fn into_raw(self) -> tree_sitter::QueryMatch<'cursor, 'tree> {
+        self.r#match
+    }
+}
+#[automatically_derived]
+impl<'cursor, 'tree> TagsCapture<'cursor, 'tree> {
+    #[doc = "Try to interpret this capture as a `name` ([anon_unions::Name])"]
+    #[doc = ""]
+    #[doc = "The full capture including pattern(s) is:"]
+    #[doc = "```sexp"]
+    #[doc = "(type_identifier) @name"]
+    #[doc = "(type_identifier) @name"]
+    #[doc = "(type_identifier) @name"]
+    #[doc = "(type_identifier) @name"]
+    #[doc = "(identifier) @name"]
+    #[doc = "(identifier) @name"]
+    #[doc = "(type_identifier) @name"]
+    #[doc = "(identifier) @name"]
+    #[doc = "(identifier) @name"]
+    #[doc = "(identifier) @name"]
+    #[doc = "(field_identifier) @name"]
+    #[doc = "(identifier) @name"]
+    #[doc = "(type_identifier) @name"]
+    #[doc = "(type_identifier) @name"]
+    #[doc = "```"]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn name(&self) -> Option<&anon_unions::Name<'tree>> {
+        match self {
+            Self::Name { node, .. } => Some(node),
+            #[allow(unreachable_patterns)]
+            _ => None,
+        }
+    }
+    #[doc = "Try to interpret this capture as a `definition.class` ([anon_unions::DefinitionClass])"]
+    #[doc = ""]
+    #[doc = "The full capture including pattern(s) is:"]
+    #[doc = "```sexp"]
+    #[doc = "(struct_item\n    name: (type_identifier) @name) @definition.class"]
+    #[doc = "(enum_item\n    name: (type_identifier) @name) @definition.class"]
+    #[doc = "(union_item\n    name: (type_identifier) @name) @definition.class"]
+    #[doc = "(type_item\n    name: (type_identifier) @name) @definition.class"]
+    #[doc = "```"]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn definition_class(&self) -> Option<&anon_unions::DefinitionClass<'tree>> {
+        match self {
+            Self::DefinitionClass { node, .. } => Some(node),
+            #[allow(unreachable_patterns)]
+            _ => None,
+        }
+    }
+    #[doc = "Try to interpret this capture as a `definition.method` ([super::nodes::DeclarationList])"]
+    #[doc = ""]
+    #[doc = "The full capture including pattern(s) is:"]
+    #[doc = "```sexp"]
+    #[doc = "(declaration_list\n    (function_item\n        name: (identifier) @name)) @definition.method"]
+    #[doc = "```"]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn definition_method(&self) -> Option<&super::nodes::DeclarationList<'tree>> {
+        match self {
+            Self::DefinitionMethod { node, .. } => Some(node),
+            #[allow(unreachable_patterns)]
+            _ => None,
+        }
+    }
+    #[doc = "Try to interpret this capture as a `definition.function` ([super::nodes::FunctionItem])"]
+    #[doc = ""]
+    #[doc = "The full capture including pattern(s) is:"]
+    #[doc = "```sexp"]
+    #[doc = "(function_item\n    name: (identifier) @name) @definition.function"]
+    #[doc = "```"]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn definition_function(&self) -> Option<&super::nodes::FunctionItem<'tree>> {
+        match self {
+            Self::DefinitionFunction { node, .. } => Some(node),
+            #[allow(unreachable_patterns)]
+            _ => None,
+        }
+    }
+    #[doc = "Try to interpret this capture as a `definition.interface` ([super::nodes::TraitItem])"]
+    #[doc = ""]
+    #[doc = "The full capture including pattern(s) is:"]
+    #[doc = "```sexp"]
+    #[doc = "(trait_item\n    name: (type_identifier) @name) @definition.interface"]
+    #[doc = "```"]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn definition_interface(&self) -> Option<&super::nodes::TraitItem<'tree>> {
+        match self {
+            Self::DefinitionInterface { node, .. } => Some(node),
+            #[allow(unreachable_patterns)]
+            _ => None,
+        }
+    }
+    #[doc = "Try to interpret this capture as a `definition.module` ([super::nodes::ModItem])"]
+    #[doc = ""]
+    #[doc = "The full capture including pattern(s) is:"]
+    #[doc = "```sexp"]
+    #[doc = "(mod_item\n    name: (identifier) @name) @definition.module"]
+    #[doc = "```"]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn definition_module(&self) -> Option<&super::nodes::ModItem<'tree>> {
+        match self {
+            Self::DefinitionModule { node, .. } => Some(node),
+            #[allow(unreachable_patterns)]
+            _ => None,
+        }
+    }
+    #[doc = "Try to interpret this capture as a `definition.macro` ([super::nodes::MacroDefinition])"]
+    #[doc = ""]
+    #[doc = "The full capture including pattern(s) is:"]
+    #[doc = "```sexp"]
+    #[doc = "(macro_definition\n    name: (identifier) @name) @definition.macro"]
+    #[doc = "```"]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn definition_macro(&self) -> Option<&super::nodes::MacroDefinition<'tree>> {
+        match self {
+            Self::DefinitionMacro { node, .. } => Some(node),
+            #[allow(unreachable_patterns)]
+            _ => None,
+        }
+    }
+    #[doc = "Try to interpret this capture as a `reference.call` ([anon_unions::ReferenceCall])"]
+    #[doc = ""]
+    #[doc = "The full capture including pattern(s) is:"]
+    #[doc = "```sexp"]
+    #[doc = "(call_expression\n    function: (identifier) @name) @reference.call"]
+    #[doc = "(call_expression\n    function: (field_expression\n        field: (field_identifier) @name)) @reference.call"]
+    #[doc = "(macro_invocation\n    macro: (identifier) @name) @reference.call"]
+    #[doc = "```"]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn reference_call(&self) -> Option<&anon_unions::ReferenceCall<'tree>> {
+        match self {
+            Self::ReferenceCall { node, .. } => Some(node),
+            #[allow(unreachable_patterns)]
+            _ => None,
+        }
+    }
+    #[doc = "Try to interpret this capture as a `reference.implementation` ([anon_unions::ReferenceImplementation])"]
+    #[doc = ""]
+    #[doc = "The full capture including pattern(s) is:"]
+    #[doc = "```sexp"]
+    #[doc = "(impl_item\n    trait: (type_identifier) @name) @reference.implementation"]
+    #[doc = "(impl_item\n    type: (type_identifier) @name\n    !trait) @reference.implementation"]
+    #[doc = "```"]
+    #[inline]
+    #[allow(unused, non_snake_case)]
+    pub fn reference_implementation(&self) -> Option<&super::nodes::ImplItem<'tree>> {
+        match self {
+            Self::ReferenceImplementation { node, .. } => Some(node),
+            #[allow(unreachable_patterns)]
+            _ => None,
+        }
+    }
+}
+#[automatically_derived]
+impl<'cursor, 'tree> std::fmt::Debug for TagsCapture<'cursor, 'tree> {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            Self::Name { node, .. } => f
+                .debug_struct(concat!(stringify!(TagsCapture), "::", stringify!(Name)))
+                .field("node", node)
+                .finish(),
+            Self::DefinitionClass { node, .. } => f
+                .debug_struct(concat!(
+                    stringify!(TagsCapture),
+                    "::",
+                    stringify!(DefinitionClass)
+                ))
+                .field("node", node)
+                .finish(),
+            Self::DefinitionMethod { node, .. } => f
+                .debug_struct(concat!(
+                    stringify!(TagsCapture),
+                    "::",
+                    stringify!(DefinitionMethod)
+                ))
+                .field("node", node)
+                .finish(),
+            Self::DefinitionFunction { node, .. } => f
+                .debug_struct(concat!(
+                    stringify!(TagsCapture),
+                    "::",
+                    stringify!(DefinitionFunction)
+                ))
+                .field("node", node)
+                .finish(),
+            Self::DefinitionInterface { node, .. } => f
+                .debug_struct(concat!(
+                    stringify!(TagsCapture),
+                    "::",
+                    stringify!(DefinitionInterface)
+                ))
+                .field("node", node)
+                .finish(),
+            Self::DefinitionModule { node, .. } => f
+                .debug_struct(concat!(
+                    stringify!(TagsCapture),
+                    "::",
+                    stringify!(DefinitionModule)
+                ))
+                .field("node", node)
+                .finish(),
+            Self::DefinitionMacro { node, .. } => f
+                .debug_struct(concat!(
+                    stringify!(TagsCapture),
+                    "::",
+                    stringify!(DefinitionMacro)
+                ))
+                .field("node", node)
+                .finish(),
+            Self::ReferenceCall { node, .. } => f
+                .debug_struct(concat!(
+                    stringify!(TagsCapture),
+                    "::",
+                    stringify!(ReferenceCall)
+                ))
+                .field("node", node)
+                .finish(),
+            Self::ReferenceImplementation { node, .. } => f
+                .debug_struct(concat!(
+                    stringify!(TagsCapture),
+                    "::",
+                    stringify!(ReferenceImplementation)
+                ))
+                .field("node", node)
+                .finish(),
+            #[allow(unreachable_patterns)]
+            _ => unreachable!(),
+        }
+    }
+}
+#[automatically_derived]
+impl<'cursor, 'tree> Clone for TagsCapture<'cursor, 'tree> {
+    fn clone(&self) -> Self {
+        match self {
+            Self::Name { node, .. } => Self::Name {
+                node: *node,
+                r#match: None,
+            },
+            Self::DefinitionClass { node, .. } => Self::DefinitionClass {
+                node: *node,
+                r#match: None,
+            },
+            Self::DefinitionMethod { node, .. } => Self::DefinitionMethod {
+                node: *node,
+                r#match: None,
+            },
+            Self::DefinitionFunction { node, .. } => Self::DefinitionFunction {
+                node: *node,
+                r#match: None,
+            },
+            Self::DefinitionInterface { node, .. } => Self::DefinitionInterface {
+                node: *node,
+                r#match: None,
+            },
+            Self::DefinitionModule { node, .. } => Self::DefinitionModule {
+                node: *node,
+                r#match: None,
+            },
+            Self::DefinitionMacro { node, .. } => Self::DefinitionMacro {
+                node: *node,
+                r#match: None,
+            },
+            Self::ReferenceCall { node, .. } => Self::ReferenceCall {
+                node: *node,
+                r#match: None,
+            },
+            Self::ReferenceImplementation { node, .. } => Self::ReferenceImplementation {
+                node: *node,
+                r#match: None,
+            },
+            #[allow(unreachable_patterns)]
+            _ => unreachable!(),
+        }
+    }
+}
+#[automatically_derived]
+impl<'cursor, 'tree> type_sitter_lib::TypedQueryCapture<'cursor, 'tree>
+    for TagsCapture<'cursor, 'tree>
+{
+    type Query = Tags;
+    #[inline]
+    fn query(&self) -> &'cursor Self::Query {
+        &Tags
+    }
+    #[inline]
+    fn r#match(
+        &self,
+    ) -> Option<&<Self::Query as type_sitter_lib::TypedQuery>::Match<'cursor, 'tree>> {
+        match self {
+            Self::Name { r#match, .. } => r#match.as_ref(),
+            Self::DefinitionClass { r#match, .. } => r#match.as_ref(),
+            Self::DefinitionMethod { r#match, .. } => r#match.as_ref(),
+            Self::DefinitionFunction { r#match, .. } => r#match.as_ref(),
+            Self::DefinitionInterface { r#match, .. } => r#match.as_ref(),
+            Self::DefinitionModule { r#match, .. } => r#match.as_ref(),
+            Self::DefinitionMacro { r#match, .. } => r#match.as_ref(),
+            Self::ReferenceCall { r#match, .. } => r#match.as_ref(),
+            Self::ReferenceImplementation { r#match, .. } => r#match.as_ref(),
+            #[allow(unreachable_patterns)]
+            _ => unreachable!(),
+        }
+    }
+    #[inline]
+    fn into_match(
+        self,
+    ) -> Option<<Self::Query as type_sitter_lib::TypedQuery>::Match<'cursor, 'tree>> {
+        match self {
+            Self::Name { r#match, .. } => r#match,
+            Self::DefinitionClass { r#match, .. } => r#match,
+            Self::DefinitionMethod { r#match, .. } => r#match,
+            Self::DefinitionFunction { r#match, .. } => r#match,
+            Self::DefinitionInterface { r#match, .. } => r#match,
+            Self::DefinitionModule { r#match, .. } => r#match,
+            Self::DefinitionMacro { r#match, .. } => r#match,
+            Self::ReferenceCall { r#match, .. } => r#match,
+            Self::ReferenceImplementation { r#match, .. } => r#match,
+            #[allow(unreachable_patterns)]
+            _ => unreachable!(),
+        }
+    }
+    #[inline]
+    fn to_raw(&self) -> yak_sitter::QueryCapture<'static, 'tree> {
+        #[allow(unused_imports)]
+        use type_sitter_lib::TypedNode;
+        match self {
+            Self::Name { node, .. } => yak_sitter::QueryCapture {
+                node: *node.node(),
+                index: 0usize,
+                name: "name",
+            },
+            Self::DefinitionClass { node, .. } => yak_sitter::QueryCapture {
+                node: *node.node(),
+                index: 1usize,
+                name: "definition.class",
+            },
+            Self::DefinitionMethod { node, .. } => yak_sitter::QueryCapture {
+                node: *node.node(),
+                index: 2usize,
+                name: "definition.method",
+            },
+            Self::DefinitionFunction { node, .. } => yak_sitter::QueryCapture {
+                node: *node.node(),
+                index: 3usize,
+                name: "definition.function",
+            },
+            Self::DefinitionInterface { node, .. } => yak_sitter::QueryCapture {
+                node: *node.node(),
+                index: 4usize,
+                name: "definition.interface",
+            },
+            Self::DefinitionModule { node, .. } => yak_sitter::QueryCapture {
+                node: *node.node(),
+                index: 5usize,
+                name: "definition.module",
+            },
+            Self::DefinitionMacro { node, .. } => yak_sitter::QueryCapture {
+                node: *node.node(),
+                index: 6usize,
+                name: "definition.macro",
+            },
+            Self::ReferenceCall { node, .. } => yak_sitter::QueryCapture {
+                node: *node.node(),
+                index: 7usize,
+                name: "reference.call",
+            },
+            Self::ReferenceImplementation { node, .. } => yak_sitter::QueryCapture {
+                node: *node.node(),
+                index: 8usize,
+                name: "reference.implementation",
+            },
+            #[allow(unreachable_patterns)]
+            _ => unreachable!(),
+        }
+    }
+    #[inline]
+    fn node(&self) -> &yak_sitter::Node<'tree> {
+        #[allow(unused_imports)]
+        use type_sitter_lib::TypedNode;
+        match self {
+            Self::Name { node, .. } => node.node(),
+            Self::DefinitionClass { node, .. } => node.node(),
+            Self::DefinitionMethod { node, .. } => node.node(),
+            Self::DefinitionFunction { node, .. } => node.node(),
+            Self::DefinitionInterface { node, .. } => node.node(),
+            Self::DefinitionModule { node, .. } => node.node(),
+            Self::DefinitionMacro { node, .. } => node.node(),
+            Self::ReferenceCall { node, .. } => node.node(),
+            Self::ReferenceImplementation { node, .. } => node.node(),
+            #[allow(unreachable_patterns)]
+            _ => unreachable!(),
+        }
+    }
+    #[inline]
+    fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
+        #[allow(unused_imports)]
+        use type_sitter_lib::TypedNode;
+        match self {
+            Self::Name { node, .. } => node.node_mut(),
+            Self::DefinitionClass { node, .. } => node.node_mut(),
+            Self::DefinitionMethod { node, .. } => node.node_mut(),
+            Self::DefinitionFunction { node, .. } => node.node_mut(),
+            Self::DefinitionInterface { node, .. } => node.node_mut(),
+            Self::DefinitionModule { node, .. } => node.node_mut(),
+            Self::DefinitionMacro { node, .. } => node.node_mut(),
+            Self::ReferenceCall { node, .. } => node.node_mut(),
+            Self::ReferenceImplementation { node, .. } => node.node_mut(),
+            #[allow(unreachable_patterns)]
+            _ => unreachable!(),
+        }
+    }
+    #[inline]
+    fn name(&self) -> &'static str {
+        match self {
+            Self::Name { .. } => "name",
+            Self::DefinitionClass { .. } => "definition.class",
+            Self::DefinitionMethod { .. } => "definition.method",
+            Self::DefinitionFunction { .. } => "definition.function",
+            Self::DefinitionInterface { .. } => "definition.interface",
+            Self::DefinitionModule { .. } => "definition.module",
+            Self::DefinitionMacro { .. } => "definition.macro",
+            Self::ReferenceCall { .. } => "reference.call",
+            Self::ReferenceImplementation { .. } => "reference.implementation",
+            #[allow(unreachable_patterns)]
+            _ => unreachable!(),
+        }
+    }
+    #[inline]
+    fn index(&self) -> usize {
+        match self {
+            Self::Name { .. } => 0usize,
+            Self::DefinitionClass { .. } => 1usize,
+            Self::DefinitionMethod { .. } => 2usize,
+            Self::DefinitionFunction { .. } => 3usize,
+            Self::DefinitionInterface { .. } => 4usize,
+            Self::DefinitionModule { .. } => 5usize,
+            Self::DefinitionMacro { .. } => 6usize,
+            Self::ReferenceCall { .. } => 7usize,
+            Self::ReferenceImplementation { .. } => 8usize,
+            #[allow(unreachable_patterns)]
+            _ => unreachable!(),
+        }
+    }
+}
 pub mod anon_unions {
     #[allow(unused_imports)]
     use super::super::nodes::*;
-    #[doc = "one of `{field_identifier | identifier | type_identifier}`:\n- [FieldIdentifier]\n- [Identifier]\n- [TypeIdentifier]"]
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[allow(non_camel_case_types)]
-    pub enum Name<'tree> {
-        FieldIdentifier(FieldIdentifier<'tree>),
-        Identifier(Identifier<'tree>),
-        TypeIdentifier(TypeIdentifier<'tree>),
-    }
-    #[automatically_derived]
-    impl<'tree> Name<'tree> {
-        #[doc = "Returns the node if it is of kind `field_identifier` ([FieldIdentifier]), otherwise returns None"]
-        #[inline]
-        #[allow(unused, non_snake_case)]
-        pub fn field_identifier(self) -> Option<FieldIdentifier<'tree>> {
-            match self {
-                Self::FieldIdentifier(x) => Some(x),
-                _ => None,
-            }
-        }
-        #[doc = "Returns the node if it is of kind `identifier` ([Identifier]), otherwise returns None"]
-        #[inline]
-        #[allow(unused, non_snake_case)]
-        pub fn identifier(self) -> Option<Identifier<'tree>> {
-            match self {
-                Self::Identifier(x) => Some(x),
-                _ => None,
-            }
-        }
-        #[doc = "Returns the node if it is of kind `type_identifier` ([TypeIdentifier]), otherwise returns None"]
-        #[inline]
-        #[allow(unused, non_snake_case)]
-        pub fn type_identifier(self) -> Option<TypeIdentifier<'tree>> {
-            match self {
-                Self::TypeIdentifier(x) => Some(x),
-                _ => None,
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Name<'tree> {
-        type Error = type_sitter_lib::IncorrectKind<'tree>;
-        #[inline]
-        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
-            match node.kind() {
-                "field_identifier" => {
-                    Ok(unsafe {
-                        Self :: FieldIdentifier (< FieldIdentifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node))
-                    })
-                }
-                "identifier" => Ok(unsafe {
-                    Self :: Identifier (< Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node))
-                }),
-                "type_identifier" => {
-                    Ok(unsafe {
-                        Self :: TypeIdentifier (< TypeIdentifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node))
-                    })
-                }
-                _ => Err(type_sitter_lib::IncorrectKind {
-                    node,
-                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                }),
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for Name<'tree> {
-        const KIND: &'static str = "{field_identifier | identifier | type_identifier}";
-        #[inline]
-        fn node(&self) -> &yak_sitter::Node<'tree> {
-            match self {
-                Self::FieldIdentifier(x) => x.node(),
-                Self::Identifier(x) => x.node(),
-                Self::TypeIdentifier(x) => x.node(),
-            }
-        }
-        #[inline]
-        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
-            match self {
-                Self::FieldIdentifier(x) => x.node_mut(),
-                Self::Identifier(x) => x.node_mut(),
-                Self::TypeIdentifier(x) => x.node_mut(),
-            }
-        }
-        #[inline]
-        fn into_node(self) -> yak_sitter::Node<'tree> {
-            match self {
-                Self::FieldIdentifier(x) => x.into_node(),
-                Self::Identifier(x) => x.into_node(),
-                Self::TypeIdentifier(x) => x.into_node(),
-            }
-        }
-    }
-    #[doc = "one of `{enum_item | struct_item | type_item | union_item}`:\n- [EnumItem]\n- [StructItem]\n- [TypeItem]\n- [UnionItem]"]
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[allow(non_camel_case_types)]
-    pub enum DefinitionClass<'tree> {
-        EnumItem(EnumItem<'tree>),
-        StructItem(StructItem<'tree>),
-        TypeItem(TypeItem<'tree>),
-        UnionItem(UnionItem<'tree>),
-    }
-    #[automatically_derived]
-    impl<'tree> DefinitionClass<'tree> {
-        #[doc = "Returns the node if it is of kind `enum_item` ([EnumItem]), otherwise returns None"]
-        #[inline]
-        #[allow(unused, non_snake_case)]
-        pub fn enum_item(self) -> Option<EnumItem<'tree>> {
-            match self {
-                Self::EnumItem(x) => Some(x),
-                _ => None,
-            }
-        }
-        #[doc = "Returns the node if it is of kind `struct_item` ([StructItem]), otherwise returns None"]
-        #[inline]
-        #[allow(unused, non_snake_case)]
-        pub fn struct_item(self) -> Option<StructItem<'tree>> {
-            match self {
-                Self::StructItem(x) => Some(x),
-                _ => None,
-            }
-        }
-        #[doc = "Returns the node if it is of kind `type_item` ([TypeItem]), otherwise returns None"]
-        #[inline]
-        #[allow(unused, non_snake_case)]
-        pub fn type_item(self) -> Option<TypeItem<'tree>> {
-            match self {
-                Self::TypeItem(x) => Some(x),
-                _ => None,
-            }
-        }
-        #[doc = "Returns the node if it is of kind `union_item` ([UnionItem]), otherwise returns None"]
-        #[inline]
-        #[allow(unused, non_snake_case)]
-        pub fn union_item(self) -> Option<UnionItem<'tree>> {
-            match self {
-                Self::UnionItem(x) => Some(x),
-                _ => None,
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for DefinitionClass<'tree> {
-        type Error = type_sitter_lib::IncorrectKind<'tree>;
-        #[inline]
-        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
-            match node.kind() {
-                "enum_item" => {
-                    Ok(unsafe {
-                        Self :: EnumItem (< EnumItem < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node))
-                    })
-                }
-                "struct_item" => Ok(unsafe {
-                    Self :: StructItem (< StructItem < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node))
-                }),
-                "type_item" => {
-                    Ok(unsafe {
-                        Self :: TypeItem (< TypeItem < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node))
-                    })
-                }
-                "union_item" => Ok(unsafe {
-                    Self :: UnionItem (< UnionItem < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node))
-                }),
-                _ => Err(type_sitter_lib::IncorrectKind {
-                    node,
-                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                }),
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for DefinitionClass<'tree> {
-        const KIND: &'static str = "{enum_item | struct_item | type_item | union_item}";
-        #[inline]
-        fn node(&self) -> &yak_sitter::Node<'tree> {
-            match self {
-                Self::EnumItem(x) => x.node(),
-                Self::StructItem(x) => x.node(),
-                Self::TypeItem(x) => x.node(),
-                Self::UnionItem(x) => x.node(),
-            }
-        }
-        #[inline]
-        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
-            match self {
-                Self::EnumItem(x) => x.node_mut(),
-                Self::StructItem(x) => x.node_mut(),
-                Self::TypeItem(x) => x.node_mut(),
-                Self::UnionItem(x) => x.node_mut(),
-            }
-        }
-        #[inline]
-        fn into_node(self) -> yak_sitter::Node<'tree> {
-            match self {
-                Self::EnumItem(x) => x.into_node(),
-                Self::StructItem(x) => x.into_node(),
-                Self::TypeItem(x) => x.into_node(),
-                Self::UnionItem(x) => x.into_node(),
-            }
-        }
-    }
-    #[doc = "one of `{call_expression | macro_invocation}`:\n- [CallExpression]\n- [MacroInvocation]"]
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[allow(non_camel_case_types)]
-    pub enum ReferenceCall<'tree> {
-        CallExpression(CallExpression<'tree>),
-        MacroInvocation(MacroInvocation<'tree>),
-    }
-    #[automatically_derived]
-    impl<'tree> ReferenceCall<'tree> {
-        #[doc = "Returns the node if it is of kind `call_expression` ([CallExpression]), otherwise returns None"]
-        #[inline]
-        #[allow(unused, non_snake_case)]
-        pub fn call_expression(self) -> Option<CallExpression<'tree>> {
-            match self {
-                Self::CallExpression(x) => Some(x),
-                _ => None,
-            }
-        }
-        #[doc = "Returns the node if it is of kind `macro_invocation` ([MacroInvocation]), otherwise returns None"]
-        #[inline]
-        #[allow(unused, non_snake_case)]
-        pub fn macro_invocation(self) -> Option<MacroInvocation<'tree>> {
-            match self {
-                Self::MacroInvocation(x) => Some(x),
-                _ => None,
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for ReferenceCall<'tree> {
-        type Error = type_sitter_lib::IncorrectKind<'tree>;
-        #[inline]
-        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
-            match node.kind() {
-                "call_expression" => {
-                    Ok(unsafe {
-                        Self :: CallExpression (< CallExpression < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node))
-                    })
-                }
-                "macro_invocation" => {
-                    Ok(unsafe {
-                        Self :: MacroInvocation (< MacroInvocation < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node))
-                    })
-                }
-                _ => Err(type_sitter_lib::IncorrectKind {
-                    node,
-                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                }),
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for ReferenceCall<'tree> {
-        const KIND: &'static str = "{call_expression | macro_invocation}";
-        #[inline]
-        fn node(&self) -> &yak_sitter::Node<'tree> {
-            match self {
-                Self::CallExpression(x) => x.node(),
-                Self::MacroInvocation(x) => x.node(),
-            }
-        }
-        #[inline]
-        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
-            match self {
-                Self::CallExpression(x) => x.node_mut(),
-                Self::MacroInvocation(x) => x.node_mut(),
-            }
-        }
-        #[inline]
-        fn into_node(self) -> yak_sitter::Node<'tree> {
-            match self {
-                Self::CallExpression(x) => x.into_node(),
-                Self::MacroInvocation(x) => x.into_node(),
-            }
-        }
-    }
     #[doc = "one of `{identifier | type_identifier}`:\n- [Identifier]\n- [TypeIdentifier]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
@@ -4509,6 +4233,282 @@ pub mod anon_unions {
                 Self::And(x) => x.into_node(),
                 Self::Quote(x) => x.into_node(),
                 Self::Mul(x) => x.into_node(),
+            }
+        }
+    }
+    #[doc = "one of `{field_identifier | identifier | type_identifier}`:\n- [FieldIdentifier]\n- [Identifier]\n- [TypeIdentifier]"]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub enum Name<'tree> {
+        FieldIdentifier(FieldIdentifier<'tree>),
+        Identifier(Identifier<'tree>),
+        TypeIdentifier(TypeIdentifier<'tree>),
+    }
+    #[automatically_derived]
+    impl<'tree> Name<'tree> {
+        #[doc = "Returns the node if it is of kind `field_identifier` ([FieldIdentifier]), otherwise returns None"]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn field_identifier(self) -> Option<FieldIdentifier<'tree>> {
+            match self {
+                Self::FieldIdentifier(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = "Returns the node if it is of kind `identifier` ([Identifier]), otherwise returns None"]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn identifier(self) -> Option<Identifier<'tree>> {
+            match self {
+                Self::Identifier(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = "Returns the node if it is of kind `type_identifier` ([TypeIdentifier]), otherwise returns None"]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn type_identifier(self) -> Option<TypeIdentifier<'tree>> {
+            match self {
+                Self::TypeIdentifier(x) => Some(x),
+                _ => None,
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Name<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+            match node.kind() {
+                "field_identifier" => {
+                    Ok(unsafe {
+                        Self :: FieldIdentifier (< FieldIdentifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node))
+                    })
+                }
+                "identifier" => Ok(unsafe {
+                    Self :: Identifier (< Identifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node))
+                }),
+                "type_identifier" => {
+                    Ok(unsafe {
+                        Self :: TypeIdentifier (< TypeIdentifier < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node))
+                    })
+                }
+                _ => Err(type_sitter_lib::IncorrectKind {
+                    node,
+                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                }),
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for Name<'tree> {
+        const KIND: &'static str = "{field_identifier | identifier | type_identifier}";
+        #[inline]
+        fn node(&self) -> &yak_sitter::Node<'tree> {
+            match self {
+                Self::FieldIdentifier(x) => x.node(),
+                Self::Identifier(x) => x.node(),
+                Self::TypeIdentifier(x) => x.node(),
+            }
+        }
+        #[inline]
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
+            match self {
+                Self::FieldIdentifier(x) => x.node_mut(),
+                Self::Identifier(x) => x.node_mut(),
+                Self::TypeIdentifier(x) => x.node_mut(),
+            }
+        }
+        #[inline]
+        fn into_node(self) -> yak_sitter::Node<'tree> {
+            match self {
+                Self::FieldIdentifier(x) => x.into_node(),
+                Self::Identifier(x) => x.into_node(),
+                Self::TypeIdentifier(x) => x.into_node(),
+            }
+        }
+    }
+    #[doc = "one of `{enum_item | struct_item | type_item | union_item}`:\n- [EnumItem]\n- [StructItem]\n- [TypeItem]\n- [UnionItem]"]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub enum DefinitionClass<'tree> {
+        EnumItem(EnumItem<'tree>),
+        StructItem(StructItem<'tree>),
+        TypeItem(TypeItem<'tree>),
+        UnionItem(UnionItem<'tree>),
+    }
+    #[automatically_derived]
+    impl<'tree> DefinitionClass<'tree> {
+        #[doc = "Returns the node if it is of kind `enum_item` ([EnumItem]), otherwise returns None"]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn enum_item(self) -> Option<EnumItem<'tree>> {
+            match self {
+                Self::EnumItem(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = "Returns the node if it is of kind `struct_item` ([StructItem]), otherwise returns None"]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn struct_item(self) -> Option<StructItem<'tree>> {
+            match self {
+                Self::StructItem(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = "Returns the node if it is of kind `type_item` ([TypeItem]), otherwise returns None"]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn type_item(self) -> Option<TypeItem<'tree>> {
+            match self {
+                Self::TypeItem(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = "Returns the node if it is of kind `union_item` ([UnionItem]), otherwise returns None"]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn union_item(self) -> Option<UnionItem<'tree>> {
+            match self {
+                Self::UnionItem(x) => Some(x),
+                _ => None,
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for DefinitionClass<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+            match node.kind() {
+                "enum_item" => {
+                    Ok(unsafe {
+                        Self :: EnumItem (< EnumItem < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node))
+                    })
+                }
+                "struct_item" => Ok(unsafe {
+                    Self :: StructItem (< StructItem < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node))
+                }),
+                "type_item" => {
+                    Ok(unsafe {
+                        Self :: TypeItem (< TypeItem < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node))
+                    })
+                }
+                "union_item" => Ok(unsafe {
+                    Self :: UnionItem (< UnionItem < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node))
+                }),
+                _ => Err(type_sitter_lib::IncorrectKind {
+                    node,
+                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                }),
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for DefinitionClass<'tree> {
+        const KIND: &'static str = "{enum_item | struct_item | type_item | union_item}";
+        #[inline]
+        fn node(&self) -> &yak_sitter::Node<'tree> {
+            match self {
+                Self::EnumItem(x) => x.node(),
+                Self::StructItem(x) => x.node(),
+                Self::TypeItem(x) => x.node(),
+                Self::UnionItem(x) => x.node(),
+            }
+        }
+        #[inline]
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
+            match self {
+                Self::EnumItem(x) => x.node_mut(),
+                Self::StructItem(x) => x.node_mut(),
+                Self::TypeItem(x) => x.node_mut(),
+                Self::UnionItem(x) => x.node_mut(),
+            }
+        }
+        #[inline]
+        fn into_node(self) -> yak_sitter::Node<'tree> {
+            match self {
+                Self::EnumItem(x) => x.into_node(),
+                Self::StructItem(x) => x.into_node(),
+                Self::TypeItem(x) => x.into_node(),
+                Self::UnionItem(x) => x.into_node(),
+            }
+        }
+    }
+    #[doc = "one of `{call_expression | macro_invocation}`:\n- [CallExpression]\n- [MacroInvocation]"]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub enum ReferenceCall<'tree> {
+        CallExpression(CallExpression<'tree>),
+        MacroInvocation(MacroInvocation<'tree>),
+    }
+    #[automatically_derived]
+    impl<'tree> ReferenceCall<'tree> {
+        #[doc = "Returns the node if it is of kind `call_expression` ([CallExpression]), otherwise returns None"]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn call_expression(self) -> Option<CallExpression<'tree>> {
+            match self {
+                Self::CallExpression(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = "Returns the node if it is of kind `macro_invocation` ([MacroInvocation]), otherwise returns None"]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn macro_invocation(self) -> Option<MacroInvocation<'tree>> {
+            match self {
+                Self::MacroInvocation(x) => Some(x),
+                _ => None,
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for ReferenceCall<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+            match node.kind() {
+                "call_expression" => {
+                    Ok(unsafe {
+                        Self :: CallExpression (< CallExpression < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node))
+                    })
+                }
+                "macro_invocation" => {
+                    Ok(unsafe {
+                        Self :: MacroInvocation (< MacroInvocation < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node))
+                    })
+                }
+                _ => Err(type_sitter_lib::IncorrectKind {
+                    node,
+                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                }),
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for ReferenceCall<'tree> {
+        const KIND: &'static str = "{call_expression | macro_invocation}";
+        #[inline]
+        fn node(&self) -> &yak_sitter::Node<'tree> {
+            match self {
+                Self::CallExpression(x) => x.node(),
+                Self::MacroInvocation(x) => x.node(),
+            }
+        }
+        #[inline]
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
+            match self {
+                Self::CallExpression(x) => x.node_mut(),
+                Self::MacroInvocation(x) => x.node_mut(),
+            }
+        }
+        #[inline]
+        fn into_node(self) -> yak_sitter::Node<'tree> {
+            match self {
+                Self::CallExpression(x) => x.into_node(),
+                Self::MacroInvocation(x) => x.into_node(),
             }
         }
     }

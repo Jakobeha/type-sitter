@@ -7,7 +7,7 @@ mod sexp;
 mod sexp_node_type;
 mod generated_tokens;
 
-use std::fs::read_to_string;
+use std::fs::{read_dir, read_to_string};
 use std::path::Path;
 use convert_case::{Case, Casing};
 use quote::quote;
@@ -86,8 +86,9 @@ pub fn generate_queries_from_dir(
     let path = path.as_ref();
     let language_path = language_path.as_ref();
     let mut queries = GeneratedQueryTokens::new();
-    for entry in std::fs::read_dir(path)? {
-        let entry = entry?;
+    let mut entries = read_dir(path)?.collect::<Result<Vec<_>, _>>()?;
+    entries.sort_by_key(|e| e.path());
+    for entry in entries {
         let entry_path = entry.path();
         let entry_is_dir = entry.metadata()?.is_dir();
         if entry_is_dir || has_extension(&entry_path, "scm") {
@@ -155,10 +156,10 @@ pub fn generate_query_from_file(
         "query name (filename)"
     )?;
     let query_str = read_to_string(path)?;
-    let ts_query = Query::new(language, &query_str)?;
+    let ts_query = Query::new(&language, &query_str)?;
     let query = SExpSeq::try_from(query_str.as_str()).unwrap_or_else(|err| {
         panic!(
-            "query was already parsed by tree-sitter but can't be parsed by type-sitter: {} ({})\n\n{}",
+            "query was parsed by tree-sitter but can't be parsed by type-sitter: {} ({})\n\n{}",
             err,
             &query_str.as_str()[*err.span()],
             query_str
