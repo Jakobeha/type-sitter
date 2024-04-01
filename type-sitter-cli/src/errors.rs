@@ -20,8 +20,8 @@ pub enum Error {
     CouldntInferLanguage,
     #[error("couldn't infer output name for node-types")]
     CouldntInferOutputName,
-    #[error("output dir doesn't only contain rust files, so we don't know if its safe to clear")]
-    OutputDirNotOnlyRustFiles,
+    #[error("language codegen dir we'd overwrite doesn't only contain rust files, so we don't know if its safe to clear")]
+    CodegenDirNotOnlyRustFiles,
     #[error("some files failed to process")]
     SomeFailures,
 }

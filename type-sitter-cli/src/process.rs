@@ -23,20 +23,11 @@ pub fn reprocess(item: &InOutPair, args: &Args, use_yak_sitter: bool, tree_sitte
         output_path.set_extension("rs");
     }
 
-    // Clear output path.
-    // For safety, we only clear rust files.
-    if output_path.exists() {
-        if !path_utils::is_dir_of_only_rust_files(&output_path) {
-            return Err(Error::OutputDirNotOnlyRustFiles);
-        }
-        remove_dir_all(&output_path).map_err(Error::io("removing old output path"))?;
-    }
-
     // Process
-    do_process(&item.input, &output_path, input_type, language_dir.as_deref(), use_yak_sitter, tree_sitter)
+    do_reprocess(&item.input, &output_path, input_type, language_dir.as_deref(), use_yak_sitter, tree_sitter)
 }
 
-fn do_process(
+fn do_reprocess(
     input_path: &Path,
     output_path: &Path,
     input_type: InputType,
@@ -53,13 +44,23 @@ fn do_process(
             write(&output_path, type_sitter_gen::generate_queries(input_path, language_dir, &super_nodes(), use_yak_sitter, &tree_sitter)?)?;
         }
         InputType::LanguageRoot => {
+            // Remove old dir.
+            // For safety, we only remove if it contains all rust files.
+            if output_path.exists() {
+                if !path_utils::is_dir_of_only_rust_files(&output_path) {
+                    return Err(Error::CodegenDirNotOnlyRustFiles);
+                }
+                remove_dir_all(&output_path).map_err(Error::io("removing old language codegen directory"))?;
+            }
+
+
             create_dir(&output_path).map_err(Error::io("creating language codegen directory"))?;
             std::fs::write(&output_path.join("mod.rs"), format!(r#"
 //! Generated node and query wrappers for {}
 pub mod nodes;
 pub mod queries;
             "#, language_name(input_path))).map_err(Error::io("creating language codegen mod.rs"))?;
-            do_process(
+            do_reprocess(
                 &input_path.join("src/node-types.json"),
                 &output_path.join("nodes.rs"),
                 InputType::NodeTypes,
@@ -67,7 +68,7 @@ pub mod queries;
                 use_yak_sitter,
                 tree_sitter
             ).map_err(|e| e.nested("node types"))?;
-            do_process(
+            do_reprocess(
                 &input_path.join("queries"),
                 &output_path.join("queries.rs"),
                 InputType::Query,
