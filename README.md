@@ -132,7 +132,7 @@ pub fn process_declaration(decl: rust::DeclarationStatement<'_>) {
 
 ## Usage
 
-In order to generate the bindings, you can either invoke `type-sitter-cli` directly, or use the procedural macros in `type-sitter-proc`. The CLI tool is recommended, as it's more flexible and will give your IDE better inference.
+In order to generate the bindings, you can either invoke `type-sitter-cli` directly, or use the procedural macros in `type-sitter-proc`. The CLI tool is recommended, as it's more tested and will give your IDE at least as good inference.
 
 The generated code depends on `type-sitter-lib`, so you must include `type-sitter-lib` as a dependency.
 
