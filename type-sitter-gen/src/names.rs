@@ -23,13 +23,13 @@ pub struct _NodeName {
 }
 
 const PUNCTUATION_TABLE: [(char, &'static str); 35] = [
-    ('&', "And"), ('|', "Or"), ('!', "Not"), ('=', "Eq"), ('<', "Lt"),
-    ('>', "Gt"), ('+', "Add"), ('-', "Sub"), ('*', "Mul"), ('/', "Div"),
-    ('~', "BitNot"), ('%', "Mod"), ('^', "BitXor"), ('?', "Question"), (':', "Colon"),
-    ('.', "Dot"), (',', "Comma"), (';', "Semicolon"), ('(', "LParen"), (')', "RParen"),
-    ('[', "LBracket"), (']', "RBracket"), ('{', "LBrace"), ('}', "RBrace"), ('\\', "Backslash"),
-    ('\'', "Quote"), ('"', "DoubleQuote"), ('#', "Hash"), ('@', "At"), ('$', "Dollar"),
-    ('`', "Backtick"), (' ', "Space"), ('\t', "Tab"), ('\n', "Newline"), ('\r', "CarriageReturn")
+    ('&', "And_"), ('|', "Or_"), ('!', "Not_"), ('=', "Eq_"), ('<', "Lt_"),
+    ('>', "Gt_"), ('+', "Add_"), ('-', "Sub_"), ('*', "Mul_"), ('/', "Div_"),
+    ('~', "BitNot_"), ('%', "Mod_"), ('^', "BitXor_"), ('?', "Question_"), (':', "Colon_"),
+    ('.', "Dot_"), (',', "Comma_"), (';', "Semicolon_"), ('(', "LParen_"), (')', "RParen_"),
+    ('[', "LBracket_"), (']', "RBracket_"), ('{', "LBrace_"), ('}', "RBrace_"), ('\\', "Backslash_"),
+    ('\'', "Quote_"), ('"', "DoubleQuote_"), ('#', "Hash_"), ('@', "At_"), ('$', "Dollar_"),
+    ('`', "Backtick_"), (' ', "Space_"), ('\t', "Tab_"), ('\n', "Newline_"), ('\r', "CarriageReturn_")
 ];
 
 const RESERVED_IDENTS: [&'static str; 4] = [
