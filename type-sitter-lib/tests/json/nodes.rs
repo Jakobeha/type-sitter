@@ -22,7 +22,7 @@ pub enum Value<'tree> {
 }
 #[automatically_derived]
 impl<'tree> Value<'tree> {
-    ///Returns the node if it is of kind `array` ([Array]), otherwise returns None
+    ///Returns the node if it is of kind `array` ([`Array`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn array(self) -> Option<Array<'tree>> {
@@ -31,7 +31,7 @@ impl<'tree> Value<'tree> {
             _ => None,
         }
     }
-    ///Returns the node if it is of kind `false` ([False]), otherwise returns None
+    ///Returns the node if it is of kind `false` ([`False`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn r#false(self) -> Option<False<'tree>> {
@@ -40,7 +40,7 @@ impl<'tree> Value<'tree> {
             _ => None,
         }
     }
-    ///Returns the node if it is of kind `null` ([Null]), otherwise returns None
+    ///Returns the node if it is of kind `null` ([`Null`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn null(self) -> Option<Null<'tree>> {
@@ -49,7 +49,7 @@ impl<'tree> Value<'tree> {
             _ => None,
         }
     }
-    ///Returns the node if it is of kind `number` ([Number]), otherwise returns None
+    ///Returns the node if it is of kind `number` ([`Number`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn number(self) -> Option<Number<'tree>> {
@@ -58,7 +58,7 @@ impl<'tree> Value<'tree> {
             _ => None,
         }
     }
-    ///Returns the node if it is of kind `object` ([Object]), otherwise returns None
+    ///Returns the node if it is of kind `object` ([`Object`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn object(self) -> Option<Object<'tree>> {
@@ -67,7 +67,7 @@ impl<'tree> Value<'tree> {
             _ => None,
         }
     }
-    ///Returns the node if it is of kind `string` ([String]), otherwise returns None
+    ///Returns the node if it is of kind `string` ([`String`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn string(self) -> Option<String<'tree>> {
@@ -76,7 +76,7 @@ impl<'tree> Value<'tree> {
             _ => None,
         }
     }
-    ///Returns the node if it is of kind `true` ([True]), otherwise returns None
+    ///Returns the node if it is of kind `true` ([`True`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
     pub fn r#true(self) -> Option<True<'tree>> {
@@ -1246,7 +1246,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> EscapeSequence_StringContent<'tree> {
-        ///Returns the node if it is of kind `escape_sequence` ([EscapeSequence]), otherwise returns None
+        ///Returns the node if it is of kind `escape_sequence` ([`EscapeSequence`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn escape_sequence(self) -> Option<EscapeSequence<'tree>> {
@@ -1255,7 +1255,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `string_content` ([StringContent]), otherwise returns None
+        ///Returns the node if it is of kind `string_content` ([`StringContent`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn string_content(self) -> Option<StringContent<'tree>> {

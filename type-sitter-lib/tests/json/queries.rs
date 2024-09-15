@@ -36,7 +36,7 @@ fn __Mk__Highlights() -> tree_sitter::Query {
 #[allow(non_camel_case_types)]
 #[derive(Debug, Clone, Copy)]
 pub struct Highlights;
-/**Matches returned by a query cursor running the query [Highlights]:
+/**Matches returned by a query cursor running the query [`Highlights`]:
 
 ```sexp
 (pair
@@ -63,7 +63,7 @@ pub type HighlightsMatches<'cursor, 'tree> = type_sitter_lib::TypedQueryMatches<
     'tree,
     Highlights,
 >;
-/**Captures returned by a query cursor running the query [Highlights]:
+/**Captures returned by a query cursor running the query [`Highlights`]:
 
 ```sexp
 (pair
@@ -90,7 +90,7 @@ pub type HighlightsCaptures<'cursor, 'tree> = type_sitter_lib::TypedQueryCapture
     'tree,
     Highlights,
 >;
-/**A match returned by the query [Highlights]:
+/**A match returned by the query [`Highlights`]:
 
 ```sexp
 (pair
@@ -115,7 +115,7 @@ pub struct HighlightsMatch<'cursor, 'tree> {
     r#match: tree_sitter::QueryMatch<'cursor, 'tree>,
     tree: &'tree yak_sitter::Tree,
 }
-/**A capture returned by the query [Highlights]:
+/**A capture returned by the query [`Highlights`]:
 
 ```sexp
 (pair
@@ -843,7 +843,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> ConstantBuiltin<'tree> {
-        ///Returns the node if it is of kind `false` ([False]), otherwise returns None
+        ///Returns the node if it is of kind `false` ([`False`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#false(self) -> Option<False<'tree>> {
@@ -852,7 +852,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `null` ([Null]), otherwise returns None
+        ///Returns the node if it is of kind `null` ([`Null`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn null(self) -> Option<Null<'tree>> {
@@ -861,7 +861,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `true` ([True]), otherwise returns None
+        ///Returns the node if it is of kind `true` ([`True`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#true(self) -> Option<True<'tree>> {

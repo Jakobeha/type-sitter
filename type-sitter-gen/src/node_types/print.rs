@@ -1,5 +1,6 @@
 use std::borrow::Cow;
 use std::cell::RefCell;
+use std::collections::HashSet;
 use indexmap::IndexMap;
 use join_lazy_fmt::Join;
 use proc_macro2::TokenStream;
@@ -249,8 +250,18 @@ impl NodeName {
         tree_sitter: &Path,
     ) -> TokenStream {
         let has_implicit_subtypes = subtypes.iter().any(|subtype| subtype.is_implicit);
-        let variants = subtypes.iter().map(NodeName::print_variant_definition);
-        let variant_accessors = subtypes.iter().map(NodeName::print_variant_accessor);
+
+        let mut prev_variants = HashSet::new();
+        let variants = subtypes
+            .iter()
+            .map(|name| name.print_variant_definition(&mut prev_variants));
+
+        let mut prev_variants2 = HashSet::new();
+        let mut prev_methods = HashSet::new();
+        let variant_accessors = subtypes
+            .iter()
+            .map(|name| name.print_variant_accessor(&mut prev_variants2, &mut prev_methods));
+
         let try_from = {
             let error = quote! {
                 Err(type_sitter_lib::IncorrectKind {
@@ -259,13 +270,21 @@ impl NodeName {
                 })
             };
             if has_implicit_subtypes {
-                let try_from_ifs = subtypes.iter().map(NodeName::print_try_from_if);
+                let mut prev_variants3 = HashSet::new();
+                let try_from_ifs = subtypes
+                    .iter()
+                    .map(|name| name.print_try_from_if(&mut prev_variants3));
+
                 quote! {
                     #(#try_from_ifs)*
                     #error
                 }
             } else {
-                let from_cases = subtypes.iter().map(NodeName::print_from_case);
+                let mut prev_variants3 = HashSet::new();
+                let from_cases = subtypes
+                    .iter()
+                    .map(|name| name.print_from_case(&mut prev_variants3));
+
                 quote! {
                     match node.kind() {
                         #(#from_cases)*
@@ -274,9 +293,22 @@ impl NodeName {
                 }
             }
         };
-        let node_cases = subtypes.iter().map(NodeName::print_node_case);
-        let node_mut_cases = subtypes.iter().map(NodeName::print_node_mut_case);
-        let into_node_cases = subtypes.iter().map(NodeName::print_into_node_case);
+
+        let mut prev_variants4 = HashSet::new();
+        let node_cases = subtypes
+            .iter()
+            .map(|name| name.print_node_case(&mut prev_variants4));
+
+        let mut prev_variants5 = HashSet::new();
+        let node_mut_cases = subtypes
+            .iter()
+            .map(|name| name.print_node_mut_case(&mut prev_variants5));
+
+        let mut prev_variants6 = HashSet::new();
+        let into_node_cases = subtypes
+            .iter()
+            .map(|name| name.print_into_node_case(&mut prev_variants6));
+
         quote! {
             #[doc = #doc]
             #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -404,19 +436,23 @@ impl NodeName {
         }
     }
 
-    fn print_variant_definition(&self) -> TokenStream {
-        let ident = self.rust_type_ident();
+    fn print_variant_definition(&self, prev_variants: &mut HashSet<String>) -> TokenStream {
+        let ident = self.rust_variant_ident(prev_variants);
         let type_ = self.print_type();
         quote! {
             #ident(#type_),
         }
     }
 
-    fn print_variant_accessor(&self) -> TokenStream {
-        let ident = self.rust_type_ident();
+    fn print_variant_accessor(
+        &self,
+        prev_variants: &mut HashSet<String>,
+        prev_methods: &mut HashSet<String>
+    ) -> TokenStream {
+        let ident = self.rust_variant_ident(prev_variants);
         let type_ = self.print_type();
-        let method = self.rust_method_ident();
-        let doc = concat_doc!("Returns the node if it is of kind `", self.sexp_name, "` ([", self.rust_type_path(), "]), otherwise returns None");
+        let method = self.rust_method_ident(prev_methods);
+        let doc = concat_doc!("Returns the node if it is of kind `", self.sexp_name, "` ([`", self.rust_type_path(), "`]), otherwise returns None");
         quote! {
             #[doc = #doc]
             #[inline]
@@ -430,8 +466,8 @@ impl NodeName {
         }
     }
 
-    fn print_try_from_if(&self) -> TokenStream {
-        let ident = self.rust_type_ident();
+    fn print_try_from_if(&self, prev_variants: &mut HashSet<String>) -> TokenStream {
+        let ident = self.rust_variant_ident(prev_variants);
         let type_ = self.print_type();
         quote! {
             if let Ok(this) = <#type_ as TryFrom<_>>::try_from(node) {
@@ -440,8 +476,8 @@ impl NodeName {
         }
     }
 
-    fn print_from_case(&self) -> TokenStream {
-        let ident = self.rust_type_ident();
+    fn print_from_case(&self, prev_variants: &mut HashSet<String>) -> TokenStream {
+        let ident = self.rust_variant_ident(prev_variants);
         let type_ = self.print_type();
         let kind = self.sexp_lit_str();
         quote! {
@@ -449,33 +485,37 @@ impl NodeName {
         }
     }
 
-    fn print_node_case(&self) -> TokenStream {
-        let ident = self.rust_type_ident();
+    fn print_node_case(&self, prev_variants: &mut HashSet<String>) -> TokenStream {
+        let ident = self.rust_variant_ident(prev_variants);
         quote! {
             Self::#ident(x) => x.node(),
         }
     }
 
-    fn print_node_mut_case(&self) -> TokenStream {
-        let ident = self.rust_type_ident();
+    fn print_node_mut_case(&self, prev_variants: &mut HashSet<String>) -> TokenStream {
+        let ident = self.rust_variant_ident(prev_variants);
         quote! {
             Self::#ident(x) => x.node_mut(),
         }
     }
 
-    fn print_into_node_case(&self) -> TokenStream {
-        let ident = self.rust_type_ident();
+    fn print_into_node_case(&self, prev_variants: &mut HashSet<String>) -> TokenStream {
+        let ident = self.rust_variant_ident(prev_variants);
         quote! {
             Self::#ident(x) => x.into_node(),
         }
     }
 
-    pub(crate) fn rust_type_ident(&self) -> Ident {
+    fn rust_type_ident(&self) -> Ident {
         ident!(self.rust_type_name, "node kind (rust type name)").unwrap()
     }
 
-    fn rust_method_ident(&self) -> Ident {
-        ident!(self.rust_method_name, "node kind (rust method name)").unwrap()
+    fn rust_variant_ident(&self, prev_variants: &mut HashSet<String>) -> Ident {
+        ident!(disambiguate_then_add(&self.rust_type_name, prev_variants), "node kind (rust variant name)").unwrap()
+    }
+
+    fn rust_method_ident(&self, prev_methods: &mut HashSet<String>) -> Ident {
+        ident!(disambiguate_then_add(&self.rust_method_name, prev_methods), "node kind (rust method name)").unwrap()
     }
 
     fn sexp_lit_str(&self) -> LitStr {
@@ -503,4 +543,19 @@ impl GeneratedNodeTokens {
             #anon_unions
         }
     }
+}
+
+/// Ensure the identifier is different than those in the set by appending underscores until it is.
+/// Then add it to the set so future identifiers also get disambiguated.
+fn disambiguate_then_add(ident: &str, prev_idents: &mut HashSet<String>) -> String {
+    let mut ident = ident.to_string();
+    while !prev_idents.insert(ident.clone()) {
+        if ident.starts_with("r#") {
+            // We can probably remove the r# prefix because it's no longer reserved (there's no
+            // reserved identifier which is another reserved identifier plus underscore).
+            ident = ident[2..].to_owned();
+        }
+        ident.push('_');
+    }
+    ident
 }

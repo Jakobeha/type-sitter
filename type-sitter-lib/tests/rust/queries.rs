@@ -179,7 +179,7 @@ fn __Mk__Highlights() -> tree_sitter::Query {
 #[allow(non_camel_case_types)]
 #[derive(Debug, Clone, Copy)]
 pub struct Highlights;
-/**Matches returned by a query cursor running the query [Highlights]:
+/**Matches returned by a query cursor running the query [`Highlights`]:
 
 ```sexp
 ; Identifiers
@@ -349,7 +349,7 @@ pub type HighlightsMatches<'cursor, 'tree> = type_sitter_lib::TypedQueryMatches<
     'tree,
     Highlights,
 >;
-/**Captures returned by a query cursor running the query [Highlights]:
+/**Captures returned by a query cursor running the query [`Highlights`]:
 
 ```sexp
 ; Identifiers
@@ -519,7 +519,7 @@ pub type HighlightsCaptures<'cursor, 'tree> = type_sitter_lib::TypedQueryCapture
     'tree,
     Highlights,
 >;
-/**A match returned by the query [Highlights]:
+/**A match returned by the query [`Highlights`]:
 
 ```sexp
 ; Identifiers
@@ -687,7 +687,7 @@ pub struct HighlightsMatch<'cursor, 'tree> {
     r#match: tree_sitter::QueryMatch<'cursor, 'tree>,
     tree: &'tree yak_sitter::Tree,
 }
-/**A capture returned by the query [Highlights]:
+/**A capture returned by the query [`Highlights`]:
 
 ```sexp
 ; Identifiers
@@ -3110,7 +3110,7 @@ fn __Mk__Injections() -> tree_sitter::Query {
 #[allow(non_camel_case_types)]
 #[derive(Debug, Clone, Copy)]
 pub struct Injections;
-/**Matches returned by a query cursor running the query [Injections]:
+/**Matches returned by a query cursor running the query [`Injections`]:
 
 ```sexp
 ((macro_invocation
@@ -3130,7 +3130,7 @@ pub type InjectionsMatches<'cursor, 'tree> = type_sitter_lib::TypedQueryMatches<
     'tree,
     Injections,
 >;
-/**Captures returned by a query cursor running the query [Injections]:
+/**Captures returned by a query cursor running the query [`Injections`]:
 
 ```sexp
 ((macro_invocation
@@ -3150,7 +3150,7 @@ pub type InjectionsCaptures<'cursor, 'tree> = type_sitter_lib::TypedQueryCapture
     'tree,
     Injections,
 >;
-/**A match returned by the query [Injections]:
+/**A match returned by the query [`Injections`]:
 
 ```sexp
 ((macro_invocation
@@ -3168,7 +3168,7 @@ pub struct InjectionsMatch<'cursor, 'tree> {
     r#match: tree_sitter::QueryMatch<'cursor, 'tree>,
     tree: &'tree yak_sitter::Tree,
 }
-/**A capture returned by the query [Injections]:
+/**A capture returned by the query [`Injections`]:
 
 ```sexp
 ((macro_invocation
@@ -3518,7 +3518,7 @@ fn __Mk__Tags() -> tree_sitter::Query {
 #[allow(non_camel_case_types)]
 #[derive(Debug, Clone, Copy)]
 pub struct Tags;
-/**Matches returned by a query cursor running the query [Tags]:
+/**Matches returned by a query cursor running the query [`Tags`]:
 
 ```sexp
 ; ADT definitions
@@ -3589,7 +3589,7 @@ pub type TagsMatches<'cursor, 'tree> = type_sitter_lib::TypedQueryMatches<
     'tree,
     Tags,
 >;
-/**Captures returned by a query cursor running the query [Tags]:
+/**Captures returned by a query cursor running the query [`Tags`]:
 
 ```sexp
 ; ADT definitions
@@ -3660,7 +3660,7 @@ pub type TagsCaptures<'cursor, 'tree> = type_sitter_lib::TypedQueryCaptures<
     'tree,
     Tags,
 >;
-/**A match returned by the query [Tags]:
+/**A match returned by the query [`Tags`]:
 
 ```sexp
 ; ADT definitions
@@ -3729,7 +3729,7 @@ pub struct TagsMatch<'cursor, 'tree> {
     r#match: tree_sitter::QueryMatch<'cursor, 'tree>,
     tree: &'tree yak_sitter::Tree,
 }
-/**A capture returned by the query [Tags]:
+/**A capture returned by the query [`Tags`]:
 
 ```sexp
 ; ADT definitions
@@ -4852,7 +4852,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> Type<'tree> {
-        ///Returns the node if it is of kind `identifier` ([Identifier]), otherwise returns None
+        ///Returns the node if it is of kind `identifier` ([`Identifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn identifier(self) -> Option<Identifier<'tree>> {
@@ -4861,7 +4861,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `type_identifier` ([TypeIdentifier]), otherwise returns None
+        ///Returns the node if it is of kind `type_identifier` ([`TypeIdentifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn type_identifier(self) -> Option<TypeIdentifier<'tree>> {
@@ -4944,7 +4944,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> Constructor<'tree> {
-        ///Returns the node if it is of kind `identifier` ([Identifier]), otherwise returns None
+        ///Returns the node if it is of kind `identifier` ([`Identifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn identifier(self) -> Option<Identifier<'tree>> {
@@ -4953,7 +4953,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `type_identifier` ([TypeIdentifier]), otherwise returns None
+        ///Returns the node if it is of kind `type_identifier` ([`TypeIdentifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn type_identifier(self) -> Option<TypeIdentifier<'tree>> {
@@ -5036,7 +5036,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> FunctionMacro<'tree> {
-        ///Returns the node if it is of kind `!` ([symbols::Not]), otherwise returns None
+        ///Returns the node if it is of kind `!` ([`symbols::Not`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn not(self) -> Option<symbols::Not<'tree>> {
@@ -5045,7 +5045,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `identifier` ([Identifier]), otherwise returns None
+        ///Returns the node if it is of kind `identifier` ([`Identifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn identifier(self) -> Option<Identifier<'tree>> {
@@ -5128,7 +5128,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> Comment<'tree> {
-        ///Returns the node if it is of kind `block_comment` ([BlockComment]), otherwise returns None
+        ///Returns the node if it is of kind `block_comment` ([`BlockComment`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn block_comment(self) -> Option<BlockComment<'tree>> {
@@ -5137,7 +5137,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `line_comment` ([LineComment]), otherwise returns None
+        ///Returns the node if it is of kind `line_comment` ([`LineComment`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn line_comment(self) -> Option<LineComment<'tree>> {
@@ -5220,7 +5220,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> CommentDocumentation<'tree> {
-        ///Returns the node if it is of kind `block_comment` ([BlockComment]), otherwise returns None
+        ///Returns the node if it is of kind `block_comment` ([`BlockComment`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn block_comment(self) -> Option<BlockComment<'tree>> {
@@ -5229,7 +5229,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `line_comment` ([LineComment]), otherwise returns None
+        ///Returns the node if it is of kind `line_comment` ([`LineComment`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn line_comment(self) -> Option<LineComment<'tree>> {
@@ -5324,7 +5324,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> PunctuationBracket<'tree> {
-        ///Returns the node if it is of kind `(` ([symbols::LParen]), otherwise returns None
+        ///Returns the node if it is of kind `(` ([`symbols::LParen`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn l_paren(self) -> Option<symbols::LParen<'tree>> {
@@ -5333,7 +5333,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `)` ([symbols::RParen]), otherwise returns None
+        ///Returns the node if it is of kind `)` ([`symbols::RParen`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r_paren(self) -> Option<symbols::RParen<'tree>> {
@@ -5342,7 +5342,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `<` ([symbols::Lt]), otherwise returns None
+        ///Returns the node if it is of kind `<` ([`symbols::Lt`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn lt(self) -> Option<symbols::Lt<'tree>> {
@@ -5351,7 +5351,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `>` ([symbols::Gt]), otherwise returns None
+        ///Returns the node if it is of kind `>` ([`symbols::Gt`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn gt(self) -> Option<symbols::Gt<'tree>> {
@@ -5360,7 +5360,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `[` ([symbols::LBracket]), otherwise returns None
+        ///Returns the node if it is of kind `[` ([`symbols::LBracket`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn l_bracket(self) -> Option<symbols::LBracket<'tree>> {
@@ -5369,7 +5369,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `]` ([symbols::RBracket]), otherwise returns None
+        ///Returns the node if it is of kind `]` ([`symbols::RBracket`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r_bracket(self) -> Option<symbols::RBracket<'tree>> {
@@ -5378,7 +5378,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `{` ([symbols::LBrace]), otherwise returns None
+        ///Returns the node if it is of kind `{` ([`symbols::LBrace`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn l_brace(self) -> Option<symbols::LBrace<'tree>> {
@@ -5387,7 +5387,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `}` ([symbols::RBrace]), otherwise returns None
+        ///Returns the node if it is of kind `}` ([`symbols::RBrace`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r_brace(self) -> Option<symbols::RBrace<'tree>> {
@@ -5560,7 +5560,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> PunctuationDelimiter<'tree> {
-        ///Returns the node if it is of kind `,` ([symbols::Comma]), otherwise returns None
+        ///Returns the node if it is of kind `,` ([`symbols::Comma`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn comma(self) -> Option<symbols::Comma<'tree>> {
@@ -5569,7 +5569,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `.` ([symbols::Dot]), otherwise returns None
+        ///Returns the node if it is of kind `.` ([`symbols::Dot`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn dot(self) -> Option<symbols::Dot<'tree>> {
@@ -5578,7 +5578,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `:` ([symbols::Colon]), otherwise returns None
+        ///Returns the node if it is of kind `:` ([`symbols::Colon`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn colon(self) -> Option<symbols::Colon<'tree>> {
@@ -5587,7 +5587,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `::` ([symbols::ColonColon]), otherwise returns None
+        ///Returns the node if it is of kind `::` ([`symbols::ColonColon`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn colon_colon(self) -> Option<symbols::ColonColon<'tree>> {
@@ -5596,7 +5596,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `;` ([symbols::Semicolon]), otherwise returns None
+        ///Returns the node if it is of kind `;` ([`symbols::Semicolon`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn semicolon(self) -> Option<symbols::Semicolon<'tree>> {
@@ -5795,7 +5795,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> Keyword<'tree> {
-        ///Returns the node if it is of kind `as` ([unnamed::As]), otherwise returns None
+        ///Returns the node if it is of kind `as` ([`unnamed::As`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#as(self) -> Option<unnamed::As<'tree>> {
@@ -5804,7 +5804,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `async` ([unnamed::Async]), otherwise returns None
+        ///Returns the node if it is of kind `async` ([`unnamed::Async`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#async(self) -> Option<unnamed::Async<'tree>> {
@@ -5813,7 +5813,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `await` ([unnamed::Await]), otherwise returns None
+        ///Returns the node if it is of kind `await` ([`unnamed::Await`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#await(self) -> Option<unnamed::Await<'tree>> {
@@ -5822,7 +5822,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `break` ([unnamed::Break]), otherwise returns None
+        ///Returns the node if it is of kind `break` ([`unnamed::Break`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#break(self) -> Option<unnamed::Break<'tree>> {
@@ -5831,7 +5831,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `const` ([unnamed::Const]), otherwise returns None
+        ///Returns the node if it is of kind `const` ([`unnamed::Const`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#const(self) -> Option<unnamed::Const<'tree>> {
@@ -5840,7 +5840,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `continue` ([unnamed::Continue]), otherwise returns None
+        ///Returns the node if it is of kind `continue` ([`unnamed::Continue`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#continue(self) -> Option<unnamed::Continue<'tree>> {
@@ -5849,7 +5849,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `crate` ([Crate]), otherwise returns None
+        ///Returns the node if it is of kind `crate` ([`Crate`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn crate_(self) -> Option<Crate<'tree>> {
@@ -5858,7 +5858,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `default` ([unnamed::Default]), otherwise returns None
+        ///Returns the node if it is of kind `default` ([`unnamed::Default`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn default(self) -> Option<unnamed::Default<'tree>> {
@@ -5867,7 +5867,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `dyn` ([unnamed::Dyn]), otherwise returns None
+        ///Returns the node if it is of kind `dyn` ([`unnamed::Dyn`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#dyn(self) -> Option<unnamed::Dyn<'tree>> {
@@ -5876,7 +5876,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `else` ([unnamed::Else]), otherwise returns None
+        ///Returns the node if it is of kind `else` ([`unnamed::Else`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#else(self) -> Option<unnamed::Else<'tree>> {
@@ -5885,7 +5885,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `enum` ([unnamed::Enum]), otherwise returns None
+        ///Returns the node if it is of kind `enum` ([`unnamed::Enum`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#enum(self) -> Option<unnamed::Enum<'tree>> {
@@ -5894,7 +5894,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `extern` ([unnamed::Extern]), otherwise returns None
+        ///Returns the node if it is of kind `extern` ([`unnamed::Extern`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#extern(self) -> Option<unnamed::Extern<'tree>> {
@@ -5903,7 +5903,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `fn` ([unnamed::Fn]), otherwise returns None
+        ///Returns the node if it is of kind `fn` ([`unnamed::Fn`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#fn(self) -> Option<unnamed::Fn<'tree>> {
@@ -5912,7 +5912,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `for` ([unnamed::For]), otherwise returns None
+        ///Returns the node if it is of kind `for` ([`unnamed::For`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#for(self) -> Option<unnamed::For<'tree>> {
@@ -5921,7 +5921,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `if` ([unnamed::If]), otherwise returns None
+        ///Returns the node if it is of kind `if` ([`unnamed::If`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#if(self) -> Option<unnamed::If<'tree>> {
@@ -5930,7 +5930,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `impl` ([unnamed::Impl]), otherwise returns None
+        ///Returns the node if it is of kind `impl` ([`unnamed::Impl`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#impl(self) -> Option<unnamed::Impl<'tree>> {
@@ -5939,7 +5939,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `in` ([unnamed::In]), otherwise returns None
+        ///Returns the node if it is of kind `in` ([`unnamed::In`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#in(self) -> Option<unnamed::In<'tree>> {
@@ -5948,7 +5948,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `let` ([unnamed::Let]), otherwise returns None
+        ///Returns the node if it is of kind `let` ([`unnamed::Let`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#let(self) -> Option<unnamed::Let<'tree>> {
@@ -5957,7 +5957,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `loop` ([unnamed::Loop]), otherwise returns None
+        ///Returns the node if it is of kind `loop` ([`unnamed::Loop`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#loop(self) -> Option<unnamed::Loop<'tree>> {
@@ -5966,7 +5966,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `macro_rules!` ([symbols::MacroRulesNot]), otherwise returns None
+        ///Returns the node if it is of kind `macro_rules!` ([`symbols::MacroRulesNot`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn macro_rules_not(self) -> Option<symbols::MacroRulesNot<'tree>> {
@@ -5975,7 +5975,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `match` ([unnamed::Match]), otherwise returns None
+        ///Returns the node if it is of kind `match` ([`unnamed::Match`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#match(self) -> Option<unnamed::Match<'tree>> {
@@ -5984,7 +5984,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `mod` ([unnamed::Mod]), otherwise returns None
+        ///Returns the node if it is of kind `mod` ([`unnamed::Mod`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#mod(self) -> Option<unnamed::Mod<'tree>> {
@@ -5993,7 +5993,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `move` ([unnamed::Move]), otherwise returns None
+        ///Returns the node if it is of kind `move` ([`unnamed::Move`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#move(self) -> Option<unnamed::Move<'tree>> {
@@ -6002,7 +6002,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `mutable_specifier` ([MutableSpecifier]), otherwise returns None
+        ///Returns the node if it is of kind `mutable_specifier` ([`MutableSpecifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn mutable_specifier(self) -> Option<MutableSpecifier<'tree>> {
@@ -6011,7 +6011,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `pub` ([unnamed::Pub]), otherwise returns None
+        ///Returns the node if it is of kind `pub` ([`unnamed::Pub`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#pub(self) -> Option<unnamed::Pub<'tree>> {
@@ -6020,7 +6020,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `ref` ([unnamed::Ref]), otherwise returns None
+        ///Returns the node if it is of kind `ref` ([`unnamed::Ref`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#ref(self) -> Option<unnamed::Ref<'tree>> {
@@ -6029,7 +6029,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `return` ([unnamed::Return]), otherwise returns None
+        ///Returns the node if it is of kind `return` ([`unnamed::Return`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#return(self) -> Option<unnamed::Return<'tree>> {
@@ -6038,7 +6038,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `self` ([_Self]), otherwise returns None
+        ///Returns the node if it is of kind `self` ([`_Self`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn _self(self) -> Option<_Self<'tree>> {
@@ -6047,7 +6047,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `static` ([unnamed::Static]), otherwise returns None
+        ///Returns the node if it is of kind `static` ([`unnamed::Static`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#static(self) -> Option<unnamed::Static<'tree>> {
@@ -6056,7 +6056,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `struct` ([unnamed::Struct]), otherwise returns None
+        ///Returns the node if it is of kind `struct` ([`unnamed::Struct`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#struct(self) -> Option<unnamed::Struct<'tree>> {
@@ -6065,7 +6065,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `super` ([Super]), otherwise returns None
+        ///Returns the node if it is of kind `super` ([`Super`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn super_(self) -> Option<Super<'tree>> {
@@ -6074,7 +6074,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `trait` ([unnamed::Trait]), otherwise returns None
+        ///Returns the node if it is of kind `trait` ([`unnamed::Trait`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#trait(self) -> Option<unnamed::Trait<'tree>> {
@@ -6083,7 +6083,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `type` ([unnamed::Type]), otherwise returns None
+        ///Returns the node if it is of kind `type` ([`unnamed::Type`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#type(self) -> Option<unnamed::Type<'tree>> {
@@ -6092,7 +6092,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `union` ([unnamed::Union]), otherwise returns None
+        ///Returns the node if it is of kind `union` ([`unnamed::Union`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn union(self) -> Option<unnamed::Union<'tree>> {
@@ -6101,7 +6101,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `unsafe` ([unnamed::Unsafe]), otherwise returns None
+        ///Returns the node if it is of kind `unsafe` ([`unnamed::Unsafe`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#unsafe(self) -> Option<unnamed::Unsafe<'tree>> {
@@ -6110,7 +6110,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `use` ([unnamed::Use]), otherwise returns None
+        ///Returns the node if it is of kind `use` ([`unnamed::Use`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#use(self) -> Option<unnamed::Use<'tree>> {
@@ -6119,7 +6119,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `where` ([unnamed::Where]), otherwise returns None
+        ///Returns the node if it is of kind `where` ([`unnamed::Where`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#where(self) -> Option<unnamed::Where<'tree>> {
@@ -6128,7 +6128,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `while` ([unnamed::While]), otherwise returns None
+        ///Returns the node if it is of kind `while` ([`unnamed::While`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#while(self) -> Option<unnamed::While<'tree>> {
@@ -6137,7 +6137,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `yield` ([unnamed::Yield]), otherwise returns None
+        ///Returns the node if it is of kind `yield` ([`unnamed::Yield`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#yield(self) -> Option<unnamed::Yield<'tree>> {
@@ -6740,7 +6740,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> String<'tree> {
-        ///Returns the node if it is of kind `char_literal` ([CharLiteral]), otherwise returns None
+        ///Returns the node if it is of kind `char_literal` ([`CharLiteral`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn char_literal(self) -> Option<CharLiteral<'tree>> {
@@ -6749,7 +6749,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `raw_string_literal` ([RawStringLiteral]), otherwise returns None
+        ///Returns the node if it is of kind `raw_string_literal` ([`RawStringLiteral`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn raw_string_literal(self) -> Option<RawStringLiteral<'tree>> {
@@ -6758,7 +6758,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `string_literal` ([StringLiteral]), otherwise returns None
+        ///Returns the node if it is of kind `string_literal` ([`StringLiteral`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn string_literal(self) -> Option<StringLiteral<'tree>> {
@@ -6857,7 +6857,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> ConstantBuiltin<'tree> {
-        ///Returns the node if it is of kind `boolean_literal` ([BooleanLiteral]), otherwise returns None
+        ///Returns the node if it is of kind `boolean_literal` ([`BooleanLiteral`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn boolean_literal(self) -> Option<BooleanLiteral<'tree>> {
@@ -6866,7 +6866,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `float_literal` ([FloatLiteral]), otherwise returns None
+        ///Returns the node if it is of kind `float_literal` ([`FloatLiteral`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn float_literal(self) -> Option<FloatLiteral<'tree>> {
@@ -6875,7 +6875,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `integer_literal` ([IntegerLiteral]), otherwise returns None
+        ///Returns the node if it is of kind `integer_literal` ([`IntegerLiteral`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn integer_literal(self) -> Option<IntegerLiteral<'tree>> {
@@ -6972,7 +6972,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> Attribute<'tree> {
-        ///Returns the node if it is of kind `attribute_item` ([AttributeItem]), otherwise returns None
+        ///Returns the node if it is of kind `attribute_item` ([`AttributeItem`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn attribute_item(self) -> Option<AttributeItem<'tree>> {
@@ -6981,7 +6981,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `inner_attribute_item` ([InnerAttributeItem]), otherwise returns None
+        ///Returns the node if it is of kind `inner_attribute_item` ([`InnerAttributeItem`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn inner_attribute_item(self) -> Option<InnerAttributeItem<'tree>> {
@@ -7066,7 +7066,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> Operator<'tree> {
-        ///Returns the node if it is of kind `&` ([symbols::And]), otherwise returns None
+        ///Returns the node if it is of kind `&` ([`symbols::And`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn and(self) -> Option<symbols::And<'tree>> {
@@ -7075,7 +7075,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `'` ([symbols::Quote]), otherwise returns None
+        ///Returns the node if it is of kind `'` ([`symbols::Quote`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn quote(self) -> Option<symbols::Quote<'tree>> {
@@ -7084,7 +7084,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `*` ([symbols::Mul]), otherwise returns None
+        ///Returns the node if it is of kind `*` ([`symbols::Mul`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn mul(self) -> Option<symbols::Mul<'tree>> {
@@ -7183,7 +7183,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> Name<'tree> {
-        ///Returns the node if it is of kind `field_identifier` ([FieldIdentifier]), otherwise returns None
+        ///Returns the node if it is of kind `field_identifier` ([`FieldIdentifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn field_identifier(self) -> Option<FieldIdentifier<'tree>> {
@@ -7192,7 +7192,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `identifier` ([Identifier]), otherwise returns None
+        ///Returns the node if it is of kind `identifier` ([`Identifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn identifier(self) -> Option<Identifier<'tree>> {
@@ -7201,7 +7201,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `type_identifier` ([TypeIdentifier]), otherwise returns None
+        ///Returns the node if it is of kind `type_identifier` ([`TypeIdentifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn type_identifier(self) -> Option<TypeIdentifier<'tree>> {
@@ -7302,7 +7302,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> DefinitionClass<'tree> {
-        ///Returns the node if it is of kind `enum_item` ([EnumItem]), otherwise returns None
+        ///Returns the node if it is of kind `enum_item` ([`EnumItem`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn enum_item(self) -> Option<EnumItem<'tree>> {
@@ -7311,7 +7311,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `struct_item` ([StructItem]), otherwise returns None
+        ///Returns the node if it is of kind `struct_item` ([`StructItem`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn struct_item(self) -> Option<StructItem<'tree>> {
@@ -7320,7 +7320,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `type_item` ([TypeItem]), otherwise returns None
+        ///Returns the node if it is of kind `type_item` ([`TypeItem`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn type_item(self) -> Option<TypeItem<'tree>> {
@@ -7329,7 +7329,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `union_item` ([UnionItem]), otherwise returns None
+        ///Returns the node if it is of kind `union_item` ([`UnionItem`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn union_item(self) -> Option<UnionItem<'tree>> {
@@ -7440,7 +7440,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> ReferenceCall<'tree> {
-        ///Returns the node if it is of kind `call_expression` ([CallExpression]), otherwise returns None
+        ///Returns the node if it is of kind `call_expression` ([`CallExpression`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn call_expression(self) -> Option<CallExpression<'tree>> {
@@ -7449,7 +7449,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        ///Returns the node if it is of kind `macro_invocation` ([MacroInvocation]), otherwise returns None
+        ///Returns the node if it is of kind `macro_invocation` ([`MacroInvocation`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn macro_invocation(self) -> Option<MacroInvocation<'tree>> {

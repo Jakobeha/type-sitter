@@ -1,28 +1,27 @@
 #[allow(non_upper_case_globals)]
-static __Highlights__: type_sitter_lib::gen_internal::TypedQueryOnceBox<tree_sitter::Query> =
-    type_sitter_lib::gen_internal::TypedQueryOnceBox::new();
+static __Highlights__: std::sync::OnceLock<tree_sitter::Query> = std::sync::OnceLock::new();
 #[allow(non_snake_case)]
-fn __Mk__Highlights() -> Box<tree_sitter::Query> {
-    # [allow (unused_mut)] let mut query = tree_sitter :: Query :: new (& tree_sitter_json :: language () , "(pair\n  key: (_) @string.special.key)\n\n(string) @string\n\n(number) @number\n\n[\n  (null)\n  (true)\n  (false)\n] @constant.builtin\n\n(escape_sequence) @escape\n\n(comment) @comment\n") . expect ("query parsed at compile-time but failed at runtime. Is the language 'tree_sitter_json' correct, and did you use the same tree-sitter / tree_sitter_json version?") ;
-    Box::new(query)
+fn __Mk__Highlights() -> tree_sitter::Query {
+    # [allow (unused_mut)] let mut query = tree_sitter :: Query :: new (& tree_sitter_json :: LANGUAGE . into () , "(pair\n  key: (_) @string.special.key)\n\n(string) @string\n\n(number) @number\n\n[\n  (null)\n  (true)\n  (false)\n] @constant.builtin\n\n(escape_sequence) @escape\n\n(comment) @comment\n") . expect ("query parsed at compile-time but failed at runtime. Is the language 'tree_sitter_json' correct, and did you use the same tree-sitter / tree_sitter_json version?") ;
+    query
 }
 #[doc = "Typed version of the query:\n\n```sexp\n(pair\n  key: (_) @string.special.key)\n\n(string) @string\n\n(number) @number\n\n[\n  (null)\n  (true)\n  (false)\n] @constant.builtin\n\n(escape_sequence) @escape\n\n(comment) @comment\n\n```"]
 #[allow(non_camel_case_types)]
 #[derive(Debug, Clone, Copy)]
 pub struct Highlights;
-#[doc = "Matches returned by a query cursor running the query [Highlights]:\n\n```sexp\n(pair\n  key: (_) @string.special.key)\n\n(string) @string\n\n(number) @number\n\n[\n  (null)\n  (true)\n  (false)\n] @constant.builtin\n\n(escape_sequence) @escape\n\n(comment) @comment\n\n```"]
+#[doc = "Matches returned by a query cursor running the query [`Highlights`]:\n\n```sexp\n(pair\n  key: (_) @string.special.key)\n\n(string) @string\n\n(number) @number\n\n[\n  (null)\n  (true)\n  (false)\n] @constant.builtin\n\n(escape_sequence) @escape\n\n(comment) @comment\n\n```"]
 #[allow(unused, non_camel_case_types)]
 pub type HighlightsMatches<'cursor, 'tree, Text, I> =
     type_sitter_lib::TypedQueryMatches<'cursor, 'tree, Highlights, Text, I>;
-#[doc = "Captures returned by a query cursor running the query [Highlights]:\n\n```sexp\n(pair\n  key: (_) @string.special.key)\n\n(string) @string\n\n(number) @number\n\n[\n  (null)\n  (true)\n  (false)\n] @constant.builtin\n\n(escape_sequence) @escape\n\n(comment) @comment\n\n```"]
+#[doc = "Captures returned by a query cursor running the query [`Highlights`]:\n\n```sexp\n(pair\n  key: (_) @string.special.key)\n\n(string) @string\n\n(number) @number\n\n[\n  (null)\n  (true)\n  (false)\n] @constant.builtin\n\n(escape_sequence) @escape\n\n(comment) @comment\n\n```"]
 #[allow(unused, non_camel_case_types)]
 pub type HighlightsCaptures<'cursor, 'tree, Text, I> =
     type_sitter_lib::TypedQueryCaptures<'cursor, 'tree, Highlights, Text, I>;
-#[doc = "A match returned by the query [Highlights]:\n\n```sexp\n(pair\n  key: (_) @string.special.key)\n\n(string) @string\n\n(number) @number\n\n[\n  (null)\n  (true)\n  (false)\n] @constant.builtin\n\n(escape_sequence) @escape\n\n(comment) @comment\n\n```"]
+#[doc = "A match returned by the query [`Highlights`]:\n\n```sexp\n(pair\n  key: (_) @string.special.key)\n\n(string) @string\n\n(number) @number\n\n[\n  (null)\n  (true)\n  (false)\n] @constant.builtin\n\n(escape_sequence) @escape\n\n(comment) @comment\n\n```"]
 pub struct HighlightsMatch<'cursor, 'tree> {
     r#match: tree_sitter::QueryMatch<'cursor, 'tree>,
 }
-#[doc = "A capture returned by the query [Highlights]:\n\n```sexp\n(pair\n  key: (_) @string.special.key)\n\n(string) @string\n\n(number) @number\n\n[\n  (null)\n  (true)\n  (false)\n] @constant.builtin\n\n(escape_sequence) @escape\n\n(comment) @comment\n\n```"]
+#[doc = "A capture returned by the query [`Highlights`]:\n\n```sexp\n(pair\n  key: (_) @string.special.key)\n\n(string) @string\n\n(number) @number\n\n[\n  (null)\n  (true)\n  (false)\n] @constant.builtin\n\n(escape_sequence) @escape\n\n(comment) @comment\n\n```"]
 pub enum HighlightsCapture<'cursor, 'tree> {
     #[doc = "A `string.special.key` ([type_sitter_lib::UntypedNamedNode])"]
     #[doc = ""]
@@ -541,7 +540,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> ConstantBuiltin<'tree> {
-        #[doc = "Returns the node if it is of kind `false` ([False]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `false` ([`False`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#false(self) -> Option<False<'tree>> {
@@ -550,7 +549,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `null` ([Null]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `null` ([`Null`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn null(self) -> Option<Null<'tree>> {
@@ -559,7 +558,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `true` ([True]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `true` ([`True`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#true(self) -> Option<True<'tree>> {

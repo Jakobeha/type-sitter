@@ -71,10 +71,10 @@ impl<'tree> SExpSeq<'tree> {
         let disabled_patterns = disabled_patterns.iter().map(|p| lit_str(p));
         let full_query_documentation = format!("\n\n```sexp\n{}\n```", query_str);
         let def_doc = concat_doc!("Typed version of the query:", full_query_documentation);
-        let matches_doc = concat_doc!("Matches returned by a query cursor running the query [", def_name, "]:", full_query_documentation);
-        let query_match_doc = concat_doc!("A match returned by the query [", def_name, "]:", full_query_documentation);
-        let captures_doc = concat_doc!("Captures returned by a query cursor running the query [", def_name, "]:", full_query_documentation);
-        let query_capture_doc = concat_doc!("A capture returned by the query [", def_name, "]:", full_query_documentation);
+        let matches_doc = concat_doc!("Matches returned by a query cursor running the query [`", def_name, "`]:", full_query_documentation);
+        let query_match_doc = concat_doc!("A match returned by the query [`", def_name, "`]:", full_query_documentation);
+        let captures_doc = concat_doc!("Captures returned by a query cursor running the query [`", def_name, "`]:", full_query_documentation);
+        let query_capture_doc = concat_doc!("A capture returned by the query [`", def_name, "`]:", full_query_documentation);
 
         let (
             tree_t,

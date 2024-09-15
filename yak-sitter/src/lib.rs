@@ -18,8 +18,8 @@ use utf8_error_offset_by::Utf8ErrorOffsetBy;
 mod utf8_error_offset_by;
 mod define_custom_wrapper;
 
-/// Wrapper around [tree_sitter::Tree] which stores its text, filepath, and extra data that is
-/// accessible from any node. It also uses and is used by [tree_sitter_wrapper] wrapper classes.
+/// Wrapper around [`tree_sitter::Tree`] which stores its text, filepath, and extra data that is
+/// accessible from any node. It also uses and is used by [`yak_sitter`](crate) wrapper classes.
 #[derive(Debug)]
 pub struct Tree<Custom = ()> {
     tree: tree_sitter::Tree,
@@ -29,8 +29,8 @@ pub struct Tree<Custom = ()> {
     pub custom: Custom
 }
 
-/// Wrapper around [tree_sitter::Node] which can access its text, tree's filepath, and tree's
-/// `Custom` data behind a shared reference. It also uses and is used by [tree_sitter_wrapper]
+/// Wrapper around [`tree_sitter::Node`] which can access its text, tree's filepath, and tree's
+/// `Custom` data behind a shared reference. It also uses and is used by [`yak_sitter`](crate)
 /// wrapper classes.
 pub struct Node<'tree, Custom = ()> {
     node: tree_sitter::Node<'tree>,
@@ -40,13 +40,13 @@ pub struct Node<'tree, Custom = ()> {
 /// Raw pointer equivalent of [Node].
 ///
 /// `Custom` is still in the type signature, but you can safely `transmute` between different
-/// `Custom` types and this is exposed via [NodePtr::cast_custom].
+/// `Custom` types and this is exposed via [`NodePtr::cast_custom`].
 pub struct NodePtr<Custom = ()> {
     node_data: NodeData,
     tree: NonNull<Tree<Custom>>
 }
 
-/// Taken straight from [tree_sitter::ffi::TSNode]. This must maintain the same layout
+/// Taken straight from [`tree_sitter::ffi::TSNode`]. This must maintain the same layout
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(C)]
 struct NodeData {
@@ -60,7 +60,7 @@ struct NodeData {
 #[repr(transparent)]
 pub struct NodeId(usize);
 
-/// Wrapper around [tree_sitter::TreeCursor], which can actually go outside of its "local" node,
+/// Wrapper around [`tree_sitter::TreeCursor`], which can actually go outside of its "local" node,
 /// albeit with degraded performance (we just do standard lookups)
 pub struct TreeCursor<'tree, Custom = ()> {
     cursor: tree_sitter::TreeCursor<'tree>,
@@ -68,14 +68,14 @@ pub struct TreeCursor<'tree, Custom = ()> {
     child_depth: usize,
 }
 
-/// Wrapper around [tree_sitter::QueryCursor]
+/// Wrapper around [`tree_sitter::QueryCursor`]
 pub struct QueryCursor {
     query_cursor: tree_sitter::QueryCursor
 }
 
-/// Wrapper around [tree_sitter::QueryMatches]
+/// Wrapper around [`tree_sitter::QueryMatches`]
 ///
-/// [tree_sitter::QueryMatches] is NOT a real iterator, it's a [StreamingIterator] (see
+/// [`tree_sitter::QueryMatches] is NOT a real iterator, it's a [StreamingIterator] (se`e
 ///     <https://github.com/tree-sitter/tree-sitter/issues/608>). Therefore this doesn't implement
 ///     [Iterator]
 pub struct QueryMatches<'query, 'tree: 'query, Custom = ()> {
@@ -85,62 +85,62 @@ pub struct QueryMatches<'query, 'tree: 'query, Custom = ()> {
     query: &'query Query
 }
 
-/// Wrapper around [tree_sitter::QueryMatch]
+/// Wrapper around [`tree_sitter::QueryMatch`]
 pub struct QueryMatch<'query, 'tree, Custom = ()> {
     query_match: tree_sitter::QueryMatch<'query, 'tree>,
     tree: &'tree Tree<Custom>,
     query: &'query Query
 }
 
-/// Wrapper around [tree_sitter::QueryCapture]
+/// Wrapper around [`tree_sitter::QueryCapture`]
 pub struct QueryCaptures<'query, 'tree, Custom = ()> {
     query_captures: tree_sitter::QueryCaptures<'query, 'tree, &'query Tree<Custom>, &'query str>,
     tree: &'tree Tree<Custom>,
     query: &'query Query
 }
 
-/// Wrapper around [tree_sitter::QueryCapture]
+/// Wrapper around [`tree_sitter::QueryCapture`]
 pub struct QueryCapture<'query, 'tree, Custom = ()> {
     pub node: Node<'tree, Custom>,
     pub index: usize,
     pub name: &'query str,
 }
 
-/// Variant of [std::ops::Range] which can be copied and displays as `:line:column-:line:column`
+/// Variant of [`std::ops::Range`] which can be copied and displays as `:line:column-:line:column`
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, PartialOrd, Ord)]
 pub struct PointRange {
     pub start: Point,
     pub end: Point,
 }
 
-/// Wrapper around [tree_sitter::Point], which displays as `:line:column`
+/// Wrapper around [`tree_sitter::Point`], which displays as `:line:column`
 #[derive(Debug, Default, Clone, Copy, PartialEq, Eq, Hash, PartialOrd, Ord)]
 #[repr(transparent)]
 pub struct Point(tree_sitter::Point);
 
-/// A byte and point range in one data-structure. Wrapper around [tree_sitter::Range] which displays
+/// A byte and point range in one data-structure. Wrapper around [`tree_sitter::Range`] which displays
 /// as `:line:column-:line:column`
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
 pub struct Range(tree_sitter::Range);
 
-/// Wrapper around [tree_sitter::Parser]
+/// Wrapper around [`tree_sitter::Parser`]
 #[repr(transparent)]
 pub struct Parser(tree_sitter::Parser);
 
-/// Re-exports [tree_sitter::Language]
+/// Re-exports [`tree_sitter::Language`]
 pub type Language = tree_sitter::Language;
-/// Re-exports [tree_sitter::LanguageRef]
+/// Re-exports [`tree_sitter::LanguageRef`]
 pub type LanguageRef<'a> = tree_sitter::LanguageRef<'a>;
-/// Re-exports [tree_sitter::LanguageError]
+/// Re-exports [`tree_sitter::LanguageError`]
 pub type LanguageError = tree_sitter::LanguageError;
-/// Re-exports [tree_sitter::QueryError]
+/// Re-exports [`tree_sitter::QueryError`]
 pub type Query = tree_sitter::Query;
-/// Re-exports [tree_sitter::QueryError]
+/// Re-exports [`tree_sitter::QueryError`]
 pub type QueryProperty = tree_sitter::QueryProperty;
-/// Re-exports [tree_sitter::QueryError]
+/// Re-exports [`tree_sitter::QueryError`]
 pub type IncludedRangesError = tree_sitter::IncludedRangesError;
-/// Re-exports [tree_sitter::InputEdit]
+/// Re-exports [`tree_sitter::InputEdit`]
 pub type InputEdit = tree_sitter::InputEdit;
 
 /// Error from parsing a tree
@@ -193,7 +193,7 @@ pub struct TraversalItem<'tree, Custom = ()> {
 }
 
 impl Parser {
-    /// Create a new parser for the given language. See [tree_sitter::Parser::set_language]
+    /// Create a new parser for the given language. See [`tree_sitter::Parser::set_languag`e]
     #[inline]
     pub fn new(language: &Language) -> Result<Self, LanguageError> {
         let mut parser = tree_sitter::Parser::new();
@@ -201,20 +201,20 @@ impl Parser {
         Ok(Self(parser))
     }
 
-    /// Set the language of the parser. See [tree_sitter::Parser::set_language]
+    /// Set the language of the parser. See [`tree_sitter::Parser::set_languag`e]
     #[inline]
     pub fn set_language(&mut self, language: &Language) -> Result<(), LanguageError> {
         self.0.set_language(language)
     }
 
     /// Set the ranges of text the parser should include when parsing. See
-    /// [tree_sitter::Parser::set_included_ranges]
+    /// [`tree_sitter::Parser::set_included_range`s]
     #[inline]
     pub fn set_included_ranges(&mut self, ranges: &[Range]) -> Result<(), IncludedRangesError> {
         self.0.set_included_ranges(Range::slice_as_ts(ranges))
     }
 
-    /// Parse a file. See [tree_sitter::Parser::parse]
+    /// Parse a file. See [`tree_sitter::Parser::pars`e]
     ///
     /// The file must be valid utf-8 or this will return `Err`. The file's path is used for stable
     /// node comparison between trees.
@@ -229,9 +229,9 @@ impl Parser {
         self.parse_bytes(byte_text, Some(path), old_tree, custom)
     }
 
-    /// Parse a string. See [tree_sitter::Parser::parse]
+    /// Parse a string. See [`tree_sitter::Parser::parse`]
     ///
-    /// The path is passed to [TsCustom::new]. If your [TsCustom] doesn't use paths, jusrt pass
+    /// The path is stored as metadata that can be accessed from nodes. If you don't need this, pass
     /// `None`.
     #[inline]
     pub fn parse_string<Custom>(
@@ -244,12 +244,12 @@ impl Parser {
         self.parse_bytes(text.into_bytes(), path, old_tree, custom)
     }
 
-    /// Parse a byte string. See [tree_sitter::Parser::parse].
+    /// Parse a byte string. See [`tree_sitter::Parser::parse`].
     ///
     /// Note that the wrappers expect and assume UTF-8, so this will fail if the text is not valid
     /// UTF-8.
     ///
-    /// The path is passed to [TsCustom::new]. If your [TsCustom] doesn't use paths, jusrt pass
+    /// The path is stored as metadata that can be accessed from nodes. If you don't need this, pass
     /// `None`.
     #[inline]
     pub fn parse_bytes<Custom>(
@@ -316,7 +316,7 @@ impl<Custom> Tree<Custom> {
         unsafe { Node::new(self.tree.root_node(), self) }
     }
 
-    /// Create a [TreeCursor] starting at the root node.
+    /// Create a [`TreeCursor`] starting at the root node.
     #[inline]
     pub fn walk(&self) -> TreeCursor<'_, Custom> {
         TreeCursor::new(self.tree.walk(), self, true)
@@ -328,7 +328,7 @@ impl<Custom> Tree<Custom> {
         Range::vec_from_ts(self.tree.included_ranges())
     }
 
-    /// Get the changed ranges. See [tree_sitter::Tree::changed_ranges]
+    /// Get the changed ranges. See [`tree_sitter::Tree::changed_ranges`]
     #[inline]
     pub fn changed_ranges(&self, other: &Tree) -> impl ExactSizeIterator<Item=Range> {
         self.tree.changed_ranges(&other.tree).map(Range)
@@ -340,7 +340,7 @@ impl<Custom> Tree<Custom> {
         self.tree.language()
     }
 
-    /// Print a dot graph of the tree to the given file. See [tree_sitter::Tree::print_dot_graph]
+    /// Print a dot graph of the tree to the given file. See [`tree_sitter::Tree::print_dot_graph`]
     #[inline]
     pub fn print_dot_graph(
         &self,
@@ -350,7 +350,7 @@ impl<Custom> Tree<Custom> {
         self.tree.print_dot_graph(file)
     }
 
-    /// Edit the tree. See [tree_sitter::Tree::edit]
+    /// Edit the tree. See [`tree_sitter::Tree::edit`]
     #[inline]
     pub fn edit(&mut self, edit: &InputEdit) {
         self.tree.edit(edit)
@@ -368,7 +368,7 @@ impl<'tree, Custom> tree_sitter::TextProvider<&'tree str> for &'tree Tree<Custom
 }
 
 impl<'tree, Custom> Node<'tree, Custom> {
-    /// Wrap a [tree_sitter::Node]. Requires its associated [Tree] for convenience methods.
+    /// Wrap a [`tree_sitter::Node`]. Requires its associated [`Tree`] for convenience methods.
     ///
     /// SAFETY: The node must be from the given tree.
     #[inline]
@@ -382,55 +382,55 @@ impl<'tree, Custom> Node<'tree, Custom> {
     /// mention that a if a tree is created from an older tree, nodes may be reused and from the old
     /// tree and these will have the same id.
     ///
-    /// See [tree_sitter::Node::id]
+    /// See [`tree_sitter::Node::i`d]
     #[inline]
     pub fn id(&self) -> NodeId {
         NodeId::of_ts(self.node)
     }
 
-    /// Get the node's kind. See [tree_sitter::Node::kind]
+    /// Get the node's kind. See [`tree_sitter::Node::kin`d]
     #[inline]
     pub fn kind(&self) -> &'static str {
         self.node.kind()
     }
 
-    /// Check if the node is named. See [tree_sitter::Node::is_named]
+    /// Check if the node is named. See [`tree_sitter::Node::is_name`d]
     #[inline]
     pub fn is_named(&self) -> bool {
         self.node.is_named()
     }
 
-    /// Check if the node is missing. See [tree_sitter::Node::is_missing]
+    /// Check if the node is missing. See [`tree_sitter::Node::is_missin`g]
     #[inline]
     pub fn is_missing(&self) -> bool {
         self.node.is_missing()
     }
 
-    /// Check if the node is extra. See [tree_sitter::Node::is_extra]
+    /// Check if the node is extra. See [`tree_sitter::Node::is_extr`a]
     #[inline]
     pub fn is_extra(&self) -> bool {
         self.node.is_extra()
     }
 
-    /// Check if the node is an error. See [tree_sitter::Node::is_error]
+    /// Check if the node is an error. See [`tree_sitter::Node::is_erro`r]
     #[inline]
     pub fn is_error(&self) -> bool {
         self.node.is_error()
     }
 
-    /// Check if the node has an error. See [tree_sitter::Node::has_error]
+    /// Check if the node has an error. See [`tree_sitter::Node::has_erro`r]
     #[inline]
     pub fn has_error(&self) -> bool {
         self.node.has_error()
     }
 
-    /// Check if the node has changes. See [tree_sitter::Node::has_changes]
+    /// Check if the node has changes. See [`tree_sitter::Node::has_change`s]
     #[inline]
     pub fn has_changes(&self) -> bool {
         self.node.has_changes()
     }
 
-    /// Edit the node. See [tree_sitter::Node::edit]
+    /// Edit the node. See [`tree_sitter::Node::edi`t]
     #[inline]
     pub fn edit(&mut self, edit: &InputEdit) {
         self.node.edit(edit)
@@ -516,7 +516,7 @@ impl<'tree, Custom> Node<'tree, Custom> {
         &self.tree.custom
     }
 
-    /// Get the node's named and unnamed children. See [tree_sitter::Node::children]
+    /// Get the node's named and unnamed children. See [`tree_sitter::Node::childre`n]
     #[inline]
     pub fn all_children<'a>(&self, cursor: &'a mut TreeCursor<'tree, Custom>) -> impl ExactSizeIterator<Item = Node<'tree, Custom>> + 'a {
         let tree = self.tree;
@@ -524,7 +524,7 @@ impl<'tree, Custom> Node<'tree, Custom> {
         self.node.children(&mut cursor.cursor).map(move |node| unsafe { Node::new(node, tree) })
     }
 
-    /// Get the node's named children. See [tree_sitter::Node::named_children]
+    /// Get the node's named children. See [`tree_sitter::Node::named_childre`n]
     #[inline]
     pub fn named_children<'a>(&self, cursor: &'a mut TreeCursor<'tree, Custom>) -> impl ExactSizeIterator<Item = Node<'tree, Custom>> + 'a {
         let tree = self.tree;
@@ -579,14 +579,14 @@ impl<'tree, Custom> Node<'tree, Custom> {
         self.node.prev_named_sibling().map(|node| unsafe { Node::new(node, self.tree) })
     }
 
-    /// Get the node's child at the given index, named or unnamed. See [tree_sitter::Node::child]
+    /// Get the node's child at the given index, named or unnamed. See [`tree_sitter::Node::chil`d]
     #[inline]
     pub fn any_child(&self, i: usize) -> Option<Node<'tree, Custom>> {
         // SAFETY: Same tree
         self.node.child(i).map(|node| unsafe { Node::new(node, self.tree) })
     }
 
-    /// Get the node's named child at the given index. See [tree_sitter::Node::named_child]
+    /// Get the node's named child at the given index. See [`tree_sitter::Node::named_chil`d]
     #[inline]
     pub fn named_child(&self, i: usize) -> Option<Node<'tree, Custom>> {
         // SAFETY: Same tree
@@ -672,7 +672,7 @@ impl<'tree, Custom> Node<'tree, Custom> {
         })
     }
 
-    /// Get a [TreeCursor] that points to this node.
+    /// Get a [`TreeCursor`] that points to this node.
     #[inline]
     pub fn walk(&self) -> TreeCursor<'tree, Custom> {
         TreeCursor::new(self.node.walk(), self.tree, false)
@@ -896,8 +896,8 @@ impl<'tree, Custom> TreeCursor<'tree, Custom> {
     /// Move the cursor to the next sibling of the current node and return `true`, or return `false`
     /// if the current node has no next sibling.
     ///
-    /// Unlike [tree_sitter::TreeCursor.goto_next_sibling], this will actually work if the cursor is
-    /// rooted (e.g. reset) to its current node.
+    /// Unlike [`tree_sitter::TreeCursor.goto_next_sibling`], this will actually work if the cursor
+    /// is rooted (e.g. reset) to its current node.
     pub fn goto_next_sibling(&mut self) -> bool {
         self.cursor.goto_next_sibling() || if self.child_depth > 0 {
             false
@@ -920,7 +920,7 @@ impl<'tree, Custom> TreeCursor<'tree, Custom> {
     /// Move the cursor to the parent of the current node and return `true`, or return `false`
     /// if the current node is a tree root.
     ///
-    /// Unlike [tree_sitter::TreeCursor.goto_parent], this will actually work if the cursor is
+    /// Unlike [`tree_sitter::TreeCursor.goto_parent`], this will actually work if the cursor is
     /// rooted (e.g. reset) to its current node.
     pub fn goto_parent(&mut self) -> bool {
         if self.cursor.goto_parent() {
@@ -960,14 +960,14 @@ impl<'tree, Custom> TreeCursor<'tree, Custom> {
 }
 
 impl QueryCursor {
-    /// Creates a new cursor. See [tree_sitter::QueryCursor::new]
+    /// Creates a new cursor. See [`tree_sitter::QueryCursor::new`]
     #[inline]
     pub fn new() -> Self {
         Self { query_cursor: tree_sitter::QueryCursor::new() }
     }
 
     /// Iterate over all matches in the order they were found. See
-    /// [tree_sitter::QueryCursor::matches]
+    /// [`tree_sitter::QueryCursor::matches`]
     #[inline]
     pub fn matches<'query, 'tree: 'query, Custom>(
         &'query mut self,
@@ -982,7 +982,8 @@ impl QueryCursor {
         }
     }
 
-    /// Iterate over all captures in the order they appear. See [tree_sitter::QueryCursor::captures]
+    /// Iterate over all captures in the order they appear. See
+    /// [`tree_sitter::QueryCursor::captures`]
     #[inline]
     pub fn captures<'query, 'tree: 'query, Custom>(
         &'query mut self,
@@ -1035,19 +1036,19 @@ impl QueryCursor {
 }
 
 impl<'query, 'tree: 'query, Custom> QueryMatches<'query, 'tree, Custom> {
-    /// Get the underlying [tree_sitter::QueryMatches]
+    /// Get the underlying [`tree_sitter::QueryMatches`]
     #[inline]
     pub fn as_inner(&self) -> &tree_sitter::QueryMatches<'query, 'tree, &'query Tree<Custom>, &'query str> {
         &self.query_matches
     }
 
-    /// Get the underlying [tree_sitter::QueryMatches]
+    /// Get the underlying [`tree_sitter::QueryMatches`]
     #[inline]
     pub fn as_inner_mut(&mut self) -> &mut tree_sitter::QueryMatches<'query, 'tree, &'query Tree<Custom>, &'query str> {
         &mut self.query_matches
     }
 
-    /// Destruct into the underlying [tree_sitter::QueryMatches], query, and tree
+    /// Destruct into the underlying [`tree_sitter::QueryMatches], query, and tre`e
     #[inline]
     pub fn into_inner(self) -> (tree_sitter::QueryMatches<'query, 'tree, &'query Tree<Custom>, &'query str>, &'query Query, &'tree Tree<Custom>) {
         (self.query_matches, self.query, self.tree)
@@ -1083,19 +1084,19 @@ impl<'query, 'tree: 'query, Custom> StreamingIteratorMut for QueryMatches<'query
 }
 
 impl<'query, 'tree: 'query, Custom> QueryCaptures<'query, 'tree, Custom> {
-    /// Get the underlying [tree_sitter::QueryCaptures]
+    /// Get the underlying [`tree_sitter::QueryCaptures`]
     #[inline]
     pub fn as_inner(&self) -> &tree_sitter::QueryCaptures<'query, 'tree, &'query Tree<Custom>, &'query str> {
         &self.query_captures
     }
 
-    /// Get the underlying [tree_sitter::QueryCaptures]
+    /// Get the underlying [`tree_sitter::QueryCaptures`]
     #[inline]
     pub fn as_inner_mut(&mut self) -> &mut tree_sitter::QueryCaptures<'query, 'tree, &'query Tree<Custom>, &'query str> {
         &mut self.query_captures
     }
 
-    /// Destruct into the underlying [tree_sitter::QueryCaptures], query, and tree
+    /// Destruct into the underlying [`tree_sitter::QueryCaptures], query, and tre`e
     #[inline]
     pub fn into_inner(self) -> (tree_sitter::QueryCaptures<'query, 'tree, &'query Tree<Custom>, &'query str>, &'query Query, &'tree Tree<Custom>) {
         (self.query_captures, self.query, self.tree)
@@ -1174,7 +1175,7 @@ impl<'query, 'tree, Custom> QueryMatch<'query, 'tree, Custom> {
 }
 
 impl<'query, 'tree, Custom> QueryCapture<'query, 'tree, Custom> {
-    /// Wrap a [tree_sitter::QueryCapture]. This also needs the tree and query for helper methods.
+    /// Wrap a [`tree_sitter::QueryCapture]. This also needs the tree and query for helper methods`.
     #[inline]
     fn new(query_capture: tree_sitter::QueryCapture<'tree>, tree: &'tree Tree<Custom>, query: &'query Query) -> Self {
         // SAFETY: fn is internal so the provided tree is always the same as the node's tree
@@ -1189,13 +1190,13 @@ impl<'query, 'tree, Custom> QueryCapture<'query, 'tree, Custom> {
 }
 
 impl PointRange {
-    /// Convert this into an [std::ops::Range]
+    /// Convert this into an [`std::ops::Range`]
     #[inline]
     pub fn to_ops_range(self) -> std::ops::Range<Point> {
         self.start..self.end
     }
 
-    /// Convert this into an [std::ops::Range] of [tree_sitter::Point]s
+    /// Convert this into an [`std::ops::Range`] of [`tree_sitter::Point`]s
     #[inline]
     pub fn to_ts_point_range(self) -> std::ops::Range<tree_sitter::Point> {
         self.start.0..self.end.0
@@ -1368,7 +1369,7 @@ impl NodeId {
     /// never happen.
     pub const INVALID: Self = Self(usize::MAX);
 
-    /// Get the id of the given [tree-sitter::Node]. See [tree_sitter::Node::id].
+    /// Get the id of the given [`tree_sitter::Node`]. See [`tree_sitter::Node::id`].
     #[inline]
     fn of_ts(node: tree_sitter::Node<'_>) -> Self {
         NodeId(node.id())
@@ -1475,7 +1476,7 @@ impl TraversalState {
 }
 
 impl<'tree, Custom> PreorderTraversal<'tree, Custom> {
-    /// Create a new preorder traversal which will use the given [TreeCursor].
+    /// Create a new preorder traversal which will use the given [`TreeCursor`].
     #[inline]
     pub fn with_cursor(cursor: TreeCursor<'tree, Custom>) -> Self {
         Self {
@@ -1484,7 +1485,7 @@ impl<'tree, Custom> PreorderTraversal<'tree, Custom> {
         }
     }
 
-    /// Create a new preorder traversal which will traverse the given [Tree].
+    /// Create a new preorder traversal which will traverse the given [`Tree`].
     #[inline]
     pub fn of_tree(tree: &'tree Tree<Custom>) -> Self {
         Self::with_cursor(tree.walk())

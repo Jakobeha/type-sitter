@@ -1,28 +1,27 @@
 #[allow(non_upper_case_globals)]
-static __Highlights__: type_sitter_lib::gen_internal::TypedQueryOnceBox<tree_sitter::Query> =
-    type_sitter_lib::gen_internal::TypedQueryOnceBox::new();
+static __Highlights__: std::sync::OnceLock<tree_sitter::Query> = std::sync::OnceLock::new();
 #[allow(non_snake_case)]
-fn __Mk__Highlights() -> Box<tree_sitter::Query> {
-    # [allow (unused_mut)] let mut query = tree_sitter :: Query :: new (& tree_sitter_rust :: language () , "; Identifiers\n\n(type_identifier) @type\n(primitive_type) @type.builtin\n(field_identifier) @property\n\n; Identifier conventions\n\n; Assume all-caps names are constants\n((identifier) @constant\n (#match? @constant \"^[A-Z][A-Z\\\\d_]+$'\"))\n\n; Assume uppercase names are enum constructors\n((identifier) @constructor\n (#match? @constructor \"^[A-Z]\"))\n\n; Assume that uppercase names in paths are types\n((scoped_identifier\n  path: (identifier) @type)\n (#match? @type \"^[A-Z]\"))\n((scoped_identifier\n  path: (scoped_identifier\n    name: (identifier) @type))\n (#match? @type \"^[A-Z]\"))\n((scoped_type_identifier\n  path: (identifier) @type)\n (#match? @type \"^[A-Z]\"))\n((scoped_type_identifier\n  path: (scoped_identifier\n    name: (identifier) @type))\n (#match? @type \"^[A-Z]\"))\n\n; Assume all qualified names in struct patterns are enum constructors. (They're\n; either that, or struct names; highlighting both as constructors seems to be\n; the less glaring choice of error, visually.)\n(struct_pattern\n  type: (scoped_type_identifier\n    name: (type_identifier) @constructor))\n\n; Function calls\n\n(call_expression\n  function: (identifier) @function)\n(call_expression\n  function: (field_expression\n    field: (field_identifier) @function.method))\n(call_expression\n  function: (scoped_identifier\n    \"::\"\n    name: (identifier) @function))\n\n(generic_function\n  function: (identifier) @function)\n(generic_function\n  function: (scoped_identifier\n    name: (identifier) @function))\n(generic_function\n  function: (field_expression\n    field: (field_identifier) @function.method))\n\n(macro_invocation\n  macro: (identifier) @function.macro\n  \"!\" @function.macro)\n\n; Function definitions\n\n(function_item (identifier) @function)\n(function_signature_item (identifier) @function)\n\n(line_comment) @comment\n(block_comment) @comment\n\n(line_comment (doc_comment)) @comment.documentation\n(block_comment (doc_comment)) @comment.documentation\n\n\"(\" @punctuation.bracket\n\")\" @punctuation.bracket\n\"[\" @punctuation.bracket\n\"]\" @punctuation.bracket\n\"{\" @punctuation.bracket\n\"}\" @punctuation.bracket\n\n(type_arguments\n  \"<\" @punctuation.bracket\n  \">\" @punctuation.bracket)\n(type_parameters\n  \"<\" @punctuation.bracket\n  \">\" @punctuation.bracket)\n\n\"::\" @punctuation.delimiter\n\":\" @punctuation.delimiter\n\".\" @punctuation.delimiter\n\",\" @punctuation.delimiter\n\";\" @punctuation.delimiter\n\n(parameter (identifier) @variable.parameter)\n\n(lifetime (identifier) @label)\n\n\"as\" @keyword\n\"async\" @keyword\n\"await\" @keyword\n\"break\" @keyword\n\"const\" @keyword\n\"continue\" @keyword\n\"default\" @keyword\n\"dyn\" @keyword\n\"else\" @keyword\n\"enum\" @keyword\n\"extern\" @keyword\n\"fn\" @keyword\n\"for\" @keyword\n\"if\" @keyword\n\"impl\" @keyword\n\"in\" @keyword\n\"let\" @keyword\n\"loop\" @keyword\n\"macro_rules!\" @keyword\n\"match\" @keyword\n\"mod\" @keyword\n\"move\" @keyword\n\"pub\" @keyword\n\"ref\" @keyword\n\"return\" @keyword\n\"static\" @keyword\n\"struct\" @keyword\n\"trait\" @keyword\n\"type\" @keyword\n\"union\" @keyword\n\"unsafe\" @keyword\n\"use\" @keyword\n\"where\" @keyword\n\"while\" @keyword\n(crate) @keyword\n(mutable_specifier) @keyword\n(use_list (self) @keyword)\n(scoped_use_list (self) @keyword)\n(scoped_identifier (self) @keyword)\n(super) @keyword\n\n(self) @variable.builtin\n\n(char_literal) @string\n(string_literal) @string\n(raw_string_literal) @string\n\n(boolean_literal) @constant.builtin\n(integer_literal) @constant.builtin\n(float_literal) @constant.builtin\n\n(escape_sequence) @escape\n\n(attribute_item) @attribute\n(inner_attribute_item) @attribute\n\n\"*\" @operator\n\"&\" @operator\n\"'\" @operator\n") . expect ("query parsed at compile-time but failed at runtime. Is the language 'tree_sitter_rust' correct, and did you use the same tree-sitter / tree_sitter_rust version?") ;
-    Box::new(query)
+fn __Mk__Highlights() -> tree_sitter::Query {
+    # [allow (unused_mut)] let mut query = tree_sitter :: Query :: new (& tree_sitter_rust :: LANGUAGE . into () , "; Identifiers\n\n(type_identifier) @type\n(primitive_type) @type.builtin\n(field_identifier) @property\n\n; Identifier conventions\n\n; Assume all-caps names are constants\n((identifier) @constant\n (#match? @constant \"^[A-Z][A-Z\\\\d_]+$'\"))\n\n; Assume uppercase names are enum constructors\n((identifier) @constructor\n (#match? @constructor \"^[A-Z]\"))\n\n; Assume that uppercase names in paths are types\n((scoped_identifier\n  path: (identifier) @type)\n (#match? @type \"^[A-Z]\"))\n((scoped_identifier\n  path: (scoped_identifier\n    name: (identifier) @type))\n (#match? @type \"^[A-Z]\"))\n((scoped_type_identifier\n  path: (identifier) @type)\n (#match? @type \"^[A-Z]\"))\n((scoped_type_identifier\n  path: (scoped_identifier\n    name: (identifier) @type))\n (#match? @type \"^[A-Z]\"))\n\n; Assume all qualified names in struct patterns are enum constructors. (They're\n; either that, or struct names; highlighting both as constructors seems to be\n; the less glaring choice of error, visually.)\n(struct_pattern\n  type: (scoped_type_identifier\n    name: (type_identifier) @constructor))\n\n; Function calls\n\n(call_expression\n  function: (identifier) @function)\n(call_expression\n  function: (field_expression\n    field: (field_identifier) @function.method))\n(call_expression\n  function: (scoped_identifier\n    \"::\"\n    name: (identifier) @function))\n\n(generic_function\n  function: (identifier) @function)\n(generic_function\n  function: (scoped_identifier\n    name: (identifier) @function))\n(generic_function\n  function: (field_expression\n    field: (field_identifier) @function.method))\n\n(macro_invocation\n  macro: (identifier) @function.macro\n  \"!\" @function.macro)\n\n; Function definitions\n\n(function_item (identifier) @function)\n(function_signature_item (identifier) @function)\n\n(line_comment) @comment\n(block_comment) @comment\n\n(line_comment (doc_comment)) @comment.documentation\n(block_comment (doc_comment)) @comment.documentation\n\n\"(\" @punctuation.bracket\n\")\" @punctuation.bracket\n\"[\" @punctuation.bracket\n\"]\" @punctuation.bracket\n\"{\" @punctuation.bracket\n\"}\" @punctuation.bracket\n\n(type_arguments\n  \"<\" @punctuation.bracket\n  \">\" @punctuation.bracket)\n(type_parameters\n  \"<\" @punctuation.bracket\n  \">\" @punctuation.bracket)\n\n\"::\" @punctuation.delimiter\n\":\" @punctuation.delimiter\n\".\" @punctuation.delimiter\n\",\" @punctuation.delimiter\n\";\" @punctuation.delimiter\n\n(parameter (identifier) @variable.parameter)\n\n(lifetime (identifier) @label)\n\n\"as\" @keyword\n\"async\" @keyword\n\"await\" @keyword\n\"break\" @keyword\n\"const\" @keyword\n\"continue\" @keyword\n\"default\" @keyword\n\"dyn\" @keyword\n\"else\" @keyword\n\"enum\" @keyword\n\"extern\" @keyword\n\"fn\" @keyword\n\"for\" @keyword\n\"if\" @keyword\n\"impl\" @keyword\n\"in\" @keyword\n\"let\" @keyword\n\"loop\" @keyword\n\"macro_rules!\" @keyword\n\"match\" @keyword\n\"mod\" @keyword\n\"move\" @keyword\n\"pub\" @keyword\n\"ref\" @keyword\n\"return\" @keyword\n\"static\" @keyword\n\"struct\" @keyword\n\"trait\" @keyword\n\"type\" @keyword\n\"union\" @keyword\n\"unsafe\" @keyword\n\"use\" @keyword\n\"where\" @keyword\n\"while\" @keyword\n\"yield\" @keyword\n(crate) @keyword\n(mutable_specifier) @keyword\n(use_list (self) @keyword)\n(scoped_use_list (self) @keyword)\n(scoped_identifier (self) @keyword)\n(super) @keyword\n\n(self) @variable.builtin\n\n(char_literal) @string\n(string_literal) @string\n(raw_string_literal) @string\n\n(boolean_literal) @constant.builtin\n(integer_literal) @constant.builtin\n(float_literal) @constant.builtin\n\n(escape_sequence) @escape\n\n(attribute_item) @attribute\n(inner_attribute_item) @attribute\n\n\"*\" @operator\n\"&\" @operator\n\"'\" @operator\n") . expect ("query parsed at compile-time but failed at runtime. Is the language 'tree_sitter_rust' correct, and did you use the same tree-sitter / tree_sitter_rust version?") ;
+    query
 }
-#[doc = "Typed version of the query:\n\n```sexp\n; Identifiers\n\n(type_identifier) @type\n(primitive_type) @type.builtin\n(field_identifier) @property\n\n; Identifier conventions\n\n; Assume all-caps names are constants\n((identifier) @constant\n (#match? @constant \"^[A-Z][A-Z\\\\d_]+$'\"))\n\n; Assume uppercase names are enum constructors\n((identifier) @constructor\n (#match? @constructor \"^[A-Z]\"))\n\n; Assume that uppercase names in paths are types\n((scoped_identifier\n  path: (identifier) @type)\n (#match? @type \"^[A-Z]\"))\n((scoped_identifier\n  path: (scoped_identifier\n    name: (identifier) @type))\n (#match? @type \"^[A-Z]\"))\n((scoped_type_identifier\n  path: (identifier) @type)\n (#match? @type \"^[A-Z]\"))\n((scoped_type_identifier\n  path: (scoped_identifier\n    name: (identifier) @type))\n (#match? @type \"^[A-Z]\"))\n\n; Assume all qualified names in struct patterns are enum constructors. (They're\n; either that, or struct names; highlighting both as constructors seems to be\n; the less glaring choice of error, visually.)\n(struct_pattern\n  type: (scoped_type_identifier\n    name: (type_identifier) @constructor))\n\n; Function calls\n\n(call_expression\n  function: (identifier) @function)\n(call_expression\n  function: (field_expression\n    field: (field_identifier) @function.method))\n(call_expression\n  function: (scoped_identifier\n    \"::\"\n    name: (identifier) @function))\n\n(generic_function\n  function: (identifier) @function)\n(generic_function\n  function: (scoped_identifier\n    name: (identifier) @function))\n(generic_function\n  function: (field_expression\n    field: (field_identifier) @function.method))\n\n(macro_invocation\n  macro: (identifier) @function.macro\n  \"!\" @function.macro)\n\n; Function definitions\n\n(function_item (identifier) @function)\n(function_signature_item (identifier) @function)\n\n(line_comment) @comment\n(block_comment) @comment\n\n(line_comment (doc_comment)) @comment.documentation\n(block_comment (doc_comment)) @comment.documentation\n\n\"(\" @punctuation.bracket\n\")\" @punctuation.bracket\n\"[\" @punctuation.bracket\n\"]\" @punctuation.bracket\n\"{\" @punctuation.bracket\n\"}\" @punctuation.bracket\n\n(type_arguments\n  \"<\" @punctuation.bracket\n  \">\" @punctuation.bracket)\n(type_parameters\n  \"<\" @punctuation.bracket\n  \">\" @punctuation.bracket)\n\n\"::\" @punctuation.delimiter\n\":\" @punctuation.delimiter\n\".\" @punctuation.delimiter\n\",\" @punctuation.delimiter\n\";\" @punctuation.delimiter\n\n(parameter (identifier) @variable.parameter)\n\n(lifetime (identifier) @label)\n\n\"as\" @keyword\n\"async\" @keyword\n\"await\" @keyword\n\"break\" @keyword\n\"const\" @keyword\n\"continue\" @keyword\n\"default\" @keyword\n\"dyn\" @keyword\n\"else\" @keyword\n\"enum\" @keyword\n\"extern\" @keyword\n\"fn\" @keyword\n\"for\" @keyword\n\"if\" @keyword\n\"impl\" @keyword\n\"in\" @keyword\n\"let\" @keyword\n\"loop\" @keyword\n\"macro_rules!\" @keyword\n\"match\" @keyword\n\"mod\" @keyword\n\"move\" @keyword\n\"pub\" @keyword\n\"ref\" @keyword\n\"return\" @keyword\n\"static\" @keyword\n\"struct\" @keyword\n\"trait\" @keyword\n\"type\" @keyword\n\"union\" @keyword\n\"unsafe\" @keyword\n\"use\" @keyword\n\"where\" @keyword\n\"while\" @keyword\n(crate) @keyword\n(mutable_specifier) @keyword\n(use_list (self) @keyword)\n(scoped_use_list (self) @keyword)\n(scoped_identifier (self) @keyword)\n(super) @keyword\n\n(self) @variable.builtin\n\n(char_literal) @string\n(string_literal) @string\n(raw_string_literal) @string\n\n(boolean_literal) @constant.builtin\n(integer_literal) @constant.builtin\n(float_literal) @constant.builtin\n\n(escape_sequence) @escape\n\n(attribute_item) @attribute\n(inner_attribute_item) @attribute\n\n\"*\" @operator\n\"&\" @operator\n\"'\" @operator\n\n```"]
+#[doc = "Typed version of the query:\n\n```sexp\n; Identifiers\n\n(type_identifier) @type\n(primitive_type) @type.builtin\n(field_identifier) @property\n\n; Identifier conventions\n\n; Assume all-caps names are constants\n((identifier) @constant\n (#match? @constant \"^[A-Z][A-Z\\\\d_]+$'\"))\n\n; Assume uppercase names are enum constructors\n((identifier) @constructor\n (#match? @constructor \"^[A-Z]\"))\n\n; Assume that uppercase names in paths are types\n((scoped_identifier\n  path: (identifier) @type)\n (#match? @type \"^[A-Z]\"))\n((scoped_identifier\n  path: (scoped_identifier\n    name: (identifier) @type))\n (#match? @type \"^[A-Z]\"))\n((scoped_type_identifier\n  path: (identifier) @type)\n (#match? @type \"^[A-Z]\"))\n((scoped_type_identifier\n  path: (scoped_identifier\n    name: (identifier) @type))\n (#match? @type \"^[A-Z]\"))\n\n; Assume all qualified names in struct patterns are enum constructors. (They're\n; either that, or struct names; highlighting both as constructors seems to be\n; the less glaring choice of error, visually.)\n(struct_pattern\n  type: (scoped_type_identifier\n    name: (type_identifier) @constructor))\n\n; Function calls\n\n(call_expression\n  function: (identifier) @function)\n(call_expression\n  function: (field_expression\n    field: (field_identifier) @function.method))\n(call_expression\n  function: (scoped_identifier\n    \"::\"\n    name: (identifier) @function))\n\n(generic_function\n  function: (identifier) @function)\n(generic_function\n  function: (scoped_identifier\n    name: (identifier) @function))\n(generic_function\n  function: (field_expression\n    field: (field_identifier) @function.method))\n\n(macro_invocation\n  macro: (identifier) @function.macro\n  \"!\" @function.macro)\n\n; Function definitions\n\n(function_item (identifier) @function)\n(function_signature_item (identifier) @function)\n\n(line_comment) @comment\n(block_comment) @comment\n\n(line_comment (doc_comment)) @comment.documentation\n(block_comment (doc_comment)) @comment.documentation\n\n\"(\" @punctuation.bracket\n\")\" @punctuation.bracket\n\"[\" @punctuation.bracket\n\"]\" @punctuation.bracket\n\"{\" @punctuation.bracket\n\"}\" @punctuation.bracket\n\n(type_arguments\n  \"<\" @punctuation.bracket\n  \">\" @punctuation.bracket)\n(type_parameters\n  \"<\" @punctuation.bracket\n  \">\" @punctuation.bracket)\n\n\"::\" @punctuation.delimiter\n\":\" @punctuation.delimiter\n\".\" @punctuation.delimiter\n\",\" @punctuation.delimiter\n\";\" @punctuation.delimiter\n\n(parameter (identifier) @variable.parameter)\n\n(lifetime (identifier) @label)\n\n\"as\" @keyword\n\"async\" @keyword\n\"await\" @keyword\n\"break\" @keyword\n\"const\" @keyword\n\"continue\" @keyword\n\"default\" @keyword\n\"dyn\" @keyword\n\"else\" @keyword\n\"enum\" @keyword\n\"extern\" @keyword\n\"fn\" @keyword\n\"for\" @keyword\n\"if\" @keyword\n\"impl\" @keyword\n\"in\" @keyword\n\"let\" @keyword\n\"loop\" @keyword\n\"macro_rules!\" @keyword\n\"match\" @keyword\n\"mod\" @keyword\n\"move\" @keyword\n\"pub\" @keyword\n\"ref\" @keyword\n\"return\" @keyword\n\"static\" @keyword\n\"struct\" @keyword\n\"trait\" @keyword\n\"type\" @keyword\n\"union\" @keyword\n\"unsafe\" @keyword\n\"use\" @keyword\n\"where\" @keyword\n\"while\" @keyword\n\"yield\" @keyword\n(crate) @keyword\n(mutable_specifier) @keyword\n(use_list (self) @keyword)\n(scoped_use_list (self) @keyword)\n(scoped_identifier (self) @keyword)\n(super) @keyword\n\n(self) @variable.builtin\n\n(char_literal) @string\n(string_literal) @string\n(raw_string_literal) @string\n\n(boolean_literal) @constant.builtin\n(integer_literal) @constant.builtin\n(float_literal) @constant.builtin\n\n(escape_sequence) @escape\n\n(attribute_item) @attribute\n(inner_attribute_item) @attribute\n\n\"*\" @operator\n\"&\" @operator\n\"'\" @operator\n\n```"]
 #[allow(non_camel_case_types)]
 #[derive(Debug, Clone, Copy)]
 pub struct Highlights;
-#[doc = "Matches returned by a query cursor running the query [Highlights]:\n\n```sexp\n; Identifiers\n\n(type_identifier) @type\n(primitive_type) @type.builtin\n(field_identifier) @property\n\n; Identifier conventions\n\n; Assume all-caps names are constants\n((identifier) @constant\n (#match? @constant \"^[A-Z][A-Z\\\\d_]+$'\"))\n\n; Assume uppercase names are enum constructors\n((identifier) @constructor\n (#match? @constructor \"^[A-Z]\"))\n\n; Assume that uppercase names in paths are types\n((scoped_identifier\n  path: (identifier) @type)\n (#match? @type \"^[A-Z]\"))\n((scoped_identifier\n  path: (scoped_identifier\n    name: (identifier) @type))\n (#match? @type \"^[A-Z]\"))\n((scoped_type_identifier\n  path: (identifier) @type)\n (#match? @type \"^[A-Z]\"))\n((scoped_type_identifier\n  path: (scoped_identifier\n    name: (identifier) @type))\n (#match? @type \"^[A-Z]\"))\n\n; Assume all qualified names in struct patterns are enum constructors. (They're\n; either that, or struct names; highlighting both as constructors seems to be\n; the less glaring choice of error, visually.)\n(struct_pattern\n  type: (scoped_type_identifier\n    name: (type_identifier) @constructor))\n\n; Function calls\n\n(call_expression\n  function: (identifier) @function)\n(call_expression\n  function: (field_expression\n    field: (field_identifier) @function.method))\n(call_expression\n  function: (scoped_identifier\n    \"::\"\n    name: (identifier) @function))\n\n(generic_function\n  function: (identifier) @function)\n(generic_function\n  function: (scoped_identifier\n    name: (identifier) @function))\n(generic_function\n  function: (field_expression\n    field: (field_identifier) @function.method))\n\n(macro_invocation\n  macro: (identifier) @function.macro\n  \"!\" @function.macro)\n\n; Function definitions\n\n(function_item (identifier) @function)\n(function_signature_item (identifier) @function)\n\n(line_comment) @comment\n(block_comment) @comment\n\n(line_comment (doc_comment)) @comment.documentation\n(block_comment (doc_comment)) @comment.documentation\n\n\"(\" @punctuation.bracket\n\")\" @punctuation.bracket\n\"[\" @punctuation.bracket\n\"]\" @punctuation.bracket\n\"{\" @punctuation.bracket\n\"}\" @punctuation.bracket\n\n(type_arguments\n  \"<\" @punctuation.bracket\n  \">\" @punctuation.bracket)\n(type_parameters\n  \"<\" @punctuation.bracket\n  \">\" @punctuation.bracket)\n\n\"::\" @punctuation.delimiter\n\":\" @punctuation.delimiter\n\".\" @punctuation.delimiter\n\",\" @punctuation.delimiter\n\";\" @punctuation.delimiter\n\n(parameter (identifier) @variable.parameter)\n\n(lifetime (identifier) @label)\n\n\"as\" @keyword\n\"async\" @keyword\n\"await\" @keyword\n\"break\" @keyword\n\"const\" @keyword\n\"continue\" @keyword\n\"default\" @keyword\n\"dyn\" @keyword\n\"else\" @keyword\n\"enum\" @keyword\n\"extern\" @keyword\n\"fn\" @keyword\n\"for\" @keyword\n\"if\" @keyword\n\"impl\" @keyword\n\"in\" @keyword\n\"let\" @keyword\n\"loop\" @keyword\n\"macro_rules!\" @keyword\n\"match\" @keyword\n\"mod\" @keyword\n\"move\" @keyword\n\"pub\" @keyword\n\"ref\" @keyword\n\"return\" @keyword\n\"static\" @keyword\n\"struct\" @keyword\n\"trait\" @keyword\n\"type\" @keyword\n\"union\" @keyword\n\"unsafe\" @keyword\n\"use\" @keyword\n\"where\" @keyword\n\"while\" @keyword\n(crate) @keyword\n(mutable_specifier) @keyword\n(use_list (self) @keyword)\n(scoped_use_list (self) @keyword)\n(scoped_identifier (self) @keyword)\n(super) @keyword\n\n(self) @variable.builtin\n\n(char_literal) @string\n(string_literal) @string\n(raw_string_literal) @string\n\n(boolean_literal) @constant.builtin\n(integer_literal) @constant.builtin\n(float_literal) @constant.builtin\n\n(escape_sequence) @escape\n\n(attribute_item) @attribute\n(inner_attribute_item) @attribute\n\n\"*\" @operator\n\"&\" @operator\n\"'\" @operator\n\n```"]
+#[doc = "Matches returned by a query cursor running the query [`Highlights`]:\n\n```sexp\n; Identifiers\n\n(type_identifier) @type\n(primitive_type) @type.builtin\n(field_identifier) @property\n\n; Identifier conventions\n\n; Assume all-caps names are constants\n((identifier) @constant\n (#match? @constant \"^[A-Z][A-Z\\\\d_]+$'\"))\n\n; Assume uppercase names are enum constructors\n((identifier) @constructor\n (#match? @constructor \"^[A-Z]\"))\n\n; Assume that uppercase names in paths are types\n((scoped_identifier\n  path: (identifier) @type)\n (#match? @type \"^[A-Z]\"))\n((scoped_identifier\n  path: (scoped_identifier\n    name: (identifier) @type))\n (#match? @type \"^[A-Z]\"))\n((scoped_type_identifier\n  path: (identifier) @type)\n (#match? @type \"^[A-Z]\"))\n((scoped_type_identifier\n  path: (scoped_identifier\n    name: (identifier) @type))\n (#match? @type \"^[A-Z]\"))\n\n; Assume all qualified names in struct patterns are enum constructors. (They're\n; either that, or struct names; highlighting both as constructors seems to be\n; the less glaring choice of error, visually.)\n(struct_pattern\n  type: (scoped_type_identifier\n    name: (type_identifier) @constructor))\n\n; Function calls\n\n(call_expression\n  function: (identifier) @function)\n(call_expression\n  function: (field_expression\n    field: (field_identifier) @function.method))\n(call_expression\n  function: (scoped_identifier\n    \"::\"\n    name: (identifier) @function))\n\n(generic_function\n  function: (identifier) @function)\n(generic_function\n  function: (scoped_identifier\n    name: (identifier) @function))\n(generic_function\n  function: (field_expression\n    field: (field_identifier) @function.method))\n\n(macro_invocation\n  macro: (identifier) @function.macro\n  \"!\" @function.macro)\n\n; Function definitions\n\n(function_item (identifier) @function)\n(function_signature_item (identifier) @function)\n\n(line_comment) @comment\n(block_comment) @comment\n\n(line_comment (doc_comment)) @comment.documentation\n(block_comment (doc_comment)) @comment.documentation\n\n\"(\" @punctuation.bracket\n\")\" @punctuation.bracket\n\"[\" @punctuation.bracket\n\"]\" @punctuation.bracket\n\"{\" @punctuation.bracket\n\"}\" @punctuation.bracket\n\n(type_arguments\n  \"<\" @punctuation.bracket\n  \">\" @punctuation.bracket)\n(type_parameters\n  \"<\" @punctuation.bracket\n  \">\" @punctuation.bracket)\n\n\"::\" @punctuation.delimiter\n\":\" @punctuation.delimiter\n\".\" @punctuation.delimiter\n\",\" @punctuation.delimiter\n\";\" @punctuation.delimiter\n\n(parameter (identifier) @variable.parameter)\n\n(lifetime (identifier) @label)\n\n\"as\" @keyword\n\"async\" @keyword\n\"await\" @keyword\n\"break\" @keyword\n\"const\" @keyword\n\"continue\" @keyword\n\"default\" @keyword\n\"dyn\" @keyword\n\"else\" @keyword\n\"enum\" @keyword\n\"extern\" @keyword\n\"fn\" @keyword\n\"for\" @keyword\n\"if\" @keyword\n\"impl\" @keyword\n\"in\" @keyword\n\"let\" @keyword\n\"loop\" @keyword\n\"macro_rules!\" @keyword\n\"match\" @keyword\n\"mod\" @keyword\n\"move\" @keyword\n\"pub\" @keyword\n\"ref\" @keyword\n\"return\" @keyword\n\"static\" @keyword\n\"struct\" @keyword\n\"trait\" @keyword\n\"type\" @keyword\n\"union\" @keyword\n\"unsafe\" @keyword\n\"use\" @keyword\n\"where\" @keyword\n\"while\" @keyword\n\"yield\" @keyword\n(crate) @keyword\n(mutable_specifier) @keyword\n(use_list (self) @keyword)\n(scoped_use_list (self) @keyword)\n(scoped_identifier (self) @keyword)\n(super) @keyword\n\n(self) @variable.builtin\n\n(char_literal) @string\n(string_literal) @string\n(raw_string_literal) @string\n\n(boolean_literal) @constant.builtin\n(integer_literal) @constant.builtin\n(float_literal) @constant.builtin\n\n(escape_sequence) @escape\n\n(attribute_item) @attribute\n(inner_attribute_item) @attribute\n\n\"*\" @operator\n\"&\" @operator\n\"'\" @operator\n\n```"]
 #[allow(unused, non_camel_case_types)]
 pub type HighlightsMatches<'cursor, 'tree, Text, I> =
     type_sitter_lib::TypedQueryMatches<'cursor, 'tree, Highlights, Text, I>;
-#[doc = "Captures returned by a query cursor running the query [Highlights]:\n\n```sexp\n; Identifiers\n\n(type_identifier) @type\n(primitive_type) @type.builtin\n(field_identifier) @property\n\n; Identifier conventions\n\n; Assume all-caps names are constants\n((identifier) @constant\n (#match? @constant \"^[A-Z][A-Z\\\\d_]+$'\"))\n\n; Assume uppercase names are enum constructors\n((identifier) @constructor\n (#match? @constructor \"^[A-Z]\"))\n\n; Assume that uppercase names in paths are types\n((scoped_identifier\n  path: (identifier) @type)\n (#match? @type \"^[A-Z]\"))\n((scoped_identifier\n  path: (scoped_identifier\n    name: (identifier) @type))\n (#match? @type \"^[A-Z]\"))\n((scoped_type_identifier\n  path: (identifier) @type)\n (#match? @type \"^[A-Z]\"))\n((scoped_type_identifier\n  path: (scoped_identifier\n    name: (identifier) @type))\n (#match? @type \"^[A-Z]\"))\n\n; Assume all qualified names in struct patterns are enum constructors. (They're\n; either that, or struct names; highlighting both as constructors seems to be\n; the less glaring choice of error, visually.)\n(struct_pattern\n  type: (scoped_type_identifier\n    name: (type_identifier) @constructor))\n\n; Function calls\n\n(call_expression\n  function: (identifier) @function)\n(call_expression\n  function: (field_expression\n    field: (field_identifier) @function.method))\n(call_expression\n  function: (scoped_identifier\n    \"::\"\n    name: (identifier) @function))\n\n(generic_function\n  function: (identifier) @function)\n(generic_function\n  function: (scoped_identifier\n    name: (identifier) @function))\n(generic_function\n  function: (field_expression\n    field: (field_identifier) @function.method))\n\n(macro_invocation\n  macro: (identifier) @function.macro\n  \"!\" @function.macro)\n\n; Function definitions\n\n(function_item (identifier) @function)\n(function_signature_item (identifier) @function)\n\n(line_comment) @comment\n(block_comment) @comment\n\n(line_comment (doc_comment)) @comment.documentation\n(block_comment (doc_comment)) @comment.documentation\n\n\"(\" @punctuation.bracket\n\")\" @punctuation.bracket\n\"[\" @punctuation.bracket\n\"]\" @punctuation.bracket\n\"{\" @punctuation.bracket\n\"}\" @punctuation.bracket\n\n(type_arguments\n  \"<\" @punctuation.bracket\n  \">\" @punctuation.bracket)\n(type_parameters\n  \"<\" @punctuation.bracket\n  \">\" @punctuation.bracket)\n\n\"::\" @punctuation.delimiter\n\":\" @punctuation.delimiter\n\".\" @punctuation.delimiter\n\",\" @punctuation.delimiter\n\";\" @punctuation.delimiter\n\n(parameter (identifier) @variable.parameter)\n\n(lifetime (identifier) @label)\n\n\"as\" @keyword\n\"async\" @keyword\n\"await\" @keyword\n\"break\" @keyword\n\"const\" @keyword\n\"continue\" @keyword\n\"default\" @keyword\n\"dyn\" @keyword\n\"else\" @keyword\n\"enum\" @keyword\n\"extern\" @keyword\n\"fn\" @keyword\n\"for\" @keyword\n\"if\" @keyword\n\"impl\" @keyword\n\"in\" @keyword\n\"let\" @keyword\n\"loop\" @keyword\n\"macro_rules!\" @keyword\n\"match\" @keyword\n\"mod\" @keyword\n\"move\" @keyword\n\"pub\" @keyword\n\"ref\" @keyword\n\"return\" @keyword\n\"static\" @keyword\n\"struct\" @keyword\n\"trait\" @keyword\n\"type\" @keyword\n\"union\" @keyword\n\"unsafe\" @keyword\n\"use\" @keyword\n\"where\" @keyword\n\"while\" @keyword\n(crate) @keyword\n(mutable_specifier) @keyword\n(use_list (self) @keyword)\n(scoped_use_list (self) @keyword)\n(scoped_identifier (self) @keyword)\n(super) @keyword\n\n(self) @variable.builtin\n\n(char_literal) @string\n(string_literal) @string\n(raw_string_literal) @string\n\n(boolean_literal) @constant.builtin\n(integer_literal) @constant.builtin\n(float_literal) @constant.builtin\n\n(escape_sequence) @escape\n\n(attribute_item) @attribute\n(inner_attribute_item) @attribute\n\n\"*\" @operator\n\"&\" @operator\n\"'\" @operator\n\n```"]
+#[doc = "Captures returned by a query cursor running the query [`Highlights`]:\n\n```sexp\n; Identifiers\n\n(type_identifier) @type\n(primitive_type) @type.builtin\n(field_identifier) @property\n\n; Identifier conventions\n\n; Assume all-caps names are constants\n((identifier) @constant\n (#match? @constant \"^[A-Z][A-Z\\\\d_]+$'\"))\n\n; Assume uppercase names are enum constructors\n((identifier) @constructor\n (#match? @constructor \"^[A-Z]\"))\n\n; Assume that uppercase names in paths are types\n((scoped_identifier\n  path: (identifier) @type)\n (#match? @type \"^[A-Z]\"))\n((scoped_identifier\n  path: (scoped_identifier\n    name: (identifier) @type))\n (#match? @type \"^[A-Z]\"))\n((scoped_type_identifier\n  path: (identifier) @type)\n (#match? @type \"^[A-Z]\"))\n((scoped_type_identifier\n  path: (scoped_identifier\n    name: (identifier) @type))\n (#match? @type \"^[A-Z]\"))\n\n; Assume all qualified names in struct patterns are enum constructors. (They're\n; either that, or struct names; highlighting both as constructors seems to be\n; the less glaring choice of error, visually.)\n(struct_pattern\n  type: (scoped_type_identifier\n    name: (type_identifier) @constructor))\n\n; Function calls\n\n(call_expression\n  function: (identifier) @function)\n(call_expression\n  function: (field_expression\n    field: (field_identifier) @function.method))\n(call_expression\n  function: (scoped_identifier\n    \"::\"\n    name: (identifier) @function))\n\n(generic_function\n  function: (identifier) @function)\n(generic_function\n  function: (scoped_identifier\n    name: (identifier) @function))\n(generic_function\n  function: (field_expression\n    field: (field_identifier) @function.method))\n\n(macro_invocation\n  macro: (identifier) @function.macro\n  \"!\" @function.macro)\n\n; Function definitions\n\n(function_item (identifier) @function)\n(function_signature_item (identifier) @function)\n\n(line_comment) @comment\n(block_comment) @comment\n\n(line_comment (doc_comment)) @comment.documentation\n(block_comment (doc_comment)) @comment.documentation\n\n\"(\" @punctuation.bracket\n\")\" @punctuation.bracket\n\"[\" @punctuation.bracket\n\"]\" @punctuation.bracket\n\"{\" @punctuation.bracket\n\"}\" @punctuation.bracket\n\n(type_arguments\n  \"<\" @punctuation.bracket\n  \">\" @punctuation.bracket)\n(type_parameters\n  \"<\" @punctuation.bracket\n  \">\" @punctuation.bracket)\n\n\"::\" @punctuation.delimiter\n\":\" @punctuation.delimiter\n\".\" @punctuation.delimiter\n\",\" @punctuation.delimiter\n\";\" @punctuation.delimiter\n\n(parameter (identifier) @variable.parameter)\n\n(lifetime (identifier) @label)\n\n\"as\" @keyword\n\"async\" @keyword\n\"await\" @keyword\n\"break\" @keyword\n\"const\" @keyword\n\"continue\" @keyword\n\"default\" @keyword\n\"dyn\" @keyword\n\"else\" @keyword\n\"enum\" @keyword\n\"extern\" @keyword\n\"fn\" @keyword\n\"for\" @keyword\n\"if\" @keyword\n\"impl\" @keyword\n\"in\" @keyword\n\"let\" @keyword\n\"loop\" @keyword\n\"macro_rules!\" @keyword\n\"match\" @keyword\n\"mod\" @keyword\n\"move\" @keyword\n\"pub\" @keyword\n\"ref\" @keyword\n\"return\" @keyword\n\"static\" @keyword\n\"struct\" @keyword\n\"trait\" @keyword\n\"type\" @keyword\n\"union\" @keyword\n\"unsafe\" @keyword\n\"use\" @keyword\n\"where\" @keyword\n\"while\" @keyword\n\"yield\" @keyword\n(crate) @keyword\n(mutable_specifier) @keyword\n(use_list (self) @keyword)\n(scoped_use_list (self) @keyword)\n(scoped_identifier (self) @keyword)\n(super) @keyword\n\n(self) @variable.builtin\n\n(char_literal) @string\n(string_literal) @string\n(raw_string_literal) @string\n\n(boolean_literal) @constant.builtin\n(integer_literal) @constant.builtin\n(float_literal) @constant.builtin\n\n(escape_sequence) @escape\n\n(attribute_item) @attribute\n(inner_attribute_item) @attribute\n\n\"*\" @operator\n\"&\" @operator\n\"'\" @operator\n\n```"]
 #[allow(unused, non_camel_case_types)]
 pub type HighlightsCaptures<'cursor, 'tree, Text, I> =
     type_sitter_lib::TypedQueryCaptures<'cursor, 'tree, Highlights, Text, I>;
-#[doc = "A match returned by the query [Highlights]:\n\n```sexp\n; Identifiers\n\n(type_identifier) @type\n(primitive_type) @type.builtin\n(field_identifier) @property\n\n; Identifier conventions\n\n; Assume all-caps names are constants\n((identifier) @constant\n (#match? @constant \"^[A-Z][A-Z\\\\d_]+$'\"))\n\n; Assume uppercase names are enum constructors\n((identifier) @constructor\n (#match? @constructor \"^[A-Z]\"))\n\n; Assume that uppercase names in paths are types\n((scoped_identifier\n  path: (identifier) @type)\n (#match? @type \"^[A-Z]\"))\n((scoped_identifier\n  path: (scoped_identifier\n    name: (identifier) @type))\n (#match? @type \"^[A-Z]\"))\n((scoped_type_identifier\n  path: (identifier) @type)\n (#match? @type \"^[A-Z]\"))\n((scoped_type_identifier\n  path: (scoped_identifier\n    name: (identifier) @type))\n (#match? @type \"^[A-Z]\"))\n\n; Assume all qualified names in struct patterns are enum constructors. (They're\n; either that, or struct names; highlighting both as constructors seems to be\n; the less glaring choice of error, visually.)\n(struct_pattern\n  type: (scoped_type_identifier\n    name: (type_identifier) @constructor))\n\n; Function calls\n\n(call_expression\n  function: (identifier) @function)\n(call_expression\n  function: (field_expression\n    field: (field_identifier) @function.method))\n(call_expression\n  function: (scoped_identifier\n    \"::\"\n    name: (identifier) @function))\n\n(generic_function\n  function: (identifier) @function)\n(generic_function\n  function: (scoped_identifier\n    name: (identifier) @function))\n(generic_function\n  function: (field_expression\n    field: (field_identifier) @function.method))\n\n(macro_invocation\n  macro: (identifier) @function.macro\n  \"!\" @function.macro)\n\n; Function definitions\n\n(function_item (identifier) @function)\n(function_signature_item (identifier) @function)\n\n(line_comment) @comment\n(block_comment) @comment\n\n(line_comment (doc_comment)) @comment.documentation\n(block_comment (doc_comment)) @comment.documentation\n\n\"(\" @punctuation.bracket\n\")\" @punctuation.bracket\n\"[\" @punctuation.bracket\n\"]\" @punctuation.bracket\n\"{\" @punctuation.bracket\n\"}\" @punctuation.bracket\n\n(type_arguments\n  \"<\" @punctuation.bracket\n  \">\" @punctuation.bracket)\n(type_parameters\n  \"<\" @punctuation.bracket\n  \">\" @punctuation.bracket)\n\n\"::\" @punctuation.delimiter\n\":\" @punctuation.delimiter\n\".\" @punctuation.delimiter\n\",\" @punctuation.delimiter\n\";\" @punctuation.delimiter\n\n(parameter (identifier) @variable.parameter)\n\n(lifetime (identifier) @label)\n\n\"as\" @keyword\n\"async\" @keyword\n\"await\" @keyword\n\"break\" @keyword\n\"const\" @keyword\n\"continue\" @keyword\n\"default\" @keyword\n\"dyn\" @keyword\n\"else\" @keyword\n\"enum\" @keyword\n\"extern\" @keyword\n\"fn\" @keyword\n\"for\" @keyword\n\"if\" @keyword\n\"impl\" @keyword\n\"in\" @keyword\n\"let\" @keyword\n\"loop\" @keyword\n\"macro_rules!\" @keyword\n\"match\" @keyword\n\"mod\" @keyword\n\"move\" @keyword\n\"pub\" @keyword\n\"ref\" @keyword\n\"return\" @keyword\n\"static\" @keyword\n\"struct\" @keyword\n\"trait\" @keyword\n\"type\" @keyword\n\"union\" @keyword\n\"unsafe\" @keyword\n\"use\" @keyword\n\"where\" @keyword\n\"while\" @keyword\n(crate) @keyword\n(mutable_specifier) @keyword\n(use_list (self) @keyword)\n(scoped_use_list (self) @keyword)\n(scoped_identifier (self) @keyword)\n(super) @keyword\n\n(self) @variable.builtin\n\n(char_literal) @string\n(string_literal) @string\n(raw_string_literal) @string\n\n(boolean_literal) @constant.builtin\n(integer_literal) @constant.builtin\n(float_literal) @constant.builtin\n\n(escape_sequence) @escape\n\n(attribute_item) @attribute\n(inner_attribute_item) @attribute\n\n\"*\" @operator\n\"&\" @operator\n\"'\" @operator\n\n```"]
+#[doc = "A match returned by the query [`Highlights`]:\n\n```sexp\n; Identifiers\n\n(type_identifier) @type\n(primitive_type) @type.builtin\n(field_identifier) @property\n\n; Identifier conventions\n\n; Assume all-caps names are constants\n((identifier) @constant\n (#match? @constant \"^[A-Z][A-Z\\\\d_]+$'\"))\n\n; Assume uppercase names are enum constructors\n((identifier) @constructor\n (#match? @constructor \"^[A-Z]\"))\n\n; Assume that uppercase names in paths are types\n((scoped_identifier\n  path: (identifier) @type)\n (#match? @type \"^[A-Z]\"))\n((scoped_identifier\n  path: (scoped_identifier\n    name: (identifier) @type))\n (#match? @type \"^[A-Z]\"))\n((scoped_type_identifier\n  path: (identifier) @type)\n (#match? @type \"^[A-Z]\"))\n((scoped_type_identifier\n  path: (scoped_identifier\n    name: (identifier) @type))\n (#match? @type \"^[A-Z]\"))\n\n; Assume all qualified names in struct patterns are enum constructors. (They're\n; either that, or struct names; highlighting both as constructors seems to be\n; the less glaring choice of error, visually.)\n(struct_pattern\n  type: (scoped_type_identifier\n    name: (type_identifier) @constructor))\n\n; Function calls\n\n(call_expression\n  function: (identifier) @function)\n(call_expression\n  function: (field_expression\n    field: (field_identifier) @function.method))\n(call_expression\n  function: (scoped_identifier\n    \"::\"\n    name: (identifier) @function))\n\n(generic_function\n  function: (identifier) @function)\n(generic_function\n  function: (scoped_identifier\n    name: (identifier) @function))\n(generic_function\n  function: (field_expression\n    field: (field_identifier) @function.method))\n\n(macro_invocation\n  macro: (identifier) @function.macro\n  \"!\" @function.macro)\n\n; Function definitions\n\n(function_item (identifier) @function)\n(function_signature_item (identifier) @function)\n\n(line_comment) @comment\n(block_comment) @comment\n\n(line_comment (doc_comment)) @comment.documentation\n(block_comment (doc_comment)) @comment.documentation\n\n\"(\" @punctuation.bracket\n\")\" @punctuation.bracket\n\"[\" @punctuation.bracket\n\"]\" @punctuation.bracket\n\"{\" @punctuation.bracket\n\"}\" @punctuation.bracket\n\n(type_arguments\n  \"<\" @punctuation.bracket\n  \">\" @punctuation.bracket)\n(type_parameters\n  \"<\" @punctuation.bracket\n  \">\" @punctuation.bracket)\n\n\"::\" @punctuation.delimiter\n\":\" @punctuation.delimiter\n\".\" @punctuation.delimiter\n\",\" @punctuation.delimiter\n\";\" @punctuation.delimiter\n\n(parameter (identifier) @variable.parameter)\n\n(lifetime (identifier) @label)\n\n\"as\" @keyword\n\"async\" @keyword\n\"await\" @keyword\n\"break\" @keyword\n\"const\" @keyword\n\"continue\" @keyword\n\"default\" @keyword\n\"dyn\" @keyword\n\"else\" @keyword\n\"enum\" @keyword\n\"extern\" @keyword\n\"fn\" @keyword\n\"for\" @keyword\n\"if\" @keyword\n\"impl\" @keyword\n\"in\" @keyword\n\"let\" @keyword\n\"loop\" @keyword\n\"macro_rules!\" @keyword\n\"match\" @keyword\n\"mod\" @keyword\n\"move\" @keyword\n\"pub\" @keyword\n\"ref\" @keyword\n\"return\" @keyword\n\"static\" @keyword\n\"struct\" @keyword\n\"trait\" @keyword\n\"type\" @keyword\n\"union\" @keyword\n\"unsafe\" @keyword\n\"use\" @keyword\n\"where\" @keyword\n\"while\" @keyword\n\"yield\" @keyword\n(crate) @keyword\n(mutable_specifier) @keyword\n(use_list (self) @keyword)\n(scoped_use_list (self) @keyword)\n(scoped_identifier (self) @keyword)\n(super) @keyword\n\n(self) @variable.builtin\n\n(char_literal) @string\n(string_literal) @string\n(raw_string_literal) @string\n\n(boolean_literal) @constant.builtin\n(integer_literal) @constant.builtin\n(float_literal) @constant.builtin\n\n(escape_sequence) @escape\n\n(attribute_item) @attribute\n(inner_attribute_item) @attribute\n\n\"*\" @operator\n\"&\" @operator\n\"'\" @operator\n\n```"]
 pub struct HighlightsMatch<'cursor, 'tree> {
     r#match: tree_sitter::QueryMatch<'cursor, 'tree>,
 }
-#[doc = "A capture returned by the query [Highlights]:\n\n```sexp\n; Identifiers\n\n(type_identifier) @type\n(primitive_type) @type.builtin\n(field_identifier) @property\n\n; Identifier conventions\n\n; Assume all-caps names are constants\n((identifier) @constant\n (#match? @constant \"^[A-Z][A-Z\\\\d_]+$'\"))\n\n; Assume uppercase names are enum constructors\n((identifier) @constructor\n (#match? @constructor \"^[A-Z]\"))\n\n; Assume that uppercase names in paths are types\n((scoped_identifier\n  path: (identifier) @type)\n (#match? @type \"^[A-Z]\"))\n((scoped_identifier\n  path: (scoped_identifier\n    name: (identifier) @type))\n (#match? @type \"^[A-Z]\"))\n((scoped_type_identifier\n  path: (identifier) @type)\n (#match? @type \"^[A-Z]\"))\n((scoped_type_identifier\n  path: (scoped_identifier\n    name: (identifier) @type))\n (#match? @type \"^[A-Z]\"))\n\n; Assume all qualified names in struct patterns are enum constructors. (They're\n; either that, or struct names; highlighting both as constructors seems to be\n; the less glaring choice of error, visually.)\n(struct_pattern\n  type: (scoped_type_identifier\n    name: (type_identifier) @constructor))\n\n; Function calls\n\n(call_expression\n  function: (identifier) @function)\n(call_expression\n  function: (field_expression\n    field: (field_identifier) @function.method))\n(call_expression\n  function: (scoped_identifier\n    \"::\"\n    name: (identifier) @function))\n\n(generic_function\n  function: (identifier) @function)\n(generic_function\n  function: (scoped_identifier\n    name: (identifier) @function))\n(generic_function\n  function: (field_expression\n    field: (field_identifier) @function.method))\n\n(macro_invocation\n  macro: (identifier) @function.macro\n  \"!\" @function.macro)\n\n; Function definitions\n\n(function_item (identifier) @function)\n(function_signature_item (identifier) @function)\n\n(line_comment) @comment\n(block_comment) @comment\n\n(line_comment (doc_comment)) @comment.documentation\n(block_comment (doc_comment)) @comment.documentation\n\n\"(\" @punctuation.bracket\n\")\" @punctuation.bracket\n\"[\" @punctuation.bracket\n\"]\" @punctuation.bracket\n\"{\" @punctuation.bracket\n\"}\" @punctuation.bracket\n\n(type_arguments\n  \"<\" @punctuation.bracket\n  \">\" @punctuation.bracket)\n(type_parameters\n  \"<\" @punctuation.bracket\n  \">\" @punctuation.bracket)\n\n\"::\" @punctuation.delimiter\n\":\" @punctuation.delimiter\n\".\" @punctuation.delimiter\n\",\" @punctuation.delimiter\n\";\" @punctuation.delimiter\n\n(parameter (identifier) @variable.parameter)\n\n(lifetime (identifier) @label)\n\n\"as\" @keyword\n\"async\" @keyword\n\"await\" @keyword\n\"break\" @keyword\n\"const\" @keyword\n\"continue\" @keyword\n\"default\" @keyword\n\"dyn\" @keyword\n\"else\" @keyword\n\"enum\" @keyword\n\"extern\" @keyword\n\"fn\" @keyword\n\"for\" @keyword\n\"if\" @keyword\n\"impl\" @keyword\n\"in\" @keyword\n\"let\" @keyword\n\"loop\" @keyword\n\"macro_rules!\" @keyword\n\"match\" @keyword\n\"mod\" @keyword\n\"move\" @keyword\n\"pub\" @keyword\n\"ref\" @keyword\n\"return\" @keyword\n\"static\" @keyword\n\"struct\" @keyword\n\"trait\" @keyword\n\"type\" @keyword\n\"union\" @keyword\n\"unsafe\" @keyword\n\"use\" @keyword\n\"where\" @keyword\n\"while\" @keyword\n(crate) @keyword\n(mutable_specifier) @keyword\n(use_list (self) @keyword)\n(scoped_use_list (self) @keyword)\n(scoped_identifier (self) @keyword)\n(super) @keyword\n\n(self) @variable.builtin\n\n(char_literal) @string\n(string_literal) @string\n(raw_string_literal) @string\n\n(boolean_literal) @constant.builtin\n(integer_literal) @constant.builtin\n(float_literal) @constant.builtin\n\n(escape_sequence) @escape\n\n(attribute_item) @attribute\n(inner_attribute_item) @attribute\n\n\"*\" @operator\n\"&\" @operator\n\"'\" @operator\n\n```"]
+#[doc = "A capture returned by the query [`Highlights`]:\n\n```sexp\n; Identifiers\n\n(type_identifier) @type\n(primitive_type) @type.builtin\n(field_identifier) @property\n\n; Identifier conventions\n\n; Assume all-caps names are constants\n((identifier) @constant\n (#match? @constant \"^[A-Z][A-Z\\\\d_]+$'\"))\n\n; Assume uppercase names are enum constructors\n((identifier) @constructor\n (#match? @constructor \"^[A-Z]\"))\n\n; Assume that uppercase names in paths are types\n((scoped_identifier\n  path: (identifier) @type)\n (#match? @type \"^[A-Z]\"))\n((scoped_identifier\n  path: (scoped_identifier\n    name: (identifier) @type))\n (#match? @type \"^[A-Z]\"))\n((scoped_type_identifier\n  path: (identifier) @type)\n (#match? @type \"^[A-Z]\"))\n((scoped_type_identifier\n  path: (scoped_identifier\n    name: (identifier) @type))\n (#match? @type \"^[A-Z]\"))\n\n; Assume all qualified names in struct patterns are enum constructors. (They're\n; either that, or struct names; highlighting both as constructors seems to be\n; the less glaring choice of error, visually.)\n(struct_pattern\n  type: (scoped_type_identifier\n    name: (type_identifier) @constructor))\n\n; Function calls\n\n(call_expression\n  function: (identifier) @function)\n(call_expression\n  function: (field_expression\n    field: (field_identifier) @function.method))\n(call_expression\n  function: (scoped_identifier\n    \"::\"\n    name: (identifier) @function))\n\n(generic_function\n  function: (identifier) @function)\n(generic_function\n  function: (scoped_identifier\n    name: (identifier) @function))\n(generic_function\n  function: (field_expression\n    field: (field_identifier) @function.method))\n\n(macro_invocation\n  macro: (identifier) @function.macro\n  \"!\" @function.macro)\n\n; Function definitions\n\n(function_item (identifier) @function)\n(function_signature_item (identifier) @function)\n\n(line_comment) @comment\n(block_comment) @comment\n\n(line_comment (doc_comment)) @comment.documentation\n(block_comment (doc_comment)) @comment.documentation\n\n\"(\" @punctuation.bracket\n\")\" @punctuation.bracket\n\"[\" @punctuation.bracket\n\"]\" @punctuation.bracket\n\"{\" @punctuation.bracket\n\"}\" @punctuation.bracket\n\n(type_arguments\n  \"<\" @punctuation.bracket\n  \">\" @punctuation.bracket)\n(type_parameters\n  \"<\" @punctuation.bracket\n  \">\" @punctuation.bracket)\n\n\"::\" @punctuation.delimiter\n\":\" @punctuation.delimiter\n\".\" @punctuation.delimiter\n\",\" @punctuation.delimiter\n\";\" @punctuation.delimiter\n\n(parameter (identifier) @variable.parameter)\n\n(lifetime (identifier) @label)\n\n\"as\" @keyword\n\"async\" @keyword\n\"await\" @keyword\n\"break\" @keyword\n\"const\" @keyword\n\"continue\" @keyword\n\"default\" @keyword\n\"dyn\" @keyword\n\"else\" @keyword\n\"enum\" @keyword\n\"extern\" @keyword\n\"fn\" @keyword\n\"for\" @keyword\n\"if\" @keyword\n\"impl\" @keyword\n\"in\" @keyword\n\"let\" @keyword\n\"loop\" @keyword\n\"macro_rules!\" @keyword\n\"match\" @keyword\n\"mod\" @keyword\n\"move\" @keyword\n\"pub\" @keyword\n\"ref\" @keyword\n\"return\" @keyword\n\"static\" @keyword\n\"struct\" @keyword\n\"trait\" @keyword\n\"type\" @keyword\n\"union\" @keyword\n\"unsafe\" @keyword\n\"use\" @keyword\n\"where\" @keyword\n\"while\" @keyword\n\"yield\" @keyword\n(crate) @keyword\n(mutable_specifier) @keyword\n(use_list (self) @keyword)\n(scoped_use_list (self) @keyword)\n(scoped_identifier (self) @keyword)\n(super) @keyword\n\n(self) @variable.builtin\n\n(char_literal) @string\n(string_literal) @string\n(raw_string_literal) @string\n\n(boolean_literal) @constant.builtin\n(integer_literal) @constant.builtin\n(float_literal) @constant.builtin\n\n(escape_sequence) @escape\n\n(attribute_item) @attribute\n(inner_attribute_item) @attribute\n\n\"*\" @operator\n\"&\" @operator\n\"'\" @operator\n\n```"]
 pub enum HighlightsCapture<'cursor, 'tree> {
     #[doc = "A `type` ([anon_unions::Type])"]
     #[doc = ""]
@@ -229,6 +228,7 @@ pub enum HighlightsCapture<'cursor, 'tree> {
     #[doc = "\"use\" @keyword"]
     #[doc = "\"where\" @keyword"]
     #[doc = "\"while\" @keyword"]
+    #[doc = "\"yield\" @keyword"]
     #[doc = "(crate) @keyword"]
     #[doc = "(mutable_specifier) @keyword"]
     #[doc = "(super) @keyword"]
@@ -313,7 +313,7 @@ impl type_sitter_lib::TypedQuery for Highlights {
     type Match<'cursor, 'tree: 'cursor> = HighlightsMatch<'cursor, 'tree>;
     type Capture<'cursor, 'tree: 'cursor> = HighlightsCapture<'cursor, 'tree>;
     fn query_str(&self) -> &'static str {
-        "; Identifiers\n\n(type_identifier) @type\n(primitive_type) @type.builtin\n(field_identifier) @property\n\n; Identifier conventions\n\n; Assume all-caps names are constants\n((identifier) @constant\n (#match? @constant \"^[A-Z][A-Z\\\\d_]+$'\"))\n\n; Assume uppercase names are enum constructors\n((identifier) @constructor\n (#match? @constructor \"^[A-Z]\"))\n\n; Assume that uppercase names in paths are types\n((scoped_identifier\n  path: (identifier) @type)\n (#match? @type \"^[A-Z]\"))\n((scoped_identifier\n  path: (scoped_identifier\n    name: (identifier) @type))\n (#match? @type \"^[A-Z]\"))\n((scoped_type_identifier\n  path: (identifier) @type)\n (#match? @type \"^[A-Z]\"))\n((scoped_type_identifier\n  path: (scoped_identifier\n    name: (identifier) @type))\n (#match? @type \"^[A-Z]\"))\n\n; Assume all qualified names in struct patterns are enum constructors. (They're\n; either that, or struct names; highlighting both as constructors seems to be\n; the less glaring choice of error, visually.)\n(struct_pattern\n  type: (scoped_type_identifier\n    name: (type_identifier) @constructor))\n\n; Function calls\n\n(call_expression\n  function: (identifier) @function)\n(call_expression\n  function: (field_expression\n    field: (field_identifier) @function.method))\n(call_expression\n  function: (scoped_identifier\n    \"::\"\n    name: (identifier) @function))\n\n(generic_function\n  function: (identifier) @function)\n(generic_function\n  function: (scoped_identifier\n    name: (identifier) @function))\n(generic_function\n  function: (field_expression\n    field: (field_identifier) @function.method))\n\n(macro_invocation\n  macro: (identifier) @function.macro\n  \"!\" @function.macro)\n\n; Function definitions\n\n(function_item (identifier) @function)\n(function_signature_item (identifier) @function)\n\n(line_comment) @comment\n(block_comment) @comment\n\n(line_comment (doc_comment)) @comment.documentation\n(block_comment (doc_comment)) @comment.documentation\n\n\"(\" @punctuation.bracket\n\")\" @punctuation.bracket\n\"[\" @punctuation.bracket\n\"]\" @punctuation.bracket\n\"{\" @punctuation.bracket\n\"}\" @punctuation.bracket\n\n(type_arguments\n  \"<\" @punctuation.bracket\n  \">\" @punctuation.bracket)\n(type_parameters\n  \"<\" @punctuation.bracket\n  \">\" @punctuation.bracket)\n\n\"::\" @punctuation.delimiter\n\":\" @punctuation.delimiter\n\".\" @punctuation.delimiter\n\",\" @punctuation.delimiter\n\";\" @punctuation.delimiter\n\n(parameter (identifier) @variable.parameter)\n\n(lifetime (identifier) @label)\n\n\"as\" @keyword\n\"async\" @keyword\n\"await\" @keyword\n\"break\" @keyword\n\"const\" @keyword\n\"continue\" @keyword\n\"default\" @keyword\n\"dyn\" @keyword\n\"else\" @keyword\n\"enum\" @keyword\n\"extern\" @keyword\n\"fn\" @keyword\n\"for\" @keyword\n\"if\" @keyword\n\"impl\" @keyword\n\"in\" @keyword\n\"let\" @keyword\n\"loop\" @keyword\n\"macro_rules!\" @keyword\n\"match\" @keyword\n\"mod\" @keyword\n\"move\" @keyword\n\"pub\" @keyword\n\"ref\" @keyword\n\"return\" @keyword\n\"static\" @keyword\n\"struct\" @keyword\n\"trait\" @keyword\n\"type\" @keyword\n\"union\" @keyword\n\"unsafe\" @keyword\n\"use\" @keyword\n\"where\" @keyword\n\"while\" @keyword\n(crate) @keyword\n(mutable_specifier) @keyword\n(use_list (self) @keyword)\n(scoped_use_list (self) @keyword)\n(scoped_identifier (self) @keyword)\n(super) @keyword\n\n(self) @variable.builtin\n\n(char_literal) @string\n(string_literal) @string\n(raw_string_literal) @string\n\n(boolean_literal) @constant.builtin\n(integer_literal) @constant.builtin\n(float_literal) @constant.builtin\n\n(escape_sequence) @escape\n\n(attribute_item) @attribute\n(inner_attribute_item) @attribute\n\n\"*\" @operator\n\"&\" @operator\n\"'\" @operator\n"
+        "; Identifiers\n\n(type_identifier) @type\n(primitive_type) @type.builtin\n(field_identifier) @property\n\n; Identifier conventions\n\n; Assume all-caps names are constants\n((identifier) @constant\n (#match? @constant \"^[A-Z][A-Z\\\\d_]+$'\"))\n\n; Assume uppercase names are enum constructors\n((identifier) @constructor\n (#match? @constructor \"^[A-Z]\"))\n\n; Assume that uppercase names in paths are types\n((scoped_identifier\n  path: (identifier) @type)\n (#match? @type \"^[A-Z]\"))\n((scoped_identifier\n  path: (scoped_identifier\n    name: (identifier) @type))\n (#match? @type \"^[A-Z]\"))\n((scoped_type_identifier\n  path: (identifier) @type)\n (#match? @type \"^[A-Z]\"))\n((scoped_type_identifier\n  path: (scoped_identifier\n    name: (identifier) @type))\n (#match? @type \"^[A-Z]\"))\n\n; Assume all qualified names in struct patterns are enum constructors. (They're\n; either that, or struct names; highlighting both as constructors seems to be\n; the less glaring choice of error, visually.)\n(struct_pattern\n  type: (scoped_type_identifier\n    name: (type_identifier) @constructor))\n\n; Function calls\n\n(call_expression\n  function: (identifier) @function)\n(call_expression\n  function: (field_expression\n    field: (field_identifier) @function.method))\n(call_expression\n  function: (scoped_identifier\n    \"::\"\n    name: (identifier) @function))\n\n(generic_function\n  function: (identifier) @function)\n(generic_function\n  function: (scoped_identifier\n    name: (identifier) @function))\n(generic_function\n  function: (field_expression\n    field: (field_identifier) @function.method))\n\n(macro_invocation\n  macro: (identifier) @function.macro\n  \"!\" @function.macro)\n\n; Function definitions\n\n(function_item (identifier) @function)\n(function_signature_item (identifier) @function)\n\n(line_comment) @comment\n(block_comment) @comment\n\n(line_comment (doc_comment)) @comment.documentation\n(block_comment (doc_comment)) @comment.documentation\n\n\"(\" @punctuation.bracket\n\")\" @punctuation.bracket\n\"[\" @punctuation.bracket\n\"]\" @punctuation.bracket\n\"{\" @punctuation.bracket\n\"}\" @punctuation.bracket\n\n(type_arguments\n  \"<\" @punctuation.bracket\n  \">\" @punctuation.bracket)\n(type_parameters\n  \"<\" @punctuation.bracket\n  \">\" @punctuation.bracket)\n\n\"::\" @punctuation.delimiter\n\":\" @punctuation.delimiter\n\".\" @punctuation.delimiter\n\",\" @punctuation.delimiter\n\";\" @punctuation.delimiter\n\n(parameter (identifier) @variable.parameter)\n\n(lifetime (identifier) @label)\n\n\"as\" @keyword\n\"async\" @keyword\n\"await\" @keyword\n\"break\" @keyword\n\"const\" @keyword\n\"continue\" @keyword\n\"default\" @keyword\n\"dyn\" @keyword\n\"else\" @keyword\n\"enum\" @keyword\n\"extern\" @keyword\n\"fn\" @keyword\n\"for\" @keyword\n\"if\" @keyword\n\"impl\" @keyword\n\"in\" @keyword\n\"let\" @keyword\n\"loop\" @keyword\n\"macro_rules!\" @keyword\n\"match\" @keyword\n\"mod\" @keyword\n\"move\" @keyword\n\"pub\" @keyword\n\"ref\" @keyword\n\"return\" @keyword\n\"static\" @keyword\n\"struct\" @keyword\n\"trait\" @keyword\n\"type\" @keyword\n\"union\" @keyword\n\"unsafe\" @keyword\n\"use\" @keyword\n\"where\" @keyword\n\"while\" @keyword\n\"yield\" @keyword\n(crate) @keyword\n(mutable_specifier) @keyword\n(use_list (self) @keyword)\n(scoped_use_list (self) @keyword)\n(scoped_identifier (self) @keyword)\n(super) @keyword\n\n(self) @variable.builtin\n\n(char_literal) @string\n(string_literal) @string\n(raw_string_literal) @string\n\n(boolean_literal) @constant.builtin\n(integer_literal) @constant.builtin\n(float_literal) @constant.builtin\n\n(escape_sequence) @escape\n\n(attribute_item) @attribute\n(inner_attribute_item) @attribute\n\n\"*\" @operator\n\"&\" @operator\n\"'\" @operator\n"
     }
     fn query(&self) -> &'static tree_sitter::Query {
         __Highlights__.get_or_init(__Mk__Highlights)
@@ -575,6 +575,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
     #[doc = "\"use\" @keyword"]
     #[doc = "\"where\" @keyword"]
     #[doc = "\"while\" @keyword"]
+    #[doc = "\"yield\" @keyword"]
     #[doc = "(crate) @keyword"]
     #[doc = "(mutable_specifier) @keyword"]
     #[doc = "(super) @keyword"]
@@ -966,6 +967,7 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
     #[doc = "\"use\" @keyword"]
     #[doc = "\"where\" @keyword"]
     #[doc = "\"while\" @keyword"]
+    #[doc = "\"yield\" @keyword"]
     #[doc = "(crate) @keyword"]
     #[doc = "(mutable_specifier) @keyword"]
     #[doc = "(super) @keyword"]
@@ -1630,30 +1632,29 @@ impl<'cursor, 'tree> type_sitter_lib::TypedQueryCapture<'cursor, 'tree>
     }
 }
 #[allow(non_upper_case_globals)]
-static __Injections__: type_sitter_lib::gen_internal::TypedQueryOnceBox<tree_sitter::Query> =
-    type_sitter_lib::gen_internal::TypedQueryOnceBox::new();
+static __Injections__: std::sync::OnceLock<tree_sitter::Query> = std::sync::OnceLock::new();
 #[allow(non_snake_case)]
-fn __Mk__Injections() -> Box<tree_sitter::Query> {
-    # [allow (unused_mut)] let mut query = tree_sitter :: Query :: new (& tree_sitter_rust :: language () , "((macro_invocation\n  (token_tree) @injection.content)\n (#set! injection.language \"rust\")\n (#set! injection.include-children))\n\n((macro_rule\n  (token_tree) @injection.content)\n (#set! injection.language \"rust\")\n (#set! injection.include-children))\n") . expect ("query parsed at compile-time but failed at runtime. Is the language 'tree_sitter_rust' correct, and did you use the same tree-sitter / tree_sitter_rust version?") ;
-    Box::new(query)
+fn __Mk__Injections() -> tree_sitter::Query {
+    # [allow (unused_mut)] let mut query = tree_sitter :: Query :: new (& tree_sitter_rust :: LANGUAGE . into () , "((macro_invocation\n  (token_tree) @injection.content)\n (#set! injection.language \"rust\")\n (#set! injection.include-children))\n\n((macro_rule\n  (token_tree) @injection.content)\n (#set! injection.language \"rust\")\n (#set! injection.include-children))\n") . expect ("query parsed at compile-time but failed at runtime. Is the language 'tree_sitter_rust' correct, and did you use the same tree-sitter / tree_sitter_rust version?") ;
+    query
 }
 #[doc = "Typed version of the query:\n\n```sexp\n((macro_invocation\n  (token_tree) @injection.content)\n (#set! injection.language \"rust\")\n (#set! injection.include-children))\n\n((macro_rule\n  (token_tree) @injection.content)\n (#set! injection.language \"rust\")\n (#set! injection.include-children))\n\n```"]
 #[allow(non_camel_case_types)]
 #[derive(Debug, Clone, Copy)]
 pub struct Injections;
-#[doc = "Matches returned by a query cursor running the query [Injections]:\n\n```sexp\n((macro_invocation\n  (token_tree) @injection.content)\n (#set! injection.language \"rust\")\n (#set! injection.include-children))\n\n((macro_rule\n  (token_tree) @injection.content)\n (#set! injection.language \"rust\")\n (#set! injection.include-children))\n\n```"]
+#[doc = "Matches returned by a query cursor running the query [`Injections`]:\n\n```sexp\n((macro_invocation\n  (token_tree) @injection.content)\n (#set! injection.language \"rust\")\n (#set! injection.include-children))\n\n((macro_rule\n  (token_tree) @injection.content)\n (#set! injection.language \"rust\")\n (#set! injection.include-children))\n\n```"]
 #[allow(unused, non_camel_case_types)]
 pub type InjectionsMatches<'cursor, 'tree, Text, I> =
     type_sitter_lib::TypedQueryMatches<'cursor, 'tree, Injections, Text, I>;
-#[doc = "Captures returned by a query cursor running the query [Injections]:\n\n```sexp\n((macro_invocation\n  (token_tree) @injection.content)\n (#set! injection.language \"rust\")\n (#set! injection.include-children))\n\n((macro_rule\n  (token_tree) @injection.content)\n (#set! injection.language \"rust\")\n (#set! injection.include-children))\n\n```"]
+#[doc = "Captures returned by a query cursor running the query [`Injections`]:\n\n```sexp\n((macro_invocation\n  (token_tree) @injection.content)\n (#set! injection.language \"rust\")\n (#set! injection.include-children))\n\n((macro_rule\n  (token_tree) @injection.content)\n (#set! injection.language \"rust\")\n (#set! injection.include-children))\n\n```"]
 #[allow(unused, non_camel_case_types)]
 pub type InjectionsCaptures<'cursor, 'tree, Text, I> =
     type_sitter_lib::TypedQueryCaptures<'cursor, 'tree, Injections, Text, I>;
-#[doc = "A match returned by the query [Injections]:\n\n```sexp\n((macro_invocation\n  (token_tree) @injection.content)\n (#set! injection.language \"rust\")\n (#set! injection.include-children))\n\n((macro_rule\n  (token_tree) @injection.content)\n (#set! injection.language \"rust\")\n (#set! injection.include-children))\n\n```"]
+#[doc = "A match returned by the query [`Injections`]:\n\n```sexp\n((macro_invocation\n  (token_tree) @injection.content)\n (#set! injection.language \"rust\")\n (#set! injection.include-children))\n\n((macro_rule\n  (token_tree) @injection.content)\n (#set! injection.language \"rust\")\n (#set! injection.include-children))\n\n```"]
 pub struct InjectionsMatch<'cursor, 'tree> {
     r#match: tree_sitter::QueryMatch<'cursor, 'tree>,
 }
-#[doc = "A capture returned by the query [Injections]:\n\n```sexp\n((macro_invocation\n  (token_tree) @injection.content)\n (#set! injection.language \"rust\")\n (#set! injection.include-children))\n\n((macro_rule\n  (token_tree) @injection.content)\n (#set! injection.language \"rust\")\n (#set! injection.include-children))\n\n```"]
+#[doc = "A capture returned by the query [`Injections`]:\n\n```sexp\n((macro_invocation\n  (token_tree) @injection.content)\n (#set! injection.language \"rust\")\n (#set! injection.include-children))\n\n((macro_rule\n  (token_tree) @injection.content)\n (#set! injection.language \"rust\")\n (#set! injection.include-children))\n\n```"]
 pub enum InjectionsCapture<'cursor, 'tree> {
     #[doc = "A `injection.content` ([anon_unions::InjectionContent])"]
     #[doc = ""]
@@ -1865,30 +1866,29 @@ impl<'cursor, 'tree> type_sitter_lib::TypedQueryCapture<'cursor, 'tree>
     }
 }
 #[allow(non_upper_case_globals)]
-static __Tags__: type_sitter_lib::gen_internal::TypedQueryOnceBox<tree_sitter::Query> =
-    type_sitter_lib::gen_internal::TypedQueryOnceBox::new();
+static __Tags__: std::sync::OnceLock<tree_sitter::Query> = std::sync::OnceLock::new();
 #[allow(non_snake_case)]
-fn __Mk__Tags() -> Box<tree_sitter::Query> {
-    # [allow (unused_mut)] let mut query = tree_sitter :: Query :: new (& tree_sitter_rust :: language () , "; ADT definitions\n\n(struct_item\n    name: (type_identifier) @name) @definition.class\n\n(enum_item\n    name: (type_identifier) @name) @definition.class\n\n(union_item\n    name: (type_identifier) @name) @definition.class\n\n; type aliases\n\n(type_item\n    name: (type_identifier) @name) @definition.class\n\n; method definitions\n\n(declaration_list\n    (function_item\n        name: (identifier) @name)) @definition.method\n\n; function definitions\n\n(function_item\n    name: (identifier) @name) @definition.function\n\n; trait definitions\n(trait_item\n    name: (type_identifier) @name) @definition.interface\n\n; module definitions\n(mod_item\n    name: (identifier) @name) @definition.module\n\n; macro definitions\n\n(macro_definition\n    name: (identifier) @name) @definition.macro\n\n; references\n\n(call_expression\n    function: (identifier) @name) @reference.call\n\n(call_expression\n    function: (field_expression\n        field: (field_identifier) @name)) @reference.call\n\n(macro_invocation\n    macro: (identifier) @name) @reference.call\n\n; implementations\n\n(impl_item\n    trait: (type_identifier) @name) @reference.implementation\n\n(impl_item\n    type: (type_identifier) @name\n    !trait) @reference.implementation\n") . expect ("query parsed at compile-time but failed at runtime. Is the language 'tree_sitter_rust' correct, and did you use the same tree-sitter / tree_sitter_rust version?") ;
-    Box::new(query)
+fn __Mk__Tags() -> tree_sitter::Query {
+    # [allow (unused_mut)] let mut query = tree_sitter :: Query :: new (& tree_sitter_rust :: LANGUAGE . into () , "; ADT definitions\n\n(struct_item\n    name: (type_identifier) @name) @definition.class\n\n(enum_item\n    name: (type_identifier) @name) @definition.class\n\n(union_item\n    name: (type_identifier) @name) @definition.class\n\n; type aliases\n\n(type_item\n    name: (type_identifier) @name) @definition.class\n\n; method definitions\n\n(declaration_list\n    (function_item\n        name: (identifier) @name)) @definition.method\n\n; function definitions\n\n(function_item\n    name: (identifier) @name) @definition.function\n\n; trait definitions\n(trait_item\n    name: (type_identifier) @name) @definition.interface\n\n; module definitions\n(mod_item\n    name: (identifier) @name) @definition.module\n\n; macro definitions\n\n(macro_definition\n    name: (identifier) @name) @definition.macro\n\n; references\n\n(call_expression\n    function: (identifier) @name) @reference.call\n\n(call_expression\n    function: (field_expression\n        field: (field_identifier) @name)) @reference.call\n\n(macro_invocation\n    macro: (identifier) @name) @reference.call\n\n; implementations\n\n(impl_item\n    trait: (type_identifier) @name) @reference.implementation\n\n(impl_item\n    type: (type_identifier) @name\n    !trait) @reference.implementation\n") . expect ("query parsed at compile-time but failed at runtime. Is the language 'tree_sitter_rust' correct, and did you use the same tree-sitter / tree_sitter_rust version?") ;
+    query
 }
 #[doc = "Typed version of the query:\n\n```sexp\n; ADT definitions\n\n(struct_item\n    name: (type_identifier) @name) @definition.class\n\n(enum_item\n    name: (type_identifier) @name) @definition.class\n\n(union_item\n    name: (type_identifier) @name) @definition.class\n\n; type aliases\n\n(type_item\n    name: (type_identifier) @name) @definition.class\n\n; method definitions\n\n(declaration_list\n    (function_item\n        name: (identifier) @name)) @definition.method\n\n; function definitions\n\n(function_item\n    name: (identifier) @name) @definition.function\n\n; trait definitions\n(trait_item\n    name: (type_identifier) @name) @definition.interface\n\n; module definitions\n(mod_item\n    name: (identifier) @name) @definition.module\n\n; macro definitions\n\n(macro_definition\n    name: (identifier) @name) @definition.macro\n\n; references\n\n(call_expression\n    function: (identifier) @name) @reference.call\n\n(call_expression\n    function: (field_expression\n        field: (field_identifier) @name)) @reference.call\n\n(macro_invocation\n    macro: (identifier) @name) @reference.call\n\n; implementations\n\n(impl_item\n    trait: (type_identifier) @name) @reference.implementation\n\n(impl_item\n    type: (type_identifier) @name\n    !trait) @reference.implementation\n\n```"]
 #[allow(non_camel_case_types)]
 #[derive(Debug, Clone, Copy)]
 pub struct Tags;
-#[doc = "Matches returned by a query cursor running the query [Tags]:\n\n```sexp\n; ADT definitions\n\n(struct_item\n    name: (type_identifier) @name) @definition.class\n\n(enum_item\n    name: (type_identifier) @name) @definition.class\n\n(union_item\n    name: (type_identifier) @name) @definition.class\n\n; type aliases\n\n(type_item\n    name: (type_identifier) @name) @definition.class\n\n; method definitions\n\n(declaration_list\n    (function_item\n        name: (identifier) @name)) @definition.method\n\n; function definitions\n\n(function_item\n    name: (identifier) @name) @definition.function\n\n; trait definitions\n(trait_item\n    name: (type_identifier) @name) @definition.interface\n\n; module definitions\n(mod_item\n    name: (identifier) @name) @definition.module\n\n; macro definitions\n\n(macro_definition\n    name: (identifier) @name) @definition.macro\n\n; references\n\n(call_expression\n    function: (identifier) @name) @reference.call\n\n(call_expression\n    function: (field_expression\n        field: (field_identifier) @name)) @reference.call\n\n(macro_invocation\n    macro: (identifier) @name) @reference.call\n\n; implementations\n\n(impl_item\n    trait: (type_identifier) @name) @reference.implementation\n\n(impl_item\n    type: (type_identifier) @name\n    !trait) @reference.implementation\n\n```"]
+#[doc = "Matches returned by a query cursor running the query [`Tags`]:\n\n```sexp\n; ADT definitions\n\n(struct_item\n    name: (type_identifier) @name) @definition.class\n\n(enum_item\n    name: (type_identifier) @name) @definition.class\n\n(union_item\n    name: (type_identifier) @name) @definition.class\n\n; type aliases\n\n(type_item\n    name: (type_identifier) @name) @definition.class\n\n; method definitions\n\n(declaration_list\n    (function_item\n        name: (identifier) @name)) @definition.method\n\n; function definitions\n\n(function_item\n    name: (identifier) @name) @definition.function\n\n; trait definitions\n(trait_item\n    name: (type_identifier) @name) @definition.interface\n\n; module definitions\n(mod_item\n    name: (identifier) @name) @definition.module\n\n; macro definitions\n\n(macro_definition\n    name: (identifier) @name) @definition.macro\n\n; references\n\n(call_expression\n    function: (identifier) @name) @reference.call\n\n(call_expression\n    function: (field_expression\n        field: (field_identifier) @name)) @reference.call\n\n(macro_invocation\n    macro: (identifier) @name) @reference.call\n\n; implementations\n\n(impl_item\n    trait: (type_identifier) @name) @reference.implementation\n\n(impl_item\n    type: (type_identifier) @name\n    !trait) @reference.implementation\n\n```"]
 #[allow(unused, non_camel_case_types)]
 pub type TagsMatches<'cursor, 'tree, Text, I> =
     type_sitter_lib::TypedQueryMatches<'cursor, 'tree, Tags, Text, I>;
-#[doc = "Captures returned by a query cursor running the query [Tags]:\n\n```sexp\n; ADT definitions\n\n(struct_item\n    name: (type_identifier) @name) @definition.class\n\n(enum_item\n    name: (type_identifier) @name) @definition.class\n\n(union_item\n    name: (type_identifier) @name) @definition.class\n\n; type aliases\n\n(type_item\n    name: (type_identifier) @name) @definition.class\n\n; method definitions\n\n(declaration_list\n    (function_item\n        name: (identifier) @name)) @definition.method\n\n; function definitions\n\n(function_item\n    name: (identifier) @name) @definition.function\n\n; trait definitions\n(trait_item\n    name: (type_identifier) @name) @definition.interface\n\n; module definitions\n(mod_item\n    name: (identifier) @name) @definition.module\n\n; macro definitions\n\n(macro_definition\n    name: (identifier) @name) @definition.macro\n\n; references\n\n(call_expression\n    function: (identifier) @name) @reference.call\n\n(call_expression\n    function: (field_expression\n        field: (field_identifier) @name)) @reference.call\n\n(macro_invocation\n    macro: (identifier) @name) @reference.call\n\n; implementations\n\n(impl_item\n    trait: (type_identifier) @name) @reference.implementation\n\n(impl_item\n    type: (type_identifier) @name\n    !trait) @reference.implementation\n\n```"]
+#[doc = "Captures returned by a query cursor running the query [`Tags`]:\n\n```sexp\n; ADT definitions\n\n(struct_item\n    name: (type_identifier) @name) @definition.class\n\n(enum_item\n    name: (type_identifier) @name) @definition.class\n\n(union_item\n    name: (type_identifier) @name) @definition.class\n\n; type aliases\n\n(type_item\n    name: (type_identifier) @name) @definition.class\n\n; method definitions\n\n(declaration_list\n    (function_item\n        name: (identifier) @name)) @definition.method\n\n; function definitions\n\n(function_item\n    name: (identifier) @name) @definition.function\n\n; trait definitions\n(trait_item\n    name: (type_identifier) @name) @definition.interface\n\n; module definitions\n(mod_item\n    name: (identifier) @name) @definition.module\n\n; macro definitions\n\n(macro_definition\n    name: (identifier) @name) @definition.macro\n\n; references\n\n(call_expression\n    function: (identifier) @name) @reference.call\n\n(call_expression\n    function: (field_expression\n        field: (field_identifier) @name)) @reference.call\n\n(macro_invocation\n    macro: (identifier) @name) @reference.call\n\n; implementations\n\n(impl_item\n    trait: (type_identifier) @name) @reference.implementation\n\n(impl_item\n    type: (type_identifier) @name\n    !trait) @reference.implementation\n\n```"]
 #[allow(unused, non_camel_case_types)]
 pub type TagsCaptures<'cursor, 'tree, Text, I> =
     type_sitter_lib::TypedQueryCaptures<'cursor, 'tree, Tags, Text, I>;
-#[doc = "A match returned by the query [Tags]:\n\n```sexp\n; ADT definitions\n\n(struct_item\n    name: (type_identifier) @name) @definition.class\n\n(enum_item\n    name: (type_identifier) @name) @definition.class\n\n(union_item\n    name: (type_identifier) @name) @definition.class\n\n; type aliases\n\n(type_item\n    name: (type_identifier) @name) @definition.class\n\n; method definitions\n\n(declaration_list\n    (function_item\n        name: (identifier) @name)) @definition.method\n\n; function definitions\n\n(function_item\n    name: (identifier) @name) @definition.function\n\n; trait definitions\n(trait_item\n    name: (type_identifier) @name) @definition.interface\n\n; module definitions\n(mod_item\n    name: (identifier) @name) @definition.module\n\n; macro definitions\n\n(macro_definition\n    name: (identifier) @name) @definition.macro\n\n; references\n\n(call_expression\n    function: (identifier) @name) @reference.call\n\n(call_expression\n    function: (field_expression\n        field: (field_identifier) @name)) @reference.call\n\n(macro_invocation\n    macro: (identifier) @name) @reference.call\n\n; implementations\n\n(impl_item\n    trait: (type_identifier) @name) @reference.implementation\n\n(impl_item\n    type: (type_identifier) @name\n    !trait) @reference.implementation\n\n```"]
+#[doc = "A match returned by the query [`Tags`]:\n\n```sexp\n; ADT definitions\n\n(struct_item\n    name: (type_identifier) @name) @definition.class\n\n(enum_item\n    name: (type_identifier) @name) @definition.class\n\n(union_item\n    name: (type_identifier) @name) @definition.class\n\n; type aliases\n\n(type_item\n    name: (type_identifier) @name) @definition.class\n\n; method definitions\n\n(declaration_list\n    (function_item\n        name: (identifier) @name)) @definition.method\n\n; function definitions\n\n(function_item\n    name: (identifier) @name) @definition.function\n\n; trait definitions\n(trait_item\n    name: (type_identifier) @name) @definition.interface\n\n; module definitions\n(mod_item\n    name: (identifier) @name) @definition.module\n\n; macro definitions\n\n(macro_definition\n    name: (identifier) @name) @definition.macro\n\n; references\n\n(call_expression\n    function: (identifier) @name) @reference.call\n\n(call_expression\n    function: (field_expression\n        field: (field_identifier) @name)) @reference.call\n\n(macro_invocation\n    macro: (identifier) @name) @reference.call\n\n; implementations\n\n(impl_item\n    trait: (type_identifier) @name) @reference.implementation\n\n(impl_item\n    type: (type_identifier) @name\n    !trait) @reference.implementation\n\n```"]
 pub struct TagsMatch<'cursor, 'tree> {
     r#match: tree_sitter::QueryMatch<'cursor, 'tree>,
 }
-#[doc = "A capture returned by the query [Tags]:\n\n```sexp\n; ADT definitions\n\n(struct_item\n    name: (type_identifier) @name) @definition.class\n\n(enum_item\n    name: (type_identifier) @name) @definition.class\n\n(union_item\n    name: (type_identifier) @name) @definition.class\n\n; type aliases\n\n(type_item\n    name: (type_identifier) @name) @definition.class\n\n; method definitions\n\n(declaration_list\n    (function_item\n        name: (identifier) @name)) @definition.method\n\n; function definitions\n\n(function_item\n    name: (identifier) @name) @definition.function\n\n; trait definitions\n(trait_item\n    name: (type_identifier) @name) @definition.interface\n\n; module definitions\n(mod_item\n    name: (identifier) @name) @definition.module\n\n; macro definitions\n\n(macro_definition\n    name: (identifier) @name) @definition.macro\n\n; references\n\n(call_expression\n    function: (identifier) @name) @reference.call\n\n(call_expression\n    function: (field_expression\n        field: (field_identifier) @name)) @reference.call\n\n(macro_invocation\n    macro: (identifier) @name) @reference.call\n\n; implementations\n\n(impl_item\n    trait: (type_identifier) @name) @reference.implementation\n\n(impl_item\n    type: (type_identifier) @name\n    !trait) @reference.implementation\n\n```"]
+#[doc = "A capture returned by the query [`Tags`]:\n\n```sexp\n; ADT definitions\n\n(struct_item\n    name: (type_identifier) @name) @definition.class\n\n(enum_item\n    name: (type_identifier) @name) @definition.class\n\n(union_item\n    name: (type_identifier) @name) @definition.class\n\n; type aliases\n\n(type_item\n    name: (type_identifier) @name) @definition.class\n\n; method definitions\n\n(declaration_list\n    (function_item\n        name: (identifier) @name)) @definition.method\n\n; function definitions\n\n(function_item\n    name: (identifier) @name) @definition.function\n\n; trait definitions\n(trait_item\n    name: (type_identifier) @name) @definition.interface\n\n; module definitions\n(mod_item\n    name: (identifier) @name) @definition.module\n\n; macro definitions\n\n(macro_definition\n    name: (identifier) @name) @definition.macro\n\n; references\n\n(call_expression\n    function: (identifier) @name) @reference.call\n\n(call_expression\n    function: (field_expression\n        field: (field_identifier) @name)) @reference.call\n\n(macro_invocation\n    macro: (identifier) @name) @reference.call\n\n; implementations\n\n(impl_item\n    trait: (type_identifier) @name) @reference.implementation\n\n(impl_item\n    type: (type_identifier) @name\n    !trait) @reference.implementation\n\n```"]
 pub enum TagsCapture<'cursor, 'tree> {
     #[doc = "A `name` ([anon_unions::Name])"]
     #[doc = ""]
@@ -2623,7 +2623,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> Type<'tree> {
-        #[doc = "Returns the node if it is of kind `identifier` ([Identifier]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `identifier` ([`Identifier`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn identifier(self) -> Option<Identifier<'tree>> {
@@ -2632,7 +2632,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `type_identifier` ([TypeIdentifier]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `type_identifier` ([`TypeIdentifier`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn type_identifier(self) -> Option<TypeIdentifier<'tree>> {
@@ -2697,7 +2697,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> Constructor<'tree> {
-        #[doc = "Returns the node if it is of kind `identifier` ([Identifier]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `identifier` ([`Identifier`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn identifier(self) -> Option<Identifier<'tree>> {
@@ -2706,7 +2706,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `type_identifier` ([TypeIdentifier]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `type_identifier` ([`TypeIdentifier`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn type_identifier(self) -> Option<TypeIdentifier<'tree>> {
@@ -2771,7 +2771,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> FunctionMacro<'tree> {
-        #[doc = "Returns the node if it is of kind `!` ([symbols::Not]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `!` ([`symbols::Not`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn not(self) -> Option<symbols::Not<'tree>> {
@@ -2780,7 +2780,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `identifier` ([Identifier]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `identifier` ([`Identifier`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn identifier(self) -> Option<Identifier<'tree>> {
@@ -2843,7 +2843,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> Comment<'tree> {
-        #[doc = "Returns the node if it is of kind `block_comment` ([BlockComment]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `block_comment` ([`BlockComment`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn block_comment(self) -> Option<BlockComment<'tree>> {
@@ -2852,7 +2852,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `line_comment` ([LineComment]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `line_comment` ([`LineComment`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn line_comment(self) -> Option<LineComment<'tree>> {
@@ -2915,7 +2915,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> CommentDocumentation<'tree> {
-        #[doc = "Returns the node if it is of kind `block_comment` ([BlockComment]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `block_comment` ([`BlockComment`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn block_comment(self) -> Option<BlockComment<'tree>> {
@@ -2924,7 +2924,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `line_comment` ([LineComment]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `line_comment` ([`LineComment`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn line_comment(self) -> Option<LineComment<'tree>> {
@@ -2993,7 +2993,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> PunctuationBracket<'tree> {
-        #[doc = "Returns the node if it is of kind `(` ([symbols::LParen]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `(` ([`symbols::LParen`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn l_paren(self) -> Option<symbols::LParen<'tree>> {
@@ -3002,7 +3002,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `)` ([symbols::RParen]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `)` ([`symbols::RParen`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r_paren(self) -> Option<symbols::RParen<'tree>> {
@@ -3011,7 +3011,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `<` ([symbols::Lt]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `<` ([`symbols::Lt`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn lt(self) -> Option<symbols::Lt<'tree>> {
@@ -3020,7 +3020,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `>` ([symbols::Gt]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `>` ([`symbols::Gt`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn gt(self) -> Option<symbols::Gt<'tree>> {
@@ -3029,7 +3029,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `[` ([symbols::LBracket]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `[` ([`symbols::LBracket`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn l_bracket(self) -> Option<symbols::LBracket<'tree>> {
@@ -3038,7 +3038,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `]` ([symbols::RBracket]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `]` ([`symbols::RBracket`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r_bracket(self) -> Option<symbols::RBracket<'tree>> {
@@ -3047,7 +3047,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `{` ([symbols::LBrace]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `{` ([`symbols::LBrace`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn l_brace(self) -> Option<symbols::LBrace<'tree>> {
@@ -3056,7 +3056,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `}` ([symbols::RBrace]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `}` ([`symbols::RBrace`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r_brace(self) -> Option<symbols::RBrace<'tree>> {
@@ -3170,7 +3170,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> PunctuationDelimiter<'tree> {
-        #[doc = "Returns the node if it is of kind `,` ([symbols::Comma]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `,` ([`symbols::Comma`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn comma(self) -> Option<symbols::Comma<'tree>> {
@@ -3179,7 +3179,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `.` ([symbols::Dot]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `.` ([`symbols::Dot`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn dot(self) -> Option<symbols::Dot<'tree>> {
@@ -3188,7 +3188,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `:` ([symbols::Colon]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `:` ([`symbols::Colon`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn colon(self) -> Option<symbols::Colon<'tree>> {
@@ -3197,7 +3197,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `::` ([symbols::ColonColon]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `::` ([`symbols::ColonColon`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn colon_colon(self) -> Option<symbols::ColonColon<'tree>> {
@@ -3206,7 +3206,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `;` ([symbols::Semicolon]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `;` ([`symbols::Semicolon`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn semicolon(self) -> Option<symbols::Semicolon<'tree>> {
@@ -3286,7 +3286,7 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{as | async | await | break | const | continue | crate | default | dyn | else | enum | extern | fn | for | if | impl | in | let | loop | macro_rules! | match | mod | move | mutable_specifier | pub | ref | return | self | static | struct | super | trait | type | union | unsafe | use | where | while}`:\n- [unnamed::As]\n- [unnamed::Async]\n- [unnamed::Await]\n- [unnamed::Break]\n- [unnamed::Const]\n- [unnamed::Continue]\n- [Crate]\n- [unnamed::Default]\n- [unnamed::Dyn]\n- [unnamed::Else]\n- [unnamed::Enum]\n- [unnamed::Extern]\n- [unnamed::Fn]\n- [unnamed::For]\n- [unnamed::If]\n- [unnamed::Impl]\n- [unnamed::In]\n- [unnamed::Let]\n- [unnamed::Loop]\n- [symbols::MacroRulesNot]\n- [unnamed::Match]\n- [unnamed::Mod]\n- [unnamed::Move]\n- [MutableSpecifier]\n- [unnamed::Pub]\n- [unnamed::Ref]\n- [unnamed::Return]\n- [_Self]\n- [unnamed::Static]\n- [unnamed::Struct]\n- [Super]\n- [unnamed::Trait]\n- [unnamed::Type]\n- [unnamed::Union]\n- [unnamed::Unsafe]\n- [unnamed::Use]\n- [unnamed::Where]\n- [unnamed::While]"]
+    #[doc = "one of `{as | async | await | break | const | continue | crate | default | dyn | else | enum | extern | fn | for | if | impl | in | let | loop | macro_rules! | match | mod | move | mutable_specifier | pub | ref | return | self | static | struct | super | trait | type | union | unsafe | use | where | while | yield}`:\n- [unnamed::As]\n- [unnamed::Async]\n- [unnamed::Await]\n- [unnamed::Break]\n- [unnamed::Const]\n- [unnamed::Continue]\n- [Crate]\n- [unnamed::Default]\n- [unnamed::Dyn]\n- [unnamed::Else]\n- [unnamed::Enum]\n- [unnamed::Extern]\n- [unnamed::Fn]\n- [unnamed::For]\n- [unnamed::If]\n- [unnamed::Impl]\n- [unnamed::In]\n- [unnamed::Let]\n- [unnamed::Loop]\n- [symbols::MacroRulesNot]\n- [unnamed::Match]\n- [unnamed::Mod]\n- [unnamed::Move]\n- [MutableSpecifier]\n- [unnamed::Pub]\n- [unnamed::Ref]\n- [unnamed::Return]\n- [_Self]\n- [unnamed::Static]\n- [unnamed::Struct]\n- [Super]\n- [unnamed::Trait]\n- [unnamed::Type]\n- [unnamed::Union]\n- [unnamed::Unsafe]\n- [unnamed::Use]\n- [unnamed::Where]\n- [unnamed::While]\n- [unnamed::Yield]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum Keyword<'tree> {
@@ -3328,10 +3328,11 @@ pub mod anon_unions {
         Use(unnamed::Use<'tree>),
         Where(unnamed::Where<'tree>),
         While(unnamed::While<'tree>),
+        Yield(unnamed::Yield<'tree>),
     }
     #[automatically_derived]
     impl<'tree> Keyword<'tree> {
-        #[doc = "Returns the node if it is of kind `as` ([unnamed::As]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `as` ([`unnamed::As`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#as(self) -> Option<unnamed::As<'tree>> {
@@ -3340,7 +3341,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `async` ([unnamed::Async]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `async` ([`unnamed::Async`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#async(self) -> Option<unnamed::Async<'tree>> {
@@ -3349,7 +3350,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `await` ([unnamed::Await]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `await` ([`unnamed::Await`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#await(self) -> Option<unnamed::Await<'tree>> {
@@ -3358,7 +3359,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `break` ([unnamed::Break]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `break` ([`unnamed::Break`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#break(self) -> Option<unnamed::Break<'tree>> {
@@ -3367,7 +3368,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `const` ([unnamed::Const]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `const` ([`unnamed::Const`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#const(self) -> Option<unnamed::Const<'tree>> {
@@ -3376,7 +3377,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `continue` ([unnamed::Continue]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `continue` ([`unnamed::Continue`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#continue(self) -> Option<unnamed::Continue<'tree>> {
@@ -3385,7 +3386,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `crate` ([Crate]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `crate` ([`Crate`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn crate_(self) -> Option<Crate<'tree>> {
@@ -3394,7 +3395,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `default` ([unnamed::Default]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `default` ([`unnamed::Default`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn default(self) -> Option<unnamed::Default<'tree>> {
@@ -3403,7 +3404,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `dyn` ([unnamed::Dyn]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `dyn` ([`unnamed::Dyn`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#dyn(self) -> Option<unnamed::Dyn<'tree>> {
@@ -3412,7 +3413,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `else` ([unnamed::Else]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `else` ([`unnamed::Else`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#else(self) -> Option<unnamed::Else<'tree>> {
@@ -3421,7 +3422,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `enum` ([unnamed::Enum]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `enum` ([`unnamed::Enum`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#enum(self) -> Option<unnamed::Enum<'tree>> {
@@ -3430,7 +3431,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `extern` ([unnamed::Extern]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `extern` ([`unnamed::Extern`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#extern(self) -> Option<unnamed::Extern<'tree>> {
@@ -3439,7 +3440,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `fn` ([unnamed::Fn]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `fn` ([`unnamed::Fn`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#fn(self) -> Option<unnamed::Fn<'tree>> {
@@ -3448,7 +3449,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `for` ([unnamed::For]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `for` ([`unnamed::For`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#for(self) -> Option<unnamed::For<'tree>> {
@@ -3457,7 +3458,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `if` ([unnamed::If]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `if` ([`unnamed::If`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#if(self) -> Option<unnamed::If<'tree>> {
@@ -3466,7 +3467,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `impl` ([unnamed::Impl]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `impl` ([`unnamed::Impl`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#impl(self) -> Option<unnamed::Impl<'tree>> {
@@ -3475,7 +3476,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `in` ([unnamed::In]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `in` ([`unnamed::In`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#in(self) -> Option<unnamed::In<'tree>> {
@@ -3484,7 +3485,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `let` ([unnamed::Let]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `let` ([`unnamed::Let`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#let(self) -> Option<unnamed::Let<'tree>> {
@@ -3493,7 +3494,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `loop` ([unnamed::Loop]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `loop` ([`unnamed::Loop`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#loop(self) -> Option<unnamed::Loop<'tree>> {
@@ -3502,7 +3503,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `macro_rules!` ([symbols::MacroRulesNot]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `macro_rules!` ([`symbols::MacroRulesNot`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn macro_rules_not(self) -> Option<symbols::MacroRulesNot<'tree>> {
@@ -3511,7 +3512,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `match` ([unnamed::Match]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `match` ([`unnamed::Match`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#match(self) -> Option<unnamed::Match<'tree>> {
@@ -3520,7 +3521,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `mod` ([unnamed::Mod]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `mod` ([`unnamed::Mod`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#mod(self) -> Option<unnamed::Mod<'tree>> {
@@ -3529,7 +3530,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `move` ([unnamed::Move]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `move` ([`unnamed::Move`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#move(self) -> Option<unnamed::Move<'tree>> {
@@ -3538,7 +3539,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `mutable_specifier` ([MutableSpecifier]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `mutable_specifier` ([`MutableSpecifier`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn mutable_specifier(self) -> Option<MutableSpecifier<'tree>> {
@@ -3547,7 +3548,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `pub` ([unnamed::Pub]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `pub` ([`unnamed::Pub`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#pub(self) -> Option<unnamed::Pub<'tree>> {
@@ -3556,7 +3557,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `ref` ([unnamed::Ref]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `ref` ([`unnamed::Ref`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#ref(self) -> Option<unnamed::Ref<'tree>> {
@@ -3565,7 +3566,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `return` ([unnamed::Return]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `return` ([`unnamed::Return`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#return(self) -> Option<unnamed::Return<'tree>> {
@@ -3574,7 +3575,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `self` ([_Self]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `self` ([`_Self`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn _self(self) -> Option<_Self<'tree>> {
@@ -3583,7 +3584,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `static` ([unnamed::Static]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `static` ([`unnamed::Static`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#static(self) -> Option<unnamed::Static<'tree>> {
@@ -3592,7 +3593,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `struct` ([unnamed::Struct]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `struct` ([`unnamed::Struct`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#struct(self) -> Option<unnamed::Struct<'tree>> {
@@ -3601,7 +3602,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `super` ([Super]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `super` ([`Super`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn super_(self) -> Option<Super<'tree>> {
@@ -3610,7 +3611,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `trait` ([unnamed::Trait]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `trait` ([`unnamed::Trait`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#trait(self) -> Option<unnamed::Trait<'tree>> {
@@ -3619,7 +3620,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `type` ([unnamed::Type]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `type` ([`unnamed::Type`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#type(self) -> Option<unnamed::Type<'tree>> {
@@ -3628,7 +3629,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `union` ([unnamed::Union]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `union` ([`unnamed::Union`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn union(self) -> Option<unnamed::Union<'tree>> {
@@ -3637,7 +3638,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `unsafe` ([unnamed::Unsafe]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `unsafe` ([`unnamed::Unsafe`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#unsafe(self) -> Option<unnamed::Unsafe<'tree>> {
@@ -3646,7 +3647,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `use` ([unnamed::Use]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `use` ([`unnamed::Use`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#use(self) -> Option<unnamed::Use<'tree>> {
@@ -3655,7 +3656,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `where` ([unnamed::Where]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `where` ([`unnamed::Where`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#where(self) -> Option<unnamed::Where<'tree>> {
@@ -3664,12 +3665,21 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `while` ([unnamed::While]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `while` ([`unnamed::While`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn r#while(self) -> Option<unnamed::While<'tree>> {
             match self {
                 Self::While(x) => Some(x),
+                _ => None,
+            }
+        }
+        #[doc = "Returns the node if it is of kind `yield` ([`unnamed::Yield`]), otherwise returns None"]
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn r#yield(self) -> Option<unnamed::Yield<'tree>> {
+            match self {
+                Self::Yield(x) => Some(x),
                 _ => None,
             }
         }
@@ -3844,6 +3854,11 @@ pub mod anon_unions {
                         'tree,
                     >>::from_node_unchecked(node))
                 }),
+                "yield" => Ok(unsafe {
+                    Self::Yield(<unnamed::Yield<'tree> as type_sitter_lib::TypedNode<
+                        'tree,
+                    >>::from_node_unchecked(node))
+                }),
                 _ => Err(type_sitter_lib::IncorrectKind {
                     node,
                     kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
@@ -3853,7 +3868,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Keyword<'tree> {
-        const KIND : & 'static str = "{as | async | await | break | const | continue | crate | default | dyn | else | enum | extern | fn | for | if | impl | in | let | loop | macro_rules! | match | mod | move | mutable_specifier | pub | ref | return | self | static | struct | super | trait | type | union | unsafe | use | where | while}" ;
+        const KIND : & 'static str = "{as | async | await | break | const | continue | crate | default | dyn | else | enum | extern | fn | for | if | impl | in | let | loop | macro_rules! | match | mod | move | mutable_specifier | pub | ref | return | self | static | struct | super | trait | type | union | unsafe | use | where | while | yield}" ;
         #[inline]
         fn node(&self) -> &tree_sitter::Node<'tree> {
             match self {
@@ -3895,6 +3910,7 @@ pub mod anon_unions {
                 Self::Use(x) => x.node(),
                 Self::Where(x) => x.node(),
                 Self::While(x) => x.node(),
+                Self::Yield(x) => x.node(),
             }
         }
         #[inline]
@@ -3938,6 +3954,7 @@ pub mod anon_unions {
                 Self::Use(x) => x.node_mut(),
                 Self::Where(x) => x.node_mut(),
                 Self::While(x) => x.node_mut(),
+                Self::Yield(x) => x.node_mut(),
             }
         }
         #[inline]
@@ -3981,6 +3998,7 @@ pub mod anon_unions {
                 Self::Use(x) => x.into_node(),
                 Self::Where(x) => x.into_node(),
                 Self::While(x) => x.into_node(),
+                Self::Yield(x) => x.into_node(),
             }
         }
     }
@@ -3994,7 +4012,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> String<'tree> {
-        #[doc = "Returns the node if it is of kind `char_literal` ([CharLiteral]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `char_literal` ([`CharLiteral`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn char_literal(self) -> Option<CharLiteral<'tree>> {
@@ -4003,7 +4021,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `raw_string_literal` ([RawStringLiteral]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `raw_string_literal` ([`RawStringLiteral`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn raw_string_literal(self) -> Option<RawStringLiteral<'tree>> {
@@ -4012,7 +4030,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `string_literal` ([StringLiteral]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `string_literal` ([`StringLiteral`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn string_literal(self) -> Option<StringLiteral<'tree>> {
@@ -4084,7 +4102,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> ConstantBuiltin<'tree> {
-        #[doc = "Returns the node if it is of kind `boolean_literal` ([BooleanLiteral]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `boolean_literal` ([`BooleanLiteral`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn boolean_literal(self) -> Option<BooleanLiteral<'tree>> {
@@ -4093,7 +4111,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `float_literal` ([FloatLiteral]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `float_literal` ([`FloatLiteral`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn float_literal(self) -> Option<FloatLiteral<'tree>> {
@@ -4102,7 +4120,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `integer_literal` ([IntegerLiteral]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `integer_literal` ([`IntegerLiteral`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn integer_literal(self) -> Option<IntegerLiteral<'tree>> {
@@ -4175,7 +4193,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> Attribute<'tree> {
-        #[doc = "Returns the node if it is of kind `attribute_item` ([AttributeItem]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `attribute_item` ([`AttributeItem`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn attribute_item(self) -> Option<AttributeItem<'tree>> {
@@ -4184,7 +4202,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `inner_attribute_item` ([InnerAttributeItem]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `inner_attribute_item` ([`InnerAttributeItem`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn inner_attribute_item(self) -> Option<InnerAttributeItem<'tree>> {
@@ -4250,7 +4268,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> Operator<'tree> {
-        #[doc = "Returns the node if it is of kind `&` ([symbols::And]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `&` ([`symbols::And`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn and(self) -> Option<symbols::And<'tree>> {
@@ -4259,7 +4277,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `'` ([symbols::Quote]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `'` ([`symbols::Quote`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn quote(self) -> Option<symbols::Quote<'tree>> {
@@ -4268,7 +4286,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `*` ([symbols::Mul]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `*` ([`symbols::Mul`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn mul(self) -> Option<symbols::Mul<'tree>> {
@@ -4340,7 +4358,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> Name<'tree> {
-        #[doc = "Returns the node if it is of kind `field_identifier` ([FieldIdentifier]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `field_identifier` ([`FieldIdentifier`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn field_identifier(self) -> Option<FieldIdentifier<'tree>> {
@@ -4349,7 +4367,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `identifier` ([Identifier]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `identifier` ([`Identifier`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn identifier(self) -> Option<Identifier<'tree>> {
@@ -4358,7 +4376,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `type_identifier` ([TypeIdentifier]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `type_identifier` ([`TypeIdentifier`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn type_identifier(self) -> Option<TypeIdentifier<'tree>> {
@@ -4433,7 +4451,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> DefinitionClass<'tree> {
-        #[doc = "Returns the node if it is of kind `enum_item` ([EnumItem]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `enum_item` ([`EnumItem`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn enum_item(self) -> Option<EnumItem<'tree>> {
@@ -4442,7 +4460,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `struct_item` ([StructItem]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `struct_item` ([`StructItem`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn struct_item(self) -> Option<StructItem<'tree>> {
@@ -4451,7 +4469,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `type_item` ([TypeItem]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `type_item` ([`TypeItem`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn type_item(self) -> Option<TypeItem<'tree>> {
@@ -4460,7 +4478,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `union_item` ([UnionItem]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `union_item` ([`UnionItem`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn union_item(self) -> Option<UnionItem<'tree>> {
@@ -4539,7 +4557,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> ReferenceCall<'tree> {
-        #[doc = "Returns the node if it is of kind `call_expression` ([CallExpression]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `call_expression` ([`CallExpression`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn call_expression(self) -> Option<CallExpression<'tree>> {
@@ -4548,7 +4566,7 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `macro_invocation` ([MacroInvocation]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `macro_invocation` ([`MacroInvocation`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn macro_invocation(self) -> Option<MacroInvocation<'tree>> {

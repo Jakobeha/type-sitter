@@ -43,7 +43,7 @@ pub fn generate_nodes(item: proc_macro::TokenStream) -> proc_macro::TokenStream 
 /// - `1`: the path to the tree-sitter language root, relative to the crate root. Typically
 ///   `vendor/tree-sitter-<language>`.
 /// - `2`: Path to the crate with the typed node wrappers. Typically `super::nodes` (and then put an
-///   invocation of [`generate_nodes`] at top-level in the sister crate `nodes.rs`).
+///   invocation of [`generate_nodes!`] at top-level in the sister crate `nodes.rs`).
 ///
 /// # Example
 ///
