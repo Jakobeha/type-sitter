@@ -20,7 +20,7 @@ mod define_custom_wrapper;
 
 /// Wrapper around [`tree_sitter::Tree`] which stores its text, filepath, and extra data that is
 /// accessible from any node. It also uses and is used by [`yak_sitter`](crate) wrapper classes.
-#[derive(Debug)]
+#[derive(Clone, Debug)]
 pub struct Tree<Custom = ()> {
     tree: tree_sitter::Tree,
     byte_text: Vec<u8>,
