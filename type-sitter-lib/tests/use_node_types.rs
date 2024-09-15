@@ -23,14 +23,13 @@ pub fn test_use_node_types_rust() {
     assert!(matches!(statements[0], rust::nodes::anon_unions::DeclarationStatement_ExpressionStatement_Shebang::DeclarationStatement(rust::nodes::DeclarationStatement::UseDeclaration(_))));
     assert!(statements[0].declaration_statement().unwrap().use_declaration().is_some(), "Expected 1st statement to be a use declaration");
     assert!(statements[1].declaration_statement().unwrap().foreign_mod_item().is_some(), "Expected 2nd statement to be a foreign mod item");
-    assert!(statements[2].declaration_statement().unwrap().function_item().is_some(), "Expected 3rd statement to be a function item");
+    assert!(statements[2].declaration_statement().unwrap().const_item().is_some(), "Expected 3rd statement to be a const item");
     assert!(statements[3].declaration_statement().unwrap().const_item().is_some(), "Expected 4th statement to be a const item");
     assert!(statements[4].declaration_statement().unwrap().const_item().is_some(), "Expected 5th statement to be a const item");
     assert!(statements[5].declaration_statement().unwrap().const_item().is_some(), "Expected 6th statement to be a const item");
     assert!(statements[6].declaration_statement().unwrap().const_item().is_some(), "Expected 7th statement to be a const item");
-    assert!(statements[7].declaration_statement().unwrap().const_item().is_some(), "Expected 8th statement to be a const item");
-    assert!(statements[8].declaration_statement().unwrap().attribute_item().is_some(), "Expected 9th statement to be an attribute item");
-    assert!(statements[9].declaration_statement().unwrap().mod_item().is_some(), "Expected 10th statement to be a mod item");
+    assert!(statements[7].declaration_statement().unwrap().attribute_item().is_some(), "Expected 8th statement to be an attribute item");
+    assert!(statements[8].declaration_statement().unwrap().mod_item().is_some(), "Expected 9th statement to be a mod item");
     assert_eq!(
         statements[0]
             .declaration_statement().expect("Expected declaration statement")
@@ -40,7 +39,7 @@ pub fn test_use_node_types_rust() {
             .path().expect("Expected use declaration's scoped identifier to have a path").unwrap()
             .identifier().expect("Expected use declaration's scope identifier to have an identifier")
             .text(),
-        "tree_sitter"
+        "tree_sitter_language"
     );
     assert_eq!(
         statements[0]
@@ -50,10 +49,10 @@ pub fn test_use_node_types_rust() {
             .scoped_identifier().expect("Expected use declaration to have a scoped identifier")
             .name().unwrap()
             .text(),
-        "Language"
+        "LanguageFn"
     );
     assert!(
-        statements[9]
+        statements[8]
             .declaration_statement().expect("Expected declaration statement")
             .mod_item().expect("Expected mod item")
             .body().expect("Expected mod item to have a body").unwrap()
@@ -70,15 +69,19 @@ pub fn test_use_node_types_rust() {
             .arguments().unwrap()
             .children(&mut code_root.walk()).next().expect("Expected function item's body's second child's call expression's function's field expression's value's call expression to have a child").unwrap().expect("Expected function item's body's second child's call expression's function's field expression's value's call expression's child to be a regular node")
             .expression().expect("Expected function item's body's second child's call expression's function's field expression's value's call expression's child to be an expression")
-            .call_expression().expect("Expected function item's body's second child's call expression's function's field expression's value's call expression's child's expression to be a call expression")
+            .reference_expression().expect("Expected function item's body's second child's call expression's function's field expression's value's call expression's child's expression to be a reference expression")
+            .value().unwrap()
+            .call_expression().expect("Expected function item's body's second child's call expression's function's field expression's value's call expression's child's expression's value to be a call expression")
             .function().unwrap()
-            .scoped_identifier().expect("Expected function item's body's second child's call expression's function's field expression's value's call expression's child's expression's call expression's function to be a scoped identifier")
-            .path().expect("Expected function item's body's second child's call expression's function's field expression's value's call expression's child's expression's call expression's function's scoped identifier to have a path").unwrap()
+            .field_expression().expect("Expected function item's body's second child's call expression's function's field expression's value's call expression's child's expression's value's call expression's function to be a field expression")
+            .value().unwrap()
+            .scoped_identifier().expect("Expected function item's body's second child's call expression's function's field expression's value's call expression's child's expression's value's call expression's function's value to be a scoped identifier")
+            .path().expect("Expected function item's body's second child's call expression's function's field expression's value's call expression's child's expression's value's call expression's function's value's scoped identifier to have a path").unwrap()
             .super_().is_some(),
-        "Expected function item's body's second child's call expression's function's field expression's value's call expression's child's expression's call expression's function's scoped identifier's path to be a super_"
+        "Expected function item's body's second child's call expression's function's field expression's value's call expression's child's expression's value's call expression's function's scoped identifier's path to be a super_"
     );
     assert!(
-        statements[9]
+        statements[8]
             .declaration_statement().expect("Expected declaration statement")
             .mod_item().expect("Expected mod item")
             .children(&mut code_root.walk()).all(|child| child.unwrap()
