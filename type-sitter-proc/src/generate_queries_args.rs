@@ -13,10 +13,6 @@ pub struct GenerateQueriesArgs {
     pub language_path: PathBuf,
     comma2: Token![,],
     pub nodes: syn::Path,
-    comma3: Token![,],
-    pub use_yak_sitter: syn::LitBool,
-    comma4: Option<Token![,]>,
-    pub tree_sitter: Option<syn::Path>,
 }
 
 impl Parse for GenerateQueriesArgs {
@@ -26,16 +22,6 @@ impl Parse for GenerateQueriesArgs {
         let language_path_str: LitStr = input.parse()?;
         let comma2: Token![,] = input.parse()?;
         let nodes: syn::Path = input.parse()?;
-        let comma3: Token![,] = input.parse()?;
-        let use_yak_sitter: syn::LitBool = input.parse()?;
-        let (comma4, tree_sitter): (Option<Token![,]>, Option<syn::Path>) = match input.is_empty() {
-            false => {
-                let comma4: Token![,] = input.parse()?;
-                let path2: syn::Path = input.parse()?;
-                (Some(comma4), Some(path2))
-            }
-            true => (None, None),
-        };
         let path = normalize(path_str.value());
         let language_path = normalize(language_path_str.value());
         Ok(Self {
@@ -46,10 +32,6 @@ impl Parse for GenerateQueriesArgs {
             language_path,
             comma2,
             nodes,
-            comma3,
-            use_yak_sitter,
-            comma4,
-            tree_sitter,
         })
     }
 }

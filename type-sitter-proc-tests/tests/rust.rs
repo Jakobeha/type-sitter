@@ -5,12 +5,12 @@ use type_sitter_lib::{OptionNodeResultExt, OptionNodeResultExtraOrExt, TypedNode
 mod rust {
     use type_sitter_proc::generate_nodes;
 
-    generate_nodes!("../vendor/tree-sitter-rust/src/node-types.json", tree_sitter);
+    generate_nodes!("../vendor/tree-sitter-rust/src/node-types.json");
 
     pub mod queries {
         use type_sitter_proc::generate_queries;
 
-        generate_queries!("../vendor/tree-sitter-rust/queries", "../vendor/tree-sitter-rust", super, false);
+        generate_queries!("../vendor/tree-sitter-rust/queries", "../vendor/tree-sitter-rust", super);
     }
 }
 
