@@ -520,20 +520,61 @@ impl<'tree> type_sitter_lib::TypedNode<'tree> for Pair<'tree> {
 }
 /**Typed node `string`
 
-This node has an (optional) child: `string_content?` ([StringContent])
+This node has children: `{escape_sequence | string_content}*`:
+- [EscapeSequence]
+- [StringContent]
+
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub struct String<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> String<'tree> {
-    ///Get the node's only named child
+    ///Get the node's named children
+    #[allow(dead_code)]
+    #[inline]
+    pub fn children<'a>(
+        &self,
+        c: &'a mut yak_sitter::TreeCursor<'tree>,
+    ) -> impl ExactSizeIterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::EscapeSequence_StringContent<'tree>,
+            >,
+        >,
+    > + 'a {
+        self.0
+            .named_children(c)
+            .map(|n| <type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::EscapeSequence_StringContent<'tree>,
+            > as TryFrom<_>>::try_from(n))
+    }
+    ///Get the node's named child #i
     #[allow(dead_code)]
     #[inline]
     pub fn child(
         &self,
-    ) -> Option<type_sitter_lib::NodeResult<'tree, StringContent<'tree>>> {
-        self.0.named_child(0).map(<StringContent<'tree> as TryFrom<_>>::try_from)
+        i: usize,
+    ) -> Option<
+        type_sitter_lib::NodeResult<
+            'tree,
+            type_sitter_lib::ExtraOr<
+                'tree,
+                anon_unions::EscapeSequence_StringContent<'tree>,
+            >,
+        >,
+    > {
+        self.0
+            .named_child(i)
+            .map(
+                <type_sitter_lib::ExtraOr<
+                    'tree,
+                    anon_unions::EscapeSequence_StringContent<'tree>,
+                > as TryFrom<_>>::try_from,
+            )
     }
 }
 #[automatically_derived]
@@ -554,91 +595,6 @@ impl<'tree> TryFrom<yak_sitter::Node<'tree>> for String<'tree> {
 #[automatically_derived]
 impl<'tree> type_sitter_lib::TypedNode<'tree> for String<'tree> {
     const KIND: &'static str = "string";
-    #[inline]
-    fn node(&self) -> &yak_sitter::Node<'tree> {
-        &self.0
-    }
-    #[inline]
-    fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
-        &mut self.0
-    }
-    #[inline]
-    fn into_node(self) -> yak_sitter::Node<'tree> {
-        self.0
-    }
-    #[inline]
-    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
-        Self(node)
-    }
-}
-/**Typed node `string_content`
-
-This node has children: `escape_sequence*` ([EscapeSequence])
-*/
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-#[allow(non_camel_case_types)]
-pub struct StringContent<'tree>(yak_sitter::Node<'tree>);
-#[automatically_derived]
-impl<'tree> StringContent<'tree> {
-    ///Get the node's named children
-    #[allow(dead_code)]
-    #[inline]
-    pub fn children<'a>(
-        &self,
-        c: &'a mut yak_sitter::TreeCursor<'tree>,
-    ) -> impl ExactSizeIterator<
-        Item = type_sitter_lib::NodeResult<
-            'tree,
-            type_sitter_lib::ExtraOr<'tree, EscapeSequence<'tree>>,
-        >,
-    > + 'a {
-        self.0
-            .named_children(c)
-            .map(|n| <type_sitter_lib::ExtraOr<
-                'tree,
-                EscapeSequence<'tree>,
-            > as TryFrom<_>>::try_from(n))
-    }
-    ///Get the node's named child #i
-    #[allow(dead_code)]
-    #[inline]
-    pub fn child(
-        &self,
-        i: usize,
-    ) -> Option<
-        type_sitter_lib::NodeResult<
-            'tree,
-            type_sitter_lib::ExtraOr<'tree, EscapeSequence<'tree>>,
-        >,
-    > {
-        self.0
-            .named_child(i)
-            .map(
-                <type_sitter_lib::ExtraOr<
-                    'tree,
-                    EscapeSequence<'tree>,
-                > as TryFrom<_>>::try_from,
-            )
-    }
-}
-#[automatically_derived]
-impl<'tree> TryFrom<yak_sitter::Node<'tree>> for StringContent<'tree> {
-    type Error = type_sitter_lib::IncorrectKind<'tree>;
-    #[inline]
-    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
-        if node.kind() == "string_content" {
-            Ok(Self(node))
-        } else {
-            Err(type_sitter_lib::IncorrectKind {
-                node,
-                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-            })
-        }
-    }
-}
-#[automatically_derived]
-impl<'tree> type_sitter_lib::TypedNode<'tree> for StringContent<'tree> {
-    const KIND: &'static str = "string_content";
     #[inline]
     fn node(&self) -> &yak_sitter::Node<'tree> {
         &self.0
@@ -859,6 +815,50 @@ impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Number<'tree> {
 #[automatically_derived]
 impl<'tree> type_sitter_lib::TypedNode<'tree> for Number<'tree> {
     const KIND: &'static str = "number";
+    #[inline]
+    fn node(&self) -> &yak_sitter::Node<'tree> {
+        &self.0
+    }
+    #[inline]
+    fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
+        &mut self.0
+    }
+    #[inline]
+    fn into_node(self) -> yak_sitter::Node<'tree> {
+        self.0
+    }
+    #[inline]
+    unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
+        Self(node)
+    }
+}
+/**Typed node `string_content`
+
+This node has no children
+*/
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[allow(non_camel_case_types)]
+pub struct StringContent<'tree>(yak_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> StringContent<'tree> {}
+#[automatically_derived]
+impl<'tree> TryFrom<yak_sitter::Node<'tree>> for StringContent<'tree> {
+    type Error = type_sitter_lib::IncorrectKind<'tree>;
+    #[inline]
+    fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        if node.kind() == "string_content" {
+            Ok(Self(node))
+        } else {
+            Err(type_sitter_lib::IncorrectKind {
+                node,
+                kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+            })
+        }
+    }
+}
+#[automatically_derived]
+impl<'tree> type_sitter_lib::TypedNode<'tree> for StringContent<'tree> {
+    const KIND: &'static str = "string_content";
     #[inline]
     fn node(&self) -> &yak_sitter::Node<'tree> {
         &self.0
@@ -1229,6 +1229,104 @@ This node has no children
         #[inline]
         unsafe fn from_node_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             Self(node)
+        }
+    }
+}
+pub mod anon_unions {
+    #[allow(unused_imports)]
+    use super::*;
+    /**one of `{escape_sequence | string_content}`:
+- [EscapeSequence]
+- [StringContent]*/
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub enum EscapeSequence_StringContent<'tree> {
+        EscapeSequence(EscapeSequence<'tree>),
+        StringContent(StringContent<'tree>),
+    }
+    #[automatically_derived]
+    impl<'tree> EscapeSequence_StringContent<'tree> {
+        ///Returns the node if it is of kind `escape_sequence` ([EscapeSequence]), otherwise returns None
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn escape_sequence(self) -> Option<EscapeSequence<'tree>> {
+            match self {
+                Self::EscapeSequence(x) => Some(x),
+                _ => None,
+            }
+        }
+        ///Returns the node if it is of kind `string_content` ([StringContent]), otherwise returns None
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn string_content(self) -> Option<StringContent<'tree>> {
+            match self {
+                Self::StringContent(x) => Some(x),
+                _ => None,
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>>
+    for EscapeSequence_StringContent<'tree> {
+        type Error = type_sitter_lib::IncorrectKind<'tree>;
+        #[inline]
+        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+            match node.kind() {
+                "escape_sequence" => {
+                    Ok(unsafe {
+                        Self::EscapeSequence(
+                            <EscapeSequence<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
+                                'tree,
+                            >>::from_node_unchecked(node),
+                        )
+                    })
+                }
+                "string_content" => {
+                    Ok(unsafe {
+                        Self::StringContent(
+                            <StringContent<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
+                                'tree,
+                            >>::from_node_unchecked(node),
+                        )
+                    })
+                }
+                _ => {
+                    Err(type_sitter_lib::IncorrectKind {
+                        node,
+                        kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                    })
+                }
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::TypedNode<'tree>
+    for EscapeSequence_StringContent<'tree> {
+        const KIND: &'static str = "{escape_sequence | string_content}";
+        #[inline]
+        fn node(&self) -> &yak_sitter::Node<'tree> {
+            match self {
+                Self::EscapeSequence(x) => x.node(),
+                Self::StringContent(x) => x.node(),
+            }
+        }
+        #[inline]
+        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
+            match self {
+                Self::EscapeSequence(x) => x.node_mut(),
+                Self::StringContent(x) => x.node_mut(),
+            }
+        }
+        #[inline]
+        fn into_node(self) -> yak_sitter::Node<'tree> {
+            match self {
+                Self::EscapeSequence(x) => x.into_node(),
+                Self::StringContent(x) => x.into_node(),
+            }
         }
     }
 }

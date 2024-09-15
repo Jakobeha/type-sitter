@@ -5,7 +5,7 @@ use clap::Parser;
 
 use args::Args;
 use errors::Error;
-use type_sitter_gen::{tree_sitter, type_sitter_lib_wrapper};
+use type_sitter_gen::{tree_sitter, yak_sitter};
 use crate::process::reprocess;
 
 mod args;
@@ -28,7 +28,7 @@ fn run(args: Args) -> errors::Result<()> {
     // Get common arg data
     let tree_sitter = match (args.facade.as_ref(), args.use_yak_sitter) {
         (None, false) => tree_sitter(),
-        (None, true) => type_sitter_lib_wrapper(),
+        (None, true) => yak_sitter(),
         (Some(facade), _) => {
             syn::parse_str(facade).map_err(Error::CouldntParseWrapperNamespace)?
         },

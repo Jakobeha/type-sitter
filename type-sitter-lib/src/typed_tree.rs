@@ -134,7 +134,7 @@ impl<Root: TypedNodeGAT> TypedTree<Root> {
         self.tree.language()
     }
 
-    /// Print a dot graph of the tree to the given file. See [tree_sitter::Tree::print_dot_graph]
+    /// Print a dot graph of the tree to the given file. See [Tree::print_dot_graph]
     #[inline]
     pub fn print_dot_graph(&self, file: &impl AsRawFd) {
         self.tree.print_dot_graph(file)
@@ -209,7 +209,7 @@ mod tests {
     #[test]
     fn test_static_lifetime() {
         let mut parser = Parser::new();
-        parser.set_language(&tree_sitter_json::language()).expect("failed to set JSON language (?)");
+        parser.set_language(&tree_sitter_json::LANGUAGE.into()).expect("failed to set JSON language (?)");
         let json_str = r#"{ "key": [{ "key2": "value" }] }"#;
         let untyped_tree = parser.parse(json_str, None).expect("failed to parse test JSON");
         let tree = TypedTree::<UntypedNodeGAT>::try_from(untyped_tree).expect("failed to create typed tree of an untyped node");

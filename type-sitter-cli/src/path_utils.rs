@@ -1,16 +1,14 @@
+use std::cell::LazyCell;
 use std::path::Path;
 use std::fmt::Display;
 use std::fs::File;
 use std::io::Write;
 use std::ffi::OsString;
-use lazy_static::lazy_static;
 use rust_format::{RustFmt, Formatter};
 use crate::errors;
 use crate::errors::Error;
 
-lazy_static! {
-    static ref RUST_FMT: RustFmt = RustFmt::new();
-}
+const RUST_FMT: LazyCell<RustFmt> = LazyCell::new(|| RustFmt::new());
 
 pub fn write(path: &Path, contents: impl Display) -> errors::Result<()> {
     let mut file = File::create(path).map_err(Error::io("creating file for generated code"))?;

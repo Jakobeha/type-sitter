@@ -18,9 +18,9 @@ pub fn tree_sitter() -> syn::Path {
     parse_quote!(tree_sitter)
 }
 
-/// = `parse_quote!(yak_sitter)`. Path to a wrapper which provides
-/// convenience functions for tree-sitter nodes at the cost of worse performance.
-pub fn type_sitter_lib_wrapper() -> syn::Path {
+/// = `parse_quote!(yak_sitter)`. Path to a wrapper which provides convenience functions for
+/// tree-sitter nodes at the cost of worse performance.
+pub fn yak_sitter() -> syn::Path {
     parse_quote!(yak_sitter)
 }
 

@@ -1,6 +1,6 @@
 [package]
 name = "yak-sitter"
-version = "0.4.1"
+version = "0.5.0"
 description = "opinionated tree-sitter facade which lets you store data visible to nodes and provides other improvements"
 license = "MIT OR Apache-2.0"
 repository = "https://github.com/Jakobeha/type-sitter/"
@@ -9,9 +9,9 @@ keywords = ["tree-sitter"]
 edition = "2021"
 
 [dependencies]
-tree-sitter = "0.22.2"
+tree-sitter = "0.23.0"
 streaming-iterator = "0.1.9"
 
 [dev-dependencies]
-tree-sitter-rust = "0.20.4"
-tree-sitter-json = "0.20.2"
+tree-sitter-rust = "0.23.0"
+tree-sitter-json = "0.23.0"

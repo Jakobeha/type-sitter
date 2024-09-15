@@ -1,18 +1,16 @@
 #[allow(non_upper_case_globals)]
-static __Highlights__: type_sitter_lib::gen_internal::TypedQueryOnceBox<
-    tree_sitter::Query,
-> = type_sitter_lib::gen_internal::TypedQueryOnceBox::new();
+static __Highlights__: std::sync::OnceLock<tree_sitter::Query> = std::sync::OnceLock::new();
 #[allow(non_snake_case)]
-fn __Mk__Highlights() -> Box<tree_sitter::Query> {
+fn __Mk__Highlights() -> tree_sitter::Query {
     #[allow(unused_mut)]
     let mut query = tree_sitter::Query::new(
-            &tree_sitter_rust::language(),
-            "; Identifiers\n\n(type_identifier) @type\n(primitive_type) @type.builtin\n(field_identifier) @property\n\n; Identifier conventions\n\n; Assume all-caps names are constants\n((identifier) @constant\n (#match? @constant \"^[A-Z][A-Z\\\\d_]+$'\"))\n\n; Assume uppercase names are enum constructors\n((identifier) @constructor\n (#match? @constructor \"^[A-Z]\"))\n\n; Assume that uppercase names in paths are types\n((scoped_identifier\n  path: (identifier) @type)\n (#match? @type \"^[A-Z]\"))\n((scoped_identifier\n  path: (scoped_identifier\n    name: (identifier) @type))\n (#match? @type \"^[A-Z]\"))\n((scoped_type_identifier\n  path: (identifier) @type)\n (#match? @type \"^[A-Z]\"))\n((scoped_type_identifier\n  path: (scoped_identifier\n    name: (identifier) @type))\n (#match? @type \"^[A-Z]\"))\n\n; Assume all qualified names in struct patterns are enum constructors. (They're\n; either that, or struct names; highlighting both as constructors seems to be\n; the less glaring choice of error, visually.)\n(struct_pattern\n  type: (scoped_type_identifier\n    name: (type_identifier) @constructor))\n\n; Function calls\n\n(call_expression\n  function: (identifier) @function)\n(call_expression\n  function: (field_expression\n    field: (field_identifier) @function.method))\n(call_expression\n  function: (scoped_identifier\n    \"::\"\n    name: (identifier) @function))\n\n(generic_function\n  function: (identifier) @function)\n(generic_function\n  function: (scoped_identifier\n    name: (identifier) @function))\n(generic_function\n  function: (field_expression\n    field: (field_identifier) @function.method))\n\n(macro_invocation\n  macro: (identifier) @function.macro\n  \"!\" @function.macro)\n\n; Function definitions\n\n(function_item (identifier) @function)\n(function_signature_item (identifier) @function)\n\n(line_comment) @comment\n(block_comment) @comment\n\n(line_comment (doc_comment)) @comment.documentation\n(block_comment (doc_comment)) @comment.documentation\n\n\"(\" @punctuation.bracket\n\")\" @punctuation.bracket\n\"[\" @punctuation.bracket\n\"]\" @punctuation.bracket\n\"{\" @punctuation.bracket\n\"}\" @punctuation.bracket\n\n(type_arguments\n  \"<\" @punctuation.bracket\n  \">\" @punctuation.bracket)\n(type_parameters\n  \"<\" @punctuation.bracket\n  \">\" @punctuation.bracket)\n\n\"::\" @punctuation.delimiter\n\":\" @punctuation.delimiter\n\".\" @punctuation.delimiter\n\",\" @punctuation.delimiter\n\";\" @punctuation.delimiter\n\n(parameter (identifier) @variable.parameter)\n\n(lifetime (identifier) @label)\n\n\"as\" @keyword\n\"async\" @keyword\n\"await\" @keyword\n\"break\" @keyword\n\"const\" @keyword\n\"continue\" @keyword\n\"default\" @keyword\n\"dyn\" @keyword\n\"else\" @keyword\n\"enum\" @keyword\n\"extern\" @keyword\n\"fn\" @keyword\n\"for\" @keyword\n\"if\" @keyword\n\"impl\" @keyword\n\"in\" @keyword\n\"let\" @keyword\n\"loop\" @keyword\n\"macro_rules!\" @keyword\n\"match\" @keyword\n\"mod\" @keyword\n\"move\" @keyword\n\"pub\" @keyword\n\"ref\" @keyword\n\"return\" @keyword\n\"static\" @keyword\n\"struct\" @keyword\n\"trait\" @keyword\n\"type\" @keyword\n\"union\" @keyword\n\"unsafe\" @keyword\n\"use\" @keyword\n\"where\" @keyword\n\"while\" @keyword\n(crate) @keyword\n(mutable_specifier) @keyword\n(use_list (self) @keyword)\n(scoped_use_list (self) @keyword)\n(scoped_identifier (self) @keyword)\n(super) @keyword\n\n(self) @variable.builtin\n\n(char_literal) @string\n(string_literal) @string\n(raw_string_literal) @string\n\n(boolean_literal) @constant.builtin\n(integer_literal) @constant.builtin\n(float_literal) @constant.builtin\n\n(escape_sequence) @escape\n\n(attribute_item) @attribute\n(inner_attribute_item) @attribute\n\n\"*\" @operator\n\"&\" @operator\n\"'\" @operator\n",
+            &tree_sitter_rust::LANGUAGE.into(),
+            "; Identifiers\n\n(type_identifier) @type\n(primitive_type) @type.builtin\n(field_identifier) @property\n\n; Identifier conventions\n\n; Assume all-caps names are constants\n((identifier) @constant\n (#match? @constant \"^[A-Z][A-Z\\\\d_]+$'\"))\n\n; Assume uppercase names are enum constructors\n((identifier) @constructor\n (#match? @constructor \"^[A-Z]\"))\n\n; Assume that uppercase names in paths are types\n((scoped_identifier\n  path: (identifier) @type)\n (#match? @type \"^[A-Z]\"))\n((scoped_identifier\n  path: (scoped_identifier\n    name: (identifier) @type))\n (#match? @type \"^[A-Z]\"))\n((scoped_type_identifier\n  path: (identifier) @type)\n (#match? @type \"^[A-Z]\"))\n((scoped_type_identifier\n  path: (scoped_identifier\n    name: (identifier) @type))\n (#match? @type \"^[A-Z]\"))\n\n; Assume all qualified names in struct patterns are enum constructors. (They're\n; either that, or struct names; highlighting both as constructors seems to be\n; the less glaring choice of error, visually.)\n(struct_pattern\n  type: (scoped_type_identifier\n    name: (type_identifier) @constructor))\n\n; Function calls\n\n(call_expression\n  function: (identifier) @function)\n(call_expression\n  function: (field_expression\n    field: (field_identifier) @function.method))\n(call_expression\n  function: (scoped_identifier\n    \"::\"\n    name: (identifier) @function))\n\n(generic_function\n  function: (identifier) @function)\n(generic_function\n  function: (scoped_identifier\n    name: (identifier) @function))\n(generic_function\n  function: (field_expression\n    field: (field_identifier) @function.method))\n\n(macro_invocation\n  macro: (identifier) @function.macro\n  \"!\" @function.macro)\n\n; Function definitions\n\n(function_item (identifier) @function)\n(function_signature_item (identifier) @function)\n\n(line_comment) @comment\n(block_comment) @comment\n\n(line_comment (doc_comment)) @comment.documentation\n(block_comment (doc_comment)) @comment.documentation\n\n\"(\" @punctuation.bracket\n\")\" @punctuation.bracket\n\"[\" @punctuation.bracket\n\"]\" @punctuation.bracket\n\"{\" @punctuation.bracket\n\"}\" @punctuation.bracket\n\n(type_arguments\n  \"<\" @punctuation.bracket\n  \">\" @punctuation.bracket)\n(type_parameters\n  \"<\" @punctuation.bracket\n  \">\" @punctuation.bracket)\n\n\"::\" @punctuation.delimiter\n\":\" @punctuation.delimiter\n\".\" @punctuation.delimiter\n\",\" @punctuation.delimiter\n\";\" @punctuation.delimiter\n\n(parameter (identifier) @variable.parameter)\n\n(lifetime (identifier) @label)\n\n\"as\" @keyword\n\"async\" @keyword\n\"await\" @keyword\n\"break\" @keyword\n\"const\" @keyword\n\"continue\" @keyword\n\"default\" @keyword\n\"dyn\" @keyword\n\"else\" @keyword\n\"enum\" @keyword\n\"extern\" @keyword\n\"fn\" @keyword\n\"for\" @keyword\n\"if\" @keyword\n\"impl\" @keyword\n\"in\" @keyword\n\"let\" @keyword\n\"loop\" @keyword\n\"macro_rules!\" @keyword\n\"match\" @keyword\n\"mod\" @keyword\n\"move\" @keyword\n\"pub\" @keyword\n\"ref\" @keyword\n\"return\" @keyword\n\"static\" @keyword\n\"struct\" @keyword\n\"trait\" @keyword\n\"type\" @keyword\n\"union\" @keyword\n\"unsafe\" @keyword\n\"use\" @keyword\n\"where\" @keyword\n\"while\" @keyword\n\"yield\" @keyword\n(crate) @keyword\n(mutable_specifier) @keyword\n(use_list (self) @keyword)\n(scoped_use_list (self) @keyword)\n(scoped_identifier (self) @keyword)\n(super) @keyword\n\n(self) @variable.builtin\n\n(char_literal) @string\n(string_literal) @string\n(raw_string_literal) @string\n\n(boolean_literal) @constant.builtin\n(integer_literal) @constant.builtin\n(float_literal) @constant.builtin\n\n(escape_sequence) @escape\n\n(attribute_item) @attribute\n(inner_attribute_item) @attribute\n\n\"*\" @operator\n\"&\" @operator\n\"'\" @operator\n",
         )
         .expect(
             "query parsed at compile-time but failed at runtime. Is the language 'tree_sitter_rust' correct, and did you use the same tree-sitter / tree_sitter_rust version?",
         );
-    Box::new(query)
+    query
 }
 /**Typed version of the query:
 
@@ -150,6 +148,7 @@ fn __Mk__Highlights() -> Box<tree_sitter::Query> {
 "use" @keyword
 "where" @keyword
 "while" @keyword
+"yield" @keyword
 (crate) @keyword
 (mutable_specifier) @keyword
 (use_list (self) @keyword)
@@ -316,6 +315,7 @@ pub struct Highlights;
 "use" @keyword
 "where" @keyword
 "while" @keyword
+"yield" @keyword
 (crate) @keyword
 (mutable_specifier) @keyword
 (use_list (self) @keyword)
@@ -485,6 +485,7 @@ pub type HighlightsMatches<'cursor, 'tree> = type_sitter_lib::TypedQueryMatches<
 "use" @keyword
 "where" @keyword
 "while" @keyword
+"yield" @keyword
 (crate) @keyword
 (mutable_specifier) @keyword
 (use_list (self) @keyword)
@@ -654,6 +655,7 @@ pub type HighlightsCaptures<'cursor, 'tree> = type_sitter_lib::TypedQueryCapture
 "use" @keyword
 "where" @keyword
 "while" @keyword
+"yield" @keyword
 (crate) @keyword
 (mutable_specifier) @keyword
 (use_list (self) @keyword)
@@ -821,6 +823,7 @@ pub struct HighlightsMatch<'cursor, 'tree> {
 "use" @keyword
 "where" @keyword
 "while" @keyword
+"yield" @keyword
 (crate) @keyword
 (mutable_specifier) @keyword
 (use_list (self) @keyword)
@@ -1054,6 +1057,7 @@ pub enum HighlightsCapture<'cursor, 'tree> {
     ///"use" @keyword
     ///"where" @keyword
     ///"while" @keyword
+    ///"yield" @keyword
     ///(crate) @keyword
     ///(mutable_specifier) @keyword
     ///(super) @keyword
@@ -1138,7 +1142,7 @@ impl type_sitter_lib::TypedQuery for Highlights {
     type Match<'cursor, 'tree: 'cursor> = HighlightsMatch<'cursor, 'tree>;
     type Capture<'cursor, 'tree: 'cursor> = HighlightsCapture<'cursor, 'tree>;
     fn query_str(&self) -> &'static str {
-        "; Identifiers\n\n(type_identifier) @type\n(primitive_type) @type.builtin\n(field_identifier) @property\n\n; Identifier conventions\n\n; Assume all-caps names are constants\n((identifier) @constant\n (#match? @constant \"^[A-Z][A-Z\\\\d_]+$'\"))\n\n; Assume uppercase names are enum constructors\n((identifier) @constructor\n (#match? @constructor \"^[A-Z]\"))\n\n; Assume that uppercase names in paths are types\n((scoped_identifier\n  path: (identifier) @type)\n (#match? @type \"^[A-Z]\"))\n((scoped_identifier\n  path: (scoped_identifier\n    name: (identifier) @type))\n (#match? @type \"^[A-Z]\"))\n((scoped_type_identifier\n  path: (identifier) @type)\n (#match? @type \"^[A-Z]\"))\n((scoped_type_identifier\n  path: (scoped_identifier\n    name: (identifier) @type))\n (#match? @type \"^[A-Z]\"))\n\n; Assume all qualified names in struct patterns are enum constructors. (They're\n; either that, or struct names; highlighting both as constructors seems to be\n; the less glaring choice of error, visually.)\n(struct_pattern\n  type: (scoped_type_identifier\n    name: (type_identifier) @constructor))\n\n; Function calls\n\n(call_expression\n  function: (identifier) @function)\n(call_expression\n  function: (field_expression\n    field: (field_identifier) @function.method))\n(call_expression\n  function: (scoped_identifier\n    \"::\"\n    name: (identifier) @function))\n\n(generic_function\n  function: (identifier) @function)\n(generic_function\n  function: (scoped_identifier\n    name: (identifier) @function))\n(generic_function\n  function: (field_expression\n    field: (field_identifier) @function.method))\n\n(macro_invocation\n  macro: (identifier) @function.macro\n  \"!\" @function.macro)\n\n; Function definitions\n\n(function_item (identifier) @function)\n(function_signature_item (identifier) @function)\n\n(line_comment) @comment\n(block_comment) @comment\n\n(line_comment (doc_comment)) @comment.documentation\n(block_comment (doc_comment)) @comment.documentation\n\n\"(\" @punctuation.bracket\n\")\" @punctuation.bracket\n\"[\" @punctuation.bracket\n\"]\" @punctuation.bracket\n\"{\" @punctuation.bracket\n\"}\" @punctuation.bracket\n\n(type_arguments\n  \"<\" @punctuation.bracket\n  \">\" @punctuation.bracket)\n(type_parameters\n  \"<\" @punctuation.bracket\n  \">\" @punctuation.bracket)\n\n\"::\" @punctuation.delimiter\n\":\" @punctuation.delimiter\n\".\" @punctuation.delimiter\n\",\" @punctuation.delimiter\n\";\" @punctuation.delimiter\n\n(parameter (identifier) @variable.parameter)\n\n(lifetime (identifier) @label)\n\n\"as\" @keyword\n\"async\" @keyword\n\"await\" @keyword\n\"break\" @keyword\n\"const\" @keyword\n\"continue\" @keyword\n\"default\" @keyword\n\"dyn\" @keyword\n\"else\" @keyword\n\"enum\" @keyword\n\"extern\" @keyword\n\"fn\" @keyword\n\"for\" @keyword\n\"if\" @keyword\n\"impl\" @keyword\n\"in\" @keyword\n\"let\" @keyword\n\"loop\" @keyword\n\"macro_rules!\" @keyword\n\"match\" @keyword\n\"mod\" @keyword\n\"move\" @keyword\n\"pub\" @keyword\n\"ref\" @keyword\n\"return\" @keyword\n\"static\" @keyword\n\"struct\" @keyword\n\"trait\" @keyword\n\"type\" @keyword\n\"union\" @keyword\n\"unsafe\" @keyword\n\"use\" @keyword\n\"where\" @keyword\n\"while\" @keyword\n(crate) @keyword\n(mutable_specifier) @keyword\n(use_list (self) @keyword)\n(scoped_use_list (self) @keyword)\n(scoped_identifier (self) @keyword)\n(super) @keyword\n\n(self) @variable.builtin\n\n(char_literal) @string\n(string_literal) @string\n(raw_string_literal) @string\n\n(boolean_literal) @constant.builtin\n(integer_literal) @constant.builtin\n(float_literal) @constant.builtin\n\n(escape_sequence) @escape\n\n(attribute_item) @attribute\n(inner_attribute_item) @attribute\n\n\"*\" @operator\n\"&\" @operator\n\"'\" @operator\n"
+        "; Identifiers\n\n(type_identifier) @type\n(primitive_type) @type.builtin\n(field_identifier) @property\n\n; Identifier conventions\n\n; Assume all-caps names are constants\n((identifier) @constant\n (#match? @constant \"^[A-Z][A-Z\\\\d_]+$'\"))\n\n; Assume uppercase names are enum constructors\n((identifier) @constructor\n (#match? @constructor \"^[A-Z]\"))\n\n; Assume that uppercase names in paths are types\n((scoped_identifier\n  path: (identifier) @type)\n (#match? @type \"^[A-Z]\"))\n((scoped_identifier\n  path: (scoped_identifier\n    name: (identifier) @type))\n (#match? @type \"^[A-Z]\"))\n((scoped_type_identifier\n  path: (identifier) @type)\n (#match? @type \"^[A-Z]\"))\n((scoped_type_identifier\n  path: (scoped_identifier\n    name: (identifier) @type))\n (#match? @type \"^[A-Z]\"))\n\n; Assume all qualified names in struct patterns are enum constructors. (They're\n; either that, or struct names; highlighting both as constructors seems to be\n; the less glaring choice of error, visually.)\n(struct_pattern\n  type: (scoped_type_identifier\n    name: (type_identifier) @constructor))\n\n; Function calls\n\n(call_expression\n  function: (identifier) @function)\n(call_expression\n  function: (field_expression\n    field: (field_identifier) @function.method))\n(call_expression\n  function: (scoped_identifier\n    \"::\"\n    name: (identifier) @function))\n\n(generic_function\n  function: (identifier) @function)\n(generic_function\n  function: (scoped_identifier\n    name: (identifier) @function))\n(generic_function\n  function: (field_expression\n    field: (field_identifier) @function.method))\n\n(macro_invocation\n  macro: (identifier) @function.macro\n  \"!\" @function.macro)\n\n; Function definitions\n\n(function_item (identifier) @function)\n(function_signature_item (identifier) @function)\n\n(line_comment) @comment\n(block_comment) @comment\n\n(line_comment (doc_comment)) @comment.documentation\n(block_comment (doc_comment)) @comment.documentation\n\n\"(\" @punctuation.bracket\n\")\" @punctuation.bracket\n\"[\" @punctuation.bracket\n\"]\" @punctuation.bracket\n\"{\" @punctuation.bracket\n\"}\" @punctuation.bracket\n\n(type_arguments\n  \"<\" @punctuation.bracket\n  \">\" @punctuation.bracket)\n(type_parameters\n  \"<\" @punctuation.bracket\n  \">\" @punctuation.bracket)\n\n\"::\" @punctuation.delimiter\n\":\" @punctuation.delimiter\n\".\" @punctuation.delimiter\n\",\" @punctuation.delimiter\n\";\" @punctuation.delimiter\n\n(parameter (identifier) @variable.parameter)\n\n(lifetime (identifier) @label)\n\n\"as\" @keyword\n\"async\" @keyword\n\"await\" @keyword\n\"break\" @keyword\n\"const\" @keyword\n\"continue\" @keyword\n\"default\" @keyword\n\"dyn\" @keyword\n\"else\" @keyword\n\"enum\" @keyword\n\"extern\" @keyword\n\"fn\" @keyword\n\"for\" @keyword\n\"if\" @keyword\n\"impl\" @keyword\n\"in\" @keyword\n\"let\" @keyword\n\"loop\" @keyword\n\"macro_rules!\" @keyword\n\"match\" @keyword\n\"mod\" @keyword\n\"move\" @keyword\n\"pub\" @keyword\n\"ref\" @keyword\n\"return\" @keyword\n\"static\" @keyword\n\"struct\" @keyword\n\"trait\" @keyword\n\"type\" @keyword\n\"union\" @keyword\n\"unsafe\" @keyword\n\"use\" @keyword\n\"where\" @keyword\n\"while\" @keyword\n\"yield\" @keyword\n(crate) @keyword\n(mutable_specifier) @keyword\n(use_list (self) @keyword)\n(scoped_use_list (self) @keyword)\n(scoped_identifier (self) @keyword)\n(super) @keyword\n\n(self) @variable.builtin\n\n(char_literal) @string\n(string_literal) @string\n(raw_string_literal) @string\n\n(boolean_literal) @constant.builtin\n(integer_literal) @constant.builtin\n(float_literal) @constant.builtin\n\n(escape_sequence) @escape\n\n(attribute_item) @attribute\n(inner_attribute_item) @attribute\n\n\"*\" @operator\n\"&\" @operator\n\"'\" @operator\n"
     }
     fn query(&self) -> &'static tree_sitter::Query {
         __Highlights__.get_or_init(__Mk__Highlights)
@@ -1808,6 +1812,7 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
     ///"use" @keyword
     ///"where" @keyword
     ///"while" @keyword
+    ///"yield" @keyword
     ///(crate) @keyword
     ///(mutable_specifier) @keyword
     ///(super) @keyword
@@ -2289,6 +2294,7 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
     ///"use" @keyword
     ///"where" @keyword
     ///"while" @keyword
+    ///"yield" @keyword
     ///(crate) @keyword
     ///(mutable_specifier) @keyword
     ///(super) @keyword
@@ -3074,20 +3080,18 @@ for HighlightsCapture<'cursor, 'tree> {
     }
 }
 #[allow(non_upper_case_globals)]
-static __Injections__: type_sitter_lib::gen_internal::TypedQueryOnceBox<
-    tree_sitter::Query,
-> = type_sitter_lib::gen_internal::TypedQueryOnceBox::new();
+static __Injections__: std::sync::OnceLock<tree_sitter::Query> = std::sync::OnceLock::new();
 #[allow(non_snake_case)]
-fn __Mk__Injections() -> Box<tree_sitter::Query> {
+fn __Mk__Injections() -> tree_sitter::Query {
     #[allow(unused_mut)]
     let mut query = tree_sitter::Query::new(
-            &tree_sitter_rust::language(),
+            &tree_sitter_rust::LANGUAGE.into(),
             "((macro_invocation\n  (token_tree) @injection.content)\n (#set! injection.language \"rust\")\n (#set! injection.include-children))\n\n((macro_rule\n  (token_tree) @injection.content)\n (#set! injection.language \"rust\")\n (#set! injection.include-children))\n",
         )
         .expect(
             "query parsed at compile-time but failed at runtime. Is the language 'tree_sitter_rust' correct, and did you use the same tree-sitter / tree_sitter_rust version?",
         );
-    Box::new(query)
+    query
 }
 /**Typed version of the query:
 
@@ -3433,18 +3437,18 @@ for InjectionsCapture<'cursor, 'tree> {
     }
 }
 #[allow(non_upper_case_globals)]
-static __Tags__: type_sitter_lib::gen_internal::TypedQueryOnceBox<tree_sitter::Query> = type_sitter_lib::gen_internal::TypedQueryOnceBox::new();
+static __Tags__: std::sync::OnceLock<tree_sitter::Query> = std::sync::OnceLock::new();
 #[allow(non_snake_case)]
-fn __Mk__Tags() -> Box<tree_sitter::Query> {
+fn __Mk__Tags() -> tree_sitter::Query {
     #[allow(unused_mut)]
     let mut query = tree_sitter::Query::new(
-            &tree_sitter_rust::language(),
+            &tree_sitter_rust::LANGUAGE.into(),
             "; ADT definitions\n\n(struct_item\n    name: (type_identifier) @name) @definition.class\n\n(enum_item\n    name: (type_identifier) @name) @definition.class\n\n(union_item\n    name: (type_identifier) @name) @definition.class\n\n; type aliases\n\n(type_item\n    name: (type_identifier) @name) @definition.class\n\n; method definitions\n\n(declaration_list\n    (function_item\n        name: (identifier) @name)) @definition.method\n\n; function definitions\n\n(function_item\n    name: (identifier) @name) @definition.function\n\n; trait definitions\n(trait_item\n    name: (type_identifier) @name) @definition.interface\n\n; module definitions\n(mod_item\n    name: (identifier) @name) @definition.module\n\n; macro definitions\n\n(macro_definition\n    name: (identifier) @name) @definition.macro\n\n; references\n\n(call_expression\n    function: (identifier) @name) @reference.call\n\n(call_expression\n    function: (field_expression\n        field: (field_identifier) @name)) @reference.call\n\n(macro_invocation\n    macro: (identifier) @name) @reference.call\n\n; implementations\n\n(impl_item\n    trait: (type_identifier) @name) @reference.implementation\n\n(impl_item\n    type: (type_identifier) @name\n    !trait) @reference.implementation\n",
         )
         .expect(
             "query parsed at compile-time but failed at runtime. Is the language 'tree_sitter_rust' correct, and did you use the same tree-sitter / tree_sitter_rust version?",
         );
-    Box::new(query)
+    query
 }
 /**Typed version of the query:
 
@@ -5706,7 +5710,7 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{as | async | await | break | const | continue | crate | default | dyn | else | enum | extern | fn | for | if | impl | in | let | loop | macro_rules! | match | mod | move | mutable_specifier | pub | ref | return | self | static | struct | super | trait | type | union | unsafe | use | where | while}`:
+    /**one of `{as | async | await | break | const | continue | crate | default | dyn | else | enum | extern | fn | for | if | impl | in | let | loop | macro_rules! | match | mod | move | mutable_specifier | pub | ref | return | self | static | struct | super | trait | type | union | unsafe | use | where | while | yield}`:
 - [unnamed::As]
 - [unnamed::Async]
 - [unnamed::Await]
@@ -5744,7 +5748,8 @@ pub mod anon_unions {
 - [unnamed::Unsafe]
 - [unnamed::Use]
 - [unnamed::Where]
-- [unnamed::While]*/
+- [unnamed::While]
+- [unnamed::Yield]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum Keyword<'tree> {
@@ -5786,6 +5791,7 @@ pub mod anon_unions {
         Use(unnamed::Use<'tree>),
         Where(unnamed::Where<'tree>),
         While(unnamed::While<'tree>),
+        Yield(unnamed::Yield<'tree>),
     }
     #[automatically_derived]
     impl<'tree> Keyword<'tree> {
@@ -6128,6 +6134,15 @@ pub mod anon_unions {
         pub fn r#while(self) -> Option<unnamed::While<'tree>> {
             match self {
                 Self::While(x) => Some(x),
+                _ => None,
+            }
+        }
+        ///Returns the node if it is of kind `yield` ([unnamed::Yield]), otherwise returns None
+        #[inline]
+        #[allow(unused, non_snake_case)]
+        pub fn r#yield(self) -> Option<unnamed::Yield<'tree>> {
+            match self {
+                Self::Yield(x) => Some(x),
                 _ => None,
             }
         }
@@ -6556,6 +6571,17 @@ pub mod anon_unions {
                         )
                     })
                 }
+                "yield" => {
+                    Ok(unsafe {
+                        Self::Yield(
+                            <unnamed::Yield<
+                                'tree,
+                            > as type_sitter_lib::TypedNode<
+                                'tree,
+                            >>::from_node_unchecked(node),
+                        )
+                    })
+                }
                 _ => {
                     Err(type_sitter_lib::IncorrectKind {
                         node,
@@ -6567,7 +6593,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> type_sitter_lib::TypedNode<'tree> for Keyword<'tree> {
-        const KIND: &'static str = "{as | async | await | break | const | continue | crate | default | dyn | else | enum | extern | fn | for | if | impl | in | let | loop | macro_rules! | match | mod | move | mutable_specifier | pub | ref | return | self | static | struct | super | trait | type | union | unsafe | use | where | while}";
+        const KIND: &'static str = "{as | async | await | break | const | continue | crate | default | dyn | else | enum | extern | fn | for | if | impl | in | let | loop | macro_rules! | match | mod | move | mutable_specifier | pub | ref | return | self | static | struct | super | trait | type | union | unsafe | use | where | while | yield}";
         #[inline]
         fn node(&self) -> &yak_sitter::Node<'tree> {
             match self {
@@ -6609,6 +6635,7 @@ pub mod anon_unions {
                 Self::Use(x) => x.node(),
                 Self::Where(x) => x.node(),
                 Self::While(x) => x.node(),
+                Self::Yield(x) => x.node(),
             }
         }
         #[inline]
@@ -6652,6 +6679,7 @@ pub mod anon_unions {
                 Self::Use(x) => x.node_mut(),
                 Self::Where(x) => x.node_mut(),
                 Self::While(x) => x.node_mut(),
+                Self::Yield(x) => x.node_mut(),
             }
         }
         #[inline]
@@ -6695,6 +6723,7 @@ pub mod anon_unions {
                 Self::Use(x) => x.into_node(),
                 Self::Where(x) => x.into_node(),
                 Self::While(x) => x.into_node(),
+                Self::Yield(x) => x.into_node(),
             }
         }
     }

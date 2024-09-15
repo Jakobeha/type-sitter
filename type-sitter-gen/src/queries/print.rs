@@ -155,18 +155,18 @@ impl<'tree> SExpSeq<'tree> {
 
         quote! {
             #[allow(non_upper_case_globals)]
-            static #internal_query_ident: type_sitter_lib::gen_internal::TypedQueryOnceBox<tree_sitter::Query> = type_sitter_lib::gen_internal::TypedQueryOnceBox::new();
+            static #internal_query_ident: std::sync::OnceLock<tree_sitter::Query> = std::sync::OnceLock::new();
 
             #[allow(non_snake_case)]
-            fn #mk_internal_query_ident() -> Box<tree_sitter::Query> {
+            fn #mk_internal_query_ident() -> tree_sitter::Query {
                 #[allow(unused_mut)]
                 let mut query = tree_sitter::Query::new(
-                    &#language_ident::language(),
+                    &#language_ident::LANGUAGE.into(),
                     #query_str
                 ).expect(#query_parse_error);
                 #(query.disable_capture(#disabled_captures);)*
                 #(query.disable_pattern(#disabled_patterns);)*
-                Box::new(query)
+                query
             }
 
             #[doc = #def_doc]

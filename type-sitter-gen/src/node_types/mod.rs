@@ -18,7 +18,7 @@ pub use generated_tokens::GeneratedNodeTokens;
 /// # Parameters
 /// - `path`: Path to the `node-types.json` file of the language.
 /// - `tree_sitter`: Path to the `tree_sitter` crate. Typically either [crate::tree_sitter] or
-///   [crate::type_sitter_lib_wrapper], but you can provide a path to your own wrapper as well.
+///   [crate::yak_sitter], but you can provide a path to your own wrapper as well.
 ///
 /// # Example
 ///

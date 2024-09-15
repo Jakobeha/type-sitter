@@ -5,8 +5,6 @@ pub use typed_node::*;
 pub use typed_query::*;
 pub use typed_tree::*;
 
-/// "Private" structures for [type_sitter_gen](https://docs.rs/type-sitter-gen/latest/type_sitter_gen)
-pub mod gen_internal;
 /// Typed node trait
 mod typed_node;
 /// Typed query and related traits

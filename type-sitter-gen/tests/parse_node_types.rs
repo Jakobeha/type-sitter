@@ -2,7 +2,7 @@ use std::fs::{create_dir, read_to_string, write};
 use std::path::Path;
 use std::str::FromStr;
 use proc_macro2::TokenStream;
-use type_sitter_gen::{generate_nodes, type_sitter_lib_wrapper};
+use type_sitter_gen::{generate_nodes, yak_sitter};
 use pretty_assertions::assert_eq;
 
 #[test]
@@ -28,7 +28,7 @@ pub fn test_parse_node_types(lang: &str) {
     let expected_node_types_path = expected_path.join("nodes.rs");
     let node_types_code = generate_nodes(
         input_node_types_path,
-        &type_sitter_lib_wrapper()
+        &yak_sitter()
     ).expect("Failed to generate node types").collapse();
 
     if !expected_node_types_path.exists() {

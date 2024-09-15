@@ -1,18 +1,16 @@
 #[allow(non_upper_case_globals)]
-static __Highlights__: type_sitter_lib::gen_internal::TypedQueryOnceBox<
-    tree_sitter::Query,
-> = type_sitter_lib::gen_internal::TypedQueryOnceBox::new();
+static __Highlights__: std::sync::OnceLock<tree_sitter::Query> = std::sync::OnceLock::new();
 #[allow(non_snake_case)]
-fn __Mk__Highlights() -> Box<tree_sitter::Query> {
+fn __Mk__Highlights() -> tree_sitter::Query {
     #[allow(unused_mut)]
     let mut query = tree_sitter::Query::new(
-            &tree_sitter_json::language(),
+            &tree_sitter_json::LANGUAGE.into(),
             "(pair\n  key: (_) @string.special.key)\n\n(string) @string\n\n(number) @number\n\n[\n  (null)\n  (true)\n  (false)\n] @constant.builtin\n\n(escape_sequence) @escape\n\n(comment) @comment\n",
         )
         .expect(
             "query parsed at compile-time but failed at runtime. Is the language 'tree_sitter_json' correct, and did you use the same tree-sitter / tree_sitter_json version?",
         );
-    Box::new(query)
+    query
 }
 /**Typed version of the query:
 

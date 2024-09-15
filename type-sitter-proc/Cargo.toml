@@ -1,6 +1,6 @@
 [package]
 name = "type-sitter-proc"
-version = "0.4.1"
+version = "0.5.0"
 authors = ["Jakob Hain <jakobeha@fastmail.com>"]
 description = "procedural macros for type-sitter (generate typed wrappers for tree-sitter grammars from node-types.json and queries)"
 license = "MIT OR Apache-2.0"
@@ -16,6 +16,6 @@ proc-macro = true
 yak-sitter = []
 
 [dependencies]
-type-sitter-gen = { path = "../type-sitter-gen", version = "0.4.1" }
-proc-macro2 = "1.0.56"
-syn = "2.0.15"
+type-sitter-gen = { path = "../type-sitter-gen", version = "0.5.0" }
+proc-macro2 = "1.0.86"
+syn = "2.0.77"

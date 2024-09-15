@@ -12,7 +12,7 @@ use crate::rust::queries::Tags;
 #[test]
 pub fn test_use_queries_new() {
     // ???: Abstract with use_node_types?
-    let mut parser = Parser::new(&tree_sitter_rust::language()).unwrap();
+    let mut parser = Parser::new(&tree_sitter_rust::LANGUAGE.into()).unwrap();
     let code_path = Path::new(env!("CARGO_MANIFEST_DIR")).join("../vendor/tree-sitter-rust/bindings/rust/lib.rs");
     let code_ast = parser.parse_file(&code_path, None, ()).expect("Failed to parse code");
     let code_root = rust::nodes::SourceFile::try_from(code_ast.root_node()).expect("Failed to wrap code root node");

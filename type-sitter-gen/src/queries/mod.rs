@@ -28,7 +28,7 @@ pub use generated_tokens::GeneratedQueryTokens;
 /// - `nodes`: Path to the crate with the typed node wrappers. Typically [crate::super_nodes]
 /// - `use_yak_sitter`: Whether to use `yak_sitter` or `tree_sitter`
 /// - `tree_sitter`: Path to the crate with the tree-sitter API. Typically [crate::tree_sitter] if
-///    `use_yak_sitter` is false, or [crate::type_sitter_lib_wrapper] if `use_yak_sitter` is true
+///    `use_yak_sitter` is false, or [crate::yak_sitter] if `use_yak_sitter` is true
 ///
 /// # Example
 ///
@@ -65,7 +65,7 @@ pub fn generate_queries(
 /// - `nodes`: Path to the crate with the typed node wrappers. Typically [crate::super_nodes]
 /// - `use_yak_sitter`: Whether to use `yak_sitter` or `tree_sitter`
 /// - `tree_sitter`: Path to the crate with the tree-sitter API. Typically [crate::tree_sitter] if
-///   `use_yak_sitter` is false, or [crate::type_sitter_lib_wrapper] if `use_yak_sitter` is true
+///   `use_yak_sitter` is false, or [crate::yak_sitter] if `use_yak_sitter` is true
 ///
 /// # Example
 ///
@@ -108,7 +108,7 @@ pub fn generate_queries_from_dir(
             }
         }
     }
-    return Ok(queries);
+    Ok(queries)
 }
 
 /// Generate source code (tokens) of a wrapper for a single query.
@@ -125,7 +125,7 @@ pub fn generate_queries_from_dir(
 ///   [crate::super_nodes]
 /// - `use_yak_sitter`: Whether to use `yak_sitter` or `tree_sitter`
 /// - `tree_sitter`: Path to the crate with the tree-sitter API. Typically [tree_sitter] if
-///    `use_yak_sitter` is false, or [crate::type_sitter_lib_wrapper] if `use_yak_sitter` is true
+///    `use_yak_sitter` is false, or [crate::yak_sitter] if `use_yak_sitter` is true
 ///
 /// # Example
 ///
