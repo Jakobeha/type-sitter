@@ -1,11 +1,11 @@
 [workspace]
 resolver = "2"
 members = [
+    "type-sitter",
     "type-sitter-cli",
     "type-sitter-gen",
     "type-sitter-lib",
     "type-sitter-proc",
-    "type-sitter-proc-tests",
     "yak-sitter",
 ]
 exclude = [

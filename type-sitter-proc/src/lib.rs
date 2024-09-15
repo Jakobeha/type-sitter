@@ -21,7 +21,7 @@ mod generate_queries_args;
 /// # Example
 ///
 /// ```ignore
-/// # Doc tests give hygiene errors, so instead we use type-sitter-proc-tests to test these
+/// # Doc tests give hygiene errors, so instead we use crate `type-sitter` to test these
 /// use type_sitter_proc::generate_nodes;
 ///
 /// generate_nodes!("vendor/tree-sitter-json/src/node-types.json");
@@ -48,7 +48,7 @@ pub fn generate_nodes(item: proc_macro::TokenStream) -> proc_macro::TokenStream 
 /// # Example
 ///
 /// ```ignore
-/// # Doc tests give hygiene errors, so instead we use type-sitter-proc-tests to test these
+/// # Doc tests give hygiene errors, so instead we use crate `type-sitter` to test these
 /// use type_sitter_proc::generate_queries;
 ///
 /// generate_queries!("vendor/tree-sitter-typescript/queries/tags.scm", "vendor/tree-sitter-typescript", super::typescript_nodes);

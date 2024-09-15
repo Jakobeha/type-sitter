@@ -1,0 +1,29 @@
+[package]
+name = "type-sitter"
+version = "0.5.0"
+authors = ["Jakob Hain <jakobeha@fastmail.com>"]
+description = "generate typed wrappers for tree-sitter grammars from node-types.json and queries"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/Jakobeha/type-sitter/"
+categories = ["parsing", "compilers"]
+keywords = ["type-sitter", "tree-sitter"]
+edition = "2021"
+
+[lib]
+# Don't run recursive doc-tests, because they're already tested, but they fail in this crate for some reason.
+doctest = false
+
+[features]
+yak-sitter = ["type-sitter-proc/yak-sitter", "type-sitter-lib/yak-sitter", "dep:yak-sitter"]
+
+[dependencies]
+type-sitter-proc = { path = "../type-sitter-proc", version = "0.5.0" }
+type-sitter-lib = { path = "../type-sitter-lib", version = "0.5.0" }
+yak-sitter = { path = "../yak-sitter", version = "0.5.0", optional = true }
+tree-sitter = "0.23.0"
+streaming-iterator = "0.1.9"
+
+[dev-dependencies]
+tree-sitter-json = "0.23.0"
+tree-sitter-rust = "0.23.0"
+streaming-iterator = "0.1.9"

@@ -7,8 +7,8 @@ echo "*** TESTING type-sitter-lib"
 cargo test -p type-sitter-lib
 echo "*** TESTING type-sitter-lib with yak-sitter"
 cargo test -p type-sitter-lib --features yak-sitter
-echo "*** TESTING type-sitter-proc"
-cargo test -p type-sitter-proc-tests
+echo "*** TESTING type-sitter and type-sitter-proc"
+cargo test -p type-sitter
 echo "*** TESTING type-sitter-cli"
 cargo build -p type-sitter-cli && ./type-sitter-cli/test.sh
 echo "*** PASSED"

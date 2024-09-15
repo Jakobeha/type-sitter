@@ -1,15 +1,12 @@
-use streaming_iterator::StreamingIterator;
-use tree_sitter::Tree;
-
-use type_sitter_lib::{OptionNodeResultExtraOrExt, TypedNode, TypedQueryCursor};
+use type_sitter::{OptionNodeResultExtraOrExt, StreamingIterator, Tree, TypedNode, TypedQueryCursor};
 
 mod json {
-    use type_sitter_proc::generate_nodes;
+    use type_sitter::generate_nodes;
 
     generate_nodes!("../vendor/tree-sitter-json/src/node-types.json");
 
     pub mod queries {
-        use type_sitter_proc::generate_queries;
+        use type_sitter::generate_queries;
 
         generate_queries!("../vendor/tree-sitter-json/queries", "../vendor/tree-sitter-json", super);
     }
