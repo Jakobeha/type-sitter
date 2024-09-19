@@ -1,4 +1,5 @@
 use std::borrow::Cow;
+use std::collections::HashSet;
 use convert_case::{Case, Casing};
 use std::fmt::{Display, Write};
 use join_lazy_fmt::Join;
@@ -13,6 +14,11 @@ pub struct NodeName {
     pub rust_method_name: String,
     pub is_implicit: bool,
     pub module: NodeModule,
+}
+
+pub struct PrevNodeRustNames {
+    types: HashSet<String>,
+    methods: HashSet<String>,
 }
 
 #[derive(Deserialize)]
@@ -41,7 +47,7 @@ const RESERVED_IDENTS: [&'static str; 4] = [
 
 impl NodeName {
     /// Create a node name from the sexp name.
-    pub fn new(sexp_name: String, is_named: bool) -> Self {
+    fn new(sexp_name: String, is_named: bool) -> Self {
         if sexp_name == "_" {
             // Special-cased
             return Self {
@@ -67,6 +73,21 @@ impl NodeName {
             true => NodeModule::Toplevel
         };
         Self { sexp_name, rust_type_name, rust_method_name, is_implicit, module }
+    }
+
+    /// If this has the same `rust_type_name` as another [`NodeName`] as indicated by the set,
+    /// appends underscores until it's unique. Does the same to `rust_method_name`. Then adds both
+    /// to the sets to ensure the next names are also unique.
+    pub(crate) fn disambiguate_rust_names(&mut self, prev: &mut PrevNodeRustNames) {
+        while prev.types.contains(&self.rust_type_name) {
+            self.rust_type_name.push('_');
+        }
+        while prev.methods.contains(&self.rust_method_name) {
+            self.rust_method_name.push('_');
+        }
+
+        prev.types.insert(self.rust_type_name.clone());
+        prev.methods.insert(self.rust_method_name.clone());
     }
 
     pub fn kind(names: &[NodeName]) -> Cow<'_, str> {
@@ -101,6 +122,12 @@ impl NodeName {
 impl From<_NodeName> for NodeName {
     fn from(_NodeName { sexp_name, named }: _NodeName) -> Self {
         NodeName::new(sexp_name, named)
+    }
+}
+
+impl PrevNodeRustNames {
+    pub fn new() -> Self {
+        Self { types: HashSet::new(), methods: HashSet::new() }
     }
 }
 

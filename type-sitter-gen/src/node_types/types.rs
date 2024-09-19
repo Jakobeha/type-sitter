@@ -2,7 +2,7 @@ use serde::Deserialize;
 use indexmap::IndexMap;
 use crate::names::NodeName;
 
-#[derive(Deserialize)]
+#[derive(Clone, Deserialize)]
 pub struct NodeType {
     #[serde(flatten)]
     pub name: NodeName,
@@ -10,7 +10,7 @@ pub struct NodeType {
     pub kind: NodeTypeKind
 }
 
-#[derive(Deserialize)]
+#[derive(Clone, Deserialize)]
 #[serde(untagged)]
 pub enum NodeTypeKind {
     Supertype { subtypes: Vec<NodeName> },

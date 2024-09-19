@@ -3336,7 +3336,7 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "one of `{as | async | await | break | const | continue | crate | default | dyn | else | enum | extern | fn | for | if | impl | in | let | loop | macro_rules! | match | mod | move | mutable_specifier | pub | ref | return | self | static | struct | super | trait | type | union | unsafe | use | where | while | yield}`:\n- [unnamed::As]\n- [unnamed::Async]\n- [unnamed::Await]\n- [unnamed::Break]\n- [unnamed::Const]\n- [unnamed::Continue]\n- [Crate]\n- [unnamed::Default]\n- [unnamed::Dyn]\n- [unnamed::Else]\n- [unnamed::Enum]\n- [unnamed::Extern]\n- [unnamed::Fn]\n- [unnamed::For]\n- [unnamed::If]\n- [unnamed::Impl]\n- [unnamed::In]\n- [unnamed::Let]\n- [unnamed::Loop]\n- [symbols::MacroRulesNot]\n- [unnamed::Match]\n- [unnamed::Mod]\n- [unnamed::Move]\n- [MutableSpecifier]\n- [unnamed::Pub]\n- [unnamed::Ref]\n- [unnamed::Return]\n- [_Self]\n- [unnamed::Static]\n- [unnamed::Struct]\n- [Super]\n- [unnamed::Trait]\n- [unnamed::Type]\n- [unnamed::Union]\n- [unnamed::Unsafe]\n- [unnamed::Use]\n- [unnamed::Where]\n- [unnamed::While]\n- [unnamed::Yield]"]
+    #[doc = "one of `{as | async | await | break | const | continue | crate | default | dyn | else | enum | extern | fn | for | if | impl | in | let | loop | macro_rules! | match | mod | move | mutable_specifier | pub | ref | return | self | static | struct | super | trait | type | union | unsafe | use | where | while | yield}`:\n- [unnamed::As]\n- [unnamed::Async]\n- [unnamed::Await]\n- [unnamed::Break]\n- [unnamed::Const]\n- [unnamed::Continue]\n- [Crate]\n- [unnamed::Default]\n- [unnamed::Dyn]\n- [unnamed::Else]\n- [unnamed::Enum]\n- [unnamed::Extern]\n- [unnamed::Fn]\n- [unnamed::For]\n- [unnamed::If]\n- [unnamed::Impl]\n- [unnamed::In]\n- [unnamed::Let]\n- [unnamed::Loop]\n- [symbols::MacroRulesNot]\n- [unnamed::Match]\n- [unnamed::Mod_]\n- [unnamed::Move]\n- [MutableSpecifier]\n- [unnamed::Pub]\n- [unnamed::Ref]\n- [unnamed::Return]\n- [_Self]\n- [unnamed::Static]\n- [unnamed::Struct]\n- [Super]\n- [unnamed::Trait]\n- [unnamed::Type_]\n- [unnamed::Union]\n- [unnamed::Unsafe]\n- [unnamed::Use]\n- [unnamed::Where]\n- [unnamed::While]\n- [unnamed::Yield]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum Keyword<'tree> {
@@ -3361,7 +3361,7 @@ pub mod anon_unions {
         Loop(unnamed::Loop<'tree>),
         MacroRulesNot(symbols::MacroRulesNot<'tree>),
         Match(unnamed::Match<'tree>),
-        Mod(unnamed::Mod<'tree>),
+        Mod_(unnamed::Mod_<'tree>),
         Move(unnamed::Move<'tree>),
         MutableSpecifier(MutableSpecifier<'tree>),
         Pub(unnamed::Pub<'tree>),
@@ -3372,7 +3372,7 @@ pub mod anon_unions {
         Struct(unnamed::Struct<'tree>),
         Super(Super<'tree>),
         Trait(unnamed::Trait<'tree>),
-        Type(unnamed::Type<'tree>),
+        Type_(unnamed::Type_<'tree>),
         Union(unnamed::Union<'tree>),
         Unsafe(unnamed::Unsafe<'tree>),
         Use(unnamed::Use<'tree>),
@@ -3571,12 +3571,12 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `mod` ([`unnamed::Mod`]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `mod` ([`unnamed::Mod_`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn r#mod(self) -> Option<unnamed::Mod<'tree>> {
+        pub fn mod_(self) -> Option<unnamed::Mod_<'tree>> {
             match self {
-                Self::Mod(x) => Some(x),
+                Self::Mod_(x) => Some(x),
                 _ => None,
             }
         }
@@ -3670,12 +3670,12 @@ pub mod anon_unions {
                 _ => None,
             }
         }
-        #[doc = "Returns the node if it is of kind `type` ([`unnamed::Type`]), otherwise returns None"]
+        #[doc = "Returns the node if it is of kind `type` ([`unnamed::Type_`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn r#type(self) -> Option<unnamed::Type<'tree>> {
+        pub fn type_(self) -> Option<unnamed::Type_<'tree>> {
             match self {
-                Self::Type(x) => Some(x),
+                Self::Type_(x) => Some(x),
                 _ => None,
             }
         }
@@ -3830,7 +3830,9 @@ pub mod anon_unions {
                     >>::from_node_unchecked(node))
                 }),
                 "mod" => Ok(unsafe {
-                    Self :: Mod (< unnamed :: Mod < 'tree > as type_sitter_lib :: TypedNode < 'tree >> :: from_node_unchecked (node))
+                    Self::Mod_(<unnamed::Mod_<'tree> as type_sitter_lib::TypedNode<
+                        'tree,
+                    >>::from_node_unchecked(node))
                 }),
                 "move" => Ok(unsafe {
                     Self::Move(<unnamed::Move<'tree> as type_sitter_lib::TypedNode<
@@ -3877,7 +3879,7 @@ pub mod anon_unions {
                     >>::from_node_unchecked(node))
                 }),
                 "type" => Ok(unsafe {
-                    Self::Type(<unnamed::Type<'tree> as type_sitter_lib::TypedNode<
+                    Self::Type_(<unnamed::Type_<'tree> as type_sitter_lib::TypedNode<
                         'tree,
                     >>::from_node_unchecked(node))
                 }),
@@ -3943,7 +3945,7 @@ pub mod anon_unions {
                 Self::Loop(x) => x.node(),
                 Self::MacroRulesNot(x) => x.node(),
                 Self::Match(x) => x.node(),
-                Self::Mod(x) => x.node(),
+                Self::Mod_(x) => x.node(),
                 Self::Move(x) => x.node(),
                 Self::MutableSpecifier(x) => x.node(),
                 Self::Pub(x) => x.node(),
@@ -3954,7 +3956,7 @@ pub mod anon_unions {
                 Self::Struct(x) => x.node(),
                 Self::Super(x) => x.node(),
                 Self::Trait(x) => x.node(),
-                Self::Type(x) => x.node(),
+                Self::Type_(x) => x.node(),
                 Self::Union(x) => x.node(),
                 Self::Unsafe(x) => x.node(),
                 Self::Use(x) => x.node(),
@@ -3987,7 +3989,7 @@ pub mod anon_unions {
                 Self::Loop(x) => x.node_mut(),
                 Self::MacroRulesNot(x) => x.node_mut(),
                 Self::Match(x) => x.node_mut(),
-                Self::Mod(x) => x.node_mut(),
+                Self::Mod_(x) => x.node_mut(),
                 Self::Move(x) => x.node_mut(),
                 Self::MutableSpecifier(x) => x.node_mut(),
                 Self::Pub(x) => x.node_mut(),
@@ -3998,7 +4000,7 @@ pub mod anon_unions {
                 Self::Struct(x) => x.node_mut(),
                 Self::Super(x) => x.node_mut(),
                 Self::Trait(x) => x.node_mut(),
-                Self::Type(x) => x.node_mut(),
+                Self::Type_(x) => x.node_mut(),
                 Self::Union(x) => x.node_mut(),
                 Self::Unsafe(x) => x.node_mut(),
                 Self::Use(x) => x.node_mut(),
@@ -4031,7 +4033,7 @@ pub mod anon_unions {
                 Self::Loop(x) => x.into_node(),
                 Self::MacroRulesNot(x) => x.into_node(),
                 Self::Match(x) => x.into_node(),
-                Self::Mod(x) => x.into_node(),
+                Self::Mod_(x) => x.into_node(),
                 Self::Move(x) => x.into_node(),
                 Self::MutableSpecifier(x) => x.into_node(),
                 Self::Pub(x) => x.into_node(),
@@ -4042,7 +4044,7 @@ pub mod anon_unions {
                 Self::Struct(x) => x.into_node(),
                 Self::Super(x) => x.into_node(),
                 Self::Trait(x) => x.into_node(),
-                Self::Type(x) => x.into_node(),
+                Self::Type_(x) => x.into_node(),
                 Self::Union(x) => x.into_node(),
                 Self::Unsafe(x) => x.into_node(),
                 Self::Use(x) => x.into_node(),

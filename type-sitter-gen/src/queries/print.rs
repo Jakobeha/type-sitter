@@ -1,3 +1,4 @@
+use std::collections::HashMap;
 use proc_macro2::TokenStream;
 use syn::{Ident, Path};
 use quote::{format_ident, quote};
@@ -6,6 +7,7 @@ use tree_sitter::CaptureQuantifier;
 use crate::mk_syntax::{concat_doc, ident, lit_array, lit_str, modularize};
 use crate::names::{NodeName, sexp_name_to_rust_names};
 use crate::anon_unions::AnonUnions;
+use crate::node_types::types::NodeType;
 use crate::queries::GeneratedQueryTokens;
 use crate::queries::sexp::SExpSeq;
 use crate::queries::sexp_node_type::SExpNodeType;
@@ -17,6 +19,7 @@ impl<'tree> SExpSeq<'tree> {
     /// - `ts_query`: The tree-sitter version of the query at compile time
     /// - `def_ident`: Identifier used for the query definition
     /// - `language_ident`: Identifier used for the language to create the query for
+    /// - `node_type_map`: Map of node type SEXP names to their types.
     /// - `disable_patterns`: List of patterns to ignore on the query
     /// - `disabled_capture_names`: List of capture names to ignore on the query
     /// - `disabled_capture_idxs`: List of capture indices to ignore on the query (both these and
@@ -38,6 +41,7 @@ impl<'tree> SExpSeq<'tree> {
         disabled_capture_names: &[&str],
         disabled_capture_idxs: &[usize],
         nodes: &Path,
+        node_type_map: &HashMap<String, NodeType>,
         use_yak_sitter: bool,
         tree_sitter: &Path,
         anon_unions: &mut AnonUnions
@@ -135,7 +139,7 @@ impl<'tree> SExpSeq<'tree> {
             .map(|capture_idxs_and_name| {
                 let capture_idxs = capture_idxs_and_name.iter().map(|(capture_idx, _)| *capture_idx).collect::<Vec<_>>();
                 let capture_name = capture_idxs_and_name[0].1;
-                self.print_capture_method_and_variant(capture_name, &capture_idxs, query_str, &ts_query, nodes, use_yak_sitter, tree_sitter, anon_unions)
+                self.print_capture_method_and_variant(capture_name, &capture_idxs, query_str, &ts_query, nodes, node_type_map, use_yak_sitter, tree_sitter, anon_unions)
             })
             .collect::<Vec<_>>();
         let capture_methods = capture_methods_and_variants.iter().map(|x| &x.0).collect::<Vec<_>>();
@@ -398,6 +402,7 @@ impl<'tree> SExpSeq<'tree> {
         query_str: &str,
         ts_query: &tree_sitter::Query,
         nodes: &Path,
+        node_type_map: &HashMap<String, NodeType>,
         use_yak_sitter: bool,
         tree_sitter: &Path,
         anon_unions: &mut AnonUnions
@@ -410,7 +415,7 @@ impl<'tree> SExpSeq<'tree> {
 
         let captured_sexps = self.captured_patterns(capture_name).collect::<Vec<_>>();
         let captured_sexp_strs = captured_sexps.iter().map(|s| &query_str[s.span()]);
-        let capture_node_type = captured_sexps.iter().map(|s| s.node_type(false))
+        let capture_node_type = captured_sexps.iter().map(|s| s.node_type(false, node_type_map))
             .collect::<SExpNodeType>();
         let capture_node_type_tokens = capture_node_type
             .print(&capture_variant_name, nodes, tree_sitter, anon_unions);
@@ -489,12 +494,12 @@ impl SExpNodeType {
         anon_unions: &mut AnonUnions
     ) -> TokenStream {
         match self {
-            Self::Single { name } => {
-                let type_ = name.print_type();
+            Self::Single { r#type } => {
+                let type_ = r#type.name.print_type();
                 quote! { #nodes::#type_ }
             }
-            Self::Union { names, .. } => {
-                let mut names = names.iter().cloned().collect::<Vec<_>>();
+            Self::Union { types, .. } => {
+                let mut names = types.iter().map(|r#type| r#type.name.clone()).collect::<Vec<_>>();
                 // `names.sort_by_key(|name| &name.sexp_name)` and
                 // `names.dedup_by_key(|name| &name.sexp_name)` give borrow-check error
                 //   and I have NO idea why (either it's a compiler bug or I'm clueless)

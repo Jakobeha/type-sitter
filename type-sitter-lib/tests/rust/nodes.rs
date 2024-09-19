@@ -16159,11 +16159,11 @@ This node has no children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct Block<'tree>(yak_sitter::Node<'tree>);
+    pub struct Block_<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
-    impl<'tree> Block<'tree> {}
+    impl<'tree> Block_<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Block<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Block_<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
         fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
@@ -16178,7 +16178,7 @@ This node has no children
         }
     }
     #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for Block<'tree> {
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for Block_<'tree> {
         const KIND: &'static str = "block";
         #[inline]
         fn node(&self) -> &yak_sitter::Node<'tree> {
@@ -16995,11 +16995,11 @@ This node has no children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct Lifetime<'tree>(yak_sitter::Node<'tree>);
+    pub struct Lifetime_<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
-    impl<'tree> Lifetime<'tree> {}
+    impl<'tree> Lifetime_<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Lifetime<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Lifetime_<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
         fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
@@ -17014,7 +17014,7 @@ This node has no children
         }
     }
     #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for Lifetime<'tree> {
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for Lifetime_<'tree> {
         const KIND: &'static str = "lifetime";
         #[inline]
         fn node(&self) -> &yak_sitter::Node<'tree> {
@@ -17039,11 +17039,11 @@ This node has no children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct Literal<'tree>(yak_sitter::Node<'tree>);
+    pub struct Literal_<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
-    impl<'tree> Literal<'tree> {}
+    impl<'tree> Literal_<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Literal<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Literal_<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
         fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
@@ -17058,7 +17058,7 @@ This node has no children
         }
     }
     #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for Literal<'tree> {
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for Literal_<'tree> {
         const KIND: &'static str = "literal";
         #[inline]
         fn node(&self) -> &yak_sitter::Node<'tree> {
@@ -17215,11 +17215,11 @@ This node has no children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct Mod<'tree>(yak_sitter::Node<'tree>);
+    pub struct Mod_<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
-    impl<'tree> Mod<'tree> {}
+    impl<'tree> Mod_<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Mod<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Mod_<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
         fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
@@ -17234,7 +17234,7 @@ This node has no children
         }
     }
     #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for Mod<'tree> {
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for Mod_<'tree> {
         const KIND: &'static str = "mod";
         #[inline]
         fn node(&self) -> &yak_sitter::Node<'tree> {
@@ -17875,11 +17875,11 @@ This node has no children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub struct Type<'tree>(yak_sitter::Node<'tree>);
+    pub struct Type_<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
-    impl<'tree> Type<'tree> {}
+    impl<'tree> Type_<'tree> {}
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Type<'tree> {
+    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Type_<'tree> {
         type Error = type_sitter_lib::IncorrectKind<'tree>;
         #[inline]
         fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
@@ -17894,7 +17894,7 @@ This node has no children
         }
     }
     #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for Type<'tree> {
+    impl<'tree> type_sitter_lib::TypedNode<'tree> for Type_<'tree> {
         const KIND: &'static str = "type";
         #[inline]
         fn node(&self) -> &yak_sitter::Node<'tree> {
