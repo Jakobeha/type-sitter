@@ -13,6 +13,16 @@ mod mk_syntax;
 mod queries;
 mod anon_unions;
 
+/// = `parse_quote!(type_sitter)`. The default path to the `type_sitter` crate.
+pub fn type_sitter() -> syn::Path {
+    parse_quote!(type_sitter)
+}
+
+/// = `parse_quote!(type_sitter_lib)`. The default path to the `type_sitter_lib` crate.
+pub fn type_sitter_lib() -> syn::Path {
+    parse_quote!(type_sitter_lib)
+}
+
 /// = `parse_quote!(tree_sitter)`. The default path to the `tree_sitter` crate.
 pub fn tree_sitter() -> syn::Path {
     parse_quote!(tree_sitter)

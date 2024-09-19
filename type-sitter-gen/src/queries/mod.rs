@@ -30,17 +30,34 @@ use crate::node_types::types::NodeType;
 ///   will be dynamically loaded. It must also contain `src/node-types.json`.
 /// - `nodes`: Path to the crate with the typed node wrappers. Typically [crate::super_nodes]
 /// - `use_yak_sitter`: Whether to use `yak_sitter` or `tree_sitter`
-/// - `tree_sitter`: Path to the crate with the tree-sitter API. Typically [crate::tree_sitter] if
-///    `use_yak_sitter` is false, or [crate::yak_sitter] if `use_yak_sitter` is true
-///
+/// - `tree_sitter`: Path to the crate with the tree-sitter API. For cli-generated sources, use
+///    [crate::tree_sitter] if `use_yak_sitter` is false or [crate::yak_sitter] if `use_yak_sitter`
+///    is true. For proc-macro generated sources, use [crate::type_sitter] either way.
+/// - `type_sitter_lib`: Path to the crate with the type-sitter API. For cli-generated sources,
+///   use [crate::type_sitter_lib]. For proc-macro generated sources, use [crate::type_sitter].
+
 /// # Example
 ///
 /// ```no_run
-/// use type_sitter_gen::{generate_queries, super_nodes, tree_sitter};
+/// use type_sitter_gen::{generate_queries, super_nodes, tree_sitter, type_sitter_lib};
 ///
 /// fn main() {
-///     println!("{}", generate_queries("vendor/tree-sitter-typescript/queries/tags.scm", "vendor/tree-sitter-typescript", &super_nodes(), false, &tree_sitter()).unwrap());
-///     println!("{}", generate_queries("vendor/tree-sitter-rust/queries", "vendor/tree-sitter-rust", &super_nodes(), false, &tree_sitter()).unwrap());
+///     println!("{}", generate_queries(
+///         "vendor/tree-sitter-typescript/queries/tags.scm",
+///         "vendor/tree-sitter-typescript",
+///         &super_nodes(),
+///         false,
+///         &tree_sitter(),
+///         &type_sitter_lib(),
+///     ).unwrap());
+///     println!("{}", generate_queries(
+///         "vendor/tree-sitter-rust/queries",
+///         "vendor/tree-sitter-rust",
+///         &super_nodes(),
+///         false,
+///         &tree_sitter(),
+///         &type_sitter_lib(),
+///     ).unwrap());
 /// }
 /// ```
 pub fn generate_queries(
@@ -48,12 +65,13 @@ pub fn generate_queries(
     language_path: impl AsRef<Path>,
     nodes: &syn::Path,
     use_yak_sitter: bool,
-    tree_sitter: &syn::Path
+    tree_sitter: &syn::Path,
+    type_sitter_lib: &syn::Path,
 ) -> Result<GeneratedQueryTokens, Error> {
     let language_path = language_path.as_ref();
     let node_type_map = parse_node_type_map(language_path)?;
 
-    _generate_queries(path, language_path, &node_type_map, nodes, use_yak_sitter, tree_sitter)
+    _generate_queries(path, language_path, &node_type_map, nodes, use_yak_sitter, tree_sitter, type_sitter_lib)
 }
 
 fn _generate_queries(
@@ -62,13 +80,14 @@ fn _generate_queries(
     node_type_map: &HashMap<String, NodeType>,
     nodes: &syn::Path,
     use_yak_sitter: bool,
-    tree_sitter: &syn::Path
+    tree_sitter: &syn::Path,
+    type_sitter_lib: &syn::Path,
 ) -> Result<GeneratedQueryTokens, Error>{
     let path = path.as_ref();
     if path.is_dir() {
-        _generate_queries_from_dir(path, language_path, node_type_map, nodes, use_yak_sitter, tree_sitter)
+        _generate_queries_from_dir(path, language_path, node_type_map, nodes, use_yak_sitter, tree_sitter, type_sitter_lib)
     } else {
-        _generate_query_from_file(path, language_path, node_type_map, &[], &[], &[], nodes, use_yak_sitter, tree_sitter)
+        _generate_query_from_file(path, language_path, node_type_map, &[], &[], &[], nodes, use_yak_sitter, tree_sitter, type_sitter_lib)
     }
 }
 
@@ -81,16 +100,26 @@ fn _generate_queries(
 ///   will be dynamically loaded. It must also contain `src/node-types.json`.
 /// - `nodes`: Path to the crate with the typed node wrappers. Typically [crate::super_nodes]
 /// - `use_yak_sitter`: Whether to use `yak_sitter` or `tree_sitter`
-/// - `tree_sitter`: Path to the crate with the tree-sitter API. Typically [crate::tree_sitter] if
-///   `use_yak_sitter` is false, or [crate::yak_sitter] if `use_yak_sitter` is true
+/// - `tree_sitter`: Path to the crate with the tree-sitter API. For cli-generated sources, use
+///    [crate::tree_sitter] if `use_yak_sitter` is false or [crate::yak_sitter] if `use_yak_sitter`
+///    is true. For proc-macro generated sources, use [crate::type_sitter] either way.
+/// - `type_sitter_lib`: Path to the crate with the type-sitter API. For cli-generated sources,
+///   use [crate::type_sitter_lib]. For proc-macro generated sources, use [crate::type_sitter].
 ///
 /// # Example
 ///
 /// ```no_run
-/// use type_sitter_gen::{generate_queries_from_dir, super_nodes, tree_sitter};
+/// use type_sitter_gen::{generate_queries_from_dir, super_nodes, tree_sitter, type_sitter_lib};
 ///
 /// fn main() {
-///     println!("{}", generate_queries_from_dir("vendor/tree-sitter-rust/queries", "vendor/tree-sitter-rust", &super_nodes(), false, &tree_sitter()).unwrap());
+///     println!("{}", generate_queries_from_dir(
+///         "vendor/tree-sitter-rust/queries",
+///         "vendor/tree-sitter-rust",
+///         &super_nodes(),
+///         false,
+///         &tree_sitter(),
+///         &type_sitter_lib(),
+///     ).unwrap());
 /// }
 /// ```
 pub fn generate_queries_from_dir(
@@ -99,11 +128,12 @@ pub fn generate_queries_from_dir(
     nodes: &syn::Path,
     use_yak_sitter: bool,
     tree_sitter: &syn::Path,
+    type_sitter_lib: &syn::Path,
 ) -> Result<GeneratedQueryTokens, Error> {
     let language_path = language_path.as_ref();
     let node_type_map = parse_node_type_map(language_path)?;
 
-    _generate_queries_from_dir(path, language_path, &node_type_map, nodes, use_yak_sitter, tree_sitter)
+    _generate_queries_from_dir(path, language_path, &node_type_map, nodes, use_yak_sitter, tree_sitter, type_sitter_lib)
 }
 
 pub fn _generate_queries_from_dir(
@@ -113,6 +143,7 @@ pub fn _generate_queries_from_dir(
     nodes: &syn::Path,
     use_yak_sitter: bool,
     tree_sitter: &syn::Path,
+    type_sitter_lib: &syn::Path,
 ) -> Result<GeneratedQueryTokens, Error> {
     let path = path.as_ref();
     let language_path = language_path.as_ref();
@@ -129,7 +160,7 @@ pub fn _generate_queries_from_dir(
         if entry_is_dir || has_extension(&entry_path, "scm") {
             let entry_name = entry_path.file_stem().unwrap().to_string_lossy();
 
-            let entry_code = _generate_queries(&entry_path, language_path, node_type_map, nodes, use_yak_sitter, tree_sitter)?;
+            let entry_code = _generate_queries(&entry_path, language_path, node_type_map, nodes, use_yak_sitter, tree_sitter, type_sitter_lib)?;
 
             match entry_is_dir {
                 false => queries.append(entry_code),
@@ -163,16 +194,29 @@ pub fn _generate_queries_from_dir(
 /// - `nodes`: Path to the crate with the typed node wrappers. Typically
 ///   [crate::super_nodes]
 /// - `use_yak_sitter`: Whether to use `yak_sitter` or `tree_sitter`
-/// - `tree_sitter`: Path to the crate with the tree-sitter API. Typically [tree_sitter] if
-///    `use_yak_sitter` is false, or [crate::yak_sitter] if `use_yak_sitter` is true
-///
+/// - `tree_sitter`: Path to the crate with the tree-sitter API. For cli-generated sources, use
+///    [crate::tree_sitter] if `use_yak_sitter` is false or [crate::yak_sitter] if `use_yak_sitter`
+///    is true. For proc-macro generated sources, use [crate::type_sitter] either way.
+/// - `type_sitter_lib`: Path to the crate with the type-sitter API. For cli-generated sources,
+///   use [crate::type_sitter_lib]. For proc-macro generated sources, use [crate::type_sitter].
+
 /// # Example
 ///
 /// ```no_run
-/// use type_sitter_gen::{generate_query_from_file, super_nodes, tree_sitter};
+/// use type_sitter_gen::{generate_query_from_file, super_nodes, tree_sitter, type_sitter_lib};
 ///
 /// fn main() {
-///     println!("{}", generate_query_from_file("vendor/tree-sitter-typescript/queries/tags.scm", "vendor/tree-sitter-typescript", &[], &[], &[], &super_nodes(), false, &tree_sitter()).unwrap());
+///     println!("{}", generate_query_from_file(
+///         "vendor/tree-sitter-typescript/queries/tags.scm",
+///         "vendor/tree-sitter-typescript",
+///         &[],
+///         &[],
+///         &[],
+///         &super_nodes(),
+///         false,
+///         &tree_sitter(),
+///         &type_sitter_lib()
+///     ).unwrap());
 /// }
 /// ```
 pub fn generate_query_from_file(
@@ -184,6 +228,7 @@ pub fn generate_query_from_file(
     nodes: &syn::Path,
     use_yak_sitter: bool,
     tree_sitter: &syn::Path,
+    type_sitter_lib: &syn::Path,
 ) -> Result<GeneratedQueryTokens, Error> {
     let language_path = language_path.as_ref();
     let node_type_map = parse_node_type_map(language_path)?;
@@ -198,6 +243,7 @@ pub fn generate_query_from_file(
         nodes,
         use_yak_sitter,
         tree_sitter,
+        type_sitter_lib,
     )
 }
 
@@ -211,6 +257,7 @@ pub fn _generate_query_from_file(
     nodes: &syn::Path,
     use_yak_sitter: bool,
     tree_sitter: &syn::Path,
+    type_sitter_lib: &syn::Path,
 ) -> Result<GeneratedQueryTokens, Error> {
     let path = path.as_ref();
     let language_path = language_path.as_ref();
@@ -244,6 +291,7 @@ pub fn _generate_query_from_file(
         node_type_map,
         use_yak_sitter,
         tree_sitter,
+        type_sitter_lib,
         &mut generated.anon_unions,
     );
     generated.append_tokens(query_tokens);

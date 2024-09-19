@@ -14,7 +14,7 @@ use crate::node_types::generated_tokens::GeneratedNodeTokens;
 use crate::node_types::types::{Children, NodeModule, NodeType, NodeTypeKind};
 
 impl NodeType {
-    pub fn print(&self, tree_sitter: &Path) -> GeneratedNodeTokens {
+    pub fn print(&self, tree_sitter: &Path, type_sitter_lib: &Path) -> GeneratedNodeTokens {
         let mut tokens = GeneratedNodeTokens::new();
         let NodeName { sexp_name, rust_type_name, rust_method_name: _, is_implicit, module } = &self.name;
         // Node type names are always valid identifiers
@@ -29,7 +29,8 @@ impl NodeType {
                     &ident,
                     &kind,
                     subtypes,
-                    tree_sitter
+                    tree_sitter,
+                    type_sitter_lib,
                 )
             }
             NodeTypeKind::Regular { fields, children } => {
@@ -44,6 +45,7 @@ impl NodeType {
                     fields,
                     children.as_ref(),
                     tree_sitter,
+                    type_sitter_lib,
                     &mut tokens.anon_unions
                 )
             }
@@ -61,6 +63,7 @@ impl Children {
         (child_name, child_doc, mut child_body): (Cow<'_, str>, TokenStream, TokenStream),
         child_i: Option<(Cow<'_, str>, TokenStream, TokenStream)>,
         tree_sitter: &Path,
+        type_sitter_lib: &Path,
         anon_unions: &mut AnonUnions,
     ) -> TokenStream {
         if self.multiple {
@@ -70,8 +73,8 @@ impl Children {
             } else {
                 quote! {}
             };
-            let mut child_type = NodeName::print_sum_type(&self.types, tree_sitter, anon_unions);
-            child_type = quote! { type_sitter_lib::ExtraOr<'tree, #child_type> };
+            let mut child_type = NodeName::print_sum_type(&self.types, tree_sitter, type_sitter_lib, anon_unions);
+            child_type = quote! { #type_sitter_lib::ExtraOr<'tree, #child_type> };
             let iterator_type = if is_exact_size_iterator {
                 quote! { ExactSizeIterator }
             } else {
@@ -82,7 +85,7 @@ impl Children {
                 #nonempty_doc
                 #[allow(dead_code)]
                 #[inline]
-                pub fn #ident<'a>(&self, c: &'a mut #tree_sitter::TreeCursor<'tree>) -> impl #iterator_type<Item = type_sitter_lib::NodeResult<'tree, #child_type>> + 'a {
+                pub fn #ident<'a>(&self, c: &'a mut #tree_sitter::TreeCursor<'tree>) -> impl #iterator_type<Item = #type_sitter_lib::NodeResult<'tree, #child_type>> + 'a {
                     // Fun fact: <#child_type as TryFrom<_>>::try_from without the anonymous closure
                     //     causes a lifetime error, but this works fine. It may be compiler bug
                     #children_body.map(|n| <#child_type as TryFrom<_>>::try_from(n))
@@ -94,7 +97,7 @@ impl Children {
                     #[doc = #child_i_doc]
                     #[allow(dead_code)]
                     #[inline]
-                    pub fn #child_i_ident(&self, i: usize) -> Option<type_sitter_lib::NodeResult<'tree, #child_type>> {
+                    pub fn #child_i_ident(&self, i: usize) -> Option<#type_sitter_lib::NodeResult<'tree, #child_type>> {
                         #child_i_body.map(<#child_type as TryFrom<_>>::try_from)
                     }
                 }
@@ -105,9 +108,9 @@ impl Children {
             }
         } else {
             let ident = ident!(child_name, "node field (rust method name)").unwrap();
-            let mut child_type = NodeName::print_sum_type(&self.types, tree_sitter, anon_unions);
+            let mut child_type = NodeName::print_sum_type(&self.types, tree_sitter, type_sitter_lib, anon_unions);
             child_body = quote! { #child_body.map(<#child_type as TryFrom<_>>::try_from) };
-            child_type = quote! { type_sitter_lib::NodeResult<'tree, #child_type> };
+            child_type = quote! { #type_sitter_lib::NodeResult<'tree, #child_type> };
             if self.required {
                 child_body = quote! { #child_body.expect("tree-sitter node missing its required child, there should at least be a MISSING node in its place") };
             } else {
@@ -133,6 +136,7 @@ impl NodeName {
         fields: &IndexMap<String, Children>,
         children: Option<&Children>,
         tree_sitter: &Path,
+        type_sitter_lib: &Path,
         anon_unions: &mut AnonUnions,
     ) -> TokenStream {
         let anon_unions_ref = RefCell::new(anon_unions);
@@ -153,6 +157,7 @@ impl NodeName {
                 ),
                 None,
                 tree_sitter,
+                type_sitter_lib,
                 &mut *anon_unions
             )
         });
@@ -183,6 +188,7 @@ impl NodeName {
                     quote! { self.0.named_child(i) }
                 )),
                 tree_sitter,
+                type_sitter_lib,
                 &mut *anon_unions
             )
         });
@@ -200,23 +206,23 @@ impl NodeName {
 
             #[automatically_derived]
             impl<'tree> TryFrom<#tree_sitter::Node<'tree>> for #ident<'tree> {
-                type Error = type_sitter_lib::IncorrectKind<'tree>;
+                type Error = #type_sitter_lib::IncorrectKind<'tree>;
 
                 #[inline]
                 fn try_from(node: #tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
                     if node.kind() == #kind {
                         Ok(Self(node))
                     } else {
-                        Err(type_sitter_lib::IncorrectKind {
+                        Err(#type_sitter_lib::IncorrectKind {
                             node,
-                            kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                            kind: <Self as #type_sitter_lib::TypedNode<'tree>>::KIND,
                         })
                     }
                 }
             }
 
             #[automatically_derived]
-            impl<'tree> type_sitter_lib::TypedNode<'tree> for #ident<'tree> {
+            impl<'tree> #type_sitter_lib::TypedNode<'tree> for #ident<'tree> {
                 const KIND: &'static str = #kind;
 
                 #[inline]
@@ -248,6 +254,7 @@ impl NodeName {
         kind: &LitStr,
         subtypes: &[NodeName],
         tree_sitter: &Path,
+        type_sitter_lib: &Path,
     ) -> TokenStream {
         let has_implicit_subtypes = subtypes.iter().any(|subtype| subtype.is_implicit);
 
@@ -264,9 +271,9 @@ impl NodeName {
 
         let try_from = {
             let error = quote! {
-                Err(type_sitter_lib::IncorrectKind {
+                Err(#type_sitter_lib::IncorrectKind {
                     node,
-                    kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
+                    kind: <Self as #type_sitter_lib::TypedNode<'tree>>::KIND,
                 })
             };
             if has_implicit_subtypes {
@@ -283,7 +290,7 @@ impl NodeName {
                 let mut prev_variants3 = HashSet::new();
                 let from_cases = subtypes
                     .iter()
-                    .map(|name| name.print_from_case(&mut prev_variants3));
+                    .map(|name| name.print_from_case(&mut prev_variants3, type_sitter_lib));
 
                 quote! {
                     match node.kind() {
@@ -324,7 +331,7 @@ impl NodeName {
 
             #[automatically_derived]
             impl<'tree> TryFrom<#tree_sitter::Node<'tree>> for #ident<'tree> {
-                type Error = type_sitter_lib::IncorrectKind<'tree>;
+                type Error = #type_sitter_lib::IncorrectKind<'tree>;
 
                 #[inline]
                 fn try_from(node: #tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
@@ -333,7 +340,7 @@ impl NodeName {
             }
 
             #[automatically_derived]
-            impl<'tree> type_sitter_lib::TypedNode<'tree> for #ident<'tree> {
+            impl<'tree> #type_sitter_lib::TypedNode<'tree> for #ident<'tree> {
                 const KIND: &'static str = #kind;
 
                 #[inline]
@@ -363,12 +370,14 @@ impl NodeName {
     pub fn print_sum_type(
         names: &[NodeName],
         tree_sitter: &Path,
+        type_sitter_lib: &Path,
         anon_unions: &mut AnonUnions
     ) -> TokenStream {
         Self::print_general_sum_type(
             names,
             quote! {},
             tree_sitter,
+            type_sitter_lib,
             anon_unions,
             || AnonUnionId::new(names)
         )
@@ -379,12 +388,14 @@ impl NodeName {
         names: &[NodeName],
         nodes: &Path,
         tree_sitter: &Path,
+        type_sitter_lib: &Path,
         anon_unions: &mut AnonUnions
     ) -> TokenStream {
         Self::print_general_sum_type(
             names,
             quote! { #nodes:: },
             tree_sitter,
+            type_sitter_lib,
             anon_unions,
             || AnonUnionId::query_capture(capture_variant_name)
         )
@@ -394,12 +405,13 @@ impl NodeName {
         names: &[NodeName],
         nodes_prefix: TokenStream,
         tree_sitter: &Path,
+        type_sitter_lib: &Path,
         anon_unions: &mut AnonUnions,
         mk_anon_union_id: impl FnOnce() -> AnonUnionId
     ) -> TokenStream {
         match names.len() {
             // Never type
-            0 => quote! { type_sitter_lib::Never },
+            0 => quote! { #type_sitter_lib::Never },
             // Regular type
             1 => {
                 let type_ = NodeName::print_type(&names[0]);
@@ -419,6 +431,7 @@ impl NodeName {
                         &kind,
                         names,
                         tree_sitter,
+                        type_sitter_lib,
                     );
                     anon_unions.insert(anon_union_id, definition);
                 }
@@ -476,12 +489,12 @@ impl NodeName {
         }
     }
 
-    fn print_from_case(&self, prev_variants: &mut HashSet<String>) -> TokenStream {
+    fn print_from_case(&self, prev_variants: &mut HashSet<String>, type_sitter_lib: &Path) -> TokenStream {
         let ident = self.rust_variant_ident(prev_variants);
         let type_ = self.print_type();
         let kind = self.sexp_lit_str();
         quote! {
-            #kind => Ok(unsafe { Self::#ident(<#type_ as type_sitter_lib::TypedNode<'tree>>::from_node_unchecked(node)) }),
+            #kind => Ok(unsafe { Self::#ident(<#type_ as #type_sitter_lib::TypedNode<'tree>>::from_node_unchecked(node)) }),
         }
     }
 

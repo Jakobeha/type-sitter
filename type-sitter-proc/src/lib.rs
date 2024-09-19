@@ -3,6 +3,7 @@
 use crate::generate_queries_args::GenerateQueriesArgs;
 use generate_nodes_args::GenerateNodesArgs;
 use syn::parse_macro_input;
+use type_sitter_gen::type_sitter;
 
 mod generate_nodes_args;
 mod generate_queries_args;
@@ -29,7 +30,7 @@ mod generate_queries_args;
 #[proc_macro]
 pub fn generate_nodes(item: proc_macro::TokenStream) -> proc_macro::TokenStream {
     let args = parse_macro_input!(item as GenerateNodesArgs);
-    type_sitter_gen::generate_nodes(&args.path, &tree_sitter())
+    type_sitter_gen::generate_nodes(&args.path, &type_sitter(), &type_sitter())
         .map(|g| g.collapse())
         .unwrap_or_else(|err| err.to_compile_error())
         .into()
@@ -57,7 +58,7 @@ pub fn generate_nodes(item: proc_macro::TokenStream) -> proc_macro::TokenStream 
 #[proc_macro]
 pub fn generate_queries(item: proc_macro::TokenStream) -> proc_macro::TokenStream {
     let args = parse_macro_input!(item as GenerateQueriesArgs);
-    type_sitter_gen::generate_queries(&args.path, &args.language_path, &args.nodes, use_yak_sitter(), &tree_sitter())
+    type_sitter_gen::generate_queries(&args.path, &args.language_path, &args.nodes, use_yak_sitter(), &type_sitter(), &type_sitter())
         .map(|g| g.collapse(&args.nodes))
         .unwrap_or_else(|err| err.to_compile_error())
         .into()
@@ -71,12 +72,4 @@ fn use_yak_sitter() -> bool {
 #[cfg(not(feature = "yak-sitter"))]
 fn use_yak_sitter() -> bool {
     false
-}
-
-fn tree_sitter() -> syn::Path {
-    if use_yak_sitter() {
-        type_sitter_gen::yak_sitter()
-    } else {
-        type_sitter_gen::tree_sitter()
-    }
 }

@@ -5,7 +5,7 @@ use clap::Parser;
 
 use args::Args;
 use errors::Error;
-use type_sitter_gen::{tree_sitter, yak_sitter};
+use type_sitter_gen::{tree_sitter, type_sitter_lib, yak_sitter};
 use crate::process::reprocess;
 
 mod args;
@@ -33,6 +33,7 @@ fn run(args: Args) -> errors::Result<()> {
             syn::parse_str(facade).map_err(Error::CouldntParseWrapperNamespace)?
         },
     };
+    let type_sitter_lib = type_sitter_lib();
 
     // Create output directory (e.g. `src/type_sitter`) if necessary
     create_dir_all(&args.output_dir).map_err(Error::io("creating output root directory"))?;
@@ -40,7 +41,7 @@ fn run(args: Args) -> errors::Result<()> {
     // Process, overwriting old data if it exists
     let mut had_some_failures = false;
     for item in &args.items {
-        if let Err(err) = reprocess(item, &args, args.use_yak_sitter, &tree_sitter) {
+        if let Err(err) = reprocess(item, &args, args.use_yak_sitter, &tree_sitter, &type_sitter_lib) {
             eprintln!("Error processing {}: {}", item.input.display(), err);
             had_some_failures = true;
         }

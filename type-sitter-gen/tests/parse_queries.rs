@@ -2,7 +2,7 @@ use std::fs::{create_dir, read_to_string, write};
 use std::path::Path;
 use std::str::FromStr;
 use proc_macro2::TokenStream;
-use type_sitter_gen::{generate_queries_from_dir, super_nodes, yak_sitter};
+use type_sitter_gen::{generate_queries_from_dir, super_nodes, type_sitter_lib, yak_sitter};
 use pretty_assertions::assert_eq;
 
 #[test]
@@ -31,7 +31,8 @@ pub fn test_parse_queries(lang: &str) {
         input_path,
         &super_nodes(),
         true,
-        &yak_sitter()
+        &yak_sitter(),
+        &type_sitter_lib(),
     ).expect("Failed to generate queries").collapse(&super_nodes());
 
     if !expected_queries_path.exists() {

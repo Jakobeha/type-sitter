@@ -7,7 +7,13 @@ use crate::errors::Error;
 use crate::path_utils::{language_name, write};
 
 /** Process `item` configured with the other arguments, overwriting old data if it exists. */
-pub fn reprocess(item: &InOutPair, args: &Args, use_yak_sitter: bool, tree_sitter: &syn::Path) -> errors::Result<()> {
+pub fn reprocess(
+    item: &InOutPair,
+    args: &Args,
+    use_yak_sitter: bool,
+    tree_sitter: &syn::Path,
+    type_sitter_lib: &syn::Path,
+) -> errors::Result<()> {
     // Get input type
     let input_type = args.input_type
         .map_or_else(|| InputType::infer(&item.input), Ok)?;
@@ -24,7 +30,15 @@ pub fn reprocess(item: &InOutPair, args: &Args, use_yak_sitter: bool, tree_sitte
     }
 
     // Process
-    do_reprocess(&item.input, &output_path, input_type, language_dir.as_deref(), use_yak_sitter, tree_sitter)
+    do_reprocess(
+        &item.input,
+        &output_path,
+        input_type,
+        language_dir.as_deref(),
+        use_yak_sitter,
+        tree_sitter,
+        type_sitter_lib,
+    )
 }
 
 fn do_reprocess(
@@ -33,15 +47,16 @@ fn do_reprocess(
     input_type: InputType,
     language_dir: Option<&Path>,
     use_yak_sitter: bool,
-    tree_sitter: &syn::Path
+    tree_sitter: &syn::Path,
+    type_sitter_lib: &syn::Path,
 ) -> errors::Result<()> {
     match input_type {
         InputType::NodeTypes => {
-            write(&output_path, type_sitter_gen::generate_nodes(input_path, &tree_sitter)?)?
+            write(&output_path, type_sitter_gen::generate_nodes(input_path, tree_sitter, type_sitter_lib)?)?
         }
         InputType::Query => {
             let language_dir = language_dir.ok_or(Error::CouldntInferLanguage)?;
-            write(&output_path, type_sitter_gen::generate_queries(input_path, language_dir, &super_nodes(), use_yak_sitter, &tree_sitter)?)?;
+            write(&output_path, type_sitter_gen::generate_queries(input_path, language_dir, &super_nodes(), use_yak_sitter, tree_sitter, type_sitter_lib)?)?;
         }
         InputType::LanguageRoot => {
             // Remove old dir.
@@ -66,7 +81,8 @@ pub mod queries;
                 InputType::NodeTypes,
                 language_dir,
                 use_yak_sitter,
-                tree_sitter
+                tree_sitter,
+                type_sitter_lib,
             ).map_err(|e| e.nested("node types"))?;
             do_reprocess(
                 &input_path.join("queries"),
@@ -74,7 +90,8 @@ pub mod queries;
                 InputType::Query,
                 language_dir,
                 use_yak_sitter,
-                tree_sitter
+                tree_sitter,
+                type_sitter_lib,
             ).map_err(|e| e.nested("queries"))?;
         }
     }

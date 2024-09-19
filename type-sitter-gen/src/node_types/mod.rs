@@ -18,22 +18,25 @@ use std::path::Path;
 ///
 /// # Parameters
 /// - `path`: Path to the `node-types.json` file of the language.
-/// - `tree_sitter`: Path to the `tree_sitter` crate. Typically either [crate::tree_sitter] or
-///   [crate::yak_sitter], but you can provide a path to your own wrapper as well.
+/// - `tree_sitter`: Path to the crate with the tree-sitter API. For cli-generated sources, use
+///    [crate::tree_sitter] if `use_yak_sitter` is false or [crate::yak_sitter] if `use_yak_sitter`
+///    is true. For proc-macro generated sources, use [crate::type_sitter] either way.
+/// - `type_sitter_lib`: Path to the crate with the type-sitter API. For cli-generated sources,
+///   use [crate::type_sitter_lib]. For proc-macro generated sources, use [crate::type_sitter].
 ///
 /// # Example
 ///
 /// ```rust
-/// use type_sitter_gen::{generate_nodes, tree_sitter};
+/// use type_sitter_gen::{generate_nodes, tree_sitter, type_sitter_lib};
 /// use syn::parse_quote;
 ///
 /// fn main() {
-///     println!("{}", generate_nodes("../vendor/tree-sitter-rust/src/node-types.json", &tree_sitter()).unwrap());
+///     println!("{}", generate_nodes("../vendor/tree-sitter-rust/src/node-types.json", &tree_sitter(), &type_sitter_lib()).unwrap());
 /// }
 /// ```
-pub fn generate_nodes(path: impl AsRef<Path>, tree_sitter: &syn::Path) -> Result<GeneratedNodeTokens, Error> {
+pub fn generate_nodes(path: impl AsRef<Path>, tree_sitter: &syn::Path, type_sitter_lib: &syn::Path) -> Result<GeneratedNodeTokens, Error> {
     parse_node_types(path)?
-        .map(|r| r.map(|node_type| node_type.print(tree_sitter)))
+        .map(|r| r.map(|node_type| node_type.print(tree_sitter, type_sitter_lib)))
         .collect::<Result<GeneratedNodeTokens, _>>()
 }
 
