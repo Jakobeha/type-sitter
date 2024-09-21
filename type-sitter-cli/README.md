@@ -1,6 +1,6 @@
 # type-sitter-cli: Command-line utility to generate source files with type-sitter wrappers
 
-[![Crates.io](https://img.shields.io/crates/v/type-sitter-cli.svg)](https://crates.io/crates/type-sitter-cli)
+[![crates.io](https://img.shields.io/crates/v/type-sitter-cli.svg)](https://crates.io/crates/type-sitter-cli)
 
 See [type-sitter](https://github.com/Jakobeha/type-sitter#readme) for background information, and [type-sitter\#cli-tool](https://github.com/Jakobeha/type-sitter#cli-tool) for a guide on how to use that applied to most cases. This is the command-line tool which generates typed-safe wrappers for tree-sitter nodes.
 

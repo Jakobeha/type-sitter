@@ -2,11 +2,11 @@
 
 ***Note:** type-sitter is in alpha, therefore the API is subject to change.*
 
-[![Build status](https://github.com/Jakobeha/type-sitter/actions/workflows/ci.yml/badge.svg)](https://github.com/Jakobeha/type-sitter/actions/workflows/ci.yml)[![Crates.io](https://img.shields.io/crates/v/type-sitter.svg?label=type-sitter)](https://crates.io/crates/type-sitter)
-[![Crates.io](https://img.shields.io/crates/v/type-sitter.svg)](https://crates.io/crates/type-sitter)
-[![Docs.rs](https://docs.rs/type-sitter-cli/badge.svg)](https://docs.rs/type-sitter-cli)
-[![Docs.rs](https://docs.rs/type-sitter-proc/badge.svg)](https://docs.rs/type-sitter-proc)
-[![Docs.rs](https://docs.rs/type-sitter-lib/badge.svg)](https://docs.rs/type-sitter-lib)
+[![Build status](https://github.com/Jakobeha/type-sitter/actions/workflows/ci.yml/badge.svg)](https://github.com/Jakobeha/type-sitter/actions/workflows/ci.yml)
+[![Crates.io](https://img.shields.io/crates/v/type-sitter)](https://crates.io/crates/type-sitter)
+[![docs.rs | type-sitter-lib](https://img.shields.io/docsrs/type-sitter-lib?label=docs%20%7C%20type-sitter-lib)](https://docs.rs/type-sitter-lib)
+[![docs.rs | type-sitter-gen](https://img.shields.io/docsrs/type-sitter-gen?label=docs%20%7C%20type-sitter-gen)](https://docs.rs/type-sitter-gen)
+[![docs.rs | yak-sitter](https://img.shields.io/docsrs/yak-sitter?label=docs%20%7C%20yak-sitter)](https://docs.rs/yak-sitter)
 
 ## Overview
 

@@ -1,7 +1,7 @@
 # yak-sitter: opinionated tree-sitter facade which lets you store data visible to nodes and provides other improvements
 
-[![Crates.io](https://img.shields.io/crates/v/yak-sitter.svg)](https://crates.io/crates/yak-sitter)
-[![Docs.rs](https://docs.rs/yak-sitter/badge.svg)](https://docs.rs/yak-sitter)
+[![crates.io](https://img.shields.io/crates/v/yak-sitter.svg)](https://crates.io/crates/yak-sitter)
+[![docs.rs](https://img.shields.io/docsrs/yak-sitter)](https://docs.rs/yak-sitter)
 
 This library provides an API almost identical to [`tree-sitter`](https://crates.io/crates/tree-sitter), but with the following changes:
 

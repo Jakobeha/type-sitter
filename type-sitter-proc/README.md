@@ -1,6 +1,6 @@
 # type-sitter-proc: generate type-sitter wrappers via procedural macros
 
-[![Crates.io](https://img.shields.io/crates/v/type-sitter-proc.svg)](https://crates.io/crates/type-sitter-proc)
+[![crates.io](https://img.shields.io/crates/v/type-sitter-proc.svg)](https://crates.io/crates/type-sitter-proc)
 
 See [`type-sitter`](https://github.com/Jakobeha/type-sitter#readme) for background information. This exports procedural macros which generate typed nodes. Typed nodes can also be generated from a built-script using [`type-sitter-gen`](https://crates.io/crates/type-sitter-gen), or from a command-line interface using [`type-sitter-cli`](https://crates.io/crates/type-sitter-cli).
 
