@@ -14,11 +14,12 @@
 
 "Type-safe" here means that:
 
-- Instead of representing all tree-sitter nodes by `Node`, each node type has its own struct, which is a thin wrapper around `Node`.
-  - Each struct implements [`Node`](https://docs.rs/type-sitter-lib/latest/type_sitter_lib/trait.Node.html), and can be converted to/from [`UntypedNode`](https://docs.rs/type-sitter-lib/latest/type_sitter_lib/struct.UntypedNode.html), so you can still write methods that take/return arbitrary-typed nodes.
+- Instead of representing all tree-sitter nodes by [`tree_sitter::Node`](https://docs.rs/tree-sitter/latest/tree_sitter/struct.Node.html), each node type has its own data-type which wraps `tree_sitter::Node`.
+  - Nodes with supertypes are `enum`s, so their 
+  - Each node data-type implements [`type_sitter::Node`](https://docs.rs/type-sitter-lib/latest/type_sitter_lib/trait.Node.html). You can use generics and convert to/from [`type_sitter::UntypedNode`](https://docs.rs/type-sitter-lib/latest/type_sitter_lib/struct.UntypedNode.html) to write methods that take or return arbitrary-typed nodes.
 - Instead of accessing fields by `field("field_name")`, you access by specific methods like `field_name()`.
   - These methods, and every other generated method, also return typed nodes.
-- Queries have their own structs, you access captures by specific methods instead of `capture("capture_name")`, and query methods return typed nodes.
+- Queries also have their own data-types, you access captures by specific methods instead of `capture("capture_name")`, and query methods return typed nodes.
 
 `type-sitter` has other useful features:
 
@@ -172,7 +173,7 @@ Be aware that the generated wrapper code is very large: the generated node wrapp
 
 ## Naming Rules
 
-`type-sitter` generates datatype based on the names of the nodes in the grammar. However, these nodes are in snake-case and contain punctuation which is illegal in Rust, so we convert them to camel-case and perform the following illegal-character substitutions:
+`type-sitter` generates data-types based on the names of the nodes in the grammar. However, these nodes are in snake-case and contain punctuation which is illegal in Rust, so we convert them to camel-case and perform the following illegal-character substitutions:
 
 - `&` ⇒ `And`
 - `|` ⇒ `Or`
