@@ -1,9 +1,9 @@
+use pretty_assertions::assert_eq;
+use proc_macro2::TokenStream;
 use std::fs::{create_dir, read_to_string, write};
 use std::path::Path;
 use std::str::FromStr;
-use proc_macro2::TokenStream;
-use type_sitter_gen::{generate_nodes, type_sitter_lib, yak_sitter};
-use pretty_assertions::assert_eq;
+use type_sitter_gen::{generate_nodes_with_custom_module_paths, type_sitter_lib, yak_sitter};
 
 #[test]
 pub fn test_parse_node_types_json() {
@@ -26,7 +26,7 @@ pub fn test_parse_node_types(lang: &str) {
     }
     let input_node_types_path = input_path.join("src/node-types.json");
     let expected_node_types_path = expected_path.join("nodes.rs");
-    let node_types_code = generate_nodes(
+    let node_types_code = generate_nodes_with_custom_module_paths(
         input_node_types_path,
         &yak_sitter(),
         &type_sitter_lib(),

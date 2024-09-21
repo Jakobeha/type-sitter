@@ -2,8 +2,6 @@
 
 [![Crates.io](https://img.shields.io/crates/v/type-sitter-proc.svg)](https://crates.io/crates/type-sitter-proc)
 
-You should probably use [`type-sitter`](https://crates.io/crates/type-sitter) instead of this crate directly. This crate is a dependency of `type-sitter`, but `type-sitter` also provides [`type-sitter-lib`](https://crates.io/crates/type-sitter-lib) (and [`yak-sitter`](https://crates.io/crates/yak-sitter) with the feature) which otherwise you have to manually add to your project's dependency list.
+See [`type-sitter`](https://github.com/Jakobeha/type-sitter#readme) for background information. This exports procedural macros which generate typed nodes. Typed nodes can also be generated from a built-script using [`type-sitter-gen`](https://crates.io/crates/type-sitter-gen), or from a command-line interface using [`type-sitter-cli`](https://crates.io/crates/type-sitter-cli).
 
-This provides procedural macros which will generate typed node wrappers.
-
-Note that you can't generate multiple node-type or query wrappers in the same module, due to the fact that they will each generate their own submodules with the same name. You have to put the wrapper-generating macros in separate modules and then `pub use` the generated definitions. Sorry!
+Instead of depending on this, typically you should depend on `type-sitter` instead with the `proc` feature (enabled by default). `type-sitter` with the `proc` feature re-exports this crate, but also `type-sitter-lib`, which the generated code depends on at runtime.

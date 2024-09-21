@@ -6,8 +6,6 @@ pub enum Error {
     NoInputs,
     #[error("IO error {action}: {source}")]
     IO { action: String, #[source] source: std::io::Error },
-    #[error("Couldn't parse wrapper namespace: {0}")]
-    CouldntParseWrapperNamespace(syn::Error),
     #[error("codegen error: {0}")]
     GeneratingTokens(#[from] type_sitter_gen::Error),
     #[error("codegen formatting (rustfmt) error: {0}")]

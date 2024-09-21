@@ -13,13 +13,60 @@ use std::path::Path;
 use convert_case::{Case, Casing};
 use quote::quote;
 use tree_sitter::Query;
-use crate::Error;
+use crate::{type_sitter, type_sitter_raw, Error};
 use crate::mk_syntax::ident;
 use crate::queries::dyload_language::dyload_language;
 use crate::queries::sexp::SExpSeq;
 pub use generated_tokens::GeneratedQueryTokens;
 use crate::node_types::parse_node_types;
 use crate::node_types::types::NodeType;
+
+/// Generate source code (tokens) of wrappers for queries, and the generated code will refer to the
+/// provided modules instead of `type_sitter::raw` and `type_sitter` respectively.
+///
+/// # Parameters
+/// - `path`: Path to the queries. Must point to a `.scm` or directory of `.scm` files. If a
+///   directory, this function will generate submodules for each `.scm`.
+/// - `language_path`: path to the tree-sitter language module, where the [tree_sitter::Language]
+///   will be dynamically loaded. It must also contain `src/node-types.json`.
+/// - `nodes`: Path to the crate with the typed node wrappers. Typically [crate::super_nodes]
+/// - `use_yak_sitter`: Whether to generate queries that depend on the `yak_sitter` feature.
+///
+/// # Example
+///
+/// ```no_run
+/// use type_sitter_gen::{generate_queries, super_nodes};
+///
+/// fn main() {
+///     println!("{}", generate_queries(
+///         "vendor/tree-sitter-typescript/queries/tags.scm",
+///         "vendor/tree-sitter-typescript",
+///         &super_nodes(),
+///         false,
+///     ).unwrap());
+///     println!("{}", generate_queries(
+///         "vendor/tree-sitter-rust/queries",
+///         "vendor/tree-sitter-rust",
+///         &super_nodes(),
+///         false,
+///     ).unwrap());
+/// }
+/// ```
+pub fn generate_queries(
+    path: impl AsRef<Path>,
+    language_path: impl AsRef<Path>,
+    nodes: &syn::Path,
+    use_yak_sitter: bool,
+) -> Result<GeneratedQueryTokens, Error> {
+    generate_queries_with_custom_module_paths(
+        path,
+        language_path,
+        nodes,
+        use_yak_sitter,
+        &type_sitter_raw(),
+        &type_sitter(),
+    )
+}
 
 /// Generate source code (tokens) of wrappers for queries.
 ///
@@ -29,20 +76,21 @@ use crate::node_types::types::NodeType;
 /// - `language_path`: path to the tree-sitter language module, where the [tree_sitter::Language]
 ///   will be dynamically loaded. It must also contain `src/node-types.json`.
 /// - `nodes`: Path to the crate with the typed node wrappers. Typically [crate::super_nodes]
-/// - `use_yak_sitter`: Whether to use `yak_sitter` or `tree_sitter`
-/// - `tree_sitter`: Path to the crate with the tree-sitter API. For cli-generated sources, use
-///    [crate::tree_sitter] if `use_yak_sitter` is false or [crate::yak_sitter] if `use_yak_sitter`
-///    is true. For proc-macro generated sources, use [crate::type_sitter] either way.
-/// - `type_sitter_lib`: Path to the crate with the type-sitter API. For cli-generated sources,
-///   use [crate::type_sitter_lib]. For proc-macro generated sources, use [crate::type_sitter].
-
+/// - `use_yak_sitter`: Whether to generate queries that depend on the `yak_sitter` feature.
+/// - `tree_sitter`: Path to the crate with the tree-sitter API. In [`generate_nodes`] this is
+///   [`type_sitter_raw`] but you can provide something else, like the re-exported [`tree_sitter`]
+///   or [`yak_sitter`] directly.
+/// - `type_sitter_lib`: Path to the crate with the type-sitter API. In [`generate_nodes`] this is
+///   [`type_sitter`] but you can provide something else, like the re-exported [`type_sitter_lib`]
+///   directly.
+///
 /// # Example
 ///
 /// ```no_run
-/// use type_sitter_gen::{generate_queries, super_nodes, tree_sitter, type_sitter_lib};
+/// use type_sitter_gen::{generate_queries_with_custom_module_paths, super_nodes, tree_sitter, type_sitter_lib};
 ///
 /// fn main() {
-///     println!("{}", generate_queries(
+///     println!("{}", generate_queries_with_custom_module_paths(
 ///         "vendor/tree-sitter-typescript/queries/tags.scm",
 ///         "vendor/tree-sitter-typescript",
 ///         &super_nodes(),
@@ -50,7 +98,7 @@ use crate::node_types::types::NodeType;
 ///         &tree_sitter(),
 ///         &type_sitter_lib(),
 ///     ).unwrap());
-///     println!("{}", generate_queries(
+///     println!("{}", generate_queries_with_custom_module_paths(
 ///         "vendor/tree-sitter-rust/queries",
 ///         "vendor/tree-sitter-rust",
 ///         &super_nodes(),
@@ -60,7 +108,7 @@ use crate::node_types::types::NodeType;
 ///     ).unwrap());
 /// }
 /// ```
-pub fn generate_queries(
+pub fn generate_queries_with_custom_module_paths(
     path: impl AsRef<Path>,
     language_path: impl AsRef<Path>,
     nodes: &syn::Path,
@@ -91,52 +139,7 @@ fn _generate_queries(
     }
 }
 
-/// Generate source code (tokens) of wrappers for queries.
-///
-/// # Parameters
-/// - `path`: Path to the queries. Must point to directory of `.scm` files. This function will
-///   generate submodules for each `.scm`.
-/// - `language_path`: path to the tree-sitter language module, where the [tree_sitter::Language]
-///   will be dynamically loaded. It must also contain `src/node-types.json`.
-/// - `nodes`: Path to the crate with the typed node wrappers. Typically [crate::super_nodes]
-/// - `use_yak_sitter`: Whether to use `yak_sitter` or `tree_sitter`
-/// - `tree_sitter`: Path to the crate with the tree-sitter API. For cli-generated sources, use
-///    [crate::tree_sitter] if `use_yak_sitter` is false or [crate::yak_sitter] if `use_yak_sitter`
-///    is true. For proc-macro generated sources, use [crate::type_sitter] either way.
-/// - `type_sitter_lib`: Path to the crate with the type-sitter API. For cli-generated sources,
-///   use [crate::type_sitter_lib]. For proc-macro generated sources, use [crate::type_sitter].
-///
-/// # Example
-///
-/// ```no_run
-/// use type_sitter_gen::{generate_queries_from_dir, super_nodes, tree_sitter, type_sitter_lib};
-///
-/// fn main() {
-///     println!("{}", generate_queries_from_dir(
-///         "vendor/tree-sitter-rust/queries",
-///         "vendor/tree-sitter-rust",
-///         &super_nodes(),
-///         false,
-///         &tree_sitter(),
-///         &type_sitter_lib(),
-///     ).unwrap());
-/// }
-/// ```
-pub fn generate_queries_from_dir(
-    path: impl AsRef<Path>,
-    language_path: impl AsRef<Path>,
-    nodes: &syn::Path,
-    use_yak_sitter: bool,
-    tree_sitter: &syn::Path,
-    type_sitter_lib: &syn::Path,
-) -> Result<GeneratedQueryTokens, Error> {
-    let language_path = language_path.as_ref();
-    let node_type_map = parse_node_type_map(language_path)?;
-
-    _generate_queries_from_dir(path, language_path, &node_type_map, nodes, use_yak_sitter, tree_sitter, type_sitter_lib)
-}
-
-pub fn _generate_queries_from_dir(
+fn _generate_queries_from_dir(
     path: impl AsRef<Path>,
     language_path: impl AsRef<Path>,
     node_type_map: &HashMap<String, NodeType>,
@@ -181,45 +184,33 @@ pub fn _generate_queries_from_dir(
     Ok(queries)
 }
 
-/// Generate source code (tokens) of a wrapper for a single query.
-///
-/// # Parameters
-/// - `path`: Path to the query. Must point to a `.scm` file.
-/// - `language_path`: path to the tree-sitter language module, where the [tree_sitter::Language]
-///   will be dynamically loaded. It must also contain `src/node-types.json`.
-/// - `disabled_patterns`: Patterns to disable. See [Query::disable_pattern].
-/// - `disabled_capture_names`: List of capture names to ignore on the query
-/// - `disabled_capture_idxs`: List of capture indices to ignore on the query (both these and
-///   all indices with names in `disabled_capture_names` are disabled)
-/// - `nodes`: Path to the crate with the typed node wrappers. Typically
-///   [crate::super_nodes]
-/// - `use_yak_sitter`: Whether to use `yak_sitter` or `tree_sitter`
-/// - `tree_sitter`: Path to the crate with the tree-sitter API. For cli-generated sources, use
-///    [crate::tree_sitter] if `use_yak_sitter` is false or [crate::yak_sitter] if `use_yak_sitter`
-///    is true. For proc-macro generated sources, use [crate::type_sitter] either way.
-/// - `type_sitter_lib`: Path to the crate with the type-sitter API. For cli-generated sources,
-///   use [crate::type_sitter_lib]. For proc-macro generated sources, use [crate::type_sitter].
-
-/// # Example
-///
-/// ```no_run
-/// use type_sitter_gen::{generate_query_from_file, super_nodes, tree_sitter, type_sitter_lib};
-///
-/// fn main() {
-///     println!("{}", generate_query_from_file(
-///         "vendor/tree-sitter-typescript/queries/tags.scm",
-///         "vendor/tree-sitter-typescript",
-///         &[],
-///         &[],
-///         &[],
-///         &super_nodes(),
-///         false,
-///         &tree_sitter(),
-///         &type_sitter_lib()
-///     ).unwrap());
-/// }
-/// ```
+/// Same as [`generate_queries`], but `path` must point to a file and you can specify patterns and
+/// captures to skip.
 pub fn generate_query_from_file(
+    path: impl AsRef<Path>,
+    language_path: impl AsRef<Path>,
+    disabled_patterns: &[&str],
+    disabled_capture_names: &[&str],
+    disabled_capture_idxs: &[usize],
+    nodes: &syn::Path,
+    use_yak_sitter: bool,
+) -> Result<GeneratedQueryTokens, Error> {
+    generate_query_from_file_with_custom_module_paths(
+        path,
+        language_path,
+        disabled_patterns,
+        disabled_capture_names,
+        disabled_capture_idxs,
+        nodes,
+        use_yak_sitter,
+        &type_sitter_raw(),
+        &type_sitter(),
+    )
+}
+
+/// Same as [`generate_queries_with_custom_module_paths`], but `path` must point to a file and you
+/// can specify patterns and captures to skip.
+pub fn generate_query_from_file_with_custom_module_paths(
     path: impl AsRef<Path>,
     language_path: impl AsRef<Path>,
     disabled_patterns: &[&str],
@@ -247,7 +238,7 @@ pub fn generate_query_from_file(
     )
 }
 
-pub fn _generate_query_from_file(
+fn _generate_query_from_file(
     path: impl AsRef<Path>,
     language_path: impl AsRef<Path>,
     node_type_map: &HashMap<String, NodeType>,

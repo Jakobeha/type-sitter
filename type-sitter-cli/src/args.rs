@@ -31,12 +31,12 @@ pub struct Args {
     /// Language directory. Not used/needed when generating node wrappers. Inferred by default
     #[arg(short = 'l', long = "language")]
     pub language_dir: Option<PathBuf>,
-    /// Namespace to use for wrapper types. Defaults to `yak_sitter` if
-    /// `use-yak-sitter` is unset and `tree_sitter` if it is. However, you may want a custom wrapper
-    /// type particularly if you're using `Custom` in `yak-sitter`. This gets parsed as a Rust path.
-    #[arg(long = "facade")]
-    pub facade: Option<String>,
-    /// Generate code which uses native tree-sitter instead of yak-sitter.
+    /// Generate code which for the `yak-sitter` feature. Unset by default, like the feature itself.
+    ///
+    /// [`yak-sitter`](https://docs.rs/yak-sitter/latest/yak-sitter) is a wrapper for `tree-sitter`
+    /// that provides some additional functionality at the cost of performance. It's an optional
+    /// feature in `type-sitter`, and code that depends on `type-sitter` with the feature is
+    /// incompatible with code that depends on `type-sitter` without it.
     #[arg(long = "use-yak-sitter")]
     pub use_yak_sitter: bool,
     /// Input path(s): must be node-types.json, query file, query folder, or tree-sitter language

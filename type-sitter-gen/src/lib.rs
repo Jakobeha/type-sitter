@@ -2,9 +2,9 @@
 
 use syn::parse_quote;
 
-pub use crate::error::Error;
-pub use crate::node_types::generate_nodes;
-pub use crate::queries::{generate_queries, generate_queries_from_dir, generate_query_from_file};
+pub use crate::error::*;
+pub use crate::node_types::*;
+pub use crate::queries::*;
 
 mod error;
 mod names;
@@ -16,6 +16,12 @@ mod anon_unions;
 /// = `parse_quote!(type_sitter)`. The default path to the `type_sitter` crate.
 pub fn type_sitter() -> syn::Path {
     parse_quote!(type_sitter)
+}
+
+/// = `parse_quote!(type_sitter::raw)`. The default path to re-exported `tree-sitter` or
+/// `yak-sitter` from `type-sitter`.
+pub fn type_sitter_raw() -> syn::Path {
+    parse_quote!(type_sitter::raw)
 }
 
 /// = `parse_quote!(type_sitter_lib)`. The default path to the `type_sitter_lib` crate.

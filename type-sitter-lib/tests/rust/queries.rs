@@ -1,9 +1,9 @@
 #[allow(non_upper_case_globals)]
-static __Highlights__: std::sync::OnceLock<tree_sitter::Query> = std::sync::OnceLock::new();
+static __Highlights__: std::sync::OnceLock<yak_sitter::Query> = std::sync::OnceLock::new();
 #[allow(non_snake_case)]
-fn __Mk__Highlights() -> tree_sitter::Query {
+fn __Mk__Highlights() -> yak_sitter::Query {
     #[allow(unused_mut)]
-    let mut query = tree_sitter::Query::new(
+    let mut query = yak_sitter::Query::new(
             &tree_sitter_rust::LANGUAGE.into(),
             "; Identifiers\n\n(type_identifier) @type\n(primitive_type) @type.builtin\n(field_identifier) @property\n\n; Identifier conventions\n\n; Assume all-caps names are constants\n((identifier) @constant\n (#match? @constant \"^[A-Z][A-Z\\\\d_]+$'\"))\n\n; Assume uppercase names are enum constructors\n((identifier) @constructor\n (#match? @constructor \"^[A-Z]\"))\n\n; Assume that uppercase names in paths are types\n((scoped_identifier\n  path: (identifier) @type)\n (#match? @type \"^[A-Z]\"))\n((scoped_identifier\n  path: (scoped_identifier\n    name: (identifier) @type))\n (#match? @type \"^[A-Z]\"))\n((scoped_type_identifier\n  path: (identifier) @type)\n (#match? @type \"^[A-Z]\"))\n((scoped_type_identifier\n  path: (scoped_identifier\n    name: (identifier) @type))\n (#match? @type \"^[A-Z]\"))\n\n; Assume all qualified names in struct patterns are enum constructors. (They're\n; either that, or struct names; highlighting both as constructors seems to be\n; the less glaring choice of error, visually.)\n(struct_pattern\n  type: (scoped_type_identifier\n    name: (type_identifier) @constructor))\n\n; Function calls\n\n(call_expression\n  function: (identifier) @function)\n(call_expression\n  function: (field_expression\n    field: (field_identifier) @function.method))\n(call_expression\n  function: (scoped_identifier\n    \"::\"\n    name: (identifier) @function))\n\n(generic_function\n  function: (identifier) @function)\n(generic_function\n  function: (scoped_identifier\n    name: (identifier) @function))\n(generic_function\n  function: (field_expression\n    field: (field_identifier) @function.method))\n\n(macro_invocation\n  macro: (identifier) @function.macro\n  \"!\" @function.macro)\n\n; Function definitions\n\n(function_item (identifier) @function)\n(function_signature_item (identifier) @function)\n\n(line_comment) @comment\n(block_comment) @comment\n\n(line_comment (doc_comment)) @comment.documentation\n(block_comment (doc_comment)) @comment.documentation\n\n\"(\" @punctuation.bracket\n\")\" @punctuation.bracket\n\"[\" @punctuation.bracket\n\"]\" @punctuation.bracket\n\"{\" @punctuation.bracket\n\"}\" @punctuation.bracket\n\n(type_arguments\n  \"<\" @punctuation.bracket\n  \">\" @punctuation.bracket)\n(type_parameters\n  \"<\" @punctuation.bracket\n  \">\" @punctuation.bracket)\n\n\"::\" @punctuation.delimiter\n\":\" @punctuation.delimiter\n\".\" @punctuation.delimiter\n\",\" @punctuation.delimiter\n\";\" @punctuation.delimiter\n\n(parameter (identifier) @variable.parameter)\n\n(lifetime (identifier) @label)\n\n\"as\" @keyword\n\"async\" @keyword\n\"await\" @keyword\n\"break\" @keyword\n\"const\" @keyword\n\"continue\" @keyword\n\"default\" @keyword\n\"dyn\" @keyword\n\"else\" @keyword\n\"enum\" @keyword\n\"extern\" @keyword\n\"fn\" @keyword\n\"for\" @keyword\n\"if\" @keyword\n\"impl\" @keyword\n\"in\" @keyword\n\"let\" @keyword\n\"loop\" @keyword\n\"macro_rules!\" @keyword\n\"match\" @keyword\n\"mod\" @keyword\n\"move\" @keyword\n\"pub\" @keyword\n\"ref\" @keyword\n\"return\" @keyword\n\"static\" @keyword\n\"struct\" @keyword\n\"trait\" @keyword\n\"type\" @keyword\n\"union\" @keyword\n\"unsafe\" @keyword\n\"use\" @keyword\n\"where\" @keyword\n\"while\" @keyword\n\"yield\" @keyword\n(crate) @keyword\n(mutable_specifier) @keyword\n(use_list (self) @keyword)\n(scoped_use_list (self) @keyword)\n(scoped_identifier (self) @keyword)\n(super) @keyword\n\n(self) @variable.builtin\n\n(char_literal) @string\n(string_literal) @string\n(raw_string_literal) @string\n\n(boolean_literal) @constant.builtin\n(integer_literal) @constant.builtin\n(float_literal) @constant.builtin\n\n(escape_sequence) @escape\n\n(attribute_item) @attribute\n(inner_attribute_item) @attribute\n\n\"*\" @operator\n\"&\" @operator\n\"'\" @operator\n",
         )
@@ -344,8 +344,8 @@ pub struct Highlights;
 
 ```*/
 #[allow(unused, non_camel_case_types)]
-pub type HighlightsMatches<'cursor, 'tree> = type_sitter_lib::TypedQueryMatches<
-    'cursor,
+pub type HighlightsMatches<'query, 'tree> = type_sitter_lib::QueryMatches<
+    'query,
     'tree,
     Highlights,
 >;
@@ -514,8 +514,8 @@ pub type HighlightsMatches<'cursor, 'tree> = type_sitter_lib::TypedQueryMatches<
 
 ```*/
 #[allow(unused, non_camel_case_types)]
-pub type HighlightsCaptures<'cursor, 'tree> = type_sitter_lib::TypedQueryCaptures<
-    'cursor,
+pub type HighlightsCaptures<'query, 'tree> = type_sitter_lib::QueryCaptures<
+    'query,
     'tree,
     Highlights,
 >;
@@ -683,10 +683,8 @@ pub type HighlightsCaptures<'cursor, 'tree> = type_sitter_lib::TypedQueryCapture
 "'" @operator
 
 ```*/
-pub struct HighlightsMatch<'cursor, 'tree> {
-    r#match: tree_sitter::QueryMatch<'cursor, 'tree>,
-    tree: &'tree yak_sitter::Tree,
-}
+#[repr(transparent)]
+pub struct HighlightsMatch<'query, 'tree: 'query>(yak_sitter::QueryMatch<'query, 'tree>);
 /**A capture returned by the query [`Highlights`]:
 
 ```sexp
@@ -851,7 +849,7 @@ pub struct HighlightsMatch<'cursor, 'tree> {
 "'" @operator
 
 ```*/
-pub enum HighlightsCapture<'cursor, 'tree> {
+pub enum HighlightsCapture<'query, 'tree: 'query> {
     ///A `type` ([anon_unions::Type])
     ///
     ///The full capture including pattern(s) is:
@@ -864,7 +862,7 @@ pub enum HighlightsCapture<'cursor, 'tree> {
     ///```
     Type {
         node: anon_unions::Type<'tree>,
-        r#match: Option<HighlightsMatch<'cursor, 'tree>>,
+        r#match: Option<HighlightsMatch<'query, 'tree>>,
     },
     ///A `type.builtin` ([super::nodes::PrimitiveType])
     ///
@@ -874,7 +872,7 @@ pub enum HighlightsCapture<'cursor, 'tree> {
     ///```
     TypeBuiltin {
         node: super::nodes::PrimitiveType<'tree>,
-        r#match: Option<HighlightsMatch<'cursor, 'tree>>,
+        r#match: Option<HighlightsMatch<'query, 'tree>>,
     },
     ///A `property` ([super::nodes::FieldIdentifier])
     ///
@@ -884,7 +882,7 @@ pub enum HighlightsCapture<'cursor, 'tree> {
     ///```
     Property {
         node: super::nodes::FieldIdentifier<'tree>,
-        r#match: Option<HighlightsMatch<'cursor, 'tree>>,
+        r#match: Option<HighlightsMatch<'query, 'tree>>,
     },
     ///A `constant` ([super::nodes::Identifier])
     ///
@@ -894,7 +892,7 @@ pub enum HighlightsCapture<'cursor, 'tree> {
     ///```
     Constant {
         node: super::nodes::Identifier<'tree>,
-        r#match: Option<HighlightsMatch<'cursor, 'tree>>,
+        r#match: Option<HighlightsMatch<'query, 'tree>>,
     },
     ///A `constructor` ([anon_unions::Constructor])
     ///
@@ -905,7 +903,7 @@ pub enum HighlightsCapture<'cursor, 'tree> {
     ///```
     Constructor {
         node: anon_unions::Constructor<'tree>,
-        r#match: Option<HighlightsMatch<'cursor, 'tree>>,
+        r#match: Option<HighlightsMatch<'query, 'tree>>,
     },
     ///A `function` ([anon_unions::Function])
     ///
@@ -920,7 +918,7 @@ pub enum HighlightsCapture<'cursor, 'tree> {
     ///```
     Function {
         node: super::nodes::Identifier<'tree>,
-        r#match: Option<HighlightsMatch<'cursor, 'tree>>,
+        r#match: Option<HighlightsMatch<'query, 'tree>>,
     },
     ///A `function.method` ([anon_unions::FunctionMethod])
     ///
@@ -931,7 +929,7 @@ pub enum HighlightsCapture<'cursor, 'tree> {
     ///```
     FunctionMethod {
         node: super::nodes::FieldIdentifier<'tree>,
-        r#match: Option<HighlightsMatch<'cursor, 'tree>>,
+        r#match: Option<HighlightsMatch<'query, 'tree>>,
     },
     ///A `function.macro` ([anon_unions::FunctionMacro])
     ///
@@ -942,7 +940,7 @@ pub enum HighlightsCapture<'cursor, 'tree> {
     ///```
     FunctionMacro {
         node: anon_unions::FunctionMacro<'tree>,
-        r#match: Option<HighlightsMatch<'cursor, 'tree>>,
+        r#match: Option<HighlightsMatch<'query, 'tree>>,
     },
     ///A `comment` ([anon_unions::Comment])
     ///
@@ -953,7 +951,7 @@ pub enum HighlightsCapture<'cursor, 'tree> {
     ///```
     Comment {
         node: anon_unions::Comment<'tree>,
-        r#match: Option<HighlightsMatch<'cursor, 'tree>>,
+        r#match: Option<HighlightsMatch<'query, 'tree>>,
     },
     ///A `comment.documentation` ([anon_unions::CommentDocumentation])
     ///
@@ -964,7 +962,7 @@ pub enum HighlightsCapture<'cursor, 'tree> {
     ///```
     CommentDocumentation {
         node: anon_unions::CommentDocumentation<'tree>,
-        r#match: Option<HighlightsMatch<'cursor, 'tree>>,
+        r#match: Option<HighlightsMatch<'query, 'tree>>,
     },
     ///A `punctuation.bracket` ([anon_unions::PunctuationBracket])
     ///
@@ -983,7 +981,7 @@ pub enum HighlightsCapture<'cursor, 'tree> {
     ///```
     PunctuationBracket {
         node: anon_unions::PunctuationBracket<'tree>,
-        r#match: Option<HighlightsMatch<'cursor, 'tree>>,
+        r#match: Option<HighlightsMatch<'query, 'tree>>,
     },
     ///A `punctuation.delimiter` ([anon_unions::PunctuationDelimiter])
     ///
@@ -997,7 +995,7 @@ pub enum HighlightsCapture<'cursor, 'tree> {
     ///```
     PunctuationDelimiter {
         node: anon_unions::PunctuationDelimiter<'tree>,
-        r#match: Option<HighlightsMatch<'cursor, 'tree>>,
+        r#match: Option<HighlightsMatch<'query, 'tree>>,
     },
     ///A `variable.parameter` ([super::nodes::Identifier])
     ///
@@ -1007,7 +1005,7 @@ pub enum HighlightsCapture<'cursor, 'tree> {
     ///```
     VariableParameter {
         node: super::nodes::Identifier<'tree>,
-        r#match: Option<HighlightsMatch<'cursor, 'tree>>,
+        r#match: Option<HighlightsMatch<'query, 'tree>>,
     },
     ///A `label` ([super::nodes::Identifier])
     ///
@@ -1017,7 +1015,7 @@ pub enum HighlightsCapture<'cursor, 'tree> {
     ///```
     Label {
         node: super::nodes::Identifier<'tree>,
-        r#match: Option<HighlightsMatch<'cursor, 'tree>>,
+        r#match: Option<HighlightsMatch<'query, 'tree>>,
     },
     ///A `keyword` ([anon_unions::Keyword])
     ///
@@ -1067,7 +1065,7 @@ pub enum HighlightsCapture<'cursor, 'tree> {
     ///```
     Keyword {
         node: anon_unions::Keyword<'tree>,
-        r#match: Option<HighlightsMatch<'cursor, 'tree>>,
+        r#match: Option<HighlightsMatch<'query, 'tree>>,
     },
     ///A `variable.builtin` ([super::nodes::_Self])
     ///
@@ -1077,7 +1075,7 @@ pub enum HighlightsCapture<'cursor, 'tree> {
     ///```
     VariableBuiltin {
         node: super::nodes::_Self<'tree>,
-        r#match: Option<HighlightsMatch<'cursor, 'tree>>,
+        r#match: Option<HighlightsMatch<'query, 'tree>>,
     },
     ///A `string` ([anon_unions::String])
     ///
@@ -1089,7 +1087,7 @@ pub enum HighlightsCapture<'cursor, 'tree> {
     ///```
     String {
         node: anon_unions::String<'tree>,
-        r#match: Option<HighlightsMatch<'cursor, 'tree>>,
+        r#match: Option<HighlightsMatch<'query, 'tree>>,
     },
     ///A `constant.builtin` ([anon_unions::ConstantBuiltin])
     ///
@@ -1101,7 +1099,7 @@ pub enum HighlightsCapture<'cursor, 'tree> {
     ///```
     ConstantBuiltin {
         node: anon_unions::ConstantBuiltin<'tree>,
-        r#match: Option<HighlightsMatch<'cursor, 'tree>>,
+        r#match: Option<HighlightsMatch<'query, 'tree>>,
     },
     ///A `escape` ([super::nodes::EscapeSequence])
     ///
@@ -1111,7 +1109,7 @@ pub enum HighlightsCapture<'cursor, 'tree> {
     ///```
     Escape {
         node: super::nodes::EscapeSequence<'tree>,
-        r#match: Option<HighlightsMatch<'cursor, 'tree>>,
+        r#match: Option<HighlightsMatch<'query, 'tree>>,
     },
     ///A `attribute` ([anon_unions::Attribute])
     ///
@@ -1122,7 +1120,7 @@ pub enum HighlightsCapture<'cursor, 'tree> {
     ///```
     Attribute {
         node: anon_unions::Attribute<'tree>,
-        r#match: Option<HighlightsMatch<'cursor, 'tree>>,
+        r#match: Option<HighlightsMatch<'query, 'tree>>,
     },
     ///A `operator` ([anon_unions::Operator])
     ///
@@ -1134,284 +1132,198 @@ pub enum HighlightsCapture<'cursor, 'tree> {
     ///```
     Operator {
         node: anon_unions::Operator<'tree>,
-        r#match: Option<HighlightsMatch<'cursor, 'tree>>,
+        r#match: Option<HighlightsMatch<'query, 'tree>>,
     },
 }
 #[automatically_derived]
-impl type_sitter_lib::TypedQuery for Highlights {
-    type Match<'cursor, 'tree: 'cursor> = HighlightsMatch<'cursor, 'tree>;
-    type Capture<'cursor, 'tree: 'cursor> = HighlightsCapture<'cursor, 'tree>;
-    fn query_str(&self) -> &'static str {
+impl type_sitter_lib::Query for Highlights {
+    type Match<'query, 'tree: 'query> = HighlightsMatch<'query, 'tree>;
+    type Capture<'query, 'tree: 'query> = HighlightsCapture<'query, 'tree>;
+    fn as_str(&self) -> &'static str {
         "; Identifiers\n\n(type_identifier) @type\n(primitive_type) @type.builtin\n(field_identifier) @property\n\n; Identifier conventions\n\n; Assume all-caps names are constants\n((identifier) @constant\n (#match? @constant \"^[A-Z][A-Z\\\\d_]+$'\"))\n\n; Assume uppercase names are enum constructors\n((identifier) @constructor\n (#match? @constructor \"^[A-Z]\"))\n\n; Assume that uppercase names in paths are types\n((scoped_identifier\n  path: (identifier) @type)\n (#match? @type \"^[A-Z]\"))\n((scoped_identifier\n  path: (scoped_identifier\n    name: (identifier) @type))\n (#match? @type \"^[A-Z]\"))\n((scoped_type_identifier\n  path: (identifier) @type)\n (#match? @type \"^[A-Z]\"))\n((scoped_type_identifier\n  path: (scoped_identifier\n    name: (identifier) @type))\n (#match? @type \"^[A-Z]\"))\n\n; Assume all qualified names in struct patterns are enum constructors. (They're\n; either that, or struct names; highlighting both as constructors seems to be\n; the less glaring choice of error, visually.)\n(struct_pattern\n  type: (scoped_type_identifier\n    name: (type_identifier) @constructor))\n\n; Function calls\n\n(call_expression\n  function: (identifier) @function)\n(call_expression\n  function: (field_expression\n    field: (field_identifier) @function.method))\n(call_expression\n  function: (scoped_identifier\n    \"::\"\n    name: (identifier) @function))\n\n(generic_function\n  function: (identifier) @function)\n(generic_function\n  function: (scoped_identifier\n    name: (identifier) @function))\n(generic_function\n  function: (field_expression\n    field: (field_identifier) @function.method))\n\n(macro_invocation\n  macro: (identifier) @function.macro\n  \"!\" @function.macro)\n\n; Function definitions\n\n(function_item (identifier) @function)\n(function_signature_item (identifier) @function)\n\n(line_comment) @comment\n(block_comment) @comment\n\n(line_comment (doc_comment)) @comment.documentation\n(block_comment (doc_comment)) @comment.documentation\n\n\"(\" @punctuation.bracket\n\")\" @punctuation.bracket\n\"[\" @punctuation.bracket\n\"]\" @punctuation.bracket\n\"{\" @punctuation.bracket\n\"}\" @punctuation.bracket\n\n(type_arguments\n  \"<\" @punctuation.bracket\n  \">\" @punctuation.bracket)\n(type_parameters\n  \"<\" @punctuation.bracket\n  \">\" @punctuation.bracket)\n\n\"::\" @punctuation.delimiter\n\":\" @punctuation.delimiter\n\".\" @punctuation.delimiter\n\",\" @punctuation.delimiter\n\";\" @punctuation.delimiter\n\n(parameter (identifier) @variable.parameter)\n\n(lifetime (identifier) @label)\n\n\"as\" @keyword\n\"async\" @keyword\n\"await\" @keyword\n\"break\" @keyword\n\"const\" @keyword\n\"continue\" @keyword\n\"default\" @keyword\n\"dyn\" @keyword\n\"else\" @keyword\n\"enum\" @keyword\n\"extern\" @keyword\n\"fn\" @keyword\n\"for\" @keyword\n\"if\" @keyword\n\"impl\" @keyword\n\"in\" @keyword\n\"let\" @keyword\n\"loop\" @keyword\n\"macro_rules!\" @keyword\n\"match\" @keyword\n\"mod\" @keyword\n\"move\" @keyword\n\"pub\" @keyword\n\"ref\" @keyword\n\"return\" @keyword\n\"static\" @keyword\n\"struct\" @keyword\n\"trait\" @keyword\n\"type\" @keyword\n\"union\" @keyword\n\"unsafe\" @keyword\n\"use\" @keyword\n\"where\" @keyword\n\"while\" @keyword\n\"yield\" @keyword\n(crate) @keyword\n(mutable_specifier) @keyword\n(use_list (self) @keyword)\n(scoped_use_list (self) @keyword)\n(scoped_identifier (self) @keyword)\n(super) @keyword\n\n(self) @variable.builtin\n\n(char_literal) @string\n(string_literal) @string\n(raw_string_literal) @string\n\n(boolean_literal) @constant.builtin\n(integer_literal) @constant.builtin\n(float_literal) @constant.builtin\n\n(escape_sequence) @escape\n\n(attribute_item) @attribute\n(inner_attribute_item) @attribute\n\n\"*\" @operator\n\"&\" @operator\n\"'\" @operator\n"
     }
-    fn query(&self) -> &'static tree_sitter::Query {
+    fn raw(&self) -> &'static yak_sitter::Query {
         __Highlights__.get_or_init(__Mk__Highlights)
     }
     #[inline]
-    unsafe fn wrap_match<'cursor, 'tree>(
+    unsafe fn wrap_match<'query, 'tree>(
         &self,
-        r#match: tree_sitter::QueryMatch<'cursor, 'tree>,
-        tree: &'tree yak_sitter::Tree,
-    ) -> Self::Match<'cursor, 'tree> {
-        Self::Match { r#match, tree }
+        r#match: yak_sitter::QueryMatch<'query, 'tree>,
+    ) -> HighlightsMatch<'query, 'tree> {
+        HighlightsMatch(r#match)
     }
     #[inline]
-    unsafe fn wrap_capture<'cursor, 'tree>(
+    unsafe fn wrap_capture<'query, 'tree: 'query>(
         &self,
-        capture: tree_sitter::QueryCapture<'tree>,
-        r#match: Option<Self::Match<'cursor, 'tree>>,
-        tree: &'tree yak_sitter::Tree,
-    ) -> Self::Capture<'cursor, 'tree> {
+        capture: yak_sitter::QueryCapture<'query, 'tree>,
+        r#match: Option<HighlightsMatch<'query, 'tree>>,
+    ) -> HighlightsCapture<'query, 'tree> {
         match capture.index as usize {
             0usize => {
-                Self::Capture::Type {
+                HighlightsCapture::Type {
                     node: <anon_unions::Type<
                         'tree,
-                    > as type_sitter_lib::TypedNode<
-                        'tree,
-                    >>::from_node_unchecked(unsafe {
-                        yak_sitter::Node::new(capture.node, tree)
-                    }),
+                    > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(capture.node),
                     r#match,
                 }
             }
             1usize => {
-                Self::Capture::TypeBuiltin {
+                HighlightsCapture::TypeBuiltin {
                     node: <super::nodes::PrimitiveType<
                         'tree,
-                    > as type_sitter_lib::TypedNode<
-                        'tree,
-                    >>::from_node_unchecked(unsafe {
-                        yak_sitter::Node::new(capture.node, tree)
-                    }),
+                    > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(capture.node),
                     r#match,
                 }
             }
             2usize => {
-                Self::Capture::Property {
+                HighlightsCapture::Property {
                     node: <super::nodes::FieldIdentifier<
                         'tree,
-                    > as type_sitter_lib::TypedNode<
-                        'tree,
-                    >>::from_node_unchecked(unsafe {
-                        yak_sitter::Node::new(capture.node, tree)
-                    }),
+                    > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(capture.node),
                     r#match,
                 }
             }
             3usize => {
-                Self::Capture::Constant {
+                HighlightsCapture::Constant {
                     node: <super::nodes::Identifier<
                         'tree,
-                    > as type_sitter_lib::TypedNode<
-                        'tree,
-                    >>::from_node_unchecked(unsafe {
-                        yak_sitter::Node::new(capture.node, tree)
-                    }),
+                    > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(capture.node),
                     r#match,
                 }
             }
             4usize => {
-                Self::Capture::Constructor {
+                HighlightsCapture::Constructor {
                     node: <anon_unions::Constructor<
                         'tree,
-                    > as type_sitter_lib::TypedNode<
-                        'tree,
-                    >>::from_node_unchecked(unsafe {
-                        yak_sitter::Node::new(capture.node, tree)
-                    }),
+                    > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(capture.node),
                     r#match,
                 }
             }
             5usize => {
-                Self::Capture::Function {
+                HighlightsCapture::Function {
                     node: <super::nodes::Identifier<
                         'tree,
-                    > as type_sitter_lib::TypedNode<
-                        'tree,
-                    >>::from_node_unchecked(unsafe {
-                        yak_sitter::Node::new(capture.node, tree)
-                    }),
+                    > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(capture.node),
                     r#match,
                 }
             }
             6usize => {
-                Self::Capture::FunctionMethod {
+                HighlightsCapture::FunctionMethod {
                     node: <super::nodes::FieldIdentifier<
                         'tree,
-                    > as type_sitter_lib::TypedNode<
-                        'tree,
-                    >>::from_node_unchecked(unsafe {
-                        yak_sitter::Node::new(capture.node, tree)
-                    }),
+                    > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(capture.node),
                     r#match,
                 }
             }
             7usize => {
-                Self::Capture::FunctionMacro {
+                HighlightsCapture::FunctionMacro {
                     node: <anon_unions::FunctionMacro<
                         'tree,
-                    > as type_sitter_lib::TypedNode<
-                        'tree,
-                    >>::from_node_unchecked(unsafe {
-                        yak_sitter::Node::new(capture.node, tree)
-                    }),
+                    > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(capture.node),
                     r#match,
                 }
             }
             8usize => {
-                Self::Capture::Comment {
+                HighlightsCapture::Comment {
                     node: <anon_unions::Comment<
                         'tree,
-                    > as type_sitter_lib::TypedNode<
-                        'tree,
-                    >>::from_node_unchecked(unsafe {
-                        yak_sitter::Node::new(capture.node, tree)
-                    }),
+                    > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(capture.node),
                     r#match,
                 }
             }
             9usize => {
-                Self::Capture::CommentDocumentation {
+                HighlightsCapture::CommentDocumentation {
                     node: <anon_unions::CommentDocumentation<
                         'tree,
-                    > as type_sitter_lib::TypedNode<
-                        'tree,
-                    >>::from_node_unchecked(unsafe {
-                        yak_sitter::Node::new(capture.node, tree)
-                    }),
+                    > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(capture.node),
                     r#match,
                 }
             }
             10usize => {
-                Self::Capture::PunctuationBracket {
+                HighlightsCapture::PunctuationBracket {
                     node: <anon_unions::PunctuationBracket<
                         'tree,
-                    > as type_sitter_lib::TypedNode<
-                        'tree,
-                    >>::from_node_unchecked(unsafe {
-                        yak_sitter::Node::new(capture.node, tree)
-                    }),
+                    > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(capture.node),
                     r#match,
                 }
             }
             11usize => {
-                Self::Capture::PunctuationDelimiter {
+                HighlightsCapture::PunctuationDelimiter {
                     node: <anon_unions::PunctuationDelimiter<
                         'tree,
-                    > as type_sitter_lib::TypedNode<
-                        'tree,
-                    >>::from_node_unchecked(unsafe {
-                        yak_sitter::Node::new(capture.node, tree)
-                    }),
+                    > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(capture.node),
                     r#match,
                 }
             }
             12usize => {
-                Self::Capture::VariableParameter {
+                HighlightsCapture::VariableParameter {
                     node: <super::nodes::Identifier<
                         'tree,
-                    > as type_sitter_lib::TypedNode<
-                        'tree,
-                    >>::from_node_unchecked(unsafe {
-                        yak_sitter::Node::new(capture.node, tree)
-                    }),
+                    > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(capture.node),
                     r#match,
                 }
             }
             13usize => {
-                Self::Capture::Label {
+                HighlightsCapture::Label {
                     node: <super::nodes::Identifier<
                         'tree,
-                    > as type_sitter_lib::TypedNode<
-                        'tree,
-                    >>::from_node_unchecked(unsafe {
-                        yak_sitter::Node::new(capture.node, tree)
-                    }),
+                    > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(capture.node),
                     r#match,
                 }
             }
             14usize => {
-                Self::Capture::Keyword {
+                HighlightsCapture::Keyword {
                     node: <anon_unions::Keyword<
                         'tree,
-                    > as type_sitter_lib::TypedNode<
-                        'tree,
-                    >>::from_node_unchecked(unsafe {
-                        yak_sitter::Node::new(capture.node, tree)
-                    }),
+                    > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(capture.node),
                     r#match,
                 }
             }
             15usize => {
-                Self::Capture::VariableBuiltin {
+                HighlightsCapture::VariableBuiltin {
                     node: <super::nodes::_Self<
                         'tree,
-                    > as type_sitter_lib::TypedNode<
-                        'tree,
-                    >>::from_node_unchecked(unsafe {
-                        yak_sitter::Node::new(capture.node, tree)
-                    }),
+                    > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(capture.node),
                     r#match,
                 }
             }
             16usize => {
-                Self::Capture::String {
+                HighlightsCapture::String {
                     node: <anon_unions::String<
                         'tree,
-                    > as type_sitter_lib::TypedNode<
-                        'tree,
-                    >>::from_node_unchecked(unsafe {
-                        yak_sitter::Node::new(capture.node, tree)
-                    }),
+                    > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(capture.node),
                     r#match,
                 }
             }
             17usize => {
-                Self::Capture::ConstantBuiltin {
+                HighlightsCapture::ConstantBuiltin {
                     node: <anon_unions::ConstantBuiltin<
                         'tree,
-                    > as type_sitter_lib::TypedNode<
-                        'tree,
-                    >>::from_node_unchecked(unsafe {
-                        yak_sitter::Node::new(capture.node, tree)
-                    }),
+                    > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(capture.node),
                     r#match,
                 }
             }
             18usize => {
-                Self::Capture::Escape {
+                HighlightsCapture::Escape {
                     node: <super::nodes::EscapeSequence<
                         'tree,
-                    > as type_sitter_lib::TypedNode<
-                        'tree,
-                    >>::from_node_unchecked(unsafe {
-                        yak_sitter::Node::new(capture.node, tree)
-                    }),
+                    > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(capture.node),
                     r#match,
                 }
             }
             19usize => {
-                Self::Capture::Attribute {
+                HighlightsCapture::Attribute {
                     node: <anon_unions::Attribute<
                         'tree,
-                    > as type_sitter_lib::TypedNode<
-                        'tree,
-                    >>::from_node_unchecked(unsafe {
-                        yak_sitter::Node::new(capture.node, tree)
-                    }),
+                    > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(capture.node),
                     r#match,
                 }
             }
             20usize => {
-                Self::Capture::Operator {
+                HighlightsCapture::Operator {
                     node: <anon_unions::Operator<
                         'tree,
-                    > as type_sitter_lib::TypedNode<
-                        'tree,
-                    >>::from_node_unchecked(unsafe {
-                        yak_sitter::Node::new(capture.node, tree)
-                    }),
+                    > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(capture.node),
                     r#match,
                 }
             }
@@ -1420,7 +1332,7 @@ impl type_sitter_lib::TypedQuery for Highlights {
     }
 }
 #[automatically_derived]
-impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
+impl<'query, 'tree: 'query> HighlightsMatch<'query, 'tree> {
     ///Returns an iterator over the nodes captured by `type` ([anon_unions::Type])
     ///
     ///The full capture including pattern(s) is:
@@ -1437,13 +1349,11 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         {
             [0u32]
                 .into_iter()
-                .flat_map(|i| self.r#match.nodes_for_capture_index(i))
+                .flat_map(|i| self.0.nodes_for_capture_index(i))
                 .map(|n| unsafe {
                     <anon_unions::Type<
                         'tree,
-                    > as type_sitter_lib::TypedNode<
-                        'tree,
-                    >>::from_node_unchecked(yak_sitter::Node::new(n, self.tree))
+                    > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(n)
                 })
         }
             .next()
@@ -1460,13 +1370,11 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         {
             [1u32]
                 .into_iter()
-                .flat_map(|i| self.r#match.nodes_for_capture_index(i))
+                .flat_map(|i| self.0.nodes_for_capture_index(i))
                 .map(|n| unsafe {
                     <super::nodes::PrimitiveType<
                         'tree,
-                    > as type_sitter_lib::TypedNode<
-                        'tree,
-                    >>::from_node_unchecked(yak_sitter::Node::new(n, self.tree))
+                    > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(n)
                 })
         }
             .next()
@@ -1483,13 +1391,11 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         {
             [2u32]
                 .into_iter()
-                .flat_map(|i| self.r#match.nodes_for_capture_index(i))
+                .flat_map(|i| self.0.nodes_for_capture_index(i))
                 .map(|n| unsafe {
                     <super::nodes::FieldIdentifier<
                         'tree,
-                    > as type_sitter_lib::TypedNode<
-                        'tree,
-                    >>::from_node_unchecked(yak_sitter::Node::new(n, self.tree))
+                    > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(n)
                 })
         }
             .next()
@@ -1506,13 +1412,11 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         {
             [3u32]
                 .into_iter()
-                .flat_map(|i| self.r#match.nodes_for_capture_index(i))
+                .flat_map(|i| self.0.nodes_for_capture_index(i))
                 .map(|n| unsafe {
                     <super::nodes::Identifier<
                         'tree,
-                    > as type_sitter_lib::TypedNode<
-                        'tree,
-                    >>::from_node_unchecked(yak_sitter::Node::new(n, self.tree))
+                    > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(n)
                 })
         }
             .next()
@@ -1530,13 +1434,11 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         {
             [4u32]
                 .into_iter()
-                .flat_map(|i| self.r#match.nodes_for_capture_index(i))
+                .flat_map(|i| self.0.nodes_for_capture_index(i))
                 .map(|n| unsafe {
                     <anon_unions::Constructor<
                         'tree,
-                    > as type_sitter_lib::TypedNode<
-                        'tree,
-                    >>::from_node_unchecked(yak_sitter::Node::new(n, self.tree))
+                    > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(n)
                 })
         }
             .next()
@@ -1558,13 +1460,11 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         {
             [5u32]
                 .into_iter()
-                .flat_map(|i| self.r#match.nodes_for_capture_index(i))
+                .flat_map(|i| self.0.nodes_for_capture_index(i))
                 .map(|n| unsafe {
                     <super::nodes::Identifier<
                         'tree,
-                    > as type_sitter_lib::TypedNode<
-                        'tree,
-                    >>::from_node_unchecked(yak_sitter::Node::new(n, self.tree))
+                    > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(n)
                 })
         }
             .next()
@@ -1582,13 +1482,11 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         {
             [6u32]
                 .into_iter()
-                .flat_map(|i| self.r#match.nodes_for_capture_index(i))
+                .flat_map(|i| self.0.nodes_for_capture_index(i))
                 .map(|n| unsafe {
                     <super::nodes::FieldIdentifier<
                         'tree,
-                    > as type_sitter_lib::TypedNode<
-                        'tree,
-                    >>::from_node_unchecked(yak_sitter::Node::new(n, self.tree))
+                    > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(n)
                 })
         }
             .next()
@@ -1606,13 +1504,11 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         {
             [7u32]
                 .into_iter()
-                .flat_map(|i| self.r#match.nodes_for_capture_index(i))
+                .flat_map(|i| self.0.nodes_for_capture_index(i))
                 .map(|n| unsafe {
                     <anon_unions::FunctionMacro<
                         'tree,
-                    > as type_sitter_lib::TypedNode<
-                        'tree,
-                    >>::from_node_unchecked(yak_sitter::Node::new(n, self.tree))
+                    > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(n)
                 })
         }
             .next()
@@ -1630,13 +1526,11 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         {
             [8u32]
                 .into_iter()
-                .flat_map(|i| self.r#match.nodes_for_capture_index(i))
+                .flat_map(|i| self.0.nodes_for_capture_index(i))
                 .map(|n| unsafe {
                     <anon_unions::Comment<
                         'tree,
-                    > as type_sitter_lib::TypedNode<
-                        'tree,
-                    >>::from_node_unchecked(yak_sitter::Node::new(n, self.tree))
+                    > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(n)
                 })
         }
             .next()
@@ -1656,13 +1550,11 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         {
             [9u32]
                 .into_iter()
-                .flat_map(|i| self.r#match.nodes_for_capture_index(i))
+                .flat_map(|i| self.0.nodes_for_capture_index(i))
                 .map(|n| unsafe {
                     <anon_unions::CommentDocumentation<
                         'tree,
-                    > as type_sitter_lib::TypedNode<
-                        'tree,
-                    >>::from_node_unchecked(yak_sitter::Node::new(n, self.tree))
+                    > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(n)
                 })
         }
             .next()
@@ -1688,13 +1580,11 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         {
             [10u32]
                 .into_iter()
-                .flat_map(|i| self.r#match.nodes_for_capture_index(i))
+                .flat_map(|i| self.0.nodes_for_capture_index(i))
                 .map(|n| unsafe {
                     <anon_unions::PunctuationBracket<
                         'tree,
-                    > as type_sitter_lib::TypedNode<
-                        'tree,
-                    >>::from_node_unchecked(yak_sitter::Node::new(n, self.tree))
+                    > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(n)
                 })
         }
             .next()
@@ -1717,13 +1607,11 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         {
             [11u32]
                 .into_iter()
-                .flat_map(|i| self.r#match.nodes_for_capture_index(i))
+                .flat_map(|i| self.0.nodes_for_capture_index(i))
                 .map(|n| unsafe {
                     <anon_unions::PunctuationDelimiter<
                         'tree,
-                    > as type_sitter_lib::TypedNode<
-                        'tree,
-                    >>::from_node_unchecked(yak_sitter::Node::new(n, self.tree))
+                    > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(n)
                 })
         }
             .next()
@@ -1740,13 +1628,11 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         {
             [12u32]
                 .into_iter()
-                .flat_map(|i| self.r#match.nodes_for_capture_index(i))
+                .flat_map(|i| self.0.nodes_for_capture_index(i))
                 .map(|n| unsafe {
                     <super::nodes::Identifier<
                         'tree,
-                    > as type_sitter_lib::TypedNode<
-                        'tree,
-                    >>::from_node_unchecked(yak_sitter::Node::new(n, self.tree))
+                    > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(n)
                 })
         }
             .next()
@@ -1763,13 +1649,11 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         {
             [13u32]
                 .into_iter()
-                .flat_map(|i| self.r#match.nodes_for_capture_index(i))
+                .flat_map(|i| self.0.nodes_for_capture_index(i))
                 .map(|n| unsafe {
                     <super::nodes::Identifier<
                         'tree,
-                    > as type_sitter_lib::TypedNode<
-                        'tree,
-                    >>::from_node_unchecked(yak_sitter::Node::new(n, self.tree))
+                    > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(n)
                 })
         }
             .next()
@@ -1826,13 +1710,11 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         {
             [14u32]
                 .into_iter()
-                .flat_map(|i| self.r#match.nodes_for_capture_index(i))
+                .flat_map(|i| self.0.nodes_for_capture_index(i))
                 .map(|n| unsafe {
                     <anon_unions::Keyword<
                         'tree,
-                    > as type_sitter_lib::TypedNode<
-                        'tree,
-                    >>::from_node_unchecked(yak_sitter::Node::new(n, self.tree))
+                    > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(n)
                 })
         }
             .next()
@@ -1849,13 +1731,11 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         {
             [15u32]
                 .into_iter()
-                .flat_map(|i| self.r#match.nodes_for_capture_index(i))
+                .flat_map(|i| self.0.nodes_for_capture_index(i))
                 .map(|n| unsafe {
                     <super::nodes::_Self<
                         'tree,
-                    > as type_sitter_lib::TypedNode<
-                        'tree,
-                    >>::from_node_unchecked(yak_sitter::Node::new(n, self.tree))
+                    > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(n)
                 })
         }
             .next()
@@ -1874,13 +1754,11 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         {
             [16u32]
                 .into_iter()
-                .flat_map(|i| self.r#match.nodes_for_capture_index(i))
+                .flat_map(|i| self.0.nodes_for_capture_index(i))
                 .map(|n| unsafe {
                     <anon_unions::String<
                         'tree,
-                    > as type_sitter_lib::TypedNode<
-                        'tree,
-                    >>::from_node_unchecked(yak_sitter::Node::new(n, self.tree))
+                    > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(n)
                 })
         }
     }
@@ -1898,13 +1776,11 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         {
             [17u32]
                 .into_iter()
-                .flat_map(|i| self.r#match.nodes_for_capture_index(i))
+                .flat_map(|i| self.0.nodes_for_capture_index(i))
                 .map(|n| unsafe {
                     <anon_unions::ConstantBuiltin<
                         'tree,
-                    > as type_sitter_lib::TypedNode<
-                        'tree,
-                    >>::from_node_unchecked(yak_sitter::Node::new(n, self.tree))
+                    > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(n)
                 })
         }
             .next()
@@ -1921,13 +1797,11 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         {
             [18u32]
                 .into_iter()
-                .flat_map(|i| self.r#match.nodes_for_capture_index(i))
+                .flat_map(|i| self.0.nodes_for_capture_index(i))
                 .map(|n| unsafe {
                     <super::nodes::EscapeSequence<
                         'tree,
-                    > as type_sitter_lib::TypedNode<
-                        'tree,
-                    >>::from_node_unchecked(yak_sitter::Node::new(n, self.tree))
+                    > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(n)
                 })
         }
             .next()
@@ -1945,13 +1819,11 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         {
             [19u32]
                 .into_iter()
-                .flat_map(|i| self.r#match.nodes_for_capture_index(i))
+                .flat_map(|i| self.0.nodes_for_capture_index(i))
                 .map(|n| unsafe {
                     <anon_unions::Attribute<
                         'tree,
-                    > as type_sitter_lib::TypedNode<
-                        'tree,
-                    >>::from_node_unchecked(yak_sitter::Node::new(n, self.tree))
+                    > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(n)
                 })
         }
             .next()
@@ -1970,49 +1842,45 @@ impl<'cursor, 'tree> HighlightsMatch<'cursor, 'tree> {
         {
             [20u32]
                 .into_iter()
-                .flat_map(|i| self.r#match.nodes_for_capture_index(i))
+                .flat_map(|i| self.0.nodes_for_capture_index(i))
                 .map(|n| unsafe {
                     <anon_unions::Operator<
                         'tree,
-                    > as type_sitter_lib::TypedNode<
-                        'tree,
-                    >>::from_node_unchecked(yak_sitter::Node::new(n, self.tree))
+                    > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(n)
                 })
         }
             .next()
     }
 }
 #[automatically_derived]
-impl<'cursor, 'tree> std::fmt::Debug for HighlightsMatch<'cursor, 'tree> {
+impl<'query, 'tree: 'query> std::fmt::Debug for HighlightsMatch<'query, 'tree> {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        f.debug_struct(stringify!(HighlightsMatch))
-            .field("r#match", &self.r#match)
-            .finish()
+        f.debug_tuple(stringify!(HighlightsMatch)).field(&self.0).finish()
     }
 }
 #[automatically_derived]
-impl<'cursor, 'tree> type_sitter_lib::TypedQueryMatch<'cursor, 'tree>
-for HighlightsMatch<'cursor, 'tree> {
+impl<'query, 'tree: 'query> type_sitter_lib::QueryMatch<'query, 'tree>
+for HighlightsMatch<'query, 'tree> {
     type Query = Highlights;
     #[inline]
-    fn query(&self) -> &'cursor Self::Query {
+    fn query(&self) -> &'query Self::Query {
         &Highlights
     }
     #[inline]
     fn tree(&self) -> &'tree yak_sitter::Tree {
-        self.tree
+        self.0.tree()
     }
     #[inline]
-    fn raw(&self) -> &tree_sitter::QueryMatch<'cursor, 'tree> {
-        &self.r#match
+    fn raw(&self) -> &yak_sitter::QueryMatch<'query, 'tree> {
+        &self.0
     }
     #[inline]
-    fn into_raw(self) -> tree_sitter::QueryMatch<'cursor, 'tree> {
-        self.r#match
+    fn into_raw(self) -> yak_sitter::QueryMatch<'query, 'tree> {
+        self.0
     }
 }
 #[automatically_derived]
-impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
+impl<'query, 'tree: 'query> HighlightsCapture<'query, 'tree> {
     ///Try to interpret this capture as a `type` ([anon_unions::Type])
     ///
     ///The full capture including pattern(s) is:
@@ -2025,12 +1893,9 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
     ///```
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn r#type(&self) -> Option<&anon_unions::Type<'tree>> {
-        match self {
-            Self::Type { node, .. } => Some(node),
-            #[allow(unreachable_patterns)]
-            _ => None,
-        }
+    pub fn as_type(&self) -> Option<&anon_unions::Type<'tree>> {
+        #[allow(irrefutable_let_patterns)]
+        if let Self::Type { node, .. } = self { Some(node) } else { None }
     }
     ///Try to interpret this capture as a `type.builtin` ([super::nodes::PrimitiveType])
     ///
@@ -2040,12 +1905,9 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
     ///```
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn type_builtin(&self) -> Option<&super::nodes::PrimitiveType<'tree>> {
-        match self {
-            Self::TypeBuiltin { node, .. } => Some(node),
-            #[allow(unreachable_patterns)]
-            _ => None,
-        }
+    pub fn as_type_builtin(&self) -> Option<&super::nodes::PrimitiveType<'tree>> {
+        #[allow(irrefutable_let_patterns)]
+        if let Self::TypeBuiltin { node, .. } = self { Some(node) } else { None }
     }
     ///Try to interpret this capture as a `property` ([super::nodes::FieldIdentifier])
     ///
@@ -2055,12 +1917,9 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
     ///```
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn property(&self) -> Option<&super::nodes::FieldIdentifier<'tree>> {
-        match self {
-            Self::Property { node, .. } => Some(node),
-            #[allow(unreachable_patterns)]
-            _ => None,
-        }
+    pub fn as_property(&self) -> Option<&super::nodes::FieldIdentifier<'tree>> {
+        #[allow(irrefutable_let_patterns)]
+        if let Self::Property { node, .. } = self { Some(node) } else { None }
     }
     ///Try to interpret this capture as a `constant` ([super::nodes::Identifier])
     ///
@@ -2070,12 +1929,9 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
     ///```
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn constant(&self) -> Option<&super::nodes::Identifier<'tree>> {
-        match self {
-            Self::Constant { node, .. } => Some(node),
-            #[allow(unreachable_patterns)]
-            _ => None,
-        }
+    pub fn as_constant(&self) -> Option<&super::nodes::Identifier<'tree>> {
+        #[allow(irrefutable_let_patterns)]
+        if let Self::Constant { node, .. } = self { Some(node) } else { None }
     }
     ///Try to interpret this capture as a `constructor` ([anon_unions::Constructor])
     ///
@@ -2086,12 +1942,9 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
     ///```
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn constructor(&self) -> Option<&anon_unions::Constructor<'tree>> {
-        match self {
-            Self::Constructor { node, .. } => Some(node),
-            #[allow(unreachable_patterns)]
-            _ => None,
-        }
+    pub fn as_constructor(&self) -> Option<&anon_unions::Constructor<'tree>> {
+        #[allow(irrefutable_let_patterns)]
+        if let Self::Constructor { node, .. } = self { Some(node) } else { None }
     }
     ///Try to interpret this capture as a `function` ([anon_unions::Function])
     ///
@@ -2106,12 +1959,9 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
     ///```
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn function(&self) -> Option<&super::nodes::Identifier<'tree>> {
-        match self {
-            Self::Function { node, .. } => Some(node),
-            #[allow(unreachable_patterns)]
-            _ => None,
-        }
+    pub fn as_function(&self) -> Option<&super::nodes::Identifier<'tree>> {
+        #[allow(irrefutable_let_patterns)]
+        if let Self::Function { node, .. } = self { Some(node) } else { None }
     }
     ///Try to interpret this capture as a `function.method` ([anon_unions::FunctionMethod])
     ///
@@ -2122,12 +1972,9 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
     ///```
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn function_method(&self) -> Option<&super::nodes::FieldIdentifier<'tree>> {
-        match self {
-            Self::FunctionMethod { node, .. } => Some(node),
-            #[allow(unreachable_patterns)]
-            _ => None,
-        }
+    pub fn as_function_method(&self) -> Option<&super::nodes::FieldIdentifier<'tree>> {
+        #[allow(irrefutable_let_patterns)]
+        if let Self::FunctionMethod { node, .. } = self { Some(node) } else { None }
     }
     ///Try to interpret this capture as a `function.macro` ([anon_unions::FunctionMacro])
     ///
@@ -2138,12 +1985,9 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
     ///```
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn function_macro(&self) -> Option<&anon_unions::FunctionMacro<'tree>> {
-        match self {
-            Self::FunctionMacro { node, .. } => Some(node),
-            #[allow(unreachable_patterns)]
-            _ => None,
-        }
+    pub fn as_function_macro(&self) -> Option<&anon_unions::FunctionMacro<'tree>> {
+        #[allow(irrefutable_let_patterns)]
+        if let Self::FunctionMacro { node, .. } = self { Some(node) } else { None }
     }
     ///Try to interpret this capture as a `comment` ([anon_unions::Comment])
     ///
@@ -2154,12 +1998,9 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
     ///```
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn comment(&self) -> Option<&anon_unions::Comment<'tree>> {
-        match self {
-            Self::Comment { node, .. } => Some(node),
-            #[allow(unreachable_patterns)]
-            _ => None,
-        }
+    pub fn as_comment(&self) -> Option<&anon_unions::Comment<'tree>> {
+        #[allow(irrefutable_let_patterns)]
+        if let Self::Comment { node, .. } = self { Some(node) } else { None }
     }
     ///Try to interpret this capture as a `comment.documentation` ([anon_unions::CommentDocumentation])
     ///
@@ -2170,13 +2011,14 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
     ///```
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn comment_documentation(
+    pub fn as_comment_documentation(
         &self,
     ) -> Option<&anon_unions::CommentDocumentation<'tree>> {
-        match self {
-            Self::CommentDocumentation { node, .. } => Some(node),
-            #[allow(unreachable_patterns)]
-            _ => None,
+        #[allow(irrefutable_let_patterns)]
+        if let Self::CommentDocumentation { node, .. } = self {
+            Some(node)
+        } else {
+            None
         }
     }
     ///Try to interpret this capture as a `punctuation.bracket` ([anon_unions::PunctuationBracket])
@@ -2196,14 +2038,11 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
     ///```
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn punctuation_bracket(
+    pub fn as_punctuation_bracket(
         &self,
     ) -> Option<&anon_unions::PunctuationBracket<'tree>> {
-        match self {
-            Self::PunctuationBracket { node, .. } => Some(node),
-            #[allow(unreachable_patterns)]
-            _ => None,
-        }
+        #[allow(irrefutable_let_patterns)]
+        if let Self::PunctuationBracket { node, .. } = self { Some(node) } else { None }
     }
     ///Try to interpret this capture as a `punctuation.delimiter` ([anon_unions::PunctuationDelimiter])
     ///
@@ -2217,13 +2056,14 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
     ///```
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn punctuation_delimiter(
+    pub fn as_punctuation_delimiter(
         &self,
     ) -> Option<&anon_unions::PunctuationDelimiter<'tree>> {
-        match self {
-            Self::PunctuationDelimiter { node, .. } => Some(node),
-            #[allow(unreachable_patterns)]
-            _ => None,
+        #[allow(irrefutable_let_patterns)]
+        if let Self::PunctuationDelimiter { node, .. } = self {
+            Some(node)
+        } else {
+            None
         }
     }
     ///Try to interpret this capture as a `variable.parameter` ([super::nodes::Identifier])
@@ -2234,12 +2074,9 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
     ///```
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn variable_parameter(&self) -> Option<&super::nodes::Identifier<'tree>> {
-        match self {
-            Self::VariableParameter { node, .. } => Some(node),
-            #[allow(unreachable_patterns)]
-            _ => None,
-        }
+    pub fn as_variable_parameter(&self) -> Option<&super::nodes::Identifier<'tree>> {
+        #[allow(irrefutable_let_patterns)]
+        if let Self::VariableParameter { node, .. } = self { Some(node) } else { None }
     }
     ///Try to interpret this capture as a `label` ([super::nodes::Identifier])
     ///
@@ -2249,12 +2086,9 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
     ///```
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn label(&self) -> Option<&super::nodes::Identifier<'tree>> {
-        match self {
-            Self::Label { node, .. } => Some(node),
-            #[allow(unreachable_patterns)]
-            _ => None,
-        }
+    pub fn as_label(&self) -> Option<&super::nodes::Identifier<'tree>> {
+        #[allow(irrefutable_let_patterns)]
+        if let Self::Label { node, .. } = self { Some(node) } else { None }
     }
     ///Try to interpret this capture as a `keyword` ([anon_unions::Keyword])
     ///
@@ -2304,12 +2138,9 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
     ///```
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn keyword(&self) -> Option<&anon_unions::Keyword<'tree>> {
-        match self {
-            Self::Keyword { node, .. } => Some(node),
-            #[allow(unreachable_patterns)]
-            _ => None,
-        }
+    pub fn as_keyword(&self) -> Option<&anon_unions::Keyword<'tree>> {
+        #[allow(irrefutable_let_patterns)]
+        if let Self::Keyword { node, .. } = self { Some(node) } else { None }
     }
     ///Try to interpret this capture as a `variable.builtin` ([super::nodes::_Self])
     ///
@@ -2319,12 +2150,9 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
     ///```
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn variable_builtin(&self) -> Option<&super::nodes::_Self<'tree>> {
-        match self {
-            Self::VariableBuiltin { node, .. } => Some(node),
-            #[allow(unreachable_patterns)]
-            _ => None,
-        }
+    pub fn as_variable_builtin(&self) -> Option<&super::nodes::_Self<'tree>> {
+        #[allow(irrefutable_let_patterns)]
+        if let Self::VariableBuiltin { node, .. } = self { Some(node) } else { None }
     }
     ///Try to interpret this capture as a `string` ([anon_unions::String])
     ///
@@ -2336,12 +2164,9 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
     ///```
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn string(&self) -> Option<&anon_unions::String<'tree>> {
-        match self {
-            Self::String { node, .. } => Some(node),
-            #[allow(unreachable_patterns)]
-            _ => None,
-        }
+    pub fn as_string(&self) -> Option<&anon_unions::String<'tree>> {
+        #[allow(irrefutable_let_patterns)]
+        if let Self::String { node, .. } = self { Some(node) } else { None }
     }
     ///Try to interpret this capture as a `constant.builtin` ([anon_unions::ConstantBuiltin])
     ///
@@ -2353,12 +2178,9 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
     ///```
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn constant_builtin(&self) -> Option<&anon_unions::ConstantBuiltin<'tree>> {
-        match self {
-            Self::ConstantBuiltin { node, .. } => Some(node),
-            #[allow(unreachable_patterns)]
-            _ => None,
-        }
+    pub fn as_constant_builtin(&self) -> Option<&anon_unions::ConstantBuiltin<'tree>> {
+        #[allow(irrefutable_let_patterns)]
+        if let Self::ConstantBuiltin { node, .. } = self { Some(node) } else { None }
     }
     ///Try to interpret this capture as a `escape` ([super::nodes::EscapeSequence])
     ///
@@ -2368,12 +2190,9 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
     ///```
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn escape(&self) -> Option<&super::nodes::EscapeSequence<'tree>> {
-        match self {
-            Self::Escape { node, .. } => Some(node),
-            #[allow(unreachable_patterns)]
-            _ => None,
-        }
+    pub fn as_escape(&self) -> Option<&super::nodes::EscapeSequence<'tree>> {
+        #[allow(irrefutable_let_patterns)]
+        if let Self::Escape { node, .. } = self { Some(node) } else { None }
     }
     ///Try to interpret this capture as a `attribute` ([anon_unions::Attribute])
     ///
@@ -2384,12 +2203,9 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
     ///```
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn attribute(&self) -> Option<&anon_unions::Attribute<'tree>> {
-        match self {
-            Self::Attribute { node, .. } => Some(node),
-            #[allow(unreachable_patterns)]
-            _ => None,
-        }
+    pub fn as_attribute(&self) -> Option<&anon_unions::Attribute<'tree>> {
+        #[allow(irrefutable_let_patterns)]
+        if let Self::Attribute { node, .. } = self { Some(node) } else { None }
     }
     ///Try to interpret this capture as a `operator` ([anon_unions::Operator])
     ///
@@ -2401,16 +2217,13 @@ impl<'cursor, 'tree> HighlightsCapture<'cursor, 'tree> {
     ///```
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn operator(&self) -> Option<&anon_unions::Operator<'tree>> {
-        match self {
-            Self::Operator { node, .. } => Some(node),
-            #[allow(unreachable_patterns)]
-            _ => None,
-        }
+    pub fn as_operator(&self) -> Option<&anon_unions::Operator<'tree>> {
+        #[allow(irrefutable_let_patterns)]
+        if let Self::Operator { node, .. } = self { Some(node) } else { None }
     }
 }
 #[automatically_derived]
-impl<'cursor, 'tree> std::fmt::Debug for HighlightsCapture<'cursor, 'tree> {
+impl<'query, 'tree: 'query> std::fmt::Debug for HighlightsCapture<'query, 'tree> {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
             Self::Type { node, .. } => {
@@ -2604,7 +2417,7 @@ impl<'cursor, 'tree> std::fmt::Debug for HighlightsCapture<'cursor, 'tree> {
     }
 }
 #[automatically_derived]
-impl<'cursor, 'tree> Clone for HighlightsCapture<'cursor, 'tree> {
+impl<'query, 'tree: 'query> Clone for HighlightsCapture<'query, 'tree> {
     fn clone(&self) -> Self {
         match self {
             Self::Type { node, .. } => {
@@ -2739,17 +2552,17 @@ impl<'cursor, 'tree> Clone for HighlightsCapture<'cursor, 'tree> {
     }
 }
 #[automatically_derived]
-impl<'cursor, 'tree> type_sitter_lib::TypedQueryCapture<'cursor, 'tree>
-for HighlightsCapture<'cursor, 'tree> {
+impl<'query, 'tree: 'query> type_sitter_lib::QueryCapture<'query, 'tree>
+for HighlightsCapture<'query, 'tree> {
     type Query = Highlights;
     #[inline]
-    fn query(&self) -> &'cursor Self::Query {
+    fn query(&self) -> &'query Self::Query {
         &Highlights
     }
     #[inline]
     fn r#match(
         &self,
-    ) -> Option<&<Self::Query as type_sitter_lib::TypedQuery>::Match<'cursor, 'tree>> {
+    ) -> Option<&<Self::Query as type_sitter_lib::Query>::Match<'query, 'tree>> {
         match self {
             Self::Type { r#match, .. } => r#match.as_ref(),
             Self::TypeBuiltin { r#match, .. } => r#match.as_ref(),
@@ -2779,7 +2592,7 @@ for HighlightsCapture<'cursor, 'tree> {
     #[inline]
     fn into_match(
         self,
-    ) -> Option<<Self::Query as type_sitter_lib::TypedQuery>::Match<'cursor, 'tree>> {
+    ) -> Option<<Self::Query as type_sitter_lib::Query>::Match<'query, 'tree>> {
         match self {
             Self::Type { r#match, .. } => r#match,
             Self::TypeBuiltin { r#match, .. } => r#match,
@@ -2807,153 +2620,153 @@ for HighlightsCapture<'cursor, 'tree> {
         }
     }
     #[inline]
-    fn to_raw(&self) -> yak_sitter::QueryCapture<'static, 'tree> {
+    fn raw(&self) -> yak_sitter::QueryCapture<'query, 'tree> {
         #[allow(unused_imports)]
-        use type_sitter_lib::TypedNode;
+        use type_sitter_lib::Node;
         match self {
             Self::Type { node, .. } => {
                 yak_sitter::QueryCapture {
-                    node: *node.node(),
+                    node: *node.raw(),
                     index: 0usize,
                     name: "type",
                 }
             }
             Self::TypeBuiltin { node, .. } => {
                 yak_sitter::QueryCapture {
-                    node: *node.node(),
+                    node: *node.raw(),
                     index: 1usize,
                     name: "type.builtin",
                 }
             }
             Self::Property { node, .. } => {
                 yak_sitter::QueryCapture {
-                    node: *node.node(),
+                    node: *node.raw(),
                     index: 2usize,
                     name: "property",
                 }
             }
             Self::Constant { node, .. } => {
                 yak_sitter::QueryCapture {
-                    node: *node.node(),
+                    node: *node.raw(),
                     index: 3usize,
                     name: "constant",
                 }
             }
             Self::Constructor { node, .. } => {
                 yak_sitter::QueryCapture {
-                    node: *node.node(),
+                    node: *node.raw(),
                     index: 4usize,
                     name: "constructor",
                 }
             }
             Self::Function { node, .. } => {
                 yak_sitter::QueryCapture {
-                    node: *node.node(),
+                    node: *node.raw(),
                     index: 5usize,
                     name: "function",
                 }
             }
             Self::FunctionMethod { node, .. } => {
                 yak_sitter::QueryCapture {
-                    node: *node.node(),
+                    node: *node.raw(),
                     index: 6usize,
                     name: "function.method",
                 }
             }
             Self::FunctionMacro { node, .. } => {
                 yak_sitter::QueryCapture {
-                    node: *node.node(),
+                    node: *node.raw(),
                     index: 7usize,
                     name: "function.macro",
                 }
             }
             Self::Comment { node, .. } => {
                 yak_sitter::QueryCapture {
-                    node: *node.node(),
+                    node: *node.raw(),
                     index: 8usize,
                     name: "comment",
                 }
             }
             Self::CommentDocumentation { node, .. } => {
                 yak_sitter::QueryCapture {
-                    node: *node.node(),
+                    node: *node.raw(),
                     index: 9usize,
                     name: "comment.documentation",
                 }
             }
             Self::PunctuationBracket { node, .. } => {
                 yak_sitter::QueryCapture {
-                    node: *node.node(),
+                    node: *node.raw(),
                     index: 10usize,
                     name: "punctuation.bracket",
                 }
             }
             Self::PunctuationDelimiter { node, .. } => {
                 yak_sitter::QueryCapture {
-                    node: *node.node(),
+                    node: *node.raw(),
                     index: 11usize,
                     name: "punctuation.delimiter",
                 }
             }
             Self::VariableParameter { node, .. } => {
                 yak_sitter::QueryCapture {
-                    node: *node.node(),
+                    node: *node.raw(),
                     index: 12usize,
                     name: "variable.parameter",
                 }
             }
             Self::Label { node, .. } => {
                 yak_sitter::QueryCapture {
-                    node: *node.node(),
+                    node: *node.raw(),
                     index: 13usize,
                     name: "label",
                 }
             }
             Self::Keyword { node, .. } => {
                 yak_sitter::QueryCapture {
-                    node: *node.node(),
+                    node: *node.raw(),
                     index: 14usize,
                     name: "keyword",
                 }
             }
             Self::VariableBuiltin { node, .. } => {
                 yak_sitter::QueryCapture {
-                    node: *node.node(),
+                    node: *node.raw(),
                     index: 15usize,
                     name: "variable.builtin",
                 }
             }
             Self::String { node, .. } => {
                 yak_sitter::QueryCapture {
-                    node: *node.node(),
+                    node: *node.raw(),
                     index: 16usize,
                     name: "string",
                 }
             }
             Self::ConstantBuiltin { node, .. } => {
                 yak_sitter::QueryCapture {
-                    node: *node.node(),
+                    node: *node.raw(),
                     index: 17usize,
                     name: "constant.builtin",
                 }
             }
             Self::Escape { node, .. } => {
                 yak_sitter::QueryCapture {
-                    node: *node.node(),
+                    node: *node.raw(),
                     index: 18usize,
                     name: "escape",
                 }
             }
             Self::Attribute { node, .. } => {
                 yak_sitter::QueryCapture {
-                    node: *node.node(),
+                    node: *node.raw(),
                     index: 19usize,
                     name: "attribute",
                 }
             }
             Self::Operator { node, .. } => {
                 yak_sitter::QueryCapture {
-                    node: *node.node(),
+                    node: *node.raw(),
                     index: 20usize,
                     name: "operator",
                 }
@@ -2963,67 +2776,139 @@ for HighlightsCapture<'cursor, 'tree> {
         }
     }
     #[inline]
-    fn node(&self) -> &yak_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::UntypedNode<'tree> {
         #[allow(unused_imports)]
-        use type_sitter_lib::TypedNode;
+        use type_sitter_lib::Node;
         match self {
-            Self::Type { node, .. } => node.node(),
-            Self::TypeBuiltin { node, .. } => node.node(),
-            Self::Property { node, .. } => node.node(),
-            Self::Constant { node, .. } => node.node(),
-            Self::Constructor { node, .. } => node.node(),
-            Self::Function { node, .. } => node.node(),
-            Self::FunctionMethod { node, .. } => node.node(),
-            Self::FunctionMacro { node, .. } => node.node(),
-            Self::Comment { node, .. } => node.node(),
-            Self::CommentDocumentation { node, .. } => node.node(),
-            Self::PunctuationBracket { node, .. } => node.node(),
-            Self::PunctuationDelimiter { node, .. } => node.node(),
-            Self::VariableParameter { node, .. } => node.node(),
-            Self::Label { node, .. } => node.node(),
-            Self::Keyword { node, .. } => node.node(),
-            Self::VariableBuiltin { node, .. } => node.node(),
-            Self::String { node, .. } => node.node(),
-            Self::ConstantBuiltin { node, .. } => node.node(),
-            Self::Escape { node, .. } => node.node(),
-            Self::Attribute { node, .. } => node.node(),
-            Self::Operator { node, .. } => node.node(),
+            Self::Type { node, .. } => type_sitter_lib::UntypedNode::r#ref(node.raw()),
+            Self::TypeBuiltin { node, .. } => {
+                type_sitter_lib::UntypedNode::r#ref(node.raw())
+            }
+            Self::Property { node, .. } => {
+                type_sitter_lib::UntypedNode::r#ref(node.raw())
+            }
+            Self::Constant { node, .. } => {
+                type_sitter_lib::UntypedNode::r#ref(node.raw())
+            }
+            Self::Constructor { node, .. } => {
+                type_sitter_lib::UntypedNode::r#ref(node.raw())
+            }
+            Self::Function { node, .. } => {
+                type_sitter_lib::UntypedNode::r#ref(node.raw())
+            }
+            Self::FunctionMethod { node, .. } => {
+                type_sitter_lib::UntypedNode::r#ref(node.raw())
+            }
+            Self::FunctionMacro { node, .. } => {
+                type_sitter_lib::UntypedNode::r#ref(node.raw())
+            }
+            Self::Comment { node, .. } => type_sitter_lib::UntypedNode::r#ref(node.raw()),
+            Self::CommentDocumentation { node, .. } => {
+                type_sitter_lib::UntypedNode::r#ref(node.raw())
+            }
+            Self::PunctuationBracket { node, .. } => {
+                type_sitter_lib::UntypedNode::r#ref(node.raw())
+            }
+            Self::PunctuationDelimiter { node, .. } => {
+                type_sitter_lib::UntypedNode::r#ref(node.raw())
+            }
+            Self::VariableParameter { node, .. } => {
+                type_sitter_lib::UntypedNode::r#ref(node.raw())
+            }
+            Self::Label { node, .. } => type_sitter_lib::UntypedNode::r#ref(node.raw()),
+            Self::Keyword { node, .. } => type_sitter_lib::UntypedNode::r#ref(node.raw()),
+            Self::VariableBuiltin { node, .. } => {
+                type_sitter_lib::UntypedNode::r#ref(node.raw())
+            }
+            Self::String { node, .. } => type_sitter_lib::UntypedNode::r#ref(node.raw()),
+            Self::ConstantBuiltin { node, .. } => {
+                type_sitter_lib::UntypedNode::r#ref(node.raw())
+            }
+            Self::Escape { node, .. } => type_sitter_lib::UntypedNode::r#ref(node.raw()),
+            Self::Attribute { node, .. } => {
+                type_sitter_lib::UntypedNode::r#ref(node.raw())
+            }
+            Self::Operator { node, .. } => {
+                type_sitter_lib::UntypedNode::r#ref(node.raw())
+            }
             #[allow(unreachable_patterns)]
             _ => unreachable!(),
         }
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::UntypedNode<'tree> {
         #[allow(unused_imports)]
-        use type_sitter_lib::TypedNode;
+        use type_sitter_lib::Node;
         match self {
-            Self::Type { node, .. } => node.node_mut(),
-            Self::TypeBuiltin { node, .. } => node.node_mut(),
-            Self::Property { node, .. } => node.node_mut(),
-            Self::Constant { node, .. } => node.node_mut(),
-            Self::Constructor { node, .. } => node.node_mut(),
-            Self::Function { node, .. } => node.node_mut(),
-            Self::FunctionMethod { node, .. } => node.node_mut(),
-            Self::FunctionMacro { node, .. } => node.node_mut(),
-            Self::Comment { node, .. } => node.node_mut(),
-            Self::CommentDocumentation { node, .. } => node.node_mut(),
-            Self::PunctuationBracket { node, .. } => node.node_mut(),
-            Self::PunctuationDelimiter { node, .. } => node.node_mut(),
-            Self::VariableParameter { node, .. } => node.node_mut(),
-            Self::Label { node, .. } => node.node_mut(),
-            Self::Keyword { node, .. } => node.node_mut(),
-            Self::VariableBuiltin { node, .. } => node.node_mut(),
-            Self::String { node, .. } => node.node_mut(),
-            Self::ConstantBuiltin { node, .. } => node.node_mut(),
-            Self::Escape { node, .. } => node.node_mut(),
-            Self::Attribute { node, .. } => node.node_mut(),
-            Self::Operator { node, .. } => node.node_mut(),
+            Self::Type { node, .. } => {
+                type_sitter_lib::UntypedNode::r#mut(node.raw_mut())
+            }
+            Self::TypeBuiltin { node, .. } => {
+                type_sitter_lib::UntypedNode::r#mut(node.raw_mut())
+            }
+            Self::Property { node, .. } => {
+                type_sitter_lib::UntypedNode::r#mut(node.raw_mut())
+            }
+            Self::Constant { node, .. } => {
+                type_sitter_lib::UntypedNode::r#mut(node.raw_mut())
+            }
+            Self::Constructor { node, .. } => {
+                type_sitter_lib::UntypedNode::r#mut(node.raw_mut())
+            }
+            Self::Function { node, .. } => {
+                type_sitter_lib::UntypedNode::r#mut(node.raw_mut())
+            }
+            Self::FunctionMethod { node, .. } => {
+                type_sitter_lib::UntypedNode::r#mut(node.raw_mut())
+            }
+            Self::FunctionMacro { node, .. } => {
+                type_sitter_lib::UntypedNode::r#mut(node.raw_mut())
+            }
+            Self::Comment { node, .. } => {
+                type_sitter_lib::UntypedNode::r#mut(node.raw_mut())
+            }
+            Self::CommentDocumentation { node, .. } => {
+                type_sitter_lib::UntypedNode::r#mut(node.raw_mut())
+            }
+            Self::PunctuationBracket { node, .. } => {
+                type_sitter_lib::UntypedNode::r#mut(node.raw_mut())
+            }
+            Self::PunctuationDelimiter { node, .. } => {
+                type_sitter_lib::UntypedNode::r#mut(node.raw_mut())
+            }
+            Self::VariableParameter { node, .. } => {
+                type_sitter_lib::UntypedNode::r#mut(node.raw_mut())
+            }
+            Self::Label { node, .. } => {
+                type_sitter_lib::UntypedNode::r#mut(node.raw_mut())
+            }
+            Self::Keyword { node, .. } => {
+                type_sitter_lib::UntypedNode::r#mut(node.raw_mut())
+            }
+            Self::VariableBuiltin { node, .. } => {
+                type_sitter_lib::UntypedNode::r#mut(node.raw_mut())
+            }
+            Self::String { node, .. } => {
+                type_sitter_lib::UntypedNode::r#mut(node.raw_mut())
+            }
+            Self::ConstantBuiltin { node, .. } => {
+                type_sitter_lib::UntypedNode::r#mut(node.raw_mut())
+            }
+            Self::Escape { node, .. } => {
+                type_sitter_lib::UntypedNode::r#mut(node.raw_mut())
+            }
+            Self::Attribute { node, .. } => {
+                type_sitter_lib::UntypedNode::r#mut(node.raw_mut())
+            }
+            Self::Operator { node, .. } => {
+                type_sitter_lib::UntypedNode::r#mut(node.raw_mut())
+            }
             #[allow(unreachable_patterns)]
             _ => unreachable!(),
         }
     }
     #[inline]
-    fn name(&self) -> &'static str {
+    fn name(&self) -> &'query str {
         match self {
             Self::Type { .. } => "type",
             Self::TypeBuiltin { .. } => "type.builtin",
@@ -3080,11 +2965,11 @@ for HighlightsCapture<'cursor, 'tree> {
     }
 }
 #[allow(non_upper_case_globals)]
-static __Injections__: std::sync::OnceLock<tree_sitter::Query> = std::sync::OnceLock::new();
+static __Injections__: std::sync::OnceLock<yak_sitter::Query> = std::sync::OnceLock::new();
 #[allow(non_snake_case)]
-fn __Mk__Injections() -> tree_sitter::Query {
+fn __Mk__Injections() -> yak_sitter::Query {
     #[allow(unused_mut)]
-    let mut query = tree_sitter::Query::new(
+    let mut query = yak_sitter::Query::new(
             &tree_sitter_rust::LANGUAGE.into(),
             "((macro_invocation\n  (token_tree) @injection.content)\n (#set! injection.language \"rust\")\n (#set! injection.include-children))\n\n((macro_rule\n  (token_tree) @injection.content)\n (#set! injection.language \"rust\")\n (#set! injection.include-children))\n",
         )
@@ -3125,8 +3010,8 @@ pub struct Injections;
 
 ```*/
 #[allow(unused, non_camel_case_types)]
-pub type InjectionsMatches<'cursor, 'tree> = type_sitter_lib::TypedQueryMatches<
-    'cursor,
+pub type InjectionsMatches<'query, 'tree> = type_sitter_lib::QueryMatches<
+    'query,
     'tree,
     Injections,
 >;
@@ -3145,8 +3030,8 @@ pub type InjectionsMatches<'cursor, 'tree> = type_sitter_lib::TypedQueryMatches<
 
 ```*/
 #[allow(unused, non_camel_case_types)]
-pub type InjectionsCaptures<'cursor, 'tree> = type_sitter_lib::TypedQueryCaptures<
-    'cursor,
+pub type InjectionsCaptures<'query, 'tree> = type_sitter_lib::QueryCaptures<
+    'query,
     'tree,
     Injections,
 >;
@@ -3164,10 +3049,8 @@ pub type InjectionsCaptures<'cursor, 'tree> = type_sitter_lib::TypedQueryCapture
  (#set! injection.include-children))
 
 ```*/
-pub struct InjectionsMatch<'cursor, 'tree> {
-    r#match: tree_sitter::QueryMatch<'cursor, 'tree>,
-    tree: &'tree yak_sitter::Tree,
-}
+#[repr(transparent)]
+pub struct InjectionsMatch<'query, 'tree: 'query>(yak_sitter::QueryMatch<'query, 'tree>);
 /**A capture returned by the query [`Injections`]:
 
 ```sexp
@@ -3182,7 +3065,7 @@ pub struct InjectionsMatch<'cursor, 'tree> {
  (#set! injection.include-children))
 
 ```*/
-pub enum InjectionsCapture<'cursor, 'tree> {
+pub enum InjectionsCapture<'query, 'tree: 'query> {
     ///A `injection.content` ([anon_unions::InjectionContent])
     ///
     ///The full capture including pattern(s) is:
@@ -3192,44 +3075,38 @@ pub enum InjectionsCapture<'cursor, 'tree> {
     ///```
     InjectionContent {
         node: super::nodes::TokenTree<'tree>,
-        r#match: Option<InjectionsMatch<'cursor, 'tree>>,
+        r#match: Option<InjectionsMatch<'query, 'tree>>,
     },
 }
 #[automatically_derived]
-impl type_sitter_lib::TypedQuery for Injections {
-    type Match<'cursor, 'tree: 'cursor> = InjectionsMatch<'cursor, 'tree>;
-    type Capture<'cursor, 'tree: 'cursor> = InjectionsCapture<'cursor, 'tree>;
-    fn query_str(&self) -> &'static str {
+impl type_sitter_lib::Query for Injections {
+    type Match<'query, 'tree: 'query> = InjectionsMatch<'query, 'tree>;
+    type Capture<'query, 'tree: 'query> = InjectionsCapture<'query, 'tree>;
+    fn as_str(&self) -> &'static str {
         "((macro_invocation\n  (token_tree) @injection.content)\n (#set! injection.language \"rust\")\n (#set! injection.include-children))\n\n((macro_rule\n  (token_tree) @injection.content)\n (#set! injection.language \"rust\")\n (#set! injection.include-children))\n"
     }
-    fn query(&self) -> &'static tree_sitter::Query {
+    fn raw(&self) -> &'static yak_sitter::Query {
         __Injections__.get_or_init(__Mk__Injections)
     }
     #[inline]
-    unsafe fn wrap_match<'cursor, 'tree>(
+    unsafe fn wrap_match<'query, 'tree>(
         &self,
-        r#match: tree_sitter::QueryMatch<'cursor, 'tree>,
-        tree: &'tree yak_sitter::Tree,
-    ) -> Self::Match<'cursor, 'tree> {
-        Self::Match { r#match, tree }
+        r#match: yak_sitter::QueryMatch<'query, 'tree>,
+    ) -> InjectionsMatch<'query, 'tree> {
+        InjectionsMatch(r#match)
     }
     #[inline]
-    unsafe fn wrap_capture<'cursor, 'tree>(
+    unsafe fn wrap_capture<'query, 'tree: 'query>(
         &self,
-        capture: tree_sitter::QueryCapture<'tree>,
-        r#match: Option<Self::Match<'cursor, 'tree>>,
-        tree: &'tree yak_sitter::Tree,
-    ) -> Self::Capture<'cursor, 'tree> {
+        capture: yak_sitter::QueryCapture<'query, 'tree>,
+        r#match: Option<InjectionsMatch<'query, 'tree>>,
+    ) -> InjectionsCapture<'query, 'tree> {
         match capture.index as usize {
             0usize => {
-                Self::Capture::InjectionContent {
+                InjectionsCapture::InjectionContent {
                     node: <super::nodes::TokenTree<
                         'tree,
-                    > as type_sitter_lib::TypedNode<
-                        'tree,
-                    >>::from_node_unchecked(unsafe {
-                        yak_sitter::Node::new(capture.node, tree)
-                    }),
+                    > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(capture.node),
                     r#match,
                 }
             }
@@ -3238,7 +3115,7 @@ impl type_sitter_lib::TypedQuery for Injections {
     }
 }
 #[automatically_derived]
-impl<'cursor, 'tree> InjectionsMatch<'cursor, 'tree> {
+impl<'query, 'tree: 'query> InjectionsMatch<'query, 'tree> {
     ///Returns an iterator over the nodes captured by `injection.content` ([anon_unions::InjectionContent])
     ///
     ///The full capture including pattern(s) is:
@@ -3252,58 +3129,53 @@ impl<'cursor, 'tree> InjectionsMatch<'cursor, 'tree> {
         let result = {
             [0u32]
                 .into_iter()
-                .flat_map(|i| self.r#match.nodes_for_capture_index(i))
+                .flat_map(|i| self.0.nodes_for_capture_index(i))
                 .map(|n| unsafe {
                     <super::nodes::TokenTree<
                         'tree,
-                    > as type_sitter_lib::TypedNode<
-                        'tree,
-                    >>::from_node_unchecked(yak_sitter::Node::new(n, self.tree))
+                    > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(n)
                 })
         }
             .next()
             .expect("one quantifier returned nothing");
         debug_assert!(
-            { [0u32].into_iter().flat_map(| i | self.r#match.nodes_for_capture_index(i))
-            .map(| n | unsafe { < super::nodes::TokenTree < 'tree > as
-            type_sitter_lib::TypedNode < 'tree >>
-            ::from_node_unchecked(yak_sitter::Node::new(n, self.tree)) }) } .next()
-            .is_none(), "one quantifier returned more than one item"
+            { [0u32].into_iter().flat_map(| i | self.0.nodes_for_capture_index(i)).map(|
+            n | unsafe { < super::nodes::TokenTree < 'tree > as type_sitter_lib::Node <
+            'tree >> ::from_raw_unchecked(n) }) } .next().is_none(),
+            "one quantifier returned more than one item"
         );
         result
     }
 }
 #[automatically_derived]
-impl<'cursor, 'tree> std::fmt::Debug for InjectionsMatch<'cursor, 'tree> {
+impl<'query, 'tree: 'query> std::fmt::Debug for InjectionsMatch<'query, 'tree> {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        f.debug_struct(stringify!(InjectionsMatch))
-            .field("r#match", &self.r#match)
-            .finish()
+        f.debug_tuple(stringify!(InjectionsMatch)).field(&self.0).finish()
     }
 }
 #[automatically_derived]
-impl<'cursor, 'tree> type_sitter_lib::TypedQueryMatch<'cursor, 'tree>
-for InjectionsMatch<'cursor, 'tree> {
+impl<'query, 'tree: 'query> type_sitter_lib::QueryMatch<'query, 'tree>
+for InjectionsMatch<'query, 'tree> {
     type Query = Injections;
     #[inline]
-    fn query(&self) -> &'cursor Self::Query {
+    fn query(&self) -> &'query Self::Query {
         &Injections
     }
     #[inline]
     fn tree(&self) -> &'tree yak_sitter::Tree {
-        self.tree
+        self.0.tree()
     }
     #[inline]
-    fn raw(&self) -> &tree_sitter::QueryMatch<'cursor, 'tree> {
-        &self.r#match
+    fn raw(&self) -> &yak_sitter::QueryMatch<'query, 'tree> {
+        &self.0
     }
     #[inline]
-    fn into_raw(self) -> tree_sitter::QueryMatch<'cursor, 'tree> {
-        self.r#match
+    fn into_raw(self) -> yak_sitter::QueryMatch<'query, 'tree> {
+        self.0
     }
 }
 #[automatically_derived]
-impl<'cursor, 'tree> InjectionsCapture<'cursor, 'tree> {
+impl<'query, 'tree: 'query> InjectionsCapture<'query, 'tree> {
     ///Try to interpret this capture as a `injection.content` ([anon_unions::InjectionContent])
     ///
     ///The full capture including pattern(s) is:
@@ -3313,16 +3185,13 @@ impl<'cursor, 'tree> InjectionsCapture<'cursor, 'tree> {
     ///```
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn injection_content(&self) -> Option<&super::nodes::TokenTree<'tree>> {
-        match self {
-            Self::InjectionContent { node, .. } => Some(node),
-            #[allow(unreachable_patterns)]
-            _ => None,
-        }
+    pub fn as_injection_content(&self) -> Option<&super::nodes::TokenTree<'tree>> {
+        #[allow(irrefutable_let_patterns)]
+        if let Self::InjectionContent { node, .. } = self { Some(node) } else { None }
     }
 }
 #[automatically_derived]
-impl<'cursor, 'tree> std::fmt::Debug for InjectionsCapture<'cursor, 'tree> {
+impl<'query, 'tree: 'query> std::fmt::Debug for InjectionsCapture<'query, 'tree> {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
             Self::InjectionContent { node, .. } => {
@@ -3341,7 +3210,7 @@ impl<'cursor, 'tree> std::fmt::Debug for InjectionsCapture<'cursor, 'tree> {
     }
 }
 #[automatically_derived]
-impl<'cursor, 'tree> Clone for InjectionsCapture<'cursor, 'tree> {
+impl<'query, 'tree: 'query> Clone for InjectionsCapture<'query, 'tree> {
     fn clone(&self) -> Self {
         match self {
             Self::InjectionContent { node, .. } => {
@@ -3356,17 +3225,17 @@ impl<'cursor, 'tree> Clone for InjectionsCapture<'cursor, 'tree> {
     }
 }
 #[automatically_derived]
-impl<'cursor, 'tree> type_sitter_lib::TypedQueryCapture<'cursor, 'tree>
-for InjectionsCapture<'cursor, 'tree> {
+impl<'query, 'tree: 'query> type_sitter_lib::QueryCapture<'query, 'tree>
+for InjectionsCapture<'query, 'tree> {
     type Query = Injections;
     #[inline]
-    fn query(&self) -> &'cursor Self::Query {
+    fn query(&self) -> &'query Self::Query {
         &Injections
     }
     #[inline]
     fn r#match(
         &self,
-    ) -> Option<&<Self::Query as type_sitter_lib::TypedQuery>::Match<'cursor, 'tree>> {
+    ) -> Option<&<Self::Query as type_sitter_lib::Query>::Match<'query, 'tree>> {
         match self {
             Self::InjectionContent { r#match, .. } => r#match.as_ref(),
             #[allow(unreachable_patterns)]
@@ -3376,7 +3245,7 @@ for InjectionsCapture<'cursor, 'tree> {
     #[inline]
     fn into_match(
         self,
-    ) -> Option<<Self::Query as type_sitter_lib::TypedQuery>::Match<'cursor, 'tree>> {
+    ) -> Option<<Self::Query as type_sitter_lib::Query>::Match<'query, 'tree>> {
         match self {
             Self::InjectionContent { r#match, .. } => r#match,
             #[allow(unreachable_patterns)]
@@ -3384,13 +3253,13 @@ for InjectionsCapture<'cursor, 'tree> {
         }
     }
     #[inline]
-    fn to_raw(&self) -> yak_sitter::QueryCapture<'static, 'tree> {
+    fn raw(&self) -> yak_sitter::QueryCapture<'query, 'tree> {
         #[allow(unused_imports)]
-        use type_sitter_lib::TypedNode;
+        use type_sitter_lib::Node;
         match self {
             Self::InjectionContent { node, .. } => {
                 yak_sitter::QueryCapture {
-                    node: *node.node(),
+                    node: *node.raw(),
                     index: 0usize,
                     name: "injection.content",
                 }
@@ -3400,27 +3269,31 @@ for InjectionsCapture<'cursor, 'tree> {
         }
     }
     #[inline]
-    fn node(&self) -> &yak_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::UntypedNode<'tree> {
         #[allow(unused_imports)]
-        use type_sitter_lib::TypedNode;
+        use type_sitter_lib::Node;
         match self {
-            Self::InjectionContent { node, .. } => node.node(),
+            Self::InjectionContent { node, .. } => {
+                type_sitter_lib::UntypedNode::r#ref(node.raw())
+            }
             #[allow(unreachable_patterns)]
             _ => unreachable!(),
         }
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::UntypedNode<'tree> {
         #[allow(unused_imports)]
-        use type_sitter_lib::TypedNode;
+        use type_sitter_lib::Node;
         match self {
-            Self::InjectionContent { node, .. } => node.node_mut(),
+            Self::InjectionContent { node, .. } => {
+                type_sitter_lib::UntypedNode::r#mut(node.raw_mut())
+            }
             #[allow(unreachable_patterns)]
             _ => unreachable!(),
         }
     }
     #[inline]
-    fn name(&self) -> &'static str {
+    fn name(&self) -> &'query str {
         match self {
             Self::InjectionContent { .. } => "injection.content",
             #[allow(unreachable_patterns)]
@@ -3437,11 +3310,11 @@ for InjectionsCapture<'cursor, 'tree> {
     }
 }
 #[allow(non_upper_case_globals)]
-static __Tags__: std::sync::OnceLock<tree_sitter::Query> = std::sync::OnceLock::new();
+static __Tags__: std::sync::OnceLock<yak_sitter::Query> = std::sync::OnceLock::new();
 #[allow(non_snake_case)]
-fn __Mk__Tags() -> tree_sitter::Query {
+fn __Mk__Tags() -> yak_sitter::Query {
     #[allow(unused_mut)]
-    let mut query = tree_sitter::Query::new(
+    let mut query = yak_sitter::Query::new(
             &tree_sitter_rust::LANGUAGE.into(),
             "; ADT definitions\n\n(struct_item\n    name: (type_identifier) @name) @definition.class\n\n(enum_item\n    name: (type_identifier) @name) @definition.class\n\n(union_item\n    name: (type_identifier) @name) @definition.class\n\n; type aliases\n\n(type_item\n    name: (type_identifier) @name) @definition.class\n\n; method definitions\n\n(declaration_list\n    (function_item\n        name: (identifier) @name)) @definition.method\n\n; function definitions\n\n(function_item\n    name: (identifier) @name) @definition.function\n\n; trait definitions\n(trait_item\n    name: (type_identifier) @name) @definition.interface\n\n; module definitions\n(mod_item\n    name: (identifier) @name) @definition.module\n\n; macro definitions\n\n(macro_definition\n    name: (identifier) @name) @definition.macro\n\n; references\n\n(call_expression\n    function: (identifier) @name) @reference.call\n\n(call_expression\n    function: (field_expression\n        field: (field_identifier) @name)) @reference.call\n\n(macro_invocation\n    macro: (identifier) @name) @reference.call\n\n; implementations\n\n(impl_item\n    trait: (type_identifier) @name) @reference.implementation\n\n(impl_item\n    type: (type_identifier) @name\n    !trait) @reference.implementation\n",
         )
@@ -3584,11 +3457,7 @@ pub struct Tags;
 
 ```*/
 #[allow(unused, non_camel_case_types)]
-pub type TagsMatches<'cursor, 'tree> = type_sitter_lib::TypedQueryMatches<
-    'cursor,
-    'tree,
-    Tags,
->;
+pub type TagsMatches<'query, 'tree> = type_sitter_lib::QueryMatches<'query, 'tree, Tags>;
 /**Captures returned by a query cursor running the query [`Tags`]:
 
 ```sexp
@@ -3655,8 +3524,8 @@ pub type TagsMatches<'cursor, 'tree> = type_sitter_lib::TypedQueryMatches<
 
 ```*/
 #[allow(unused, non_camel_case_types)]
-pub type TagsCaptures<'cursor, 'tree> = type_sitter_lib::TypedQueryCaptures<
-    'cursor,
+pub type TagsCaptures<'query, 'tree> = type_sitter_lib::QueryCaptures<
+    'query,
     'tree,
     Tags,
 >;
@@ -3725,10 +3594,8 @@ pub type TagsCaptures<'cursor, 'tree> = type_sitter_lib::TypedQueryCaptures<
     !trait) @reference.implementation
 
 ```*/
-pub struct TagsMatch<'cursor, 'tree> {
-    r#match: tree_sitter::QueryMatch<'cursor, 'tree>,
-    tree: &'tree yak_sitter::Tree,
-}
+#[repr(transparent)]
+pub struct TagsMatch<'query, 'tree: 'query>(yak_sitter::QueryMatch<'query, 'tree>);
 /**A capture returned by the query [`Tags`]:
 
 ```sexp
@@ -3794,7 +3661,7 @@ pub struct TagsMatch<'cursor, 'tree> {
     !trait) @reference.implementation
 
 ```*/
-pub enum TagsCapture<'cursor, 'tree> {
+pub enum TagsCapture<'query, 'tree: 'query> {
     ///A `name` ([anon_unions::Name])
     ///
     ///The full capture including pattern(s) is:
@@ -3814,7 +3681,7 @@ pub enum TagsCapture<'cursor, 'tree> {
     ///(type_identifier) @name
     ///(type_identifier) @name
     ///```
-    Name { node: anon_unions::Name<'tree>, r#match: Option<TagsMatch<'cursor, 'tree>> },
+    Name { node: anon_unions::Name<'tree>, r#match: Option<TagsMatch<'query, 'tree>> },
     ///A `definition.class` ([anon_unions::DefinitionClass])
     ///
     ///The full capture including pattern(s) is:
@@ -3830,7 +3697,7 @@ pub enum TagsCapture<'cursor, 'tree> {
     ///```
     DefinitionClass {
         node: anon_unions::DefinitionClass<'tree>,
-        r#match: Option<TagsMatch<'cursor, 'tree>>,
+        r#match: Option<TagsMatch<'query, 'tree>>,
     },
     ///A `definition.method` ([super::nodes::DeclarationList])
     ///
@@ -3842,7 +3709,7 @@ pub enum TagsCapture<'cursor, 'tree> {
     ///```
     DefinitionMethod {
         node: super::nodes::DeclarationList<'tree>,
-        r#match: Option<TagsMatch<'cursor, 'tree>>,
+        r#match: Option<TagsMatch<'query, 'tree>>,
     },
     ///A `definition.function` ([super::nodes::FunctionItem])
     ///
@@ -3853,7 +3720,7 @@ pub enum TagsCapture<'cursor, 'tree> {
     ///```
     DefinitionFunction {
         node: super::nodes::FunctionItem<'tree>,
-        r#match: Option<TagsMatch<'cursor, 'tree>>,
+        r#match: Option<TagsMatch<'query, 'tree>>,
     },
     ///A `definition.interface` ([super::nodes::TraitItem])
     ///
@@ -3864,7 +3731,7 @@ pub enum TagsCapture<'cursor, 'tree> {
     ///```
     DefinitionInterface {
         node: super::nodes::TraitItem<'tree>,
-        r#match: Option<TagsMatch<'cursor, 'tree>>,
+        r#match: Option<TagsMatch<'query, 'tree>>,
     },
     ///A `definition.module` ([super::nodes::ModItem])
     ///
@@ -3875,7 +3742,7 @@ pub enum TagsCapture<'cursor, 'tree> {
     ///```
     DefinitionModule {
         node: super::nodes::ModItem<'tree>,
-        r#match: Option<TagsMatch<'cursor, 'tree>>,
+        r#match: Option<TagsMatch<'query, 'tree>>,
     },
     ///A `definition.macro` ([super::nodes::MacroDefinition])
     ///
@@ -3886,7 +3753,7 @@ pub enum TagsCapture<'cursor, 'tree> {
     ///```
     DefinitionMacro {
         node: super::nodes::MacroDefinition<'tree>,
-        r#match: Option<TagsMatch<'cursor, 'tree>>,
+        r#match: Option<TagsMatch<'query, 'tree>>,
     },
     ///A `reference.call` ([anon_unions::ReferenceCall])
     ///
@@ -3902,7 +3769,7 @@ pub enum TagsCapture<'cursor, 'tree> {
     ///```
     ReferenceCall {
         node: anon_unions::ReferenceCall<'tree>,
-        r#match: Option<TagsMatch<'cursor, 'tree>>,
+        r#match: Option<TagsMatch<'query, 'tree>>,
     },
     ///A `reference.implementation` ([anon_unions::ReferenceImplementation])
     ///
@@ -3916,140 +3783,102 @@ pub enum TagsCapture<'cursor, 'tree> {
     ///```
     ReferenceImplementation {
         node: super::nodes::ImplItem<'tree>,
-        r#match: Option<TagsMatch<'cursor, 'tree>>,
+        r#match: Option<TagsMatch<'query, 'tree>>,
     },
 }
 #[automatically_derived]
-impl type_sitter_lib::TypedQuery for Tags {
-    type Match<'cursor, 'tree: 'cursor> = TagsMatch<'cursor, 'tree>;
-    type Capture<'cursor, 'tree: 'cursor> = TagsCapture<'cursor, 'tree>;
-    fn query_str(&self) -> &'static str {
+impl type_sitter_lib::Query for Tags {
+    type Match<'query, 'tree: 'query> = TagsMatch<'query, 'tree>;
+    type Capture<'query, 'tree: 'query> = TagsCapture<'query, 'tree>;
+    fn as_str(&self) -> &'static str {
         "; ADT definitions\n\n(struct_item\n    name: (type_identifier) @name) @definition.class\n\n(enum_item\n    name: (type_identifier) @name) @definition.class\n\n(union_item\n    name: (type_identifier) @name) @definition.class\n\n; type aliases\n\n(type_item\n    name: (type_identifier) @name) @definition.class\n\n; method definitions\n\n(declaration_list\n    (function_item\n        name: (identifier) @name)) @definition.method\n\n; function definitions\n\n(function_item\n    name: (identifier) @name) @definition.function\n\n; trait definitions\n(trait_item\n    name: (type_identifier) @name) @definition.interface\n\n; module definitions\n(mod_item\n    name: (identifier) @name) @definition.module\n\n; macro definitions\n\n(macro_definition\n    name: (identifier) @name) @definition.macro\n\n; references\n\n(call_expression\n    function: (identifier) @name) @reference.call\n\n(call_expression\n    function: (field_expression\n        field: (field_identifier) @name)) @reference.call\n\n(macro_invocation\n    macro: (identifier) @name) @reference.call\n\n; implementations\n\n(impl_item\n    trait: (type_identifier) @name) @reference.implementation\n\n(impl_item\n    type: (type_identifier) @name\n    !trait) @reference.implementation\n"
     }
-    fn query(&self) -> &'static tree_sitter::Query {
+    fn raw(&self) -> &'static yak_sitter::Query {
         __Tags__.get_or_init(__Mk__Tags)
     }
     #[inline]
-    unsafe fn wrap_match<'cursor, 'tree>(
+    unsafe fn wrap_match<'query, 'tree>(
         &self,
-        r#match: tree_sitter::QueryMatch<'cursor, 'tree>,
-        tree: &'tree yak_sitter::Tree,
-    ) -> Self::Match<'cursor, 'tree> {
-        Self::Match { r#match, tree }
+        r#match: yak_sitter::QueryMatch<'query, 'tree>,
+    ) -> TagsMatch<'query, 'tree> {
+        TagsMatch(r#match)
     }
     #[inline]
-    unsafe fn wrap_capture<'cursor, 'tree>(
+    unsafe fn wrap_capture<'query, 'tree: 'query>(
         &self,
-        capture: tree_sitter::QueryCapture<'tree>,
-        r#match: Option<Self::Match<'cursor, 'tree>>,
-        tree: &'tree yak_sitter::Tree,
-    ) -> Self::Capture<'cursor, 'tree> {
+        capture: yak_sitter::QueryCapture<'query, 'tree>,
+        r#match: Option<TagsMatch<'query, 'tree>>,
+    ) -> TagsCapture<'query, 'tree> {
         match capture.index as usize {
             0usize => {
-                Self::Capture::Name {
+                TagsCapture::Name {
                     node: <anon_unions::Name<
                         'tree,
-                    > as type_sitter_lib::TypedNode<
-                        'tree,
-                    >>::from_node_unchecked(unsafe {
-                        yak_sitter::Node::new(capture.node, tree)
-                    }),
+                    > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(capture.node),
                     r#match,
                 }
             }
             1usize => {
-                Self::Capture::DefinitionClass {
+                TagsCapture::DefinitionClass {
                     node: <anon_unions::DefinitionClass<
                         'tree,
-                    > as type_sitter_lib::TypedNode<
-                        'tree,
-                    >>::from_node_unchecked(unsafe {
-                        yak_sitter::Node::new(capture.node, tree)
-                    }),
+                    > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(capture.node),
                     r#match,
                 }
             }
             2usize => {
-                Self::Capture::DefinitionMethod {
+                TagsCapture::DefinitionMethod {
                     node: <super::nodes::DeclarationList<
                         'tree,
-                    > as type_sitter_lib::TypedNode<
-                        'tree,
-                    >>::from_node_unchecked(unsafe {
-                        yak_sitter::Node::new(capture.node, tree)
-                    }),
+                    > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(capture.node),
                     r#match,
                 }
             }
             3usize => {
-                Self::Capture::DefinitionFunction {
+                TagsCapture::DefinitionFunction {
                     node: <super::nodes::FunctionItem<
                         'tree,
-                    > as type_sitter_lib::TypedNode<
-                        'tree,
-                    >>::from_node_unchecked(unsafe {
-                        yak_sitter::Node::new(capture.node, tree)
-                    }),
+                    > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(capture.node),
                     r#match,
                 }
             }
             4usize => {
-                Self::Capture::DefinitionInterface {
+                TagsCapture::DefinitionInterface {
                     node: <super::nodes::TraitItem<
                         'tree,
-                    > as type_sitter_lib::TypedNode<
-                        'tree,
-                    >>::from_node_unchecked(unsafe {
-                        yak_sitter::Node::new(capture.node, tree)
-                    }),
+                    > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(capture.node),
                     r#match,
                 }
             }
             5usize => {
-                Self::Capture::DefinitionModule {
+                TagsCapture::DefinitionModule {
                     node: <super::nodes::ModItem<
                         'tree,
-                    > as type_sitter_lib::TypedNode<
-                        'tree,
-                    >>::from_node_unchecked(unsafe {
-                        yak_sitter::Node::new(capture.node, tree)
-                    }),
+                    > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(capture.node),
                     r#match,
                 }
             }
             6usize => {
-                Self::Capture::DefinitionMacro {
+                TagsCapture::DefinitionMacro {
                     node: <super::nodes::MacroDefinition<
                         'tree,
-                    > as type_sitter_lib::TypedNode<
-                        'tree,
-                    >>::from_node_unchecked(unsafe {
-                        yak_sitter::Node::new(capture.node, tree)
-                    }),
+                    > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(capture.node),
                     r#match,
                 }
             }
             7usize => {
-                Self::Capture::ReferenceCall {
+                TagsCapture::ReferenceCall {
                     node: <anon_unions::ReferenceCall<
                         'tree,
-                    > as type_sitter_lib::TypedNode<
-                        'tree,
-                    >>::from_node_unchecked(unsafe {
-                        yak_sitter::Node::new(capture.node, tree)
-                    }),
+                    > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(capture.node),
                     r#match,
                 }
             }
             8usize => {
-                Self::Capture::ReferenceImplementation {
+                TagsCapture::ReferenceImplementation {
                     node: <super::nodes::ImplItem<
                         'tree,
-                    > as type_sitter_lib::TypedNode<
-                        'tree,
-                    >>::from_node_unchecked(unsafe {
-                        yak_sitter::Node::new(capture.node, tree)
-                    }),
+                    > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(capture.node),
                     r#match,
                 }
             }
@@ -4058,7 +3887,7 @@ impl type_sitter_lib::TypedQuery for Tags {
     }
 }
 #[automatically_derived]
-impl<'cursor, 'tree> TagsMatch<'cursor, 'tree> {
+impl<'query, 'tree: 'query> TagsMatch<'query, 'tree> {
     ///Returns an iterator over the nodes captured by `name` ([anon_unions::Name])
     ///
     ///The full capture including pattern(s) is:
@@ -4084,13 +3913,11 @@ impl<'cursor, 'tree> TagsMatch<'cursor, 'tree> {
         {
             [0u32]
                 .into_iter()
-                .flat_map(|i| self.r#match.nodes_for_capture_index(i))
+                .flat_map(|i| self.0.nodes_for_capture_index(i))
                 .map(|n| unsafe {
                     <anon_unions::Name<
                         'tree,
-                    > as type_sitter_lib::TypedNode<
-                        'tree,
-                    >>::from_node_unchecked(yak_sitter::Node::new(n, self.tree))
+                    > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(n)
                 })
         }
             .next()
@@ -4114,13 +3941,11 @@ impl<'cursor, 'tree> TagsMatch<'cursor, 'tree> {
         {
             [1u32]
                 .into_iter()
-                .flat_map(|i| self.r#match.nodes_for_capture_index(i))
+                .flat_map(|i| self.0.nodes_for_capture_index(i))
                 .map(|n| unsafe {
                     <anon_unions::DefinitionClass<
                         'tree,
-                    > as type_sitter_lib::TypedNode<
-                        'tree,
-                    >>::from_node_unchecked(yak_sitter::Node::new(n, self.tree))
+                    > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(n)
                 })
         }
             .next()
@@ -4139,13 +3964,11 @@ impl<'cursor, 'tree> TagsMatch<'cursor, 'tree> {
         {
             [2u32]
                 .into_iter()
-                .flat_map(|i| self.r#match.nodes_for_capture_index(i))
+                .flat_map(|i| self.0.nodes_for_capture_index(i))
                 .map(|n| unsafe {
                     <super::nodes::DeclarationList<
                         'tree,
-                    > as type_sitter_lib::TypedNode<
-                        'tree,
-                    >>::from_node_unchecked(yak_sitter::Node::new(n, self.tree))
+                    > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(n)
                 })
         }
             .next()
@@ -4163,13 +3986,11 @@ impl<'cursor, 'tree> TagsMatch<'cursor, 'tree> {
         {
             [3u32]
                 .into_iter()
-                .flat_map(|i| self.r#match.nodes_for_capture_index(i))
+                .flat_map(|i| self.0.nodes_for_capture_index(i))
                 .map(|n| unsafe {
                     <super::nodes::FunctionItem<
                         'tree,
-                    > as type_sitter_lib::TypedNode<
-                        'tree,
-                    >>::from_node_unchecked(yak_sitter::Node::new(n, self.tree))
+                    > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(n)
                 })
         }
             .next()
@@ -4187,13 +4008,11 @@ impl<'cursor, 'tree> TagsMatch<'cursor, 'tree> {
         {
             [4u32]
                 .into_iter()
-                .flat_map(|i| self.r#match.nodes_for_capture_index(i))
+                .flat_map(|i| self.0.nodes_for_capture_index(i))
                 .map(|n| unsafe {
                     <super::nodes::TraitItem<
                         'tree,
-                    > as type_sitter_lib::TypedNode<
-                        'tree,
-                    >>::from_node_unchecked(yak_sitter::Node::new(n, self.tree))
+                    > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(n)
                 })
         }
             .next()
@@ -4211,13 +4030,11 @@ impl<'cursor, 'tree> TagsMatch<'cursor, 'tree> {
         {
             [5u32]
                 .into_iter()
-                .flat_map(|i| self.r#match.nodes_for_capture_index(i))
+                .flat_map(|i| self.0.nodes_for_capture_index(i))
                 .map(|n| unsafe {
                     <super::nodes::ModItem<
                         'tree,
-                    > as type_sitter_lib::TypedNode<
-                        'tree,
-                    >>::from_node_unchecked(yak_sitter::Node::new(n, self.tree))
+                    > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(n)
                 })
         }
             .next()
@@ -4235,13 +4052,11 @@ impl<'cursor, 'tree> TagsMatch<'cursor, 'tree> {
         {
             [6u32]
                 .into_iter()
-                .flat_map(|i| self.r#match.nodes_for_capture_index(i))
+                .flat_map(|i| self.0.nodes_for_capture_index(i))
                 .map(|n| unsafe {
                     <super::nodes::MacroDefinition<
                         'tree,
-                    > as type_sitter_lib::TypedNode<
-                        'tree,
-                    >>::from_node_unchecked(yak_sitter::Node::new(n, self.tree))
+                    > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(n)
                 })
         }
             .next()
@@ -4264,13 +4079,11 @@ impl<'cursor, 'tree> TagsMatch<'cursor, 'tree> {
         {
             [7u32]
                 .into_iter()
-                .flat_map(|i| self.r#match.nodes_for_capture_index(i))
+                .flat_map(|i| self.0.nodes_for_capture_index(i))
                 .map(|n| unsafe {
                     <anon_unions::ReferenceCall<
                         'tree,
-                    > as type_sitter_lib::TypedNode<
-                        'tree,
-                    >>::from_node_unchecked(yak_sitter::Node::new(n, self.tree))
+                    > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(n)
                 })
         }
             .next()
@@ -4291,47 +4104,45 @@ impl<'cursor, 'tree> TagsMatch<'cursor, 'tree> {
         {
             [8u32]
                 .into_iter()
-                .flat_map(|i| self.r#match.nodes_for_capture_index(i))
+                .flat_map(|i| self.0.nodes_for_capture_index(i))
                 .map(|n| unsafe {
                     <super::nodes::ImplItem<
                         'tree,
-                    > as type_sitter_lib::TypedNode<
-                        'tree,
-                    >>::from_node_unchecked(yak_sitter::Node::new(n, self.tree))
+                    > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(n)
                 })
         }
             .next()
     }
 }
 #[automatically_derived]
-impl<'cursor, 'tree> std::fmt::Debug for TagsMatch<'cursor, 'tree> {
+impl<'query, 'tree: 'query> std::fmt::Debug for TagsMatch<'query, 'tree> {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        f.debug_struct(stringify!(TagsMatch)).field("r#match", &self.r#match).finish()
+        f.debug_tuple(stringify!(TagsMatch)).field(&self.0).finish()
     }
 }
 #[automatically_derived]
-impl<'cursor, 'tree> type_sitter_lib::TypedQueryMatch<'cursor, 'tree>
-for TagsMatch<'cursor, 'tree> {
+impl<'query, 'tree: 'query> type_sitter_lib::QueryMatch<'query, 'tree>
+for TagsMatch<'query, 'tree> {
     type Query = Tags;
     #[inline]
-    fn query(&self) -> &'cursor Self::Query {
+    fn query(&self) -> &'query Self::Query {
         &Tags
     }
     #[inline]
     fn tree(&self) -> &'tree yak_sitter::Tree {
-        self.tree
+        self.0.tree()
     }
     #[inline]
-    fn raw(&self) -> &tree_sitter::QueryMatch<'cursor, 'tree> {
-        &self.r#match
+    fn raw(&self) -> &yak_sitter::QueryMatch<'query, 'tree> {
+        &self.0
     }
     #[inline]
-    fn into_raw(self) -> tree_sitter::QueryMatch<'cursor, 'tree> {
-        self.r#match
+    fn into_raw(self) -> yak_sitter::QueryMatch<'query, 'tree> {
+        self.0
     }
 }
 #[automatically_derived]
-impl<'cursor, 'tree> TagsCapture<'cursor, 'tree> {
+impl<'query, 'tree: 'query> TagsCapture<'query, 'tree> {
     ///Try to interpret this capture as a `name` ([anon_unions::Name])
     ///
     ///The full capture including pattern(s) is:
@@ -4353,12 +4164,9 @@ impl<'cursor, 'tree> TagsCapture<'cursor, 'tree> {
     ///```
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn name(&self) -> Option<&anon_unions::Name<'tree>> {
-        match self {
-            Self::Name { node, .. } => Some(node),
-            #[allow(unreachable_patterns)]
-            _ => None,
-        }
+    pub fn as_name(&self) -> Option<&anon_unions::Name<'tree>> {
+        #[allow(irrefutable_let_patterns)]
+        if let Self::Name { node, .. } = self { Some(node) } else { None }
     }
     ///Try to interpret this capture as a `definition.class` ([anon_unions::DefinitionClass])
     ///
@@ -4375,12 +4183,9 @@ impl<'cursor, 'tree> TagsCapture<'cursor, 'tree> {
     ///```
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn definition_class(&self) -> Option<&anon_unions::DefinitionClass<'tree>> {
-        match self {
-            Self::DefinitionClass { node, .. } => Some(node),
-            #[allow(unreachable_patterns)]
-            _ => None,
-        }
+    pub fn as_definition_class(&self) -> Option<&anon_unions::DefinitionClass<'tree>> {
+        #[allow(irrefutable_let_patterns)]
+        if let Self::DefinitionClass { node, .. } = self { Some(node) } else { None }
     }
     ///Try to interpret this capture as a `definition.method` ([super::nodes::DeclarationList])
     ///
@@ -4392,12 +4197,9 @@ impl<'cursor, 'tree> TagsCapture<'cursor, 'tree> {
     ///```
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn definition_method(&self) -> Option<&super::nodes::DeclarationList<'tree>> {
-        match self {
-            Self::DefinitionMethod { node, .. } => Some(node),
-            #[allow(unreachable_patterns)]
-            _ => None,
-        }
+    pub fn as_definition_method(&self) -> Option<&super::nodes::DeclarationList<'tree>> {
+        #[allow(irrefutable_let_patterns)]
+        if let Self::DefinitionMethod { node, .. } = self { Some(node) } else { None }
     }
     ///Try to interpret this capture as a `definition.function` ([super::nodes::FunctionItem])
     ///
@@ -4408,12 +4210,9 @@ impl<'cursor, 'tree> TagsCapture<'cursor, 'tree> {
     ///```
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn definition_function(&self) -> Option<&super::nodes::FunctionItem<'tree>> {
-        match self {
-            Self::DefinitionFunction { node, .. } => Some(node),
-            #[allow(unreachable_patterns)]
-            _ => None,
-        }
+    pub fn as_definition_function(&self) -> Option<&super::nodes::FunctionItem<'tree>> {
+        #[allow(irrefutable_let_patterns)]
+        if let Self::DefinitionFunction { node, .. } = self { Some(node) } else { None }
     }
     ///Try to interpret this capture as a `definition.interface` ([super::nodes::TraitItem])
     ///
@@ -4424,12 +4223,9 @@ impl<'cursor, 'tree> TagsCapture<'cursor, 'tree> {
     ///```
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn definition_interface(&self) -> Option<&super::nodes::TraitItem<'tree>> {
-        match self {
-            Self::DefinitionInterface { node, .. } => Some(node),
-            #[allow(unreachable_patterns)]
-            _ => None,
-        }
+    pub fn as_definition_interface(&self) -> Option<&super::nodes::TraitItem<'tree>> {
+        #[allow(irrefutable_let_patterns)]
+        if let Self::DefinitionInterface { node, .. } = self { Some(node) } else { None }
     }
     ///Try to interpret this capture as a `definition.module` ([super::nodes::ModItem])
     ///
@@ -4440,12 +4236,9 @@ impl<'cursor, 'tree> TagsCapture<'cursor, 'tree> {
     ///```
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn definition_module(&self) -> Option<&super::nodes::ModItem<'tree>> {
-        match self {
-            Self::DefinitionModule { node, .. } => Some(node),
-            #[allow(unreachable_patterns)]
-            _ => None,
-        }
+    pub fn as_definition_module(&self) -> Option<&super::nodes::ModItem<'tree>> {
+        #[allow(irrefutable_let_patterns)]
+        if let Self::DefinitionModule { node, .. } = self { Some(node) } else { None }
     }
     ///Try to interpret this capture as a `definition.macro` ([super::nodes::MacroDefinition])
     ///
@@ -4456,12 +4249,9 @@ impl<'cursor, 'tree> TagsCapture<'cursor, 'tree> {
     ///```
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn definition_macro(&self) -> Option<&super::nodes::MacroDefinition<'tree>> {
-        match self {
-            Self::DefinitionMacro { node, .. } => Some(node),
-            #[allow(unreachable_patterns)]
-            _ => None,
-        }
+    pub fn as_definition_macro(&self) -> Option<&super::nodes::MacroDefinition<'tree>> {
+        #[allow(irrefutable_let_patterns)]
+        if let Self::DefinitionMacro { node, .. } = self { Some(node) } else { None }
     }
     ///Try to interpret this capture as a `reference.call` ([anon_unions::ReferenceCall])
     ///
@@ -4477,12 +4267,9 @@ impl<'cursor, 'tree> TagsCapture<'cursor, 'tree> {
     ///```
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn reference_call(&self) -> Option<&anon_unions::ReferenceCall<'tree>> {
-        match self {
-            Self::ReferenceCall { node, .. } => Some(node),
-            #[allow(unreachable_patterns)]
-            _ => None,
-        }
+    pub fn as_reference_call(&self) -> Option<&anon_unions::ReferenceCall<'tree>> {
+        #[allow(irrefutable_let_patterns)]
+        if let Self::ReferenceCall { node, .. } = self { Some(node) } else { None }
     }
     ///Try to interpret this capture as a `reference.implementation` ([anon_unions::ReferenceImplementation])
     ///
@@ -4496,16 +4283,17 @@ impl<'cursor, 'tree> TagsCapture<'cursor, 'tree> {
     ///```
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn reference_implementation(&self) -> Option<&super::nodes::ImplItem<'tree>> {
-        match self {
-            Self::ReferenceImplementation { node, .. } => Some(node),
-            #[allow(unreachable_patterns)]
-            _ => None,
+    pub fn as_reference_implementation(&self) -> Option<&super::nodes::ImplItem<'tree>> {
+        #[allow(irrefutable_let_patterns)]
+        if let Self::ReferenceImplementation { node, .. } = self {
+            Some(node)
+        } else {
+            None
         }
     }
 }
 #[automatically_derived]
-impl<'cursor, 'tree> std::fmt::Debug for TagsCapture<'cursor, 'tree> {
+impl<'query, 'tree: 'query> std::fmt::Debug for TagsCapture<'query, 'tree> {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
             Self::Name { node, .. } => {
@@ -4591,7 +4379,7 @@ impl<'cursor, 'tree> std::fmt::Debug for TagsCapture<'cursor, 'tree> {
     }
 }
 #[automatically_derived]
-impl<'cursor, 'tree> Clone for TagsCapture<'cursor, 'tree> {
+impl<'query, 'tree: 'query> Clone for TagsCapture<'query, 'tree> {
     fn clone(&self) -> Self {
         match self {
             Self::Name { node, .. } => {
@@ -4654,17 +4442,17 @@ impl<'cursor, 'tree> Clone for TagsCapture<'cursor, 'tree> {
     }
 }
 #[automatically_derived]
-impl<'cursor, 'tree> type_sitter_lib::TypedQueryCapture<'cursor, 'tree>
-for TagsCapture<'cursor, 'tree> {
+impl<'query, 'tree: 'query> type_sitter_lib::QueryCapture<'query, 'tree>
+for TagsCapture<'query, 'tree> {
     type Query = Tags;
     #[inline]
-    fn query(&self) -> &'cursor Self::Query {
+    fn query(&self) -> &'query Self::Query {
         &Tags
     }
     #[inline]
     fn r#match(
         &self,
-    ) -> Option<&<Self::Query as type_sitter_lib::TypedQuery>::Match<'cursor, 'tree>> {
+    ) -> Option<&<Self::Query as type_sitter_lib::Query>::Match<'query, 'tree>> {
         match self {
             Self::Name { r#match, .. } => r#match.as_ref(),
             Self::DefinitionClass { r#match, .. } => r#match.as_ref(),
@@ -4682,7 +4470,7 @@ for TagsCapture<'cursor, 'tree> {
     #[inline]
     fn into_match(
         self,
-    ) -> Option<<Self::Query as type_sitter_lib::TypedQuery>::Match<'cursor, 'tree>> {
+    ) -> Option<<Self::Query as type_sitter_lib::Query>::Match<'query, 'tree>> {
         match self {
             Self::Name { r#match, .. } => r#match,
             Self::DefinitionClass { r#match, .. } => r#match,
@@ -4698,69 +4486,69 @@ for TagsCapture<'cursor, 'tree> {
         }
     }
     #[inline]
-    fn to_raw(&self) -> yak_sitter::QueryCapture<'static, 'tree> {
+    fn raw(&self) -> yak_sitter::QueryCapture<'query, 'tree> {
         #[allow(unused_imports)]
-        use type_sitter_lib::TypedNode;
+        use type_sitter_lib::Node;
         match self {
             Self::Name { node, .. } => {
                 yak_sitter::QueryCapture {
-                    node: *node.node(),
+                    node: *node.raw(),
                     index: 0usize,
                     name: "name",
                 }
             }
             Self::DefinitionClass { node, .. } => {
                 yak_sitter::QueryCapture {
-                    node: *node.node(),
+                    node: *node.raw(),
                     index: 1usize,
                     name: "definition.class",
                 }
             }
             Self::DefinitionMethod { node, .. } => {
                 yak_sitter::QueryCapture {
-                    node: *node.node(),
+                    node: *node.raw(),
                     index: 2usize,
                     name: "definition.method",
                 }
             }
             Self::DefinitionFunction { node, .. } => {
                 yak_sitter::QueryCapture {
-                    node: *node.node(),
+                    node: *node.raw(),
                     index: 3usize,
                     name: "definition.function",
                 }
             }
             Self::DefinitionInterface { node, .. } => {
                 yak_sitter::QueryCapture {
-                    node: *node.node(),
+                    node: *node.raw(),
                     index: 4usize,
                     name: "definition.interface",
                 }
             }
             Self::DefinitionModule { node, .. } => {
                 yak_sitter::QueryCapture {
-                    node: *node.node(),
+                    node: *node.raw(),
                     index: 5usize,
                     name: "definition.module",
                 }
             }
             Self::DefinitionMacro { node, .. } => {
                 yak_sitter::QueryCapture {
-                    node: *node.node(),
+                    node: *node.raw(),
                     index: 6usize,
                     name: "definition.macro",
                 }
             }
             Self::ReferenceCall { node, .. } => {
                 yak_sitter::QueryCapture {
-                    node: *node.node(),
+                    node: *node.raw(),
                     index: 7usize,
                     name: "reference.call",
                 }
             }
             Self::ReferenceImplementation { node, .. } => {
                 yak_sitter::QueryCapture {
-                    node: *node.node(),
+                    node: *node.raw(),
                     index: 8usize,
                     name: "reference.implementation",
                 }
@@ -4770,43 +4558,77 @@ for TagsCapture<'cursor, 'tree> {
         }
     }
     #[inline]
-    fn node(&self) -> &yak_sitter::Node<'tree> {
+    fn node(&self) -> &type_sitter_lib::UntypedNode<'tree> {
         #[allow(unused_imports)]
-        use type_sitter_lib::TypedNode;
+        use type_sitter_lib::Node;
         match self {
-            Self::Name { node, .. } => node.node(),
-            Self::DefinitionClass { node, .. } => node.node(),
-            Self::DefinitionMethod { node, .. } => node.node(),
-            Self::DefinitionFunction { node, .. } => node.node(),
-            Self::DefinitionInterface { node, .. } => node.node(),
-            Self::DefinitionModule { node, .. } => node.node(),
-            Self::DefinitionMacro { node, .. } => node.node(),
-            Self::ReferenceCall { node, .. } => node.node(),
-            Self::ReferenceImplementation { node, .. } => node.node(),
+            Self::Name { node, .. } => type_sitter_lib::UntypedNode::r#ref(node.raw()),
+            Self::DefinitionClass { node, .. } => {
+                type_sitter_lib::UntypedNode::r#ref(node.raw())
+            }
+            Self::DefinitionMethod { node, .. } => {
+                type_sitter_lib::UntypedNode::r#ref(node.raw())
+            }
+            Self::DefinitionFunction { node, .. } => {
+                type_sitter_lib::UntypedNode::r#ref(node.raw())
+            }
+            Self::DefinitionInterface { node, .. } => {
+                type_sitter_lib::UntypedNode::r#ref(node.raw())
+            }
+            Self::DefinitionModule { node, .. } => {
+                type_sitter_lib::UntypedNode::r#ref(node.raw())
+            }
+            Self::DefinitionMacro { node, .. } => {
+                type_sitter_lib::UntypedNode::r#ref(node.raw())
+            }
+            Self::ReferenceCall { node, .. } => {
+                type_sitter_lib::UntypedNode::r#ref(node.raw())
+            }
+            Self::ReferenceImplementation { node, .. } => {
+                type_sitter_lib::UntypedNode::r#ref(node.raw())
+            }
             #[allow(unreachable_patterns)]
             _ => unreachable!(),
         }
     }
     #[inline]
-    fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
+    fn node_mut(&mut self) -> &mut type_sitter_lib::UntypedNode<'tree> {
         #[allow(unused_imports)]
-        use type_sitter_lib::TypedNode;
+        use type_sitter_lib::Node;
         match self {
-            Self::Name { node, .. } => node.node_mut(),
-            Self::DefinitionClass { node, .. } => node.node_mut(),
-            Self::DefinitionMethod { node, .. } => node.node_mut(),
-            Self::DefinitionFunction { node, .. } => node.node_mut(),
-            Self::DefinitionInterface { node, .. } => node.node_mut(),
-            Self::DefinitionModule { node, .. } => node.node_mut(),
-            Self::DefinitionMacro { node, .. } => node.node_mut(),
-            Self::ReferenceCall { node, .. } => node.node_mut(),
-            Self::ReferenceImplementation { node, .. } => node.node_mut(),
+            Self::Name { node, .. } => {
+                type_sitter_lib::UntypedNode::r#mut(node.raw_mut())
+            }
+            Self::DefinitionClass { node, .. } => {
+                type_sitter_lib::UntypedNode::r#mut(node.raw_mut())
+            }
+            Self::DefinitionMethod { node, .. } => {
+                type_sitter_lib::UntypedNode::r#mut(node.raw_mut())
+            }
+            Self::DefinitionFunction { node, .. } => {
+                type_sitter_lib::UntypedNode::r#mut(node.raw_mut())
+            }
+            Self::DefinitionInterface { node, .. } => {
+                type_sitter_lib::UntypedNode::r#mut(node.raw_mut())
+            }
+            Self::DefinitionModule { node, .. } => {
+                type_sitter_lib::UntypedNode::r#mut(node.raw_mut())
+            }
+            Self::DefinitionMacro { node, .. } => {
+                type_sitter_lib::UntypedNode::r#mut(node.raw_mut())
+            }
+            Self::ReferenceCall { node, .. } => {
+                type_sitter_lib::UntypedNode::r#mut(node.raw_mut())
+            }
+            Self::ReferenceImplementation { node, .. } => {
+                type_sitter_lib::UntypedNode::r#mut(node.raw_mut())
+            }
             #[allow(unreachable_patterns)]
             _ => unreachable!(),
         }
     }
     #[inline]
-    fn name(&self) -> &'static str {
+    fn name(&self) -> &'query str {
         match self {
             Self::Name { .. } => "name",
             Self::DefinitionClass { .. } => "definition.class",
@@ -4855,36 +4677,53 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `identifier` ([`Identifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn identifier(self) -> Option<Identifier<'tree>> {
-            match self {
-                Self::Identifier(x) => Some(x),
-                _ => None,
+        pub fn as_identifier(
+            self,
+        ) -> type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Identifier(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
         ///Returns the node if it is of kind `type_identifier` ([`TypeIdentifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn type_identifier(self) -> Option<TypeIdentifier<'tree>> {
-            match self {
-                Self::TypeIdentifier(x) => Some(x),
-                _ => None,
+        pub fn as_type_identifier(
+            self,
+        ) -> type_sitter_lib::NodeResult<'tree, TypeIdentifier<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::TypeIdentifier(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Type<'tree> {
-        type Error = type_sitter_lib::IncorrectKind<'tree>;
+    impl<'tree> type_sitter_lib::Node<'tree> for Type<'tree> {
+        type WithLifetime<'a> = Type<'a>;
+        const KIND: &'static str = "{identifier | type_identifier}";
         #[inline]
-        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from_raw(
+            node: yak_sitter::Node<'tree>,
+        ) -> type_sitter_lib::NodeResult<Self> {
             match node.kind() {
                 "identifier" => {
                     Ok(unsafe {
                         Self::Identifier(
                             <Identifier<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
@@ -4893,43 +4732,32 @@ pub mod anon_unions {
                         Self::TypeIdentifier(
                             <TypeIdentifier<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
-                _ => {
-                    Err(type_sitter_lib::IncorrectKind {
-                        node,
-                        kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                    })
-                }
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for Type<'tree> {
-        const KIND: &'static str = "{identifier | type_identifier}";
-        #[inline]
-        fn node(&self) -> &yak_sitter::Node<'tree> {
-            match self {
-                Self::Identifier(x) => x.node(),
-                Self::TypeIdentifier(x) => x.node(),
+                _ => Err(type_sitter_lib::IncorrectKind::new::<Self>(node)),
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
+        fn raw(&self) -> &yak_sitter::Node<'tree> {
             match self {
-                Self::Identifier(x) => x.node_mut(),
-                Self::TypeIdentifier(x) => x.node_mut(),
+                Self::Identifier(x) => type_sitter_lib::Node::raw(x),
+                Self::TypeIdentifier(x) => type_sitter_lib::Node::raw(x),
             }
         }
         #[inline]
-        fn into_node(self) -> yak_sitter::Node<'tree> {
+        fn raw_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
-                Self::Identifier(x) => x.into_node(),
-                Self::TypeIdentifier(x) => x.into_node(),
+                Self::Identifier(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::TypeIdentifier(x) => type_sitter_lib::Node::raw_mut(x),
+            }
+        }
+        #[inline]
+        fn into_raw(self) -> yak_sitter::Node<'tree> {
+            match self {
+                Self::Identifier(x) => x.into_raw(),
+                Self::TypeIdentifier(x) => x.into_raw(),
             }
         }
     }
@@ -4947,36 +4775,53 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `identifier` ([`Identifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn identifier(self) -> Option<Identifier<'tree>> {
-            match self {
-                Self::Identifier(x) => Some(x),
-                _ => None,
+        pub fn as_identifier(
+            self,
+        ) -> type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Identifier(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
         ///Returns the node if it is of kind `type_identifier` ([`TypeIdentifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn type_identifier(self) -> Option<TypeIdentifier<'tree>> {
-            match self {
-                Self::TypeIdentifier(x) => Some(x),
-                _ => None,
+        pub fn as_type_identifier(
+            self,
+        ) -> type_sitter_lib::NodeResult<'tree, TypeIdentifier<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::TypeIdentifier(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Constructor<'tree> {
-        type Error = type_sitter_lib::IncorrectKind<'tree>;
+    impl<'tree> type_sitter_lib::Node<'tree> for Constructor<'tree> {
+        type WithLifetime<'a> = Constructor<'a>;
+        const KIND: &'static str = "{identifier | type_identifier}";
         #[inline]
-        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from_raw(
+            node: yak_sitter::Node<'tree>,
+        ) -> type_sitter_lib::NodeResult<Self> {
             match node.kind() {
                 "identifier" => {
                     Ok(unsafe {
                         Self::Identifier(
                             <Identifier<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
@@ -4985,43 +4830,32 @@ pub mod anon_unions {
                         Self::TypeIdentifier(
                             <TypeIdentifier<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
-                _ => {
-                    Err(type_sitter_lib::IncorrectKind {
-                        node,
-                        kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                    })
-                }
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for Constructor<'tree> {
-        const KIND: &'static str = "{identifier | type_identifier}";
-        #[inline]
-        fn node(&self) -> &yak_sitter::Node<'tree> {
-            match self {
-                Self::Identifier(x) => x.node(),
-                Self::TypeIdentifier(x) => x.node(),
+                _ => Err(type_sitter_lib::IncorrectKind::new::<Self>(node)),
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
+        fn raw(&self) -> &yak_sitter::Node<'tree> {
             match self {
-                Self::Identifier(x) => x.node_mut(),
-                Self::TypeIdentifier(x) => x.node_mut(),
+                Self::Identifier(x) => type_sitter_lib::Node::raw(x),
+                Self::TypeIdentifier(x) => type_sitter_lib::Node::raw(x),
             }
         }
         #[inline]
-        fn into_node(self) -> yak_sitter::Node<'tree> {
+        fn raw_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
-                Self::Identifier(x) => x.into_node(),
-                Self::TypeIdentifier(x) => x.into_node(),
+                Self::Identifier(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::TypeIdentifier(x) => type_sitter_lib::Node::raw_mut(x),
+            }
+        }
+        #[inline]
+        fn into_raw(self) -> yak_sitter::Node<'tree> {
+            match self {
+                Self::Identifier(x) => x.into_raw(),
+                Self::TypeIdentifier(x) => x.into_raw(),
             }
         }
     }
@@ -5039,36 +4873,51 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `!` ([`symbols::Not`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn not(self) -> Option<symbols::Not<'tree>> {
-            match self {
-                Self::Not(x) => Some(x),
-                _ => None,
+        pub fn as_not(self) -> type_sitter_lib::NodeResult<'tree, symbols::Not<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Not(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
         ///Returns the node if it is of kind `identifier` ([`Identifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn identifier(self) -> Option<Identifier<'tree>> {
-            match self {
-                Self::Identifier(x) => Some(x),
-                _ => None,
+        pub fn as_identifier(
+            self,
+        ) -> type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Identifier(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for FunctionMacro<'tree> {
-        type Error = type_sitter_lib::IncorrectKind<'tree>;
+    impl<'tree> type_sitter_lib::Node<'tree> for FunctionMacro<'tree> {
+        type WithLifetime<'a> = FunctionMacro<'a>;
+        const KIND: &'static str = "{! | identifier}";
         #[inline]
-        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from_raw(
+            node: yak_sitter::Node<'tree>,
+        ) -> type_sitter_lib::NodeResult<Self> {
             match node.kind() {
                 "!" => {
                     Ok(unsafe {
                         Self::Not(
                             <symbols::Not<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
@@ -5077,43 +4926,32 @@ pub mod anon_unions {
                         Self::Identifier(
                             <Identifier<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
-                _ => {
-                    Err(type_sitter_lib::IncorrectKind {
-                        node,
-                        kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                    })
-                }
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for FunctionMacro<'tree> {
-        const KIND: &'static str = "{! | identifier}";
-        #[inline]
-        fn node(&self) -> &yak_sitter::Node<'tree> {
-            match self {
-                Self::Not(x) => x.node(),
-                Self::Identifier(x) => x.node(),
+                _ => Err(type_sitter_lib::IncorrectKind::new::<Self>(node)),
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
+        fn raw(&self) -> &yak_sitter::Node<'tree> {
             match self {
-                Self::Not(x) => x.node_mut(),
-                Self::Identifier(x) => x.node_mut(),
+                Self::Not(x) => type_sitter_lib::Node::raw(x),
+                Self::Identifier(x) => type_sitter_lib::Node::raw(x),
             }
         }
         #[inline]
-        fn into_node(self) -> yak_sitter::Node<'tree> {
+        fn raw_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
-                Self::Not(x) => x.into_node(),
-                Self::Identifier(x) => x.into_node(),
+                Self::Not(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::Identifier(x) => type_sitter_lib::Node::raw_mut(x),
+            }
+        }
+        #[inline]
+        fn into_raw(self) -> yak_sitter::Node<'tree> {
+            match self {
+                Self::Not(x) => x.into_raw(),
+                Self::Identifier(x) => x.into_raw(),
             }
         }
     }
@@ -5131,36 +4969,53 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `block_comment` ([`BlockComment`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn block_comment(self) -> Option<BlockComment<'tree>> {
-            match self {
-                Self::BlockComment(x) => Some(x),
-                _ => None,
+        pub fn as_block_comment(
+            self,
+        ) -> type_sitter_lib::NodeResult<'tree, BlockComment<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::BlockComment(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
         ///Returns the node if it is of kind `line_comment` ([`LineComment`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn line_comment(self) -> Option<LineComment<'tree>> {
-            match self {
-                Self::LineComment(x) => Some(x),
-                _ => None,
+        pub fn as_line_comment(
+            self,
+        ) -> type_sitter_lib::NodeResult<'tree, LineComment<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::LineComment(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Comment<'tree> {
-        type Error = type_sitter_lib::IncorrectKind<'tree>;
+    impl<'tree> type_sitter_lib::Node<'tree> for Comment<'tree> {
+        type WithLifetime<'a> = Comment<'a>;
+        const KIND: &'static str = "{block_comment | line_comment}";
         #[inline]
-        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from_raw(
+            node: yak_sitter::Node<'tree>,
+        ) -> type_sitter_lib::NodeResult<Self> {
             match node.kind() {
                 "block_comment" => {
                     Ok(unsafe {
                         Self::BlockComment(
                             <BlockComment<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
@@ -5169,43 +5024,32 @@ pub mod anon_unions {
                         Self::LineComment(
                             <LineComment<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
-                _ => {
-                    Err(type_sitter_lib::IncorrectKind {
-                        node,
-                        kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                    })
-                }
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for Comment<'tree> {
-        const KIND: &'static str = "{block_comment | line_comment}";
-        #[inline]
-        fn node(&self) -> &yak_sitter::Node<'tree> {
-            match self {
-                Self::BlockComment(x) => x.node(),
-                Self::LineComment(x) => x.node(),
+                _ => Err(type_sitter_lib::IncorrectKind::new::<Self>(node)),
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
+        fn raw(&self) -> &yak_sitter::Node<'tree> {
             match self {
-                Self::BlockComment(x) => x.node_mut(),
-                Self::LineComment(x) => x.node_mut(),
+                Self::BlockComment(x) => type_sitter_lib::Node::raw(x),
+                Self::LineComment(x) => type_sitter_lib::Node::raw(x),
             }
         }
         #[inline]
-        fn into_node(self) -> yak_sitter::Node<'tree> {
+        fn raw_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
-                Self::BlockComment(x) => x.into_node(),
-                Self::LineComment(x) => x.into_node(),
+                Self::BlockComment(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::LineComment(x) => type_sitter_lib::Node::raw_mut(x),
+            }
+        }
+        #[inline]
+        fn into_raw(self) -> yak_sitter::Node<'tree> {
+            match self {
+                Self::BlockComment(x) => x.into_raw(),
+                Self::LineComment(x) => x.into_raw(),
             }
         }
     }
@@ -5223,36 +5067,53 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `block_comment` ([`BlockComment`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn block_comment(self) -> Option<BlockComment<'tree>> {
-            match self {
-                Self::BlockComment(x) => Some(x),
-                _ => None,
+        pub fn as_block_comment(
+            self,
+        ) -> type_sitter_lib::NodeResult<'tree, BlockComment<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::BlockComment(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
         ///Returns the node if it is of kind `line_comment` ([`LineComment`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn line_comment(self) -> Option<LineComment<'tree>> {
-            match self {
-                Self::LineComment(x) => Some(x),
-                _ => None,
+        pub fn as_line_comment(
+            self,
+        ) -> type_sitter_lib::NodeResult<'tree, LineComment<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::LineComment(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for CommentDocumentation<'tree> {
-        type Error = type_sitter_lib::IncorrectKind<'tree>;
+    impl<'tree> type_sitter_lib::Node<'tree> for CommentDocumentation<'tree> {
+        type WithLifetime<'a> = CommentDocumentation<'a>;
+        const KIND: &'static str = "{block_comment | line_comment}";
         #[inline]
-        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from_raw(
+            node: yak_sitter::Node<'tree>,
+        ) -> type_sitter_lib::NodeResult<Self> {
             match node.kind() {
                 "block_comment" => {
                     Ok(unsafe {
                         Self::BlockComment(
                             <BlockComment<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
@@ -5261,43 +5122,32 @@ pub mod anon_unions {
                         Self::LineComment(
                             <LineComment<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
-                _ => {
-                    Err(type_sitter_lib::IncorrectKind {
-                        node,
-                        kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                    })
-                }
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for CommentDocumentation<'tree> {
-        const KIND: &'static str = "{block_comment | line_comment}";
-        #[inline]
-        fn node(&self) -> &yak_sitter::Node<'tree> {
-            match self {
-                Self::BlockComment(x) => x.node(),
-                Self::LineComment(x) => x.node(),
+                _ => Err(type_sitter_lib::IncorrectKind::new::<Self>(node)),
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
+        fn raw(&self) -> &yak_sitter::Node<'tree> {
             match self {
-                Self::BlockComment(x) => x.node_mut(),
-                Self::LineComment(x) => x.node_mut(),
+                Self::BlockComment(x) => type_sitter_lib::Node::raw(x),
+                Self::LineComment(x) => type_sitter_lib::Node::raw(x),
             }
         }
         #[inline]
-        fn into_node(self) -> yak_sitter::Node<'tree> {
+        fn raw_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
-                Self::BlockComment(x) => x.into_node(),
-                Self::LineComment(x) => x.into_node(),
+                Self::BlockComment(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::LineComment(x) => type_sitter_lib::Node::raw_mut(x),
+            }
+        }
+        #[inline]
+        fn into_raw(self) -> yak_sitter::Node<'tree> {
+            match self {
+                Self::BlockComment(x) => x.into_raw(),
+                Self::LineComment(x) => x.into_raw(),
             }
         }
     }
@@ -5327,90 +5177,151 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `(` ([`symbols::LParen`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn l_paren(self) -> Option<symbols::LParen<'tree>> {
-            match self {
-                Self::LParen(x) => Some(x),
-                _ => None,
+        pub fn as_l_paren(
+            self,
+        ) -> type_sitter_lib::NodeResult<'tree, symbols::LParen<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::LParen(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
         ///Returns the node if it is of kind `)` ([`symbols::RParen`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn r_paren(self) -> Option<symbols::RParen<'tree>> {
-            match self {
-                Self::RParen(x) => Some(x),
-                _ => None,
+        pub fn as_r_paren(
+            self,
+        ) -> type_sitter_lib::NodeResult<'tree, symbols::RParen<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::RParen(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
         ///Returns the node if it is of kind `<` ([`symbols::Lt`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn lt(self) -> Option<symbols::Lt<'tree>> {
-            match self {
-                Self::Lt(x) => Some(x),
-                _ => None,
+        pub fn as_lt(self) -> type_sitter_lib::NodeResult<'tree, symbols::Lt<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Lt(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
         ///Returns the node if it is of kind `>` ([`symbols::Gt`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn gt(self) -> Option<symbols::Gt<'tree>> {
-            match self {
-                Self::Gt(x) => Some(x),
-                _ => None,
+        pub fn as_gt(self) -> type_sitter_lib::NodeResult<'tree, symbols::Gt<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Gt(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
         ///Returns the node if it is of kind `[` ([`symbols::LBracket`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn l_bracket(self) -> Option<symbols::LBracket<'tree>> {
-            match self {
-                Self::LBracket(x) => Some(x),
-                _ => None,
+        pub fn as_l_bracket(
+            self,
+        ) -> type_sitter_lib::NodeResult<'tree, symbols::LBracket<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::LBracket(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
         ///Returns the node if it is of kind `]` ([`symbols::RBracket`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn r_bracket(self) -> Option<symbols::RBracket<'tree>> {
-            match self {
-                Self::RBracket(x) => Some(x),
-                _ => None,
+        pub fn as_r_bracket(
+            self,
+        ) -> type_sitter_lib::NodeResult<'tree, symbols::RBracket<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::RBracket(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
         ///Returns the node if it is of kind `{` ([`symbols::LBrace`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn l_brace(self) -> Option<symbols::LBrace<'tree>> {
-            match self {
-                Self::LBrace(x) => Some(x),
-                _ => None,
+        pub fn as_l_brace(
+            self,
+        ) -> type_sitter_lib::NodeResult<'tree, symbols::LBrace<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::LBrace(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
         ///Returns the node if it is of kind `}` ([`symbols::RBrace`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn r_brace(self) -> Option<symbols::RBrace<'tree>> {
-            match self {
-                Self::RBrace(x) => Some(x),
-                _ => None,
+        pub fn as_r_brace(
+            self,
+        ) -> type_sitter_lib::NodeResult<'tree, symbols::RBrace<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::RBrace(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for PunctuationBracket<'tree> {
-        type Error = type_sitter_lib::IncorrectKind<'tree>;
+    impl<'tree> type_sitter_lib::Node<'tree> for PunctuationBracket<'tree> {
+        type WithLifetime<'a> = PunctuationBracket<'a>;
+        const KIND: &'static str = "{( | ) | < | > | [ | ] | { | }}";
         #[inline]
-        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from_raw(
+            node: yak_sitter::Node<'tree>,
+        ) -> type_sitter_lib::NodeResult<Self> {
             match node.kind() {
                 "(" => {
                     Ok(unsafe {
                         Self::LParen(
                             <symbols::LParen<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
@@ -5419,9 +5330,7 @@ pub mod anon_unions {
                         Self::RParen(
                             <symbols::RParen<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
@@ -5430,9 +5339,7 @@ pub mod anon_unions {
                         Self::Lt(
                             <symbols::Lt<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
@@ -5441,9 +5348,7 @@ pub mod anon_unions {
                         Self::Gt(
                             <symbols::Gt<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
@@ -5452,9 +5357,7 @@ pub mod anon_unions {
                         Self::LBracket(
                             <symbols::LBracket<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
@@ -5463,9 +5366,7 @@ pub mod anon_unions {
                         Self::RBracket(
                             <symbols::RBracket<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
@@ -5474,9 +5375,7 @@ pub mod anon_unions {
                         Self::LBrace(
                             <symbols::LBrace<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
@@ -5485,61 +5384,50 @@ pub mod anon_unions {
                         Self::RBrace(
                             <symbols::RBrace<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
-                _ => {
-                    Err(type_sitter_lib::IncorrectKind {
-                        node,
-                        kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                    })
-                }
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for PunctuationBracket<'tree> {
-        const KIND: &'static str = "{( | ) | < | > | [ | ] | { | }}";
-        #[inline]
-        fn node(&self) -> &yak_sitter::Node<'tree> {
-            match self {
-                Self::LParen(x) => x.node(),
-                Self::RParen(x) => x.node(),
-                Self::Lt(x) => x.node(),
-                Self::Gt(x) => x.node(),
-                Self::LBracket(x) => x.node(),
-                Self::RBracket(x) => x.node(),
-                Self::LBrace(x) => x.node(),
-                Self::RBrace(x) => x.node(),
+                _ => Err(type_sitter_lib::IncorrectKind::new::<Self>(node)),
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
+        fn raw(&self) -> &yak_sitter::Node<'tree> {
             match self {
-                Self::LParen(x) => x.node_mut(),
-                Self::RParen(x) => x.node_mut(),
-                Self::Lt(x) => x.node_mut(),
-                Self::Gt(x) => x.node_mut(),
-                Self::LBracket(x) => x.node_mut(),
-                Self::RBracket(x) => x.node_mut(),
-                Self::LBrace(x) => x.node_mut(),
-                Self::RBrace(x) => x.node_mut(),
+                Self::LParen(x) => type_sitter_lib::Node::raw(x),
+                Self::RParen(x) => type_sitter_lib::Node::raw(x),
+                Self::Lt(x) => type_sitter_lib::Node::raw(x),
+                Self::Gt(x) => type_sitter_lib::Node::raw(x),
+                Self::LBracket(x) => type_sitter_lib::Node::raw(x),
+                Self::RBracket(x) => type_sitter_lib::Node::raw(x),
+                Self::LBrace(x) => type_sitter_lib::Node::raw(x),
+                Self::RBrace(x) => type_sitter_lib::Node::raw(x),
             }
         }
         #[inline]
-        fn into_node(self) -> yak_sitter::Node<'tree> {
+        fn raw_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
-                Self::LParen(x) => x.into_node(),
-                Self::RParen(x) => x.into_node(),
-                Self::Lt(x) => x.into_node(),
-                Self::Gt(x) => x.into_node(),
-                Self::LBracket(x) => x.into_node(),
-                Self::RBracket(x) => x.into_node(),
-                Self::LBrace(x) => x.into_node(),
-                Self::RBrace(x) => x.into_node(),
+                Self::LParen(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::RParen(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::Lt(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::Gt(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::LBracket(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::RBracket(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::LBrace(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::RBrace(x) => type_sitter_lib::Node::raw_mut(x),
+            }
+        }
+        #[inline]
+        fn into_raw(self) -> yak_sitter::Node<'tree> {
+            match self {
+                Self::LParen(x) => x.into_raw(),
+                Self::RParen(x) => x.into_raw(),
+                Self::Lt(x) => x.into_raw(),
+                Self::Gt(x) => x.into_raw(),
+                Self::LBracket(x) => x.into_raw(),
+                Self::RBracket(x) => x.into_raw(),
+                Self::LBrace(x) => x.into_raw(),
+                Self::RBrace(x) => x.into_raw(),
             }
         }
     }
@@ -5563,63 +5451,102 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `,` ([`symbols::Comma`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn comma(self) -> Option<symbols::Comma<'tree>> {
-            match self {
-                Self::Comma(x) => Some(x),
-                _ => None,
+        pub fn as_comma(
+            self,
+        ) -> type_sitter_lib::NodeResult<'tree, symbols::Comma<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Comma(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
         ///Returns the node if it is of kind `.` ([`symbols::Dot`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn dot(self) -> Option<symbols::Dot<'tree>> {
-            match self {
-                Self::Dot(x) => Some(x),
-                _ => None,
+        pub fn as_dot(self) -> type_sitter_lib::NodeResult<'tree, symbols::Dot<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Dot(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
         ///Returns the node if it is of kind `:` ([`symbols::Colon`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn colon(self) -> Option<symbols::Colon<'tree>> {
-            match self {
-                Self::Colon(x) => Some(x),
-                _ => None,
+        pub fn as_colon(
+            self,
+        ) -> type_sitter_lib::NodeResult<'tree, symbols::Colon<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Colon(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
         ///Returns the node if it is of kind `::` ([`symbols::ColonColon`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn colon_colon(self) -> Option<symbols::ColonColon<'tree>> {
-            match self {
-                Self::ColonColon(x) => Some(x),
-                _ => None,
+        pub fn as_colon_colon(
+            self,
+        ) -> type_sitter_lib::NodeResult<'tree, symbols::ColonColon<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::ColonColon(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
         ///Returns the node if it is of kind `;` ([`symbols::Semicolon`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn semicolon(self) -> Option<symbols::Semicolon<'tree>> {
-            match self {
-                Self::Semicolon(x) => Some(x),
-                _ => None,
+        pub fn as_semicolon(
+            self,
+        ) -> type_sitter_lib::NodeResult<'tree, symbols::Semicolon<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Semicolon(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for PunctuationDelimiter<'tree> {
-        type Error = type_sitter_lib::IncorrectKind<'tree>;
+    impl<'tree> type_sitter_lib::Node<'tree> for PunctuationDelimiter<'tree> {
+        type WithLifetime<'a> = PunctuationDelimiter<'a>;
+        const KIND: &'static str = "{, | . | : | :: | ;}";
         #[inline]
-        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from_raw(
+            node: yak_sitter::Node<'tree>,
+        ) -> type_sitter_lib::NodeResult<Self> {
             match node.kind() {
                 "," => {
                     Ok(unsafe {
                         Self::Comma(
                             <symbols::Comma<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
@@ -5628,9 +5555,7 @@ pub mod anon_unions {
                         Self::Dot(
                             <symbols::Dot<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
@@ -5639,9 +5564,7 @@ pub mod anon_unions {
                         Self::Colon(
                             <symbols::Colon<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
@@ -5650,9 +5573,7 @@ pub mod anon_unions {
                         Self::ColonColon(
                             <symbols::ColonColon<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
@@ -5661,52 +5582,41 @@ pub mod anon_unions {
                         Self::Semicolon(
                             <symbols::Semicolon<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
-                _ => {
-                    Err(type_sitter_lib::IncorrectKind {
-                        node,
-                        kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                    })
-                }
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for PunctuationDelimiter<'tree> {
-        const KIND: &'static str = "{, | . | : | :: | ;}";
-        #[inline]
-        fn node(&self) -> &yak_sitter::Node<'tree> {
-            match self {
-                Self::Comma(x) => x.node(),
-                Self::Dot(x) => x.node(),
-                Self::Colon(x) => x.node(),
-                Self::ColonColon(x) => x.node(),
-                Self::Semicolon(x) => x.node(),
+                _ => Err(type_sitter_lib::IncorrectKind::new::<Self>(node)),
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
+        fn raw(&self) -> &yak_sitter::Node<'tree> {
             match self {
-                Self::Comma(x) => x.node_mut(),
-                Self::Dot(x) => x.node_mut(),
-                Self::Colon(x) => x.node_mut(),
-                Self::ColonColon(x) => x.node_mut(),
-                Self::Semicolon(x) => x.node_mut(),
+                Self::Comma(x) => type_sitter_lib::Node::raw(x),
+                Self::Dot(x) => type_sitter_lib::Node::raw(x),
+                Self::Colon(x) => type_sitter_lib::Node::raw(x),
+                Self::ColonColon(x) => type_sitter_lib::Node::raw(x),
+                Self::Semicolon(x) => type_sitter_lib::Node::raw(x),
             }
         }
         #[inline]
-        fn into_node(self) -> yak_sitter::Node<'tree> {
+        fn raw_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
-                Self::Comma(x) => x.into_node(),
-                Self::Dot(x) => x.into_node(),
-                Self::Colon(x) => x.into_node(),
-                Self::ColonColon(x) => x.into_node(),
-                Self::Semicolon(x) => x.into_node(),
+                Self::Comma(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::Dot(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::Colon(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::ColonColon(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::Semicolon(x) => type_sitter_lib::Node::raw_mut(x),
+            }
+        }
+        #[inline]
+        fn into_raw(self) -> yak_sitter::Node<'tree> {
+            match self {
+                Self::Comma(x) => x.into_raw(),
+                Self::Dot(x) => x.into_raw(),
+                Self::Colon(x) => x.into_raw(),
+                Self::ColonColon(x) => x.into_raw(),
+                Self::Semicolon(x) => x.into_raw(),
             }
         }
     }
@@ -5798,369 +5708,656 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `as` ([`unnamed::As`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn r#as(self) -> Option<unnamed::As<'tree>> {
-            match self {
-                Self::As(x) => Some(x),
-                _ => None,
+        pub fn as_as(self) -> type_sitter_lib::NodeResult<'tree, unnamed::As<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::As(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
         ///Returns the node if it is of kind `async` ([`unnamed::Async`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn r#async(self) -> Option<unnamed::Async<'tree>> {
-            match self {
-                Self::Async(x) => Some(x),
-                _ => None,
+        pub fn as_async(
+            self,
+        ) -> type_sitter_lib::NodeResult<'tree, unnamed::Async<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Async(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
         ///Returns the node if it is of kind `await` ([`unnamed::Await`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn r#await(self) -> Option<unnamed::Await<'tree>> {
-            match self {
-                Self::Await(x) => Some(x),
-                _ => None,
+        pub fn as_await(
+            self,
+        ) -> type_sitter_lib::NodeResult<'tree, unnamed::Await<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Await(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
         ///Returns the node if it is of kind `break` ([`unnamed::Break`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn r#break(self) -> Option<unnamed::Break<'tree>> {
-            match self {
-                Self::Break(x) => Some(x),
-                _ => None,
+        pub fn as_break(
+            self,
+        ) -> type_sitter_lib::NodeResult<'tree, unnamed::Break<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Break(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
         ///Returns the node if it is of kind `const` ([`unnamed::Const`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn r#const(self) -> Option<unnamed::Const<'tree>> {
-            match self {
-                Self::Const(x) => Some(x),
-                _ => None,
+        pub fn as_const(
+            self,
+        ) -> type_sitter_lib::NodeResult<'tree, unnamed::Const<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Const(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
         ///Returns the node if it is of kind `continue` ([`unnamed::Continue`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn r#continue(self) -> Option<unnamed::Continue<'tree>> {
-            match self {
-                Self::Continue(x) => Some(x),
-                _ => None,
+        pub fn as_continue(
+            self,
+        ) -> type_sitter_lib::NodeResult<'tree, unnamed::Continue<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Continue(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
         ///Returns the node if it is of kind `crate` ([`Crate`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn crate_(self) -> Option<Crate<'tree>> {
-            match self {
-                Self::Crate(x) => Some(x),
-                _ => None,
+        pub fn as_crate_(self) -> type_sitter_lib::NodeResult<'tree, Crate<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Crate(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
         ///Returns the node if it is of kind `default` ([`unnamed::Default`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn default(self) -> Option<unnamed::Default<'tree>> {
-            match self {
-                Self::Default(x) => Some(x),
-                _ => None,
+        pub fn as_default(
+            self,
+        ) -> type_sitter_lib::NodeResult<'tree, unnamed::Default<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Default(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
         ///Returns the node if it is of kind `dyn` ([`unnamed::Dyn`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn r#dyn(self) -> Option<unnamed::Dyn<'tree>> {
-            match self {
-                Self::Dyn(x) => Some(x),
-                _ => None,
+        pub fn as_dyn(self) -> type_sitter_lib::NodeResult<'tree, unnamed::Dyn<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Dyn(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
         ///Returns the node if it is of kind `else` ([`unnamed::Else`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn r#else(self) -> Option<unnamed::Else<'tree>> {
-            match self {
-                Self::Else(x) => Some(x),
-                _ => None,
+        pub fn as_else(
+            self,
+        ) -> type_sitter_lib::NodeResult<'tree, unnamed::Else<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Else(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
         ///Returns the node if it is of kind `enum` ([`unnamed::Enum`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn r#enum(self) -> Option<unnamed::Enum<'tree>> {
-            match self {
-                Self::Enum(x) => Some(x),
-                _ => None,
+        pub fn as_enum(
+            self,
+        ) -> type_sitter_lib::NodeResult<'tree, unnamed::Enum<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Enum(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
         ///Returns the node if it is of kind `extern` ([`unnamed::Extern`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn r#extern(self) -> Option<unnamed::Extern<'tree>> {
-            match self {
-                Self::Extern(x) => Some(x),
-                _ => None,
+        pub fn as_extern(
+            self,
+        ) -> type_sitter_lib::NodeResult<'tree, unnamed::Extern<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Extern(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
         ///Returns the node if it is of kind `fn` ([`unnamed::Fn`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn r#fn(self) -> Option<unnamed::Fn<'tree>> {
-            match self {
-                Self::Fn(x) => Some(x),
-                _ => None,
+        pub fn as_fn(self) -> type_sitter_lib::NodeResult<'tree, unnamed::Fn<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Fn(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
         ///Returns the node if it is of kind `for` ([`unnamed::For`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn r#for(self) -> Option<unnamed::For<'tree>> {
-            match self {
-                Self::For(x) => Some(x),
-                _ => None,
+        pub fn as_for(self) -> type_sitter_lib::NodeResult<'tree, unnamed::For<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::For(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
         ///Returns the node if it is of kind `if` ([`unnamed::If`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn r#if(self) -> Option<unnamed::If<'tree>> {
-            match self {
-                Self::If(x) => Some(x),
-                _ => None,
+        pub fn as_if(self) -> type_sitter_lib::NodeResult<'tree, unnamed::If<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::If(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
         ///Returns the node if it is of kind `impl` ([`unnamed::Impl`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn r#impl(self) -> Option<unnamed::Impl<'tree>> {
-            match self {
-                Self::Impl(x) => Some(x),
-                _ => None,
+        pub fn as_impl(
+            self,
+        ) -> type_sitter_lib::NodeResult<'tree, unnamed::Impl<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Impl(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
         ///Returns the node if it is of kind `in` ([`unnamed::In`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn r#in(self) -> Option<unnamed::In<'tree>> {
-            match self {
-                Self::In(x) => Some(x),
-                _ => None,
+        pub fn as_in(self) -> type_sitter_lib::NodeResult<'tree, unnamed::In<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::In(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
         ///Returns the node if it is of kind `let` ([`unnamed::Let`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn r#let(self) -> Option<unnamed::Let<'tree>> {
-            match self {
-                Self::Let(x) => Some(x),
-                _ => None,
+        pub fn as_let(self) -> type_sitter_lib::NodeResult<'tree, unnamed::Let<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Let(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
         ///Returns the node if it is of kind `loop` ([`unnamed::Loop`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn r#loop(self) -> Option<unnamed::Loop<'tree>> {
-            match self {
-                Self::Loop(x) => Some(x),
-                _ => None,
+        pub fn as_loop(
+            self,
+        ) -> type_sitter_lib::NodeResult<'tree, unnamed::Loop<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Loop(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
         ///Returns the node if it is of kind `macro_rules!` ([`symbols::MacroRulesNot`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn macro_rules_not(self) -> Option<symbols::MacroRulesNot<'tree>> {
-            match self {
-                Self::MacroRulesNot(x) => Some(x),
-                _ => None,
+        pub fn as_macro_rules_not(
+            self,
+        ) -> type_sitter_lib::NodeResult<'tree, symbols::MacroRulesNot<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::MacroRulesNot(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
         ///Returns the node if it is of kind `match` ([`unnamed::Match`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn r#match(self) -> Option<unnamed::Match<'tree>> {
-            match self {
-                Self::Match(x) => Some(x),
-                _ => None,
+        pub fn as_match(
+            self,
+        ) -> type_sitter_lib::NodeResult<'tree, unnamed::Match<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Match(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
         ///Returns the node if it is of kind `mod` ([`unnamed::Mod_`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn mod_(self) -> Option<unnamed::Mod_<'tree>> {
-            match self {
-                Self::Mod_(x) => Some(x),
-                _ => None,
+        pub fn as_mod_(
+            self,
+        ) -> type_sitter_lib::NodeResult<'tree, unnamed::Mod_<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Mod_(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
         ///Returns the node if it is of kind `move` ([`unnamed::Move`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn r#move(self) -> Option<unnamed::Move<'tree>> {
-            match self {
-                Self::Move(x) => Some(x),
-                _ => None,
+        pub fn as_move(
+            self,
+        ) -> type_sitter_lib::NodeResult<'tree, unnamed::Move<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Move(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
         ///Returns the node if it is of kind `mutable_specifier` ([`MutableSpecifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn mutable_specifier(self) -> Option<MutableSpecifier<'tree>> {
-            match self {
-                Self::MutableSpecifier(x) => Some(x),
-                _ => None,
+        pub fn as_mutable_specifier(
+            self,
+        ) -> type_sitter_lib::NodeResult<'tree, MutableSpecifier<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::MutableSpecifier(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
         ///Returns the node if it is of kind `pub` ([`unnamed::Pub`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn r#pub(self) -> Option<unnamed::Pub<'tree>> {
-            match self {
-                Self::Pub(x) => Some(x),
-                _ => None,
+        pub fn as_pub(self) -> type_sitter_lib::NodeResult<'tree, unnamed::Pub<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Pub(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
         ///Returns the node if it is of kind `ref` ([`unnamed::Ref`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn r#ref(self) -> Option<unnamed::Ref<'tree>> {
-            match self {
-                Self::Ref(x) => Some(x),
-                _ => None,
+        pub fn as_ref(self) -> type_sitter_lib::NodeResult<'tree, unnamed::Ref<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Ref(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
         ///Returns the node if it is of kind `return` ([`unnamed::Return`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn r#return(self) -> Option<unnamed::Return<'tree>> {
-            match self {
-                Self::Return(x) => Some(x),
-                _ => None,
+        pub fn as_return(
+            self,
+        ) -> type_sitter_lib::NodeResult<'tree, unnamed::Return<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Return(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
         ///Returns the node if it is of kind `self` ([`_Self`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn _self(self) -> Option<_Self<'tree>> {
-            match self {
-                Self::_Self(x) => Some(x),
-                _ => None,
+        pub fn as__self(self) -> type_sitter_lib::NodeResult<'tree, _Self<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::_Self(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
         ///Returns the node if it is of kind `static` ([`unnamed::Static`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn r#static(self) -> Option<unnamed::Static<'tree>> {
-            match self {
-                Self::Static(x) => Some(x),
-                _ => None,
+        pub fn as_static(
+            self,
+        ) -> type_sitter_lib::NodeResult<'tree, unnamed::Static<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Static(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
         ///Returns the node if it is of kind `struct` ([`unnamed::Struct`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn r#struct(self) -> Option<unnamed::Struct<'tree>> {
-            match self {
-                Self::Struct(x) => Some(x),
-                _ => None,
+        pub fn as_struct(
+            self,
+        ) -> type_sitter_lib::NodeResult<'tree, unnamed::Struct<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Struct(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
         ///Returns the node if it is of kind `super` ([`Super`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn super_(self) -> Option<Super<'tree>> {
-            match self {
-                Self::Super(x) => Some(x),
-                _ => None,
+        pub fn as_super_(self) -> type_sitter_lib::NodeResult<'tree, Super<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Super(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
         ///Returns the node if it is of kind `trait` ([`unnamed::Trait`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn r#trait(self) -> Option<unnamed::Trait<'tree>> {
-            match self {
-                Self::Trait(x) => Some(x),
-                _ => None,
+        pub fn as_trait(
+            self,
+        ) -> type_sitter_lib::NodeResult<'tree, unnamed::Trait<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Trait(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
         ///Returns the node if it is of kind `type` ([`unnamed::Type_`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn type_(self) -> Option<unnamed::Type_<'tree>> {
-            match self {
-                Self::Type_(x) => Some(x),
-                _ => None,
+        pub fn as_type_(
+            self,
+        ) -> type_sitter_lib::NodeResult<'tree, unnamed::Type_<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Type_(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
         ///Returns the node if it is of kind `union` ([`unnamed::Union`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn union(self) -> Option<unnamed::Union<'tree>> {
-            match self {
-                Self::Union(x) => Some(x),
-                _ => None,
+        pub fn as_union(
+            self,
+        ) -> type_sitter_lib::NodeResult<'tree, unnamed::Union<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Union(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
         ///Returns the node if it is of kind `unsafe` ([`unnamed::Unsafe`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn r#unsafe(self) -> Option<unnamed::Unsafe<'tree>> {
-            match self {
-                Self::Unsafe(x) => Some(x),
-                _ => None,
+        pub fn as_unsafe(
+            self,
+        ) -> type_sitter_lib::NodeResult<'tree, unnamed::Unsafe<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Unsafe(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
         ///Returns the node if it is of kind `use` ([`unnamed::Use`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn r#use(self) -> Option<unnamed::Use<'tree>> {
-            match self {
-                Self::Use(x) => Some(x),
-                _ => None,
+        pub fn as_use(self) -> type_sitter_lib::NodeResult<'tree, unnamed::Use<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Use(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
         ///Returns the node if it is of kind `where` ([`unnamed::Where`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn r#where(self) -> Option<unnamed::Where<'tree>> {
-            match self {
-                Self::Where(x) => Some(x),
-                _ => None,
+        pub fn as_where(
+            self,
+        ) -> type_sitter_lib::NodeResult<'tree, unnamed::Where<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Where(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
         ///Returns the node if it is of kind `while` ([`unnamed::While`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn r#while(self) -> Option<unnamed::While<'tree>> {
-            match self {
-                Self::While(x) => Some(x),
-                _ => None,
+        pub fn as_while(
+            self,
+        ) -> type_sitter_lib::NodeResult<'tree, unnamed::While<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::While(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
         ///Returns the node if it is of kind `yield` ([`unnamed::Yield`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn r#yield(self) -> Option<unnamed::Yield<'tree>> {
-            match self {
-                Self::Yield(x) => Some(x),
-                _ => None,
+        pub fn as_yield(
+            self,
+        ) -> type_sitter_lib::NodeResult<'tree, unnamed::Yield<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Yield(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Keyword<'tree> {
-        type Error = type_sitter_lib::IncorrectKind<'tree>;
+    impl<'tree> type_sitter_lib::Node<'tree> for Keyword<'tree> {
+        type WithLifetime<'a> = Keyword<'a>;
+        const KIND: &'static str = "{as | async | await | break | const | continue | crate | default | dyn | else | enum | extern | fn | for | if | impl | in | let | loop | macro_rules! | match | mod | move | mutable_specifier | pub | ref | return | self | static | struct | super | trait | type | union | unsafe | use | where | while | yield}";
         #[inline]
-        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from_raw(
+            node: yak_sitter::Node<'tree>,
+        ) -> type_sitter_lib::NodeResult<Self> {
             match node.kind() {
                 "as" => {
                     Ok(unsafe {
                         Self::As(
                             <unnamed::As<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
@@ -6169,9 +6366,7 @@ pub mod anon_unions {
                         Self::Async(
                             <unnamed::Async<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
@@ -6180,9 +6375,7 @@ pub mod anon_unions {
                         Self::Await(
                             <unnamed::Await<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
@@ -6191,9 +6384,7 @@ pub mod anon_unions {
                         Self::Break(
                             <unnamed::Break<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
@@ -6202,9 +6393,7 @@ pub mod anon_unions {
                         Self::Const(
                             <unnamed::Const<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
@@ -6213,9 +6402,7 @@ pub mod anon_unions {
                         Self::Continue(
                             <unnamed::Continue<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
@@ -6224,9 +6411,7 @@ pub mod anon_unions {
                         Self::Crate(
                             <Crate<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
@@ -6235,9 +6420,7 @@ pub mod anon_unions {
                         Self::Default(
                             <unnamed::Default<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
@@ -6246,9 +6429,7 @@ pub mod anon_unions {
                         Self::Dyn(
                             <unnamed::Dyn<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
@@ -6257,9 +6438,7 @@ pub mod anon_unions {
                         Self::Else(
                             <unnamed::Else<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
@@ -6268,9 +6447,7 @@ pub mod anon_unions {
                         Self::Enum(
                             <unnamed::Enum<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
@@ -6279,9 +6456,7 @@ pub mod anon_unions {
                         Self::Extern(
                             <unnamed::Extern<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
@@ -6290,9 +6465,7 @@ pub mod anon_unions {
                         Self::Fn(
                             <unnamed::Fn<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
@@ -6301,9 +6474,7 @@ pub mod anon_unions {
                         Self::For(
                             <unnamed::For<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
@@ -6312,9 +6483,7 @@ pub mod anon_unions {
                         Self::If(
                             <unnamed::If<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
@@ -6323,9 +6492,7 @@ pub mod anon_unions {
                         Self::Impl(
                             <unnamed::Impl<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
@@ -6334,9 +6501,7 @@ pub mod anon_unions {
                         Self::In(
                             <unnamed::In<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
@@ -6345,9 +6510,7 @@ pub mod anon_unions {
                         Self::Let(
                             <unnamed::Let<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
@@ -6356,9 +6519,7 @@ pub mod anon_unions {
                         Self::Loop(
                             <unnamed::Loop<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
@@ -6367,9 +6528,7 @@ pub mod anon_unions {
                         Self::MacroRulesNot(
                             <symbols::MacroRulesNot<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
@@ -6378,9 +6537,7 @@ pub mod anon_unions {
                         Self::Match(
                             <unnamed::Match<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
@@ -6389,9 +6546,7 @@ pub mod anon_unions {
                         Self::Mod_(
                             <unnamed::Mod_<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
@@ -6400,9 +6555,7 @@ pub mod anon_unions {
                         Self::Move(
                             <unnamed::Move<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
@@ -6411,9 +6564,7 @@ pub mod anon_unions {
                         Self::MutableSpecifier(
                             <MutableSpecifier<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
@@ -6422,9 +6573,7 @@ pub mod anon_unions {
                         Self::Pub(
                             <unnamed::Pub<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
@@ -6433,9 +6582,7 @@ pub mod anon_unions {
                         Self::Ref(
                             <unnamed::Ref<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
@@ -6444,9 +6591,7 @@ pub mod anon_unions {
                         Self::Return(
                             <unnamed::Return<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
@@ -6455,9 +6600,7 @@ pub mod anon_unions {
                         Self::_Self(
                             <_Self<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
@@ -6466,9 +6609,7 @@ pub mod anon_unions {
                         Self::Static(
                             <unnamed::Static<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
@@ -6477,9 +6618,7 @@ pub mod anon_unions {
                         Self::Struct(
                             <unnamed::Struct<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
@@ -6488,9 +6627,7 @@ pub mod anon_unions {
                         Self::Super(
                             <Super<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
@@ -6499,9 +6636,7 @@ pub mod anon_unions {
                         Self::Trait(
                             <unnamed::Trait<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
@@ -6510,9 +6645,7 @@ pub mod anon_unions {
                         Self::Type_(
                             <unnamed::Type_<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
@@ -6521,9 +6654,7 @@ pub mod anon_unions {
                         Self::Union(
                             <unnamed::Union<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
@@ -6532,9 +6663,7 @@ pub mod anon_unions {
                         Self::Unsafe(
                             <unnamed::Unsafe<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
@@ -6543,9 +6672,7 @@ pub mod anon_unions {
                         Self::Use(
                             <unnamed::Use<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
@@ -6554,9 +6681,7 @@ pub mod anon_unions {
                         Self::Where(
                             <unnamed::Where<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
@@ -6565,9 +6690,7 @@ pub mod anon_unions {
                         Self::While(
                             <unnamed::While<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
@@ -6576,154 +6699,143 @@ pub mod anon_unions {
                         Self::Yield(
                             <unnamed::Yield<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
-                _ => {
-                    Err(type_sitter_lib::IncorrectKind {
-                        node,
-                        kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                    })
-                }
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for Keyword<'tree> {
-        const KIND: &'static str = "{as | async | await | break | const | continue | crate | default | dyn | else | enum | extern | fn | for | if | impl | in | let | loop | macro_rules! | match | mod | move | mutable_specifier | pub | ref | return | self | static | struct | super | trait | type | union | unsafe | use | where | while | yield}";
-        #[inline]
-        fn node(&self) -> &yak_sitter::Node<'tree> {
-            match self {
-                Self::As(x) => x.node(),
-                Self::Async(x) => x.node(),
-                Self::Await(x) => x.node(),
-                Self::Break(x) => x.node(),
-                Self::Const(x) => x.node(),
-                Self::Continue(x) => x.node(),
-                Self::Crate(x) => x.node(),
-                Self::Default(x) => x.node(),
-                Self::Dyn(x) => x.node(),
-                Self::Else(x) => x.node(),
-                Self::Enum(x) => x.node(),
-                Self::Extern(x) => x.node(),
-                Self::Fn(x) => x.node(),
-                Self::For(x) => x.node(),
-                Self::If(x) => x.node(),
-                Self::Impl(x) => x.node(),
-                Self::In(x) => x.node(),
-                Self::Let(x) => x.node(),
-                Self::Loop(x) => x.node(),
-                Self::MacroRulesNot(x) => x.node(),
-                Self::Match(x) => x.node(),
-                Self::Mod_(x) => x.node(),
-                Self::Move(x) => x.node(),
-                Self::MutableSpecifier(x) => x.node(),
-                Self::Pub(x) => x.node(),
-                Self::Ref(x) => x.node(),
-                Self::Return(x) => x.node(),
-                Self::_Self(x) => x.node(),
-                Self::Static(x) => x.node(),
-                Self::Struct(x) => x.node(),
-                Self::Super(x) => x.node(),
-                Self::Trait(x) => x.node(),
-                Self::Type_(x) => x.node(),
-                Self::Union(x) => x.node(),
-                Self::Unsafe(x) => x.node(),
-                Self::Use(x) => x.node(),
-                Self::Where(x) => x.node(),
-                Self::While(x) => x.node(),
-                Self::Yield(x) => x.node(),
+                _ => Err(type_sitter_lib::IncorrectKind::new::<Self>(node)),
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
+        fn raw(&self) -> &yak_sitter::Node<'tree> {
             match self {
-                Self::As(x) => x.node_mut(),
-                Self::Async(x) => x.node_mut(),
-                Self::Await(x) => x.node_mut(),
-                Self::Break(x) => x.node_mut(),
-                Self::Const(x) => x.node_mut(),
-                Self::Continue(x) => x.node_mut(),
-                Self::Crate(x) => x.node_mut(),
-                Self::Default(x) => x.node_mut(),
-                Self::Dyn(x) => x.node_mut(),
-                Self::Else(x) => x.node_mut(),
-                Self::Enum(x) => x.node_mut(),
-                Self::Extern(x) => x.node_mut(),
-                Self::Fn(x) => x.node_mut(),
-                Self::For(x) => x.node_mut(),
-                Self::If(x) => x.node_mut(),
-                Self::Impl(x) => x.node_mut(),
-                Self::In(x) => x.node_mut(),
-                Self::Let(x) => x.node_mut(),
-                Self::Loop(x) => x.node_mut(),
-                Self::MacroRulesNot(x) => x.node_mut(),
-                Self::Match(x) => x.node_mut(),
-                Self::Mod_(x) => x.node_mut(),
-                Self::Move(x) => x.node_mut(),
-                Self::MutableSpecifier(x) => x.node_mut(),
-                Self::Pub(x) => x.node_mut(),
-                Self::Ref(x) => x.node_mut(),
-                Self::Return(x) => x.node_mut(),
-                Self::_Self(x) => x.node_mut(),
-                Self::Static(x) => x.node_mut(),
-                Self::Struct(x) => x.node_mut(),
-                Self::Super(x) => x.node_mut(),
-                Self::Trait(x) => x.node_mut(),
-                Self::Type_(x) => x.node_mut(),
-                Self::Union(x) => x.node_mut(),
-                Self::Unsafe(x) => x.node_mut(),
-                Self::Use(x) => x.node_mut(),
-                Self::Where(x) => x.node_mut(),
-                Self::While(x) => x.node_mut(),
-                Self::Yield(x) => x.node_mut(),
+                Self::As(x) => type_sitter_lib::Node::raw(x),
+                Self::Async(x) => type_sitter_lib::Node::raw(x),
+                Self::Await(x) => type_sitter_lib::Node::raw(x),
+                Self::Break(x) => type_sitter_lib::Node::raw(x),
+                Self::Const(x) => type_sitter_lib::Node::raw(x),
+                Self::Continue(x) => type_sitter_lib::Node::raw(x),
+                Self::Crate(x) => type_sitter_lib::Node::raw(x),
+                Self::Default(x) => type_sitter_lib::Node::raw(x),
+                Self::Dyn(x) => type_sitter_lib::Node::raw(x),
+                Self::Else(x) => type_sitter_lib::Node::raw(x),
+                Self::Enum(x) => type_sitter_lib::Node::raw(x),
+                Self::Extern(x) => type_sitter_lib::Node::raw(x),
+                Self::Fn(x) => type_sitter_lib::Node::raw(x),
+                Self::For(x) => type_sitter_lib::Node::raw(x),
+                Self::If(x) => type_sitter_lib::Node::raw(x),
+                Self::Impl(x) => type_sitter_lib::Node::raw(x),
+                Self::In(x) => type_sitter_lib::Node::raw(x),
+                Self::Let(x) => type_sitter_lib::Node::raw(x),
+                Self::Loop(x) => type_sitter_lib::Node::raw(x),
+                Self::MacroRulesNot(x) => type_sitter_lib::Node::raw(x),
+                Self::Match(x) => type_sitter_lib::Node::raw(x),
+                Self::Mod_(x) => type_sitter_lib::Node::raw(x),
+                Self::Move(x) => type_sitter_lib::Node::raw(x),
+                Self::MutableSpecifier(x) => type_sitter_lib::Node::raw(x),
+                Self::Pub(x) => type_sitter_lib::Node::raw(x),
+                Self::Ref(x) => type_sitter_lib::Node::raw(x),
+                Self::Return(x) => type_sitter_lib::Node::raw(x),
+                Self::_Self(x) => type_sitter_lib::Node::raw(x),
+                Self::Static(x) => type_sitter_lib::Node::raw(x),
+                Self::Struct(x) => type_sitter_lib::Node::raw(x),
+                Self::Super(x) => type_sitter_lib::Node::raw(x),
+                Self::Trait(x) => type_sitter_lib::Node::raw(x),
+                Self::Type_(x) => type_sitter_lib::Node::raw(x),
+                Self::Union(x) => type_sitter_lib::Node::raw(x),
+                Self::Unsafe(x) => type_sitter_lib::Node::raw(x),
+                Self::Use(x) => type_sitter_lib::Node::raw(x),
+                Self::Where(x) => type_sitter_lib::Node::raw(x),
+                Self::While(x) => type_sitter_lib::Node::raw(x),
+                Self::Yield(x) => type_sitter_lib::Node::raw(x),
             }
         }
         #[inline]
-        fn into_node(self) -> yak_sitter::Node<'tree> {
+        fn raw_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
-                Self::As(x) => x.into_node(),
-                Self::Async(x) => x.into_node(),
-                Self::Await(x) => x.into_node(),
-                Self::Break(x) => x.into_node(),
-                Self::Const(x) => x.into_node(),
-                Self::Continue(x) => x.into_node(),
-                Self::Crate(x) => x.into_node(),
-                Self::Default(x) => x.into_node(),
-                Self::Dyn(x) => x.into_node(),
-                Self::Else(x) => x.into_node(),
-                Self::Enum(x) => x.into_node(),
-                Self::Extern(x) => x.into_node(),
-                Self::Fn(x) => x.into_node(),
-                Self::For(x) => x.into_node(),
-                Self::If(x) => x.into_node(),
-                Self::Impl(x) => x.into_node(),
-                Self::In(x) => x.into_node(),
-                Self::Let(x) => x.into_node(),
-                Self::Loop(x) => x.into_node(),
-                Self::MacroRulesNot(x) => x.into_node(),
-                Self::Match(x) => x.into_node(),
-                Self::Mod_(x) => x.into_node(),
-                Self::Move(x) => x.into_node(),
-                Self::MutableSpecifier(x) => x.into_node(),
-                Self::Pub(x) => x.into_node(),
-                Self::Ref(x) => x.into_node(),
-                Self::Return(x) => x.into_node(),
-                Self::_Self(x) => x.into_node(),
-                Self::Static(x) => x.into_node(),
-                Self::Struct(x) => x.into_node(),
-                Self::Super(x) => x.into_node(),
-                Self::Trait(x) => x.into_node(),
-                Self::Type_(x) => x.into_node(),
-                Self::Union(x) => x.into_node(),
-                Self::Unsafe(x) => x.into_node(),
-                Self::Use(x) => x.into_node(),
-                Self::Where(x) => x.into_node(),
-                Self::While(x) => x.into_node(),
-                Self::Yield(x) => x.into_node(),
+                Self::As(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::Async(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::Await(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::Break(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::Const(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::Continue(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::Crate(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::Default(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::Dyn(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::Else(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::Enum(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::Extern(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::Fn(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::For(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::If(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::Impl(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::In(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::Let(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::Loop(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::MacroRulesNot(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::Match(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::Mod_(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::Move(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::MutableSpecifier(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::Pub(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::Ref(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::Return(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::_Self(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::Static(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::Struct(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::Super(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::Trait(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::Type_(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::Union(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::Unsafe(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::Use(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::Where(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::While(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::Yield(x) => type_sitter_lib::Node::raw_mut(x),
+            }
+        }
+        #[inline]
+        fn into_raw(self) -> yak_sitter::Node<'tree> {
+            match self {
+                Self::As(x) => x.into_raw(),
+                Self::Async(x) => x.into_raw(),
+                Self::Await(x) => x.into_raw(),
+                Self::Break(x) => x.into_raw(),
+                Self::Const(x) => x.into_raw(),
+                Self::Continue(x) => x.into_raw(),
+                Self::Crate(x) => x.into_raw(),
+                Self::Default(x) => x.into_raw(),
+                Self::Dyn(x) => x.into_raw(),
+                Self::Else(x) => x.into_raw(),
+                Self::Enum(x) => x.into_raw(),
+                Self::Extern(x) => x.into_raw(),
+                Self::Fn(x) => x.into_raw(),
+                Self::For(x) => x.into_raw(),
+                Self::If(x) => x.into_raw(),
+                Self::Impl(x) => x.into_raw(),
+                Self::In(x) => x.into_raw(),
+                Self::Let(x) => x.into_raw(),
+                Self::Loop(x) => x.into_raw(),
+                Self::MacroRulesNot(x) => x.into_raw(),
+                Self::Match(x) => x.into_raw(),
+                Self::Mod_(x) => x.into_raw(),
+                Self::Move(x) => x.into_raw(),
+                Self::MutableSpecifier(x) => x.into_raw(),
+                Self::Pub(x) => x.into_raw(),
+                Self::Ref(x) => x.into_raw(),
+                Self::Return(x) => x.into_raw(),
+                Self::_Self(x) => x.into_raw(),
+                Self::Static(x) => x.into_raw(),
+                Self::Struct(x) => x.into_raw(),
+                Self::Super(x) => x.into_raw(),
+                Self::Trait(x) => x.into_raw(),
+                Self::Type_(x) => x.into_raw(),
+                Self::Union(x) => x.into_raw(),
+                Self::Unsafe(x) => x.into_raw(),
+                Self::Use(x) => x.into_raw(),
+                Self::Where(x) => x.into_raw(),
+                Self::While(x) => x.into_raw(),
+                Self::Yield(x) => x.into_raw(),
             }
         }
     }
@@ -6743,45 +6855,70 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `char_literal` ([`CharLiteral`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn char_literal(self) -> Option<CharLiteral<'tree>> {
-            match self {
-                Self::CharLiteral(x) => Some(x),
-                _ => None,
+        pub fn as_char_literal(
+            self,
+        ) -> type_sitter_lib::NodeResult<'tree, CharLiteral<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::CharLiteral(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
         ///Returns the node if it is of kind `raw_string_literal` ([`RawStringLiteral`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn raw_string_literal(self) -> Option<RawStringLiteral<'tree>> {
-            match self {
-                Self::RawStringLiteral(x) => Some(x),
-                _ => None,
+        pub fn as_raw_string_literal(
+            self,
+        ) -> type_sitter_lib::NodeResult<'tree, RawStringLiteral<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::RawStringLiteral(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
         ///Returns the node if it is of kind `string_literal` ([`StringLiteral`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn string_literal(self) -> Option<StringLiteral<'tree>> {
-            match self {
-                Self::StringLiteral(x) => Some(x),
-                _ => None,
+        pub fn as_string_literal(
+            self,
+        ) -> type_sitter_lib::NodeResult<'tree, StringLiteral<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::StringLiteral(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for String<'tree> {
-        type Error = type_sitter_lib::IncorrectKind<'tree>;
+    impl<'tree> type_sitter_lib::Node<'tree> for String<'tree> {
+        type WithLifetime<'a> = String<'a>;
+        const KIND: &'static str = "{char_literal | raw_string_literal | string_literal}";
         #[inline]
-        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from_raw(
+            node: yak_sitter::Node<'tree>,
+        ) -> type_sitter_lib::NodeResult<Self> {
             match node.kind() {
                 "char_literal" => {
                     Ok(unsafe {
                         Self::CharLiteral(
                             <CharLiteral<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
@@ -6790,9 +6927,7 @@ pub mod anon_unions {
                         Self::RawStringLiteral(
                             <RawStringLiteral<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
@@ -6801,46 +6936,35 @@ pub mod anon_unions {
                         Self::StringLiteral(
                             <StringLiteral<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
-                _ => {
-                    Err(type_sitter_lib::IncorrectKind {
-                        node,
-                        kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                    })
-                }
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for String<'tree> {
-        const KIND: &'static str = "{char_literal | raw_string_literal | string_literal}";
-        #[inline]
-        fn node(&self) -> &yak_sitter::Node<'tree> {
-            match self {
-                Self::CharLiteral(x) => x.node(),
-                Self::RawStringLiteral(x) => x.node(),
-                Self::StringLiteral(x) => x.node(),
+                _ => Err(type_sitter_lib::IncorrectKind::new::<Self>(node)),
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
+        fn raw(&self) -> &yak_sitter::Node<'tree> {
             match self {
-                Self::CharLiteral(x) => x.node_mut(),
-                Self::RawStringLiteral(x) => x.node_mut(),
-                Self::StringLiteral(x) => x.node_mut(),
+                Self::CharLiteral(x) => type_sitter_lib::Node::raw(x),
+                Self::RawStringLiteral(x) => type_sitter_lib::Node::raw(x),
+                Self::StringLiteral(x) => type_sitter_lib::Node::raw(x),
             }
         }
         #[inline]
-        fn into_node(self) -> yak_sitter::Node<'tree> {
+        fn raw_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
-                Self::CharLiteral(x) => x.into_node(),
-                Self::RawStringLiteral(x) => x.into_node(),
-                Self::StringLiteral(x) => x.into_node(),
+                Self::CharLiteral(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::RawStringLiteral(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::StringLiteral(x) => type_sitter_lib::Node::raw_mut(x),
+            }
+        }
+        #[inline]
+        fn into_raw(self) -> yak_sitter::Node<'tree> {
+            match self {
+                Self::CharLiteral(x) => x.into_raw(),
+                Self::RawStringLiteral(x) => x.into_raw(),
+                Self::StringLiteral(x) => x.into_raw(),
             }
         }
     }
@@ -6860,45 +6984,70 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `boolean_literal` ([`BooleanLiteral`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn boolean_literal(self) -> Option<BooleanLiteral<'tree>> {
-            match self {
-                Self::BooleanLiteral(x) => Some(x),
-                _ => None,
+        pub fn as_boolean_literal(
+            self,
+        ) -> type_sitter_lib::NodeResult<'tree, BooleanLiteral<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::BooleanLiteral(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
         ///Returns the node if it is of kind `float_literal` ([`FloatLiteral`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn float_literal(self) -> Option<FloatLiteral<'tree>> {
-            match self {
-                Self::FloatLiteral(x) => Some(x),
-                _ => None,
+        pub fn as_float_literal(
+            self,
+        ) -> type_sitter_lib::NodeResult<'tree, FloatLiteral<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::FloatLiteral(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
         ///Returns the node if it is of kind `integer_literal` ([`IntegerLiteral`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn integer_literal(self) -> Option<IntegerLiteral<'tree>> {
-            match self {
-                Self::IntegerLiteral(x) => Some(x),
-                _ => None,
+        pub fn as_integer_literal(
+            self,
+        ) -> type_sitter_lib::NodeResult<'tree, IntegerLiteral<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::IntegerLiteral(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for ConstantBuiltin<'tree> {
-        type Error = type_sitter_lib::IncorrectKind<'tree>;
+    impl<'tree> type_sitter_lib::Node<'tree> for ConstantBuiltin<'tree> {
+        type WithLifetime<'a> = ConstantBuiltin<'a>;
+        const KIND: &'static str = "{boolean_literal | float_literal | integer_literal}";
         #[inline]
-        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from_raw(
+            node: yak_sitter::Node<'tree>,
+        ) -> type_sitter_lib::NodeResult<Self> {
             match node.kind() {
                 "boolean_literal" => {
                     Ok(unsafe {
                         Self::BooleanLiteral(
                             <BooleanLiteral<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
@@ -6907,9 +7056,7 @@ pub mod anon_unions {
                         Self::FloatLiteral(
                             <FloatLiteral<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
@@ -6918,46 +7065,35 @@ pub mod anon_unions {
                         Self::IntegerLiteral(
                             <IntegerLiteral<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
-                _ => {
-                    Err(type_sitter_lib::IncorrectKind {
-                        node,
-                        kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                    })
-                }
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for ConstantBuiltin<'tree> {
-        const KIND: &'static str = "{boolean_literal | float_literal | integer_literal}";
-        #[inline]
-        fn node(&self) -> &yak_sitter::Node<'tree> {
-            match self {
-                Self::BooleanLiteral(x) => x.node(),
-                Self::FloatLiteral(x) => x.node(),
-                Self::IntegerLiteral(x) => x.node(),
+                _ => Err(type_sitter_lib::IncorrectKind::new::<Self>(node)),
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
+        fn raw(&self) -> &yak_sitter::Node<'tree> {
             match self {
-                Self::BooleanLiteral(x) => x.node_mut(),
-                Self::FloatLiteral(x) => x.node_mut(),
-                Self::IntegerLiteral(x) => x.node_mut(),
+                Self::BooleanLiteral(x) => type_sitter_lib::Node::raw(x),
+                Self::FloatLiteral(x) => type_sitter_lib::Node::raw(x),
+                Self::IntegerLiteral(x) => type_sitter_lib::Node::raw(x),
             }
         }
         #[inline]
-        fn into_node(self) -> yak_sitter::Node<'tree> {
+        fn raw_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
-                Self::BooleanLiteral(x) => x.into_node(),
-                Self::FloatLiteral(x) => x.into_node(),
-                Self::IntegerLiteral(x) => x.into_node(),
+                Self::BooleanLiteral(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::FloatLiteral(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::IntegerLiteral(x) => type_sitter_lib::Node::raw_mut(x),
+            }
+        }
+        #[inline]
+        fn into_raw(self) -> yak_sitter::Node<'tree> {
+            match self {
+                Self::BooleanLiteral(x) => x.into_raw(),
+                Self::FloatLiteral(x) => x.into_raw(),
+                Self::IntegerLiteral(x) => x.into_raw(),
             }
         }
     }
@@ -6975,36 +7111,53 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `attribute_item` ([`AttributeItem`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn attribute_item(self) -> Option<AttributeItem<'tree>> {
-            match self {
-                Self::AttributeItem(x) => Some(x),
-                _ => None,
+        pub fn as_attribute_item(
+            self,
+        ) -> type_sitter_lib::NodeResult<'tree, AttributeItem<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::AttributeItem(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
         ///Returns the node if it is of kind `inner_attribute_item` ([`InnerAttributeItem`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn inner_attribute_item(self) -> Option<InnerAttributeItem<'tree>> {
-            match self {
-                Self::InnerAttributeItem(x) => Some(x),
-                _ => None,
+        pub fn as_inner_attribute_item(
+            self,
+        ) -> type_sitter_lib::NodeResult<'tree, InnerAttributeItem<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::InnerAttributeItem(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Attribute<'tree> {
-        type Error = type_sitter_lib::IncorrectKind<'tree>;
+    impl<'tree> type_sitter_lib::Node<'tree> for Attribute<'tree> {
+        type WithLifetime<'a> = Attribute<'a>;
+        const KIND: &'static str = "{attribute_item | inner_attribute_item}";
         #[inline]
-        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from_raw(
+            node: yak_sitter::Node<'tree>,
+        ) -> type_sitter_lib::NodeResult<Self> {
             match node.kind() {
                 "attribute_item" => {
                     Ok(unsafe {
                         Self::AttributeItem(
                             <AttributeItem<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
@@ -7013,43 +7166,32 @@ pub mod anon_unions {
                         Self::InnerAttributeItem(
                             <InnerAttributeItem<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
-                _ => {
-                    Err(type_sitter_lib::IncorrectKind {
-                        node,
-                        kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                    })
-                }
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for Attribute<'tree> {
-        const KIND: &'static str = "{attribute_item | inner_attribute_item}";
-        #[inline]
-        fn node(&self) -> &yak_sitter::Node<'tree> {
-            match self {
-                Self::AttributeItem(x) => x.node(),
-                Self::InnerAttributeItem(x) => x.node(),
+                _ => Err(type_sitter_lib::IncorrectKind::new::<Self>(node)),
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
+        fn raw(&self) -> &yak_sitter::Node<'tree> {
             match self {
-                Self::AttributeItem(x) => x.node_mut(),
-                Self::InnerAttributeItem(x) => x.node_mut(),
+                Self::AttributeItem(x) => type_sitter_lib::Node::raw(x),
+                Self::InnerAttributeItem(x) => type_sitter_lib::Node::raw(x),
             }
         }
         #[inline]
-        fn into_node(self) -> yak_sitter::Node<'tree> {
+        fn raw_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
-                Self::AttributeItem(x) => x.into_node(),
-                Self::InnerAttributeItem(x) => x.into_node(),
+                Self::AttributeItem(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::InnerAttributeItem(x) => type_sitter_lib::Node::raw_mut(x),
+            }
+        }
+        #[inline]
+        fn into_raw(self) -> yak_sitter::Node<'tree> {
+            match self {
+                Self::AttributeItem(x) => x.into_raw(),
+                Self::InnerAttributeItem(x) => x.into_raw(),
             }
         }
     }
@@ -7069,45 +7211,66 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `&` ([`symbols::And`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn and(self) -> Option<symbols::And<'tree>> {
-            match self {
-                Self::And(x) => Some(x),
-                _ => None,
+        pub fn as_and(self) -> type_sitter_lib::NodeResult<'tree, symbols::And<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::And(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
         ///Returns the node if it is of kind `'` ([`symbols::Quote`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn quote(self) -> Option<symbols::Quote<'tree>> {
-            match self {
-                Self::Quote(x) => Some(x),
-                _ => None,
+        pub fn as_quote(
+            self,
+        ) -> type_sitter_lib::NodeResult<'tree, symbols::Quote<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Quote(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
         ///Returns the node if it is of kind `*` ([`symbols::Mul`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn mul(self) -> Option<symbols::Mul<'tree>> {
-            match self {
-                Self::Mul(x) => Some(x),
-                _ => None,
+        pub fn as_mul(self) -> type_sitter_lib::NodeResult<'tree, symbols::Mul<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Mul(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Operator<'tree> {
-        type Error = type_sitter_lib::IncorrectKind<'tree>;
+    impl<'tree> type_sitter_lib::Node<'tree> for Operator<'tree> {
+        type WithLifetime<'a> = Operator<'a>;
+        const KIND: &'static str = "{& | ' | *}";
         #[inline]
-        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from_raw(
+            node: yak_sitter::Node<'tree>,
+        ) -> type_sitter_lib::NodeResult<Self> {
             match node.kind() {
                 "&" => {
                     Ok(unsafe {
                         Self::And(
                             <symbols::And<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
@@ -7116,9 +7279,7 @@ pub mod anon_unions {
                         Self::Quote(
                             <symbols::Quote<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
@@ -7127,46 +7288,35 @@ pub mod anon_unions {
                         Self::Mul(
                             <symbols::Mul<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
-                _ => {
-                    Err(type_sitter_lib::IncorrectKind {
-                        node,
-                        kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                    })
-                }
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for Operator<'tree> {
-        const KIND: &'static str = "{& | ' | *}";
-        #[inline]
-        fn node(&self) -> &yak_sitter::Node<'tree> {
-            match self {
-                Self::And(x) => x.node(),
-                Self::Quote(x) => x.node(),
-                Self::Mul(x) => x.node(),
+                _ => Err(type_sitter_lib::IncorrectKind::new::<Self>(node)),
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
+        fn raw(&self) -> &yak_sitter::Node<'tree> {
             match self {
-                Self::And(x) => x.node_mut(),
-                Self::Quote(x) => x.node_mut(),
-                Self::Mul(x) => x.node_mut(),
+                Self::And(x) => type_sitter_lib::Node::raw(x),
+                Self::Quote(x) => type_sitter_lib::Node::raw(x),
+                Self::Mul(x) => type_sitter_lib::Node::raw(x),
             }
         }
         #[inline]
-        fn into_node(self) -> yak_sitter::Node<'tree> {
+        fn raw_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
-                Self::And(x) => x.into_node(),
-                Self::Quote(x) => x.into_node(),
-                Self::Mul(x) => x.into_node(),
+                Self::And(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::Quote(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::Mul(x) => type_sitter_lib::Node::raw_mut(x),
+            }
+        }
+        #[inline]
+        fn into_raw(self) -> yak_sitter::Node<'tree> {
+            match self {
+                Self::And(x) => x.into_raw(),
+                Self::Quote(x) => x.into_raw(),
+                Self::Mul(x) => x.into_raw(),
             }
         }
     }
@@ -7186,45 +7336,70 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `field_identifier` ([`FieldIdentifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn field_identifier(self) -> Option<FieldIdentifier<'tree>> {
-            match self {
-                Self::FieldIdentifier(x) => Some(x),
-                _ => None,
+        pub fn as_field_identifier(
+            self,
+        ) -> type_sitter_lib::NodeResult<'tree, FieldIdentifier<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::FieldIdentifier(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
         ///Returns the node if it is of kind `identifier` ([`Identifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn identifier(self) -> Option<Identifier<'tree>> {
-            match self {
-                Self::Identifier(x) => Some(x),
-                _ => None,
+        pub fn as_identifier(
+            self,
+        ) -> type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Identifier(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
         ///Returns the node if it is of kind `type_identifier` ([`TypeIdentifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn type_identifier(self) -> Option<TypeIdentifier<'tree>> {
-            match self {
-                Self::TypeIdentifier(x) => Some(x),
-                _ => None,
+        pub fn as_type_identifier(
+            self,
+        ) -> type_sitter_lib::NodeResult<'tree, TypeIdentifier<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::TypeIdentifier(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for Name<'tree> {
-        type Error = type_sitter_lib::IncorrectKind<'tree>;
+    impl<'tree> type_sitter_lib::Node<'tree> for Name<'tree> {
+        type WithLifetime<'a> = Name<'a>;
+        const KIND: &'static str = "{field_identifier | identifier | type_identifier}";
         #[inline]
-        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from_raw(
+            node: yak_sitter::Node<'tree>,
+        ) -> type_sitter_lib::NodeResult<Self> {
             match node.kind() {
                 "field_identifier" => {
                     Ok(unsafe {
                         Self::FieldIdentifier(
                             <FieldIdentifier<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
@@ -7233,9 +7408,7 @@ pub mod anon_unions {
                         Self::Identifier(
                             <Identifier<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
@@ -7244,46 +7417,35 @@ pub mod anon_unions {
                         Self::TypeIdentifier(
                             <TypeIdentifier<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
-                _ => {
-                    Err(type_sitter_lib::IncorrectKind {
-                        node,
-                        kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                    })
-                }
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for Name<'tree> {
-        const KIND: &'static str = "{field_identifier | identifier | type_identifier}";
-        #[inline]
-        fn node(&self) -> &yak_sitter::Node<'tree> {
-            match self {
-                Self::FieldIdentifier(x) => x.node(),
-                Self::Identifier(x) => x.node(),
-                Self::TypeIdentifier(x) => x.node(),
+                _ => Err(type_sitter_lib::IncorrectKind::new::<Self>(node)),
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
+        fn raw(&self) -> &yak_sitter::Node<'tree> {
             match self {
-                Self::FieldIdentifier(x) => x.node_mut(),
-                Self::Identifier(x) => x.node_mut(),
-                Self::TypeIdentifier(x) => x.node_mut(),
+                Self::FieldIdentifier(x) => type_sitter_lib::Node::raw(x),
+                Self::Identifier(x) => type_sitter_lib::Node::raw(x),
+                Self::TypeIdentifier(x) => type_sitter_lib::Node::raw(x),
             }
         }
         #[inline]
-        fn into_node(self) -> yak_sitter::Node<'tree> {
+        fn raw_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
-                Self::FieldIdentifier(x) => x.into_node(),
-                Self::Identifier(x) => x.into_node(),
-                Self::TypeIdentifier(x) => x.into_node(),
+                Self::FieldIdentifier(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::Identifier(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::TypeIdentifier(x) => type_sitter_lib::Node::raw_mut(x),
+            }
+        }
+        #[inline]
+        fn into_raw(self) -> yak_sitter::Node<'tree> {
+            match self {
+                Self::FieldIdentifier(x) => x.into_raw(),
+                Self::Identifier(x) => x.into_raw(),
+                Self::TypeIdentifier(x) => x.into_raw(),
             }
         }
     }
@@ -7305,54 +7467,87 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `enum_item` ([`EnumItem`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn enum_item(self) -> Option<EnumItem<'tree>> {
-            match self {
-                Self::EnumItem(x) => Some(x),
-                _ => None,
+        pub fn as_enum_item(
+            self,
+        ) -> type_sitter_lib::NodeResult<'tree, EnumItem<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::EnumItem(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
         ///Returns the node if it is of kind `struct_item` ([`StructItem`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn struct_item(self) -> Option<StructItem<'tree>> {
-            match self {
-                Self::StructItem(x) => Some(x),
-                _ => None,
+        pub fn as_struct_item(
+            self,
+        ) -> type_sitter_lib::NodeResult<'tree, StructItem<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::StructItem(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
         ///Returns the node if it is of kind `type_item` ([`TypeItem`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn type_item(self) -> Option<TypeItem<'tree>> {
-            match self {
-                Self::TypeItem(x) => Some(x),
-                _ => None,
+        pub fn as_type_item(
+            self,
+        ) -> type_sitter_lib::NodeResult<'tree, TypeItem<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::TypeItem(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
         ///Returns the node if it is of kind `union_item` ([`UnionItem`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn union_item(self) -> Option<UnionItem<'tree>> {
-            match self {
-                Self::UnionItem(x) => Some(x),
-                _ => None,
+        pub fn as_union_item(
+            self,
+        ) -> type_sitter_lib::NodeResult<'tree, UnionItem<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::UnionItem(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for DefinitionClass<'tree> {
-        type Error = type_sitter_lib::IncorrectKind<'tree>;
+    impl<'tree> type_sitter_lib::Node<'tree> for DefinitionClass<'tree> {
+        type WithLifetime<'a> = DefinitionClass<'a>;
+        const KIND: &'static str = "{enum_item | struct_item | type_item | union_item}";
         #[inline]
-        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from_raw(
+            node: yak_sitter::Node<'tree>,
+        ) -> type_sitter_lib::NodeResult<Self> {
             match node.kind() {
                 "enum_item" => {
                     Ok(unsafe {
                         Self::EnumItem(
                             <EnumItem<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
@@ -7361,9 +7556,7 @@ pub mod anon_unions {
                         Self::StructItem(
                             <StructItem<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
@@ -7372,9 +7565,7 @@ pub mod anon_unions {
                         Self::TypeItem(
                             <TypeItem<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
@@ -7383,49 +7574,38 @@ pub mod anon_unions {
                         Self::UnionItem(
                             <UnionItem<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
-                _ => {
-                    Err(type_sitter_lib::IncorrectKind {
-                        node,
-                        kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                    })
-                }
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for DefinitionClass<'tree> {
-        const KIND: &'static str = "{enum_item | struct_item | type_item | union_item}";
-        #[inline]
-        fn node(&self) -> &yak_sitter::Node<'tree> {
-            match self {
-                Self::EnumItem(x) => x.node(),
-                Self::StructItem(x) => x.node(),
-                Self::TypeItem(x) => x.node(),
-                Self::UnionItem(x) => x.node(),
+                _ => Err(type_sitter_lib::IncorrectKind::new::<Self>(node)),
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
+        fn raw(&self) -> &yak_sitter::Node<'tree> {
             match self {
-                Self::EnumItem(x) => x.node_mut(),
-                Self::StructItem(x) => x.node_mut(),
-                Self::TypeItem(x) => x.node_mut(),
-                Self::UnionItem(x) => x.node_mut(),
+                Self::EnumItem(x) => type_sitter_lib::Node::raw(x),
+                Self::StructItem(x) => type_sitter_lib::Node::raw(x),
+                Self::TypeItem(x) => type_sitter_lib::Node::raw(x),
+                Self::UnionItem(x) => type_sitter_lib::Node::raw(x),
             }
         }
         #[inline]
-        fn into_node(self) -> yak_sitter::Node<'tree> {
+        fn raw_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
-                Self::EnumItem(x) => x.into_node(),
-                Self::StructItem(x) => x.into_node(),
-                Self::TypeItem(x) => x.into_node(),
-                Self::UnionItem(x) => x.into_node(),
+                Self::EnumItem(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::StructItem(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::TypeItem(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::UnionItem(x) => type_sitter_lib::Node::raw_mut(x),
+            }
+        }
+        #[inline]
+        fn into_raw(self) -> yak_sitter::Node<'tree> {
+            match self {
+                Self::EnumItem(x) => x.into_raw(),
+                Self::StructItem(x) => x.into_raw(),
+                Self::TypeItem(x) => x.into_raw(),
+                Self::UnionItem(x) => x.into_raw(),
             }
         }
     }
@@ -7443,36 +7623,53 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `call_expression` ([`CallExpression`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn call_expression(self) -> Option<CallExpression<'tree>> {
-            match self {
-                Self::CallExpression(x) => Some(x),
-                _ => None,
+        pub fn as_call_expression(
+            self,
+        ) -> type_sitter_lib::NodeResult<'tree, CallExpression<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::CallExpression(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
         ///Returns the node if it is of kind `macro_invocation` ([`MacroInvocation`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn macro_invocation(self) -> Option<MacroInvocation<'tree>> {
-            match self {
-                Self::MacroInvocation(x) => Some(x),
-                _ => None,
+        pub fn as_macro_invocation(
+            self,
+        ) -> type_sitter_lib::NodeResult<'tree, MacroInvocation<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::MacroInvocation(x) = self {
+                Ok(x)
+            } else {
+                Err(
+                    type_sitter_lib::IncorrectKind::new::<
+                        Self,
+                    >(*type_sitter_lib::Node::raw(&self)),
+                )
             }
         }
     }
     #[automatically_derived]
-    impl<'tree> TryFrom<yak_sitter::Node<'tree>> for ReferenceCall<'tree> {
-        type Error = type_sitter_lib::IncorrectKind<'tree>;
+    impl<'tree> type_sitter_lib::Node<'tree> for ReferenceCall<'tree> {
+        type WithLifetime<'a> = ReferenceCall<'a>;
+        const KIND: &'static str = "{call_expression | macro_invocation}";
         #[inline]
-        fn try_from(node: yak_sitter::Node<'tree>) -> Result<Self, Self::Error> {
+        fn try_from_raw(
+            node: yak_sitter::Node<'tree>,
+        ) -> type_sitter_lib::NodeResult<Self> {
             match node.kind() {
                 "call_expression" => {
                     Ok(unsafe {
                         Self::CallExpression(
                             <CallExpression<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
@@ -7481,43 +7678,32 @@ pub mod anon_unions {
                         Self::MacroInvocation(
                             <MacroInvocation<
                                 'tree,
-                            > as type_sitter_lib::TypedNode<
-                                'tree,
-                            >>::from_node_unchecked(node),
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
                     })
                 }
-                _ => {
-                    Err(type_sitter_lib::IncorrectKind {
-                        node,
-                        kind: <Self as type_sitter_lib::TypedNode<'tree>>::KIND,
-                    })
-                }
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter_lib::TypedNode<'tree> for ReferenceCall<'tree> {
-        const KIND: &'static str = "{call_expression | macro_invocation}";
-        #[inline]
-        fn node(&self) -> &yak_sitter::Node<'tree> {
-            match self {
-                Self::CallExpression(x) => x.node(),
-                Self::MacroInvocation(x) => x.node(),
+                _ => Err(type_sitter_lib::IncorrectKind::new::<Self>(node)),
             }
         }
         #[inline]
-        fn node_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
+        fn raw(&self) -> &yak_sitter::Node<'tree> {
             match self {
-                Self::CallExpression(x) => x.node_mut(),
-                Self::MacroInvocation(x) => x.node_mut(),
+                Self::CallExpression(x) => type_sitter_lib::Node::raw(x),
+                Self::MacroInvocation(x) => type_sitter_lib::Node::raw(x),
             }
         }
         #[inline]
-        fn into_node(self) -> yak_sitter::Node<'tree> {
+        fn raw_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
-                Self::CallExpression(x) => x.into_node(),
-                Self::MacroInvocation(x) => x.into_node(),
+                Self::CallExpression(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::MacroInvocation(x) => type_sitter_lib::Node::raw_mut(x),
+            }
+        }
+        #[inline]
+        fn into_raw(self) -> yak_sitter::Node<'tree> {
+            match self {
+                Self::CallExpression(x) => x.into_raw(),
+                Self::MacroInvocation(x) => x.into_raw(),
             }
         }
     }

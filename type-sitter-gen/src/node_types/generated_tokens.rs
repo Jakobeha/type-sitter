@@ -3,10 +3,10 @@ use proc_macro2::TokenStream;
 use crate::anon_unions::AnonUnions;
 use crate::node_types::types::NodeModule;
 
-/// Generated AST tokens from calling [NodeType::print] on a single instance or each element of a
+/// Generated AST tokens from calling [`NodeType::print`] on a single instance or each element of a
 /// collection.
 ///
-/// We can't just collect the output of [NodeType::print] into a [TokenStream] because some
+/// We can't just collect the output of [`NodeType::print`] into a [`TokenStream`] because some
 /// declarations go in specific submodules (`unnamed`, `symbols`, `anon_unions`), and also we don't want
 /// duplicate definitions of the anonymous unions.
 #[derive(Debug, Default, Clone)]
@@ -43,7 +43,6 @@ impl GeneratedNodeTokens {
         self.symbols.extend(other.symbols);
         self.anon_unions.extend(other.anon_unions);
     }
-
 }
 
 impl Extend<GeneratedNodeTokens> for GeneratedNodeTokens {

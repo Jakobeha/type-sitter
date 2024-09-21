@@ -10,9 +10,7 @@ use crate::path_utils::{language_name, write};
 pub fn reprocess(
     item: &InOutPair,
     args: &Args,
-    use_yak_sitter: bool,
-    tree_sitter: &syn::Path,
-    type_sitter_lib: &syn::Path,
+    use_yak_sitter: bool
 ) -> errors::Result<()> {
     // Get input type
     let input_type = args.input_type
@@ -35,9 +33,7 @@ pub fn reprocess(
         &output_path,
         input_type,
         language_dir.as_deref(),
-        use_yak_sitter,
-        tree_sitter,
-        type_sitter_lib,
+        use_yak_sitter
     )
 }
 
@@ -46,17 +42,15 @@ fn do_reprocess(
     output_path: &Path,
     input_type: InputType,
     language_dir: Option<&Path>,
-    use_yak_sitter: bool,
-    tree_sitter: &syn::Path,
-    type_sitter_lib: &syn::Path,
+    use_yak_sitter: bool
 ) -> errors::Result<()> {
     match input_type {
         InputType::NodeTypes => {
-            write(&output_path, type_sitter_gen::generate_nodes(input_path, tree_sitter, type_sitter_lib)?)?
+            write(&output_path, type_sitter_gen::generate_nodes(input_path)?)?
         }
         InputType::Query => {
             let language_dir = language_dir.ok_or(Error::CouldntInferLanguage)?;
-            write(&output_path, type_sitter_gen::generate_queries(input_path, language_dir, &super_nodes(), use_yak_sitter, tree_sitter, type_sitter_lib)?)?;
+            write(&output_path, type_sitter_gen::generate_queries(input_path, language_dir, &super_nodes(), use_yak_sitter)?)?;
         }
         InputType::LanguageRoot => {
             // Remove old dir.
@@ -80,18 +74,14 @@ pub mod queries;
                 &output_path.join("nodes.rs"),
                 InputType::NodeTypes,
                 language_dir,
-                use_yak_sitter,
-                tree_sitter,
-                type_sitter_lib,
+                use_yak_sitter
             ).map_err(|e| e.nested("node types"))?;
             do_reprocess(
                 &input_path.join("queries"),
                 &output_path.join("queries.rs"),
                 InputType::Query,
                 language_dir,
-                use_yak_sitter,
-                tree_sitter,
-                type_sitter_lib,
+                use_yak_sitter
             ).map_err(|e| e.nested("queries"))?;
         }
     }

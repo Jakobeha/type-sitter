@@ -29,7 +29,7 @@ impl<'tree> SExpSeq<'tree> {
     /// - `use_yak_sitter`: Whether to use `yak_sitter` or `tree_sitter`
     /// - `tree_sitter`: Path to the crate with the tree-sitter API. For cli-generated sources, use
     ///    [crate::tree_sitter] if `use_yak_sitter` is false or [crate::yak_sitter] if
-    ///    `use_yak_sitter` is true. For proc-macro generated sources, use [crate::type_sitter]
+    ///    `use_yak_sitter` is true. For proc-macro generated sources, use [crate::type_sitter_raw]
     ///    either way.
     /// - `type_sitter_lib`: Path to the crate with the type-sitter API. For cli-generated sources,
     ///   use [crate::type_sitter_lib]. For proc-macro generated sources, use [crate::type_sitter].
@@ -70,12 +70,12 @@ impl<'tree> SExpSeq<'tree> {
             you use the same tree-sitter / {} version?",
             language_name, language_name
         ));
-        let internal_query_ident = format_ident!("__{}__", def_ident);
-        let mk_internal_query_ident = format_ident!("__Mk__{}", def_ident);
-        let query_matches_ident = format_ident!("{}Matches", def_ident);
-        let query_captures_ident = format_ident!("{}Captures", def_ident);
-        let query_match_ident = format_ident!("{}Match", def_ident);
-        let query_capture_ident = format_ident!("{}Capture", def_ident);
+        let internal_query = format_ident!("__{}__", def_ident);
+        let mk_internal_query = format_ident!("__Mk__{}", def_ident);
+        let query_matches = format_ident!("{}Matches", def_ident);
+        let query_captures = format_ident!("{}Captures", def_ident);
+        let query_match = format_ident!("{}Match", def_ident);
+        let query_capture = format_ident!("{}Capture", def_ident);
         let disabled_patterns = disabled_patterns.iter().map(|p| lit_str(p));
         let full_query_documentation = format!("\n\n```sexp\n{}\n```", query_str);
         let def_doc = concat_doc!("Typed version of the query:", full_query_documentation);
@@ -86,49 +86,37 @@ impl<'tree> SExpSeq<'tree> {
 
         let (
             tree_t,
-            tree_arg,
-            tree_ident,
-            tree_capture_node,
             tree_fn,
-            tree_static,
+            tree_query,
             tree_to_raws
         ) = match use_yak_sitter {
             false => (
                 quote! { , Text, I },
                 quote! {},
                 quote! {},
-                quote! { capture.node },
-                quote! {},
-                quote! {},
                 capture_idxs.iter().map(|capture_idx| quote! {
-                    tree_sitter::QueryCapture {
+                    #tree_sitter::QueryCapture {
                         index: #capture_idx as u32,
-                        node: *node.node()
+                        node: *node.raw()
                     }
                 }).collect::<Vec<_>>()
             ),
             true => (
                 quote! {},
-                quote! { tree: &'tree yak_sitter::Tree },
-                quote! { tree },
-                quote! {
-                    // SAFETY: Same tree
-                    unsafe { yak_sitter::Node::new(capture.node, tree) }
-                },
                 quote! {
                     #[inline]
                     fn tree(&self) -> &'tree yak_sitter::Tree {
-                        self.tree
+                        self.0.tree()
                     }
                 },
-                quote! { 'static, },
+                quote! { 'query, },
                 capture_idxs_and_names.iter()
                     .map(|(i, c)| (*i, lit_str(c)))
                     .map(|(capture_idx, capture_name)| quote! {
                         yak_sitter::QueryCapture {
-                            node: *node.node(),
+                            node: *node.raw(),
                             index: #capture_idx,
-                            name: #capture_name,
+                            name: #capture_name
                         }
                     })
                     .collect::<Vec<_>>()
@@ -143,32 +131,32 @@ impl<'tree> SExpSeq<'tree> {
             .map(|capture_idxs_and_name| {
                 let capture_idxs = capture_idxs_and_name.iter().map(|(capture_idx, _)| *capture_idx).collect::<Vec<_>>();
                 let capture_name = capture_idxs_and_name[0].1;
-                self.print_capture_method_and_variant(capture_name, &capture_idxs, query_str, &ts_query, nodes, node_type_map, use_yak_sitter, tree_sitter, type_sitter_lib, anon_unions)
+                self.print_capture_method_and_variant(capture_name, &capture_idxs, query_str, &ts_query, nodes, node_type_map, tree_sitter, type_sitter_lib, anon_unions)
             })
             .collect::<Vec<_>>();
         let capture_methods = capture_methods_and_variants.iter().map(|x| &x.0).collect::<Vec<_>>();
         let capture_variant_extract_methods = capture_methods_and_variants.iter().map(|x| &x.1).collect::<Vec<_>>();
-        let capture_variant_idents = capture_methods_and_variants.iter().map(|x| &x.2).collect::<Vec<_>>();
+        let capture_variants = capture_methods_and_variants.iter().map(|x| &x.2).collect::<Vec<_>>();
         let capture_variant_documentations = capture_methods_and_variants.iter().map(|x| &x.3).collect::<Vec<_>>();
         let capture_node_types = capture_methods_and_variants.iter().map(|x| &x.4).collect::<Vec<_>>();
         let non_existent_variant = match capture_methods_and_variants.is_empty() {
             false => quote! {},
             true => quote! {
                 /// This node has no captures so the enum has no instantiable variants. This variant
-                /// is necessary keep lifetime parameters, but the `Never` type means it can't be
+                /// is necessary to keep lifetime parameters, but the `Never` type means it can't be
                 /// instantiated.
-                __NonExistent(#type_sitter_lib::Never, std::marker::PhantomData<&'cursor &'tree ()>)
+                __NonExistent(#type_sitter_lib::Never, std::marker::PhantomData<&'query &'tree ()>)
             }
         };
 
         quote! {
             #[allow(non_upper_case_globals)]
-            static #internal_query_ident: std::sync::OnceLock<tree_sitter::Query> = std::sync::OnceLock::new();
+            static #internal_query: std::sync::OnceLock<#tree_sitter::Query> = std::sync::OnceLock::new();
 
             #[allow(non_snake_case)]
-            fn #mk_internal_query_ident() -> tree_sitter::Query {
+            fn #mk_internal_query() -> #tree_sitter::Query {
                 #[allow(unused_mut)]
-                let mut query = tree_sitter::Query::new(
+                let mut query = #tree_sitter::Query::new(
                     &#language_ident::LANGUAGE.into(),
                     #query_str
                 ).expect(#query_parse_error);
@@ -184,58 +172,54 @@ impl<'tree> SExpSeq<'tree> {
 
             #[doc = #matches_doc]
             #[allow(unused, non_camel_case_types)]
-            pub type #query_matches_ident<'cursor, 'tree #tree_t> = #type_sitter_lib::TypedQueryMatches<'cursor, 'tree, #def_ident #tree_t>;
+            pub type #query_matches<'query, 'tree #tree_t> = #type_sitter_lib::QueryMatches<'query, 'tree, #def_ident #tree_t>;
             #[doc = #captures_doc]
             #[allow(unused, non_camel_case_types)]
-            pub type #query_captures_ident<'cursor, 'tree #tree_t> = #type_sitter_lib::TypedQueryCaptures<'cursor, 'tree, #def_ident #tree_t>;
+            pub type #query_captures<'query, 'tree #tree_t> = #type_sitter_lib::QueryCaptures<'query, 'tree, #def_ident #tree_t>;
             #[doc = #query_match_doc]
-            pub struct #query_match_ident<'cursor, 'tree> {
-                r#match: tree_sitter::QueryMatch<'cursor, 'tree>,
-                #tree_arg
-            }
+            #[repr(transparent)]
+            pub struct #query_match<'query, 'tree: 'query>(#tree_sitter::QueryMatch<'query, 'tree>);
             #[doc = #query_capture_doc]
-            pub enum #query_capture_ident<'cursor, 'tree> {
-                #(#capture_variant_documentations #capture_variant_idents {
+            pub enum #query_capture<'query, 'tree: 'query> {
+                #(#capture_variant_documentations #capture_variants {
                     node: #capture_node_types,
-                    r#match: Option<#query_match_ident<'cursor, 'tree>>
+                    r#match: Option<#query_match<'query, 'tree>>
                 },)*
                 #non_existent_variant
             }
 
             #[automatically_derived]
-            impl #type_sitter_lib::TypedQuery for #def_ident {
-                type Match<'cursor, 'tree: 'cursor> = #query_match_ident<'cursor, 'tree>;
-                type Capture<'cursor, 'tree: 'cursor> = #query_capture_ident<'cursor, 'tree>;
+            impl #type_sitter_lib::Query for #def_ident {
+                type Match<'query, 'tree: 'query> = #query_match<'query, 'tree>;
+                type Capture<'query, 'tree: 'query> = #query_capture<'query, 'tree>;
 
-                fn query_str(&self) -> &'static str {
+                fn as_str(&self) -> &'static str {
                     #query_str
                 }
 
-                fn query(&self) -> &'static tree_sitter::Query {
-                    #internal_query_ident.get_or_init(#mk_internal_query_ident)
+                fn raw(&self) -> &'static #tree_sitter::Query {
+                    #internal_query.get_or_init(#mk_internal_query)
                 }
 
                 #[inline]
-                unsafe fn wrap_match<'cursor, 'tree>(
+                unsafe fn wrap_match<'query, 'tree>(
                     &self,
-                    r#match: tree_sitter::QueryMatch<'cursor, 'tree>,
-                    #tree_arg
-                ) -> Self::Match<'cursor, 'tree> {
-                    Self::Match { r#match, #tree_ident }
+                    r#match: #tree_sitter::QueryMatch<'query, 'tree>
+                ) -> #query_match<'query, 'tree> {
+                    #query_match(r#match)
                 }
 
                 #[inline]
-                unsafe fn wrap_capture<'cursor, 'tree>(
+                unsafe fn wrap_capture<'query, 'tree: 'query>(
                     &self,
-                    capture: tree_sitter::QueryCapture<'tree>,
-                    r#match: Option<Self::Match<'cursor, 'tree>>,
-                    #tree_arg
-                ) -> Self::Capture<'cursor, 'tree> {
+                    capture: #tree_sitter::QueryCapture<#tree_query 'tree>,
+                    r#match: Option<#query_match<'query, 'tree>>
+                ) -> #query_capture<'query, 'tree> {
                     // SAFETY: As long as the capture came from the query this is safe, because the
                     // query only captures nodes of the correct type
                     match capture.index as usize {
-                        #(#capture_idxs => Self::Capture::#capture_variant_idents {
-                            node: <#capture_node_types as #type_sitter_lib::TypedNode<'tree>>::from_node_unchecked(#tree_capture_node),
+                        #(#capture_idxs => #query_capture::#capture_variants {
+                            node: <#capture_node_types as #type_sitter_lib::Node<'tree>>::from_raw_unchecked(capture.node),
                             r#match
                         },)*
                         capture_index => unreachable!("Invalid capture index: {}", capture_index)
@@ -244,51 +228,51 @@ impl<'tree> SExpSeq<'tree> {
             }
 
             #[automatically_derived]
-            impl<'cursor, 'tree> #query_match_ident<'cursor, 'tree> {
+            impl<'query, 'tree: 'query> #query_match<'query, 'tree> {
                 #(#capture_methods)*
             }
 
             #[automatically_derived]
-            impl<'cursor, 'tree> std::fmt::Debug for #query_match_ident<'cursor, 'tree> {
+            impl<'query, 'tree: 'query> std::fmt::Debug for #query_match<'query, 'tree> {
                 fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-                    f.debug_struct(stringify!(#query_match_ident))
-                        .field("r#match", &self.r#match)
+                    f.debug_tuple(stringify!(#query_match))
+                        .field(&self.0)
                         .finish()
                 }
             }
 
             #[automatically_derived]
-            impl<'cursor, 'tree> #type_sitter_lib::TypedQueryMatch<'cursor, 'tree> for #query_match_ident<'cursor, 'tree> {
+            impl<'query, 'tree: 'query> #type_sitter_lib::QueryMatch<'query, 'tree> for #query_match<'query, 'tree> {
                 type Query = #def_ident;
 
                 #[inline]
-                fn query(&self) -> &'cursor Self::Query {
+                fn query(&self) -> &'query Self::Query {
                     &#def_ident
                 }
 
                 #tree_fn
 
                 #[inline]
-                fn raw(&self) -> &tree_sitter::QueryMatch<'cursor, 'tree> {
-                    &self.r#match
+                fn raw(&self) -> &#tree_sitter::QueryMatch<'query, 'tree> {
+                    &self.0
                 }
 
                 #[inline]
-                fn into_raw(self) -> tree_sitter::QueryMatch<'cursor, 'tree> {
-                    self.r#match
+                fn into_raw(self) -> #tree_sitter::QueryMatch<'query, 'tree> {
+                    self.0
                 }
             }
 
             #[automatically_derived]
-            impl<'cursor, 'tree> #query_capture_ident<'cursor, 'tree> {
+            impl<'query, 'tree: 'query> #query_capture<'query, 'tree> {
                 #(#capture_variant_extract_methods)*
             }
 
             #[automatically_derived]
-            impl<'cursor, 'tree> std::fmt::Debug for #query_capture_ident<'cursor, 'tree> {
+            impl<'query, 'tree: 'query> std::fmt::Debug for #query_capture<'query, 'tree> {
                 fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
                     match self {
-                        #(Self::#capture_variant_idents { node, .. } => f.debug_struct(concat!(stringify!(#query_capture_ident), "::", stringify!(#capture_variant_idents)))
+                        #(Self::#capture_variants { node, .. } => f.debug_struct(concat!(stringify!(#query_capture), "::", stringify!(#capture_variants)))
                             .field("node", node)
                             .finish(),)*
                         // https://github.com/rust-lang/rust/issues/78123 for empty enums is why this exists
@@ -299,10 +283,10 @@ impl<'tree> SExpSeq<'tree> {
             }
 
             #[automatically_derived]
-            impl<'cursor, 'tree> Clone for #query_capture_ident<'cursor, 'tree> {
+            impl<'query, 'tree: 'query> Clone for #query_capture<'query, 'tree> {
                 fn clone(&self) -> Self {
                     match self {
-                        #(Self::#capture_variant_idents { node, .. } => Self::#capture_variant_idents { node: *node, r#match: None },)*
+                        #(Self::#capture_variants { node, .. } => Self::#capture_variants { node: *node, r#match: None },)*
                         // https://github.com/rust-lang/rust/issues/78123 for empty enums is why this exists
                         #[allow(unreachable_patterns)]
                         _ => unreachable!()
@@ -311,18 +295,18 @@ impl<'tree> SExpSeq<'tree> {
             }
 
             #[automatically_derived]
-            impl<'cursor, 'tree> #type_sitter_lib::TypedQueryCapture<'cursor, 'tree> for #query_capture_ident<'cursor, 'tree> {
+            impl<'query, 'tree: 'query> #type_sitter_lib::QueryCapture<'query, 'tree> for #query_capture<'query, 'tree> {
                 type Query = #def_ident;
 
                 #[inline]
-                fn query(&self) -> &'cursor Self::Query {
+                fn query(&self) -> &'query Self::Query {
                     &#def_ident
                 }
 
                 #[inline]
-                fn r#match(&self) -> Option<&<Self::Query as #type_sitter_lib::TypedQuery>::Match<'cursor, 'tree>> {
+                fn r#match(&self) -> Option<&<Self::Query as #type_sitter_lib::Query>::Match<'query, 'tree>> {
                     match self {
-                        #(Self::#capture_variant_idents { r#match, .. } => r#match.as_ref(),)*
+                        #(Self::#capture_variants { r#match, .. } => r#match.as_ref(),)*
                         // https://github.com/rust-lang/rust/issues/78123 for empty enums is why this exists
                         #[allow(unreachable_patterns)]
                         _ => unreachable!()
@@ -330,9 +314,9 @@ impl<'tree> SExpSeq<'tree> {
                 }
 
                 #[inline]
-                fn into_match(self) -> Option<<Self::Query as #type_sitter_lib::TypedQuery>::Match<'cursor, 'tree>> {
+                fn into_match(self) -> Option<<Self::Query as #type_sitter_lib::Query>::Match<'query, 'tree>> {
                     match self {
-                        #(Self::#capture_variant_idents { r#match, .. } => r#match,)*
+                        #(Self::#capture_variants { r#match, .. } => r#match,)*
                         // https://github.com/rust-lang/rust/issues/78123 for empty enums is why this exists
                         #[allow(unreachable_patterns)]
                         _ => unreachable!()
@@ -340,11 +324,11 @@ impl<'tree> SExpSeq<'tree> {
                 }
 
                 #[inline]
-                fn to_raw(&self) -> #tree_sitter::QueryCapture<#tree_static 'tree> {
+                fn raw(&self) -> #tree_sitter::QueryCapture<#tree_query 'tree> {
                     #[allow(unused_imports)]
-                    use #type_sitter_lib::TypedNode;
+                    use #type_sitter_lib::Node;
                     match self {
-                        #(Self::#capture_variant_idents { node, .. } => #tree_to_raws,)*
+                        #(Self::#capture_variants { node, .. } => #tree_to_raws,)*
                         // https://github.com/rust-lang/rust/issues/78123 for empty enums is why this exists
                         #[allow(unreachable_patterns)]
                         _ => unreachable!()
@@ -352,11 +336,11 @@ impl<'tree> SExpSeq<'tree> {
                 }
 
                 #[inline]
-                fn node(&self) -> &#tree_sitter::Node<'tree> {
+                fn node(&self) -> &#type_sitter_lib::UntypedNode<'tree> {
                     #[allow(unused_imports)]
-                    use #type_sitter_lib::TypedNode;
+                    use #type_sitter_lib::Node;
                     match self {
-                        #(Self::#capture_variant_idents { node, .. } => node.node(),)*
+                        #(Self::#capture_variants { node, .. } => #type_sitter_lib::UntypedNode::r#ref(node.raw()),)*
                         // https://github.com/rust-lang/rust/issues/78123 for empty enums is why this exists
                         #[allow(unreachable_patterns)]
                         _ => unreachable!()
@@ -364,11 +348,11 @@ impl<'tree> SExpSeq<'tree> {
                 }
 
                 #[inline]
-                fn node_mut(&mut self) -> &mut #tree_sitter::Node<'tree> {
+                fn node_mut(&mut self) -> &mut #type_sitter_lib::UntypedNode<'tree> {
                     #[allow(unused_imports)]
-                    use #type_sitter_lib::TypedNode;
+                    use #type_sitter_lib::Node;
                     match self {
-                        #(Self::#capture_variant_idents { node, .. } => node.node_mut(),)*
+                        #(Self::#capture_variants { node, .. } => #type_sitter_lib::UntypedNode::r#mut(node.raw_mut()),)*
                         // https://github.com/rust-lang/rust/issues/78123 for empty enums is why this exists
                         #[allow(unreachable_patterns)]
                         _ => unreachable!()
@@ -376,9 +360,9 @@ impl<'tree> SExpSeq<'tree> {
                 }
 
                 #[inline]
-                fn name(&self) -> &'static str {
+                fn name(&self) -> &'query str {
                     match self {
-                        #(Self::#capture_variant_idents { .. } => #capture_names,)*
+                        #(Self::#capture_variants { .. } => #capture_names,)*
                         // https://github.com/rust-lang/rust/issues/78123 for empty enums is why this exists
                         #[allow(unreachable_patterns)]
                         _ => unreachable!()
@@ -388,7 +372,7 @@ impl<'tree> SExpSeq<'tree> {
                 #[inline]
                 fn index(&self) -> usize {
                     match self {
-                        #(Self::#capture_variant_idents { .. } => #capture_idxs,)*
+                        #(Self::#capture_variants { .. } => #capture_idxs,)*
                         // https://github.com/rust-lang/rust/issues/78123 for empty enums is why this exists
                         #[allow(unreachable_patterns)]
                         _ => unreachable!()
@@ -407,16 +391,23 @@ impl<'tree> SExpSeq<'tree> {
         ts_query: &tree_sitter::Query,
         nodes: &Path,
         node_type_map: &HashMap<String, NodeType>,
-        use_yak_sitter: bool,
         tree_sitter: &Path,
         type_sitter_lib: &Path,
         anon_unions: &mut AnonUnions
     ) -> (TokenStream, TokenStream, Ident, TokenStream, TokenStream) {
         let (capture_variant_name, capture_method_name) = sexp_name_to_rust_names(&capture_name.replace(".", "_"));
-        let capture_method_ident = ident!(capture_method_name, "capture name (capture method)")
+        let capture_method = ident!(capture_method_name, "capture name (capture method)")
             .expect("ident should be valid because we get them from a names function");
-        let capture_variant_ident = ident!(capture_variant_name, "capture name (capture variant)")
+        let capture_variant = ident!(capture_variant_name, "capture name (capture variant)")
             .expect("ident should be valid because we get them from a names function");
+
+        let mut capture_method_name = capture_method.to_string();
+        // We must remove the `r#` prefix because we're prepending `as_` and we don't have to add
+        // back because no reserved identifiers start with it.
+        if capture_method_name.starts_with("r#") {
+            capture_method_name = capture_method_name[2..].to_owned();
+        }
+        let as_capture_method = format_ident!("as_{}", capture_method_name);
 
         let captured_sexps = self.captured_patterns(capture_name).collect::<Vec<_>>();
         let captured_sexp_strs = captured_sexps.iter().map(|s| &query_str[s.span()]);
@@ -433,15 +424,11 @@ impl<'tree> SExpSeq<'tree> {
             .unwrap_or(CaptureQuantifier::Zero);
         let captured_type = capture_quantifier.print_type(&capture_node_type_tokens);
         let captured_nonempty_iterator_doc = capture_quantifier.print_nonempty_iterator_doc();
-        let capture_expr_n = match use_yak_sitter {
-            false => quote! { n },
-            true => quote! { yak_sitter::Node::new(n, self.tree) }
-        };
         let capture_idxs_array = lit_array(capture_idxs.iter().map(|i| *i as u32));
         let captured_expr = capture_quantifier.print_expr(&quote! {
-            #capture_idxs_array.into_iter().flat_map(|i| self.r#match.nodes_for_capture_index(i))
+            #capture_idxs_array.into_iter().flat_map(|i| self.0.nodes_for_capture_index(i))
             // SAFETY: Query only captures nodes of the correct type and tree
-                .map(|n| unsafe { <#capture_node_type_tokens as #type_sitter_lib::TypedNode<'tree>>::from_node_unchecked(#capture_expr_n) })
+                .map(|n| unsafe { <#capture_node_type_tokens as #type_sitter_lib::Node<'tree>>::from_raw_unchecked(n) })
         });
 
         let full_capture_pattern_doc = captured_sexp_strs.map(|captured_sexp_str| {
@@ -463,7 +450,7 @@ impl<'tree> SExpSeq<'tree> {
             #full_capture_documentation
             #[inline]
             #[allow(unused, non_snake_case)]
-            pub fn #capture_method_ident(&self) -> #captured_type {
+            pub fn #capture_method(&self) -> #captured_type {
                 #captured_expr
             }
         };
@@ -473,11 +460,12 @@ impl<'tree> SExpSeq<'tree> {
             #full_capture_documentation
             #[inline]
             #[allow(unused, non_snake_case)]
-            pub fn #capture_method_ident(&self) -> Option<&#capture_node_type_tokens> {
-                match self {
-                    Self::#capture_variant_ident { node, .. } => Some(node),
-                    #[allow(unreachable_patterns)]
-                    _ => None
+            pub fn #as_capture_method(&self) -> Option<&#capture_node_type_tokens> {
+                #[allow(irrefutable_let_patterns)]
+                if let Self::#capture_variant { node, .. } = self {
+                    Some(node)
+                } else {
+                    None
                 }
             }
         };
@@ -486,7 +474,7 @@ impl<'tree> SExpSeq<'tree> {
             #[doc = #capture_variant_main_doc]
             #full_capture_documentation
         };
-        (capture_method, capture_variant_extract_method, capture_variant_ident, capture_variant_documentation, capture_node_type_tokens)
+        (capture_method, capture_variant_extract_method, capture_variant, capture_variant_documentation, capture_node_type_tokens)
     }
 }
 

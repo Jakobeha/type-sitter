@@ -1,29 +1,143 @@
-# type-sitter: generate typed wrappers for [tree-sitter](https://tree-sitter.github.io) grammars from node-types.json and queries
+# type-sitter: generate typed wrappers for [tree-sitter](https://tree-sitter.github.io) nodes and queries
 
-***Note:** type-sitter is still in the early stages and as such the API is subject to change.*
+***Note:** type-sitter is in alpha, therefore the API is subject to change.*
 
-[![Build status](https://github.com/Jakobeha/type-sitter/actions/workflows/ci.yml/badge.svg)](https://github.com/Jakobeha/type-sitter/actions/workflows/ci.yml)[![Crates.io](https://img.shields.io/crates/v/type-sitter-cli.svg?label=type-sitter-cli)](https://crates.io/crates/type-sitter-cli)
-[![Crates.io](https://img.shields.io/crates/v/type-sitter-cli.svg?label=type-sitter-proc)](https://crates.io/crates/type-sitter-proc)
-[![Crates.io](https://img.shields.io/crates/v/type-sitter-cli.svg?label=type-sitter-gen)](https://crates.io/crates/type-sitter-gen)
-[![Docs.rs](https://docs.rs/type-sitter-gen/badge.svg)](https://docs.rs/type-sitter-gen)
-[![Crates.io](https://img.shields.io/crates/v/type-sitter-cli.svg?label=type-sitter-lib)](https://crates.io/crates/type-sitter-lib)
+[![Build status](https://github.com/Jakobeha/type-sitter/actions/workflows/ci.yml/badge.svg)](https://github.com/Jakobeha/type-sitter/actions/workflows/ci.yml)[![Crates.io](https://img.shields.io/crates/v/type-sitter.svg?label=type-sitter)](https://crates.io/crates/type-sitter)
+[![Crates.io](https://img.shields.io/crates/v/type-sitter.svg)](https://crates.io/crates/type-sitter)
+[![Docs.rs](https://docs.rs/type-sitter-cli/badge.svg)](https://docs.rs/type-sitter-cli)
+[![Docs.rs](https://docs.rs/type-sitter-proc/badge.svg)](https://docs.rs/type-sitter-proc)
 [![Docs.rs](https://docs.rs/type-sitter-lib/badge.svg)](https://docs.rs/type-sitter-lib)
 
 ## Overview
 
-type-sitter is a library, CLI tool, and procedural-macro which generates type-safe wrappers for tree-sitter nodes from a [tree-sitter grammar](https://tree-sitter.github.io/tree-sitter/using-parsers#static-node-types), and queries from [tree-sitter query s-expressions](https://tree-sitter.github.io/tree-sitter/using-parsers#pattern-matching-with-queries).
+`type-sitter` generates type-safe wrappers for tree-sitter nodes and queries in a specific language. Nodes are generated from [`node-types.json`](https://tree-sitter.github.io/tree-sitter/using-parsers#static-node-types), and queries from [query s-expressions](https://tree-sitter.github.io/tree-sitter/using-parsers#pattern-matching-with-queries).
 
-These wrappers contain methods to access the node's fields and children, and query's captures, as well as pattern-matching and selectors for union and supertype nodes. They even have documentation! The wrappers also encourage good practices by explicitly handling "error" and "extra" nodes, so you won't forget; but also provide convenience methods like [`unwrap2()`](https://docs.rs/type-sitter-lib/latest/type_sitter_lib/trait.NodeResultExtraOrExt.html#tymethod.unwrap2) and [`flatten()`](https://docs.rs/type-sitter-lib/latest/type_sitter_lib/trait.NodeResultExtraOrExt.html#tymethod.flatten) to ease some of the verbosity.
+"Type-safe" here means that:
 
-Type-sitter also allows you to use different facades (underlying wrappers) for the core tree-sitter data-structures, such as [`tree-sitter-facade`](https://crates.io/crates/tree-sitter-facade) or [`yak-sitter`](./yak-sitter/README.md). There are additional CLI options and more flexibility in the library [`type-sitter-gen`](./type-sitter-gen/README.md).
+- Instead of representing all tree-sitter nodes by `Node`, each node type has its own struct, which is a thin wrapper around `Node`.
+  - Each struct implements [`Node`](https://docs.rs/type-sitter-lib/latest/type_sitter_lib/trait.Node.html), and can be converted to/from [`UntypedNode`](https://docs.rs/type-sitter-lib/latest/type_sitter_lib/struct.UntypedNode.html), so you can still write methods that take/return arbitrary-typed nodes.
+- Instead of accessing fields by `field("field_name")`, you access by specific methods like `field_name()`.
+  - These methods, and every other generated method, also return typed nodes.
+- Queries have their own structs, you access captures by specific methods instead of `capture("capture_name")`, and query methods return typed nodes.
+
+`type-sitter` has other useful features:
+
+- Typed error, missing, and extra nodes.
+- From a typed node you can lookup the "extra" nodes before and after, e.g. to handle comments.
+- [`Option<NodeResult<'_>>.flatten()`](https://docs.rs/type-sitter-lib/latest/type_sitter_lib/trait.NodeResultExtraOrExt.html#tymethod.flatten).
+
+Lastly, there's an optional feature, `yak-sitter`, which re-exports the `tree-sitter` API with a few small changes, most notably nodes being able to access their text and filepath directly. The [`yak-sitter`](./yak-sitter/README.md) library is a drop-in replacement for `tree-sitter` and can by used by itself without `type-sitter` (and `yak-sitter` is optional in `type-sitter`).
+
+## Usage
+
+There are three ways to use `type-sitter`: procedural macros, build script, or the CLI tool. Procedural macros is the easiest. Build script is much faster because it's less redundant. The CLI tool is as fast as the build script, and lets you edit the generated code, but requires you to run it manually.
+
+Every method requires that you **vendor** the tree-sitter grammar you want to generate bindings for: you cannot just include it as a dependency in `Cargo.toml`, because the node generator needs a hard-coded (relative) path to the grammar's `node-types.json`, and the query generator needs a hard-coded path to the grammar's root folder (containing `src/node-types.json`), which must also contain a built shared object (at `build/tree_sitter_foobar_binding.dylib` or `build/tree_sitter_foobar_binding.so`).
+
+### Procedural macros
+
+```shell
+cargo add type-sitter  # Or add to Cargo.toml manually
+```
+
+To generate typed nodes:
+
+```rust
+// Assume this code is in `src/foobar_nodes.rs`
+use type_sitter_proc::generate_nodes;
+
+generate_nodes! {
+    // Replace this with the path to the node-types.json file
+    "vendor/path/to/tree-sitter-foobar-lang/src/node-types.json"
+}
+```
+
+To generate typed queries:
+
+```rust
+// Assume this code is in `src/foobar_queries.rs`
+use type_sitter_proc::generate_queries;
+
+generate_queries! {
+    // Replace this with the path to the queries folder
+    "vendor/path/to/tree-sitter-foobar-lang/src/queries",
+    // Replace this with the path to the grammar's root
+    "vendor/path/to/tree-sitter-foobar-lang/src",
+    // Replace with a different path if the nodes don't exist in a sibling module named `foobar_nodes`.
+    super::foobar_nodes,
+}
+```
+
+### Build script
+
+```shell
+cargo add type-sitter --no-default-features  # Or add to Cargo.toml manually
+cargo add --build type-sitter-gen  # Notice `cargo add --build`
+```
+
+Then, in `build.rs`
+
+```rust
+use std::fs;
+use type_sitter_gen::{generate_nodes, generate_queries, super_nodes};
+
+fn main() {
+    // Common setup
+    let out_dir = Path::new(env::var_os("OUT_DIR").unwrap());
+    println!("cargo::rerun-if-changed=build.rs");
+
+    // Obligatory: in this and future lines, replace `vendor/path/to/tree-sitter-foobar-lang`
+    // with the path to your grammar's folder, relative to the folder containing `Cargo.toml`
+    println!("cargo::rerun-if-changed=vendor/path/to/tree-sitter-foobar-lang");
+    
+    // To generate nodes
+    let dest_path = out_dir.join("nodes.rs");
+    fs::write(
+        &dest_path,
+        generate_nodes("vendor/path/to/tree-sitter-foobar-lang/src/node-types.json").unwrap().to_string()
+    ).unwrap();
+  
+    // To generate queries
+    let dest_path = out_dir.join("queries.rs");
+    fs::write(
+        &dest_path,
+        generate_queries(
+            "vendor/path/to/tree-sitter-foobar-lang/queries",
+            "vendor/path/to/tree-sitter-foobar-lang",
+            // Replace with a different `syn::Path` if the nodes don't exist in a subling to `dest_path` named `nodes`
+            &super_nodes(),
+            // Replace with `true` if you are using the `yak-sitter` feature (by default, no)
+            false
+        ).unwrap().to_string()
+    ).unwrap();
+}
+```
+
+### CLI tool
+
+```shell
+cargo add type-sitter --no-default-features  # Or add to Cargo.toml manually
+cargo add --dev type-sitter-cli  # Notice `cargo add --dev`
+```
+
+Then, *manually* generate typed nodes and queries with the CLI tool:
+
+```shell
+# Replace `vendor/path/to/tree-sitter-foobar-lang` and `src/parent/of/generated/module` with the path to the grammar's
+# root folder (containing `src/node-types.json` and `queries`) and the directory where you want the generated module's
+# source files to be placed, respectively.
+> cargo run -p type-sitter-cli vendor/path/to/tree-sitter-foobar-lang -o src/parent/of/generated/module
+```
+
+Additionally, you must pass `--use-yak-sitter` if the `yak-sitter` feature is enabled. If you skip `-o`, it defaults to `src/type_sitter`.
+
+Alternatively, instead of the path to the grammar's root folder, if you specify the path to the `node-types.json` directly, the CLI tool will only generate node types; or if you specify the path to the `queries` directory, it will only generate queries.
+
+A downside with the CLI approach is that you need to manually re-generate the nodes if the grammar changes. An upside is that, if you know the grammar won't change and you won't have to manually re-generate, you can edit the generated code and the edits will persist.
 
 ## Drawbacks
 
-`type-sitter`'s main drawback is that as of now, the generated wrapper code is very large: the generated node wrappers for `tree-sitter-rust` are 33217 LOC. There are potential future steps to reduce code size such as replacing enums with generic types, but these have their own drawbacks (more complex resolution, may not be effective). Though on my M1 Macbook Air running IntelliJ, building and IntelliJ code analysis is still pretty fast: cold starts are a few seconds, incremental builds are <1 second and hints are not sluggish. Your mileage may vary.
-
-Another issue is that certain grammars and options will cause `type-sitter` to generate invalid code. For example, `type-sitter` will generate invalid code if grammars generate duplicate datatype definitions (see [Naming Rules](#naming-rules)), although this is uncommon because it only happens if their names are weirdly similar. Moreover, there are various bugs which will cause invalid code generation. If this happens, the only workaround is to use `type-sitter-cli` and fix the code manually.
-
-Lastly, keep in mind that both this and [`yak-sitter`](yak-sitter/README.md) are still in the early stages of development, so they will have bugs and API may change.
+Be aware that the generated wrapper code is very large: the generated node wrappers for `tree-sitter-rust` are 33217 LOC. In my usage it seems analyzers are pretty good at handling this, but it's something to keep in mind.
 
 ## Naming Rules
 
@@ -64,19 +178,21 @@ Lastly, keep in mind that both this and [`yak-sitter`](yak-sitter/README.md) are
 - `\t` ⇒ `Tab`
 - `\n` ⇒ `Newline`
 - `\r` ⇒ `CarriageReturn`
-- Any other character ⇒ `U` + the character's Unicode codepoint in upper-hex
+- Any other character ⇒ `U` + the character's Unicode codepoint in upper-hex.
 
 For method names (variant selectors), we simply convert back to snake case.
 
-Additionally, if a node is implicit (starts with `_`), we remove the prepended `_`
+Additionally, if a node is implicit (starts with `_`), we remove the prepended `_`.
 
-Lastly, if a type or method name is an illegal definition identifier (`Self`, `self`, `super`, `crate`, `_`, or anything which starts with a number), `type-sitter` prepends an `_`. If it's a Rust keyword, `type-sitter` prepends `r#`.
+If a type or method name is an illegal definition identifier (`Self`, `self`, `super`, `crate`, `_`, or anything which starts with a number), `type-sitter` prepends an `_`. If it's a Rust keyword, `type-sitter` prepends `r#`.
 
 Naming rules also determine the module. Unnamed nodes and symbols are in modules specifically to reduce naming conflicts without having to actually rename the nodes.
 
-- Unnamed and contains symbols: `symbol::`
-- Unnamed and doesn't contain symbols: `unnamed::`
-- Otherwise the node is at the toplevel of the generated source
+- Unnamed and contains symbols: `symbol::`.
+- Unnamed and doesn't contain symbols: `unnamed::`.
+- Otherwise the node is at the toplevel of the generated source.
+
+Lastly, if a type, method, or variant, after applying the conversions, has the same name as another, it will have an underscore appended to disambiguate it. For example, if there are two unnamed nodes `Fn` and `fn`, one of them will have type `Fn`, and the other will have type `Fn_`. You can see which node is which by looking at the documentation, which contains the original tree-sitter name.
 
 The source for all this is at [`type-sitter-gen/src/names.rs`](type-sitter-gen/src/names.rs).
 
@@ -96,11 +212,10 @@ Query capture naming rules are the exact same as node rules, except that in capt
 ## Example
 
 ```rust
-use tree_sitter::{Parser, Tree};
-use type_sitter_lib::{Either2, TypedNode};
+use type_sitter::{Node, OptionNodeResultExt};
 
-pub fn get_import_paths_unsafe(tree: &Tree, text: &str) -> Vec<String> {
-    // BAD: what if we spell the field names wrong?
+pub fn get_import_paths_unsafe(tree: &tree_sitter::Tree, text: &str) -> Vec<String> {
+    // BAD: what if we spell the field names wrong? What if a new variant is added with the same field name? 
     tree.root_node().children(&mut tree.walk())
         .filter(|n| n.kind() == "use_declaration")
         .filter_map(|n| n.child_by_field_name("argument"))
@@ -110,16 +225,16 @@ pub fn get_import_paths_unsafe(tree: &Tree, text: &str) -> Vec<String> {
         .collect()
 }
 
-pub fn get_import_paths_safe(tree: &Tree, text: &str) -> Vec<String> {
-    // GOOD: fields are type-safe, and we get IDE inference
-    rust::SourceFile::try_from(tree.root_node()).unwrap().children(&mut tree.walk())
-        .filter_map(|n| n.declaration_statement())
-        .filter_map(|n| n.use_declaration())
+pub fn get_import_paths_safe(tree: &type_sitter::Tree<rust::SourceFile<'static>>, text: &str) -> Vec<String> {
+    // GOOD: fields are type-safe, variant selectors are explicit, and we get IDE inference
+    tree.root_node().unwrap().children(&mut tree.walk())
+        .filter_map(|n| n.as_declaration_statement())
+        .filter_map(|n| n.as_use_declaration())
         .filter_map(|n| n.argument())
-        .filter_map(|n| n.scoped_identifier())
+        .filter_map(|n| n.as_scoped_identifier())
         .filter_map(|n| n.path().flatten())
-        .filter_map(|n| n.identifier())
-        .filter_mao(|n| n.utf8_text(code_str.as_bytes()))
+        .filter_map(|n| n.as_identifier())
+        .filter_map(|n| n.utf8_text(code_str.as_bytes()))
         .map(|s| s.to_string())
         .collect()
 }
@@ -128,41 +243,6 @@ pub fn get_import_paths_safe(tree: &Tree, text: &str) -> Vec<String> {
 pub fn process_declaration(decl: rust::DeclarationStatement<'_>) {
     // ...
 }
-```
-
-## Usage
-
-In order to generate the bindings, you can either invoke `type-sitter-cli` directly, or use the procedural macros in `type-sitter-proc`. The CLI tool is recommended, as it's more tested and will give your IDE at least as good inference.
-
-The generated code depends on `type-sitter-lib`, so you must include `type-sitter-lib` as a dependency.
-
-### Basic usage
-
-```shell
-# If not already installed
-cargo install type-sitter-cli
-# In your cargo project root directory
-type-sitter-cli path/to/tree-sitter-foobar-lang
-# To add type-sitter-lib as a dependency (also in cargo root)
-cargo add type-sitter-lib
-```
-
-#### Advanced usage
-
-```shell
-# Add type-sitter-lib with the yak-sitter feature (see above section)
-cargo add type-sitter-lib --features yak-sitter
-# Specify a custom output directory and use yak-sitter
-type-sitter-cli vendor/tree-sitter-foobar-lang/node-types.json -o generated_src --use-yak-sitter
-# Specify a custom tree-sitter facade
-type-sitter-cli vendor/tree-sitter-foobar-lang/node-types.json -o generated_src --use-yak-sitter --facade "crate::my_tree_sitter"
-# Generate only node-types or queries
-type-sitter-cli vendor/tree-sitter-rust/node-types.json -o generated_src/rust_nodes.rs --use-yak-sitter
-type-sitter-cli vendor/tree-sitter-rust/queries -o generated_src/rust_queries.rs --use-yak-sitter
-# You can generate bindings for multiple grammars in the same project
-type-sitter-cli vendor/tree-sitter-typescript/node-types.json -o generated_src --use-yak-sitter
-# To see help for the CLI program
-type-sitter-cli --help
 ```
 
 ## Comparison to [rust-sitter](https://www.shadaj.me/writing/introducing-rust-sitter)

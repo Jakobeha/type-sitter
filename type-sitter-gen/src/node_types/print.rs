@@ -4,7 +4,7 @@ use std::collections::HashSet;
 use indexmap::IndexMap;
 use join_lazy_fmt::Join;
 use proc_macro2::TokenStream;
-use quote::quote;
+use quote::{format_ident, quote};
 use syn::{Ident, LitStr, Path};
 use crate::anon_unions::{AnonUnionId, AnonUnions};
 use crate::mk_syntax::{concat_doc, ident, lit_str, modularize};
@@ -59,9 +59,8 @@ impl NodeType {
 impl Children {
     fn print(
         &self,
-        (children_name, children_doc, children_body, is_exact_size_iterator): (Cow<'_, str>, TokenStream, TokenStream, bool),
+        (children_name, children_doc, children_body): (Cow<'_, str>, TokenStream, TokenStream),
         (child_name, child_doc, mut child_body): (Cow<'_, str>, TokenStream, TokenStream),
-        child_i: Option<(Cow<'_, str>, TokenStream, TokenStream)>,
         tree_sitter: &Path,
         type_sitter_lib: &Path,
         anon_unions: &mut AnonUnions,
@@ -73,43 +72,20 @@ impl Children {
             } else {
                 quote! {}
             };
-            let mut child_type = NodeName::print_sum_type(&self.types, tree_sitter, type_sitter_lib, anon_unions);
-            child_type = quote! { #type_sitter_lib::ExtraOr<'tree, #child_type> };
-            let iterator_type = if is_exact_size_iterator {
-                quote! { ExactSizeIterator }
-            } else {
-                quote! { Iterator }
-            };
-            let children_fn = quote! {
+            let child_type = NodeName::print_sum_type(&self.types, tree_sitter, type_sitter_lib, anon_unions);
+            quote! {
                 #[doc = #children_doc]
                 #nonempty_doc
                 #[allow(dead_code)]
                 #[inline]
-                pub fn #ident<'a>(&self, c: &'a mut #tree_sitter::TreeCursor<'tree>) -> impl #iterator_type<Item = #type_sitter_lib::NodeResult<'tree, #child_type>> + 'a {
-                    // Fun fact: <#child_type as TryFrom<_>>::try_from without the anonymous closure
-                    //     causes a lifetime error, but this works fine. It may be compiler bug
-                    #children_body.map(|n| <#child_type as TryFrom<_>>::try_from(n))
+                pub fn #ident<'a>(&self, c: &'a mut #type_sitter_lib::TreeCursor<'tree>) -> impl Iterator<Item = #type_sitter_lib::NodeResult<'tree, #child_type>> + 'a {
+                    #children_body.map(<#child_type as #type_sitter_lib::Node<'tree>>::try_from_raw)
                 }
-            };
-            let child_i_fn = child_i.map(|(child_i_name, child_i_doc, child_i_body)| {
-                let child_i_ident = ident!(child_i_name, "node field (rust method name)").unwrap();
-                quote! {
-                    #[doc = #child_i_doc]
-                    #[allow(dead_code)]
-                    #[inline]
-                    pub fn #child_i_ident(&self, i: usize) -> Option<#type_sitter_lib::NodeResult<'tree, #child_type>> {
-                        #child_i_body.map(<#child_type as TryFrom<_>>::try_from)
-                    }
-                }
-            });
-            quote! {
-                #children_fn
-                #child_i_fn
             }
         } else {
             let ident = ident!(child_name, "node field (rust method name)").unwrap();
             let mut child_type = NodeName::print_sum_type(&self.types, tree_sitter, type_sitter_lib, anon_unions);
-            child_body = quote! { #child_body.map(<#child_type as TryFrom<_>>::try_from) };
+            child_body = quote! { #child_body.map(<#child_type as #type_sitter_lib::Node<'tree>>::try_from_raw) };
             child_type = quote! { #type_sitter_lib::NodeResult<'tree, #child_type> };
             if self.required {
                 child_body = quote! { #child_body.expect("tree-sitter node missing its required child, there should at least be a MISSING node in its place") };
@@ -147,15 +123,13 @@ impl NodeName {
                 (
                     Cow::Owned(format!("{}s", name)),
                     concat_doc!("Get the field `", name, "` which has kind ", ChildrenKind::new(field, false).to_string()),
-                    quote! { self.0.children_by_field_name(#name_sexp, c) },
-                    false
+                    quote! { self.0.children_by_field_name(#name_sexp, &mut c.0) }
                 ),
                 (
                     Cow::Borrowed(name),
                     concat_doc!("Get the field `", name, "` which has kind ", ChildrenKind::new(field, false).to_string()),
                     quote! { self.0.child_by_field_name(#name_sexp) }
                 ),
-                None,
                 tree_sitter,
                 type_sitter_lib,
                 &mut *anon_unions
@@ -173,20 +147,19 @@ impl NodeName {
             children_and_fields.print(
                 (
                     Cow::Borrowed("children"),
-                    quote! { "Get the node's named children" },
-                    quote! { self.0.named_children(c) },
-                    true
+                    quote! { "Get the node's not-extra named children" },
+                    quote! { self.0.named_children(&mut c.0).filter(|n| !n.is_extra()) }
                 ),
                 (
                     Cow::Borrowed("child"),
-                    quote! { "Get the node's only named child" },
-                    quote! { self.0.named_child(0) }
+                    quote! { "Get the node's only not-extra named child.\n\nIff this returns `Option`, it means the node may not have any non-extra named children." },
+                    quote! {
+                        (0..)
+                            .filter_map(|i| self.0.named_child(i))
+                            .filter(|n| !n.is_extra())
+                            .next()
+                    }
                 ),
-                Some((
-                    Cow::Borrowed("child"),
-                    quote! { "Get the node's named child #i" },
-                    quote! { self.0.named_child(i) }
-                )),
                 tree_sitter,
                 type_sitter_lib,
                 &mut *anon_unions
@@ -195,6 +168,7 @@ impl NodeName {
         quote! {
             #[doc = #doc]
             #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+            #[repr(transparent)]
             #[allow(non_camel_case_types)]
             pub struct #ident<'tree>(#tree_sitter::Node<'tree>);
 
@@ -205,44 +179,39 @@ impl NodeName {
             }
 
             #[automatically_derived]
-            impl<'tree> TryFrom<#tree_sitter::Node<'tree>> for #ident<'tree> {
-                type Error = #type_sitter_lib::IncorrectKind<'tree>;
+            impl<'tree> #type_sitter_lib::Node<'tree> for #ident<'tree> {
+                type WithLifetime<'a> = #ident<'a>;
 
-                #[inline]
-                fn try_from(node: #tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
-                    if node.kind() == #kind {
-                        Ok(Self(node))
-                    } else {
-                        Err(#type_sitter_lib::IncorrectKind {
-                            node,
-                            kind: <Self as #type_sitter_lib::TypedNode<'tree>>::KIND,
-                        })
-                    }
-                }
-            }
-
-            #[automatically_derived]
-            impl<'tree> #type_sitter_lib::TypedNode<'tree> for #ident<'tree> {
                 const KIND: &'static str = #kind;
 
                 #[inline]
-                fn node(&self) -> &#tree_sitter::Node<'tree> {
+                fn try_from_raw(node: #tree_sitter::Node<'tree>) -> #type_sitter_lib::NodeResult<Self> {
+                    if node.kind() == #kind {
+                        Ok(Self(node))
+                    } else {
+                        Err(#type_sitter_lib::IncorrectKind::new::<Self>(node))
+                    }
+                }
+
+                #[inline]
+                unsafe fn from_raw_unchecked(node: #tree_sitter::Node<'tree>) -> Self {
+                    debug_assert_eq!(node.kind(), #kind);
+                    Self(node)
+                }
+
+                #[inline]
+                fn raw(&self) -> &#tree_sitter::Node<'tree> {
                     &self.0
                 }
 
                 #[inline]
-                fn node_mut(&mut self) -> &mut #tree_sitter::Node<'tree> {
+                fn raw_mut(&mut self) -> &mut #tree_sitter::Node<'tree> {
                     &mut self.0
                 }
 
                 #[inline]
-                fn into_node(self) -> #tree_sitter::Node<'tree> {
+                fn into_raw(self) -> #tree_sitter::Node<'tree> {
                     self.0
-                }
-
-                #[inline]
-                unsafe fn from_node_unchecked(node: #tree_sitter::Node<'tree>) -> Self {
-                    Self(node)
                 }
             }
         }
@@ -267,20 +236,17 @@ impl NodeName {
         let mut prev_methods = HashSet::new();
         let variant_accessors = subtypes
             .iter()
-            .map(|name| name.print_variant_accessor(&mut prev_variants2, &mut prev_methods));
+            .map(|name| name.print_variant_accessor(&mut prev_variants2, &mut prev_methods, type_sitter_lib));
 
         let try_from = {
             let error = quote! {
-                Err(#type_sitter_lib::IncorrectKind {
-                    node,
-                    kind: <Self as #type_sitter_lib::TypedNode<'tree>>::KIND,
-                })
+                Err(#type_sitter_lib::IncorrectKind::new::<Self>(node))
             };
             if has_implicit_subtypes {
                 let mut prev_variants3 = HashSet::new();
                 let try_from_ifs = subtypes
                     .iter()
-                    .map(|name| name.print_try_from_if(&mut prev_variants3));
+                    .map(|name| name.print_try_from_if(&mut prev_variants3, type_sitter_lib));
 
                 quote! {
                     #(#try_from_ifs)*
@@ -304,17 +270,17 @@ impl NodeName {
         let mut prev_variants4 = HashSet::new();
         let node_cases = subtypes
             .iter()
-            .map(|name| name.print_node_case(&mut prev_variants4));
+            .map(|name| name.print_raw_case(&mut prev_variants4, type_sitter_lib));
 
         let mut prev_variants5 = HashSet::new();
         let node_mut_cases = subtypes
             .iter()
-            .map(|name| name.print_node_mut_case(&mut prev_variants5));
+            .map(|name| name.print_raw_mut_case(&mut prev_variants5, type_sitter_lib));
 
         let mut prev_variants6 = HashSet::new();
         let into_node_cases = subtypes
             .iter()
-            .map(|name| name.print_into_node_case(&mut prev_variants6));
+            .map(|name| name.print_into_raw_case(&mut prev_variants6));
 
         quote! {
             #[doc = #doc]
@@ -330,35 +296,32 @@ impl NodeName {
             }
 
             #[automatically_derived]
-            impl<'tree> TryFrom<#tree_sitter::Node<'tree>> for #ident<'tree> {
-                type Error = #type_sitter_lib::IncorrectKind<'tree>;
+            impl<'tree> #type_sitter_lib::Node<'tree> for #ident<'tree> {
+                type WithLifetime<'a> = #ident<'a>;
 
-                #[inline]
-                fn try_from(node: #tree_sitter::Node<'tree>) -> Result<Self, Self::Error> {
-                    #try_from
-                }
-            }
-
-            #[automatically_derived]
-            impl<'tree> #type_sitter_lib::TypedNode<'tree> for #ident<'tree> {
                 const KIND: &'static str = #kind;
 
                 #[inline]
-                fn node(&self) -> &#tree_sitter::Node<'tree> {
+                fn try_from_raw(node: #tree_sitter::Node<'tree>) -> #type_sitter_lib::NodeResult<Self> {
+                    #try_from
+                }
+
+                #[inline]
+                fn raw(&self) -> &#tree_sitter::Node<'tree> {
                     match self {
                         #(#node_cases)*
                     }
                 }
 
                 #[inline]
-                fn node_mut(&mut self) -> &mut #tree_sitter::Node<'tree> {
+                fn raw_mut(&mut self) -> &mut #tree_sitter::Node<'tree> {
                     match self {
                         #(#node_mut_cases)*
                     }
                 }
 
                 #[inline]
-                fn into_node(self) -> #tree_sitter::Node<'tree> {
+                fn into_raw(self) -> #tree_sitter::Node<'tree> {
                     match self {
                         #(#into_node_cases)*
                     }
@@ -460,30 +423,41 @@ impl NodeName {
     fn print_variant_accessor(
         &self,
         prev_variants: &mut HashSet<String>,
-        prev_methods: &mut HashSet<String>
+        prev_methods: &mut HashSet<String>,
+        type_sitter_lib: &Path
     ) -> TokenStream {
         let ident = self.rust_variant_ident(prev_variants);
         let type_ = self.print_type();
-        let method = self.rust_method_ident(prev_methods);
+
+        let mut method_name = self.rust_method_ident(prev_methods).to_string();
+        // We must remove the `r#` prefix because we're prepending `as_` and we don't have to add
+        // back because no reserved identifiers start with it.
+        if method_name.starts_with("r#") {
+            method_name = method_name[2..].to_owned();
+        }
+        let as_method = format_ident!("as_{}", method_name);
+
         let doc = concat_doc!("Returns the node if it is of kind `", self.sexp_name, "` ([`", self.rust_type_path(), "`]), otherwise returns None");
         quote! {
             #[doc = #doc]
             #[inline]
             #[allow(unused, non_snake_case)]
-            pub fn #method(self) -> Option<#type_> {
-                match self {
-                    Self::#ident(x) => Some(x),
-                    _ => None,
+            pub fn #as_method(self) -> #type_sitter_lib::NodeResult<'tree, #type_> {
+                #[allow(irrefutable_let_patterns)]
+                if let Self::#ident(x) = self {
+                    Ok(x)
+                } else {
+                    Err(#type_sitter_lib::IncorrectKind::new::<Self>(*#type_sitter_lib::Node::raw(&self)))
                 }
             }
         }
     }
 
-    fn print_try_from_if(&self, prev_variants: &mut HashSet<String>) -> TokenStream {
+    fn print_try_from_if(&self, prev_variants: &mut HashSet<String>, type_sitter_lib: &Path) -> TokenStream {
         let ident = self.rust_variant_ident(prev_variants);
         let type_ = self.print_type();
         quote! {
-            if let Ok(this) = <#type_ as TryFrom<_>>::try_from(node) {
+            if let Ok(this) = <#type_ as #type_sitter_lib::Node<'tree>>::try_from_raw(node) {
                 return Ok(Self::#ident(this));
             }
         }
@@ -494,28 +468,28 @@ impl NodeName {
         let type_ = self.print_type();
         let kind = self.sexp_lit_str();
         quote! {
-            #kind => Ok(unsafe { Self::#ident(<#type_ as #type_sitter_lib::TypedNode<'tree>>::from_node_unchecked(node)) }),
+            #kind => Ok(unsafe { Self::#ident(<#type_ as #type_sitter_lib::Node<'tree>>::from_raw_unchecked(node)) }),
         }
     }
 
-    fn print_node_case(&self, prev_variants: &mut HashSet<String>) -> TokenStream {
+    fn print_raw_case(&self, prev_variants: &mut HashSet<String>, type_sitter_lib: &Path) -> TokenStream {
         let ident = self.rust_variant_ident(prev_variants);
         quote! {
-            Self::#ident(x) => x.node(),
+            Self::#ident(x) => #type_sitter_lib::Node::raw(x),
         }
     }
 
-    fn print_node_mut_case(&self, prev_variants: &mut HashSet<String>) -> TokenStream {
+    fn print_raw_mut_case(&self, prev_variants: &mut HashSet<String>, type_sitter_lib: &Path) -> TokenStream {
         let ident = self.rust_variant_ident(prev_variants);
         quote! {
-            Self::#ident(x) => x.node_mut(),
+            Self::#ident(x) => #type_sitter_lib::Node::raw_mut(x),
         }
     }
 
-    fn print_into_node_case(&self, prev_variants: &mut HashSet<String>) -> TokenStream {
+    fn print_into_raw_case(&self, prev_variants: &mut HashSet<String>) -> TokenStream {
         let ident = self.rust_variant_ident(prev_variants);
         quote! {
-            Self::#ident(x) => x.into_node(),
+            Self::#ident(x) => x.into_raw(),
         }
     }
 
@@ -563,9 +537,9 @@ impl GeneratedNodeTokens {
 fn disambiguate_then_add(ident: &str, prev_idents: &mut HashSet<String>) -> String {
     let mut ident = ident.to_string();
     while !prev_idents.insert(ident.clone()) {
+        // We can remove the r# prefix because it's no longer reserved (there's no reserved
+        // identifier which is another reserved identifier plus underscore).
         if ident.starts_with("r#") {
-            // We can probably remove the r# prefix because it's no longer reserved (there's no
-            // reserved identifier which is another reserved identifier plus underscore).
             ident = ident[2..].to_owned();
         }
         ident.push('_');

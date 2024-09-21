@@ -2,7 +2,7 @@ use std::fs::{create_dir, read_to_string, write};
 use std::path::Path;
 use std::str::FromStr;
 use proc_macro2::TokenStream;
-use type_sitter_gen::{generate_queries_from_dir, super_nodes, type_sitter_lib, yak_sitter};
+use type_sitter_gen::{generate_queries_with_custom_module_paths, super_nodes, type_sitter_lib, yak_sitter};
 use pretty_assertions::assert_eq;
 
 #[test]
@@ -26,7 +26,7 @@ pub fn test_parse_queries(lang: &str) {
     }
     let input_queries_path = input_path.join("queries");
     let expected_queries_path = expected_path.join("queries.rs");
-    let queries_code = generate_queries_from_dir(
+    let queries_code = generate_queries_with_custom_module_paths(
         input_queries_path,
         input_path,
         &super_nodes(),
