@@ -53,345 +53,149 @@ impl<'tree> DeclarationStatement<'tree> {
     ///Returns the node if it is of kind `associated_type` ([`AssociatedType`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_associated_type(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, AssociatedType<'tree>> {
+    pub fn as_associated_type(self) -> Option<AssociatedType<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::AssociatedType(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::AssociatedType(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `attribute_item` ([`AttributeItem`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_attribute_item(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, AttributeItem<'tree>> {
+    pub fn as_attribute_item(self) -> Option<AttributeItem<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::AttributeItem(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::AttributeItem(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `const_item` ([`ConstItem`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_const_item(self) -> type_sitter_lib::NodeResult<'tree, ConstItem<'tree>> {
+    pub fn as_const_item(self) -> Option<ConstItem<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::ConstItem(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::ConstItem(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `empty_statement` ([`EmptyStatement`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_empty_statement(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, EmptyStatement<'tree>> {
+    pub fn as_empty_statement(self) -> Option<EmptyStatement<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::EmptyStatement(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::EmptyStatement(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `enum_item` ([`EnumItem`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_enum_item(self) -> type_sitter_lib::NodeResult<'tree, EnumItem<'tree>> {
+    pub fn as_enum_item(self) -> Option<EnumItem<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::EnumItem(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::EnumItem(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `extern_crate_declaration` ([`ExternCrateDeclaration`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_extern_crate_declaration(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, ExternCrateDeclaration<'tree>> {
+    pub fn as_extern_crate_declaration(self) -> Option<ExternCrateDeclaration<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::ExternCrateDeclaration(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::ExternCrateDeclaration(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `foreign_mod_item` ([`ForeignModItem`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_foreign_mod_item(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, ForeignModItem<'tree>> {
+    pub fn as_foreign_mod_item(self) -> Option<ForeignModItem<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::ForeignModItem(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::ForeignModItem(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `function_item` ([`FunctionItem`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_function_item(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, FunctionItem<'tree>> {
+    pub fn as_function_item(self) -> Option<FunctionItem<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::FunctionItem(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::FunctionItem(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `function_signature_item` ([`FunctionSignatureItem`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_function_signature_item(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, FunctionSignatureItem<'tree>> {
+    pub fn as_function_signature_item(self) -> Option<FunctionSignatureItem<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::FunctionSignatureItem(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::FunctionSignatureItem(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `impl_item` ([`ImplItem`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_impl_item(self) -> type_sitter_lib::NodeResult<'tree, ImplItem<'tree>> {
+    pub fn as_impl_item(self) -> Option<ImplItem<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::ImplItem(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::ImplItem(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `inner_attribute_item` ([`InnerAttributeItem`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_inner_attribute_item(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, InnerAttributeItem<'tree>> {
+    pub fn as_inner_attribute_item(self) -> Option<InnerAttributeItem<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::InnerAttributeItem(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::InnerAttributeItem(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `let_declaration` ([`LetDeclaration`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_let_declaration(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, LetDeclaration<'tree>> {
+    pub fn as_let_declaration(self) -> Option<LetDeclaration<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::LetDeclaration(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::LetDeclaration(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `macro_definition` ([`MacroDefinition`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_macro_definition(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, MacroDefinition<'tree>> {
+    pub fn as_macro_definition(self) -> Option<MacroDefinition<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::MacroDefinition(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::MacroDefinition(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `macro_invocation` ([`MacroInvocation`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_macro_invocation(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, MacroInvocation<'tree>> {
+    pub fn as_macro_invocation(self) -> Option<MacroInvocation<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::MacroInvocation(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::MacroInvocation(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `mod_item` ([`ModItem`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_mod_item(self) -> type_sitter_lib::NodeResult<'tree, ModItem<'tree>> {
+    pub fn as_mod_item(self) -> Option<ModItem<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::ModItem(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::ModItem(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `static_item` ([`StaticItem`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_static_item(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, StaticItem<'tree>> {
+    pub fn as_static_item(self) -> Option<StaticItem<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::StaticItem(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::StaticItem(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `struct_item` ([`StructItem`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_struct_item(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, StructItem<'tree>> {
+    pub fn as_struct_item(self) -> Option<StructItem<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::StructItem(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::StructItem(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `trait_item` ([`TraitItem`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_trait_item(self) -> type_sitter_lib::NodeResult<'tree, TraitItem<'tree>> {
+    pub fn as_trait_item(self) -> Option<TraitItem<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::TraitItem(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::TraitItem(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `type_item` ([`TypeItem`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_type_item(self) -> type_sitter_lib::NodeResult<'tree, TypeItem<'tree>> {
+    pub fn as_type_item(self) -> Option<TypeItem<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::TypeItem(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::TypeItem(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `union_item` ([`UnionItem`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_union_item(self) -> type_sitter_lib::NodeResult<'tree, UnionItem<'tree>> {
+    pub fn as_union_item(self) -> Option<UnionItem<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::UnionItem(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::UnionItem(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `use_declaration` ([`UseDeclaration`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_use_declaration(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, UseDeclaration<'tree>> {
+    pub fn as_use_declaration(self) -> Option<UseDeclaration<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::UseDeclaration(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::UseDeclaration(x) = self { Some(x) } else { None }
     }
 }
 #[automatically_derived]
@@ -763,655 +567,275 @@ impl<'tree> Expression<'tree> {
     ///Returns the node if it is of kind `_literal` ([`Literal`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_literal(self) -> type_sitter_lib::NodeResult<'tree, Literal<'tree>> {
+    pub fn as_literal(self) -> Option<Literal<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::Literal(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::Literal(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `array_expression` ([`ArrayExpression`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_array_expression(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, ArrayExpression<'tree>> {
+    pub fn as_array_expression(self) -> Option<ArrayExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::ArrayExpression(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::ArrayExpression(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `assignment_expression` ([`AssignmentExpression`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_assignment_expression(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, AssignmentExpression<'tree>> {
+    pub fn as_assignment_expression(self) -> Option<AssignmentExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::AssignmentExpression(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::AssignmentExpression(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `async_block` ([`AsyncBlock`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_async_block(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, AsyncBlock<'tree>> {
+    pub fn as_async_block(self) -> Option<AsyncBlock<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::AsyncBlock(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::AsyncBlock(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `await_expression` ([`AwaitExpression`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_await_expression(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, AwaitExpression<'tree>> {
+    pub fn as_await_expression(self) -> Option<AwaitExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::AwaitExpression(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::AwaitExpression(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `binary_expression` ([`BinaryExpression`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_binary_expression(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, BinaryExpression<'tree>> {
+    pub fn as_binary_expression(self) -> Option<BinaryExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::BinaryExpression(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::BinaryExpression(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `block` ([`Block`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_block(self) -> type_sitter_lib::NodeResult<'tree, Block<'tree>> {
+    pub fn as_block(self) -> Option<Block<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::Block(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::Block(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `break_expression` ([`BreakExpression`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_break_expression(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, BreakExpression<'tree>> {
+    pub fn as_break_expression(self) -> Option<BreakExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::BreakExpression(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::BreakExpression(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `call_expression` ([`CallExpression`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_call_expression(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, CallExpression<'tree>> {
+    pub fn as_call_expression(self) -> Option<CallExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::CallExpression(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::CallExpression(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `closure_expression` ([`ClosureExpression`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_closure_expression(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, ClosureExpression<'tree>> {
+    pub fn as_closure_expression(self) -> Option<ClosureExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::ClosureExpression(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::ClosureExpression(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `compound_assignment_expr` ([`CompoundAssignmentExpr`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_compound_assignment_expr(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, CompoundAssignmentExpr<'tree>> {
+    pub fn as_compound_assignment_expr(self) -> Option<CompoundAssignmentExpr<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::CompoundAssignmentExpr(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::CompoundAssignmentExpr(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `const_block` ([`ConstBlock`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_const_block(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, ConstBlock<'tree>> {
+    pub fn as_const_block(self) -> Option<ConstBlock<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::ConstBlock(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::ConstBlock(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `continue_expression` ([`ContinueExpression`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_continue_expression(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, ContinueExpression<'tree>> {
+    pub fn as_continue_expression(self) -> Option<ContinueExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::ContinueExpression(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::ContinueExpression(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `field_expression` ([`FieldExpression`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_field_expression(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, FieldExpression<'tree>> {
+    pub fn as_field_expression(self) -> Option<FieldExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::FieldExpression(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::FieldExpression(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `for_expression` ([`ForExpression`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_for_expression(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, ForExpression<'tree>> {
+    pub fn as_for_expression(self) -> Option<ForExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::ForExpression(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::ForExpression(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `generic_function` ([`GenericFunction`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_generic_function(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, GenericFunction<'tree>> {
+    pub fn as_generic_function(self) -> Option<GenericFunction<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::GenericFunction(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::GenericFunction(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `identifier` ([`Identifier`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_identifier(self) -> type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
+    pub fn as_identifier(self) -> Option<Identifier<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::Identifier(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::Identifier(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `if_expression` ([`IfExpression`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_if_expression(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, IfExpression<'tree>> {
+    pub fn as_if_expression(self) -> Option<IfExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::IfExpression(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::IfExpression(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `index_expression` ([`IndexExpression`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_index_expression(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, IndexExpression<'tree>> {
+    pub fn as_index_expression(self) -> Option<IndexExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::IndexExpression(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::IndexExpression(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `loop_expression` ([`LoopExpression`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_loop_expression(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, LoopExpression<'tree>> {
+    pub fn as_loop_expression(self) -> Option<LoopExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::LoopExpression(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::LoopExpression(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `macro_invocation` ([`MacroInvocation`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_macro_invocation(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, MacroInvocation<'tree>> {
+    pub fn as_macro_invocation(self) -> Option<MacroInvocation<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::MacroInvocation(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::MacroInvocation(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `match_expression` ([`MatchExpression`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_match_expression(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, MatchExpression<'tree>> {
+    pub fn as_match_expression(self) -> Option<MatchExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::MatchExpression(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::MatchExpression(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `metavariable` ([`Metavariable`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_metavariable(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, Metavariable<'tree>> {
+    pub fn as_metavariable(self) -> Option<Metavariable<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::Metavariable(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::Metavariable(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `parenthesized_expression` ([`ParenthesizedExpression`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_parenthesized_expression(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, ParenthesizedExpression<'tree>> {
+    pub fn as_parenthesized_expression(self) -> Option<ParenthesizedExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::ParenthesizedExpression(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::ParenthesizedExpression(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `range_expression` ([`RangeExpression`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_range_expression(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, RangeExpression<'tree>> {
+    pub fn as_range_expression(self) -> Option<RangeExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::RangeExpression(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::RangeExpression(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `reference_expression` ([`ReferenceExpression`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_reference_expression(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, ReferenceExpression<'tree>> {
+    pub fn as_reference_expression(self) -> Option<ReferenceExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::ReferenceExpression(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::ReferenceExpression(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `return_expression` ([`ReturnExpression`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_return_expression(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, ReturnExpression<'tree>> {
+    pub fn as_return_expression(self) -> Option<ReturnExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::ReturnExpression(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::ReturnExpression(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `scoped_identifier` ([`ScopedIdentifier`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_scoped_identifier(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, ScopedIdentifier<'tree>> {
+    pub fn as_scoped_identifier(self) -> Option<ScopedIdentifier<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::ScopedIdentifier(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::ScopedIdentifier(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `self` ([`_Self`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as__self(self) -> type_sitter_lib::NodeResult<'tree, _Self<'tree>> {
+    pub fn as__self(self) -> Option<_Self<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::_Self(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::_Self(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `struct_expression` ([`StructExpression`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_struct_expression(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, StructExpression<'tree>> {
+    pub fn as_struct_expression(self) -> Option<StructExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::StructExpression(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::StructExpression(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `try_block` ([`TryBlock`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_try_block(self) -> type_sitter_lib::NodeResult<'tree, TryBlock<'tree>> {
+    pub fn as_try_block(self) -> Option<TryBlock<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::TryBlock(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::TryBlock(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `try_expression` ([`TryExpression`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_try_expression(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, TryExpression<'tree>> {
+    pub fn as_try_expression(self) -> Option<TryExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::TryExpression(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::TryExpression(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `tuple_expression` ([`TupleExpression`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_tuple_expression(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, TupleExpression<'tree>> {
+    pub fn as_tuple_expression(self) -> Option<TupleExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::TupleExpression(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::TupleExpression(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `type_cast_expression` ([`TypeCastExpression`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_type_cast_expression(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, TypeCastExpression<'tree>> {
+    pub fn as_type_cast_expression(self) -> Option<TypeCastExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::TypeCastExpression(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::TypeCastExpression(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `unary_expression` ([`UnaryExpression`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_unary_expression(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, UnaryExpression<'tree>> {
+    pub fn as_unary_expression(self) -> Option<UnaryExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::UnaryExpression(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::UnaryExpression(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `unit_expression` ([`UnitExpression`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_unit_expression(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, UnitExpression<'tree>> {
+    pub fn as_unit_expression(self) -> Option<UnitExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::UnitExpression(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::UnitExpression(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `unsafe_block` ([`UnsafeBlock`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_unsafe_block(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, UnsafeBlock<'tree>> {
+    pub fn as_unsafe_block(self) -> Option<UnsafeBlock<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::UnsafeBlock(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::UnsafeBlock(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `while_expression` ([`WhileExpression`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_while_expression(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, WhileExpression<'tree>> {
+    pub fn as_while_expression(self) -> Option<WhileExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::WhileExpression(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::WhileExpression(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `yield_expression` ([`YieldExpression`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_yield_expression(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, YieldExpression<'tree>> {
+    pub fn as_yield_expression(self) -> Option<YieldExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::YieldExpression(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::YieldExpression(x) = self { Some(x) } else { None }
     }
 }
 #[automatically_derived]
@@ -1775,104 +1199,44 @@ impl<'tree> Literal<'tree> {
     ///Returns the node if it is of kind `boolean_literal` ([`BooleanLiteral`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_boolean_literal(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, BooleanLiteral<'tree>> {
+    pub fn as_boolean_literal(self) -> Option<BooleanLiteral<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::BooleanLiteral(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::BooleanLiteral(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `char_literal` ([`CharLiteral`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_char_literal(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, CharLiteral<'tree>> {
+    pub fn as_char_literal(self) -> Option<CharLiteral<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::CharLiteral(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::CharLiteral(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `float_literal` ([`FloatLiteral`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_float_literal(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, FloatLiteral<'tree>> {
+    pub fn as_float_literal(self) -> Option<FloatLiteral<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::FloatLiteral(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::FloatLiteral(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `integer_literal` ([`IntegerLiteral`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_integer_literal(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, IntegerLiteral<'tree>> {
+    pub fn as_integer_literal(self) -> Option<IntegerLiteral<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::IntegerLiteral(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::IntegerLiteral(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `raw_string_literal` ([`RawStringLiteral`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_raw_string_literal(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, RawStringLiteral<'tree>> {
+    pub fn as_raw_string_literal(self) -> Option<RawStringLiteral<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::RawStringLiteral(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::RawStringLiteral(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `string_literal` ([`StringLiteral`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_string_literal(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, StringLiteral<'tree>> {
+    pub fn as_string_literal(self) -> Option<StringLiteral<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::StringLiteral(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::StringLiteral(x) = self { Some(x) } else { None }
     }
 }
 #[automatically_derived]
@@ -2000,121 +1364,51 @@ impl<'tree> LiteralPattern<'tree> {
     ///Returns the node if it is of kind `boolean_literal` ([`BooleanLiteral`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_boolean_literal(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, BooleanLiteral<'tree>> {
+    pub fn as_boolean_literal(self) -> Option<BooleanLiteral<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::BooleanLiteral(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::BooleanLiteral(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `char_literal` ([`CharLiteral`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_char_literal(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, CharLiteral<'tree>> {
+    pub fn as_char_literal(self) -> Option<CharLiteral<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::CharLiteral(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::CharLiteral(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `float_literal` ([`FloatLiteral`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_float_literal(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, FloatLiteral<'tree>> {
+    pub fn as_float_literal(self) -> Option<FloatLiteral<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::FloatLiteral(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::FloatLiteral(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `integer_literal` ([`IntegerLiteral`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_integer_literal(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, IntegerLiteral<'tree>> {
+    pub fn as_integer_literal(self) -> Option<IntegerLiteral<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::IntegerLiteral(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::IntegerLiteral(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `negative_literal` ([`NegativeLiteral`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_negative_literal(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, NegativeLiteral<'tree>> {
+    pub fn as_negative_literal(self) -> Option<NegativeLiteral<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::NegativeLiteral(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::NegativeLiteral(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `raw_string_literal` ([`RawStringLiteral`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_raw_string_literal(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, RawStringLiteral<'tree>> {
+    pub fn as_raw_string_literal(self) -> Option<RawStringLiteral<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::RawStringLiteral(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::RawStringLiteral(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `string_literal` ([`StringLiteral`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_string_literal(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, StringLiteral<'tree>> {
+    pub fn as_string_literal(self) -> Option<StringLiteral<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::StringLiteral(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::StringLiteral(x) = self { Some(x) } else { None }
     }
 }
 #[automatically_derived]
@@ -2274,285 +1568,121 @@ impl<'tree> Pattern<'tree> {
     ///Returns the node if it is of kind `_` ([`symbols::__`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as___(self) -> type_sitter_lib::NodeResult<'tree, symbols::__<'tree>> {
+    pub fn as___(self) -> Option<symbols::__<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::__(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::__(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `_literal_pattern` ([`LiteralPattern`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_literal_pattern(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, LiteralPattern<'tree>> {
+    pub fn as_literal_pattern(self) -> Option<LiteralPattern<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::LiteralPattern(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::LiteralPattern(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `captured_pattern` ([`CapturedPattern`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_captured_pattern(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, CapturedPattern<'tree>> {
+    pub fn as_captured_pattern(self) -> Option<CapturedPattern<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::CapturedPattern(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::CapturedPattern(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `const_block` ([`ConstBlock`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_const_block(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, ConstBlock<'tree>> {
+    pub fn as_const_block(self) -> Option<ConstBlock<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::ConstBlock(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::ConstBlock(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `identifier` ([`Identifier`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_identifier(self) -> type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
+    pub fn as_identifier(self) -> Option<Identifier<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::Identifier(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::Identifier(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `macro_invocation` ([`MacroInvocation`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_macro_invocation(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, MacroInvocation<'tree>> {
+    pub fn as_macro_invocation(self) -> Option<MacroInvocation<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::MacroInvocation(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::MacroInvocation(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `mut_pattern` ([`MutPattern`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_mut_pattern(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, MutPattern<'tree>> {
+    pub fn as_mut_pattern(self) -> Option<MutPattern<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::MutPattern(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::MutPattern(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `or_pattern` ([`OrPattern`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_or_pattern(self) -> type_sitter_lib::NodeResult<'tree, OrPattern<'tree>> {
+    pub fn as_or_pattern(self) -> Option<OrPattern<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::OrPattern(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::OrPattern(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `range_pattern` ([`RangePattern`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_range_pattern(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, RangePattern<'tree>> {
+    pub fn as_range_pattern(self) -> Option<RangePattern<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::RangePattern(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::RangePattern(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `ref_pattern` ([`RefPattern`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_ref_pattern(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, RefPattern<'tree>> {
+    pub fn as_ref_pattern(self) -> Option<RefPattern<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::RefPattern(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::RefPattern(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `reference_pattern` ([`ReferencePattern`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_reference_pattern(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, ReferencePattern<'tree>> {
+    pub fn as_reference_pattern(self) -> Option<ReferencePattern<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::ReferencePattern(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::ReferencePattern(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `remaining_field_pattern` ([`RemainingFieldPattern`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_remaining_field_pattern(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, RemainingFieldPattern<'tree>> {
+    pub fn as_remaining_field_pattern(self) -> Option<RemainingFieldPattern<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::RemainingFieldPattern(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::RemainingFieldPattern(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `scoped_identifier` ([`ScopedIdentifier`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_scoped_identifier(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, ScopedIdentifier<'tree>> {
+    pub fn as_scoped_identifier(self) -> Option<ScopedIdentifier<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::ScopedIdentifier(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::ScopedIdentifier(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `slice_pattern` ([`SlicePattern`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_slice_pattern(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, SlicePattern<'tree>> {
+    pub fn as_slice_pattern(self) -> Option<SlicePattern<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::SlicePattern(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::SlicePattern(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `struct_pattern` ([`StructPattern`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_struct_pattern(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, StructPattern<'tree>> {
+    pub fn as_struct_pattern(self) -> Option<StructPattern<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::StructPattern(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::StructPattern(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `tuple_pattern` ([`TuplePattern`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_tuple_pattern(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, TuplePattern<'tree>> {
+    pub fn as_tuple_pattern(self) -> Option<TuplePattern<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::TuplePattern(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::TuplePattern(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `tuple_struct_pattern` ([`TupleStructPattern`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_tuple_struct_pattern(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, TupleStructPattern<'tree>> {
+    pub fn as_tuple_struct_pattern(self) -> Option<TupleStructPattern<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::TupleStructPattern(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::TupleStructPattern(x) = self { Some(x) } else { None }
     }
 }
 #[automatically_derived]
@@ -2762,283 +1892,121 @@ impl<'tree> Type<'tree> {
     ///Returns the node if it is of kind `abstract_type` ([`AbstractType`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_abstract_type(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, AbstractType<'tree>> {
+    pub fn as_abstract_type(self) -> Option<AbstractType<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::AbstractType(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::AbstractType(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `array_type` ([`ArrayType`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_array_type(self) -> type_sitter_lib::NodeResult<'tree, ArrayType<'tree>> {
+    pub fn as_array_type(self) -> Option<ArrayType<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::ArrayType(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::ArrayType(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `bounded_type` ([`BoundedType`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_bounded_type(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, BoundedType<'tree>> {
+    pub fn as_bounded_type(self) -> Option<BoundedType<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::BoundedType(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::BoundedType(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `dynamic_type` ([`DynamicType`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_dynamic_type(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, DynamicType<'tree>> {
+    pub fn as_dynamic_type(self) -> Option<DynamicType<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::DynamicType(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::DynamicType(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `function_type` ([`FunctionType`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_function_type(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, FunctionType<'tree>> {
+    pub fn as_function_type(self) -> Option<FunctionType<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::FunctionType(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::FunctionType(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `generic_type` ([`GenericType`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_generic_type(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, GenericType<'tree>> {
+    pub fn as_generic_type(self) -> Option<GenericType<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::GenericType(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::GenericType(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `macro_invocation` ([`MacroInvocation`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_macro_invocation(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, MacroInvocation<'tree>> {
+    pub fn as_macro_invocation(self) -> Option<MacroInvocation<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::MacroInvocation(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::MacroInvocation(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `metavariable` ([`Metavariable`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_metavariable(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, Metavariable<'tree>> {
+    pub fn as_metavariable(self) -> Option<Metavariable<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::Metavariable(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::Metavariable(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `never_type` ([`NeverType`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_never_type(self) -> type_sitter_lib::NodeResult<'tree, NeverType<'tree>> {
+    pub fn as_never_type(self) -> Option<NeverType<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::NeverType(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::NeverType(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `pointer_type` ([`PointerType`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_pointer_type(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, PointerType<'tree>> {
+    pub fn as_pointer_type(self) -> Option<PointerType<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::PointerType(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::PointerType(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `primitive_type` ([`PrimitiveType`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_primitive_type(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, PrimitiveType<'tree>> {
+    pub fn as_primitive_type(self) -> Option<PrimitiveType<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::PrimitiveType(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::PrimitiveType(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `reference_type` ([`ReferenceType`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_reference_type(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, ReferenceType<'tree>> {
+    pub fn as_reference_type(self) -> Option<ReferenceType<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::ReferenceType(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::ReferenceType(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `removed_trait_bound` ([`RemovedTraitBound`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_removed_trait_bound(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, RemovedTraitBound<'tree>> {
+    pub fn as_removed_trait_bound(self) -> Option<RemovedTraitBound<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::RemovedTraitBound(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::RemovedTraitBound(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `scoped_type_identifier` ([`ScopedTypeIdentifier`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_scoped_type_identifier(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, ScopedTypeIdentifier<'tree>> {
+    pub fn as_scoped_type_identifier(self) -> Option<ScopedTypeIdentifier<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::ScopedTypeIdentifier(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::ScopedTypeIdentifier(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `tuple_type` ([`TupleType`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_tuple_type(self) -> type_sitter_lib::NodeResult<'tree, TupleType<'tree>> {
+    pub fn as_tuple_type(self) -> Option<TupleType<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::TupleType(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::TupleType(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `type_identifier` ([`TypeIdentifier`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_type_identifier(
-        self,
-    ) -> type_sitter_lib::NodeResult<'tree, TypeIdentifier<'tree>> {
+    pub fn as_type_identifier(self) -> Option<TypeIdentifier<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::TypeIdentifier(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::TypeIdentifier(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of kind `unit_type` ([`UnitType`]), otherwise returns None
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_unit_type(self) -> type_sitter_lib::NodeResult<'tree, UnitType<'tree>> {
+    pub fn as_unit_type(self) -> Option<UnitType<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::UnitType(x) = self {
-            Ok(x)
-        } else {
-            Err(
-                type_sitter_lib::IncorrectKind::new::<
-                    Self,
-                >(*type_sitter_lib::Node::raw(&self)),
-            )
-        }
+        if let Self::UnitType(x) = self { Some(x) } else { None }
     }
 }
 #[automatically_derived]
@@ -18822,121 +17790,51 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `type_parameters` ([`TypeParameters`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_type_parameters(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, TypeParameters<'tree>> {
+        pub fn as_type_parameters(self) -> Option<TypeParameters<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::TypeParameters(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::TypeParameters(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `function_type` ([`FunctionType`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_function_type(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, FunctionType<'tree>> {
+        pub fn as_function_type(self) -> Option<FunctionType<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::FunctionType(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::FunctionType(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `generic_type` ([`GenericType`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_generic_type(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, GenericType<'tree>> {
+        pub fn as_generic_type(self) -> Option<GenericType<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::GenericType(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::GenericType(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `removed_trait_bound` ([`RemovedTraitBound`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_removed_trait_bound(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, RemovedTraitBound<'tree>> {
+        pub fn as_removed_trait_bound(self) -> Option<RemovedTraitBound<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::RemovedTraitBound(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::RemovedTraitBound(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `scoped_type_identifier` ([`ScopedTypeIdentifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_scoped_type_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, ScopedTypeIdentifier<'tree>> {
+        pub fn as_scoped_type_identifier(self) -> Option<ScopedTypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::ScopedTypeIdentifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::ScopedTypeIdentifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `tuple_type` ([`TupleType`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_tuple_type(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, TupleType<'tree>> {
+        pub fn as_tuple_type(self) -> Option<TupleType<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::TupleType(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::TupleType(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `type_identifier` ([`TypeIdentifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_type_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, TypeIdentifier<'tree>> {
+        pub fn as_type_identifier(self) -> Option<TypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::TypeIdentifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::TypeIdentifier(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -19084,104 +17982,44 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `function_type` ([`FunctionType`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_function_type(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, FunctionType<'tree>> {
+        pub fn as_function_type(self) -> Option<FunctionType<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::FunctionType(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::FunctionType(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `generic_type` ([`GenericType`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_generic_type(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, GenericType<'tree>> {
+        pub fn as_generic_type(self) -> Option<GenericType<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::GenericType(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::GenericType(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `removed_trait_bound` ([`RemovedTraitBound`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_removed_trait_bound(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, RemovedTraitBound<'tree>> {
+        pub fn as_removed_trait_bound(self) -> Option<RemovedTraitBound<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::RemovedTraitBound(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::RemovedTraitBound(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `scoped_type_identifier` ([`ScopedTypeIdentifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_scoped_type_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, ScopedTypeIdentifier<'tree>> {
+        pub fn as_scoped_type_identifier(self) -> Option<ScopedTypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::ScopedTypeIdentifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::ScopedTypeIdentifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `tuple_type` ([`TupleType`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_tuple_type(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, TupleType<'tree>> {
+        pub fn as_tuple_type(self) -> Option<TupleType<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::TupleType(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::TupleType(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `type_identifier` ([`TypeIdentifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_type_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, TypeIdentifier<'tree>> {
+        pub fn as_type_identifier(self) -> Option<TypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::TypeIdentifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::TypeIdentifier(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -19303,36 +18141,16 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `_expression` ([`Expression`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_expression(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
+        pub fn as_expression(self) -> Option<Expression<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Expression(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Expression(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `attribute_item` ([`AttributeItem`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_attribute_item(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, AttributeItem<'tree>> {
+        pub fn as_attribute_item(self) -> Option<AttributeItem<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::AttributeItem(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::AttributeItem(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -19395,70 +18213,30 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `where_clause` ([`WhereClause`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_where_clause(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, WhereClause<'tree>> {
+        pub fn as_where_clause(self) -> Option<WhereClause<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::WhereClause(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::WhereClause(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `trait_bounds` ([`TraitBounds`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_trait_bounds(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, TraitBounds<'tree>> {
+        pub fn as_trait_bounds(self) -> Option<TraitBounds<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::TraitBounds(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::TraitBounds(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `type_identifier` ([`TypeIdentifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_type_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, TypeIdentifier<'tree>> {
+        pub fn as_type_identifier(self) -> Option<TypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::TypeIdentifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::TypeIdentifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `type_parameters` ([`TypeParameters`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_type_parameters(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, TypeParameters<'tree>> {
+        pub fn as_type_parameters(self) -> Option<TypeParameters<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::TypeParameters(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::TypeParameters(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -19572,132 +18350,58 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `crate` ([`Crate`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_crate_(self) -> type_sitter_lib::NodeResult<'tree, Crate<'tree>> {
+        pub fn as_crate_(self) -> Option<Crate<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Crate(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Crate(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `identifier` ([`Identifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
+        pub fn as_identifier(self) -> Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Identifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Identifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `metavariable` ([`Metavariable`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_metavariable(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, Metavariable<'tree>> {
+        pub fn as_metavariable(self) -> Option<Metavariable<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Metavariable(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Metavariable(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `scoped_identifier` ([`ScopedIdentifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_scoped_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, ScopedIdentifier<'tree>> {
+        pub fn as_scoped_identifier(self) -> Option<ScopedIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::ScopedIdentifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::ScopedIdentifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `self` ([`_Self`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as__self(self) -> type_sitter_lib::NodeResult<'tree, _Self<'tree>> {
+        pub fn as__self(self) -> Option<_Self<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::_Self(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::_Self(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `super` ([`Super`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_super_(self) -> type_sitter_lib::NodeResult<'tree, Super<'tree>> {
+        pub fn as_super_(self) -> Option<Super<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Super(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Super(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `token_tree` ([`TokenTree`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_token_tree(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, TokenTree<'tree>> {
+        pub fn as_token_tree(self) -> Option<TokenTree<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::TokenTree(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::TokenTree(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `_expression` ([`Expression`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_expression(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
+        pub fn as_expression(self) -> Option<Expression<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Expression(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Expression(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -19847,290 +18551,128 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `!=` ([`symbols::NotEq`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_not_eq(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, symbols::NotEq<'tree>> {
+        pub fn as_not_eq(self) -> Option<symbols::NotEq<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::NotEq(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::NotEq(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `%` ([`symbols::Mod`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_mod(self) -> type_sitter_lib::NodeResult<'tree, symbols::Mod<'tree>> {
+        pub fn as_mod(self) -> Option<symbols::Mod<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Mod(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Mod(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `&` ([`symbols::And`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_and(self) -> type_sitter_lib::NodeResult<'tree, symbols::And<'tree>> {
+        pub fn as_and(self) -> Option<symbols::And<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::And(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::And(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `&&` ([`symbols::AndAnd`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_and_and(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, symbols::AndAnd<'tree>> {
+        pub fn as_and_and(self) -> Option<symbols::AndAnd<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::AndAnd(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::AndAnd(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `*` ([`symbols::Mul`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_mul(self) -> type_sitter_lib::NodeResult<'tree, symbols::Mul<'tree>> {
+        pub fn as_mul(self) -> Option<symbols::Mul<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Mul(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Mul(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `+` ([`symbols::Add`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_add(self) -> type_sitter_lib::NodeResult<'tree, symbols::Add<'tree>> {
+        pub fn as_add(self) -> Option<symbols::Add<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Add(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Add(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `-` ([`symbols::Sub`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_sub(self) -> type_sitter_lib::NodeResult<'tree, symbols::Sub<'tree>> {
+        pub fn as_sub(self) -> Option<symbols::Sub<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Sub(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Sub(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `/` ([`symbols::Div`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_div(self) -> type_sitter_lib::NodeResult<'tree, symbols::Div<'tree>> {
+        pub fn as_div(self) -> Option<symbols::Div<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Div(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Div(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `<` ([`symbols::Lt`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_lt(self) -> type_sitter_lib::NodeResult<'tree, symbols::Lt<'tree>> {
+        pub fn as_lt(self) -> Option<symbols::Lt<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Lt(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Lt(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `<<` ([`symbols::LtLt`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_lt_lt(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, symbols::LtLt<'tree>> {
+        pub fn as_lt_lt(self) -> Option<symbols::LtLt<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::LtLt(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::LtLt(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `<=` ([`symbols::LtEq`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_lt_eq(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, symbols::LtEq<'tree>> {
+        pub fn as_lt_eq(self) -> Option<symbols::LtEq<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::LtEq(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::LtEq(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `==` ([`symbols::EqEq`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_eq_eq(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, symbols::EqEq<'tree>> {
+        pub fn as_eq_eq(self) -> Option<symbols::EqEq<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::EqEq(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::EqEq(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `>` ([`symbols::Gt`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_gt(self) -> type_sitter_lib::NodeResult<'tree, symbols::Gt<'tree>> {
+        pub fn as_gt(self) -> Option<symbols::Gt<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Gt(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Gt(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `>=` ([`symbols::GtEq`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_gt_eq(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, symbols::GtEq<'tree>> {
+        pub fn as_gt_eq(self) -> Option<symbols::GtEq<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::GtEq(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::GtEq(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `>>` ([`symbols::GtGt`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_gt_gt(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, symbols::GtGt<'tree>> {
+        pub fn as_gt_gt(self) -> Option<symbols::GtGt<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::GtGt(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::GtGt(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `^` ([`symbols::BitXor`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_bit_xor(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, symbols::BitXor<'tree>> {
+        pub fn as_bit_xor(self) -> Option<symbols::BitXor<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::BitXor(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::BitXor(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `|` ([`symbols::Or`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_or(self) -> type_sitter_lib::NodeResult<'tree, symbols::Or<'tree>> {
+        pub fn as_or(self) -> Option<symbols::Or<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Or(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Or(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `||` ([`symbols::OrOr`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_or_or(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, symbols::OrOr<'tree>> {
+        pub fn as_or_or(self) -> Option<symbols::OrOr<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::OrOr(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::OrOr(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -20400,68 +18942,30 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `_declaration_statement` ([`DeclarationStatement`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_declaration_statement(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, DeclarationStatement<'tree>> {
+        pub fn as_declaration_statement(self) -> Option<DeclarationStatement<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::DeclarationStatement(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::DeclarationStatement(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `_expression` ([`Expression`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_expression(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
+        pub fn as_expression(self) -> Option<Expression<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Expression(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Expression(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `expression_statement` ([`ExpressionStatement`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_expression_statement(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, ExpressionStatement<'tree>> {
+        pub fn as_expression_statement(self) -> Option<ExpressionStatement<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::ExpressionStatement(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::ExpressionStatement(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `label` ([`Label`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_label(self) -> type_sitter_lib::NodeResult<'tree, Label<'tree>> {
+        pub fn as_label(self) -> Option<Label<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Label(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Label(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -20539,32 +19043,16 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `_type` ([`Type`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_type(self) -> type_sitter_lib::NodeResult<'tree, Type<'tree>> {
+        pub fn as_type(self) -> Option<Type<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Type(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Type(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `lifetime` ([`Lifetime`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_lifetime(self) -> type_sitter_lib::NodeResult<'tree, Lifetime<'tree>> {
+        pub fn as_lifetime(self) -> Option<Lifetime<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Lifetime(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Lifetime(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -20623,34 +19111,16 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `_type` ([`Type`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_type(self) -> type_sitter_lib::NodeResult<'tree, Type<'tree>> {
+        pub fn as_type(self) -> Option<Type<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Type(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Type(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `qualified_type` ([`QualifiedType`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_qualified_type(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, QualifiedType<'tree>> {
+        pub fn as_qualified_type(self) -> Option<QualifiedType<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::QualifiedType(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::QualifiedType(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -20709,34 +19179,16 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `_expression` ([`Expression`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_expression(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
+        pub fn as_expression(self) -> Option<Expression<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Expression(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Expression(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `label` ([`Label`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_label(self) -> type_sitter_lib::NodeResult<'tree, Label<'tree>> {
+        pub fn as_label(self) -> Option<Label<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Label(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Label(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -20873,642 +19325,272 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `_literal` ([`Literal`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_literal(self) -> type_sitter_lib::NodeResult<'tree, Literal<'tree>> {
+        pub fn as_literal(self) -> Option<Literal<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Literal(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Literal(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `array_expression` ([`ArrayExpression`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_array_expression(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, ArrayExpression<'tree>> {
+        pub fn as_array_expression(self) -> Option<ArrayExpression<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::ArrayExpression(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::ArrayExpression(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `assignment_expression` ([`AssignmentExpression`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_assignment_expression(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, AssignmentExpression<'tree>> {
+        pub fn as_assignment_expression(self) -> Option<AssignmentExpression<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::AssignmentExpression(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::AssignmentExpression(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `async_block` ([`AsyncBlock`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_async_block(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, AsyncBlock<'tree>> {
+        pub fn as_async_block(self) -> Option<AsyncBlock<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::AsyncBlock(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::AsyncBlock(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `await_expression` ([`AwaitExpression`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_await_expression(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, AwaitExpression<'tree>> {
+        pub fn as_await_expression(self) -> Option<AwaitExpression<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::AwaitExpression(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::AwaitExpression(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `binary_expression` ([`BinaryExpression`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_binary_expression(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, BinaryExpression<'tree>> {
+        pub fn as_binary_expression(self) -> Option<BinaryExpression<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::BinaryExpression(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::BinaryExpression(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `block` ([`Block`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_block(self) -> type_sitter_lib::NodeResult<'tree, Block<'tree>> {
+        pub fn as_block(self) -> Option<Block<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Block(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Block(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `break_expression` ([`BreakExpression`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_break_expression(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, BreakExpression<'tree>> {
+        pub fn as_break_expression(self) -> Option<BreakExpression<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::BreakExpression(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::BreakExpression(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `call_expression` ([`CallExpression`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_call_expression(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, CallExpression<'tree>> {
+        pub fn as_call_expression(self) -> Option<CallExpression<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::CallExpression(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::CallExpression(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `closure_expression` ([`ClosureExpression`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_closure_expression(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, ClosureExpression<'tree>> {
+        pub fn as_closure_expression(self) -> Option<ClosureExpression<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::ClosureExpression(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::ClosureExpression(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `compound_assignment_expr` ([`CompoundAssignmentExpr`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn as_compound_assignment_expr(
             self,
-        ) -> type_sitter_lib::NodeResult<'tree, CompoundAssignmentExpr<'tree>> {
+        ) -> Option<CompoundAssignmentExpr<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::CompoundAssignmentExpr(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::CompoundAssignmentExpr(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `const_block` ([`ConstBlock`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_const_block(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, ConstBlock<'tree>> {
+        pub fn as_const_block(self) -> Option<ConstBlock<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::ConstBlock(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::ConstBlock(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `continue_expression` ([`ContinueExpression`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_continue_expression(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, ContinueExpression<'tree>> {
+        pub fn as_continue_expression(self) -> Option<ContinueExpression<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::ContinueExpression(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::ContinueExpression(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `field_expression` ([`FieldExpression`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_field_expression(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, FieldExpression<'tree>> {
+        pub fn as_field_expression(self) -> Option<FieldExpression<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::FieldExpression(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::FieldExpression(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `for_expression` ([`ForExpression`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_for_expression(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, ForExpression<'tree>> {
+        pub fn as_for_expression(self) -> Option<ForExpression<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::ForExpression(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::ForExpression(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `generic_function` ([`GenericFunction`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_generic_function(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, GenericFunction<'tree>> {
+        pub fn as_generic_function(self) -> Option<GenericFunction<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::GenericFunction(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::GenericFunction(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `identifier` ([`Identifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
+        pub fn as_identifier(self) -> Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Identifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Identifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `if_expression` ([`IfExpression`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_if_expression(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, IfExpression<'tree>> {
+        pub fn as_if_expression(self) -> Option<IfExpression<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::IfExpression(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::IfExpression(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `index_expression` ([`IndexExpression`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_index_expression(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, IndexExpression<'tree>> {
+        pub fn as_index_expression(self) -> Option<IndexExpression<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::IndexExpression(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::IndexExpression(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `loop_expression` ([`LoopExpression`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_loop_expression(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, LoopExpression<'tree>> {
+        pub fn as_loop_expression(self) -> Option<LoopExpression<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::LoopExpression(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::LoopExpression(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `macro_invocation` ([`MacroInvocation`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_macro_invocation(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, MacroInvocation<'tree>> {
+        pub fn as_macro_invocation(self) -> Option<MacroInvocation<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::MacroInvocation(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::MacroInvocation(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `match_expression` ([`MatchExpression`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_match_expression(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, MatchExpression<'tree>> {
+        pub fn as_match_expression(self) -> Option<MatchExpression<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::MatchExpression(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::MatchExpression(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `metavariable` ([`Metavariable`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_metavariable(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, Metavariable<'tree>> {
+        pub fn as_metavariable(self) -> Option<Metavariable<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Metavariable(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Metavariable(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `parenthesized_expression` ([`ParenthesizedExpression`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn as_parenthesized_expression(
             self,
-        ) -> type_sitter_lib::NodeResult<'tree, ParenthesizedExpression<'tree>> {
+        ) -> Option<ParenthesizedExpression<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::ParenthesizedExpression(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::ParenthesizedExpression(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `reference_expression` ([`ReferenceExpression`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_reference_expression(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, ReferenceExpression<'tree>> {
+        pub fn as_reference_expression(self) -> Option<ReferenceExpression<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::ReferenceExpression(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::ReferenceExpression(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `return_expression` ([`ReturnExpression`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_return_expression(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, ReturnExpression<'tree>> {
+        pub fn as_return_expression(self) -> Option<ReturnExpression<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::ReturnExpression(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::ReturnExpression(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `scoped_identifier` ([`ScopedIdentifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_scoped_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, ScopedIdentifier<'tree>> {
+        pub fn as_scoped_identifier(self) -> Option<ScopedIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::ScopedIdentifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::ScopedIdentifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `self` ([`_Self`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as__self(self) -> type_sitter_lib::NodeResult<'tree, _Self<'tree>> {
+        pub fn as__self(self) -> Option<_Self<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::_Self(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::_Self(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `struct_expression` ([`StructExpression`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_struct_expression(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, StructExpression<'tree>> {
+        pub fn as_struct_expression(self) -> Option<StructExpression<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::StructExpression(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::StructExpression(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `try_block` ([`TryBlock`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_try_block(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, TryBlock<'tree>> {
+        pub fn as_try_block(self) -> Option<TryBlock<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::TryBlock(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::TryBlock(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `try_expression` ([`TryExpression`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_try_expression(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, TryExpression<'tree>> {
+        pub fn as_try_expression(self) -> Option<TryExpression<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::TryExpression(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::TryExpression(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `tuple_expression` ([`TupleExpression`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_tuple_expression(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, TupleExpression<'tree>> {
+        pub fn as_tuple_expression(self) -> Option<TupleExpression<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::TupleExpression(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::TupleExpression(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `type_cast_expression` ([`TypeCastExpression`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_type_cast_expression(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, TypeCastExpression<'tree>> {
+        pub fn as_type_cast_expression(self) -> Option<TypeCastExpression<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::TypeCastExpression(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::TypeCastExpression(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `unary_expression` ([`UnaryExpression`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_unary_expression(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, UnaryExpression<'tree>> {
+        pub fn as_unary_expression(self) -> Option<UnaryExpression<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::UnaryExpression(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::UnaryExpression(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `unit_expression` ([`UnitExpression`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_unit_expression(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, UnitExpression<'tree>> {
+        pub fn as_unit_expression(self) -> Option<UnitExpression<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::UnitExpression(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::UnitExpression(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `unsafe_block` ([`UnsafeBlock`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_unsafe_block(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, UnsafeBlock<'tree>> {
+        pub fn as_unsafe_block(self) -> Option<UnsafeBlock<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::UnsafeBlock(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::UnsafeBlock(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `while_expression` ([`WhileExpression`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_while_expression(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, WhileExpression<'tree>> {
+        pub fn as_while_expression(self) -> Option<WhileExpression<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::WhileExpression(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::WhileExpression(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `yield_expression` ([`YieldExpression`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_yield_expression(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, YieldExpression<'tree>> {
+        pub fn as_yield_expression(self) -> Option<YieldExpression<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::YieldExpression(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::YieldExpression(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -21860,34 +19942,16 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `_` ([`symbols::__`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as___(self) -> type_sitter_lib::NodeResult<'tree, symbols::__<'tree>> {
+        pub fn as___(self) -> Option<symbols::__<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::__(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::__(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `_expression` ([`Expression`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_expression(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
+        pub fn as_expression(self) -> Option<Expression<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Expression(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Expression(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -21946,34 +20010,16 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `_pattern` ([`Pattern`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_pattern(self) -> type_sitter_lib::NodeResult<'tree, Pattern<'tree>> {
+        pub fn as_pattern(self) -> Option<Pattern<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Pattern(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Pattern(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `parameter` ([`Parameter`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_parameter(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, Parameter<'tree>> {
+        pub fn as_parameter(self) -> Option<Parameter<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Parameter(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Parameter(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -22048,172 +20094,72 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `%=` ([`symbols::ModEq`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_mod_eq(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, symbols::ModEq<'tree>> {
+        pub fn as_mod_eq(self) -> Option<symbols::ModEq<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::ModEq(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::ModEq(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `&=` ([`symbols::AndEq`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_and_eq(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, symbols::AndEq<'tree>> {
+        pub fn as_and_eq(self) -> Option<symbols::AndEq<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::AndEq(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::AndEq(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `*=` ([`symbols::MulEq`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_mul_eq(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, symbols::MulEq<'tree>> {
+        pub fn as_mul_eq(self) -> Option<symbols::MulEq<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::MulEq(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::MulEq(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `+=` ([`symbols::AddEq`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_add_eq(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, symbols::AddEq<'tree>> {
+        pub fn as_add_eq(self) -> Option<symbols::AddEq<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::AddEq(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::AddEq(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `-=` ([`symbols::SubEq`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_sub_eq(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, symbols::SubEq<'tree>> {
+        pub fn as_sub_eq(self) -> Option<symbols::SubEq<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::SubEq(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::SubEq(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `/=` ([`symbols::DivEq`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_div_eq(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, symbols::DivEq<'tree>> {
+        pub fn as_div_eq(self) -> Option<symbols::DivEq<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::DivEq(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::DivEq(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `<<=` ([`symbols::LtLtEq`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_lt_lt_eq(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, symbols::LtLtEq<'tree>> {
+        pub fn as_lt_lt_eq(self) -> Option<symbols::LtLtEq<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::LtLtEq(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::LtLtEq(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `>>=` ([`symbols::GtGtEq`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_gt_gt_eq(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, symbols::GtGtEq<'tree>> {
+        pub fn as_gt_gt_eq(self) -> Option<symbols::GtGtEq<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::GtGtEq(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::GtGtEq(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `^=` ([`symbols::BitXorEq`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_bit_xor_eq(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, symbols::BitXorEq<'tree>> {
+        pub fn as_bit_xor_eq(self) -> Option<symbols::BitXorEq<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::BitXorEq(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::BitXorEq(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `|=` ([`symbols::OrEq`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_or_eq(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, symbols::OrEq<'tree>> {
+        pub fn as_or_eq(self) -> Option<symbols::OrEq<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::OrEq(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::OrEq(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -22385,68 +20331,30 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `visibility_modifier` ([`VisibilityModifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_visibility_modifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, VisibilityModifier<'tree>> {
+        pub fn as_visibility_modifier(self) -> Option<VisibilityModifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::VisibilityModifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::VisibilityModifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `identifier` ([`Identifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
+        pub fn as_identifier(self) -> Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Identifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Identifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `_type` ([`Type`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_type(self) -> type_sitter_lib::NodeResult<'tree, Type<'tree>> {
+        pub fn as_type(self) -> Option<Type<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Type(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Type(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `_expression` ([`Expression`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_expression(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
+        pub fn as_expression(self) -> Option<Expression<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Expression(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Expression(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -22522,34 +20430,16 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `lifetime` ([`Lifetime`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_lifetime(self) -> type_sitter_lib::NodeResult<'tree, Lifetime<'tree>> {
+        pub fn as_lifetime(self) -> Option<Lifetime<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Lifetime(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Lifetime(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `type_identifier` ([`TypeIdentifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_type_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, TypeIdentifier<'tree>> {
+        pub fn as_type_identifier(self) -> Option<TypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::TypeIdentifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::TypeIdentifier(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -22630,87 +20520,39 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `function_type` ([`FunctionType`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_function_type(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, FunctionType<'tree>> {
+        pub fn as_function_type(self) -> Option<FunctionType<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::FunctionType(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::FunctionType(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `generic_type` ([`GenericType`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_generic_type(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, GenericType<'tree>> {
+        pub fn as_generic_type(self) -> Option<GenericType<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::GenericType(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::GenericType(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `higher_ranked_trait_bound` ([`HigherRankedTraitBound`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn as_higher_ranked_trait_bound(
             self,
-        ) -> type_sitter_lib::NodeResult<'tree, HigherRankedTraitBound<'tree>> {
+        ) -> Option<HigherRankedTraitBound<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::HigherRankedTraitBound(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::HigherRankedTraitBound(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `scoped_type_identifier` ([`ScopedTypeIdentifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_scoped_type_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, ScopedTypeIdentifier<'tree>> {
+        pub fn as_scoped_type_identifier(self) -> Option<ScopedTypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::ScopedTypeIdentifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::ScopedTypeIdentifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `type_identifier` ([`TypeIdentifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_type_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, TypeIdentifier<'tree>> {
+        pub fn as_type_identifier(self) -> Option<TypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::TypeIdentifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::TypeIdentifier(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -22820,34 +20662,16 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `block` ([`Block`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_block(self) -> type_sitter_lib::NodeResult<'tree, Block<'tree>> {
+        pub fn as_block(self) -> Option<Block<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Block(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Block(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `if_expression` ([`IfExpression`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_if_expression(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, IfExpression<'tree>> {
+        pub fn as_if_expression(self) -> Option<IfExpression<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::IfExpression(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::IfExpression(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -22928,87 +20752,37 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `visibility_modifier` ([`VisibilityModifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_visibility_modifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, VisibilityModifier<'tree>> {
+        pub fn as_visibility_modifier(self) -> Option<VisibilityModifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::VisibilityModifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::VisibilityModifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `where_clause` ([`WhereClause`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_where_clause(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, WhereClause<'tree>> {
+        pub fn as_where_clause(self) -> Option<WhereClause<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::WhereClause(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::WhereClause(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `enum_variant_list` ([`EnumVariantList`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_enum_variant_list(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, EnumVariantList<'tree>> {
+        pub fn as_enum_variant_list(self) -> Option<EnumVariantList<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::EnumVariantList(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::EnumVariantList(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `type_identifier` ([`TypeIdentifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_type_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, TypeIdentifier<'tree>> {
+        pub fn as_type_identifier(self) -> Option<TypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::TypeIdentifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::TypeIdentifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `type_parameters` ([`TypeParameters`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_type_parameters(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, TypeParameters<'tree>> {
+        pub fn as_type_parameters(self) -> Option<TypeParameters<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::TypeParameters(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::TypeParameters(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -23130,87 +20904,39 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `visibility_modifier` ([`VisibilityModifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_visibility_modifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, VisibilityModifier<'tree>> {
+        pub fn as_visibility_modifier(self) -> Option<VisibilityModifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::VisibilityModifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::VisibilityModifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `field_declaration_list` ([`FieldDeclarationList`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_field_declaration_list(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, FieldDeclarationList<'tree>> {
+        pub fn as_field_declaration_list(self) -> Option<FieldDeclarationList<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::FieldDeclarationList(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::FieldDeclarationList(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `ordered_field_declaration_list` ([`OrderedFieldDeclarationList`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn as_ordered_field_declaration_list(
             self,
-        ) -> type_sitter_lib::NodeResult<'tree, OrderedFieldDeclarationList<'tree>> {
+        ) -> Option<OrderedFieldDeclarationList<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::OrderedFieldDeclarationList(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::OrderedFieldDeclarationList(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `identifier` ([`Identifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
+        pub fn as_identifier(self) -> Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Identifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Identifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `_expression` ([`Expression`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_expression(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
+        pub fn as_expression(self) -> Option<Expression<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Expression(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Expression(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -23298,36 +21024,18 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `field_declaration_list` ([`FieldDeclarationList`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_field_declaration_list(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, FieldDeclarationList<'tree>> {
+        pub fn as_field_declaration_list(self) -> Option<FieldDeclarationList<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::FieldDeclarationList(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::FieldDeclarationList(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `ordered_field_declaration_list` ([`OrderedFieldDeclarationList`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn as_ordered_field_declaration_list(
             self,
-        ) -> type_sitter_lib::NodeResult<'tree, OrderedFieldDeclarationList<'tree>> {
+        ) -> Option<OrderedFieldDeclarationList<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::OrderedFieldDeclarationList(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::OrderedFieldDeclarationList(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -23397,36 +21105,16 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `attribute_item` ([`AttributeItem`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_attribute_item(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, AttributeItem<'tree>> {
+        pub fn as_attribute_item(self) -> Option<AttributeItem<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::AttributeItem(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::AttributeItem(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `enum_variant` ([`EnumVariant`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_enum_variant(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, EnumVariant<'tree>> {
+        pub fn as_enum_variant(self) -> Option<EnumVariant<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::EnumVariant(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::EnumVariant(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -23497,51 +21185,23 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `crate` ([`Crate`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_crate_(self) -> type_sitter_lib::NodeResult<'tree, Crate<'tree>> {
+        pub fn as_crate_(self) -> Option<Crate<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Crate(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Crate(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `visibility_modifier` ([`VisibilityModifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_visibility_modifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, VisibilityModifier<'tree>> {
+        pub fn as_visibility_modifier(self) -> Option<VisibilityModifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::VisibilityModifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::VisibilityModifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `identifier` ([`Identifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
+        pub fn as_identifier(self) -> Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Identifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Identifier(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -23625,51 +21285,23 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `visibility_modifier` ([`VisibilityModifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_visibility_modifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, VisibilityModifier<'tree>> {
+        pub fn as_visibility_modifier(self) -> Option<VisibilityModifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::VisibilityModifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::VisibilityModifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `field_identifier` ([`FieldIdentifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_field_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, FieldIdentifier<'tree>> {
+        pub fn as_field_identifier(self) -> Option<FieldIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::FieldIdentifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::FieldIdentifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `_type` ([`Type`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_type(self) -> type_sitter_lib::NodeResult<'tree, Type<'tree>> {
+        pub fn as_type(self) -> Option<Type<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Type(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Type(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -23737,36 +21369,16 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `attribute_item` ([`AttributeItem`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_attribute_item(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, AttributeItem<'tree>> {
+        pub fn as_attribute_item(self) -> Option<AttributeItem<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::AttributeItem(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::AttributeItem(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `field_declaration` ([`FieldDeclaration`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_field_declaration(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, FieldDeclaration<'tree>> {
+        pub fn as_field_declaration(self) -> Option<FieldDeclaration<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::FieldDeclaration(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::FieldDeclaration(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -23835,36 +21447,16 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `field_identifier` ([`FieldIdentifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_field_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, FieldIdentifier<'tree>> {
+        pub fn as_field_identifier(self) -> Option<FieldIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::FieldIdentifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::FieldIdentifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `integer_literal` ([`IntegerLiteral`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_integer_literal(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, IntegerLiteral<'tree>> {
+        pub fn as_integer_literal(self) -> Option<IntegerLiteral<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::IntegerLiteral(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::IntegerLiteral(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -23937,70 +21529,30 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `attribute_item` ([`AttributeItem`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_attribute_item(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, AttributeItem<'tree>> {
+        pub fn as_attribute_item(self) -> Option<AttributeItem<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::AttributeItem(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::AttributeItem(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `field_identifier` ([`FieldIdentifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_field_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, FieldIdentifier<'tree>> {
+        pub fn as_field_identifier(self) -> Option<FieldIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::FieldIdentifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::FieldIdentifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `integer_literal` ([`IntegerLiteral`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_integer_literal(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, IntegerLiteral<'tree>> {
+        pub fn as_integer_literal(self) -> Option<IntegerLiteral<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::IntegerLiteral(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::IntegerLiteral(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `_expression` ([`Expression`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_expression(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
+        pub fn as_expression(self) -> Option<Expression<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Expression(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Expression(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -24080,53 +21632,25 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `base_field_initializer` ([`BaseFieldInitializer`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_base_field_initializer(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, BaseFieldInitializer<'tree>> {
+        pub fn as_base_field_initializer(self) -> Option<BaseFieldInitializer<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::BaseFieldInitializer(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::BaseFieldInitializer(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `field_initializer` ([`FieldInitializer`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_field_initializer(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, FieldInitializer<'tree>> {
+        pub fn as_field_initializer(self) -> Option<FieldInitializer<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::FieldInitializer(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::FieldInitializer(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `shorthand_field_initializer` ([`ShorthandFieldInitializer`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn as_shorthand_field_initializer(
             self,
-        ) -> type_sitter_lib::NodeResult<'tree, ShorthandFieldInitializer<'tree>> {
+        ) -> Option<ShorthandFieldInitializer<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::ShorthandFieldInitializer(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::ShorthandFieldInitializer(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -24216,68 +21740,32 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `mutable_specifier` ([`MutableSpecifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_mutable_specifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, MutableSpecifier<'tree>> {
+        pub fn as_mutable_specifier(self) -> Option<MutableSpecifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::MutableSpecifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::MutableSpecifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `field_identifier` ([`FieldIdentifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_field_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, FieldIdentifier<'tree>> {
+        pub fn as_field_identifier(self) -> Option<FieldIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::FieldIdentifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::FieldIdentifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `shorthand_field_identifier` ([`ShorthandFieldIdentifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn as_shorthand_field_identifier(
             self,
-        ) -> type_sitter_lib::NodeResult<'tree, ShorthandFieldIdentifier<'tree>> {
+        ) -> Option<ShorthandFieldIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::ShorthandFieldIdentifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::ShorthandFieldIdentifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `_pattern` ([`Pattern`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_pattern(self) -> type_sitter_lib::NodeResult<'tree, Pattern<'tree>> {
+        pub fn as_pattern(self) -> Option<Pattern<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Pattern(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Pattern(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -24355,36 +21843,18 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `field_identifier` ([`FieldIdentifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_field_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, FieldIdentifier<'tree>> {
+        pub fn as_field_identifier(self) -> Option<FieldIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::FieldIdentifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::FieldIdentifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `shorthand_field_identifier` ([`ShorthandFieldIdentifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn as_shorthand_field_identifier(
             self,
-        ) -> type_sitter_lib::NodeResult<'tree, ShorthandFieldIdentifier<'tree>> {
+        ) -> Option<ShorthandFieldIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::ShorthandFieldIdentifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::ShorthandFieldIdentifier(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -24458,64 +21928,30 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `label` ([`Label`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_label(self) -> type_sitter_lib::NodeResult<'tree, Label<'tree>> {
+        pub fn as_label(self) -> Option<Label<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Label(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Label(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `block` ([`Block`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_block(self) -> type_sitter_lib::NodeResult<'tree, Block<'tree>> {
+        pub fn as_block(self) -> Option<Block<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Block(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Block(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `_pattern` ([`Pattern`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_pattern(self) -> type_sitter_lib::NodeResult<'tree, Pattern<'tree>> {
+        pub fn as_pattern(self) -> Option<Pattern<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Pattern(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Pattern(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `_expression` ([`Expression`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_expression(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
+        pub fn as_expression(self) -> Option<Expression<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Expression(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Expression(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -24592,53 +22028,23 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `extern_modifier` ([`ExternModifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_extern_modifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, ExternModifier<'tree>> {
+        pub fn as_extern_modifier(self) -> Option<ExternModifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::ExternModifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::ExternModifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `visibility_modifier` ([`VisibilityModifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_visibility_modifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, VisibilityModifier<'tree>> {
+        pub fn as_visibility_modifier(self) -> Option<VisibilityModifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::VisibilityModifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::VisibilityModifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `declaration_list` ([`DeclarationList`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_declaration_list(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, DeclarationList<'tree>> {
+        pub fn as_declaration_list(self) -> Option<DeclarationList<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::DeclarationList(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::DeclarationList(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -24740,151 +22146,65 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `function_modifiers` ([`FunctionModifiers`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_function_modifiers(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, FunctionModifiers<'tree>> {
+        pub fn as_function_modifiers(self) -> Option<FunctionModifiers<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::FunctionModifiers(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::FunctionModifiers(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `visibility_modifier` ([`VisibilityModifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_visibility_modifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, VisibilityModifier<'tree>> {
+        pub fn as_visibility_modifier(self) -> Option<VisibilityModifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::VisibilityModifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::VisibilityModifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `where_clause` ([`WhereClause`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_where_clause(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, WhereClause<'tree>> {
+        pub fn as_where_clause(self) -> Option<WhereClause<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::WhereClause(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::WhereClause(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `block` ([`Block`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_block(self) -> type_sitter_lib::NodeResult<'tree, Block<'tree>> {
+        pub fn as_block(self) -> Option<Block<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Block(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Block(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `identifier` ([`Identifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
+        pub fn as_identifier(self) -> Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Identifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Identifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `metavariable` ([`Metavariable`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_metavariable(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, Metavariable<'tree>> {
+        pub fn as_metavariable(self) -> Option<Metavariable<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Metavariable(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Metavariable(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `parameters` ([`Parameters`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_parameters(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, Parameters<'tree>> {
+        pub fn as_parameters(self) -> Option<Parameters<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Parameters(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Parameters(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `_type` ([`Type`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_type(self) -> type_sitter_lib::NodeResult<'tree, Type<'tree>> {
+        pub fn as_type(self) -> Option<Type<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Type(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Type(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `type_parameters` ([`TypeParameters`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_type_parameters(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, TypeParameters<'tree>> {
+        pub fn as_type_parameters(self) -> Option<TypeParameters<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::TypeParameters(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::TypeParameters(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -25004,36 +22324,16 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `identifier` ([`Identifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
+        pub fn as_identifier(self) -> Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Identifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Identifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `metavariable` ([`Metavariable`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_metavariable(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, Metavariable<'tree>> {
+        pub fn as_metavariable(self) -> Option<Metavariable<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Metavariable(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Metavariable(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -25120,136 +22420,58 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `function_modifiers` ([`FunctionModifiers`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_function_modifiers(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, FunctionModifiers<'tree>> {
+        pub fn as_function_modifiers(self) -> Option<FunctionModifiers<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::FunctionModifiers(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::FunctionModifiers(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `visibility_modifier` ([`VisibilityModifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_visibility_modifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, VisibilityModifier<'tree>> {
+        pub fn as_visibility_modifier(self) -> Option<VisibilityModifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::VisibilityModifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::VisibilityModifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `where_clause` ([`WhereClause`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_where_clause(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, WhereClause<'tree>> {
+        pub fn as_where_clause(self) -> Option<WhereClause<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::WhereClause(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::WhereClause(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `identifier` ([`Identifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
+        pub fn as_identifier(self) -> Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Identifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Identifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `metavariable` ([`Metavariable`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_metavariable(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, Metavariable<'tree>> {
+        pub fn as_metavariable(self) -> Option<Metavariable<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Metavariable(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Metavariable(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `parameters` ([`Parameters`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_parameters(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, Parameters<'tree>> {
+        pub fn as_parameters(self) -> Option<Parameters<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Parameters(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Parameters(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `_type` ([`Type`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_type(self) -> type_sitter_lib::NodeResult<'tree, Type<'tree>> {
+        pub fn as_type(self) -> Option<Type<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Type(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Type(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `type_parameters` ([`TypeParameters`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_type_parameters(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, TypeParameters<'tree>> {
+        pub fn as_type_parameters(self) -> Option<TypeParameters<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::TypeParameters(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::TypeParameters(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -25375,102 +22597,44 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `for_lifetimes` ([`ForLifetimes`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_for_lifetimes(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, ForLifetimes<'tree>> {
+        pub fn as_for_lifetimes(self) -> Option<ForLifetimes<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::ForLifetimes(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::ForLifetimes(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `function_modifiers` ([`FunctionModifiers`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_function_modifiers(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, FunctionModifiers<'tree>> {
+        pub fn as_function_modifiers(self) -> Option<FunctionModifiers<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::FunctionModifiers(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::FunctionModifiers(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `parameters` ([`Parameters`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_parameters(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, Parameters<'tree>> {
+        pub fn as_parameters(self) -> Option<Parameters<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Parameters(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Parameters(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `_type` ([`Type`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_type(self) -> type_sitter_lib::NodeResult<'tree, Type<'tree>> {
+        pub fn as_type(self) -> Option<Type<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Type(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Type(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `scoped_type_identifier` ([`ScopedTypeIdentifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_scoped_type_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, ScopedTypeIdentifier<'tree>> {
+        pub fn as_scoped_type_identifier(self) -> Option<ScopedTypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::ScopedTypeIdentifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::ScopedTypeIdentifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `type_identifier` ([`TypeIdentifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_type_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, TypeIdentifier<'tree>> {
+        pub fn as_type_identifier(self) -> Option<TypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::TypeIdentifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::TypeIdentifier(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -25566,36 +22730,16 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `scoped_type_identifier` ([`ScopedTypeIdentifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_scoped_type_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, ScopedTypeIdentifier<'tree>> {
+        pub fn as_scoped_type_identifier(self) -> Option<ScopedTypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::ScopedTypeIdentifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::ScopedTypeIdentifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `type_identifier` ([`TypeIdentifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_type_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, TypeIdentifier<'tree>> {
+        pub fn as_type_identifier(self) -> Option<TypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::TypeIdentifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::TypeIdentifier(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -25667,53 +22811,23 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `field_expression` ([`FieldExpression`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_field_expression(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, FieldExpression<'tree>> {
+        pub fn as_field_expression(self) -> Option<FieldExpression<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::FieldExpression(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::FieldExpression(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `identifier` ([`Identifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
+        pub fn as_identifier(self) -> Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Identifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Identifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `scoped_identifier` ([`ScopedIdentifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_scoped_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, ScopedIdentifier<'tree>> {
+        pub fn as_scoped_identifier(self) -> Option<ScopedIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::ScopedIdentifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::ScopedIdentifier(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -25799,70 +22913,30 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `identifier` ([`Identifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
+        pub fn as_identifier(self) -> Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Identifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Identifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `scoped_identifier` ([`ScopedIdentifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_scoped_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, ScopedIdentifier<'tree>> {
+        pub fn as_scoped_identifier(self) -> Option<ScopedIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::ScopedIdentifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::ScopedIdentifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `scoped_type_identifier` ([`ScopedTypeIdentifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_scoped_type_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, ScopedTypeIdentifier<'tree>> {
+        pub fn as_scoped_type_identifier(self) -> Option<ScopedTypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::ScopedTypeIdentifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::ScopedTypeIdentifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `type_identifier` ([`TypeIdentifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_type_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, TypeIdentifier<'tree>> {
+        pub fn as_type_identifier(self) -> Option<TypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::TypeIdentifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::TypeIdentifier(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -25958,36 +23032,16 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `scoped_identifier` ([`ScopedIdentifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_scoped_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, ScopedIdentifier<'tree>> {
+        pub fn as_scoped_identifier(self) -> Option<ScopedIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::ScopedIdentifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::ScopedIdentifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `type_identifier` ([`TypeIdentifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_type_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, TypeIdentifier<'tree>> {
+        pub fn as_type_identifier(self) -> Option<TypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::TypeIdentifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::TypeIdentifier(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -26058,53 +23112,23 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `_expression` ([`Expression`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_expression(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
+        pub fn as_expression(self) -> Option<Expression<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Expression(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Expression(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `let_chain` ([`LetChain`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_let_chain(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, LetChain<'tree>> {
+        pub fn as_let_chain(self) -> Option<LetChain<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::LetChain(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::LetChain(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `let_condition` ([`LetCondition`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_let_condition(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, LetCondition<'tree>> {
+        pub fn as_let_condition(self) -> Option<LetCondition<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::LetCondition(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::LetCondition(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -26188,119 +23212,51 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `where_clause` ([`WhereClause`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_where_clause(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, WhereClause<'tree>> {
+        pub fn as_where_clause(self) -> Option<WhereClause<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::WhereClause(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::WhereClause(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `declaration_list` ([`DeclarationList`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_declaration_list(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, DeclarationList<'tree>> {
+        pub fn as_declaration_list(self) -> Option<DeclarationList<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::DeclarationList(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::DeclarationList(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `generic_type` ([`GenericType`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_generic_type(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, GenericType<'tree>> {
+        pub fn as_generic_type(self) -> Option<GenericType<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::GenericType(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::GenericType(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `scoped_type_identifier` ([`ScopedTypeIdentifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_scoped_type_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, ScopedTypeIdentifier<'tree>> {
+        pub fn as_scoped_type_identifier(self) -> Option<ScopedTypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::ScopedTypeIdentifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::ScopedTypeIdentifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `type_identifier` ([`TypeIdentifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_type_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, TypeIdentifier<'tree>> {
+        pub fn as_type_identifier(self) -> Option<TypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::TypeIdentifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::TypeIdentifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `_type` ([`Type`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_type(self) -> type_sitter_lib::NodeResult<'tree, Type<'tree>> {
+        pub fn as_type(self) -> Option<Type<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Type(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Type(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `type_parameters` ([`TypeParameters`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_type_parameters(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, TypeParameters<'tree>> {
+        pub fn as_type_parameters(self) -> Option<TypeParameters<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::TypeParameters(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::TypeParameters(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -26406,53 +23362,23 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `generic_type` ([`GenericType`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_generic_type(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, GenericType<'tree>> {
+        pub fn as_generic_type(self) -> Option<GenericType<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::GenericType(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::GenericType(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `scoped_type_identifier` ([`ScopedTypeIdentifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_scoped_type_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, ScopedTypeIdentifier<'tree>> {
+        pub fn as_scoped_type_identifier(self) -> Option<ScopedTypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::ScopedTypeIdentifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::ScopedTypeIdentifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `type_identifier` ([`TypeIdentifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_type_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, TypeIdentifier<'tree>> {
+        pub fn as_type_identifier(self) -> Option<TypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::TypeIdentifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::TypeIdentifier(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -26534,36 +23460,16 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `_expression` ([`Expression`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_expression(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
+        pub fn as_expression(self) -> Option<Expression<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Expression(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Expression(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `let_condition` ([`LetCondition`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_let_condition(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, LetCondition<'tree>> {
+        pub fn as_let_condition(self) -> Option<LetCondition<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::LetCondition(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::LetCondition(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -26628,81 +23534,37 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `mutable_specifier` ([`MutableSpecifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_mutable_specifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, MutableSpecifier<'tree>> {
+        pub fn as_mutable_specifier(self) -> Option<MutableSpecifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::MutableSpecifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::MutableSpecifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `block` ([`Block`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_block(self) -> type_sitter_lib::NodeResult<'tree, Block<'tree>> {
+        pub fn as_block(self) -> Option<Block<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Block(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Block(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `_pattern` ([`Pattern`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_pattern(self) -> type_sitter_lib::NodeResult<'tree, Pattern<'tree>> {
+        pub fn as_pattern(self) -> Option<Pattern<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Pattern(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Pattern(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `_type` ([`Type`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_type(self) -> type_sitter_lib::NodeResult<'tree, Type<'tree>> {
+        pub fn as_type(self) -> Option<Type<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Type(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Type(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `_expression` ([`Expression`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_expression(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
+        pub fn as_expression(self) -> Option<Expression<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Expression(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Expression(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -26786,32 +23648,16 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `label` ([`Label`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_label(self) -> type_sitter_lib::NodeResult<'tree, Label<'tree>> {
+        pub fn as_label(self) -> Option<Label<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Label(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Label(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `block` ([`Block`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_block(self) -> type_sitter_lib::NodeResult<'tree, Block<'tree>> {
+        pub fn as_block(self) -> Option<Block<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Block(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Block(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -26880,36 +23726,16 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `macro_rule` ([`MacroRule`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_macro_rule(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, MacroRule<'tree>> {
+        pub fn as_macro_rule(self) -> Option<MacroRule<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::MacroRule(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::MacroRule(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `identifier` ([`Identifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
+        pub fn as_identifier(self) -> Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Identifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Identifier(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -26980,53 +23806,23 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `token_tree` ([`TokenTree`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_token_tree(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, TokenTree<'tree>> {
+        pub fn as_token_tree(self) -> Option<TokenTree<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::TokenTree(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::TokenTree(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `identifier` ([`Identifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
+        pub fn as_identifier(self) -> Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Identifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Identifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `scoped_identifier` ([`ScopedIdentifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_scoped_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, ScopedIdentifier<'tree>> {
+        pub fn as_scoped_identifier(self) -> Option<ScopedIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::ScopedIdentifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::ScopedIdentifier(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -27108,36 +23904,16 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `identifier` ([`Identifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
+        pub fn as_identifier(self) -> Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Identifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Identifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `scoped_identifier` ([`ScopedIdentifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_scoped_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, ScopedIdentifier<'tree>> {
+        pub fn as_scoped_identifier(self) -> Option<ScopedIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::ScopedIdentifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::ScopedIdentifier(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -27210,70 +23986,30 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `attribute_item` ([`AttributeItem`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_attribute_item(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, AttributeItem<'tree>> {
+        pub fn as_attribute_item(self) -> Option<AttributeItem<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::AttributeItem(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::AttributeItem(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `inner_attribute_item` ([`InnerAttributeItem`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_inner_attribute_item(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, InnerAttributeItem<'tree>> {
+        pub fn as_inner_attribute_item(self) -> Option<InnerAttributeItem<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::InnerAttributeItem(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::InnerAttributeItem(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `match_pattern` ([`MatchPattern`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_match_pattern(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, MatchPattern<'tree>> {
+        pub fn as_match_pattern(self) -> Option<MatchPattern<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::MatchPattern(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::MatchPattern(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `_expression` ([`Expression`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_expression(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
+        pub fn as_expression(self) -> Option<Expression<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Expression(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Expression(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -27355,68 +24091,30 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `_pattern` ([`Pattern`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_pattern(self) -> type_sitter_lib::NodeResult<'tree, Pattern<'tree>> {
+        pub fn as_pattern(self) -> Option<Pattern<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Pattern(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Pattern(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `_expression` ([`Expression`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_expression(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
+        pub fn as_expression(self) -> Option<Expression<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Expression(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Expression(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `let_chain` ([`LetChain`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_let_chain(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, LetChain<'tree>> {
+        pub fn as_let_chain(self) -> Option<LetChain<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::LetChain(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::LetChain(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `let_condition` ([`LetCondition`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_let_condition(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, LetCondition<'tree>> {
+        pub fn as_let_condition(self) -> Option<LetCondition<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::LetCondition(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::LetCondition(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -27494,53 +24192,23 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `visibility_modifier` ([`VisibilityModifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_visibility_modifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, VisibilityModifier<'tree>> {
+        pub fn as_visibility_modifier(self) -> Option<VisibilityModifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::VisibilityModifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::VisibilityModifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `declaration_list` ([`DeclarationList`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_declaration_list(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, DeclarationList<'tree>> {
+        pub fn as_declaration_list(self) -> Option<DeclarationList<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::DeclarationList(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::DeclarationList(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `identifier` ([`Identifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
+        pub fn as_identifier(self) -> Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Identifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Identifier(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -27622,34 +24290,16 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `_pattern` ([`Pattern`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_pattern(self) -> type_sitter_lib::NodeResult<'tree, Pattern<'tree>> {
+        pub fn as_pattern(self) -> Option<Pattern<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Pattern(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Pattern(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `mutable_specifier` ([`MutableSpecifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_mutable_specifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, MutableSpecifier<'tree>> {
+        pub fn as_mutable_specifier(self) -> Option<MutableSpecifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::MutableSpecifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::MutableSpecifier(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -27708,36 +24358,16 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `float_literal` ([`FloatLiteral`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_float_literal(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, FloatLiteral<'tree>> {
+        pub fn as_float_literal(self) -> Option<FloatLiteral<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::FloatLiteral(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::FloatLiteral(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `integer_literal` ([`IntegerLiteral`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_integer_literal(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, IntegerLiteral<'tree>> {
+        pub fn as_integer_literal(self) -> Option<IntegerLiteral<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::IntegerLiteral(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::IntegerLiteral(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -27808,34 +24438,16 @@ pub mod anon_unions {
         #[allow(unused, non_snake_case)]
         pub fn as_constrained_type_parameter(
             self,
-        ) -> type_sitter_lib::NodeResult<'tree, ConstrainedTypeParameter<'tree>> {
+        ) -> Option<ConstrainedTypeParameter<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::ConstrainedTypeParameter(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::ConstrainedTypeParameter(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `type_identifier` ([`TypeIdentifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_type_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, TypeIdentifier<'tree>> {
+        pub fn as_type_identifier(self) -> Option<TypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::TypeIdentifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::TypeIdentifier(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -27907,51 +24519,23 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `attribute_item` ([`AttributeItem`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_attribute_item(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, AttributeItem<'tree>> {
+        pub fn as_attribute_item(self) -> Option<AttributeItem<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::AttributeItem(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::AttributeItem(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `visibility_modifier` ([`VisibilityModifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_visibility_modifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, VisibilityModifier<'tree>> {
+        pub fn as_visibility_modifier(self) -> Option<VisibilityModifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::VisibilityModifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::VisibilityModifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `_type` ([`Type`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_type(self) -> type_sitter_lib::NodeResult<'tree, Type<'tree>> {
+        pub fn as_type(self) -> Option<Type<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Type(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Type(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -28023,64 +24607,30 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `mutable_specifier` ([`MutableSpecifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_mutable_specifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, MutableSpecifier<'tree>> {
+        pub fn as_mutable_specifier(self) -> Option<MutableSpecifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::MutableSpecifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::MutableSpecifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `_pattern` ([`Pattern`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_pattern(self) -> type_sitter_lib::NodeResult<'tree, Pattern<'tree>> {
+        pub fn as_pattern(self) -> Option<Pattern<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Pattern(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Pattern(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `self` ([`_Self`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as__self(self) -> type_sitter_lib::NodeResult<'tree, _Self<'tree>> {
+        pub fn as__self(self) -> Option<_Self<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::_Self(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::_Self(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `_type` ([`Type`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_type(self) -> type_sitter_lib::NodeResult<'tree, Type<'tree>> {
+        pub fn as_type(self) -> Option<Type<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Type(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Type(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -28156,32 +24706,16 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `_pattern` ([`Pattern`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_pattern(self) -> type_sitter_lib::NodeResult<'tree, Pattern<'tree>> {
+        pub fn as_pattern(self) -> Option<Pattern<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Pattern(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Pattern(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `self` ([`_Self`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as__self(self) -> type_sitter_lib::NodeResult<'tree, _Self<'tree>> {
+        pub fn as__self(self) -> Option<_Self<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::_Self(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::_Self(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -28246,85 +24780,37 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `_type` ([`Type`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_type(self) -> type_sitter_lib::NodeResult<'tree, Type<'tree>> {
+        pub fn as_type(self) -> Option<Type<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Type(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Type(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `attribute_item` ([`AttributeItem`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_attribute_item(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, AttributeItem<'tree>> {
+        pub fn as_attribute_item(self) -> Option<AttributeItem<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::AttributeItem(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::AttributeItem(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `parameter` ([`Parameter`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_parameter(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, Parameter<'tree>> {
+        pub fn as_parameter(self) -> Option<Parameter<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Parameter(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Parameter(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `self_parameter` ([`SelfParameter`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_self_parameter(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, SelfParameter<'tree>> {
+        pub fn as_self_parameter(self) -> Option<SelfParameter<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::SelfParameter(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::SelfParameter(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `variadic_parameter` ([`VariadicParameter`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_variadic_parameter(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, VariadicParameter<'tree>> {
+        pub fn as_variadic_parameter(self) -> Option<VariadicParameter<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::VariadicParameter(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::VariadicParameter(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -28410,34 +24896,16 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `mutable_specifier` ([`MutableSpecifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_mutable_specifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, MutableSpecifier<'tree>> {
+        pub fn as_mutable_specifier(self) -> Option<MutableSpecifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::MutableSpecifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::MutableSpecifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `_type` ([`Type`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_type(self) -> type_sitter_lib::NodeResult<'tree, Type<'tree>> {
+        pub fn as_type(self) -> Option<Type<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Type(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Type(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -28510,115 +24978,51 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `_literal_pattern` ([`LiteralPattern`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_literal_pattern(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, LiteralPattern<'tree>> {
+        pub fn as_literal_pattern(self) -> Option<LiteralPattern<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::LiteralPattern(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::LiteralPattern(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `crate` ([`Crate`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_crate_(self) -> type_sitter_lib::NodeResult<'tree, Crate<'tree>> {
+        pub fn as_crate_(self) -> Option<Crate<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Crate(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Crate(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `identifier` ([`Identifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
+        pub fn as_identifier(self) -> Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Identifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Identifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `metavariable` ([`Metavariable`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_metavariable(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, Metavariable<'tree>> {
+        pub fn as_metavariable(self) -> Option<Metavariable<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Metavariable(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Metavariable(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `scoped_identifier` ([`ScopedIdentifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_scoped_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, ScopedIdentifier<'tree>> {
+        pub fn as_scoped_identifier(self) -> Option<ScopedIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::ScopedIdentifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::ScopedIdentifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `self` ([`_Self`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as__self(self) -> type_sitter_lib::NodeResult<'tree, _Self<'tree>> {
+        pub fn as__self(self) -> Option<_Self<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::_Self(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::_Self(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `super` ([`Super`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_super_(self) -> type_sitter_lib::NodeResult<'tree, Super<'tree>> {
+        pub fn as_super_(self) -> Option<Super<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Super(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Super(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -28722,36 +25126,16 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `mutable_specifier` ([`MutableSpecifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_mutable_specifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, MutableSpecifier<'tree>> {
+        pub fn as_mutable_specifier(self) -> Option<MutableSpecifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::MutableSpecifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::MutableSpecifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `_expression` ([`Expression`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_expression(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
+        pub fn as_expression(self) -> Option<Expression<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Expression(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Expression(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -28812,49 +25196,23 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `lifetime` ([`Lifetime`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_lifetime(self) -> type_sitter_lib::NodeResult<'tree, Lifetime<'tree>> {
+        pub fn as_lifetime(self) -> Option<Lifetime<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Lifetime(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Lifetime(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `mutable_specifier` ([`MutableSpecifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_mutable_specifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, MutableSpecifier<'tree>> {
+        pub fn as_mutable_specifier(self) -> Option<MutableSpecifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::MutableSpecifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::MutableSpecifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `_type` ([`Type`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_type(self) -> type_sitter_lib::NodeResult<'tree, Type<'tree>> {
+        pub fn as_type(self) -> Option<Type<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Type(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Type(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -28921,34 +25279,16 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `identifier` ([`Identifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
+        pub fn as_identifier(self) -> Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Identifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Identifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `super` ([`Super`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_super_(self) -> type_sitter_lib::NodeResult<'tree, Super<'tree>> {
+        pub fn as_super_(self) -> Option<Super<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Super(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Super(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -29035,132 +25375,58 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `bracketed_type` ([`BracketedType`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_bracketed_type(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, BracketedType<'tree>> {
+        pub fn as_bracketed_type(self) -> Option<BracketedType<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::BracketedType(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::BracketedType(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `crate` ([`Crate`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_crate_(self) -> type_sitter_lib::NodeResult<'tree, Crate<'tree>> {
+        pub fn as_crate_(self) -> Option<Crate<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Crate(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Crate(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `generic_type` ([`GenericType`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_generic_type(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, GenericType<'tree>> {
+        pub fn as_generic_type(self) -> Option<GenericType<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::GenericType(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::GenericType(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `identifier` ([`Identifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
+        pub fn as_identifier(self) -> Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Identifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Identifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `metavariable` ([`Metavariable`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_metavariable(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, Metavariable<'tree>> {
+        pub fn as_metavariable(self) -> Option<Metavariable<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Metavariable(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Metavariable(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `scoped_identifier` ([`ScopedIdentifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_scoped_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, ScopedIdentifier<'tree>> {
+        pub fn as_scoped_identifier(self) -> Option<ScopedIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::ScopedIdentifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::ScopedIdentifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `self` ([`_Self`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as__self(self) -> type_sitter_lib::NodeResult<'tree, _Self<'tree>> {
+        pub fn as__self(self) -> Option<_Self<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::_Self(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::_Self(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `super` ([`Super`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_super_(self) -> type_sitter_lib::NodeResult<'tree, Super<'tree>> {
+        pub fn as_super_(self) -> Option<Super<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Super(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Super(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -29314,98 +25580,44 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `crate` ([`Crate`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_crate_(self) -> type_sitter_lib::NodeResult<'tree, Crate<'tree>> {
+        pub fn as_crate_(self) -> Option<Crate<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Crate(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Crate(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `identifier` ([`Identifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
+        pub fn as_identifier(self) -> Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Identifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Identifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `metavariable` ([`Metavariable`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_metavariable(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, Metavariable<'tree>> {
+        pub fn as_metavariable(self) -> Option<Metavariable<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Metavariable(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Metavariable(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `scoped_identifier` ([`ScopedIdentifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_scoped_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, ScopedIdentifier<'tree>> {
+        pub fn as_scoped_identifier(self) -> Option<ScopedIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::ScopedIdentifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::ScopedIdentifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `self` ([`_Self`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as__self(self) -> type_sitter_lib::NodeResult<'tree, _Self<'tree>> {
+        pub fn as__self(self) -> Option<_Self<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::_Self(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::_Self(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `super` ([`Super`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_super_(self) -> type_sitter_lib::NodeResult<'tree, Super<'tree>> {
+        pub fn as_super_(self) -> Option<Super<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Super(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Super(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -29527,49 +25739,23 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `lifetime` ([`Lifetime`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_lifetime(self) -> type_sitter_lib::NodeResult<'tree, Lifetime<'tree>> {
+        pub fn as_lifetime(self) -> Option<Lifetime<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Lifetime(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Lifetime(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `mutable_specifier` ([`MutableSpecifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_mutable_specifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, MutableSpecifier<'tree>> {
+        pub fn as_mutable_specifier(self) -> Option<MutableSpecifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::MutableSpecifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::MutableSpecifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `self` ([`_Self`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as__self(self) -> type_sitter_lib::NodeResult<'tree, _Self<'tree>> {
+        pub fn as__self(self) -> Option<_Self<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::_Self(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::_Self(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -29650,36 +25836,16 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `attribute_item` ([`AttributeItem`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_attribute_item(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, AttributeItem<'tree>> {
+        pub fn as_attribute_item(self) -> Option<AttributeItem<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::AttributeItem(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::AttributeItem(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `identifier` ([`Identifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
+        pub fn as_identifier(self) -> Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Identifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Identifier(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -29750,51 +25916,23 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `_declaration_statement` ([`DeclarationStatement`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_declaration_statement(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, DeclarationStatement<'tree>> {
+        pub fn as_declaration_statement(self) -> Option<DeclarationStatement<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::DeclarationStatement(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::DeclarationStatement(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `expression_statement` ([`ExpressionStatement`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_expression_statement(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, ExpressionStatement<'tree>> {
+        pub fn as_expression_statement(self) -> Option<ExpressionStatement<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::ExpressionStatement(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::ExpressionStatement(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `shebang` ([`Shebang`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_shebang(self) -> type_sitter_lib::NodeResult<'tree, Shebang<'tree>> {
+        pub fn as_shebang(self) -> Option<Shebang<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Shebang(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Shebang(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -29868,85 +26006,37 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `mutable_specifier` ([`MutableSpecifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_mutable_specifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, MutableSpecifier<'tree>> {
+        pub fn as_mutable_specifier(self) -> Option<MutableSpecifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::MutableSpecifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::MutableSpecifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `visibility_modifier` ([`VisibilityModifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_visibility_modifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, VisibilityModifier<'tree>> {
+        pub fn as_visibility_modifier(self) -> Option<VisibilityModifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::VisibilityModifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::VisibilityModifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `identifier` ([`Identifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
+        pub fn as_identifier(self) -> Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Identifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Identifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `_type` ([`Type`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_type(self) -> type_sitter_lib::NodeResult<'tree, Type<'tree>> {
+        pub fn as_type(self) -> Option<Type<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Type(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Type(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `_expression` ([`Expression`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_expression(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
+        pub fn as_expression(self) -> Option<Expression<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Expression(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Expression(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -30032,36 +26122,16 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `escape_sequence` ([`EscapeSequence`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_escape_sequence(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, EscapeSequence<'tree>> {
+        pub fn as_escape_sequence(self) -> Option<EscapeSequence<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::EscapeSequence(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::EscapeSequence(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `string_content` ([`StringContent`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_string_content(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, StringContent<'tree>> {
+        pub fn as_string_content(self) -> Option<StringContent<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::StringContent(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::StringContent(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -30134,51 +26204,23 @@ pub mod anon_unions {
         #[allow(unused, non_snake_case)]
         pub fn as_generic_type_with_turbofish(
             self,
-        ) -> type_sitter_lib::NodeResult<'tree, GenericTypeWithTurbofish<'tree>> {
+        ) -> Option<GenericTypeWithTurbofish<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::GenericTypeWithTurbofish(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::GenericTypeWithTurbofish(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `scoped_type_identifier` ([`ScopedTypeIdentifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_scoped_type_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, ScopedTypeIdentifier<'tree>> {
+        pub fn as_scoped_type_identifier(self) -> Option<ScopedTypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::ScopedTypeIdentifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::ScopedTypeIdentifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `type_identifier` ([`TypeIdentifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_type_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, TypeIdentifier<'tree>> {
+        pub fn as_type_identifier(self) -> Option<TypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::TypeIdentifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::TypeIdentifier(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -30276,104 +26318,46 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `visibility_modifier` ([`VisibilityModifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_visibility_modifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, VisibilityModifier<'tree>> {
+        pub fn as_visibility_modifier(self) -> Option<VisibilityModifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::VisibilityModifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::VisibilityModifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `where_clause` ([`WhereClause`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_where_clause(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, WhereClause<'tree>> {
+        pub fn as_where_clause(self) -> Option<WhereClause<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::WhereClause(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::WhereClause(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `field_declaration_list` ([`FieldDeclarationList`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_field_declaration_list(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, FieldDeclarationList<'tree>> {
+        pub fn as_field_declaration_list(self) -> Option<FieldDeclarationList<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::FieldDeclarationList(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::FieldDeclarationList(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `ordered_field_declaration_list` ([`OrderedFieldDeclarationList`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn as_ordered_field_declaration_list(
             self,
-        ) -> type_sitter_lib::NodeResult<'tree, OrderedFieldDeclarationList<'tree>> {
+        ) -> Option<OrderedFieldDeclarationList<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::OrderedFieldDeclarationList(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::OrderedFieldDeclarationList(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `type_identifier` ([`TypeIdentifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_type_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, TypeIdentifier<'tree>> {
+        pub fn as_type_identifier(self) -> Option<TypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::TypeIdentifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::TypeIdentifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `type_parameters` ([`TypeParameters`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_type_parameters(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, TypeParameters<'tree>> {
+        pub fn as_type_parameters(self) -> Option<TypeParameters<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::TypeParameters(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::TypeParameters(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -30503,70 +26487,30 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `field_pattern` ([`FieldPattern`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_field_pattern(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, FieldPattern<'tree>> {
+        pub fn as_field_pattern(self) -> Option<FieldPattern<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::FieldPattern(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::FieldPattern(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `remaining_field_pattern` ([`RemainingFieldPattern`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_remaining_field_pattern(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, RemainingFieldPattern<'tree>> {
+        pub fn as_remaining_field_pattern(self) -> Option<RemainingFieldPattern<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::RemainingFieldPattern(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::RemainingFieldPattern(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `scoped_type_identifier` ([`ScopedTypeIdentifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_scoped_type_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, ScopedTypeIdentifier<'tree>> {
+        pub fn as_scoped_type_identifier(self) -> Option<ScopedTypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::ScopedTypeIdentifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::ScopedTypeIdentifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `type_identifier` ([`TypeIdentifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_type_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, TypeIdentifier<'tree>> {
+        pub fn as_type_identifier(self) -> Option<TypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::TypeIdentifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::TypeIdentifier(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -30684,164 +26628,72 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `_literal` ([`Literal`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_literal(self) -> type_sitter_lib::NodeResult<'tree, Literal<'tree>> {
+        pub fn as_literal(self) -> Option<Literal<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Literal(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Literal(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `crate` ([`Crate`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_crate_(self) -> type_sitter_lib::NodeResult<'tree, Crate<'tree>> {
+        pub fn as_crate_(self) -> Option<Crate<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Crate(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Crate(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `identifier` ([`Identifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
+        pub fn as_identifier(self) -> Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Identifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Identifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `metavariable` ([`Metavariable`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_metavariable(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, Metavariable<'tree>> {
+        pub fn as_metavariable(self) -> Option<Metavariable<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Metavariable(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Metavariable(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `mutable_specifier` ([`MutableSpecifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_mutable_specifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, MutableSpecifier<'tree>> {
+        pub fn as_mutable_specifier(self) -> Option<MutableSpecifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::MutableSpecifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::MutableSpecifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `primitive_type` ([`PrimitiveType`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_primitive_type(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, PrimitiveType<'tree>> {
+        pub fn as_primitive_type(self) -> Option<PrimitiveType<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::PrimitiveType(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::PrimitiveType(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `self` ([`_Self`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as__self(self) -> type_sitter_lib::NodeResult<'tree, _Self<'tree>> {
+        pub fn as__self(self) -> Option<_Self<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::_Self(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::_Self(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `super` ([`Super`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_super_(self) -> type_sitter_lib::NodeResult<'tree, Super<'tree>> {
+        pub fn as_super_(self) -> Option<Super<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Super(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Super(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `token_repetition` ([`TokenRepetition`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_token_repetition(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, TokenRepetition<'tree>> {
+        pub fn as_token_repetition(self) -> Option<TokenRepetition<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::TokenRepetition(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::TokenRepetition(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `token_tree` ([`TokenTree`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_token_tree(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, TokenTree<'tree>> {
+        pub fn as_token_tree(self) -> Option<TokenTree<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::TokenTree(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::TokenTree(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -30993,181 +26845,81 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `_literal` ([`Literal`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_literal(self) -> type_sitter_lib::NodeResult<'tree, Literal<'tree>> {
+        pub fn as_literal(self) -> Option<Literal<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Literal(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Literal(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `crate` ([`Crate`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_crate_(self) -> type_sitter_lib::NodeResult<'tree, Crate<'tree>> {
+        pub fn as_crate_(self) -> Option<Crate<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Crate(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Crate(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `identifier` ([`Identifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
+        pub fn as_identifier(self) -> Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Identifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Identifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `metavariable` ([`Metavariable`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_metavariable(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, Metavariable<'tree>> {
+        pub fn as_metavariable(self) -> Option<Metavariable<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Metavariable(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Metavariable(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `mutable_specifier` ([`MutableSpecifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_mutable_specifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, MutableSpecifier<'tree>> {
+        pub fn as_mutable_specifier(self) -> Option<MutableSpecifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::MutableSpecifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::MutableSpecifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `primitive_type` ([`PrimitiveType`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_primitive_type(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, PrimitiveType<'tree>> {
+        pub fn as_primitive_type(self) -> Option<PrimitiveType<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::PrimitiveType(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::PrimitiveType(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `self` ([`_Self`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as__self(self) -> type_sitter_lib::NodeResult<'tree, _Self<'tree>> {
+        pub fn as__self(self) -> Option<_Self<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::_Self(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::_Self(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `super` ([`Super`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_super_(self) -> type_sitter_lib::NodeResult<'tree, Super<'tree>> {
+        pub fn as_super_(self) -> Option<Super<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Super(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Super(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `token_binding_pattern` ([`TokenBindingPattern`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_token_binding_pattern(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, TokenBindingPattern<'tree>> {
+        pub fn as_token_binding_pattern(self) -> Option<TokenBindingPattern<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::TokenBindingPattern(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::TokenBindingPattern(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `token_repetition_pattern` ([`TokenRepetitionPattern`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn as_token_repetition_pattern(
             self,
-        ) -> type_sitter_lib::NodeResult<'tree, TokenRepetitionPattern<'tree>> {
+        ) -> Option<TokenRepetitionPattern<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::TokenRepetitionPattern(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::TokenRepetitionPattern(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `token_tree_pattern` ([`TokenTreePattern`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_token_tree_pattern(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, TokenTreePattern<'tree>> {
+        pub fn as_token_tree_pattern(self) -> Option<TokenTreePattern<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::TokenTreePattern(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::TokenTreePattern(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -31305,49 +27057,25 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `_type` ([`Type`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_type(self) -> type_sitter_lib::NodeResult<'tree, Type<'tree>> {
+        pub fn as_type(self) -> Option<Type<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Type(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Type(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `higher_ranked_trait_bound` ([`HigherRankedTraitBound`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn as_higher_ranked_trait_bound(
             self,
-        ) -> type_sitter_lib::NodeResult<'tree, HigherRankedTraitBound<'tree>> {
+        ) -> Option<HigherRankedTraitBound<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::HigherRankedTraitBound(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::HigherRankedTraitBound(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `lifetime` ([`Lifetime`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_lifetime(self) -> type_sitter_lib::NodeResult<'tree, Lifetime<'tree>> {
+        pub fn as_lifetime(self) -> Option<Lifetime<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Lifetime(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Lifetime(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -31429,104 +27157,44 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `visibility_modifier` ([`VisibilityModifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_visibility_modifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, VisibilityModifier<'tree>> {
+        pub fn as_visibility_modifier(self) -> Option<VisibilityModifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::VisibilityModifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::VisibilityModifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `where_clause` ([`WhereClause`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_where_clause(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, WhereClause<'tree>> {
+        pub fn as_where_clause(self) -> Option<WhereClause<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::WhereClause(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::WhereClause(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `declaration_list` ([`DeclarationList`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_declaration_list(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, DeclarationList<'tree>> {
+        pub fn as_declaration_list(self) -> Option<DeclarationList<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::DeclarationList(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::DeclarationList(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `trait_bounds` ([`TraitBounds`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_trait_bounds(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, TraitBounds<'tree>> {
+        pub fn as_trait_bounds(self) -> Option<TraitBounds<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::TraitBounds(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::TraitBounds(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `type_identifier` ([`TypeIdentifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_type_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, TypeIdentifier<'tree>> {
+        pub fn as_type_identifier(self) -> Option<TypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::TypeIdentifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::TypeIdentifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `type_parameters` ([`TypeParameters`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_type_parameters(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, TypeParameters<'tree>> {
+        pub fn as_type_parameters(self) -> Option<TypeParameters<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::TypeParameters(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::TypeParameters(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -31648,34 +27316,16 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `_pattern` ([`Pattern`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_pattern(self) -> type_sitter_lib::NodeResult<'tree, Pattern<'tree>> {
+        pub fn as_pattern(self) -> Option<Pattern<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Pattern(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Pattern(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `closure_expression` ([`ClosureExpression`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_closure_expression(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, ClosureExpression<'tree>> {
+        pub fn as_closure_expression(self) -> Option<ClosureExpression<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::ClosureExpression(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::ClosureExpression(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -31738,68 +27388,30 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `_pattern` ([`Pattern`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_pattern(self) -> type_sitter_lib::NodeResult<'tree, Pattern<'tree>> {
+        pub fn as_pattern(self) -> Option<Pattern<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Pattern(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Pattern(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `generic_type` ([`GenericType`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_generic_type(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, GenericType<'tree>> {
+        pub fn as_generic_type(self) -> Option<GenericType<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::GenericType(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::GenericType(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `identifier` ([`Identifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
+        pub fn as_identifier(self) -> Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Identifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Identifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `scoped_identifier` ([`ScopedIdentifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_scoped_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, ScopedIdentifier<'tree>> {
+        pub fn as_scoped_identifier(self) -> Option<ScopedIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::ScopedIdentifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::ScopedIdentifier(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -31877,53 +27489,23 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `generic_type` ([`GenericType`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_generic_type(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, GenericType<'tree>> {
+        pub fn as_generic_type(self) -> Option<GenericType<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::GenericType(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::GenericType(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `identifier` ([`Identifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
+        pub fn as_identifier(self) -> Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Identifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Identifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `scoped_identifier` ([`ScopedIdentifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_scoped_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, ScopedIdentifier<'tree>> {
+        pub fn as_scoped_identifier(self) -> Option<ScopedIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::ScopedIdentifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::ScopedIdentifier(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -32013,96 +27595,44 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `_literal` ([`Literal`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_literal(self) -> type_sitter_lib::NodeResult<'tree, Literal<'tree>> {
+        pub fn as_literal(self) -> Option<Literal<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Literal(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Literal(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `_type` ([`Type`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_type(self) -> type_sitter_lib::NodeResult<'tree, Type<'tree>> {
+        pub fn as_type(self) -> Option<Type<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Type(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Type(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `block` ([`Block`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_block(self) -> type_sitter_lib::NodeResult<'tree, Block<'tree>> {
+        pub fn as_block(self) -> Option<Block<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Block(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Block(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `lifetime` ([`Lifetime`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_lifetime(self) -> type_sitter_lib::NodeResult<'tree, Lifetime<'tree>> {
+        pub fn as_lifetime(self) -> Option<Lifetime<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Lifetime(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Lifetime(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `trait_bounds` ([`TraitBounds`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_trait_bounds(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, TraitBounds<'tree>> {
+        pub fn as_trait_bounds(self) -> Option<TraitBounds<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::TraitBounds(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::TraitBounds(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `type_binding` ([`TypeBinding`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_type_binding(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, TypeBinding<'tree>> {
+        pub fn as_type_binding(self) -> Option<TypeBinding<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::TypeBinding(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::TypeBinding(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -32202,85 +27732,37 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `visibility_modifier` ([`VisibilityModifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_visibility_modifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, VisibilityModifier<'tree>> {
+        pub fn as_visibility_modifier(self) -> Option<VisibilityModifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::VisibilityModifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::VisibilityModifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `where_clause` ([`WhereClause`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_where_clause(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, WhereClause<'tree>> {
+        pub fn as_where_clause(self) -> Option<WhereClause<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::WhereClause(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::WhereClause(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `type_identifier` ([`TypeIdentifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_type_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, TypeIdentifier<'tree>> {
+        pub fn as_type_identifier(self) -> Option<TypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::TypeIdentifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::TypeIdentifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `_type` ([`Type`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_type(self) -> type_sitter_lib::NodeResult<'tree, Type<'tree>> {
+        pub fn as_type(self) -> Option<Type<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Type(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Type(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `type_parameters` ([`TypeParameters`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_type_parameters(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, TypeParameters<'tree>> {
+        pub fn as_type_parameters(self) -> Option<TypeParameters<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::TypeParameters(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::TypeParameters(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -32382,119 +27864,53 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `attribute_item` ([`AttributeItem`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_attribute_item(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, AttributeItem<'tree>> {
+        pub fn as_attribute_item(self) -> Option<AttributeItem<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::AttributeItem(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::AttributeItem(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `const_parameter` ([`ConstParameter`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_const_parameter(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, ConstParameter<'tree>> {
+        pub fn as_const_parameter(self) -> Option<ConstParameter<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::ConstParameter(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::ConstParameter(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `constrained_type_parameter` ([`ConstrainedTypeParameter`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn as_constrained_type_parameter(
             self,
-        ) -> type_sitter_lib::NodeResult<'tree, ConstrainedTypeParameter<'tree>> {
+        ) -> Option<ConstrainedTypeParameter<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::ConstrainedTypeParameter(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::ConstrainedTypeParameter(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `lifetime` ([`Lifetime`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_lifetime(self) -> type_sitter_lib::NodeResult<'tree, Lifetime<'tree>> {
+        pub fn as_lifetime(self) -> Option<Lifetime<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Lifetime(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Lifetime(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `metavariable` ([`Metavariable`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_metavariable(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, Metavariable<'tree>> {
+        pub fn as_metavariable(self) -> Option<Metavariable<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Metavariable(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Metavariable(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `optional_type_parameter` ([`OptionalTypeParameter`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_optional_type_parameter(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, OptionalTypeParameter<'tree>> {
+        pub fn as_optional_type_parameter(self) -> Option<OptionalTypeParameter<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::OptionalTypeParameter(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::OptionalTypeParameter(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `type_identifier` ([`TypeIdentifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_type_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, TypeIdentifier<'tree>> {
+        pub fn as_type_identifier(self) -> Option<TypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::TypeIdentifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::TypeIdentifier(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -32640,87 +28056,37 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `visibility_modifier` ([`VisibilityModifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_visibility_modifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, VisibilityModifier<'tree>> {
+        pub fn as_visibility_modifier(self) -> Option<VisibilityModifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::VisibilityModifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::VisibilityModifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `where_clause` ([`WhereClause`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_where_clause(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, WhereClause<'tree>> {
+        pub fn as_where_clause(self) -> Option<WhereClause<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::WhereClause(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::WhereClause(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `field_declaration_list` ([`FieldDeclarationList`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_field_declaration_list(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, FieldDeclarationList<'tree>> {
+        pub fn as_field_declaration_list(self) -> Option<FieldDeclarationList<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::FieldDeclarationList(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::FieldDeclarationList(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `type_identifier` ([`TypeIdentifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_type_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, TypeIdentifier<'tree>> {
+        pub fn as_type_identifier(self) -> Option<TypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::TypeIdentifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::TypeIdentifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `type_parameters` ([`TypeParameters`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_type_parameters(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, TypeParameters<'tree>> {
+        pub fn as_type_parameters(self) -> Option<TypeParameters<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::TypeParameters(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::TypeParameters(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -32854,181 +28220,79 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `visibility_modifier` ([`VisibilityModifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_visibility_modifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, VisibilityModifier<'tree>> {
+        pub fn as_visibility_modifier(self) -> Option<VisibilityModifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::VisibilityModifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::VisibilityModifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `crate` ([`Crate`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_crate_(self) -> type_sitter_lib::NodeResult<'tree, Crate<'tree>> {
+        pub fn as_crate_(self) -> Option<Crate<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Crate(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Crate(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `identifier` ([`Identifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
+        pub fn as_identifier(self) -> Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Identifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Identifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `metavariable` ([`Metavariable`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_metavariable(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, Metavariable<'tree>> {
+        pub fn as_metavariable(self) -> Option<Metavariable<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Metavariable(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Metavariable(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `scoped_identifier` ([`ScopedIdentifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_scoped_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, ScopedIdentifier<'tree>> {
+        pub fn as_scoped_identifier(self) -> Option<ScopedIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::ScopedIdentifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::ScopedIdentifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `scoped_use_list` ([`ScopedUseList`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_scoped_use_list(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, ScopedUseList<'tree>> {
+        pub fn as_scoped_use_list(self) -> Option<ScopedUseList<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::ScopedUseList(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::ScopedUseList(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `self` ([`_Self`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as__self(self) -> type_sitter_lib::NodeResult<'tree, _Self<'tree>> {
+        pub fn as__self(self) -> Option<_Self<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::_Self(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::_Self(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `super` ([`Super`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_super_(self) -> type_sitter_lib::NodeResult<'tree, Super<'tree>> {
+        pub fn as_super_(self) -> Option<Super<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Super(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Super(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `use_as_clause` ([`UseAsClause`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_use_as_clause(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, UseAsClause<'tree>> {
+        pub fn as_use_as_clause(self) -> Option<UseAsClause<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::UseAsClause(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::UseAsClause(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `use_list` ([`UseList`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_use_list(self) -> type_sitter_lib::NodeResult<'tree, UseList<'tree>> {
+        pub fn as_use_list(self) -> Option<UseList<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::UseList(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::UseList(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `use_wildcard` ([`UseWildcard`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_use_wildcard(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, UseWildcard<'tree>> {
+        pub fn as_use_wildcard(self) -> Option<UseWildcard<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::UseWildcard(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::UseWildcard(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -33232,164 +28496,72 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `crate` ([`Crate`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_crate_(self) -> type_sitter_lib::NodeResult<'tree, Crate<'tree>> {
+        pub fn as_crate_(self) -> Option<Crate<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Crate(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Crate(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `identifier` ([`Identifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
+        pub fn as_identifier(self) -> Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Identifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Identifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `metavariable` ([`Metavariable`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_metavariable(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, Metavariable<'tree>> {
+        pub fn as_metavariable(self) -> Option<Metavariable<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Metavariable(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Metavariable(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `scoped_identifier` ([`ScopedIdentifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_scoped_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, ScopedIdentifier<'tree>> {
+        pub fn as_scoped_identifier(self) -> Option<ScopedIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::ScopedIdentifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::ScopedIdentifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `scoped_use_list` ([`ScopedUseList`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_scoped_use_list(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, ScopedUseList<'tree>> {
+        pub fn as_scoped_use_list(self) -> Option<ScopedUseList<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::ScopedUseList(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::ScopedUseList(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `self` ([`_Self`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as__self(self) -> type_sitter_lib::NodeResult<'tree, _Self<'tree>> {
+        pub fn as__self(self) -> Option<_Self<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::_Self(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::_Self(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `super` ([`Super`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_super_(self) -> type_sitter_lib::NodeResult<'tree, Super<'tree>> {
+        pub fn as_super_(self) -> Option<Super<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Super(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Super(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `use_as_clause` ([`UseAsClause`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_use_as_clause(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, UseAsClause<'tree>> {
+        pub fn as_use_as_clause(self) -> Option<UseAsClause<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::UseAsClause(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::UseAsClause(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `use_list` ([`UseList`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_use_list(self) -> type_sitter_lib::NodeResult<'tree, UseList<'tree>> {
+        pub fn as_use_list(self) -> Option<UseList<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::UseList(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::UseList(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `use_wildcard` ([`UseWildcard`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_use_wildcard(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, UseWildcard<'tree>> {
+        pub fn as_use_wildcard(self) -> Option<UseWildcard<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::UseWildcard(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::UseWildcard(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -33559,34 +28731,16 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `mutable_specifier` ([`MutableSpecifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_mutable_specifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, MutableSpecifier<'tree>> {
+        pub fn as_mutable_specifier(self) -> Option<MutableSpecifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::MutableSpecifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::MutableSpecifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `_pattern` ([`Pattern`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_pattern(self) -> type_sitter_lib::NodeResult<'tree, Pattern<'tree>> {
+        pub fn as_pattern(self) -> Option<Pattern<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Pattern(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Pattern(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -33667,170 +28821,74 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `array_type` ([`ArrayType`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_array_type(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, ArrayType<'tree>> {
+        pub fn as_array_type(self) -> Option<ArrayType<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::ArrayType(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::ArrayType(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `generic_type` ([`GenericType`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_generic_type(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, GenericType<'tree>> {
+        pub fn as_generic_type(self) -> Option<GenericType<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::GenericType(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::GenericType(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `higher_ranked_trait_bound` ([`HigherRankedTraitBound`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
         pub fn as_higher_ranked_trait_bound(
             self,
-        ) -> type_sitter_lib::NodeResult<'tree, HigherRankedTraitBound<'tree>> {
+        ) -> Option<HigherRankedTraitBound<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::HigherRankedTraitBound(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::HigherRankedTraitBound(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `lifetime` ([`Lifetime`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_lifetime(self) -> type_sitter_lib::NodeResult<'tree, Lifetime<'tree>> {
+        pub fn as_lifetime(self) -> Option<Lifetime<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Lifetime(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Lifetime(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `pointer_type` ([`PointerType`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_pointer_type(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, PointerType<'tree>> {
+        pub fn as_pointer_type(self) -> Option<PointerType<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::PointerType(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::PointerType(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `primitive_type` ([`PrimitiveType`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_primitive_type(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, PrimitiveType<'tree>> {
+        pub fn as_primitive_type(self) -> Option<PrimitiveType<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::PrimitiveType(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::PrimitiveType(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `reference_type` ([`ReferenceType`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_reference_type(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, ReferenceType<'tree>> {
+        pub fn as_reference_type(self) -> Option<ReferenceType<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::ReferenceType(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::ReferenceType(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `scoped_type_identifier` ([`ScopedTypeIdentifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_scoped_type_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, ScopedTypeIdentifier<'tree>> {
+        pub fn as_scoped_type_identifier(self) -> Option<ScopedTypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::ScopedTypeIdentifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::ScopedTypeIdentifier(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `tuple_type` ([`TupleType`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_tuple_type(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, TupleType<'tree>> {
+        pub fn as_tuple_type(self) -> Option<TupleType<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::TupleType(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::TupleType(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `type_identifier` ([`TypeIdentifier`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_type_identifier(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, TypeIdentifier<'tree>> {
+        pub fn as_type_identifier(self) -> Option<TypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::TypeIdentifier(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::TypeIdentifier(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
@@ -34006,83 +29064,37 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `label` ([`Label`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_label(self) -> type_sitter_lib::NodeResult<'tree, Label<'tree>> {
+        pub fn as_label(self) -> Option<Label<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Label(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Label(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `block` ([`Block`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_block(self) -> type_sitter_lib::NodeResult<'tree, Block<'tree>> {
+        pub fn as_block(self) -> Option<Block<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Block(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Block(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `_expression` ([`Expression`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_expression(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
+        pub fn as_expression(self) -> Option<Expression<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Expression(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Expression(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `let_chain` ([`LetChain`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_let_chain(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, LetChain<'tree>> {
+        pub fn as_let_chain(self) -> Option<LetChain<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::LetChain(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::LetChain(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `let_condition` ([`LetCondition`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_let_condition(
-            self,
-        ) -> type_sitter_lib::NodeResult<'tree, LetCondition<'tree>> {
+        pub fn as_let_condition(self) -> Option<LetCondition<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::LetCondition(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::LetCondition(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]

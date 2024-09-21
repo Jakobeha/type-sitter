@@ -20,15 +20,15 @@ pub fn test_use_node_types_rust() {
         eprintln!("  {}", statement.to_sexp());
     }
     assert!(matches!(statements[0], rust::nodes::anon_unions::DeclarationStatement_ExpressionStatement_Shebang::DeclarationStatement(rust::nodes::DeclarationStatement::UseDeclaration(_))));
-    assert!(statements[0].as_declaration_statement().unwrap().as_use_declaration().is_ok(), "Expected 1st statement to be a use declaration");
-    assert!(statements[1].as_declaration_statement().unwrap().as_foreign_mod_item().is_ok(), "Expected 2nd statement to be a foreign mod item");
-    assert!(statements[2].as_declaration_statement().unwrap().as_const_item().is_ok(), "Expected 3rd statement to be a const item");
-    assert!(statements[3].as_declaration_statement().unwrap().as_const_item().is_ok(), "Expected 4th statement to be a const item");
-    assert!(statements[4].as_declaration_statement().unwrap().as_const_item().is_ok(), "Expected 5th statement to be a const item");
-    assert!(statements[5].as_declaration_statement().unwrap().as_const_item().is_ok(), "Expected 6th statement to be a const item");
-    assert!(statements[6].as_declaration_statement().unwrap().as_const_item().is_ok(), "Expected 7th statement to be a const item");
-    assert!(statements[7].as_declaration_statement().unwrap().as_attribute_item().is_ok(), "Expected 8th statement to be an attribute item");
-    assert!(statements[8].as_declaration_statement().unwrap().as_mod_item().is_ok(), "Expected 9th statement to be a mod item");
+    assert!(statements[0].as_declaration_statement().unwrap().as_use_declaration().is_some(), "Expected 1st statement to be a use declaration");
+    assert!(statements[1].as_declaration_statement().unwrap().as_foreign_mod_item().is_some(), "Expected 2nd statement to be a foreign mod item");
+    assert!(statements[2].as_declaration_statement().unwrap().as_const_item().is_some(), "Expected 3rd statement to be a const item");
+    assert!(statements[3].as_declaration_statement().unwrap().as_const_item().is_some(), "Expected 4th statement to be a const item");
+    assert!(statements[4].as_declaration_statement().unwrap().as_const_item().is_some(), "Expected 5th statement to be a const item");
+    assert!(statements[5].as_declaration_statement().unwrap().as_const_item().is_some(), "Expected 6th statement to be a const item");
+    assert!(statements[6].as_declaration_statement().unwrap().as_const_item().is_some(), "Expected 7th statement to be a const item");
+    assert!(statements[7].as_declaration_statement().unwrap().as_attribute_item().is_some(), "Expected 8th statement to be an attribute item");
+    assert!(statements[8].as_declaration_statement().unwrap().as_mod_item().is_some(), "Expected 9th statement to be a mod item");
     assert_eq!(
         statements[0]
             .as_declaration_statement().expect("Expected declaration statement")
@@ -76,7 +76,7 @@ pub fn test_use_node_types_rust() {
             .value().unwrap()
             .as_scoped_identifier().expect("Expected function item's body's second child's call expression's function's field expression's value's call expression's child's expression's value's call expression's function's value to be a scoped identifier")
             .path().expect("Expected function item's body's second child's call expression's function's field expression's value's call expression's child's expression's value's call expression's function's value's scoped identifier to have a path").unwrap()
-            .as_super_().is_ok(),
+            .as_super_().is_some(),
         "Expected function item's body's second child's call expression's function's field expression's value's call expression's child's expression's value's call expression's function's scoped identifier's path to be a super_"
     );
     assert!(
@@ -84,7 +84,7 @@ pub fn test_use_node_types_rust() {
             .as_declaration_statement().expect("Expected declaration statement")
             .as_mod_item().expect("Expected mod item")
             .children(&mut code_root.walk()).all(|child|
-                child.unwrap().as_visibility_modifier().is_err()),
+                child.unwrap().as_visibility_modifier().is_none()),
         "Expected mod item to not have a visibility modifier"
     )
 }

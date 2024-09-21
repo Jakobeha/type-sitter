@@ -802,47 +802,23 @@ pub mod anon_unions {
         ///Returns the node if it is of kind `false` ([`False`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_false(self) -> type_sitter_lib::NodeResult<'tree, False<'tree>> {
+        pub fn as_false(self) -> Option<False<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::False(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::False(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `null` ([`Null`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_null(self) -> type_sitter_lib::NodeResult<'tree, Null<'tree>> {
+        pub fn as_null(self) -> Option<Null<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Null(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::Null(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of kind `true` ([`True`]), otherwise returns None
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_true(self) -> type_sitter_lib::NodeResult<'tree, True<'tree>> {
+        pub fn as_true(self) -> Option<True<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::True(x) = self {
-                Ok(x)
-            } else {
-                Err(
-                    type_sitter_lib::IncorrectKind::new::<
-                        Self,
-                    >(*type_sitter_lib::Node::raw(&self)),
-                )
-            }
+            if let Self::True(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]

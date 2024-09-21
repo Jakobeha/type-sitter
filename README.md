@@ -135,6 +135,37 @@ Alternatively, instead of the path to the grammar's root folder, if you specify 
 
 A downside with the CLI approach is that you need to manually re-generate the nodes if the grammar changes. An upside is that, if you know the grammar won't change and you won't have to manually re-generate, you can edit the generated code and the edits will persist.
 
+## Example
+
+```rust
+pub fn get_import_paths_untyped<'a>(source: &'a str, tree: &tree_sitter::Tree) -> Vec<&'a str> {
+    // BAD: what if we spell the field names wrong? What if a new variant is added with the same field name? 
+    tree.root_node().children(&mut tree.walk())
+        .filter(|n| n.kind() == "use_declaration")
+        .filter_map(|n| n.child_by_field_name("argument"))
+        .filter_map(|n| n.child_by_field_name("path"))
+        .filter_map(|n| n.utf8_text(source.as_bytes()).unwrap())
+        .collect()
+}
+
+pub fn get_import_paths_typed<'a>(source: &'a str, tree: &type_sitter::Tree<rust::SourceFile<'static>>) -> Vec<&'a str> {
+    // GOOD: fields are type-safe, variant selectors are explicit, and we get IDE inference
+    tree.root_node().unwrap().children(&mut tree.walk())
+        .filter_map(|n| n.as_declaration_statement().and_then(|n| n.as_use_declaration()))
+        .filter_map(|n| n.argument().map(|r| r.unwrap()))
+        .filter_map(|n| n.as_scoped_identifier())
+        .filter_map(|n| n.path().map(|r| r.unwrap()))
+        .filter_map(|n| n.as_identifier())
+        .filter_map(|n| n.utf8_text(source.as_bytes()).unwrap())
+        .collect()
+}
+
+// We can also define methods which only take nodes of certain types
+pub fn process_declaration(decl: rust::DeclarationStatement<'_>) {
+    // ...
+}
+```
+
 ## Drawbacks
 
 Be aware that the generated wrapper code is very large: the generated node wrappers for `tree-sitter-rust` are 33217 LOC. In my usage it seems analyzers are pretty good at handling this, but it's something to keep in mind.
@@ -208,42 +239,6 @@ The source for all this is at [`type-sitter-gen/src/names.rs`](type-sitter-gen/s
 ### Query Capture Naming Rules
 
 Query capture naming rules are the exact same as node rules, except that in captures, `.` is interpreted as `_` when converting to camel-case (e.g. `method.definition` => `MethodDefinition` and `method_definition`).
-
-## Example
-
-```rust
-use type_sitter::{Node, OptionNodeResultExt};
-
-pub fn get_import_paths_unsafe(tree: &tree_sitter::Tree, text: &str) -> Vec<String> {
-    // BAD: what if we spell the field names wrong? What if a new variant is added with the same field name? 
-    tree.root_node().children(&mut tree.walk())
-        .filter(|n| n.kind() == "use_declaration")
-        .filter_map(|n| n.child_by_field_name("argument"))
-        .filter_map(|n| n.child_by_field_name("path"))
-        .filter_map(|n| n.utf8_text(text.as_bytes()))
-        .map(|s| s.to_string())
-        .collect()
-}
-
-pub fn get_import_paths_safe(tree: &type_sitter::Tree<rust::SourceFile<'static>>, text: &str) -> Vec<String> {
-    // GOOD: fields are type-safe, variant selectors are explicit, and we get IDE inference
-    tree.root_node().unwrap().children(&mut tree.walk())
-        .filter_map(|n| n.as_declaration_statement())
-        .filter_map(|n| n.as_use_declaration())
-        .filter_map(|n| n.argument())
-        .filter_map(|n| n.as_scoped_identifier())
-        .filter_map(|n| n.path().flatten())
-        .filter_map(|n| n.as_identifier())
-        .filter_map(|n| n.utf8_text(code_str.as_bytes()))
-        .map(|s| s.to_string())
-        .collect()
-}
-
-// We can also define methods which only take nodes of certain types
-pub fn process_declaration(decl: rust::DeclarationStatement<'_>) {
-    // ...
-}
-```
 
 ## Comparison to [rust-sitter](https://www.shadaj.me/writing/introducing-rust-sitter)
 

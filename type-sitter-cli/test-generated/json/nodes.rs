@@ -15,92 +15,78 @@ impl<'tree> Value<'tree> {
     #[doc = "Returns the node if it is of kind `array` ([`Array`]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_array(self) -> type_sitter::NodeResult<'tree, Array<'tree>> {
+    pub fn as_array(self) -> Option<Array<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::Array(x) = self {
-            Ok(x)
+            Some(x)
         } else {
-            Err(type_sitter::IncorrectKind::new::<Self>(
-                *type_sitter::Node::raw(&self),
-            ))
+            None
         }
     }
     #[doc = "Returns the node if it is of kind `false` ([`False`]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_false(self) -> type_sitter::NodeResult<'tree, False<'tree>> {
+    pub fn as_false(self) -> Option<False<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::False(x) = self {
-            Ok(x)
+            Some(x)
         } else {
-            Err(type_sitter::IncorrectKind::new::<Self>(
-                *type_sitter::Node::raw(&self),
-            ))
+            None
         }
     }
     #[doc = "Returns the node if it is of kind `null` ([`Null`]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_null(self) -> type_sitter::NodeResult<'tree, Null<'tree>> {
+    pub fn as_null(self) -> Option<Null<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::Null(x) = self {
-            Ok(x)
+            Some(x)
         } else {
-            Err(type_sitter::IncorrectKind::new::<Self>(
-                *type_sitter::Node::raw(&self),
-            ))
+            None
         }
     }
     #[doc = "Returns the node if it is of kind `number` ([`Number`]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_number(self) -> type_sitter::NodeResult<'tree, Number<'tree>> {
+    pub fn as_number(self) -> Option<Number<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::Number(x) = self {
-            Ok(x)
+            Some(x)
         } else {
-            Err(type_sitter::IncorrectKind::new::<Self>(
-                *type_sitter::Node::raw(&self),
-            ))
+            None
         }
     }
     #[doc = "Returns the node if it is of kind `object` ([`Object`]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_object(self) -> type_sitter::NodeResult<'tree, Object<'tree>> {
+    pub fn as_object(self) -> Option<Object<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::Object(x) = self {
-            Ok(x)
+            Some(x)
         } else {
-            Err(type_sitter::IncorrectKind::new::<Self>(
-                *type_sitter::Node::raw(&self),
-            ))
+            None
         }
     }
     #[doc = "Returns the node if it is of kind `string` ([`String`]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_string(self) -> type_sitter::NodeResult<'tree, String<'tree>> {
+    pub fn as_string(self) -> Option<String<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::String(x) = self {
-            Ok(x)
+            Some(x)
         } else {
-            Err(type_sitter::IncorrectKind::new::<Self>(
-                *type_sitter::Node::raw(&self),
-            ))
+            None
         }
     }
     #[doc = "Returns the node if it is of kind `true` ([`True`]), otherwise returns None"]
     #[inline]
     #[allow(unused, non_snake_case)]
-    pub fn as_true(self) -> type_sitter::NodeResult<'tree, True<'tree>> {
+    pub fn as_true(self) -> Option<True<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::True(x) = self {
-            Ok(x)
+            Some(x)
         } else {
-            Err(type_sitter::IncorrectKind::new::<Self>(
-                *type_sitter::Node::raw(&self),
-            ))
+            None
         }
     }
 }
@@ -958,27 +944,23 @@ pub mod anon_unions {
         #[doc = "Returns the node if it is of kind `escape_sequence` ([`EscapeSequence`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_escape_sequence(self) -> type_sitter::NodeResult<'tree, EscapeSequence<'tree>> {
+        pub fn as_escape_sequence(self) -> Option<EscapeSequence<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::EscapeSequence(x) = self {
-                Ok(x)
+                Some(x)
             } else {
-                Err(type_sitter::IncorrectKind::new::<Self>(
-                    *type_sitter::Node::raw(&self),
-                ))
+                None
             }
         }
         #[doc = "Returns the node if it is of kind `string_content` ([`StringContent`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_string_content(self) -> type_sitter::NodeResult<'tree, StringContent<'tree>> {
+        pub fn as_string_content(self) -> Option<StringContent<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::StringContent(x) = self {
-                Ok(x)
+                Some(x)
             } else {
-                Err(type_sitter::IncorrectKind::new::<Self>(
-                    *type_sitter::Node::raw(&self),
-                ))
+                None
             }
         }
     }

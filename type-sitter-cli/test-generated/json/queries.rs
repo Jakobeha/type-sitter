@@ -560,40 +560,34 @@ pub mod anon_unions {
         #[doc = "Returns the node if it is of kind `false` ([`False`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_false(self) -> type_sitter::NodeResult<'tree, False<'tree>> {
+        pub fn as_false(self) -> Option<False<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::False(x) = self {
-                Ok(x)
+                Some(x)
             } else {
-                Err(type_sitter::IncorrectKind::new::<Self>(
-                    *type_sitter::Node::raw(&self),
-                ))
+                None
             }
         }
         #[doc = "Returns the node if it is of kind `null` ([`Null`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_null(self) -> type_sitter::NodeResult<'tree, Null<'tree>> {
+        pub fn as_null(self) -> Option<Null<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Null(x) = self {
-                Ok(x)
+                Some(x)
             } else {
-                Err(type_sitter::IncorrectKind::new::<Self>(
-                    *type_sitter::Node::raw(&self),
-                ))
+                None
             }
         }
         #[doc = "Returns the node if it is of kind `true` ([`True`]), otherwise returns None"]
         #[inline]
         #[allow(unused, non_snake_case)]
-        pub fn as_true(self) -> type_sitter::NodeResult<'tree, True<'tree>> {
+        pub fn as_true(self) -> Option<True<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::True(x) = self {
-                Ok(x)
+                Some(x)
             } else {
-                Err(type_sitter::IncorrectKind::new::<Self>(
-                    *type_sitter::Node::raw(&self),
-                ))
+                None
             }
         }
     }

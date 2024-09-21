@@ -236,7 +236,7 @@ impl NodeName {
         let mut prev_methods = HashSet::new();
         let variant_accessors = subtypes
             .iter()
-            .map(|name| name.print_variant_accessor(&mut prev_variants2, &mut prev_methods, type_sitter_lib));
+            .map(|name| name.print_variant_accessor(&mut prev_variants2, &mut prev_methods));
 
         let try_from = {
             let error = quote! {
@@ -423,8 +423,7 @@ impl NodeName {
     fn print_variant_accessor(
         &self,
         prev_variants: &mut HashSet<String>,
-        prev_methods: &mut HashSet<String>,
-        type_sitter_lib: &Path
+        prev_methods: &mut HashSet<String>
     ) -> TokenStream {
         let ident = self.rust_variant_ident(prev_variants);
         let type_ = self.print_type();
@@ -442,12 +441,12 @@ impl NodeName {
             #[doc = #doc]
             #[inline]
             #[allow(unused, non_snake_case)]
-            pub fn #as_method(self) -> #type_sitter_lib::NodeResult<'tree, #type_> {
+            pub fn #as_method(self) -> Option<#type_> {
                 #[allow(irrefutable_let_patterns)]
                 if let Self::#ident(x) = self {
-                    Ok(x)
+                    Some(x)
                 } else {
-                    Err(#type_sitter_lib::IncorrectKind::new::<Self>(*#type_sitter_lib::Node::raw(&self)))
+                    None
                 }
             }
         }
