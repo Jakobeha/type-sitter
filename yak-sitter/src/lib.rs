@@ -524,7 +524,7 @@ impl<'tree> Node<'tree> {
 
     /// Get the number of named and unnamed children
     #[inline]
-    pub fn any_child_count(&self) -> usize {
+    pub fn child_count(&self) -> usize {
         self.node.child_count()
     }
 
@@ -588,7 +588,7 @@ impl<'tree> Node<'tree> {
     pub fn last_any_child(&self) -> Option<Node<'tree>> {
         // .child is already bounds-checked so we use wrapping_sub for iff the count is 0
         // SAFETY: Same tree
-        self.node.child(self.any_child_count().wrapping_sub(1)).map(|node| unsafe { Node::new(node, self.tree) })
+        self.node.child(self.child_count().wrapping_sub(1)).map(|node| unsafe { Node::new(node, self.tree) })
     }
 
     /// Get the node's last named child
@@ -815,7 +815,7 @@ impl<'tree> TreeCursor<'tree> {
                 None => None,
                 Some(parent) => {
                     let original_node = self.node();
-                    self.goto(parent);
+                    self.reset(parent);
                     self.goto_first_child();
                     while self.node() != original_node {
                         self.goto_next_sibling();
@@ -828,7 +828,7 @@ impl<'tree> TreeCursor<'tree> {
 
     /// Re-initialize the cursor to point to the given node
     #[inline]
-    pub fn goto(&mut self, node: Node<'tree>) {
+    pub fn reset(&mut self, node: Node<'tree>) {
         if self.cursor.node() != node.node {
             self.cursor.reset(node.node);
             self.child_depth = if node.tree.root_node() == node {
@@ -889,7 +889,7 @@ impl<'tree> TreeCursor<'tree> {
                 None => false,
                 Some(parent) => {
                     let original_node = self.node();
-                    self.goto(parent);
+                    self.reset(parent);
                     self.goto_first_child();
                     while self.node() != original_node {
                         self.goto_next_sibling();
@@ -917,7 +917,7 @@ impl<'tree> TreeCursor<'tree> {
                 match self.node().parent() {
                     None => false,
                     Some(parent) => {
-                        self.goto(parent);
+                        self.reset(parent);
                         true
                     }
                 }

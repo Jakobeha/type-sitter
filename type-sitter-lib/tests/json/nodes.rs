@@ -1,13 +1,14 @@
 /**Typed node `_value`
 
-This node type is a supertype of:
-- `array` ([Array])
-- `false` ([False])
-- `null` ([Null])
-- `number` ([Number])
-- `object` ([Object])
-- `string` ([String])
-- `true` ([True])
+This node type has subtypes:
+
+- `array` ([`Array`])
+- `false` ([`False`])
+- `null` ([`Null`])
+- `number` ([`Number`])
+- `object` ([`Object`])
+- `string` ([`String`])
+- `true` ([`True`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
@@ -22,51 +23,51 @@ pub enum Value<'tree> {
 }
 #[automatically_derived]
 impl<'tree> Value<'tree> {
-    ///Returns the node if it is of kind `array` ([`Array`]), otherwise returns None
+    ///Returns the node if it is of type `array` ([`Array`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_array(self) -> Option<Array<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::Array(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `false` ([`False`]), otherwise returns None
+    ///Returns the node if it is of type `false` ([`False`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_false(self) -> Option<False<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::False(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `null` ([`Null`]), otherwise returns None
+    ///Returns the node if it is of type `null` ([`Null`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_null(self) -> Option<Null<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::Null(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `number` ([`Number`]), otherwise returns None
+    ///Returns the node if it is of type `number` ([`Number`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_number(self) -> Option<Number<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::Number(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `object` ([`Object`]), otherwise returns None
+    ///Returns the node if it is of type `object` ([`Object`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_object(self) -> Option<Object<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::Object(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `string` ([`String`]), otherwise returns None
+    ///Returns the node if it is of type `string` ([`String`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_string(self) -> Option<String<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::String(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `true` ([`True`]), otherwise returns None
+    ///Returns the node if it is of type `true` ([`True`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_true(self) -> Option<True<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::True(x) = self { Some(x) } else { None }
@@ -184,7 +185,7 @@ impl<'tree> type_sitter_lib::Node<'tree> for Value<'tree> {
 }
 /**Typed node `array`
 
-This node has children: `_value*` ([Value])
+This node has named children of type `_value*` ([`Value`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -192,8 +193,10 @@ This node has children: `_value*` ([Value])
 pub struct Array<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> Array<'tree> {
-    ///Get the node's not-extra named children
-    #[allow(dead_code)]
+    /**Get the node's not-extra named children.
+
+These children have type `_value*` ([`Value`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -237,7 +240,7 @@ impl<'tree> type_sitter_lib::Node<'tree> for Array<'tree> {
 }
 /**Typed node `document`
 
-This node has children: `_value*` ([Value])
+This node has named children of type `_value*` ([`Value`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -245,8 +248,10 @@ This node has children: `_value*` ([Value])
 pub struct Document<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> Document<'tree> {
-    ///Get the node's not-extra named children
-    #[allow(dead_code)]
+    /**Get the node's not-extra named children.
+
+These children have type `_value*` ([`Value`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -290,7 +295,7 @@ impl<'tree> type_sitter_lib::Node<'tree> for Document<'tree> {
 }
 /**Typed node `object`
 
-This node has children: `pair*` ([Pair])
+This node has named children of type `pair*` ([`Pair`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -298,8 +303,10 @@ This node has children: `pair*` ([Pair])
 pub struct Object<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> Object<'tree> {
-    ///Get the node's not-extra named children
-    #[allow(dead_code)]
+    /**Get the node's not-extra named children.
+
+These children have type `pair*` ([`Pair`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -344,8 +351,9 @@ impl<'tree> type_sitter_lib::Node<'tree> for Object<'tree> {
 /**Typed node `pair`
 
 This node has these fields:
-- `key`: `string` ([String])
-- `value`: `_value` ([Value])
+
+- `key`: `string` ([`String`])
+- `value`: `_value` ([`Value`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -353,26 +361,30 @@ This node has these fields:
 pub struct Pair<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> Pair<'tree> {
-    ///Get the field `key` which has kind `string` ([String])
-    #[allow(dead_code)]
+    /**Get the field `key`.
+
+This child has type `string` ([`String`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn key(&self) -> type_sitter_lib::NodeResult<'tree, String<'tree>> {
         self.0
             .child_by_field_name("key")
             .map(<String<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the field `value` which has kind `_value` ([Value])
-    #[allow(dead_code)]
+    /**Get the field `value`.
+
+This child has type `_value` ([`Value`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn value(&self) -> type_sitter_lib::NodeResult<'tree, Value<'tree>> {
         self.0
             .child_by_field_name("value")
             .map(<Value<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
 }
@@ -408,9 +420,10 @@ impl<'tree> type_sitter_lib::Node<'tree> for Pair<'tree> {
 }
 /**Typed node `string`
 
-This node has children: `{escape_sequence | string_content}*`:
-- [EscapeSequence]
-- [StringContent]
+This node has named children of type `{escape_sequence | string_content}*`:
+
+- [`EscapeSequence`]
+- [`StringContent`]
 
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -419,8 +432,14 @@ This node has children: `{escape_sequence | string_content}*`:
 pub struct String<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> String<'tree> {
-    ///Get the node's not-extra named children
-    #[allow(dead_code)]
+    /**Get the node's not-extra named children.
+
+These children have type `{escape_sequence | string_content}*`:
+
+- [`EscapeSequence`]
+- [`StringContent`]
+*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -473,7 +492,7 @@ impl<'tree> type_sitter_lib::Node<'tree> for String<'tree> {
 }
 /**Typed node `comment`
 
-This node has no children
+This node has no named children
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -513,7 +532,7 @@ impl<'tree> type_sitter_lib::Node<'tree> for Comment<'tree> {
 }
 /**Typed node `escape_sequence`
 
-This node has no children
+This node has no named children
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -553,7 +572,7 @@ impl<'tree> type_sitter_lib::Node<'tree> for EscapeSequence<'tree> {
 }
 /**Typed node `false`
 
-This node has no children
+This node has no named children
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -593,7 +612,7 @@ impl<'tree> type_sitter_lib::Node<'tree> for False<'tree> {
 }
 /**Typed node `null`
 
-This node has no children
+This node has no named children
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -633,7 +652,7 @@ impl<'tree> type_sitter_lib::Node<'tree> for Null<'tree> {
 }
 /**Typed node `number`
 
-This node has no children
+This node has no named children
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -673,7 +692,7 @@ impl<'tree> type_sitter_lib::Node<'tree> for Number<'tree> {
 }
 /**Typed node `string_content`
 
-This node has no children
+This node has no named children
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -713,7 +732,7 @@ impl<'tree> type_sitter_lib::Node<'tree> for StringContent<'tree> {
 }
 /**Typed node `true`
 
-This node has no children
+This node has no named children
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -756,7 +775,7 @@ pub mod symbols {
     use super::*;
     /**Typed node `"`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -798,7 +817,7 @@ This node has no children
     }
     /**Typed node `,`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -840,7 +859,7 @@ This node has no children
     }
     /**Typed node `:`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -882,7 +901,7 @@ This node has no children
     }
     /**Typed node `[`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -924,7 +943,7 @@ This node has no children
     }
     /**Typed node `]`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -966,7 +985,7 @@ This node has no children
     }
     /**Typed node `{`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -1008,7 +1027,7 @@ This node has no children
     }
     /**Typed node `}`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -1052,9 +1071,9 @@ This node has no children
 pub mod anon_unions {
     #[allow(unused_imports)]
     use super::*;
-    /**one of `{escape_sequence | string_content}`:
-- [EscapeSequence]
-- [StringContent]*/
+    /**One of `{escape_sequence | string_content}`:
+- [`EscapeSequence`]
+- [`StringContent`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum EscapeSequence_StringContent<'tree> {
@@ -1063,16 +1082,16 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> EscapeSequence_StringContent<'tree> {
-        ///Returns the node if it is of kind `escape_sequence` ([`EscapeSequence`]), otherwise returns None
+        ///Returns the node if it is of type `escape_sequence` ([`EscapeSequence`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_escape_sequence(self) -> Option<EscapeSequence<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::EscapeSequence(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `string_content` ([`StringContent`]), otherwise returns None
+        ///Returns the node if it is of type `string_content` ([`StringContent`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_string_content(self) -> Option<StringContent<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::StringContent(x) = self { Some(x) } else { None }

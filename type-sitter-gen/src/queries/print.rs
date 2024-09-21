@@ -5,7 +5,7 @@ use quote::{format_ident, quote};
 use slice_group_by::GroupBy;
 use tree_sitter::CaptureQuantifier;
 use crate::mk_syntax::{concat_doc, ident, lit_array, lit_str, modularize};
-use crate::names::{NodeName, sexp_name_to_rust_names};
+use crate::names::{NodeName, sexp_name_to_rust_names, unmake_reserved};
 use crate::anon_unions::AnonUnions;
 use crate::node_types::types::NodeType;
 use crate::queries::GeneratedQueryTokens;
@@ -404,9 +404,7 @@ impl<'tree> SExpSeq<'tree> {
         let mut capture_method_name = capture_method.to_string();
         // We must remove the `r#` prefix because we're prepending `as_` and we don't have to add
         // back because no reserved identifiers start with it.
-        if capture_method_name.starts_with("r#") {
-            capture_method_name = capture_method_name[2..].to_owned();
-        }
+        unmake_reserved(&mut capture_method_name);
         let as_capture_method = format_ident!("as_{}", capture_method_name);
 
         let captured_sexps = self.captured_patterns(capture_name).collect::<Vec<_>>();
@@ -416,7 +414,7 @@ impl<'tree> SExpSeq<'tree> {
         let capture_node_type_tokens = capture_node_type
             .print(&capture_variant_name, nodes, tree_sitter, type_sitter_lib, anon_unions);
 
-        let capture_doc = format!("`{}` ([{}])", capture_name, capture_node_type.rust_type_path(nodes, &capture_variant_name));
+        let capture_doc = format!("`{}` ([`{}`])", capture_name, capture_node_type.rust_type_path(nodes, &capture_variant_name));
 
         let capture_quantifier = capture_idxs.iter()
             .flat_map(|capture_idx| ts_query.capture_quantifiers(*capture_idx)).copied()
@@ -449,7 +447,7 @@ impl<'tree> SExpSeq<'tree> {
             #captured_nonempty_iterator_doc
             #full_capture_documentation
             #[inline]
-            #[allow(unused, non_snake_case)]
+            #[allow(non_snake_case)]
             pub fn #capture_method(&self) -> #captured_type {
                 #captured_expr
             }
@@ -459,7 +457,7 @@ impl<'tree> SExpSeq<'tree> {
             #[doc = #capture_variant_extract_method_doc]
             #full_capture_documentation
             #[inline]
-            #[allow(unused, non_snake_case)]
+            #[allow(non_snake_case)]
             pub fn #as_capture_method(&self) -> Option<&#capture_node_type_tokens> {
                 #[allow(irrefutable_let_patterns)]
                 if let Self::#capture_variant { node, .. } = self {

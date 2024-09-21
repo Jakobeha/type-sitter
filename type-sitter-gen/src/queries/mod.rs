@@ -18,6 +18,7 @@ use crate::mk_syntax::ident;
 use crate::queries::dyload_language::dyload_language;
 use crate::queries::sexp::SExpSeq;
 pub use generated_tokens::GeneratedQueryTokens;
+use crate::names::make_valid;
 use crate::node_types::parse_node_types;
 use crate::node_types::types::NodeType;
 
@@ -168,7 +169,7 @@ fn _generate_queries_from_dir(
             match entry_is_dir {
                 false => queries.append(entry_code),
                 true => {
-                    let entry_ident = ident!(entry_name, "query module name (subfolder name)")?;
+                    let entry_ident = ident!(make_valid(&*entry_name), "query module name (subfolder name)")?;
                     let entry_tokens = entry_code.collapse(nodes);
 
                     queries.append_tokens(quote! {
@@ -256,7 +257,7 @@ fn _generate_query_from_file(
     let language_ident = ident!(language_name, "language name")?;
     let language = dyload_language(language_path)?;
     let def_ident = ident!(
-        path.file_stem().and_then(|f| f.to_str()).unwrap_or("�").to_case(Case::Pascal),
+        make_valid(&path.file_stem().and_then(|f| f.to_str()).unwrap_or("�").to_case(Case::Pascal)),
         "query name (filename)"
     )?;
     let query_str = read_to_string(path)?;

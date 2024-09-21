@@ -1,4 +1,4 @@
-#[doc = "Typed node `_value`\n\nThis node type is a supertype of:\n- `array` ([Array])\n- `false` ([False])\n- `null` ([Null])\n- `number` ([Number])\n- `object` ([Object])\n- `string` ([String])\n- `true` ([True])\n"]
+#[doc = "Typed node `_value`\n\nThis node type has subtypes:\n\n- `array` ([`Array`])\n- `false` ([`False`])\n- `null` ([`Null`])\n- `number` ([`Number`])\n- `object` ([`Object`])\n- `string` ([`String`])\n- `true` ([`True`])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub enum Value<'tree> {
@@ -12,9 +12,9 @@ pub enum Value<'tree> {
 }
 #[automatically_derived]
 impl<'tree> Value<'tree> {
-    #[doc = "Returns the node if it is of kind `array` ([`Array`]), otherwise returns None"]
+    #[doc = "Returns the node if it is of type `array` ([`Array`]), otherwise returns `None`"]
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_array(self) -> Option<Array<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::Array(x) = self {
@@ -23,9 +23,9 @@ impl<'tree> Value<'tree> {
             None
         }
     }
-    #[doc = "Returns the node if it is of kind `false` ([`False`]), otherwise returns None"]
+    #[doc = "Returns the node if it is of type `false` ([`False`]), otherwise returns `None`"]
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_false(self) -> Option<False<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::False(x) = self {
@@ -34,9 +34,9 @@ impl<'tree> Value<'tree> {
             None
         }
     }
-    #[doc = "Returns the node if it is of kind `null` ([`Null`]), otherwise returns None"]
+    #[doc = "Returns the node if it is of type `null` ([`Null`]), otherwise returns `None`"]
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_null(self) -> Option<Null<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::Null(x) = self {
@@ -45,9 +45,9 @@ impl<'tree> Value<'tree> {
             None
         }
     }
-    #[doc = "Returns the node if it is of kind `number` ([`Number`]), otherwise returns None"]
+    #[doc = "Returns the node if it is of type `number` ([`Number`]), otherwise returns `None`"]
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_number(self) -> Option<Number<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::Number(x) = self {
@@ -56,9 +56,9 @@ impl<'tree> Value<'tree> {
             None
         }
     }
-    #[doc = "Returns the node if it is of kind `object` ([`Object`]), otherwise returns None"]
+    #[doc = "Returns the node if it is of type `object` ([`Object`]), otherwise returns `None`"]
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_object(self) -> Option<Object<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::Object(x) = self {
@@ -67,9 +67,9 @@ impl<'tree> Value<'tree> {
             None
         }
     }
-    #[doc = "Returns the node if it is of kind `string` ([`String`]), otherwise returns None"]
+    #[doc = "Returns the node if it is of type `string` ([`String`]), otherwise returns `None`"]
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_string(self) -> Option<String<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::String(x) = self {
@@ -78,9 +78,9 @@ impl<'tree> Value<'tree> {
             None
         }
     }
-    #[doc = "Returns the node if it is of kind `true` ([`True`]), otherwise returns None"]
+    #[doc = "Returns the node if it is of type `true` ([`True`]), otherwise returns `None`"]
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_true(self) -> Option<True<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::True(x) = self {
@@ -158,15 +158,15 @@ impl<'tree> type_sitter::Node<'tree> for Value<'tree> {
         }
     }
 }
-#[doc = "Typed node `array`\n\nThis node has children: `_value*` ([Value])\n"]
+#[doc = "Typed node `array`\n\nThis node has named children of type `_value*` ([`Value`])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
 #[allow(non_camel_case_types)]
 pub struct Array<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
 impl<'tree> Array<'tree> {
-    #[doc = "Get the node's not-extra named children"]
-    #[allow(dead_code)]
+    #[doc = "Get the node's not-extra named children.\n\nThese children have type `_value*` ([`Value`])"]
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -208,15 +208,15 @@ impl<'tree> type_sitter::Node<'tree> for Array<'tree> {
         self.0
     }
 }
-#[doc = "Typed node `document`\n\nThis node has children: `_value*` ([Value])\n"]
+#[doc = "Typed node `document`\n\nThis node has named children of type `_value*` ([`Value`])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
 #[allow(non_camel_case_types)]
 pub struct Document<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
 impl<'tree> Document<'tree> {
-    #[doc = "Get the node's not-extra named children"]
-    #[allow(dead_code)]
+    #[doc = "Get the node's not-extra named children.\n\nThese children have type `_value*` ([`Value`])"]
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -258,15 +258,15 @@ impl<'tree> type_sitter::Node<'tree> for Document<'tree> {
         self.0
     }
 }
-#[doc = "Typed node `object`\n\nThis node has children: `pair*` ([Pair])\n"]
+#[doc = "Typed node `object`\n\nThis node has named children of type `pair*` ([`Pair`])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
 #[allow(non_camel_case_types)]
 pub struct Object<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
 impl<'tree> Object<'tree> {
-    #[doc = "Get the node's not-extra named children"]
-    #[allow(dead_code)]
+    #[doc = "Get the node's not-extra named children.\n\nThese children have type `pair*` ([`Pair`])"]
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -308,24 +308,34 @@ impl<'tree> type_sitter::Node<'tree> for Object<'tree> {
         self.0
     }
 }
-#[doc = "Typed node `pair`\n\nThis node has these fields:\n- `key`: `string` ([String])\n- `value`: `_value` ([Value])\n"]
+#[doc = "Typed node `pair`\n\nThis node has these fields:\n\n- `key`: `string` ([`String`])\n- `value`: `_value` ([`Value`])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
 #[allow(non_camel_case_types)]
 pub struct Pair<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
 impl<'tree> Pair<'tree> {
-    #[doc = "Get the field `key` which has kind `string` ([String])"]
-    #[allow(dead_code)]
+    #[doc = "Get the field `key`.\n\nThis child has type `string` ([`String`])"]
+    #[allow(non_snake_case)]
     #[inline]
     pub fn key(&self) -> type_sitter::NodeResult<'tree, String<'tree>> {
-        self . 0 . child_by_field_name ("key") . map (< String < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
+        self.0
+            .child_by_field_name("key")
+            .map(<String<'tree> as type_sitter::Node<'tree>>::try_from_raw)
+            .expect(
+                "required child not present, there should at least be a MISSING node in its place",
+            )
     }
-    #[doc = "Get the field `value` which has kind `_value` ([Value])"]
-    #[allow(dead_code)]
+    #[doc = "Get the field `value`.\n\nThis child has type `_value` ([`Value`])"]
+    #[allow(non_snake_case)]
     #[inline]
     pub fn value(&self) -> type_sitter::NodeResult<'tree, Value<'tree>> {
-        self . 0 . child_by_field_name ("value") . map (< Value < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw) . expect ("tree-sitter node missing its required child, there should at least be a MISSING node in its place")
+        self.0
+            .child_by_field_name("value")
+            .map(<Value<'tree> as type_sitter::Node<'tree>>::try_from_raw)
+            .expect(
+                "required child not present, there should at least be a MISSING node in its place",
+            )
     }
 }
 #[automatically_derived]
@@ -358,15 +368,15 @@ impl<'tree> type_sitter::Node<'tree> for Pair<'tree> {
         self.0
     }
 }
-#[doc = "Typed node `string`\n\nThis node has children: `{escape_sequence | string_content}*`:\n- [EscapeSequence]\n- [StringContent]\n\n"]
+#[doc = "Typed node `string`\n\nThis node has named children of type `{escape_sequence | string_content}*`:\n\n- [`EscapeSequence`]\n- [`StringContent`]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
 #[allow(non_camel_case_types)]
 pub struct String<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
 impl<'tree> String<'tree> {
-    #[doc = "Get the node's not-extra named children"]
-    #[allow(dead_code)]
+    #[doc = "Get the node's not-extra named children.\n\nThese children have type `{escape_sequence | string_content}*`:\n\n- [`EscapeSequence`]\n- [`StringContent`]\n"]
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -407,7 +417,7 @@ impl<'tree> type_sitter::Node<'tree> for String<'tree> {
         self.0
     }
 }
-#[doc = "Typed node `comment`\n\nThis node has no children\n"]
+#[doc = "Typed node `comment`\n\nThis node has no named children\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
 #[allow(non_camel_case_types)]
@@ -444,7 +454,7 @@ impl<'tree> type_sitter::Node<'tree> for Comment<'tree> {
         self.0
     }
 }
-#[doc = "Typed node `escape_sequence`\n\nThis node has no children\n"]
+#[doc = "Typed node `escape_sequence`\n\nThis node has no named children\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
 #[allow(non_camel_case_types)]
@@ -481,7 +491,7 @@ impl<'tree> type_sitter::Node<'tree> for EscapeSequence<'tree> {
         self.0
     }
 }
-#[doc = "Typed node `false`\n\nThis node has no children\n"]
+#[doc = "Typed node `false`\n\nThis node has no named children\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
 #[allow(non_camel_case_types)]
@@ -518,7 +528,7 @@ impl<'tree> type_sitter::Node<'tree> for False<'tree> {
         self.0
     }
 }
-#[doc = "Typed node `null`\n\nThis node has no children\n"]
+#[doc = "Typed node `null`\n\nThis node has no named children\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
 #[allow(non_camel_case_types)]
@@ -555,7 +565,7 @@ impl<'tree> type_sitter::Node<'tree> for Null<'tree> {
         self.0
     }
 }
-#[doc = "Typed node `number`\n\nThis node has no children\n"]
+#[doc = "Typed node `number`\n\nThis node has no named children\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
 #[allow(non_camel_case_types)]
@@ -592,7 +602,7 @@ impl<'tree> type_sitter::Node<'tree> for Number<'tree> {
         self.0
     }
 }
-#[doc = "Typed node `string_content`\n\nThis node has no children\n"]
+#[doc = "Typed node `string_content`\n\nThis node has no named children\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
 #[allow(non_camel_case_types)]
@@ -629,7 +639,7 @@ impl<'tree> type_sitter::Node<'tree> for StringContent<'tree> {
         self.0
     }
 }
-#[doc = "Typed node `true`\n\nThis node has no children\n"]
+#[doc = "Typed node `true`\n\nThis node has no named children\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
 #[allow(non_camel_case_types)]
@@ -669,7 +679,7 @@ impl<'tree> type_sitter::Node<'tree> for True<'tree> {
 pub mod symbols {
     #[allow(unused_imports)]
     use super::*;
-    #[doc = "Typed node `\"`\n\nThis node has no children\n"]
+    #[doc = "Typed node `\"`\n\nThis node has no named children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
     #[allow(non_camel_case_types)]
@@ -706,7 +716,7 @@ pub mod symbols {
             self.0
         }
     }
-    #[doc = "Typed node `,`\n\nThis node has no children\n"]
+    #[doc = "Typed node `,`\n\nThis node has no named children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
     #[allow(non_camel_case_types)]
@@ -743,7 +753,7 @@ pub mod symbols {
             self.0
         }
     }
-    #[doc = "Typed node `:`\n\nThis node has no children\n"]
+    #[doc = "Typed node `:`\n\nThis node has no named children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
     #[allow(non_camel_case_types)]
@@ -780,7 +790,7 @@ pub mod symbols {
             self.0
         }
     }
-    #[doc = "Typed node `[`\n\nThis node has no children\n"]
+    #[doc = "Typed node `[`\n\nThis node has no named children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
     #[allow(non_camel_case_types)]
@@ -817,7 +827,7 @@ pub mod symbols {
             self.0
         }
     }
-    #[doc = "Typed node `]`\n\nThis node has no children\n"]
+    #[doc = "Typed node `]`\n\nThis node has no named children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
     #[allow(non_camel_case_types)]
@@ -854,7 +864,7 @@ pub mod symbols {
             self.0
         }
     }
-    #[doc = "Typed node `{`\n\nThis node has no children\n"]
+    #[doc = "Typed node `{`\n\nThis node has no named children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
     #[allow(non_camel_case_types)]
@@ -891,7 +901,7 @@ pub mod symbols {
             self.0
         }
     }
-    #[doc = "Typed node `}`\n\nThis node has no children\n"]
+    #[doc = "Typed node `}`\n\nThis node has no named children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
     #[allow(non_camel_case_types)]
@@ -932,7 +942,7 @@ pub mod symbols {
 pub mod anon_unions {
     #[allow(unused_imports)]
     use super::*;
-    #[doc = "one of `{escape_sequence | string_content}`:\n- [EscapeSequence]\n- [StringContent]"]
+    #[doc = "One of `{escape_sequence | string_content}`:\n- [`EscapeSequence`]\n- [`StringContent`]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum EscapeSequence_StringContent<'tree> {
@@ -941,9 +951,9 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> EscapeSequence_StringContent<'tree> {
-        #[doc = "Returns the node if it is of kind `escape_sequence` ([`EscapeSequence`]), otherwise returns None"]
+        #[doc = "Returns the node if it is of type `escape_sequence` ([`EscapeSequence`]), otherwise returns `None`"]
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_escape_sequence(self) -> Option<EscapeSequence<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::EscapeSequence(x) = self {
@@ -952,9 +962,9 @@ pub mod anon_unions {
                 None
             }
         }
-        #[doc = "Returns the node if it is of kind `string_content` ([`StringContent`]), otherwise returns None"]
+        #[doc = "Returns the node if it is of type `string_content` ([`StringContent`]), otherwise returns `None`"]
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_string_content(self) -> Option<StringContent<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::StringContent(x) = self {

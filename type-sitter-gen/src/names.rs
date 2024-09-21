@@ -2,6 +2,7 @@ use std::borrow::Cow;
 use std::collections::HashSet;
 use convert_case::{Case, Casing};
 use std::fmt::{Display, Write};
+use check_keyword::CheckKeyword;
 use join_lazy_fmt::Join;
 use serde::Deserialize;
 use crate::node_types::types::NodeModule;
@@ -36,13 +37,6 @@ const PUNCTUATION_TABLE: [(char, &'static str); 35] = [
     ('[', "LBracket"), (']', "RBracket"), ('{', "LBrace"), ('}', "RBrace"), ('\\', "Backslash"),
     ('\'', "Quote"), ('"', "DoubleQuote"), ('#', "Hash"), ('@', "At"), ('$', "Dollar"),
     ('`', "Backtick"), (' ', "Space"), ('\t', "Tab"), ('\n', "Newline"), ('\r', "CarriageReturn")
-];
-
-const RESERVED_IDENTS: [&'static str; 4] = [
-    "Self",
-    "self",
-    "super",
-    "crate"
 ];
 
 impl NodeName {
@@ -106,14 +100,6 @@ impl NodeName {
         }
     }
 
-    pub fn rust_type_path_of(names: &[NodeName]) -> Cow<'_, str> {
-        match names.len() {
-            0 => Cow::Borrowed("type_sitter_lib::Never"),
-            1 => names[0].rust_type_path(),
-            _ => Cow::Owned(format!("anon_unions::{}", Self::anon_union_type_name(names)))
-        }
-    }
-
     pub(super) fn anon_union_type_name(names: &[NodeName]) -> impl Display + '_ {
         "_".join(names.iter().map(|name| &name.rust_type_name))
     }
@@ -134,33 +120,58 @@ impl PrevNodeRustNames {
 /// Convert an s-expression to rust type and method identifier names
 pub fn sexp_name_to_rust_names(sexp_name: &str) -> (String, String) {
     let rust_type_name = make_valid(&sexp_name.from_case(Case::Snake).to_case(Case::Pascal));
-    let rust_method_name = make_valid2(rust_type_name.from_case(Case::Pascal).to_case(Case::Snake));
+
+    let mut rust_method_name = rust_type_name.from_case(Case::Pascal).to_case(Case::Snake);
+    make_not_reserved(&mut rust_method_name);
+
     (rust_type_name, rust_method_name)
 }
 
-/// Replace punctuation with names (e.g. '&' -> 'And'), and prepend '_' if necessary, to make this
-/// a valid identifier.
-fn make_valid(str: &str) -> String {
-    let mut result = String::with_capacity(str.len());
+/// Replace punctuation with names (e.g. '&' -> 'And'), prepend `_` if the string starts with a
+/// number, and prepend 'r#' or append `_` if the string is a reserved keyword, to make the string a
+/// valid identifier.
+pub(crate) fn make_valid(str: &str) -> String {
     if str.is_empty() {
-        result.push_str("__");
-    } else if str.starts_with(|c: char| c.is_numeric()) || RESERVED_IDENTS.contains(&str) {
-        result.push('_');
+        return "__".to_owned();
+    } else if str.is_keyword() {
+        return str.into_safe();
+    }
+
+    let mut result = String::with_capacity(str.len());
+    if str.starts_with(|c: char| c.is_numeric()) {
+        result.insert(0, '_');
     }
     for char in str.chars() {
         match PUNCTUATION_TABLE.iter().find(|(c, _)| *c == char).map(|(_, s)| *s) {
             Some(name) => result.push_str(name),
-            None if !char.is_ascii_alphanumeric() => write!(result, "U{:X}", char as u32).unwrap(),
+            None if !char.is_ascii_alphanumeric() && char != '_' => write!(result, "U{:X}", char as u32).unwrap(),
             None => result.push(char)
         }
     }
     result
 }
 
-/// Only replace reserved names, since we did the rest in `make_valid`.
-fn make_valid2(mut result: String) -> String {
-    if RESERVED_IDENTS.contains(&result.as_str()) {
-        result.push('_');
+/// Only prepend `r#` or append `_` if reserved, since we did the rest in [`make_valid`].
+fn make_not_reserved(name: &mut String) {
+    if name.is_keyword() {
+        *name = name.into_safe();
     }
-    result
+}
+
+/// If the string starts with `r#`, remove it.
+pub(crate) fn unmake_reserved_if_raw(name: &mut String) {
+    if name.starts_with("r#") {
+        name.drain(..2);
+    }
+}
+
+/// If the string starts with `r#` or is `self_` or `Self_`, remove it.
+pub(crate) fn unmake_reserved(name: &mut String) {
+    match name.as_str() {
+        "crate_" | "self_" | "Self_" | "super_" => {
+            name.pop().unwrap();
+        },
+        _ => unmake_reserved_if_raw(name),
+    }
+
 }

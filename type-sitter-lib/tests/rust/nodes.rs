@@ -1,27 +1,28 @@
 /**Typed node `_declaration_statement`
 
-This node type is a supertype of:
-- `associated_type` ([AssociatedType])
-- `attribute_item` ([AttributeItem])
-- `const_item` ([ConstItem])
-- `empty_statement` ([EmptyStatement])
-- `enum_item` ([EnumItem])
-- `extern_crate_declaration` ([ExternCrateDeclaration])
-- `foreign_mod_item` ([ForeignModItem])
-- `function_item` ([FunctionItem])
-- `function_signature_item` ([FunctionSignatureItem])
-- `impl_item` ([ImplItem])
-- `inner_attribute_item` ([InnerAttributeItem])
-- `let_declaration` ([LetDeclaration])
-- `macro_definition` ([MacroDefinition])
-- `macro_invocation` ([MacroInvocation])
-- `mod_item` ([ModItem])
-- `static_item` ([StaticItem])
-- `struct_item` ([StructItem])
-- `trait_item` ([TraitItem])
-- `type_item` ([TypeItem])
-- `union_item` ([UnionItem])
-- `use_declaration` ([UseDeclaration])
+This node type has subtypes:
+
+- `associated_type` ([`AssociatedType`])
+- `attribute_item` ([`AttributeItem`])
+- `const_item` ([`ConstItem`])
+- `empty_statement` ([`EmptyStatement`])
+- `enum_item` ([`EnumItem`])
+- `extern_crate_declaration` ([`ExternCrateDeclaration`])
+- `foreign_mod_item` ([`ForeignModItem`])
+- `function_item` ([`FunctionItem`])
+- `function_signature_item` ([`FunctionSignatureItem`])
+- `impl_item` ([`ImplItem`])
+- `inner_attribute_item` ([`InnerAttributeItem`])
+- `let_declaration` ([`LetDeclaration`])
+- `macro_definition` ([`MacroDefinition`])
+- `macro_invocation` ([`MacroInvocation`])
+- `mod_item` ([`ModItem`])
+- `static_item` ([`StaticItem`])
+- `struct_item` ([`StructItem`])
+- `trait_item` ([`TraitItem`])
+- `type_item` ([`TypeItem`])
+- `union_item` ([`UnionItem`])
+- `use_declaration` ([`UseDeclaration`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
@@ -50,149 +51,149 @@ pub enum DeclarationStatement<'tree> {
 }
 #[automatically_derived]
 impl<'tree> DeclarationStatement<'tree> {
-    ///Returns the node if it is of kind `associated_type` ([`AssociatedType`]), otherwise returns None
+    ///Returns the node if it is of type `associated_type` ([`AssociatedType`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_associated_type(self) -> Option<AssociatedType<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::AssociatedType(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `attribute_item` ([`AttributeItem`]), otherwise returns None
+    ///Returns the node if it is of type `attribute_item` ([`AttributeItem`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_attribute_item(self) -> Option<AttributeItem<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::AttributeItem(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `const_item` ([`ConstItem`]), otherwise returns None
+    ///Returns the node if it is of type `const_item` ([`ConstItem`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_const_item(self) -> Option<ConstItem<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::ConstItem(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `empty_statement` ([`EmptyStatement`]), otherwise returns None
+    ///Returns the node if it is of type `empty_statement` ([`EmptyStatement`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_empty_statement(self) -> Option<EmptyStatement<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::EmptyStatement(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `enum_item` ([`EnumItem`]), otherwise returns None
+    ///Returns the node if it is of type `enum_item` ([`EnumItem`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_enum_item(self) -> Option<EnumItem<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::EnumItem(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `extern_crate_declaration` ([`ExternCrateDeclaration`]), otherwise returns None
+    ///Returns the node if it is of type `extern_crate_declaration` ([`ExternCrateDeclaration`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_extern_crate_declaration(self) -> Option<ExternCrateDeclaration<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::ExternCrateDeclaration(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `foreign_mod_item` ([`ForeignModItem`]), otherwise returns None
+    ///Returns the node if it is of type `foreign_mod_item` ([`ForeignModItem`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_foreign_mod_item(self) -> Option<ForeignModItem<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::ForeignModItem(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `function_item` ([`FunctionItem`]), otherwise returns None
+    ///Returns the node if it is of type `function_item` ([`FunctionItem`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_function_item(self) -> Option<FunctionItem<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::FunctionItem(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `function_signature_item` ([`FunctionSignatureItem`]), otherwise returns None
+    ///Returns the node if it is of type `function_signature_item` ([`FunctionSignatureItem`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_function_signature_item(self) -> Option<FunctionSignatureItem<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::FunctionSignatureItem(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `impl_item` ([`ImplItem`]), otherwise returns None
+    ///Returns the node if it is of type `impl_item` ([`ImplItem`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_impl_item(self) -> Option<ImplItem<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::ImplItem(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `inner_attribute_item` ([`InnerAttributeItem`]), otherwise returns None
+    ///Returns the node if it is of type `inner_attribute_item` ([`InnerAttributeItem`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_inner_attribute_item(self) -> Option<InnerAttributeItem<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::InnerAttributeItem(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `let_declaration` ([`LetDeclaration`]), otherwise returns None
+    ///Returns the node if it is of type `let_declaration` ([`LetDeclaration`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_let_declaration(self) -> Option<LetDeclaration<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::LetDeclaration(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `macro_definition` ([`MacroDefinition`]), otherwise returns None
+    ///Returns the node if it is of type `macro_definition` ([`MacroDefinition`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_macro_definition(self) -> Option<MacroDefinition<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::MacroDefinition(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `macro_invocation` ([`MacroInvocation`]), otherwise returns None
+    ///Returns the node if it is of type `macro_invocation` ([`MacroInvocation`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_macro_invocation(self) -> Option<MacroInvocation<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::MacroInvocation(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `mod_item` ([`ModItem`]), otherwise returns None
+    ///Returns the node if it is of type `mod_item` ([`ModItem`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_mod_item(self) -> Option<ModItem<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::ModItem(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `static_item` ([`StaticItem`]), otherwise returns None
+    ///Returns the node if it is of type `static_item` ([`StaticItem`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_static_item(self) -> Option<StaticItem<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::StaticItem(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `struct_item` ([`StructItem`]), otherwise returns None
+    ///Returns the node if it is of type `struct_item` ([`StructItem`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_struct_item(self) -> Option<StructItem<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::StructItem(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `trait_item` ([`TraitItem`]), otherwise returns None
+    ///Returns the node if it is of type `trait_item` ([`TraitItem`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_trait_item(self) -> Option<TraitItem<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::TraitItem(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `type_item` ([`TypeItem`]), otherwise returns None
+    ///Returns the node if it is of type `type_item` ([`TypeItem`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_type_item(self) -> Option<TypeItem<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::TypeItem(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `union_item` ([`UnionItem`]), otherwise returns None
+    ///Returns the node if it is of type `union_item` ([`UnionItem`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_union_item(self) -> Option<UnionItem<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::UnionItem(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `use_declaration` ([`UseDeclaration`]), otherwise returns None
+    ///Returns the node if it is of type `use_declaration` ([`UseDeclaration`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_use_declaration(self) -> Option<UseDeclaration<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::UseDeclaration(x) = self { Some(x) } else { None }
@@ -478,46 +479,47 @@ impl<'tree> type_sitter_lib::Node<'tree> for DeclarationStatement<'tree> {
 }
 /**Typed node `_expression`
 
-This node type is a supertype of:
-- `_literal` ([Literal])
-- `array_expression` ([ArrayExpression])
-- `assignment_expression` ([AssignmentExpression])
-- `async_block` ([AsyncBlock])
-- `await_expression` ([AwaitExpression])
-- `binary_expression` ([BinaryExpression])
-- `block` ([Block])
-- `break_expression` ([BreakExpression])
-- `call_expression` ([CallExpression])
-- `closure_expression` ([ClosureExpression])
-- `compound_assignment_expr` ([CompoundAssignmentExpr])
-- `const_block` ([ConstBlock])
-- `continue_expression` ([ContinueExpression])
-- `field_expression` ([FieldExpression])
-- `for_expression` ([ForExpression])
-- `generic_function` ([GenericFunction])
-- `identifier` ([Identifier])
-- `if_expression` ([IfExpression])
-- `index_expression` ([IndexExpression])
-- `loop_expression` ([LoopExpression])
-- `macro_invocation` ([MacroInvocation])
-- `match_expression` ([MatchExpression])
-- `metavariable` ([Metavariable])
-- `parenthesized_expression` ([ParenthesizedExpression])
-- `range_expression` ([RangeExpression])
-- `reference_expression` ([ReferenceExpression])
-- `return_expression` ([ReturnExpression])
-- `scoped_identifier` ([ScopedIdentifier])
-- `self` ([_Self])
-- `struct_expression` ([StructExpression])
-- `try_block` ([TryBlock])
-- `try_expression` ([TryExpression])
-- `tuple_expression` ([TupleExpression])
-- `type_cast_expression` ([TypeCastExpression])
-- `unary_expression` ([UnaryExpression])
-- `unit_expression` ([UnitExpression])
-- `unsafe_block` ([UnsafeBlock])
-- `while_expression` ([WhileExpression])
-- `yield_expression` ([YieldExpression])
+This node type has subtypes:
+
+- `_literal` ([`Literal`])
+- `array_expression` ([`ArrayExpression`])
+- `assignment_expression` ([`AssignmentExpression`])
+- `async_block` ([`AsyncBlock`])
+- `await_expression` ([`AwaitExpression`])
+- `binary_expression` ([`BinaryExpression`])
+- `block` ([`Block`])
+- `break_expression` ([`BreakExpression`])
+- `call_expression` ([`CallExpression`])
+- `closure_expression` ([`ClosureExpression`])
+- `compound_assignment_expr` ([`CompoundAssignmentExpr`])
+- `const_block` ([`ConstBlock`])
+- `continue_expression` ([`ContinueExpression`])
+- `field_expression` ([`FieldExpression`])
+- `for_expression` ([`ForExpression`])
+- `generic_function` ([`GenericFunction`])
+- `identifier` ([`Identifier`])
+- `if_expression` ([`IfExpression`])
+- `index_expression` ([`IndexExpression`])
+- `loop_expression` ([`LoopExpression`])
+- `macro_invocation` ([`MacroInvocation`])
+- `match_expression` ([`MatchExpression`])
+- `metavariable` ([`Metavariable`])
+- `parenthesized_expression` ([`ParenthesizedExpression`])
+- `range_expression` ([`RangeExpression`])
+- `reference_expression` ([`ReferenceExpression`])
+- `return_expression` ([`ReturnExpression`])
+- `scoped_identifier` ([`ScopedIdentifier`])
+- `self` ([`Self_`])
+- `struct_expression` ([`StructExpression`])
+- `try_block` ([`TryBlock`])
+- `try_expression` ([`TryExpression`])
+- `tuple_expression` ([`TupleExpression`])
+- `type_cast_expression` ([`TypeCastExpression`])
+- `unary_expression` ([`UnaryExpression`])
+- `unit_expression` ([`UnitExpression`])
+- `unsafe_block` ([`UnsafeBlock`])
+- `while_expression` ([`WhileExpression`])
+- `yield_expression` ([`YieldExpression`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
@@ -550,7 +552,7 @@ pub enum Expression<'tree> {
     ReferenceExpression(ReferenceExpression<'tree>),
     ReturnExpression(ReturnExpression<'tree>),
     ScopedIdentifier(ScopedIdentifier<'tree>),
-    _Self(_Self<'tree>),
+    Self_(Self_<'tree>),
     StructExpression(StructExpression<'tree>),
     TryBlock(TryBlock<'tree>),
     TryExpression(TryExpression<'tree>),
@@ -564,275 +566,275 @@ pub enum Expression<'tree> {
 }
 #[automatically_derived]
 impl<'tree> Expression<'tree> {
-    ///Returns the node if it is of kind `_literal` ([`Literal`]), otherwise returns None
+    ///Returns the node if it is of type `_literal` ([`Literal`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_literal(self) -> Option<Literal<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::Literal(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `array_expression` ([`ArrayExpression`]), otherwise returns None
+    ///Returns the node if it is of type `array_expression` ([`ArrayExpression`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_array_expression(self) -> Option<ArrayExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::ArrayExpression(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `assignment_expression` ([`AssignmentExpression`]), otherwise returns None
+    ///Returns the node if it is of type `assignment_expression` ([`AssignmentExpression`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_assignment_expression(self) -> Option<AssignmentExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::AssignmentExpression(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `async_block` ([`AsyncBlock`]), otherwise returns None
+    ///Returns the node if it is of type `async_block` ([`AsyncBlock`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_async_block(self) -> Option<AsyncBlock<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::AsyncBlock(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `await_expression` ([`AwaitExpression`]), otherwise returns None
+    ///Returns the node if it is of type `await_expression` ([`AwaitExpression`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_await_expression(self) -> Option<AwaitExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::AwaitExpression(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `binary_expression` ([`BinaryExpression`]), otherwise returns None
+    ///Returns the node if it is of type `binary_expression` ([`BinaryExpression`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_binary_expression(self) -> Option<BinaryExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::BinaryExpression(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `block` ([`Block`]), otherwise returns None
+    ///Returns the node if it is of type `block` ([`Block`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_block(self) -> Option<Block<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::Block(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `break_expression` ([`BreakExpression`]), otherwise returns None
+    ///Returns the node if it is of type `break_expression` ([`BreakExpression`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_break_expression(self) -> Option<BreakExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::BreakExpression(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `call_expression` ([`CallExpression`]), otherwise returns None
+    ///Returns the node if it is of type `call_expression` ([`CallExpression`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_call_expression(self) -> Option<CallExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::CallExpression(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `closure_expression` ([`ClosureExpression`]), otherwise returns None
+    ///Returns the node if it is of type `closure_expression` ([`ClosureExpression`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_closure_expression(self) -> Option<ClosureExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::ClosureExpression(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `compound_assignment_expr` ([`CompoundAssignmentExpr`]), otherwise returns None
+    ///Returns the node if it is of type `compound_assignment_expr` ([`CompoundAssignmentExpr`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_compound_assignment_expr(self) -> Option<CompoundAssignmentExpr<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::CompoundAssignmentExpr(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `const_block` ([`ConstBlock`]), otherwise returns None
+    ///Returns the node if it is of type `const_block` ([`ConstBlock`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_const_block(self) -> Option<ConstBlock<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::ConstBlock(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `continue_expression` ([`ContinueExpression`]), otherwise returns None
+    ///Returns the node if it is of type `continue_expression` ([`ContinueExpression`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_continue_expression(self) -> Option<ContinueExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::ContinueExpression(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `field_expression` ([`FieldExpression`]), otherwise returns None
+    ///Returns the node if it is of type `field_expression` ([`FieldExpression`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_field_expression(self) -> Option<FieldExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::FieldExpression(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `for_expression` ([`ForExpression`]), otherwise returns None
+    ///Returns the node if it is of type `for_expression` ([`ForExpression`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_for_expression(self) -> Option<ForExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::ForExpression(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `generic_function` ([`GenericFunction`]), otherwise returns None
+    ///Returns the node if it is of type `generic_function` ([`GenericFunction`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_generic_function(self) -> Option<GenericFunction<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::GenericFunction(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `identifier` ([`Identifier`]), otherwise returns None
+    ///Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_identifier(self) -> Option<Identifier<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::Identifier(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `if_expression` ([`IfExpression`]), otherwise returns None
+    ///Returns the node if it is of type `if_expression` ([`IfExpression`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_if_expression(self) -> Option<IfExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::IfExpression(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `index_expression` ([`IndexExpression`]), otherwise returns None
+    ///Returns the node if it is of type `index_expression` ([`IndexExpression`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_index_expression(self) -> Option<IndexExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::IndexExpression(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `loop_expression` ([`LoopExpression`]), otherwise returns None
+    ///Returns the node if it is of type `loop_expression` ([`LoopExpression`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_loop_expression(self) -> Option<LoopExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::LoopExpression(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `macro_invocation` ([`MacroInvocation`]), otherwise returns None
+    ///Returns the node if it is of type `macro_invocation` ([`MacroInvocation`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_macro_invocation(self) -> Option<MacroInvocation<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::MacroInvocation(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `match_expression` ([`MatchExpression`]), otherwise returns None
+    ///Returns the node if it is of type `match_expression` ([`MatchExpression`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_match_expression(self) -> Option<MatchExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::MatchExpression(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `metavariable` ([`Metavariable`]), otherwise returns None
+    ///Returns the node if it is of type `metavariable` ([`Metavariable`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_metavariable(self) -> Option<Metavariable<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::Metavariable(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `parenthesized_expression` ([`ParenthesizedExpression`]), otherwise returns None
+    ///Returns the node if it is of type `parenthesized_expression` ([`ParenthesizedExpression`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_parenthesized_expression(self) -> Option<ParenthesizedExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::ParenthesizedExpression(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `range_expression` ([`RangeExpression`]), otherwise returns None
+    ///Returns the node if it is of type `range_expression` ([`RangeExpression`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_range_expression(self) -> Option<RangeExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::RangeExpression(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `reference_expression` ([`ReferenceExpression`]), otherwise returns None
+    ///Returns the node if it is of type `reference_expression` ([`ReferenceExpression`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_reference_expression(self) -> Option<ReferenceExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::ReferenceExpression(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `return_expression` ([`ReturnExpression`]), otherwise returns None
+    ///Returns the node if it is of type `return_expression` ([`ReturnExpression`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_return_expression(self) -> Option<ReturnExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::ReturnExpression(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `scoped_identifier` ([`ScopedIdentifier`]), otherwise returns None
+    ///Returns the node if it is of type `scoped_identifier` ([`ScopedIdentifier`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_scoped_identifier(self) -> Option<ScopedIdentifier<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::ScopedIdentifier(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `self` ([`_Self`]), otherwise returns None
+    ///Returns the node if it is of type `self` ([`Self_`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
-    pub fn as__self(self) -> Option<_Self<'tree>> {
+    #[allow(non_snake_case)]
+    pub fn as_self(self) -> Option<Self_<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::_Self(x) = self { Some(x) } else { None }
+        if let Self::Self_(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `struct_expression` ([`StructExpression`]), otherwise returns None
+    ///Returns the node if it is of type `struct_expression` ([`StructExpression`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_struct_expression(self) -> Option<StructExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::StructExpression(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `try_block` ([`TryBlock`]), otherwise returns None
+    ///Returns the node if it is of type `try_block` ([`TryBlock`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_try_block(self) -> Option<TryBlock<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::TryBlock(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `try_expression` ([`TryExpression`]), otherwise returns None
+    ///Returns the node if it is of type `try_expression` ([`TryExpression`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_try_expression(self) -> Option<TryExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::TryExpression(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `tuple_expression` ([`TupleExpression`]), otherwise returns None
+    ///Returns the node if it is of type `tuple_expression` ([`TupleExpression`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_tuple_expression(self) -> Option<TupleExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::TupleExpression(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `type_cast_expression` ([`TypeCastExpression`]), otherwise returns None
+    ///Returns the node if it is of type `type_cast_expression` ([`TypeCastExpression`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_type_cast_expression(self) -> Option<TypeCastExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::TypeCastExpression(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `unary_expression` ([`UnaryExpression`]), otherwise returns None
+    ///Returns the node if it is of type `unary_expression` ([`UnaryExpression`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_unary_expression(self) -> Option<UnaryExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::UnaryExpression(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `unit_expression` ([`UnitExpression`]), otherwise returns None
+    ///Returns the node if it is of type `unit_expression` ([`UnitExpression`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_unit_expression(self) -> Option<UnitExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::UnitExpression(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `unsafe_block` ([`UnsafeBlock`]), otherwise returns None
+    ///Returns the node if it is of type `unsafe_block` ([`UnsafeBlock`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_unsafe_block(self) -> Option<UnsafeBlock<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::UnsafeBlock(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `while_expression` ([`WhileExpression`]), otherwise returns None
+    ///Returns the node if it is of type `while_expression` ([`WhileExpression`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_while_expression(self) -> Option<WhileExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::WhileExpression(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `yield_expression` ([`YieldExpression`]), otherwise returns None
+    ///Returns the node if it is of type `yield_expression` ([`YieldExpression`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_yield_expression(self) -> Option<YieldExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::YieldExpression(x) = self { Some(x) } else { None }
@@ -984,10 +986,10 @@ impl<'tree> type_sitter_lib::Node<'tree> for Expression<'tree> {
         > as type_sitter_lib::Node<'tree>>::try_from_raw(node) {
             return Ok(Self::ScopedIdentifier(this));
         }
-        if let Ok(this) = <_Self<
+        if let Ok(this) = <Self_<
             'tree,
         > as type_sitter_lib::Node<'tree>>::try_from_raw(node) {
-            return Ok(Self::_Self(this));
+            return Ok(Self::Self_(this));
         }
         if let Ok(this) = <StructExpression<
             'tree,
@@ -1072,7 +1074,7 @@ impl<'tree> type_sitter_lib::Node<'tree> for Expression<'tree> {
             Self::ReferenceExpression(x) => type_sitter_lib::Node::raw(x),
             Self::ReturnExpression(x) => type_sitter_lib::Node::raw(x),
             Self::ScopedIdentifier(x) => type_sitter_lib::Node::raw(x),
-            Self::_Self(x) => type_sitter_lib::Node::raw(x),
+            Self::Self_(x) => type_sitter_lib::Node::raw(x),
             Self::StructExpression(x) => type_sitter_lib::Node::raw(x),
             Self::TryBlock(x) => type_sitter_lib::Node::raw(x),
             Self::TryExpression(x) => type_sitter_lib::Node::raw(x),
@@ -1116,7 +1118,7 @@ impl<'tree> type_sitter_lib::Node<'tree> for Expression<'tree> {
             Self::ReferenceExpression(x) => type_sitter_lib::Node::raw_mut(x),
             Self::ReturnExpression(x) => type_sitter_lib::Node::raw_mut(x),
             Self::ScopedIdentifier(x) => type_sitter_lib::Node::raw_mut(x),
-            Self::_Self(x) => type_sitter_lib::Node::raw_mut(x),
+            Self::Self_(x) => type_sitter_lib::Node::raw_mut(x),
             Self::StructExpression(x) => type_sitter_lib::Node::raw_mut(x),
             Self::TryBlock(x) => type_sitter_lib::Node::raw_mut(x),
             Self::TryExpression(x) => type_sitter_lib::Node::raw_mut(x),
@@ -1160,7 +1162,7 @@ impl<'tree> type_sitter_lib::Node<'tree> for Expression<'tree> {
             Self::ReferenceExpression(x) => x.into_raw(),
             Self::ReturnExpression(x) => x.into_raw(),
             Self::ScopedIdentifier(x) => x.into_raw(),
-            Self::_Self(x) => x.into_raw(),
+            Self::Self_(x) => x.into_raw(),
             Self::StructExpression(x) => x.into_raw(),
             Self::TryBlock(x) => x.into_raw(),
             Self::TryExpression(x) => x.into_raw(),
@@ -1176,13 +1178,14 @@ impl<'tree> type_sitter_lib::Node<'tree> for Expression<'tree> {
 }
 /**Typed node `_literal`
 
-This node type is a supertype of:
-- `boolean_literal` ([BooleanLiteral])
-- `char_literal` ([CharLiteral])
-- `float_literal` ([FloatLiteral])
-- `integer_literal` ([IntegerLiteral])
-- `raw_string_literal` ([RawStringLiteral])
-- `string_literal` ([StringLiteral])
+This node type has subtypes:
+
+- `boolean_literal` ([`BooleanLiteral`])
+- `char_literal` ([`CharLiteral`])
+- `float_literal` ([`FloatLiteral`])
+- `integer_literal` ([`IntegerLiteral`])
+- `raw_string_literal` ([`RawStringLiteral`])
+- `string_literal` ([`StringLiteral`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
@@ -1196,44 +1199,44 @@ pub enum Literal<'tree> {
 }
 #[automatically_derived]
 impl<'tree> Literal<'tree> {
-    ///Returns the node if it is of kind `boolean_literal` ([`BooleanLiteral`]), otherwise returns None
+    ///Returns the node if it is of type `boolean_literal` ([`BooleanLiteral`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_boolean_literal(self) -> Option<BooleanLiteral<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::BooleanLiteral(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `char_literal` ([`CharLiteral`]), otherwise returns None
+    ///Returns the node if it is of type `char_literal` ([`CharLiteral`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_char_literal(self) -> Option<CharLiteral<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::CharLiteral(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `float_literal` ([`FloatLiteral`]), otherwise returns None
+    ///Returns the node if it is of type `float_literal` ([`FloatLiteral`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_float_literal(self) -> Option<FloatLiteral<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::FloatLiteral(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `integer_literal` ([`IntegerLiteral`]), otherwise returns None
+    ///Returns the node if it is of type `integer_literal` ([`IntegerLiteral`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_integer_literal(self) -> Option<IntegerLiteral<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::IntegerLiteral(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `raw_string_literal` ([`RawStringLiteral`]), otherwise returns None
+    ///Returns the node if it is of type `raw_string_literal` ([`RawStringLiteral`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_raw_string_literal(self) -> Option<RawStringLiteral<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::RawStringLiteral(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `string_literal` ([`StringLiteral`]), otherwise returns None
+    ///Returns the node if it is of type `string_literal` ([`StringLiteral`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_string_literal(self) -> Option<StringLiteral<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::StringLiteral(x) = self { Some(x) } else { None }
@@ -1339,14 +1342,15 @@ impl<'tree> type_sitter_lib::Node<'tree> for Literal<'tree> {
 }
 /**Typed node `_literal_pattern`
 
-This node type is a supertype of:
-- `boolean_literal` ([BooleanLiteral])
-- `char_literal` ([CharLiteral])
-- `float_literal` ([FloatLiteral])
-- `integer_literal` ([IntegerLiteral])
-- `negative_literal` ([NegativeLiteral])
-- `raw_string_literal` ([RawStringLiteral])
-- `string_literal` ([StringLiteral])
+This node type has subtypes:
+
+- `boolean_literal` ([`BooleanLiteral`])
+- `char_literal` ([`CharLiteral`])
+- `float_literal` ([`FloatLiteral`])
+- `integer_literal` ([`IntegerLiteral`])
+- `negative_literal` ([`NegativeLiteral`])
+- `raw_string_literal` ([`RawStringLiteral`])
+- `string_literal` ([`StringLiteral`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
@@ -1361,51 +1365,51 @@ pub enum LiteralPattern<'tree> {
 }
 #[automatically_derived]
 impl<'tree> LiteralPattern<'tree> {
-    ///Returns the node if it is of kind `boolean_literal` ([`BooleanLiteral`]), otherwise returns None
+    ///Returns the node if it is of type `boolean_literal` ([`BooleanLiteral`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_boolean_literal(self) -> Option<BooleanLiteral<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::BooleanLiteral(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `char_literal` ([`CharLiteral`]), otherwise returns None
+    ///Returns the node if it is of type `char_literal` ([`CharLiteral`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_char_literal(self) -> Option<CharLiteral<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::CharLiteral(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `float_literal` ([`FloatLiteral`]), otherwise returns None
+    ///Returns the node if it is of type `float_literal` ([`FloatLiteral`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_float_literal(self) -> Option<FloatLiteral<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::FloatLiteral(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `integer_literal` ([`IntegerLiteral`]), otherwise returns None
+    ///Returns the node if it is of type `integer_literal` ([`IntegerLiteral`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_integer_literal(self) -> Option<IntegerLiteral<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::IntegerLiteral(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `negative_literal` ([`NegativeLiteral`]), otherwise returns None
+    ///Returns the node if it is of type `negative_literal` ([`NegativeLiteral`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_negative_literal(self) -> Option<NegativeLiteral<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::NegativeLiteral(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `raw_string_literal` ([`RawStringLiteral`]), otherwise returns None
+    ///Returns the node if it is of type `raw_string_literal` ([`RawStringLiteral`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_raw_string_literal(self) -> Option<RawStringLiteral<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::RawStringLiteral(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `string_literal` ([`StringLiteral`]), otherwise returns None
+    ///Returns the node if it is of type `string_literal` ([`StringLiteral`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_string_literal(self) -> Option<StringLiteral<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::StringLiteral(x) = self { Some(x) } else { None }
@@ -1523,24 +1527,25 @@ impl<'tree> type_sitter_lib::Node<'tree> for LiteralPattern<'tree> {
 }
 /**Typed node `_pattern`
 
-This node type is a supertype of:
-- `_` ([symbols::__])
-- `_literal_pattern` ([LiteralPattern])
-- `captured_pattern` ([CapturedPattern])
-- `const_block` ([ConstBlock])
-- `identifier` ([Identifier])
-- `macro_invocation` ([MacroInvocation])
-- `mut_pattern` ([MutPattern])
-- `or_pattern` ([OrPattern])
-- `range_pattern` ([RangePattern])
-- `ref_pattern` ([RefPattern])
-- `reference_pattern` ([ReferencePattern])
-- `remaining_field_pattern` ([RemainingFieldPattern])
-- `scoped_identifier` ([ScopedIdentifier])
-- `slice_pattern` ([SlicePattern])
-- `struct_pattern` ([StructPattern])
-- `tuple_pattern` ([TuplePattern])
-- `tuple_struct_pattern` ([TupleStructPattern])
+This node type has subtypes:
+
+- `_` ([`symbols::__`])
+- `_literal_pattern` ([`LiteralPattern`])
+- `captured_pattern` ([`CapturedPattern`])
+- `const_block` ([`ConstBlock`])
+- `identifier` ([`Identifier`])
+- `macro_invocation` ([`MacroInvocation`])
+- `mut_pattern` ([`MutPattern`])
+- `or_pattern` ([`OrPattern`])
+- `range_pattern` ([`RangePattern`])
+- `ref_pattern` ([`RefPattern`])
+- `reference_pattern` ([`ReferencePattern`])
+- `remaining_field_pattern` ([`RemainingFieldPattern`])
+- `scoped_identifier` ([`ScopedIdentifier`])
+- `slice_pattern` ([`SlicePattern`])
+- `struct_pattern` ([`StructPattern`])
+- `tuple_pattern` ([`TuplePattern`])
+- `tuple_struct_pattern` ([`TupleStructPattern`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
@@ -1565,121 +1570,121 @@ pub enum Pattern<'tree> {
 }
 #[automatically_derived]
 impl<'tree> Pattern<'tree> {
-    ///Returns the node if it is of kind `_` ([`symbols::__`]), otherwise returns None
+    ///Returns the node if it is of type `_` ([`symbols::__`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as___(self) -> Option<symbols::__<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::__(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `_literal_pattern` ([`LiteralPattern`]), otherwise returns None
+    ///Returns the node if it is of type `_literal_pattern` ([`LiteralPattern`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_literal_pattern(self) -> Option<LiteralPattern<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::LiteralPattern(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `captured_pattern` ([`CapturedPattern`]), otherwise returns None
+    ///Returns the node if it is of type `captured_pattern` ([`CapturedPattern`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_captured_pattern(self) -> Option<CapturedPattern<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::CapturedPattern(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `const_block` ([`ConstBlock`]), otherwise returns None
+    ///Returns the node if it is of type `const_block` ([`ConstBlock`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_const_block(self) -> Option<ConstBlock<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::ConstBlock(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `identifier` ([`Identifier`]), otherwise returns None
+    ///Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_identifier(self) -> Option<Identifier<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::Identifier(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `macro_invocation` ([`MacroInvocation`]), otherwise returns None
+    ///Returns the node if it is of type `macro_invocation` ([`MacroInvocation`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_macro_invocation(self) -> Option<MacroInvocation<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::MacroInvocation(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `mut_pattern` ([`MutPattern`]), otherwise returns None
+    ///Returns the node if it is of type `mut_pattern` ([`MutPattern`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_mut_pattern(self) -> Option<MutPattern<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::MutPattern(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `or_pattern` ([`OrPattern`]), otherwise returns None
+    ///Returns the node if it is of type `or_pattern` ([`OrPattern`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_or_pattern(self) -> Option<OrPattern<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::OrPattern(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `range_pattern` ([`RangePattern`]), otherwise returns None
+    ///Returns the node if it is of type `range_pattern` ([`RangePattern`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_range_pattern(self) -> Option<RangePattern<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::RangePattern(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `ref_pattern` ([`RefPattern`]), otherwise returns None
+    ///Returns the node if it is of type `ref_pattern` ([`RefPattern`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_ref_pattern(self) -> Option<RefPattern<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::RefPattern(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `reference_pattern` ([`ReferencePattern`]), otherwise returns None
+    ///Returns the node if it is of type `reference_pattern` ([`ReferencePattern`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_reference_pattern(self) -> Option<ReferencePattern<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::ReferencePattern(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `remaining_field_pattern` ([`RemainingFieldPattern`]), otherwise returns None
+    ///Returns the node if it is of type `remaining_field_pattern` ([`RemainingFieldPattern`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_remaining_field_pattern(self) -> Option<RemainingFieldPattern<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::RemainingFieldPattern(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `scoped_identifier` ([`ScopedIdentifier`]), otherwise returns None
+    ///Returns the node if it is of type `scoped_identifier` ([`ScopedIdentifier`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_scoped_identifier(self) -> Option<ScopedIdentifier<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::ScopedIdentifier(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `slice_pattern` ([`SlicePattern`]), otherwise returns None
+    ///Returns the node if it is of type `slice_pattern` ([`SlicePattern`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_slice_pattern(self) -> Option<SlicePattern<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::SlicePattern(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `struct_pattern` ([`StructPattern`]), otherwise returns None
+    ///Returns the node if it is of type `struct_pattern` ([`StructPattern`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_struct_pattern(self) -> Option<StructPattern<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::StructPattern(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `tuple_pattern` ([`TuplePattern`]), otherwise returns None
+    ///Returns the node if it is of type `tuple_pattern` ([`TuplePattern`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_tuple_pattern(self) -> Option<TuplePattern<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::TuplePattern(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `tuple_struct_pattern` ([`TupleStructPattern`]), otherwise returns None
+    ///Returns the node if it is of type `tuple_struct_pattern` ([`TupleStructPattern`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_tuple_struct_pattern(self) -> Option<TupleStructPattern<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::TupleStructPattern(x) = self { Some(x) } else { None }
@@ -1847,24 +1852,25 @@ impl<'tree> type_sitter_lib::Node<'tree> for Pattern<'tree> {
 }
 /**Typed node `_type`
 
-This node type is a supertype of:
-- `abstract_type` ([AbstractType])
-- `array_type` ([ArrayType])
-- `bounded_type` ([BoundedType])
-- `dynamic_type` ([DynamicType])
-- `function_type` ([FunctionType])
-- `generic_type` ([GenericType])
-- `macro_invocation` ([MacroInvocation])
-- `metavariable` ([Metavariable])
-- `never_type` ([NeverType])
-- `pointer_type` ([PointerType])
-- `primitive_type` ([PrimitiveType])
-- `reference_type` ([ReferenceType])
-- `removed_trait_bound` ([RemovedTraitBound])
-- `scoped_type_identifier` ([ScopedTypeIdentifier])
-- `tuple_type` ([TupleType])
-- `type_identifier` ([TypeIdentifier])
-- `unit_type` ([UnitType])
+This node type has subtypes:
+
+- `abstract_type` ([`AbstractType`])
+- `array_type` ([`ArrayType`])
+- `bounded_type` ([`BoundedType`])
+- `dynamic_type` ([`DynamicType`])
+- `function_type` ([`FunctionType`])
+- `generic_type` ([`GenericType`])
+- `macro_invocation` ([`MacroInvocation`])
+- `metavariable` ([`Metavariable`])
+- `never_type` ([`NeverType`])
+- `pointer_type` ([`PointerType`])
+- `primitive_type` ([`PrimitiveType`])
+- `reference_type` ([`ReferenceType`])
+- `removed_trait_bound` ([`RemovedTraitBound`])
+- `scoped_type_identifier` ([`ScopedTypeIdentifier`])
+- `tuple_type` ([`TupleType`])
+- `type_identifier` ([`TypeIdentifier`])
+- `unit_type` ([`UnitType`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
@@ -1889,121 +1895,121 @@ pub enum Type<'tree> {
 }
 #[automatically_derived]
 impl<'tree> Type<'tree> {
-    ///Returns the node if it is of kind `abstract_type` ([`AbstractType`]), otherwise returns None
+    ///Returns the node if it is of type `abstract_type` ([`AbstractType`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_abstract_type(self) -> Option<AbstractType<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::AbstractType(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `array_type` ([`ArrayType`]), otherwise returns None
+    ///Returns the node if it is of type `array_type` ([`ArrayType`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_array_type(self) -> Option<ArrayType<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::ArrayType(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `bounded_type` ([`BoundedType`]), otherwise returns None
+    ///Returns the node if it is of type `bounded_type` ([`BoundedType`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_bounded_type(self) -> Option<BoundedType<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::BoundedType(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `dynamic_type` ([`DynamicType`]), otherwise returns None
+    ///Returns the node if it is of type `dynamic_type` ([`DynamicType`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_dynamic_type(self) -> Option<DynamicType<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::DynamicType(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `function_type` ([`FunctionType`]), otherwise returns None
+    ///Returns the node if it is of type `function_type` ([`FunctionType`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_function_type(self) -> Option<FunctionType<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::FunctionType(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `generic_type` ([`GenericType`]), otherwise returns None
+    ///Returns the node if it is of type `generic_type` ([`GenericType`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_generic_type(self) -> Option<GenericType<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::GenericType(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `macro_invocation` ([`MacroInvocation`]), otherwise returns None
+    ///Returns the node if it is of type `macro_invocation` ([`MacroInvocation`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_macro_invocation(self) -> Option<MacroInvocation<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::MacroInvocation(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `metavariable` ([`Metavariable`]), otherwise returns None
+    ///Returns the node if it is of type `metavariable` ([`Metavariable`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_metavariable(self) -> Option<Metavariable<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::Metavariable(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `never_type` ([`NeverType`]), otherwise returns None
+    ///Returns the node if it is of type `never_type` ([`NeverType`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_never_type(self) -> Option<NeverType<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::NeverType(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `pointer_type` ([`PointerType`]), otherwise returns None
+    ///Returns the node if it is of type `pointer_type` ([`PointerType`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_pointer_type(self) -> Option<PointerType<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::PointerType(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `primitive_type` ([`PrimitiveType`]), otherwise returns None
+    ///Returns the node if it is of type `primitive_type` ([`PrimitiveType`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_primitive_type(self) -> Option<PrimitiveType<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::PrimitiveType(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `reference_type` ([`ReferenceType`]), otherwise returns None
+    ///Returns the node if it is of type `reference_type` ([`ReferenceType`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_reference_type(self) -> Option<ReferenceType<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::ReferenceType(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `removed_trait_bound` ([`RemovedTraitBound`]), otherwise returns None
+    ///Returns the node if it is of type `removed_trait_bound` ([`RemovedTraitBound`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_removed_trait_bound(self) -> Option<RemovedTraitBound<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::RemovedTraitBound(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `scoped_type_identifier` ([`ScopedTypeIdentifier`]), otherwise returns None
+    ///Returns the node if it is of type `scoped_type_identifier` ([`ScopedTypeIdentifier`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_scoped_type_identifier(self) -> Option<ScopedTypeIdentifier<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::ScopedTypeIdentifier(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `tuple_type` ([`TupleType`]), otherwise returns None
+    ///Returns the node if it is of type `tuple_type` ([`TupleType`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_tuple_type(self) -> Option<TupleType<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::TupleType(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `type_identifier` ([`TypeIdentifier`]), otherwise returns None
+    ///Returns the node if it is of type `type_identifier` ([`TypeIdentifier`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_type_identifier(self) -> Option<TypeIdentifier<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::TypeIdentifier(x) = self { Some(x) } else { None }
     }
-    ///Returns the node if it is of kind `unit_type` ([`UnitType`]), otherwise returns None
+    ///Returns the node if it is of type `unit_type` ([`UnitType`]), otherwise returns `None`
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_unit_type(self) -> Option<UnitType<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::UnitType(x) = self { Some(x) } else { None }
@@ -2242,9 +2248,10 @@ impl<'tree> type_sitter_lib::Node<'tree> for Type<'tree> {
 /**Typed node `abstract_type`
 
 This node has these fields:
-- `trait`: `{function_type | generic_type | removed_trait_bound | scoped_type_identifier | tuple_type | type_identifier}` ([anon_unions::FunctionType_GenericType_RemovedTraitBound_ScopedTypeIdentifier_TupleType_TypeIdentifier])
 
-And an additional (optional) child: `type_parameters?` ([TypeParameters])
+- `trait`: `{function_type | generic_type | removed_trait_bound | scoped_type_identifier | tuple_type | type_identifier}` ([`FunctionType`] | [`GenericType`] | [`RemovedTraitBound`] | [`ScopedTypeIdentifier`] | [`TupleType`] | [`TypeIdentifier`])
+
+And an optional additional named child of type `type_parameters?` ([`TypeParameters`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -2252,8 +2259,18 @@ And an additional (optional) child: `type_parameters?` ([TypeParameters])
 pub struct AbstractType<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> AbstractType<'tree> {
-    ///Get the field `trait` which has kind `{function_type | generic_type | removed_trait_bound | scoped_type_identifier | tuple_type | type_identifier}` ([anon_unions::FunctionType_GenericType_RemovedTraitBound_ScopedTypeIdentifier_TupleType_TypeIdentifier])
-    #[allow(dead_code)]
+    /**Get the field `trait`.
+
+This child has type `{function_type | generic_type | removed_trait_bound | scoped_type_identifier | tuple_type | type_identifier}`:
+
+- [`FunctionType`]
+- [`GenericType`]
+- [`RemovedTraitBound`]
+- [`ScopedTypeIdentifier`]
+- [`TupleType`]
+- [`TypeIdentifier`]
+*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn r#trait(
         &self,
@@ -2271,12 +2288,40 @@ impl<'tree> AbstractType<'tree> {
                 > as type_sitter_lib::Node<'tree>>::try_from_raw,
             )
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the node's not-extra named children
-    ///This is guaranteed to return at least one child
-    #[allow(dead_code)]
+    /**Get the node's only non-field not-extra named child, if it has one.
+
+This child has type `type_parameters?` ([`TypeParameters`])*/
+    #[allow(non_snake_case)]
+    #[inline]
+    pub fn other(
+        &self,
+    ) -> Option<type_sitter_lib::NodeResult<'tree, TypeParameters<'tree>>> {
+        #[allow(clippy::unnecessary_cast)]
+        (0..)
+            .filter(|i| self.0.field_name_for_child(*i).is_some())
+            .filter_map(|i| self.0.named_child(i as usize))
+            .filter(|n| !n.is_extra())
+            .next()
+            .map(<TypeParameters<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
+    }
+    /**Get the node's not-extra named children.
+
+These children have type `{type_parameters | function_type | generic_type | removed_trait_bound | scoped_type_identifier | tuple_type | type_identifier}+`:
+
+- [`TypeParameters`]
+- [`FunctionType`]
+- [`GenericType`]
+- [`RemovedTraitBound`]
+- [`ScopedTypeIdentifier`]
+- [`TupleType`]
+- [`TypeIdentifier`]
+*/
+    /**
+This is guaranteed to return at least one child.*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -2331,9 +2376,10 @@ impl<'tree> type_sitter_lib::Node<'tree> for AbstractType<'tree> {
 }
 /**Typed node `arguments`
 
-This node has children: `{_expression | attribute_item}*`:
-- [Expression]
-- [AttributeItem]
+This node has named children of type `{_expression | attribute_item}*`:
+
+- [`Expression`]
+- [`AttributeItem`]
 
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -2342,8 +2388,14 @@ This node has children: `{_expression | attribute_item}*`:
 pub struct Arguments<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> Arguments<'tree> {
-    ///Get the node's not-extra named children
-    #[allow(dead_code)]
+    /**Get the node's not-extra named children.
+
+These children have type `{_expression | attribute_item}*`:
+
+- [`Expression`]
+- [`AttributeItem`]
+*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -2397,11 +2449,13 @@ impl<'tree> type_sitter_lib::Node<'tree> for Arguments<'tree> {
 /**Typed node `array_expression`
 
 This node has these fields:
-- `length`: `_expression?` ([Expression])
 
-And additional children: `{_expression | attribute_item}*`:
-- [Expression]
-- [AttributeItem]
+- `length`: `_expression?` ([`Expression`])
+
+And additional named children of type `{_expression | attribute_item}*`:
+
+- [`Expression`]
+- [`AttributeItem`]
 
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -2410,8 +2464,10 @@ And additional children: `{_expression | attribute_item}*`:
 pub struct ArrayExpression<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ArrayExpression<'tree> {
-    ///Get the field `length` which has kind `_expression?` ([Expression])
-    #[allow(dead_code)]
+    /**Get the optional field `length`.
+
+This child has type `_expression?` ([`Expression`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn length(
         &self,
@@ -2420,8 +2476,53 @@ impl<'tree> ArrayExpression<'tree> {
             .child_by_field_name("length")
             .map(<Expression<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
     }
-    ///Get the node's not-extra named children
-    #[allow(dead_code)]
+    /**Get the node's non-field not-extra named children.
+
+These children have type `{_expression | attribute_item}*`:
+
+- [`Expression`]
+- [`AttributeItem`]
+*/
+    #[allow(non_snake_case)]
+    #[inline]
+    pub fn others<'a>(
+        &self,
+        c: &'a mut type_sitter_lib::TreeCursor<'tree>,
+    ) -> impl Iterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            anon_unions::Expression_AttributeItem<'tree>,
+        >,
+    > + 'a {
+        {
+            c.0.reset(self.0);
+            c.0.goto_first_child();
+            (0..self.0.child_count())
+                .filter_map(move |_| {
+                    let has_field = c.0.field_name().is_some();
+                    let node = c.0.node();
+                    c.0.goto_next_sibling();
+                    if has_field && node.is_named() && !node.is_extra() {
+                        Some(node)
+                    } else {
+                        None
+                    }
+                })
+        }
+            .map(
+                <anon_unions::Expression_AttributeItem<
+                    'tree,
+                > as type_sitter_lib::Node<'tree>>::try_from_raw,
+            )
+    }
+    /**Get the node's not-extra named children.
+
+These children have type `{_expression | attribute_item}*`:
+
+- [`Expression`]
+- [`AttributeItem`]
+*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -2475,8 +2576,9 @@ impl<'tree> type_sitter_lib::Node<'tree> for ArrayExpression<'tree> {
 /**Typed node `array_type`
 
 This node has these fields:
-- `element`: `_type` ([Type])
-- `length`: `_expression?` ([Expression])
+
+- `element`: `_type` ([`Type`])
+- `length`: `_expression?` ([`Expression`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -2484,19 +2586,23 @@ This node has these fields:
 pub struct ArrayType<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ArrayType<'tree> {
-    ///Get the field `element` which has kind `_type` ([Type])
-    #[allow(dead_code)]
+    /**Get the field `element`.
+
+This child has type `_type` ([`Type`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn element(&self) -> type_sitter_lib::NodeResult<'tree, Type<'tree>> {
         self.0
             .child_by_field_name("element")
             .map(<Type<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the field `length` which has kind `_expression?` ([Expression])
-    #[allow(dead_code)]
+    /**Get the optional field `length`.
+
+This child has type `_expression?` ([`Expression`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn length(
         &self,
@@ -2539,8 +2645,9 @@ impl<'tree> type_sitter_lib::Node<'tree> for ArrayType<'tree> {
 /**Typed node `assignment_expression`
 
 This node has these fields:
-- `left`: `_expression` ([Expression])
-- `right`: `_expression` ([Expression])
+
+- `left`: `_expression` ([`Expression`])
+- `right`: `_expression` ([`Expression`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -2548,26 +2655,30 @@ This node has these fields:
 pub struct AssignmentExpression<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> AssignmentExpression<'tree> {
-    ///Get the field `left` which has kind `_expression` ([Expression])
-    #[allow(dead_code)]
+    /**Get the field `left`.
+
+This child has type `_expression` ([`Expression`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn left(&self) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
         self.0
             .child_by_field_name("left")
             .map(<Expression<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the field `right` which has kind `_expression` ([Expression])
-    #[allow(dead_code)]
+    /**Get the field `right`.
+
+This child has type `_expression` ([`Expression`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn right(&self) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
         self.0
             .child_by_field_name("right")
             .map(<Expression<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
 }
@@ -2604,11 +2715,12 @@ impl<'tree> type_sitter_lib::Node<'tree> for AssignmentExpression<'tree> {
 /**Typed node `associated_type`
 
 This node has these fields:
-- `bounds`: `trait_bounds?` ([TraitBounds])
-- `name`: `type_identifier` ([TypeIdentifier])
-- `type_parameters`: `type_parameters?` ([TypeParameters])
 
-And an additional (optional) child: `where_clause?` ([WhereClause])
+- `bounds`: `trait_bounds?` ([`TraitBounds`])
+- `name`: `type_identifier` ([`TypeIdentifier`])
+- `type_parameters`: `type_parameters?` ([`TypeParameters`])
+
+And an optional additional named child of type `where_clause?` ([`WhereClause`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -2616,8 +2728,10 @@ And an additional (optional) child: `where_clause?` ([WhereClause])
 pub struct AssociatedType<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> AssociatedType<'tree> {
-    ///Get the field `bounds` which has kind `trait_bounds?` ([TraitBounds])
-    #[allow(dead_code)]
+    /**Get the optional field `bounds`.
+
+This child has type `trait_bounds?` ([`TraitBounds`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn bounds(
         &self,
@@ -2626,19 +2740,23 @@ impl<'tree> AssociatedType<'tree> {
             .child_by_field_name("bounds")
             .map(<TraitBounds<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
     }
-    ///Get the field `name` which has kind `type_identifier` ([TypeIdentifier])
-    #[allow(dead_code)]
+    /**Get the field `name`.
+
+This child has type `type_identifier` ([`TypeIdentifier`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn name(&self) -> type_sitter_lib::NodeResult<'tree, TypeIdentifier<'tree>> {
         self.0
             .child_by_field_name("name")
             .map(<TypeIdentifier<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the field `type_parameters` which has kind `type_parameters?` ([TypeParameters])
-    #[allow(dead_code)]
+    /**Get the optional field `type_parameters`.
+
+This child has type `type_parameters?` ([`TypeParameters`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn type_parameters(
         &self,
@@ -2647,9 +2765,34 @@ impl<'tree> AssociatedType<'tree> {
             .child_by_field_name("type_parameters")
             .map(<TypeParameters<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
     }
-    ///Get the node's not-extra named children
-    ///This is guaranteed to return at least one child
-    #[allow(dead_code)]
+    /**Get the node's only non-field not-extra named child, if it has one.
+
+This child has type `where_clause?` ([`WhereClause`])*/
+    #[allow(non_snake_case)]
+    #[inline]
+    pub fn other(
+        &self,
+    ) -> Option<type_sitter_lib::NodeResult<'tree, WhereClause<'tree>>> {
+        #[allow(clippy::unnecessary_cast)]
+        (0..)
+            .filter(|i| self.0.field_name_for_child(*i).is_some())
+            .filter_map(|i| self.0.named_child(i as usize))
+            .filter(|n| !n.is_extra())
+            .next()
+            .map(<WhereClause<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
+    }
+    /**Get the node's not-extra named children.
+
+These children have type `{where_clause | trait_bounds | type_identifier | type_parameters}+`:
+
+- [`WhereClause`]
+- [`TraitBounds`]
+- [`TypeIdentifier`]
+- [`TypeParameters`]
+*/
+    /**
+This is guaranteed to return at least one child.*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -2702,7 +2845,7 @@ impl<'tree> type_sitter_lib::Node<'tree> for AssociatedType<'tree> {
 }
 /**Typed node `async_block`
 
-This node has a child: `block` ([Block])
+This node has a named child of type `block` ([`Block`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -2712,8 +2855,8 @@ pub struct AsyncBlock<'tree>(yak_sitter::Node<'tree>);
 impl<'tree> AsyncBlock<'tree> {
     /**Get the node's only not-extra named child.
 
-Iff this returns `Option`, it means the node may not have any non-extra named children.*/
-    #[allow(dead_code)]
+This child has type `block` ([`Block`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn child(&self) -> type_sitter_lib::NodeResult<'tree, Block<'tree>> {
         (0..)
@@ -2722,7 +2865,7 @@ Iff this returns `Option`, it means the node may not have any non-extra named ch
             .next()
             .map(<Block<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
 }
@@ -2759,16 +2902,18 @@ impl<'tree> type_sitter_lib::Node<'tree> for AsyncBlock<'tree> {
 /**Typed node `attribute`
 
 This node has these fields:
-- `arguments`: `token_tree?` ([TokenTree])
-- `value`: `_expression?` ([Expression])
 
-And an additional child: `{crate | identifier | metavariable | scoped_identifier | self | super}`:
-- [Crate]
-- [Identifier]
-- [Metavariable]
-- [ScopedIdentifier]
-- [_Self]
-- [Super]
+- `arguments`: `token_tree?` ([`TokenTree`])
+- `value`: `_expression?` ([`Expression`])
+
+And an additional named child of type `{crate | identifier | metavariable | scoped_identifier | self | super}`:
+
+- [`Crate`]
+- [`Identifier`]
+- [`Metavariable`]
+- [`ScopedIdentifier`]
+- [`Self_`]
+- [`Super`]
 
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -2777,8 +2922,10 @@ And an additional child: `{crate | identifier | metavariable | scoped_identifier
 pub struct Attribute<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> Attribute<'tree> {
-    ///Get the field `arguments` which has kind `token_tree?` ([TokenTree])
-    #[allow(dead_code)]
+    /**Get the optional field `arguments`.
+
+This child has type `token_tree?` ([`TokenTree`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn arguments(
         &self,
@@ -2787,8 +2934,10 @@ impl<'tree> Attribute<'tree> {
             .child_by_field_name("arguments")
             .map(<TokenTree<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
     }
-    ///Get the field `value` which has kind `_expression?` ([Expression])
-    #[allow(dead_code)]
+    /**Get the optional field `value`.
+
+This child has type `_expression?` ([`Expression`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn value(
         &self,
@@ -2797,9 +2946,56 @@ impl<'tree> Attribute<'tree> {
             .child_by_field_name("value")
             .map(<Expression<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
     }
-    ///Get the node's not-extra named children
-    ///This is guaranteed to return at least one child
-    #[allow(dead_code)]
+    /**Get the node's only non-field not-extra named child.
+
+This child has type `{crate | identifier | metavariable | scoped_identifier | self | super}`:
+
+- [`Crate`]
+- [`Identifier`]
+- [`Metavariable`]
+- [`ScopedIdentifier`]
+- [`Self_`]
+- [`Super`]
+*/
+    #[allow(non_snake_case)]
+    #[inline]
+    pub fn other(
+        &self,
+    ) -> type_sitter_lib::NodeResult<
+        'tree,
+        anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier_Self__Super<'tree>,
+    > {
+        #[allow(clippy::unnecessary_cast)]
+        (0..)
+            .filter(|i| self.0.field_name_for_child(*i).is_some())
+            .filter_map(|i| self.0.named_child(i as usize))
+            .filter(|n| !n.is_extra())
+            .next()
+            .map(
+                <anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier_Self__Super<
+                    'tree,
+                > as type_sitter_lib::Node<'tree>>::try_from_raw,
+            )
+            .expect(
+                "required child not present, there should at least be a MISSING node in its place",
+            )
+    }
+    /**Get the node's not-extra named children.
+
+These children have type `{crate | identifier | metavariable | scoped_identifier | self | super | token_tree | _expression}+`:
+
+- [`Crate`]
+- [`Identifier`]
+- [`Metavariable`]
+- [`ScopedIdentifier`]
+- [`Self_`]
+- [`Super`]
+- [`TokenTree`]
+- [`Expression`]
+*/
+    /**
+This is guaranteed to return at least one child.*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -2807,7 +3003,7 @@ impl<'tree> Attribute<'tree> {
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super_TokenTree_Expression<
+            anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier_Self__Super_TokenTree_Expression<
                 'tree,
             >,
         >,
@@ -2816,7 +3012,7 @@ impl<'tree> Attribute<'tree> {
             .named_children(&mut c.0)
             .filter(|n| !n.is_extra())
             .map(
-                <anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super_TokenTree_Expression<
+                <anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier_Self__Super_TokenTree_Expression<
                     'tree,
                 > as type_sitter_lib::Node<'tree>>::try_from_raw,
             )
@@ -2854,7 +3050,7 @@ impl<'tree> type_sitter_lib::Node<'tree> for Attribute<'tree> {
 }
 /**Typed node `attribute_item`
 
-This node has a child: `attribute` ([Attribute])
+This node has a named child of type `attribute` ([`Attribute`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -2864,8 +3060,8 @@ pub struct AttributeItem<'tree>(yak_sitter::Node<'tree>);
 impl<'tree> AttributeItem<'tree> {
     /**Get the node's only not-extra named child.
 
-Iff this returns `Option`, it means the node may not have any non-extra named children.*/
-    #[allow(dead_code)]
+This child has type `attribute` ([`Attribute`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn child(&self) -> type_sitter_lib::NodeResult<'tree, Attribute<'tree>> {
         (0..)
@@ -2874,7 +3070,7 @@ Iff this returns `Option`, it means the node may not have any non-extra named ch
             .next()
             .map(<Attribute<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
 }
@@ -2910,7 +3106,7 @@ impl<'tree> type_sitter_lib::Node<'tree> for AttributeItem<'tree> {
 }
 /**Typed node `await_expression`
 
-This node has a child: `_expression` ([Expression])
+This node has a named child of type `_expression` ([`Expression`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -2920,8 +3116,8 @@ pub struct AwaitExpression<'tree>(yak_sitter::Node<'tree>);
 impl<'tree> AwaitExpression<'tree> {
     /**Get the node's only not-extra named child.
 
-Iff this returns `Option`, it means the node may not have any non-extra named children.*/
-    #[allow(dead_code)]
+This child has type `_expression` ([`Expression`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn child(&self) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
         (0..)
@@ -2930,7 +3126,7 @@ Iff this returns `Option`, it means the node may not have any non-extra named ch
             .next()
             .map(<Expression<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
 }
@@ -2966,7 +3162,7 @@ impl<'tree> type_sitter_lib::Node<'tree> for AwaitExpression<'tree> {
 }
 /**Typed node `base_field_initializer`
 
-This node has a child: `_expression` ([Expression])
+This node has a named child of type `_expression` ([`Expression`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -2976,8 +3172,8 @@ pub struct BaseFieldInitializer<'tree>(yak_sitter::Node<'tree>);
 impl<'tree> BaseFieldInitializer<'tree> {
     /**Get the node's only not-extra named child.
 
-Iff this returns `Option`, it means the node may not have any non-extra named children.*/
-    #[allow(dead_code)]
+This child has type `_expression` ([`Expression`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn child(&self) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
         (0..)
@@ -2986,7 +3182,7 @@ Iff this returns `Option`, it means the node may not have any non-extra named ch
             .next()
             .map(<Expression<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
 }
@@ -3023,9 +3219,10 @@ impl<'tree> type_sitter_lib::Node<'tree> for BaseFieldInitializer<'tree> {
 /**Typed node `binary_expression`
 
 This node has these fields:
-- `left`: `_expression` ([Expression])
-- `operator`: `{!= | % | & | && | * | + | - | / | < | << | <= | == | > | >= | >> | ^ | | | ||}` ([anon_unions::NotEq_Mod_And_AndAnd_Mul_Add_Sub_Div_Lt_LtLt_LtEq_EqEq_Gt_GtEq_GtGt_BitXor_Or_OrOr])
-- `right`: `_expression` ([Expression])
+
+- `left`: `_expression` ([`Expression`])
+- `operator`: `{!= | % | & | && | * | + | - | / | < | << | <= | == | > | >= | >> | ^ | | | ||}` ([`symbols::NotEq`] | [`symbols::Mod`] | [`symbols::And`] | [`symbols::AndAnd`] | [`symbols::Mul`] | [`symbols::Add`] | [`symbols::Sub`] | [`symbols::Div`] | [`symbols::Lt`] | [`symbols::LtLt`] | [`symbols::LtEq`] | [`symbols::EqEq`] | [`symbols::Gt`] | [`symbols::GtEq`] | [`symbols::GtGt`] | [`symbols::BitXor`] | [`symbols::Or`] | [`symbols::OrOr`])
+- `right`: `_expression` ([`Expression`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -3033,19 +3230,43 @@ This node has these fields:
 pub struct BinaryExpression<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> BinaryExpression<'tree> {
-    ///Get the field `left` which has kind `_expression` ([Expression])
-    #[allow(dead_code)]
+    /**Get the field `left`.
+
+This child has type `_expression` ([`Expression`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn left(&self) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
         self.0
             .child_by_field_name("left")
             .map(<Expression<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the field `operator` which has kind `{!= | % | & | && | * | + | - | / | < | << | <= | == | > | >= | >> | ^ | | | ||}` ([anon_unions::NotEq_Mod_And_AndAnd_Mul_Add_Sub_Div_Lt_LtLt_LtEq_EqEq_Gt_GtEq_GtGt_BitXor_Or_OrOr])
-    #[allow(dead_code)]
+    /**Get the field `operator`.
+
+This child has type `{!= | % | & | && | * | + | - | / | < | << | <= | == | > | >= | >> | ^ | | | ||}`:
+
+- [`symbols::NotEq`]
+- [`symbols::Mod`]
+- [`symbols::And`]
+- [`symbols::AndAnd`]
+- [`symbols::Mul`]
+- [`symbols::Add`]
+- [`symbols::Sub`]
+- [`symbols::Div`]
+- [`symbols::Lt`]
+- [`symbols::LtLt`]
+- [`symbols::LtEq`]
+- [`symbols::EqEq`]
+- [`symbols::Gt`]
+- [`symbols::GtEq`]
+- [`symbols::GtGt`]
+- [`symbols::BitXor`]
+- [`symbols::Or`]
+- [`symbols::OrOr`]
+*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn operator(
         &self,
@@ -3063,18 +3284,20 @@ impl<'tree> BinaryExpression<'tree> {
                 > as type_sitter_lib::Node<'tree>>::try_from_raw,
             )
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the field `right` which has kind `_expression` ([Expression])
-    #[allow(dead_code)]
+    /**Get the field `right`.
+
+This child has type `_expression` ([`Expression`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn right(&self) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
         self.0
             .child_by_field_name("right")
             .map(<Expression<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
 }
@@ -3110,11 +3333,12 @@ impl<'tree> type_sitter_lib::Node<'tree> for BinaryExpression<'tree> {
 }
 /**Typed node `block`
 
-This node has children: `{_declaration_statement | _expression | expression_statement | label}*`:
-- [DeclarationStatement]
-- [Expression]
-- [ExpressionStatement]
-- [Label]
+This node has named children of type `{_declaration_statement | _expression | expression_statement | label}*`:
+
+- [`DeclarationStatement`]
+- [`Expression`]
+- [`ExpressionStatement`]
+- [`Label`]
 
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -3123,8 +3347,16 @@ This node has children: `{_declaration_statement | _expression | expression_stat
 pub struct Block<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> Block<'tree> {
-    ///Get the node's not-extra named children
-    #[allow(dead_code)]
+    /**Get the node's not-extra named children.
+
+These children have type `{_declaration_statement | _expression | expression_statement | label}*`:
+
+- [`DeclarationStatement`]
+- [`Expression`]
+- [`ExpressionStatement`]
+- [`Label`]
+*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -3178,9 +3410,10 @@ impl<'tree> type_sitter_lib::Node<'tree> for Block<'tree> {
 /**Typed node `block_comment`
 
 This node has these fields:
-- `doc`: `doc_comment?` ([DocComment])
-- `inner`: `inner_doc_comment_marker?` ([InnerDocCommentMarker])
-- `outer`: `outer_doc_comment_marker?` ([OuterDocCommentMarker])
+
+- `doc`: `doc_comment?` ([`DocComment`])
+- `inner`: `inner_doc_comment_marker?` ([`InnerDocCommentMarker`])
+- `outer`: `outer_doc_comment_marker?` ([`OuterDocCommentMarker`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -3188,16 +3421,20 @@ This node has these fields:
 pub struct BlockComment<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> BlockComment<'tree> {
-    ///Get the field `doc` which has kind `doc_comment?` ([DocComment])
-    #[allow(dead_code)]
+    /**Get the optional field `doc`.
+
+This child has type `doc_comment?` ([`DocComment`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn doc(&self) -> Option<type_sitter_lib::NodeResult<'tree, DocComment<'tree>>> {
         self.0
             .child_by_field_name("doc")
             .map(<DocComment<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
     }
-    ///Get the field `inner` which has kind `inner_doc_comment_marker?` ([InnerDocCommentMarker])
-    #[allow(dead_code)]
+    /**Get the optional field `inner`.
+
+This child has type `inner_doc_comment_marker?` ([`InnerDocCommentMarker`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn inner(
         &self,
@@ -3210,8 +3447,10 @@ impl<'tree> BlockComment<'tree> {
                 > as type_sitter_lib::Node<'tree>>::try_from_raw,
             )
     }
-    ///Get the field `outer` which has kind `outer_doc_comment_marker?` ([OuterDocCommentMarker])
-    #[allow(dead_code)]
+    /**Get the optional field `outer`.
+
+This child has type `outer_doc_comment_marker?` ([`OuterDocCommentMarker`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn outer(
         &self,
@@ -3257,7 +3496,7 @@ impl<'tree> type_sitter_lib::Node<'tree> for BlockComment<'tree> {
 }
 /**Typed node `boolean_literal`
 
-This node has no children
+This node has no named children
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -3297,9 +3536,10 @@ impl<'tree> type_sitter_lib::Node<'tree> for BooleanLiteral<'tree> {
 }
 /**Typed node `bounded_type`
 
-This node has children: `{_type | lifetime}+`:
-- [Type]
-- [Lifetime]
+This node has named children of type `{_type | lifetime}+`:
+
+- [`Type`]
+- [`Lifetime`]
 
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -3308,9 +3548,16 @@ This node has children: `{_type | lifetime}+`:
 pub struct BoundedType<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> BoundedType<'tree> {
-    ///Get the node's not-extra named children
-    ///This is guaranteed to return at least one child
-    #[allow(dead_code)]
+    /**Get the node's not-extra named children.
+
+These children have type `{_type | lifetime}+`:
+
+- [`Type`]
+- [`Lifetime`]
+*/
+    /**
+This is guaranteed to return at least one child.*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -3360,9 +3607,10 @@ impl<'tree> type_sitter_lib::Node<'tree> for BoundedType<'tree> {
 }
 /**Typed node `bracketed_type`
 
-This node has a child: `{_type | qualified_type}`:
-- [Type]
-- [QualifiedType]
+This node has a named child of type `{_type | qualified_type}`:
+
+- [`Type`]
+- [`QualifiedType`]
 
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -3373,8 +3621,12 @@ pub struct BracketedType<'tree>(yak_sitter::Node<'tree>);
 impl<'tree> BracketedType<'tree> {
     /**Get the node's only not-extra named child.
 
-Iff this returns `Option`, it means the node may not have any non-extra named children.*/
-    #[allow(dead_code)]
+This child has type `{_type | qualified_type}`:
+
+- [`Type`]
+- [`QualifiedType`]
+*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn child(
         &self,
@@ -3389,7 +3641,7 @@ Iff this returns `Option`, it means the node may not have any non-extra named ch
                 > as type_sitter_lib::Node<'tree>>::try_from_raw,
             )
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
 }
@@ -3425,9 +3677,10 @@ impl<'tree> type_sitter_lib::Node<'tree> for BracketedType<'tree> {
 }
 /**Typed node `break_expression`
 
-This node has children: `{_expression | label}*`:
-- [Expression]
-- [Label]
+This node has named children of type `{_expression | label}*`:
+
+- [`Expression`]
+- [`Label`]
 
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -3436,8 +3689,14 @@ This node has children: `{_expression | label}*`:
 pub struct BreakExpression<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> BreakExpression<'tree> {
-    ///Get the node's not-extra named children
-    #[allow(dead_code)]
+    /**Get the node's not-extra named children.
+
+These children have type `{_expression | label}*`:
+
+- [`Expression`]
+- [`Label`]
+*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -3488,8 +3747,9 @@ impl<'tree> type_sitter_lib::Node<'tree> for BreakExpression<'tree> {
 /**Typed node `call_expression`
 
 This node has these fields:
-- `arguments`: `arguments` ([Arguments])
-- `function`: `{_literal | array_expression | assignment_expression | async_block | await_expression | binary_expression | block | break_expression | call_expression | closure_expression | compound_assignment_expr | const_block | continue_expression | field_expression | for_expression | generic_function | identifier | if_expression | index_expression | loop_expression | macro_invocation | match_expression | metavariable | parenthesized_expression | reference_expression | return_expression | scoped_identifier | self | struct_expression | try_block | try_expression | tuple_expression | type_cast_expression | unary_expression | unit_expression | unsafe_block | while_expression | yield_expression}` ([anon_unions::Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier__Self_StructExpression_TryBlock_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression])
+
+- `arguments`: `arguments` ([`Arguments`])
+- `function`: `{_literal | array_expression | assignment_expression | async_block | await_expression | binary_expression | block | break_expression | call_expression | closure_expression | compound_assignment_expr | const_block | continue_expression | field_expression | for_expression | generic_function | identifier | if_expression | index_expression | loop_expression | macro_invocation | match_expression | metavariable | parenthesized_expression | reference_expression | return_expression | scoped_identifier | self | struct_expression | try_block | try_expression | tuple_expression | type_cast_expression | unary_expression | unit_expression | unsafe_block | while_expression | yield_expression}` ([`Literal`] | [`ArrayExpression`] | [`AssignmentExpression`] | [`AsyncBlock`] | [`AwaitExpression`] | [`BinaryExpression`] | [`Block`] | [`BreakExpression`] | [`CallExpression`] | [`ClosureExpression`] | [`CompoundAssignmentExpr`] | [`ConstBlock`] | [`ContinueExpression`] | [`FieldExpression`] | [`ForExpression`] | [`GenericFunction`] | [`Identifier`] | [`IfExpression`] | [`IndexExpression`] | [`LoopExpression`] | [`MacroInvocation`] | [`MatchExpression`] | [`Metavariable`] | [`ParenthesizedExpression`] | [`ReferenceExpression`] | [`ReturnExpression`] | [`ScopedIdentifier`] | [`Self_`] | [`StructExpression`] | [`TryBlock`] | [`TryExpression`] | [`TupleExpression`] | [`TypeCastExpression`] | [`UnaryExpression`] | [`UnitExpression`] | [`UnsafeBlock`] | [`WhileExpression`] | [`YieldExpression`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -3497,37 +3757,81 @@ This node has these fields:
 pub struct CallExpression<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> CallExpression<'tree> {
-    ///Get the field `arguments` which has kind `arguments` ([Arguments])
-    #[allow(dead_code)]
+    /**Get the field `arguments`.
+
+This child has type `arguments` ([`Arguments`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn arguments(&self) -> type_sitter_lib::NodeResult<'tree, Arguments<'tree>> {
         self.0
             .child_by_field_name("arguments")
             .map(<Arguments<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the field `function` which has kind `{_literal | array_expression | assignment_expression | async_block | await_expression | binary_expression | block | break_expression | call_expression | closure_expression | compound_assignment_expr | const_block | continue_expression | field_expression | for_expression | generic_function | identifier | if_expression | index_expression | loop_expression | macro_invocation | match_expression | metavariable | parenthesized_expression | reference_expression | return_expression | scoped_identifier | self | struct_expression | try_block | try_expression | tuple_expression | type_cast_expression | unary_expression | unit_expression | unsafe_block | while_expression | yield_expression}` ([anon_unions::Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier__Self_StructExpression_TryBlock_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression])
-    #[allow(dead_code)]
+    /**Get the field `function`.
+
+This child has type `{_literal | array_expression | assignment_expression | async_block | await_expression | binary_expression | block | break_expression | call_expression | closure_expression | compound_assignment_expr | const_block | continue_expression | field_expression | for_expression | generic_function | identifier | if_expression | index_expression | loop_expression | macro_invocation | match_expression | metavariable | parenthesized_expression | reference_expression | return_expression | scoped_identifier | self | struct_expression | try_block | try_expression | tuple_expression | type_cast_expression | unary_expression | unit_expression | unsafe_block | while_expression | yield_expression}`:
+
+- [`Literal`]
+- [`ArrayExpression`]
+- [`AssignmentExpression`]
+- [`AsyncBlock`]
+- [`AwaitExpression`]
+- [`BinaryExpression`]
+- [`Block`]
+- [`BreakExpression`]
+- [`CallExpression`]
+- [`ClosureExpression`]
+- [`CompoundAssignmentExpr`]
+- [`ConstBlock`]
+- [`ContinueExpression`]
+- [`FieldExpression`]
+- [`ForExpression`]
+- [`GenericFunction`]
+- [`Identifier`]
+- [`IfExpression`]
+- [`IndexExpression`]
+- [`LoopExpression`]
+- [`MacroInvocation`]
+- [`MatchExpression`]
+- [`Metavariable`]
+- [`ParenthesizedExpression`]
+- [`ReferenceExpression`]
+- [`ReturnExpression`]
+- [`ScopedIdentifier`]
+- [`Self_`]
+- [`StructExpression`]
+- [`TryBlock`]
+- [`TryExpression`]
+- [`TupleExpression`]
+- [`TypeCastExpression`]
+- [`UnaryExpression`]
+- [`UnitExpression`]
+- [`UnsafeBlock`]
+- [`WhileExpression`]
+- [`YieldExpression`]
+*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn function(
         &self,
     ) -> type_sitter_lib::NodeResult<
         'tree,
-        anon_unions::Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier__Self_StructExpression_TryBlock_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression<
+        anon_unions::Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier_Self__StructExpression_TryBlock_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression<
             'tree,
         >,
     > {
         self.0
             .child_by_field_name("function")
             .map(
-                <anon_unions::Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier__Self_StructExpression_TryBlock_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression<
+                <anon_unions::Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier_Self__StructExpression_TryBlock_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression<
                     'tree,
                 > as type_sitter_lib::Node<'tree>>::try_from_raw,
             )
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
 }
@@ -3563,7 +3867,7 @@ impl<'tree> type_sitter_lib::Node<'tree> for CallExpression<'tree> {
 }
 /**Typed node `captured_pattern`
 
-This node has children: `_pattern+` ([Pattern])
+This node has named children of type `_pattern+` ([`Pattern`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -3571,9 +3875,12 @@ This node has children: `_pattern+` ([Pattern])
 pub struct CapturedPattern<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> CapturedPattern<'tree> {
-    ///Get the node's not-extra named children
-    ///This is guaranteed to return at least one child
-    #[allow(dead_code)]
+    /**Get the node's not-extra named children.
+
+These children have type `_pattern+` ([`Pattern`])*/
+    /**
+This is guaranteed to return at least one child.*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -3618,9 +3925,10 @@ impl<'tree> type_sitter_lib::Node<'tree> for CapturedPattern<'tree> {
 /**Typed node `closure_expression`
 
 This node has these fields:
-- `body`: `{_ | _expression}` ([anon_unions::___Expression])
-- `parameters`: `closure_parameters` ([ClosureParameters])
-- `return_type`: `_type?` ([Type])
+
+- `body`: `{_ | _expression}` ([`symbols::__`] | [`Expression`])
+- `parameters`: `closure_parameters` ([`ClosureParameters`])
+- `return_type`: `_type?` ([`Type`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -3628,8 +3936,14 @@ This node has these fields:
 pub struct ClosureExpression<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ClosureExpression<'tree> {
-    ///Get the field `body` which has kind `{_ | _expression}` ([anon_unions::___Expression])
-    #[allow(dead_code)]
+    /**Get the field `body`.
+
+This child has type `{_ | _expression}`:
+
+- [`symbols::__`]
+- [`Expression`]
+*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn body(
         &self,
@@ -3642,11 +3956,13 @@ impl<'tree> ClosureExpression<'tree> {
                 > as type_sitter_lib::Node<'tree>>::try_from_raw,
             )
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the field `parameters` which has kind `closure_parameters` ([ClosureParameters])
-    #[allow(dead_code)]
+    /**Get the field `parameters`.
+
+This child has type `closure_parameters` ([`ClosureParameters`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn parameters(
         &self,
@@ -3657,11 +3973,13 @@ impl<'tree> ClosureExpression<'tree> {
                 <ClosureParameters<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw,
             )
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the field `return_type` which has kind `_type?` ([Type])
-    #[allow(dead_code)]
+    /**Get the optional field `return_type`.
+
+This child has type `_type?` ([`Type`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn return_type(
         &self,
@@ -3703,9 +4021,10 @@ impl<'tree> type_sitter_lib::Node<'tree> for ClosureExpression<'tree> {
 }
 /**Typed node `closure_parameters`
 
-This node has children: `{_pattern | parameter}*`:
-- [Pattern]
-- [Parameter]
+This node has named children of type `{_pattern | parameter}*`:
+
+- [`Pattern`]
+- [`Parameter`]
 
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -3714,8 +4033,14 @@ This node has children: `{_pattern | parameter}*`:
 pub struct ClosureParameters<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ClosureParameters<'tree> {
-    ///Get the node's not-extra named children
-    #[allow(dead_code)]
+    /**Get the node's not-extra named children.
+
+These children have type `{_pattern | parameter}*`:
+
+- [`Pattern`]
+- [`Parameter`]
+*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -3766,9 +4091,10 @@ impl<'tree> type_sitter_lib::Node<'tree> for ClosureParameters<'tree> {
 /**Typed node `compound_assignment_expr`
 
 This node has these fields:
-- `left`: `_expression` ([Expression])
-- `operator`: `{%= | &= | *= | += | -= | /= | <<= | >>= | ^= | |=}` ([anon_unions::ModEq_AndEq_MulEq_AddEq_SubEq_DivEq_LtLtEq_GtGtEq_BitXorEq_OrEq])
-- `right`: `_expression` ([Expression])
+
+- `left`: `_expression` ([`Expression`])
+- `operator`: `{%= | &= | *= | += | -= | /= | <<= | >>= | ^= | |=}` ([`symbols::ModEq`] | [`symbols::AndEq`] | [`symbols::MulEq`] | [`symbols::AddEq`] | [`symbols::SubEq`] | [`symbols::DivEq`] | [`symbols::LtLtEq`] | [`symbols::GtGtEq`] | [`symbols::BitXorEq`] | [`symbols::OrEq`])
+- `right`: `_expression` ([`Expression`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -3776,19 +4102,35 @@ This node has these fields:
 pub struct CompoundAssignmentExpr<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> CompoundAssignmentExpr<'tree> {
-    ///Get the field `left` which has kind `_expression` ([Expression])
-    #[allow(dead_code)]
+    /**Get the field `left`.
+
+This child has type `_expression` ([`Expression`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn left(&self) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
         self.0
             .child_by_field_name("left")
             .map(<Expression<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the field `operator` which has kind `{%= | &= | *= | += | -= | /= | <<= | >>= | ^= | |=}` ([anon_unions::ModEq_AndEq_MulEq_AddEq_SubEq_DivEq_LtLtEq_GtGtEq_BitXorEq_OrEq])
-    #[allow(dead_code)]
+    /**Get the field `operator`.
+
+This child has type `{%= | &= | *= | += | -= | /= | <<= | >>= | ^= | |=}`:
+
+- [`symbols::ModEq`]
+- [`symbols::AndEq`]
+- [`symbols::MulEq`]
+- [`symbols::AddEq`]
+- [`symbols::SubEq`]
+- [`symbols::DivEq`]
+- [`symbols::LtLtEq`]
+- [`symbols::GtGtEq`]
+- [`symbols::BitXorEq`]
+- [`symbols::OrEq`]
+*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn operator(
         &self,
@@ -3806,18 +4148,20 @@ impl<'tree> CompoundAssignmentExpr<'tree> {
                 > as type_sitter_lib::Node<'tree>>::try_from_raw,
             )
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the field `right` which has kind `_expression` ([Expression])
-    #[allow(dead_code)]
+    /**Get the field `right`.
+
+This child has type `_expression` ([`Expression`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn right(&self) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
         self.0
             .child_by_field_name("right")
             .map(<Expression<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
 }
@@ -3854,7 +4198,8 @@ impl<'tree> type_sitter_lib::Node<'tree> for CompoundAssignmentExpr<'tree> {
 /**Typed node `const_block`
 
 This node has these fields:
-- `body`: `block` ([Block])
+
+- `body`: `block` ([`Block`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -3862,15 +4207,17 @@ This node has these fields:
 pub struct ConstBlock<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ConstBlock<'tree> {
-    ///Get the field `body` which has kind `block` ([Block])
-    #[allow(dead_code)]
+    /**Get the field `body`.
+
+This child has type `block` ([`Block`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn body(&self) -> type_sitter_lib::NodeResult<'tree, Block<'tree>> {
         self.0
             .child_by_field_name("body")
             .map(<Block<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
 }
@@ -3907,11 +4254,12 @@ impl<'tree> type_sitter_lib::Node<'tree> for ConstBlock<'tree> {
 /**Typed node `const_item`
 
 This node has these fields:
-- `name`: `identifier` ([Identifier])
-- `type`: `_type` ([Type])
-- `value`: `_expression?` ([Expression])
 
-And an additional (optional) child: `visibility_modifier?` ([VisibilityModifier])
+- `name`: `identifier` ([`Identifier`])
+- `type`: `_type` ([`Type`])
+- `value`: `_expression?` ([`Expression`])
+
+And an optional additional named child of type `visibility_modifier?` ([`VisibilityModifier`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -3919,30 +4267,36 @@ And an additional (optional) child: `visibility_modifier?` ([VisibilityModifier]
 pub struct ConstItem<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ConstItem<'tree> {
-    ///Get the field `name` which has kind `identifier` ([Identifier])
-    #[allow(dead_code)]
+    /**Get the field `name`.
+
+This child has type `identifier` ([`Identifier`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn name(&self) -> type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
         self.0
             .child_by_field_name("name")
             .map(<Identifier<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the field `type` which has kind `_type` ([Type])
-    #[allow(dead_code)]
+    /**Get the field `type`.
+
+This child has type `_type` ([`Type`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn r#type(&self) -> type_sitter_lib::NodeResult<'tree, Type<'tree>> {
         self.0
             .child_by_field_name("type")
             .map(<Type<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the field `value` which has kind `_expression?` ([Expression])
-    #[allow(dead_code)]
+    /**Get the optional field `value`.
+
+This child has type `_expression?` ([`Expression`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn value(
         &self,
@@ -3951,9 +4305,36 @@ impl<'tree> ConstItem<'tree> {
             .child_by_field_name("value")
             .map(<Expression<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
     }
-    ///Get the node's not-extra named children
-    ///This is guaranteed to return at least one child
-    #[allow(dead_code)]
+    /**Get the node's only non-field not-extra named child, if it has one.
+
+This child has type `visibility_modifier?` ([`VisibilityModifier`])*/
+    #[allow(non_snake_case)]
+    #[inline]
+    pub fn other(
+        &self,
+    ) -> Option<type_sitter_lib::NodeResult<'tree, VisibilityModifier<'tree>>> {
+        #[allow(clippy::unnecessary_cast)]
+        (0..)
+            .filter(|i| self.0.field_name_for_child(*i).is_some())
+            .filter_map(|i| self.0.named_child(i as usize))
+            .filter(|n| !n.is_extra())
+            .next()
+            .map(
+                <VisibilityModifier<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw,
+            )
+    }
+    /**Get the node's not-extra named children.
+
+These children have type `{visibility_modifier | identifier | _type | _expression}+`:
+
+- [`VisibilityModifier`]
+- [`Identifier`]
+- [`Type`]
+- [`Expression`]
+*/
+    /**
+This is guaranteed to return at least one child.*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -4007,8 +4388,9 @@ impl<'tree> type_sitter_lib::Node<'tree> for ConstItem<'tree> {
 /**Typed node `const_parameter`
 
 This node has these fields:
-- `name`: `identifier` ([Identifier])
-- `type`: `_type` ([Type])
+
+- `name`: `identifier` ([`Identifier`])
+- `type`: `_type` ([`Type`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -4016,26 +4398,30 @@ This node has these fields:
 pub struct ConstParameter<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ConstParameter<'tree> {
-    ///Get the field `name` which has kind `identifier` ([Identifier])
-    #[allow(dead_code)]
+    /**Get the field `name`.
+
+This child has type `identifier` ([`Identifier`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn name(&self) -> type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
         self.0
             .child_by_field_name("name")
             .map(<Identifier<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the field `type` which has kind `_type` ([Type])
-    #[allow(dead_code)]
+    /**Get the field `type`.
+
+This child has type `_type` ([`Type`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn r#type(&self) -> type_sitter_lib::NodeResult<'tree, Type<'tree>> {
         self.0
             .child_by_field_name("type")
             .map(<Type<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
 }
@@ -4072,8 +4458,9 @@ impl<'tree> type_sitter_lib::Node<'tree> for ConstParameter<'tree> {
 /**Typed node `constrained_type_parameter`
 
 This node has these fields:
-- `bounds`: `trait_bounds` ([TraitBounds])
-- `left`: `{lifetime | type_identifier}` ([anon_unions::Lifetime_TypeIdentifier])
+
+- `bounds`: `trait_bounds` ([`TraitBounds`])
+- `left`: `{lifetime | type_identifier}` ([`Lifetime`] | [`TypeIdentifier`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -4081,19 +4468,27 @@ This node has these fields:
 pub struct ConstrainedTypeParameter<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ConstrainedTypeParameter<'tree> {
-    ///Get the field `bounds` which has kind `trait_bounds` ([TraitBounds])
-    #[allow(dead_code)]
+    /**Get the field `bounds`.
+
+This child has type `trait_bounds` ([`TraitBounds`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn bounds(&self) -> type_sitter_lib::NodeResult<'tree, TraitBounds<'tree>> {
         self.0
             .child_by_field_name("bounds")
             .map(<TraitBounds<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the field `left` which has kind `{lifetime | type_identifier}` ([anon_unions::Lifetime_TypeIdentifier])
-    #[allow(dead_code)]
+    /**Get the field `left`.
+
+This child has type `{lifetime | type_identifier}`:
+
+- [`Lifetime`]
+- [`TypeIdentifier`]
+*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn left(
         &self,
@@ -4109,7 +4504,7 @@ impl<'tree> ConstrainedTypeParameter<'tree> {
                 > as type_sitter_lib::Node<'tree>>::try_from_raw,
             )
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
 }
@@ -4145,7 +4540,7 @@ impl<'tree> type_sitter_lib::Node<'tree> for ConstrainedTypeParameter<'tree> {
 }
 /**Typed node `continue_expression`
 
-This node has an (optional) child: `label?` ([Label])
+This node has an optional named child of type `label?` ([`Label`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -4153,10 +4548,10 @@ This node has an (optional) child: `label?` ([Label])
 pub struct ContinueExpression<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ContinueExpression<'tree> {
-    /**Get the node's only not-extra named child.
+    /**Get the node's only not-extra named child, if it has one.
 
-Iff this returns `Option`, it means the node may not have any non-extra named children.*/
-    #[allow(dead_code)]
+This child has type `label?` ([`Label`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn child(&self) -> Option<type_sitter_lib::NodeResult<'tree, Label<'tree>>> {
         (0..)
@@ -4198,7 +4593,7 @@ impl<'tree> type_sitter_lib::Node<'tree> for ContinueExpression<'tree> {
 }
 /**Typed node `declaration_list`
 
-This node has children: `_declaration_statement*` ([DeclarationStatement])
+This node has named children of type `_declaration_statement*` ([`DeclarationStatement`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -4206,8 +4601,10 @@ This node has children: `_declaration_statement*` ([DeclarationStatement])
 pub struct DeclarationList<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> DeclarationList<'tree> {
-    ///Get the node's not-extra named children
-    #[allow(dead_code)]
+    /**Get the node's not-extra named children.
+
+These children have type `_declaration_statement*` ([`DeclarationStatement`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -4258,7 +4655,8 @@ impl<'tree> type_sitter_lib::Node<'tree> for DeclarationList<'tree> {
 /**Typed node `dynamic_type`
 
 This node has these fields:
-- `trait`: `{function_type | generic_type | higher_ranked_trait_bound | scoped_type_identifier | type_identifier}` ([anon_unions::FunctionType_GenericType_HigherRankedTraitBound_ScopedTypeIdentifier_TypeIdentifier])
+
+- `trait`: `{function_type | generic_type | higher_ranked_trait_bound | scoped_type_identifier | type_identifier}` ([`FunctionType`] | [`GenericType`] | [`HigherRankedTraitBound`] | [`ScopedTypeIdentifier`] | [`TypeIdentifier`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -4266,8 +4664,17 @@ This node has these fields:
 pub struct DynamicType<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> DynamicType<'tree> {
-    ///Get the field `trait` which has kind `{function_type | generic_type | higher_ranked_trait_bound | scoped_type_identifier | type_identifier}` ([anon_unions::FunctionType_GenericType_HigherRankedTraitBound_ScopedTypeIdentifier_TypeIdentifier])
-    #[allow(dead_code)]
+    /**Get the field `trait`.
+
+This child has type `{function_type | generic_type | higher_ranked_trait_bound | scoped_type_identifier | type_identifier}`:
+
+- [`FunctionType`]
+- [`GenericType`]
+- [`HigherRankedTraitBound`]
+- [`ScopedTypeIdentifier`]
+- [`TypeIdentifier`]
+*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn r#trait(
         &self,
@@ -4285,7 +4692,7 @@ impl<'tree> DynamicType<'tree> {
                 > as type_sitter_lib::Node<'tree>>::try_from_raw,
             )
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
 }
@@ -4321,9 +4728,10 @@ impl<'tree> type_sitter_lib::Node<'tree> for DynamicType<'tree> {
 }
 /**Typed node `else_clause`
 
-This node has a child: `{block | if_expression}`:
-- [Block]
-- [IfExpression]
+This node has a named child of type `{block | if_expression}`:
+
+- [`Block`]
+- [`IfExpression`]
 
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -4334,8 +4742,12 @@ pub struct ElseClause<'tree>(yak_sitter::Node<'tree>);
 impl<'tree> ElseClause<'tree> {
     /**Get the node's only not-extra named child.
 
-Iff this returns `Option`, it means the node may not have any non-extra named children.*/
-    #[allow(dead_code)]
+This child has type `{block | if_expression}`:
+
+- [`Block`]
+- [`IfExpression`]
+*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn child(
         &self,
@@ -4350,7 +4762,7 @@ Iff this returns `Option`, it means the node may not have any non-extra named ch
                 > as type_sitter_lib::Node<'tree>>::try_from_raw,
             )
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
 }
@@ -4386,7 +4798,7 @@ impl<'tree> type_sitter_lib::Node<'tree> for ElseClause<'tree> {
 }
 /**Typed node `empty_statement`
 
-This node has no children
+This node has no named children
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -4427,13 +4839,15 @@ impl<'tree> type_sitter_lib::Node<'tree> for EmptyStatement<'tree> {
 /**Typed node `enum_item`
 
 This node has these fields:
-- `body`: `enum_variant_list` ([EnumVariantList])
-- `name`: `type_identifier` ([TypeIdentifier])
-- `type_parameters`: `type_parameters?` ([TypeParameters])
 
-And additional children: `{visibility_modifier | where_clause}*`:
-- [VisibilityModifier]
-- [WhereClause]
+- `body`: `enum_variant_list` ([`EnumVariantList`])
+- `name`: `type_identifier` ([`TypeIdentifier`])
+- `type_parameters`: `type_parameters?` ([`TypeParameters`])
+
+And additional named children of type `{visibility_modifier | where_clause}*`:
+
+- [`VisibilityModifier`]
+- [`WhereClause`]
 
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -4442,30 +4856,36 @@ And additional children: `{visibility_modifier | where_clause}*`:
 pub struct EnumItem<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> EnumItem<'tree> {
-    ///Get the field `body` which has kind `enum_variant_list` ([EnumVariantList])
-    #[allow(dead_code)]
+    /**Get the field `body`.
+
+This child has type `enum_variant_list` ([`EnumVariantList`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn body(&self) -> type_sitter_lib::NodeResult<'tree, EnumVariantList<'tree>> {
         self.0
             .child_by_field_name("body")
             .map(<EnumVariantList<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the field `name` which has kind `type_identifier` ([TypeIdentifier])
-    #[allow(dead_code)]
+    /**Get the field `name`.
+
+This child has type `type_identifier` ([`TypeIdentifier`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn name(&self) -> type_sitter_lib::NodeResult<'tree, TypeIdentifier<'tree>> {
         self.0
             .child_by_field_name("name")
             .map(<TypeIdentifier<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the field `type_parameters` which has kind `type_parameters?` ([TypeParameters])
-    #[allow(dead_code)]
+    /**Get the optional field `type_parameters`.
+
+This child has type `type_parameters?` ([`TypeParameters`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn type_parameters(
         &self,
@@ -4474,9 +4894,58 @@ impl<'tree> EnumItem<'tree> {
             .child_by_field_name("type_parameters")
             .map(<TypeParameters<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
     }
-    ///Get the node's not-extra named children
-    ///This is guaranteed to return at least one child
-    #[allow(dead_code)]
+    /**Get the node's non-field not-extra named children.
+
+These children have type `{visibility_modifier | where_clause}*`:
+
+- [`VisibilityModifier`]
+- [`WhereClause`]
+*/
+    #[allow(non_snake_case)]
+    #[inline]
+    pub fn others<'a>(
+        &self,
+        c: &'a mut type_sitter_lib::TreeCursor<'tree>,
+    ) -> impl Iterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            anon_unions::VisibilityModifier_WhereClause<'tree>,
+        >,
+    > + 'a {
+        {
+            c.0.reset(self.0);
+            c.0.goto_first_child();
+            (0..self.0.child_count())
+                .filter_map(move |_| {
+                    let has_field = c.0.field_name().is_some();
+                    let node = c.0.node();
+                    c.0.goto_next_sibling();
+                    if has_field && node.is_named() && !node.is_extra() {
+                        Some(node)
+                    } else {
+                        None
+                    }
+                })
+        }
+            .map(
+                <anon_unions::VisibilityModifier_WhereClause<
+                    'tree,
+                > as type_sitter_lib::Node<'tree>>::try_from_raw,
+            )
+    }
+    /**Get the node's not-extra named children.
+
+These children have type `{visibility_modifier | where_clause | enum_variant_list | type_identifier | type_parameters}+`:
+
+- [`VisibilityModifier`]
+- [`WhereClause`]
+- [`EnumVariantList`]
+- [`TypeIdentifier`]
+- [`TypeParameters`]
+*/
+    /**
+This is guaranteed to return at least one child.*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -4532,11 +5001,12 @@ impl<'tree> type_sitter_lib::Node<'tree> for EnumItem<'tree> {
 /**Typed node `enum_variant`
 
 This node has these fields:
-- `body`: `{field_declaration_list | ordered_field_declaration_list}?` ([anon_unions::FieldDeclarationList_OrderedFieldDeclarationList])
-- `name`: `identifier` ([Identifier])
-- `value`: `_expression?` ([Expression])
 
-And an additional (optional) child: `visibility_modifier?` ([VisibilityModifier])
+- `body`: `{field_declaration_list | ordered_field_declaration_list}?` ([`FieldDeclarationList`] | [`OrderedFieldDeclarationList`])
+- `name`: `identifier` ([`Identifier`])
+- `value`: `_expression?` ([`Expression`])
+
+And an optional additional named child of type `visibility_modifier?` ([`VisibilityModifier`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -4544,8 +5014,14 @@ And an additional (optional) child: `visibility_modifier?` ([VisibilityModifier]
 pub struct EnumVariant<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> EnumVariant<'tree> {
-    ///Get the field `body` which has kind `{field_declaration_list | ordered_field_declaration_list}?` ([anon_unions::FieldDeclarationList_OrderedFieldDeclarationList])
-    #[allow(dead_code)]
+    /**Get the optional field `body`.
+
+This child has type `{field_declaration_list | ordered_field_declaration_list}?`:
+
+- [`FieldDeclarationList`]
+- [`OrderedFieldDeclarationList`]
+*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn body(
         &self,
@@ -4563,19 +5039,23 @@ impl<'tree> EnumVariant<'tree> {
                 > as type_sitter_lib::Node<'tree>>::try_from_raw,
             )
     }
-    ///Get the field `name` which has kind `identifier` ([Identifier])
-    #[allow(dead_code)]
+    /**Get the field `name`.
+
+This child has type `identifier` ([`Identifier`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn name(&self) -> type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
         self.0
             .child_by_field_name("name")
             .map(<Identifier<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the field `value` which has kind `_expression?` ([Expression])
-    #[allow(dead_code)]
+    /**Get the optional field `value`.
+
+This child has type `_expression?` ([`Expression`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn value(
         &self,
@@ -4584,9 +5064,37 @@ impl<'tree> EnumVariant<'tree> {
             .child_by_field_name("value")
             .map(<Expression<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
     }
-    ///Get the node's not-extra named children
-    ///This is guaranteed to return at least one child
-    #[allow(dead_code)]
+    /**Get the node's only non-field not-extra named child, if it has one.
+
+This child has type `visibility_modifier?` ([`VisibilityModifier`])*/
+    #[allow(non_snake_case)]
+    #[inline]
+    pub fn other(
+        &self,
+    ) -> Option<type_sitter_lib::NodeResult<'tree, VisibilityModifier<'tree>>> {
+        #[allow(clippy::unnecessary_cast)]
+        (0..)
+            .filter(|i| self.0.field_name_for_child(*i).is_some())
+            .filter_map(|i| self.0.named_child(i as usize))
+            .filter(|n| !n.is_extra())
+            .next()
+            .map(
+                <VisibilityModifier<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw,
+            )
+    }
+    /**Get the node's not-extra named children.
+
+These children have type `{visibility_modifier | field_declaration_list | ordered_field_declaration_list | identifier | _expression}+`:
+
+- [`VisibilityModifier`]
+- [`FieldDeclarationList`]
+- [`OrderedFieldDeclarationList`]
+- [`Identifier`]
+- [`Expression`]
+*/
+    /**
+This is guaranteed to return at least one child.*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -4641,9 +5149,10 @@ impl<'tree> type_sitter_lib::Node<'tree> for EnumVariant<'tree> {
 }
 /**Typed node `enum_variant_list`
 
-This node has children: `{attribute_item | enum_variant}*`:
-- [AttributeItem]
-- [EnumVariant]
+This node has named children of type `{attribute_item | enum_variant}*`:
+
+- [`AttributeItem`]
+- [`EnumVariant`]
 
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -4652,8 +5161,14 @@ This node has children: `{attribute_item | enum_variant}*`:
 pub struct EnumVariantList<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> EnumVariantList<'tree> {
-    ///Get the node's not-extra named children
-    #[allow(dead_code)]
+    /**Get the node's not-extra named children.
+
+These children have type `{attribute_item | enum_variant}*`:
+
+- [`AttributeItem`]
+- [`EnumVariant`]
+*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -4706,7 +5221,7 @@ impl<'tree> type_sitter_lib::Node<'tree> for EnumVariantList<'tree> {
 }
 /**Typed node `expression_statement`
 
-This node has a child: `_expression` ([Expression])
+This node has a named child of type `_expression` ([`Expression`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -4716,8 +5231,8 @@ pub struct ExpressionStatement<'tree>(yak_sitter::Node<'tree>);
 impl<'tree> ExpressionStatement<'tree> {
     /**Get the node's only not-extra named child.
 
-Iff this returns `Option`, it means the node may not have any non-extra named children.*/
-    #[allow(dead_code)]
+This child has type `_expression` ([`Expression`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn child(&self) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
         (0..)
@@ -4726,7 +5241,7 @@ Iff this returns `Option`, it means the node may not have any non-extra named ch
             .next()
             .map(<Expression<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
 }
@@ -4763,12 +5278,14 @@ impl<'tree> type_sitter_lib::Node<'tree> for ExpressionStatement<'tree> {
 /**Typed node `extern_crate_declaration`
 
 This node has these fields:
-- `alias`: `identifier?` ([Identifier])
-- `name`: `identifier` ([Identifier])
 
-And additional children: `{crate | visibility_modifier}+`:
-- [Crate]
-- [VisibilityModifier]
+- `alias`: `identifier?` ([`Identifier`])
+- `name`: `identifier` ([`Identifier`])
+
+And additional named children of type `{crate | visibility_modifier}+`:
+
+- [`Crate`]
+- [`VisibilityModifier`]
 
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -4777,8 +5294,10 @@ And additional children: `{crate | visibility_modifier}+`:
 pub struct ExternCrateDeclaration<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ExternCrateDeclaration<'tree> {
-    ///Get the field `alias` which has kind `identifier?` ([Identifier])
-    #[allow(dead_code)]
+    /**Get the optional field `alias`.
+
+This child has type `identifier?` ([`Identifier`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn alias(
         &self,
@@ -4787,20 +5306,71 @@ impl<'tree> ExternCrateDeclaration<'tree> {
             .child_by_field_name("alias")
             .map(<Identifier<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
     }
-    ///Get the field `name` which has kind `identifier` ([Identifier])
-    #[allow(dead_code)]
+    /**Get the field `name`.
+
+This child has type `identifier` ([`Identifier`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn name(&self) -> type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
         self.0
             .child_by_field_name("name")
             .map(<Identifier<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the node's not-extra named children
-    ///This is guaranteed to return at least one child
-    #[allow(dead_code)]
+    /**Get the node's non-field not-extra named children.
+
+These children have type `{crate | visibility_modifier}+`:
+
+- [`Crate`]
+- [`VisibilityModifier`]
+*/
+    /**
+This is guaranteed to return at least one child.*/
+    #[allow(non_snake_case)]
+    #[inline]
+    pub fn others<'a>(
+        &self,
+        c: &'a mut type_sitter_lib::TreeCursor<'tree>,
+    ) -> impl Iterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            anon_unions::Crate_VisibilityModifier<'tree>,
+        >,
+    > + 'a {
+        {
+            c.0.reset(self.0);
+            c.0.goto_first_child();
+            (0..self.0.child_count())
+                .filter_map(move |_| {
+                    let has_field = c.0.field_name().is_some();
+                    let node = c.0.node();
+                    c.0.goto_next_sibling();
+                    if has_field && node.is_named() && !node.is_extra() {
+                        Some(node)
+                    } else {
+                        None
+                    }
+                })
+        }
+            .map(
+                <anon_unions::Crate_VisibilityModifier<
+                    'tree,
+                > as type_sitter_lib::Node<'tree>>::try_from_raw,
+            )
+    }
+    /**Get the node's not-extra named children.
+
+These children have type `{crate | visibility_modifier | identifier}+`:
+
+- [`Crate`]
+- [`VisibilityModifier`]
+- [`Identifier`]
+*/
+    /**
+This is guaranteed to return at least one child.*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -4853,7 +5423,7 @@ impl<'tree> type_sitter_lib::Node<'tree> for ExternCrateDeclaration<'tree> {
 }
 /**Typed node `extern_modifier`
 
-This node has an (optional) child: `string_literal?` ([StringLiteral])
+This node has an optional named child of type `string_literal?` ([`StringLiteral`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -4861,10 +5431,10 @@ This node has an (optional) child: `string_literal?` ([StringLiteral])
 pub struct ExternModifier<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ExternModifier<'tree> {
-    /**Get the node's only not-extra named child.
+    /**Get the node's only not-extra named child, if it has one.
 
-Iff this returns `Option`, it means the node may not have any non-extra named children.*/
-    #[allow(dead_code)]
+This child has type `string_literal?` ([`StringLiteral`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn child(
         &self,
@@ -4909,10 +5479,11 @@ impl<'tree> type_sitter_lib::Node<'tree> for ExternModifier<'tree> {
 /**Typed node `field_declaration`
 
 This node has these fields:
-- `name`: `field_identifier` ([FieldIdentifier])
-- `type`: `_type` ([Type])
 
-And an additional (optional) child: `visibility_modifier?` ([VisibilityModifier])
+- `name`: `field_identifier` ([`FieldIdentifier`])
+- `type`: `_type` ([`Type`])
+
+And an optional additional named child of type `visibility_modifier?` ([`VisibilityModifier`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -4920,31 +5491,61 @@ And an additional (optional) child: `visibility_modifier?` ([VisibilityModifier]
 pub struct FieldDeclaration<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> FieldDeclaration<'tree> {
-    ///Get the field `name` which has kind `field_identifier` ([FieldIdentifier])
-    #[allow(dead_code)]
+    /**Get the field `name`.
+
+This child has type `field_identifier` ([`FieldIdentifier`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn name(&self) -> type_sitter_lib::NodeResult<'tree, FieldIdentifier<'tree>> {
         self.0
             .child_by_field_name("name")
             .map(<FieldIdentifier<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the field `type` which has kind `_type` ([Type])
-    #[allow(dead_code)]
+    /**Get the field `type`.
+
+This child has type `_type` ([`Type`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn r#type(&self) -> type_sitter_lib::NodeResult<'tree, Type<'tree>> {
         self.0
             .child_by_field_name("type")
             .map(<Type<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the node's not-extra named children
-    ///This is guaranteed to return at least one child
-    #[allow(dead_code)]
+    /**Get the node's only non-field not-extra named child, if it has one.
+
+This child has type `visibility_modifier?` ([`VisibilityModifier`])*/
+    #[allow(non_snake_case)]
+    #[inline]
+    pub fn other(
+        &self,
+    ) -> Option<type_sitter_lib::NodeResult<'tree, VisibilityModifier<'tree>>> {
+        #[allow(clippy::unnecessary_cast)]
+        (0..)
+            .filter(|i| self.0.field_name_for_child(*i).is_some())
+            .filter_map(|i| self.0.named_child(i as usize))
+            .filter(|n| !n.is_extra())
+            .next()
+            .map(
+                <VisibilityModifier<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw,
+            )
+    }
+    /**Get the node's not-extra named children.
+
+These children have type `{visibility_modifier | field_identifier | _type}+`:
+
+- [`VisibilityModifier`]
+- [`FieldIdentifier`]
+- [`Type`]
+*/
+    /**
+This is guaranteed to return at least one child.*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -4997,9 +5598,10 @@ impl<'tree> type_sitter_lib::Node<'tree> for FieldDeclaration<'tree> {
 }
 /**Typed node `field_declaration_list`
 
-This node has children: `{attribute_item | field_declaration}*`:
-- [AttributeItem]
-- [FieldDeclaration]
+This node has named children of type `{attribute_item | field_declaration}*`:
+
+- [`AttributeItem`]
+- [`FieldDeclaration`]
 
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -5008,8 +5610,14 @@ This node has children: `{attribute_item | field_declaration}*`:
 pub struct FieldDeclarationList<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> FieldDeclarationList<'tree> {
-    ///Get the node's not-extra named children
-    #[allow(dead_code)]
+    /**Get the node's not-extra named children.
+
+These children have type `{attribute_item | field_declaration}*`:
+
+- [`AttributeItem`]
+- [`FieldDeclaration`]
+*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -5063,8 +5671,9 @@ impl<'tree> type_sitter_lib::Node<'tree> for FieldDeclarationList<'tree> {
 /**Typed node `field_expression`
 
 This node has these fields:
-- `field`: `{field_identifier | integer_literal}` ([anon_unions::FieldIdentifier_IntegerLiteral])
-- `value`: `_expression` ([Expression])
+
+- `field`: `{field_identifier | integer_literal}` ([`FieldIdentifier`] | [`IntegerLiteral`])
+- `value`: `_expression` ([`Expression`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -5072,8 +5681,14 @@ This node has these fields:
 pub struct FieldExpression<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> FieldExpression<'tree> {
-    ///Get the field `field` which has kind `{field_identifier | integer_literal}` ([anon_unions::FieldIdentifier_IntegerLiteral])
-    #[allow(dead_code)]
+    /**Get the field `field`.
+
+This child has type `{field_identifier | integer_literal}`:
+
+- [`FieldIdentifier`]
+- [`IntegerLiteral`]
+*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn field(
         &self,
@@ -5089,18 +5704,20 @@ impl<'tree> FieldExpression<'tree> {
                 > as type_sitter_lib::Node<'tree>>::try_from_raw,
             )
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the field `value` which has kind `_expression` ([Expression])
-    #[allow(dead_code)]
+    /**Get the field `value`.
+
+This child has type `_expression` ([`Expression`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn value(&self) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
         self.0
             .child_by_field_name("value")
             .map(<Expression<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
 }
@@ -5137,10 +5754,11 @@ impl<'tree> type_sitter_lib::Node<'tree> for FieldExpression<'tree> {
 /**Typed node `field_initializer`
 
 This node has these fields:
-- `field`: `{field_identifier | integer_literal}` ([anon_unions::FieldIdentifier_IntegerLiteral])
-- `value`: `_expression` ([Expression])
 
-And additional children: `attribute_item*` ([AttributeItem])
+- `field`: `{field_identifier | integer_literal}` ([`FieldIdentifier`] | [`IntegerLiteral`])
+- `value`: `_expression` ([`Expression`])
+
+And additional named children of type `attribute_item*` ([`AttributeItem`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -5148,8 +5766,14 @@ And additional children: `attribute_item*` ([AttributeItem])
 pub struct FieldInitializer<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> FieldInitializer<'tree> {
-    ///Get the field `field` which has kind `{field_identifier | integer_literal}` ([anon_unions::FieldIdentifier_IntegerLiteral])
-    #[allow(dead_code)]
+    /**Get the field `field`.
+
+This child has type `{field_identifier | integer_literal}`:
+
+- [`FieldIdentifier`]
+- [`IntegerLiteral`]
+*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn field(
         &self,
@@ -5165,23 +5789,62 @@ impl<'tree> FieldInitializer<'tree> {
                 > as type_sitter_lib::Node<'tree>>::try_from_raw,
             )
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the field `value` which has kind `_expression` ([Expression])
-    #[allow(dead_code)]
+    /**Get the field `value`.
+
+This child has type `_expression` ([`Expression`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn value(&self) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
         self.0
             .child_by_field_name("value")
             .map(<Expression<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the node's not-extra named children
-    ///This is guaranteed to return at least one child
-    #[allow(dead_code)]
+    /**Get the node's non-field not-extra named children.
+
+These children have type `attribute_item*` ([`AttributeItem`])*/
+    #[allow(non_snake_case)]
+    #[inline]
+    pub fn others<'a>(
+        &self,
+        c: &'a mut type_sitter_lib::TreeCursor<'tree>,
+    ) -> impl Iterator<
+        Item = type_sitter_lib::NodeResult<'tree, AttributeItem<'tree>>,
+    > + 'a {
+        {
+            c.0.reset(self.0);
+            c.0.goto_first_child();
+            (0..self.0.child_count())
+                .filter_map(move |_| {
+                    let has_field = c.0.field_name().is_some();
+                    let node = c.0.node();
+                    c.0.goto_next_sibling();
+                    if has_field && node.is_named() && !node.is_extra() {
+                        Some(node)
+                    } else {
+                        None
+                    }
+                })
+        }
+            .map(<AttributeItem<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
+    }
+    /**Get the node's not-extra named children.
+
+These children have type `{attribute_item | field_identifier | integer_literal | _expression}+`:
+
+- [`AttributeItem`]
+- [`FieldIdentifier`]
+- [`IntegerLiteral`]
+- [`Expression`]
+*/
+    /**
+This is guaranteed to return at least one child.*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -5234,10 +5897,11 @@ impl<'tree> type_sitter_lib::Node<'tree> for FieldInitializer<'tree> {
 }
 /**Typed node `field_initializer_list`
 
-This node has children: `{base_field_initializer | field_initializer | shorthand_field_initializer}*`:
-- [BaseFieldInitializer]
-- [FieldInitializer]
-- [ShorthandFieldInitializer]
+This node has named children of type `{base_field_initializer | field_initializer | shorthand_field_initializer}*`:
+
+- [`BaseFieldInitializer`]
+- [`FieldInitializer`]
+- [`ShorthandFieldInitializer`]
 
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -5246,8 +5910,15 @@ This node has children: `{base_field_initializer | field_initializer | shorthand
 pub struct FieldInitializerList<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> FieldInitializerList<'tree> {
-    ///Get the node's not-extra named children
-    #[allow(dead_code)]
+    /**Get the node's not-extra named children.
+
+These children have type `{base_field_initializer | field_initializer | shorthand_field_initializer}*`:
+
+- [`BaseFieldInitializer`]
+- [`FieldInitializer`]
+- [`ShorthandFieldInitializer`]
+*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -5303,10 +5974,11 @@ impl<'tree> type_sitter_lib::Node<'tree> for FieldInitializerList<'tree> {
 /**Typed node `field_pattern`
 
 This node has these fields:
-- `name`: `{field_identifier | shorthand_field_identifier}` ([anon_unions::FieldIdentifier_ShorthandFieldIdentifier])
-- `pattern`: `_pattern?` ([Pattern])
 
-And an additional (optional) child: `mutable_specifier?` ([MutableSpecifier])
+- `name`: `{field_identifier | shorthand_field_identifier}` ([`FieldIdentifier`] | [`ShorthandFieldIdentifier`])
+- `pattern`: `_pattern?` ([`Pattern`])
+
+And an optional additional named child of type `mutable_specifier?` ([`MutableSpecifier`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -5314,8 +5986,14 @@ And an additional (optional) child: `mutable_specifier?` ([MutableSpecifier])
 pub struct FieldPattern<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> FieldPattern<'tree> {
-    ///Get the field `name` which has kind `{field_identifier | shorthand_field_identifier}` ([anon_unions::FieldIdentifier_ShorthandFieldIdentifier])
-    #[allow(dead_code)]
+    /**Get the field `name`.
+
+This child has type `{field_identifier | shorthand_field_identifier}`:
+
+- [`FieldIdentifier`]
+- [`ShorthandFieldIdentifier`]
+*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn name(
         &self,
@@ -5331,20 +6009,47 @@ impl<'tree> FieldPattern<'tree> {
                 > as type_sitter_lib::Node<'tree>>::try_from_raw,
             )
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the field `pattern` which has kind `_pattern?` ([Pattern])
-    #[allow(dead_code)]
+    /**Get the optional field `pattern`.
+
+This child has type `_pattern?` ([`Pattern`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn pattern(&self) -> Option<type_sitter_lib::NodeResult<'tree, Pattern<'tree>>> {
         self.0
             .child_by_field_name("pattern")
             .map(<Pattern<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
     }
-    ///Get the node's not-extra named children
-    ///This is guaranteed to return at least one child
-    #[allow(dead_code)]
+    /**Get the node's only non-field not-extra named child, if it has one.
+
+This child has type `mutable_specifier?` ([`MutableSpecifier`])*/
+    #[allow(non_snake_case)]
+    #[inline]
+    pub fn other(
+        &self,
+    ) -> Option<type_sitter_lib::NodeResult<'tree, MutableSpecifier<'tree>>> {
+        #[allow(clippy::unnecessary_cast)]
+        (0..)
+            .filter(|i| self.0.field_name_for_child(*i).is_some())
+            .filter_map(|i| self.0.named_child(i as usize))
+            .filter(|n| !n.is_extra())
+            .next()
+            .map(<MutableSpecifier<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
+    }
+    /**Get the node's not-extra named children.
+
+These children have type `{mutable_specifier | field_identifier | shorthand_field_identifier | _pattern}+`:
+
+- [`MutableSpecifier`]
+- [`FieldIdentifier`]
+- [`ShorthandFieldIdentifier`]
+- [`Pattern`]
+*/
+    /**
+This is guaranteed to return at least one child.*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -5400,11 +6105,12 @@ impl<'tree> type_sitter_lib::Node<'tree> for FieldPattern<'tree> {
 /**Typed node `for_expression`
 
 This node has these fields:
-- `body`: `block` ([Block])
-- `pattern`: `_pattern` ([Pattern])
-- `value`: `_expression` ([Expression])
 
-And an additional (optional) child: `label?` ([Label])
+- `body`: `block` ([`Block`])
+- `pattern`: `_pattern` ([`Pattern`])
+- `value`: `_expression` ([`Expression`])
+
+And an optional additional named child of type `label?` ([`Label`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -5412,42 +6118,71 @@ And an additional (optional) child: `label?` ([Label])
 pub struct ForExpression<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ForExpression<'tree> {
-    ///Get the field `body` which has kind `block` ([Block])
-    #[allow(dead_code)]
+    /**Get the field `body`.
+
+This child has type `block` ([`Block`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn body(&self) -> type_sitter_lib::NodeResult<'tree, Block<'tree>> {
         self.0
             .child_by_field_name("body")
             .map(<Block<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the field `pattern` which has kind `_pattern` ([Pattern])
-    #[allow(dead_code)]
+    /**Get the field `pattern`.
+
+This child has type `_pattern` ([`Pattern`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn pattern(&self) -> type_sitter_lib::NodeResult<'tree, Pattern<'tree>> {
         self.0
             .child_by_field_name("pattern")
             .map(<Pattern<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the field `value` which has kind `_expression` ([Expression])
-    #[allow(dead_code)]
+    /**Get the field `value`.
+
+This child has type `_expression` ([`Expression`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn value(&self) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
         self.0
             .child_by_field_name("value")
             .map(<Expression<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the node's not-extra named children
-    ///This is guaranteed to return at least one child
-    #[allow(dead_code)]
+    /**Get the node's only non-field not-extra named child, if it has one.
+
+This child has type `label?` ([`Label`])*/
+    #[allow(non_snake_case)]
+    #[inline]
+    pub fn other(&self) -> Option<type_sitter_lib::NodeResult<'tree, Label<'tree>>> {
+        #[allow(clippy::unnecessary_cast)]
+        (0..)
+            .filter(|i| self.0.field_name_for_child(*i).is_some())
+            .filter_map(|i| self.0.named_child(i as usize))
+            .filter(|n| !n.is_extra())
+            .next()
+            .map(<Label<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
+    }
+    /**Get the node's not-extra named children.
+
+These children have type `{label | block | _pattern | _expression}+`:
+
+- [`Label`]
+- [`Block`]
+- [`Pattern`]
+- [`Expression`]
+*/
+    /**
+This is guaranteed to return at least one child.*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -5500,7 +6235,7 @@ impl<'tree> type_sitter_lib::Node<'tree> for ForExpression<'tree> {
 }
 /**Typed node `for_lifetimes`
 
-This node has children: `lifetime+` ([Lifetime])
+This node has named children of type `lifetime+` ([`Lifetime`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -5508,9 +6243,12 @@ This node has children: `lifetime+` ([Lifetime])
 pub struct ForLifetimes<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ForLifetimes<'tree> {
-    ///Get the node's not-extra named children
-    ///This is guaranteed to return at least one child
-    #[allow(dead_code)]
+    /**Get the node's not-extra named children.
+
+These children have type `lifetime+` ([`Lifetime`])*/
+    /**
+This is guaranteed to return at least one child.*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -5555,11 +6293,13 @@ impl<'tree> type_sitter_lib::Node<'tree> for ForLifetimes<'tree> {
 /**Typed node `foreign_mod_item`
 
 This node has these fields:
-- `body`: `declaration_list?` ([DeclarationList])
 
-And additional children: `{extern_modifier | visibility_modifier}+`:
-- [ExternModifier]
-- [VisibilityModifier]
+- `body`: `declaration_list?` ([`DeclarationList`])
+
+And additional named children of type `{extern_modifier | visibility_modifier}+`:
+
+- [`ExternModifier`]
+- [`VisibilityModifier`]
 
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -5568,8 +6308,10 @@ And additional children: `{extern_modifier | visibility_modifier}+`:
 pub struct ForeignModItem<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ForeignModItem<'tree> {
-    ///Get the field `body` which has kind `declaration_list?` ([DeclarationList])
-    #[allow(dead_code)]
+    /**Get the optional field `body`.
+
+This child has type `declaration_list?` ([`DeclarationList`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn body(
         &self,
@@ -5578,9 +6320,58 @@ impl<'tree> ForeignModItem<'tree> {
             .child_by_field_name("body")
             .map(<DeclarationList<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
     }
-    ///Get the node's not-extra named children
-    ///This is guaranteed to return at least one child
-    #[allow(dead_code)]
+    /**Get the node's non-field not-extra named children.
+
+These children have type `{extern_modifier | visibility_modifier}+`:
+
+- [`ExternModifier`]
+- [`VisibilityModifier`]
+*/
+    /**
+This is guaranteed to return at least one child.*/
+    #[allow(non_snake_case)]
+    #[inline]
+    pub fn others<'a>(
+        &self,
+        c: &'a mut type_sitter_lib::TreeCursor<'tree>,
+    ) -> impl Iterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            anon_unions::ExternModifier_VisibilityModifier<'tree>,
+        >,
+    > + 'a {
+        {
+            c.0.reset(self.0);
+            c.0.goto_first_child();
+            (0..self.0.child_count())
+                .filter_map(move |_| {
+                    let has_field = c.0.field_name().is_some();
+                    let node = c.0.node();
+                    c.0.goto_next_sibling();
+                    if has_field && node.is_named() && !node.is_extra() {
+                        Some(node)
+                    } else {
+                        None
+                    }
+                })
+        }
+            .map(
+                <anon_unions::ExternModifier_VisibilityModifier<
+                    'tree,
+                > as type_sitter_lib::Node<'tree>>::try_from_raw,
+            )
+    }
+    /**Get the node's not-extra named children.
+
+These children have type `{extern_modifier | visibility_modifier | declaration_list}+`:
+
+- [`ExternModifier`]
+- [`VisibilityModifier`]
+- [`DeclarationList`]
+*/
+    /**
+This is guaranteed to return at least one child.*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -5633,7 +6424,7 @@ impl<'tree> type_sitter_lib::Node<'tree> for ForeignModItem<'tree> {
 }
 /**Typed node `fragment_specifier`
 
-This node has no children
+This node has no named children
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -5674,16 +6465,18 @@ impl<'tree> type_sitter_lib::Node<'tree> for FragmentSpecifier<'tree> {
 /**Typed node `function_item`
 
 This node has these fields:
-- `body`: `block` ([Block])
-- `name`: `{identifier | metavariable}` ([anon_unions::Identifier_Metavariable])
-- `parameters`: `parameters` ([Parameters])
-- `return_type`: `_type?` ([Type])
-- `type_parameters`: `type_parameters?` ([TypeParameters])
 
-And additional children: `{function_modifiers | visibility_modifier | where_clause}*`:
-- [FunctionModifiers]
-- [VisibilityModifier]
-- [WhereClause]
+- `body`: `block` ([`Block`])
+- `name`: `{identifier | metavariable}` ([`Identifier`] | [`Metavariable`])
+- `parameters`: `parameters` ([`Parameters`])
+- `return_type`: `_type?` ([`Type`])
+- `type_parameters`: `type_parameters?` ([`TypeParameters`])
+
+And additional named children of type `{function_modifiers | visibility_modifier | where_clause}*`:
+
+- [`FunctionModifiers`]
+- [`VisibilityModifier`]
+- [`WhereClause`]
 
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -5692,19 +6485,27 @@ And additional children: `{function_modifiers | visibility_modifier | where_clau
 pub struct FunctionItem<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> FunctionItem<'tree> {
-    ///Get the field `body` which has kind `block` ([Block])
-    #[allow(dead_code)]
+    /**Get the field `body`.
+
+This child has type `block` ([`Block`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn body(&self) -> type_sitter_lib::NodeResult<'tree, Block<'tree>> {
         self.0
             .child_by_field_name("body")
             .map(<Block<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the field `name` which has kind `{identifier | metavariable}` ([anon_unions::Identifier_Metavariable])
-    #[allow(dead_code)]
+    /**Get the field `name`.
+
+This child has type `{identifier | metavariable}`:
+
+- [`Identifier`]
+- [`Metavariable`]
+*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn name(
         &self,
@@ -5720,22 +6521,26 @@ impl<'tree> FunctionItem<'tree> {
                 > as type_sitter_lib::Node<'tree>>::try_from_raw,
             )
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the field `parameters` which has kind `parameters` ([Parameters])
-    #[allow(dead_code)]
+    /**Get the field `parameters`.
+
+This child has type `parameters` ([`Parameters`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn parameters(&self) -> type_sitter_lib::NodeResult<'tree, Parameters<'tree>> {
         self.0
             .child_by_field_name("parameters")
             .map(<Parameters<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the field `return_type` which has kind `_type?` ([Type])
-    #[allow(dead_code)]
+    /**Get the optional field `return_type`.
+
+This child has type `_type?` ([`Type`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn return_type(
         &self,
@@ -5744,8 +6549,10 @@ impl<'tree> FunctionItem<'tree> {
             .child_by_field_name("return_type")
             .map(<Type<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
     }
-    ///Get the field `type_parameters` which has kind `type_parameters?` ([TypeParameters])
-    #[allow(dead_code)]
+    /**Get the optional field `type_parameters`.
+
+This child has type `type_parameters?` ([`TypeParameters`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn type_parameters(
         &self,
@@ -5754,9 +6561,63 @@ impl<'tree> FunctionItem<'tree> {
             .child_by_field_name("type_parameters")
             .map(<TypeParameters<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
     }
-    ///Get the node's not-extra named children
-    ///This is guaranteed to return at least one child
-    #[allow(dead_code)]
+    /**Get the node's non-field not-extra named children.
+
+These children have type `{function_modifiers | visibility_modifier | where_clause}*`:
+
+- [`FunctionModifiers`]
+- [`VisibilityModifier`]
+- [`WhereClause`]
+*/
+    #[allow(non_snake_case)]
+    #[inline]
+    pub fn others<'a>(
+        &self,
+        c: &'a mut type_sitter_lib::TreeCursor<'tree>,
+    ) -> impl Iterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            anon_unions::FunctionModifiers_VisibilityModifier_WhereClause<'tree>,
+        >,
+    > + 'a {
+        {
+            c.0.reset(self.0);
+            c.0.goto_first_child();
+            (0..self.0.child_count())
+                .filter_map(move |_| {
+                    let has_field = c.0.field_name().is_some();
+                    let node = c.0.node();
+                    c.0.goto_next_sibling();
+                    if has_field && node.is_named() && !node.is_extra() {
+                        Some(node)
+                    } else {
+                        None
+                    }
+                })
+        }
+            .map(
+                <anon_unions::FunctionModifiers_VisibilityModifier_WhereClause<
+                    'tree,
+                > as type_sitter_lib::Node<'tree>>::try_from_raw,
+            )
+    }
+    /**Get the node's not-extra named children.
+
+These children have type `{function_modifiers | visibility_modifier | where_clause | block | identifier | metavariable | parameters | _type | type_parameters}+`:
+
+- [`FunctionModifiers`]
+- [`VisibilityModifier`]
+- [`WhereClause`]
+- [`Block`]
+- [`Identifier`]
+- [`Metavariable`]
+- [`Parameters`]
+- [`Type`]
+- [`TypeParameters`]
+*/
+    /**
+This is guaranteed to return at least one child.*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -5811,7 +6672,7 @@ impl<'tree> type_sitter_lib::Node<'tree> for FunctionItem<'tree> {
 }
 /**Typed node `function_modifiers`
 
-This node has children: `extern_modifier*` ([ExternModifier])
+This node has named children of type `extern_modifier*` ([`ExternModifier`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -5819,8 +6680,10 @@ This node has children: `extern_modifier*` ([ExternModifier])
 pub struct FunctionModifiers<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> FunctionModifiers<'tree> {
-    ///Get the node's not-extra named children
-    #[allow(dead_code)]
+    /**Get the node's not-extra named children.
+
+These children have type `extern_modifier*` ([`ExternModifier`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -5867,15 +6730,17 @@ impl<'tree> type_sitter_lib::Node<'tree> for FunctionModifiers<'tree> {
 /**Typed node `function_signature_item`
 
 This node has these fields:
-- `name`: `{identifier | metavariable}` ([anon_unions::Identifier_Metavariable])
-- `parameters`: `parameters` ([Parameters])
-- `return_type`: `_type?` ([Type])
-- `type_parameters`: `type_parameters?` ([TypeParameters])
 
-And additional children: `{function_modifiers | visibility_modifier | where_clause}*`:
-- [FunctionModifiers]
-- [VisibilityModifier]
-- [WhereClause]
+- `name`: `{identifier | metavariable}` ([`Identifier`] | [`Metavariable`])
+- `parameters`: `parameters` ([`Parameters`])
+- `return_type`: `_type?` ([`Type`])
+- `type_parameters`: `type_parameters?` ([`TypeParameters`])
+
+And additional named children of type `{function_modifiers | visibility_modifier | where_clause}*`:
+
+- [`FunctionModifiers`]
+- [`VisibilityModifier`]
+- [`WhereClause`]
 
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -5884,8 +6749,14 @@ And additional children: `{function_modifiers | visibility_modifier | where_clau
 pub struct FunctionSignatureItem<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> FunctionSignatureItem<'tree> {
-    ///Get the field `name` which has kind `{identifier | metavariable}` ([anon_unions::Identifier_Metavariable])
-    #[allow(dead_code)]
+    /**Get the field `name`.
+
+This child has type `{identifier | metavariable}`:
+
+- [`Identifier`]
+- [`Metavariable`]
+*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn name(
         &self,
@@ -5901,22 +6772,26 @@ impl<'tree> FunctionSignatureItem<'tree> {
                 > as type_sitter_lib::Node<'tree>>::try_from_raw,
             )
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the field `parameters` which has kind `parameters` ([Parameters])
-    #[allow(dead_code)]
+    /**Get the field `parameters`.
+
+This child has type `parameters` ([`Parameters`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn parameters(&self) -> type_sitter_lib::NodeResult<'tree, Parameters<'tree>> {
         self.0
             .child_by_field_name("parameters")
             .map(<Parameters<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the field `return_type` which has kind `_type?` ([Type])
-    #[allow(dead_code)]
+    /**Get the optional field `return_type`.
+
+This child has type `_type?` ([`Type`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn return_type(
         &self,
@@ -5925,8 +6800,10 @@ impl<'tree> FunctionSignatureItem<'tree> {
             .child_by_field_name("return_type")
             .map(<Type<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
     }
-    ///Get the field `type_parameters` which has kind `type_parameters?` ([TypeParameters])
-    #[allow(dead_code)]
+    /**Get the optional field `type_parameters`.
+
+This child has type `type_parameters?` ([`TypeParameters`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn type_parameters(
         &self,
@@ -5935,9 +6812,62 @@ impl<'tree> FunctionSignatureItem<'tree> {
             .child_by_field_name("type_parameters")
             .map(<TypeParameters<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
     }
-    ///Get the node's not-extra named children
-    ///This is guaranteed to return at least one child
-    #[allow(dead_code)]
+    /**Get the node's non-field not-extra named children.
+
+These children have type `{function_modifiers | visibility_modifier | where_clause}*`:
+
+- [`FunctionModifiers`]
+- [`VisibilityModifier`]
+- [`WhereClause`]
+*/
+    #[allow(non_snake_case)]
+    #[inline]
+    pub fn others<'a>(
+        &self,
+        c: &'a mut type_sitter_lib::TreeCursor<'tree>,
+    ) -> impl Iterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            anon_unions::FunctionModifiers_VisibilityModifier_WhereClause<'tree>,
+        >,
+    > + 'a {
+        {
+            c.0.reset(self.0);
+            c.0.goto_first_child();
+            (0..self.0.child_count())
+                .filter_map(move |_| {
+                    let has_field = c.0.field_name().is_some();
+                    let node = c.0.node();
+                    c.0.goto_next_sibling();
+                    if has_field && node.is_named() && !node.is_extra() {
+                        Some(node)
+                    } else {
+                        None
+                    }
+                })
+        }
+            .map(
+                <anon_unions::FunctionModifiers_VisibilityModifier_WhereClause<
+                    'tree,
+                > as type_sitter_lib::Node<'tree>>::try_from_raw,
+            )
+    }
+    /**Get the node's not-extra named children.
+
+These children have type `{function_modifiers | visibility_modifier | where_clause | identifier | metavariable | parameters | _type | type_parameters}+`:
+
+- [`FunctionModifiers`]
+- [`VisibilityModifier`]
+- [`WhereClause`]
+- [`Identifier`]
+- [`Metavariable`]
+- [`Parameters`]
+- [`Type`]
+- [`TypeParameters`]
+*/
+    /**
+This is guaranteed to return at least one child.*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -5993,13 +6923,15 @@ impl<'tree> type_sitter_lib::Node<'tree> for FunctionSignatureItem<'tree> {
 /**Typed node `function_type`
 
 This node has these fields:
-- `parameters`: `parameters` ([Parameters])
-- `return_type`: `_type?` ([Type])
-- `trait`: `{scoped_type_identifier | type_identifier}?` ([anon_unions::ScopedTypeIdentifier_TypeIdentifier])
 
-And additional children: `{for_lifetimes | function_modifiers}*`:
-- [ForLifetimes]
-- [FunctionModifiers]
+- `parameters`: `parameters` ([`Parameters`])
+- `return_type`: `_type?` ([`Type`])
+- `trait`: `{scoped_type_identifier | type_identifier}?` ([`ScopedTypeIdentifier`] | [`TypeIdentifier`])
+
+And additional named children of type `{for_lifetimes | function_modifiers}*`:
+
+- [`ForLifetimes`]
+- [`FunctionModifiers`]
 
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -6008,19 +6940,23 @@ And additional children: `{for_lifetimes | function_modifiers}*`:
 pub struct FunctionType<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> FunctionType<'tree> {
-    ///Get the field `parameters` which has kind `parameters` ([Parameters])
-    #[allow(dead_code)]
+    /**Get the field `parameters`.
+
+This child has type `parameters` ([`Parameters`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn parameters(&self) -> type_sitter_lib::NodeResult<'tree, Parameters<'tree>> {
         self.0
             .child_by_field_name("parameters")
             .map(<Parameters<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the field `return_type` which has kind `_type?` ([Type])
-    #[allow(dead_code)]
+    /**Get the optional field `return_type`.
+
+This child has type `_type?` ([`Type`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn return_type(
         &self,
@@ -6029,8 +6965,14 @@ impl<'tree> FunctionType<'tree> {
             .child_by_field_name("return_type")
             .map(<Type<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
     }
-    ///Get the field `trait` which has kind `{scoped_type_identifier | type_identifier}?` ([anon_unions::ScopedTypeIdentifier_TypeIdentifier])
-    #[allow(dead_code)]
+    /**Get the optional field `trait`.
+
+This child has type `{scoped_type_identifier | type_identifier}?`:
+
+- [`ScopedTypeIdentifier`]
+- [`TypeIdentifier`]
+*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn r#trait(
         &self,
@@ -6048,9 +6990,59 @@ impl<'tree> FunctionType<'tree> {
                 > as type_sitter_lib::Node<'tree>>::try_from_raw,
             )
     }
-    ///Get the node's not-extra named children
-    ///This is guaranteed to return at least one child
-    #[allow(dead_code)]
+    /**Get the node's non-field not-extra named children.
+
+These children have type `{for_lifetimes | function_modifiers}*`:
+
+- [`ForLifetimes`]
+- [`FunctionModifiers`]
+*/
+    #[allow(non_snake_case)]
+    #[inline]
+    pub fn others<'a>(
+        &self,
+        c: &'a mut type_sitter_lib::TreeCursor<'tree>,
+    ) -> impl Iterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            anon_unions::ForLifetimes_FunctionModifiers<'tree>,
+        >,
+    > + 'a {
+        {
+            c.0.reset(self.0);
+            c.0.goto_first_child();
+            (0..self.0.child_count())
+                .filter_map(move |_| {
+                    let has_field = c.0.field_name().is_some();
+                    let node = c.0.node();
+                    c.0.goto_next_sibling();
+                    if has_field && node.is_named() && !node.is_extra() {
+                        Some(node)
+                    } else {
+                        None
+                    }
+                })
+        }
+            .map(
+                <anon_unions::ForLifetimes_FunctionModifiers<
+                    'tree,
+                > as type_sitter_lib::Node<'tree>>::try_from_raw,
+            )
+    }
+    /**Get the node's not-extra named children.
+
+These children have type `{for_lifetimes | function_modifiers | parameters | _type | scoped_type_identifier | type_identifier}+`:
+
+- [`ForLifetimes`]
+- [`FunctionModifiers`]
+- [`Parameters`]
+- [`Type`]
+- [`ScopedTypeIdentifier`]
+- [`TypeIdentifier`]
+*/
+    /**
+This is guaranteed to return at least one child.*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -6106,8 +7098,9 @@ impl<'tree> type_sitter_lib::Node<'tree> for FunctionType<'tree> {
 /**Typed node `generic_function`
 
 This node has these fields:
-- `function`: `{field_expression | identifier | scoped_identifier}` ([anon_unions::FieldExpression_Identifier_ScopedIdentifier])
-- `type_arguments`: `type_arguments` ([TypeArguments])
+
+- `function`: `{field_expression | identifier | scoped_identifier}` ([`FieldExpression`] | [`Identifier`] | [`ScopedIdentifier`])
+- `type_arguments`: `type_arguments` ([`TypeArguments`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -6115,8 +7108,15 @@ This node has these fields:
 pub struct GenericFunction<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> GenericFunction<'tree> {
-    ///Get the field `function` which has kind `{field_expression | identifier | scoped_identifier}` ([anon_unions::FieldExpression_Identifier_ScopedIdentifier])
-    #[allow(dead_code)]
+    /**Get the field `function`.
+
+This child has type `{field_expression | identifier | scoped_identifier}`:
+
+- [`FieldExpression`]
+- [`Identifier`]
+- [`ScopedIdentifier`]
+*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn function(
         &self,
@@ -6132,11 +7132,13 @@ impl<'tree> GenericFunction<'tree> {
                 > as type_sitter_lib::Node<'tree>>::try_from_raw,
             )
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the field `type_arguments` which has kind `type_arguments` ([TypeArguments])
-    #[allow(dead_code)]
+    /**Get the field `type_arguments`.
+
+This child has type `type_arguments` ([`TypeArguments`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn type_arguments(
         &self,
@@ -6145,7 +7147,7 @@ impl<'tree> GenericFunction<'tree> {
             .child_by_field_name("type_arguments")
             .map(<TypeArguments<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
 }
@@ -6182,8 +7184,9 @@ impl<'tree> type_sitter_lib::Node<'tree> for GenericFunction<'tree> {
 /**Typed node `generic_type`
 
 This node has these fields:
-- `type`: `{identifier | scoped_identifier | scoped_type_identifier | type_identifier}` ([anon_unions::Identifier_ScopedIdentifier_ScopedTypeIdentifier_TypeIdentifier])
-- `type_arguments`: `type_arguments` ([TypeArguments])
+
+- `type`: `{identifier | scoped_identifier | scoped_type_identifier | type_identifier}` ([`Identifier`] | [`ScopedIdentifier`] | [`ScopedTypeIdentifier`] | [`TypeIdentifier`])
+- `type_arguments`: `type_arguments` ([`TypeArguments`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -6191,8 +7194,16 @@ This node has these fields:
 pub struct GenericType<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> GenericType<'tree> {
-    ///Get the field `type` which has kind `{identifier | scoped_identifier | scoped_type_identifier | type_identifier}` ([anon_unions::Identifier_ScopedIdentifier_ScopedTypeIdentifier_TypeIdentifier])
-    #[allow(dead_code)]
+    /**Get the field `type`.
+
+This child has type `{identifier | scoped_identifier | scoped_type_identifier | type_identifier}`:
+
+- [`Identifier`]
+- [`ScopedIdentifier`]
+- [`ScopedTypeIdentifier`]
+- [`TypeIdentifier`]
+*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn r#type(
         &self,
@@ -6210,11 +7221,13 @@ impl<'tree> GenericType<'tree> {
                 > as type_sitter_lib::Node<'tree>>::try_from_raw,
             )
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the field `type_arguments` which has kind `type_arguments` ([TypeArguments])
-    #[allow(dead_code)]
+    /**Get the field `type_arguments`.
+
+This child has type `type_arguments` ([`TypeArguments`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn type_arguments(
         &self,
@@ -6223,7 +7236,7 @@ impl<'tree> GenericType<'tree> {
             .child_by_field_name("type_arguments")
             .map(<TypeArguments<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
 }
@@ -6260,8 +7273,9 @@ impl<'tree> type_sitter_lib::Node<'tree> for GenericType<'tree> {
 /**Typed node `generic_type_with_turbofish`
 
 This node has these fields:
-- `type`: `{scoped_identifier | type_identifier}` ([anon_unions::ScopedIdentifier_TypeIdentifier])
-- `type_arguments`: `type_arguments` ([TypeArguments])
+
+- `type`: `{scoped_identifier | type_identifier}` ([`ScopedIdentifier`] | [`TypeIdentifier`])
+- `type_arguments`: `type_arguments` ([`TypeArguments`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -6269,8 +7283,14 @@ This node has these fields:
 pub struct GenericTypeWithTurbofish<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> GenericTypeWithTurbofish<'tree> {
-    ///Get the field `type` which has kind `{scoped_identifier | type_identifier}` ([anon_unions::ScopedIdentifier_TypeIdentifier])
-    #[allow(dead_code)]
+    /**Get the field `type`.
+
+This child has type `{scoped_identifier | type_identifier}`:
+
+- [`ScopedIdentifier`]
+- [`TypeIdentifier`]
+*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn r#type(
         &self,
@@ -6286,11 +7306,13 @@ impl<'tree> GenericTypeWithTurbofish<'tree> {
                 > as type_sitter_lib::Node<'tree>>::try_from_raw,
             )
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the field `type_arguments` which has kind `type_arguments` ([TypeArguments])
-    #[allow(dead_code)]
+    /**Get the field `type_arguments`.
+
+This child has type `type_arguments` ([`TypeArguments`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn type_arguments(
         &self,
@@ -6299,7 +7321,7 @@ impl<'tree> GenericTypeWithTurbofish<'tree> {
             .child_by_field_name("type_arguments")
             .map(<TypeArguments<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
 }
@@ -6336,8 +7358,9 @@ impl<'tree> type_sitter_lib::Node<'tree> for GenericTypeWithTurbofish<'tree> {
 /**Typed node `higher_ranked_trait_bound`
 
 This node has these fields:
-- `type`: `_type` ([Type])
-- `type_parameters`: `type_parameters` ([TypeParameters])
+
+- `type`: `_type` ([`Type`])
+- `type_parameters`: `type_parameters` ([`TypeParameters`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -6345,19 +7368,23 @@ This node has these fields:
 pub struct HigherRankedTraitBound<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> HigherRankedTraitBound<'tree> {
-    ///Get the field `type` which has kind `_type` ([Type])
-    #[allow(dead_code)]
+    /**Get the field `type`.
+
+This child has type `_type` ([`Type`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn r#type(&self) -> type_sitter_lib::NodeResult<'tree, Type<'tree>> {
         self.0
             .child_by_field_name("type")
             .map(<Type<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the field `type_parameters` which has kind `type_parameters` ([TypeParameters])
-    #[allow(dead_code)]
+    /**Get the field `type_parameters`.
+
+This child has type `type_parameters` ([`TypeParameters`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn type_parameters(
         &self,
@@ -6366,7 +7393,7 @@ impl<'tree> HigherRankedTraitBound<'tree> {
             .child_by_field_name("type_parameters")
             .map(<TypeParameters<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
 }
@@ -6403,9 +7430,10 @@ impl<'tree> type_sitter_lib::Node<'tree> for HigherRankedTraitBound<'tree> {
 /**Typed node `if_expression`
 
 This node has these fields:
-- `alternative`: `else_clause?` ([ElseClause])
-- `condition`: `{_expression | let_chain | let_condition}` ([anon_unions::Expression_LetChain_LetCondition])
-- `consequence`: `block` ([Block])
+
+- `alternative`: `else_clause?` ([`ElseClause`])
+- `condition`: `{_expression | let_chain | let_condition}` ([`Expression`] | [`LetChain`] | [`LetCondition`])
+- `consequence`: `block` ([`Block`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -6413,8 +7441,10 @@ This node has these fields:
 pub struct IfExpression<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> IfExpression<'tree> {
-    ///Get the field `alternative` which has kind `else_clause?` ([ElseClause])
-    #[allow(dead_code)]
+    /**Get the optional field `alternative`.
+
+This child has type `else_clause?` ([`ElseClause`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn alternative(
         &self,
@@ -6423,8 +7453,15 @@ impl<'tree> IfExpression<'tree> {
             .child_by_field_name("alternative")
             .map(<ElseClause<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
     }
-    ///Get the field `condition` which has kind `{_expression | let_chain | let_condition}` ([anon_unions::Expression_LetChain_LetCondition])
-    #[allow(dead_code)]
+    /**Get the field `condition`.
+
+This child has type `{_expression | let_chain | let_condition}`:
+
+- [`Expression`]
+- [`LetChain`]
+- [`LetCondition`]
+*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn condition(
         &self,
@@ -6440,18 +7477,20 @@ impl<'tree> IfExpression<'tree> {
                 > as type_sitter_lib::Node<'tree>>::try_from_raw,
             )
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the field `consequence` which has kind `block` ([Block])
-    #[allow(dead_code)]
+    /**Get the field `consequence`.
+
+This child has type `block` ([`Block`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn consequence(&self) -> type_sitter_lib::NodeResult<'tree, Block<'tree>> {
         self.0
             .child_by_field_name("consequence")
             .map(<Block<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
 }
@@ -6488,12 +7527,13 @@ impl<'tree> type_sitter_lib::Node<'tree> for IfExpression<'tree> {
 /**Typed node `impl_item`
 
 This node has these fields:
-- `body`: `declaration_list?` ([DeclarationList])
-- `trait`: `{generic_type | scoped_type_identifier | type_identifier}?` ([anon_unions::GenericType_ScopedTypeIdentifier_TypeIdentifier])
-- `type`: `_type` ([Type])
-- `type_parameters`: `type_parameters?` ([TypeParameters])
 
-And an additional (optional) child: `where_clause?` ([WhereClause])
+- `body`: `declaration_list?` ([`DeclarationList`])
+- `trait`: `{generic_type | scoped_type_identifier | type_identifier}?` ([`GenericType`] | [`ScopedTypeIdentifier`] | [`TypeIdentifier`])
+- `type`: `_type` ([`Type`])
+- `type_parameters`: `type_parameters?` ([`TypeParameters`])
+
+And an optional additional named child of type `where_clause?` ([`WhereClause`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -6501,8 +7541,10 @@ And an additional (optional) child: `where_clause?` ([WhereClause])
 pub struct ImplItem<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ImplItem<'tree> {
-    ///Get the field `body` which has kind `declaration_list?` ([DeclarationList])
-    #[allow(dead_code)]
+    /**Get the optional field `body`.
+
+This child has type `declaration_list?` ([`DeclarationList`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn body(
         &self,
@@ -6511,8 +7553,15 @@ impl<'tree> ImplItem<'tree> {
             .child_by_field_name("body")
             .map(<DeclarationList<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
     }
-    ///Get the field `trait` which has kind `{generic_type | scoped_type_identifier | type_identifier}?` ([anon_unions::GenericType_ScopedTypeIdentifier_TypeIdentifier])
-    #[allow(dead_code)]
+    /**Get the optional field `trait`.
+
+This child has type `{generic_type | scoped_type_identifier | type_identifier}?`:
+
+- [`GenericType`]
+- [`ScopedTypeIdentifier`]
+- [`TypeIdentifier`]
+*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn r#trait(
         &self,
@@ -6530,19 +7579,23 @@ impl<'tree> ImplItem<'tree> {
                 > as type_sitter_lib::Node<'tree>>::try_from_raw,
             )
     }
-    ///Get the field `type` which has kind `_type` ([Type])
-    #[allow(dead_code)]
+    /**Get the field `type`.
+
+This child has type `_type` ([`Type`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn r#type(&self) -> type_sitter_lib::NodeResult<'tree, Type<'tree>> {
         self.0
             .child_by_field_name("type")
             .map(<Type<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the field `type_parameters` which has kind `type_parameters?` ([TypeParameters])
-    #[allow(dead_code)]
+    /**Get the optional field `type_parameters`.
+
+This child has type `type_parameters?` ([`TypeParameters`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn type_parameters(
         &self,
@@ -6551,9 +7604,37 @@ impl<'tree> ImplItem<'tree> {
             .child_by_field_name("type_parameters")
             .map(<TypeParameters<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
     }
-    ///Get the node's not-extra named children
-    ///This is guaranteed to return at least one child
-    #[allow(dead_code)]
+    /**Get the node's only non-field not-extra named child, if it has one.
+
+This child has type `where_clause?` ([`WhereClause`])*/
+    #[allow(non_snake_case)]
+    #[inline]
+    pub fn other(
+        &self,
+    ) -> Option<type_sitter_lib::NodeResult<'tree, WhereClause<'tree>>> {
+        #[allow(clippy::unnecessary_cast)]
+        (0..)
+            .filter(|i| self.0.field_name_for_child(*i).is_some())
+            .filter_map(|i| self.0.named_child(i as usize))
+            .filter(|n| !n.is_extra())
+            .next()
+            .map(<WhereClause<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
+    }
+    /**Get the node's not-extra named children.
+
+These children have type `{where_clause | declaration_list | generic_type | scoped_type_identifier | type_identifier | _type | type_parameters}+`:
+
+- [`WhereClause`]
+- [`DeclarationList`]
+- [`GenericType`]
+- [`ScopedTypeIdentifier`]
+- [`TypeIdentifier`]
+- [`Type`]
+- [`TypeParameters`]
+*/
+    /**
+This is guaranteed to return at least one child.*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -6608,7 +7689,7 @@ impl<'tree> type_sitter_lib::Node<'tree> for ImplItem<'tree> {
 }
 /**Typed node `index_expression`
 
-This node has children: `_expression+` ([Expression])
+This node has named children of type `_expression+` ([`Expression`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -6616,9 +7697,12 @@ This node has children: `_expression+` ([Expression])
 pub struct IndexExpression<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> IndexExpression<'tree> {
-    ///Get the node's not-extra named children
-    ///This is guaranteed to return at least one child
-    #[allow(dead_code)]
+    /**Get the node's not-extra named children.
+
+These children have type `_expression+` ([`Expression`])*/
+    /**
+This is guaranteed to return at least one child.*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -6664,7 +7748,7 @@ impl<'tree> type_sitter_lib::Node<'tree> for IndexExpression<'tree> {
 }
 /**Typed node `inner_attribute_item`
 
-This node has a child: `attribute` ([Attribute])
+This node has a named child of type `attribute` ([`Attribute`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -6674,8 +7758,8 @@ pub struct InnerAttributeItem<'tree>(yak_sitter::Node<'tree>);
 impl<'tree> InnerAttributeItem<'tree> {
     /**Get the node's only not-extra named child.
 
-Iff this returns `Option`, it means the node may not have any non-extra named children.*/
-    #[allow(dead_code)]
+This child has type `attribute` ([`Attribute`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn child(&self) -> type_sitter_lib::NodeResult<'tree, Attribute<'tree>> {
         (0..)
@@ -6684,7 +7768,7 @@ Iff this returns `Option`, it means the node may not have any non-extra named ch
             .next()
             .map(<Attribute<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
 }
@@ -6720,7 +7804,7 @@ impl<'tree> type_sitter_lib::Node<'tree> for InnerAttributeItem<'tree> {
 }
 /**Typed node `inner_doc_comment_marker`
 
-This node has no children
+This node has no named children
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -6760,7 +7844,7 @@ impl<'tree> type_sitter_lib::Node<'tree> for InnerDocCommentMarker<'tree> {
 }
 /**Typed node `label`
 
-This node has a child: `identifier` ([Identifier])
+This node has a named child of type `identifier` ([`Identifier`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -6770,8 +7854,8 @@ pub struct Label<'tree>(yak_sitter::Node<'tree>);
 impl<'tree> Label<'tree> {
     /**Get the node's only not-extra named child.
 
-Iff this returns `Option`, it means the node may not have any non-extra named children.*/
-    #[allow(dead_code)]
+This child has type `identifier` ([`Identifier`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn child(&self) -> type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
         (0..)
@@ -6780,7 +7864,7 @@ Iff this returns `Option`, it means the node may not have any non-extra named ch
             .next()
             .map(<Identifier<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
 }
@@ -6816,9 +7900,10 @@ impl<'tree> type_sitter_lib::Node<'tree> for Label<'tree> {
 }
 /**Typed node `let_chain`
 
-This node has children: `{_expression | let_condition}+`:
-- [Expression]
-- [LetCondition]
+This node has named children of type `{_expression | let_condition}+`:
+
+- [`Expression`]
+- [`LetCondition`]
 
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -6827,9 +7912,16 @@ This node has children: `{_expression | let_condition}+`:
 pub struct LetChain<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> LetChain<'tree> {
-    ///Get the node's not-extra named children
-    ///This is guaranteed to return at least one child
-    #[allow(dead_code)]
+    /**Get the node's not-extra named children.
+
+These children have type `{_expression | let_condition}+`:
+
+- [`Expression`]
+- [`LetCondition`]
+*/
+    /**
+This is guaranteed to return at least one child.*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -6883,8 +7975,9 @@ impl<'tree> type_sitter_lib::Node<'tree> for LetChain<'tree> {
 /**Typed node `let_condition`
 
 This node has these fields:
-- `pattern`: `_pattern` ([Pattern])
-- `value`: `_expression` ([Expression])
+
+- `pattern`: `_pattern` ([`Pattern`])
+- `value`: `_expression` ([`Expression`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -6892,26 +7985,30 @@ This node has these fields:
 pub struct LetCondition<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> LetCondition<'tree> {
-    ///Get the field `pattern` which has kind `_pattern` ([Pattern])
-    #[allow(dead_code)]
+    /**Get the field `pattern`.
+
+This child has type `_pattern` ([`Pattern`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn pattern(&self) -> type_sitter_lib::NodeResult<'tree, Pattern<'tree>> {
         self.0
             .child_by_field_name("pattern")
             .map(<Pattern<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the field `value` which has kind `_expression` ([Expression])
-    #[allow(dead_code)]
+    /**Get the field `value`.
+
+This child has type `_expression` ([`Expression`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn value(&self) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
         self.0
             .child_by_field_name("value")
             .map(<Expression<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
 }
@@ -6948,12 +8045,13 @@ impl<'tree> type_sitter_lib::Node<'tree> for LetCondition<'tree> {
 /**Typed node `let_declaration`
 
 This node has these fields:
-- `alternative`: `block?` ([Block])
-- `pattern`: `_pattern` ([Pattern])
-- `type`: `_type?` ([Type])
-- `value`: `_expression?` ([Expression])
 
-And an additional (optional) child: `mutable_specifier?` ([MutableSpecifier])
+- `alternative`: `block?` ([`Block`])
+- `pattern`: `_pattern` ([`Pattern`])
+- `type`: `_type?` ([`Type`])
+- `value`: `_expression?` ([`Expression`])
+
+And an optional additional named child of type `mutable_specifier?` ([`MutableSpecifier`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -6961,8 +8059,10 @@ And an additional (optional) child: `mutable_specifier?` ([MutableSpecifier])
 pub struct LetDeclaration<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> LetDeclaration<'tree> {
-    ///Get the field `alternative` which has kind `block?` ([Block])
-    #[allow(dead_code)]
+    /**Get the optional field `alternative`.
+
+This child has type `block?` ([`Block`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn alternative(
         &self,
@@ -6971,27 +8071,33 @@ impl<'tree> LetDeclaration<'tree> {
             .child_by_field_name("alternative")
             .map(<Block<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
     }
-    ///Get the field `pattern` which has kind `_pattern` ([Pattern])
-    #[allow(dead_code)]
+    /**Get the field `pattern`.
+
+This child has type `_pattern` ([`Pattern`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn pattern(&self) -> type_sitter_lib::NodeResult<'tree, Pattern<'tree>> {
         self.0
             .child_by_field_name("pattern")
             .map(<Pattern<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the field `type` which has kind `_type?` ([Type])
-    #[allow(dead_code)]
+    /**Get the optional field `type`.
+
+This child has type `_type?` ([`Type`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn r#type(&self) -> Option<type_sitter_lib::NodeResult<'tree, Type<'tree>>> {
         self.0
             .child_by_field_name("type")
             .map(<Type<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
     }
-    ///Get the field `value` which has kind `_expression?` ([Expression])
-    #[allow(dead_code)]
+    /**Get the optional field `value`.
+
+This child has type `_expression?` ([`Expression`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn value(
         &self,
@@ -7000,9 +8106,35 @@ impl<'tree> LetDeclaration<'tree> {
             .child_by_field_name("value")
             .map(<Expression<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
     }
-    ///Get the node's not-extra named children
-    ///This is guaranteed to return at least one child
-    #[allow(dead_code)]
+    /**Get the node's only non-field not-extra named child, if it has one.
+
+This child has type `mutable_specifier?` ([`MutableSpecifier`])*/
+    #[allow(non_snake_case)]
+    #[inline]
+    pub fn other(
+        &self,
+    ) -> Option<type_sitter_lib::NodeResult<'tree, MutableSpecifier<'tree>>> {
+        #[allow(clippy::unnecessary_cast)]
+        (0..)
+            .filter(|i| self.0.field_name_for_child(*i).is_some())
+            .filter_map(|i| self.0.named_child(i as usize))
+            .filter(|n| !n.is_extra())
+            .next()
+            .map(<MutableSpecifier<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
+    }
+    /**Get the node's not-extra named children.
+
+These children have type `{mutable_specifier | block | _pattern | _type | _expression}+`:
+
+- [`MutableSpecifier`]
+- [`Block`]
+- [`Pattern`]
+- [`Type`]
+- [`Expression`]
+*/
+    /**
+This is guaranteed to return at least one child.*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -7055,7 +8187,7 @@ impl<'tree> type_sitter_lib::Node<'tree> for LetDeclaration<'tree> {
 }
 /**Typed node `lifetime`
 
-This node has a child: `identifier` ([Identifier])
+This node has a named child of type `identifier` ([`Identifier`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -7065,8 +8197,8 @@ pub struct Lifetime<'tree>(yak_sitter::Node<'tree>);
 impl<'tree> Lifetime<'tree> {
     /**Get the node's only not-extra named child.
 
-Iff this returns `Option`, it means the node may not have any non-extra named children.*/
-    #[allow(dead_code)]
+This child has type `identifier` ([`Identifier`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn child(&self) -> type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
         (0..)
@@ -7075,7 +8207,7 @@ Iff this returns `Option`, it means the node may not have any non-extra named ch
             .next()
             .map(<Identifier<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
 }
@@ -7112,9 +8244,10 @@ impl<'tree> type_sitter_lib::Node<'tree> for Lifetime<'tree> {
 /**Typed node `line_comment`
 
 This node has these fields:
-- `doc`: `doc_comment?` ([DocComment])
-- `inner`: `inner_doc_comment_marker?` ([InnerDocCommentMarker])
-- `outer`: `outer_doc_comment_marker?` ([OuterDocCommentMarker])
+
+- `doc`: `doc_comment?` ([`DocComment`])
+- `inner`: `inner_doc_comment_marker?` ([`InnerDocCommentMarker`])
+- `outer`: `outer_doc_comment_marker?` ([`OuterDocCommentMarker`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -7122,16 +8255,20 @@ This node has these fields:
 pub struct LineComment<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> LineComment<'tree> {
-    ///Get the field `doc` which has kind `doc_comment?` ([DocComment])
-    #[allow(dead_code)]
+    /**Get the optional field `doc`.
+
+This child has type `doc_comment?` ([`DocComment`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn doc(&self) -> Option<type_sitter_lib::NodeResult<'tree, DocComment<'tree>>> {
         self.0
             .child_by_field_name("doc")
             .map(<DocComment<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
     }
-    ///Get the field `inner` which has kind `inner_doc_comment_marker?` ([InnerDocCommentMarker])
-    #[allow(dead_code)]
+    /**Get the optional field `inner`.
+
+This child has type `inner_doc_comment_marker?` ([`InnerDocCommentMarker`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn inner(
         &self,
@@ -7144,8 +8281,10 @@ impl<'tree> LineComment<'tree> {
                 > as type_sitter_lib::Node<'tree>>::try_from_raw,
             )
     }
-    ///Get the field `outer` which has kind `outer_doc_comment_marker?` ([OuterDocCommentMarker])
-    #[allow(dead_code)]
+    /**Get the optional field `outer`.
+
+This child has type `outer_doc_comment_marker?` ([`OuterDocCommentMarker`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn outer(
         &self,
@@ -7192,9 +8331,10 @@ impl<'tree> type_sitter_lib::Node<'tree> for LineComment<'tree> {
 /**Typed node `loop_expression`
 
 This node has these fields:
-- `body`: `block` ([Block])
 
-And an additional (optional) child: `label?` ([Label])
+- `body`: `block` ([`Block`])
+
+And an optional additional named child of type `label?` ([`Label`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -7202,20 +8342,43 @@ And an additional (optional) child: `label?` ([Label])
 pub struct LoopExpression<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> LoopExpression<'tree> {
-    ///Get the field `body` which has kind `block` ([Block])
-    #[allow(dead_code)]
+    /**Get the field `body`.
+
+This child has type `block` ([`Block`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn body(&self) -> type_sitter_lib::NodeResult<'tree, Block<'tree>> {
         self.0
             .child_by_field_name("body")
             .map(<Block<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the node's not-extra named children
-    ///This is guaranteed to return at least one child
-    #[allow(dead_code)]
+    /**Get the node's only non-field not-extra named child, if it has one.
+
+This child has type `label?` ([`Label`])*/
+    #[allow(non_snake_case)]
+    #[inline]
+    pub fn other(&self) -> Option<type_sitter_lib::NodeResult<'tree, Label<'tree>>> {
+        #[allow(clippy::unnecessary_cast)]
+        (0..)
+            .filter(|i| self.0.field_name_for_child(*i).is_some())
+            .filter_map(|i| self.0.named_child(i as usize))
+            .filter(|n| !n.is_extra())
+            .next()
+            .map(<Label<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
+    }
+    /**Get the node's not-extra named children.
+
+These children have type `{label | block}+`:
+
+- [`Label`]
+- [`Block`]
+*/
+    /**
+This is guaranteed to return at least one child.*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -7266,9 +8429,10 @@ impl<'tree> type_sitter_lib::Node<'tree> for LoopExpression<'tree> {
 /**Typed node `macro_definition`
 
 This node has these fields:
-- `name`: `identifier` ([Identifier])
 
-And additional children: `macro_rule*` ([MacroRule])
+- `name`: `identifier` ([`Identifier`])
+
+And additional named children of type `macro_rule*` ([`MacroRule`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -7276,20 +8440,57 @@ And additional children: `macro_rule*` ([MacroRule])
 pub struct MacroDefinition<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> MacroDefinition<'tree> {
-    ///Get the field `name` which has kind `identifier` ([Identifier])
-    #[allow(dead_code)]
+    /**Get the field `name`.
+
+This child has type `identifier` ([`Identifier`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn name(&self) -> type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
         self.0
             .child_by_field_name("name")
             .map(<Identifier<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the node's not-extra named children
-    ///This is guaranteed to return at least one child
-    #[allow(dead_code)]
+    /**Get the node's non-field not-extra named children.
+
+These children have type `macro_rule*` ([`MacroRule`])*/
+    #[allow(non_snake_case)]
+    #[inline]
+    pub fn others<'a>(
+        &self,
+        c: &'a mut type_sitter_lib::TreeCursor<'tree>,
+    ) -> impl Iterator<
+        Item = type_sitter_lib::NodeResult<'tree, MacroRule<'tree>>,
+    > + 'a {
+        {
+            c.0.reset(self.0);
+            c.0.goto_first_child();
+            (0..self.0.child_count())
+                .filter_map(move |_| {
+                    let has_field = c.0.field_name().is_some();
+                    let node = c.0.node();
+                    c.0.goto_next_sibling();
+                    if has_field && node.is_named() && !node.is_extra() {
+                        Some(node)
+                    } else {
+                        None
+                    }
+                })
+        }
+            .map(<MacroRule<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
+    }
+    /**Get the node's not-extra named children.
+
+These children have type `{macro_rule | identifier}+`:
+
+- [`MacroRule`]
+- [`Identifier`]
+*/
+    /**
+This is guaranteed to return at least one child.*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -7343,9 +8544,10 @@ impl<'tree> type_sitter_lib::Node<'tree> for MacroDefinition<'tree> {
 /**Typed node `macro_invocation`
 
 This node has these fields:
-- `macro`: `{identifier | scoped_identifier}` ([anon_unions::Identifier_ScopedIdentifier])
 
-And an additional child: `token_tree` ([TokenTree])
+- `macro`: `{identifier | scoped_identifier}` ([`Identifier`] | [`ScopedIdentifier`])
+
+And an additional named child of type `token_tree` ([`TokenTree`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -7353,8 +8555,14 @@ And an additional child: `token_tree` ([TokenTree])
 pub struct MacroInvocation<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> MacroInvocation<'tree> {
-    ///Get the field `macro` which has kind `{identifier | scoped_identifier}` ([anon_unions::Identifier_ScopedIdentifier])
-    #[allow(dead_code)]
+    /**Get the field `macro`.
+
+This child has type `{identifier | scoped_identifier}`:
+
+- [`Identifier`]
+- [`ScopedIdentifier`]
+*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn r#macro(
         &self,
@@ -7370,12 +8578,37 @@ impl<'tree> MacroInvocation<'tree> {
                 > as type_sitter_lib::Node<'tree>>::try_from_raw,
             )
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the node's not-extra named children
-    ///This is guaranteed to return at least one child
-    #[allow(dead_code)]
+    /**Get the node's only non-field not-extra named child.
+
+This child has type `token_tree` ([`TokenTree`])*/
+    #[allow(non_snake_case)]
+    #[inline]
+    pub fn other(&self) -> type_sitter_lib::NodeResult<'tree, TokenTree<'tree>> {
+        #[allow(clippy::unnecessary_cast)]
+        (0..)
+            .filter(|i| self.0.field_name_for_child(*i).is_some())
+            .filter_map(|i| self.0.named_child(i as usize))
+            .filter(|n| !n.is_extra())
+            .next()
+            .map(<TokenTree<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
+            .expect(
+                "required child not present, there should at least be a MISSING node in its place",
+            )
+    }
+    /**Get the node's not-extra named children.
+
+These children have type `{token_tree | identifier | scoped_identifier}+`:
+
+- [`TokenTree`]
+- [`Identifier`]
+- [`ScopedIdentifier`]
+*/
+    /**
+This is guaranteed to return at least one child.*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -7429,8 +8662,9 @@ impl<'tree> type_sitter_lib::Node<'tree> for MacroInvocation<'tree> {
 /**Typed node `macro_rule`
 
 This node has these fields:
-- `left`: `token_tree_pattern` ([TokenTreePattern])
-- `right`: `token_tree` ([TokenTree])
+
+- `left`: `token_tree_pattern` ([`TokenTreePattern`])
+- `right`: `token_tree` ([`TokenTree`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -7438,26 +8672,30 @@ This node has these fields:
 pub struct MacroRule<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> MacroRule<'tree> {
-    ///Get the field `left` which has kind `token_tree_pattern` ([TokenTreePattern])
-    #[allow(dead_code)]
+    /**Get the field `left`.
+
+This child has type `token_tree_pattern` ([`TokenTreePattern`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn left(&self) -> type_sitter_lib::NodeResult<'tree, TokenTreePattern<'tree>> {
         self.0
             .child_by_field_name("left")
             .map(<TokenTreePattern<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the field `right` which has kind `token_tree` ([TokenTree])
-    #[allow(dead_code)]
+    /**Get the field `right`.
+
+This child has type `token_tree` ([`TokenTree`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn right(&self) -> type_sitter_lib::NodeResult<'tree, TokenTree<'tree>> {
         self.0
             .child_by_field_name("right")
             .map(<TokenTree<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
 }
@@ -7494,12 +8732,14 @@ impl<'tree> type_sitter_lib::Node<'tree> for MacroRule<'tree> {
 /**Typed node `match_arm`
 
 This node has these fields:
-- `pattern`: `match_pattern` ([MatchPattern])
-- `value`: `_expression` ([Expression])
 
-And additional children: `{attribute_item | inner_attribute_item}*`:
-- [AttributeItem]
-- [InnerAttributeItem]
+- `pattern`: `match_pattern` ([`MatchPattern`])
+- `value`: `_expression` ([`Expression`])
+
+And additional named children of type `{attribute_item | inner_attribute_item}*`:
+
+- [`AttributeItem`]
+- [`InnerAttributeItem`]
 
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -7508,31 +8748,83 @@ And additional children: `{attribute_item | inner_attribute_item}*`:
 pub struct MatchArm<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> MatchArm<'tree> {
-    ///Get the field `pattern` which has kind `match_pattern` ([MatchPattern])
-    #[allow(dead_code)]
+    /**Get the field `pattern`.
+
+This child has type `match_pattern` ([`MatchPattern`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn pattern(&self) -> type_sitter_lib::NodeResult<'tree, MatchPattern<'tree>> {
         self.0
             .child_by_field_name("pattern")
             .map(<MatchPattern<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the field `value` which has kind `_expression` ([Expression])
-    #[allow(dead_code)]
+    /**Get the field `value`.
+
+This child has type `_expression` ([`Expression`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn value(&self) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
         self.0
             .child_by_field_name("value")
             .map(<Expression<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the node's not-extra named children
-    ///This is guaranteed to return at least one child
-    #[allow(dead_code)]
+    /**Get the node's non-field not-extra named children.
+
+These children have type `{attribute_item | inner_attribute_item}*`:
+
+- [`AttributeItem`]
+- [`InnerAttributeItem`]
+*/
+    #[allow(non_snake_case)]
+    #[inline]
+    pub fn others<'a>(
+        &self,
+        c: &'a mut type_sitter_lib::TreeCursor<'tree>,
+    ) -> impl Iterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            anon_unions::AttributeItem_InnerAttributeItem<'tree>,
+        >,
+    > + 'a {
+        {
+            c.0.reset(self.0);
+            c.0.goto_first_child();
+            (0..self.0.child_count())
+                .filter_map(move |_| {
+                    let has_field = c.0.field_name().is_some();
+                    let node = c.0.node();
+                    c.0.goto_next_sibling();
+                    if has_field && node.is_named() && !node.is_extra() {
+                        Some(node)
+                    } else {
+                        None
+                    }
+                })
+        }
+            .map(
+                <anon_unions::AttributeItem_InnerAttributeItem<
+                    'tree,
+                > as type_sitter_lib::Node<'tree>>::try_from_raw,
+            )
+    }
+    /**Get the node's not-extra named children.
+
+These children have type `{attribute_item | inner_attribute_item | match_pattern | _expression}+`:
+
+- [`AttributeItem`]
+- [`InnerAttributeItem`]
+- [`MatchPattern`]
+- [`Expression`]
+*/
+    /**
+This is guaranteed to return at least one child.*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -7585,7 +8877,7 @@ impl<'tree> type_sitter_lib::Node<'tree> for MatchArm<'tree> {
 }
 /**Typed node `match_block`
 
-This node has children: `match_arm*` ([MatchArm])
+This node has named children of type `match_arm*` ([`MatchArm`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -7593,8 +8885,10 @@ This node has children: `match_arm*` ([MatchArm])
 pub struct MatchBlock<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> MatchBlock<'tree> {
-    ///Get the node's not-extra named children
-    #[allow(dead_code)]
+    /**Get the node's not-extra named children.
+
+These children have type `match_arm*` ([`MatchArm`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -7639,8 +8933,9 @@ impl<'tree> type_sitter_lib::Node<'tree> for MatchBlock<'tree> {
 /**Typed node `match_expression`
 
 This node has these fields:
-- `body`: `match_block` ([MatchBlock])
-- `value`: `_expression` ([Expression])
+
+- `body`: `match_block` ([`MatchBlock`])
+- `value`: `_expression` ([`Expression`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -7648,26 +8943,30 @@ This node has these fields:
 pub struct MatchExpression<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> MatchExpression<'tree> {
-    ///Get the field `body` which has kind `match_block` ([MatchBlock])
-    #[allow(dead_code)]
+    /**Get the field `body`.
+
+This child has type `match_block` ([`MatchBlock`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn body(&self) -> type_sitter_lib::NodeResult<'tree, MatchBlock<'tree>> {
         self.0
             .child_by_field_name("body")
             .map(<MatchBlock<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the field `value` which has kind `_expression` ([Expression])
-    #[allow(dead_code)]
+    /**Get the field `value`.
+
+This child has type `_expression` ([`Expression`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn value(&self) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
         self.0
             .child_by_field_name("value")
             .map(<Expression<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
 }
@@ -7704,9 +9003,10 @@ impl<'tree> type_sitter_lib::Node<'tree> for MatchExpression<'tree> {
 /**Typed node `match_pattern`
 
 This node has these fields:
-- `condition`: `{_expression | let_chain | let_condition}?` ([anon_unions::Expression_LetChain_LetCondition])
 
-And an additional child: `_pattern` ([Pattern])
+- `condition`: `{_expression | let_chain | let_condition}?` ([`Expression`] | [`LetChain`] | [`LetCondition`])
+
+And an additional named child of type `_pattern` ([`Pattern`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -7714,8 +9014,15 @@ And an additional child: `_pattern` ([Pattern])
 pub struct MatchPattern<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> MatchPattern<'tree> {
-    ///Get the field `condition` which has kind `{_expression | let_chain | let_condition}?` ([anon_unions::Expression_LetChain_LetCondition])
-    #[allow(dead_code)]
+    /**Get the optional field `condition`.
+
+This child has type `{_expression | let_chain | let_condition}?`:
+
+- [`Expression`]
+- [`LetChain`]
+- [`LetCondition`]
+*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn condition(
         &self,
@@ -7733,9 +9040,35 @@ impl<'tree> MatchPattern<'tree> {
                 > as type_sitter_lib::Node<'tree>>::try_from_raw,
             )
     }
-    ///Get the node's not-extra named children
-    ///This is guaranteed to return at least one child
-    #[allow(dead_code)]
+    /**Get the node's only non-field not-extra named child.
+
+This child has type `_pattern` ([`Pattern`])*/
+    #[allow(non_snake_case)]
+    #[inline]
+    pub fn other(&self) -> type_sitter_lib::NodeResult<'tree, Pattern<'tree>> {
+        #[allow(clippy::unnecessary_cast)]
+        (0..)
+            .filter(|i| self.0.field_name_for_child(*i).is_some())
+            .filter_map(|i| self.0.named_child(i as usize))
+            .filter(|n| !n.is_extra())
+            .next()
+            .map(<Pattern<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
+            .expect(
+                "required child not present, there should at least be a MISSING node in its place",
+            )
+    }
+    /**Get the node's not-extra named children.
+
+These children have type `{_pattern | _expression | let_chain | let_condition}+`:
+
+- [`Pattern`]
+- [`Expression`]
+- [`LetChain`]
+- [`LetCondition`]
+*/
+    /**
+This is guaranteed to return at least one child.*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -7789,10 +9122,11 @@ impl<'tree> type_sitter_lib::Node<'tree> for MatchPattern<'tree> {
 /**Typed node `mod_item`
 
 This node has these fields:
-- `body`: `declaration_list?` ([DeclarationList])
-- `name`: `identifier` ([Identifier])
 
-And an additional (optional) child: `visibility_modifier?` ([VisibilityModifier])
+- `body`: `declaration_list?` ([`DeclarationList`])
+- `name`: `identifier` ([`Identifier`])
+
+And an optional additional named child of type `visibility_modifier?` ([`VisibilityModifier`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -7800,8 +9134,10 @@ And an additional (optional) child: `visibility_modifier?` ([VisibilityModifier]
 pub struct ModItem<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ModItem<'tree> {
-    ///Get the field `body` which has kind `declaration_list?` ([DeclarationList])
-    #[allow(dead_code)]
+    /**Get the optional field `body`.
+
+This child has type `declaration_list?` ([`DeclarationList`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn body(
         &self,
@@ -7810,20 +9146,48 @@ impl<'tree> ModItem<'tree> {
             .child_by_field_name("body")
             .map(<DeclarationList<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
     }
-    ///Get the field `name` which has kind `identifier` ([Identifier])
-    #[allow(dead_code)]
+    /**Get the field `name`.
+
+This child has type `identifier` ([`Identifier`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn name(&self) -> type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
         self.0
             .child_by_field_name("name")
             .map(<Identifier<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the node's not-extra named children
-    ///This is guaranteed to return at least one child
-    #[allow(dead_code)]
+    /**Get the node's only non-field not-extra named child, if it has one.
+
+This child has type `visibility_modifier?` ([`VisibilityModifier`])*/
+    #[allow(non_snake_case)]
+    #[inline]
+    pub fn other(
+        &self,
+    ) -> Option<type_sitter_lib::NodeResult<'tree, VisibilityModifier<'tree>>> {
+        #[allow(clippy::unnecessary_cast)]
+        (0..)
+            .filter(|i| self.0.field_name_for_child(*i).is_some())
+            .filter_map(|i| self.0.named_child(i as usize))
+            .filter(|n| !n.is_extra())
+            .next()
+            .map(
+                <VisibilityModifier<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw,
+            )
+    }
+    /**Get the node's not-extra named children.
+
+These children have type `{visibility_modifier | declaration_list | identifier}+`:
+
+- [`VisibilityModifier`]
+- [`DeclarationList`]
+- [`Identifier`]
+*/
+    /**
+This is guaranteed to return at least one child.*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -7876,9 +9240,10 @@ impl<'tree> type_sitter_lib::Node<'tree> for ModItem<'tree> {
 }
 /**Typed node `mut_pattern`
 
-This node has children: `{_pattern | mutable_specifier}+`:
-- [Pattern]
-- [MutableSpecifier]
+This node has named children of type `{_pattern | mutable_specifier}+`:
+
+- [`Pattern`]
+- [`MutableSpecifier`]
 
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -7887,9 +9252,16 @@ This node has children: `{_pattern | mutable_specifier}+`:
 pub struct MutPattern<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> MutPattern<'tree> {
-    ///Get the node's not-extra named children
-    ///This is guaranteed to return at least one child
-    #[allow(dead_code)]
+    /**Get the node's not-extra named children.
+
+These children have type `{_pattern | mutable_specifier}+`:
+
+- [`Pattern`]
+- [`MutableSpecifier`]
+*/
+    /**
+This is guaranteed to return at least one child.*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -7942,9 +9314,10 @@ impl<'tree> type_sitter_lib::Node<'tree> for MutPattern<'tree> {
 }
 /**Typed node `negative_literal`
 
-This node has a child: `{float_literal | integer_literal}`:
-- [FloatLiteral]
-- [IntegerLiteral]
+This node has a named child of type `{float_literal | integer_literal}`:
+
+- [`FloatLiteral`]
+- [`IntegerLiteral`]
 
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -7955,8 +9328,12 @@ pub struct NegativeLiteral<'tree>(yak_sitter::Node<'tree>);
 impl<'tree> NegativeLiteral<'tree> {
     /**Get the node's only not-extra named child.
 
-Iff this returns `Option`, it means the node may not have any non-extra named children.*/
-    #[allow(dead_code)]
+This child has type `{float_literal | integer_literal}`:
+
+- [`FloatLiteral`]
+- [`IntegerLiteral`]
+*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn child(
         &self,
@@ -7974,7 +9351,7 @@ Iff this returns `Option`, it means the node may not have any non-extra named ch
                 > as type_sitter_lib::Node<'tree>>::try_from_raw,
             )
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
 }
@@ -8010,7 +9387,7 @@ impl<'tree> type_sitter_lib::Node<'tree> for NegativeLiteral<'tree> {
 }
 /**Typed node `never_type`
 
-This node has no children
+This node has no named children
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -8051,8 +9428,9 @@ impl<'tree> type_sitter_lib::Node<'tree> for NeverType<'tree> {
 /**Typed node `optional_type_parameter`
 
 This node has these fields:
-- `default_type`: `_type` ([Type])
-- `name`: `{constrained_type_parameter | type_identifier}` ([anon_unions::ConstrainedTypeParameter_TypeIdentifier])
+
+- `default_type`: `_type` ([`Type`])
+- `name`: `{constrained_type_parameter | type_identifier}` ([`ConstrainedTypeParameter`] | [`TypeIdentifier`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -8060,19 +9438,27 @@ This node has these fields:
 pub struct OptionalTypeParameter<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> OptionalTypeParameter<'tree> {
-    ///Get the field `default_type` which has kind `_type` ([Type])
-    #[allow(dead_code)]
+    /**Get the field `default_type`.
+
+This child has type `_type` ([`Type`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn default_type(&self) -> type_sitter_lib::NodeResult<'tree, Type<'tree>> {
         self.0
             .child_by_field_name("default_type")
             .map(<Type<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the field `name` which has kind `{constrained_type_parameter | type_identifier}` ([anon_unions::ConstrainedTypeParameter_TypeIdentifier])
-    #[allow(dead_code)]
+    /**Get the field `name`.
+
+This child has type `{constrained_type_parameter | type_identifier}`:
+
+- [`ConstrainedTypeParameter`]
+- [`TypeIdentifier`]
+*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn name(
         &self,
@@ -8088,7 +9474,7 @@ impl<'tree> OptionalTypeParameter<'tree> {
                 > as type_sitter_lib::Node<'tree>>::try_from_raw,
             )
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
 }
@@ -8124,7 +9510,7 @@ impl<'tree> type_sitter_lib::Node<'tree> for OptionalTypeParameter<'tree> {
 }
 /**Typed node `or_pattern`
 
-This node has children: `_pattern+` ([Pattern])
+This node has named children of type `_pattern+` ([`Pattern`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -8132,9 +9518,12 @@ This node has children: `_pattern+` ([Pattern])
 pub struct OrPattern<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> OrPattern<'tree> {
-    ///Get the node's not-extra named children
-    ///This is guaranteed to return at least one child
-    #[allow(dead_code)]
+    /**Get the node's not-extra named children.
+
+These children have type `_pattern+` ([`Pattern`])*/
+    /**
+This is guaranteed to return at least one child.*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -8179,11 +9568,13 @@ impl<'tree> type_sitter_lib::Node<'tree> for OrPattern<'tree> {
 /**Typed node `ordered_field_declaration_list`
 
 This node has these fields:
-- `type`: `_type*` ([Type])
 
-And additional children: `{attribute_item | visibility_modifier}*`:
-- [AttributeItem]
-- [VisibilityModifier]
+- `type`: `_type*` ([`Type`])
+
+And additional named children of type `{attribute_item | visibility_modifier}*`:
+
+- [`AttributeItem`]
+- [`VisibilityModifier`]
 
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -8192,8 +9583,10 @@ And additional children: `{attribute_item | visibility_modifier}*`:
 pub struct OrderedFieldDeclarationList<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> OrderedFieldDeclarationList<'tree> {
-    ///Get the field `type` which has kind `_type*` ([Type])
-    #[allow(dead_code)]
+    /**Get the children of field `type`.
+
+These children have type `_type*` ([`Type`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn types<'a>(
         &self,
@@ -8203,8 +9596,54 @@ impl<'tree> OrderedFieldDeclarationList<'tree> {
             .children_by_field_name("type", &mut c.0)
             .map(<Type<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
     }
-    ///Get the node's not-extra named children
-    #[allow(dead_code)]
+    /**Get the node's non-field not-extra named children.
+
+These children have type `{attribute_item | visibility_modifier}*`:
+
+- [`AttributeItem`]
+- [`VisibilityModifier`]
+*/
+    #[allow(non_snake_case)]
+    #[inline]
+    pub fn others<'a>(
+        &self,
+        c: &'a mut type_sitter_lib::TreeCursor<'tree>,
+    ) -> impl Iterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            anon_unions::AttributeItem_VisibilityModifier<'tree>,
+        >,
+    > + 'a {
+        {
+            c.0.reset(self.0);
+            c.0.goto_first_child();
+            (0..self.0.child_count())
+                .filter_map(move |_| {
+                    let has_field = c.0.field_name().is_some();
+                    let node = c.0.node();
+                    c.0.goto_next_sibling();
+                    if has_field && node.is_named() && !node.is_extra() {
+                        Some(node)
+                    } else {
+                        None
+                    }
+                })
+        }
+            .map(
+                <anon_unions::AttributeItem_VisibilityModifier<
+                    'tree,
+                > as type_sitter_lib::Node<'tree>>::try_from_raw,
+            )
+    }
+    /**Get the node's not-extra named children.
+
+These children have type `{attribute_item | visibility_modifier | _type}*`:
+
+- [`AttributeItem`]
+- [`VisibilityModifier`]
+- [`Type`]
+*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -8257,7 +9696,7 @@ impl<'tree> type_sitter_lib::Node<'tree> for OrderedFieldDeclarationList<'tree> 
 }
 /**Typed node `outer_doc_comment_marker`
 
-This node has no children
+This node has no named children
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -8298,10 +9737,11 @@ impl<'tree> type_sitter_lib::Node<'tree> for OuterDocCommentMarker<'tree> {
 /**Typed node `parameter`
 
 This node has these fields:
-- `pattern`: `{_pattern | self}` ([anon_unions::Pattern__Self])
-- `type`: `_type` ([Type])
 
-And an additional (optional) child: `mutable_specifier?` ([MutableSpecifier])
+- `pattern`: `{_pattern | self}` ([`Pattern`] | [`Self_`])
+- `type`: `_type` ([`Type`])
+
+And an optional additional named child of type `mutable_specifier?` ([`MutableSpecifier`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -8309,37 +9749,70 @@ And an additional (optional) child: `mutable_specifier?` ([MutableSpecifier])
 pub struct Parameter<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> Parameter<'tree> {
-    ///Get the field `pattern` which has kind `{_pattern | self}` ([anon_unions::Pattern__Self])
-    #[allow(dead_code)]
+    /**Get the field `pattern`.
+
+This child has type `{_pattern | self}`:
+
+- [`Pattern`]
+- [`Self_`]
+*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn pattern(
         &self,
-    ) -> type_sitter_lib::NodeResult<'tree, anon_unions::Pattern__Self<'tree>> {
+    ) -> type_sitter_lib::NodeResult<'tree, anon_unions::Pattern_Self_<'tree>> {
         self.0
             .child_by_field_name("pattern")
             .map(
-                <anon_unions::Pattern__Self<
+                <anon_unions::Pattern_Self_<
                     'tree,
                 > as type_sitter_lib::Node<'tree>>::try_from_raw,
             )
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the field `type` which has kind `_type` ([Type])
-    #[allow(dead_code)]
+    /**Get the field `type`.
+
+This child has type `_type` ([`Type`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn r#type(&self) -> type_sitter_lib::NodeResult<'tree, Type<'tree>> {
         self.0
             .child_by_field_name("type")
             .map(<Type<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the node's not-extra named children
-    ///This is guaranteed to return at least one child
-    #[allow(dead_code)]
+    /**Get the node's only non-field not-extra named child, if it has one.
+
+This child has type `mutable_specifier?` ([`MutableSpecifier`])*/
+    #[allow(non_snake_case)]
+    #[inline]
+    pub fn other(
+        &self,
+    ) -> Option<type_sitter_lib::NodeResult<'tree, MutableSpecifier<'tree>>> {
+        #[allow(clippy::unnecessary_cast)]
+        (0..)
+            .filter(|i| self.0.field_name_for_child(*i).is_some())
+            .filter_map(|i| self.0.named_child(i as usize))
+            .filter(|n| !n.is_extra())
+            .next()
+            .map(<MutableSpecifier<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
+    }
+    /**Get the node's not-extra named children.
+
+These children have type `{mutable_specifier | _pattern | self | _type}+`:
+
+- [`MutableSpecifier`]
+- [`Pattern`]
+- [`Self_`]
+- [`Type`]
+*/
+    /**
+This is guaranteed to return at least one child.*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -8347,14 +9820,14 @@ impl<'tree> Parameter<'tree> {
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            anon_unions::MutableSpecifier_Pattern__Self_Type<'tree>,
+            anon_unions::MutableSpecifier_Pattern_Self__Type<'tree>,
         >,
     > + 'a {
         self.0
             .named_children(&mut c.0)
             .filter(|n| !n.is_extra())
             .map(
-                <anon_unions::MutableSpecifier_Pattern__Self_Type<
+                <anon_unions::MutableSpecifier_Pattern_Self__Type<
                     'tree,
                 > as type_sitter_lib::Node<'tree>>::try_from_raw,
             )
@@ -8392,12 +9865,13 @@ impl<'tree> type_sitter_lib::Node<'tree> for Parameter<'tree> {
 }
 /**Typed node `parameters`
 
-This node has children: `{_type | attribute_item | parameter | self_parameter | variadic_parameter}*`:
-- [Type]
-- [AttributeItem]
-- [Parameter]
-- [SelfParameter]
-- [VariadicParameter]
+This node has named children of type `{_type | attribute_item | parameter | self_parameter | variadic_parameter}*`:
+
+- [`Type`]
+- [`AttributeItem`]
+- [`Parameter`]
+- [`SelfParameter`]
+- [`VariadicParameter`]
 
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -8406,8 +9880,17 @@ This node has children: `{_type | attribute_item | parameter | self_parameter | 
 pub struct Parameters<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> Parameters<'tree> {
-    ///Get the node's not-extra named children
-    #[allow(dead_code)]
+    /**Get the node's not-extra named children.
+
+These children have type `{_type | attribute_item | parameter | self_parameter | variadic_parameter}*`:
+
+- [`Type`]
+- [`AttributeItem`]
+- [`Parameter`]
+- [`SelfParameter`]
+- [`VariadicParameter`]
+*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -8462,7 +9945,7 @@ impl<'tree> type_sitter_lib::Node<'tree> for Parameters<'tree> {
 }
 /**Typed node `parenthesized_expression`
 
-This node has a child: `_expression` ([Expression])
+This node has a named child of type `_expression` ([`Expression`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -8472,8 +9955,8 @@ pub struct ParenthesizedExpression<'tree>(yak_sitter::Node<'tree>);
 impl<'tree> ParenthesizedExpression<'tree> {
     /**Get the node's only not-extra named child.
 
-Iff this returns `Option`, it means the node may not have any non-extra named children.*/
-    #[allow(dead_code)]
+This child has type `_expression` ([`Expression`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn child(&self) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
         (0..)
@@ -8482,7 +9965,7 @@ Iff this returns `Option`, it means the node may not have any non-extra named ch
             .next()
             .map(<Expression<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
 }
@@ -8519,9 +10002,10 @@ impl<'tree> type_sitter_lib::Node<'tree> for ParenthesizedExpression<'tree> {
 /**Typed node `pointer_type`
 
 This node has these fields:
-- `type`: `_type` ([Type])
 
-And an additional (optional) child: `mutable_specifier?` ([MutableSpecifier])
+- `type`: `_type` ([`Type`])
+
+And an optional additional named child of type `mutable_specifier?` ([`MutableSpecifier`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -8529,20 +10013,45 @@ And an additional (optional) child: `mutable_specifier?` ([MutableSpecifier])
 pub struct PointerType<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> PointerType<'tree> {
-    ///Get the field `type` which has kind `_type` ([Type])
-    #[allow(dead_code)]
+    /**Get the field `type`.
+
+This child has type `_type` ([`Type`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn r#type(&self) -> type_sitter_lib::NodeResult<'tree, Type<'tree>> {
         self.0
             .child_by_field_name("type")
             .map(<Type<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the node's not-extra named children
-    ///This is guaranteed to return at least one child
-    #[allow(dead_code)]
+    /**Get the node's only non-field not-extra named child, if it has one.
+
+This child has type `mutable_specifier?` ([`MutableSpecifier`])*/
+    #[allow(non_snake_case)]
+    #[inline]
+    pub fn other(
+        &self,
+    ) -> Option<type_sitter_lib::NodeResult<'tree, MutableSpecifier<'tree>>> {
+        #[allow(clippy::unnecessary_cast)]
+        (0..)
+            .filter(|i| self.0.field_name_for_child(*i).is_some())
+            .filter_map(|i| self.0.named_child(i as usize))
+            .filter(|n| !n.is_extra())
+            .next()
+            .map(<MutableSpecifier<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
+    }
+    /**Get the node's not-extra named children.
+
+These children have type `{mutable_specifier | _type}+`:
+
+- [`MutableSpecifier`]
+- [`Type`]
+*/
+    /**
+This is guaranteed to return at least one child.*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -8596,8 +10105,9 @@ impl<'tree> type_sitter_lib::Node<'tree> for PointerType<'tree> {
 /**Typed node `qualified_type`
 
 This node has these fields:
-- `alias`: `_type` ([Type])
-- `type`: `_type` ([Type])
+
+- `alias`: `_type` ([`Type`])
+- `type`: `_type` ([`Type`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -8605,26 +10115,30 @@ This node has these fields:
 pub struct QualifiedType<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> QualifiedType<'tree> {
-    ///Get the field `alias` which has kind `_type` ([Type])
-    #[allow(dead_code)]
+    /**Get the field `alias`.
+
+This child has type `_type` ([`Type`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn alias(&self) -> type_sitter_lib::NodeResult<'tree, Type<'tree>> {
         self.0
             .child_by_field_name("alias")
             .map(<Type<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the field `type` which has kind `_type` ([Type])
-    #[allow(dead_code)]
+    /**Get the field `type`.
+
+This child has type `_type` ([`Type`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn r#type(&self) -> type_sitter_lib::NodeResult<'tree, Type<'tree>> {
         self.0
             .child_by_field_name("type")
             .map(<Type<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
 }
@@ -8660,7 +10174,7 @@ impl<'tree> type_sitter_lib::Node<'tree> for QualifiedType<'tree> {
 }
 /**Typed node `range_expression`
 
-This node has children: `_expression*` ([Expression])
+This node has named children of type `_expression*` ([`Expression`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -8668,8 +10182,10 @@ This node has children: `_expression*` ([Expression])
 pub struct RangeExpression<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> RangeExpression<'tree> {
-    ///Get the node's not-extra named children
-    #[allow(dead_code)]
+    /**Get the node's not-extra named children.
+
+These children have type `_expression*` ([`Expression`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -8715,14 +10231,15 @@ impl<'tree> type_sitter_lib::Node<'tree> for RangeExpression<'tree> {
 }
 /**Typed node `range_pattern`
 
-This node has children: `{_literal_pattern | crate | identifier | metavariable | scoped_identifier | self | super}+`:
-- [LiteralPattern]
-- [Crate]
-- [Identifier]
-- [Metavariable]
-- [ScopedIdentifier]
-- [_Self]
-- [Super]
+This node has named children of type `{_literal_pattern | crate | identifier | metavariable | scoped_identifier | self | super}+`:
+
+- [`LiteralPattern`]
+- [`Crate`]
+- [`Identifier`]
+- [`Metavariable`]
+- [`ScopedIdentifier`]
+- [`Self_`]
+- [`Super`]
 
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -8731,9 +10248,21 @@ This node has children: `{_literal_pattern | crate | identifier | metavariable |
 pub struct RangePattern<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> RangePattern<'tree> {
-    ///Get the node's not-extra named children
-    ///This is guaranteed to return at least one child
-    #[allow(dead_code)]
+    /**Get the node's not-extra named children.
+
+These children have type `{_literal_pattern | crate | identifier | metavariable | scoped_identifier | self | super}+`:
+
+- [`LiteralPattern`]
+- [`Crate`]
+- [`Identifier`]
+- [`Metavariable`]
+- [`ScopedIdentifier`]
+- [`Self_`]
+- [`Super`]
+*/
+    /**
+This is guaranteed to return at least one child.*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -8741,7 +10270,7 @@ impl<'tree> RangePattern<'tree> {
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            anon_unions::LiteralPattern_Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super<
+            anon_unions::LiteralPattern_Crate_Identifier_Metavariable_ScopedIdentifier_Self__Super<
                 'tree,
             >,
         >,
@@ -8750,7 +10279,7 @@ impl<'tree> RangePattern<'tree> {
             .named_children(&mut c.0)
             .filter(|n| !n.is_extra())
             .map(
-                <anon_unions::LiteralPattern_Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super<
+                <anon_unions::LiteralPattern_Crate_Identifier_Metavariable_ScopedIdentifier_Self__Super<
                     'tree,
                 > as type_sitter_lib::Node<'tree>>::try_from_raw,
             )
@@ -8788,7 +10317,7 @@ impl<'tree> type_sitter_lib::Node<'tree> for RangePattern<'tree> {
 }
 /**Typed node `raw_string_literal`
 
-This node has a child: `string_content` ([StringContent])
+This node has a named child of type `string_content` ([`StringContent`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -8798,8 +10327,8 @@ pub struct RawStringLiteral<'tree>(yak_sitter::Node<'tree>);
 impl<'tree> RawStringLiteral<'tree> {
     /**Get the node's only not-extra named child.
 
-Iff this returns `Option`, it means the node may not have any non-extra named children.*/
-    #[allow(dead_code)]
+This child has type `string_content` ([`StringContent`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn child(&self) -> type_sitter_lib::NodeResult<'tree, StringContent<'tree>> {
         (0..)
@@ -8808,7 +10337,7 @@ Iff this returns `Option`, it means the node may not have any non-extra named ch
             .next()
             .map(<StringContent<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
 }
@@ -8844,7 +10373,7 @@ impl<'tree> type_sitter_lib::Node<'tree> for RawStringLiteral<'tree> {
 }
 /**Typed node `ref_pattern`
 
-This node has a child: `_pattern` ([Pattern])
+This node has a named child of type `_pattern` ([`Pattern`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -8854,8 +10383,8 @@ pub struct RefPattern<'tree>(yak_sitter::Node<'tree>);
 impl<'tree> RefPattern<'tree> {
     /**Get the node's only not-extra named child.
 
-Iff this returns `Option`, it means the node may not have any non-extra named children.*/
-    #[allow(dead_code)]
+This child has type `_pattern` ([`Pattern`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn child(&self) -> type_sitter_lib::NodeResult<'tree, Pattern<'tree>> {
         (0..)
@@ -8864,7 +10393,7 @@ Iff this returns `Option`, it means the node may not have any non-extra named ch
             .next()
             .map(<Pattern<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
 }
@@ -8901,9 +10430,10 @@ impl<'tree> type_sitter_lib::Node<'tree> for RefPattern<'tree> {
 /**Typed node `reference_expression`
 
 This node has these fields:
-- `value`: `_expression` ([Expression])
 
-And an additional (optional) child: `mutable_specifier?` ([MutableSpecifier])
+- `value`: `_expression` ([`Expression`])
+
+And an optional additional named child of type `mutable_specifier?` ([`MutableSpecifier`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -8911,20 +10441,45 @@ And an additional (optional) child: `mutable_specifier?` ([MutableSpecifier])
 pub struct ReferenceExpression<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ReferenceExpression<'tree> {
-    ///Get the field `value` which has kind `_expression` ([Expression])
-    #[allow(dead_code)]
+    /**Get the field `value`.
+
+This child has type `_expression` ([`Expression`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn value(&self) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
         self.0
             .child_by_field_name("value")
             .map(<Expression<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the node's not-extra named children
-    ///This is guaranteed to return at least one child
-    #[allow(dead_code)]
+    /**Get the node's only non-field not-extra named child, if it has one.
+
+This child has type `mutable_specifier?` ([`MutableSpecifier`])*/
+    #[allow(non_snake_case)]
+    #[inline]
+    pub fn other(
+        &self,
+    ) -> Option<type_sitter_lib::NodeResult<'tree, MutableSpecifier<'tree>>> {
+        #[allow(clippy::unnecessary_cast)]
+        (0..)
+            .filter(|i| self.0.field_name_for_child(*i).is_some())
+            .filter_map(|i| self.0.named_child(i as usize))
+            .filter(|n| !n.is_extra())
+            .next()
+            .map(<MutableSpecifier<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
+    }
+    /**Get the node's not-extra named children.
+
+These children have type `{mutable_specifier | _expression}+`:
+
+- [`MutableSpecifier`]
+- [`Expression`]
+*/
+    /**
+This is guaranteed to return at least one child.*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -8977,9 +10532,10 @@ impl<'tree> type_sitter_lib::Node<'tree> for ReferenceExpression<'tree> {
 }
 /**Typed node `reference_pattern`
 
-This node has children: `{_pattern | mutable_specifier}+`:
-- [Pattern]
-- [MutableSpecifier]
+This node has named children of type `{_pattern | mutable_specifier}+`:
+
+- [`Pattern`]
+- [`MutableSpecifier`]
 
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -8988,9 +10544,16 @@ This node has children: `{_pattern | mutable_specifier}+`:
 pub struct ReferencePattern<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ReferencePattern<'tree> {
-    ///Get the node's not-extra named children
-    ///This is guaranteed to return at least one child
-    #[allow(dead_code)]
+    /**Get the node's not-extra named children.
+
+These children have type `{_pattern | mutable_specifier}+`:
+
+- [`Pattern`]
+- [`MutableSpecifier`]
+*/
+    /**
+This is guaranteed to return at least one child.*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -9044,11 +10607,13 @@ impl<'tree> type_sitter_lib::Node<'tree> for ReferencePattern<'tree> {
 /**Typed node `reference_type`
 
 This node has these fields:
-- `type`: `_type` ([Type])
 
-And additional children: `{lifetime | mutable_specifier}*`:
-- [Lifetime]
-- [MutableSpecifier]
+- `type`: `_type` ([`Type`])
+
+And additional named children of type `{lifetime | mutable_specifier}*`:
+
+- [`Lifetime`]
+- [`MutableSpecifier`]
 
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -9057,20 +10622,69 @@ And additional children: `{lifetime | mutable_specifier}*`:
 pub struct ReferenceType<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ReferenceType<'tree> {
-    ///Get the field `type` which has kind `_type` ([Type])
-    #[allow(dead_code)]
+    /**Get the field `type`.
+
+This child has type `_type` ([`Type`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn r#type(&self) -> type_sitter_lib::NodeResult<'tree, Type<'tree>> {
         self.0
             .child_by_field_name("type")
             .map(<Type<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the node's not-extra named children
-    ///This is guaranteed to return at least one child
-    #[allow(dead_code)]
+    /**Get the node's non-field not-extra named children.
+
+These children have type `{lifetime | mutable_specifier}*`:
+
+- [`Lifetime`]
+- [`MutableSpecifier`]
+*/
+    #[allow(non_snake_case)]
+    #[inline]
+    pub fn others<'a>(
+        &self,
+        c: &'a mut type_sitter_lib::TreeCursor<'tree>,
+    ) -> impl Iterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            anon_unions::Lifetime_MutableSpecifier<'tree>,
+        >,
+    > + 'a {
+        {
+            c.0.reset(self.0);
+            c.0.goto_first_child();
+            (0..self.0.child_count())
+                .filter_map(move |_| {
+                    let has_field = c.0.field_name().is_some();
+                    let node = c.0.node();
+                    c.0.goto_next_sibling();
+                    if has_field && node.is_named() && !node.is_extra() {
+                        Some(node)
+                    } else {
+                        None
+                    }
+                })
+        }
+            .map(
+                <anon_unions::Lifetime_MutableSpecifier<
+                    'tree,
+                > as type_sitter_lib::Node<'tree>>::try_from_raw,
+            )
+    }
+    /**Get the node's not-extra named children.
+
+These children have type `{lifetime | mutable_specifier | _type}+`:
+
+- [`Lifetime`]
+- [`MutableSpecifier`]
+- [`Type`]
+*/
+    /**
+This is guaranteed to return at least one child.*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -9123,7 +10737,7 @@ impl<'tree> type_sitter_lib::Node<'tree> for ReferenceType<'tree> {
 }
 /**Typed node `remaining_field_pattern`
 
-This node has no children
+This node has no named children
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -9163,7 +10777,7 @@ impl<'tree> type_sitter_lib::Node<'tree> for RemainingFieldPattern<'tree> {
 }
 /**Typed node `removed_trait_bound`
 
-This node has a child: `_type` ([Type])
+This node has a named child of type `_type` ([`Type`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -9173,8 +10787,8 @@ pub struct RemovedTraitBound<'tree>(yak_sitter::Node<'tree>);
 impl<'tree> RemovedTraitBound<'tree> {
     /**Get the node's only not-extra named child.
 
-Iff this returns `Option`, it means the node may not have any non-extra named children.*/
-    #[allow(dead_code)]
+This child has type `_type` ([`Type`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn child(&self) -> type_sitter_lib::NodeResult<'tree, Type<'tree>> {
         (0..)
@@ -9183,7 +10797,7 @@ Iff this returns `Option`, it means the node may not have any non-extra named ch
             .next()
             .map(<Type<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
 }
@@ -9219,7 +10833,7 @@ impl<'tree> type_sitter_lib::Node<'tree> for RemovedTraitBound<'tree> {
 }
 /**Typed node `return_expression`
 
-This node has an (optional) child: `_expression?` ([Expression])
+This node has an optional named child of type `_expression?` ([`Expression`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -9227,10 +10841,10 @@ This node has an (optional) child: `_expression?` ([Expression])
 pub struct ReturnExpression<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ReturnExpression<'tree> {
-    /**Get the node's only not-extra named child.
+    /**Get the node's only not-extra named child, if it has one.
 
-Iff this returns `Option`, it means the node may not have any non-extra named children.*/
-    #[allow(dead_code)]
+This child has type `_expression?` ([`Expression`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn child(
         &self,
@@ -9275,8 +10889,9 @@ impl<'tree> type_sitter_lib::Node<'tree> for ReturnExpression<'tree> {
 /**Typed node `scoped_identifier`
 
 This node has these fields:
-- `name`: `{identifier | super}` ([anon_unions::Identifier_Super])
-- `path`: `{bracketed_type | crate | generic_type | identifier | metavariable | scoped_identifier | self | super}?` ([anon_unions::BracketedType_Crate_GenericType_Identifier_Metavariable_ScopedIdentifier__Self_Super])
+
+- `name`: `{identifier | super}` ([`Identifier`] | [`Super`])
+- `path`: `{bracketed_type | crate | generic_type | identifier | metavariable | scoped_identifier | self | super}?` ([`BracketedType`] | [`Crate`] | [`GenericType`] | [`Identifier`] | [`Metavariable`] | [`ScopedIdentifier`] | [`Self_`] | [`Super`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -9284,8 +10899,14 @@ This node has these fields:
 pub struct ScopedIdentifier<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ScopedIdentifier<'tree> {
-    ///Get the field `name` which has kind `{identifier | super}` ([anon_unions::Identifier_Super])
-    #[allow(dead_code)]
+    /**Get the field `name`.
+
+This child has type `{identifier | super}`:
+
+- [`Identifier`]
+- [`Super`]
+*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn name(
         &self,
@@ -9298,18 +10919,30 @@ impl<'tree> ScopedIdentifier<'tree> {
                 > as type_sitter_lib::Node<'tree>>::try_from_raw,
             )
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the field `path` which has kind `{bracketed_type | crate | generic_type | identifier | metavariable | scoped_identifier | self | super}?` ([anon_unions::BracketedType_Crate_GenericType_Identifier_Metavariable_ScopedIdentifier__Self_Super])
-    #[allow(dead_code)]
+    /**Get the optional field `path`.
+
+This child has type `{bracketed_type | crate | generic_type | identifier | metavariable | scoped_identifier | self | super}?`:
+
+- [`BracketedType`]
+- [`Crate`]
+- [`GenericType`]
+- [`Identifier`]
+- [`Metavariable`]
+- [`ScopedIdentifier`]
+- [`Self_`]
+- [`Super`]
+*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn path(
         &self,
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            anon_unions::BracketedType_Crate_GenericType_Identifier_Metavariable_ScopedIdentifier__Self_Super<
+            anon_unions::BracketedType_Crate_GenericType_Identifier_Metavariable_ScopedIdentifier_Self__Super<
                 'tree,
             >,
         >,
@@ -9317,7 +10950,7 @@ impl<'tree> ScopedIdentifier<'tree> {
         self.0
             .child_by_field_name("path")
             .map(
-                <anon_unions::BracketedType_Crate_GenericType_Identifier_Metavariable_ScopedIdentifier__Self_Super<
+                <anon_unions::BracketedType_Crate_GenericType_Identifier_Metavariable_ScopedIdentifier_Self__Super<
                     'tree,
                 > as type_sitter_lib::Node<'tree>>::try_from_raw,
             )
@@ -9356,8 +10989,9 @@ impl<'tree> type_sitter_lib::Node<'tree> for ScopedIdentifier<'tree> {
 /**Typed node `scoped_type_identifier`
 
 This node has these fields:
-- `name`: `type_identifier` ([TypeIdentifier])
-- `path`: `{bracketed_type | crate | generic_type | identifier | metavariable | scoped_identifier | self | super}?` ([anon_unions::BracketedType_Crate_GenericType_Identifier_Metavariable_ScopedIdentifier__Self_Super])
+
+- `name`: `type_identifier` ([`TypeIdentifier`])
+- `path`: `{bracketed_type | crate | generic_type | identifier | metavariable | scoped_identifier | self | super}?` ([`BracketedType`] | [`Crate`] | [`GenericType`] | [`Identifier`] | [`Metavariable`] | [`ScopedIdentifier`] | [`Self_`] | [`Super`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -9365,26 +10999,40 @@ This node has these fields:
 pub struct ScopedTypeIdentifier<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ScopedTypeIdentifier<'tree> {
-    ///Get the field `name` which has kind `type_identifier` ([TypeIdentifier])
-    #[allow(dead_code)]
+    /**Get the field `name`.
+
+This child has type `type_identifier` ([`TypeIdentifier`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn name(&self) -> type_sitter_lib::NodeResult<'tree, TypeIdentifier<'tree>> {
         self.0
             .child_by_field_name("name")
             .map(<TypeIdentifier<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the field `path` which has kind `{bracketed_type | crate | generic_type | identifier | metavariable | scoped_identifier | self | super}?` ([anon_unions::BracketedType_Crate_GenericType_Identifier_Metavariable_ScopedIdentifier__Self_Super])
-    #[allow(dead_code)]
+    /**Get the optional field `path`.
+
+This child has type `{bracketed_type | crate | generic_type | identifier | metavariable | scoped_identifier | self | super}?`:
+
+- [`BracketedType`]
+- [`Crate`]
+- [`GenericType`]
+- [`Identifier`]
+- [`Metavariable`]
+- [`ScopedIdentifier`]
+- [`Self_`]
+- [`Super`]
+*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn path(
         &self,
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            anon_unions::BracketedType_Crate_GenericType_Identifier_Metavariable_ScopedIdentifier__Self_Super<
+            anon_unions::BracketedType_Crate_GenericType_Identifier_Metavariable_ScopedIdentifier_Self__Super<
                 'tree,
             >,
         >,
@@ -9392,7 +11040,7 @@ impl<'tree> ScopedTypeIdentifier<'tree> {
         self.0
             .child_by_field_name("path")
             .map(
-                <anon_unions::BracketedType_Crate_GenericType_Identifier_Metavariable_ScopedIdentifier__Self_Super<
+                <anon_unions::BracketedType_Crate_GenericType_Identifier_Metavariable_ScopedIdentifier_Self__Super<
                     'tree,
                 > as type_sitter_lib::Node<'tree>>::try_from_raw,
             )
@@ -9431,8 +11079,9 @@ impl<'tree> type_sitter_lib::Node<'tree> for ScopedTypeIdentifier<'tree> {
 /**Typed node `scoped_use_list`
 
 This node has these fields:
-- `list`: `use_list` ([UseList])
-- `path`: `{crate | identifier | metavariable | scoped_identifier | self | super}?` ([anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super])
+
+- `list`: `use_list` ([`UseList`])
+- `path`: `{crate | identifier | metavariable | scoped_identifier | self | super}?` ([`Crate`] | [`Identifier`] | [`Metavariable`] | [`ScopedIdentifier`] | [`Self_`] | [`Super`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -9440,26 +11089,38 @@ This node has these fields:
 pub struct ScopedUseList<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ScopedUseList<'tree> {
-    ///Get the field `list` which has kind `use_list` ([UseList])
-    #[allow(dead_code)]
+    /**Get the field `list`.
+
+This child has type `use_list` ([`UseList`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn list(&self) -> type_sitter_lib::NodeResult<'tree, UseList<'tree>> {
         self.0
             .child_by_field_name("list")
             .map(<UseList<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the field `path` which has kind `{crate | identifier | metavariable | scoped_identifier | self | super}?` ([anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super])
-    #[allow(dead_code)]
+    /**Get the optional field `path`.
+
+This child has type `{crate | identifier | metavariable | scoped_identifier | self | super}?`:
+
+- [`Crate`]
+- [`Identifier`]
+- [`Metavariable`]
+- [`ScopedIdentifier`]
+- [`Self_`]
+- [`Super`]
+*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn path(
         &self,
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super<
+            anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier_Self__Super<
                 'tree,
             >,
         >,
@@ -9467,7 +11128,7 @@ impl<'tree> ScopedUseList<'tree> {
         self.0
             .child_by_field_name("path")
             .map(
-                <anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super<
+                <anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier_Self__Super<
                     'tree,
                 > as type_sitter_lib::Node<'tree>>::try_from_raw,
             )
@@ -9505,10 +11166,11 @@ impl<'tree> type_sitter_lib::Node<'tree> for ScopedUseList<'tree> {
 }
 /**Typed node `self_parameter`
 
-This node has children: `{lifetime | mutable_specifier | self}+`:
-- [Lifetime]
-- [MutableSpecifier]
-- [_Self]
+This node has named children of type `{lifetime | mutable_specifier | self}+`:
+
+- [`Lifetime`]
+- [`MutableSpecifier`]
+- [`Self_`]
 
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -9517,9 +11179,17 @@ This node has children: `{lifetime | mutable_specifier | self}+`:
 pub struct SelfParameter<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> SelfParameter<'tree> {
-    ///Get the node's not-extra named children
-    ///This is guaranteed to return at least one child
-    #[allow(dead_code)]
+    /**Get the node's not-extra named children.
+
+These children have type `{lifetime | mutable_specifier | self}+`:
+
+- [`Lifetime`]
+- [`MutableSpecifier`]
+- [`Self_`]
+*/
+    /**
+This is guaranteed to return at least one child.*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -9527,14 +11197,14 @@ impl<'tree> SelfParameter<'tree> {
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            anon_unions::Lifetime_MutableSpecifier__Self<'tree>,
+            anon_unions::Lifetime_MutableSpecifier_Self_<'tree>,
         >,
     > + 'a {
         self.0
             .named_children(&mut c.0)
             .filter(|n| !n.is_extra())
             .map(
-                <anon_unions::Lifetime_MutableSpecifier__Self<
+                <anon_unions::Lifetime_MutableSpecifier_Self_<
                     'tree,
                 > as type_sitter_lib::Node<'tree>>::try_from_raw,
             )
@@ -9572,9 +11242,10 @@ impl<'tree> type_sitter_lib::Node<'tree> for SelfParameter<'tree> {
 }
 /**Typed node `shorthand_field_initializer`
 
-This node has children: `{attribute_item | identifier}+`:
-- [AttributeItem]
-- [Identifier]
+This node has named children of type `{attribute_item | identifier}+`:
+
+- [`AttributeItem`]
+- [`Identifier`]
 
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -9583,9 +11254,16 @@ This node has children: `{attribute_item | identifier}+`:
 pub struct ShorthandFieldInitializer<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> ShorthandFieldInitializer<'tree> {
-    ///Get the node's not-extra named children
-    ///This is guaranteed to return at least one child
-    #[allow(dead_code)]
+    /**Get the node's not-extra named children.
+
+These children have type `{attribute_item | identifier}+`:
+
+- [`AttributeItem`]
+- [`Identifier`]
+*/
+    /**
+This is guaranteed to return at least one child.*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -9638,7 +11316,7 @@ impl<'tree> type_sitter_lib::Node<'tree> for ShorthandFieldInitializer<'tree> {
 }
 /**Typed node `slice_pattern`
 
-This node has children: `_pattern*` ([Pattern])
+This node has named children of type `_pattern*` ([`Pattern`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -9646,8 +11324,10 @@ This node has children: `_pattern*` ([Pattern])
 pub struct SlicePattern<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> SlicePattern<'tree> {
-    ///Get the node's not-extra named children
-    #[allow(dead_code)]
+    /**Get the node's not-extra named children.
+
+These children have type `_pattern*` ([`Pattern`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -9691,10 +11371,11 @@ impl<'tree> type_sitter_lib::Node<'tree> for SlicePattern<'tree> {
 }
 /**Typed node `source_file`
 
-This node has children: `{_declaration_statement | expression_statement | shebang}*`:
-- [DeclarationStatement]
-- [ExpressionStatement]
-- [Shebang]
+This node has named children of type `{_declaration_statement | expression_statement | shebang}*`:
+
+- [`DeclarationStatement`]
+- [`ExpressionStatement`]
+- [`Shebang`]
 
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -9703,8 +11384,15 @@ This node has children: `{_declaration_statement | expression_statement | sheban
 pub struct SourceFile<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> SourceFile<'tree> {
-    ///Get the node's not-extra named children
-    #[allow(dead_code)]
+    /**Get the node's not-extra named children.
+
+These children have type `{_declaration_statement | expression_statement | shebang}*`:
+
+- [`DeclarationStatement`]
+- [`ExpressionStatement`]
+- [`Shebang`]
+*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -9758,13 +11446,15 @@ impl<'tree> type_sitter_lib::Node<'tree> for SourceFile<'tree> {
 /**Typed node `static_item`
 
 This node has these fields:
-- `name`: `identifier` ([Identifier])
-- `type`: `_type` ([Type])
-- `value`: `_expression?` ([Expression])
 
-And additional children: `{mutable_specifier | visibility_modifier}*`:
-- [MutableSpecifier]
-- [VisibilityModifier]
+- `name`: `identifier` ([`Identifier`])
+- `type`: `_type` ([`Type`])
+- `value`: `_expression?` ([`Expression`])
+
+And additional named children of type `{mutable_specifier | visibility_modifier}*`:
+
+- [`MutableSpecifier`]
+- [`VisibilityModifier`]
 
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -9773,30 +11463,36 @@ And additional children: `{mutable_specifier | visibility_modifier}*`:
 pub struct StaticItem<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> StaticItem<'tree> {
-    ///Get the field `name` which has kind `identifier` ([Identifier])
-    #[allow(dead_code)]
+    /**Get the field `name`.
+
+This child has type `identifier` ([`Identifier`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn name(&self) -> type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
         self.0
             .child_by_field_name("name")
             .map(<Identifier<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the field `type` which has kind `_type` ([Type])
-    #[allow(dead_code)]
+    /**Get the field `type`.
+
+This child has type `_type` ([`Type`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn r#type(&self) -> type_sitter_lib::NodeResult<'tree, Type<'tree>> {
         self.0
             .child_by_field_name("type")
             .map(<Type<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the field `value` which has kind `_expression?` ([Expression])
-    #[allow(dead_code)]
+    /**Get the optional field `value`.
+
+This child has type `_expression?` ([`Expression`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn value(
         &self,
@@ -9805,9 +11501,58 @@ impl<'tree> StaticItem<'tree> {
             .child_by_field_name("value")
             .map(<Expression<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
     }
-    ///Get the node's not-extra named children
-    ///This is guaranteed to return at least one child
-    #[allow(dead_code)]
+    /**Get the node's non-field not-extra named children.
+
+These children have type `{mutable_specifier | visibility_modifier}*`:
+
+- [`MutableSpecifier`]
+- [`VisibilityModifier`]
+*/
+    #[allow(non_snake_case)]
+    #[inline]
+    pub fn others<'a>(
+        &self,
+        c: &'a mut type_sitter_lib::TreeCursor<'tree>,
+    ) -> impl Iterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            anon_unions::MutableSpecifier_VisibilityModifier<'tree>,
+        >,
+    > + 'a {
+        {
+            c.0.reset(self.0);
+            c.0.goto_first_child();
+            (0..self.0.child_count())
+                .filter_map(move |_| {
+                    let has_field = c.0.field_name().is_some();
+                    let node = c.0.node();
+                    c.0.goto_next_sibling();
+                    if has_field && node.is_named() && !node.is_extra() {
+                        Some(node)
+                    } else {
+                        None
+                    }
+                })
+        }
+            .map(
+                <anon_unions::MutableSpecifier_VisibilityModifier<
+                    'tree,
+                > as type_sitter_lib::Node<'tree>>::try_from_raw,
+            )
+    }
+    /**Get the node's not-extra named children.
+
+These children have type `{mutable_specifier | visibility_modifier | identifier | _type | _expression}+`:
+
+- [`MutableSpecifier`]
+- [`VisibilityModifier`]
+- [`Identifier`]
+- [`Type`]
+- [`Expression`]
+*/
+    /**
+This is guaranteed to return at least one child.*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -9862,9 +11607,10 @@ impl<'tree> type_sitter_lib::Node<'tree> for StaticItem<'tree> {
 }
 /**Typed node `string_literal`
 
-This node has children: `{escape_sequence | string_content}*`:
-- [EscapeSequence]
-- [StringContent]
+This node has named children of type `{escape_sequence | string_content}*`:
+
+- [`EscapeSequence`]
+- [`StringContent`]
 
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -9873,8 +11619,14 @@ This node has children: `{escape_sequence | string_content}*`:
 pub struct StringLiteral<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> StringLiteral<'tree> {
-    ///Get the node's not-extra named children
-    #[allow(dead_code)]
+    /**Get the node's not-extra named children.
+
+These children have type `{escape_sequence | string_content}*`:
+
+- [`EscapeSequence`]
+- [`StringContent`]
+*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -9928,8 +11680,9 @@ impl<'tree> type_sitter_lib::Node<'tree> for StringLiteral<'tree> {
 /**Typed node `struct_expression`
 
 This node has these fields:
-- `body`: `field_initializer_list` ([FieldInitializerList])
-- `name`: `{generic_type_with_turbofish | scoped_type_identifier | type_identifier}` ([anon_unions::GenericTypeWithTurbofish_ScopedTypeIdentifier_TypeIdentifier])
+
+- `body`: `field_initializer_list` ([`FieldInitializerList`])
+- `name`: `{generic_type_with_turbofish | scoped_type_identifier | type_identifier}` ([`GenericTypeWithTurbofish`] | [`ScopedTypeIdentifier`] | [`TypeIdentifier`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -9937,8 +11690,10 @@ This node has these fields:
 pub struct StructExpression<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> StructExpression<'tree> {
-    ///Get the field `body` which has kind `field_initializer_list` ([FieldInitializerList])
-    #[allow(dead_code)]
+    /**Get the field `body`.
+
+This child has type `field_initializer_list` ([`FieldInitializerList`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn body(
         &self,
@@ -9951,11 +11706,18 @@ impl<'tree> StructExpression<'tree> {
                 > as type_sitter_lib::Node<'tree>>::try_from_raw,
             )
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the field `name` which has kind `{generic_type_with_turbofish | scoped_type_identifier | type_identifier}` ([anon_unions::GenericTypeWithTurbofish_ScopedTypeIdentifier_TypeIdentifier])
-    #[allow(dead_code)]
+    /**Get the field `name`.
+
+This child has type `{generic_type_with_turbofish | scoped_type_identifier | type_identifier}`:
+
+- [`GenericTypeWithTurbofish`]
+- [`ScopedTypeIdentifier`]
+- [`TypeIdentifier`]
+*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn name(
         &self,
@@ -9971,7 +11733,7 @@ impl<'tree> StructExpression<'tree> {
                 > as type_sitter_lib::Node<'tree>>::try_from_raw,
             )
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
 }
@@ -10008,13 +11770,15 @@ impl<'tree> type_sitter_lib::Node<'tree> for StructExpression<'tree> {
 /**Typed node `struct_item`
 
 This node has these fields:
-- `body`: `{field_declaration_list | ordered_field_declaration_list}?` ([anon_unions::FieldDeclarationList_OrderedFieldDeclarationList])
-- `name`: `type_identifier` ([TypeIdentifier])
-- `type_parameters`: `type_parameters?` ([TypeParameters])
 
-And additional children: `{visibility_modifier | where_clause}*`:
-- [VisibilityModifier]
-- [WhereClause]
+- `body`: `{field_declaration_list | ordered_field_declaration_list}?` ([`FieldDeclarationList`] | [`OrderedFieldDeclarationList`])
+- `name`: `type_identifier` ([`TypeIdentifier`])
+- `type_parameters`: `type_parameters?` ([`TypeParameters`])
+
+And additional named children of type `{visibility_modifier | where_clause}*`:
+
+- [`VisibilityModifier`]
+- [`WhereClause`]
 
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -10023,8 +11787,14 @@ And additional children: `{visibility_modifier | where_clause}*`:
 pub struct StructItem<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> StructItem<'tree> {
-    ///Get the field `body` which has kind `{field_declaration_list | ordered_field_declaration_list}?` ([anon_unions::FieldDeclarationList_OrderedFieldDeclarationList])
-    #[allow(dead_code)]
+    /**Get the optional field `body`.
+
+This child has type `{field_declaration_list | ordered_field_declaration_list}?`:
+
+- [`FieldDeclarationList`]
+- [`OrderedFieldDeclarationList`]
+*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn body(
         &self,
@@ -10042,19 +11812,23 @@ impl<'tree> StructItem<'tree> {
                 > as type_sitter_lib::Node<'tree>>::try_from_raw,
             )
     }
-    ///Get the field `name` which has kind `type_identifier` ([TypeIdentifier])
-    #[allow(dead_code)]
+    /**Get the field `name`.
+
+This child has type `type_identifier` ([`TypeIdentifier`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn name(&self) -> type_sitter_lib::NodeResult<'tree, TypeIdentifier<'tree>> {
         self.0
             .child_by_field_name("name")
             .map(<TypeIdentifier<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the field `type_parameters` which has kind `type_parameters?` ([TypeParameters])
-    #[allow(dead_code)]
+    /**Get the optional field `type_parameters`.
+
+This child has type `type_parameters?` ([`TypeParameters`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn type_parameters(
         &self,
@@ -10063,9 +11837,59 @@ impl<'tree> StructItem<'tree> {
             .child_by_field_name("type_parameters")
             .map(<TypeParameters<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
     }
-    ///Get the node's not-extra named children
-    ///This is guaranteed to return at least one child
-    #[allow(dead_code)]
+    /**Get the node's non-field not-extra named children.
+
+These children have type `{visibility_modifier | where_clause}*`:
+
+- [`VisibilityModifier`]
+- [`WhereClause`]
+*/
+    #[allow(non_snake_case)]
+    #[inline]
+    pub fn others<'a>(
+        &self,
+        c: &'a mut type_sitter_lib::TreeCursor<'tree>,
+    ) -> impl Iterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            anon_unions::VisibilityModifier_WhereClause<'tree>,
+        >,
+    > + 'a {
+        {
+            c.0.reset(self.0);
+            c.0.goto_first_child();
+            (0..self.0.child_count())
+                .filter_map(move |_| {
+                    let has_field = c.0.field_name().is_some();
+                    let node = c.0.node();
+                    c.0.goto_next_sibling();
+                    if has_field && node.is_named() && !node.is_extra() {
+                        Some(node)
+                    } else {
+                        None
+                    }
+                })
+        }
+            .map(
+                <anon_unions::VisibilityModifier_WhereClause<
+                    'tree,
+                > as type_sitter_lib::Node<'tree>>::try_from_raw,
+            )
+    }
+    /**Get the node's not-extra named children.
+
+These children have type `{visibility_modifier | where_clause | field_declaration_list | ordered_field_declaration_list | type_identifier | type_parameters}+`:
+
+- [`VisibilityModifier`]
+- [`WhereClause`]
+- [`FieldDeclarationList`]
+- [`OrderedFieldDeclarationList`]
+- [`TypeIdentifier`]
+- [`TypeParameters`]
+*/
+    /**
+This is guaranteed to return at least one child.*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -10121,11 +11945,13 @@ impl<'tree> type_sitter_lib::Node<'tree> for StructItem<'tree> {
 /**Typed node `struct_pattern`
 
 This node has these fields:
-- `type`: `{scoped_type_identifier | type_identifier}` ([anon_unions::ScopedTypeIdentifier_TypeIdentifier])
 
-And additional children: `{field_pattern | remaining_field_pattern}*`:
-- [FieldPattern]
-- [RemainingFieldPattern]
+- `type`: `{scoped_type_identifier | type_identifier}` ([`ScopedTypeIdentifier`] | [`TypeIdentifier`])
+
+And additional named children of type `{field_pattern | remaining_field_pattern}*`:
+
+- [`FieldPattern`]
+- [`RemainingFieldPattern`]
 
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -10134,8 +11960,14 @@ And additional children: `{field_pattern | remaining_field_pattern}*`:
 pub struct StructPattern<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> StructPattern<'tree> {
-    ///Get the field `type` which has kind `{scoped_type_identifier | type_identifier}` ([anon_unions::ScopedTypeIdentifier_TypeIdentifier])
-    #[allow(dead_code)]
+    /**Get the field `type`.
+
+This child has type `{scoped_type_identifier | type_identifier}`:
+
+- [`ScopedTypeIdentifier`]
+- [`TypeIdentifier`]
+*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn r#type(
         &self,
@@ -10151,12 +11983,60 @@ impl<'tree> StructPattern<'tree> {
                 > as type_sitter_lib::Node<'tree>>::try_from_raw,
             )
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the node's not-extra named children
-    ///This is guaranteed to return at least one child
-    #[allow(dead_code)]
+    /**Get the node's non-field not-extra named children.
+
+These children have type `{field_pattern | remaining_field_pattern}*`:
+
+- [`FieldPattern`]
+- [`RemainingFieldPattern`]
+*/
+    #[allow(non_snake_case)]
+    #[inline]
+    pub fn others<'a>(
+        &self,
+        c: &'a mut type_sitter_lib::TreeCursor<'tree>,
+    ) -> impl Iterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            anon_unions::FieldPattern_RemainingFieldPattern<'tree>,
+        >,
+    > + 'a {
+        {
+            c.0.reset(self.0);
+            c.0.goto_first_child();
+            (0..self.0.child_count())
+                .filter_map(move |_| {
+                    let has_field = c.0.field_name().is_some();
+                    let node = c.0.node();
+                    c.0.goto_next_sibling();
+                    if has_field && node.is_named() && !node.is_extra() {
+                        Some(node)
+                    } else {
+                        None
+                    }
+                })
+        }
+            .map(
+                <anon_unions::FieldPattern_RemainingFieldPattern<
+                    'tree,
+                > as type_sitter_lib::Node<'tree>>::try_from_raw,
+            )
+    }
+    /**Get the node's not-extra named children.
+
+These children have type `{field_pattern | remaining_field_pattern | scoped_type_identifier | type_identifier}+`:
+
+- [`FieldPattern`]
+- [`RemainingFieldPattern`]
+- [`ScopedTypeIdentifier`]
+- [`TypeIdentifier`]
+*/
+    /**
+This is guaranteed to return at least one child.*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -10212,8 +12092,9 @@ impl<'tree> type_sitter_lib::Node<'tree> for StructPattern<'tree> {
 /**Typed node `token_binding_pattern`
 
 This node has these fields:
-- `name`: `metavariable` ([Metavariable])
-- `type`: `fragment_specifier` ([FragmentSpecifier])
+
+- `name`: `metavariable` ([`Metavariable`])
+- `type`: `fragment_specifier` ([`FragmentSpecifier`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -10221,19 +12102,23 @@ This node has these fields:
 pub struct TokenBindingPattern<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TokenBindingPattern<'tree> {
-    ///Get the field `name` which has kind `metavariable` ([Metavariable])
-    #[allow(dead_code)]
+    /**Get the field `name`.
+
+This child has type `metavariable` ([`Metavariable`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn name(&self) -> type_sitter_lib::NodeResult<'tree, Metavariable<'tree>> {
         self.0
             .child_by_field_name("name")
             .map(<Metavariable<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the field `type` which has kind `fragment_specifier` ([FragmentSpecifier])
-    #[allow(dead_code)]
+    /**Get the field `type`.
+
+This child has type `fragment_specifier` ([`FragmentSpecifier`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn r#type(
         &self,
@@ -10244,7 +12129,7 @@ impl<'tree> TokenBindingPattern<'tree> {
                 <FragmentSpecifier<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw,
             )
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
 }
@@ -10280,17 +12165,18 @@ impl<'tree> type_sitter_lib::Node<'tree> for TokenBindingPattern<'tree> {
 }
 /**Typed node `token_repetition`
 
-This node has children: `{_literal | crate | identifier | metavariable | mutable_specifier | primitive_type | self | super | token_repetition | token_tree}*`:
-- [Literal]
-- [Crate]
-- [Identifier]
-- [Metavariable]
-- [MutableSpecifier]
-- [PrimitiveType]
-- [_Self]
-- [Super]
-- [TokenRepetition]
-- [TokenTree]
+This node has named children of type `{_literal | crate | identifier | metavariable | mutable_specifier | primitive_type | self | super | token_repetition | token_tree}*`:
+
+- [`Literal`]
+- [`Crate`]
+- [`Identifier`]
+- [`Metavariable`]
+- [`MutableSpecifier`]
+- [`PrimitiveType`]
+- [`Self_`]
+- [`Super`]
+- [`TokenRepetition`]
+- [`TokenTree`]
 
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -10299,8 +12185,22 @@ This node has children: `{_literal | crate | identifier | metavariable | mutable
 pub struct TokenRepetition<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TokenRepetition<'tree> {
-    ///Get the node's not-extra named children
-    #[allow(dead_code)]
+    /**Get the node's not-extra named children.
+
+These children have type `{_literal | crate | identifier | metavariable | mutable_specifier | primitive_type | self | super | token_repetition | token_tree}*`:
+
+- [`Literal`]
+- [`Crate`]
+- [`Identifier`]
+- [`Metavariable`]
+- [`MutableSpecifier`]
+- [`PrimitiveType`]
+- [`Self_`]
+- [`Super`]
+- [`TokenRepetition`]
+- [`TokenTree`]
+*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -10308,7 +12208,7 @@ impl<'tree> TokenRepetition<'tree> {
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            anon_unions::Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenRepetition_TokenTree<
+            anon_unions::Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType_Self__Super_TokenRepetition_TokenTree<
                 'tree,
             >,
         >,
@@ -10317,7 +12217,7 @@ impl<'tree> TokenRepetition<'tree> {
             .named_children(&mut c.0)
             .filter(|n| !n.is_extra())
             .map(
-                <anon_unions::Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenRepetition_TokenTree<
+                <anon_unions::Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType_Self__Super_TokenRepetition_TokenTree<
                     'tree,
                 > as type_sitter_lib::Node<'tree>>::try_from_raw,
             )
@@ -10355,18 +12255,19 @@ impl<'tree> type_sitter_lib::Node<'tree> for TokenRepetition<'tree> {
 }
 /**Typed node `token_repetition_pattern`
 
-This node has children: `{_literal | crate | identifier | metavariable | mutable_specifier | primitive_type | self | super | token_binding_pattern | token_repetition_pattern | token_tree_pattern}*`:
-- [Literal]
-- [Crate]
-- [Identifier]
-- [Metavariable]
-- [MutableSpecifier]
-- [PrimitiveType]
-- [_Self]
-- [Super]
-- [TokenBindingPattern]
-- [TokenRepetitionPattern]
-- [TokenTreePattern]
+This node has named children of type `{_literal | crate | identifier | metavariable | mutable_specifier | primitive_type | self | super | token_binding_pattern | token_repetition_pattern | token_tree_pattern}*`:
+
+- [`Literal`]
+- [`Crate`]
+- [`Identifier`]
+- [`Metavariable`]
+- [`MutableSpecifier`]
+- [`PrimitiveType`]
+- [`Self_`]
+- [`Super`]
+- [`TokenBindingPattern`]
+- [`TokenRepetitionPattern`]
+- [`TokenTreePattern`]
 
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -10375,8 +12276,23 @@ This node has children: `{_literal | crate | identifier | metavariable | mutable
 pub struct TokenRepetitionPattern<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TokenRepetitionPattern<'tree> {
-    ///Get the node's not-extra named children
-    #[allow(dead_code)]
+    /**Get the node's not-extra named children.
+
+These children have type `{_literal | crate | identifier | metavariable | mutable_specifier | primitive_type | self | super | token_binding_pattern | token_repetition_pattern | token_tree_pattern}*`:
+
+- [`Literal`]
+- [`Crate`]
+- [`Identifier`]
+- [`Metavariable`]
+- [`MutableSpecifier`]
+- [`PrimitiveType`]
+- [`Self_`]
+- [`Super`]
+- [`TokenBindingPattern`]
+- [`TokenRepetitionPattern`]
+- [`TokenTreePattern`]
+*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -10384,7 +12300,7 @@ impl<'tree> TokenRepetitionPattern<'tree> {
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            anon_unions::Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern<
+            anon_unions::Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType_Self__Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern<
                 'tree,
             >,
         >,
@@ -10393,7 +12309,7 @@ impl<'tree> TokenRepetitionPattern<'tree> {
             .named_children(&mut c.0)
             .filter(|n| !n.is_extra())
             .map(
-                <anon_unions::Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern<
+                <anon_unions::Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType_Self__Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern<
                     'tree,
                 > as type_sitter_lib::Node<'tree>>::try_from_raw,
             )
@@ -10431,17 +12347,18 @@ impl<'tree> type_sitter_lib::Node<'tree> for TokenRepetitionPattern<'tree> {
 }
 /**Typed node `token_tree`
 
-This node has children: `{_literal | crate | identifier | metavariable | mutable_specifier | primitive_type | self | super | token_repetition | token_tree}*`:
-- [Literal]
-- [Crate]
-- [Identifier]
-- [Metavariable]
-- [MutableSpecifier]
-- [PrimitiveType]
-- [_Self]
-- [Super]
-- [TokenRepetition]
-- [TokenTree]
+This node has named children of type `{_literal | crate | identifier | metavariable | mutable_specifier | primitive_type | self | super | token_repetition | token_tree}*`:
+
+- [`Literal`]
+- [`Crate`]
+- [`Identifier`]
+- [`Metavariable`]
+- [`MutableSpecifier`]
+- [`PrimitiveType`]
+- [`Self_`]
+- [`Super`]
+- [`TokenRepetition`]
+- [`TokenTree`]
 
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -10450,8 +12367,22 @@ This node has children: `{_literal | crate | identifier | metavariable | mutable
 pub struct TokenTree<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TokenTree<'tree> {
-    ///Get the node's not-extra named children
-    #[allow(dead_code)]
+    /**Get the node's not-extra named children.
+
+These children have type `{_literal | crate | identifier | metavariable | mutable_specifier | primitive_type | self | super | token_repetition | token_tree}*`:
+
+- [`Literal`]
+- [`Crate`]
+- [`Identifier`]
+- [`Metavariable`]
+- [`MutableSpecifier`]
+- [`PrimitiveType`]
+- [`Self_`]
+- [`Super`]
+- [`TokenRepetition`]
+- [`TokenTree`]
+*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -10459,7 +12390,7 @@ impl<'tree> TokenTree<'tree> {
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            anon_unions::Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenRepetition_TokenTree<
+            anon_unions::Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType_Self__Super_TokenRepetition_TokenTree<
                 'tree,
             >,
         >,
@@ -10468,7 +12399,7 @@ impl<'tree> TokenTree<'tree> {
             .named_children(&mut c.0)
             .filter(|n| !n.is_extra())
             .map(
-                <anon_unions::Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenRepetition_TokenTree<
+                <anon_unions::Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType_Self__Super_TokenRepetition_TokenTree<
                     'tree,
                 > as type_sitter_lib::Node<'tree>>::try_from_raw,
             )
@@ -10506,18 +12437,19 @@ impl<'tree> type_sitter_lib::Node<'tree> for TokenTree<'tree> {
 }
 /**Typed node `token_tree_pattern`
 
-This node has children: `{_literal | crate | identifier | metavariable | mutable_specifier | primitive_type | self | super | token_binding_pattern | token_repetition_pattern | token_tree_pattern}*`:
-- [Literal]
-- [Crate]
-- [Identifier]
-- [Metavariable]
-- [MutableSpecifier]
-- [PrimitiveType]
-- [_Self]
-- [Super]
-- [TokenBindingPattern]
-- [TokenRepetitionPattern]
-- [TokenTreePattern]
+This node has named children of type `{_literal | crate | identifier | metavariable | mutable_specifier | primitive_type | self | super | token_binding_pattern | token_repetition_pattern | token_tree_pattern}*`:
+
+- [`Literal`]
+- [`Crate`]
+- [`Identifier`]
+- [`Metavariable`]
+- [`MutableSpecifier`]
+- [`PrimitiveType`]
+- [`Self_`]
+- [`Super`]
+- [`TokenBindingPattern`]
+- [`TokenRepetitionPattern`]
+- [`TokenTreePattern`]
 
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -10526,8 +12458,23 @@ This node has children: `{_literal | crate | identifier | metavariable | mutable
 pub struct TokenTreePattern<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TokenTreePattern<'tree> {
-    ///Get the node's not-extra named children
-    #[allow(dead_code)]
+    /**Get the node's not-extra named children.
+
+These children have type `{_literal | crate | identifier | metavariable | mutable_specifier | primitive_type | self | super | token_binding_pattern | token_repetition_pattern | token_tree_pattern}*`:
+
+- [`Literal`]
+- [`Crate`]
+- [`Identifier`]
+- [`Metavariable`]
+- [`MutableSpecifier`]
+- [`PrimitiveType`]
+- [`Self_`]
+- [`Super`]
+- [`TokenBindingPattern`]
+- [`TokenRepetitionPattern`]
+- [`TokenTreePattern`]
+*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -10535,7 +12482,7 @@ impl<'tree> TokenTreePattern<'tree> {
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            anon_unions::Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern<
+            anon_unions::Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType_Self__Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern<
                 'tree,
             >,
         >,
@@ -10544,7 +12491,7 @@ impl<'tree> TokenTreePattern<'tree> {
             .named_children(&mut c.0)
             .filter(|n| !n.is_extra())
             .map(
-                <anon_unions::Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern<
+                <anon_unions::Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType_Self__Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern<
                     'tree,
                 > as type_sitter_lib::Node<'tree>>::try_from_raw,
             )
@@ -10582,10 +12529,11 @@ impl<'tree> type_sitter_lib::Node<'tree> for TokenTreePattern<'tree> {
 }
 /**Typed node `trait_bounds`
 
-This node has children: `{_type | higher_ranked_trait_bound | lifetime}+`:
-- [Type]
-- [HigherRankedTraitBound]
-- [Lifetime]
+This node has named children of type `{_type | higher_ranked_trait_bound | lifetime}+`:
+
+- [`Type`]
+- [`HigherRankedTraitBound`]
+- [`Lifetime`]
 
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -10594,9 +12542,17 @@ This node has children: `{_type | higher_ranked_trait_bound | lifetime}+`:
 pub struct TraitBounds<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TraitBounds<'tree> {
-    ///Get the node's not-extra named children
-    ///This is guaranteed to return at least one child
-    #[allow(dead_code)]
+    /**Get the node's not-extra named children.
+
+These children have type `{_type | higher_ranked_trait_bound | lifetime}+`:
+
+- [`Type`]
+- [`HigherRankedTraitBound`]
+- [`Lifetime`]
+*/
+    /**
+This is guaranteed to return at least one child.*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -10650,14 +12606,16 @@ impl<'tree> type_sitter_lib::Node<'tree> for TraitBounds<'tree> {
 /**Typed node `trait_item`
 
 This node has these fields:
-- `body`: `declaration_list` ([DeclarationList])
-- `bounds`: `trait_bounds?` ([TraitBounds])
-- `name`: `type_identifier` ([TypeIdentifier])
-- `type_parameters`: `type_parameters?` ([TypeParameters])
 
-And additional children: `{visibility_modifier | where_clause}*`:
-- [VisibilityModifier]
-- [WhereClause]
+- `body`: `declaration_list` ([`DeclarationList`])
+- `bounds`: `trait_bounds?` ([`TraitBounds`])
+- `name`: `type_identifier` ([`TypeIdentifier`])
+- `type_parameters`: `type_parameters?` ([`TypeParameters`])
+
+And additional named children of type `{visibility_modifier | where_clause}*`:
+
+- [`VisibilityModifier`]
+- [`WhereClause`]
 
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -10666,19 +12624,23 @@ And additional children: `{visibility_modifier | where_clause}*`:
 pub struct TraitItem<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TraitItem<'tree> {
-    ///Get the field `body` which has kind `declaration_list` ([DeclarationList])
-    #[allow(dead_code)]
+    /**Get the field `body`.
+
+This child has type `declaration_list` ([`DeclarationList`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn body(&self) -> type_sitter_lib::NodeResult<'tree, DeclarationList<'tree>> {
         self.0
             .child_by_field_name("body")
             .map(<DeclarationList<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the field `bounds` which has kind `trait_bounds?` ([TraitBounds])
-    #[allow(dead_code)]
+    /**Get the optional field `bounds`.
+
+This child has type `trait_bounds?` ([`TraitBounds`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn bounds(
         &self,
@@ -10687,19 +12649,23 @@ impl<'tree> TraitItem<'tree> {
             .child_by_field_name("bounds")
             .map(<TraitBounds<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
     }
-    ///Get the field `name` which has kind `type_identifier` ([TypeIdentifier])
-    #[allow(dead_code)]
+    /**Get the field `name`.
+
+This child has type `type_identifier` ([`TypeIdentifier`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn name(&self) -> type_sitter_lib::NodeResult<'tree, TypeIdentifier<'tree>> {
         self.0
             .child_by_field_name("name")
             .map(<TypeIdentifier<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the field `type_parameters` which has kind `type_parameters?` ([TypeParameters])
-    #[allow(dead_code)]
+    /**Get the optional field `type_parameters`.
+
+This child has type `type_parameters?` ([`TypeParameters`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn type_parameters(
         &self,
@@ -10708,9 +12674,59 @@ impl<'tree> TraitItem<'tree> {
             .child_by_field_name("type_parameters")
             .map(<TypeParameters<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
     }
-    ///Get the node's not-extra named children
-    ///This is guaranteed to return at least one child
-    #[allow(dead_code)]
+    /**Get the node's non-field not-extra named children.
+
+These children have type `{visibility_modifier | where_clause}*`:
+
+- [`VisibilityModifier`]
+- [`WhereClause`]
+*/
+    #[allow(non_snake_case)]
+    #[inline]
+    pub fn others<'a>(
+        &self,
+        c: &'a mut type_sitter_lib::TreeCursor<'tree>,
+    ) -> impl Iterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            anon_unions::VisibilityModifier_WhereClause<'tree>,
+        >,
+    > + 'a {
+        {
+            c.0.reset(self.0);
+            c.0.goto_first_child();
+            (0..self.0.child_count())
+                .filter_map(move |_| {
+                    let has_field = c.0.field_name().is_some();
+                    let node = c.0.node();
+                    c.0.goto_next_sibling();
+                    if has_field && node.is_named() && !node.is_extra() {
+                        Some(node)
+                    } else {
+                        None
+                    }
+                })
+        }
+            .map(
+                <anon_unions::VisibilityModifier_WhereClause<
+                    'tree,
+                > as type_sitter_lib::Node<'tree>>::try_from_raw,
+            )
+    }
+    /**Get the node's not-extra named children.
+
+These children have type `{visibility_modifier | where_clause | declaration_list | trait_bounds | type_identifier | type_parameters}+`:
+
+- [`VisibilityModifier`]
+- [`WhereClause`]
+- [`DeclarationList`]
+- [`TraitBounds`]
+- [`TypeIdentifier`]
+- [`TypeParameters`]
+*/
+    /**
+This is guaranteed to return at least one child.*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -10765,7 +12781,7 @@ impl<'tree> type_sitter_lib::Node<'tree> for TraitItem<'tree> {
 }
 /**Typed node `try_block`
 
-This node has a child: `block` ([Block])
+This node has a named child of type `block` ([`Block`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -10775,8 +12791,8 @@ pub struct TryBlock<'tree>(yak_sitter::Node<'tree>);
 impl<'tree> TryBlock<'tree> {
     /**Get the node's only not-extra named child.
 
-Iff this returns `Option`, it means the node may not have any non-extra named children.*/
-    #[allow(dead_code)]
+This child has type `block` ([`Block`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn child(&self) -> type_sitter_lib::NodeResult<'tree, Block<'tree>> {
         (0..)
@@ -10785,7 +12801,7 @@ Iff this returns `Option`, it means the node may not have any non-extra named ch
             .next()
             .map(<Block<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
 }
@@ -10821,7 +12837,7 @@ impl<'tree> type_sitter_lib::Node<'tree> for TryBlock<'tree> {
 }
 /**Typed node `try_expression`
 
-This node has a child: `_expression` ([Expression])
+This node has a named child of type `_expression` ([`Expression`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -10831,8 +12847,8 @@ pub struct TryExpression<'tree>(yak_sitter::Node<'tree>);
 impl<'tree> TryExpression<'tree> {
     /**Get the node's only not-extra named child.
 
-Iff this returns `Option`, it means the node may not have any non-extra named children.*/
-    #[allow(dead_code)]
+This child has type `_expression` ([`Expression`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn child(&self) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
         (0..)
@@ -10841,7 +12857,7 @@ Iff this returns `Option`, it means the node may not have any non-extra named ch
             .next()
             .map(<Expression<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
 }
@@ -10877,9 +12893,10 @@ impl<'tree> type_sitter_lib::Node<'tree> for TryExpression<'tree> {
 }
 /**Typed node `tuple_expression`
 
-This node has children: `{_expression | attribute_item}+`:
-- [Expression]
-- [AttributeItem]
+This node has named children of type `{_expression | attribute_item}+`:
+
+- [`Expression`]
+- [`AttributeItem`]
 
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -10888,9 +12905,16 @@ This node has children: `{_expression | attribute_item}+`:
 pub struct TupleExpression<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TupleExpression<'tree> {
-    ///Get the node's not-extra named children
-    ///This is guaranteed to return at least one child
-    #[allow(dead_code)]
+    /**Get the node's not-extra named children.
+
+These children have type `{_expression | attribute_item}+`:
+
+- [`Expression`]
+- [`AttributeItem`]
+*/
+    /**
+This is guaranteed to return at least one child.*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -10943,9 +12967,10 @@ impl<'tree> type_sitter_lib::Node<'tree> for TupleExpression<'tree> {
 }
 /**Typed node `tuple_pattern`
 
-This node has children: `{_pattern | closure_expression}*`:
-- [Pattern]
-- [ClosureExpression]
+This node has named children of type `{_pattern | closure_expression}*`:
+
+- [`Pattern`]
+- [`ClosureExpression`]
 
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -10954,8 +12979,14 @@ This node has children: `{_pattern | closure_expression}*`:
 pub struct TuplePattern<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TuplePattern<'tree> {
-    ///Get the node's not-extra named children
-    #[allow(dead_code)]
+    /**Get the node's not-extra named children.
+
+These children have type `{_pattern | closure_expression}*`:
+
+- [`Pattern`]
+- [`ClosureExpression`]
+*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -11009,9 +13040,10 @@ impl<'tree> type_sitter_lib::Node<'tree> for TuplePattern<'tree> {
 /**Typed node `tuple_struct_pattern`
 
 This node has these fields:
-- `type`: `{generic_type | identifier | scoped_identifier}` ([anon_unions::GenericType_Identifier_ScopedIdentifier])
 
-And additional children: `_pattern*` ([Pattern])
+- `type`: `{generic_type | identifier | scoped_identifier}` ([`GenericType`] | [`Identifier`] | [`ScopedIdentifier`])
+
+And additional named children of type `_pattern*` ([`Pattern`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -11019,8 +13051,15 @@ And additional children: `_pattern*` ([Pattern])
 pub struct TupleStructPattern<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TupleStructPattern<'tree> {
-    ///Get the field `type` which has kind `{generic_type | identifier | scoped_identifier}` ([anon_unions::GenericType_Identifier_ScopedIdentifier])
-    #[allow(dead_code)]
+    /**Get the field `type`.
+
+This child has type `{generic_type | identifier | scoped_identifier}`:
+
+- [`GenericType`]
+- [`Identifier`]
+- [`ScopedIdentifier`]
+*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn r#type(
         &self,
@@ -11036,12 +13075,47 @@ impl<'tree> TupleStructPattern<'tree> {
                 > as type_sitter_lib::Node<'tree>>::try_from_raw,
             )
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the node's not-extra named children
-    ///This is guaranteed to return at least one child
-    #[allow(dead_code)]
+    /**Get the node's non-field not-extra named children.
+
+These children have type `_pattern*` ([`Pattern`])*/
+    #[allow(non_snake_case)]
+    #[inline]
+    pub fn others<'a>(
+        &self,
+        c: &'a mut type_sitter_lib::TreeCursor<'tree>,
+    ) -> impl Iterator<Item = type_sitter_lib::NodeResult<'tree, Pattern<'tree>>> + 'a {
+        {
+            c.0.reset(self.0);
+            c.0.goto_first_child();
+            (0..self.0.child_count())
+                .filter_map(move |_| {
+                    let has_field = c.0.field_name().is_some();
+                    let node = c.0.node();
+                    c.0.goto_next_sibling();
+                    if has_field && node.is_named() && !node.is_extra() {
+                        Some(node)
+                    } else {
+                        None
+                    }
+                })
+        }
+            .map(<Pattern<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
+    }
+    /**Get the node's not-extra named children.
+
+These children have type `{_pattern | generic_type | identifier | scoped_identifier}+`:
+
+- [`Pattern`]
+- [`GenericType`]
+- [`Identifier`]
+- [`ScopedIdentifier`]
+*/
+    /**
+This is guaranteed to return at least one child.*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -11094,7 +13168,7 @@ impl<'tree> type_sitter_lib::Node<'tree> for TupleStructPattern<'tree> {
 }
 /**Typed node `tuple_type`
 
-This node has children: `_type+` ([Type])
+This node has named children of type `_type+` ([`Type`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -11102,9 +13176,12 @@ This node has children: `_type+` ([Type])
 pub struct TupleType<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TupleType<'tree> {
-    ///Get the node's not-extra named children
-    ///This is guaranteed to return at least one child
-    #[allow(dead_code)]
+    /**Get the node's not-extra named children.
+
+These children have type `_type+` ([`Type`])*/
+    /**
+This is guaranteed to return at least one child.*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -11148,13 +13225,14 @@ impl<'tree> type_sitter_lib::Node<'tree> for TupleType<'tree> {
 }
 /**Typed node `type_arguments`
 
-This node has children: `{_literal | _type | block | lifetime | trait_bounds | type_binding}+`:
-- [Literal]
-- [Type]
-- [Block]
-- [Lifetime]
-- [TraitBounds]
-- [TypeBinding]
+This node has named children of type `{_literal | _type | block | lifetime | trait_bounds | type_binding}+`:
+
+- [`Literal`]
+- [`Type`]
+- [`Block`]
+- [`Lifetime`]
+- [`TraitBounds`]
+- [`TypeBinding`]
 
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -11163,9 +13241,20 @@ This node has children: `{_literal | _type | block | lifetime | trait_bounds | t
 pub struct TypeArguments<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TypeArguments<'tree> {
-    ///Get the node's not-extra named children
-    ///This is guaranteed to return at least one child
-    #[allow(dead_code)]
+    /**Get the node's not-extra named children.
+
+These children have type `{_literal | _type | block | lifetime | trait_bounds | type_binding}+`:
+
+- [`Literal`]
+- [`Type`]
+- [`Block`]
+- [`Lifetime`]
+- [`TraitBounds`]
+- [`TypeBinding`]
+*/
+    /**
+This is guaranteed to return at least one child.*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -11219,9 +13308,10 @@ impl<'tree> type_sitter_lib::Node<'tree> for TypeArguments<'tree> {
 /**Typed node `type_binding`
 
 This node has these fields:
-- `name`: `type_identifier` ([TypeIdentifier])
-- `type`: `_type` ([Type])
-- `type_arguments`: `type_arguments?` ([TypeArguments])
+
+- `name`: `type_identifier` ([`TypeIdentifier`])
+- `type`: `_type` ([`Type`])
+- `type_arguments`: `type_arguments?` ([`TypeArguments`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -11229,30 +13319,36 @@ This node has these fields:
 pub struct TypeBinding<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TypeBinding<'tree> {
-    ///Get the field `name` which has kind `type_identifier` ([TypeIdentifier])
-    #[allow(dead_code)]
+    /**Get the field `name`.
+
+This child has type `type_identifier` ([`TypeIdentifier`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn name(&self) -> type_sitter_lib::NodeResult<'tree, TypeIdentifier<'tree>> {
         self.0
             .child_by_field_name("name")
             .map(<TypeIdentifier<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the field `type` which has kind `_type` ([Type])
-    #[allow(dead_code)]
+    /**Get the field `type`.
+
+This child has type `_type` ([`Type`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn r#type(&self) -> type_sitter_lib::NodeResult<'tree, Type<'tree>> {
         self.0
             .child_by_field_name("type")
             .map(<Type<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the field `type_arguments` which has kind `type_arguments?` ([TypeArguments])
-    #[allow(dead_code)]
+    /**Get the optional field `type_arguments`.
+
+This child has type `type_arguments?` ([`TypeArguments`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn type_arguments(
         &self,
@@ -11295,8 +13391,9 @@ impl<'tree> type_sitter_lib::Node<'tree> for TypeBinding<'tree> {
 /**Typed node `type_cast_expression`
 
 This node has these fields:
-- `type`: `_type` ([Type])
-- `value`: `_expression` ([Expression])
+
+- `type`: `_type` ([`Type`])
+- `value`: `_expression` ([`Expression`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -11304,26 +13401,30 @@ This node has these fields:
 pub struct TypeCastExpression<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TypeCastExpression<'tree> {
-    ///Get the field `type` which has kind `_type` ([Type])
-    #[allow(dead_code)]
+    /**Get the field `type`.
+
+This child has type `_type` ([`Type`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn r#type(&self) -> type_sitter_lib::NodeResult<'tree, Type<'tree>> {
         self.0
             .child_by_field_name("type")
             .map(<Type<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the field `value` which has kind `_expression` ([Expression])
-    #[allow(dead_code)]
+    /**Get the field `value`.
+
+This child has type `_expression` ([`Expression`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn value(&self) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
         self.0
             .child_by_field_name("value")
             .map(<Expression<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
 }
@@ -11360,13 +13461,15 @@ impl<'tree> type_sitter_lib::Node<'tree> for TypeCastExpression<'tree> {
 /**Typed node `type_item`
 
 This node has these fields:
-- `name`: `type_identifier` ([TypeIdentifier])
-- `type`: `_type` ([Type])
-- `type_parameters`: `type_parameters?` ([TypeParameters])
 
-And additional children: `{visibility_modifier | where_clause}*`:
-- [VisibilityModifier]
-- [WhereClause]
+- `name`: `type_identifier` ([`TypeIdentifier`])
+- `type`: `_type` ([`Type`])
+- `type_parameters`: `type_parameters?` ([`TypeParameters`])
+
+And additional named children of type `{visibility_modifier | where_clause}*`:
+
+- [`VisibilityModifier`]
+- [`WhereClause`]
 
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -11375,30 +13478,36 @@ And additional children: `{visibility_modifier | where_clause}*`:
 pub struct TypeItem<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TypeItem<'tree> {
-    ///Get the field `name` which has kind `type_identifier` ([TypeIdentifier])
-    #[allow(dead_code)]
+    /**Get the field `name`.
+
+This child has type `type_identifier` ([`TypeIdentifier`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn name(&self) -> type_sitter_lib::NodeResult<'tree, TypeIdentifier<'tree>> {
         self.0
             .child_by_field_name("name")
             .map(<TypeIdentifier<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the field `type` which has kind `_type` ([Type])
-    #[allow(dead_code)]
+    /**Get the field `type`.
+
+This child has type `_type` ([`Type`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn r#type(&self) -> type_sitter_lib::NodeResult<'tree, Type<'tree>> {
         self.0
             .child_by_field_name("type")
             .map(<Type<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the field `type_parameters` which has kind `type_parameters?` ([TypeParameters])
-    #[allow(dead_code)]
+    /**Get the optional field `type_parameters`.
+
+This child has type `type_parameters?` ([`TypeParameters`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn type_parameters(
         &self,
@@ -11407,9 +13516,58 @@ impl<'tree> TypeItem<'tree> {
             .child_by_field_name("type_parameters")
             .map(<TypeParameters<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
     }
-    ///Get the node's not-extra named children
-    ///This is guaranteed to return at least one child
-    #[allow(dead_code)]
+    /**Get the node's non-field not-extra named children.
+
+These children have type `{visibility_modifier | where_clause}*`:
+
+- [`VisibilityModifier`]
+- [`WhereClause`]
+*/
+    #[allow(non_snake_case)]
+    #[inline]
+    pub fn others<'a>(
+        &self,
+        c: &'a mut type_sitter_lib::TreeCursor<'tree>,
+    ) -> impl Iterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            anon_unions::VisibilityModifier_WhereClause<'tree>,
+        >,
+    > + 'a {
+        {
+            c.0.reset(self.0);
+            c.0.goto_first_child();
+            (0..self.0.child_count())
+                .filter_map(move |_| {
+                    let has_field = c.0.field_name().is_some();
+                    let node = c.0.node();
+                    c.0.goto_next_sibling();
+                    if has_field && node.is_named() && !node.is_extra() {
+                        Some(node)
+                    } else {
+                        None
+                    }
+                })
+        }
+            .map(
+                <anon_unions::VisibilityModifier_WhereClause<
+                    'tree,
+                > as type_sitter_lib::Node<'tree>>::try_from_raw,
+            )
+    }
+    /**Get the node's not-extra named children.
+
+These children have type `{visibility_modifier | where_clause | type_identifier | _type | type_parameters}+`:
+
+- [`VisibilityModifier`]
+- [`WhereClause`]
+- [`TypeIdentifier`]
+- [`Type`]
+- [`TypeParameters`]
+*/
+    /**
+This is guaranteed to return at least one child.*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -11464,14 +13622,15 @@ impl<'tree> type_sitter_lib::Node<'tree> for TypeItem<'tree> {
 }
 /**Typed node `type_parameters`
 
-This node has children: `{attribute_item | const_parameter | constrained_type_parameter | lifetime | metavariable | optional_type_parameter | type_identifier}+`:
-- [AttributeItem]
-- [ConstParameter]
-- [ConstrainedTypeParameter]
-- [Lifetime]
-- [Metavariable]
-- [OptionalTypeParameter]
-- [TypeIdentifier]
+This node has named children of type `{attribute_item | const_parameter | constrained_type_parameter | lifetime | metavariable | optional_type_parameter | type_identifier}+`:
+
+- [`AttributeItem`]
+- [`ConstParameter`]
+- [`ConstrainedTypeParameter`]
+- [`Lifetime`]
+- [`Metavariable`]
+- [`OptionalTypeParameter`]
+- [`TypeIdentifier`]
 
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -11480,9 +13639,21 @@ This node has children: `{attribute_item | const_parameter | constrained_type_pa
 pub struct TypeParameters<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> TypeParameters<'tree> {
-    ///Get the node's not-extra named children
-    ///This is guaranteed to return at least one child
-    #[allow(dead_code)]
+    /**Get the node's not-extra named children.
+
+These children have type `{attribute_item | const_parameter | constrained_type_parameter | lifetime | metavariable | optional_type_parameter | type_identifier}+`:
+
+- [`AttributeItem`]
+- [`ConstParameter`]
+- [`ConstrainedTypeParameter`]
+- [`Lifetime`]
+- [`Metavariable`]
+- [`OptionalTypeParameter`]
+- [`TypeIdentifier`]
+*/
+    /**
+This is guaranteed to return at least one child.*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -11537,7 +13708,7 @@ impl<'tree> type_sitter_lib::Node<'tree> for TypeParameters<'tree> {
 }
 /**Typed node `unary_expression`
 
-This node has a child: `_expression` ([Expression])
+This node has a named child of type `_expression` ([`Expression`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -11547,8 +13718,8 @@ pub struct UnaryExpression<'tree>(yak_sitter::Node<'tree>);
 impl<'tree> UnaryExpression<'tree> {
     /**Get the node's only not-extra named child.
 
-Iff this returns `Option`, it means the node may not have any non-extra named children.*/
-    #[allow(dead_code)]
+This child has type `_expression` ([`Expression`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn child(&self) -> type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
         (0..)
@@ -11557,7 +13728,7 @@ Iff this returns `Option`, it means the node may not have any non-extra named ch
             .next()
             .map(<Expression<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
 }
@@ -11594,13 +13765,15 @@ impl<'tree> type_sitter_lib::Node<'tree> for UnaryExpression<'tree> {
 /**Typed node `union_item`
 
 This node has these fields:
-- `body`: `field_declaration_list` ([FieldDeclarationList])
-- `name`: `type_identifier` ([TypeIdentifier])
-- `type_parameters`: `type_parameters?` ([TypeParameters])
 
-And additional children: `{visibility_modifier | where_clause}*`:
-- [VisibilityModifier]
-- [WhereClause]
+- `body`: `field_declaration_list` ([`FieldDeclarationList`])
+- `name`: `type_identifier` ([`TypeIdentifier`])
+- `type_parameters`: `type_parameters?` ([`TypeParameters`])
+
+And additional named children of type `{visibility_modifier | where_clause}*`:
+
+- [`VisibilityModifier`]
+- [`WhereClause`]
 
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -11609,8 +13782,10 @@ And additional children: `{visibility_modifier | where_clause}*`:
 pub struct UnionItem<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> UnionItem<'tree> {
-    ///Get the field `body` which has kind `field_declaration_list` ([FieldDeclarationList])
-    #[allow(dead_code)]
+    /**Get the field `body`.
+
+This child has type `field_declaration_list` ([`FieldDeclarationList`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn body(
         &self,
@@ -11623,22 +13798,26 @@ impl<'tree> UnionItem<'tree> {
                 > as type_sitter_lib::Node<'tree>>::try_from_raw,
             )
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the field `name` which has kind `type_identifier` ([TypeIdentifier])
-    #[allow(dead_code)]
+    /**Get the field `name`.
+
+This child has type `type_identifier` ([`TypeIdentifier`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn name(&self) -> type_sitter_lib::NodeResult<'tree, TypeIdentifier<'tree>> {
         self.0
             .child_by_field_name("name")
             .map(<TypeIdentifier<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the field `type_parameters` which has kind `type_parameters?` ([TypeParameters])
-    #[allow(dead_code)]
+    /**Get the optional field `type_parameters`.
+
+This child has type `type_parameters?` ([`TypeParameters`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn type_parameters(
         &self,
@@ -11647,9 +13826,58 @@ impl<'tree> UnionItem<'tree> {
             .child_by_field_name("type_parameters")
             .map(<TypeParameters<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
     }
-    ///Get the node's not-extra named children
-    ///This is guaranteed to return at least one child
-    #[allow(dead_code)]
+    /**Get the node's non-field not-extra named children.
+
+These children have type `{visibility_modifier | where_clause}*`:
+
+- [`VisibilityModifier`]
+- [`WhereClause`]
+*/
+    #[allow(non_snake_case)]
+    #[inline]
+    pub fn others<'a>(
+        &self,
+        c: &'a mut type_sitter_lib::TreeCursor<'tree>,
+    ) -> impl Iterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            anon_unions::VisibilityModifier_WhereClause<'tree>,
+        >,
+    > + 'a {
+        {
+            c.0.reset(self.0);
+            c.0.goto_first_child();
+            (0..self.0.child_count())
+                .filter_map(move |_| {
+                    let has_field = c.0.field_name().is_some();
+                    let node = c.0.node();
+                    c.0.goto_next_sibling();
+                    if has_field && node.is_named() && !node.is_extra() {
+                        Some(node)
+                    } else {
+                        None
+                    }
+                })
+        }
+            .map(
+                <anon_unions::VisibilityModifier_WhereClause<
+                    'tree,
+                > as type_sitter_lib::Node<'tree>>::try_from_raw,
+            )
+    }
+    /**Get the node's not-extra named children.
+
+These children have type `{visibility_modifier | where_clause | field_declaration_list | type_identifier | type_parameters}+`:
+
+- [`VisibilityModifier`]
+- [`WhereClause`]
+- [`FieldDeclarationList`]
+- [`TypeIdentifier`]
+- [`TypeParameters`]
+*/
+    /**
+This is guaranteed to return at least one child.*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -11704,7 +13932,7 @@ impl<'tree> type_sitter_lib::Node<'tree> for UnionItem<'tree> {
 }
 /**Typed node `unit_expression`
 
-This node has no children
+This node has no named children
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -11744,7 +13972,7 @@ impl<'tree> type_sitter_lib::Node<'tree> for UnitExpression<'tree> {
 }
 /**Typed node `unit_type`
 
-This node has no children
+This node has no named children
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -11784,7 +14012,7 @@ impl<'tree> type_sitter_lib::Node<'tree> for UnitType<'tree> {
 }
 /**Typed node `unsafe_block`
 
-This node has a child: `block` ([Block])
+This node has a named child of type `block` ([`Block`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -11794,8 +14022,8 @@ pub struct UnsafeBlock<'tree>(yak_sitter::Node<'tree>);
 impl<'tree> UnsafeBlock<'tree> {
     /**Get the node's only not-extra named child.
 
-Iff this returns `Option`, it means the node may not have any non-extra named children.*/
-    #[allow(dead_code)]
+This child has type `block` ([`Block`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn child(&self) -> type_sitter_lib::NodeResult<'tree, Block<'tree>> {
         (0..)
@@ -11804,7 +14032,7 @@ Iff this returns `Option`, it means the node may not have any non-extra named ch
             .next()
             .map(<Block<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
 }
@@ -11841,8 +14069,9 @@ impl<'tree> type_sitter_lib::Node<'tree> for UnsafeBlock<'tree> {
 /**Typed node `use_as_clause`
 
 This node has these fields:
-- `alias`: `identifier` ([Identifier])
-- `path`: `{crate | identifier | metavariable | scoped_identifier | self | super}` ([anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super])
+
+- `alias`: `identifier` ([`Identifier`])
+- `path`: `{crate | identifier | metavariable | scoped_identifier | self | super}` ([`Crate`] | [`Identifier`] | [`Metavariable`] | [`ScopedIdentifier`] | [`Self_`] | [`Super`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -11850,35 +14079,47 @@ This node has these fields:
 pub struct UseAsClause<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> UseAsClause<'tree> {
-    ///Get the field `alias` which has kind `identifier` ([Identifier])
-    #[allow(dead_code)]
+    /**Get the field `alias`.
+
+This child has type `identifier` ([`Identifier`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn alias(&self) -> type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
         self.0
             .child_by_field_name("alias")
             .map(<Identifier<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the field `path` which has kind `{crate | identifier | metavariable | scoped_identifier | self | super}` ([anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super])
-    #[allow(dead_code)]
+    /**Get the field `path`.
+
+This child has type `{crate | identifier | metavariable | scoped_identifier | self | super}`:
+
+- [`Crate`]
+- [`Identifier`]
+- [`Metavariable`]
+- [`ScopedIdentifier`]
+- [`Self_`]
+- [`Super`]
+*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn path(
         &self,
     ) -> type_sitter_lib::NodeResult<
         'tree,
-        anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super<'tree>,
+        anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier_Self__Super<'tree>,
     > {
         self.0
             .child_by_field_name("path")
             .map(
-                <anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super<
+                <anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier_Self__Super<
                     'tree,
                 > as type_sitter_lib::Node<'tree>>::try_from_raw,
             )
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
 }
@@ -11915,9 +14156,10 @@ impl<'tree> type_sitter_lib::Node<'tree> for UseAsClause<'tree> {
 /**Typed node `use_declaration`
 
 This node has these fields:
-- `argument`: `{crate | identifier | metavariable | scoped_identifier | scoped_use_list | self | super | use_as_clause | use_list | use_wildcard}` ([anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard])
 
-And an additional (optional) child: `visibility_modifier?` ([VisibilityModifier])
+- `argument`: `{crate | identifier | metavariable | scoped_identifier | scoped_use_list | self | super | use_as_clause | use_list | use_wildcard}` ([`Crate`] | [`Identifier`] | [`Metavariable`] | [`ScopedIdentifier`] | [`ScopedUseList`] | [`Self_`] | [`Super`] | [`UseAsClause`] | [`UseList`] | [`UseWildcard`])
+
+And an optional additional named child of type `visibility_modifier?` ([`VisibilityModifier`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -11925,31 +14167,79 @@ And an additional (optional) child: `visibility_modifier?` ([VisibilityModifier]
 pub struct UseDeclaration<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> UseDeclaration<'tree> {
-    ///Get the field `argument` which has kind `{crate | identifier | metavariable | scoped_identifier | scoped_use_list | self | super | use_as_clause | use_list | use_wildcard}` ([anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard])
-    #[allow(dead_code)]
+    /**Get the field `argument`.
+
+This child has type `{crate | identifier | metavariable | scoped_identifier | scoped_use_list | self | super | use_as_clause | use_list | use_wildcard}`:
+
+- [`Crate`]
+- [`Identifier`]
+- [`Metavariable`]
+- [`ScopedIdentifier`]
+- [`ScopedUseList`]
+- [`Self_`]
+- [`Super`]
+- [`UseAsClause`]
+- [`UseList`]
+- [`UseWildcard`]
+*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn argument(
         &self,
     ) -> type_sitter_lib::NodeResult<
         'tree,
-        anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard<
+        anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList_Self__Super_UseAsClause_UseList_UseWildcard<
             'tree,
         >,
     > {
         self.0
             .child_by_field_name("argument")
             .map(
-                <anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard<
+                <anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList_Self__Super_UseAsClause_UseList_UseWildcard<
                     'tree,
                 > as type_sitter_lib::Node<'tree>>::try_from_raw,
             )
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the node's not-extra named children
-    ///This is guaranteed to return at least one child
-    #[allow(dead_code)]
+    /**Get the node's only non-field not-extra named child, if it has one.
+
+This child has type `visibility_modifier?` ([`VisibilityModifier`])*/
+    #[allow(non_snake_case)]
+    #[inline]
+    pub fn other(
+        &self,
+    ) -> Option<type_sitter_lib::NodeResult<'tree, VisibilityModifier<'tree>>> {
+        #[allow(clippy::unnecessary_cast)]
+        (0..)
+            .filter(|i| self.0.field_name_for_child(*i).is_some())
+            .filter_map(|i| self.0.named_child(i as usize))
+            .filter(|n| !n.is_extra())
+            .next()
+            .map(
+                <VisibilityModifier<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw,
+            )
+    }
+    /**Get the node's not-extra named children.
+
+These children have type `{visibility_modifier | crate | identifier | metavariable | scoped_identifier | scoped_use_list | self | super | use_as_clause | use_list | use_wildcard}+`:
+
+- [`VisibilityModifier`]
+- [`Crate`]
+- [`Identifier`]
+- [`Metavariable`]
+- [`ScopedIdentifier`]
+- [`ScopedUseList`]
+- [`Self_`]
+- [`Super`]
+- [`UseAsClause`]
+- [`UseList`]
+- [`UseWildcard`]
+*/
+    /**
+This is guaranteed to return at least one child.*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -11957,7 +14247,7 @@ impl<'tree> UseDeclaration<'tree> {
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            anon_unions::VisibilityModifier_Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard<
+            anon_unions::VisibilityModifier_Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList_Self__Super_UseAsClause_UseList_UseWildcard<
                 'tree,
             >,
         >,
@@ -11966,7 +14256,7 @@ impl<'tree> UseDeclaration<'tree> {
             .named_children(&mut c.0)
             .filter(|n| !n.is_extra())
             .map(
-                <anon_unions::VisibilityModifier_Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard<
+                <anon_unions::VisibilityModifier_Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList_Self__Super_UseAsClause_UseList_UseWildcard<
                     'tree,
                 > as type_sitter_lib::Node<'tree>>::try_from_raw,
             )
@@ -12004,17 +14294,18 @@ impl<'tree> type_sitter_lib::Node<'tree> for UseDeclaration<'tree> {
 }
 /**Typed node `use_list`
 
-This node has children: `{crate | identifier | metavariable | scoped_identifier | scoped_use_list | self | super | use_as_clause | use_list | use_wildcard}*`:
-- [Crate]
-- [Identifier]
-- [Metavariable]
-- [ScopedIdentifier]
-- [ScopedUseList]
-- [_Self]
-- [Super]
-- [UseAsClause]
-- [UseList]
-- [UseWildcard]
+This node has named children of type `{crate | identifier | metavariable | scoped_identifier | scoped_use_list | self | super | use_as_clause | use_list | use_wildcard}*`:
+
+- [`Crate`]
+- [`Identifier`]
+- [`Metavariable`]
+- [`ScopedIdentifier`]
+- [`ScopedUseList`]
+- [`Self_`]
+- [`Super`]
+- [`UseAsClause`]
+- [`UseList`]
+- [`UseWildcard`]
 
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -12023,8 +14314,22 @@ This node has children: `{crate | identifier | metavariable | scoped_identifier 
 pub struct UseList<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> UseList<'tree> {
-    ///Get the node's not-extra named children
-    #[allow(dead_code)]
+    /**Get the node's not-extra named children.
+
+These children have type `{crate | identifier | metavariable | scoped_identifier | scoped_use_list | self | super | use_as_clause | use_list | use_wildcard}*`:
+
+- [`Crate`]
+- [`Identifier`]
+- [`Metavariable`]
+- [`ScopedIdentifier`]
+- [`ScopedUseList`]
+- [`Self_`]
+- [`Super`]
+- [`UseAsClause`]
+- [`UseList`]
+- [`UseWildcard`]
+*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -12032,7 +14337,7 @@ impl<'tree> UseList<'tree> {
     ) -> impl Iterator<
         Item = type_sitter_lib::NodeResult<
             'tree,
-            anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard<
+            anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList_Self__Super_UseAsClause_UseList_UseWildcard<
                 'tree,
             >,
         >,
@@ -12041,7 +14346,7 @@ impl<'tree> UseList<'tree> {
             .named_children(&mut c.0)
             .filter(|n| !n.is_extra())
             .map(
-                <anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard<
+                <anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList_Self__Super_UseAsClause_UseList_UseWildcard<
                     'tree,
                 > as type_sitter_lib::Node<'tree>>::try_from_raw,
             )
@@ -12079,13 +14384,14 @@ impl<'tree> type_sitter_lib::Node<'tree> for UseList<'tree> {
 }
 /**Typed node `use_wildcard`
 
-This node has an (optional) child: `{crate | identifier | metavariable | scoped_identifier | self | super}?`:
-- [Crate]
-- [Identifier]
-- [Metavariable]
-- [ScopedIdentifier]
-- [_Self]
-- [Super]
+This node has an optional named child of type `{crate | identifier | metavariable | scoped_identifier | self | super}?`:
+
+- [`Crate`]
+- [`Identifier`]
+- [`Metavariable`]
+- [`ScopedIdentifier`]
+- [`Self_`]
+- [`Super`]
 
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -12094,17 +14400,25 @@ This node has an (optional) child: `{crate | identifier | metavariable | scoped_
 pub struct UseWildcard<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> UseWildcard<'tree> {
-    /**Get the node's only not-extra named child.
+    /**Get the node's only not-extra named child, if it has one.
 
-Iff this returns `Option`, it means the node may not have any non-extra named children.*/
-    #[allow(dead_code)]
+This child has type `{crate | identifier | metavariable | scoped_identifier | self | super}?`:
+
+- [`Crate`]
+- [`Identifier`]
+- [`Metavariable`]
+- [`ScopedIdentifier`]
+- [`Self_`]
+- [`Super`]
+*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn child(
         &self,
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super<
+            anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier_Self__Super<
                 'tree,
             >,
         >,
@@ -12114,7 +14428,7 @@ Iff this returns `Option`, it means the node may not have any non-extra named ch
             .filter(|n| !n.is_extra())
             .next()
             .map(
-                <anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super<
+                <anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier_Self__Super<
                     'tree,
                 > as type_sitter_lib::Node<'tree>>::try_from_raw,
             )
@@ -12153,9 +14467,10 @@ impl<'tree> type_sitter_lib::Node<'tree> for UseWildcard<'tree> {
 /**Typed node `variadic_parameter`
 
 This node has these fields:
-- `pattern`: `_pattern?` ([Pattern])
 
-And an additional (optional) child: `mutable_specifier?` ([MutableSpecifier])
+- `pattern`: `_pattern?` ([`Pattern`])
+
+And an optional additional named child of type `mutable_specifier?` ([`MutableSpecifier`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -12163,16 +14478,40 @@ And an additional (optional) child: `mutable_specifier?` ([MutableSpecifier])
 pub struct VariadicParameter<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> VariadicParameter<'tree> {
-    ///Get the field `pattern` which has kind `_pattern?` ([Pattern])
-    #[allow(dead_code)]
+    /**Get the optional field `pattern`.
+
+This child has type `_pattern?` ([`Pattern`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn pattern(&self) -> Option<type_sitter_lib::NodeResult<'tree, Pattern<'tree>>> {
         self.0
             .child_by_field_name("pattern")
             .map(<Pattern<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
     }
-    ///Get the node's not-extra named children
-    #[allow(dead_code)]
+    /**Get the node's only non-field not-extra named child, if it has one.
+
+This child has type `mutable_specifier?` ([`MutableSpecifier`])*/
+    #[allow(non_snake_case)]
+    #[inline]
+    pub fn other(
+        &self,
+    ) -> Option<type_sitter_lib::NodeResult<'tree, MutableSpecifier<'tree>>> {
+        #[allow(clippy::unnecessary_cast)]
+        (0..)
+            .filter(|i| self.0.field_name_for_child(*i).is_some())
+            .filter_map(|i| self.0.named_child(i as usize))
+            .filter(|n| !n.is_extra())
+            .next()
+            .map(<MutableSpecifier<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
+    }
+    /**Get the node's not-extra named children.
+
+These children have type `{mutable_specifier | _pattern}*`:
+
+- [`MutableSpecifier`]
+- [`Pattern`]
+*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -12225,13 +14564,14 @@ impl<'tree> type_sitter_lib::Node<'tree> for VariadicParameter<'tree> {
 }
 /**Typed node `visibility_modifier`
 
-This node has an (optional) child: `{crate | identifier | metavariable | scoped_identifier | self | super}?`:
-- [Crate]
-- [Identifier]
-- [Metavariable]
-- [ScopedIdentifier]
-- [_Self]
-- [Super]
+This node has an optional named child of type `{crate | identifier | metavariable | scoped_identifier | self | super}?`:
+
+- [`Crate`]
+- [`Identifier`]
+- [`Metavariable`]
+- [`ScopedIdentifier`]
+- [`Self_`]
+- [`Super`]
 
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -12240,17 +14580,25 @@ This node has an (optional) child: `{crate | identifier | metavariable | scoped_
 pub struct VisibilityModifier<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> VisibilityModifier<'tree> {
-    /**Get the node's only not-extra named child.
+    /**Get the node's only not-extra named child, if it has one.
 
-Iff this returns `Option`, it means the node may not have any non-extra named children.*/
-    #[allow(dead_code)]
+This child has type `{crate | identifier | metavariable | scoped_identifier | self | super}?`:
+
+- [`Crate`]
+- [`Identifier`]
+- [`Metavariable`]
+- [`ScopedIdentifier`]
+- [`Self_`]
+- [`Super`]
+*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn child(
         &self,
     ) -> Option<
         type_sitter_lib::NodeResult<
             'tree,
-            anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super<
+            anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier_Self__Super<
                 'tree,
             >,
         >,
@@ -12260,7 +14608,7 @@ Iff this returns `Option`, it means the node may not have any non-extra named ch
             .filter(|n| !n.is_extra())
             .next()
             .map(
-                <anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super<
+                <anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier_Self__Super<
                     'tree,
                 > as type_sitter_lib::Node<'tree>>::try_from_raw,
             )
@@ -12298,7 +14646,7 @@ impl<'tree> type_sitter_lib::Node<'tree> for VisibilityModifier<'tree> {
 }
 /**Typed node `where_clause`
 
-This node has children: `where_predicate+` ([WherePredicate])
+This node has named children of type `where_predicate+` ([`WherePredicate`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -12306,9 +14654,12 @@ This node has children: `where_predicate+` ([WherePredicate])
 pub struct WhereClause<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> WhereClause<'tree> {
-    ///Get the node's not-extra named children
-    ///This is guaranteed to return at least one child
-    #[allow(dead_code)]
+    /**Get the node's not-extra named children.
+
+These children have type `where_predicate+` ([`WherePredicate`])*/
+    /**
+This is guaranteed to return at least one child.*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -12355,8 +14706,9 @@ impl<'tree> type_sitter_lib::Node<'tree> for WhereClause<'tree> {
 /**Typed node `where_predicate`
 
 This node has these fields:
-- `bounds`: `trait_bounds` ([TraitBounds])
-- `left`: `{array_type | generic_type | higher_ranked_trait_bound | lifetime | pointer_type | primitive_type | reference_type | scoped_type_identifier | tuple_type | type_identifier}` ([anon_unions::ArrayType_GenericType_HigherRankedTraitBound_Lifetime_PointerType_PrimitiveType_ReferenceType_ScopedTypeIdentifier_TupleType_TypeIdentifier])
+
+- `bounds`: `trait_bounds` ([`TraitBounds`])
+- `left`: `{array_type | generic_type | higher_ranked_trait_bound | lifetime | pointer_type | primitive_type | reference_type | scoped_type_identifier | tuple_type | type_identifier}` ([`ArrayType`] | [`GenericType`] | [`HigherRankedTraitBound`] | [`Lifetime`] | [`PointerType`] | [`PrimitiveType`] | [`ReferenceType`] | [`ScopedTypeIdentifier`] | [`TupleType`] | [`TypeIdentifier`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -12364,19 +14716,35 @@ This node has these fields:
 pub struct WherePredicate<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> WherePredicate<'tree> {
-    ///Get the field `bounds` which has kind `trait_bounds` ([TraitBounds])
-    #[allow(dead_code)]
+    /**Get the field `bounds`.
+
+This child has type `trait_bounds` ([`TraitBounds`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn bounds(&self) -> type_sitter_lib::NodeResult<'tree, TraitBounds<'tree>> {
         self.0
             .child_by_field_name("bounds")
             .map(<TraitBounds<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the field `left` which has kind `{array_type | generic_type | higher_ranked_trait_bound | lifetime | pointer_type | primitive_type | reference_type | scoped_type_identifier | tuple_type | type_identifier}` ([anon_unions::ArrayType_GenericType_HigherRankedTraitBound_Lifetime_PointerType_PrimitiveType_ReferenceType_ScopedTypeIdentifier_TupleType_TypeIdentifier])
-    #[allow(dead_code)]
+    /**Get the field `left`.
+
+This child has type `{array_type | generic_type | higher_ranked_trait_bound | lifetime | pointer_type | primitive_type | reference_type | scoped_type_identifier | tuple_type | type_identifier}`:
+
+- [`ArrayType`]
+- [`GenericType`]
+- [`HigherRankedTraitBound`]
+- [`Lifetime`]
+- [`PointerType`]
+- [`PrimitiveType`]
+- [`ReferenceType`]
+- [`ScopedTypeIdentifier`]
+- [`TupleType`]
+- [`TypeIdentifier`]
+*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn left(
         &self,
@@ -12394,7 +14762,7 @@ impl<'tree> WherePredicate<'tree> {
                 > as type_sitter_lib::Node<'tree>>::try_from_raw,
             )
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
 }
@@ -12431,10 +14799,11 @@ impl<'tree> type_sitter_lib::Node<'tree> for WherePredicate<'tree> {
 /**Typed node `while_expression`
 
 This node has these fields:
-- `body`: `block` ([Block])
-- `condition`: `{_expression | let_chain | let_condition}` ([anon_unions::Expression_LetChain_LetCondition])
 
-And an additional (optional) child: `label?` ([Label])
+- `body`: `block` ([`Block`])
+- `condition`: `{_expression | let_chain | let_condition}` ([`Expression`] | [`LetChain`] | [`LetCondition`])
+
+And an optional additional named child of type `label?` ([`Label`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -12442,19 +14811,28 @@ And an additional (optional) child: `label?` ([Label])
 pub struct WhileExpression<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> WhileExpression<'tree> {
-    ///Get the field `body` which has kind `block` ([Block])
-    #[allow(dead_code)]
+    /**Get the field `body`.
+
+This child has type `block` ([`Block`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn body(&self) -> type_sitter_lib::NodeResult<'tree, Block<'tree>> {
         self.0
             .child_by_field_name("body")
             .map(<Block<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the field `condition` which has kind `{_expression | let_chain | let_condition}` ([anon_unions::Expression_LetChain_LetCondition])
-    #[allow(dead_code)]
+    /**Get the field `condition`.
+
+This child has type `{_expression | let_chain | let_condition}`:
+
+- [`Expression`]
+- [`LetChain`]
+- [`LetCondition`]
+*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn condition(
         &self,
@@ -12470,12 +14848,36 @@ impl<'tree> WhileExpression<'tree> {
                 > as type_sitter_lib::Node<'tree>>::try_from_raw,
             )
             .expect(
-                "tree-sitter node missing its required child, there should at least be a MISSING node in its place",
+                "required child not present, there should at least be a MISSING node in its place",
             )
     }
-    ///Get the node's not-extra named children
-    ///This is guaranteed to return at least one child
-    #[allow(dead_code)]
+    /**Get the node's only non-field not-extra named child, if it has one.
+
+This child has type `label?` ([`Label`])*/
+    #[allow(non_snake_case)]
+    #[inline]
+    pub fn other(&self) -> Option<type_sitter_lib::NodeResult<'tree, Label<'tree>>> {
+        #[allow(clippy::unnecessary_cast)]
+        (0..)
+            .filter(|i| self.0.field_name_for_child(*i).is_some())
+            .filter_map(|i| self.0.named_child(i as usize))
+            .filter(|n| !n.is_extra())
+            .next()
+            .map(<Label<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
+    }
+    /**Get the node's not-extra named children.
+
+These children have type `{label | block | _expression | let_chain | let_condition}+`:
+
+- [`Label`]
+- [`Block`]
+- [`Expression`]
+- [`LetChain`]
+- [`LetCondition`]
+*/
+    /**
+This is guaranteed to return at least one child.*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn children<'a>(
         &self,
@@ -12528,7 +14930,7 @@ impl<'tree> type_sitter_lib::Node<'tree> for WhileExpression<'tree> {
 }
 /**Typed node `yield_expression`
 
-This node has an (optional) child: `_expression?` ([Expression])
+This node has an optional named child of type `_expression?` ([`Expression`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -12536,10 +14938,10 @@ This node has an (optional) child: `_expression?` ([Expression])
 pub struct YieldExpression<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
 impl<'tree> YieldExpression<'tree> {
-    /**Get the node's only not-extra named child.
+    /**Get the node's only not-extra named child, if it has one.
 
-Iff this returns `Option`, it means the node may not have any non-extra named children.*/
-    #[allow(dead_code)]
+This child has type `_expression?` ([`Expression`])*/
+    #[allow(non_snake_case)]
     #[inline]
     pub fn child(
         &self,
@@ -12583,7 +14985,7 @@ impl<'tree> type_sitter_lib::Node<'tree> for YieldExpression<'tree> {
 }
 /**Typed node `char_literal`
 
-This node has no children
+This node has no named children
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -12623,7 +15025,7 @@ impl<'tree> type_sitter_lib::Node<'tree> for CharLiteral<'tree> {
 }
 /**Typed node `crate`
 
-This node has no children
+This node has no named children
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -12663,7 +15065,7 @@ impl<'tree> type_sitter_lib::Node<'tree> for Crate<'tree> {
 }
 /**Typed node `doc_comment`
 
-This node has no children
+This node has no named children
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -12703,7 +15105,7 @@ impl<'tree> type_sitter_lib::Node<'tree> for DocComment<'tree> {
 }
 /**Typed node `escape_sequence`
 
-This node has no children
+This node has no named children
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -12743,7 +15145,7 @@ impl<'tree> type_sitter_lib::Node<'tree> for EscapeSequence<'tree> {
 }
 /**Typed node `field_identifier`
 
-This node has no children
+This node has no named children
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -12783,7 +15185,7 @@ impl<'tree> type_sitter_lib::Node<'tree> for FieldIdentifier<'tree> {
 }
 /**Typed node `float_literal`
 
-This node has no children
+This node has no named children
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -12823,7 +15225,7 @@ impl<'tree> type_sitter_lib::Node<'tree> for FloatLiteral<'tree> {
 }
 /**Typed node `identifier`
 
-This node has no children
+This node has no named children
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -12863,7 +15265,7 @@ impl<'tree> type_sitter_lib::Node<'tree> for Identifier<'tree> {
 }
 /**Typed node `integer_literal`
 
-This node has no children
+This node has no named children
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -12903,7 +15305,7 @@ impl<'tree> type_sitter_lib::Node<'tree> for IntegerLiteral<'tree> {
 }
 /**Typed node `metavariable`
 
-This node has no children
+This node has no named children
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -12943,7 +15345,7 @@ impl<'tree> type_sitter_lib::Node<'tree> for Metavariable<'tree> {
 }
 /**Typed node `mutable_specifier`
 
-This node has no children
+This node has no named children
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -12983,7 +15385,7 @@ impl<'tree> type_sitter_lib::Node<'tree> for MutableSpecifier<'tree> {
 }
 /**Typed node `primitive_type`
 
-This node has no children
+This node has no named children
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -13023,17 +15425,17 @@ impl<'tree> type_sitter_lib::Node<'tree> for PrimitiveType<'tree> {
 }
 /**Typed node `self`
 
-This node has no children
+This node has no named children
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
 #[allow(non_camel_case_types)]
-pub struct _Self<'tree>(yak_sitter::Node<'tree>);
+pub struct Self_<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
-impl<'tree> _Self<'tree> {}
+impl<'tree> Self_<'tree> {}
 #[automatically_derived]
-impl<'tree> type_sitter_lib::Node<'tree> for _Self<'tree> {
-    type WithLifetime<'a> = _Self<'a>;
+impl<'tree> type_sitter_lib::Node<'tree> for Self_<'tree> {
+    type WithLifetime<'a> = Self_<'a>;
     const KIND: &'static str = "self";
     #[inline]
     fn try_from_raw(node: yak_sitter::Node<'tree>) -> type_sitter_lib::NodeResult<Self> {
@@ -13063,7 +15465,7 @@ impl<'tree> type_sitter_lib::Node<'tree> for _Self<'tree> {
 }
 /**Typed node `shebang`
 
-This node has no children
+This node has no named children
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -13103,7 +15505,7 @@ impl<'tree> type_sitter_lib::Node<'tree> for Shebang<'tree> {
 }
 /**Typed node `shorthand_field_identifier`
 
-This node has no children
+This node has no named children
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -13143,7 +15545,7 @@ impl<'tree> type_sitter_lib::Node<'tree> for ShorthandFieldIdentifier<'tree> {
 }
 /**Typed node `string_content`
 
-This node has no children
+This node has no named children
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -13183,7 +15585,7 @@ impl<'tree> type_sitter_lib::Node<'tree> for StringContent<'tree> {
 }
 /**Typed node `super`
 
-This node has no children
+This node has no named children
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -13223,7 +15625,7 @@ impl<'tree> type_sitter_lib::Node<'tree> for Super<'tree> {
 }
 /**Typed node `type_identifier`
 
-This node has no children
+This node has no named children
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -13266,7 +15668,7 @@ pub mod unnamed {
     use super::*;
     /**Typed node `as`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -13308,7 +15710,7 @@ This node has no children
     }
     /**Typed node `async`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -13350,7 +15752,7 @@ This node has no children
     }
     /**Typed node `await`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -13392,7 +15794,7 @@ This node has no children
     }
     /**Typed node `block`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -13434,7 +15836,7 @@ This node has no children
     }
     /**Typed node `break`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -13476,7 +15878,7 @@ This node has no children
     }
     /**Typed node `const`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -13518,7 +15920,7 @@ This node has no children
     }
     /**Typed node `continue`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -13560,7 +15962,7 @@ This node has no children
     }
     /**Typed node `default`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -13602,7 +16004,7 @@ This node has no children
     }
     /**Typed node `dyn`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -13644,7 +16046,7 @@ This node has no children
     }
     /**Typed node `else`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -13686,7 +16088,7 @@ This node has no children
     }
     /**Typed node `enum`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -13728,7 +16130,7 @@ This node has no children
     }
     /**Typed node `expr`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -13770,7 +16172,7 @@ This node has no children
     }
     /**Typed node `extern`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -13812,7 +16214,7 @@ This node has no children
     }
     /**Typed node `false`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -13854,7 +16256,7 @@ This node has no children
     }
     /**Typed node `fn`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -13896,7 +16298,7 @@ This node has no children
     }
     /**Typed node `for`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -13938,7 +16340,7 @@ This node has no children
     }
     /**Typed node `ident`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -13980,7 +16382,7 @@ This node has no children
     }
     /**Typed node `if`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -14022,7 +16424,7 @@ This node has no children
     }
     /**Typed node `impl`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -14064,7 +16466,7 @@ This node has no children
     }
     /**Typed node `in`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -14106,7 +16508,7 @@ This node has no children
     }
     /**Typed node `item`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -14148,7 +16550,7 @@ This node has no children
     }
     /**Typed node `let`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -14190,7 +16592,7 @@ This node has no children
     }
     /**Typed node `lifetime`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -14232,7 +16634,7 @@ This node has no children
     }
     /**Typed node `literal`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -14274,7 +16676,7 @@ This node has no children
     }
     /**Typed node `loop`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -14316,7 +16718,7 @@ This node has no children
     }
     /**Typed node `match`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -14358,7 +16760,7 @@ This node has no children
     }
     /**Typed node `meta`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -14400,7 +16802,7 @@ This node has no children
     }
     /**Typed node `mod`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -14442,7 +16844,7 @@ This node has no children
     }
     /**Typed node `move`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -14484,7 +16886,7 @@ This node has no children
     }
     /**Typed node `pat`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -14526,7 +16928,7 @@ This node has no children
     }
     /**Typed node `path`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -14568,7 +16970,7 @@ This node has no children
     }
     /**Typed node `pub`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -14610,7 +17012,7 @@ This node has no children
     }
     /**Typed node `ref`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -14652,7 +17054,7 @@ This node has no children
     }
     /**Typed node `return`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -14694,7 +17096,7 @@ This node has no children
     }
     /**Typed node `static`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -14736,7 +17138,7 @@ This node has no children
     }
     /**Typed node `stmt`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -14778,7 +17180,7 @@ This node has no children
     }
     /**Typed node `struct`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -14820,7 +17222,7 @@ This node has no children
     }
     /**Typed node `trait`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -14862,7 +17264,7 @@ This node has no children
     }
     /**Typed node `true`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -14904,7 +17306,7 @@ This node has no children
     }
     /**Typed node `try`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -14946,7 +17348,7 @@ This node has no children
     }
     /**Typed node `tt`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -14988,7 +17390,7 @@ This node has no children
     }
     /**Typed node `ty`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -15030,7 +17432,7 @@ This node has no children
     }
     /**Typed node `type`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -15072,7 +17474,7 @@ This node has no children
     }
     /**Typed node `union`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -15114,7 +17516,7 @@ This node has no children
     }
     /**Typed node `unsafe`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -15156,7 +17558,7 @@ This node has no children
     }
     /**Typed node `use`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -15198,7 +17600,7 @@ This node has no children
     }
     /**Typed node `vis`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -15240,7 +17642,7 @@ This node has no children
     }
     /**Typed node `where`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -15282,7 +17684,7 @@ This node has no children
     }
     /**Typed node `while`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -15324,7 +17726,7 @@ This node has no children
     }
     /**Typed node `yield`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -15370,7 +17772,7 @@ pub mod symbols {
     use super::*;
     /**Typed node `!`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -15412,7 +17814,7 @@ This node has no children
     }
     /**Typed node `!=`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -15454,7 +17856,7 @@ This node has no children
     }
     /**Typed node `"`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -15496,7 +17898,7 @@ This node has no children
     }
     /**Typed node `#`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -15538,7 +17940,7 @@ This node has no children
     }
     /**Typed node `$`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -15580,7 +17982,7 @@ This node has no children
     }
     /**Typed node `%`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -15622,7 +18024,7 @@ This node has no children
     }
     /**Typed node `%=`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -15664,7 +18066,7 @@ This node has no children
     }
     /**Typed node `&`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -15706,7 +18108,7 @@ This node has no children
     }
     /**Typed node `&&`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -15748,7 +18150,7 @@ This node has no children
     }
     /**Typed node `&=`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -15790,7 +18192,7 @@ This node has no children
     }
     /**Typed node `'`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -15832,7 +18234,7 @@ This node has no children
     }
     /**Typed node `(`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -15874,7 +18276,7 @@ This node has no children
     }
     /**Typed node `)`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -15916,7 +18318,7 @@ This node has no children
     }
     /**Typed node `*`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -15956,7 +18358,7 @@ This node has no children
             self.0
         }
     }
-    #[doc = "Typed node `*/`\n\nThis node has no children\n"]
+    #[doc = "Typed node `*/`\n\nThis node has no named children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
     #[allow(non_camel_case_types)]
@@ -15997,7 +18399,7 @@ This node has no children
     }
     /**Typed node `*=`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -16039,7 +18441,7 @@ This node has no children
     }
     /**Typed node `+`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -16081,7 +18483,7 @@ This node has no children
     }
     /**Typed node `+=`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -16123,7 +18525,7 @@ This node has no children
     }
     /**Typed node `,`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -16165,7 +18567,7 @@ This node has no children
     }
     /**Typed node `-`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -16207,7 +18609,7 @@ This node has no children
     }
     /**Typed node `-=`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -16249,7 +18651,7 @@ This node has no children
     }
     /**Typed node `->`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -16291,7 +18693,7 @@ This node has no children
     }
     /**Typed node `.`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -16333,7 +18735,7 @@ This node has no children
     }
     /**Typed node `..`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -16375,7 +18777,7 @@ This node has no children
     }
     /**Typed node `...`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -16417,7 +18819,7 @@ This node has no children
     }
     /**Typed node `..=`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -16459,7 +18861,7 @@ This node has no children
     }
     /**Typed node `/`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -16499,7 +18901,7 @@ This node has no children
             self.0
         }
     }
-    #[doc = "Typed node `/*`\n\nThis node has no children\n"]
+    #[doc = "Typed node `/*`\n\nThis node has no named children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
     #[allow(non_camel_case_types)]
@@ -16540,7 +18942,7 @@ This node has no children
     }
     /**Typed node `//`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -16582,7 +18984,7 @@ This node has no children
     }
     /**Typed node `/=`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -16624,7 +19026,7 @@ This node has no children
     }
     /**Typed node `:`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -16666,7 +19068,7 @@ This node has no children
     }
     /**Typed node `::`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -16708,7 +19110,7 @@ This node has no children
     }
     /**Typed node `;`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -16750,7 +19152,7 @@ This node has no children
     }
     /**Typed node `<`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -16792,7 +19194,7 @@ This node has no children
     }
     /**Typed node `<<`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -16834,7 +19236,7 @@ This node has no children
     }
     /**Typed node `<<=`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -16876,7 +19278,7 @@ This node has no children
     }
     /**Typed node `<=`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -16918,7 +19320,7 @@ This node has no children
     }
     /**Typed node `=`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -16960,7 +19362,7 @@ This node has no children
     }
     /**Typed node `==`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -17002,7 +19404,7 @@ This node has no children
     }
     /**Typed node `=>`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -17044,7 +19446,7 @@ This node has no children
     }
     /**Typed node `>`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -17086,7 +19488,7 @@ This node has no children
     }
     /**Typed node `>=`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -17128,7 +19530,7 @@ This node has no children
     }
     /**Typed node `>>`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -17170,7 +19572,7 @@ This node has no children
     }
     /**Typed node `>>=`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -17212,7 +19614,7 @@ This node has no children
     }
     /**Typed node `?`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -17254,7 +19656,7 @@ This node has no children
     }
     /**Typed node `@`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -17296,7 +19698,7 @@ This node has no children
     }
     /**Typed node `[`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -17338,7 +19740,7 @@ This node has no children
     }
     /**Typed node `]`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -17380,7 +19782,7 @@ This node has no children
     }
     /**Typed node `^`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -17422,7 +19824,7 @@ This node has no children
     }
     /**Typed node `^=`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -17464,7 +19866,7 @@ This node has no children
     }
     /**Typed node `_`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -17506,7 +19908,7 @@ This node has no children
     }
     /**Typed node `macro_rules!`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -17548,7 +19950,7 @@ This node has no children
     }
     /**Typed node `{`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -17590,7 +19992,7 @@ This node has no children
     }
     /**Typed node `|`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -17632,7 +20034,7 @@ This node has no children
     }
     /**Typed node `|=`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -17674,7 +20076,7 @@ This node has no children
     }
     /**Typed node `||`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -17716,7 +20118,7 @@ This node has no children
     }
     /**Typed node `}`
 
-This node has no children
+This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -17760,14 +20162,14 @@ This node has no children
 pub mod anon_unions {
     #[allow(unused_imports)]
     use super::*;
-    /**one of `{type_parameters | function_type | generic_type | removed_trait_bound | scoped_type_identifier | tuple_type | type_identifier}`:
-- [TypeParameters]
-- [FunctionType]
-- [GenericType]
-- [RemovedTraitBound]
-- [ScopedTypeIdentifier]
-- [TupleType]
-- [TypeIdentifier]*/
+    /**One of `{type_parameters | function_type | generic_type | removed_trait_bound | scoped_type_identifier | tuple_type | type_identifier}`:
+- [`TypeParameters`]
+- [`FunctionType`]
+- [`GenericType`]
+- [`RemovedTraitBound`]
+- [`ScopedTypeIdentifier`]
+- [`TupleType`]
+- [`TypeIdentifier`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum TypeParameters_FunctionType_GenericType_RemovedTraitBound_ScopedTypeIdentifier_TupleType_TypeIdentifier<
@@ -17787,51 +20189,51 @@ pub mod anon_unions {
     > TypeParameters_FunctionType_GenericType_RemovedTraitBound_ScopedTypeIdentifier_TupleType_TypeIdentifier<
         'tree,
     > {
-        ///Returns the node if it is of kind `type_parameters` ([`TypeParameters`]), otherwise returns None
+        ///Returns the node if it is of type `type_parameters` ([`TypeParameters`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_type_parameters(self) -> Option<TypeParameters<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::TypeParameters(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `function_type` ([`FunctionType`]), otherwise returns None
+        ///Returns the node if it is of type `function_type` ([`FunctionType`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_function_type(self) -> Option<FunctionType<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::FunctionType(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `generic_type` ([`GenericType`]), otherwise returns None
+        ///Returns the node if it is of type `generic_type` ([`GenericType`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_generic_type(self) -> Option<GenericType<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::GenericType(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `removed_trait_bound` ([`RemovedTraitBound`]), otherwise returns None
+        ///Returns the node if it is of type `removed_trait_bound` ([`RemovedTraitBound`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_removed_trait_bound(self) -> Option<RemovedTraitBound<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::RemovedTraitBound(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `scoped_type_identifier` ([`ScopedTypeIdentifier`]), otherwise returns None
+        ///Returns the node if it is of type `scoped_type_identifier` ([`ScopedTypeIdentifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_scoped_type_identifier(self) -> Option<ScopedTypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::ScopedTypeIdentifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `tuple_type` ([`TupleType`]), otherwise returns None
+        ///Returns the node if it is of type `tuple_type` ([`TupleType`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_tuple_type(self) -> Option<TupleType<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::TupleType(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `type_identifier` ([`TypeIdentifier`]), otherwise returns None
+        ///Returns the node if it is of type `type_identifier` ([`TypeIdentifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_type_identifier(self) -> Option<TypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::TypeIdentifier(x) = self { Some(x) } else { None }
@@ -17954,13 +20356,13 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{function_type | generic_type | removed_trait_bound | scoped_type_identifier | tuple_type | type_identifier}`:
-- [FunctionType]
-- [GenericType]
-- [RemovedTraitBound]
-- [ScopedTypeIdentifier]
-- [TupleType]
-- [TypeIdentifier]*/
+    /**One of `{function_type | generic_type | removed_trait_bound | scoped_type_identifier | tuple_type | type_identifier}`:
+- [`FunctionType`]
+- [`GenericType`]
+- [`RemovedTraitBound`]
+- [`ScopedTypeIdentifier`]
+- [`TupleType`]
+- [`TypeIdentifier`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum FunctionType_GenericType_RemovedTraitBound_ScopedTypeIdentifier_TupleType_TypeIdentifier<
@@ -17979,44 +20381,44 @@ pub mod anon_unions {
     > FunctionType_GenericType_RemovedTraitBound_ScopedTypeIdentifier_TupleType_TypeIdentifier<
         'tree,
     > {
-        ///Returns the node if it is of kind `function_type` ([`FunctionType`]), otherwise returns None
+        ///Returns the node if it is of type `function_type` ([`FunctionType`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_function_type(self) -> Option<FunctionType<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::FunctionType(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `generic_type` ([`GenericType`]), otherwise returns None
+        ///Returns the node if it is of type `generic_type` ([`GenericType`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_generic_type(self) -> Option<GenericType<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::GenericType(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `removed_trait_bound` ([`RemovedTraitBound`]), otherwise returns None
+        ///Returns the node if it is of type `removed_trait_bound` ([`RemovedTraitBound`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_removed_trait_bound(self) -> Option<RemovedTraitBound<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::RemovedTraitBound(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `scoped_type_identifier` ([`ScopedTypeIdentifier`]), otherwise returns None
+        ///Returns the node if it is of type `scoped_type_identifier` ([`ScopedTypeIdentifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_scoped_type_identifier(self) -> Option<ScopedTypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::ScopedTypeIdentifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `tuple_type` ([`TupleType`]), otherwise returns None
+        ///Returns the node if it is of type `tuple_type` ([`TupleType`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_tuple_type(self) -> Option<TupleType<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::TupleType(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `type_identifier` ([`TypeIdentifier`]), otherwise returns None
+        ///Returns the node if it is of type `type_identifier` ([`TypeIdentifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_type_identifier(self) -> Option<TypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::TypeIdentifier(x) = self { Some(x) } else { None }
@@ -18127,9 +20529,9 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{_expression | attribute_item}`:
-- [Expression]
-- [AttributeItem]*/
+    /**One of `{_expression | attribute_item}`:
+- [`Expression`]
+- [`AttributeItem`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum Expression_AttributeItem<'tree> {
@@ -18138,16 +20540,16 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> Expression_AttributeItem<'tree> {
-        ///Returns the node if it is of kind `_expression` ([`Expression`]), otherwise returns None
+        ///Returns the node if it is of type `_expression` ([`Expression`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_expression(self) -> Option<Expression<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Expression(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `attribute_item` ([`AttributeItem`]), otherwise returns None
+        ///Returns the node if it is of type `attribute_item` ([`AttributeItem`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_attribute_item(self) -> Option<AttributeItem<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::AttributeItem(x) = self { Some(x) } else { None }
@@ -18195,11 +20597,11 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{where_clause | trait_bounds | type_identifier | type_parameters}`:
-- [WhereClause]
-- [TraitBounds]
-- [TypeIdentifier]
-- [TypeParameters]*/
+    /**One of `{where_clause | trait_bounds | type_identifier | type_parameters}`:
+- [`WhereClause`]
+- [`TraitBounds`]
+- [`TypeIdentifier`]
+- [`TypeParameters`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum WhereClause_TraitBounds_TypeIdentifier_TypeParameters<'tree> {
@@ -18210,30 +20612,30 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> WhereClause_TraitBounds_TypeIdentifier_TypeParameters<'tree> {
-        ///Returns the node if it is of kind `where_clause` ([`WhereClause`]), otherwise returns None
+        ///Returns the node if it is of type `where_clause` ([`WhereClause`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_where_clause(self) -> Option<WhereClause<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::WhereClause(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `trait_bounds` ([`TraitBounds`]), otherwise returns None
+        ///Returns the node if it is of type `trait_bounds` ([`TraitBounds`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_trait_bounds(self) -> Option<TraitBounds<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::TraitBounds(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `type_identifier` ([`TypeIdentifier`]), otherwise returns None
+        ///Returns the node if it is of type `type_identifier` ([`TypeIdentifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_type_identifier(self) -> Option<TypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::TypeIdentifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `type_parameters` ([`TypeParameters`]), otherwise returns None
+        ///Returns the node if it is of type `type_parameters` ([`TypeParameters`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_type_parameters(self) -> Option<TypeParameters<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::TypeParameters(x) = self { Some(x) } else { None }
@@ -18318,25 +20720,190 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{crate | identifier | metavariable | scoped_identifier | self | super | token_tree | _expression}`:
-- [Crate]
-- [Identifier]
-- [Metavariable]
-- [ScopedIdentifier]
-- [_Self]
-- [Super]
-- [TokenTree]
-- [Expression]*/
+    /**One of `{crate | identifier | metavariable | scoped_identifier | self | super}`:
+- [`Crate`]
+- [`Identifier`]
+- [`Metavariable`]
+- [`ScopedIdentifier`]
+- [`Self_`]
+- [`Super`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub enum Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super_TokenTree_Expression<
+    pub enum Crate_Identifier_Metavariable_ScopedIdentifier_Self__Super<'tree> {
+        Crate(Crate<'tree>),
+        Identifier(Identifier<'tree>),
+        Metavariable(Metavariable<'tree>),
+        ScopedIdentifier(ScopedIdentifier<'tree>),
+        Self_(Self_<'tree>),
+        Super(Super<'tree>),
+    }
+    #[automatically_derived]
+    impl<'tree> Crate_Identifier_Metavariable_ScopedIdentifier_Self__Super<'tree> {
+        ///Returns the node if it is of type `crate` ([`Crate`]), otherwise returns `None`
+        #[inline]
+        #[allow(non_snake_case)]
+        pub fn as_crate(self) -> Option<Crate<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Crate(x) = self { Some(x) } else { None }
+        }
+        ///Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`
+        #[inline]
+        #[allow(non_snake_case)]
+        pub fn as_identifier(self) -> Option<Identifier<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Identifier(x) = self { Some(x) } else { None }
+        }
+        ///Returns the node if it is of type `metavariable` ([`Metavariable`]), otherwise returns `None`
+        #[inline]
+        #[allow(non_snake_case)]
+        pub fn as_metavariable(self) -> Option<Metavariable<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Metavariable(x) = self { Some(x) } else { None }
+        }
+        ///Returns the node if it is of type `scoped_identifier` ([`ScopedIdentifier`]), otherwise returns `None`
+        #[inline]
+        #[allow(non_snake_case)]
+        pub fn as_scoped_identifier(self) -> Option<ScopedIdentifier<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::ScopedIdentifier(x) = self { Some(x) } else { None }
+        }
+        ///Returns the node if it is of type `self` ([`Self_`]), otherwise returns `None`
+        #[inline]
+        #[allow(non_snake_case)]
+        pub fn as_self(self) -> Option<Self_<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Self_(x) = self { Some(x) } else { None }
+        }
+        ///Returns the node if it is of type `super` ([`Super`]), otherwise returns `None`
+        #[inline]
+        #[allow(non_snake_case)]
+        pub fn as_super(self) -> Option<Super<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Super(x) = self { Some(x) } else { None }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::Node<'tree>
+    for Crate_Identifier_Metavariable_ScopedIdentifier_Self__Super<'tree> {
+        type WithLifetime<'a> = Crate_Identifier_Metavariable_ScopedIdentifier_Self__Super<
+            'a,
+        >;
+        const KIND: &'static str = "{crate | identifier | metavariable | scoped_identifier | self | super}";
+        #[inline]
+        fn try_from_raw(
+            node: yak_sitter::Node<'tree>,
+        ) -> type_sitter_lib::NodeResult<Self> {
+            match node.kind() {
+                "crate" => {
+                    Ok(unsafe {
+                        Self::Crate(
+                            <Crate<
+                                'tree,
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "identifier" => {
+                    Ok(unsafe {
+                        Self::Identifier(
+                            <Identifier<
+                                'tree,
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "metavariable" => {
+                    Ok(unsafe {
+                        Self::Metavariable(
+                            <Metavariable<
+                                'tree,
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "scoped_identifier" => {
+                    Ok(unsafe {
+                        Self::ScopedIdentifier(
+                            <ScopedIdentifier<
+                                'tree,
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "self" => {
+                    Ok(unsafe {
+                        Self::Self_(
+                            <Self_<
+                                'tree,
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "super" => {
+                    Ok(unsafe {
+                        Self::Super(
+                            <Super<
+                                'tree,
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                _ => Err(type_sitter_lib::IncorrectKind::new::<Self>(node)),
+            }
+        }
+        #[inline]
+        fn raw(&self) -> &yak_sitter::Node<'tree> {
+            match self {
+                Self::Crate(x) => type_sitter_lib::Node::raw(x),
+                Self::Identifier(x) => type_sitter_lib::Node::raw(x),
+                Self::Metavariable(x) => type_sitter_lib::Node::raw(x),
+                Self::ScopedIdentifier(x) => type_sitter_lib::Node::raw(x),
+                Self::Self_(x) => type_sitter_lib::Node::raw(x),
+                Self::Super(x) => type_sitter_lib::Node::raw(x),
+            }
+        }
+        #[inline]
+        fn raw_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
+            match self {
+                Self::Crate(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::Identifier(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::Metavariable(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::ScopedIdentifier(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::Self_(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::Super(x) => type_sitter_lib::Node::raw_mut(x),
+            }
+        }
+        #[inline]
+        fn into_raw(self) -> yak_sitter::Node<'tree> {
+            match self {
+                Self::Crate(x) => x.into_raw(),
+                Self::Identifier(x) => x.into_raw(),
+                Self::Metavariable(x) => x.into_raw(),
+                Self::ScopedIdentifier(x) => x.into_raw(),
+                Self::Self_(x) => x.into_raw(),
+                Self::Super(x) => x.into_raw(),
+            }
+        }
+    }
+    /**One of `{crate | identifier | metavariable | scoped_identifier | self | super | token_tree | _expression}`:
+- [`Crate`]
+- [`Identifier`]
+- [`Metavariable`]
+- [`ScopedIdentifier`]
+- [`Self_`]
+- [`Super`]
+- [`TokenTree`]
+- [`Expression`]*/
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub enum Crate_Identifier_Metavariable_ScopedIdentifier_Self__Super_TokenTree_Expression<
         'tree,
     > {
         Crate(Crate<'tree>),
         Identifier(Identifier<'tree>),
         Metavariable(Metavariable<'tree>),
         ScopedIdentifier(ScopedIdentifier<'tree>),
-        _Self(_Self<'tree>),
+        Self_(Self_<'tree>),
         Super(Super<'tree>),
         TokenTree(TokenTree<'tree>),
         Expression(Expression<'tree>),
@@ -18344,61 +20911,61 @@ pub mod anon_unions {
     #[automatically_derived]
     impl<
         'tree,
-    > Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super_TokenTree_Expression<
+    > Crate_Identifier_Metavariable_ScopedIdentifier_Self__Super_TokenTree_Expression<
         'tree,
     > {
-        ///Returns the node if it is of kind `crate` ([`Crate`]), otherwise returns None
+        ///Returns the node if it is of type `crate` ([`Crate`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
-        pub fn as_crate_(self) -> Option<Crate<'tree>> {
+        #[allow(non_snake_case)]
+        pub fn as_crate(self) -> Option<Crate<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Crate(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `identifier` ([`Identifier`]), otherwise returns None
+        ///Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_identifier(self) -> Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Identifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `metavariable` ([`Metavariable`]), otherwise returns None
+        ///Returns the node if it is of type `metavariable` ([`Metavariable`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_metavariable(self) -> Option<Metavariable<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Metavariable(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `scoped_identifier` ([`ScopedIdentifier`]), otherwise returns None
+        ///Returns the node if it is of type `scoped_identifier` ([`ScopedIdentifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_scoped_identifier(self) -> Option<ScopedIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::ScopedIdentifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `self` ([`_Self`]), otherwise returns None
+        ///Returns the node if it is of type `self` ([`Self_`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
-        pub fn as__self(self) -> Option<_Self<'tree>> {
+        #[allow(non_snake_case)]
+        pub fn as_self(self) -> Option<Self_<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::_Self(x) = self { Some(x) } else { None }
+            if let Self::Self_(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `super` ([`Super`]), otherwise returns None
+        ///Returns the node if it is of type `super` ([`Super`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
-        pub fn as_super_(self) -> Option<Super<'tree>> {
+        #[allow(non_snake_case)]
+        pub fn as_super(self) -> Option<Super<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Super(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `token_tree` ([`TokenTree`]), otherwise returns None
+        ///Returns the node if it is of type `token_tree` ([`TokenTree`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_token_tree(self) -> Option<TokenTree<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::TokenTree(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `_expression` ([`Expression`]), otherwise returns None
+        ///Returns the node if it is of type `_expression` ([`Expression`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_expression(self) -> Option<Expression<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Expression(x) = self { Some(x) } else { None }
@@ -18406,10 +20973,10 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree>
-    for Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super_TokenTree_Expression<
+    for Crate_Identifier_Metavariable_ScopedIdentifier_Self__Super_TokenTree_Expression<
         'tree,
     > {
-        type WithLifetime<'a> = Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super_TokenTree_Expression<
+        type WithLifetime<'a> = Crate_Identifier_Metavariable_ScopedIdentifier_Self__Super_TokenTree_Expression<
             'a,
         >;
         const KIND: &'static str = "{crate | identifier | metavariable | scoped_identifier | self | super | token_tree | _expression}";
@@ -18437,10 +21004,10 @@ pub mod anon_unions {
             > as type_sitter_lib::Node<'tree>>::try_from_raw(node) {
                 return Ok(Self::ScopedIdentifier(this));
             }
-            if let Ok(this) = <_Self<
+            if let Ok(this) = <Self_<
                 'tree,
             > as type_sitter_lib::Node<'tree>>::try_from_raw(node) {
-                return Ok(Self::_Self(this));
+                return Ok(Self::Self_(this));
             }
             if let Ok(this) = <Super<
                 'tree,
@@ -18466,7 +21033,7 @@ pub mod anon_unions {
                 Self::Identifier(x) => type_sitter_lib::Node::raw(x),
                 Self::Metavariable(x) => type_sitter_lib::Node::raw(x),
                 Self::ScopedIdentifier(x) => type_sitter_lib::Node::raw(x),
-                Self::_Self(x) => type_sitter_lib::Node::raw(x),
+                Self::Self_(x) => type_sitter_lib::Node::raw(x),
                 Self::Super(x) => type_sitter_lib::Node::raw(x),
                 Self::TokenTree(x) => type_sitter_lib::Node::raw(x),
                 Self::Expression(x) => type_sitter_lib::Node::raw(x),
@@ -18479,7 +21046,7 @@ pub mod anon_unions {
                 Self::Identifier(x) => type_sitter_lib::Node::raw_mut(x),
                 Self::Metavariable(x) => type_sitter_lib::Node::raw_mut(x),
                 Self::ScopedIdentifier(x) => type_sitter_lib::Node::raw_mut(x),
-                Self::_Self(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::Self_(x) => type_sitter_lib::Node::raw_mut(x),
                 Self::Super(x) => type_sitter_lib::Node::raw_mut(x),
                 Self::TokenTree(x) => type_sitter_lib::Node::raw_mut(x),
                 Self::Expression(x) => type_sitter_lib::Node::raw_mut(x),
@@ -18492,32 +21059,32 @@ pub mod anon_unions {
                 Self::Identifier(x) => x.into_raw(),
                 Self::Metavariable(x) => x.into_raw(),
                 Self::ScopedIdentifier(x) => x.into_raw(),
-                Self::_Self(x) => x.into_raw(),
+                Self::Self_(x) => x.into_raw(),
                 Self::Super(x) => x.into_raw(),
                 Self::TokenTree(x) => x.into_raw(),
                 Self::Expression(x) => x.into_raw(),
             }
         }
     }
-    /**one of `{!= | % | & | && | * | + | - | / | < | << | <= | == | > | >= | >> | ^ | | | ||}`:
-- [symbols::NotEq]
-- [symbols::Mod]
-- [symbols::And]
-- [symbols::AndAnd]
-- [symbols::Mul]
-- [symbols::Add]
-- [symbols::Sub]
-- [symbols::Div]
-- [symbols::Lt]
-- [symbols::LtLt]
-- [symbols::LtEq]
-- [symbols::EqEq]
-- [symbols::Gt]
-- [symbols::GtEq]
-- [symbols::GtGt]
-- [symbols::BitXor]
-- [symbols::Or]
-- [symbols::OrOr]*/
+    /**One of `{!= | % | & | && | * | + | - | / | < | << | <= | == | > | >= | >> | ^ | | | ||}`:
+- [`symbols::NotEq`]
+- [`symbols::Mod`]
+- [`symbols::And`]
+- [`symbols::AndAnd`]
+- [`symbols::Mul`]
+- [`symbols::Add`]
+- [`symbols::Sub`]
+- [`symbols::Div`]
+- [`symbols::Lt`]
+- [`symbols::LtLt`]
+- [`symbols::LtEq`]
+- [`symbols::EqEq`]
+- [`symbols::Gt`]
+- [`symbols::GtEq`]
+- [`symbols::GtGt`]
+- [`symbols::BitXor`]
+- [`symbols::Or`]
+- [`symbols::OrOr`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum NotEq_Mod_And_AndAnd_Mul_Add_Sub_Div_Lt_LtLt_LtEq_EqEq_Gt_GtEq_GtGt_BitXor_Or_OrOr<
@@ -18548,128 +21115,128 @@ pub mod anon_unions {
     > NotEq_Mod_And_AndAnd_Mul_Add_Sub_Div_Lt_LtLt_LtEq_EqEq_Gt_GtEq_GtGt_BitXor_Or_OrOr<
         'tree,
     > {
-        ///Returns the node if it is of kind `!=` ([`symbols::NotEq`]), otherwise returns None
+        ///Returns the node if it is of type `!=` ([`symbols::NotEq`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_not_eq(self) -> Option<symbols::NotEq<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::NotEq(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `%` ([`symbols::Mod`]), otherwise returns None
+        ///Returns the node if it is of type `%` ([`symbols::Mod`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_mod(self) -> Option<symbols::Mod<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Mod(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `&` ([`symbols::And`]), otherwise returns None
+        ///Returns the node if it is of type `&` ([`symbols::And`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_and(self) -> Option<symbols::And<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::And(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `&&` ([`symbols::AndAnd`]), otherwise returns None
+        ///Returns the node if it is of type `&&` ([`symbols::AndAnd`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_and_and(self) -> Option<symbols::AndAnd<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::AndAnd(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `*` ([`symbols::Mul`]), otherwise returns None
+        ///Returns the node if it is of type `*` ([`symbols::Mul`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_mul(self) -> Option<symbols::Mul<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Mul(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `+` ([`symbols::Add`]), otherwise returns None
+        ///Returns the node if it is of type `+` ([`symbols::Add`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_add(self) -> Option<symbols::Add<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Add(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `-` ([`symbols::Sub`]), otherwise returns None
+        ///Returns the node if it is of type `-` ([`symbols::Sub`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_sub(self) -> Option<symbols::Sub<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Sub(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `/` ([`symbols::Div`]), otherwise returns None
+        ///Returns the node if it is of type `/` ([`symbols::Div`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_div(self) -> Option<symbols::Div<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Div(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `<` ([`symbols::Lt`]), otherwise returns None
+        ///Returns the node if it is of type `<` ([`symbols::Lt`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_lt(self) -> Option<symbols::Lt<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Lt(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `<<` ([`symbols::LtLt`]), otherwise returns None
+        ///Returns the node if it is of type `<<` ([`symbols::LtLt`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_lt_lt(self) -> Option<symbols::LtLt<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::LtLt(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `<=` ([`symbols::LtEq`]), otherwise returns None
+        ///Returns the node if it is of type `<=` ([`symbols::LtEq`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_lt_eq(self) -> Option<symbols::LtEq<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::LtEq(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `==` ([`symbols::EqEq`]), otherwise returns None
+        ///Returns the node if it is of type `==` ([`symbols::EqEq`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_eq_eq(self) -> Option<symbols::EqEq<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::EqEq(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `>` ([`symbols::Gt`]), otherwise returns None
+        ///Returns the node if it is of type `>` ([`symbols::Gt`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_gt(self) -> Option<symbols::Gt<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Gt(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `>=` ([`symbols::GtEq`]), otherwise returns None
+        ///Returns the node if it is of type `>=` ([`symbols::GtEq`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_gt_eq(self) -> Option<symbols::GtEq<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::GtEq(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `>>` ([`symbols::GtGt`]), otherwise returns None
+        ///Returns the node if it is of type `>>` ([`symbols::GtGt`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_gt_gt(self) -> Option<symbols::GtGt<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::GtGt(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `^` ([`symbols::BitXor`]), otherwise returns None
+        ///Returns the node if it is of type `^` ([`symbols::BitXor`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_bit_xor(self) -> Option<symbols::BitXor<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::BitXor(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `|` ([`symbols::Or`]), otherwise returns None
+        ///Returns the node if it is of type `|` ([`symbols::Or`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_or(self) -> Option<symbols::Or<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Or(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `||` ([`symbols::OrOr`]), otherwise returns None
+        ///Returns the node if it is of type `||` ([`symbols::OrOr`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_or_or(self) -> Option<symbols::OrOr<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::OrOr(x) = self { Some(x) } else { None }
@@ -18924,11 +21491,11 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{_declaration_statement | _expression | expression_statement | label}`:
-- [DeclarationStatement]
-- [Expression]
-- [ExpressionStatement]
-- [Label]*/
+    /**One of `{_declaration_statement | _expression | expression_statement | label}`:
+- [`DeclarationStatement`]
+- [`Expression`]
+- [`ExpressionStatement`]
+- [`Label`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum DeclarationStatement_Expression_ExpressionStatement_Label<'tree> {
@@ -18939,30 +21506,30 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> DeclarationStatement_Expression_ExpressionStatement_Label<'tree> {
-        ///Returns the node if it is of kind `_declaration_statement` ([`DeclarationStatement`]), otherwise returns None
+        ///Returns the node if it is of type `_declaration_statement` ([`DeclarationStatement`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_declaration_statement(self) -> Option<DeclarationStatement<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::DeclarationStatement(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `_expression` ([`Expression`]), otherwise returns None
+        ///Returns the node if it is of type `_expression` ([`Expression`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_expression(self) -> Option<Expression<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Expression(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `expression_statement` ([`ExpressionStatement`]), otherwise returns None
+        ///Returns the node if it is of type `expression_statement` ([`ExpressionStatement`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_expression_statement(self) -> Option<ExpressionStatement<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::ExpressionStatement(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `label` ([`Label`]), otherwise returns None
+        ///Returns the node if it is of type `label` ([`Label`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_label(self) -> Option<Label<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Label(x) = self { Some(x) } else { None }
@@ -19029,9 +21596,9 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{_type | lifetime}`:
-- [Type]
-- [Lifetime]*/
+    /**One of `{_type | lifetime}`:
+- [`Type`]
+- [`Lifetime`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum Type_Lifetime<'tree> {
@@ -19040,16 +21607,16 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> Type_Lifetime<'tree> {
-        ///Returns the node if it is of kind `_type` ([`Type`]), otherwise returns None
+        ///Returns the node if it is of type `_type` ([`Type`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_type(self) -> Option<Type<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Type(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `lifetime` ([`Lifetime`]), otherwise returns None
+        ///Returns the node if it is of type `lifetime` ([`Lifetime`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_lifetime(self) -> Option<Lifetime<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Lifetime(x) = self { Some(x) } else { None }
@@ -19097,9 +21664,9 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{_type | qualified_type}`:
-- [Type]
-- [QualifiedType]*/
+    /**One of `{_type | qualified_type}`:
+- [`Type`]
+- [`QualifiedType`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum Type_QualifiedType<'tree> {
@@ -19108,16 +21675,16 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> Type_QualifiedType<'tree> {
-        ///Returns the node if it is of kind `_type` ([`Type`]), otherwise returns None
+        ///Returns the node if it is of type `_type` ([`Type`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_type(self) -> Option<Type<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Type(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `qualified_type` ([`QualifiedType`]), otherwise returns None
+        ///Returns the node if it is of type `qualified_type` ([`QualifiedType`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_qualified_type(self) -> Option<QualifiedType<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::QualifiedType(x) = self { Some(x) } else { None }
@@ -19165,9 +21732,9 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{_expression | label}`:
-- [Expression]
-- [Label]*/
+    /**One of `{_expression | label}`:
+- [`Expression`]
+- [`Label`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum Expression_Label<'tree> {
@@ -19176,16 +21743,16 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> Expression_Label<'tree> {
-        ///Returns the node if it is of kind `_expression` ([`Expression`]), otherwise returns None
+        ///Returns the node if it is of type `_expression` ([`Expression`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_expression(self) -> Option<Expression<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Expression(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `label` ([`Label`]), otherwise returns None
+        ///Returns the node if it is of type `label` ([`Label`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_label(self) -> Option<Label<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Label(x) = self { Some(x) } else { None }
@@ -19233,48 +21800,48 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{_literal | array_expression | assignment_expression | async_block | await_expression | binary_expression | block | break_expression | call_expression | closure_expression | compound_assignment_expr | const_block | continue_expression | field_expression | for_expression | generic_function | identifier | if_expression | index_expression | loop_expression | macro_invocation | match_expression | metavariable | parenthesized_expression | reference_expression | return_expression | scoped_identifier | self | struct_expression | try_block | try_expression | tuple_expression | type_cast_expression | unary_expression | unit_expression | unsafe_block | while_expression | yield_expression}`:
-- [Literal]
-- [ArrayExpression]
-- [AssignmentExpression]
-- [AsyncBlock]
-- [AwaitExpression]
-- [BinaryExpression]
-- [Block]
-- [BreakExpression]
-- [CallExpression]
-- [ClosureExpression]
-- [CompoundAssignmentExpr]
-- [ConstBlock]
-- [ContinueExpression]
-- [FieldExpression]
-- [ForExpression]
-- [GenericFunction]
-- [Identifier]
-- [IfExpression]
-- [IndexExpression]
-- [LoopExpression]
-- [MacroInvocation]
-- [MatchExpression]
-- [Metavariable]
-- [ParenthesizedExpression]
-- [ReferenceExpression]
-- [ReturnExpression]
-- [ScopedIdentifier]
-- [_Self]
-- [StructExpression]
-- [TryBlock]
-- [TryExpression]
-- [TupleExpression]
-- [TypeCastExpression]
-- [UnaryExpression]
-- [UnitExpression]
-- [UnsafeBlock]
-- [WhileExpression]
-- [YieldExpression]*/
+    /**One of `{_literal | array_expression | assignment_expression | async_block | await_expression | binary_expression | block | break_expression | call_expression | closure_expression | compound_assignment_expr | const_block | continue_expression | field_expression | for_expression | generic_function | identifier | if_expression | index_expression | loop_expression | macro_invocation | match_expression | metavariable | parenthesized_expression | reference_expression | return_expression | scoped_identifier | self | struct_expression | try_block | try_expression | tuple_expression | type_cast_expression | unary_expression | unit_expression | unsafe_block | while_expression | yield_expression}`:
+- [`Literal`]
+- [`ArrayExpression`]
+- [`AssignmentExpression`]
+- [`AsyncBlock`]
+- [`AwaitExpression`]
+- [`BinaryExpression`]
+- [`Block`]
+- [`BreakExpression`]
+- [`CallExpression`]
+- [`ClosureExpression`]
+- [`CompoundAssignmentExpr`]
+- [`ConstBlock`]
+- [`ContinueExpression`]
+- [`FieldExpression`]
+- [`ForExpression`]
+- [`GenericFunction`]
+- [`Identifier`]
+- [`IfExpression`]
+- [`IndexExpression`]
+- [`LoopExpression`]
+- [`MacroInvocation`]
+- [`MatchExpression`]
+- [`Metavariable`]
+- [`ParenthesizedExpression`]
+- [`ReferenceExpression`]
+- [`ReturnExpression`]
+- [`ScopedIdentifier`]
+- [`Self_`]
+- [`StructExpression`]
+- [`TryBlock`]
+- [`TryExpression`]
+- [`TupleExpression`]
+- [`TypeCastExpression`]
+- [`UnaryExpression`]
+- [`UnitExpression`]
+- [`UnsafeBlock`]
+- [`WhileExpression`]
+- [`YieldExpression`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub enum Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier__Self_StructExpression_TryBlock_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression<
+    pub enum Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier_Self__StructExpression_TryBlock_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression<
         'tree,
     > {
         Literal(Literal<'tree>),
@@ -19304,7 +21871,7 @@ pub mod anon_unions {
         ReferenceExpression(ReferenceExpression<'tree>),
         ReturnExpression(ReturnExpression<'tree>),
         ScopedIdentifier(ScopedIdentifier<'tree>),
-        _Self(_Self<'tree>),
+        Self_(Self_<'tree>),
         StructExpression(StructExpression<'tree>),
         TryBlock(TryBlock<'tree>),
         TryExpression(TryExpression<'tree>),
@@ -19319,275 +21886,275 @@ pub mod anon_unions {
     #[automatically_derived]
     impl<
         'tree,
-    > Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier__Self_StructExpression_TryBlock_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression<
+    > Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier_Self__StructExpression_TryBlock_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression<
         'tree,
     > {
-        ///Returns the node if it is of kind `_literal` ([`Literal`]), otherwise returns None
+        ///Returns the node if it is of type `_literal` ([`Literal`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_literal(self) -> Option<Literal<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Literal(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `array_expression` ([`ArrayExpression`]), otherwise returns None
+        ///Returns the node if it is of type `array_expression` ([`ArrayExpression`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_array_expression(self) -> Option<ArrayExpression<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::ArrayExpression(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `assignment_expression` ([`AssignmentExpression`]), otherwise returns None
+        ///Returns the node if it is of type `assignment_expression` ([`AssignmentExpression`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_assignment_expression(self) -> Option<AssignmentExpression<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::AssignmentExpression(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `async_block` ([`AsyncBlock`]), otherwise returns None
+        ///Returns the node if it is of type `async_block` ([`AsyncBlock`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_async_block(self) -> Option<AsyncBlock<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::AsyncBlock(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `await_expression` ([`AwaitExpression`]), otherwise returns None
+        ///Returns the node if it is of type `await_expression` ([`AwaitExpression`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_await_expression(self) -> Option<AwaitExpression<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::AwaitExpression(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `binary_expression` ([`BinaryExpression`]), otherwise returns None
+        ///Returns the node if it is of type `binary_expression` ([`BinaryExpression`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_binary_expression(self) -> Option<BinaryExpression<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::BinaryExpression(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `block` ([`Block`]), otherwise returns None
+        ///Returns the node if it is of type `block` ([`Block`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_block(self) -> Option<Block<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Block(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `break_expression` ([`BreakExpression`]), otherwise returns None
+        ///Returns the node if it is of type `break_expression` ([`BreakExpression`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_break_expression(self) -> Option<BreakExpression<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::BreakExpression(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `call_expression` ([`CallExpression`]), otherwise returns None
+        ///Returns the node if it is of type `call_expression` ([`CallExpression`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_call_expression(self) -> Option<CallExpression<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::CallExpression(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `closure_expression` ([`ClosureExpression`]), otherwise returns None
+        ///Returns the node if it is of type `closure_expression` ([`ClosureExpression`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_closure_expression(self) -> Option<ClosureExpression<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::ClosureExpression(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `compound_assignment_expr` ([`CompoundAssignmentExpr`]), otherwise returns None
+        ///Returns the node if it is of type `compound_assignment_expr` ([`CompoundAssignmentExpr`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_compound_assignment_expr(
             self,
         ) -> Option<CompoundAssignmentExpr<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::CompoundAssignmentExpr(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `const_block` ([`ConstBlock`]), otherwise returns None
+        ///Returns the node if it is of type `const_block` ([`ConstBlock`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_const_block(self) -> Option<ConstBlock<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::ConstBlock(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `continue_expression` ([`ContinueExpression`]), otherwise returns None
+        ///Returns the node if it is of type `continue_expression` ([`ContinueExpression`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_continue_expression(self) -> Option<ContinueExpression<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::ContinueExpression(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `field_expression` ([`FieldExpression`]), otherwise returns None
+        ///Returns the node if it is of type `field_expression` ([`FieldExpression`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_field_expression(self) -> Option<FieldExpression<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::FieldExpression(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `for_expression` ([`ForExpression`]), otherwise returns None
+        ///Returns the node if it is of type `for_expression` ([`ForExpression`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_for_expression(self) -> Option<ForExpression<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::ForExpression(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `generic_function` ([`GenericFunction`]), otherwise returns None
+        ///Returns the node if it is of type `generic_function` ([`GenericFunction`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_generic_function(self) -> Option<GenericFunction<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::GenericFunction(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `identifier` ([`Identifier`]), otherwise returns None
+        ///Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_identifier(self) -> Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Identifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `if_expression` ([`IfExpression`]), otherwise returns None
+        ///Returns the node if it is of type `if_expression` ([`IfExpression`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_if_expression(self) -> Option<IfExpression<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::IfExpression(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `index_expression` ([`IndexExpression`]), otherwise returns None
+        ///Returns the node if it is of type `index_expression` ([`IndexExpression`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_index_expression(self) -> Option<IndexExpression<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::IndexExpression(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `loop_expression` ([`LoopExpression`]), otherwise returns None
+        ///Returns the node if it is of type `loop_expression` ([`LoopExpression`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_loop_expression(self) -> Option<LoopExpression<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::LoopExpression(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `macro_invocation` ([`MacroInvocation`]), otherwise returns None
+        ///Returns the node if it is of type `macro_invocation` ([`MacroInvocation`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_macro_invocation(self) -> Option<MacroInvocation<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::MacroInvocation(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `match_expression` ([`MatchExpression`]), otherwise returns None
+        ///Returns the node if it is of type `match_expression` ([`MatchExpression`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_match_expression(self) -> Option<MatchExpression<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::MatchExpression(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `metavariable` ([`Metavariable`]), otherwise returns None
+        ///Returns the node if it is of type `metavariable` ([`Metavariable`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_metavariable(self) -> Option<Metavariable<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Metavariable(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `parenthesized_expression` ([`ParenthesizedExpression`]), otherwise returns None
+        ///Returns the node if it is of type `parenthesized_expression` ([`ParenthesizedExpression`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_parenthesized_expression(
             self,
         ) -> Option<ParenthesizedExpression<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::ParenthesizedExpression(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `reference_expression` ([`ReferenceExpression`]), otherwise returns None
+        ///Returns the node if it is of type `reference_expression` ([`ReferenceExpression`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_reference_expression(self) -> Option<ReferenceExpression<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::ReferenceExpression(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `return_expression` ([`ReturnExpression`]), otherwise returns None
+        ///Returns the node if it is of type `return_expression` ([`ReturnExpression`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_return_expression(self) -> Option<ReturnExpression<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::ReturnExpression(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `scoped_identifier` ([`ScopedIdentifier`]), otherwise returns None
+        ///Returns the node if it is of type `scoped_identifier` ([`ScopedIdentifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_scoped_identifier(self) -> Option<ScopedIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::ScopedIdentifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `self` ([`_Self`]), otherwise returns None
+        ///Returns the node if it is of type `self` ([`Self_`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
-        pub fn as__self(self) -> Option<_Self<'tree>> {
+        #[allow(non_snake_case)]
+        pub fn as_self(self) -> Option<Self_<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::_Self(x) = self { Some(x) } else { None }
+            if let Self::Self_(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `struct_expression` ([`StructExpression`]), otherwise returns None
+        ///Returns the node if it is of type `struct_expression` ([`StructExpression`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_struct_expression(self) -> Option<StructExpression<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::StructExpression(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `try_block` ([`TryBlock`]), otherwise returns None
+        ///Returns the node if it is of type `try_block` ([`TryBlock`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_try_block(self) -> Option<TryBlock<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::TryBlock(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `try_expression` ([`TryExpression`]), otherwise returns None
+        ///Returns the node if it is of type `try_expression` ([`TryExpression`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_try_expression(self) -> Option<TryExpression<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::TryExpression(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `tuple_expression` ([`TupleExpression`]), otherwise returns None
+        ///Returns the node if it is of type `tuple_expression` ([`TupleExpression`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_tuple_expression(self) -> Option<TupleExpression<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::TupleExpression(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `type_cast_expression` ([`TypeCastExpression`]), otherwise returns None
+        ///Returns the node if it is of type `type_cast_expression` ([`TypeCastExpression`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_type_cast_expression(self) -> Option<TypeCastExpression<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::TypeCastExpression(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `unary_expression` ([`UnaryExpression`]), otherwise returns None
+        ///Returns the node if it is of type `unary_expression` ([`UnaryExpression`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_unary_expression(self) -> Option<UnaryExpression<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::UnaryExpression(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `unit_expression` ([`UnitExpression`]), otherwise returns None
+        ///Returns the node if it is of type `unit_expression` ([`UnitExpression`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_unit_expression(self) -> Option<UnitExpression<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::UnitExpression(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `unsafe_block` ([`UnsafeBlock`]), otherwise returns None
+        ///Returns the node if it is of type `unsafe_block` ([`UnsafeBlock`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_unsafe_block(self) -> Option<UnsafeBlock<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::UnsafeBlock(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `while_expression` ([`WhileExpression`]), otherwise returns None
+        ///Returns the node if it is of type `while_expression` ([`WhileExpression`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_while_expression(self) -> Option<WhileExpression<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::WhileExpression(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `yield_expression` ([`YieldExpression`]), otherwise returns None
+        ///Returns the node if it is of type `yield_expression` ([`YieldExpression`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_yield_expression(self) -> Option<YieldExpression<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::YieldExpression(x) = self { Some(x) } else { None }
@@ -19595,10 +22162,10 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree>
-    for Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier__Self_StructExpression_TryBlock_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression<
+    for Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier_Self__StructExpression_TryBlock_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression<
         'tree,
     > {
-        type WithLifetime<'a> = Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier__Self_StructExpression_TryBlock_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression<
+        type WithLifetime<'a> = Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier_Self__StructExpression_TryBlock_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression<
             'a,
         >;
         const KIND: &'static str = "{_literal | array_expression | assignment_expression | async_block | await_expression | binary_expression | block | break_expression | call_expression | closure_expression | compound_assignment_expr | const_block | continue_expression | field_expression | for_expression | generic_function | identifier | if_expression | index_expression | loop_expression | macro_invocation | match_expression | metavariable | parenthesized_expression | reference_expression | return_expression | scoped_identifier | self | struct_expression | try_block | try_expression | tuple_expression | type_cast_expression | unary_expression | unit_expression | unsafe_block | while_expression | yield_expression}";
@@ -19741,10 +22308,10 @@ pub mod anon_unions {
             > as type_sitter_lib::Node<'tree>>::try_from_raw(node) {
                 return Ok(Self::ScopedIdentifier(this));
             }
-            if let Ok(this) = <_Self<
+            if let Ok(this) = <Self_<
                 'tree,
             > as type_sitter_lib::Node<'tree>>::try_from_raw(node) {
-                return Ok(Self::_Self(this));
+                return Ok(Self::Self_(this));
             }
             if let Ok(this) = <StructExpression<
                 'tree,
@@ -19828,7 +22395,7 @@ pub mod anon_unions {
                 Self::ReferenceExpression(x) => type_sitter_lib::Node::raw(x),
                 Self::ReturnExpression(x) => type_sitter_lib::Node::raw(x),
                 Self::ScopedIdentifier(x) => type_sitter_lib::Node::raw(x),
-                Self::_Self(x) => type_sitter_lib::Node::raw(x),
+                Self::Self_(x) => type_sitter_lib::Node::raw(x),
                 Self::StructExpression(x) => type_sitter_lib::Node::raw(x),
                 Self::TryBlock(x) => type_sitter_lib::Node::raw(x),
                 Self::TryExpression(x) => type_sitter_lib::Node::raw(x),
@@ -19871,7 +22438,7 @@ pub mod anon_unions {
                 Self::ReferenceExpression(x) => type_sitter_lib::Node::raw_mut(x),
                 Self::ReturnExpression(x) => type_sitter_lib::Node::raw_mut(x),
                 Self::ScopedIdentifier(x) => type_sitter_lib::Node::raw_mut(x),
-                Self::_Self(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::Self_(x) => type_sitter_lib::Node::raw_mut(x),
                 Self::StructExpression(x) => type_sitter_lib::Node::raw_mut(x),
                 Self::TryBlock(x) => type_sitter_lib::Node::raw_mut(x),
                 Self::TryExpression(x) => type_sitter_lib::Node::raw_mut(x),
@@ -19914,7 +22481,7 @@ pub mod anon_unions {
                 Self::ReferenceExpression(x) => x.into_raw(),
                 Self::ReturnExpression(x) => x.into_raw(),
                 Self::ScopedIdentifier(x) => x.into_raw(),
-                Self::_Self(x) => x.into_raw(),
+                Self::Self_(x) => x.into_raw(),
                 Self::StructExpression(x) => x.into_raw(),
                 Self::TryBlock(x) => x.into_raw(),
                 Self::TryExpression(x) => x.into_raw(),
@@ -19928,9 +22495,9 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{_ | _expression}`:
-- [symbols::__]
-- [Expression]*/
+    /**One of `{_ | _expression}`:
+- [`symbols::__`]
+- [`Expression`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum ___Expression<'tree> {
@@ -19939,16 +22506,16 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> ___Expression<'tree> {
-        ///Returns the node if it is of kind `_` ([`symbols::__`]), otherwise returns None
+        ///Returns the node if it is of type `_` ([`symbols::__`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as___(self) -> Option<symbols::__<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::__(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `_expression` ([`Expression`]), otherwise returns None
+        ///Returns the node if it is of type `_expression` ([`Expression`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_expression(self) -> Option<Expression<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Expression(x) = self { Some(x) } else { None }
@@ -19996,9 +22563,9 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{_pattern | parameter}`:
-- [Pattern]
-- [Parameter]*/
+    /**One of `{_pattern | parameter}`:
+- [`Pattern`]
+- [`Parameter`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum Pattern_Parameter<'tree> {
@@ -20007,16 +22574,16 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> Pattern_Parameter<'tree> {
-        ///Returns the node if it is of kind `_pattern` ([`Pattern`]), otherwise returns None
+        ///Returns the node if it is of type `_pattern` ([`Pattern`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_pattern(self) -> Option<Pattern<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Pattern(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `parameter` ([`Parameter`]), otherwise returns None
+        ///Returns the node if it is of type `parameter` ([`Parameter`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_parameter(self) -> Option<Parameter<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Parameter(x) = self { Some(x) } else { None }
@@ -20064,17 +22631,17 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{%= | &= | *= | += | -= | /= | <<= | >>= | ^= | |=}`:
-- [symbols::ModEq]
-- [symbols::AndEq]
-- [symbols::MulEq]
-- [symbols::AddEq]
-- [symbols::SubEq]
-- [symbols::DivEq]
-- [symbols::LtLtEq]
-- [symbols::GtGtEq]
-- [symbols::BitXorEq]
-- [symbols::OrEq]*/
+    /**One of `{%= | &= | *= | += | -= | /= | <<= | >>= | ^= | |=}`:
+- [`symbols::ModEq`]
+- [`symbols::AndEq`]
+- [`symbols::MulEq`]
+- [`symbols::AddEq`]
+- [`symbols::SubEq`]
+- [`symbols::DivEq`]
+- [`symbols::LtLtEq`]
+- [`symbols::GtGtEq`]
+- [`symbols::BitXorEq`]
+- [`symbols::OrEq`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum ModEq_AndEq_MulEq_AddEq_SubEq_DivEq_LtLtEq_GtGtEq_BitXorEq_OrEq<'tree> {
@@ -20091,72 +22658,72 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> ModEq_AndEq_MulEq_AddEq_SubEq_DivEq_LtLtEq_GtGtEq_BitXorEq_OrEq<'tree> {
-        ///Returns the node if it is of kind `%=` ([`symbols::ModEq`]), otherwise returns None
+        ///Returns the node if it is of type `%=` ([`symbols::ModEq`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_mod_eq(self) -> Option<symbols::ModEq<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::ModEq(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `&=` ([`symbols::AndEq`]), otherwise returns None
+        ///Returns the node if it is of type `&=` ([`symbols::AndEq`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_and_eq(self) -> Option<symbols::AndEq<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::AndEq(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `*=` ([`symbols::MulEq`]), otherwise returns None
+        ///Returns the node if it is of type `*=` ([`symbols::MulEq`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_mul_eq(self) -> Option<symbols::MulEq<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::MulEq(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `+=` ([`symbols::AddEq`]), otherwise returns None
+        ///Returns the node if it is of type `+=` ([`symbols::AddEq`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_add_eq(self) -> Option<symbols::AddEq<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::AddEq(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `-=` ([`symbols::SubEq`]), otherwise returns None
+        ///Returns the node if it is of type `-=` ([`symbols::SubEq`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_sub_eq(self) -> Option<symbols::SubEq<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::SubEq(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `/=` ([`symbols::DivEq`]), otherwise returns None
+        ///Returns the node if it is of type `/=` ([`symbols::DivEq`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_div_eq(self) -> Option<symbols::DivEq<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::DivEq(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `<<=` ([`symbols::LtLtEq`]), otherwise returns None
+        ///Returns the node if it is of type `<<=` ([`symbols::LtLtEq`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_lt_lt_eq(self) -> Option<symbols::LtLtEq<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::LtLtEq(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `>>=` ([`symbols::GtGtEq`]), otherwise returns None
+        ///Returns the node if it is of type `>>=` ([`symbols::GtGtEq`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_gt_gt_eq(self) -> Option<symbols::GtGtEq<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::GtGtEq(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `^=` ([`symbols::BitXorEq`]), otherwise returns None
+        ///Returns the node if it is of type `^=` ([`symbols::BitXorEq`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_bit_xor_eq(self) -> Option<symbols::BitXorEq<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::BitXorEq(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `|=` ([`symbols::OrEq`]), otherwise returns None
+        ///Returns the node if it is of type `|=` ([`symbols::OrEq`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_or_eq(self) -> Option<symbols::OrEq<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::OrEq(x) = self { Some(x) } else { None }
@@ -20313,11 +22880,11 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{visibility_modifier | identifier | _type | _expression}`:
-- [VisibilityModifier]
-- [Identifier]
-- [Type]
-- [Expression]*/
+    /**One of `{visibility_modifier | identifier | _type | _expression}`:
+- [`VisibilityModifier`]
+- [`Identifier`]
+- [`Type`]
+- [`Expression`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum VisibilityModifier_Identifier_Type_Expression<'tree> {
@@ -20328,30 +22895,30 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> VisibilityModifier_Identifier_Type_Expression<'tree> {
-        ///Returns the node if it is of kind `visibility_modifier` ([`VisibilityModifier`]), otherwise returns None
+        ///Returns the node if it is of type `visibility_modifier` ([`VisibilityModifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_visibility_modifier(self) -> Option<VisibilityModifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::VisibilityModifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `identifier` ([`Identifier`]), otherwise returns None
+        ///Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_identifier(self) -> Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Identifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `_type` ([`Type`]), otherwise returns None
+        ///Returns the node if it is of type `_type` ([`Type`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_type(self) -> Option<Type<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Type(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `_expression` ([`Expression`]), otherwise returns None
+        ///Returns the node if it is of type `_expression` ([`Expression`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_expression(self) -> Option<Expression<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Expression(x) = self { Some(x) } else { None }
@@ -20416,9 +22983,9 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{lifetime | type_identifier}`:
-- [Lifetime]
-- [TypeIdentifier]*/
+    /**One of `{lifetime | type_identifier}`:
+- [`Lifetime`]
+- [`TypeIdentifier`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum Lifetime_TypeIdentifier<'tree> {
@@ -20427,16 +22994,16 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> Lifetime_TypeIdentifier<'tree> {
-        ///Returns the node if it is of kind `lifetime` ([`Lifetime`]), otherwise returns None
+        ///Returns the node if it is of type `lifetime` ([`Lifetime`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_lifetime(self) -> Option<Lifetime<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Lifetime(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `type_identifier` ([`TypeIdentifier`]), otherwise returns None
+        ///Returns the node if it is of type `type_identifier` ([`TypeIdentifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_type_identifier(self) -> Option<TypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::TypeIdentifier(x) = self { Some(x) } else { None }
@@ -20494,12 +23061,12 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{function_type | generic_type | higher_ranked_trait_bound | scoped_type_identifier | type_identifier}`:
-- [FunctionType]
-- [GenericType]
-- [HigherRankedTraitBound]
-- [ScopedTypeIdentifier]
-- [TypeIdentifier]*/
+    /**One of `{function_type | generic_type | higher_ranked_trait_bound | scoped_type_identifier | type_identifier}`:
+- [`FunctionType`]
+- [`GenericType`]
+- [`HigherRankedTraitBound`]
+- [`ScopedTypeIdentifier`]
+- [`TypeIdentifier`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum FunctionType_GenericType_HigherRankedTraitBound_ScopedTypeIdentifier_TypeIdentifier<
@@ -20517,39 +23084,39 @@ pub mod anon_unions {
     > FunctionType_GenericType_HigherRankedTraitBound_ScopedTypeIdentifier_TypeIdentifier<
         'tree,
     > {
-        ///Returns the node if it is of kind `function_type` ([`FunctionType`]), otherwise returns None
+        ///Returns the node if it is of type `function_type` ([`FunctionType`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_function_type(self) -> Option<FunctionType<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::FunctionType(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `generic_type` ([`GenericType`]), otherwise returns None
+        ///Returns the node if it is of type `generic_type` ([`GenericType`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_generic_type(self) -> Option<GenericType<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::GenericType(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `higher_ranked_trait_bound` ([`HigherRankedTraitBound`]), otherwise returns None
+        ///Returns the node if it is of type `higher_ranked_trait_bound` ([`HigherRankedTraitBound`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_higher_ranked_trait_bound(
             self,
         ) -> Option<HigherRankedTraitBound<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::HigherRankedTraitBound(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `scoped_type_identifier` ([`ScopedTypeIdentifier`]), otherwise returns None
+        ///Returns the node if it is of type `scoped_type_identifier` ([`ScopedTypeIdentifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_scoped_type_identifier(self) -> Option<ScopedTypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::ScopedTypeIdentifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `type_identifier` ([`TypeIdentifier`]), otherwise returns None
+        ///Returns the node if it is of type `type_identifier` ([`TypeIdentifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_type_identifier(self) -> Option<TypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::TypeIdentifier(x) = self { Some(x) } else { None }
@@ -20648,9 +23215,9 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{block | if_expression}`:
-- [Block]
-- [IfExpression]*/
+    /**One of `{block | if_expression}`:
+- [`Block`]
+- [`IfExpression`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum Block_IfExpression<'tree> {
@@ -20659,16 +23226,16 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> Block_IfExpression<'tree> {
-        ///Returns the node if it is of kind `block` ([`Block`]), otherwise returns None
+        ///Returns the node if it is of type `block` ([`Block`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_block(self) -> Option<Block<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Block(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `if_expression` ([`IfExpression`]), otherwise returns None
+        ///Returns the node if it is of type `if_expression` ([`IfExpression`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_if_expression(self) -> Option<IfExpression<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::IfExpression(x) = self { Some(x) } else { None }
@@ -20726,12 +23293,90 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{visibility_modifier | where_clause | enum_variant_list | type_identifier | type_parameters}`:
-- [VisibilityModifier]
-- [WhereClause]
-- [EnumVariantList]
-- [TypeIdentifier]
-- [TypeParameters]*/
+    /**One of `{visibility_modifier | where_clause}`:
+- [`VisibilityModifier`]
+- [`WhereClause`]*/
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub enum VisibilityModifier_WhereClause<'tree> {
+        VisibilityModifier(VisibilityModifier<'tree>),
+        WhereClause(WhereClause<'tree>),
+    }
+    #[automatically_derived]
+    impl<'tree> VisibilityModifier_WhereClause<'tree> {
+        ///Returns the node if it is of type `visibility_modifier` ([`VisibilityModifier`]), otherwise returns `None`
+        #[inline]
+        #[allow(non_snake_case)]
+        pub fn as_visibility_modifier(self) -> Option<VisibilityModifier<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::VisibilityModifier(x) = self { Some(x) } else { None }
+        }
+        ///Returns the node if it is of type `where_clause` ([`WhereClause`]), otherwise returns `None`
+        #[inline]
+        #[allow(non_snake_case)]
+        pub fn as_where_clause(self) -> Option<WhereClause<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::WhereClause(x) = self { Some(x) } else { None }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::Node<'tree> for VisibilityModifier_WhereClause<'tree> {
+        type WithLifetime<'a> = VisibilityModifier_WhereClause<'a>;
+        const KIND: &'static str = "{visibility_modifier | where_clause}";
+        #[inline]
+        fn try_from_raw(
+            node: yak_sitter::Node<'tree>,
+        ) -> type_sitter_lib::NodeResult<Self> {
+            match node.kind() {
+                "visibility_modifier" => {
+                    Ok(unsafe {
+                        Self::VisibilityModifier(
+                            <VisibilityModifier<
+                                'tree,
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "where_clause" => {
+                    Ok(unsafe {
+                        Self::WhereClause(
+                            <WhereClause<
+                                'tree,
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                _ => Err(type_sitter_lib::IncorrectKind::new::<Self>(node)),
+            }
+        }
+        #[inline]
+        fn raw(&self) -> &yak_sitter::Node<'tree> {
+            match self {
+                Self::VisibilityModifier(x) => type_sitter_lib::Node::raw(x),
+                Self::WhereClause(x) => type_sitter_lib::Node::raw(x),
+            }
+        }
+        #[inline]
+        fn raw_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
+            match self {
+                Self::VisibilityModifier(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::WhereClause(x) => type_sitter_lib::Node::raw_mut(x),
+            }
+        }
+        #[inline]
+        fn into_raw(self) -> yak_sitter::Node<'tree> {
+            match self {
+                Self::VisibilityModifier(x) => x.into_raw(),
+                Self::WhereClause(x) => x.into_raw(),
+            }
+        }
+    }
+    /**One of `{visibility_modifier | where_clause | enum_variant_list | type_identifier | type_parameters}`:
+- [`VisibilityModifier`]
+- [`WhereClause`]
+- [`EnumVariantList`]
+- [`TypeIdentifier`]
+- [`TypeParameters`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum VisibilityModifier_WhereClause_EnumVariantList_TypeIdentifier_TypeParameters<
@@ -20749,37 +23394,37 @@ pub mod anon_unions {
     > VisibilityModifier_WhereClause_EnumVariantList_TypeIdentifier_TypeParameters<
         'tree,
     > {
-        ///Returns the node if it is of kind `visibility_modifier` ([`VisibilityModifier`]), otherwise returns None
+        ///Returns the node if it is of type `visibility_modifier` ([`VisibilityModifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_visibility_modifier(self) -> Option<VisibilityModifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::VisibilityModifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `where_clause` ([`WhereClause`]), otherwise returns None
+        ///Returns the node if it is of type `where_clause` ([`WhereClause`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_where_clause(self) -> Option<WhereClause<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::WhereClause(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `enum_variant_list` ([`EnumVariantList`]), otherwise returns None
+        ///Returns the node if it is of type `enum_variant_list` ([`EnumVariantList`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_enum_variant_list(self) -> Option<EnumVariantList<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::EnumVariantList(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `type_identifier` ([`TypeIdentifier`]), otherwise returns None
+        ///Returns the node if it is of type `type_identifier` ([`TypeIdentifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_type_identifier(self) -> Option<TypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::TypeIdentifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `type_parameters` ([`TypeParameters`]), otherwise returns None
+        ///Returns the node if it is of type `type_parameters` ([`TypeParameters`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_type_parameters(self) -> Option<TypeParameters<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::TypeParameters(x) = self { Some(x) } else { None }
@@ -20878,12 +23523,12 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{visibility_modifier | field_declaration_list | ordered_field_declaration_list | identifier | _expression}`:
-- [VisibilityModifier]
-- [FieldDeclarationList]
-- [OrderedFieldDeclarationList]
-- [Identifier]
-- [Expression]*/
+    /**One of `{visibility_modifier | field_declaration_list | ordered_field_declaration_list | identifier | _expression}`:
+- [`VisibilityModifier`]
+- [`FieldDeclarationList`]
+- [`OrderedFieldDeclarationList`]
+- [`Identifier`]
+- [`Expression`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum VisibilityModifier_FieldDeclarationList_OrderedFieldDeclarationList_Identifier_Expression<
@@ -20901,39 +23546,39 @@ pub mod anon_unions {
     > VisibilityModifier_FieldDeclarationList_OrderedFieldDeclarationList_Identifier_Expression<
         'tree,
     > {
-        ///Returns the node if it is of kind `visibility_modifier` ([`VisibilityModifier`]), otherwise returns None
+        ///Returns the node if it is of type `visibility_modifier` ([`VisibilityModifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_visibility_modifier(self) -> Option<VisibilityModifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::VisibilityModifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `field_declaration_list` ([`FieldDeclarationList`]), otherwise returns None
+        ///Returns the node if it is of type `field_declaration_list` ([`FieldDeclarationList`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_field_declaration_list(self) -> Option<FieldDeclarationList<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::FieldDeclarationList(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `ordered_field_declaration_list` ([`OrderedFieldDeclarationList`]), otherwise returns None
+        ///Returns the node if it is of type `ordered_field_declaration_list` ([`OrderedFieldDeclarationList`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_ordered_field_declaration_list(
             self,
         ) -> Option<OrderedFieldDeclarationList<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::OrderedFieldDeclarationList(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `identifier` ([`Identifier`]), otherwise returns None
+        ///Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_identifier(self) -> Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Identifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `_expression` ([`Expression`]), otherwise returns None
+        ///Returns the node if it is of type `_expression` ([`Expression`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_expression(self) -> Option<Expression<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Expression(x) = self { Some(x) } else { None }
@@ -21010,9 +23655,9 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{field_declaration_list | ordered_field_declaration_list}`:
-- [FieldDeclarationList]
-- [OrderedFieldDeclarationList]*/
+    /**One of `{field_declaration_list | ordered_field_declaration_list}`:
+- [`FieldDeclarationList`]
+- [`OrderedFieldDeclarationList`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum FieldDeclarationList_OrderedFieldDeclarationList<'tree> {
@@ -21021,16 +23666,16 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> FieldDeclarationList_OrderedFieldDeclarationList<'tree> {
-        ///Returns the node if it is of kind `field_declaration_list` ([`FieldDeclarationList`]), otherwise returns None
+        ///Returns the node if it is of type `field_declaration_list` ([`FieldDeclarationList`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_field_declaration_list(self) -> Option<FieldDeclarationList<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::FieldDeclarationList(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `ordered_field_declaration_list` ([`OrderedFieldDeclarationList`]), otherwise returns None
+        ///Returns the node if it is of type `ordered_field_declaration_list` ([`OrderedFieldDeclarationList`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_ordered_field_declaration_list(
             self,
         ) -> Option<OrderedFieldDeclarationList<'tree>> {
@@ -21091,9 +23736,9 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{attribute_item | enum_variant}`:
-- [AttributeItem]
-- [EnumVariant]*/
+    /**One of `{attribute_item | enum_variant}`:
+- [`AttributeItem`]
+- [`EnumVariant`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum AttributeItem_EnumVariant<'tree> {
@@ -21102,16 +23747,16 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> AttributeItem_EnumVariant<'tree> {
-        ///Returns the node if it is of kind `attribute_item` ([`AttributeItem`]), otherwise returns None
+        ///Returns the node if it is of type `attribute_item` ([`AttributeItem`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_attribute_item(self) -> Option<AttributeItem<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::AttributeItem(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `enum_variant` ([`EnumVariant`]), otherwise returns None
+        ///Returns the node if it is of type `enum_variant` ([`EnumVariant`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_enum_variant(self) -> Option<EnumVariant<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::EnumVariant(x) = self { Some(x) } else { None }
@@ -21169,10 +23814,88 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{crate | visibility_modifier | identifier}`:
-- [Crate]
-- [VisibilityModifier]
-- [Identifier]*/
+    /**One of `{crate | visibility_modifier}`:
+- [`Crate`]
+- [`VisibilityModifier`]*/
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub enum Crate_VisibilityModifier<'tree> {
+        Crate(Crate<'tree>),
+        VisibilityModifier(VisibilityModifier<'tree>),
+    }
+    #[automatically_derived]
+    impl<'tree> Crate_VisibilityModifier<'tree> {
+        ///Returns the node if it is of type `crate` ([`Crate`]), otherwise returns `None`
+        #[inline]
+        #[allow(non_snake_case)]
+        pub fn as_crate(self) -> Option<Crate<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Crate(x) = self { Some(x) } else { None }
+        }
+        ///Returns the node if it is of type `visibility_modifier` ([`VisibilityModifier`]), otherwise returns `None`
+        #[inline]
+        #[allow(non_snake_case)]
+        pub fn as_visibility_modifier(self) -> Option<VisibilityModifier<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::VisibilityModifier(x) = self { Some(x) } else { None }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::Node<'tree> for Crate_VisibilityModifier<'tree> {
+        type WithLifetime<'a> = Crate_VisibilityModifier<'a>;
+        const KIND: &'static str = "{crate | visibility_modifier}";
+        #[inline]
+        fn try_from_raw(
+            node: yak_sitter::Node<'tree>,
+        ) -> type_sitter_lib::NodeResult<Self> {
+            match node.kind() {
+                "crate" => {
+                    Ok(unsafe {
+                        Self::Crate(
+                            <Crate<
+                                'tree,
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "visibility_modifier" => {
+                    Ok(unsafe {
+                        Self::VisibilityModifier(
+                            <VisibilityModifier<
+                                'tree,
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                _ => Err(type_sitter_lib::IncorrectKind::new::<Self>(node)),
+            }
+        }
+        #[inline]
+        fn raw(&self) -> &yak_sitter::Node<'tree> {
+            match self {
+                Self::Crate(x) => type_sitter_lib::Node::raw(x),
+                Self::VisibilityModifier(x) => type_sitter_lib::Node::raw(x),
+            }
+        }
+        #[inline]
+        fn raw_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
+            match self {
+                Self::Crate(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::VisibilityModifier(x) => type_sitter_lib::Node::raw_mut(x),
+            }
+        }
+        #[inline]
+        fn into_raw(self) -> yak_sitter::Node<'tree> {
+            match self {
+                Self::Crate(x) => x.into_raw(),
+                Self::VisibilityModifier(x) => x.into_raw(),
+            }
+        }
+    }
+    /**One of `{crate | visibility_modifier | identifier}`:
+- [`Crate`]
+- [`VisibilityModifier`]
+- [`Identifier`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum Crate_VisibilityModifier_Identifier<'tree> {
@@ -21182,23 +23905,23 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> Crate_VisibilityModifier_Identifier<'tree> {
-        ///Returns the node if it is of kind `crate` ([`Crate`]), otherwise returns None
+        ///Returns the node if it is of type `crate` ([`Crate`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
-        pub fn as_crate_(self) -> Option<Crate<'tree>> {
+        #[allow(non_snake_case)]
+        pub fn as_crate(self) -> Option<Crate<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Crate(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `visibility_modifier` ([`VisibilityModifier`]), otherwise returns None
+        ///Returns the node if it is of type `visibility_modifier` ([`VisibilityModifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_visibility_modifier(self) -> Option<VisibilityModifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::VisibilityModifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `identifier` ([`Identifier`]), otherwise returns None
+        ///Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_identifier(self) -> Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Identifier(x) = self { Some(x) } else { None }
@@ -21269,10 +23992,10 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{visibility_modifier | field_identifier | _type}`:
-- [VisibilityModifier]
-- [FieldIdentifier]
-- [Type]*/
+    /**One of `{visibility_modifier | field_identifier | _type}`:
+- [`VisibilityModifier`]
+- [`FieldIdentifier`]
+- [`Type`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum VisibilityModifier_FieldIdentifier_Type<'tree> {
@@ -21282,23 +24005,23 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> VisibilityModifier_FieldIdentifier_Type<'tree> {
-        ///Returns the node if it is of kind `visibility_modifier` ([`VisibilityModifier`]), otherwise returns None
+        ///Returns the node if it is of type `visibility_modifier` ([`VisibilityModifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_visibility_modifier(self) -> Option<VisibilityModifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::VisibilityModifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `field_identifier` ([`FieldIdentifier`]), otherwise returns None
+        ///Returns the node if it is of type `field_identifier` ([`FieldIdentifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_field_identifier(self) -> Option<FieldIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::FieldIdentifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `_type` ([`Type`]), otherwise returns None
+        ///Returns the node if it is of type `_type` ([`Type`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_type(self) -> Option<Type<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Type(x) = self { Some(x) } else { None }
@@ -21355,9 +24078,9 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{attribute_item | field_declaration}`:
-- [AttributeItem]
-- [FieldDeclaration]*/
+    /**One of `{attribute_item | field_declaration}`:
+- [`AttributeItem`]
+- [`FieldDeclaration`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum AttributeItem_FieldDeclaration<'tree> {
@@ -21366,16 +24089,16 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> AttributeItem_FieldDeclaration<'tree> {
-        ///Returns the node if it is of kind `attribute_item` ([`AttributeItem`]), otherwise returns None
+        ///Returns the node if it is of type `attribute_item` ([`AttributeItem`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_attribute_item(self) -> Option<AttributeItem<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::AttributeItem(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `field_declaration` ([`FieldDeclaration`]), otherwise returns None
+        ///Returns the node if it is of type `field_declaration` ([`FieldDeclaration`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_field_declaration(self) -> Option<FieldDeclaration<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::FieldDeclaration(x) = self { Some(x) } else { None }
@@ -21433,9 +24156,9 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{field_identifier | integer_literal}`:
-- [FieldIdentifier]
-- [IntegerLiteral]*/
+    /**One of `{field_identifier | integer_literal}`:
+- [`FieldIdentifier`]
+- [`IntegerLiteral`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum FieldIdentifier_IntegerLiteral<'tree> {
@@ -21444,16 +24167,16 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> FieldIdentifier_IntegerLiteral<'tree> {
-        ///Returns the node if it is of kind `field_identifier` ([`FieldIdentifier`]), otherwise returns None
+        ///Returns the node if it is of type `field_identifier` ([`FieldIdentifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_field_identifier(self) -> Option<FieldIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::FieldIdentifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `integer_literal` ([`IntegerLiteral`]), otherwise returns None
+        ///Returns the node if it is of type `integer_literal` ([`IntegerLiteral`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_integer_literal(self) -> Option<IntegerLiteral<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::IntegerLiteral(x) = self { Some(x) } else { None }
@@ -21511,11 +24234,11 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{attribute_item | field_identifier | integer_literal | _expression}`:
-- [AttributeItem]
-- [FieldIdentifier]
-- [IntegerLiteral]
-- [Expression]*/
+    /**One of `{attribute_item | field_identifier | integer_literal | _expression}`:
+- [`AttributeItem`]
+- [`FieldIdentifier`]
+- [`IntegerLiteral`]
+- [`Expression`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum AttributeItem_FieldIdentifier_IntegerLiteral_Expression<'tree> {
@@ -21526,30 +24249,30 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> AttributeItem_FieldIdentifier_IntegerLiteral_Expression<'tree> {
-        ///Returns the node if it is of kind `attribute_item` ([`AttributeItem`]), otherwise returns None
+        ///Returns the node if it is of type `attribute_item` ([`AttributeItem`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_attribute_item(self) -> Option<AttributeItem<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::AttributeItem(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `field_identifier` ([`FieldIdentifier`]), otherwise returns None
+        ///Returns the node if it is of type `field_identifier` ([`FieldIdentifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_field_identifier(self) -> Option<FieldIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::FieldIdentifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `integer_literal` ([`IntegerLiteral`]), otherwise returns None
+        ///Returns the node if it is of type `integer_literal` ([`IntegerLiteral`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_integer_literal(self) -> Option<IntegerLiteral<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::IntegerLiteral(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `_expression` ([`Expression`]), otherwise returns None
+        ///Returns the node if it is of type `_expression` ([`Expression`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_expression(self) -> Option<Expression<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Expression(x) = self { Some(x) } else { None }
@@ -21616,10 +24339,10 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{base_field_initializer | field_initializer | shorthand_field_initializer}`:
-- [BaseFieldInitializer]
-- [FieldInitializer]
-- [ShorthandFieldInitializer]*/
+    /**One of `{base_field_initializer | field_initializer | shorthand_field_initializer}`:
+- [`BaseFieldInitializer`]
+- [`FieldInitializer`]
+- [`ShorthandFieldInitializer`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum BaseFieldInitializer_FieldInitializer_ShorthandFieldInitializer<'tree> {
@@ -21629,23 +24352,23 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> BaseFieldInitializer_FieldInitializer_ShorthandFieldInitializer<'tree> {
-        ///Returns the node if it is of kind `base_field_initializer` ([`BaseFieldInitializer`]), otherwise returns None
+        ///Returns the node if it is of type `base_field_initializer` ([`BaseFieldInitializer`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_base_field_initializer(self) -> Option<BaseFieldInitializer<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::BaseFieldInitializer(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `field_initializer` ([`FieldInitializer`]), otherwise returns None
+        ///Returns the node if it is of type `field_initializer` ([`FieldInitializer`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_field_initializer(self) -> Option<FieldInitializer<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::FieldInitializer(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `shorthand_field_initializer` ([`ShorthandFieldInitializer`]), otherwise returns None
+        ///Returns the node if it is of type `shorthand_field_initializer` ([`ShorthandFieldInitializer`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_shorthand_field_initializer(
             self,
         ) -> Option<ShorthandFieldInitializer<'tree>> {
@@ -21720,11 +24443,11 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{mutable_specifier | field_identifier | shorthand_field_identifier | _pattern}`:
-- [MutableSpecifier]
-- [FieldIdentifier]
-- [ShorthandFieldIdentifier]
-- [Pattern]*/
+    /**One of `{mutable_specifier | field_identifier | shorthand_field_identifier | _pattern}`:
+- [`MutableSpecifier`]
+- [`FieldIdentifier`]
+- [`ShorthandFieldIdentifier`]
+- [`Pattern`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum MutableSpecifier_FieldIdentifier_ShorthandFieldIdentifier_Pattern<'tree> {
@@ -21737,32 +24460,32 @@ pub mod anon_unions {
     impl<
         'tree,
     > MutableSpecifier_FieldIdentifier_ShorthandFieldIdentifier_Pattern<'tree> {
-        ///Returns the node if it is of kind `mutable_specifier` ([`MutableSpecifier`]), otherwise returns None
+        ///Returns the node if it is of type `mutable_specifier` ([`MutableSpecifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_mutable_specifier(self) -> Option<MutableSpecifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::MutableSpecifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `field_identifier` ([`FieldIdentifier`]), otherwise returns None
+        ///Returns the node if it is of type `field_identifier` ([`FieldIdentifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_field_identifier(self) -> Option<FieldIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::FieldIdentifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `shorthand_field_identifier` ([`ShorthandFieldIdentifier`]), otherwise returns None
+        ///Returns the node if it is of type `shorthand_field_identifier` ([`ShorthandFieldIdentifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_shorthand_field_identifier(
             self,
         ) -> Option<ShorthandFieldIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::ShorthandFieldIdentifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `_pattern` ([`Pattern`]), otherwise returns None
+        ///Returns the node if it is of type `_pattern` ([`Pattern`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_pattern(self) -> Option<Pattern<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Pattern(x) = self { Some(x) } else { None }
@@ -21829,9 +24552,9 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{field_identifier | shorthand_field_identifier}`:
-- [FieldIdentifier]
-- [ShorthandFieldIdentifier]*/
+    /**One of `{field_identifier | shorthand_field_identifier}`:
+- [`FieldIdentifier`]
+- [`ShorthandFieldIdentifier`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum FieldIdentifier_ShorthandFieldIdentifier<'tree> {
@@ -21840,16 +24563,16 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> FieldIdentifier_ShorthandFieldIdentifier<'tree> {
-        ///Returns the node if it is of kind `field_identifier` ([`FieldIdentifier`]), otherwise returns None
+        ///Returns the node if it is of type `field_identifier` ([`FieldIdentifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_field_identifier(self) -> Option<FieldIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::FieldIdentifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `shorthand_field_identifier` ([`ShorthandFieldIdentifier`]), otherwise returns None
+        ///Returns the node if it is of type `shorthand_field_identifier` ([`ShorthandFieldIdentifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_shorthand_field_identifier(
             self,
         ) -> Option<ShorthandFieldIdentifier<'tree>> {
@@ -21910,11 +24633,11 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{label | block | _pattern | _expression}`:
-- [Label]
-- [Block]
-- [Pattern]
-- [Expression]*/
+    /**One of `{label | block | _pattern | _expression}`:
+- [`Label`]
+- [`Block`]
+- [`Pattern`]
+- [`Expression`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum Label_Block_Pattern_Expression<'tree> {
@@ -21925,30 +24648,30 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> Label_Block_Pattern_Expression<'tree> {
-        ///Returns the node if it is of kind `label` ([`Label`]), otherwise returns None
+        ///Returns the node if it is of type `label` ([`Label`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_label(self) -> Option<Label<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Label(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `block` ([`Block`]), otherwise returns None
+        ///Returns the node if it is of type `block` ([`Block`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_block(self) -> Option<Block<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Block(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `_pattern` ([`Pattern`]), otherwise returns None
+        ///Returns the node if it is of type `_pattern` ([`Pattern`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_pattern(self) -> Option<Pattern<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Pattern(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `_expression` ([`Expression`]), otherwise returns None
+        ///Returns the node if it is of type `_expression` ([`Expression`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_expression(self) -> Option<Expression<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Expression(x) = self { Some(x) } else { None }
@@ -22012,10 +24735,89 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{extern_modifier | visibility_modifier | declaration_list}`:
-- [ExternModifier]
-- [VisibilityModifier]
-- [DeclarationList]*/
+    /**One of `{extern_modifier | visibility_modifier}`:
+- [`ExternModifier`]
+- [`VisibilityModifier`]*/
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub enum ExternModifier_VisibilityModifier<'tree> {
+        ExternModifier(ExternModifier<'tree>),
+        VisibilityModifier(VisibilityModifier<'tree>),
+    }
+    #[automatically_derived]
+    impl<'tree> ExternModifier_VisibilityModifier<'tree> {
+        ///Returns the node if it is of type `extern_modifier` ([`ExternModifier`]), otherwise returns `None`
+        #[inline]
+        #[allow(non_snake_case)]
+        pub fn as_extern_modifier(self) -> Option<ExternModifier<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::ExternModifier(x) = self { Some(x) } else { None }
+        }
+        ///Returns the node if it is of type `visibility_modifier` ([`VisibilityModifier`]), otherwise returns `None`
+        #[inline]
+        #[allow(non_snake_case)]
+        pub fn as_visibility_modifier(self) -> Option<VisibilityModifier<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::VisibilityModifier(x) = self { Some(x) } else { None }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::Node<'tree>
+    for ExternModifier_VisibilityModifier<'tree> {
+        type WithLifetime<'a> = ExternModifier_VisibilityModifier<'a>;
+        const KIND: &'static str = "{extern_modifier | visibility_modifier}";
+        #[inline]
+        fn try_from_raw(
+            node: yak_sitter::Node<'tree>,
+        ) -> type_sitter_lib::NodeResult<Self> {
+            match node.kind() {
+                "extern_modifier" => {
+                    Ok(unsafe {
+                        Self::ExternModifier(
+                            <ExternModifier<
+                                'tree,
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "visibility_modifier" => {
+                    Ok(unsafe {
+                        Self::VisibilityModifier(
+                            <VisibilityModifier<
+                                'tree,
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                _ => Err(type_sitter_lib::IncorrectKind::new::<Self>(node)),
+            }
+        }
+        #[inline]
+        fn raw(&self) -> &yak_sitter::Node<'tree> {
+            match self {
+                Self::ExternModifier(x) => type_sitter_lib::Node::raw(x),
+                Self::VisibilityModifier(x) => type_sitter_lib::Node::raw(x),
+            }
+        }
+        #[inline]
+        fn raw_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
+            match self {
+                Self::ExternModifier(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::VisibilityModifier(x) => type_sitter_lib::Node::raw_mut(x),
+            }
+        }
+        #[inline]
+        fn into_raw(self) -> yak_sitter::Node<'tree> {
+            match self {
+                Self::ExternModifier(x) => x.into_raw(),
+                Self::VisibilityModifier(x) => x.into_raw(),
+            }
+        }
+    }
+    /**One of `{extern_modifier | visibility_modifier | declaration_list}`:
+- [`ExternModifier`]
+- [`VisibilityModifier`]
+- [`DeclarationList`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum ExternModifier_VisibilityModifier_DeclarationList<'tree> {
@@ -22025,23 +24827,23 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> ExternModifier_VisibilityModifier_DeclarationList<'tree> {
-        ///Returns the node if it is of kind `extern_modifier` ([`ExternModifier`]), otherwise returns None
+        ///Returns the node if it is of type `extern_modifier` ([`ExternModifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_extern_modifier(self) -> Option<ExternModifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::ExternModifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `visibility_modifier` ([`VisibilityModifier`]), otherwise returns None
+        ///Returns the node if it is of type `visibility_modifier` ([`VisibilityModifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_visibility_modifier(self) -> Option<VisibilityModifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::VisibilityModifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `declaration_list` ([`DeclarationList`]), otherwise returns None
+        ///Returns the node if it is of type `declaration_list` ([`DeclarationList`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_declaration_list(self) -> Option<DeclarationList<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::DeclarationList(x) = self { Some(x) } else { None }
@@ -22112,16 +24914,116 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{function_modifiers | visibility_modifier | where_clause | block | identifier | metavariable | parameters | _type | type_parameters}`:
-- [FunctionModifiers]
-- [VisibilityModifier]
-- [WhereClause]
-- [Block]
-- [Identifier]
-- [Metavariable]
-- [Parameters]
-- [Type]
-- [TypeParameters]*/
+    /**One of `{function_modifiers | visibility_modifier | where_clause}`:
+- [`FunctionModifiers`]
+- [`VisibilityModifier`]
+- [`WhereClause`]*/
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub enum FunctionModifiers_VisibilityModifier_WhereClause<'tree> {
+        FunctionModifiers(FunctionModifiers<'tree>),
+        VisibilityModifier(VisibilityModifier<'tree>),
+        WhereClause(WhereClause<'tree>),
+    }
+    #[automatically_derived]
+    impl<'tree> FunctionModifiers_VisibilityModifier_WhereClause<'tree> {
+        ///Returns the node if it is of type `function_modifiers` ([`FunctionModifiers`]), otherwise returns `None`
+        #[inline]
+        #[allow(non_snake_case)]
+        pub fn as_function_modifiers(self) -> Option<FunctionModifiers<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::FunctionModifiers(x) = self { Some(x) } else { None }
+        }
+        ///Returns the node if it is of type `visibility_modifier` ([`VisibilityModifier`]), otherwise returns `None`
+        #[inline]
+        #[allow(non_snake_case)]
+        pub fn as_visibility_modifier(self) -> Option<VisibilityModifier<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::VisibilityModifier(x) = self { Some(x) } else { None }
+        }
+        ///Returns the node if it is of type `where_clause` ([`WhereClause`]), otherwise returns `None`
+        #[inline]
+        #[allow(non_snake_case)]
+        pub fn as_where_clause(self) -> Option<WhereClause<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::WhereClause(x) = self { Some(x) } else { None }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::Node<'tree>
+    for FunctionModifiers_VisibilityModifier_WhereClause<'tree> {
+        type WithLifetime<'a> = FunctionModifiers_VisibilityModifier_WhereClause<'a>;
+        const KIND: &'static str = "{function_modifiers | visibility_modifier | where_clause}";
+        #[inline]
+        fn try_from_raw(
+            node: yak_sitter::Node<'tree>,
+        ) -> type_sitter_lib::NodeResult<Self> {
+            match node.kind() {
+                "function_modifiers" => {
+                    Ok(unsafe {
+                        Self::FunctionModifiers(
+                            <FunctionModifiers<
+                                'tree,
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "visibility_modifier" => {
+                    Ok(unsafe {
+                        Self::VisibilityModifier(
+                            <VisibilityModifier<
+                                'tree,
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "where_clause" => {
+                    Ok(unsafe {
+                        Self::WhereClause(
+                            <WhereClause<
+                                'tree,
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                _ => Err(type_sitter_lib::IncorrectKind::new::<Self>(node)),
+            }
+        }
+        #[inline]
+        fn raw(&self) -> &yak_sitter::Node<'tree> {
+            match self {
+                Self::FunctionModifiers(x) => type_sitter_lib::Node::raw(x),
+                Self::VisibilityModifier(x) => type_sitter_lib::Node::raw(x),
+                Self::WhereClause(x) => type_sitter_lib::Node::raw(x),
+            }
+        }
+        #[inline]
+        fn raw_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
+            match self {
+                Self::FunctionModifiers(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::VisibilityModifier(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::WhereClause(x) => type_sitter_lib::Node::raw_mut(x),
+            }
+        }
+        #[inline]
+        fn into_raw(self) -> yak_sitter::Node<'tree> {
+            match self {
+                Self::FunctionModifiers(x) => x.into_raw(),
+                Self::VisibilityModifier(x) => x.into_raw(),
+                Self::WhereClause(x) => x.into_raw(),
+            }
+        }
+    }
+    /**One of `{function_modifiers | visibility_modifier | where_clause | block | identifier | metavariable | parameters | _type | type_parameters}`:
+- [`FunctionModifiers`]
+- [`VisibilityModifier`]
+- [`WhereClause`]
+- [`Block`]
+- [`Identifier`]
+- [`Metavariable`]
+- [`Parameters`]
+- [`Type`]
+- [`TypeParameters`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum FunctionModifiers_VisibilityModifier_WhereClause_Block_Identifier_Metavariable_Parameters_Type_TypeParameters<
@@ -22143,65 +25045,65 @@ pub mod anon_unions {
     > FunctionModifiers_VisibilityModifier_WhereClause_Block_Identifier_Metavariable_Parameters_Type_TypeParameters<
         'tree,
     > {
-        ///Returns the node if it is of kind `function_modifiers` ([`FunctionModifiers`]), otherwise returns None
+        ///Returns the node if it is of type `function_modifiers` ([`FunctionModifiers`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_function_modifiers(self) -> Option<FunctionModifiers<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::FunctionModifiers(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `visibility_modifier` ([`VisibilityModifier`]), otherwise returns None
+        ///Returns the node if it is of type `visibility_modifier` ([`VisibilityModifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_visibility_modifier(self) -> Option<VisibilityModifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::VisibilityModifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `where_clause` ([`WhereClause`]), otherwise returns None
+        ///Returns the node if it is of type `where_clause` ([`WhereClause`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_where_clause(self) -> Option<WhereClause<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::WhereClause(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `block` ([`Block`]), otherwise returns None
+        ///Returns the node if it is of type `block` ([`Block`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_block(self) -> Option<Block<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Block(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `identifier` ([`Identifier`]), otherwise returns None
+        ///Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_identifier(self) -> Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Identifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `metavariable` ([`Metavariable`]), otherwise returns None
+        ///Returns the node if it is of type `metavariable` ([`Metavariable`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_metavariable(self) -> Option<Metavariable<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Metavariable(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `parameters` ([`Parameters`]), otherwise returns None
+        ///Returns the node if it is of type `parameters` ([`Parameters`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_parameters(self) -> Option<Parameters<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Parameters(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `_type` ([`Type`]), otherwise returns None
+        ///Returns the node if it is of type `_type` ([`Type`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_type(self) -> Option<Type<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Type(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `type_parameters` ([`TypeParameters`]), otherwise returns None
+        ///Returns the node if it is of type `type_parameters` ([`TypeParameters`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_type_parameters(self) -> Option<TypeParameters<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::TypeParameters(x) = self { Some(x) } else { None }
@@ -22310,9 +25212,9 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{identifier | metavariable}`:
-- [Identifier]
-- [Metavariable]*/
+    /**One of `{identifier | metavariable}`:
+- [`Identifier`]
+- [`Metavariable`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum Identifier_Metavariable<'tree> {
@@ -22321,16 +25223,16 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> Identifier_Metavariable<'tree> {
-        ///Returns the node if it is of kind `identifier` ([`Identifier`]), otherwise returns None
+        ///Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_identifier(self) -> Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Identifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `metavariable` ([`Metavariable`]), otherwise returns None
+        ///Returns the node if it is of type `metavariable` ([`Metavariable`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_metavariable(self) -> Option<Metavariable<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Metavariable(x) = self { Some(x) } else { None }
@@ -22388,15 +25290,15 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{function_modifiers | visibility_modifier | where_clause | identifier | metavariable | parameters | _type | type_parameters}`:
-- [FunctionModifiers]
-- [VisibilityModifier]
-- [WhereClause]
-- [Identifier]
-- [Metavariable]
-- [Parameters]
-- [Type]
-- [TypeParameters]*/
+    /**One of `{function_modifiers | visibility_modifier | where_clause | identifier | metavariable | parameters | _type | type_parameters}`:
+- [`FunctionModifiers`]
+- [`VisibilityModifier`]
+- [`WhereClause`]
+- [`Identifier`]
+- [`Metavariable`]
+- [`Parameters`]
+- [`Type`]
+- [`TypeParameters`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum FunctionModifiers_VisibilityModifier_WhereClause_Identifier_Metavariable_Parameters_Type_TypeParameters<
@@ -22417,58 +25319,58 @@ pub mod anon_unions {
     > FunctionModifiers_VisibilityModifier_WhereClause_Identifier_Metavariable_Parameters_Type_TypeParameters<
         'tree,
     > {
-        ///Returns the node if it is of kind `function_modifiers` ([`FunctionModifiers`]), otherwise returns None
+        ///Returns the node if it is of type `function_modifiers` ([`FunctionModifiers`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_function_modifiers(self) -> Option<FunctionModifiers<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::FunctionModifiers(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `visibility_modifier` ([`VisibilityModifier`]), otherwise returns None
+        ///Returns the node if it is of type `visibility_modifier` ([`VisibilityModifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_visibility_modifier(self) -> Option<VisibilityModifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::VisibilityModifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `where_clause` ([`WhereClause`]), otherwise returns None
+        ///Returns the node if it is of type `where_clause` ([`WhereClause`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_where_clause(self) -> Option<WhereClause<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::WhereClause(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `identifier` ([`Identifier`]), otherwise returns None
+        ///Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_identifier(self) -> Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Identifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `metavariable` ([`Metavariable`]), otherwise returns None
+        ///Returns the node if it is of type `metavariable` ([`Metavariable`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_metavariable(self) -> Option<Metavariable<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Metavariable(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `parameters` ([`Parameters`]), otherwise returns None
+        ///Returns the node if it is of type `parameters` ([`Parameters`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_parameters(self) -> Option<Parameters<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Parameters(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `_type` ([`Type`]), otherwise returns None
+        ///Returns the node if it is of type `_type` ([`Type`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_type(self) -> Option<Type<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Type(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `type_parameters` ([`TypeParameters`]), otherwise returns None
+        ///Returns the node if it is of type `type_parameters` ([`TypeParameters`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_type_parameters(self) -> Option<TypeParameters<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::TypeParameters(x) = self { Some(x) } else { None }
@@ -22569,13 +25471,91 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{for_lifetimes | function_modifiers | parameters | _type | scoped_type_identifier | type_identifier}`:
-- [ForLifetimes]
-- [FunctionModifiers]
-- [Parameters]
-- [Type]
-- [ScopedTypeIdentifier]
-- [TypeIdentifier]*/
+    /**One of `{for_lifetimes | function_modifiers}`:
+- [`ForLifetimes`]
+- [`FunctionModifiers`]*/
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub enum ForLifetimes_FunctionModifiers<'tree> {
+        ForLifetimes(ForLifetimes<'tree>),
+        FunctionModifiers(FunctionModifiers<'tree>),
+    }
+    #[automatically_derived]
+    impl<'tree> ForLifetimes_FunctionModifiers<'tree> {
+        ///Returns the node if it is of type `for_lifetimes` ([`ForLifetimes`]), otherwise returns `None`
+        #[inline]
+        #[allow(non_snake_case)]
+        pub fn as_for_lifetimes(self) -> Option<ForLifetimes<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::ForLifetimes(x) = self { Some(x) } else { None }
+        }
+        ///Returns the node if it is of type `function_modifiers` ([`FunctionModifiers`]), otherwise returns `None`
+        #[inline]
+        #[allow(non_snake_case)]
+        pub fn as_function_modifiers(self) -> Option<FunctionModifiers<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::FunctionModifiers(x) = self { Some(x) } else { None }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::Node<'tree> for ForLifetimes_FunctionModifiers<'tree> {
+        type WithLifetime<'a> = ForLifetimes_FunctionModifiers<'a>;
+        const KIND: &'static str = "{for_lifetimes | function_modifiers}";
+        #[inline]
+        fn try_from_raw(
+            node: yak_sitter::Node<'tree>,
+        ) -> type_sitter_lib::NodeResult<Self> {
+            match node.kind() {
+                "for_lifetimes" => {
+                    Ok(unsafe {
+                        Self::ForLifetimes(
+                            <ForLifetimes<
+                                'tree,
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "function_modifiers" => {
+                    Ok(unsafe {
+                        Self::FunctionModifiers(
+                            <FunctionModifiers<
+                                'tree,
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                _ => Err(type_sitter_lib::IncorrectKind::new::<Self>(node)),
+            }
+        }
+        #[inline]
+        fn raw(&self) -> &yak_sitter::Node<'tree> {
+            match self {
+                Self::ForLifetimes(x) => type_sitter_lib::Node::raw(x),
+                Self::FunctionModifiers(x) => type_sitter_lib::Node::raw(x),
+            }
+        }
+        #[inline]
+        fn raw_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
+            match self {
+                Self::ForLifetimes(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::FunctionModifiers(x) => type_sitter_lib::Node::raw_mut(x),
+            }
+        }
+        #[inline]
+        fn into_raw(self) -> yak_sitter::Node<'tree> {
+            match self {
+                Self::ForLifetimes(x) => x.into_raw(),
+                Self::FunctionModifiers(x) => x.into_raw(),
+            }
+        }
+    }
+    /**One of `{for_lifetimes | function_modifiers | parameters | _type | scoped_type_identifier | type_identifier}`:
+- [`ForLifetimes`]
+- [`FunctionModifiers`]
+- [`Parameters`]
+- [`Type`]
+- [`ScopedTypeIdentifier`]
+- [`TypeIdentifier`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum ForLifetimes_FunctionModifiers_Parameters_Type_ScopedTypeIdentifier_TypeIdentifier<
@@ -22594,44 +25574,44 @@ pub mod anon_unions {
     > ForLifetimes_FunctionModifiers_Parameters_Type_ScopedTypeIdentifier_TypeIdentifier<
         'tree,
     > {
-        ///Returns the node if it is of kind `for_lifetimes` ([`ForLifetimes`]), otherwise returns None
+        ///Returns the node if it is of type `for_lifetimes` ([`ForLifetimes`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_for_lifetimes(self) -> Option<ForLifetimes<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::ForLifetimes(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `function_modifiers` ([`FunctionModifiers`]), otherwise returns None
+        ///Returns the node if it is of type `function_modifiers` ([`FunctionModifiers`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_function_modifiers(self) -> Option<FunctionModifiers<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::FunctionModifiers(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `parameters` ([`Parameters`]), otherwise returns None
+        ///Returns the node if it is of type `parameters` ([`Parameters`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_parameters(self) -> Option<Parameters<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Parameters(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `_type` ([`Type`]), otherwise returns None
+        ///Returns the node if it is of type `_type` ([`Type`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_type(self) -> Option<Type<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Type(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `scoped_type_identifier` ([`ScopedTypeIdentifier`]), otherwise returns None
+        ///Returns the node if it is of type `scoped_type_identifier` ([`ScopedTypeIdentifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_scoped_type_identifier(self) -> Option<ScopedTypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::ScopedTypeIdentifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `type_identifier` ([`TypeIdentifier`]), otherwise returns None
+        ///Returns the node if it is of type `type_identifier` ([`TypeIdentifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_type_identifier(self) -> Option<TypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::TypeIdentifier(x) = self { Some(x) } else { None }
@@ -22716,9 +25696,9 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{scoped_type_identifier | type_identifier}`:
-- [ScopedTypeIdentifier]
-- [TypeIdentifier]*/
+    /**One of `{scoped_type_identifier | type_identifier}`:
+- [`ScopedTypeIdentifier`]
+- [`TypeIdentifier`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum ScopedTypeIdentifier_TypeIdentifier<'tree> {
@@ -22727,16 +25707,16 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> ScopedTypeIdentifier_TypeIdentifier<'tree> {
-        ///Returns the node if it is of kind `scoped_type_identifier` ([`ScopedTypeIdentifier`]), otherwise returns None
+        ///Returns the node if it is of type `scoped_type_identifier` ([`ScopedTypeIdentifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_scoped_type_identifier(self) -> Option<ScopedTypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::ScopedTypeIdentifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `type_identifier` ([`TypeIdentifier`]), otherwise returns None
+        ///Returns the node if it is of type `type_identifier` ([`TypeIdentifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_type_identifier(self) -> Option<TypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::TypeIdentifier(x) = self { Some(x) } else { None }
@@ -22795,10 +25775,10 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{field_expression | identifier | scoped_identifier}`:
-- [FieldExpression]
-- [Identifier]
-- [ScopedIdentifier]*/
+    /**One of `{field_expression | identifier | scoped_identifier}`:
+- [`FieldExpression`]
+- [`Identifier`]
+- [`ScopedIdentifier`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum FieldExpression_Identifier_ScopedIdentifier<'tree> {
@@ -22808,23 +25788,23 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> FieldExpression_Identifier_ScopedIdentifier<'tree> {
-        ///Returns the node if it is of kind `field_expression` ([`FieldExpression`]), otherwise returns None
+        ///Returns the node if it is of type `field_expression` ([`FieldExpression`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_field_expression(self) -> Option<FieldExpression<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::FieldExpression(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `identifier` ([`Identifier`]), otherwise returns None
+        ///Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_identifier(self) -> Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Identifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `scoped_identifier` ([`ScopedIdentifier`]), otherwise returns None
+        ///Returns the node if it is of type `scoped_identifier` ([`ScopedIdentifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_scoped_identifier(self) -> Option<ScopedIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::ScopedIdentifier(x) = self { Some(x) } else { None }
@@ -22895,11 +25875,11 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{identifier | scoped_identifier | scoped_type_identifier | type_identifier}`:
-- [Identifier]
-- [ScopedIdentifier]
-- [ScopedTypeIdentifier]
-- [TypeIdentifier]*/
+    /**One of `{identifier | scoped_identifier | scoped_type_identifier | type_identifier}`:
+- [`Identifier`]
+- [`ScopedIdentifier`]
+- [`ScopedTypeIdentifier`]
+- [`TypeIdentifier`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum Identifier_ScopedIdentifier_ScopedTypeIdentifier_TypeIdentifier<'tree> {
@@ -22910,30 +25890,30 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> Identifier_ScopedIdentifier_ScopedTypeIdentifier_TypeIdentifier<'tree> {
-        ///Returns the node if it is of kind `identifier` ([`Identifier`]), otherwise returns None
+        ///Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_identifier(self) -> Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Identifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `scoped_identifier` ([`ScopedIdentifier`]), otherwise returns None
+        ///Returns the node if it is of type `scoped_identifier` ([`ScopedIdentifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_scoped_identifier(self) -> Option<ScopedIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::ScopedIdentifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `scoped_type_identifier` ([`ScopedTypeIdentifier`]), otherwise returns None
+        ///Returns the node if it is of type `scoped_type_identifier` ([`ScopedTypeIdentifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_scoped_type_identifier(self) -> Option<ScopedTypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::ScopedTypeIdentifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `type_identifier` ([`TypeIdentifier`]), otherwise returns None
+        ///Returns the node if it is of type `type_identifier` ([`TypeIdentifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_type_identifier(self) -> Option<TypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::TypeIdentifier(x) = self { Some(x) } else { None }
@@ -23018,9 +25998,9 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{scoped_identifier | type_identifier}`:
-- [ScopedIdentifier]
-- [TypeIdentifier]*/
+    /**One of `{scoped_identifier | type_identifier}`:
+- [`ScopedIdentifier`]
+- [`TypeIdentifier`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum ScopedIdentifier_TypeIdentifier<'tree> {
@@ -23029,16 +26009,16 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> ScopedIdentifier_TypeIdentifier<'tree> {
-        ///Returns the node if it is of kind `scoped_identifier` ([`ScopedIdentifier`]), otherwise returns None
+        ///Returns the node if it is of type `scoped_identifier` ([`ScopedIdentifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_scoped_identifier(self) -> Option<ScopedIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::ScopedIdentifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `type_identifier` ([`TypeIdentifier`]), otherwise returns None
+        ///Returns the node if it is of type `type_identifier` ([`TypeIdentifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_type_identifier(self) -> Option<TypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::TypeIdentifier(x) = self { Some(x) } else { None }
@@ -23096,10 +26076,10 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{_expression | let_chain | let_condition}`:
-- [Expression]
-- [LetChain]
-- [LetCondition]*/
+    /**One of `{_expression | let_chain | let_condition}`:
+- [`Expression`]
+- [`LetChain`]
+- [`LetCondition`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum Expression_LetChain_LetCondition<'tree> {
@@ -23109,23 +26089,23 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> Expression_LetChain_LetCondition<'tree> {
-        ///Returns the node if it is of kind `_expression` ([`Expression`]), otherwise returns None
+        ///Returns the node if it is of type `_expression` ([`Expression`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_expression(self) -> Option<Expression<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Expression(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `let_chain` ([`LetChain`]), otherwise returns None
+        ///Returns the node if it is of type `let_chain` ([`LetChain`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_let_chain(self) -> Option<LetChain<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::LetChain(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `let_condition` ([`LetCondition`]), otherwise returns None
+        ///Returns the node if it is of type `let_condition` ([`LetCondition`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_let_condition(self) -> Option<LetCondition<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::LetCondition(x) = self { Some(x) } else { None }
@@ -23182,14 +26162,14 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{where_clause | declaration_list | generic_type | scoped_type_identifier | type_identifier | _type | type_parameters}`:
-- [WhereClause]
-- [DeclarationList]
-- [GenericType]
-- [ScopedTypeIdentifier]
-- [TypeIdentifier]
-- [Type]
-- [TypeParameters]*/
+    /**One of `{where_clause | declaration_list | generic_type | scoped_type_identifier | type_identifier | _type | type_parameters}`:
+- [`WhereClause`]
+- [`DeclarationList`]
+- [`GenericType`]
+- [`ScopedTypeIdentifier`]
+- [`TypeIdentifier`]
+- [`Type`]
+- [`TypeParameters`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum WhereClause_DeclarationList_GenericType_ScopedTypeIdentifier_TypeIdentifier_Type_TypeParameters<
@@ -23209,51 +26189,51 @@ pub mod anon_unions {
     > WhereClause_DeclarationList_GenericType_ScopedTypeIdentifier_TypeIdentifier_Type_TypeParameters<
         'tree,
     > {
-        ///Returns the node if it is of kind `where_clause` ([`WhereClause`]), otherwise returns None
+        ///Returns the node if it is of type `where_clause` ([`WhereClause`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_where_clause(self) -> Option<WhereClause<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::WhereClause(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `declaration_list` ([`DeclarationList`]), otherwise returns None
+        ///Returns the node if it is of type `declaration_list` ([`DeclarationList`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_declaration_list(self) -> Option<DeclarationList<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::DeclarationList(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `generic_type` ([`GenericType`]), otherwise returns None
+        ///Returns the node if it is of type `generic_type` ([`GenericType`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_generic_type(self) -> Option<GenericType<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::GenericType(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `scoped_type_identifier` ([`ScopedTypeIdentifier`]), otherwise returns None
+        ///Returns the node if it is of type `scoped_type_identifier` ([`ScopedTypeIdentifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_scoped_type_identifier(self) -> Option<ScopedTypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::ScopedTypeIdentifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `type_identifier` ([`TypeIdentifier`]), otherwise returns None
+        ///Returns the node if it is of type `type_identifier` ([`TypeIdentifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_type_identifier(self) -> Option<TypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::TypeIdentifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `_type` ([`Type`]), otherwise returns None
+        ///Returns the node if it is of type `_type` ([`Type`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_type(self) -> Option<Type<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Type(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `type_parameters` ([`TypeParameters`]), otherwise returns None
+        ///Returns the node if it is of type `type_parameters` ([`TypeParameters`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_type_parameters(self) -> Option<TypeParameters<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::TypeParameters(x) = self { Some(x) } else { None }
@@ -23346,10 +26326,10 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{generic_type | scoped_type_identifier | type_identifier}`:
-- [GenericType]
-- [ScopedTypeIdentifier]
-- [TypeIdentifier]*/
+    /**One of `{generic_type | scoped_type_identifier | type_identifier}`:
+- [`GenericType`]
+- [`ScopedTypeIdentifier`]
+- [`TypeIdentifier`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum GenericType_ScopedTypeIdentifier_TypeIdentifier<'tree> {
@@ -23359,23 +26339,23 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> GenericType_ScopedTypeIdentifier_TypeIdentifier<'tree> {
-        ///Returns the node if it is of kind `generic_type` ([`GenericType`]), otherwise returns None
+        ///Returns the node if it is of type `generic_type` ([`GenericType`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_generic_type(self) -> Option<GenericType<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::GenericType(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `scoped_type_identifier` ([`ScopedTypeIdentifier`]), otherwise returns None
+        ///Returns the node if it is of type `scoped_type_identifier` ([`ScopedTypeIdentifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_scoped_type_identifier(self) -> Option<ScopedTypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::ScopedTypeIdentifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `type_identifier` ([`TypeIdentifier`]), otherwise returns None
+        ///Returns the node if it is of type `type_identifier` ([`TypeIdentifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_type_identifier(self) -> Option<TypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::TypeIdentifier(x) = self { Some(x) } else { None }
@@ -23446,9 +26426,9 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{_expression | let_condition}`:
-- [Expression]
-- [LetCondition]*/
+    /**One of `{_expression | let_condition}`:
+- [`Expression`]
+- [`LetCondition`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum Expression_LetCondition<'tree> {
@@ -23457,16 +26437,16 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> Expression_LetCondition<'tree> {
-        ///Returns the node if it is of kind `_expression` ([`Expression`]), otherwise returns None
+        ///Returns the node if it is of type `_expression` ([`Expression`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_expression(self) -> Option<Expression<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Expression(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `let_condition` ([`LetCondition`]), otherwise returns None
+        ///Returns the node if it is of type `let_condition` ([`LetCondition`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_let_condition(self) -> Option<LetCondition<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::LetCondition(x) = self { Some(x) } else { None }
@@ -23514,12 +26494,12 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{mutable_specifier | block | _pattern | _type | _expression}`:
-- [MutableSpecifier]
-- [Block]
-- [Pattern]
-- [Type]
-- [Expression]*/
+    /**One of `{mutable_specifier | block | _pattern | _type | _expression}`:
+- [`MutableSpecifier`]
+- [`Block`]
+- [`Pattern`]
+- [`Type`]
+- [`Expression`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum MutableSpecifier_Block_Pattern_Type_Expression<'tree> {
@@ -23531,37 +26511,37 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> MutableSpecifier_Block_Pattern_Type_Expression<'tree> {
-        ///Returns the node if it is of kind `mutable_specifier` ([`MutableSpecifier`]), otherwise returns None
+        ///Returns the node if it is of type `mutable_specifier` ([`MutableSpecifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_mutable_specifier(self) -> Option<MutableSpecifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::MutableSpecifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `block` ([`Block`]), otherwise returns None
+        ///Returns the node if it is of type `block` ([`Block`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_block(self) -> Option<Block<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Block(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `_pattern` ([`Pattern`]), otherwise returns None
+        ///Returns the node if it is of type `_pattern` ([`Pattern`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_pattern(self) -> Option<Pattern<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Pattern(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `_type` ([`Type`]), otherwise returns None
+        ///Returns the node if it is of type `_type` ([`Type`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_type(self) -> Option<Type<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Type(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `_expression` ([`Expression`]), otherwise returns None
+        ///Returns the node if it is of type `_expression` ([`Expression`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_expression(self) -> Option<Expression<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Expression(x) = self { Some(x) } else { None }
@@ -23634,9 +26614,9 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{label | block}`:
-- [Label]
-- [Block]*/
+    /**One of `{label | block}`:
+- [`Label`]
+- [`Block`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum Label_Block<'tree> {
@@ -23645,16 +26625,16 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> Label_Block<'tree> {
-        ///Returns the node if it is of kind `label` ([`Label`]), otherwise returns None
+        ///Returns the node if it is of type `label` ([`Label`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_label(self) -> Option<Label<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Label(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `block` ([`Block`]), otherwise returns None
+        ///Returns the node if it is of type `block` ([`Block`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_block(self) -> Option<Block<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Block(x) = self { Some(x) } else { None }
@@ -23712,9 +26692,9 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{macro_rule | identifier}`:
-- [MacroRule]
-- [Identifier]*/
+    /**One of `{macro_rule | identifier}`:
+- [`MacroRule`]
+- [`Identifier`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum MacroRule_Identifier<'tree> {
@@ -23723,16 +26703,16 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> MacroRule_Identifier<'tree> {
-        ///Returns the node if it is of kind `macro_rule` ([`MacroRule`]), otherwise returns None
+        ///Returns the node if it is of type `macro_rule` ([`MacroRule`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_macro_rule(self) -> Option<MacroRule<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::MacroRule(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `identifier` ([`Identifier`]), otherwise returns None
+        ///Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_identifier(self) -> Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Identifier(x) = self { Some(x) } else { None }
@@ -23790,10 +26770,10 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{token_tree | identifier | scoped_identifier}`:
-- [TokenTree]
-- [Identifier]
-- [ScopedIdentifier]*/
+    /**One of `{token_tree | identifier | scoped_identifier}`:
+- [`TokenTree`]
+- [`Identifier`]
+- [`ScopedIdentifier`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum TokenTree_Identifier_ScopedIdentifier<'tree> {
@@ -23803,23 +26783,23 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> TokenTree_Identifier_ScopedIdentifier<'tree> {
-        ///Returns the node if it is of kind `token_tree` ([`TokenTree`]), otherwise returns None
+        ///Returns the node if it is of type `token_tree` ([`TokenTree`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_token_tree(self) -> Option<TokenTree<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::TokenTree(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `identifier` ([`Identifier`]), otherwise returns None
+        ///Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_identifier(self) -> Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Identifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `scoped_identifier` ([`ScopedIdentifier`]), otherwise returns None
+        ///Returns the node if it is of type `scoped_identifier` ([`ScopedIdentifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_scoped_identifier(self) -> Option<ScopedIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::ScopedIdentifier(x) = self { Some(x) } else { None }
@@ -23890,9 +26870,9 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{identifier | scoped_identifier}`:
-- [Identifier]
-- [ScopedIdentifier]*/
+    /**One of `{identifier | scoped_identifier}`:
+- [`Identifier`]
+- [`ScopedIdentifier`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum Identifier_ScopedIdentifier<'tree> {
@@ -23901,16 +26881,16 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> Identifier_ScopedIdentifier<'tree> {
-        ///Returns the node if it is of kind `identifier` ([`Identifier`]), otherwise returns None
+        ///Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_identifier(self) -> Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Identifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `scoped_identifier` ([`ScopedIdentifier`]), otherwise returns None
+        ///Returns the node if it is of type `scoped_identifier` ([`ScopedIdentifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_scoped_identifier(self) -> Option<ScopedIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::ScopedIdentifier(x) = self { Some(x) } else { None }
@@ -23968,11 +26948,90 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{attribute_item | inner_attribute_item | match_pattern | _expression}`:
-- [AttributeItem]
-- [InnerAttributeItem]
-- [MatchPattern]
-- [Expression]*/
+    /**One of `{attribute_item | inner_attribute_item}`:
+- [`AttributeItem`]
+- [`InnerAttributeItem`]*/
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub enum AttributeItem_InnerAttributeItem<'tree> {
+        AttributeItem(AttributeItem<'tree>),
+        InnerAttributeItem(InnerAttributeItem<'tree>),
+    }
+    #[automatically_derived]
+    impl<'tree> AttributeItem_InnerAttributeItem<'tree> {
+        ///Returns the node if it is of type `attribute_item` ([`AttributeItem`]), otherwise returns `None`
+        #[inline]
+        #[allow(non_snake_case)]
+        pub fn as_attribute_item(self) -> Option<AttributeItem<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::AttributeItem(x) = self { Some(x) } else { None }
+        }
+        ///Returns the node if it is of type `inner_attribute_item` ([`InnerAttributeItem`]), otherwise returns `None`
+        #[inline]
+        #[allow(non_snake_case)]
+        pub fn as_inner_attribute_item(self) -> Option<InnerAttributeItem<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::InnerAttributeItem(x) = self { Some(x) } else { None }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::Node<'tree>
+    for AttributeItem_InnerAttributeItem<'tree> {
+        type WithLifetime<'a> = AttributeItem_InnerAttributeItem<'a>;
+        const KIND: &'static str = "{attribute_item | inner_attribute_item}";
+        #[inline]
+        fn try_from_raw(
+            node: yak_sitter::Node<'tree>,
+        ) -> type_sitter_lib::NodeResult<Self> {
+            match node.kind() {
+                "attribute_item" => {
+                    Ok(unsafe {
+                        Self::AttributeItem(
+                            <AttributeItem<
+                                'tree,
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "inner_attribute_item" => {
+                    Ok(unsafe {
+                        Self::InnerAttributeItem(
+                            <InnerAttributeItem<
+                                'tree,
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                _ => Err(type_sitter_lib::IncorrectKind::new::<Self>(node)),
+            }
+        }
+        #[inline]
+        fn raw(&self) -> &yak_sitter::Node<'tree> {
+            match self {
+                Self::AttributeItem(x) => type_sitter_lib::Node::raw(x),
+                Self::InnerAttributeItem(x) => type_sitter_lib::Node::raw(x),
+            }
+        }
+        #[inline]
+        fn raw_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
+            match self {
+                Self::AttributeItem(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::InnerAttributeItem(x) => type_sitter_lib::Node::raw_mut(x),
+            }
+        }
+        #[inline]
+        fn into_raw(self) -> yak_sitter::Node<'tree> {
+            match self {
+                Self::AttributeItem(x) => x.into_raw(),
+                Self::InnerAttributeItem(x) => x.into_raw(),
+            }
+        }
+    }
+    /**One of `{attribute_item | inner_attribute_item | match_pattern | _expression}`:
+- [`AttributeItem`]
+- [`InnerAttributeItem`]
+- [`MatchPattern`]
+- [`Expression`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum AttributeItem_InnerAttributeItem_MatchPattern_Expression<'tree> {
@@ -23983,30 +27042,30 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> AttributeItem_InnerAttributeItem_MatchPattern_Expression<'tree> {
-        ///Returns the node if it is of kind `attribute_item` ([`AttributeItem`]), otherwise returns None
+        ///Returns the node if it is of type `attribute_item` ([`AttributeItem`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_attribute_item(self) -> Option<AttributeItem<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::AttributeItem(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `inner_attribute_item` ([`InnerAttributeItem`]), otherwise returns None
+        ///Returns the node if it is of type `inner_attribute_item` ([`InnerAttributeItem`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_inner_attribute_item(self) -> Option<InnerAttributeItem<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::InnerAttributeItem(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `match_pattern` ([`MatchPattern`]), otherwise returns None
+        ///Returns the node if it is of type `match_pattern` ([`MatchPattern`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_match_pattern(self) -> Option<MatchPattern<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::MatchPattern(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `_expression` ([`Expression`]), otherwise returns None
+        ///Returns the node if it is of type `_expression` ([`Expression`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_expression(self) -> Option<Expression<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Expression(x) = self { Some(x) } else { None }
@@ -24073,11 +27132,11 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{_pattern | _expression | let_chain | let_condition}`:
-- [Pattern]
-- [Expression]
-- [LetChain]
-- [LetCondition]*/
+    /**One of `{_pattern | _expression | let_chain | let_condition}`:
+- [`Pattern`]
+- [`Expression`]
+- [`LetChain`]
+- [`LetCondition`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum Pattern_Expression_LetChain_LetCondition<'tree> {
@@ -24088,30 +27147,30 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> Pattern_Expression_LetChain_LetCondition<'tree> {
-        ///Returns the node if it is of kind `_pattern` ([`Pattern`]), otherwise returns None
+        ///Returns the node if it is of type `_pattern` ([`Pattern`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_pattern(self) -> Option<Pattern<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Pattern(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `_expression` ([`Expression`]), otherwise returns None
+        ///Returns the node if it is of type `_expression` ([`Expression`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_expression(self) -> Option<Expression<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Expression(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `let_chain` ([`LetChain`]), otherwise returns None
+        ///Returns the node if it is of type `let_chain` ([`LetChain`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_let_chain(self) -> Option<LetChain<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::LetChain(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `let_condition` ([`LetCondition`]), otherwise returns None
+        ///Returns the node if it is of type `let_condition` ([`LetCondition`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_let_condition(self) -> Option<LetCondition<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::LetCondition(x) = self { Some(x) } else { None }
@@ -24176,10 +27235,10 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{visibility_modifier | declaration_list | identifier}`:
-- [VisibilityModifier]
-- [DeclarationList]
-- [Identifier]*/
+    /**One of `{visibility_modifier | declaration_list | identifier}`:
+- [`VisibilityModifier`]
+- [`DeclarationList`]
+- [`Identifier`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum VisibilityModifier_DeclarationList_Identifier<'tree> {
@@ -24189,23 +27248,23 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> VisibilityModifier_DeclarationList_Identifier<'tree> {
-        ///Returns the node if it is of kind `visibility_modifier` ([`VisibilityModifier`]), otherwise returns None
+        ///Returns the node if it is of type `visibility_modifier` ([`VisibilityModifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_visibility_modifier(self) -> Option<VisibilityModifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::VisibilityModifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `declaration_list` ([`DeclarationList`]), otherwise returns None
+        ///Returns the node if it is of type `declaration_list` ([`DeclarationList`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_declaration_list(self) -> Option<DeclarationList<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::DeclarationList(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `identifier` ([`Identifier`]), otherwise returns None
+        ///Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_identifier(self) -> Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Identifier(x) = self { Some(x) } else { None }
@@ -24276,9 +27335,9 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{_pattern | mutable_specifier}`:
-- [Pattern]
-- [MutableSpecifier]*/
+    /**One of `{_pattern | mutable_specifier}`:
+- [`Pattern`]
+- [`MutableSpecifier`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum Pattern_MutableSpecifier<'tree> {
@@ -24287,16 +27346,16 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> Pattern_MutableSpecifier<'tree> {
-        ///Returns the node if it is of kind `_pattern` ([`Pattern`]), otherwise returns None
+        ///Returns the node if it is of type `_pattern` ([`Pattern`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_pattern(self) -> Option<Pattern<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Pattern(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `mutable_specifier` ([`MutableSpecifier`]), otherwise returns None
+        ///Returns the node if it is of type `mutable_specifier` ([`MutableSpecifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_mutable_specifier(self) -> Option<MutableSpecifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::MutableSpecifier(x) = self { Some(x) } else { None }
@@ -24344,9 +27403,9 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{float_literal | integer_literal}`:
-- [FloatLiteral]
-- [IntegerLiteral]*/
+    /**One of `{float_literal | integer_literal}`:
+- [`FloatLiteral`]
+- [`IntegerLiteral`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum FloatLiteral_IntegerLiteral<'tree> {
@@ -24355,16 +27414,16 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> FloatLiteral_IntegerLiteral<'tree> {
-        ///Returns the node if it is of kind `float_literal` ([`FloatLiteral`]), otherwise returns None
+        ///Returns the node if it is of type `float_literal` ([`FloatLiteral`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_float_literal(self) -> Option<FloatLiteral<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::FloatLiteral(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `integer_literal` ([`IntegerLiteral`]), otherwise returns None
+        ///Returns the node if it is of type `integer_literal` ([`IntegerLiteral`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_integer_literal(self) -> Option<IntegerLiteral<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::IntegerLiteral(x) = self { Some(x) } else { None }
@@ -24422,9 +27481,9 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{constrained_type_parameter | type_identifier}`:
-- [ConstrainedTypeParameter]
-- [TypeIdentifier]*/
+    /**One of `{constrained_type_parameter | type_identifier}`:
+- [`ConstrainedTypeParameter`]
+- [`TypeIdentifier`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum ConstrainedTypeParameter_TypeIdentifier<'tree> {
@@ -24433,18 +27492,18 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> ConstrainedTypeParameter_TypeIdentifier<'tree> {
-        ///Returns the node if it is of kind `constrained_type_parameter` ([`ConstrainedTypeParameter`]), otherwise returns None
+        ///Returns the node if it is of type `constrained_type_parameter` ([`ConstrainedTypeParameter`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_constrained_type_parameter(
             self,
         ) -> Option<ConstrainedTypeParameter<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::ConstrainedTypeParameter(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `type_identifier` ([`TypeIdentifier`]), otherwise returns None
+        ///Returns the node if it is of type `type_identifier` ([`TypeIdentifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_type_identifier(self) -> Option<TypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::TypeIdentifier(x) = self { Some(x) } else { None }
@@ -24503,10 +27562,89 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{attribute_item | visibility_modifier | _type}`:
-- [AttributeItem]
-- [VisibilityModifier]
-- [Type]*/
+    /**One of `{attribute_item | visibility_modifier}`:
+- [`AttributeItem`]
+- [`VisibilityModifier`]*/
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub enum AttributeItem_VisibilityModifier<'tree> {
+        AttributeItem(AttributeItem<'tree>),
+        VisibilityModifier(VisibilityModifier<'tree>),
+    }
+    #[automatically_derived]
+    impl<'tree> AttributeItem_VisibilityModifier<'tree> {
+        ///Returns the node if it is of type `attribute_item` ([`AttributeItem`]), otherwise returns `None`
+        #[inline]
+        #[allow(non_snake_case)]
+        pub fn as_attribute_item(self) -> Option<AttributeItem<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::AttributeItem(x) = self { Some(x) } else { None }
+        }
+        ///Returns the node if it is of type `visibility_modifier` ([`VisibilityModifier`]), otherwise returns `None`
+        #[inline]
+        #[allow(non_snake_case)]
+        pub fn as_visibility_modifier(self) -> Option<VisibilityModifier<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::VisibilityModifier(x) = self { Some(x) } else { None }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::Node<'tree>
+    for AttributeItem_VisibilityModifier<'tree> {
+        type WithLifetime<'a> = AttributeItem_VisibilityModifier<'a>;
+        const KIND: &'static str = "{attribute_item | visibility_modifier}";
+        #[inline]
+        fn try_from_raw(
+            node: yak_sitter::Node<'tree>,
+        ) -> type_sitter_lib::NodeResult<Self> {
+            match node.kind() {
+                "attribute_item" => {
+                    Ok(unsafe {
+                        Self::AttributeItem(
+                            <AttributeItem<
+                                'tree,
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "visibility_modifier" => {
+                    Ok(unsafe {
+                        Self::VisibilityModifier(
+                            <VisibilityModifier<
+                                'tree,
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                _ => Err(type_sitter_lib::IncorrectKind::new::<Self>(node)),
+            }
+        }
+        #[inline]
+        fn raw(&self) -> &yak_sitter::Node<'tree> {
+            match self {
+                Self::AttributeItem(x) => type_sitter_lib::Node::raw(x),
+                Self::VisibilityModifier(x) => type_sitter_lib::Node::raw(x),
+            }
+        }
+        #[inline]
+        fn raw_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
+            match self {
+                Self::AttributeItem(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::VisibilityModifier(x) => type_sitter_lib::Node::raw_mut(x),
+            }
+        }
+        #[inline]
+        fn into_raw(self) -> yak_sitter::Node<'tree> {
+            match self {
+                Self::AttributeItem(x) => x.into_raw(),
+                Self::VisibilityModifier(x) => x.into_raw(),
+            }
+        }
+    }
+    /**One of `{attribute_item | visibility_modifier | _type}`:
+- [`AttributeItem`]
+- [`VisibilityModifier`]
+- [`Type`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum AttributeItem_VisibilityModifier_Type<'tree> {
@@ -24516,23 +27654,23 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> AttributeItem_VisibilityModifier_Type<'tree> {
-        ///Returns the node if it is of kind `attribute_item` ([`AttributeItem`]), otherwise returns None
+        ///Returns the node if it is of type `attribute_item` ([`AttributeItem`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_attribute_item(self) -> Option<AttributeItem<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::AttributeItem(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `visibility_modifier` ([`VisibilityModifier`]), otherwise returns None
+        ///Returns the node if it is of type `visibility_modifier` ([`VisibilityModifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_visibility_modifier(self) -> Option<VisibilityModifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::VisibilityModifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `_type` ([`Type`]), otherwise returns None
+        ///Returns the node if it is of type `_type` ([`Type`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_type(self) -> Option<Type<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Type(x) = self { Some(x) } else { None }
@@ -24589,45 +27727,45 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{mutable_specifier | _pattern | self | _type}`:
-- [MutableSpecifier]
-- [Pattern]
-- [_Self]
-- [Type]*/
+    /**One of `{mutable_specifier | _pattern | self | _type}`:
+- [`MutableSpecifier`]
+- [`Pattern`]
+- [`Self_`]
+- [`Type`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub enum MutableSpecifier_Pattern__Self_Type<'tree> {
+    pub enum MutableSpecifier_Pattern_Self__Type<'tree> {
         MutableSpecifier(MutableSpecifier<'tree>),
         Pattern(Pattern<'tree>),
-        _Self(_Self<'tree>),
+        Self_(Self_<'tree>),
         Type(Type<'tree>),
     }
     #[automatically_derived]
-    impl<'tree> MutableSpecifier_Pattern__Self_Type<'tree> {
-        ///Returns the node if it is of kind `mutable_specifier` ([`MutableSpecifier`]), otherwise returns None
+    impl<'tree> MutableSpecifier_Pattern_Self__Type<'tree> {
+        ///Returns the node if it is of type `mutable_specifier` ([`MutableSpecifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_mutable_specifier(self) -> Option<MutableSpecifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::MutableSpecifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `_pattern` ([`Pattern`]), otherwise returns None
+        ///Returns the node if it is of type `_pattern` ([`Pattern`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_pattern(self) -> Option<Pattern<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Pattern(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `self` ([`_Self`]), otherwise returns None
+        ///Returns the node if it is of type `self` ([`Self_`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
-        pub fn as__self(self) -> Option<_Self<'tree>> {
+        #[allow(non_snake_case)]
+        pub fn as_self(self) -> Option<Self_<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::_Self(x) = self { Some(x) } else { None }
+            if let Self::Self_(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `_type` ([`Type`]), otherwise returns None
+        ///Returns the node if it is of type `_type` ([`Type`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_type(self) -> Option<Type<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Type(x) = self { Some(x) } else { None }
@@ -24635,8 +27773,8 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree>
-    for MutableSpecifier_Pattern__Self_Type<'tree> {
-        type WithLifetime<'a> = MutableSpecifier_Pattern__Self_Type<'a>;
+    for MutableSpecifier_Pattern_Self__Type<'tree> {
+        type WithLifetime<'a> = MutableSpecifier_Pattern_Self__Type<'a>;
         const KIND: &'static str = "{mutable_specifier | _pattern | self | _type}";
         #[inline]
         fn try_from_raw(
@@ -24652,10 +27790,10 @@ pub mod anon_unions {
             > as type_sitter_lib::Node<'tree>>::try_from_raw(node) {
                 return Ok(Self::Pattern(this));
             }
-            if let Ok(this) = <_Self<
+            if let Ok(this) = <Self_<
                 'tree,
             > as type_sitter_lib::Node<'tree>>::try_from_raw(node) {
-                return Ok(Self::_Self(this));
+                return Ok(Self::Self_(this));
             }
             if let Ok(this) = <Type<
                 'tree,
@@ -24669,7 +27807,7 @@ pub mod anon_unions {
             match self {
                 Self::MutableSpecifier(x) => type_sitter_lib::Node::raw(x),
                 Self::Pattern(x) => type_sitter_lib::Node::raw(x),
-                Self::_Self(x) => type_sitter_lib::Node::raw(x),
+                Self::Self_(x) => type_sitter_lib::Node::raw(x),
                 Self::Type(x) => type_sitter_lib::Node::raw(x),
             }
         }
@@ -24678,7 +27816,7 @@ pub mod anon_unions {
             match self {
                 Self::MutableSpecifier(x) => type_sitter_lib::Node::raw_mut(x),
                 Self::Pattern(x) => type_sitter_lib::Node::raw_mut(x),
-                Self::_Self(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::Self_(x) => type_sitter_lib::Node::raw_mut(x),
                 Self::Type(x) => type_sitter_lib::Node::raw_mut(x),
             }
         }
@@ -24687,40 +27825,40 @@ pub mod anon_unions {
             match self {
                 Self::MutableSpecifier(x) => x.into_raw(),
                 Self::Pattern(x) => x.into_raw(),
-                Self::_Self(x) => x.into_raw(),
+                Self::Self_(x) => x.into_raw(),
                 Self::Type(x) => x.into_raw(),
             }
         }
     }
-    /**one of `{_pattern | self}`:
-- [Pattern]
-- [_Self]*/
+    /**One of `{_pattern | self}`:
+- [`Pattern`]
+- [`Self_`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub enum Pattern__Self<'tree> {
+    pub enum Pattern_Self_<'tree> {
         Pattern(Pattern<'tree>),
-        _Self(_Self<'tree>),
+        Self_(Self_<'tree>),
     }
     #[automatically_derived]
-    impl<'tree> Pattern__Self<'tree> {
-        ///Returns the node if it is of kind `_pattern` ([`Pattern`]), otherwise returns None
+    impl<'tree> Pattern_Self_<'tree> {
+        ///Returns the node if it is of type `_pattern` ([`Pattern`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_pattern(self) -> Option<Pattern<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Pattern(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `self` ([`_Self`]), otherwise returns None
+        ///Returns the node if it is of type `self` ([`Self_`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
-        pub fn as__self(self) -> Option<_Self<'tree>> {
+        #[allow(non_snake_case)]
+        pub fn as_self(self) -> Option<Self_<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::_Self(x) = self { Some(x) } else { None }
+            if let Self::Self_(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
-    impl<'tree> type_sitter_lib::Node<'tree> for Pattern__Self<'tree> {
-        type WithLifetime<'a> = Pattern__Self<'a>;
+    impl<'tree> type_sitter_lib::Node<'tree> for Pattern_Self_<'tree> {
+        type WithLifetime<'a> = Pattern_Self_<'a>;
         const KIND: &'static str = "{_pattern | self}";
         #[inline]
         fn try_from_raw(
@@ -24731,10 +27869,10 @@ pub mod anon_unions {
             > as type_sitter_lib::Node<'tree>>::try_from_raw(node) {
                 return Ok(Self::Pattern(this));
             }
-            if let Ok(this) = <_Self<
+            if let Ok(this) = <Self_<
                 'tree,
             > as type_sitter_lib::Node<'tree>>::try_from_raw(node) {
-                return Ok(Self::_Self(this));
+                return Ok(Self::Self_(this));
             }
             Err(type_sitter_lib::IncorrectKind::new::<Self>(node))
         }
@@ -24742,30 +27880,30 @@ pub mod anon_unions {
         fn raw(&self) -> &yak_sitter::Node<'tree> {
             match self {
                 Self::Pattern(x) => type_sitter_lib::Node::raw(x),
-                Self::_Self(x) => type_sitter_lib::Node::raw(x),
+                Self::Self_(x) => type_sitter_lib::Node::raw(x),
             }
         }
         #[inline]
         fn raw_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
             match self {
                 Self::Pattern(x) => type_sitter_lib::Node::raw_mut(x),
-                Self::_Self(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::Self_(x) => type_sitter_lib::Node::raw_mut(x),
             }
         }
         #[inline]
         fn into_raw(self) -> yak_sitter::Node<'tree> {
             match self {
                 Self::Pattern(x) => x.into_raw(),
-                Self::_Self(x) => x.into_raw(),
+                Self::Self_(x) => x.into_raw(),
             }
         }
     }
-    /**one of `{_type | attribute_item | parameter | self_parameter | variadic_parameter}`:
-- [Type]
-- [AttributeItem]
-- [Parameter]
-- [SelfParameter]
-- [VariadicParameter]*/
+    /**One of `{_type | attribute_item | parameter | self_parameter | variadic_parameter}`:
+- [`Type`]
+- [`AttributeItem`]
+- [`Parameter`]
+- [`SelfParameter`]
+- [`VariadicParameter`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum Type_AttributeItem_Parameter_SelfParameter_VariadicParameter<'tree> {
@@ -24777,37 +27915,37 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> Type_AttributeItem_Parameter_SelfParameter_VariadicParameter<'tree> {
-        ///Returns the node if it is of kind `_type` ([`Type`]), otherwise returns None
+        ///Returns the node if it is of type `_type` ([`Type`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_type(self) -> Option<Type<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Type(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `attribute_item` ([`AttributeItem`]), otherwise returns None
+        ///Returns the node if it is of type `attribute_item` ([`AttributeItem`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_attribute_item(self) -> Option<AttributeItem<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::AttributeItem(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `parameter` ([`Parameter`]), otherwise returns None
+        ///Returns the node if it is of type `parameter` ([`Parameter`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_parameter(self) -> Option<Parameter<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Parameter(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `self_parameter` ([`SelfParameter`]), otherwise returns None
+        ///Returns the node if it is of type `self_parameter` ([`SelfParameter`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_self_parameter(self) -> Option<SelfParameter<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::SelfParameter(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `variadic_parameter` ([`VariadicParameter`]), otherwise returns None
+        ///Returns the node if it is of type `variadic_parameter` ([`VariadicParameter`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_variadic_parameter(self) -> Option<VariadicParameter<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::VariadicParameter(x) = self { Some(x) } else { None }
@@ -24882,9 +28020,9 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{mutable_specifier | _type}`:
-- [MutableSpecifier]
-- [Type]*/
+    /**One of `{mutable_specifier | _type}`:
+- [`MutableSpecifier`]
+- [`Type`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum MutableSpecifier_Type<'tree> {
@@ -24893,16 +28031,16 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> MutableSpecifier_Type<'tree> {
-        ///Returns the node if it is of kind `mutable_specifier` ([`MutableSpecifier`]), otherwise returns None
+        ///Returns the node if it is of type `mutable_specifier` ([`MutableSpecifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_mutable_specifier(self) -> Option<MutableSpecifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::MutableSpecifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `_type` ([`Type`]), otherwise returns None
+        ///Returns the node if it is of type `_type` ([`Type`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_type(self) -> Option<Type<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Type(x) = self { Some(x) } else { None }
@@ -24950,17 +28088,17 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{_literal_pattern | crate | identifier | metavariable | scoped_identifier | self | super}`:
-- [LiteralPattern]
-- [Crate]
-- [Identifier]
-- [Metavariable]
-- [ScopedIdentifier]
-- [_Self]
-- [Super]*/
+    /**One of `{_literal_pattern | crate | identifier | metavariable | scoped_identifier | self | super}`:
+- [`LiteralPattern`]
+- [`Crate`]
+- [`Identifier`]
+- [`Metavariable`]
+- [`ScopedIdentifier`]
+- [`Self_`]
+- [`Super`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub enum LiteralPattern_Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super<
+    pub enum LiteralPattern_Crate_Identifier_Metavariable_ScopedIdentifier_Self__Super<
         'tree,
     > {
         LiteralPattern(LiteralPattern<'tree>),
@@ -24968,69 +28106,69 @@ pub mod anon_unions {
         Identifier(Identifier<'tree>),
         Metavariable(Metavariable<'tree>),
         ScopedIdentifier(ScopedIdentifier<'tree>),
-        _Self(_Self<'tree>),
+        Self_(Self_<'tree>),
         Super(Super<'tree>),
     }
     #[automatically_derived]
     impl<
         'tree,
-    > LiteralPattern_Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super<'tree> {
-        ///Returns the node if it is of kind `_literal_pattern` ([`LiteralPattern`]), otherwise returns None
+    > LiteralPattern_Crate_Identifier_Metavariable_ScopedIdentifier_Self__Super<'tree> {
+        ///Returns the node if it is of type `_literal_pattern` ([`LiteralPattern`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_literal_pattern(self) -> Option<LiteralPattern<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::LiteralPattern(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `crate` ([`Crate`]), otherwise returns None
+        ///Returns the node if it is of type `crate` ([`Crate`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
-        pub fn as_crate_(self) -> Option<Crate<'tree>> {
+        #[allow(non_snake_case)]
+        pub fn as_crate(self) -> Option<Crate<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Crate(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `identifier` ([`Identifier`]), otherwise returns None
+        ///Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_identifier(self) -> Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Identifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `metavariable` ([`Metavariable`]), otherwise returns None
+        ///Returns the node if it is of type `metavariable` ([`Metavariable`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_metavariable(self) -> Option<Metavariable<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Metavariable(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `scoped_identifier` ([`ScopedIdentifier`]), otherwise returns None
+        ///Returns the node if it is of type `scoped_identifier` ([`ScopedIdentifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_scoped_identifier(self) -> Option<ScopedIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::ScopedIdentifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `self` ([`_Self`]), otherwise returns None
+        ///Returns the node if it is of type `self` ([`Self_`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
-        pub fn as__self(self) -> Option<_Self<'tree>> {
+        #[allow(non_snake_case)]
+        pub fn as_self(self) -> Option<Self_<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::_Self(x) = self { Some(x) } else { None }
+            if let Self::Self_(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `super` ([`Super`]), otherwise returns None
+        ///Returns the node if it is of type `super` ([`Super`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
-        pub fn as_super_(self) -> Option<Super<'tree>> {
+        #[allow(non_snake_case)]
+        pub fn as_super(self) -> Option<Super<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Super(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree>
-    for LiteralPattern_Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super<
+    for LiteralPattern_Crate_Identifier_Metavariable_ScopedIdentifier_Self__Super<
         'tree,
     > {
-        type WithLifetime<'a> = LiteralPattern_Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super<
+        type WithLifetime<'a> = LiteralPattern_Crate_Identifier_Metavariable_ScopedIdentifier_Self__Super<
             'a,
         >;
         const KIND: &'static str = "{_literal_pattern | crate | identifier | metavariable | scoped_identifier | self | super}";
@@ -25063,10 +28201,10 @@ pub mod anon_unions {
             > as type_sitter_lib::Node<'tree>>::try_from_raw(node) {
                 return Ok(Self::ScopedIdentifier(this));
             }
-            if let Ok(this) = <_Self<
+            if let Ok(this) = <Self_<
                 'tree,
             > as type_sitter_lib::Node<'tree>>::try_from_raw(node) {
-                return Ok(Self::_Self(this));
+                return Ok(Self::Self_(this));
             }
             if let Ok(this) = <Super<
                 'tree,
@@ -25083,7 +28221,7 @@ pub mod anon_unions {
                 Self::Identifier(x) => type_sitter_lib::Node::raw(x),
                 Self::Metavariable(x) => type_sitter_lib::Node::raw(x),
                 Self::ScopedIdentifier(x) => type_sitter_lib::Node::raw(x),
-                Self::_Self(x) => type_sitter_lib::Node::raw(x),
+                Self::Self_(x) => type_sitter_lib::Node::raw(x),
                 Self::Super(x) => type_sitter_lib::Node::raw(x),
             }
         }
@@ -25095,7 +28233,7 @@ pub mod anon_unions {
                 Self::Identifier(x) => type_sitter_lib::Node::raw_mut(x),
                 Self::Metavariable(x) => type_sitter_lib::Node::raw_mut(x),
                 Self::ScopedIdentifier(x) => type_sitter_lib::Node::raw_mut(x),
-                Self::_Self(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::Self_(x) => type_sitter_lib::Node::raw_mut(x),
                 Self::Super(x) => type_sitter_lib::Node::raw_mut(x),
             }
         }
@@ -25107,14 +28245,14 @@ pub mod anon_unions {
                 Self::Identifier(x) => x.into_raw(),
                 Self::Metavariable(x) => x.into_raw(),
                 Self::ScopedIdentifier(x) => x.into_raw(),
-                Self::_Self(x) => x.into_raw(),
+                Self::Self_(x) => x.into_raw(),
                 Self::Super(x) => x.into_raw(),
             }
         }
     }
-    /**one of `{mutable_specifier | _expression}`:
-- [MutableSpecifier]
-- [Expression]*/
+    /**One of `{mutable_specifier | _expression}`:
+- [`MutableSpecifier`]
+- [`Expression`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum MutableSpecifier_Expression<'tree> {
@@ -25123,16 +28261,16 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> MutableSpecifier_Expression<'tree> {
-        ///Returns the node if it is of kind `mutable_specifier` ([`MutableSpecifier`]), otherwise returns None
+        ///Returns the node if it is of type `mutable_specifier` ([`MutableSpecifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_mutable_specifier(self) -> Option<MutableSpecifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::MutableSpecifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `_expression` ([`Expression`]), otherwise returns None
+        ///Returns the node if it is of type `_expression` ([`Expression`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_expression(self) -> Option<Expression<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Expression(x) = self { Some(x) } else { None }
@@ -25180,10 +28318,88 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{lifetime | mutable_specifier | _type}`:
-- [Lifetime]
-- [MutableSpecifier]
-- [Type]*/
+    /**One of `{lifetime | mutable_specifier}`:
+- [`Lifetime`]
+- [`MutableSpecifier`]*/
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub enum Lifetime_MutableSpecifier<'tree> {
+        Lifetime(Lifetime<'tree>),
+        MutableSpecifier(MutableSpecifier<'tree>),
+    }
+    #[automatically_derived]
+    impl<'tree> Lifetime_MutableSpecifier<'tree> {
+        ///Returns the node if it is of type `lifetime` ([`Lifetime`]), otherwise returns `None`
+        #[inline]
+        #[allow(non_snake_case)]
+        pub fn as_lifetime(self) -> Option<Lifetime<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Lifetime(x) = self { Some(x) } else { None }
+        }
+        ///Returns the node if it is of type `mutable_specifier` ([`MutableSpecifier`]), otherwise returns `None`
+        #[inline]
+        #[allow(non_snake_case)]
+        pub fn as_mutable_specifier(self) -> Option<MutableSpecifier<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::MutableSpecifier(x) = self { Some(x) } else { None }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::Node<'tree> for Lifetime_MutableSpecifier<'tree> {
+        type WithLifetime<'a> = Lifetime_MutableSpecifier<'a>;
+        const KIND: &'static str = "{lifetime | mutable_specifier}";
+        #[inline]
+        fn try_from_raw(
+            node: yak_sitter::Node<'tree>,
+        ) -> type_sitter_lib::NodeResult<Self> {
+            match node.kind() {
+                "lifetime" => {
+                    Ok(unsafe {
+                        Self::Lifetime(
+                            <Lifetime<
+                                'tree,
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "mutable_specifier" => {
+                    Ok(unsafe {
+                        Self::MutableSpecifier(
+                            <MutableSpecifier<
+                                'tree,
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                _ => Err(type_sitter_lib::IncorrectKind::new::<Self>(node)),
+            }
+        }
+        #[inline]
+        fn raw(&self) -> &yak_sitter::Node<'tree> {
+            match self {
+                Self::Lifetime(x) => type_sitter_lib::Node::raw(x),
+                Self::MutableSpecifier(x) => type_sitter_lib::Node::raw(x),
+            }
+        }
+        #[inline]
+        fn raw_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
+            match self {
+                Self::Lifetime(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::MutableSpecifier(x) => type_sitter_lib::Node::raw_mut(x),
+            }
+        }
+        #[inline]
+        fn into_raw(self) -> yak_sitter::Node<'tree> {
+            match self {
+                Self::Lifetime(x) => x.into_raw(),
+                Self::MutableSpecifier(x) => x.into_raw(),
+            }
+        }
+    }
+    /**One of `{lifetime | mutable_specifier | _type}`:
+- [`Lifetime`]
+- [`MutableSpecifier`]
+- [`Type`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum Lifetime_MutableSpecifier_Type<'tree> {
@@ -25193,23 +28409,23 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> Lifetime_MutableSpecifier_Type<'tree> {
-        ///Returns the node if it is of kind `lifetime` ([`Lifetime`]), otherwise returns None
+        ///Returns the node if it is of type `lifetime` ([`Lifetime`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_lifetime(self) -> Option<Lifetime<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Lifetime(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `mutable_specifier` ([`MutableSpecifier`]), otherwise returns None
+        ///Returns the node if it is of type `mutable_specifier` ([`MutableSpecifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_mutable_specifier(self) -> Option<MutableSpecifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::MutableSpecifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `_type` ([`Type`]), otherwise returns None
+        ///Returns the node if it is of type `_type` ([`Type`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_type(self) -> Option<Type<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Type(x) = self { Some(x) } else { None }
@@ -25265,9 +28481,9 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{identifier | super}`:
-- [Identifier]
-- [Super]*/
+    /**One of `{identifier | super}`:
+- [`Identifier`]
+- [`Super`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum Identifier_Super<'tree> {
@@ -25276,17 +28492,17 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> Identifier_Super<'tree> {
-        ///Returns the node if it is of kind `identifier` ([`Identifier`]), otherwise returns None
+        ///Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_identifier(self) -> Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Identifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `super` ([`Super`]), otherwise returns None
+        ///Returns the node if it is of type `super` ([`Super`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
-        pub fn as_super_(self) -> Option<Super<'tree>> {
+        #[allow(non_snake_case)]
+        pub fn as_super(self) -> Option<Super<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Super(x) = self { Some(x) } else { None }
         }
@@ -25343,18 +28559,18 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{bracketed_type | crate | generic_type | identifier | metavariable | scoped_identifier | self | super}`:
-- [BracketedType]
-- [Crate]
-- [GenericType]
-- [Identifier]
-- [Metavariable]
-- [ScopedIdentifier]
-- [_Self]
-- [Super]*/
+    /**One of `{bracketed_type | crate | generic_type | identifier | metavariable | scoped_identifier | self | super}`:
+- [`BracketedType`]
+- [`Crate`]
+- [`GenericType`]
+- [`Identifier`]
+- [`Metavariable`]
+- [`ScopedIdentifier`]
+- [`Self_`]
+- [`Super`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub enum BracketedType_Crate_GenericType_Identifier_Metavariable_ScopedIdentifier__Self_Super<
+    pub enum BracketedType_Crate_GenericType_Identifier_Metavariable_ScopedIdentifier_Self__Super<
         'tree,
     > {
         BracketedType(BracketedType<'tree>),
@@ -25363,78 +28579,78 @@ pub mod anon_unions {
         Identifier(Identifier<'tree>),
         Metavariable(Metavariable<'tree>),
         ScopedIdentifier(ScopedIdentifier<'tree>),
-        _Self(_Self<'tree>),
+        Self_(Self_<'tree>),
         Super(Super<'tree>),
     }
     #[automatically_derived]
     impl<
         'tree,
-    > BracketedType_Crate_GenericType_Identifier_Metavariable_ScopedIdentifier__Self_Super<
+    > BracketedType_Crate_GenericType_Identifier_Metavariable_ScopedIdentifier_Self__Super<
         'tree,
     > {
-        ///Returns the node if it is of kind `bracketed_type` ([`BracketedType`]), otherwise returns None
+        ///Returns the node if it is of type `bracketed_type` ([`BracketedType`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_bracketed_type(self) -> Option<BracketedType<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::BracketedType(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `crate` ([`Crate`]), otherwise returns None
+        ///Returns the node if it is of type `crate` ([`Crate`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
-        pub fn as_crate_(self) -> Option<Crate<'tree>> {
+        #[allow(non_snake_case)]
+        pub fn as_crate(self) -> Option<Crate<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Crate(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `generic_type` ([`GenericType`]), otherwise returns None
+        ///Returns the node if it is of type `generic_type` ([`GenericType`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_generic_type(self) -> Option<GenericType<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::GenericType(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `identifier` ([`Identifier`]), otherwise returns None
+        ///Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_identifier(self) -> Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Identifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `metavariable` ([`Metavariable`]), otherwise returns None
+        ///Returns the node if it is of type `metavariable` ([`Metavariable`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_metavariable(self) -> Option<Metavariable<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Metavariable(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `scoped_identifier` ([`ScopedIdentifier`]), otherwise returns None
+        ///Returns the node if it is of type `scoped_identifier` ([`ScopedIdentifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_scoped_identifier(self) -> Option<ScopedIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::ScopedIdentifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `self` ([`_Self`]), otherwise returns None
+        ///Returns the node if it is of type `self` ([`Self_`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
-        pub fn as__self(self) -> Option<_Self<'tree>> {
+        #[allow(non_snake_case)]
+        pub fn as_self(self) -> Option<Self_<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::_Self(x) = self { Some(x) } else { None }
+            if let Self::Self_(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `super` ([`Super`]), otherwise returns None
+        ///Returns the node if it is of type `super` ([`Super`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
-        pub fn as_super_(self) -> Option<Super<'tree>> {
+        #[allow(non_snake_case)]
+        pub fn as_super(self) -> Option<Super<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Super(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree>
-    for BracketedType_Crate_GenericType_Identifier_Metavariable_ScopedIdentifier__Self_Super<
+    for BracketedType_Crate_GenericType_Identifier_Metavariable_ScopedIdentifier_Self__Super<
         'tree,
     > {
-        type WithLifetime<'a> = BracketedType_Crate_GenericType_Identifier_Metavariable_ScopedIdentifier__Self_Super<
+        type WithLifetime<'a> = BracketedType_Crate_GenericType_Identifier_Metavariable_ScopedIdentifier_Self__Super<
             'a,
         >;
         const KIND: &'static str = "{bracketed_type | crate | generic_type | identifier | metavariable | scoped_identifier | self | super}";
@@ -25499,8 +28715,8 @@ pub mod anon_unions {
                 }
                 "self" => {
                     Ok(unsafe {
-                        Self::_Self(
-                            <_Self<
+                        Self::Self_(
+                            <Self_<
                                 'tree,
                             > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
@@ -25527,7 +28743,7 @@ pub mod anon_unions {
                 Self::Identifier(x) => type_sitter_lib::Node::raw(x),
                 Self::Metavariable(x) => type_sitter_lib::Node::raw(x),
                 Self::ScopedIdentifier(x) => type_sitter_lib::Node::raw(x),
-                Self::_Self(x) => type_sitter_lib::Node::raw(x),
+                Self::Self_(x) => type_sitter_lib::Node::raw(x),
                 Self::Super(x) => type_sitter_lib::Node::raw(x),
             }
         }
@@ -25540,7 +28756,7 @@ pub mod anon_unions {
                 Self::Identifier(x) => type_sitter_lib::Node::raw_mut(x),
                 Self::Metavariable(x) => type_sitter_lib::Node::raw_mut(x),
                 Self::ScopedIdentifier(x) => type_sitter_lib::Node::raw_mut(x),
-                Self::_Self(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::Self_(x) => type_sitter_lib::Node::raw_mut(x),
                 Self::Super(x) => type_sitter_lib::Node::raw_mut(x),
             }
         }
@@ -25553,214 +28769,49 @@ pub mod anon_unions {
                 Self::Identifier(x) => x.into_raw(),
                 Self::Metavariable(x) => x.into_raw(),
                 Self::ScopedIdentifier(x) => x.into_raw(),
-                Self::_Self(x) => x.into_raw(),
+                Self::Self_(x) => x.into_raw(),
                 Self::Super(x) => x.into_raw(),
             }
         }
     }
-    /**one of `{crate | identifier | metavariable | scoped_identifier | self | super}`:
-- [Crate]
-- [Identifier]
-- [Metavariable]
-- [ScopedIdentifier]
-- [_Self]
-- [Super]*/
+    /**One of `{lifetime | mutable_specifier | self}`:
+- [`Lifetime`]
+- [`MutableSpecifier`]
+- [`Self_`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub enum Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super<'tree> {
-        Crate(Crate<'tree>),
-        Identifier(Identifier<'tree>),
-        Metavariable(Metavariable<'tree>),
-        ScopedIdentifier(ScopedIdentifier<'tree>),
-        _Self(_Self<'tree>),
-        Super(Super<'tree>),
-    }
-    #[automatically_derived]
-    impl<'tree> Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super<'tree> {
-        ///Returns the node if it is of kind `crate` ([`Crate`]), otherwise returns None
-        #[inline]
-        #[allow(unused, non_snake_case)]
-        pub fn as_crate_(self) -> Option<Crate<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::Crate(x) = self { Some(x) } else { None }
-        }
-        ///Returns the node if it is of kind `identifier` ([`Identifier`]), otherwise returns None
-        #[inline]
-        #[allow(unused, non_snake_case)]
-        pub fn as_identifier(self) -> Option<Identifier<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::Identifier(x) = self { Some(x) } else { None }
-        }
-        ///Returns the node if it is of kind `metavariable` ([`Metavariable`]), otherwise returns None
-        #[inline]
-        #[allow(unused, non_snake_case)]
-        pub fn as_metavariable(self) -> Option<Metavariable<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::Metavariable(x) = self { Some(x) } else { None }
-        }
-        ///Returns the node if it is of kind `scoped_identifier` ([`ScopedIdentifier`]), otherwise returns None
-        #[inline]
-        #[allow(unused, non_snake_case)]
-        pub fn as_scoped_identifier(self) -> Option<ScopedIdentifier<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::ScopedIdentifier(x) = self { Some(x) } else { None }
-        }
-        ///Returns the node if it is of kind `self` ([`_Self`]), otherwise returns None
-        #[inline]
-        #[allow(unused, non_snake_case)]
-        pub fn as__self(self) -> Option<_Self<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::_Self(x) = self { Some(x) } else { None }
-        }
-        ///Returns the node if it is of kind `super` ([`Super`]), otherwise returns None
-        #[inline]
-        #[allow(unused, non_snake_case)]
-        pub fn as_super_(self) -> Option<Super<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::Super(x) = self { Some(x) } else { None }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter_lib::Node<'tree>
-    for Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super<'tree> {
-        type WithLifetime<'a> = Crate_Identifier_Metavariable_ScopedIdentifier__Self_Super<
-            'a,
-        >;
-        const KIND: &'static str = "{crate | identifier | metavariable | scoped_identifier | self | super}";
-        #[inline]
-        fn try_from_raw(
-            node: yak_sitter::Node<'tree>,
-        ) -> type_sitter_lib::NodeResult<Self> {
-            match node.kind() {
-                "crate" => {
-                    Ok(unsafe {
-                        Self::Crate(
-                            <Crate<
-                                'tree,
-                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "identifier" => {
-                    Ok(unsafe {
-                        Self::Identifier(
-                            <Identifier<
-                                'tree,
-                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "metavariable" => {
-                    Ok(unsafe {
-                        Self::Metavariable(
-                            <Metavariable<
-                                'tree,
-                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "scoped_identifier" => {
-                    Ok(unsafe {
-                        Self::ScopedIdentifier(
-                            <ScopedIdentifier<
-                                'tree,
-                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "self" => {
-                    Ok(unsafe {
-                        Self::_Self(
-                            <_Self<
-                                'tree,
-                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "super" => {
-                    Ok(unsafe {
-                        Self::Super(
-                            <Super<
-                                'tree,
-                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                _ => Err(type_sitter_lib::IncorrectKind::new::<Self>(node)),
-            }
-        }
-        #[inline]
-        fn raw(&self) -> &yak_sitter::Node<'tree> {
-            match self {
-                Self::Crate(x) => type_sitter_lib::Node::raw(x),
-                Self::Identifier(x) => type_sitter_lib::Node::raw(x),
-                Self::Metavariable(x) => type_sitter_lib::Node::raw(x),
-                Self::ScopedIdentifier(x) => type_sitter_lib::Node::raw(x),
-                Self::_Self(x) => type_sitter_lib::Node::raw(x),
-                Self::Super(x) => type_sitter_lib::Node::raw(x),
-            }
-        }
-        #[inline]
-        fn raw_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
-            match self {
-                Self::Crate(x) => type_sitter_lib::Node::raw_mut(x),
-                Self::Identifier(x) => type_sitter_lib::Node::raw_mut(x),
-                Self::Metavariable(x) => type_sitter_lib::Node::raw_mut(x),
-                Self::ScopedIdentifier(x) => type_sitter_lib::Node::raw_mut(x),
-                Self::_Self(x) => type_sitter_lib::Node::raw_mut(x),
-                Self::Super(x) => type_sitter_lib::Node::raw_mut(x),
-            }
-        }
-        #[inline]
-        fn into_raw(self) -> yak_sitter::Node<'tree> {
-            match self {
-                Self::Crate(x) => x.into_raw(),
-                Self::Identifier(x) => x.into_raw(),
-                Self::Metavariable(x) => x.into_raw(),
-                Self::ScopedIdentifier(x) => x.into_raw(),
-                Self::_Self(x) => x.into_raw(),
-                Self::Super(x) => x.into_raw(),
-            }
-        }
-    }
-    /**one of `{lifetime | mutable_specifier | self}`:
-- [Lifetime]
-- [MutableSpecifier]
-- [_Self]*/
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[allow(non_camel_case_types)]
-    pub enum Lifetime_MutableSpecifier__Self<'tree> {
+    pub enum Lifetime_MutableSpecifier_Self_<'tree> {
         Lifetime(Lifetime<'tree>),
         MutableSpecifier(MutableSpecifier<'tree>),
-        _Self(_Self<'tree>),
+        Self_(Self_<'tree>),
     }
     #[automatically_derived]
-    impl<'tree> Lifetime_MutableSpecifier__Self<'tree> {
-        ///Returns the node if it is of kind `lifetime` ([`Lifetime`]), otherwise returns None
+    impl<'tree> Lifetime_MutableSpecifier_Self_<'tree> {
+        ///Returns the node if it is of type `lifetime` ([`Lifetime`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_lifetime(self) -> Option<Lifetime<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Lifetime(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `mutable_specifier` ([`MutableSpecifier`]), otherwise returns None
+        ///Returns the node if it is of type `mutable_specifier` ([`MutableSpecifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_mutable_specifier(self) -> Option<MutableSpecifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::MutableSpecifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `self` ([`_Self`]), otherwise returns None
+        ///Returns the node if it is of type `self` ([`Self_`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
-        pub fn as__self(self) -> Option<_Self<'tree>> {
+        #[allow(non_snake_case)]
+        pub fn as_self(self) -> Option<Self_<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::_Self(x) = self { Some(x) } else { None }
+            if let Self::Self_(x) = self { Some(x) } else { None }
         }
     }
     #[automatically_derived]
-    impl<'tree> type_sitter_lib::Node<'tree> for Lifetime_MutableSpecifier__Self<'tree> {
-        type WithLifetime<'a> = Lifetime_MutableSpecifier__Self<'a>;
+    impl<'tree> type_sitter_lib::Node<'tree> for Lifetime_MutableSpecifier_Self_<'tree> {
+        type WithLifetime<'a> = Lifetime_MutableSpecifier_Self_<'a>;
         const KIND: &'static str = "{lifetime | mutable_specifier | self}";
         #[inline]
         fn try_from_raw(
@@ -25787,8 +28838,8 @@ pub mod anon_unions {
                 }
                 "self" => {
                     Ok(unsafe {
-                        Self::_Self(
-                            <_Self<
+                        Self::Self_(
+                            <Self_<
                                 'tree,
                             > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
@@ -25802,7 +28853,7 @@ pub mod anon_unions {
             match self {
                 Self::Lifetime(x) => type_sitter_lib::Node::raw(x),
                 Self::MutableSpecifier(x) => type_sitter_lib::Node::raw(x),
-                Self::_Self(x) => type_sitter_lib::Node::raw(x),
+                Self::Self_(x) => type_sitter_lib::Node::raw(x),
             }
         }
         #[inline]
@@ -25810,7 +28861,7 @@ pub mod anon_unions {
             match self {
                 Self::Lifetime(x) => type_sitter_lib::Node::raw_mut(x),
                 Self::MutableSpecifier(x) => type_sitter_lib::Node::raw_mut(x),
-                Self::_Self(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::Self_(x) => type_sitter_lib::Node::raw_mut(x),
             }
         }
         #[inline]
@@ -25818,13 +28869,13 @@ pub mod anon_unions {
             match self {
                 Self::Lifetime(x) => x.into_raw(),
                 Self::MutableSpecifier(x) => x.into_raw(),
-                Self::_Self(x) => x.into_raw(),
+                Self::Self_(x) => x.into_raw(),
             }
         }
     }
-    /**one of `{attribute_item | identifier}`:
-- [AttributeItem]
-- [Identifier]*/
+    /**One of `{attribute_item | identifier}`:
+- [`AttributeItem`]
+- [`Identifier`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum AttributeItem_Identifier<'tree> {
@@ -25833,16 +28884,16 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> AttributeItem_Identifier<'tree> {
-        ///Returns the node if it is of kind `attribute_item` ([`AttributeItem`]), otherwise returns None
+        ///Returns the node if it is of type `attribute_item` ([`AttributeItem`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_attribute_item(self) -> Option<AttributeItem<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::AttributeItem(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `identifier` ([`Identifier`]), otherwise returns None
+        ///Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_identifier(self) -> Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Identifier(x) = self { Some(x) } else { None }
@@ -25900,10 +28951,10 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{_declaration_statement | expression_statement | shebang}`:
-- [DeclarationStatement]
-- [ExpressionStatement]
-- [Shebang]*/
+    /**One of `{_declaration_statement | expression_statement | shebang}`:
+- [`DeclarationStatement`]
+- [`ExpressionStatement`]
+- [`Shebang`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum DeclarationStatement_ExpressionStatement_Shebang<'tree> {
@@ -25913,23 +28964,23 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> DeclarationStatement_ExpressionStatement_Shebang<'tree> {
-        ///Returns the node if it is of kind `_declaration_statement` ([`DeclarationStatement`]), otherwise returns None
+        ///Returns the node if it is of type `_declaration_statement` ([`DeclarationStatement`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_declaration_statement(self) -> Option<DeclarationStatement<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::DeclarationStatement(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `expression_statement` ([`ExpressionStatement`]), otherwise returns None
+        ///Returns the node if it is of type `expression_statement` ([`ExpressionStatement`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_expression_statement(self) -> Option<ExpressionStatement<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::ExpressionStatement(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `shebang` ([`Shebang`]), otherwise returns None
+        ///Returns the node if it is of type `shebang` ([`Shebang`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_shebang(self) -> Option<Shebang<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Shebang(x) = self { Some(x) } else { None }
@@ -25986,12 +29037,91 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{mutable_specifier | visibility_modifier | identifier | _type | _expression}`:
-- [MutableSpecifier]
-- [VisibilityModifier]
-- [Identifier]
-- [Type]
-- [Expression]*/
+    /**One of `{mutable_specifier | visibility_modifier}`:
+- [`MutableSpecifier`]
+- [`VisibilityModifier`]*/
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub enum MutableSpecifier_VisibilityModifier<'tree> {
+        MutableSpecifier(MutableSpecifier<'tree>),
+        VisibilityModifier(VisibilityModifier<'tree>),
+    }
+    #[automatically_derived]
+    impl<'tree> MutableSpecifier_VisibilityModifier<'tree> {
+        ///Returns the node if it is of type `mutable_specifier` ([`MutableSpecifier`]), otherwise returns `None`
+        #[inline]
+        #[allow(non_snake_case)]
+        pub fn as_mutable_specifier(self) -> Option<MutableSpecifier<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::MutableSpecifier(x) = self { Some(x) } else { None }
+        }
+        ///Returns the node if it is of type `visibility_modifier` ([`VisibilityModifier`]), otherwise returns `None`
+        #[inline]
+        #[allow(non_snake_case)]
+        pub fn as_visibility_modifier(self) -> Option<VisibilityModifier<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::VisibilityModifier(x) = self { Some(x) } else { None }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::Node<'tree>
+    for MutableSpecifier_VisibilityModifier<'tree> {
+        type WithLifetime<'a> = MutableSpecifier_VisibilityModifier<'a>;
+        const KIND: &'static str = "{mutable_specifier | visibility_modifier}";
+        #[inline]
+        fn try_from_raw(
+            node: yak_sitter::Node<'tree>,
+        ) -> type_sitter_lib::NodeResult<Self> {
+            match node.kind() {
+                "mutable_specifier" => {
+                    Ok(unsafe {
+                        Self::MutableSpecifier(
+                            <MutableSpecifier<
+                                'tree,
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "visibility_modifier" => {
+                    Ok(unsafe {
+                        Self::VisibilityModifier(
+                            <VisibilityModifier<
+                                'tree,
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                _ => Err(type_sitter_lib::IncorrectKind::new::<Self>(node)),
+            }
+        }
+        #[inline]
+        fn raw(&self) -> &yak_sitter::Node<'tree> {
+            match self {
+                Self::MutableSpecifier(x) => type_sitter_lib::Node::raw(x),
+                Self::VisibilityModifier(x) => type_sitter_lib::Node::raw(x),
+            }
+        }
+        #[inline]
+        fn raw_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
+            match self {
+                Self::MutableSpecifier(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::VisibilityModifier(x) => type_sitter_lib::Node::raw_mut(x),
+            }
+        }
+        #[inline]
+        fn into_raw(self) -> yak_sitter::Node<'tree> {
+            match self {
+                Self::MutableSpecifier(x) => x.into_raw(),
+                Self::VisibilityModifier(x) => x.into_raw(),
+            }
+        }
+    }
+    /**One of `{mutable_specifier | visibility_modifier | identifier | _type | _expression}`:
+- [`MutableSpecifier`]
+- [`VisibilityModifier`]
+- [`Identifier`]
+- [`Type`]
+- [`Expression`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum MutableSpecifier_VisibilityModifier_Identifier_Type_Expression<'tree> {
@@ -26003,37 +29133,37 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> MutableSpecifier_VisibilityModifier_Identifier_Type_Expression<'tree> {
-        ///Returns the node if it is of kind `mutable_specifier` ([`MutableSpecifier`]), otherwise returns None
+        ///Returns the node if it is of type `mutable_specifier` ([`MutableSpecifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_mutable_specifier(self) -> Option<MutableSpecifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::MutableSpecifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `visibility_modifier` ([`VisibilityModifier`]), otherwise returns None
+        ///Returns the node if it is of type `visibility_modifier` ([`VisibilityModifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_visibility_modifier(self) -> Option<VisibilityModifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::VisibilityModifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `identifier` ([`Identifier`]), otherwise returns None
+        ///Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_identifier(self) -> Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Identifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `_type` ([`Type`]), otherwise returns None
+        ///Returns the node if it is of type `_type` ([`Type`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_type(self) -> Option<Type<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Type(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `_expression` ([`Expression`]), otherwise returns None
+        ///Returns the node if it is of type `_expression` ([`Expression`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_expression(self) -> Option<Expression<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Expression(x) = self { Some(x) } else { None }
@@ -26108,9 +29238,9 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{escape_sequence | string_content}`:
-- [EscapeSequence]
-- [StringContent]*/
+    /**One of `{escape_sequence | string_content}`:
+- [`EscapeSequence`]
+- [`StringContent`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum EscapeSequence_StringContent<'tree> {
@@ -26119,16 +29249,16 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> EscapeSequence_StringContent<'tree> {
-        ///Returns the node if it is of kind `escape_sequence` ([`EscapeSequence`]), otherwise returns None
+        ///Returns the node if it is of type `escape_sequence` ([`EscapeSequence`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_escape_sequence(self) -> Option<EscapeSequence<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::EscapeSequence(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `string_content` ([`StringContent`]), otherwise returns None
+        ///Returns the node if it is of type `string_content` ([`StringContent`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_string_content(self) -> Option<StringContent<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::StringContent(x) = self { Some(x) } else { None }
@@ -26186,10 +29316,10 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{generic_type_with_turbofish | scoped_type_identifier | type_identifier}`:
-- [GenericTypeWithTurbofish]
-- [ScopedTypeIdentifier]
-- [TypeIdentifier]*/
+    /**One of `{generic_type_with_turbofish | scoped_type_identifier | type_identifier}`:
+- [`GenericTypeWithTurbofish`]
+- [`ScopedTypeIdentifier`]
+- [`TypeIdentifier`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum GenericTypeWithTurbofish_ScopedTypeIdentifier_TypeIdentifier<'tree> {
@@ -26199,25 +29329,25 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> GenericTypeWithTurbofish_ScopedTypeIdentifier_TypeIdentifier<'tree> {
-        ///Returns the node if it is of kind `generic_type_with_turbofish` ([`GenericTypeWithTurbofish`]), otherwise returns None
+        ///Returns the node if it is of type `generic_type_with_turbofish` ([`GenericTypeWithTurbofish`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_generic_type_with_turbofish(
             self,
         ) -> Option<GenericTypeWithTurbofish<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::GenericTypeWithTurbofish(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `scoped_type_identifier` ([`ScopedTypeIdentifier`]), otherwise returns None
+        ///Returns the node if it is of type `scoped_type_identifier` ([`ScopedTypeIdentifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_scoped_type_identifier(self) -> Option<ScopedTypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::ScopedTypeIdentifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `type_identifier` ([`TypeIdentifier`]), otherwise returns None
+        ///Returns the node if it is of type `type_identifier` ([`TypeIdentifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_type_identifier(self) -> Option<TypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::TypeIdentifier(x) = self { Some(x) } else { None }
@@ -26290,13 +29420,13 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{visibility_modifier | where_clause | field_declaration_list | ordered_field_declaration_list | type_identifier | type_parameters}`:
-- [VisibilityModifier]
-- [WhereClause]
-- [FieldDeclarationList]
-- [OrderedFieldDeclarationList]
-- [TypeIdentifier]
-- [TypeParameters]*/
+    /**One of `{visibility_modifier | where_clause | field_declaration_list | ordered_field_declaration_list | type_identifier | type_parameters}`:
+- [`VisibilityModifier`]
+- [`WhereClause`]
+- [`FieldDeclarationList`]
+- [`OrderedFieldDeclarationList`]
+- [`TypeIdentifier`]
+- [`TypeParameters`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum VisibilityModifier_WhereClause_FieldDeclarationList_OrderedFieldDeclarationList_TypeIdentifier_TypeParameters<
@@ -26315,46 +29445,46 @@ pub mod anon_unions {
     > VisibilityModifier_WhereClause_FieldDeclarationList_OrderedFieldDeclarationList_TypeIdentifier_TypeParameters<
         'tree,
     > {
-        ///Returns the node if it is of kind `visibility_modifier` ([`VisibilityModifier`]), otherwise returns None
+        ///Returns the node if it is of type `visibility_modifier` ([`VisibilityModifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_visibility_modifier(self) -> Option<VisibilityModifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::VisibilityModifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `where_clause` ([`WhereClause`]), otherwise returns None
+        ///Returns the node if it is of type `where_clause` ([`WhereClause`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_where_clause(self) -> Option<WhereClause<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::WhereClause(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `field_declaration_list` ([`FieldDeclarationList`]), otherwise returns None
+        ///Returns the node if it is of type `field_declaration_list` ([`FieldDeclarationList`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_field_declaration_list(self) -> Option<FieldDeclarationList<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::FieldDeclarationList(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `ordered_field_declaration_list` ([`OrderedFieldDeclarationList`]), otherwise returns None
+        ///Returns the node if it is of type `ordered_field_declaration_list` ([`OrderedFieldDeclarationList`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_ordered_field_declaration_list(
             self,
         ) -> Option<OrderedFieldDeclarationList<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::OrderedFieldDeclarationList(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `type_identifier` ([`TypeIdentifier`]), otherwise returns None
+        ///Returns the node if it is of type `type_identifier` ([`TypeIdentifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_type_identifier(self) -> Option<TypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::TypeIdentifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `type_parameters` ([`TypeParameters`]), otherwise returns None
+        ///Returns the node if it is of type `type_parameters` ([`TypeParameters`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_type_parameters(self) -> Option<TypeParameters<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::TypeParameters(x) = self { Some(x) } else { None }
@@ -26465,11 +29595,90 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{field_pattern | remaining_field_pattern | scoped_type_identifier | type_identifier}`:
-- [FieldPattern]
-- [RemainingFieldPattern]
-- [ScopedTypeIdentifier]
-- [TypeIdentifier]*/
+    /**One of `{field_pattern | remaining_field_pattern}`:
+- [`FieldPattern`]
+- [`RemainingFieldPattern`]*/
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub enum FieldPattern_RemainingFieldPattern<'tree> {
+        FieldPattern(FieldPattern<'tree>),
+        RemainingFieldPattern(RemainingFieldPattern<'tree>),
+    }
+    #[automatically_derived]
+    impl<'tree> FieldPattern_RemainingFieldPattern<'tree> {
+        ///Returns the node if it is of type `field_pattern` ([`FieldPattern`]), otherwise returns `None`
+        #[inline]
+        #[allow(non_snake_case)]
+        pub fn as_field_pattern(self) -> Option<FieldPattern<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::FieldPattern(x) = self { Some(x) } else { None }
+        }
+        ///Returns the node if it is of type `remaining_field_pattern` ([`RemainingFieldPattern`]), otherwise returns `None`
+        #[inline]
+        #[allow(non_snake_case)]
+        pub fn as_remaining_field_pattern(self) -> Option<RemainingFieldPattern<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::RemainingFieldPattern(x) = self { Some(x) } else { None }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::Node<'tree>
+    for FieldPattern_RemainingFieldPattern<'tree> {
+        type WithLifetime<'a> = FieldPattern_RemainingFieldPattern<'a>;
+        const KIND: &'static str = "{field_pattern | remaining_field_pattern}";
+        #[inline]
+        fn try_from_raw(
+            node: yak_sitter::Node<'tree>,
+        ) -> type_sitter_lib::NodeResult<Self> {
+            match node.kind() {
+                "field_pattern" => {
+                    Ok(unsafe {
+                        Self::FieldPattern(
+                            <FieldPattern<
+                                'tree,
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "remaining_field_pattern" => {
+                    Ok(unsafe {
+                        Self::RemainingFieldPattern(
+                            <RemainingFieldPattern<
+                                'tree,
+                            > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                _ => Err(type_sitter_lib::IncorrectKind::new::<Self>(node)),
+            }
+        }
+        #[inline]
+        fn raw(&self) -> &yak_sitter::Node<'tree> {
+            match self {
+                Self::FieldPattern(x) => type_sitter_lib::Node::raw(x),
+                Self::RemainingFieldPattern(x) => type_sitter_lib::Node::raw(x),
+            }
+        }
+        #[inline]
+        fn raw_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
+            match self {
+                Self::FieldPattern(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::RemainingFieldPattern(x) => type_sitter_lib::Node::raw_mut(x),
+            }
+        }
+        #[inline]
+        fn into_raw(self) -> yak_sitter::Node<'tree> {
+            match self {
+                Self::FieldPattern(x) => x.into_raw(),
+                Self::RemainingFieldPattern(x) => x.into_raw(),
+            }
+        }
+    }
+    /**One of `{field_pattern | remaining_field_pattern | scoped_type_identifier | type_identifier}`:
+- [`FieldPattern`]
+- [`RemainingFieldPattern`]
+- [`ScopedTypeIdentifier`]
+- [`TypeIdentifier`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum FieldPattern_RemainingFieldPattern_ScopedTypeIdentifier_TypeIdentifier<
@@ -26484,30 +29693,30 @@ pub mod anon_unions {
     impl<
         'tree,
     > FieldPattern_RemainingFieldPattern_ScopedTypeIdentifier_TypeIdentifier<'tree> {
-        ///Returns the node if it is of kind `field_pattern` ([`FieldPattern`]), otherwise returns None
+        ///Returns the node if it is of type `field_pattern` ([`FieldPattern`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_field_pattern(self) -> Option<FieldPattern<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::FieldPattern(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `remaining_field_pattern` ([`RemainingFieldPattern`]), otherwise returns None
+        ///Returns the node if it is of type `remaining_field_pattern` ([`RemainingFieldPattern`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_remaining_field_pattern(self) -> Option<RemainingFieldPattern<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::RemainingFieldPattern(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `scoped_type_identifier` ([`ScopedTypeIdentifier`]), otherwise returns None
+        ///Returns the node if it is of type `scoped_type_identifier` ([`ScopedTypeIdentifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_scoped_type_identifier(self) -> Option<ScopedTypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::ScopedTypeIdentifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `type_identifier` ([`TypeIdentifier`]), otherwise returns None
+        ///Returns the node if it is of type `type_identifier` ([`TypeIdentifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_type_identifier(self) -> Option<TypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::TypeIdentifier(x) = self { Some(x) } else { None }
@@ -26592,20 +29801,20 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{_literal | crate | identifier | metavariable | mutable_specifier | primitive_type | self | super | token_repetition | token_tree}`:
-- [Literal]
-- [Crate]
-- [Identifier]
-- [Metavariable]
-- [MutableSpecifier]
-- [PrimitiveType]
-- [_Self]
-- [Super]
-- [TokenRepetition]
-- [TokenTree]*/
+    /**One of `{_literal | crate | identifier | metavariable | mutable_specifier | primitive_type | self | super | token_repetition | token_tree}`:
+- [`Literal`]
+- [`Crate`]
+- [`Identifier`]
+- [`Metavariable`]
+- [`MutableSpecifier`]
+- [`PrimitiveType`]
+- [`Self_`]
+- [`Super`]
+- [`TokenRepetition`]
+- [`TokenTree`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub enum Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenRepetition_TokenTree<
+    pub enum Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType_Self__Super_TokenRepetition_TokenTree<
         'tree,
     > {
         Literal(Literal<'tree>),
@@ -26614,7 +29823,7 @@ pub mod anon_unions {
         Metavariable(Metavariable<'tree>),
         MutableSpecifier(MutableSpecifier<'tree>),
         PrimitiveType(PrimitiveType<'tree>),
-        _Self(_Self<'tree>),
+        Self_(Self_<'tree>),
         Super(Super<'tree>),
         TokenRepetition(TokenRepetition<'tree>),
         TokenTree(TokenTree<'tree>),
@@ -26622,75 +29831,75 @@ pub mod anon_unions {
     #[automatically_derived]
     impl<
         'tree,
-    > Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenRepetition_TokenTree<
+    > Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType_Self__Super_TokenRepetition_TokenTree<
         'tree,
     > {
-        ///Returns the node if it is of kind `_literal` ([`Literal`]), otherwise returns None
+        ///Returns the node if it is of type `_literal` ([`Literal`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_literal(self) -> Option<Literal<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Literal(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `crate` ([`Crate`]), otherwise returns None
+        ///Returns the node if it is of type `crate` ([`Crate`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
-        pub fn as_crate_(self) -> Option<Crate<'tree>> {
+        #[allow(non_snake_case)]
+        pub fn as_crate(self) -> Option<Crate<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Crate(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `identifier` ([`Identifier`]), otherwise returns None
+        ///Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_identifier(self) -> Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Identifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `metavariable` ([`Metavariable`]), otherwise returns None
+        ///Returns the node if it is of type `metavariable` ([`Metavariable`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_metavariable(self) -> Option<Metavariable<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Metavariable(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `mutable_specifier` ([`MutableSpecifier`]), otherwise returns None
+        ///Returns the node if it is of type `mutable_specifier` ([`MutableSpecifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_mutable_specifier(self) -> Option<MutableSpecifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::MutableSpecifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `primitive_type` ([`PrimitiveType`]), otherwise returns None
+        ///Returns the node if it is of type `primitive_type` ([`PrimitiveType`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_primitive_type(self) -> Option<PrimitiveType<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::PrimitiveType(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `self` ([`_Self`]), otherwise returns None
+        ///Returns the node if it is of type `self` ([`Self_`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
-        pub fn as__self(self) -> Option<_Self<'tree>> {
+        #[allow(non_snake_case)]
+        pub fn as_self(self) -> Option<Self_<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::_Self(x) = self { Some(x) } else { None }
+            if let Self::Self_(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `super` ([`Super`]), otherwise returns None
+        ///Returns the node if it is of type `super` ([`Super`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
-        pub fn as_super_(self) -> Option<Super<'tree>> {
+        #[allow(non_snake_case)]
+        pub fn as_super(self) -> Option<Super<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Super(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `token_repetition` ([`TokenRepetition`]), otherwise returns None
+        ///Returns the node if it is of type `token_repetition` ([`TokenRepetition`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_token_repetition(self) -> Option<TokenRepetition<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::TokenRepetition(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `token_tree` ([`TokenTree`]), otherwise returns None
+        ///Returns the node if it is of type `token_tree` ([`TokenTree`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_token_tree(self) -> Option<TokenTree<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::TokenTree(x) = self { Some(x) } else { None }
@@ -26698,10 +29907,10 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree>
-    for Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenRepetition_TokenTree<
+    for Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType_Self__Super_TokenRepetition_TokenTree<
         'tree,
     > {
-        type WithLifetime<'a> = Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenRepetition_TokenTree<
+        type WithLifetime<'a> = Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType_Self__Super_TokenRepetition_TokenTree<
             'a,
         >;
         const KIND: &'static str = "{_literal | crate | identifier | metavariable | mutable_specifier | primitive_type | self | super | token_repetition | token_tree}";
@@ -26739,10 +29948,10 @@ pub mod anon_unions {
             > as type_sitter_lib::Node<'tree>>::try_from_raw(node) {
                 return Ok(Self::PrimitiveType(this));
             }
-            if let Ok(this) = <_Self<
+            if let Ok(this) = <Self_<
                 'tree,
             > as type_sitter_lib::Node<'tree>>::try_from_raw(node) {
-                return Ok(Self::_Self(this));
+                return Ok(Self::Self_(this));
             }
             if let Ok(this) = <Super<
                 'tree,
@@ -26770,7 +29979,7 @@ pub mod anon_unions {
                 Self::Metavariable(x) => type_sitter_lib::Node::raw(x),
                 Self::MutableSpecifier(x) => type_sitter_lib::Node::raw(x),
                 Self::PrimitiveType(x) => type_sitter_lib::Node::raw(x),
-                Self::_Self(x) => type_sitter_lib::Node::raw(x),
+                Self::Self_(x) => type_sitter_lib::Node::raw(x),
                 Self::Super(x) => type_sitter_lib::Node::raw(x),
                 Self::TokenRepetition(x) => type_sitter_lib::Node::raw(x),
                 Self::TokenTree(x) => type_sitter_lib::Node::raw(x),
@@ -26785,7 +29994,7 @@ pub mod anon_unions {
                 Self::Metavariable(x) => type_sitter_lib::Node::raw_mut(x),
                 Self::MutableSpecifier(x) => type_sitter_lib::Node::raw_mut(x),
                 Self::PrimitiveType(x) => type_sitter_lib::Node::raw_mut(x),
-                Self::_Self(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::Self_(x) => type_sitter_lib::Node::raw_mut(x),
                 Self::Super(x) => type_sitter_lib::Node::raw_mut(x),
                 Self::TokenRepetition(x) => type_sitter_lib::Node::raw_mut(x),
                 Self::TokenTree(x) => type_sitter_lib::Node::raw_mut(x),
@@ -26800,28 +30009,28 @@ pub mod anon_unions {
                 Self::Metavariable(x) => x.into_raw(),
                 Self::MutableSpecifier(x) => x.into_raw(),
                 Self::PrimitiveType(x) => x.into_raw(),
-                Self::_Self(x) => x.into_raw(),
+                Self::Self_(x) => x.into_raw(),
                 Self::Super(x) => x.into_raw(),
                 Self::TokenRepetition(x) => x.into_raw(),
                 Self::TokenTree(x) => x.into_raw(),
             }
         }
     }
-    /**one of `{_literal | crate | identifier | metavariable | mutable_specifier | primitive_type | self | super | token_binding_pattern | token_repetition_pattern | token_tree_pattern}`:
-- [Literal]
-- [Crate]
-- [Identifier]
-- [Metavariable]
-- [MutableSpecifier]
-- [PrimitiveType]
-- [_Self]
-- [Super]
-- [TokenBindingPattern]
-- [TokenRepetitionPattern]
-- [TokenTreePattern]*/
+    /**One of `{_literal | crate | identifier | metavariable | mutable_specifier | primitive_type | self | super | token_binding_pattern | token_repetition_pattern | token_tree_pattern}`:
+- [`Literal`]
+- [`Crate`]
+- [`Identifier`]
+- [`Metavariable`]
+- [`MutableSpecifier`]
+- [`PrimitiveType`]
+- [`Self_`]
+- [`Super`]
+- [`TokenBindingPattern`]
+- [`TokenRepetitionPattern`]
+- [`TokenTreePattern`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub enum Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern<
+    pub enum Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType_Self__Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern<
         'tree,
     > {
         Literal(Literal<'tree>),
@@ -26830,7 +30039,7 @@ pub mod anon_unions {
         Metavariable(Metavariable<'tree>),
         MutableSpecifier(MutableSpecifier<'tree>),
         PrimitiveType(PrimitiveType<'tree>),
-        _Self(_Self<'tree>),
+        Self_(Self_<'tree>),
         Super(Super<'tree>),
         TokenBindingPattern(TokenBindingPattern<'tree>),
         TokenRepetitionPattern(TokenRepetitionPattern<'tree>),
@@ -26839,84 +30048,84 @@ pub mod anon_unions {
     #[automatically_derived]
     impl<
         'tree,
-    > Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern<
+    > Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType_Self__Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern<
         'tree,
     > {
-        ///Returns the node if it is of kind `_literal` ([`Literal`]), otherwise returns None
+        ///Returns the node if it is of type `_literal` ([`Literal`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_literal(self) -> Option<Literal<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Literal(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `crate` ([`Crate`]), otherwise returns None
+        ///Returns the node if it is of type `crate` ([`Crate`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
-        pub fn as_crate_(self) -> Option<Crate<'tree>> {
+        #[allow(non_snake_case)]
+        pub fn as_crate(self) -> Option<Crate<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Crate(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `identifier` ([`Identifier`]), otherwise returns None
+        ///Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_identifier(self) -> Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Identifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `metavariable` ([`Metavariable`]), otherwise returns None
+        ///Returns the node if it is of type `metavariable` ([`Metavariable`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_metavariable(self) -> Option<Metavariable<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Metavariable(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `mutable_specifier` ([`MutableSpecifier`]), otherwise returns None
+        ///Returns the node if it is of type `mutable_specifier` ([`MutableSpecifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_mutable_specifier(self) -> Option<MutableSpecifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::MutableSpecifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `primitive_type` ([`PrimitiveType`]), otherwise returns None
+        ///Returns the node if it is of type `primitive_type` ([`PrimitiveType`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_primitive_type(self) -> Option<PrimitiveType<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::PrimitiveType(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `self` ([`_Self`]), otherwise returns None
+        ///Returns the node if it is of type `self` ([`Self_`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
-        pub fn as__self(self) -> Option<_Self<'tree>> {
+        #[allow(non_snake_case)]
+        pub fn as_self(self) -> Option<Self_<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::_Self(x) = self { Some(x) } else { None }
+            if let Self::Self_(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `super` ([`Super`]), otherwise returns None
+        ///Returns the node if it is of type `super` ([`Super`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
-        pub fn as_super_(self) -> Option<Super<'tree>> {
+        #[allow(non_snake_case)]
+        pub fn as_super(self) -> Option<Super<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Super(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `token_binding_pattern` ([`TokenBindingPattern`]), otherwise returns None
+        ///Returns the node if it is of type `token_binding_pattern` ([`TokenBindingPattern`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_token_binding_pattern(self) -> Option<TokenBindingPattern<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::TokenBindingPattern(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `token_repetition_pattern` ([`TokenRepetitionPattern`]), otherwise returns None
+        ///Returns the node if it is of type `token_repetition_pattern` ([`TokenRepetitionPattern`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_token_repetition_pattern(
             self,
         ) -> Option<TokenRepetitionPattern<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::TokenRepetitionPattern(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `token_tree_pattern` ([`TokenTreePattern`]), otherwise returns None
+        ///Returns the node if it is of type `token_tree_pattern` ([`TokenTreePattern`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_token_tree_pattern(self) -> Option<TokenTreePattern<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::TokenTreePattern(x) = self { Some(x) } else { None }
@@ -26924,10 +30133,10 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree>
-    for Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern<
+    for Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType_Self__Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern<
         'tree,
     > {
-        type WithLifetime<'a> = Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType__Self_Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern<
+        type WithLifetime<'a> = Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType_Self__Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern<
             'a,
         >;
         const KIND: &'static str = "{_literal | crate | identifier | metavariable | mutable_specifier | primitive_type | self | super | token_binding_pattern | token_repetition_pattern | token_tree_pattern}";
@@ -26965,10 +30174,10 @@ pub mod anon_unions {
             > as type_sitter_lib::Node<'tree>>::try_from_raw(node) {
                 return Ok(Self::PrimitiveType(this));
             }
-            if let Ok(this) = <_Self<
+            if let Ok(this) = <Self_<
                 'tree,
             > as type_sitter_lib::Node<'tree>>::try_from_raw(node) {
-                return Ok(Self::_Self(this));
+                return Ok(Self::Self_(this));
             }
             if let Ok(this) = <Super<
                 'tree,
@@ -27001,7 +30210,7 @@ pub mod anon_unions {
                 Self::Metavariable(x) => type_sitter_lib::Node::raw(x),
                 Self::MutableSpecifier(x) => type_sitter_lib::Node::raw(x),
                 Self::PrimitiveType(x) => type_sitter_lib::Node::raw(x),
-                Self::_Self(x) => type_sitter_lib::Node::raw(x),
+                Self::Self_(x) => type_sitter_lib::Node::raw(x),
                 Self::Super(x) => type_sitter_lib::Node::raw(x),
                 Self::TokenBindingPattern(x) => type_sitter_lib::Node::raw(x),
                 Self::TokenRepetitionPattern(x) => type_sitter_lib::Node::raw(x),
@@ -27017,7 +30226,7 @@ pub mod anon_unions {
                 Self::Metavariable(x) => type_sitter_lib::Node::raw_mut(x),
                 Self::MutableSpecifier(x) => type_sitter_lib::Node::raw_mut(x),
                 Self::PrimitiveType(x) => type_sitter_lib::Node::raw_mut(x),
-                Self::_Self(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::Self_(x) => type_sitter_lib::Node::raw_mut(x),
                 Self::Super(x) => type_sitter_lib::Node::raw_mut(x),
                 Self::TokenBindingPattern(x) => type_sitter_lib::Node::raw_mut(x),
                 Self::TokenRepetitionPattern(x) => type_sitter_lib::Node::raw_mut(x),
@@ -27033,7 +30242,7 @@ pub mod anon_unions {
                 Self::Metavariable(x) => x.into_raw(),
                 Self::MutableSpecifier(x) => x.into_raw(),
                 Self::PrimitiveType(x) => x.into_raw(),
-                Self::_Self(x) => x.into_raw(),
+                Self::Self_(x) => x.into_raw(),
                 Self::Super(x) => x.into_raw(),
                 Self::TokenBindingPattern(x) => x.into_raw(),
                 Self::TokenRepetitionPattern(x) => x.into_raw(),
@@ -27041,10 +30250,10 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{_type | higher_ranked_trait_bound | lifetime}`:
-- [Type]
-- [HigherRankedTraitBound]
-- [Lifetime]*/
+    /**One of `{_type | higher_ranked_trait_bound | lifetime}`:
+- [`Type`]
+- [`HigherRankedTraitBound`]
+- [`Lifetime`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum Type_HigherRankedTraitBound_Lifetime<'tree> {
@@ -27054,25 +30263,25 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> Type_HigherRankedTraitBound_Lifetime<'tree> {
-        ///Returns the node if it is of kind `_type` ([`Type`]), otherwise returns None
+        ///Returns the node if it is of type `_type` ([`Type`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_type(self) -> Option<Type<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Type(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `higher_ranked_trait_bound` ([`HigherRankedTraitBound`]), otherwise returns None
+        ///Returns the node if it is of type `higher_ranked_trait_bound` ([`HigherRankedTraitBound`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_higher_ranked_trait_bound(
             self,
         ) -> Option<HigherRankedTraitBound<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::HigherRankedTraitBound(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `lifetime` ([`Lifetime`]), otherwise returns None
+        ///Returns the node if it is of type `lifetime` ([`Lifetime`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_lifetime(self) -> Option<Lifetime<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Lifetime(x) = self { Some(x) } else { None }
@@ -27129,13 +30338,13 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{visibility_modifier | where_clause | declaration_list | trait_bounds | type_identifier | type_parameters}`:
-- [VisibilityModifier]
-- [WhereClause]
-- [DeclarationList]
-- [TraitBounds]
-- [TypeIdentifier]
-- [TypeParameters]*/
+    /**One of `{visibility_modifier | where_clause | declaration_list | trait_bounds | type_identifier | type_parameters}`:
+- [`VisibilityModifier`]
+- [`WhereClause`]
+- [`DeclarationList`]
+- [`TraitBounds`]
+- [`TypeIdentifier`]
+- [`TypeParameters`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum VisibilityModifier_WhereClause_DeclarationList_TraitBounds_TypeIdentifier_TypeParameters<
@@ -27154,44 +30363,44 @@ pub mod anon_unions {
     > VisibilityModifier_WhereClause_DeclarationList_TraitBounds_TypeIdentifier_TypeParameters<
         'tree,
     > {
-        ///Returns the node if it is of kind `visibility_modifier` ([`VisibilityModifier`]), otherwise returns None
+        ///Returns the node if it is of type `visibility_modifier` ([`VisibilityModifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_visibility_modifier(self) -> Option<VisibilityModifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::VisibilityModifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `where_clause` ([`WhereClause`]), otherwise returns None
+        ///Returns the node if it is of type `where_clause` ([`WhereClause`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_where_clause(self) -> Option<WhereClause<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::WhereClause(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `declaration_list` ([`DeclarationList`]), otherwise returns None
+        ///Returns the node if it is of type `declaration_list` ([`DeclarationList`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_declaration_list(self) -> Option<DeclarationList<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::DeclarationList(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `trait_bounds` ([`TraitBounds`]), otherwise returns None
+        ///Returns the node if it is of type `trait_bounds` ([`TraitBounds`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_trait_bounds(self) -> Option<TraitBounds<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::TraitBounds(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `type_identifier` ([`TypeIdentifier`]), otherwise returns None
+        ///Returns the node if it is of type `type_identifier` ([`TypeIdentifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_type_identifier(self) -> Option<TypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::TypeIdentifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `type_parameters` ([`TypeParameters`]), otherwise returns None
+        ///Returns the node if it is of type `type_parameters` ([`TypeParameters`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_type_parameters(self) -> Option<TypeParameters<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::TypeParameters(x) = self { Some(x) } else { None }
@@ -27302,9 +30511,9 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{_pattern | closure_expression}`:
-- [Pattern]
-- [ClosureExpression]*/
+    /**One of `{_pattern | closure_expression}`:
+- [`Pattern`]
+- [`ClosureExpression`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum Pattern_ClosureExpression<'tree> {
@@ -27313,16 +30522,16 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> Pattern_ClosureExpression<'tree> {
-        ///Returns the node if it is of kind `_pattern` ([`Pattern`]), otherwise returns None
+        ///Returns the node if it is of type `_pattern` ([`Pattern`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_pattern(self) -> Option<Pattern<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Pattern(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `closure_expression` ([`ClosureExpression`]), otherwise returns None
+        ///Returns the node if it is of type `closure_expression` ([`ClosureExpression`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_closure_expression(self) -> Option<ClosureExpression<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::ClosureExpression(x) = self { Some(x) } else { None }
@@ -27370,11 +30579,11 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{_pattern | generic_type | identifier | scoped_identifier}`:
-- [Pattern]
-- [GenericType]
-- [Identifier]
-- [ScopedIdentifier]*/
+    /**One of `{_pattern | generic_type | identifier | scoped_identifier}`:
+- [`Pattern`]
+- [`GenericType`]
+- [`Identifier`]
+- [`ScopedIdentifier`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum Pattern_GenericType_Identifier_ScopedIdentifier<'tree> {
@@ -27385,30 +30594,30 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> Pattern_GenericType_Identifier_ScopedIdentifier<'tree> {
-        ///Returns the node if it is of kind `_pattern` ([`Pattern`]), otherwise returns None
+        ///Returns the node if it is of type `_pattern` ([`Pattern`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_pattern(self) -> Option<Pattern<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Pattern(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `generic_type` ([`GenericType`]), otherwise returns None
+        ///Returns the node if it is of type `generic_type` ([`GenericType`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_generic_type(self) -> Option<GenericType<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::GenericType(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `identifier` ([`Identifier`]), otherwise returns None
+        ///Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_identifier(self) -> Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Identifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `scoped_identifier` ([`ScopedIdentifier`]), otherwise returns None
+        ///Returns the node if it is of type `scoped_identifier` ([`ScopedIdentifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_scoped_identifier(self) -> Option<ScopedIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::ScopedIdentifier(x) = self { Some(x) } else { None }
@@ -27473,10 +30682,10 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{generic_type | identifier | scoped_identifier}`:
-- [GenericType]
-- [Identifier]
-- [ScopedIdentifier]*/
+    /**One of `{generic_type | identifier | scoped_identifier}`:
+- [`GenericType`]
+- [`Identifier`]
+- [`ScopedIdentifier`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum GenericType_Identifier_ScopedIdentifier<'tree> {
@@ -27486,23 +30695,23 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> GenericType_Identifier_ScopedIdentifier<'tree> {
-        ///Returns the node if it is of kind `generic_type` ([`GenericType`]), otherwise returns None
+        ///Returns the node if it is of type `generic_type` ([`GenericType`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_generic_type(self) -> Option<GenericType<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::GenericType(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `identifier` ([`Identifier`]), otherwise returns None
+        ///Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_identifier(self) -> Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Identifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `scoped_identifier` ([`ScopedIdentifier`]), otherwise returns None
+        ///Returns the node if it is of type `scoped_identifier` ([`ScopedIdentifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_scoped_identifier(self) -> Option<ScopedIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::ScopedIdentifier(x) = self { Some(x) } else { None }
@@ -27573,13 +30782,13 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{_literal | _type | block | lifetime | trait_bounds | type_binding}`:
-- [Literal]
-- [Type]
-- [Block]
-- [Lifetime]
-- [TraitBounds]
-- [TypeBinding]*/
+    /**One of `{_literal | _type | block | lifetime | trait_bounds | type_binding}`:
+- [`Literal`]
+- [`Type`]
+- [`Block`]
+- [`Lifetime`]
+- [`TraitBounds`]
+- [`TypeBinding`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum Literal_Type_Block_Lifetime_TraitBounds_TypeBinding<'tree> {
@@ -27592,44 +30801,44 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> Literal_Type_Block_Lifetime_TraitBounds_TypeBinding<'tree> {
-        ///Returns the node if it is of kind `_literal` ([`Literal`]), otherwise returns None
+        ///Returns the node if it is of type `_literal` ([`Literal`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_literal(self) -> Option<Literal<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Literal(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `_type` ([`Type`]), otherwise returns None
+        ///Returns the node if it is of type `_type` ([`Type`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_type(self) -> Option<Type<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Type(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `block` ([`Block`]), otherwise returns None
+        ///Returns the node if it is of type `block` ([`Block`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_block(self) -> Option<Block<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Block(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `lifetime` ([`Lifetime`]), otherwise returns None
+        ///Returns the node if it is of type `lifetime` ([`Lifetime`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_lifetime(self) -> Option<Lifetime<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Lifetime(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `trait_bounds` ([`TraitBounds`]), otherwise returns None
+        ///Returns the node if it is of type `trait_bounds` ([`TraitBounds`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_trait_bounds(self) -> Option<TraitBounds<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::TraitBounds(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `type_binding` ([`TypeBinding`]), otherwise returns None
+        ///Returns the node if it is of type `type_binding` ([`TypeBinding`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_type_binding(self) -> Option<TypeBinding<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::TypeBinding(x) = self { Some(x) } else { None }
@@ -27710,12 +30919,12 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{visibility_modifier | where_clause | type_identifier | _type | type_parameters}`:
-- [VisibilityModifier]
-- [WhereClause]
-- [TypeIdentifier]
-- [Type]
-- [TypeParameters]*/
+    /**One of `{visibility_modifier | where_clause | type_identifier | _type | type_parameters}`:
+- [`VisibilityModifier`]
+- [`WhereClause`]
+- [`TypeIdentifier`]
+- [`Type`]
+- [`TypeParameters`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum VisibilityModifier_WhereClause_TypeIdentifier_Type_TypeParameters<'tree> {
@@ -27729,37 +30938,37 @@ pub mod anon_unions {
     impl<
         'tree,
     > VisibilityModifier_WhereClause_TypeIdentifier_Type_TypeParameters<'tree> {
-        ///Returns the node if it is of kind `visibility_modifier` ([`VisibilityModifier`]), otherwise returns None
+        ///Returns the node if it is of type `visibility_modifier` ([`VisibilityModifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_visibility_modifier(self) -> Option<VisibilityModifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::VisibilityModifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `where_clause` ([`WhereClause`]), otherwise returns None
+        ///Returns the node if it is of type `where_clause` ([`WhereClause`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_where_clause(self) -> Option<WhereClause<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::WhereClause(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `type_identifier` ([`TypeIdentifier`]), otherwise returns None
+        ///Returns the node if it is of type `type_identifier` ([`TypeIdentifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_type_identifier(self) -> Option<TypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::TypeIdentifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `_type` ([`Type`]), otherwise returns None
+        ///Returns the node if it is of type `_type` ([`Type`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_type(self) -> Option<Type<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Type(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `type_parameters` ([`TypeParameters`]), otherwise returns None
+        ///Returns the node if it is of type `type_parameters` ([`TypeParameters`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_type_parameters(self) -> Option<TypeParameters<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::TypeParameters(x) = self { Some(x) } else { None }
@@ -27834,14 +31043,14 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{attribute_item | const_parameter | constrained_type_parameter | lifetime | metavariable | optional_type_parameter | type_identifier}`:
-- [AttributeItem]
-- [ConstParameter]
-- [ConstrainedTypeParameter]
-- [Lifetime]
-- [Metavariable]
-- [OptionalTypeParameter]
-- [TypeIdentifier]*/
+    /**One of `{attribute_item | const_parameter | constrained_type_parameter | lifetime | metavariable | optional_type_parameter | type_identifier}`:
+- [`AttributeItem`]
+- [`ConstParameter`]
+- [`ConstrainedTypeParameter`]
+- [`Lifetime`]
+- [`Metavariable`]
+- [`OptionalTypeParameter`]
+- [`TypeIdentifier`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum AttributeItem_ConstParameter_ConstrainedTypeParameter_Lifetime_Metavariable_OptionalTypeParameter_TypeIdentifier<
@@ -27861,53 +31070,53 @@ pub mod anon_unions {
     > AttributeItem_ConstParameter_ConstrainedTypeParameter_Lifetime_Metavariable_OptionalTypeParameter_TypeIdentifier<
         'tree,
     > {
-        ///Returns the node if it is of kind `attribute_item` ([`AttributeItem`]), otherwise returns None
+        ///Returns the node if it is of type `attribute_item` ([`AttributeItem`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_attribute_item(self) -> Option<AttributeItem<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::AttributeItem(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `const_parameter` ([`ConstParameter`]), otherwise returns None
+        ///Returns the node if it is of type `const_parameter` ([`ConstParameter`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_const_parameter(self) -> Option<ConstParameter<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::ConstParameter(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `constrained_type_parameter` ([`ConstrainedTypeParameter`]), otherwise returns None
+        ///Returns the node if it is of type `constrained_type_parameter` ([`ConstrainedTypeParameter`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_constrained_type_parameter(
             self,
         ) -> Option<ConstrainedTypeParameter<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::ConstrainedTypeParameter(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `lifetime` ([`Lifetime`]), otherwise returns None
+        ///Returns the node if it is of type `lifetime` ([`Lifetime`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_lifetime(self) -> Option<Lifetime<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Lifetime(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `metavariable` ([`Metavariable`]), otherwise returns None
+        ///Returns the node if it is of type `metavariable` ([`Metavariable`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_metavariable(self) -> Option<Metavariable<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Metavariable(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `optional_type_parameter` ([`OptionalTypeParameter`]), otherwise returns None
+        ///Returns the node if it is of type `optional_type_parameter` ([`OptionalTypeParameter`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_optional_type_parameter(self) -> Option<OptionalTypeParameter<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::OptionalTypeParameter(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `type_identifier` ([`TypeIdentifier`]), otherwise returns None
+        ///Returns the node if it is of type `type_identifier` ([`TypeIdentifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_type_identifier(self) -> Option<TypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::TypeIdentifier(x) = self { Some(x) } else { None }
@@ -28030,12 +31239,12 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{visibility_modifier | where_clause | field_declaration_list | type_identifier | type_parameters}`:
-- [VisibilityModifier]
-- [WhereClause]
-- [FieldDeclarationList]
-- [TypeIdentifier]
-- [TypeParameters]*/
+    /**One of `{visibility_modifier | where_clause | field_declaration_list | type_identifier | type_parameters}`:
+- [`VisibilityModifier`]
+- [`WhereClause`]
+- [`FieldDeclarationList`]
+- [`TypeIdentifier`]
+- [`TypeParameters`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum VisibilityModifier_WhereClause_FieldDeclarationList_TypeIdentifier_TypeParameters<
@@ -28053,37 +31262,37 @@ pub mod anon_unions {
     > VisibilityModifier_WhereClause_FieldDeclarationList_TypeIdentifier_TypeParameters<
         'tree,
     > {
-        ///Returns the node if it is of kind `visibility_modifier` ([`VisibilityModifier`]), otherwise returns None
+        ///Returns the node if it is of type `visibility_modifier` ([`VisibilityModifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_visibility_modifier(self) -> Option<VisibilityModifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::VisibilityModifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `where_clause` ([`WhereClause`]), otherwise returns None
+        ///Returns the node if it is of type `where_clause` ([`WhereClause`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_where_clause(self) -> Option<WhereClause<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::WhereClause(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `field_declaration_list` ([`FieldDeclarationList`]), otherwise returns None
+        ///Returns the node if it is of type `field_declaration_list` ([`FieldDeclarationList`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_field_declaration_list(self) -> Option<FieldDeclarationList<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::FieldDeclarationList(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `type_identifier` ([`TypeIdentifier`]), otherwise returns None
+        ///Returns the node if it is of type `type_identifier` ([`TypeIdentifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_type_identifier(self) -> Option<TypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::TypeIdentifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `type_parameters` ([`TypeParameters`]), otherwise returns None
+        ///Returns the node if it is of type `type_parameters` ([`TypeParameters`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_type_parameters(self) -> Option<TypeParameters<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::TypeParameters(x) = self { Some(x) } else { None }
@@ -28182,21 +31391,21 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{visibility_modifier | crate | identifier | metavariable | scoped_identifier | scoped_use_list | self | super | use_as_clause | use_list | use_wildcard}`:
-- [VisibilityModifier]
-- [Crate]
-- [Identifier]
-- [Metavariable]
-- [ScopedIdentifier]
-- [ScopedUseList]
-- [_Self]
-- [Super]
-- [UseAsClause]
-- [UseList]
-- [UseWildcard]*/
+    /**One of `{visibility_modifier | crate | identifier | metavariable | scoped_identifier | scoped_use_list | self | super | use_as_clause | use_list | use_wildcard}`:
+- [`VisibilityModifier`]
+- [`Crate`]
+- [`Identifier`]
+- [`Metavariable`]
+- [`ScopedIdentifier`]
+- [`ScopedUseList`]
+- [`Self_`]
+- [`Super`]
+- [`UseAsClause`]
+- [`UseList`]
+- [`UseWildcard`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub enum VisibilityModifier_Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard<
+    pub enum VisibilityModifier_Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList_Self__Super_UseAsClause_UseList_UseWildcard<
         'tree,
     > {
         VisibilityModifier(VisibilityModifier<'tree>),
@@ -28205,7 +31414,7 @@ pub mod anon_unions {
         Metavariable(Metavariable<'tree>),
         ScopedIdentifier(ScopedIdentifier<'tree>),
         ScopedUseList(ScopedUseList<'tree>),
-        _Self(_Self<'tree>),
+        Self_(Self_<'tree>),
         Super(Super<'tree>),
         UseAsClause(UseAsClause<'tree>),
         UseList(UseList<'tree>),
@@ -28214,82 +31423,82 @@ pub mod anon_unions {
     #[automatically_derived]
     impl<
         'tree,
-    > VisibilityModifier_Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard<
+    > VisibilityModifier_Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList_Self__Super_UseAsClause_UseList_UseWildcard<
         'tree,
     > {
-        ///Returns the node if it is of kind `visibility_modifier` ([`VisibilityModifier`]), otherwise returns None
+        ///Returns the node if it is of type `visibility_modifier` ([`VisibilityModifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_visibility_modifier(self) -> Option<VisibilityModifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::VisibilityModifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `crate` ([`Crate`]), otherwise returns None
+        ///Returns the node if it is of type `crate` ([`Crate`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
-        pub fn as_crate_(self) -> Option<Crate<'tree>> {
+        #[allow(non_snake_case)]
+        pub fn as_crate(self) -> Option<Crate<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Crate(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `identifier` ([`Identifier`]), otherwise returns None
+        ///Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_identifier(self) -> Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Identifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `metavariable` ([`Metavariable`]), otherwise returns None
+        ///Returns the node if it is of type `metavariable` ([`Metavariable`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_metavariable(self) -> Option<Metavariable<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Metavariable(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `scoped_identifier` ([`ScopedIdentifier`]), otherwise returns None
+        ///Returns the node if it is of type `scoped_identifier` ([`ScopedIdentifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_scoped_identifier(self) -> Option<ScopedIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::ScopedIdentifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `scoped_use_list` ([`ScopedUseList`]), otherwise returns None
+        ///Returns the node if it is of type `scoped_use_list` ([`ScopedUseList`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_scoped_use_list(self) -> Option<ScopedUseList<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::ScopedUseList(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `self` ([`_Self`]), otherwise returns None
+        ///Returns the node if it is of type `self` ([`Self_`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
-        pub fn as__self(self) -> Option<_Self<'tree>> {
+        #[allow(non_snake_case)]
+        pub fn as_self(self) -> Option<Self_<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::_Self(x) = self { Some(x) } else { None }
+            if let Self::Self_(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `super` ([`Super`]), otherwise returns None
+        ///Returns the node if it is of type `super` ([`Super`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
-        pub fn as_super_(self) -> Option<Super<'tree>> {
+        #[allow(non_snake_case)]
+        pub fn as_super(self) -> Option<Super<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Super(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `use_as_clause` ([`UseAsClause`]), otherwise returns None
+        ///Returns the node if it is of type `use_as_clause` ([`UseAsClause`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_use_as_clause(self) -> Option<UseAsClause<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::UseAsClause(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `use_list` ([`UseList`]), otherwise returns None
+        ///Returns the node if it is of type `use_list` ([`UseList`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_use_list(self) -> Option<UseList<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::UseList(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `use_wildcard` ([`UseWildcard`]), otherwise returns None
+        ///Returns the node if it is of type `use_wildcard` ([`UseWildcard`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_use_wildcard(self) -> Option<UseWildcard<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::UseWildcard(x) = self { Some(x) } else { None }
@@ -28297,10 +31506,10 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree>
-    for VisibilityModifier_Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard<
+    for VisibilityModifier_Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList_Self__Super_UseAsClause_UseList_UseWildcard<
         'tree,
     > {
-        type WithLifetime<'a> = VisibilityModifier_Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard<
+        type WithLifetime<'a> = VisibilityModifier_Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList_Self__Super_UseAsClause_UseList_UseWildcard<
             'a,
         >;
         const KIND: &'static str = "{visibility_modifier | crate | identifier | metavariable | scoped_identifier | scoped_use_list | self | super | use_as_clause | use_list | use_wildcard}";
@@ -28365,8 +31574,8 @@ pub mod anon_unions {
                 }
                 "self" => {
                     Ok(unsafe {
-                        Self::_Self(
-                            <_Self<
+                        Self::Self_(
+                            <Self_<
                                 'tree,
                             > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
@@ -28420,7 +31629,7 @@ pub mod anon_unions {
                 Self::Metavariable(x) => type_sitter_lib::Node::raw(x),
                 Self::ScopedIdentifier(x) => type_sitter_lib::Node::raw(x),
                 Self::ScopedUseList(x) => type_sitter_lib::Node::raw(x),
-                Self::_Self(x) => type_sitter_lib::Node::raw(x),
+                Self::Self_(x) => type_sitter_lib::Node::raw(x),
                 Self::Super(x) => type_sitter_lib::Node::raw(x),
                 Self::UseAsClause(x) => type_sitter_lib::Node::raw(x),
                 Self::UseList(x) => type_sitter_lib::Node::raw(x),
@@ -28436,7 +31645,7 @@ pub mod anon_unions {
                 Self::Metavariable(x) => type_sitter_lib::Node::raw_mut(x),
                 Self::ScopedIdentifier(x) => type_sitter_lib::Node::raw_mut(x),
                 Self::ScopedUseList(x) => type_sitter_lib::Node::raw_mut(x),
-                Self::_Self(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::Self_(x) => type_sitter_lib::Node::raw_mut(x),
                 Self::Super(x) => type_sitter_lib::Node::raw_mut(x),
                 Self::UseAsClause(x) => type_sitter_lib::Node::raw_mut(x),
                 Self::UseList(x) => type_sitter_lib::Node::raw_mut(x),
@@ -28452,7 +31661,7 @@ pub mod anon_unions {
                 Self::Metavariable(x) => x.into_raw(),
                 Self::ScopedIdentifier(x) => x.into_raw(),
                 Self::ScopedUseList(x) => x.into_raw(),
-                Self::_Self(x) => x.into_raw(),
+                Self::Self_(x) => x.into_raw(),
                 Self::Super(x) => x.into_raw(),
                 Self::UseAsClause(x) => x.into_raw(),
                 Self::UseList(x) => x.into_raw(),
@@ -28460,20 +31669,20 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{crate | identifier | metavariable | scoped_identifier | scoped_use_list | self | super | use_as_clause | use_list | use_wildcard}`:
-- [Crate]
-- [Identifier]
-- [Metavariable]
-- [ScopedIdentifier]
-- [ScopedUseList]
-- [_Self]
-- [Super]
-- [UseAsClause]
-- [UseList]
-- [UseWildcard]*/
+    /**One of `{crate | identifier | metavariable | scoped_identifier | scoped_use_list | self | super | use_as_clause | use_list | use_wildcard}`:
+- [`Crate`]
+- [`Identifier`]
+- [`Metavariable`]
+- [`ScopedIdentifier`]
+- [`ScopedUseList`]
+- [`Self_`]
+- [`Super`]
+- [`UseAsClause`]
+- [`UseList`]
+- [`UseWildcard`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub enum Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard<
+    pub enum Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList_Self__Super_UseAsClause_UseList_UseWildcard<
         'tree,
     > {
         Crate(Crate<'tree>),
@@ -28481,7 +31690,7 @@ pub mod anon_unions {
         Metavariable(Metavariable<'tree>),
         ScopedIdentifier(ScopedIdentifier<'tree>),
         ScopedUseList(ScopedUseList<'tree>),
-        _Self(_Self<'tree>),
+        Self_(Self_<'tree>),
         Super(Super<'tree>),
         UseAsClause(UseAsClause<'tree>),
         UseList(UseList<'tree>),
@@ -28490,75 +31699,75 @@ pub mod anon_unions {
     #[automatically_derived]
     impl<
         'tree,
-    > Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard<
+    > Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList_Self__Super_UseAsClause_UseList_UseWildcard<
         'tree,
     > {
-        ///Returns the node if it is of kind `crate` ([`Crate`]), otherwise returns None
+        ///Returns the node if it is of type `crate` ([`Crate`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
-        pub fn as_crate_(self) -> Option<Crate<'tree>> {
+        #[allow(non_snake_case)]
+        pub fn as_crate(self) -> Option<Crate<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Crate(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `identifier` ([`Identifier`]), otherwise returns None
+        ///Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_identifier(self) -> Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Identifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `metavariable` ([`Metavariable`]), otherwise returns None
+        ///Returns the node if it is of type `metavariable` ([`Metavariable`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_metavariable(self) -> Option<Metavariable<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Metavariable(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `scoped_identifier` ([`ScopedIdentifier`]), otherwise returns None
+        ///Returns the node if it is of type `scoped_identifier` ([`ScopedIdentifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_scoped_identifier(self) -> Option<ScopedIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::ScopedIdentifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `scoped_use_list` ([`ScopedUseList`]), otherwise returns None
+        ///Returns the node if it is of type `scoped_use_list` ([`ScopedUseList`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_scoped_use_list(self) -> Option<ScopedUseList<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::ScopedUseList(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `self` ([`_Self`]), otherwise returns None
+        ///Returns the node if it is of type `self` ([`Self_`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
-        pub fn as__self(self) -> Option<_Self<'tree>> {
+        #[allow(non_snake_case)]
+        pub fn as_self(self) -> Option<Self_<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::_Self(x) = self { Some(x) } else { None }
+            if let Self::Self_(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `super` ([`Super`]), otherwise returns None
+        ///Returns the node if it is of type `super` ([`Super`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
-        pub fn as_super_(self) -> Option<Super<'tree>> {
+        #[allow(non_snake_case)]
+        pub fn as_super(self) -> Option<Super<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Super(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `use_as_clause` ([`UseAsClause`]), otherwise returns None
+        ///Returns the node if it is of type `use_as_clause` ([`UseAsClause`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_use_as_clause(self) -> Option<UseAsClause<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::UseAsClause(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `use_list` ([`UseList`]), otherwise returns None
+        ///Returns the node if it is of type `use_list` ([`UseList`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_use_list(self) -> Option<UseList<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::UseList(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `use_wildcard` ([`UseWildcard`]), otherwise returns None
+        ///Returns the node if it is of type `use_wildcard` ([`UseWildcard`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_use_wildcard(self) -> Option<UseWildcard<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::UseWildcard(x) = self { Some(x) } else { None }
@@ -28566,10 +31775,10 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree>
-    for Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard<
+    for Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList_Self__Super_UseAsClause_UseList_UseWildcard<
         'tree,
     > {
-        type WithLifetime<'a> = Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList__Self_Super_UseAsClause_UseList_UseWildcard<
+        type WithLifetime<'a> = Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList_Self__Super_UseAsClause_UseList_UseWildcard<
             'a,
         >;
         const KIND: &'static str = "{crate | identifier | metavariable | scoped_identifier | scoped_use_list | self | super | use_as_clause | use_list | use_wildcard}";
@@ -28625,8 +31834,8 @@ pub mod anon_unions {
                 }
                 "self" => {
                     Ok(unsafe {
-                        Self::_Self(
-                            <_Self<
+                        Self::Self_(
+                            <Self_<
                                 'tree,
                             > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
                         )
@@ -28679,7 +31888,7 @@ pub mod anon_unions {
                 Self::Metavariable(x) => type_sitter_lib::Node::raw(x),
                 Self::ScopedIdentifier(x) => type_sitter_lib::Node::raw(x),
                 Self::ScopedUseList(x) => type_sitter_lib::Node::raw(x),
-                Self::_Self(x) => type_sitter_lib::Node::raw(x),
+                Self::Self_(x) => type_sitter_lib::Node::raw(x),
                 Self::Super(x) => type_sitter_lib::Node::raw(x),
                 Self::UseAsClause(x) => type_sitter_lib::Node::raw(x),
                 Self::UseList(x) => type_sitter_lib::Node::raw(x),
@@ -28694,7 +31903,7 @@ pub mod anon_unions {
                 Self::Metavariable(x) => type_sitter_lib::Node::raw_mut(x),
                 Self::ScopedIdentifier(x) => type_sitter_lib::Node::raw_mut(x),
                 Self::ScopedUseList(x) => type_sitter_lib::Node::raw_mut(x),
-                Self::_Self(x) => type_sitter_lib::Node::raw_mut(x),
+                Self::Self_(x) => type_sitter_lib::Node::raw_mut(x),
                 Self::Super(x) => type_sitter_lib::Node::raw_mut(x),
                 Self::UseAsClause(x) => type_sitter_lib::Node::raw_mut(x),
                 Self::UseList(x) => type_sitter_lib::Node::raw_mut(x),
@@ -28709,7 +31918,7 @@ pub mod anon_unions {
                 Self::Metavariable(x) => x.into_raw(),
                 Self::ScopedIdentifier(x) => x.into_raw(),
                 Self::ScopedUseList(x) => x.into_raw(),
-                Self::_Self(x) => x.into_raw(),
+                Self::Self_(x) => x.into_raw(),
                 Self::Super(x) => x.into_raw(),
                 Self::UseAsClause(x) => x.into_raw(),
                 Self::UseList(x) => x.into_raw(),
@@ -28717,9 +31926,9 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{mutable_specifier | _pattern}`:
-- [MutableSpecifier]
-- [Pattern]*/
+    /**One of `{mutable_specifier | _pattern}`:
+- [`MutableSpecifier`]
+- [`Pattern`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum MutableSpecifier_Pattern<'tree> {
@@ -28728,16 +31937,16 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> MutableSpecifier_Pattern<'tree> {
-        ///Returns the node if it is of kind `mutable_specifier` ([`MutableSpecifier`]), otherwise returns None
+        ///Returns the node if it is of type `mutable_specifier` ([`MutableSpecifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_mutable_specifier(self) -> Option<MutableSpecifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::MutableSpecifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `_pattern` ([`Pattern`]), otherwise returns None
+        ///Returns the node if it is of type `_pattern` ([`Pattern`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_pattern(self) -> Option<Pattern<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Pattern(x) = self { Some(x) } else { None }
@@ -28785,17 +31994,17 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{array_type | generic_type | higher_ranked_trait_bound | lifetime | pointer_type | primitive_type | reference_type | scoped_type_identifier | tuple_type | type_identifier}`:
-- [ArrayType]
-- [GenericType]
-- [HigherRankedTraitBound]
-- [Lifetime]
-- [PointerType]
-- [PrimitiveType]
-- [ReferenceType]
-- [ScopedTypeIdentifier]
-- [TupleType]
-- [TypeIdentifier]*/
+    /**One of `{array_type | generic_type | higher_ranked_trait_bound | lifetime | pointer_type | primitive_type | reference_type | scoped_type_identifier | tuple_type | type_identifier}`:
+- [`ArrayType`]
+- [`GenericType`]
+- [`HigherRankedTraitBound`]
+- [`Lifetime`]
+- [`PointerType`]
+- [`PrimitiveType`]
+- [`ReferenceType`]
+- [`ScopedTypeIdentifier`]
+- [`TupleType`]
+- [`TypeIdentifier`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum ArrayType_GenericType_HigherRankedTraitBound_Lifetime_PointerType_PrimitiveType_ReferenceType_ScopedTypeIdentifier_TupleType_TypeIdentifier<
@@ -28818,74 +32027,74 @@ pub mod anon_unions {
     > ArrayType_GenericType_HigherRankedTraitBound_Lifetime_PointerType_PrimitiveType_ReferenceType_ScopedTypeIdentifier_TupleType_TypeIdentifier<
         'tree,
     > {
-        ///Returns the node if it is of kind `array_type` ([`ArrayType`]), otherwise returns None
+        ///Returns the node if it is of type `array_type` ([`ArrayType`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_array_type(self) -> Option<ArrayType<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::ArrayType(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `generic_type` ([`GenericType`]), otherwise returns None
+        ///Returns the node if it is of type `generic_type` ([`GenericType`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_generic_type(self) -> Option<GenericType<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::GenericType(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `higher_ranked_trait_bound` ([`HigherRankedTraitBound`]), otherwise returns None
+        ///Returns the node if it is of type `higher_ranked_trait_bound` ([`HigherRankedTraitBound`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_higher_ranked_trait_bound(
             self,
         ) -> Option<HigherRankedTraitBound<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::HigherRankedTraitBound(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `lifetime` ([`Lifetime`]), otherwise returns None
+        ///Returns the node if it is of type `lifetime` ([`Lifetime`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_lifetime(self) -> Option<Lifetime<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Lifetime(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `pointer_type` ([`PointerType`]), otherwise returns None
+        ///Returns the node if it is of type `pointer_type` ([`PointerType`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_pointer_type(self) -> Option<PointerType<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::PointerType(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `primitive_type` ([`PrimitiveType`]), otherwise returns None
+        ///Returns the node if it is of type `primitive_type` ([`PrimitiveType`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_primitive_type(self) -> Option<PrimitiveType<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::PrimitiveType(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `reference_type` ([`ReferenceType`]), otherwise returns None
+        ///Returns the node if it is of type `reference_type` ([`ReferenceType`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_reference_type(self) -> Option<ReferenceType<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::ReferenceType(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `scoped_type_identifier` ([`ScopedTypeIdentifier`]), otherwise returns None
+        ///Returns the node if it is of type `scoped_type_identifier` ([`ScopedTypeIdentifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_scoped_type_identifier(self) -> Option<ScopedTypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::ScopedTypeIdentifier(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `tuple_type` ([`TupleType`]), otherwise returns None
+        ///Returns the node if it is of type `tuple_type` ([`TupleType`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_tuple_type(self) -> Option<TupleType<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::TupleType(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `type_identifier` ([`TypeIdentifier`]), otherwise returns None
+        ///Returns the node if it is of type `type_identifier` ([`TypeIdentifier`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_type_identifier(self) -> Option<TypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::TypeIdentifier(x) = self { Some(x) } else { None }
@@ -29044,12 +32253,12 @@ pub mod anon_unions {
             }
         }
     }
-    /**one of `{label | block | _expression | let_chain | let_condition}`:
-- [Label]
-- [Block]
-- [Expression]
-- [LetChain]
-- [LetCondition]*/
+    /**One of `{label | block | _expression | let_chain | let_condition}`:
+- [`Label`]
+- [`Block`]
+- [`Expression`]
+- [`LetChain`]
+- [`LetCondition`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum Label_Block_Expression_LetChain_LetCondition<'tree> {
@@ -29061,37 +32270,37 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> Label_Block_Expression_LetChain_LetCondition<'tree> {
-        ///Returns the node if it is of kind `label` ([`Label`]), otherwise returns None
+        ///Returns the node if it is of type `label` ([`Label`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_label(self) -> Option<Label<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Label(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `block` ([`Block`]), otherwise returns None
+        ///Returns the node if it is of type `block` ([`Block`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_block(self) -> Option<Block<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Block(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `_expression` ([`Expression`]), otherwise returns None
+        ///Returns the node if it is of type `_expression` ([`Expression`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_expression(self) -> Option<Expression<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Expression(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `let_chain` ([`LetChain`]), otherwise returns None
+        ///Returns the node if it is of type `let_chain` ([`LetChain`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_let_chain(self) -> Option<LetChain<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::LetChain(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `let_condition` ([`LetCondition`]), otherwise returns None
+        ///Returns the node if it is of type `let_condition` ([`LetCondition`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_let_condition(self) -> Option<LetCondition<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::LetCondition(x) = self { Some(x) } else { None }

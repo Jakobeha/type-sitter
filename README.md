@@ -169,7 +169,7 @@ pub fn process_declaration(decl: rust::DeclarationStatement<'_>) {
 
 ## Drawbacks
 
-Be aware that the generated wrapper code is very large: the generated node wrappers for `tree-sitter-rust` are 33217 LOC. In my usage it seems analyzers are pretty good at handling this, but it's something to keep in mind.
+Be aware that the generated wrapper code is very large: the [generated node wrappers for `tree-sitter-rust`](type-sitter-lib/tests/rust/nodes.rs) are 32180 LOC, and [queries](type-sitter-lib/tests/rust/queries.rs) are 6929 LOC. In my usage it seems analyzers are pretty good at handling this, but it's something to keep in mind.
 
 ## Naming Rules
 

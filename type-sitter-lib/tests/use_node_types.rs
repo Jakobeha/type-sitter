@@ -76,7 +76,7 @@ pub fn test_use_node_types_rust() {
             .value().unwrap()
             .as_scoped_identifier().expect("Expected function item's body's second child's call expression's function's field expression's value's call expression's child's expression's value's call expression's function's value to be a scoped identifier")
             .path().expect("Expected function item's body's second child's call expression's function's field expression's value's call expression's child's expression's value's call expression's function's value's scoped identifier to have a path").unwrap()
-            .as_super_().is_some(),
+            .as_super().is_some(),
         "Expected function item's body's second child's call expression's function's field expression's value's call expression's child's expression's value's call expression's function's scoped identifier's path to be a super_"
     );
     assert!(

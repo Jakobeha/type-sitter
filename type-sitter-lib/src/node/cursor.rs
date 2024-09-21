@@ -36,7 +36,7 @@ impl<'tree> TreeCursor<'tree> {
     #[inline]
     #[cfg(feature = "yak-sitter")]
     pub fn goto(&mut self, node: impl Node<'tree>) {
-        self.0.goto(node.into_raw())
+        self.0.reset(node.into_raw())
     }
 
     /// Re-initialize the cursor to point to the given node

@@ -135,7 +135,7 @@ pub struct HighlightsMatch<'query, 'tree: 'query>(yak_sitter::QueryMatch<'query,
 
 ```*/
 pub enum HighlightsCapture<'query, 'tree: 'query> {
-    ///A `string.special.key` ([type_sitter_lib::UntypedNamedNode])
+    ///A `string.special.key` ([`type_sitter_lib::UntypedNamedNode`])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -145,7 +145,7 @@ pub enum HighlightsCapture<'query, 'tree: 'query> {
         node: type_sitter_lib::UntypedNamedNode<'tree>,
         r#match: Option<HighlightsMatch<'query, 'tree>>,
     },
-    ///A `string` ([super::nodes::String])
+    ///A `string` ([`super::nodes::String`])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -155,7 +155,7 @@ pub enum HighlightsCapture<'query, 'tree: 'query> {
         node: super::nodes::String<'tree>,
         r#match: Option<HighlightsMatch<'query, 'tree>>,
     },
-    ///A `number` ([super::nodes::Number])
+    ///A `number` ([`super::nodes::Number`])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -165,7 +165,7 @@ pub enum HighlightsCapture<'query, 'tree: 'query> {
         node: super::nodes::Number<'tree>,
         r#match: Option<HighlightsMatch<'query, 'tree>>,
     },
-    ///A `constant.builtin` ([anon_unions::ConstantBuiltin])
+    ///A `constant.builtin` ([`anon_unions::ConstantBuiltin`])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -179,7 +179,7 @@ pub enum HighlightsCapture<'query, 'tree: 'query> {
         node: anon_unions::ConstantBuiltin<'tree>,
         r#match: Option<HighlightsMatch<'query, 'tree>>,
     },
-    ///A `escape` ([super::nodes::EscapeSequence])
+    ///A `escape` ([`super::nodes::EscapeSequence`])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -189,7 +189,7 @@ pub enum HighlightsCapture<'query, 'tree: 'query> {
         node: super::nodes::EscapeSequence<'tree>,
         r#match: Option<HighlightsMatch<'query, 'tree>>,
     },
-    ///A `comment` ([super::nodes::Comment])
+    ///A `comment` ([`super::nodes::Comment`])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -278,14 +278,14 @@ impl type_sitter_lib::Query for Highlights {
 }
 #[automatically_derived]
 impl<'query, 'tree: 'query> HighlightsMatch<'query, 'tree> {
-    ///Returns an iterator over the nodes captured by `string.special.key` ([type_sitter_lib::UntypedNamedNode])
+    ///Returns an iterator over the nodes captured by `string.special.key` ([`type_sitter_lib::UntypedNamedNode`])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
     ///(_) @string.special.key
     ///```
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn string_special_key(
         &self,
     ) -> Option<type_sitter_lib::UntypedNamedNode<'tree>> {
@@ -301,14 +301,14 @@ impl<'query, 'tree: 'query> HighlightsMatch<'query, 'tree> {
         }
             .next()
     }
-    ///Returns an iterator over the nodes captured by `string` ([super::nodes::String])
+    ///Returns an iterator over the nodes captured by `string` ([`super::nodes::String`])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
     ///(string) @string
     ///```
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn string(&self) -> Option<super::nodes::String<'tree>> {
         {
             [1u32]
@@ -322,14 +322,14 @@ impl<'query, 'tree: 'query> HighlightsMatch<'query, 'tree> {
         }
             .next()
     }
-    ///Returns an iterator over the nodes captured by `number` ([super::nodes::Number])
+    ///Returns an iterator over the nodes captured by `number` ([`super::nodes::Number`])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
     ///(number) @number
     ///```
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn number(&self) -> Option<super::nodes::Number<'tree>> {
         {
             [2u32]
@@ -343,7 +343,7 @@ impl<'query, 'tree: 'query> HighlightsMatch<'query, 'tree> {
         }
             .next()
     }
-    ///Returns an iterator over the nodes captured by `constant.builtin` ([anon_unions::ConstantBuiltin])
+    ///Returns an iterator over the nodes captured by `constant.builtin` ([`anon_unions::ConstantBuiltin`])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -354,7 +354,7 @@ impl<'query, 'tree: 'query> HighlightsMatch<'query, 'tree> {
 ] @constant.builtin*/
     ///```
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn constant_builtin(&self) -> Option<anon_unions::ConstantBuiltin<'tree>> {
         {
             [3u32]
@@ -368,14 +368,14 @@ impl<'query, 'tree: 'query> HighlightsMatch<'query, 'tree> {
         }
             .next()
     }
-    ///Returns an iterator over the nodes captured by `escape` ([super::nodes::EscapeSequence])
+    ///Returns an iterator over the nodes captured by `escape` ([`super::nodes::EscapeSequence`])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
     ///(escape_sequence) @escape
     ///```
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn escape(&self) -> Option<super::nodes::EscapeSequence<'tree>> {
         {
             [4u32]
@@ -389,14 +389,14 @@ impl<'query, 'tree: 'query> HighlightsMatch<'query, 'tree> {
         }
             .next()
     }
-    ///Returns an iterator over the nodes captured by `comment` ([super::nodes::Comment])
+    ///Returns an iterator over the nodes captured by `comment` ([`super::nodes::Comment`])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
     ///(comment) @comment
     ///```
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn comment(&self) -> Option<super::nodes::Comment<'tree>> {
         {
             [5u32]
@@ -440,45 +440,45 @@ for HighlightsMatch<'query, 'tree> {
 }
 #[automatically_derived]
 impl<'query, 'tree: 'query> HighlightsCapture<'query, 'tree> {
-    ///Try to interpret this capture as a `string.special.key` ([type_sitter_lib::UntypedNamedNode])
+    ///Try to interpret this capture as a `string.special.key` ([`type_sitter_lib::UntypedNamedNode`])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
     ///(_) @string.special.key
     ///```
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_string_special_key(
         &self,
     ) -> Option<&type_sitter_lib::UntypedNamedNode<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::StringSpecialKey { node, .. } = self { Some(node) } else { None }
     }
-    ///Try to interpret this capture as a `string` ([super::nodes::String])
+    ///Try to interpret this capture as a `string` ([`super::nodes::String`])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
     ///(string) @string
     ///```
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_string(&self) -> Option<&super::nodes::String<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::String { node, .. } = self { Some(node) } else { None }
     }
-    ///Try to interpret this capture as a `number` ([super::nodes::Number])
+    ///Try to interpret this capture as a `number` ([`super::nodes::Number`])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
     ///(number) @number
     ///```
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_number(&self) -> Option<&super::nodes::Number<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::Number { node, .. } = self { Some(node) } else { None }
     }
-    ///Try to interpret this capture as a `constant.builtin` ([anon_unions::ConstantBuiltin])
+    ///Try to interpret this capture as a `constant.builtin` ([`anon_unions::ConstantBuiltin`])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
@@ -489,31 +489,31 @@ impl<'query, 'tree: 'query> HighlightsCapture<'query, 'tree> {
 ] @constant.builtin*/
     ///```
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_constant_builtin(&self) -> Option<&anon_unions::ConstantBuiltin<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::ConstantBuiltin { node, .. } = self { Some(node) } else { None }
     }
-    ///Try to interpret this capture as a `escape` ([super::nodes::EscapeSequence])
+    ///Try to interpret this capture as a `escape` ([`super::nodes::EscapeSequence`])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
     ///(escape_sequence) @escape
     ///```
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_escape(&self) -> Option<&super::nodes::EscapeSequence<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::Escape { node, .. } = self { Some(node) } else { None }
     }
-    ///Try to interpret this capture as a `comment` ([super::nodes::Comment])
+    ///Try to interpret this capture as a `comment` ([`super::nodes::Comment`])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
     ///(comment) @comment
     ///```
     #[inline]
-    #[allow(unused, non_snake_case)]
+    #[allow(non_snake_case)]
     pub fn as_comment(&self) -> Option<&super::nodes::Comment<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::Comment { node, .. } = self { Some(node) } else { None }
@@ -786,10 +786,10 @@ for HighlightsCapture<'query, 'tree> {
 pub mod anon_unions {
     #[allow(unused_imports)]
     use super::super::nodes::*;
-    /**one of `{false | null | true}`:
-- [False]
-- [Null]
-- [True]*/
+    /**One of `{false | null | true}`:
+- [`False`]
+- [`Null`]
+- [`True`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum ConstantBuiltin<'tree> {
@@ -799,23 +799,23 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     impl<'tree> ConstantBuiltin<'tree> {
-        ///Returns the node if it is of kind `false` ([`False`]), otherwise returns None
+        ///Returns the node if it is of type `false` ([`False`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_false(self) -> Option<False<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::False(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `null` ([`Null`]), otherwise returns None
+        ///Returns the node if it is of type `null` ([`Null`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_null(self) -> Option<Null<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Null(x) = self { Some(x) } else { None }
         }
-        ///Returns the node if it is of kind `true` ([`True`]), otherwise returns None
+        ///Returns the node if it is of type `true` ([`True`]), otherwise returns `None`
         #[inline]
-        #[allow(unused, non_snake_case)]
+        #[allow(non_snake_case)]
         pub fn as_true(self) -> Option<True<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::True(x) = self { Some(x) } else { None }

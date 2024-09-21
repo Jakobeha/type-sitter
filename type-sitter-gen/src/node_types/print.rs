@@ -8,7 +8,7 @@ use quote::{format_ident, quote};
 use syn::{Ident, LitStr, Path};
 use crate::anon_unions::{AnonUnionId, AnonUnions};
 use crate::mk_syntax::{concat_doc, ident, lit_str, modularize};
-use crate::names::NodeName;
+use crate::names::{make_valid, unmake_reserved, unmake_reserved_if_raw, NodeName};
 use crate::node_types::detail_doc::{DetailDoc, ChildrenKind};
 use crate::node_types::generated_tokens::GeneratedNodeTokens;
 use crate::node_types::types::{Children, NodeModule, NodeType, NodeTypeKind};
@@ -60,7 +60,7 @@ impl Children {
     fn print(
         &self,
         (children_name, children_doc, children_body): (Cow<'_, str>, TokenStream, TokenStream),
-        (child_name, child_doc, mut child_body): (Cow<'_, str>, TokenStream, TokenStream),
+        (child_name, required_child_doc, optional_child_doc, mut child_body): (Cow<'_, str>, TokenStream, TokenStream, TokenStream),
         tree_sitter: &Path,
         type_sitter_lib: &Path,
         anon_unions: &mut AnonUnions,
@@ -68,7 +68,7 @@ impl Children {
         if self.multiple {
             let ident = ident!(children_name, "node field (rust method name)").unwrap();
             let nonempty_doc = if self.required {
-                quote! { #[doc = "This is guaranteed to return at least one child"] }
+                quote! { #[doc = "\nThis is guaranteed to return at least one child."] }
             } else {
                 quote! {}
             };
@@ -76,7 +76,7 @@ impl Children {
             quote! {
                 #[doc = #children_doc]
                 #nonempty_doc
-                #[allow(dead_code)]
+                #[allow(non_snake_case)]
                 #[inline]
                 pub fn #ident<'a>(&self, c: &'a mut #type_sitter_lib::TreeCursor<'tree>) -> impl Iterator<Item = #type_sitter_lib::NodeResult<'tree, #child_type>> + 'a {
                     #children_body.map(<#child_type as #type_sitter_lib::Node<'tree>>::try_from_raw)
@@ -88,13 +88,18 @@ impl Children {
             child_body = quote! { #child_body.map(<#child_type as #type_sitter_lib::Node<'tree>>::try_from_raw) };
             child_type = quote! { #type_sitter_lib::NodeResult<'tree, #child_type> };
             if self.required {
-                child_body = quote! { #child_body.expect("tree-sitter node missing its required child, there should at least be a MISSING node in its place") };
+                child_body = quote! { #child_body.expect("required child not present, there should at least be a MISSING node in its place") };
             } else {
                 child_type = quote! { Option<#child_type> };
             }
+            let child_doc = if self.required {
+                required_child_doc
+            } else {
+                optional_child_doc
+            };
             quote! {
                 #[doc = #child_doc]
-                #[allow(dead_code)]
+                #[allow(non_snake_case)]
                 #[inline]
                 pub fn #ident(&self) -> #child_type {
                     #child_body
@@ -115,19 +120,42 @@ impl NodeName {
         type_sitter_lib: &Path,
         anon_unions: &mut AnonUnions,
     ) -> TokenStream {
-        let anon_unions_ref = RefCell::new(anon_unions);
+        let fieldless_children = children.filter(|_| !fields.is_empty());
+        let all_children = children.map(|children| {
+            if fields.is_empty() {
+                Cow::Borrowed(children)
+            } else {
+                let mut children_and_fields = children.clone();
+                children_and_fields.extend(fields.values().cloned());
+                Cow::Owned(children_and_fields)
+            }
+        });
+
+        let anon_unions_cell = RefCell::new(anon_unions);
+
+        let mut taken_names = HashSet::new();
+        taken_names.extend(
+            (&["children", "child", "others", "other"]).iter().map(|s| (*s).to_owned())
+        );
+
         let field_accessors = fields.iter().map(|(name, field)| {
-            let mut anon_unions = anon_unions_ref.borrow_mut();
+            let mut anon_unions = anon_unions_cell.borrow_mut();
             let name_sexp = lit_str(name);
+            let kind_desc = ChildrenKind::new(field, true).to_string();
+
+            let sanitized_name = disambiguate_then_add(make_valid(name), &mut taken_names);
+            let sanitized_plural_name = disambiguate_then_add(make_valid(&format!("{}s", name)), &mut taken_names);
+
             field.print(
                 (
-                    Cow::Owned(format!("{}s", name)),
-                    concat_doc!("Get the field `", name, "` which has kind ", ChildrenKind::new(field, false).to_string()),
+                    Cow::Owned(sanitized_plural_name),
+                    concat_doc!("Get the children of field `", name, "`.\n\nThese children have type ", kind_desc),
                     quote! { self.0.children_by_field_name(#name_sexp, &mut c.0) }
                 ),
                 (
-                    Cow::Borrowed(name),
-                    concat_doc!("Get the field `", name, "` which has kind ", ChildrenKind::new(field, false).to_string()),
+                    Cow::Owned(sanitized_name),
+                    concat_doc!("Get the field `", name, "`.\n\nThis child has type ", kind_desc),
+                    concat_doc!("Get the optional field `", name, "`.\n\nThis child has type ", kind_desc),
                     quote! { self.0.child_by_field_name(#name_sexp) }
                 ),
                 tree_sitter,
@@ -135,24 +163,60 @@ impl NodeName {
                 &mut *anon_unions
             )
         });
-        let children_accessors = children.map(|children| {
-            let mut anon_unions = anon_unions_ref.borrow_mut();
-            let children_and_fields = if fields.is_empty() {
-                Cow::Borrowed(children)
-            } else {
-                let mut children_and_fields = children.clone();
-                children_and_fields.extend(fields.values().cloned());
-                Cow::Owned(children_and_fields)
-            };
-            children_and_fields.print(
+        let fieldless_children_accessors = fieldless_children.map(|fieldless_children| {
+            let mut anon_unions = anon_unions_cell.borrow_mut();
+            let kind_desc = ChildrenKind::new(fieldless_children, true).to_string();
+            fieldless_children.print(
+                (
+                    Cow::Borrowed("others"),
+                    concat_doc!("Get the node's non-field not-extra named children.\n\nThese children have type ", kind_desc),
+                    quote! {{
+                        c.0.reset(self.0);
+                        c.0.goto_first_child();
+                        (0..self.0.child_count()).filter_map(move |_| {
+                            let has_field = c.0.field_name().is_some();
+                            let node = c.0.node();
+                            c.0.goto_next_sibling();
+                            if has_field && node.is_named() && !node.is_extra() {
+                                Some(node)
+                            } else {
+                                None
+                            }
+                        })
+                    }}
+                ),
+                (
+                    Cow::Borrowed("other"),
+                    concat_doc!("Get the node's only non-field not-extra named child.\n\nThis child has type ", kind_desc),
+                    concat_doc!("Get the node's only non-field not-extra named child, if it has one.\n\nThis child has type ", kind_desc),
+                    quote! {
+                        // The cast `i as usize` is necessary in `tree-sitter` but not `yak-sitter`
+                        #[allow(clippy::unnecessary_cast)]
+                        (0..)
+                            .filter(|i| self.0.field_name_for_child(*i).is_some())
+                            .filter_map(|i| self.0.named_child(i as usize))
+                            .filter(|n| !n.is_extra())
+                            .next()
+                    }
+                ),
+                tree_sitter,
+                type_sitter_lib,
+                &mut *anon_unions
+            )
+        });
+        let all_children_accessors = all_children.map(|all_children| {
+            let mut anon_unions = anon_unions_cell.borrow_mut();
+            let kind_desc = ChildrenKind::new(&*all_children, true).to_string();
+            all_children.print(
                 (
                     Cow::Borrowed("children"),
-                    quote! { "Get the node's not-extra named children" },
+                    concat_doc!("Get the node's not-extra named children.\n\nThese children have type ", kind_desc),
                     quote! { self.0.named_children(&mut c.0).filter(|n| !n.is_extra()) }
                 ),
                 (
                     Cow::Borrowed("child"),
-                    quote! { "Get the node's only not-extra named child.\n\nIff this returns `Option`, it means the node may not have any non-extra named children." },
+                    concat_doc!("Get the node's only not-extra named child.\n\nThis child has type ", kind_desc),
+                    concat_doc!("Get the node's only not-extra named child, if it has one.\n\nThis child has type ", kind_desc),
                     quote! {
                         (0..)
                             .filter_map(|i| self.0.named_child(i))
@@ -165,6 +229,7 @@ impl NodeName {
                 &mut *anon_unions
             )
         });
+
         quote! {
             #[doc = #doc]
             #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -175,7 +240,8 @@ impl NodeName {
             #[automatically_derived]
             impl<'tree> #ident<'tree> {
                 #(#field_accessors)*
-                #children_accessors
+                #fieldless_children_accessors
+                #all_children_accessors
             }
 
             #[automatically_derived]
@@ -386,10 +452,10 @@ impl NodeName {
                 let anon_union_name = ident!(anon_union_id.name, "generated (anon union name)").unwrap();
                 if !anon_unions.contains_key(&anon_union_id) {
                     let kind_str = NodeName::kind(names);
-                    let kind_refs = format!("- [{}]", "]\n- [".join(names.iter().map(NodeName::rust_type_path)));
+                    let kind_refs = format!("- [`{}`]", "`]\n- [`".join(names.iter().map(NodeName::rust_type_path)));
                     let kind = lit_str(&kind_str);
                     let definition = NodeName::print_sum_definition(
-                        concat_doc!("one of `", kind_str, "`:\n", kind_refs),
+                        concat_doc!("One of `", kind_str, "`:\n", kind_refs),
                         &anon_union_name,
                         &kind,
                         names,
@@ -431,16 +497,14 @@ impl NodeName {
         let mut method_name = self.rust_method_ident(prev_methods).to_string();
         // We must remove the `r#` prefix because we're prepending `as_` and we don't have to add
         // back because no reserved identifiers start with it.
-        if method_name.starts_with("r#") {
-            method_name = method_name[2..].to_owned();
-        }
+        unmake_reserved(&mut method_name);
         let as_method = format_ident!("as_{}", method_name);
 
-        let doc = concat_doc!("Returns the node if it is of kind `", self.sexp_name, "` ([`", self.rust_type_path(), "`]), otherwise returns None");
+        let doc = concat_doc!("Returns the node if it is of type `", self.sexp_name, "` ([`", self.rust_type_path(), "`]), otherwise returns `None`");
         quote! {
             #[doc = #doc]
             #[inline]
-            #[allow(unused, non_snake_case)]
+            #[allow(non_snake_case)]
             pub fn #as_method(self) -> Option<#type_> {
                 #[allow(irrefutable_let_patterns)]
                 if let Self::#ident(x) = self {
@@ -497,11 +561,11 @@ impl NodeName {
     }
 
     fn rust_variant_ident(&self, prev_variants: &mut HashSet<String>) -> Ident {
-        ident!(disambiguate_then_add(&self.rust_type_name, prev_variants), "node kind (rust variant name)").unwrap()
+        ident!(disambiguate_then_add(self.rust_type_name.clone(), prev_variants), "node kind (rust variant name)").unwrap()
     }
 
     fn rust_method_ident(&self, prev_methods: &mut HashSet<String>) -> Ident {
-        ident!(disambiguate_then_add(&self.rust_method_name, prev_methods), "node kind (rust method name)").unwrap()
+        ident!(disambiguate_then_add(self.rust_method_name.clone(), prev_methods), "node kind (rust method name)").unwrap()
     }
 
     fn sexp_lit_str(&self) -> LitStr {
@@ -533,14 +597,11 @@ impl GeneratedNodeTokens {
 
 /// Ensure the identifier is different than those in the set by appending underscores until it is.
 /// Then add it to the set so future identifiers also get disambiguated.
-fn disambiguate_then_add(ident: &str, prev_idents: &mut HashSet<String>) -> String {
-    let mut ident = ident.to_string();
+fn disambiguate_then_add(mut ident: String, prev_idents: &mut HashSet<String>) -> String {
     while !prev_idents.insert(ident.clone()) {
         // We can remove the r# prefix because it's no longer reserved (there's no reserved
         // identifier which is another reserved identifier plus underscore).
-        if ident.starts_with("r#") {
-            ident = ident[2..].to_owned();
-        }
+        unmake_reserved_if_raw(&mut ident);
         ident.push('_');
     }
     ident

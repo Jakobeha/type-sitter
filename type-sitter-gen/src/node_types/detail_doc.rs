@@ -7,7 +7,7 @@ pub struct DetailDoc<'a> {
     node_type: &'a NodeType
 }
 
-/// Display the "kind" of [Children], and provide a link to its inner type
+/// Display the "kind" of [`Children`], and provide a link to its inner type
 pub struct ChildrenKind<'a> {
     children: &'a Children,
     inline_anon_union_references: bool
@@ -23,39 +23,35 @@ impl<'a> Display for DetailDoc<'a> {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
         match &self.node_type.kind {
             NodeTypeKind::Supertype { subtypes } => {
-                writeln!(f, "This node type is a supertype of:")?;
+                writeln!(f, "This node type has subtypes:\n")?;
                 for subtype in subtypes {
-                    writeln!(f, "- `{}` ([{}])", subtype.sexp_name, subtype.rust_type_path())?;
+                    writeln!(f, "- `{}` ([`{}`])", subtype.sexp_name, subtype.rust_type_path())?;
                 }
             }
             NodeTypeKind::Regular { fields, children } => {
-                match fields.is_empty() {
-                    false => {
-                        writeln!(f, "This node has these fields:")?;
-                        for (field_name, field) in fields {
-                            writeln!(f, "- `{}`: {}", field_name, ChildrenKind::new(field, false))?;
-                        }
-                        if let Some(children) = children {
-                            let an_additional_child_or_children = match (children.required, children.multiple) {
-                                (false, false) => "an additional (optional) child",
-                                (true, false) => "an additional child",
-                                (_, true) => "additional children"
-                            };
-                            writeln!(f, "\nAnd {}: {}", an_additional_child_or_children, ChildrenKind::new(children, true))?;
-                        }
+                if fields.is_empty() {
+                    if let Some(children) = children.as_ref().filter(|c| !c.types.is_empty()) {
+                        let a_child_or_children = match (children.required, children.multiple) {
+                            (false, false) => "an optional named child",
+                            (true, false) => "a named child",
+                            (_, true) => "named children"
+                        };
+                        writeln!(f, "This node has {} of type {}", a_child_or_children, ChildrenKind::new(children, true))?;
+                    } else {
+                        writeln!(f, "This node has no named children")?;
                     }
-                    true => {
-                        match children.as_ref().filter(|c| !c.types.is_empty()) {
-                            None => writeln!(f, "This node has no children")?,
-                            Some(children) => {
-                                let this_child_or_these_children = match (children.required, children.multiple) {
-                                    (false, false) => "an (optional) child",
-                                    (true, false) => "a child",
-                                    (_, true) => "children"
-                                };
-                                writeln!(f, "This node has {}: {}", this_child_or_these_children, ChildrenKind::new(children, true))?;
-                            }
-                        }
+                } else {
+                    writeln!(f, "This node has these fields:\n")?;
+                    for (field_name, field) in fields {
+                        writeln!(f, "- `{}`: {}", field_name, ChildrenKind::new(field, false))?;
+                    }
+                    if let Some(children) = children {
+                        let an_additional_child_or_children = match (children.required, children.multiple) {
+                            (false, false) => "an optional additional named child",
+                            (true, false) => "an additional named child",
+                            (_, true) => "additional named children"
+                        };
+                        writeln!(f, "\nAnd {} of type {}", an_additional_child_or_children, ChildrenKind::new(children, true))?;
                     }
                 }
             }
@@ -80,17 +76,23 @@ impl<'a> Display for ChildrenKind<'a> {
             (true, true) => "+"
         };
         write!(f, "`{}{}`", kind, kind_suffix)?;
-        match !self.inline_anon_union_references || self.children.types.len() < 2 {
-            false => {
-                writeln!(f, ":")?;
-                for child in &self.children.types {
-                    writeln!(f, "- [{}]", child.rust_type_path())?;
-                }
-            },
-            true => {
-                let rust_type_path = NodeName::rust_type_path_of(&self.children.types);
-                write!(f, " ([{}])", rust_type_path)?
+        if self.inline_anon_union_references && self.children.types.len() > 1 {
+            writeln!(f, ":\n")?;
+            for child in &self.children.types {
+                writeln!(f, "- [`{}`]", child.rust_type_path())?;
             }
+        } else {
+            write!(f, " (")?;
+            let mut iter = self.children.types.iter();
+            if let Some(first) = iter.next() {
+                write!(f, "[`{}`]", first.rust_type_path())?;
+                for next in iter {
+                    write!(f, " | [`{}`]", next.rust_type_path())?;
+                }
+            } else {
+                write!(f, "[never](https://doc.rust-lang.org/std/primitive.never.html)")?;
+            }
+            write!(f, ")")?;
         }
         Ok(())
     }

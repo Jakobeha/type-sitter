@@ -44,11 +44,12 @@ macro_rules! ident {
 pub(crate) use ident;
 
 pub fn _ident(name: &str, type_desc: impl FnOnce() -> String) -> Result<Ident, Error> {
-    match parse_str::<Ident>(name).or_else(|_| parse_str::<Ident>(&format!("r#{}", name))) {
+    match parse_str::<Ident>(name) {
         Ok(ident) => Ok(ident),
-        Err(_) => Err(Error::IllegalIdentifier {
+        Err(err) => Err(Error::IllegalIdentifier {
             type_desc: type_desc(),
-            name: name.to_string()
+            name: name.to_string(),
+            source: err
         })
     }
 }
