@@ -166,7 +166,7 @@ pub(crate) fn make_valid(str: &str) -> String {
 }
 
 /// Only prepend `r#` or append `_` if reserved, since we did the rest in [`make_valid`].
-fn make_not_reserved(name: &mut String) {
+pub(super) fn make_not_reserved(name: &mut String) {
     if name.is_keyword() {
         *name = name.into_safe();
     }

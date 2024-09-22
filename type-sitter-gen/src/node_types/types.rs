@@ -5,7 +5,7 @@ use serde::Deserialize;
 use std::borrow::Cow;
 use std::collections::HashMap;
 use std::fmt::Display;
-use std::ops::Index;
+use std::ops::{AddAssign, Index};
 
 #[derive(Debug)]
 pub(crate) struct NodeTypeMap(HashMap<NodeName, NodeType>);
@@ -34,16 +34,29 @@ pub(crate) enum NodeTypeKind {
         #[serde(default)]
         fields: IndexMap<String, Children>,
         #[serde(default)]
-        children: Option<Children>,
+        children: Children,
     }
 }
 
-/// Describes a node's named children: their types and whether there are zero, one, zero to many, or
-/// one to many.
+/// Describes a node's named children: their types and quantity.
+///
+/// "Quantity" here means:
+/// - Zero
+/// - Zero to one
+/// - Zero to many
+/// - Exactly one
+/// - One to many
+///
+/// **Unchecked invariant:** if `types` is empty, `multiple` and `required` must be `false`.
 #[derive(Clone, Debug, Deserialize)]
 pub(crate) struct Children {
-    pub(crate) multiple: bool,
-    pub(crate) required: bool,
+    /// If `true`, there can be more than one child.
+    pub multiple: bool,
+    /// If `false`, there can be zero children.
+    pub required: bool,
+    /// Possible types of children.
+    ///
+    /// Additionally, if this is empty, that means there are no children.
     pub types: Vec<NodeName>,
 }
 
@@ -100,26 +113,66 @@ impl NodeType {
     }
 }
 
-impl Extend<Children> for Children {
-    /// Create a descriptor for a node with the children from this or any of `iter`.
-    fn extend<T: IntoIterator<Item=Children>>(&mut self, iter: T) {
-        for child in iter {
-            // If either of the original Children have at least 1 element, than this Children will.
-            self.required |= child.required;
+impl Default for Children {
+    fn default() -> Self {
+        Self::EMPTY.clone()
+    }
+}
 
-            // Even if both original Children only have up to 1 element, this means this Children
-            // will now have up to 2.
-            self.multiple = true;
+impl Children {
+    /// Create a descriptor for a node with no children.
+    ///
+    /// Specifically, there are no child types. `required` and `multiple` are at the bottom of the
+    /// lattice created by the [`Extend`] impl: that is, both are `false`.
+    pub const EMPTY: Self = Self { multiple: false, required: false, types: Vec::new() };
 
-            // Add other child types, but no duplicates
-            let len = self.types.len();
-            self.types.reserve(child.types.len());
-            for child_type in child.types {
-                if self.types.iter().take(len).any(|existing_type| *existing_type == child_type) {
-                    continue;
-                }
-                self.types.push(child_type);
+    /// Whether there are no children.
+    pub fn is_empty(&self) -> bool {
+        self.types.is_empty()
+    }
+}
+
+impl AddAssign for Children {
+    /// Create a descriptor for a node with the children from this and `other`.
+    ///
+    /// This isn't just a set union, because if both this and `other` have one child, the result
+    /// will have two. But it's also not concatenation because child order isn't relevant.
+    fn add_assign(&mut self, other: Self) {
+        if other.is_empty() {
+            return;
+        } else if self.is_empty() {
+            *self = other;
+            return;
+        }
+
+        // If either original `Children` has at least 1 element, then this `Children` will.
+        self.required |= other.required;
+
+        // Even if both original `Children` only have up to 1 element, this `Children` may have up
+        // to 2. `multiple` can only be false if one of the original `Children` is empty, which we
+        // would've handled above.
+        self.multiple = true;
+
+        // Add other child types, but no duplicates.
+        // (We could use `IndexSet` instead of doing this manually, but it probably wouldn't even
+        // have amortized performance gain because these are typically small, and it requires us to
+        // either not define `const EMPTY` or add a dependency).
+        let len = self.types.len();
+        self.types.reserve(other.types.len());
+        for child_type in other.types {
+            if self.types.iter().take(len).any(|existing_type| *existing_type == child_type) {
+                continue;
             }
+            self.types.push(child_type);
+        }
+    }
+}
+
+impl Extend<Children> for Children {
+    /// Create a descriptor for a node with the children from this and all of `iter`
+    fn extend<T: IntoIterator<Item=Children>>(&mut self, iter: T) {
+        for other in iter {
+            *self += other;
         }
     }
 }

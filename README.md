@@ -145,19 +145,18 @@ pub fn get_import_paths_untyped<'a>(source: &'a str, tree: &tree_sitter::Tree) -
         .filter(|n| n.kind() == "use_declaration")
         .filter_map(|n| n.child_by_field_name("argument"))
         .filter_map(|n| n.child_by_field_name("path"))
-        .filter_map(|n| n.utf8_text(source.as_bytes()).unwrap())
+        .map(|n| n.utf8_text(source.as_bytes()).unwrap())
         .collect()
 }
 
 pub fn get_import_paths_typed<'a>(source: &'a str, tree: &type_sitter::Tree<rust::SourceFile<'static>>) -> Vec<&'a str> {
     // GOOD: fields are type-safe, variant selectors are explicit, and we get IDE inference
     tree.root_node().unwrap().children(&mut tree.walk())
-        .filter_map(|n| n.as_declaration_statement().and_then(|n| n.as_use_declaration()))
+        .filter_map(|n| n.as_use_declaration())
         .filter_map(|n| n.argument().map(|r| r.unwrap()))
         .filter_map(|n| n.as_scoped_identifier())
         .filter_map(|n| n.path().map(|r| r.unwrap()))
-        .filter_map(|n| n.as_identifier())
-        .filter_map(|n| n.utf8_text(source.as_bytes()).unwrap())
+        .map(|n| n.utf8_text(source.as_bytes()).unwrap())
         .collect()
 }
 
@@ -169,7 +168,9 @@ pub fn process_declaration(decl: rust::DeclarationStatement<'_>) {
 
 ## Drawbacks
 
-Be aware that the generated wrapper code is very large: the [generated node wrappers for `tree-sitter-rust`](type-sitter-lib/tests/rust/nodes.rs) are 32180 LOC, and [queries](type-sitter-lib/tests/rust/queries.rs) are 6929 LOC. In my usage it seems analyzers are pretty good at handling this, but it's something to keep in mind.
+Be aware that the generated wrapper code is very large: the [generated node wrappers for `tree-sitter-rust`](type-sitter-lib/tests/rust/nodes.rs) are 30413 LOC, and [queries](type-sitter-lib/tests/rust/queries.rs) are 6916 LOC. I don't know how that impacts compilation or analysis speed.
+
+`type-sitter-proc` is particularly slow because it must re-generate this code every build. `type-sitter-gen` or `type-sitter-cli` can be configured to only re-generate when the tree-sitter grammar changes.
 
 ## Naming Rules
 
@@ -216,17 +217,17 @@ For method names (variant selectors), we simply convert back to snake case.
 
 Additionally, if a node is implicit (starts with `_`), we remove the prepended `_`.
 
-If a type or method name is an illegal definition identifier (`Self`, `self`, `super`, `crate`, `_`, or anything which starts with a number), `type-sitter` prepends an `_`. If it's a Rust keyword, `type-sitter` prepends `r#`.
+Next, if a type or method name would start with a digit, `type-sitter` prepends a `_`. If the type or method name would be `_`, `type-sitter` uses `__`. If the type or method name would be a reserved identifier that can be raw, `type-sitter` prepends `r#`. And, if the type or method name would be a reserved identifier that can't be raw (`Self`, `self`, `super`, `crate`), `type-sitter` appends `_`.
 
-Naming rules also determine the module. Unnamed nodes and symbols are in modules specifically to reduce naming conflicts without having to actually rename the nodes.
+Lastly, if there are ever multiple types with the same name in the same module, or methods or variants with the same name in the same type, type-sitter appends `_` to the later one until it's unique. For example, if there are two unnamed nodes `Fn` and `fn`, one of them will have type `Fn`, and the other will have type `Fn_`. You can see which node is which by looking at the documentation, which contains the original tree-sitter name. The disambiguation is guaranteed to be deterministic.
+
+Naming rules also determine the module. Unnamed nodes and symbols are in modules specifically to reduce naming conflicts without having to disambiguate the nodes as described above.
 
 - Unnamed and contains symbols: `symbol::`.
 - Unnamed and doesn't contain symbols: `unnamed::`.
 - Otherwise the node is at the toplevel of the generated source.
 
-Lastly, if a type, method, or variant, after applying the conversions, has the same name as another, it will have an underscore appended to disambiguate it. For example, if there are two unnamed nodes `Fn` and `fn`, one of them will have type `Fn`, and the other will have type `Fn_`. You can see which node is which by looking at the documentation, which contains the original tree-sitter name.
-
-The source for all this is at [`type-sitter-gen/src/names.rs`](type-sitter-gen/src/names.rs).
+The source for all this is [`type-sitter-gen/src/node_types/rust_names.rs`](type-sitter-gen/src/node_types/rust_names.rs).
 
 ### Naming Rule Examples
 

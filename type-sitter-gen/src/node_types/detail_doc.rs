@@ -34,15 +34,15 @@ impl<'a> Display for DetailDoc<'a> {
             }
             NodeTypeKind::Regular { fields, children } => {
                 if fields.is_empty() {
-                    if let Some(children) = children.as_ref().filter(|c| !c.types.is_empty()) {
+                    if children.is_empty() {
+                        writeln!(f, "This node has no named children")?;
+                    } else {
                         let a_child_or_children = match (children.required, children.multiple) {
                             (false, false) => "an optional named child",
                             (true, false) => "a named child",
                             (_, true) => "named children"
                         };
                         writeln!(f, "This node has {} of type {}", a_child_or_children, ChildrenKind::new(children, true, self.all_types))?;
-                    } else {
-                        writeln!(f, "This node has no named children")?;
                     }
                 } else {
                     writeln!(f, "This node has these fields:\n")?;
@@ -51,7 +51,7 @@ impl<'a> Display for DetailDoc<'a> {
                         writeln!(f, "- `{}`: {}", field_name, ChildrenKind::new(field, false, self.all_types))?;
                     }
 
-                    if let Some(children) = children {
+                    if !children.is_empty() {
                         let an_additional_child_or_children = match (children.required, children.multiple) {
                             (false, false) => "an optional additional named child",
                             (true, false) => "an additional named child",

@@ -4849,6 +4849,56 @@ pub mod anon_unions {
             #[allow(irrefutable_let_patterns)]
             if let Self::LineComment(x) = self { Some(x) } else { None }
         }
+        /**Get the children of field `doc`.
+
+These children have type `doc_comment*` ([`DocComment`])*/
+        #[inline]
+        pub fn docs<'a>(
+            &self,
+            c: &'a mut type_sitter_lib::TreeCursor<'tree>,
+        ) -> impl Iterator<
+            Item = type_sitter_lib::NodeResult<'tree, DocComment<'tree>>,
+        > + 'a {
+            type_sitter_lib::Node::raw(self)
+                .children_by_field_name("doc", &mut c.0)
+                .map(<DocComment<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
+        }
+        /**Get the children of field `inner`.
+
+These children have type `inner_doc_comment_marker*` ([`InnerDocCommentMarker`])*/
+        #[inline]
+        pub fn inners<'a>(
+            &self,
+            c: &'a mut type_sitter_lib::TreeCursor<'tree>,
+        ) -> impl Iterator<
+            Item = type_sitter_lib::NodeResult<'tree, InnerDocCommentMarker<'tree>>,
+        > + 'a {
+            type_sitter_lib::Node::raw(self)
+                .children_by_field_name("inner", &mut c.0)
+                .map(
+                    <InnerDocCommentMarker<
+                        'tree,
+                    > as type_sitter_lib::Node<'tree>>::try_from_raw,
+                )
+        }
+        /**Get the children of field `outer`.
+
+These children have type `outer_doc_comment_marker*` ([`OuterDocCommentMarker`])*/
+        #[inline]
+        pub fn outers<'a>(
+            &self,
+            c: &'a mut type_sitter_lib::TreeCursor<'tree>,
+        ) -> impl Iterator<
+            Item = type_sitter_lib::NodeResult<'tree, OuterDocCommentMarker<'tree>>,
+        > + 'a {
+            type_sitter_lib::Node::raw(self)
+                .children_by_field_name("outer", &mut c.0)
+                .map(
+                    <OuterDocCommentMarker<
+                        'tree,
+                    > as type_sitter_lib::Node<'tree>>::try_from_raw,
+                )
+        }
     }
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for Comment<'tree> {
@@ -4924,6 +4974,56 @@ pub mod anon_unions {
         pub fn as_line_comment(self) -> Option<LineComment<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::LineComment(x) = self { Some(x) } else { None }
+        }
+        /**Get the children of field `doc`.
+
+These children have type `doc_comment*` ([`DocComment`])*/
+        #[inline]
+        pub fn docs<'a>(
+            &self,
+            c: &'a mut type_sitter_lib::TreeCursor<'tree>,
+        ) -> impl Iterator<
+            Item = type_sitter_lib::NodeResult<'tree, DocComment<'tree>>,
+        > + 'a {
+            type_sitter_lib::Node::raw(self)
+                .children_by_field_name("doc", &mut c.0)
+                .map(<DocComment<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
+        }
+        /**Get the children of field `inner`.
+
+These children have type `inner_doc_comment_marker*` ([`InnerDocCommentMarker`])*/
+        #[inline]
+        pub fn inners<'a>(
+            &self,
+            c: &'a mut type_sitter_lib::TreeCursor<'tree>,
+        ) -> impl Iterator<
+            Item = type_sitter_lib::NodeResult<'tree, InnerDocCommentMarker<'tree>>,
+        > + 'a {
+            type_sitter_lib::Node::raw(self)
+                .children_by_field_name("inner", &mut c.0)
+                .map(
+                    <InnerDocCommentMarker<
+                        'tree,
+                    > as type_sitter_lib::Node<'tree>>::try_from_raw,
+                )
+        }
+        /**Get the children of field `outer`.
+
+These children have type `outer_doc_comment_marker*` ([`OuterDocCommentMarker`])*/
+        #[inline]
+        pub fn outers<'a>(
+            &self,
+            c: &'a mut type_sitter_lib::TreeCursor<'tree>,
+        ) -> impl Iterator<
+            Item = type_sitter_lib::NodeResult<'tree, OuterDocCommentMarker<'tree>>,
+        > + 'a {
+            type_sitter_lib::Node::raw(self)
+                .children_by_field_name("outer", &mut c.0)
+                .map(
+                    <OuterDocCommentMarker<
+                        'tree,
+                    > as type_sitter_lib::Node<'tree>>::try_from_raw,
+                )
         }
     }
     #[automatically_derived]
@@ -6624,6 +6724,40 @@ pub mod anon_unions {
         pub fn as_union_item(self) -> Option<UnionItem<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::UnionItem(x) = self { Some(x) } else { None }
+        }
+        /**Get the children of field `name`.
+
+These children have type `type_identifier+` ([`TypeIdentifier`])*/
+        /**
+This is guaranteed to return at least one child.*/
+        #[inline]
+        pub fn names<'a>(
+            &self,
+            c: &'a mut type_sitter_lib::TreeCursor<'tree>,
+        ) -> impl Iterator<
+            Item = type_sitter_lib::NodeResult<'tree, TypeIdentifier<'tree>>,
+        > + 'a {
+            type_sitter_lib::Node::raw(self)
+                .children_by_field_name("name", &mut c.0)
+                .map(
+                    <TypeIdentifier<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw,
+                )
+        }
+        /**Get the children of field `type_parameters`.
+
+These children have type `type_parameters*` ([`TypeParameters`])*/
+        #[inline]
+        pub fn type_parameterss<'a>(
+            &self,
+            c: &'a mut type_sitter_lib::TreeCursor<'tree>,
+        ) -> impl Iterator<
+            Item = type_sitter_lib::NodeResult<'tree, TypeParameters<'tree>>,
+        > + 'a {
+            type_sitter_lib::Node::raw(self)
+                .children_by_field_name("type_parameters", &mut c.0)
+                .map(
+                    <TypeParameters<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw,
+                )
         }
     }
     #[automatically_derived]

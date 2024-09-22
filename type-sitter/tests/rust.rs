@@ -51,12 +51,12 @@ fn test_node_types() {
     let mut rust_main_fn_body_children = rust_main_fn_body.children(&mut cursor);
     let rust_let_json = rust_main_fn_body_children.next().unwrap2().as_declaration_statement().unwrap().as_let_declaration().unwrap();
     assert_eq!(rust_let_json.pattern().unwrap().as_identifier().unwrap().utf8_text(RUST_STR.as_bytes()).unwrap(), "json");
-    assert!(!rust_let_json.children(&mut cursor2).any(|child| child.unwrap().as_mutable_specifier().is_some()));
+    assert!(rust_let_json.mutable_specifier().is_none());
     let rust_json_str = rust_let_json.value().unwrap2().as_literal().unwrap().as_string_literal().unwrap();
     assert_eq!(rust_json_str.utf8_text(RUST_STR.as_bytes()).unwrap(), "\"{\n        \\\"type\\\": \\\"array\\\",\n        \\\"content\\\": \\\"value\\\"\n    }\"");
     let rust_let_mut_parser = rust_main_fn_body_children.next().unwrap2().as_declaration_statement().unwrap().as_let_declaration().unwrap();
     assert_eq!(rust_let_mut_parser.pattern().unwrap().as_identifier().unwrap().utf8_text(RUST_STR.as_bytes()).unwrap(), "parser");
-    assert!(rust_let_mut_parser.children(&mut cursor2).any(|child| child.unwrap().as_mutable_specifier().is_some()));
+    assert!(rust_let_mut_parser.mutable_specifier().is_some());
     let rust_parser_new = rust_let_mut_parser.value().unwrap2().as_call_expression().unwrap();
     assert_eq!(rust_parser_new.function().unwrap().as_scoped_identifier().unwrap().utf8_text(RUST_STR.as_bytes()).unwrap(), "tree_sitter::Parser::new");
     assert_eq!(rust_parser_new.arguments().unwrap().children(&mut cursor2).count(), 0);
@@ -64,14 +64,11 @@ fn test_node_types() {
     let rust_todo = match rust_main_fn_body_children.next().unwrap2() {
         DeclarationStatement(decl) => decl.as_macro_invocation(),
         Expression(expr) => expr.as_macro_invocation(),
-        ExpressionStatement(expr) => expr.child().unwrap().as_macro_invocation(),
+        ExpressionStatement(expr) => expr.expression().unwrap().as_macro_invocation(),
         Label(label) => panic!("Expected declaration statement, expression, or expression statement, but got label: {:?}", label),
     }.unwrap();
-    let mut rust_todo_children = rust_todo.children(&mut cursor2);
-    assert_eq!(rust_todo.children(&mut cursor3).count(), 2);
     assert_eq!(rust_todo.r#macro().unwrap().as_identifier().unwrap().utf8_text(RUST_STR.as_bytes()).unwrap(), "todo");
-    assert_eq!(rust_todo_children.next().unwrap2().as_identifier().unwrap().utf8_text(RUST_STR.as_bytes()).unwrap(), "todo");
-    let rust_todo_arg = rust_todo_children.next().unwrap2().as_token_tree().unwrap();
+    let rust_todo_arg = rust_todo.token_tree().unwrap();
     assert_eq!(rust_todo_arg.children(&mut cursor3).count(), 1);
     assert_eq!(rust_todo_arg.children(&mut cursor3).next().unwrap2().as_literal().unwrap().as_string_literal().unwrap().utf8_text(RUST_STR.as_bytes()).unwrap(), "\"baz\"");
 }

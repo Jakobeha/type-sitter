@@ -29,14 +29,14 @@ fn test_node_types() {
     let json_document = json_tree.root_node().unwrap();
     let mut cursor = json_tree.walk();
 
-    assert_eq!(json_document.children(&mut cursor).count(), 1);
-    let json_root = json_document.children(&mut cursor).next().unwrap2().as_object().unwrap();
-    assert_eq!(json_root.children(&mut cursor).count(), 2);
-    let mut json_children = json_root.children(&mut cursor);
-    let json_type = json_children.next().unwrap2();
+    assert_eq!(json_document.values(&mut cursor).count(), 1);
+    let json_root = json_document.values(&mut cursor).next().unwrap2().as_object().unwrap();
+    assert_eq!(json_root.pairs(&mut cursor).count(), 2);
+    let mut json_fields = json_root.pairs(&mut cursor);
+    let json_type = json_fields.next().unwrap2();
     assert_eq!(json_type.key().unwrap().utf8_text(JSON_STR.as_bytes()).unwrap(), "\"type\"");
     assert_eq!(json_type.value().unwrap().as_string().unwrap().utf8_text(JSON_STR.as_bytes()).unwrap(), "\"array\"");
-    let json_content = json_children.next().unwrap2();
+    let json_content = json_fields.next().unwrap2();
     assert_eq!(json_content.key().unwrap().utf8_text(JSON_STR.as_bytes()).unwrap(), "\"content\"");
     assert_eq!(json_content.value().unwrap().as_string().unwrap().utf8_text(JSON_STR.as_bytes()).unwrap(), "\"value\"");
 }

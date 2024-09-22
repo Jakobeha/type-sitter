@@ -55,11 +55,11 @@ pub fn test_use_node_types_rust() {
             .as_declaration_statement().expect("Expected declaration statement")
             .as_mod_item().expect("Expected mod item")
             .body().expect("Expected mod item to have a body").unwrap()
-            .children(&mut code_root.walk()).skip(1).next().expect("Expected mod item's body to have a second child").unwrap()
+            .declaration_statements(&mut code_root.walk()).skip(1).next().expect("Expected mod item's body to have a second child").unwrap()
             .as_function_item().expect("Expected mod item's body's second child to be a function item")
             .body().unwrap()
             .children(&mut code_root.walk()).skip(1).next().expect("Expected function item's body to have a second child").unwrap()
-            .as_expression_statement().expect("Expected function item's body's second child to be an expression statement").child().unwrap()
+            .as_expression_statement().expect("Expected function item's body's second child to be an expression statement").expression().unwrap()
             .as_call_expression().expect("Expected function item's body's second child to be a call expression")
             .function().unwrap()
             .as_field_expression().expect("Expected function item's body's second child's call expression's function to be a field expression")
@@ -81,10 +81,8 @@ pub fn test_use_node_types_rust() {
     );
     assert!(
         statements[8]
-            .as_declaration_statement().expect("Expected declaration statement")
             .as_mod_item().expect("Expected mod item")
-            .children(&mut code_root.walk()).all(|child|
-                child.unwrap().as_visibility_modifier().is_none()),
+            .visibility_modifier().is_none(),
         "Expected mod item to not have a visibility modifier"
     )
 }

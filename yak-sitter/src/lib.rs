@@ -524,7 +524,7 @@ impl<'tree> Node<'tree> {
 
     /// Get the number of named and unnamed children
     #[inline]
-    pub fn child_count(&self) -> usize {
+    pub fn any_child_count(&self) -> usize {
         self.node.child_count()
     }
 
@@ -588,7 +588,7 @@ impl<'tree> Node<'tree> {
     pub fn last_any_child(&self) -> Option<Node<'tree>> {
         // .child is already bounds-checked so we use wrapping_sub for iff the count is 0
         // SAFETY: Same tree
-        self.node.child(self.child_count().wrapping_sub(1)).map(|node| unsafe { Node::new(node, self.tree) })
+        self.node.child(self.any_child_count().wrapping_sub(1)).map(|node| unsafe { Node::new(node, self.tree) })
     }
 
     /// Get the node's last named child

@@ -132,8 +132,8 @@ impl<'tree> SExpSeq<'tree> {
                 self.print_capture_method_and_variant(capture_name, &capture_idxs, query_str, &ts_query, nodes, ctx, anon_unions)
             })
             .collect::<Vec<_>>();
-        let capture_methods = capture_methods_and_variants.iter().map(|x| &x.0).collect::<Vec<_>>();
-        let capture_variant_extract_methods = capture_methods_and_variants.iter().map(|x| &x.1).collect::<Vec<_>>();
+        let capture_methods = capture_methods_and_variants.iter().map(|x| x.0.clone()).collect::<TokenStream>();
+        let capture_variant_extract_methods = capture_methods_and_variants.iter().map(|x| x.1.clone()).collect::<TokenStream>();
         let capture_variants = capture_methods_and_variants.iter().map(|x| &x.2).collect::<Vec<_>>();
         let capture_variant_documentations = capture_methods_and_variants.iter().map(|x| &x.3).collect::<Vec<_>>();
         let capture_node_types = capture_methods_and_variants.iter().map(|x| &x.4).collect::<Vec<_>>();
@@ -224,7 +224,7 @@ impl<'tree> SExpSeq<'tree> {
 
             #[automatically_derived]
             impl<'query, 'tree: 'query> #query_match<'query, 'tree> {
-                #(#capture_methods)*
+                #capture_methods
             }
 
             #[automatically_derived]
@@ -260,7 +260,7 @@ impl<'tree> SExpSeq<'tree> {
 
             #[automatically_derived]
             impl<'query, 'tree: 'query> #query_capture<'query, 'tree> {
-                #(#capture_variant_extract_methods)*
+                #capture_variant_extract_methods
             }
 
             #[automatically_derived]
@@ -425,12 +425,12 @@ impl<'tree> SExpSeq<'tree> {
         let full_capture_pattern_doc = captured_sexp_strs.map(|captured_sexp_str| {
             let doc = concat_doc!(captured_sexp_str, " @", capture_name);
             quote! { #[doc = #doc] }
-        });
+        }).collect::<TokenStream>();
         let full_capture_documentation = quote! {
             #[doc = ""]
             #[doc = "The full capture including pattern(s) is:"]
             #[doc = "```sexp"]
-            #(#full_capture_pattern_doc)*
+            #full_capture_pattern_doc
             #[doc = "```"]
         };
 
