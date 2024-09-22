@@ -399,7 +399,7 @@ impl NodeType {
             if let Some(common_fields) = common_fields.as_mut() {
                 common_fields.retain(|name, _| fields.contains_key(name));
                 for (name, children) in common_fields {
-                    *children += fields[name].clone();
+                    *children |= fields[name].clone();
                 }
             } else {
                 common_fields = Some(fields.clone());

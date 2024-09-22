@@ -5,7 +5,7 @@ use serde::Deserialize;
 use std::borrow::Cow;
 use std::collections::HashMap;
 use std::fmt::Display;
-use std::ops::{AddAssign, Index};
+use std::ops::{BitOrAssign, Index};
 
 #[derive(Debug)]
 pub(crate) struct NodeTypeMap(HashMap<NodeName, NodeType>);
@@ -132,12 +132,8 @@ impl Children {
     }
 }
 
-impl AddAssign for Children {
-    /// Create a descriptor for a node with the children from this and `other`.
-    ///
-    /// This isn't just a set union, because if both this and `other` have one child, the result
-    /// will have two. But it's also not concatenation because child order isn't relevant.
-    fn add_assign(&mut self, other: Self) {
+impl BitOrAssign for Children {
+    fn bitor_assign(&mut self, other: Self) {
         if other.is_empty() {
             return;
         } else if self.is_empty() {
@@ -148,10 +144,8 @@ impl AddAssign for Children {
         // If either original `Children` has at least 1 element, then this `Children` will.
         self.required |= other.required;
 
-        // Even if both original `Children` only have up to 1 element, this `Children` may have up
-        // to 2. `multiple` can only be false if one of the original `Children` is empty, which we
-        // would've handled above.
-        self.multiple = true;
+        // If either original `Children` may have multiple children, then this `Children` may.
+        self.multiple |= other.multiple;
 
         // Add other child types, but no duplicates.
         // (We could use `IndexSet` instead of doing this manually, but it probably wouldn't even
@@ -164,15 +158,6 @@ impl AddAssign for Children {
                 continue;
             }
             self.types.push(child_type);
-        }
-    }
-}
-
-impl Extend<Children> for Children {
-    /// Create a descriptor for a node with the children from this and all of `iter`
-    fn extend<T: IntoIterator<Item=Children>>(&mut self, iter: T) {
-        for other in iter {
-            *self += other;
         }
     }
 }

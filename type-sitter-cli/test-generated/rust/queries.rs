@@ -2925,36 +2925,29 @@ pub mod anon_unions {
                 None
             }
         }
-        #[doc = "Get the children of field `doc`.\n\nThese children have type `doc_comment*` ([`DocComment`])"]
+        #[doc = "Get the optional field `doc`.\n\nThis child has type `doc_comment?` ([`DocComment`])"]
         #[inline]
-        pub fn docs<'a>(
-            &self,
-            c: &'a mut type_sitter::TreeCursor<'tree>,
-        ) -> impl Iterator<Item = type_sitter::NodeResult<'tree, DocComment<'tree>>> + 'a {
+        pub fn doc(&self) -> Option<type_sitter::NodeResult<'tree, DocComment<'tree>>> {
             type_sitter::Node::raw(self)
-                .children_by_field_name("doc", &mut c.0)
+                .child_by_field_name("doc")
                 .map(<DocComment<'tree> as type_sitter::Node<'tree>>::try_from_raw)
         }
-        #[doc = "Get the children of field `inner`.\n\nThese children have type `inner_doc_comment_marker*` ([`InnerDocCommentMarker`])"]
+        #[doc = "Get the optional field `inner`.\n\nThis child has type `inner_doc_comment_marker?` ([`InnerDocCommentMarker`])"]
         #[inline]
-        pub fn inners<'a>(
+        pub fn inner(
             &self,
-            c: &'a mut type_sitter::TreeCursor<'tree>,
-        ) -> impl Iterator<Item = type_sitter::NodeResult<'tree, InnerDocCommentMarker<'tree>>> + 'a
-        {
+        ) -> Option<type_sitter::NodeResult<'tree, InnerDocCommentMarker<'tree>>> {
             type_sitter::Node::raw(self)
-                .children_by_field_name("inner", &mut c.0)
+                .child_by_field_name("inner")
                 .map(<InnerDocCommentMarker<'tree> as type_sitter::Node<'tree>>::try_from_raw)
         }
-        #[doc = "Get the children of field `outer`.\n\nThese children have type `outer_doc_comment_marker*` ([`OuterDocCommentMarker`])"]
+        #[doc = "Get the optional field `outer`.\n\nThis child has type `outer_doc_comment_marker?` ([`OuterDocCommentMarker`])"]
         #[inline]
-        pub fn outers<'a>(
+        pub fn outer(
             &self,
-            c: &'a mut type_sitter::TreeCursor<'tree>,
-        ) -> impl Iterator<Item = type_sitter::NodeResult<'tree, OuterDocCommentMarker<'tree>>> + 'a
-        {
+        ) -> Option<type_sitter::NodeResult<'tree, OuterDocCommentMarker<'tree>>> {
             type_sitter::Node::raw(self)
-                .children_by_field_name("outer", &mut c.0)
+                .child_by_field_name("outer")
                 .map(<OuterDocCommentMarker<'tree> as type_sitter::Node<'tree>>::try_from_raw)
         }
     }
@@ -3029,36 +3022,29 @@ pub mod anon_unions {
                 None
             }
         }
-        #[doc = "Get the children of field `doc`.\n\nThese children have type `doc_comment*` ([`DocComment`])"]
+        #[doc = "Get the optional field `doc`.\n\nThis child has type `doc_comment?` ([`DocComment`])"]
         #[inline]
-        pub fn docs<'a>(
-            &self,
-            c: &'a mut type_sitter::TreeCursor<'tree>,
-        ) -> impl Iterator<Item = type_sitter::NodeResult<'tree, DocComment<'tree>>> + 'a {
+        pub fn doc(&self) -> Option<type_sitter::NodeResult<'tree, DocComment<'tree>>> {
             type_sitter::Node::raw(self)
-                .children_by_field_name("doc", &mut c.0)
+                .child_by_field_name("doc")
                 .map(<DocComment<'tree> as type_sitter::Node<'tree>>::try_from_raw)
         }
-        #[doc = "Get the children of field `inner`.\n\nThese children have type `inner_doc_comment_marker*` ([`InnerDocCommentMarker`])"]
+        #[doc = "Get the optional field `inner`.\n\nThis child has type `inner_doc_comment_marker?` ([`InnerDocCommentMarker`])"]
         #[inline]
-        pub fn inners<'a>(
+        pub fn inner(
             &self,
-            c: &'a mut type_sitter::TreeCursor<'tree>,
-        ) -> impl Iterator<Item = type_sitter::NodeResult<'tree, InnerDocCommentMarker<'tree>>> + 'a
-        {
+        ) -> Option<type_sitter::NodeResult<'tree, InnerDocCommentMarker<'tree>>> {
             type_sitter::Node::raw(self)
-                .children_by_field_name("inner", &mut c.0)
+                .child_by_field_name("inner")
                 .map(<InnerDocCommentMarker<'tree> as type_sitter::Node<'tree>>::try_from_raw)
         }
-        #[doc = "Get the children of field `outer`.\n\nThese children have type `outer_doc_comment_marker*` ([`OuterDocCommentMarker`])"]
+        #[doc = "Get the optional field `outer`.\n\nThis child has type `outer_doc_comment_marker?` ([`OuterDocCommentMarker`])"]
         #[inline]
-        pub fn outers<'a>(
+        pub fn outer(
             &self,
-            c: &'a mut type_sitter::TreeCursor<'tree>,
-        ) -> impl Iterator<Item = type_sitter::NodeResult<'tree, OuterDocCommentMarker<'tree>>> + 'a
-        {
+        ) -> Option<type_sitter::NodeResult<'tree, OuterDocCommentMarker<'tree>>> {
             type_sitter::Node::raw(self)
-                .children_by_field_name("outer", &mut c.0)
+                .child_by_field_name("outer")
                 .map(<OuterDocCommentMarker<'tree> as type_sitter::Node<'tree>>::try_from_raw)
         }
     }
@@ -4733,27 +4719,18 @@ pub mod anon_unions {
                 None
             }
         }
-        #[doc = "Get the children of field `name`.\n\nThese children have type `type_identifier+` ([`TypeIdentifier`])"]
-        #[doc = "\nThis is guaranteed to return at least one child."]
+        #[doc = "Get the field `name`.\n\nThis child has type `type_identifier` ([`TypeIdentifier`])"]
         #[inline]
-        pub fn names<'a>(
-            &self,
-            c: &'a mut type_sitter::TreeCursor<'tree>,
-        ) -> impl Iterator<Item = type_sitter::NodeResult<'tree, TypeIdentifier<'tree>>> + 'a
-        {
-            type_sitter::Node::raw(self)
-                .children_by_field_name("name", &mut c.0)
-                .map(<TypeIdentifier<'tree> as type_sitter::Node<'tree>>::try_from_raw)
+        pub fn name(&self) -> type_sitter::NodeResult<'tree, TypeIdentifier<'tree>> {
+            type_sitter :: Node :: raw (self) . child_by_field_name ("name") . map (< TypeIdentifier < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw) . expect ("required child not present, there should at least be a MISSING node in its place")
         }
-        #[doc = "Get the children of field `type_parameters`.\n\nThese children have type `type_parameters*` ([`TypeParameters`])"]
+        #[doc = "Get the optional field `type_parameters`.\n\nThis child has type `type_parameters?` ([`TypeParameters`])"]
         #[inline]
-        pub fn type_parameterss<'a>(
+        pub fn type_parameters(
             &self,
-            c: &'a mut type_sitter::TreeCursor<'tree>,
-        ) -> impl Iterator<Item = type_sitter::NodeResult<'tree, TypeParameters<'tree>>> + 'a
-        {
+        ) -> Option<type_sitter::NodeResult<'tree, TypeParameters<'tree>>> {
             type_sitter::Node::raw(self)
-                .children_by_field_name("type_parameters", &mut c.0)
+                .child_by_field_name("type_parameters")
                 .map(<TypeParameters<'tree> as type_sitter::Node<'tree>>::try_from_raw)
         }
     }
