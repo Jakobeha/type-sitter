@@ -7,25 +7,25 @@ use tree_sitter::CaptureQuantifier;
 
 /// Parsed tree-sitter query = sequence of s-expressions
 #[derive(Debug, Clone, PartialEq, Eq)]
-pub struct SExpSeq<'a>(Vec<SExp<'a>>);
+pub(super) struct SExpSeq<'a>(Vec<SExp<'a>>);
 
 /// Tree-sitter query s-expression
 #[derive(Debug, Clone, PartialEq, Eq)]
-pub enum SExp<'a> {
+pub(super) enum SExp<'a> {
     Atom { span: Span, quantifier: CaptureQuantifier, atom: Atom<'a> },
     Group { span: Span, quantifier: CaptureQuantifier, group_type: GroupType, items: SExpSeq<'a> }
 }
 
 /// S-expression "parenthesis type"
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub enum GroupType {
+pub(super) enum GroupType {
     Paren,
     Bracket
 }
 
 /// S-expression which is not a group
 #[derive(Debug, Clone, PartialEq, Eq)]
-pub enum Atom<'a> {
+pub(super) enum Atom<'a> {
     /// `_`
     Wildcard,
     /// `.`
@@ -93,7 +93,7 @@ enum Token<'a> {
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub enum ParseError {
+pub(super) enum ParseError {
     Eof { span: Span },
     BadToken { span: Span },
     IllegalGroupClose { span: Span, group_type: GroupType },
@@ -102,7 +102,7 @@ pub enum ParseError {
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub struct Span {
+pub(super) struct Span {
     /// Byte offset immediately before first char
     start: usize,
     /// Byte offset immediately after last char
@@ -110,7 +110,7 @@ pub struct Span {
 }
 
 impl<'a> SExpSeq<'a> {
-    pub fn captured_patterns(&self, name: &'a str) -> impl Iterator<Item=SExp<'a>> + '_ {
+    pub(super) fn captured_patterns(&self, name: &'a str) -> impl Iterator<Item=SExp<'a>> + '_ {
         self.toplevel_captured_patterns(name).chain(
             self.iter().flat_map(|sexp| match sexp {
                 SExp::Atom { .. } => Box::new(empty()) as Box<dyn Iterator<Item=SExp<'a>> + '_>,
@@ -160,49 +160,21 @@ impl<'a> Display for SExpSeq<'a> {
 }
 
 impl<'a> SExp<'a> {
-    pub fn is_capture(&self, name: &'a str) -> bool {
+    pub(super) fn is_capture(&self, name: &'a str) -> bool {
         match self {
             Self::Atom { atom: Atom::Capture { name: atom_name }, .. } => name == *atom_name,
             _ => false
         }
     }
 
-    pub fn is_predicate(&self) -> bool {
-        match self {
-            Self::Atom { atom: Atom::Predicate { .. }, .. } => true,
-            _ => false
-        }
-    }
-
-    pub fn is_predicate_group(&self) -> bool {
-        match self {
-            Self::Atom { .. } => false,
-            Self::Group { items, .. } => !items.is_empty() && items[0].is_predicate()
-        }
-    }
-
-    pub fn span(&self) -> &Span {
+    pub(super) fn span(&self) -> &Span {
         match self {
             Self::Atom { span, .. } => span,
             Self::Group { span, .. } => span
         }
     }
 
-    pub fn span_mut(&mut self) -> &mut Span {
-        match self {
-            Self::Atom { span, .. } => span,
-            Self::Group { span, .. } => span
-        }
-    }
-
-    pub fn quantifier(&self) -> &CaptureQuantifier {
-        match self {
-            SExp::Atom { quantifier, .. } => quantifier,
-            SExp::Group { quantifier, .. } => quantifier
-        }
-    }
-
-    pub fn quantifier_mut(&mut self) -> &mut CaptureQuantifier {
+    pub(super) fn quantifier_mut(&mut self) -> &mut CaptureQuantifier {
         match self {
             SExp::Atom { quantifier, .. } => quantifier,
             SExp::Group { quantifier, .. } => quantifier
@@ -222,14 +194,14 @@ impl<'a> Display for SExp<'a> {
 }
 
 impl GroupType {
-    pub fn start_char(&self) -> char {
+    pub(super) fn start_char(&self) -> char {
         match self {
             Self::Paren => '(',
             Self::Bracket => '['
         }
     }
 
-    pub fn end_char(&self) -> char {
+    pub(super) fn end_char(&self) -> char {
         match self {
             Self::Paren => ')',
             Self::Bracket => ']'
@@ -280,7 +252,7 @@ impl<'a> Display for Atom<'a> {
 }
 
 impl<'a> Parser<'a> {
-    pub fn new(source: &'a str) -> Self {
+    pub(super) fn new(source: &'a str) -> Self {
         Self { lexer: Lexer::new(source) }
     }
 
@@ -344,7 +316,7 @@ impl<'a> Parser<'a> {
 }
 
 impl ParseError {
-    pub fn span(&self) -> &Span {
+    pub(super) fn span(&self) -> &Span {
         match self {
             Self::Eof { span } => span,
             Self::BadToken { span } => span,
@@ -372,7 +344,7 @@ impl Span {
         Self::from(lexer.span())
     }
 
-    pub fn range(&self) -> std::ops::Range<usize> {
+    pub(super) fn range(&self) -> std::ops::Range<usize> {
         self.start..self.end
     }
 }
@@ -459,27 +431,23 @@ fn unquote_simple<'a>(lex: &mut Lexer<'a>) -> Cow<'a, str> {
 
 // region SExpSeq Vec delegate
 impl<'a> SExpSeq<'a> {
-    pub fn new() -> Self {
+    pub(super) fn new() -> Self {
         Self(Vec::new())
     }
 
-    pub fn is_empty(&self) -> bool {
-        self.0.is_empty()
-    }
-
-    pub fn push(&mut self, item: SExp<'a>) {
+    pub(super) fn push(&mut self, item: SExp<'a>) {
         self.0.push(item);
     }
 
-    pub fn last_mut(&mut self) -> Option<&mut SExp<'a>> {
+    pub(super) fn last_mut(&mut self) -> Option<&mut SExp<'a>> {
         self.0.last_mut()
     }
 
-    pub fn iter(&self) -> impl Iterator<Item=&SExp<'a>> {
+    pub(super) fn iter(&self) -> impl Iterator<Item=&SExp<'a>> {
         self.0.iter()
     }
 
-    pub fn get(&self, index: usize) -> Option<&SExp<'a>> {
+    pub(super) fn get(&self, index: usize) -> Option<&SExp<'a>> {
         self.0.get(index)
     }
 }

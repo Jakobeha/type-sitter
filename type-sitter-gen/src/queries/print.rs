@@ -1,16 +1,16 @@
-use std::collections::HashMap;
-use proc_macro2::TokenStream;
-use syn::{Ident, Path};
-use quote::{format_ident, quote};
-use slice_group_by::GroupBy;
-use tree_sitter::CaptureQuantifier;
-use crate::mk_syntax::{concat_doc, ident, lit_array, lit_str, modularize};
-use crate::names::{NodeName, sexp_name_to_rust_names, unmake_reserved};
 use crate::anon_unions::AnonUnions;
-use crate::node_types::types::NodeType;
-use crate::queries::GeneratedQueryTokens;
+use crate::mk_syntax::{concat_doc, ident, lit_array, lit_str, modularize};
+use crate::{sexp_name_to_rust_names, unmake_reserved};
+use crate::NodeType;
 use crate::queries::sexp::SExpSeq;
 use crate::queries::sexp_node_type::SExpNodeType;
+use crate::queries::GeneratedQueryTokens;
+use crate::PrintCtx;
+use proc_macro2::TokenStream;
+use quote::{format_ident, quote};
+use slice_group_by::GroupBy;
+use syn::{Ident, Path};
+use tree_sitter::CaptureQuantifier;
 
 impl<'tree> SExpSeq<'tree> {
     /// Generate the AST for the typed wrapper of the given query.
@@ -19,7 +19,6 @@ impl<'tree> SExpSeq<'tree> {
     /// - `ts_query`: The tree-sitter version of the query at compile time
     /// - `def_ident`: Identifier used for the query definition
     /// - `language_ident`: Identifier used for the language to create the query for
-    /// - `node_type_map`: Map of node type SEXP names to their types.
     /// - `disable_patterns`: List of patterns to ignore on the query
     /// - `disabled_capture_names`: List of capture names to ignore on the query
     /// - `disabled_capture_idxs`: List of capture indices to ignore on the query (both these and
@@ -27,14 +26,16 @@ impl<'tree> SExpSeq<'tree> {
     /// - `nodes`: Path to the crate with the typed node wrappers. Typically
     ///   [type_sitter_gen::super_nodes]
     /// - `use_yak_sitter`: Whether to use `yak_sitter` or `tree_sitter`
-    /// - `tree_sitter`: Path to the crate with the tree-sitter API. For cli-generated sources, use
-    ///    [crate::tree_sitter] if `use_yak_sitter` is false or [crate::yak_sitter] if
+    /// - `ctx.all_types`: Map of node type names to their types.
+    /// - `ctx.tree_sitter`: Path to the crate with the tree-sitter API. For cli-generated sources,
+    ///    use [crate::tree_sitter] if `use_yak_sitter` is false or [crate::yak_sitter] if
     ///    `use_yak_sitter` is true. For proc-macro generated sources, use [crate::type_sitter_raw]
     ///    either way.
-    /// - `type_sitter_lib`: Path to the crate with the type-sitter API. For cli-generated sources,
-    ///   use [crate::type_sitter_lib]. For proc-macro generated sources, use [crate::type_sitter].
+    /// - `ctx.type_sitter_lib`: Path to the crate with the type-sitter API. For cli-generated
+    ///   sources, use [crate::type_sitter_lib]. For proc-macro generated sources, use
+    ///   [crate::type_sitter].
     /// - `anon_unions`: Anonymous unions for query capture type
-    pub fn print(
+    pub(crate) fn print(
         &self,
         query_str: &str,
         ts_query: tree_sitter::Query,
@@ -44,10 +45,8 @@ impl<'tree> SExpSeq<'tree> {
         disabled_capture_names: &[&str],
         disabled_capture_idxs: &[usize],
         nodes: &Path,
-        node_type_map: &HashMap<String, NodeType>,
         use_yak_sitter: bool,
-        tree_sitter: &Path,
-        type_sitter_lib: &Path,
+        ctx @ PrintCtx { tree_sitter, type_sitter_lib, .. }: PrintCtx,
         anon_unions: &mut AnonUnions
     ) -> TokenStream {
         let disabled_captures = disabled_capture_idxs.iter()
@@ -71,7 +70,6 @@ impl<'tree> SExpSeq<'tree> {
             language_name, language_name
         ));
         let internal_query = format_ident!("__{}__", def_ident);
-        let mk_internal_query = format_ident!("__Mk__{}", def_ident);
         let query_matches = format_ident!("{}Matches", def_ident);
         let query_captures = format_ident!("{}Captures", def_ident);
         let query_match = format_ident!("{}Match", def_ident);
@@ -131,7 +129,7 @@ impl<'tree> SExpSeq<'tree> {
             .map(|capture_idxs_and_name| {
                 let capture_idxs = capture_idxs_and_name.iter().map(|(capture_idx, _)| *capture_idx).collect::<Vec<_>>();
                 let capture_name = capture_idxs_and_name[0].1;
-                self.print_capture_method_and_variant(capture_name, &capture_idxs, query_str, &ts_query, nodes, node_type_map, tree_sitter, type_sitter_lib, anon_unions)
+                self.print_capture_method_and_variant(capture_name, &capture_idxs, query_str, &ts_query, nodes, ctx, anon_unions)
             })
             .collect::<Vec<_>>();
         let capture_methods = capture_methods_and_variants.iter().map(|x| &x.0).collect::<Vec<_>>();
@@ -150,21 +148,6 @@ impl<'tree> SExpSeq<'tree> {
         };
 
         quote! {
-            #[allow(non_upper_case_globals)]
-            static #internal_query: std::sync::OnceLock<#tree_sitter::Query> = std::sync::OnceLock::new();
-
-            #[allow(non_snake_case)]
-            fn #mk_internal_query() -> #tree_sitter::Query {
-                #[allow(unused_mut)]
-                let mut query = #tree_sitter::Query::new(
-                    &#language_ident::LANGUAGE.into(),
-                    #query_str
-                ).expect(#query_parse_error);
-                #(query.disable_capture(#disabled_captures);)*
-                #(query.disable_pattern(#disabled_patterns);)*
-                query
-            }
-
             #[doc = #def_doc]
             #[allow(non_camel_case_types)]
             #[derive(Debug, Clone, Copy)]
@@ -198,7 +181,19 @@ impl<'tree> SExpSeq<'tree> {
                 }
 
                 fn raw(&self) -> &'static #tree_sitter::Query {
-                    #internal_query.get_or_init(#mk_internal_query)
+                    #[allow(non_upper_case_globals)]
+                    static #internal_query: std::sync::OnceLock<#tree_sitter::Query> = std::sync::OnceLock::new();
+
+                    #internal_query.get_or_init(|| {
+                        #[allow(unused_mut)]
+                        let mut query = #tree_sitter::Query::new(
+                            &#language_ident::LANGUAGE.into(),
+                            #query_str
+                        ).expect(#query_parse_error);
+                        #(query.disable_capture(#disabled_captures);)*
+                        #(query.disable_pattern(#disabled_patterns);)*
+                        query
+                    })
                 }
 
                 #[inline]
@@ -390,9 +385,7 @@ impl<'tree> SExpSeq<'tree> {
         query_str: &str,
         ts_query: &tree_sitter::Query,
         nodes: &Path,
-        node_type_map: &HashMap<String, NodeType>,
-        tree_sitter: &Path,
-        type_sitter_lib: &Path,
+        ctx @ PrintCtx { all_types, type_sitter_lib, .. }: PrintCtx,
         anon_unions: &mut AnonUnions
     ) -> (TokenStream, TokenStream, Ident, TokenStream, TokenStream) {
         let (capture_variant_name, capture_method_name) = sexp_name_to_rust_names(&capture_name.replace(".", "_"));
@@ -409,10 +402,10 @@ impl<'tree> SExpSeq<'tree> {
 
         let captured_sexps = self.captured_patterns(capture_name).collect::<Vec<_>>();
         let captured_sexp_strs = captured_sexps.iter().map(|s| &query_str[s.span()]);
-        let capture_node_type = captured_sexps.iter().map(|s| s.node_type(false, node_type_map))
+        let capture_node_type = captured_sexps.iter().map(|s| s.node_type(false, all_types))
             .collect::<SExpNodeType>();
         let capture_node_type_tokens = capture_node_type
-            .print(&capture_variant_name, nodes, tree_sitter, type_sitter_lib, anon_unions);
+            .print(&capture_variant_name, nodes, ctx, anon_unions);
 
         let capture_doc = format!("`{}` ([`{}`])", capture_name, capture_node_type.rust_type_path(nodes, &capture_variant_name));
 
@@ -447,7 +440,6 @@ impl<'tree> SExpSeq<'tree> {
             #captured_nonempty_iterator_doc
             #full_capture_documentation
             #[inline]
-            #[allow(non_snake_case)]
             pub fn #capture_method(&self) -> #captured_type {
                 #captured_expr
             }
@@ -457,7 +449,6 @@ impl<'tree> SExpSeq<'tree> {
             #[doc = #capture_variant_extract_method_doc]
             #full_capture_documentation
             #[inline]
-            #[allow(non_snake_case)]
             pub fn #as_capture_method(&self) -> Option<&#capture_node_type_tokens> {
                 #[allow(irrefutable_let_patterns)]
                 if let Self::#capture_variant { node, .. } = self {
@@ -481,23 +472,21 @@ impl SExpNodeType {
         &self,
         capture_variant_name: &str,
         nodes: &Path,
-        tree_sitter: &Path,
-        type_sitter_lib: &Path,
+        ctx @ PrintCtx { type_sitter_lib, .. }: PrintCtx,
         anon_unions: &mut AnonUnions
     ) -> TokenStream {
         match self {
             Self::Single { r#type } => {
-                let type_ = r#type.name.print_type();
+                let type_ = r#type.print_rust_type();
                 quote! { #nodes::#type_ }
             }
             Self::Union { types, .. } => {
-                let mut names = types.iter().map(|r#type| r#type.name.clone()).collect::<Vec<_>>();
-                // `names.sort_by_key(|name| &name.sexp_name)` and
-                // `names.dedup_by_key(|name| &name.sexp_name)` give borrow-check error
-                //   and I have NO idea why (either it's a compiler bug or I'm clueless)
-                names.sort_unstable_by(|lhs, rhs| lhs.sexp_name.cmp(&rhs.sexp_name));
-                names.dedup_by(|lhs, rhs| lhs.sexp_name == rhs.sexp_name);
-                NodeName::print_query_capture_sum_type(capture_variant_name, &names, nodes, tree_sitter, type_sitter_lib, anon_unions)
+                let mut types = types.iter().collect::<Vec<_>>();
+                // Can't do `..._by_key` because `K` has an existential lifetime, which Rust can't express.
+                types.sort_unstable_by(|lhs, rhs| lhs.name.cmp(&rhs.name));
+                types.dedup_by(|lhs, rhs| lhs.name == rhs.name);
+
+                NodeType::print_query_capture_sum_type(capture_variant_name, &types, nodes, ctx, anon_unions)
             }
             Self::Untyped { is_named } => match is_named {
                 false => quote! { #type_sitter_lib::UntypedNode<'tree> },

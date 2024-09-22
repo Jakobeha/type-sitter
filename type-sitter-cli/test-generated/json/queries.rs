@@ -1,10 +1,3 @@
-#[allow(non_upper_case_globals)]
-static __Highlights__: std::sync::OnceLock<type_sitter::raw::Query> = std::sync::OnceLock::new();
-#[allow(non_snake_case)]
-fn __Mk__Highlights() -> type_sitter::raw::Query {
-    # [allow (unused_mut)] let mut query = type_sitter :: raw :: Query :: new (& tree_sitter_json :: LANGUAGE . into () , "(pair\n  key: (_) @string.special.key)\n\n(string) @string\n\n(number) @number\n\n[\n  (null)\n  (true)\n  (false)\n] @constant.builtin\n\n(escape_sequence) @escape\n\n(comment) @comment\n") . expect ("query parsed at compile-time but failed at runtime. Is the language 'tree_sitter_json' correct, and did you use the same tree-sitter / tree_sitter_json version?") ;
-    query
-}
 #[doc = "Typed version of the query:\n\n```sexp\n(pair\n  key: (_) @string.special.key)\n\n(string) @string\n\n(number) @number\n\n[\n  (null)\n  (true)\n  (false)\n] @constant.builtin\n\n(escape_sequence) @escape\n\n(comment) @comment\n\n```"]
 #[allow(non_camel_case_types)]
 #[derive(Debug, Clone, Copy)]
@@ -91,7 +84,10 @@ impl type_sitter::Query for Highlights {
         "(pair\n  key: (_) @string.special.key)\n\n(string) @string\n\n(number) @number\n\n[\n  (null)\n  (true)\n  (false)\n] @constant.builtin\n\n(escape_sequence) @escape\n\n(comment) @comment\n"
     }
     fn raw(&self) -> &'static type_sitter::raw::Query {
-        __Highlights__.get_or_init(__Mk__Highlights)
+        #[allow(non_upper_case_globals)]
+        static __Highlights__: std::sync::OnceLock<type_sitter::raw::Query> =
+            std::sync::OnceLock::new();
+        __Highlights__ . get_or_init (|| { # [allow (unused_mut)] let mut query = type_sitter :: raw :: Query :: new (& tree_sitter_json :: LANGUAGE . into () , "(pair\n  key: (_) @string.special.key)\n\n(string) @string\n\n(number) @number\n\n[\n  (null)\n  (true)\n  (false)\n] @constant.builtin\n\n(escape_sequence) @escape\n\n(comment) @comment\n") . expect ("query parsed at compile-time but failed at runtime. Is the language 'tree_sitter_json' correct, and did you use the same tree-sitter / tree_sitter_json version?") ; query })
     }
     #[inline]
     unsafe fn wrap_match<'query, 'tree>(
@@ -118,7 +114,6 @@ impl<'query, 'tree: 'query> HighlightsMatch<'query, 'tree> {
     #[doc = "(_) @string.special.key"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn string_special_key(&self) -> Option<type_sitter::UntypedNamedNode<'tree>> {
         { [0u32] . into_iter () . flat_map (| i | self . 0 . nodes_for_capture_index (i)) . map (| n | unsafe { < type_sitter :: UntypedNamedNode < 'tree > as type_sitter :: Node < 'tree >> :: from_raw_unchecked (n) }) } . next ()
     }
@@ -129,7 +124,6 @@ impl<'query, 'tree: 'query> HighlightsMatch<'query, 'tree> {
     #[doc = "(string) @string"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn string(&self) -> Option<super::nodes::String<'tree>> {
         {
             [1u32]
@@ -148,7 +142,6 @@ impl<'query, 'tree: 'query> HighlightsMatch<'query, 'tree> {
     #[doc = "(number) @number"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn number(&self) -> Option<super::nodes::Number<'tree>> {
         {
             [2u32]
@@ -167,7 +160,6 @@ impl<'query, 'tree: 'query> HighlightsMatch<'query, 'tree> {
     #[doc = "[\n  (null)\n  (true)\n  (false)\n] @constant.builtin"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn constant_builtin(&self) -> Option<anon_unions::ConstantBuiltin<'tree>> {
         { [3u32] . into_iter () . flat_map (| i | self . 0 . nodes_for_capture_index (i)) . map (| n | unsafe { < anon_unions :: ConstantBuiltin < 'tree > as type_sitter :: Node < 'tree >> :: from_raw_unchecked (n) }) } . next ()
     }
@@ -178,7 +170,6 @@ impl<'query, 'tree: 'query> HighlightsMatch<'query, 'tree> {
     #[doc = "(escape_sequence) @escape"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn escape(&self) -> Option<super::nodes::EscapeSequence<'tree>> {
         { [4u32] . into_iter () . flat_map (| i | self . 0 . nodes_for_capture_index (i)) . map (| n | unsafe { < super :: nodes :: EscapeSequence < 'tree > as type_sitter :: Node < 'tree >> :: from_raw_unchecked (n) }) } . next ()
     }
@@ -189,7 +180,6 @@ impl<'query, 'tree: 'query> HighlightsMatch<'query, 'tree> {
     #[doc = "(comment) @comment"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn comment(&self) -> Option<super::nodes::Comment<'tree>> {
         {
             [5u32]
@@ -239,7 +229,6 @@ impl<'query, 'tree: 'query> HighlightsCapture<'query, 'tree> {
     #[doc = "(_) @string.special.key"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn as_string_special_key(&self) -> Option<&type_sitter::UntypedNamedNode<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::StringSpecialKey { node, .. } = self {
@@ -255,7 +244,6 @@ impl<'query, 'tree: 'query> HighlightsCapture<'query, 'tree> {
     #[doc = "(string) @string"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn as_string(&self) -> Option<&super::nodes::String<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::String { node, .. } = self {
@@ -271,7 +259,6 @@ impl<'query, 'tree: 'query> HighlightsCapture<'query, 'tree> {
     #[doc = "(number) @number"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn as_number(&self) -> Option<&super::nodes::Number<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::Number { node, .. } = self {
@@ -287,7 +274,6 @@ impl<'query, 'tree: 'query> HighlightsCapture<'query, 'tree> {
     #[doc = "[\n  (null)\n  (true)\n  (false)\n] @constant.builtin"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn as_constant_builtin(&self) -> Option<&anon_unions::ConstantBuiltin<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::ConstantBuiltin { node, .. } = self {
@@ -303,7 +289,6 @@ impl<'query, 'tree: 'query> HighlightsCapture<'query, 'tree> {
     #[doc = "(escape_sequence) @escape"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn as_escape(&self) -> Option<&super::nodes::EscapeSequence<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::Escape { node, .. } = self {
@@ -319,7 +304,6 @@ impl<'query, 'tree: 'query> HighlightsCapture<'query, 'tree> {
     #[doc = "(comment) @comment"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn as_comment(&self) -> Option<&super::nodes::Comment<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::Comment { node, .. } = self {
@@ -559,7 +543,6 @@ pub mod anon_unions {
     impl<'tree> ConstantBuiltin<'tree> {
         #[doc = "Returns the node if it is of type `false` ([`False`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_false(self) -> Option<False<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::False(x) = self {
@@ -570,7 +553,6 @@ pub mod anon_unions {
         }
         #[doc = "Returns the node if it is of type `null` ([`Null`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_null(self) -> Option<Null<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Null(x) = self {
@@ -581,7 +563,6 @@ pub mod anon_unions {
         }
         #[doc = "Returns the node if it is of type `true` ([`True`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_true(self) -> Option<True<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::True(x) = self {

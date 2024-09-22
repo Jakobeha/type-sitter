@@ -43,7 +43,7 @@ macro_rules! ident {
 }
 pub(crate) use ident;
 
-pub fn _ident(name: &str, type_desc: impl FnOnce() -> String) -> Result<Ident, Error> {
+pub(crate) fn _ident(name: &str, type_desc: impl FnOnce() -> String) -> Result<Ident, Error> {
     match parse_str::<Ident>(name) {
         Ok(ident) => Ok(ident),
         Err(err) => Err(Error::IllegalIdentifier {
@@ -55,11 +55,11 @@ pub fn _ident(name: &str, type_desc: impl FnOnce() -> String) -> Result<Ident, E
 }
 
 /// Create a literal string
-pub fn lit_str(contents: &str) -> LitStr {
+pub(crate) fn lit_str(contents: &str) -> LitStr {
     LitStr::new(contents, Span::call_site())
 }
 
 /// Create a literal array
-pub fn lit_array<T: ToTokens>(contents: impl Iterator<Item=T>) -> TokenStream {
+pub(crate) fn lit_array<T: ToTokens>(contents: impl Iterator<Item=T>) -> TokenStream {
     quote! { [#(#contents),*] }
 }

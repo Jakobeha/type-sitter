@@ -1,9 +1,9 @@
-use std::borrow::Cow;
-use std::collections::{HashMap, VecDeque};
-use quote::ToTokens;
-use syn::Path;
-use crate::node_types::types::{NodeModule, NodeType};
 use crate::queries::sexp::{Atom, GroupType, SExp};
+use crate::{NodeModule, NodeName, NodeType, NodeTypeMap};
+use quote::ToTokens;
+use std::borrow::Cow;
+use std::collections::VecDeque;
+use syn::Path;
 
 pub(super) enum SExpNodeType {
     Single { r#type: NodeType },
@@ -21,8 +21,8 @@ impl SExpNodeType {
                 Self::Untyped { is_named: self_is_named && other.is_named() }
             },
             (Self::Single { r#type: self_type }, Self::Single { r#type }) => {
-                let self_is_named = matches!(self_type.name.module, NodeModule::Toplevel);
-                let is_named = matches!(r#type.name.module, NodeModule::Toplevel);
+                let self_is_named = matches!(self_type.rust_names.module, NodeModule::Toplevel);
+                let is_named = matches!(r#type.rust_names.module, NodeModule::Toplevel);
                 Self::Union {
                     types: VecDeque::from([self_type, r#type]),
                     are_all_variants_named: self_is_named && is_named
@@ -32,7 +32,7 @@ impl SExpNodeType {
                 Self::Union { mut types, are_all_variants_named },
                 Self::Single { r#type }
             ) => {
-                let is_named = matches!(r#type.name.module, NodeModule::Toplevel);
+                let is_named = matches!(r#type.rust_names.module, NodeModule::Toplevel);
                 types.push_back(r#type);
                 Self::Union {
                     types,
@@ -43,7 +43,7 @@ impl SExpNodeType {
                 Self::Single { r#type: self_type },
                 Self::Union { mut types, are_all_variants_named }
             ) => {
-                let self_is_named = matches!(self_type.name.module, NodeModule::Toplevel);
+                let self_is_named = matches!(self_type.rust_names.module, NodeModule::Toplevel);
                 types.push_front(self_type);
                 Self::Union {
                     types,
@@ -66,7 +66,7 @@ impl SExpNodeType {
     pub(super) fn is_named(&self) -> bool {
         match self {
             Self::Untyped { is_named } => *is_named,
-            Self::Single { r#type } => matches!(r#type.name.module, NodeModule::Toplevel),
+            Self::Single { r#type } => matches!(r#type.rust_names.module, NodeModule::Toplevel),
             Self::Union { are_all_variants_named, .. } => *are_all_variants_named
         }
     }
@@ -78,7 +78,7 @@ impl SExpNodeType {
                 false => Cow::Borrowed("type_sitter_lib::UntypedNode"),
                 true => Cow::Borrowed("type_sitter_lib::UntypedNamedNode"),
             },
-            Self::Single { r#type } => Cow::Owned(format!("{}::{}", nodes.to_token_stream().to_string().replace(" ", ""), r#type.name.rust_type_path())),
+            Self::Single { r#type } => Cow::Owned(format!("{}::{}", nodes.to_token_stream().to_string().replace(" ", ""), r#type.rust_type_path())),
             Self::Union { .. } => Cow::Owned(format!("anon_unions::{}", capture_variant_name))
         }
     }
@@ -103,38 +103,50 @@ impl FromIterator<SExpNodeType> for SExpNodeType {
 }
 
 impl<'tree> SExp<'tree> {
-    pub(super) fn node_type(&self, is_head: bool, node_type_map: &HashMap<String, NodeType>) -> SExpNodeType {
+    pub(super) fn node_type(&self, is_head: bool, all_types: &NodeTypeMap) -> SExpNodeType {
         match self {
-            SExp::Atom { atom, .. } => atom.node_type(is_head, node_type_map),
+            SExp::Atom { atom, .. } => atom.node_type(is_head, all_types),
             SExp::Group { group_type, items, .. } => match group_type {
                 GroupType::Paren => match items.get(0) {
                     None => panic!("empty paren group isn't allowed in a tree-sitter query"),
-                    Some(item) => item.node_type(true, node_type_map)
+                    Some(item) => item.node_type(true, all_types)
                 },
-                GroupType::Bracket => items.iter().map(|item| item.node_type(is_head, node_type_map)).collect()
+                GroupType::Bracket => items.iter().map(|item| item.node_type(is_head, all_types)).collect()
             }
         }
     }
 }
 
 impl<'tree> Atom<'tree> {
-    pub(super) fn node_type(&self, is_head: bool, node_type_map: &HashMap<String, NodeType>) -> SExpNodeType {
+    pub(super) fn node_type(&self, is_head: bool, all_types: &NodeTypeMap) -> SExpNodeType {
         match self {
             Atom::Wildcard => SExpNodeType::Untyped { is_named: is_head },
             Atom::Anchor => panic!("anchor doesn't have a node type (note: capturing an anchor isn't allowed in a tree-sitter query)"),
             Atom::Field { .. } => panic!("field doesn't have a node type (note: capturing a field isn't allowed in a tree-sitter query)"),
             Atom::Ident { name } => {
-                let node_type = node_type_map
-                    .get(*name)
+                let node_name = NodeName {
+                    sexp_name: name.to_string(),
+                    is_named: true,
+                };
+
+                let node_type = all_types
+                    .get(&node_name)
                     .cloned()
                     .expect("identifier not found in node type map");
+
                 SExpNodeType::from(node_type)
             },
             Atom::String { content } => {
-                let node_type = node_type_map
-                    .get(&**content)
+                let node_name = NodeName {
+                    sexp_name: content.to_string(),
+                    is_named: false,
+                };
+
+                let node_type = all_types
+                    .get(&node_name)
                     .cloned()
                     .expect("string not found in node type map");
+
                 SExpNodeType::from(node_type)
             },
             Atom::Negation { .. } => SExpNodeType::Untyped { is_named: true },

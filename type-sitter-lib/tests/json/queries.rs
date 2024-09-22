@@ -1,17 +1,3 @@
-#[allow(non_upper_case_globals)]
-static __Highlights__: std::sync::OnceLock<yak_sitter::Query> = std::sync::OnceLock::new();
-#[allow(non_snake_case)]
-fn __Mk__Highlights() -> yak_sitter::Query {
-    #[allow(unused_mut)]
-    let mut query = yak_sitter::Query::new(
-            &tree_sitter_json::LANGUAGE.into(),
-            "(pair\n  key: (_) @string.special.key)\n\n(string) @string\n\n(number) @number\n\n[\n  (null)\n  (true)\n  (false)\n] @constant.builtin\n\n(escape_sequence) @escape\n\n(comment) @comment\n",
-        )
-        .expect(
-            "query parsed at compile-time but failed at runtime. Is the language 'tree_sitter_json' correct, and did you use the same tree-sitter / tree_sitter_json version?",
-        );
-    query
-}
 /**Typed version of the query:
 
 ```sexp
@@ -208,7 +194,20 @@ impl type_sitter_lib::Query for Highlights {
         "(pair\n  key: (_) @string.special.key)\n\n(string) @string\n\n(number) @number\n\n[\n  (null)\n  (true)\n  (false)\n] @constant.builtin\n\n(escape_sequence) @escape\n\n(comment) @comment\n"
     }
     fn raw(&self) -> &'static yak_sitter::Query {
-        __Highlights__.get_or_init(__Mk__Highlights)
+        #[allow(non_upper_case_globals)]
+        static __Highlights__: std::sync::OnceLock<yak_sitter::Query> = std::sync::OnceLock::new();
+        __Highlights__
+            .get_or_init(|| {
+                #[allow(unused_mut)]
+                let mut query = yak_sitter::Query::new(
+                        &tree_sitter_json::LANGUAGE.into(),
+                        "(pair\n  key: (_) @string.special.key)\n\n(string) @string\n\n(number) @number\n\n[\n  (null)\n  (true)\n  (false)\n] @constant.builtin\n\n(escape_sequence) @escape\n\n(comment) @comment\n",
+                    )
+                    .expect(
+                        "query parsed at compile-time but failed at runtime. Is the language 'tree_sitter_json' correct, and did you use the same tree-sitter / tree_sitter_json version?",
+                    );
+                query
+            })
     }
     #[inline]
     unsafe fn wrap_match<'query, 'tree>(
@@ -285,7 +284,6 @@ impl<'query, 'tree: 'query> HighlightsMatch<'query, 'tree> {
     ///(_) @string.special.key
     ///```
     #[inline]
-    #[allow(non_snake_case)]
     pub fn string_special_key(
         &self,
     ) -> Option<type_sitter_lib::UntypedNamedNode<'tree>> {
@@ -308,7 +306,6 @@ impl<'query, 'tree: 'query> HighlightsMatch<'query, 'tree> {
     ///(string) @string
     ///```
     #[inline]
-    #[allow(non_snake_case)]
     pub fn string(&self) -> Option<super::nodes::String<'tree>> {
         {
             [1u32]
@@ -329,7 +326,6 @@ impl<'query, 'tree: 'query> HighlightsMatch<'query, 'tree> {
     ///(number) @number
     ///```
     #[inline]
-    #[allow(non_snake_case)]
     pub fn number(&self) -> Option<super::nodes::Number<'tree>> {
         {
             [2u32]
@@ -354,7 +350,6 @@ impl<'query, 'tree: 'query> HighlightsMatch<'query, 'tree> {
 ] @constant.builtin*/
     ///```
     #[inline]
-    #[allow(non_snake_case)]
     pub fn constant_builtin(&self) -> Option<anon_unions::ConstantBuiltin<'tree>> {
         {
             [3u32]
@@ -375,7 +370,6 @@ impl<'query, 'tree: 'query> HighlightsMatch<'query, 'tree> {
     ///(escape_sequence) @escape
     ///```
     #[inline]
-    #[allow(non_snake_case)]
     pub fn escape(&self) -> Option<super::nodes::EscapeSequence<'tree>> {
         {
             [4u32]
@@ -396,7 +390,6 @@ impl<'query, 'tree: 'query> HighlightsMatch<'query, 'tree> {
     ///(comment) @comment
     ///```
     #[inline]
-    #[allow(non_snake_case)]
     pub fn comment(&self) -> Option<super::nodes::Comment<'tree>> {
         {
             [5u32]
@@ -447,7 +440,6 @@ impl<'query, 'tree: 'query> HighlightsCapture<'query, 'tree> {
     ///(_) @string.special.key
     ///```
     #[inline]
-    #[allow(non_snake_case)]
     pub fn as_string_special_key(
         &self,
     ) -> Option<&type_sitter_lib::UntypedNamedNode<'tree>> {
@@ -461,7 +453,6 @@ impl<'query, 'tree: 'query> HighlightsCapture<'query, 'tree> {
     ///(string) @string
     ///```
     #[inline]
-    #[allow(non_snake_case)]
     pub fn as_string(&self) -> Option<&super::nodes::String<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::String { node, .. } = self { Some(node) } else { None }
@@ -473,7 +464,6 @@ impl<'query, 'tree: 'query> HighlightsCapture<'query, 'tree> {
     ///(number) @number
     ///```
     #[inline]
-    #[allow(non_snake_case)]
     pub fn as_number(&self) -> Option<&super::nodes::Number<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::Number { node, .. } = self { Some(node) } else { None }
@@ -489,7 +479,6 @@ impl<'query, 'tree: 'query> HighlightsCapture<'query, 'tree> {
 ] @constant.builtin*/
     ///```
     #[inline]
-    #[allow(non_snake_case)]
     pub fn as_constant_builtin(&self) -> Option<&anon_unions::ConstantBuiltin<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::ConstantBuiltin { node, .. } = self { Some(node) } else { None }
@@ -501,7 +490,6 @@ impl<'query, 'tree: 'query> HighlightsCapture<'query, 'tree> {
     ///(escape_sequence) @escape
     ///```
     #[inline]
-    #[allow(non_snake_case)]
     pub fn as_escape(&self) -> Option<&super::nodes::EscapeSequence<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::Escape { node, .. } = self { Some(node) } else { None }
@@ -513,7 +501,6 @@ impl<'query, 'tree: 'query> HighlightsCapture<'query, 'tree> {
     ///(comment) @comment
     ///```
     #[inline]
-    #[allow(non_snake_case)]
     pub fn as_comment(&self) -> Option<&super::nodes::Comment<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::Comment { node, .. } = self { Some(node) } else { None }
@@ -801,21 +788,18 @@ pub mod anon_unions {
     impl<'tree> ConstantBuiltin<'tree> {
         ///Returns the node if it is of type `false` ([`False`]), otherwise returns `None`
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_false(self) -> Option<False<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::False(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of type `null` ([`Null`]), otherwise returns `None`
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_null(self) -> Option<Null<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Null(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of type `true` ([`True`]), otherwise returns `None`
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_true(self) -> Option<True<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::True(x) = self { Some(x) } else { None }

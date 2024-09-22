@@ -4,14 +4,16 @@ use syn::parse_quote;
 
 pub use crate::error::*;
 pub use crate::node_types::*;
+pub(crate) use crate::print_ctx::*;
 pub use crate::queries::*;
+pub use anon_unions::*;
 
 mod error;
-mod names;
 mod node_types;
 mod mk_syntax;
 mod queries;
 mod anon_unions;
+mod print_ctx;
 
 /// = `parse_quote!(type_sitter)`. The default path to the `type_sitter` crate.
 pub fn type_sitter() -> syn::Path {

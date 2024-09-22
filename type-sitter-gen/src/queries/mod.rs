@@ -7,20 +7,16 @@ mod sexp;
 mod sexp_node_type;
 mod generated_tokens;
 
-use std::collections::HashMap;
-use std::fs::{read_dir, read_to_string};
-use std::path::Path;
-use convert_case::{Case, Casing};
-use quote::quote;
-use tree_sitter::Query;
-use crate::{type_sitter, type_sitter_raw, Error};
 use crate::mk_syntax::ident;
 use crate::queries::dyload_language::dyload_language;
 use crate::queries::sexp::SExpSeq;
-pub use generated_tokens::GeneratedQueryTokens;
-use crate::names::make_valid;
-use crate::node_types::parse_node_types;
-use crate::node_types::types::NodeType;
+use crate::{make_valid, parse_node_type_map, type_sitter, type_sitter_raw, Error, PrintCtx};
+use convert_case::{Case, Casing};
+pub use generated_tokens::*;
+use quote::quote;
+use std::fs::{read_dir, read_to_string};
+use std::path::Path;
+use tree_sitter::Query;
 
 /// Generate source code (tokens) of wrappers for queries, and the generated code will refer to the
 /// provided modules instead of `type_sitter::raw` and `type_sitter` respectively.
@@ -118,36 +114,43 @@ pub fn generate_queries_with_custom_module_paths(
     type_sitter_lib: &syn::Path,
 ) -> Result<GeneratedQueryTokens, Error> {
     let language_path = language_path.as_ref();
-    let node_type_map = parse_node_type_map(language_path)?;
+    let node_types_path = language_path.join("src/node-types.json");
+    let all_types = parse_node_type_map(node_types_path)?;
 
-    _generate_queries(path, language_path, &node_type_map, nodes, use_yak_sitter, tree_sitter, type_sitter_lib)
+    _generate_queries(
+        path,
+        language_path,
+        nodes,
+        use_yak_sitter,
+        PrintCtx {
+            all_types: &all_types,
+            tree_sitter,
+            type_sitter_lib
+        }
+    )
 }
 
 fn _generate_queries(
     path: impl AsRef<Path>,
     language_path: impl AsRef<Path>,
-    node_type_map: &HashMap<String, NodeType>,
     nodes: &syn::Path,
     use_yak_sitter: bool,
-    tree_sitter: &syn::Path,
-    type_sitter_lib: &syn::Path,
+    ctx: PrintCtx,
 ) -> Result<GeneratedQueryTokens, Error>{
     let path = path.as_ref();
     if path.is_dir() {
-        _generate_queries_from_dir(path, language_path, node_type_map, nodes, use_yak_sitter, tree_sitter, type_sitter_lib)
+        _generate_queries_from_dir(path, language_path, nodes, use_yak_sitter, ctx)
     } else {
-        _generate_query_from_file(path, language_path, node_type_map, &[], &[], &[], nodes, use_yak_sitter, tree_sitter, type_sitter_lib)
+        _generate_query_from_file(path, language_path, &[], &[], &[], nodes, use_yak_sitter, ctx)
     }
 }
 
 fn _generate_queries_from_dir(
     path: impl AsRef<Path>,
     language_path: impl AsRef<Path>,
-    node_type_map: &HashMap<String, NodeType>,
     nodes: &syn::Path,
     use_yak_sitter: bool,
-    tree_sitter: &syn::Path,
-    type_sitter_lib: &syn::Path,
+    ctx: PrintCtx,
 ) -> Result<GeneratedQueryTokens, Error> {
     let path = path.as_ref();
     let language_path = language_path.as_ref();
@@ -164,7 +167,7 @@ fn _generate_queries_from_dir(
         if entry_is_dir || has_extension(&entry_path, "scm") {
             let entry_name = entry_path.file_stem().unwrap().to_string_lossy();
 
-            let entry_code = _generate_queries(&entry_path, language_path, node_type_map, nodes, use_yak_sitter, tree_sitter, type_sitter_lib)?;
+            let entry_code = _generate_queries(&entry_path, language_path, nodes, use_yak_sitter, ctx)?;
 
             match entry_is_dir {
                 false => queries.append(entry_code),
@@ -223,33 +226,34 @@ pub fn generate_query_from_file_with_custom_module_paths(
     type_sitter_lib: &syn::Path,
 ) -> Result<GeneratedQueryTokens, Error> {
     let language_path = language_path.as_ref();
-    let node_type_map = parse_node_type_map(language_path)?;
+    let node_types_path = language_path.join("src/node-types.json");
+    let all_types = parse_node_type_map(node_types_path)?;
 
     _generate_query_from_file(
         path,
         language_path,
-        &node_type_map,
         disabled_patterns,
         disabled_capture_names,
         disabled_capture_idxs,
         nodes,
         use_yak_sitter,
-        tree_sitter,
-        type_sitter_lib,
+        PrintCtx {
+            all_types: &all_types,
+            tree_sitter,
+            type_sitter_lib
+        }
     )
 }
 
 fn _generate_query_from_file(
     path: impl AsRef<Path>,
     language_path: impl AsRef<Path>,
-    node_type_map: &HashMap<String, NodeType>,
     disabled_patterns: &[&str],
     disabled_capture_names: &[&str],
     disabled_capture_idxs: &[usize],
     nodes: &syn::Path,
     use_yak_sitter: bool,
-    tree_sitter: &syn::Path,
-    type_sitter_lib: &syn::Path,
+    ctx: PrintCtx,
 ) -> Result<GeneratedQueryTokens, Error> {
     let path = path.as_ref();
     let language_path = language_path.as_ref();
@@ -280,20 +284,12 @@ fn _generate_query_from_file(
         disabled_capture_names,
         disabled_capture_idxs,
         nodes,
-        node_type_map,
         use_yak_sitter,
-        tree_sitter,
-        type_sitter_lib,
+        ctx,
         &mut generated.anon_unions,
     );
     generated.append_tokens(query_tokens);
     Ok(generated)
-}
-
-fn parse_node_type_map(language_path: &Path) -> Result<HashMap<String, NodeType>, Error> {
-    parse_node_types(language_path.join("src/node-types.json"))?
-        .map(|r| r.map(|node_type| (node_type.name.sexp_name.clone(), node_type)))
-        .collect::<Result<HashMap<_, _>, _>>()
 }
 
 fn language_name(path: &Path) -> Result<String, Error> {

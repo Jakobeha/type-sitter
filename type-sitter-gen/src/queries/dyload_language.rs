@@ -24,7 +24,7 @@ const LOADED_LANGUAGES: LazyCell<RwLock<HashMap<PathBuf, LanguageFn>>> =
 const REGISTERED_HANDLER: AtomicBool = AtomicBool::new(false);
 const TESTING_LOADED_LANGUAGE: AtomicBool = AtomicBool::new(false);
 
-pub fn dyload_language(path: impl AsRef<Path>) -> Result<Language, Error> {
+pub(crate) fn dyload_language(path: impl AsRef<Path>) -> Result<Language, Error> {
     register_handler_if_necessary();
 
     let path = path.as_ref();

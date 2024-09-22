@@ -1,7 +1,7 @@
-use std::fmt::{Display, Formatter};
+use crate::NodeType;
 use indexmap::IndexMap;
 use proc_macro2::TokenStream;
-use crate::names::NodeName;
+use std::fmt::{Display, Formatter};
 
 /// Holds the tokens to define anonymous unions, so that there aren't duplicates
 pub type AnonUnions = IndexMap<AnonUnionId, TokenStream>;
@@ -9,22 +9,18 @@ pub type AnonUnions = IndexMap<AnonUnionId, TokenStream>;
 /// Id for an anonymous union to reference it and prevent duplicates
 #[derive(Debug, Clone, PartialEq, Eq, Hash)]
 pub struct AnonUnionId {
-    pub name: String
+    pub(super) name: String
 }
 
 impl AnonUnionId {
     /// Create an id for the anonymous union of `names`
-    pub fn new(names: &[NodeName]) -> Self {
-        Self {
-            name: NodeName::anon_union_type_name(names).to_string()
-        }
+    pub(crate) fn new(types: &[&NodeType]) -> Self {
+        Self { name: NodeType::anon_union_type_name(types.iter().copied()).to_string() }
     }
 
     /// Create an id for the anonymous union for a query capture variant named `capture_variant_name`
-    pub fn query_capture(capture_variant_name: &str) -> Self {
-        Self {
-            name: capture_variant_name.to_string()
-        }
+    pub(crate) fn query_capture(capture_variant_name: &str) -> Self {
+        Self { name: capture_variant_name.to_string() }
     }
 }
 

@@ -1,10 +1,3 @@
-#[allow(non_upper_case_globals)]
-static __Highlights__: std::sync::OnceLock<type_sitter::raw::Query> = std::sync::OnceLock::new();
-#[allow(non_snake_case)]
-fn __Mk__Highlights() -> type_sitter::raw::Query {
-    # [allow (unused_mut)] let mut query = type_sitter :: raw :: Query :: new (& tree_sitter_rust :: LANGUAGE . into () , "; Identifiers\n\n(type_identifier) @type\n(primitive_type) @type.builtin\n(field_identifier) @property\n\n; Identifier conventions\n\n; Assume all-caps names are constants\n((identifier) @constant\n (#match? @constant \"^[A-Z][A-Z\\\\d_]+$'\"))\n\n; Assume uppercase names are enum constructors\n((identifier) @constructor\n (#match? @constructor \"^[A-Z]\"))\n\n; Assume that uppercase names in paths are types\n((scoped_identifier\n  path: (identifier) @type)\n (#match? @type \"^[A-Z]\"))\n((scoped_identifier\n  path: (scoped_identifier\n    name: (identifier) @type))\n (#match? @type \"^[A-Z]\"))\n((scoped_type_identifier\n  path: (identifier) @type)\n (#match? @type \"^[A-Z]\"))\n((scoped_type_identifier\n  path: (scoped_identifier\n    name: (identifier) @type))\n (#match? @type \"^[A-Z]\"))\n\n; Assume all qualified names in struct patterns are enum constructors. (They're\n; either that, or struct names; highlighting both as constructors seems to be\n; the less glaring choice of error, visually.)\n(struct_pattern\n  type: (scoped_type_identifier\n    name: (type_identifier) @constructor))\n\n; Function calls\n\n(call_expression\n  function: (identifier) @function)\n(call_expression\n  function: (field_expression\n    field: (field_identifier) @function.method))\n(call_expression\n  function: (scoped_identifier\n    \"::\"\n    name: (identifier) @function))\n\n(generic_function\n  function: (identifier) @function)\n(generic_function\n  function: (scoped_identifier\n    name: (identifier) @function))\n(generic_function\n  function: (field_expression\n    field: (field_identifier) @function.method))\n\n(macro_invocation\n  macro: (identifier) @function.macro\n  \"!\" @function.macro)\n\n; Function definitions\n\n(function_item (identifier) @function)\n(function_signature_item (identifier) @function)\n\n(line_comment) @comment\n(block_comment) @comment\n\n(line_comment (doc_comment)) @comment.documentation\n(block_comment (doc_comment)) @comment.documentation\n\n\"(\" @punctuation.bracket\n\")\" @punctuation.bracket\n\"[\" @punctuation.bracket\n\"]\" @punctuation.bracket\n\"{\" @punctuation.bracket\n\"}\" @punctuation.bracket\n\n(type_arguments\n  \"<\" @punctuation.bracket\n  \">\" @punctuation.bracket)\n(type_parameters\n  \"<\" @punctuation.bracket\n  \">\" @punctuation.bracket)\n\n\"::\" @punctuation.delimiter\n\":\" @punctuation.delimiter\n\".\" @punctuation.delimiter\n\",\" @punctuation.delimiter\n\";\" @punctuation.delimiter\n\n(parameter (identifier) @variable.parameter)\n\n(lifetime (identifier) @label)\n\n\"as\" @keyword\n\"async\" @keyword\n\"await\" @keyword\n\"break\" @keyword\n\"const\" @keyword\n\"continue\" @keyword\n\"default\" @keyword\n\"dyn\" @keyword\n\"else\" @keyword\n\"enum\" @keyword\n\"extern\" @keyword\n\"fn\" @keyword\n\"for\" @keyword\n\"if\" @keyword\n\"impl\" @keyword\n\"in\" @keyword\n\"let\" @keyword\n\"loop\" @keyword\n\"macro_rules!\" @keyword\n\"match\" @keyword\n\"mod\" @keyword\n\"move\" @keyword\n\"pub\" @keyword\n\"ref\" @keyword\n\"return\" @keyword\n\"static\" @keyword\n\"struct\" @keyword\n\"trait\" @keyword\n\"type\" @keyword\n\"union\" @keyword\n\"unsafe\" @keyword\n\"use\" @keyword\n\"where\" @keyword\n\"while\" @keyword\n\"yield\" @keyword\n(crate) @keyword\n(mutable_specifier) @keyword\n(use_list (self) @keyword)\n(scoped_use_list (self) @keyword)\n(scoped_identifier (self) @keyword)\n(super) @keyword\n\n(self) @variable.builtin\n\n(char_literal) @string\n(string_literal) @string\n(raw_string_literal) @string\n\n(boolean_literal) @constant.builtin\n(integer_literal) @constant.builtin\n(float_literal) @constant.builtin\n\n(escape_sequence) @escape\n\n(attribute_item) @attribute\n(inner_attribute_item) @attribute\n\n\"*\" @operator\n\"&\" @operator\n\"'\" @operator\n") . expect ("query parsed at compile-time but failed at runtime. Is the language 'tree_sitter_rust' correct, and did you use the same tree-sitter / tree_sitter_rust version?") ;
-    query
-}
 #[doc = "Typed version of the query:\n\n```sexp\n; Identifiers\n\n(type_identifier) @type\n(primitive_type) @type.builtin\n(field_identifier) @property\n\n; Identifier conventions\n\n; Assume all-caps names are constants\n((identifier) @constant\n (#match? @constant \"^[A-Z][A-Z\\\\d_]+$'\"))\n\n; Assume uppercase names are enum constructors\n((identifier) @constructor\n (#match? @constructor \"^[A-Z]\"))\n\n; Assume that uppercase names in paths are types\n((scoped_identifier\n  path: (identifier) @type)\n (#match? @type \"^[A-Z]\"))\n((scoped_identifier\n  path: (scoped_identifier\n    name: (identifier) @type))\n (#match? @type \"^[A-Z]\"))\n((scoped_type_identifier\n  path: (identifier) @type)\n (#match? @type \"^[A-Z]\"))\n((scoped_type_identifier\n  path: (scoped_identifier\n    name: (identifier) @type))\n (#match? @type \"^[A-Z]\"))\n\n; Assume all qualified names in struct patterns are enum constructors. (They're\n; either that, or struct names; highlighting both as constructors seems to be\n; the less glaring choice of error, visually.)\n(struct_pattern\n  type: (scoped_type_identifier\n    name: (type_identifier) @constructor))\n\n; Function calls\n\n(call_expression\n  function: (identifier) @function)\n(call_expression\n  function: (field_expression\n    field: (field_identifier) @function.method))\n(call_expression\n  function: (scoped_identifier\n    \"::\"\n    name: (identifier) @function))\n\n(generic_function\n  function: (identifier) @function)\n(generic_function\n  function: (scoped_identifier\n    name: (identifier) @function))\n(generic_function\n  function: (field_expression\n    field: (field_identifier) @function.method))\n\n(macro_invocation\n  macro: (identifier) @function.macro\n  \"!\" @function.macro)\n\n; Function definitions\n\n(function_item (identifier) @function)\n(function_signature_item (identifier) @function)\n\n(line_comment) @comment\n(block_comment) @comment\n\n(line_comment (doc_comment)) @comment.documentation\n(block_comment (doc_comment)) @comment.documentation\n\n\"(\" @punctuation.bracket\n\")\" @punctuation.bracket\n\"[\" @punctuation.bracket\n\"]\" @punctuation.bracket\n\"{\" @punctuation.bracket\n\"}\" @punctuation.bracket\n\n(type_arguments\n  \"<\" @punctuation.bracket\n  \">\" @punctuation.bracket)\n(type_parameters\n  \"<\" @punctuation.bracket\n  \">\" @punctuation.bracket)\n\n\"::\" @punctuation.delimiter\n\":\" @punctuation.delimiter\n\".\" @punctuation.delimiter\n\",\" @punctuation.delimiter\n\";\" @punctuation.delimiter\n\n(parameter (identifier) @variable.parameter)\n\n(lifetime (identifier) @label)\n\n\"as\" @keyword\n\"async\" @keyword\n\"await\" @keyword\n\"break\" @keyword\n\"const\" @keyword\n\"continue\" @keyword\n\"default\" @keyword\n\"dyn\" @keyword\n\"else\" @keyword\n\"enum\" @keyword\n\"extern\" @keyword\n\"fn\" @keyword\n\"for\" @keyword\n\"if\" @keyword\n\"impl\" @keyword\n\"in\" @keyword\n\"let\" @keyword\n\"loop\" @keyword\n\"macro_rules!\" @keyword\n\"match\" @keyword\n\"mod\" @keyword\n\"move\" @keyword\n\"pub\" @keyword\n\"ref\" @keyword\n\"return\" @keyword\n\"static\" @keyword\n\"struct\" @keyword\n\"trait\" @keyword\n\"type\" @keyword\n\"union\" @keyword\n\"unsafe\" @keyword\n\"use\" @keyword\n\"where\" @keyword\n\"while\" @keyword\n\"yield\" @keyword\n(crate) @keyword\n(mutable_specifier) @keyword\n(use_list (self) @keyword)\n(scoped_use_list (self) @keyword)\n(scoped_identifier (self) @keyword)\n(super) @keyword\n\n(self) @variable.builtin\n\n(char_literal) @string\n(string_literal) @string\n(raw_string_literal) @string\n\n(boolean_literal) @constant.builtin\n(integer_literal) @constant.builtin\n(float_literal) @constant.builtin\n\n(escape_sequence) @escape\n\n(attribute_item) @attribute\n(inner_attribute_item) @attribute\n\n\"*\" @operator\n\"&\" @operator\n\"'\" @operator\n\n```"]
 #[allow(non_camel_case_types)]
 #[derive(Debug, Clone, Copy)]
@@ -313,7 +306,10 @@ impl type_sitter::Query for Highlights {
         "; Identifiers\n\n(type_identifier) @type\n(primitive_type) @type.builtin\n(field_identifier) @property\n\n; Identifier conventions\n\n; Assume all-caps names are constants\n((identifier) @constant\n (#match? @constant \"^[A-Z][A-Z\\\\d_]+$'\"))\n\n; Assume uppercase names are enum constructors\n((identifier) @constructor\n (#match? @constructor \"^[A-Z]\"))\n\n; Assume that uppercase names in paths are types\n((scoped_identifier\n  path: (identifier) @type)\n (#match? @type \"^[A-Z]\"))\n((scoped_identifier\n  path: (scoped_identifier\n    name: (identifier) @type))\n (#match? @type \"^[A-Z]\"))\n((scoped_type_identifier\n  path: (identifier) @type)\n (#match? @type \"^[A-Z]\"))\n((scoped_type_identifier\n  path: (scoped_identifier\n    name: (identifier) @type))\n (#match? @type \"^[A-Z]\"))\n\n; Assume all qualified names in struct patterns are enum constructors. (They're\n; either that, or struct names; highlighting both as constructors seems to be\n; the less glaring choice of error, visually.)\n(struct_pattern\n  type: (scoped_type_identifier\n    name: (type_identifier) @constructor))\n\n; Function calls\n\n(call_expression\n  function: (identifier) @function)\n(call_expression\n  function: (field_expression\n    field: (field_identifier) @function.method))\n(call_expression\n  function: (scoped_identifier\n    \"::\"\n    name: (identifier) @function))\n\n(generic_function\n  function: (identifier) @function)\n(generic_function\n  function: (scoped_identifier\n    name: (identifier) @function))\n(generic_function\n  function: (field_expression\n    field: (field_identifier) @function.method))\n\n(macro_invocation\n  macro: (identifier) @function.macro\n  \"!\" @function.macro)\n\n; Function definitions\n\n(function_item (identifier) @function)\n(function_signature_item (identifier) @function)\n\n(line_comment) @comment\n(block_comment) @comment\n\n(line_comment (doc_comment)) @comment.documentation\n(block_comment (doc_comment)) @comment.documentation\n\n\"(\" @punctuation.bracket\n\")\" @punctuation.bracket\n\"[\" @punctuation.bracket\n\"]\" @punctuation.bracket\n\"{\" @punctuation.bracket\n\"}\" @punctuation.bracket\n\n(type_arguments\n  \"<\" @punctuation.bracket\n  \">\" @punctuation.bracket)\n(type_parameters\n  \"<\" @punctuation.bracket\n  \">\" @punctuation.bracket)\n\n\"::\" @punctuation.delimiter\n\":\" @punctuation.delimiter\n\".\" @punctuation.delimiter\n\",\" @punctuation.delimiter\n\";\" @punctuation.delimiter\n\n(parameter (identifier) @variable.parameter)\n\n(lifetime (identifier) @label)\n\n\"as\" @keyword\n\"async\" @keyword\n\"await\" @keyword\n\"break\" @keyword\n\"const\" @keyword\n\"continue\" @keyword\n\"default\" @keyword\n\"dyn\" @keyword\n\"else\" @keyword\n\"enum\" @keyword\n\"extern\" @keyword\n\"fn\" @keyword\n\"for\" @keyword\n\"if\" @keyword\n\"impl\" @keyword\n\"in\" @keyword\n\"let\" @keyword\n\"loop\" @keyword\n\"macro_rules!\" @keyword\n\"match\" @keyword\n\"mod\" @keyword\n\"move\" @keyword\n\"pub\" @keyword\n\"ref\" @keyword\n\"return\" @keyword\n\"static\" @keyword\n\"struct\" @keyword\n\"trait\" @keyword\n\"type\" @keyword\n\"union\" @keyword\n\"unsafe\" @keyword\n\"use\" @keyword\n\"where\" @keyword\n\"while\" @keyword\n\"yield\" @keyword\n(crate) @keyword\n(mutable_specifier) @keyword\n(use_list (self) @keyword)\n(scoped_use_list (self) @keyword)\n(scoped_identifier (self) @keyword)\n(super) @keyword\n\n(self) @variable.builtin\n\n(char_literal) @string\n(string_literal) @string\n(raw_string_literal) @string\n\n(boolean_literal) @constant.builtin\n(integer_literal) @constant.builtin\n(float_literal) @constant.builtin\n\n(escape_sequence) @escape\n\n(attribute_item) @attribute\n(inner_attribute_item) @attribute\n\n\"*\" @operator\n\"&\" @operator\n\"'\" @operator\n"
     }
     fn raw(&self) -> &'static type_sitter::raw::Query {
-        __Highlights__.get_or_init(__Mk__Highlights)
+        #[allow(non_upper_case_globals)]
+        static __Highlights__: std::sync::OnceLock<type_sitter::raw::Query> =
+            std::sync::OnceLock::new();
+        __Highlights__ . get_or_init (|| { # [allow (unused_mut)] let mut query = type_sitter :: raw :: Query :: new (& tree_sitter_rust :: LANGUAGE . into () , "; Identifiers\n\n(type_identifier) @type\n(primitive_type) @type.builtin\n(field_identifier) @property\n\n; Identifier conventions\n\n; Assume all-caps names are constants\n((identifier) @constant\n (#match? @constant \"^[A-Z][A-Z\\\\d_]+$'\"))\n\n; Assume uppercase names are enum constructors\n((identifier) @constructor\n (#match? @constructor \"^[A-Z]\"))\n\n; Assume that uppercase names in paths are types\n((scoped_identifier\n  path: (identifier) @type)\n (#match? @type \"^[A-Z]\"))\n((scoped_identifier\n  path: (scoped_identifier\n    name: (identifier) @type))\n (#match? @type \"^[A-Z]\"))\n((scoped_type_identifier\n  path: (identifier) @type)\n (#match? @type \"^[A-Z]\"))\n((scoped_type_identifier\n  path: (scoped_identifier\n    name: (identifier) @type))\n (#match? @type \"^[A-Z]\"))\n\n; Assume all qualified names in struct patterns are enum constructors. (They're\n; either that, or struct names; highlighting both as constructors seems to be\n; the less glaring choice of error, visually.)\n(struct_pattern\n  type: (scoped_type_identifier\n    name: (type_identifier) @constructor))\n\n; Function calls\n\n(call_expression\n  function: (identifier) @function)\n(call_expression\n  function: (field_expression\n    field: (field_identifier) @function.method))\n(call_expression\n  function: (scoped_identifier\n    \"::\"\n    name: (identifier) @function))\n\n(generic_function\n  function: (identifier) @function)\n(generic_function\n  function: (scoped_identifier\n    name: (identifier) @function))\n(generic_function\n  function: (field_expression\n    field: (field_identifier) @function.method))\n\n(macro_invocation\n  macro: (identifier) @function.macro\n  \"!\" @function.macro)\n\n; Function definitions\n\n(function_item (identifier) @function)\n(function_signature_item (identifier) @function)\n\n(line_comment) @comment\n(block_comment) @comment\n\n(line_comment (doc_comment)) @comment.documentation\n(block_comment (doc_comment)) @comment.documentation\n\n\"(\" @punctuation.bracket\n\")\" @punctuation.bracket\n\"[\" @punctuation.bracket\n\"]\" @punctuation.bracket\n\"{\" @punctuation.bracket\n\"}\" @punctuation.bracket\n\n(type_arguments\n  \"<\" @punctuation.bracket\n  \">\" @punctuation.bracket)\n(type_parameters\n  \"<\" @punctuation.bracket\n  \">\" @punctuation.bracket)\n\n\"::\" @punctuation.delimiter\n\":\" @punctuation.delimiter\n\".\" @punctuation.delimiter\n\",\" @punctuation.delimiter\n\";\" @punctuation.delimiter\n\n(parameter (identifier) @variable.parameter)\n\n(lifetime (identifier) @label)\n\n\"as\" @keyword\n\"async\" @keyword\n\"await\" @keyword\n\"break\" @keyword\n\"const\" @keyword\n\"continue\" @keyword\n\"default\" @keyword\n\"dyn\" @keyword\n\"else\" @keyword\n\"enum\" @keyword\n\"extern\" @keyword\n\"fn\" @keyword\n\"for\" @keyword\n\"if\" @keyword\n\"impl\" @keyword\n\"in\" @keyword\n\"let\" @keyword\n\"loop\" @keyword\n\"macro_rules!\" @keyword\n\"match\" @keyword\n\"mod\" @keyword\n\"move\" @keyword\n\"pub\" @keyword\n\"ref\" @keyword\n\"return\" @keyword\n\"static\" @keyword\n\"struct\" @keyword\n\"trait\" @keyword\n\"type\" @keyword\n\"union\" @keyword\n\"unsafe\" @keyword\n\"use\" @keyword\n\"where\" @keyword\n\"while\" @keyword\n\"yield\" @keyword\n(crate) @keyword\n(mutable_specifier) @keyword\n(use_list (self) @keyword)\n(scoped_use_list (self) @keyword)\n(scoped_identifier (self) @keyword)\n(super) @keyword\n\n(self) @variable.builtin\n\n(char_literal) @string\n(string_literal) @string\n(raw_string_literal) @string\n\n(boolean_literal) @constant.builtin\n(integer_literal) @constant.builtin\n(float_literal) @constant.builtin\n\n(escape_sequence) @escape\n\n(attribute_item) @attribute\n(inner_attribute_item) @attribute\n\n\"*\" @operator\n\"&\" @operator\n\"'\" @operator\n") . expect ("query parsed at compile-time but failed at runtime. Is the language 'tree_sitter_rust' correct, and did you use the same tree-sitter / tree_sitter_rust version?") ; query })
     }
     #[inline]
     unsafe fn wrap_match<'query, 'tree>(
@@ -344,7 +340,6 @@ impl<'query, 'tree: 'query> HighlightsMatch<'query, 'tree> {
     #[doc = "(identifier) @type"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn r#type(&self) -> Option<anon_unions::Type<'tree>> {
         {
             [0u32]
@@ -363,7 +358,6 @@ impl<'query, 'tree: 'query> HighlightsMatch<'query, 'tree> {
     #[doc = "(primitive_type) @type.builtin"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn type_builtin(&self) -> Option<super::nodes::PrimitiveType<'tree>> {
         { [1u32] . into_iter () . flat_map (| i | self . 0 . nodes_for_capture_index (i)) . map (| n | unsafe { < super :: nodes :: PrimitiveType < 'tree > as type_sitter :: Node < 'tree >> :: from_raw_unchecked (n) }) } . next ()
     }
@@ -374,7 +368,6 @@ impl<'query, 'tree: 'query> HighlightsMatch<'query, 'tree> {
     #[doc = "(field_identifier) @property"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn property(&self) -> Option<super::nodes::FieldIdentifier<'tree>> {
         { [2u32] . into_iter () . flat_map (| i | self . 0 . nodes_for_capture_index (i)) . map (| n | unsafe { < super :: nodes :: FieldIdentifier < 'tree > as type_sitter :: Node < 'tree >> :: from_raw_unchecked (n) }) } . next ()
     }
@@ -385,7 +378,6 @@ impl<'query, 'tree: 'query> HighlightsMatch<'query, 'tree> {
     #[doc = "(identifier) @constant"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn constant(&self) -> Option<super::nodes::Identifier<'tree>> {
         { [3u32] . into_iter () . flat_map (| i | self . 0 . nodes_for_capture_index (i)) . map (| n | unsafe { < super :: nodes :: Identifier < 'tree > as type_sitter :: Node < 'tree >> :: from_raw_unchecked (n) }) } . next ()
     }
@@ -397,7 +389,6 @@ impl<'query, 'tree: 'query> HighlightsMatch<'query, 'tree> {
     #[doc = "(type_identifier) @constructor"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn constructor(&self) -> Option<anon_unions::Constructor<'tree>> {
         { [4u32] . into_iter () . flat_map (| i | self . 0 . nodes_for_capture_index (i)) . map (| n | unsafe { < anon_unions :: Constructor < 'tree > as type_sitter :: Node < 'tree >> :: from_raw_unchecked (n) }) } . next ()
     }
@@ -413,7 +404,6 @@ impl<'query, 'tree: 'query> HighlightsMatch<'query, 'tree> {
     #[doc = "(identifier) @function"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn function(&self) -> Option<super::nodes::Identifier<'tree>> {
         { [5u32] . into_iter () . flat_map (| i | self . 0 . nodes_for_capture_index (i)) . map (| n | unsafe { < super :: nodes :: Identifier < 'tree > as type_sitter :: Node < 'tree >> :: from_raw_unchecked (n) }) } . next ()
     }
@@ -425,7 +415,6 @@ impl<'query, 'tree: 'query> HighlightsMatch<'query, 'tree> {
     #[doc = "(field_identifier) @function.method"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn function_method(&self) -> Option<super::nodes::FieldIdentifier<'tree>> {
         { [6u32] . into_iter () . flat_map (| i | self . 0 . nodes_for_capture_index (i)) . map (| n | unsafe { < super :: nodes :: FieldIdentifier < 'tree > as type_sitter :: Node < 'tree >> :: from_raw_unchecked (n) }) } . next ()
     }
@@ -437,7 +426,6 @@ impl<'query, 'tree: 'query> HighlightsMatch<'query, 'tree> {
     #[doc = "\"!\" @function.macro"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn function_macro(&self) -> Option<anon_unions::FunctionMacro<'tree>> {
         { [7u32] . into_iter () . flat_map (| i | self . 0 . nodes_for_capture_index (i)) . map (| n | unsafe { < anon_unions :: FunctionMacro < 'tree > as type_sitter :: Node < 'tree >> :: from_raw_unchecked (n) }) } . next ()
     }
@@ -449,7 +437,6 @@ impl<'query, 'tree: 'query> HighlightsMatch<'query, 'tree> {
     #[doc = "(block_comment) @comment"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn comment(&self) -> Option<anon_unions::Comment<'tree>> {
         {
             [8u32]
@@ -469,7 +456,6 @@ impl<'query, 'tree: 'query> HighlightsMatch<'query, 'tree> {
     #[doc = "(block_comment (doc_comment)) @comment.documentation"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn comment_documentation(&self) -> Option<anon_unions::CommentDocumentation<'tree>> {
         { [9u32] . into_iter () . flat_map (| i | self . 0 . nodes_for_capture_index (i)) . map (| n | unsafe { < anon_unions :: CommentDocumentation < 'tree > as type_sitter :: Node < 'tree >> :: from_raw_unchecked (n) }) } . next ()
     }
@@ -489,7 +475,6 @@ impl<'query, 'tree: 'query> HighlightsMatch<'query, 'tree> {
     #[doc = "\">\" @punctuation.bracket"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn punctuation_bracket(&self) -> Option<anon_unions::PunctuationBracket<'tree>> {
         { [10u32] . into_iter () . flat_map (| i | self . 0 . nodes_for_capture_index (i)) . map (| n | unsafe { < anon_unions :: PunctuationBracket < 'tree > as type_sitter :: Node < 'tree >> :: from_raw_unchecked (n) }) } . next ()
     }
@@ -504,7 +489,6 @@ impl<'query, 'tree: 'query> HighlightsMatch<'query, 'tree> {
     #[doc = "\";\" @punctuation.delimiter"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn punctuation_delimiter(&self) -> Option<anon_unions::PunctuationDelimiter<'tree>> {
         { [11u32] . into_iter () . flat_map (| i | self . 0 . nodes_for_capture_index (i)) . map (| n | unsafe { < anon_unions :: PunctuationDelimiter < 'tree > as type_sitter :: Node < 'tree >> :: from_raw_unchecked (n) }) } . next ()
     }
@@ -515,7 +499,6 @@ impl<'query, 'tree: 'query> HighlightsMatch<'query, 'tree> {
     #[doc = "(identifier) @variable.parameter"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn variable_parameter(&self) -> Option<super::nodes::Identifier<'tree>> {
         { [12u32] . into_iter () . flat_map (| i | self . 0 . nodes_for_capture_index (i)) . map (| n | unsafe { < super :: nodes :: Identifier < 'tree > as type_sitter :: Node < 'tree >> :: from_raw_unchecked (n) }) } . next ()
     }
@@ -526,7 +509,6 @@ impl<'query, 'tree: 'query> HighlightsMatch<'query, 'tree> {
     #[doc = "(identifier) @label"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn label(&self) -> Option<super::nodes::Identifier<'tree>> {
         { [13u32] . into_iter () . flat_map (| i | self . 0 . nodes_for_capture_index (i)) . map (| n | unsafe { < super :: nodes :: Identifier < 'tree > as type_sitter :: Node < 'tree >> :: from_raw_unchecked (n) }) } . next ()
     }
@@ -577,7 +559,6 @@ impl<'query, 'tree: 'query> HighlightsMatch<'query, 'tree> {
     #[doc = "(self) @keyword"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn keyword(&self) -> Option<anon_unions::Keyword<'tree>> {
         {
             [14u32]
@@ -596,7 +577,6 @@ impl<'query, 'tree: 'query> HighlightsMatch<'query, 'tree> {
     #[doc = "(self) @variable.builtin"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn variable_builtin(&self) -> Option<super::nodes::Self_<'tree>> {
         {
             [15u32]
@@ -617,7 +597,6 @@ impl<'query, 'tree: 'query> HighlightsMatch<'query, 'tree> {
     #[doc = "(raw_string_literal) @string"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn string(&self) -> impl Iterator<Item = anon_unions::String<'tree>> + '_ {
         {
             [16u32]
@@ -637,7 +616,6 @@ impl<'query, 'tree: 'query> HighlightsMatch<'query, 'tree> {
     #[doc = "(float_literal) @constant.builtin"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn constant_builtin(&self) -> Option<anon_unions::ConstantBuiltin<'tree>> {
         { [17u32] . into_iter () . flat_map (| i | self . 0 . nodes_for_capture_index (i)) . map (| n | unsafe { < anon_unions :: ConstantBuiltin < 'tree > as type_sitter :: Node < 'tree >> :: from_raw_unchecked (n) }) } . next ()
     }
@@ -648,7 +626,6 @@ impl<'query, 'tree: 'query> HighlightsMatch<'query, 'tree> {
     #[doc = "(escape_sequence) @escape"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn escape(&self) -> Option<super::nodes::EscapeSequence<'tree>> {
         { [18u32] . into_iter () . flat_map (| i | self . 0 . nodes_for_capture_index (i)) . map (| n | unsafe { < super :: nodes :: EscapeSequence < 'tree > as type_sitter :: Node < 'tree >> :: from_raw_unchecked (n) }) } . next ()
     }
@@ -660,7 +637,6 @@ impl<'query, 'tree: 'query> HighlightsMatch<'query, 'tree> {
     #[doc = "(inner_attribute_item) @attribute"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn attribute(&self) -> Option<anon_unions::Attribute<'tree>> {
         {
             [19u32]
@@ -683,7 +659,6 @@ impl<'query, 'tree: 'query> HighlightsMatch<'query, 'tree> {
     #[doc = "\"'\" @operator"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn operator(&self) -> Option<anon_unions::Operator<'tree>> {
         {
             [20u32]
@@ -741,7 +716,6 @@ impl<'query, 'tree: 'query> HighlightsCapture<'query, 'tree> {
     #[doc = "(identifier) @type"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn as_type(&self) -> Option<&anon_unions::Type<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::Type { node, .. } = self {
@@ -757,7 +731,6 @@ impl<'query, 'tree: 'query> HighlightsCapture<'query, 'tree> {
     #[doc = "(primitive_type) @type.builtin"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn as_type_builtin(&self) -> Option<&super::nodes::PrimitiveType<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::TypeBuiltin { node, .. } = self {
@@ -773,7 +746,6 @@ impl<'query, 'tree: 'query> HighlightsCapture<'query, 'tree> {
     #[doc = "(field_identifier) @property"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn as_property(&self) -> Option<&super::nodes::FieldIdentifier<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::Property { node, .. } = self {
@@ -789,7 +761,6 @@ impl<'query, 'tree: 'query> HighlightsCapture<'query, 'tree> {
     #[doc = "(identifier) @constant"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn as_constant(&self) -> Option<&super::nodes::Identifier<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::Constant { node, .. } = self {
@@ -806,7 +777,6 @@ impl<'query, 'tree: 'query> HighlightsCapture<'query, 'tree> {
     #[doc = "(type_identifier) @constructor"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn as_constructor(&self) -> Option<&anon_unions::Constructor<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::Constructor { node, .. } = self {
@@ -827,7 +797,6 @@ impl<'query, 'tree: 'query> HighlightsCapture<'query, 'tree> {
     #[doc = "(identifier) @function"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn as_function(&self) -> Option<&super::nodes::Identifier<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::Function { node, .. } = self {
@@ -844,7 +813,6 @@ impl<'query, 'tree: 'query> HighlightsCapture<'query, 'tree> {
     #[doc = "(field_identifier) @function.method"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn as_function_method(&self) -> Option<&super::nodes::FieldIdentifier<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::FunctionMethod { node, .. } = self {
@@ -861,7 +829,6 @@ impl<'query, 'tree: 'query> HighlightsCapture<'query, 'tree> {
     #[doc = "\"!\" @function.macro"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn as_function_macro(&self) -> Option<&anon_unions::FunctionMacro<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::FunctionMacro { node, .. } = self {
@@ -878,7 +845,6 @@ impl<'query, 'tree: 'query> HighlightsCapture<'query, 'tree> {
     #[doc = "(block_comment) @comment"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn as_comment(&self) -> Option<&anon_unions::Comment<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::Comment { node, .. } = self {
@@ -895,7 +861,6 @@ impl<'query, 'tree: 'query> HighlightsCapture<'query, 'tree> {
     #[doc = "(block_comment (doc_comment)) @comment.documentation"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn as_comment_documentation(&self) -> Option<&anon_unions::CommentDocumentation<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::CommentDocumentation { node, .. } = self {
@@ -920,7 +885,6 @@ impl<'query, 'tree: 'query> HighlightsCapture<'query, 'tree> {
     #[doc = "\">\" @punctuation.bracket"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn as_punctuation_bracket(&self) -> Option<&anon_unions::PunctuationBracket<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::PunctuationBracket { node, .. } = self {
@@ -940,7 +904,6 @@ impl<'query, 'tree: 'query> HighlightsCapture<'query, 'tree> {
     #[doc = "\";\" @punctuation.delimiter"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn as_punctuation_delimiter(&self) -> Option<&anon_unions::PunctuationDelimiter<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::PunctuationDelimiter { node, .. } = self {
@@ -956,7 +919,6 @@ impl<'query, 'tree: 'query> HighlightsCapture<'query, 'tree> {
     #[doc = "(identifier) @variable.parameter"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn as_variable_parameter(&self) -> Option<&super::nodes::Identifier<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::VariableParameter { node, .. } = self {
@@ -972,7 +934,6 @@ impl<'query, 'tree: 'query> HighlightsCapture<'query, 'tree> {
     #[doc = "(identifier) @label"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn as_label(&self) -> Option<&super::nodes::Identifier<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::Label { node, .. } = self {
@@ -1028,7 +989,6 @@ impl<'query, 'tree: 'query> HighlightsCapture<'query, 'tree> {
     #[doc = "(self) @keyword"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn as_keyword(&self) -> Option<&anon_unions::Keyword<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::Keyword { node, .. } = self {
@@ -1044,7 +1004,6 @@ impl<'query, 'tree: 'query> HighlightsCapture<'query, 'tree> {
     #[doc = "(self) @variable.builtin"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn as_variable_builtin(&self) -> Option<&super::nodes::Self_<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::VariableBuiltin { node, .. } = self {
@@ -1062,7 +1021,6 @@ impl<'query, 'tree: 'query> HighlightsCapture<'query, 'tree> {
     #[doc = "(raw_string_literal) @string"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn as_string(&self) -> Option<&anon_unions::String<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::String { node, .. } = self {
@@ -1080,7 +1038,6 @@ impl<'query, 'tree: 'query> HighlightsCapture<'query, 'tree> {
     #[doc = "(float_literal) @constant.builtin"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn as_constant_builtin(&self) -> Option<&anon_unions::ConstantBuiltin<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::ConstantBuiltin { node, .. } = self {
@@ -1096,7 +1053,6 @@ impl<'query, 'tree: 'query> HighlightsCapture<'query, 'tree> {
     #[doc = "(escape_sequence) @escape"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn as_escape(&self) -> Option<&super::nodes::EscapeSequence<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::Escape { node, .. } = self {
@@ -1113,7 +1069,6 @@ impl<'query, 'tree: 'query> HighlightsCapture<'query, 'tree> {
     #[doc = "(inner_attribute_item) @attribute"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn as_attribute(&self) -> Option<&anon_unions::Attribute<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::Attribute { node, .. } = self {
@@ -1131,7 +1086,6 @@ impl<'query, 'tree: 'query> HighlightsCapture<'query, 'tree> {
     #[doc = "\"'\" @operator"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn as_operator(&self) -> Option<&anon_unions::Operator<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::Operator { node, .. } = self {
@@ -1713,13 +1667,6 @@ impl<'query, 'tree: 'query> type_sitter::QueryCapture<'query, 'tree>
         }
     }
 }
-#[allow(non_upper_case_globals)]
-static __Injections__: std::sync::OnceLock<type_sitter::raw::Query> = std::sync::OnceLock::new();
-#[allow(non_snake_case)]
-fn __Mk__Injections() -> type_sitter::raw::Query {
-    # [allow (unused_mut)] let mut query = type_sitter :: raw :: Query :: new (& tree_sitter_rust :: LANGUAGE . into () , "((macro_invocation\n  (token_tree) @injection.content)\n (#set! injection.language \"rust\")\n (#set! injection.include-children))\n\n((macro_rule\n  (token_tree) @injection.content)\n (#set! injection.language \"rust\")\n (#set! injection.include-children))\n") . expect ("query parsed at compile-time but failed at runtime. Is the language 'tree_sitter_rust' correct, and did you use the same tree-sitter / tree_sitter_rust version?") ;
-    query
-}
 #[doc = "Typed version of the query:\n\n```sexp\n((macro_invocation\n  (token_tree) @injection.content)\n (#set! injection.language \"rust\")\n (#set! injection.include-children))\n\n((macro_rule\n  (token_tree) @injection.content)\n (#set! injection.language \"rust\")\n (#set! injection.include-children))\n\n```"]
 #[allow(non_camel_case_types)]
 #[derive(Debug, Clone, Copy)]
@@ -1755,7 +1702,10 @@ impl type_sitter::Query for Injections {
         "((macro_invocation\n  (token_tree) @injection.content)\n (#set! injection.language \"rust\")\n (#set! injection.include-children))\n\n((macro_rule\n  (token_tree) @injection.content)\n (#set! injection.language \"rust\")\n (#set! injection.include-children))\n"
     }
     fn raw(&self) -> &'static type_sitter::raw::Query {
-        __Injections__.get_or_init(__Mk__Injections)
+        #[allow(non_upper_case_globals)]
+        static __Injections__: std::sync::OnceLock<type_sitter::raw::Query> =
+            std::sync::OnceLock::new();
+        __Injections__ . get_or_init (|| { # [allow (unused_mut)] let mut query = type_sitter :: raw :: Query :: new (& tree_sitter_rust :: LANGUAGE . into () , "((macro_invocation\n  (token_tree) @injection.content)\n (#set! injection.language \"rust\")\n (#set! injection.include-children))\n\n((macro_rule\n  (token_tree) @injection.content)\n (#set! injection.language \"rust\")\n (#set! injection.include-children))\n") . expect ("query parsed at compile-time but failed at runtime. Is the language 'tree_sitter_rust' correct, and did you use the same tree-sitter / tree_sitter_rust version?") ; query })
     }
     #[inline]
     unsafe fn wrap_match<'query, 'tree>(
@@ -1792,7 +1742,6 @@ impl<'query, 'tree: 'query> InjectionsMatch<'query, 'tree> {
     #[doc = "(token_tree) @injection.content"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn injection_content(&self) -> super::nodes::TokenTree<'tree> {
         let result = { [0u32] . into_iter () . flat_map (| i | self . 0 . nodes_for_capture_index (i)) . map (| n | unsafe { < super :: nodes :: TokenTree < 'tree > as type_sitter :: Node < 'tree >> :: from_raw_unchecked (n) }) } . next () . expect ("one quantifier returned nothing") ;
         debug_assert ! ({ [0u32] . into_iter () . flat_map (| i | self . 0 . nodes_for_capture_index (i)) . map (| n | unsafe { < super :: nodes :: TokenTree < 'tree > as type_sitter :: Node < 'tree >> :: from_raw_unchecked (n) }) } . next () . is_none () , "one quantifier returned more than one item");
@@ -1839,7 +1788,6 @@ impl<'query, 'tree: 'query> InjectionsCapture<'query, 'tree> {
     #[doc = "(token_tree) @injection.content"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn as_injection_content(&self) -> Option<&super::nodes::TokenTree<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::InjectionContent { node, .. } = self {
@@ -1954,13 +1902,6 @@ impl<'query, 'tree: 'query> type_sitter::QueryCapture<'query, 'tree>
             _ => unreachable!(),
         }
     }
-}
-#[allow(non_upper_case_globals)]
-static __Tags__: std::sync::OnceLock<type_sitter::raw::Query> = std::sync::OnceLock::new();
-#[allow(non_snake_case)]
-fn __Mk__Tags() -> type_sitter::raw::Query {
-    # [allow (unused_mut)] let mut query = type_sitter :: raw :: Query :: new (& tree_sitter_rust :: LANGUAGE . into () , "; ADT definitions\n\n(struct_item\n    name: (type_identifier) @name) @definition.class\n\n(enum_item\n    name: (type_identifier) @name) @definition.class\n\n(union_item\n    name: (type_identifier) @name) @definition.class\n\n; type aliases\n\n(type_item\n    name: (type_identifier) @name) @definition.class\n\n; method definitions\n\n(declaration_list\n    (function_item\n        name: (identifier) @name)) @definition.method\n\n; function definitions\n\n(function_item\n    name: (identifier) @name) @definition.function\n\n; trait definitions\n(trait_item\n    name: (type_identifier) @name) @definition.interface\n\n; module definitions\n(mod_item\n    name: (identifier) @name) @definition.module\n\n; macro definitions\n\n(macro_definition\n    name: (identifier) @name) @definition.macro\n\n; references\n\n(call_expression\n    function: (identifier) @name) @reference.call\n\n(call_expression\n    function: (field_expression\n        field: (field_identifier) @name)) @reference.call\n\n(macro_invocation\n    macro: (identifier) @name) @reference.call\n\n; implementations\n\n(impl_item\n    trait: (type_identifier) @name) @reference.implementation\n\n(impl_item\n    type: (type_identifier) @name\n    !trait) @reference.implementation\n") . expect ("query parsed at compile-time but failed at runtime. Is the language 'tree_sitter_rust' correct, and did you use the same tree-sitter / tree_sitter_rust version?") ;
-    query
 }
 #[doc = "Typed version of the query:\n\n```sexp\n; ADT definitions\n\n(struct_item\n    name: (type_identifier) @name) @definition.class\n\n(enum_item\n    name: (type_identifier) @name) @definition.class\n\n(union_item\n    name: (type_identifier) @name) @definition.class\n\n; type aliases\n\n(type_item\n    name: (type_identifier) @name) @definition.class\n\n; method definitions\n\n(declaration_list\n    (function_item\n        name: (identifier) @name)) @definition.method\n\n; function definitions\n\n(function_item\n    name: (identifier) @name) @definition.function\n\n; trait definitions\n(trait_item\n    name: (type_identifier) @name) @definition.interface\n\n; module definitions\n(mod_item\n    name: (identifier) @name) @definition.module\n\n; macro definitions\n\n(macro_definition\n    name: (identifier) @name) @definition.macro\n\n; references\n\n(call_expression\n    function: (identifier) @name) @reference.call\n\n(call_expression\n    function: (field_expression\n        field: (field_identifier) @name)) @reference.call\n\n(macro_invocation\n    macro: (identifier) @name) @reference.call\n\n; implementations\n\n(impl_item\n    trait: (type_identifier) @name) @reference.implementation\n\n(impl_item\n    type: (type_identifier) @name\n    !trait) @reference.implementation\n\n```"]
 #[allow(non_camel_case_types)]
@@ -2095,7 +2036,9 @@ impl type_sitter::Query for Tags {
         "; ADT definitions\n\n(struct_item\n    name: (type_identifier) @name) @definition.class\n\n(enum_item\n    name: (type_identifier) @name) @definition.class\n\n(union_item\n    name: (type_identifier) @name) @definition.class\n\n; type aliases\n\n(type_item\n    name: (type_identifier) @name) @definition.class\n\n; method definitions\n\n(declaration_list\n    (function_item\n        name: (identifier) @name)) @definition.method\n\n; function definitions\n\n(function_item\n    name: (identifier) @name) @definition.function\n\n; trait definitions\n(trait_item\n    name: (type_identifier) @name) @definition.interface\n\n; module definitions\n(mod_item\n    name: (identifier) @name) @definition.module\n\n; macro definitions\n\n(macro_definition\n    name: (identifier) @name) @definition.macro\n\n; references\n\n(call_expression\n    function: (identifier) @name) @reference.call\n\n(call_expression\n    function: (field_expression\n        field: (field_identifier) @name)) @reference.call\n\n(macro_invocation\n    macro: (identifier) @name) @reference.call\n\n; implementations\n\n(impl_item\n    trait: (type_identifier) @name) @reference.implementation\n\n(impl_item\n    type: (type_identifier) @name\n    !trait) @reference.implementation\n"
     }
     fn raw(&self) -> &'static type_sitter::raw::Query {
-        __Tags__.get_or_init(__Mk__Tags)
+        #[allow(non_upper_case_globals)]
+        static __Tags__: std::sync::OnceLock<type_sitter::raw::Query> = std::sync::OnceLock::new();
+        __Tags__ . get_or_init (|| { # [allow (unused_mut)] let mut query = type_sitter :: raw :: Query :: new (& tree_sitter_rust :: LANGUAGE . into () , "; ADT definitions\n\n(struct_item\n    name: (type_identifier) @name) @definition.class\n\n(enum_item\n    name: (type_identifier) @name) @definition.class\n\n(union_item\n    name: (type_identifier) @name) @definition.class\n\n; type aliases\n\n(type_item\n    name: (type_identifier) @name) @definition.class\n\n; method definitions\n\n(declaration_list\n    (function_item\n        name: (identifier) @name)) @definition.method\n\n; function definitions\n\n(function_item\n    name: (identifier) @name) @definition.function\n\n; trait definitions\n(trait_item\n    name: (type_identifier) @name) @definition.interface\n\n; module definitions\n(mod_item\n    name: (identifier) @name) @definition.module\n\n; macro definitions\n\n(macro_definition\n    name: (identifier) @name) @definition.macro\n\n; references\n\n(call_expression\n    function: (identifier) @name) @reference.call\n\n(call_expression\n    function: (field_expression\n        field: (field_identifier) @name)) @reference.call\n\n(macro_invocation\n    macro: (identifier) @name) @reference.call\n\n; implementations\n\n(impl_item\n    trait: (type_identifier) @name) @reference.implementation\n\n(impl_item\n    type: (type_identifier) @name\n    !trait) @reference.implementation\n") . expect ("query parsed at compile-time but failed at runtime. Is the language 'tree_sitter_rust' correct, and did you use the same tree-sitter / tree_sitter_rust version?") ; query })
     }
     #[inline]
     unsafe fn wrap_match<'query, 'tree>(
@@ -2135,7 +2078,6 @@ impl<'query, 'tree: 'query> TagsMatch<'query, 'tree> {
     #[doc = "(type_identifier) @name"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn name(&self) -> Option<anon_unions::Name<'tree>> {
         {
             [0u32]
@@ -2157,7 +2099,6 @@ impl<'query, 'tree: 'query> TagsMatch<'query, 'tree> {
     #[doc = "(type_item\n    name: (type_identifier) @name) @definition.class"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn definition_class(&self) -> Option<anon_unions::DefinitionClass<'tree>> {
         { [1u32] . into_iter () . flat_map (| i | self . 0 . nodes_for_capture_index (i)) . map (| n | unsafe { < anon_unions :: DefinitionClass < 'tree > as type_sitter :: Node < 'tree >> :: from_raw_unchecked (n) }) } . next ()
     }
@@ -2168,7 +2109,6 @@ impl<'query, 'tree: 'query> TagsMatch<'query, 'tree> {
     #[doc = "(declaration_list\n    (function_item\n        name: (identifier) @name)) @definition.method"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn definition_method(&self) -> Option<super::nodes::DeclarationList<'tree>> {
         { [2u32] . into_iter () . flat_map (| i | self . 0 . nodes_for_capture_index (i)) . map (| n | unsafe { < super :: nodes :: DeclarationList < 'tree > as type_sitter :: Node < 'tree >> :: from_raw_unchecked (n) }) } . next ()
     }
@@ -2179,7 +2119,6 @@ impl<'query, 'tree: 'query> TagsMatch<'query, 'tree> {
     #[doc = "(function_item\n    name: (identifier) @name) @definition.function"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn definition_function(&self) -> Option<super::nodes::FunctionItem<'tree>> {
         { [3u32] . into_iter () . flat_map (| i | self . 0 . nodes_for_capture_index (i)) . map (| n | unsafe { < super :: nodes :: FunctionItem < 'tree > as type_sitter :: Node < 'tree >> :: from_raw_unchecked (n) }) } . next ()
     }
@@ -2190,7 +2129,6 @@ impl<'query, 'tree: 'query> TagsMatch<'query, 'tree> {
     #[doc = "(trait_item\n    name: (type_identifier) @name) @definition.interface"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn definition_interface(&self) -> Option<super::nodes::TraitItem<'tree>> {
         { [4u32] . into_iter () . flat_map (| i | self . 0 . nodes_for_capture_index (i)) . map (| n | unsafe { < super :: nodes :: TraitItem < 'tree > as type_sitter :: Node < 'tree >> :: from_raw_unchecked (n) }) } . next ()
     }
@@ -2201,7 +2139,6 @@ impl<'query, 'tree: 'query> TagsMatch<'query, 'tree> {
     #[doc = "(mod_item\n    name: (identifier) @name) @definition.module"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn definition_module(&self) -> Option<super::nodes::ModItem<'tree>> {
         {
             [5u32]
@@ -2222,7 +2159,6 @@ impl<'query, 'tree: 'query> TagsMatch<'query, 'tree> {
     #[doc = "(macro_definition\n    name: (identifier) @name) @definition.macro"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn definition_macro(&self) -> Option<super::nodes::MacroDefinition<'tree>> {
         { [6u32] . into_iter () . flat_map (| i | self . 0 . nodes_for_capture_index (i)) . map (| n | unsafe { < super :: nodes :: MacroDefinition < 'tree > as type_sitter :: Node < 'tree >> :: from_raw_unchecked (n) }) } . next ()
     }
@@ -2235,7 +2171,6 @@ impl<'query, 'tree: 'query> TagsMatch<'query, 'tree> {
     #[doc = "(macro_invocation\n    macro: (identifier) @name) @reference.call"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn reference_call(&self) -> Option<anon_unions::ReferenceCall<'tree>> {
         { [7u32] . into_iter () . flat_map (| i | self . 0 . nodes_for_capture_index (i)) . map (| n | unsafe { < anon_unions :: ReferenceCall < 'tree > as type_sitter :: Node < 'tree >> :: from_raw_unchecked (n) }) } . next ()
     }
@@ -2247,7 +2182,6 @@ impl<'query, 'tree: 'query> TagsMatch<'query, 'tree> {
     #[doc = "(impl_item\n    type: (type_identifier) @name\n    !trait) @reference.implementation"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn reference_implementation(&self) -> Option<super::nodes::ImplItem<'tree>> {
         {
             [8u32]
@@ -2310,7 +2244,6 @@ impl<'query, 'tree: 'query> TagsCapture<'query, 'tree> {
     #[doc = "(type_identifier) @name"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn as_name(&self) -> Option<&anon_unions::Name<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::Name { node, .. } = self {
@@ -2329,7 +2262,6 @@ impl<'query, 'tree: 'query> TagsCapture<'query, 'tree> {
     #[doc = "(type_item\n    name: (type_identifier) @name) @definition.class"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn as_definition_class(&self) -> Option<&anon_unions::DefinitionClass<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::DefinitionClass { node, .. } = self {
@@ -2345,7 +2277,6 @@ impl<'query, 'tree: 'query> TagsCapture<'query, 'tree> {
     #[doc = "(declaration_list\n    (function_item\n        name: (identifier) @name)) @definition.method"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn as_definition_method(&self) -> Option<&super::nodes::DeclarationList<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::DefinitionMethod { node, .. } = self {
@@ -2361,7 +2292,6 @@ impl<'query, 'tree: 'query> TagsCapture<'query, 'tree> {
     #[doc = "(function_item\n    name: (identifier) @name) @definition.function"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn as_definition_function(&self) -> Option<&super::nodes::FunctionItem<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::DefinitionFunction { node, .. } = self {
@@ -2377,7 +2307,6 @@ impl<'query, 'tree: 'query> TagsCapture<'query, 'tree> {
     #[doc = "(trait_item\n    name: (type_identifier) @name) @definition.interface"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn as_definition_interface(&self) -> Option<&super::nodes::TraitItem<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::DefinitionInterface { node, .. } = self {
@@ -2393,7 +2322,6 @@ impl<'query, 'tree: 'query> TagsCapture<'query, 'tree> {
     #[doc = "(mod_item\n    name: (identifier) @name) @definition.module"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn as_definition_module(&self) -> Option<&super::nodes::ModItem<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::DefinitionModule { node, .. } = self {
@@ -2409,7 +2337,6 @@ impl<'query, 'tree: 'query> TagsCapture<'query, 'tree> {
     #[doc = "(macro_definition\n    name: (identifier) @name) @definition.macro"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn as_definition_macro(&self) -> Option<&super::nodes::MacroDefinition<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::DefinitionMacro { node, .. } = self {
@@ -2427,7 +2354,6 @@ impl<'query, 'tree: 'query> TagsCapture<'query, 'tree> {
     #[doc = "(macro_invocation\n    macro: (identifier) @name) @reference.call"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn as_reference_call(&self) -> Option<&anon_unions::ReferenceCall<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::ReferenceCall { node, .. } = self {
@@ -2444,7 +2370,6 @@ impl<'query, 'tree: 'query> TagsCapture<'query, 'tree> {
     #[doc = "(impl_item\n    type: (type_identifier) @name\n    !trait) @reference.implementation"]
     #[doc = "```"]
     #[inline]
-    #[allow(non_snake_case)]
     pub fn as_reference_implementation(&self) -> Option<&super::nodes::ImplItem<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::ReferenceImplementation { node, .. } = self {
@@ -2762,7 +2687,6 @@ pub mod anon_unions {
     impl<'tree> Type<'tree> {
         #[doc = "Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_identifier(self) -> Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Identifier(x) = self {
@@ -2773,7 +2697,6 @@ pub mod anon_unions {
         }
         #[doc = "Returns the node if it is of type `type_identifier` ([`TypeIdentifier`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_type_identifier(self) -> Option<TypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::TypeIdentifier(x) = self {
@@ -2838,7 +2761,6 @@ pub mod anon_unions {
     impl<'tree> Constructor<'tree> {
         #[doc = "Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_identifier(self) -> Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Identifier(x) = self {
@@ -2849,7 +2771,6 @@ pub mod anon_unions {
         }
         #[doc = "Returns the node if it is of type `type_identifier` ([`TypeIdentifier`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_type_identifier(self) -> Option<TypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::TypeIdentifier(x) = self {
@@ -2914,7 +2835,6 @@ pub mod anon_unions {
     impl<'tree> FunctionMacro<'tree> {
         #[doc = "Returns the node if it is of type `!` ([`symbols::Not`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_not(self) -> Option<symbols::Not<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Not(x) = self {
@@ -2925,7 +2845,6 @@ pub mod anon_unions {
         }
         #[doc = "Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_identifier(self) -> Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Identifier(x) = self {
@@ -2988,7 +2907,6 @@ pub mod anon_unions {
     impl<'tree> Comment<'tree> {
         #[doc = "Returns the node if it is of type `block_comment` ([`BlockComment`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_block_comment(self) -> Option<BlockComment<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::BlockComment(x) = self {
@@ -2999,7 +2917,6 @@ pub mod anon_unions {
         }
         #[doc = "Returns the node if it is of type `line_comment` ([`LineComment`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_line_comment(self) -> Option<LineComment<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::LineComment(x) = self {
@@ -3062,7 +2979,6 @@ pub mod anon_unions {
     impl<'tree> CommentDocumentation<'tree> {
         #[doc = "Returns the node if it is of type `block_comment` ([`BlockComment`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_block_comment(self) -> Option<BlockComment<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::BlockComment(x) = self {
@@ -3073,7 +2989,6 @@ pub mod anon_unions {
         }
         #[doc = "Returns the node if it is of type `line_comment` ([`LineComment`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_line_comment(self) -> Option<LineComment<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::LineComment(x) = self {
@@ -3142,7 +3057,6 @@ pub mod anon_unions {
     impl<'tree> PunctuationBracket<'tree> {
         #[doc = "Returns the node if it is of type `(` ([`symbols::LParen`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_l_paren(self) -> Option<symbols::LParen<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::LParen(x) = self {
@@ -3153,7 +3067,6 @@ pub mod anon_unions {
         }
         #[doc = "Returns the node if it is of type `)` ([`symbols::RParen`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_r_paren(self) -> Option<symbols::RParen<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::RParen(x) = self {
@@ -3164,7 +3077,6 @@ pub mod anon_unions {
         }
         #[doc = "Returns the node if it is of type `<` ([`symbols::Lt`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_lt(self) -> Option<symbols::Lt<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Lt(x) = self {
@@ -3175,7 +3087,6 @@ pub mod anon_unions {
         }
         #[doc = "Returns the node if it is of type `>` ([`symbols::Gt`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_gt(self) -> Option<symbols::Gt<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Gt(x) = self {
@@ -3186,7 +3097,6 @@ pub mod anon_unions {
         }
         #[doc = "Returns the node if it is of type `[` ([`symbols::LBracket`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_l_bracket(self) -> Option<symbols::LBracket<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::LBracket(x) = self {
@@ -3197,7 +3107,6 @@ pub mod anon_unions {
         }
         #[doc = "Returns the node if it is of type `]` ([`symbols::RBracket`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_r_bracket(self) -> Option<symbols::RBracket<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::RBracket(x) = self {
@@ -3208,7 +3117,6 @@ pub mod anon_unions {
         }
         #[doc = "Returns the node if it is of type `{` ([`symbols::LBrace`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_l_brace(self) -> Option<symbols::LBrace<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::LBrace(x) = self {
@@ -3219,7 +3127,6 @@ pub mod anon_unions {
         }
         #[doc = "Returns the node if it is of type `}` ([`symbols::RBrace`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_r_brace(self) -> Option<symbols::RBrace<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::RBrace(x) = self {
@@ -3333,7 +3240,6 @@ pub mod anon_unions {
     impl<'tree> PunctuationDelimiter<'tree> {
         #[doc = "Returns the node if it is of type `,` ([`symbols::Comma`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_comma(self) -> Option<symbols::Comma<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Comma(x) = self {
@@ -3344,7 +3250,6 @@ pub mod anon_unions {
         }
         #[doc = "Returns the node if it is of type `.` ([`symbols::Dot`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_dot(self) -> Option<symbols::Dot<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Dot(x) = self {
@@ -3355,7 +3260,6 @@ pub mod anon_unions {
         }
         #[doc = "Returns the node if it is of type `:` ([`symbols::Colon`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_colon(self) -> Option<symbols::Colon<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Colon(x) = self {
@@ -3366,7 +3270,6 @@ pub mod anon_unions {
         }
         #[doc = "Returns the node if it is of type `::` ([`symbols::ColonColon`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_colon_colon(self) -> Option<symbols::ColonColon<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::ColonColon(x) = self {
@@ -3377,7 +3280,6 @@ pub mod anon_unions {
         }
         #[doc = "Returns the node if it is of type `;` ([`symbols::Semicolon`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_semicolon(self) -> Option<symbols::Semicolon<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Semicolon(x) = self {
@@ -3455,7 +3357,7 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "One of `{as | async | await | break | const | continue | crate | default | dyn | else | enum | extern | fn | for | if | impl | in | let | loop | macro_rules! | match | mod | move | mutable_specifier | pub | ref | return | self | static | struct | super | trait | type | union | unsafe | use | where | while | yield}`:\n- [`unnamed::As`]\n- [`unnamed::Async`]\n- [`unnamed::Await`]\n- [`unnamed::Break`]\n- [`unnamed::Const`]\n- [`unnamed::Continue`]\n- [`Crate`]\n- [`unnamed::Default`]\n- [`unnamed::Dyn`]\n- [`unnamed::Else`]\n- [`unnamed::Enum`]\n- [`unnamed::Extern`]\n- [`unnamed::Fn`]\n- [`unnamed::For`]\n- [`unnamed::If`]\n- [`unnamed::Impl`]\n- [`unnamed::In`]\n- [`unnamed::Let`]\n- [`unnamed::Loop`]\n- [`symbols::MacroRulesNot`]\n- [`unnamed::Match`]\n- [`unnamed::Mod_`]\n- [`unnamed::Move`]\n- [`MutableSpecifier`]\n- [`unnamed::Pub`]\n- [`unnamed::Ref`]\n- [`unnamed::Return`]\n- [`Self_`]\n- [`unnamed::Static`]\n- [`unnamed::Struct`]\n- [`Super`]\n- [`unnamed::Trait`]\n- [`unnamed::Type_`]\n- [`unnamed::Union`]\n- [`unnamed::Unsafe`]\n- [`unnamed::Use`]\n- [`unnamed::Where`]\n- [`unnamed::While`]\n- [`unnamed::Yield`]"]
+    #[doc = "One of `{as | async | await | break | const | continue | crate | default | dyn | else | enum | extern | fn | for | if | impl | in | let | loop | macro_rules! | match | mod | move | mutable_specifier | pub | ref | return | self | static | struct | super | trait | type | union | unsafe | use | where | while | yield}`:\n- [`unnamed::As`]\n- [`unnamed::Async`]\n- [`unnamed::Await`]\n- [`unnamed::Break`]\n- [`unnamed::Const`]\n- [`unnamed::Continue`]\n- [`Crate`]\n- [`unnamed::Default`]\n- [`unnamed::Dyn`]\n- [`unnamed::Else`]\n- [`unnamed::Enum`]\n- [`unnamed::Extern`]\n- [`unnamed::Fn`]\n- [`unnamed::For`]\n- [`unnamed::If`]\n- [`unnamed::Impl`]\n- [`unnamed::In`]\n- [`unnamed::Let`]\n- [`unnamed::Loop`]\n- [`symbols::MacroRulesNot`]\n- [`unnamed::Match`]\n- [`unnamed::Mod`]\n- [`unnamed::Move`]\n- [`MutableSpecifier`]\n- [`unnamed::Pub`]\n- [`unnamed::Ref`]\n- [`unnamed::Return`]\n- [`Self_`]\n- [`unnamed::Static`]\n- [`unnamed::Struct`]\n- [`Super`]\n- [`unnamed::Trait`]\n- [`unnamed::Type`]\n- [`unnamed::Union`]\n- [`unnamed::Unsafe`]\n- [`unnamed::Use`]\n- [`unnamed::Where`]\n- [`unnamed::While`]\n- [`unnamed::Yield`]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
     pub enum Keyword<'tree> {
@@ -3480,7 +3382,7 @@ pub mod anon_unions {
         Loop(unnamed::Loop<'tree>),
         MacroRulesNot(symbols::MacroRulesNot<'tree>),
         Match(unnamed::Match<'tree>),
-        Mod_(unnamed::Mod_<'tree>),
+        Mod(unnamed::Mod<'tree>),
         Move(unnamed::Move<'tree>),
         MutableSpecifier(MutableSpecifier<'tree>),
         Pub(unnamed::Pub<'tree>),
@@ -3491,7 +3393,7 @@ pub mod anon_unions {
         Struct(unnamed::Struct<'tree>),
         Super(Super<'tree>),
         Trait(unnamed::Trait<'tree>),
-        Type_(unnamed::Type_<'tree>),
+        Type(unnamed::Type<'tree>),
         Union(unnamed::Union<'tree>),
         Unsafe(unnamed::Unsafe<'tree>),
         Use(unnamed::Use<'tree>),
@@ -3503,7 +3405,6 @@ pub mod anon_unions {
     impl<'tree> Keyword<'tree> {
         #[doc = "Returns the node if it is of type `as` ([`unnamed::As`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_as(self) -> Option<unnamed::As<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::As(x) = self {
@@ -3514,7 +3415,6 @@ pub mod anon_unions {
         }
         #[doc = "Returns the node if it is of type `async` ([`unnamed::Async`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_async(self) -> Option<unnamed::Async<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Async(x) = self {
@@ -3525,7 +3425,6 @@ pub mod anon_unions {
         }
         #[doc = "Returns the node if it is of type `await` ([`unnamed::Await`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_await(self) -> Option<unnamed::Await<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Await(x) = self {
@@ -3536,7 +3435,6 @@ pub mod anon_unions {
         }
         #[doc = "Returns the node if it is of type `break` ([`unnamed::Break`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_break(self) -> Option<unnamed::Break<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Break(x) = self {
@@ -3547,7 +3445,6 @@ pub mod anon_unions {
         }
         #[doc = "Returns the node if it is of type `const` ([`unnamed::Const`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_const(self) -> Option<unnamed::Const<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Const(x) = self {
@@ -3558,7 +3455,6 @@ pub mod anon_unions {
         }
         #[doc = "Returns the node if it is of type `continue` ([`unnamed::Continue`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_continue(self) -> Option<unnamed::Continue<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Continue(x) = self {
@@ -3569,7 +3465,6 @@ pub mod anon_unions {
         }
         #[doc = "Returns the node if it is of type `crate` ([`Crate`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_crate(self) -> Option<Crate<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Crate(x) = self {
@@ -3580,7 +3475,6 @@ pub mod anon_unions {
         }
         #[doc = "Returns the node if it is of type `default` ([`unnamed::Default`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_default(self) -> Option<unnamed::Default<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Default(x) = self {
@@ -3591,7 +3485,6 @@ pub mod anon_unions {
         }
         #[doc = "Returns the node if it is of type `dyn` ([`unnamed::Dyn`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_dyn(self) -> Option<unnamed::Dyn<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Dyn(x) = self {
@@ -3602,7 +3495,6 @@ pub mod anon_unions {
         }
         #[doc = "Returns the node if it is of type `else` ([`unnamed::Else`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_else(self) -> Option<unnamed::Else<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Else(x) = self {
@@ -3613,7 +3505,6 @@ pub mod anon_unions {
         }
         #[doc = "Returns the node if it is of type `enum` ([`unnamed::Enum`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_enum(self) -> Option<unnamed::Enum<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Enum(x) = self {
@@ -3624,7 +3515,6 @@ pub mod anon_unions {
         }
         #[doc = "Returns the node if it is of type `extern` ([`unnamed::Extern`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_extern(self) -> Option<unnamed::Extern<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Extern(x) = self {
@@ -3635,7 +3525,6 @@ pub mod anon_unions {
         }
         #[doc = "Returns the node if it is of type `fn` ([`unnamed::Fn`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_fn(self) -> Option<unnamed::Fn<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Fn(x) = self {
@@ -3646,7 +3535,6 @@ pub mod anon_unions {
         }
         #[doc = "Returns the node if it is of type `for` ([`unnamed::For`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_for(self) -> Option<unnamed::For<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::For(x) = self {
@@ -3657,7 +3545,6 @@ pub mod anon_unions {
         }
         #[doc = "Returns the node if it is of type `if` ([`unnamed::If`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_if(self) -> Option<unnamed::If<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::If(x) = self {
@@ -3668,7 +3555,6 @@ pub mod anon_unions {
         }
         #[doc = "Returns the node if it is of type `impl` ([`unnamed::Impl`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_impl(self) -> Option<unnamed::Impl<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Impl(x) = self {
@@ -3679,7 +3565,6 @@ pub mod anon_unions {
         }
         #[doc = "Returns the node if it is of type `in` ([`unnamed::In`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_in(self) -> Option<unnamed::In<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::In(x) = self {
@@ -3690,7 +3575,6 @@ pub mod anon_unions {
         }
         #[doc = "Returns the node if it is of type `let` ([`unnamed::Let`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_let(self) -> Option<unnamed::Let<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Let(x) = self {
@@ -3701,7 +3585,6 @@ pub mod anon_unions {
         }
         #[doc = "Returns the node if it is of type `loop` ([`unnamed::Loop`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_loop(self) -> Option<unnamed::Loop<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Loop(x) = self {
@@ -3712,7 +3595,6 @@ pub mod anon_unions {
         }
         #[doc = "Returns the node if it is of type `macro_rules!` ([`symbols::MacroRulesNot`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_macro_rules_not(self) -> Option<symbols::MacroRulesNot<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::MacroRulesNot(x) = self {
@@ -3723,7 +3605,6 @@ pub mod anon_unions {
         }
         #[doc = "Returns the node if it is of type `match` ([`unnamed::Match`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_match(self) -> Option<unnamed::Match<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Match(x) = self {
@@ -3732,12 +3613,11 @@ pub mod anon_unions {
                 None
             }
         }
-        #[doc = "Returns the node if it is of type `mod` ([`unnamed::Mod_`]), otherwise returns `None`"]
+        #[doc = "Returns the node if it is of type `mod` ([`unnamed::Mod`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
-        pub fn as_mod_(self) -> Option<unnamed::Mod_<'tree>> {
+        pub fn as_mod_(self) -> Option<unnamed::Mod<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Mod_(x) = self {
+            if let Self::Mod(x) = self {
                 Some(x)
             } else {
                 None
@@ -3745,7 +3625,6 @@ pub mod anon_unions {
         }
         #[doc = "Returns the node if it is of type `move` ([`unnamed::Move`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_move(self) -> Option<unnamed::Move<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Move(x) = self {
@@ -3756,7 +3635,6 @@ pub mod anon_unions {
         }
         #[doc = "Returns the node if it is of type `mutable_specifier` ([`MutableSpecifier`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_mutable_specifier(self) -> Option<MutableSpecifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::MutableSpecifier(x) = self {
@@ -3767,7 +3645,6 @@ pub mod anon_unions {
         }
         #[doc = "Returns the node if it is of type `pub` ([`unnamed::Pub`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_pub(self) -> Option<unnamed::Pub<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Pub(x) = self {
@@ -3778,7 +3655,6 @@ pub mod anon_unions {
         }
         #[doc = "Returns the node if it is of type `ref` ([`unnamed::Ref`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_ref(self) -> Option<unnamed::Ref<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Ref(x) = self {
@@ -3789,7 +3665,6 @@ pub mod anon_unions {
         }
         #[doc = "Returns the node if it is of type `return` ([`unnamed::Return`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_return(self) -> Option<unnamed::Return<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Return(x) = self {
@@ -3800,7 +3675,6 @@ pub mod anon_unions {
         }
         #[doc = "Returns the node if it is of type `self` ([`Self_`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_self(self) -> Option<Self_<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Self_(x) = self {
@@ -3811,7 +3685,6 @@ pub mod anon_unions {
         }
         #[doc = "Returns the node if it is of type `static` ([`unnamed::Static`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_static(self) -> Option<unnamed::Static<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Static(x) = self {
@@ -3822,7 +3695,6 @@ pub mod anon_unions {
         }
         #[doc = "Returns the node if it is of type `struct` ([`unnamed::Struct`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_struct(self) -> Option<unnamed::Struct<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Struct(x) = self {
@@ -3833,7 +3705,6 @@ pub mod anon_unions {
         }
         #[doc = "Returns the node if it is of type `super` ([`Super`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_super(self) -> Option<Super<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Super(x) = self {
@@ -3844,7 +3715,6 @@ pub mod anon_unions {
         }
         #[doc = "Returns the node if it is of type `trait` ([`unnamed::Trait`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_trait(self) -> Option<unnamed::Trait<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Trait(x) = self {
@@ -3853,12 +3723,11 @@ pub mod anon_unions {
                 None
             }
         }
-        #[doc = "Returns the node if it is of type `type` ([`unnamed::Type_`]), otherwise returns `None`"]
+        #[doc = "Returns the node if it is of type `type` ([`unnamed::Type`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
-        pub fn as_type_(self) -> Option<unnamed::Type_<'tree>> {
+        pub fn as_type_(self) -> Option<unnamed::Type<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Type_(x) = self {
+            if let Self::Type(x) = self {
                 Some(x)
             } else {
                 None
@@ -3866,7 +3735,6 @@ pub mod anon_unions {
         }
         #[doc = "Returns the node if it is of type `union` ([`unnamed::Union`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_union(self) -> Option<unnamed::Union<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Union(x) = self {
@@ -3877,7 +3745,6 @@ pub mod anon_unions {
         }
         #[doc = "Returns the node if it is of type `unsafe` ([`unnamed::Unsafe`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_unsafe(self) -> Option<unnamed::Unsafe<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Unsafe(x) = self {
@@ -3888,7 +3755,6 @@ pub mod anon_unions {
         }
         #[doc = "Returns the node if it is of type `use` ([`unnamed::Use`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_use(self) -> Option<unnamed::Use<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Use(x) = self {
@@ -3899,7 +3765,6 @@ pub mod anon_unions {
         }
         #[doc = "Returns the node if it is of type `where` ([`unnamed::Where`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_where(self) -> Option<unnamed::Where<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Where(x) = self {
@@ -3910,7 +3775,6 @@ pub mod anon_unions {
         }
         #[doc = "Returns the node if it is of type `while` ([`unnamed::While`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_while(self) -> Option<unnamed::While<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::While(x) = self {
@@ -3921,7 +3785,6 @@ pub mod anon_unions {
         }
         #[doc = "Returns the node if it is of type `yield` ([`unnamed::Yield`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_yield(self) -> Option<unnamed::Yield<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Yield(x) = self {
@@ -4062,10 +3925,8 @@ pub mod anon_unions {
                     )
                 }),
                 "mod" => Ok(unsafe {
-                    Self::Mod_(
-                        <unnamed::Mod_<'tree> as type_sitter::Node<'tree>>::from_raw_unchecked(
-                            node,
-                        ),
+                    Self::Mod(
+                        <unnamed::Mod<'tree> as type_sitter::Node<'tree>>::from_raw_unchecked(node),
                     )
                 }),
                 "move" => Ok(unsafe {
@@ -4125,8 +3986,8 @@ pub mod anon_unions {
                     )
                 }),
                 "type" => Ok(unsafe {
-                    Self::Type_(
-                        <unnamed::Type_<'tree> as type_sitter::Node<'tree>>::from_raw_unchecked(
+                    Self::Type(
+                        <unnamed::Type<'tree> as type_sitter::Node<'tree>>::from_raw_unchecked(
                             node,
                         ),
                     )
@@ -4196,7 +4057,7 @@ pub mod anon_unions {
                 Self::Loop(x) => type_sitter::Node::raw(x),
                 Self::MacroRulesNot(x) => type_sitter::Node::raw(x),
                 Self::Match(x) => type_sitter::Node::raw(x),
-                Self::Mod_(x) => type_sitter::Node::raw(x),
+                Self::Mod(x) => type_sitter::Node::raw(x),
                 Self::Move(x) => type_sitter::Node::raw(x),
                 Self::MutableSpecifier(x) => type_sitter::Node::raw(x),
                 Self::Pub(x) => type_sitter::Node::raw(x),
@@ -4207,7 +4068,7 @@ pub mod anon_unions {
                 Self::Struct(x) => type_sitter::Node::raw(x),
                 Self::Super(x) => type_sitter::Node::raw(x),
                 Self::Trait(x) => type_sitter::Node::raw(x),
-                Self::Type_(x) => type_sitter::Node::raw(x),
+                Self::Type(x) => type_sitter::Node::raw(x),
                 Self::Union(x) => type_sitter::Node::raw(x),
                 Self::Unsafe(x) => type_sitter::Node::raw(x),
                 Self::Use(x) => type_sitter::Node::raw(x),
@@ -4240,7 +4101,7 @@ pub mod anon_unions {
                 Self::Loop(x) => type_sitter::Node::raw_mut(x),
                 Self::MacroRulesNot(x) => type_sitter::Node::raw_mut(x),
                 Self::Match(x) => type_sitter::Node::raw_mut(x),
-                Self::Mod_(x) => type_sitter::Node::raw_mut(x),
+                Self::Mod(x) => type_sitter::Node::raw_mut(x),
                 Self::Move(x) => type_sitter::Node::raw_mut(x),
                 Self::MutableSpecifier(x) => type_sitter::Node::raw_mut(x),
                 Self::Pub(x) => type_sitter::Node::raw_mut(x),
@@ -4251,7 +4112,7 @@ pub mod anon_unions {
                 Self::Struct(x) => type_sitter::Node::raw_mut(x),
                 Self::Super(x) => type_sitter::Node::raw_mut(x),
                 Self::Trait(x) => type_sitter::Node::raw_mut(x),
-                Self::Type_(x) => type_sitter::Node::raw_mut(x),
+                Self::Type(x) => type_sitter::Node::raw_mut(x),
                 Self::Union(x) => type_sitter::Node::raw_mut(x),
                 Self::Unsafe(x) => type_sitter::Node::raw_mut(x),
                 Self::Use(x) => type_sitter::Node::raw_mut(x),
@@ -4284,7 +4145,7 @@ pub mod anon_unions {
                 Self::Loop(x) => x.into_raw(),
                 Self::MacroRulesNot(x) => x.into_raw(),
                 Self::Match(x) => x.into_raw(),
-                Self::Mod_(x) => x.into_raw(),
+                Self::Mod(x) => x.into_raw(),
                 Self::Move(x) => x.into_raw(),
                 Self::MutableSpecifier(x) => x.into_raw(),
                 Self::Pub(x) => x.into_raw(),
@@ -4295,7 +4156,7 @@ pub mod anon_unions {
                 Self::Struct(x) => x.into_raw(),
                 Self::Super(x) => x.into_raw(),
                 Self::Trait(x) => x.into_raw(),
-                Self::Type_(x) => x.into_raw(),
+                Self::Type(x) => x.into_raw(),
                 Self::Union(x) => x.into_raw(),
                 Self::Unsafe(x) => x.into_raw(),
                 Self::Use(x) => x.into_raw(),
@@ -4317,7 +4178,6 @@ pub mod anon_unions {
     impl<'tree> String<'tree> {
         #[doc = "Returns the node if it is of type `char_literal` ([`CharLiteral`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_char_literal(self) -> Option<CharLiteral<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::CharLiteral(x) = self {
@@ -4328,7 +4188,6 @@ pub mod anon_unions {
         }
         #[doc = "Returns the node if it is of type `raw_string_literal` ([`RawStringLiteral`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_raw_string_literal(self) -> Option<RawStringLiteral<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::RawStringLiteral(x) = self {
@@ -4339,7 +4198,6 @@ pub mod anon_unions {
         }
         #[doc = "Returns the node if it is of type `string_literal` ([`StringLiteral`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_string_literal(self) -> Option<StringLiteral<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::StringLiteral(x) = self {
@@ -4415,7 +4273,6 @@ pub mod anon_unions {
     impl<'tree> ConstantBuiltin<'tree> {
         #[doc = "Returns the node if it is of type `boolean_literal` ([`BooleanLiteral`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_boolean_literal(self) -> Option<BooleanLiteral<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::BooleanLiteral(x) = self {
@@ -4426,7 +4283,6 @@ pub mod anon_unions {
         }
         #[doc = "Returns the node if it is of type `float_literal` ([`FloatLiteral`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_float_literal(self) -> Option<FloatLiteral<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::FloatLiteral(x) = self {
@@ -4437,7 +4293,6 @@ pub mod anon_unions {
         }
         #[doc = "Returns the node if it is of type `integer_literal` ([`IntegerLiteral`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_integer_literal(self) -> Option<IntegerLiteral<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::IntegerLiteral(x) = self {
@@ -4512,7 +4367,6 @@ pub mod anon_unions {
     impl<'tree> Attribute<'tree> {
         #[doc = "Returns the node if it is of type `attribute_item` ([`AttributeItem`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_attribute_item(self) -> Option<AttributeItem<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::AttributeItem(x) = self {
@@ -4523,7 +4377,6 @@ pub mod anon_unions {
         }
         #[doc = "Returns the node if it is of type `inner_attribute_item` ([`InnerAttributeItem`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_inner_attribute_item(self) -> Option<InnerAttributeItem<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::InnerAttributeItem(x) = self {
@@ -4589,7 +4442,6 @@ pub mod anon_unions {
     impl<'tree> Operator<'tree> {
         #[doc = "Returns the node if it is of type `&` ([`symbols::And`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_and(self) -> Option<symbols::And<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::And(x) = self {
@@ -4600,7 +4452,6 @@ pub mod anon_unions {
         }
         #[doc = "Returns the node if it is of type `'` ([`symbols::Quote`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_quote(self) -> Option<symbols::Quote<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Quote(x) = self {
@@ -4611,7 +4462,6 @@ pub mod anon_unions {
         }
         #[doc = "Returns the node if it is of type `*` ([`symbols::Mul`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_mul(self) -> Option<symbols::Mul<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Mul(x) = self {
@@ -4685,7 +4535,6 @@ pub mod anon_unions {
     impl<'tree> Name<'tree> {
         #[doc = "Returns the node if it is of type `field_identifier` ([`FieldIdentifier`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_field_identifier(self) -> Option<FieldIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::FieldIdentifier(x) = self {
@@ -4696,7 +4545,6 @@ pub mod anon_unions {
         }
         #[doc = "Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_identifier(self) -> Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Identifier(x) = self {
@@ -4707,7 +4555,6 @@ pub mod anon_unions {
         }
         #[doc = "Returns the node if it is of type `type_identifier` ([`TypeIdentifier`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_type_identifier(self) -> Option<TypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::TypeIdentifier(x) = self {
@@ -4784,7 +4631,6 @@ pub mod anon_unions {
     impl<'tree> DefinitionClass<'tree> {
         #[doc = "Returns the node if it is of type `enum_item` ([`EnumItem`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_enum_item(self) -> Option<EnumItem<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::EnumItem(x) = self {
@@ -4795,7 +4641,6 @@ pub mod anon_unions {
         }
         #[doc = "Returns the node if it is of type `struct_item` ([`StructItem`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_struct_item(self) -> Option<StructItem<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::StructItem(x) = self {
@@ -4806,7 +4651,6 @@ pub mod anon_unions {
         }
         #[doc = "Returns the node if it is of type `type_item` ([`TypeItem`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_type_item(self) -> Option<TypeItem<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::TypeItem(x) = self {
@@ -4817,7 +4661,6 @@ pub mod anon_unions {
         }
         #[doc = "Returns the node if it is of type `union_item` ([`UnionItem`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_union_item(self) -> Option<UnionItem<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::UnionItem(x) = self {
@@ -4896,7 +4739,6 @@ pub mod anon_unions {
     impl<'tree> ReferenceCall<'tree> {
         #[doc = "Returns the node if it is of type `call_expression` ([`CallExpression`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_call_expression(self) -> Option<CallExpression<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::CallExpression(x) = self {
@@ -4907,7 +4749,6 @@ pub mod anon_unions {
         }
         #[doc = "Returns the node if it is of type `macro_invocation` ([`MacroInvocation`]), otherwise returns `None`"]
         #[inline]
-        #[allow(non_snake_case)]
         pub fn as_macro_invocation(self) -> Option<MacroInvocation<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::MacroInvocation(x) = self {

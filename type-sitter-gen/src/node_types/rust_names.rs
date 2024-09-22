@@ -1,34 +1,53 @@
+use crate::NodeName;
+use check_keyword::CheckKeyword;
+use convert_case::{Case, Casing};
+use enum_map::{Enum, EnumMap};
+use join_lazy_fmt::Join;
 use std::borrow::Cow;
 use std::collections::HashSet;
-use convert_case::{Case, Casing};
 use std::fmt::{Display, Write};
-use check_keyword::CheckKeyword;
-use join_lazy_fmt::Join;
-use serde::Deserialize;
-use crate::node_types::types::NodeModule;
 
-#[derive(Clone, Deserialize)]
-#[serde(from = "_NodeName")]
-pub struct NodeName {
-    pub sexp_name: String,
-    pub rust_type_name: String,
-    pub rust_method_name: String,
-    pub is_implicit: bool,
-    pub module: NodeModule,
-}
-
-pub struct PrevNodeRustNames {
-    types: HashSet<String>,
+/// Context to disambiguate a node's type and method accessor.
+///
+/// tree-sitter is way more permissive with it's node names than Rust. So we have a "pick two of
+/// three" scenario:
+/// 1. Good Rust name (i.e. no extra characters that only make sense if there are other nodes
+///    that said characters would disambiguate).
+/// 2. Name follows Rust conventions.
+/// 3. Name is context-free.
+///
+/// We pick 1) and 2). We generate good names like `string` -> `String` and `+` -> `Add`, but that
+/// means we must disambiguate `+` and `add`, `string` and `String`, etc. by appending an underscore
+/// to the latter.
+#[derive(Debug)]
+pub(super) struct PrevNodeRustNames {
+    types: EnumMap<NodeModule, HashSet<String>>,
     methods: HashSet<String>,
 }
 
-#[derive(Deserialize)]
-pub struct _NodeName {
-    #[serde(rename = "type")]
-    pub sexp_name: String,
-    pub named: bool,
+/// Describes a node's rust type, method accessor name, and the module the type is located in.
+#[derive(Clone, Debug)]
+pub(crate) struct NodeRustNames {
+    pub(crate) type_name: String,
+    pub(crate) method_name: String,
+    pub(crate) module: NodeModule,
 }
 
+/// Where a node type is located.
+///
+/// We have three modules to organize things and remove *some* name conflicts. Specifically, we have
+/// `unnamed` and `symbols` are separate from the top-level so node named-ness is apparent and we
+/// may have nodes like `_if` (becomes `If`) and `"if"`, and `unnamed` is separate from `symbols` so
+/// unnamed nodes derived from symbols are apparent *and* because we may have nodes like `"+"` and
+/// `"add"`.
+#[derive(Clone, Copy, Debug, Enum, PartialEq, Eq, PartialOrd, Ord, Hash)]
+pub enum NodeModule {
+    Toplevel,
+    Unnamed,
+    Symbols
+}
+
+/// Common punctuation, which we replace with something descriptive instead of unicode.
 const PUNCTUATION_TABLE: [(char, &'static str); 35] = [
     ('&', "And"), ('|', "Or"), ('!', "Not"), ('=', "Eq"), ('<', "Lt"),
     ('>', "Gt"), ('+', "Add"), ('-', "Sub"), ('*', "Mul"), ('/', "Div"),
@@ -39,86 +58,81 @@ const PUNCTUATION_TABLE: [(char, &'static str); 35] = [
     ('`', "Backtick"), (' ', "Space"), ('\t', "Tab"), ('\n', "Newline"), ('\r', "CarriageReturn")
 ];
 
-impl NodeName {
-    /// Create a node name from the sexp name.
-    fn new(sexp_name: String, is_named: bool) -> Self {
+impl NodeRustNames {
+    pub(super) fn new(node_name: &NodeName, prev: &mut PrevNodeRustNames) -> Self {
+        let mut this = Self::context_free(node_name);
+        this.disambiguate_rust_names(prev);
+        this
+    }
+
+    fn context_free(NodeName { sexp_name, is_named }: &NodeName) -> Self {
         if sexp_name == "_" {
             // Special-cased
             return Self {
-                sexp_name,
-                rust_type_name: "__".to_owned(),
-                rust_method_name: "__".to_owned(),
-                is_implicit: false,
-                module: match is_named {
+                type_name: "__".to_owned(),
+                method_name: "__".to_owned(),
+                module: match *is_named {
                     false => NodeModule::Symbols,
                     true => NodeModule::Toplevel
                 },
             };
         }
 
-        let (is_implicit, raw_sexp_name) = match sexp_name.starts_with("_") {
-            false => (false, &sexp_name[..]),
-            true => (true, &sexp_name[1..])
+        let raw_sexp_name = if sexp_name.starts_with('_') {
+            &sexp_name[1..]
+        } else {
+            sexp_name
         };
         let (rust_type_name, rust_method_name) = sexp_name_to_rust_names(raw_sexp_name);
-        let module = match is_named {
+
+        let module = match *is_named {
             false if sexp_name.contains(|c| PUNCTUATION_TABLE.iter().any(|(c2, _)| c == *c2)) => NodeModule::Symbols,
             false => NodeModule::Unnamed,
             true => NodeModule::Toplevel
         };
-        Self { sexp_name, rust_type_name, rust_method_name, is_implicit, module }
+
+        Self { type_name: rust_type_name, method_name: rust_method_name, module }
+
     }
 
     /// If this has the same `rust_type_name` as another [`NodeName`] as indicated by the set,
     /// appends underscores until it's unique. Does the same to `rust_method_name`. Then adds both
     /// to the sets to ensure the next names are also unique.
-    pub(crate) fn disambiguate_rust_names(&mut self, prev: &mut PrevNodeRustNames) {
-        while prev.types.contains(&self.rust_type_name) {
-            self.rust_type_name.push('_');
+    fn disambiguate_rust_names(&mut self, prev: &mut PrevNodeRustNames) {
+        while prev.types[self.module].contains(&self.type_name) {
+            self.type_name.push('_');
         }
-        while prev.methods.contains(&self.rust_method_name) {
-            self.rust_method_name.push('_');
+        while prev.methods.contains(&self.method_name) {
+            self.method_name.push('_');
         }
 
-        prev.types.insert(self.rust_type_name.clone());
-        prev.methods.insert(self.rust_method_name.clone());
+        prev.types[self.module].insert(self.type_name.clone());
+        prev.methods.insert(self.method_name.clone());
     }
 
-    pub fn kind(names: &[NodeName]) -> Cow<'_, str> {
-        match names.len() {
-            0 => Cow::Borrowed("{}"),
-            1 => Cow::Borrowed(&names[0].sexp_name),
-            _ => Cow::Owned(format!("{{{}}}", " | ".join(names.iter().map(|n| &n.sexp_name))))
-        }
-    }
-
-    pub fn rust_type_path(&self) -> Cow<'_, str> {
+    pub(super) fn type_path(&self) -> Cow<'_, str> {
         match self.module {
-            NodeModule::Toplevel => Cow::Borrowed(&self.rust_type_name),
-            NodeModule::Unnamed => Cow::Owned(format!("unnamed::{}", self.rust_type_name)),
-            NodeModule::Symbols => Cow::Owned(format!("symbols::{}", self.rust_type_name))
+            NodeModule::Toplevel => Cow::Borrowed(&self.type_name),
+            NodeModule::Unnamed => Cow::Owned(format!("unnamed::{}", self.type_name)),
+            NodeModule::Symbols => Cow::Owned(format!("symbols::{}", self.type_name))
         }
     }
 
-    pub(super) fn anon_union_type_name(names: &[NodeName]) -> impl Display + '_ {
-        "_".join(names.iter().map(|name| &name.rust_type_name))
-    }
-}
-
-impl From<_NodeName> for NodeName {
-    fn from(_NodeName { sexp_name, named }: _NodeName) -> Self {
-        NodeName::new(sexp_name, named)
+    pub(super) fn anon_union_type_name<'a>(
+        names: impl IntoIterator<Item=&'a NodeRustNames, IntoIter: 'a>
+    ) -> impl Display + 'a {
+        "_".join(names.into_iter().map(|name| &name.type_name))
     }
 }
 
 impl PrevNodeRustNames {
-    pub fn new() -> Self {
-        Self { types: HashSet::new(), methods: HashSet::new() }
+    pub(super) fn new() -> Self {
+        Self { types: EnumMap::default(), methods: HashSet::new() }
     }
 }
 
 /// Convert an s-expression to rust type and method identifier names
-pub fn sexp_name_to_rust_names(sexp_name: &str) -> (String, String) {
+pub(crate) fn sexp_name_to_rust_names(sexp_name: &str) -> (String, String) {
     let rust_type_name = make_valid(&sexp_name.from_case(Case::Snake).to_case(Case::Pascal));
 
     let mut rust_method_name = rust_type_name.from_case(Case::Pascal).to_case(Case::Snake);
@@ -173,5 +187,4 @@ pub(crate) fn unmake_reserved(name: &mut String) {
         },
         _ => unmake_reserved_if_raw(name),
     }
-
 }

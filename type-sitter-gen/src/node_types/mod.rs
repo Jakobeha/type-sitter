@@ -1,18 +1,21 @@
 /// From <https://github.com/serde-rs/json/issues/404#issuecomment-892957228>
 mod deserialize_json_array_as_stream;
 mod detail_doc;
-pub(crate) mod types;
-pub(crate) mod print;
+mod types;
+mod print;
 mod generated_tokens;
+mod rust_names;
+mod names;
 
-use crate::names::PrevNodeRustNames;
 use crate::node_types::deserialize_json_array_as_stream::iter_json_array;
-use crate::node_types::types::NodeType;
-use crate::{type_sitter, type_sitter_raw, Error};
-pub use generated_tokens::GeneratedNodeTokens;
+use crate::{type_sitter, type_sitter_raw, Error, PrintCtx};
+pub use generated_tokens::*;
 use std::fs::File;
 use std::io::BufReader;
 use std::path::Path;
+pub(crate) use types::*;
+pub use rust_names::*;
+pub(crate) use names::*;
 
 /// Generate source code (tokens) for typed AST node wrappers.
 ///
@@ -23,7 +26,6 @@ use std::path::Path;
 ///
 /// ```rust
 /// use type_sitter_gen::generate_nodes;
-/// use syn::parse_quote;
 ///
 /// fn main() {
 ///     println!("{}", generate_nodes("../vendor/tree-sitter-rust/src/node-types.json").unwrap());
@@ -49,26 +51,30 @@ pub fn generate_nodes(path: impl AsRef<Path>) -> Result<GeneratedNodeTokens, Err
 ///
 /// ```rust
 /// use type_sitter_gen::{generate_nodes_with_custom_module_paths, tree_sitter, type_sitter_lib};
-/// use syn::parse_quote;
 ///
 /// fn main() {
 ///     println!("{}", generate_nodes_with_custom_module_paths("../vendor/tree-sitter-rust/src/node-types.json", &tree_sitter(), &type_sitter_lib()).unwrap());
 /// }
 /// ```
 pub fn generate_nodes_with_custom_module_paths(path: impl AsRef<Path>, tree_sitter: &syn::Path, type_sitter_lib: &syn::Path) -> Result<GeneratedNodeTokens, Error> {
-    parse_node_types(path)?
-        .map(|r| r.map(|node_type| node_type.print(tree_sitter, type_sitter_lib)))
-        .collect::<Result<GeneratedNodeTokens, _>>()
+    let all_types = parse_node_type_map(path)?;
+
+    let ctx = PrintCtx {
+        all_types: &all_types,
+        tree_sitter,
+        type_sitter_lib,
+    };
+
+    Ok(all_types.values()
+        .map(|r| r.print(ctx))
+        .collect::<GeneratedNodeTokens>())
 }
 
-/// Parse a `node-types.json` file into a stream of [`NodeType`]s.
-pub(crate) fn parse_node_types(path: impl AsRef<Path>) -> Result<impl Iterator<Item=Result<NodeType, Error>>, Error> {
+/// Parse a `node-types.json` file into a map of [SEXP name](NodeName::sexp_name) to [`NodeType`].
+pub(crate) fn parse_node_type_map(path: impl AsRef<Path>) -> Result<NodeTypeMap, Error> {
     let path = path.as_ref();
-    let node_types = iter_json_array::<NodeType, _>(BufReader::new(File::open(path)?));
-    let mut prev_names = PrevNodeRustNames::new();
-    Ok(node_types.map(move |node_type| {
-        let mut node_type = node_type?;
-        node_type.name.disambiguate_rust_names(&mut prev_names);
-        Ok(node_type)
-    }))
+    let reader = BufReader::new(File::open(path)?);
+    let elems = iter_json_array::<ContextFreeNodeType, _>(reader)
+        .collect::<Result<Vec<_>, _>>()?;
+    Ok(NodeTypeMap::new(elems))
 }

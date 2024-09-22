@@ -51,7 +51,7 @@ fn yield_next_obj<T: DeserializeOwned, R: Read>(
     }
 }
 
-pub fn iter_json_array<T: DeserializeOwned, R: Read>(
+pub(crate) fn iter_json_array<T: DeserializeOwned, R: Read>(
     mut reader: R,
 ) -> impl Iterator<Item = Result<T, io::Error>> {
     let mut at_start = false;

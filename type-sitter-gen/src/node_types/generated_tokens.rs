@@ -1,7 +1,7 @@
 use std::fmt::{Display, Formatter};
 use proc_macro2::TokenStream;
 use crate::anon_unions::AnonUnions;
-use crate::node_types::types::NodeModule;
+use crate::NodeModule;
 
 /// Generated AST tokens from calling [`NodeType::print`] on a single instance or each element of a
 /// collection.
