@@ -31,11 +31,11 @@ Lastly, there's an optional feature, `yak-sitter`, which re-exports the `tree-si
 
 ## Usage
 
-There are three ways to use `type-sitter`: procedural macros, build script, or the CLI tool. Procedural macros is the easiest. Build script is much faster because it's less redundant. The CLI tool is as fast as the build script, and lets you edit the generated code, but requires you to run it manually.
+There are three ways to use `type-sitter`: procedural macros, build script, or the CLI tool. Procedural macros is the easiest. Build script is recommended because it's much faster (only runs when the grammar changes) and lets you see the generated code. The CLI tool is the most flexible, as it lets you edit the generated code, but it requires you to re-generate the code manually.
 
 Every method requires that you **vendor** the tree-sitter grammar you want to generate bindings for: you cannot just include it as a dependency in `Cargo.toml`, because the node generator needs a hard-coded (relative) path to the grammar's `node-types.json`, and the query generator needs a hard-coded path to the grammar's root folder (containing `src/node-types.json`), which must also contain a built shared object (at `build/tree_sitter_foobar_binding.dylib` or `build/tree_sitter_foobar_binding.so`).
 
-### Procedural macros
+### Procedural macros (easiest)
 
 ```shell
 cargo add type-sitter  # Or add to Cargo.toml manually
@@ -69,7 +69,7 @@ generate_queries! {
 }
 ```
 
-### Build script
+### Build script (recommended)
 
 ```shell
 cargo add type-sitter --no-default-features  # Or add to Cargo.toml manually
@@ -79,12 +79,13 @@ cargo add --build type-sitter-gen  # Notice `cargo add --build`
 Then, in `build.rs`
 
 ```rust
-use std::fs;
+use std::path::PathBuf;
+use std::{env, fs};
 use type_sitter_gen::{generate_nodes, generate_queries, super_nodes};
 
 fn main() {
     // Common setup
-    let out_dir = Path::new(env::var_os("OUT_DIR").unwrap());
+    let out_dir = PathBuf::from(env::var_os("OUT_DIR").unwrap());
     println!("cargo::rerun-if-changed=build.rs");
 
     // Obligatory: in this and future lines, replace `vendor/path/to/tree-sitter-foobar-lang`
@@ -92,16 +93,16 @@ fn main() {
     println!("cargo::rerun-if-changed=vendor/path/to/tree-sitter-foobar-lang");
     
     // To generate nodes
-    let dest_path = out_dir.join("nodes.rs");
     fs::write(
-        &dest_path,
-        generate_nodes("vendor/path/to/tree-sitter-foobar-lang/src/node-types.json").unwrap().to_string()
+        out_dir.join("nodes.rs"),
+        generate_nodes(
+            "vendor/path/to/tree-sitter-foobar-lang/src/node-types.json"
+        ).unwrap().into_string()
     ).unwrap();
   
     // To generate queries
-    let dest_path = out_dir.join("queries.rs");
     fs::write(
-        &dest_path,
+        out_dir.join("queries.rs"),
         generate_queries(
             "vendor/path/to/tree-sitter-foobar-lang/queries",
             "vendor/path/to/tree-sitter-foobar-lang",
@@ -109,12 +110,24 @@ fn main() {
             &super_nodes(),
             // Replace with `true` if you are using the `yak-sitter` feature (by default, no)
             false
-        ).unwrap().to_string()
+        ).unwrap().into_string()
     ).unwrap();
 }
 ```
 
-### CLI tool
+then make sure to include the generated code somewhere:
+
+```rust
+mod nodes {
+    include!(concat!(env!("OUT_DIR"), "/nodes.rs"));
+}
+
+mod queries {
+    include!(concat!(env!("OUT_DIR"), "/queries.rs"));
+}
+```
+
+### CLI tool (flexible)
 
 ```shell
 cargo add type-sitter --no-default-features  # Or add to Cargo.toml manually

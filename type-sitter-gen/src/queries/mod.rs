@@ -40,13 +40,13 @@ use tree_sitter::Query;
 ///         "vendor/tree-sitter-typescript",
 ///         &super_nodes(),
 ///         false,
-///     ).unwrap());
+///     ).unwrap().into_string());
 ///     println!("{}", generate_queries(
 ///         "vendor/tree-sitter-rust/queries",
 ///         "vendor/tree-sitter-rust",
 ///         &super_nodes(),
 ///         false,
-///     ).unwrap());
+///     ).unwrap().into_string());
 /// }
 /// ```
 pub fn generate_queries(
@@ -94,7 +94,7 @@ pub fn generate_queries(
 ///         false,
 ///         &tree_sitter(),
 ///         &type_sitter_lib(),
-///     ).unwrap());
+///     ).unwrap().into_string());
 ///     println!("{}", generate_queries_with_custom_module_paths(
 ///         "vendor/tree-sitter-rust/queries",
 ///         "vendor/tree-sitter-rust",
@@ -102,7 +102,7 @@ pub fn generate_queries(
 ///         false,
 ///         &tree_sitter(),
 ///         &type_sitter_lib(),
-///     ).unwrap());
+///     ).unwrap().into_string());
 /// }
 /// ```
 pub fn generate_queries_with_custom_module_paths(

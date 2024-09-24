@@ -571,11 +571,13 @@ impl CaptureQuantifierExt for CaptureQuantifier {
 }
 
 impl GeneratedQueryTokens {
-    /// Strip extra info, converting this into a regular [TokenStream]
+    /// Strip extra info, converting this into a regular [`TokenStream`].
+    ///
+    /// To pretty-print, call [`into_string`](Self::into_string).
     ///
     /// ## Parameters
     /// - `nodes`: Path to the crate with the typed node wrappers. Typically
-    ///   [type_sitter_gen::super_nodes]
+    ///   [`type_sitter_gen::super_nodes`]
     pub fn collapse(self, nodes: &Path) -> TokenStream {
         let nodes = match nodes.segments.first().map_or(false, |s| s.ident.to_string() == "super") {
             false => quote! { #nodes },

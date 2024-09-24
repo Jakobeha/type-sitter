@@ -105,12 +105,6 @@ impl NodeType {
     ) -> impl Display + 'a {
         NodeRustNames::anon_union_type_name(types.into_iter().map(|t| &t.rust_names))
     }
-
-    pub fn kind<'a>(
-        types: impl IntoIterator<Item=&'a NodeType, IntoIter: 'a>
-    ) -> Cow<'a, str> {
-        NodeName::kind(types.into_iter().map(|t| &t.name))
-    }
 }
 
 impl Default for Children {

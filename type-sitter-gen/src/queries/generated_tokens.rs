@@ -1,7 +1,6 @@
-use proc_macro2::TokenStream;
-use std::fmt::{Display, Formatter};
 use crate::anon_unions::AnonUnions;
-use crate::super_nodes;
+use crate::{pretty_print, super_nodes};
+use proc_macro2::TokenStream;
 
 /// Generated AST tokens from calling [SExpSeq::print] on a single instance or each element of a
 /// collection.
@@ -34,6 +33,16 @@ impl GeneratedQueryTokens {
         self.anon_unions.extend(other.anon_unions);
     }
 
+    /// Convert into a pretty-printed string.
+    ///
+    /// Specifically, the code is formatted with
+    /// [prettyplease](https://crates.io/crates/prettyplease).
+    ///
+    /// To convert not pretty-printed, use [`collapse`](Self::collapse) then
+    /// [display](std::fmt::Display) the returned [`TokenStream`].
+    pub fn into_string(self) -> String {
+        pretty_print(&self.collapse(&super_nodes()))
+    }
 }
 
 impl Extend<GeneratedQueryTokens> for GeneratedQueryTokens {
@@ -49,11 +58,5 @@ impl FromIterator<GeneratedQueryTokens> for GeneratedQueryTokens {
         let mut this = Self::new();
         Extend::<GeneratedQueryTokens>::extend(&mut this, iter);
         this
-    }
-}
-
-impl Display for GeneratedQueryTokens {
-    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-        write!(f, "{}", self.clone().collapse(&super_nodes()))
     }
 }

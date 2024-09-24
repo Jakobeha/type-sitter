@@ -815,7 +815,9 @@ impl Children {
 }
 
 impl GeneratedNodeTokens {
-    /// Strip extra info, converting this into a regular [TokenStream]
+    /// Strip extra info, converting this into a regular [`TokenStream`].
+    ///
+    /// To pretty-print, call [`into_string`](Self::into_string).
     pub fn collapse(self) -> TokenStream {
         let GeneratedNodeTokens {
             toplevel,

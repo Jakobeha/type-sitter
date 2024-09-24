@@ -1,5 +1,6 @@
 #![doc = include_str!("../README.md")]
 
+use proc_macro2::TokenStream;
 use syn::parse_quote;
 
 pub use crate::error::*;
@@ -46,4 +47,17 @@ pub fn yak_sitter() -> syn::Path {
 /// crate. What you will often pass to [generate_queries] and co.
 pub fn super_nodes() -> syn::Path {
     parse_quote!(super::nodes)
+}
+
+/// Utility to pretty-print tokens.
+///
+/// It's used by [`GeneratedNodeTokens`] and [`GeneratedQueryTokens`] to provide readable output
+/// when using `type-sitter-gen` or `type-sitter-cli`. `type-sitter-proc` doesn't get
+/// pretty-printed tokens because the proc-macro returns a [`TokenStream`] instead of a string.
+fn pretty_print(tokens: &TokenStream) -> String {
+    let str = tokens.to_string();
+    syn::parse_file(&str).map(|f| prettyplease::unparse(&f)).unwrap_or_else(|err| {
+        eprintln!("Failed to pretty print tokens: {}", err);
+        str
+    })
 }

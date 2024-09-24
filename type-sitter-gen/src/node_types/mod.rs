@@ -28,7 +28,9 @@ pub(crate) use names::*;
 /// use type_sitter_gen::generate_nodes;
 ///
 /// fn main() {
-///     println!("{}", generate_nodes("../vendor/tree-sitter-rust/src/node-types.json").unwrap());
+///     println!("{}", generate_nodes(
+///         "../vendor/tree-sitter-rust/src/node-types.json"
+///     ).unwrap().into_string());
 /// }
 /// ```
 pub fn generate_nodes(path: impl AsRef<Path>) -> Result<GeneratedNodeTokens, Error> {
@@ -53,7 +55,11 @@ pub fn generate_nodes(path: impl AsRef<Path>) -> Result<GeneratedNodeTokens, Err
 /// use type_sitter_gen::{generate_nodes_with_custom_module_paths, tree_sitter, type_sitter_lib};
 ///
 /// fn main() {
-///     println!("{}", generate_nodes_with_custom_module_paths("../vendor/tree-sitter-rust/src/node-types.json", &tree_sitter(), &type_sitter_lib()).unwrap());
+///     println!("{}", generate_nodes_with_custom_module_paths(
+///         "../vendor/tree-sitter-rust/src/node-types.json",
+///         &tree_sitter(),
+///         &type_sitter_lib()
+///     ).unwrap().into_string());
 /// }
 /// ```
 pub fn generate_nodes_with_custom_module_paths(path: impl AsRef<Path>, tree_sitter: &syn::Path, type_sitter_lib: &syn::Path) -> Result<GeneratedNodeTokens, Error> {

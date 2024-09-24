@@ -1,6 +1,6 @@
 mod common;
 
-use crate::common::{pretty_print, setup_common, Common};
+use crate::common::{setup_common, Common};
 use std::fs::write;
 use type_sitter_gen::{generate_queries_with_custom_module_paths, super_nodes, type_sitter_lib, yak_sitter};
 
@@ -26,8 +26,8 @@ pub fn test_parse_queries(lang: &str) {
         true,
         &yak_sitter(),
         &type_sitter_lib(),
-    ).expect("Failed to generate queries").collapse(&super_nodes());
+    ).expect("Failed to generate queries");
 
-    write(&expected_queries_path, pretty_print(&queries_code))
+    write(&expected_queries_path, queries_code.into_string())
         .expect("Failed to create expected queries file");
 }

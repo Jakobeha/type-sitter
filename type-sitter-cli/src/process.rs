@@ -46,11 +46,22 @@ fn do_reprocess(
 ) -> errors::Result<()> {
     match input_type {
         InputType::NodeTypes => {
-            write(&output_path, type_sitter_gen::generate_nodes(input_path)?)?
+            write(
+                &output_path,
+                type_sitter_gen::generate_nodes(input_path)?.collapse()
+            )?
         }
         InputType::Query => {
             let language_dir = language_dir.ok_or(Error::CouldntInferLanguage)?;
-            write(&output_path, type_sitter_gen::generate_queries(input_path, language_dir, &super_nodes(), use_yak_sitter)?)?;
+            write(
+                &output_path,
+                type_sitter_gen::generate_queries(
+                    input_path,
+                    language_dir,
+                    &super_nodes(),
+                    use_yak_sitter
+                )?.collapse(&super_nodes())
+            )?;
         }
         InputType::LanguageRoot => {
             // Remove old dir.

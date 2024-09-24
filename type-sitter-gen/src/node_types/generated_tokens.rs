@@ -1,7 +1,6 @@
-use std::fmt::{Display, Formatter};
 use proc_macro2::TokenStream;
 use crate::anon_unions::AnonUnions;
-use crate::NodeModule;
+use crate::{pretty_print, NodeModule};
 
 /// Generated AST tokens from calling [`NodeType::print`] on a single instance or each element of a
 /// collection.
@@ -43,6 +42,17 @@ impl GeneratedNodeTokens {
         self.symbols.extend(other.symbols);
         self.anon_unions.extend(other.anon_unions);
     }
+
+    /// Convert into a pretty-printed string.
+    ///
+    /// Specifically, the code is formatted with
+    /// [prettyplease](https://crates.io/crates/prettyplease).
+    ///
+    /// To convert not pretty-printed, use [`collapse`](Self::collapse) then
+    /// [display](std::fmt::Display) the returned [`TokenStream`].
+    pub fn into_string(self) -> String {
+        pretty_print(&self.collapse())
+    }
 }
 
 impl Extend<GeneratedNodeTokens> for GeneratedNodeTokens {
@@ -58,11 +68,5 @@ impl FromIterator<GeneratedNodeTokens> for GeneratedNodeTokens {
         let mut this = Self::new();
         Extend::<GeneratedNodeTokens>::extend(&mut this, iter);
         this
-    }
-}
-
-impl Display for GeneratedNodeTokens {
-    fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-        write!(f, "{}", self.clone().collapse())
     }
 }

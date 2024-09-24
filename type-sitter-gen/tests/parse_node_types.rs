@@ -1,6 +1,6 @@
 mod common;
 
-use crate::common::{pretty_print, setup_common, Common};
+use crate::common::{setup_common, Common};
 use std::fs::write;
 use type_sitter_gen::{generate_nodes_with_custom_module_paths, type_sitter_lib, yak_sitter};
 
@@ -23,8 +23,8 @@ pub fn test_parse_node_types(lang: &str) {
         input_node_types_path,
         &yak_sitter(),
         &type_sitter_lib(),
-    ).expect("Failed to generate node types").collapse();
+    ).expect("Failed to generate node types");
 
-    write(&expected_node_types_path, pretty_print(&node_types_code))
+    write(&expected_node_types_path, node_types_code.into_string())
         .expect("Failed to create expected node types file");
 }

@@ -1,48 +1,20 @@
-/**Typed node `pair`
+/**Typed node `true`
 
-This node has these fields:
-
-- `key`: `string` ([`String`])
-- `value`: `_value` ([`Value`])
+This node has no named children
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
 #[allow(non_camel_case_types)]
-pub struct Pair<'tree>(yak_sitter::Node<'tree>);
+pub struct True<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
-impl<'tree> Pair<'tree> {
-    /**Get the field `key`.
-
-This child has type `string` ([`String`])*/
-    #[inline]
-    pub fn key(&self) -> type_sitter_lib::NodeResult<'tree, String<'tree>> {
-        type_sitter_lib::Node::raw(self)
-            .child_by_field_name("key")
-            .map(<String<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
-            .expect(
-                "required child not present, there should at least be a MISSING node in its place",
-            )
-    }
-    /**Get the field `value`.
-
-This child has type `_value` ([`Value`])*/
-    #[inline]
-    pub fn value(&self) -> type_sitter_lib::NodeResult<'tree, Value<'tree>> {
-        type_sitter_lib::Node::raw(self)
-            .child_by_field_name("value")
-            .map(<Value<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
-            .expect(
-                "required child not present, there should at least be a MISSING node in its place",
-            )
-    }
-}
+impl<'tree> True<'tree> {}
 #[automatically_derived]
-impl<'tree> type_sitter_lib::Node<'tree> for Pair<'tree> {
-    type WithLifetime<'a> = Pair<'a>;
-    const KIND: &'static str = "pair";
+impl<'tree> type_sitter_lib::Node<'tree> for True<'tree> {
+    type WithLifetime<'a> = True<'a>;
+    const KIND: &'static str = "true";
     #[inline]
     fn try_from_raw(node: yak_sitter::Node<'tree>) -> type_sitter_lib::NodeResult<Self> {
-        if node.kind() == "pair" {
+        if node.kind() == "true" {
             Ok(Self(node))
         } else {
             Err(type_sitter_lib::IncorrectKind::new::<Self>(node))
@@ -50,7 +22,306 @@ impl<'tree> type_sitter_lib::Node<'tree> for Pair<'tree> {
     }
     #[inline]
     unsafe fn from_raw_unchecked(node: yak_sitter::Node<'tree>) -> Self {
-        debug_assert_eq!(node.kind(), "pair");
+        debug_assert_eq!(node.kind(), "true");
+        Self(node)
+    }
+    #[inline]
+    fn raw(&self) -> &yak_sitter::Node<'tree> {
+        &self.0
+    }
+    #[inline]
+    fn raw_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
+        &mut self.0
+    }
+    #[inline]
+    fn into_raw(self) -> yak_sitter::Node<'tree> {
+        self.0
+    }
+}
+/**Typed node `number`
+
+This node has no named children
+*/
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[repr(transparent)]
+#[allow(non_camel_case_types)]
+pub struct Number<'tree>(yak_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> Number<'tree> {}
+#[automatically_derived]
+impl<'tree> type_sitter_lib::Node<'tree> for Number<'tree> {
+    type WithLifetime<'a> = Number<'a>;
+    const KIND: &'static str = "number";
+    #[inline]
+    fn try_from_raw(node: yak_sitter::Node<'tree>) -> type_sitter_lib::NodeResult<Self> {
+        if node.kind() == "number" {
+            Ok(Self(node))
+        } else {
+            Err(type_sitter_lib::IncorrectKind::new::<Self>(node))
+        }
+    }
+    #[inline]
+    unsafe fn from_raw_unchecked(node: yak_sitter::Node<'tree>) -> Self {
+        debug_assert_eq!(node.kind(), "number");
+        Self(node)
+    }
+    #[inline]
+    fn raw(&self) -> &yak_sitter::Node<'tree> {
+        &self.0
+    }
+    #[inline]
+    fn raw_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
+        &mut self.0
+    }
+    #[inline]
+    fn into_raw(self) -> yak_sitter::Node<'tree> {
+        self.0
+    }
+}
+/**Typed node `escape_sequence`
+
+This node has no named children
+*/
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[repr(transparent)]
+#[allow(non_camel_case_types)]
+pub struct EscapeSequence<'tree>(yak_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> EscapeSequence<'tree> {}
+#[automatically_derived]
+impl<'tree> type_sitter_lib::Node<'tree> for EscapeSequence<'tree> {
+    type WithLifetime<'a> = EscapeSequence<'a>;
+    const KIND: &'static str = "escape_sequence";
+    #[inline]
+    fn try_from_raw(node: yak_sitter::Node<'tree>) -> type_sitter_lib::NodeResult<Self> {
+        if node.kind() == "escape_sequence" {
+            Ok(Self(node))
+        } else {
+            Err(type_sitter_lib::IncorrectKind::new::<Self>(node))
+        }
+    }
+    #[inline]
+    unsafe fn from_raw_unchecked(node: yak_sitter::Node<'tree>) -> Self {
+        debug_assert_eq!(node.kind(), "escape_sequence");
+        Self(node)
+    }
+    #[inline]
+    fn raw(&self) -> &yak_sitter::Node<'tree> {
+        &self.0
+    }
+    #[inline]
+    fn raw_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
+        &mut self.0
+    }
+    #[inline]
+    fn into_raw(self) -> yak_sitter::Node<'tree> {
+        self.0
+    }
+}
+/**Typed node `document`
+
+This node has named children of type `_value*` ([`Value`])
+*/
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[repr(transparent)]
+#[allow(non_camel_case_types)]
+pub struct Document<'tree>(yak_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> Document<'tree> {
+    /**Get the node's not-extra named children.
+
+These children have type `_value*` ([`Value`])*/
+    #[inline]
+    pub fn values<'a>(
+        &self,
+        c: &'a mut type_sitter_lib::TreeCursor<'tree>,
+    ) -> impl Iterator<Item = type_sitter_lib::NodeResult<'tree, Value<'tree>>> + 'a {
+        type_sitter_lib::Node::raw(self)
+            .named_children(&mut c.0)
+            .filter(|n| !n.is_extra())
+            .map(<Value<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
+    }
+}
+#[automatically_derived]
+impl<'tree> type_sitter_lib::Node<'tree> for Document<'tree> {
+    type WithLifetime<'a> = Document<'a>;
+    const KIND: &'static str = "document";
+    #[inline]
+    fn try_from_raw(node: yak_sitter::Node<'tree>) -> type_sitter_lib::NodeResult<Self> {
+        if node.kind() == "document" {
+            Ok(Self(node))
+        } else {
+            Err(type_sitter_lib::IncorrectKind::new::<Self>(node))
+        }
+    }
+    #[inline]
+    unsafe fn from_raw_unchecked(node: yak_sitter::Node<'tree>) -> Self {
+        debug_assert_eq!(node.kind(), "document");
+        Self(node)
+    }
+    #[inline]
+    fn raw(&self) -> &yak_sitter::Node<'tree> {
+        &self.0
+    }
+    #[inline]
+    fn raw_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
+        &mut self.0
+    }
+    #[inline]
+    fn into_raw(self) -> yak_sitter::Node<'tree> {
+        self.0
+    }
+}
+/**Typed node `object`
+
+This node has named children of type `pair*` ([`Pair`])
+*/
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[repr(transparent)]
+#[allow(non_camel_case_types)]
+pub struct Object<'tree>(yak_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> Object<'tree> {
+    /**Get the node's not-extra named children.
+
+These children have type `pair*` ([`Pair`])*/
+    #[inline]
+    pub fn pairs<'a>(
+        &self,
+        c: &'a mut type_sitter_lib::TreeCursor<'tree>,
+    ) -> impl Iterator<Item = type_sitter_lib::NodeResult<'tree, Pair<'tree>>> + 'a {
+        type_sitter_lib::Node::raw(self)
+            .named_children(&mut c.0)
+            .filter(|n| !n.is_extra())
+            .map(<Pair<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
+    }
+}
+#[automatically_derived]
+impl<'tree> type_sitter_lib::Node<'tree> for Object<'tree> {
+    type WithLifetime<'a> = Object<'a>;
+    const KIND: &'static str = "object";
+    #[inline]
+    fn try_from_raw(node: yak_sitter::Node<'tree>) -> type_sitter_lib::NodeResult<Self> {
+        if node.kind() == "object" {
+            Ok(Self(node))
+        } else {
+            Err(type_sitter_lib::IncorrectKind::new::<Self>(node))
+        }
+    }
+    #[inline]
+    unsafe fn from_raw_unchecked(node: yak_sitter::Node<'tree>) -> Self {
+        debug_assert_eq!(node.kind(), "object");
+        Self(node)
+    }
+    #[inline]
+    fn raw(&self) -> &yak_sitter::Node<'tree> {
+        &self.0
+    }
+    #[inline]
+    fn raw_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
+        &mut self.0
+    }
+    #[inline]
+    fn into_raw(self) -> yak_sitter::Node<'tree> {
+        self.0
+    }
+}
+/**Typed node `string_content`
+
+This node has no named children
+*/
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[repr(transparent)]
+#[allow(non_camel_case_types)]
+pub struct StringContent<'tree>(yak_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> StringContent<'tree> {}
+#[automatically_derived]
+impl<'tree> type_sitter_lib::Node<'tree> for StringContent<'tree> {
+    type WithLifetime<'a> = StringContent<'a>;
+    const KIND: &'static str = "string_content";
+    #[inline]
+    fn try_from_raw(node: yak_sitter::Node<'tree>) -> type_sitter_lib::NodeResult<Self> {
+        if node.kind() == "string_content" {
+            Ok(Self(node))
+        } else {
+            Err(type_sitter_lib::IncorrectKind::new::<Self>(node))
+        }
+    }
+    #[inline]
+    unsafe fn from_raw_unchecked(node: yak_sitter::Node<'tree>) -> Self {
+        debug_assert_eq!(node.kind(), "string_content");
+        Self(node)
+    }
+    #[inline]
+    fn raw(&self) -> &yak_sitter::Node<'tree> {
+        &self.0
+    }
+    #[inline]
+    fn raw_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
+        &mut self.0
+    }
+    #[inline]
+    fn into_raw(self) -> yak_sitter::Node<'tree> {
+        self.0
+    }
+}
+/**Typed node `string`
+
+This node has named children of type `{escape_sequence | string_content}*`:
+
+- [`EscapeSequence`]
+- [`StringContent`]
+
+*/
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[repr(transparent)]
+#[allow(non_camel_case_types)]
+pub struct String<'tree>(yak_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> String<'tree> {
+    /**Get the node's not-extra named children.
+
+These children have type `{escape_sequence | string_content}*`:
+
+- [`EscapeSequence`]
+- [`StringContent`]
+*/
+    #[inline]
+    pub fn children<'a>(
+        &self,
+        c: &'a mut type_sitter_lib::TreeCursor<'tree>,
+    ) -> impl Iterator<
+        Item = type_sitter_lib::NodeResult<
+            'tree,
+            anon_unions::EscapeSequence_StringContent<'tree>,
+        >,
+    > + 'a {
+        type_sitter_lib::Node::raw(self)
+            .named_children(&mut c.0)
+            .filter(|n| !n.is_extra())
+            .map(
+                <anon_unions::EscapeSequence_StringContent<
+                    'tree,
+                > as type_sitter_lib::Node<'tree>>::try_from_raw,
+            )
+    }
+}
+#[automatically_derived]
+impl<'tree> type_sitter_lib::Node<'tree> for String<'tree> {
+    type WithLifetime<'a> = String<'a>;
+    const KIND: &'static str = "string";
+    #[inline]
+    fn try_from_raw(node: yak_sitter::Node<'tree>) -> type_sitter_lib::NodeResult<Self> {
+        if node.kind() == "string" {
+            Ok(Self(node))
+        } else {
+            Err(type_sitter_lib::IncorrectKind::new::<Self>(node))
+        }
+    }
+    #[inline]
+    unsafe fn from_raw_unchecked(node: yak_sitter::Node<'tree>) -> Self {
+        debug_assert_eq!(node.kind(), "string");
         Self(node)
     }
     #[inline]
@@ -244,16 +515,16 @@ impl<'tree> type_sitter_lib::Node<'tree> for Value<'tree> {
         }
     }
 }
-/**Typed node `document`
+/**Typed node `array`
 
 This node has named children of type `_value*` ([`Value`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
 #[allow(non_camel_case_types)]
-pub struct Document<'tree>(yak_sitter::Node<'tree>);
+pub struct Array<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
-impl<'tree> Document<'tree> {
+impl<'tree> Array<'tree> {
     /**Get the node's not-extra named children.
 
 These children have type `_value*` ([`Value`])*/
@@ -269,12 +540,12 @@ These children have type `_value*` ([`Value`])*/
     }
 }
 #[automatically_derived]
-impl<'tree> type_sitter_lib::Node<'tree> for Document<'tree> {
-    type WithLifetime<'a> = Document<'a>;
-    const KIND: &'static str = "document";
+impl<'tree> type_sitter_lib::Node<'tree> for Array<'tree> {
+    type WithLifetime<'a> = Array<'a>;
+    const KIND: &'static str = "array";
     #[inline]
     fn try_from_raw(node: yak_sitter::Node<'tree>) -> type_sitter_lib::NodeResult<Self> {
-        if node.kind() == "document" {
+        if node.kind() == "array" {
             Ok(Self(node))
         } else {
             Err(type_sitter_lib::IncorrectKind::new::<Self>(node))
@@ -282,47 +553,7 @@ impl<'tree> type_sitter_lib::Node<'tree> for Document<'tree> {
     }
     #[inline]
     unsafe fn from_raw_unchecked(node: yak_sitter::Node<'tree>) -> Self {
-        debug_assert_eq!(node.kind(), "document");
-        Self(node)
-    }
-    #[inline]
-    fn raw(&self) -> &yak_sitter::Node<'tree> {
-        &self.0
-    }
-    #[inline]
-    fn raw_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
-        &mut self.0
-    }
-    #[inline]
-    fn into_raw(self) -> yak_sitter::Node<'tree> {
-        self.0
-    }
-}
-/**Typed node `true`
-
-This node has no named children
-*/
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-#[repr(transparent)]
-#[allow(non_camel_case_types)]
-pub struct True<'tree>(yak_sitter::Node<'tree>);
-#[automatically_derived]
-impl<'tree> True<'tree> {}
-#[automatically_derived]
-impl<'tree> type_sitter_lib::Node<'tree> for True<'tree> {
-    type WithLifetime<'a> = True<'a>;
-    const KIND: &'static str = "true";
-    #[inline]
-    fn try_from_raw(node: yak_sitter::Node<'tree>) -> type_sitter_lib::NodeResult<Self> {
-        if node.kind() == "true" {
-            Ok(Self(node))
-        } else {
-            Err(type_sitter_lib::IncorrectKind::new::<Self>(node))
-        }
-    }
-    #[inline]
-    unsafe fn from_raw_unchecked(node: yak_sitter::Node<'tree>) -> Self {
-        debug_assert_eq!(node.kind(), "true");
+        debug_assert_eq!(node.kind(), "array");
         Self(node)
     }
     #[inline]
@@ -378,265 +609,6 @@ impl<'tree> type_sitter_lib::Node<'tree> for Comment<'tree> {
         self.0
     }
 }
-/**Typed node `object`
-
-This node has named children of type `pair*` ([`Pair`])
-*/
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-#[repr(transparent)]
-#[allow(non_camel_case_types)]
-pub struct Object<'tree>(yak_sitter::Node<'tree>);
-#[automatically_derived]
-impl<'tree> Object<'tree> {
-    /**Get the node's not-extra named children.
-
-These children have type `pair*` ([`Pair`])*/
-    #[inline]
-    pub fn pairs<'a>(
-        &self,
-        c: &'a mut type_sitter_lib::TreeCursor<'tree>,
-    ) -> impl Iterator<Item = type_sitter_lib::NodeResult<'tree, Pair<'tree>>> + 'a {
-        type_sitter_lib::Node::raw(self)
-            .named_children(&mut c.0)
-            .filter(|n| !n.is_extra())
-            .map(<Pair<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
-    }
-}
-#[automatically_derived]
-impl<'tree> type_sitter_lib::Node<'tree> for Object<'tree> {
-    type WithLifetime<'a> = Object<'a>;
-    const KIND: &'static str = "object";
-    #[inline]
-    fn try_from_raw(node: yak_sitter::Node<'tree>) -> type_sitter_lib::NodeResult<Self> {
-        if node.kind() == "object" {
-            Ok(Self(node))
-        } else {
-            Err(type_sitter_lib::IncorrectKind::new::<Self>(node))
-        }
-    }
-    #[inline]
-    unsafe fn from_raw_unchecked(node: yak_sitter::Node<'tree>) -> Self {
-        debug_assert_eq!(node.kind(), "object");
-        Self(node)
-    }
-    #[inline]
-    fn raw(&self) -> &yak_sitter::Node<'tree> {
-        &self.0
-    }
-    #[inline]
-    fn raw_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
-        &mut self.0
-    }
-    #[inline]
-    fn into_raw(self) -> yak_sitter::Node<'tree> {
-        self.0
-    }
-}
-/**Typed node `string`
-
-This node has named children of type `{escape_sequence | string_content}*`:
-
-- [`EscapeSequence`]
-- [`StringContent`]
-
-*/
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-#[repr(transparent)]
-#[allow(non_camel_case_types)]
-pub struct String<'tree>(yak_sitter::Node<'tree>);
-#[automatically_derived]
-impl<'tree> String<'tree> {
-    /**Get the node's not-extra named children.
-
-These children have type `{escape_sequence | string_content}*`:
-
-- [`EscapeSequence`]
-- [`StringContent`]
-*/
-    #[inline]
-    pub fn children<'a>(
-        &self,
-        c: &'a mut type_sitter_lib::TreeCursor<'tree>,
-    ) -> impl Iterator<
-        Item = type_sitter_lib::NodeResult<
-            'tree,
-            anon_unions::EscapeSequence_StringContent<'tree>,
-        >,
-    > + 'a {
-        type_sitter_lib::Node::raw(self)
-            .named_children(&mut c.0)
-            .filter(|n| !n.is_extra())
-            .map(
-                <anon_unions::EscapeSequence_StringContent<
-                    'tree,
-                > as type_sitter_lib::Node<'tree>>::try_from_raw,
-            )
-    }
-}
-#[automatically_derived]
-impl<'tree> type_sitter_lib::Node<'tree> for String<'tree> {
-    type WithLifetime<'a> = String<'a>;
-    const KIND: &'static str = "string";
-    #[inline]
-    fn try_from_raw(node: yak_sitter::Node<'tree>) -> type_sitter_lib::NodeResult<Self> {
-        if node.kind() == "string" {
-            Ok(Self(node))
-        } else {
-            Err(type_sitter_lib::IncorrectKind::new::<Self>(node))
-        }
-    }
-    #[inline]
-    unsafe fn from_raw_unchecked(node: yak_sitter::Node<'tree>) -> Self {
-        debug_assert_eq!(node.kind(), "string");
-        Self(node)
-    }
-    #[inline]
-    fn raw(&self) -> &yak_sitter::Node<'tree> {
-        &self.0
-    }
-    #[inline]
-    fn raw_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
-        &mut self.0
-    }
-    #[inline]
-    fn into_raw(self) -> yak_sitter::Node<'tree> {
-        self.0
-    }
-}
-/**Typed node `string_content`
-
-This node has no named children
-*/
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-#[repr(transparent)]
-#[allow(non_camel_case_types)]
-pub struct StringContent<'tree>(yak_sitter::Node<'tree>);
-#[automatically_derived]
-impl<'tree> StringContent<'tree> {}
-#[automatically_derived]
-impl<'tree> type_sitter_lib::Node<'tree> for StringContent<'tree> {
-    type WithLifetime<'a> = StringContent<'a>;
-    const KIND: &'static str = "string_content";
-    #[inline]
-    fn try_from_raw(node: yak_sitter::Node<'tree>) -> type_sitter_lib::NodeResult<Self> {
-        if node.kind() == "string_content" {
-            Ok(Self(node))
-        } else {
-            Err(type_sitter_lib::IncorrectKind::new::<Self>(node))
-        }
-    }
-    #[inline]
-    unsafe fn from_raw_unchecked(node: yak_sitter::Node<'tree>) -> Self {
-        debug_assert_eq!(node.kind(), "string_content");
-        Self(node)
-    }
-    #[inline]
-    fn raw(&self) -> &yak_sitter::Node<'tree> {
-        &self.0
-    }
-    #[inline]
-    fn raw_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
-        &mut self.0
-    }
-    #[inline]
-    fn into_raw(self) -> yak_sitter::Node<'tree> {
-        self.0
-    }
-}
-/**Typed node `number`
-
-This node has no named children
-*/
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-#[repr(transparent)]
-#[allow(non_camel_case_types)]
-pub struct Number<'tree>(yak_sitter::Node<'tree>);
-#[automatically_derived]
-impl<'tree> Number<'tree> {}
-#[automatically_derived]
-impl<'tree> type_sitter_lib::Node<'tree> for Number<'tree> {
-    type WithLifetime<'a> = Number<'a>;
-    const KIND: &'static str = "number";
-    #[inline]
-    fn try_from_raw(node: yak_sitter::Node<'tree>) -> type_sitter_lib::NodeResult<Self> {
-        if node.kind() == "number" {
-            Ok(Self(node))
-        } else {
-            Err(type_sitter_lib::IncorrectKind::new::<Self>(node))
-        }
-    }
-    #[inline]
-    unsafe fn from_raw_unchecked(node: yak_sitter::Node<'tree>) -> Self {
-        debug_assert_eq!(node.kind(), "number");
-        Self(node)
-    }
-    #[inline]
-    fn raw(&self) -> &yak_sitter::Node<'tree> {
-        &self.0
-    }
-    #[inline]
-    fn raw_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
-        &mut self.0
-    }
-    #[inline]
-    fn into_raw(self) -> yak_sitter::Node<'tree> {
-        self.0
-    }
-}
-/**Typed node `array`
-
-This node has named children of type `_value*` ([`Value`])
-*/
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-#[repr(transparent)]
-#[allow(non_camel_case_types)]
-pub struct Array<'tree>(yak_sitter::Node<'tree>);
-#[automatically_derived]
-impl<'tree> Array<'tree> {
-    /**Get the node's not-extra named children.
-
-These children have type `_value*` ([`Value`])*/
-    #[inline]
-    pub fn values<'a>(
-        &self,
-        c: &'a mut type_sitter_lib::TreeCursor<'tree>,
-    ) -> impl Iterator<Item = type_sitter_lib::NodeResult<'tree, Value<'tree>>> + 'a {
-        type_sitter_lib::Node::raw(self)
-            .named_children(&mut c.0)
-            .filter(|n| !n.is_extra())
-            .map(<Value<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
-    }
-}
-#[automatically_derived]
-impl<'tree> type_sitter_lib::Node<'tree> for Array<'tree> {
-    type WithLifetime<'a> = Array<'a>;
-    const KIND: &'static str = "array";
-    #[inline]
-    fn try_from_raw(node: yak_sitter::Node<'tree>) -> type_sitter_lib::NodeResult<Self> {
-        if node.kind() == "array" {
-            Ok(Self(node))
-        } else {
-            Err(type_sitter_lib::IncorrectKind::new::<Self>(node))
-        }
-    }
-    #[inline]
-    unsafe fn from_raw_unchecked(node: yak_sitter::Node<'tree>) -> Self {
-        debug_assert_eq!(node.kind(), "array");
-        Self(node)
-    }
-    #[inline]
-    fn raw(&self) -> &yak_sitter::Node<'tree> {
-        &self.0
-    }
-    #[inline]
-    fn raw_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
-        &mut self.0
-    }
-    #[inline]
-    fn into_raw(self) -> yak_sitter::Node<'tree> {
-        self.0
-    }
-}
 /**Typed node `null`
 
 This node has no named children
@@ -662,6 +634,74 @@ impl<'tree> type_sitter_lib::Node<'tree> for Null<'tree> {
     #[inline]
     unsafe fn from_raw_unchecked(node: yak_sitter::Node<'tree>) -> Self {
         debug_assert_eq!(node.kind(), "null");
+        Self(node)
+    }
+    #[inline]
+    fn raw(&self) -> &yak_sitter::Node<'tree> {
+        &self.0
+    }
+    #[inline]
+    fn raw_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
+        &mut self.0
+    }
+    #[inline]
+    fn into_raw(self) -> yak_sitter::Node<'tree> {
+        self.0
+    }
+}
+/**Typed node `pair`
+
+This node has these fields:
+
+- `key`: `string` ([`String`])
+- `value`: `_value` ([`Value`])
+*/
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[repr(transparent)]
+#[allow(non_camel_case_types)]
+pub struct Pair<'tree>(yak_sitter::Node<'tree>);
+#[automatically_derived]
+impl<'tree> Pair<'tree> {
+    /**Get the field `key`.
+
+This child has type `string` ([`String`])*/
+    #[inline]
+    pub fn key(&self) -> type_sitter_lib::NodeResult<'tree, String<'tree>> {
+        type_sitter_lib::Node::raw(self)
+            .child_by_field_name("key")
+            .map(<String<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
+            .expect(
+                "required child not present, there should at least be a MISSING node in its place",
+            )
+    }
+    /**Get the field `value`.
+
+This child has type `_value` ([`Value`])*/
+    #[inline]
+    pub fn value(&self) -> type_sitter_lib::NodeResult<'tree, Value<'tree>> {
+        type_sitter_lib::Node::raw(self)
+            .child_by_field_name("value")
+            .map(<Value<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
+            .expect(
+                "required child not present, there should at least be a MISSING node in its place",
+            )
+    }
+}
+#[automatically_derived]
+impl<'tree> type_sitter_lib::Node<'tree> for Pair<'tree> {
+    type WithLifetime<'a> = Pair<'a>;
+    const KIND: &'static str = "pair";
+    #[inline]
+    fn try_from_raw(node: yak_sitter::Node<'tree>) -> type_sitter_lib::NodeResult<Self> {
+        if node.kind() == "pair" {
+            Ok(Self(node))
+        } else {
+            Err(type_sitter_lib::IncorrectKind::new::<Self>(node))
+        }
+    }
+    #[inline]
+    unsafe fn from_raw_unchecked(node: yak_sitter::Node<'tree>) -> Self {
+        debug_assert_eq!(node.kind(), "pair");
         Self(node)
     }
     #[inline]
@@ -717,49 +757,51 @@ impl<'tree> type_sitter_lib::Node<'tree> for False<'tree> {
         self.0
     }
 }
-/**Typed node `escape_sequence`
-
-This node has no named children
-*/
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-#[repr(transparent)]
-#[allow(non_camel_case_types)]
-pub struct EscapeSequence<'tree>(yak_sitter::Node<'tree>);
-#[automatically_derived]
-impl<'tree> EscapeSequence<'tree> {}
-#[automatically_derived]
-impl<'tree> type_sitter_lib::Node<'tree> for EscapeSequence<'tree> {
-    type WithLifetime<'a> = EscapeSequence<'a>;
-    const KIND: &'static str = "escape_sequence";
-    #[inline]
-    fn try_from_raw(node: yak_sitter::Node<'tree>) -> type_sitter_lib::NodeResult<Self> {
-        if node.kind() == "escape_sequence" {
-            Ok(Self(node))
-        } else {
-            Err(type_sitter_lib::IncorrectKind::new::<Self>(node))
-        }
-    }
-    #[inline]
-    unsafe fn from_raw_unchecked(node: yak_sitter::Node<'tree>) -> Self {
-        debug_assert_eq!(node.kind(), "escape_sequence");
-        Self(node)
-    }
-    #[inline]
-    fn raw(&self) -> &yak_sitter::Node<'tree> {
-        &self.0
-    }
-    #[inline]
-    fn raw_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
-        &mut self.0
-    }
-    #[inline]
-    fn into_raw(self) -> yak_sitter::Node<'tree> {
-        self.0
-    }
-}
 pub mod symbols {
     #[allow(unused_imports)]
     use super::*;
+    /**Typed node `}`
+
+This node has no named children
+*/
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[repr(transparent)]
+    #[allow(non_camel_case_types)]
+    pub struct RBrace<'tree>(yak_sitter::Node<'tree>);
+    #[automatically_derived]
+    impl<'tree> RBrace<'tree> {}
+    #[automatically_derived]
+    impl<'tree> type_sitter_lib::Node<'tree> for RBrace<'tree> {
+        type WithLifetime<'a> = RBrace<'a>;
+        const KIND: &'static str = "}";
+        #[inline]
+        fn try_from_raw(
+            node: yak_sitter::Node<'tree>,
+        ) -> type_sitter_lib::NodeResult<Self> {
+            if node.kind() == "}" {
+                Ok(Self(node))
+            } else {
+                Err(type_sitter_lib::IncorrectKind::new::<Self>(node))
+            }
+        }
+        #[inline]
+        unsafe fn from_raw_unchecked(node: yak_sitter::Node<'tree>) -> Self {
+            debug_assert_eq!(node.kind(), "}");
+            Self(node)
+        }
+        #[inline]
+        fn raw(&self) -> &yak_sitter::Node<'tree> {
+            &self.0
+        }
+        #[inline]
+        fn raw_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
+            &mut self.0
+        }
+        #[inline]
+        fn into_raw(self) -> yak_sitter::Node<'tree> {
+            self.0
+        }
+    }
     /**Typed node `,`
 
 This node has no named children
@@ -802,25 +844,25 @@ This node has no named children
             self.0
         }
     }
-    /**Typed node `[`
+    /**Typed node `]`
 
 This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
     #[allow(non_camel_case_types)]
-    pub struct LBracket<'tree>(yak_sitter::Node<'tree>);
+    pub struct RBracket<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
-    impl<'tree> LBracket<'tree> {}
+    impl<'tree> RBracket<'tree> {}
     #[automatically_derived]
-    impl<'tree> type_sitter_lib::Node<'tree> for LBracket<'tree> {
-        type WithLifetime<'a> = LBracket<'a>;
-        const KIND: &'static str = "[";
+    impl<'tree> type_sitter_lib::Node<'tree> for RBracket<'tree> {
+        type WithLifetime<'a> = RBracket<'a>;
+        const KIND: &'static str = "]";
         #[inline]
         fn try_from_raw(
             node: yak_sitter::Node<'tree>,
         ) -> type_sitter_lib::NodeResult<Self> {
-            if node.kind() == "[" {
+            if node.kind() == "]" {
                 Ok(Self(node))
             } else {
                 Err(type_sitter_lib::IncorrectKind::new::<Self>(node))
@@ -828,7 +870,7 @@ This node has no named children
         }
         #[inline]
         unsafe fn from_raw_unchecked(node: yak_sitter::Node<'tree>) -> Self {
-            debug_assert_eq!(node.kind(), "[");
+            debug_assert_eq!(node.kind(), "]");
             Self(node)
         }
         #[inline]
@@ -886,25 +928,25 @@ This node has no named children
             self.0
         }
     }
-    /**Typed node `}`
+    /**Typed node `[`
 
 This node has no named children
 */
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
     #[allow(non_camel_case_types)]
-    pub struct RBrace<'tree>(yak_sitter::Node<'tree>);
+    pub struct LBracket<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
-    impl<'tree> RBrace<'tree> {}
+    impl<'tree> LBracket<'tree> {}
     #[automatically_derived]
-    impl<'tree> type_sitter_lib::Node<'tree> for RBrace<'tree> {
-        type WithLifetime<'a> = RBrace<'a>;
-        const KIND: &'static str = "}";
+    impl<'tree> type_sitter_lib::Node<'tree> for LBracket<'tree> {
+        type WithLifetime<'a> = LBracket<'a>;
+        const KIND: &'static str = "[";
         #[inline]
         fn try_from_raw(
             node: yak_sitter::Node<'tree>,
         ) -> type_sitter_lib::NodeResult<Self> {
-            if node.kind() == "}" {
+            if node.kind() == "[" {
                 Ok(Self(node))
             } else {
                 Err(type_sitter_lib::IncorrectKind::new::<Self>(node))
@@ -912,7 +954,7 @@ This node has no named children
         }
         #[inline]
         unsafe fn from_raw_unchecked(node: yak_sitter::Node<'tree>) -> Self {
-            debug_assert_eq!(node.kind(), "}");
+            debug_assert_eq!(node.kind(), "[");
             Self(node)
         }
         #[inline]
@@ -955,48 +997,6 @@ This node has no named children
         #[inline]
         unsafe fn from_raw_unchecked(node: yak_sitter::Node<'tree>) -> Self {
             debug_assert_eq!(node.kind(), "\"");
-            Self(node)
-        }
-        #[inline]
-        fn raw(&self) -> &yak_sitter::Node<'tree> {
-            &self.0
-        }
-        #[inline]
-        fn raw_mut(&mut self) -> &mut yak_sitter::Node<'tree> {
-            &mut self.0
-        }
-        #[inline]
-        fn into_raw(self) -> yak_sitter::Node<'tree> {
-            self.0
-        }
-    }
-    /**Typed node `]`
-
-This node has no named children
-*/
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[repr(transparent)]
-    #[allow(non_camel_case_types)]
-    pub struct RBracket<'tree>(yak_sitter::Node<'tree>);
-    #[automatically_derived]
-    impl<'tree> RBracket<'tree> {}
-    #[automatically_derived]
-    impl<'tree> type_sitter_lib::Node<'tree> for RBracket<'tree> {
-        type WithLifetime<'a> = RBracket<'a>;
-        const KIND: &'static str = "]";
-        #[inline]
-        fn try_from_raw(
-            node: yak_sitter::Node<'tree>,
-        ) -> type_sitter_lib::NodeResult<Self> {
-            if node.kind() == "]" {
-                Ok(Self(node))
-            } else {
-                Err(type_sitter_lib::IncorrectKind::new::<Self>(node))
-            }
-        }
-        #[inline]
-        unsafe fn from_raw_unchecked(node: yak_sitter::Node<'tree>) -> Self {
-            debug_assert_eq!(node.kind(), "]");
             Self(node)
         }
         #[inline]

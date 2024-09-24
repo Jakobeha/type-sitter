@@ -1,4 +1,3 @@
-use proc_macro2::TokenStream;
 use std::fs::{create_dir, write};
 use std::path::{Path, PathBuf};
 
@@ -19,12 +18,4 @@ pub fn setup_common(lang: &str) -> Common {
     }
 
     Common { input_dir, expected_dir }
-}
-
-pub fn pretty_print(tokens: &TokenStream) -> String {
-    let str = tokens.to_string();
-    syn::parse_file(&str).map(|f| prettyplease::unparse(&f)).unwrap_or_else(|err| {
-        eprintln!("Failed to pretty print tokens: {}", err);
-        str
-    })
 }
