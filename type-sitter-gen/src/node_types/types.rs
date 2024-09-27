@@ -14,7 +14,7 @@ pub(crate) struct NodeTypeMap(HashMap<NodeName, NodeType>);
 pub(crate) struct NodeType {
     pub(crate) name: NodeName,
     pub(crate) rust_names: NodeRustNames,
-    pub(crate) kind: NodeTypeKind
+    pub(crate) kind: NodeTypeKind,
 }
 
 /// Type needs to be finished by disambiguating.
@@ -23,19 +23,21 @@ pub(crate) struct ContextFreeNodeType {
     #[serde(flatten)]
     name: NodeName,
     #[serde(flatten)]
-    kind: NodeTypeKind
+    kind: NodeTypeKind,
 }
 
 #[derive(Clone, Debug, Deserialize)]
 #[serde(untagged)]
 pub(crate) enum NodeTypeKind {
-    Supertype { subtypes: Vec<NodeName> },
+    Supertype {
+        subtypes: Vec<NodeName>,
+    },
     Regular {
         #[serde(default)]
         fields: IndexMap<String, Children>,
         #[serde(default)]
         children: Children,
-    }
+    },
 }
 
 /// Describes a node's named children: their types and quantity.
@@ -66,9 +68,64 @@ impl NodeTypeMap {
         node_types.sort_by(|lhs, rhs| lhs.name.cmp(&rhs.name));
 
         let mut prev_rust_names = PrevNodeRustNames::new();
-        let map = node_types.into_iter()
-            .map(|node_type| (node_type.name.clone(), NodeType::new(node_type, &mut prev_rust_names)))
+        let types: Vec<_> = node_types.into_iter().collect();
+
+        let all_named = NodeName {
+            sexp_name: "_named".to_owned(),
+            is_named: true,
+        };
+        let all_unnamed = NodeName {
+            sexp_name: "_unnamed".to_owned(),
+            is_named: true,
+        };
+        let all_nodes = NodeName {
+            sexp_name: "_nodes".to_owned(),
+            is_named: true,
+        };
+        let generated = vec![
+            ContextFreeNodeType {
+                name: all_named.clone(),
+                kind: NodeTypeKind::Supertype {
+                    subtypes: types
+                        .iter()
+                        .filter(|it| {
+                            it.name.is_named && !matches!(it.kind, NodeTypeKind::Supertype { .. })
+                        })
+                        .map(|it| it.name.clone())
+                        .collect(),
+                },
+            },
+            ContextFreeNodeType {
+                name: all_unnamed.clone(),
+                kind: NodeTypeKind::Supertype {
+                    subtypes: types
+                        .iter()
+                        .filter(|it| {
+                            !it.name.is_named && !matches!(it.kind, NodeTypeKind::Supertype { .. })
+                        })
+                        .map(|it| it.name.clone())
+                        .collect(),
+                },
+            },
+            ContextFreeNodeType {
+                name: all_nodes,
+                kind: NodeTypeKind::Supertype {
+                    subtypes: vec![all_named, all_unnamed],
+                },
+            },
+        ];
+
+        let map = types
+            .into_iter()
+            .chain(generated.into_iter())
+            .map(|node_type| {
+                (
+                    node_type.name.clone(),
+                    NodeType::new(node_type, &mut prev_rust_names),
+                )
+            })
             .collect();
+
         Self(map)
     }
 
@@ -76,7 +133,7 @@ impl NodeTypeMap {
         self.0.get(name)
     }
 
-    pub fn values(&self) -> impl Iterator<Item=&NodeType> {
+    pub fn values(&self) -> impl Iterator<Item = &NodeType> {
         self.0.values()
     }
 }
@@ -90,10 +147,17 @@ impl<'a> Index<&'a NodeName> for NodeTypeMap {
 }
 
 impl NodeType {
-    fn new(ContextFreeNodeType { name, kind }: ContextFreeNodeType, prev_rust_names: &mut PrevNodeRustNames) -> Self {
+    fn new(
+        ContextFreeNodeType { name, kind }: ContextFreeNodeType,
+        prev_rust_names: &mut PrevNodeRustNames,
+    ) -> Self {
         let rust_names = NodeRustNames::new(&name, prev_rust_names);
 
-        Self { name, rust_names, kind }
+        Self {
+            name,
+            rust_names,
+            kind,
+        }
     }
 
     pub fn rust_type_path(&self) -> Cow<'_, str> {
@@ -101,7 +165,7 @@ impl NodeType {
     }
 
     pub fn anon_union_type_name<'a>(
-        types: impl IntoIterator<Item=&'a NodeType, IntoIter: 'a>
+        types: impl IntoIterator<Item = &'a NodeType, IntoIter: 'a>,
     ) -> impl Display + 'a {
         NodeRustNames::anon_union_type_name(types.into_iter().map(|t| &t.rust_names))
     }
@@ -118,7 +182,11 @@ impl Children {
     ///
     /// Specifically, there are no child types. `required` and `multiple` are at the bottom of the
     /// lattice created by the [`Extend`] impl: that is, both are `false`.
-    pub const EMPTY: Self = Self { multiple: false, required: false, types: Vec::new() };
+    pub const EMPTY: Self = Self {
+        multiple: false,
+        required: false,
+        types: Vec::new(),
+    };
 
     /// Whether there are no children.
     pub fn is_empty(&self) -> bool {
@@ -148,7 +216,12 @@ impl BitOrAssign for Children {
         let len = self.types.len();
         self.types.reserve(other.types.len());
         for child_type in other.types {
-            if self.types.iter().take(len).any(|existing_type| *existing_type == child_type) {
+            if self
+                .types
+                .iter()
+                .take(len)
+                .any(|existing_type| *existing_type == child_type)
+            {
                 continue;
             }
             self.types.push(child_type);
