@@ -3,11 +3,10 @@ use crate::mk_syntax::{concat_doc, ident, lit_str, modularize};
 use crate::node_types::detail_doc::{ChildrenKind, DetailDoc};
 use crate::node_types::{make_not_reserved, NodeTypeMap};
 use crate::{make_valid, unmake_reserved, unmake_reserved_if_raw, Children, GeneratedNodeTokens, NodeModule, NodeName, NodeRustNames, NodeType, NodeTypeKind, PrintCtx};
-use indexmap::IndexMap;
 use join_lazy_fmt::Join;
 use proc_macro2::TokenStream;
 use quote::quote;
-use std::collections::HashSet;
+use std::collections::{BTreeMap, HashSet};
 use std::fmt::Write;
 use syn::{Ident, LitStr, Path};
 
@@ -64,7 +63,7 @@ impl NodeType {
         doc: TokenStream,
         ident: &Ident,
         kind: &LitStr,
-        fields: &IndexMap<String, Children>,
+        fields: &BTreeMap<String, Children>,
         other_children: &Children,
         ctx @ PrintCtx { tree_sitter, type_sitter_lib, .. }: PrintCtx,
         anon_unions: &mut AnonUnions,
@@ -391,10 +390,10 @@ impl NodeType {
     fn common_subtype_fields(
         subtypes: &[&NodeType],
         all_types: &NodeTypeMap
-    ) -> IndexMap<String, Children> {
-        let mut common_fields = None::<IndexMap<String, Children>>;
+    ) -> BTreeMap<String, Children> {
+        let mut common_fields = None::<BTreeMap<String, Children>>;
 
-        let mut process = |fields: &IndexMap<String, Children>| {
+        let mut process = |fields: &BTreeMap<String, Children>| {
             // Intersect the field names (keys), union-like merge the children (values).
             if let Some(common_fields) = common_fields.as_mut() {
                 common_fields.retain(|name, _| fields.contains_key(name));
@@ -428,7 +427,7 @@ impl NodeType {
 
     //noinspection DuplicatedCode
     fn child_accessors(
-        fields: &IndexMap<String, Children>,
+        fields: &BTreeMap<String, Children>,
         other_children: &Children,
         prev_methods: &mut HashSet<String>,
         ctx @ PrintCtx { all_types, type_sitter_lib, .. }: PrintCtx,
@@ -632,7 +631,9 @@ impl NodeType {
                         anon_unions
                     );
 
-                    anon_unions[&anon_union_id] = definition;
+                    let entry = anon_unions.get_mut(&anon_union_id)
+                        .expect("just inserted a dummy value, and we don't remove from this map");
+                    *entry = definition;
                 }
                 quote! { anon_unions::#anon_union_name<'tree> }
             }

@@ -1,13 +1,13 @@
+use std::collections::BTreeMap;
 use crate::NodeType;
-use indexmap::IndexMap;
 use proc_macro2::TokenStream;
 use std::fmt::{Display, Formatter};
 
 /// Holds the tokens to define anonymous unions, so that there aren't duplicates
-pub type AnonUnions = IndexMap<AnonUnionId, TokenStream>;
+pub type AnonUnions = BTreeMap<AnonUnionId, TokenStream>;
 
 /// Id for an anonymous union to reference it and prevent duplicates
-#[derive(Debug, Clone, PartialEq, Eq, Hash)]
+#[derive(Clone, Debug, Eq, PartialEq, Hash, Ord, PartialOrd)]
 pub struct AnonUnionId {
     pub(super) name: String
 }

@@ -1,18 +1,17 @@
 use crate::node_types::rust_names::PrevNodeRustNames;
 use crate::{NodeName, NodeRustNames};
-use indexmap::IndexMap;
 use serde::Deserialize;
 use std::borrow::Cow;
-use std::collections::HashMap;
+use std::collections::{BTreeMap, BTreeSet, HashMap};
 use std::fmt::Display;
 use std::ops::{BitOrAssign, Index};
-use std::path::Path;
+use crate::vec_set::VecSet;
 
 use super::deserialize_json_array_as_stream::iter_json_array;
 
 /// Represents the contents of the `node-types.json` in a form that can be converted to Rust code.
 ///
-/// Use [`crate::generate_nodes()`] the Rust code after inspecting and 
+/// Use [`crate::generate_nodes()`] the Rust code after inspecting and
 #[derive(Debug)]
 pub struct NodeTypeMap { nodes: HashMap<NodeName, NodeType>, prev_rust_names: PrevNodeRustNames }
 
@@ -36,12 +35,10 @@ pub(crate) struct ContextFreeNodeType {
 #[derive(Clone, Debug, Deserialize)]
 #[serde(untagged)]
 pub enum NodeTypeKind {
-    Supertype {
-        subtypes: Vec<NodeName>,
-    },
+    Supertype { subtypes: BTreeSet<NodeName> },
     Regular {
         #[serde(default)]
-        fields: IndexMap<String, Children>,
+        fields: BTreeMap<String, Children>,
         #[serde(default)]
         children: Children,
     },
@@ -66,14 +63,11 @@ pub struct Children {
     /// Possible types of children.
     ///
     /// Additionally, if this is empty, that means there are no children.
-    pub types: Vec<NodeName>,
+    pub types: VecSet<NodeName>,
 }
 
 impl NodeTypeMap {
-    pub(crate) fn new(mut node_types: Vec<ContextFreeNodeType>) -> Self {
-        // Can't do `sort_by_key` because `K` has an existential lifetime, which Rust can't express.
-        node_types.sort_by(|lhs, rhs| lhs.name.cmp(&rhs.name));
-
+    pub(crate) fn new(node_types: Vec<ContextFreeNodeType>) -> Self {
         let mut prev_rust_names = PrevNodeRustNames::new();
         let nodes = node_types.into_iter()
             .map(|node_type| (node_type.name.clone(), NodeType::new(node_type, &mut prev_rust_names)))
@@ -144,12 +138,12 @@ impl NodeTypeMap {
     /// assert!(code.contains("pub enum AllNodes"));
     /// # }
     /// ```
-    /// 
+    ///
     /// # Panics
-    /// 
+    ///
     /// Supertype names must be hidden (i.e. start with an underscore).
     /// Therefore this function panics when `name` doesn't have a leading `_`.
-    /// 
+    ///
     /// ```rust should_panic
     /// # fn main() {
     /// # use type_sitter_gen::*;
@@ -157,9 +151,9 @@ impl NodeTypeMap {
     /// node_type_map.add_custom_supertype("my_supertype", vec![]);  // Panic!
     /// # }
     /// ```
-    /// 
+    ///
     /// # Return Value
-    /// 
+    ///
     /// Returns `Ok(new_node_name)` if the new supertype has been add ed,
     /// or `Err(existing_node_name)` if a node with that name already exists:
     ///
@@ -266,26 +260,22 @@ impl NodeType {
     }
 }
 
-impl Default for Children {
-    fn default() -> Self {
-        Self::EMPTY.clone()
-    }
-}
-
 impl Children {
     /// Create a descriptor for a node with no children.
     ///
     /// Specifically, there are no child types. `required` and `multiple` are at the bottom of the
     /// lattice created by the [`Extend`] impl: that is, both are `false`.
-    pub const EMPTY: Self = Self {
-        multiple: false,
-        required: false,
-        types: Vec::new(),
-    };
+    pub const EMPTY: Self = Self { multiple: false, required: false, types: VecSet::new() };
 
     /// Whether there are no children.
     pub fn is_empty(&self) -> bool {
         self.types.is_empty()
+    }
+}
+
+impl Default for Children {
+    fn default() -> Self {
+        Self::EMPTY.clone()
     }
 }
 
@@ -305,21 +295,6 @@ impl BitOrAssign for Children {
         self.multiple |= other.multiple;
 
         // Add other child types, but no duplicates.
-        // (We could use `IndexSet` instead of doing this manually, but it probably wouldn't even
-        // have amortized performance gain because these are typically small, and it requires us to
-        // either not define `const EMPTY` or add a dependency).
-        let len = self.types.len();
-        self.types.reserve(other.types.len());
-        for child_type in other.types {
-            if self
-                .types
-                .iter()
-                .take(len)
-                .any(|existing_type| *existing_type == child_type)
-            {
-                continue;
-            }
-            self.types.push(child_type);
-        }
+        self.types.extend(other.types);
     }
 }

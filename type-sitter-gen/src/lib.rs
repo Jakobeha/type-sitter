@@ -15,6 +15,7 @@ mod mk_syntax;
 mod queries;
 mod anon_unions;
 mod print_ctx;
+mod vec_set;
 
 /// = `parse_quote!(type_sitter)`. The default path to the `type_sitter` crate.
 pub fn type_sitter() -> syn::Path {

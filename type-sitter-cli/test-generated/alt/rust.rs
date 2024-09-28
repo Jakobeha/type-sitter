@@ -2639,30 +2639,30 @@ impl<'query, 'tree: 'query> type_sitter::QueryCapture<'query, 'tree>
 pub mod anon_unions {
     #[allow(unused_imports)]
     use super::super::nodes::*;
-    #[doc = "One of `{identifier | type_identifier}`:\n- [`Identifier`]\n- [`TypeIdentifier`]"]
+    #[doc = "One of `{attribute_item | inner_attribute_item}`:\n- [`AttributeItem`]\n- [`InnerAttributeItem`]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub enum Type<'tree> {
-        Identifier(Identifier<'tree>),
-        TypeIdentifier(TypeIdentifier<'tree>),
+    pub enum Attribute<'tree> {
+        AttributeItem(AttributeItem<'tree>),
+        InnerAttributeItem(InnerAttributeItem<'tree>),
     }
     #[automatically_derived]
-    impl<'tree> Type<'tree> {
-        #[doc = "Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`"]
+    impl<'tree> Attribute<'tree> {
+        #[doc = "Returns the node if it is of type `attribute_item` ([`AttributeItem`]), otherwise returns `None`"]
         #[inline]
-        pub fn as_identifier(self) -> Option<Identifier<'tree>> {
+        pub fn as_attribute_item(self) -> Option<AttributeItem<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Identifier(x) = self {
+            if let Self::AttributeItem(x) = self {
                 Some(x)
             } else {
                 None
             }
         }
-        #[doc = "Returns the node if it is of type `type_identifier` ([`TypeIdentifier`]), otherwise returns `None`"]
+        #[doc = "Returns the node if it is of type `inner_attribute_item` ([`InnerAttributeItem`]), otherwise returns `None`"]
         #[inline]
-        pub fn as_type_identifier(self) -> Option<TypeIdentifier<'tree>> {
+        pub fn as_inner_attribute_item(self) -> Option<InnerAttributeItem<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::TypeIdentifier(x) = self {
+            if let Self::InnerAttributeItem(x) = self {
                 Some(x)
             } else {
                 None
@@ -2670,97 +2670,23 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> type_sitter::Node<'tree> for Type<'tree> {
-        type WithLifetime<'a> = Type<'a>;
-        const KIND: &'static str = "{identifier | type_identifier}";
+    impl<'tree> type_sitter::Node<'tree> for Attribute<'tree> {
+        type WithLifetime<'a> = Attribute<'a>;
+        const KIND: &'static str = "{attribute_item | inner_attribute_item}";
         #[inline]
         fn try_from_raw(node: type_sitter::raw::Node<'tree>) -> type_sitter::NodeResult<Self> {
             match node.kind() {
-                "identifier" => Ok(unsafe {
-                    Self::Identifier(
-                        <Identifier<'tree> as type_sitter::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                }),
-                "type_identifier" => Ok(unsafe {
-                    Self::TypeIdentifier(
-                        <TypeIdentifier<'tree> as type_sitter::Node<'tree>>::from_raw_unchecked(
+                "attribute_item" => Ok(unsafe {
+                    Self::AttributeItem(
+                        <AttributeItem<'tree> as type_sitter::Node<'tree>>::from_raw_unchecked(
                             node,
                         ),
                     )
                 }),
-                _ => Err(type_sitter::IncorrectKind::new::<Self>(node)),
-            }
-        }
-        #[inline]
-        fn raw(&self) -> &type_sitter::raw::Node<'tree> {
-            match self {
-                Self::Identifier(x) => type_sitter::Node::raw(x),
-                Self::TypeIdentifier(x) => type_sitter::Node::raw(x),
-            }
-        }
-        #[inline]
-        fn raw_mut(&mut self) -> &mut type_sitter::raw::Node<'tree> {
-            match self {
-                Self::Identifier(x) => type_sitter::Node::raw_mut(x),
-                Self::TypeIdentifier(x) => type_sitter::Node::raw_mut(x),
-            }
-        }
-        #[inline]
-        fn into_raw(self) -> type_sitter::raw::Node<'tree> {
-            match self {
-                Self::Identifier(x) => x.into_raw(),
-                Self::TypeIdentifier(x) => x.into_raw(),
-            }
-        }
-    }
-    #[doc = "One of `{identifier | type_identifier}`:\n- [`Identifier`]\n- [`TypeIdentifier`]"]
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[allow(non_camel_case_types)]
-    pub enum Constructor<'tree> {
-        Identifier(Identifier<'tree>),
-        TypeIdentifier(TypeIdentifier<'tree>),
-    }
-    #[automatically_derived]
-    impl<'tree> Constructor<'tree> {
-        #[doc = "Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`"]
-        #[inline]
-        pub fn as_identifier(self) -> Option<Identifier<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::Identifier(x) = self {
-                Some(x)
-            } else {
-                None
-            }
-        }
-        #[doc = "Returns the node if it is of type `type_identifier` ([`TypeIdentifier`]), otherwise returns `None`"]
-        #[inline]
-        pub fn as_type_identifier(self) -> Option<TypeIdentifier<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::TypeIdentifier(x) = self {
-                Some(x)
-            } else {
-                None
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter::Node<'tree> for Constructor<'tree> {
-        type WithLifetime<'a> = Constructor<'a>;
-        const KIND: &'static str = "{identifier | type_identifier}";
-        #[inline]
-        fn try_from_raw(node: type_sitter::raw::Node<'tree>) -> type_sitter::NodeResult<Self> {
-            match node.kind() {
-                "identifier" => Ok(unsafe {
-                    Self::Identifier(
-                        <Identifier<'tree> as type_sitter::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                }),
-                "type_identifier" => Ok(unsafe {
-                    Self::TypeIdentifier(
-                        <TypeIdentifier<'tree> as type_sitter::Node<'tree>>::from_raw_unchecked(
-                            node,
-                        ),
-                    )
+                "inner_attribute_item" => Ok(unsafe {
+                    Self::InnerAttributeItem(<InnerAttributeItem<'tree> as type_sitter::Node<
+                        'tree,
+                    >>::from_raw_unchecked(node))
                 }),
                 _ => Err(type_sitter::IncorrectKind::new::<Self>(node)),
             }
@@ -2768,94 +2694,22 @@ pub mod anon_unions {
         #[inline]
         fn raw(&self) -> &type_sitter::raw::Node<'tree> {
             match self {
-                Self::Identifier(x) => type_sitter::Node::raw(x),
-                Self::TypeIdentifier(x) => type_sitter::Node::raw(x),
+                Self::AttributeItem(x) => type_sitter::Node::raw(x),
+                Self::InnerAttributeItem(x) => type_sitter::Node::raw(x),
             }
         }
         #[inline]
         fn raw_mut(&mut self) -> &mut type_sitter::raw::Node<'tree> {
             match self {
-                Self::Identifier(x) => type_sitter::Node::raw_mut(x),
-                Self::TypeIdentifier(x) => type_sitter::Node::raw_mut(x),
+                Self::AttributeItem(x) => type_sitter::Node::raw_mut(x),
+                Self::InnerAttributeItem(x) => type_sitter::Node::raw_mut(x),
             }
         }
         #[inline]
         fn into_raw(self) -> type_sitter::raw::Node<'tree> {
             match self {
-                Self::Identifier(x) => x.into_raw(),
-                Self::TypeIdentifier(x) => x.into_raw(),
-            }
-        }
-    }
-    #[doc = "One of `{! | identifier}`:\n- [`symbols::Not`]\n- [`Identifier`]"]
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[allow(non_camel_case_types)]
-    pub enum FunctionMacro<'tree> {
-        Not(symbols::Not<'tree>),
-        Identifier(Identifier<'tree>),
-    }
-    #[automatically_derived]
-    impl<'tree> FunctionMacro<'tree> {
-        #[doc = "Returns the node if it is of type `!` ([`symbols::Not`]), otherwise returns `None`"]
-        #[inline]
-        pub fn as_not(self) -> Option<symbols::Not<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::Not(x) = self {
-                Some(x)
-            } else {
-                None
-            }
-        }
-        #[doc = "Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`"]
-        #[inline]
-        pub fn as_identifier(self) -> Option<Identifier<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::Identifier(x) = self {
-                Some(x)
-            } else {
-                None
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter::Node<'tree> for FunctionMacro<'tree> {
-        type WithLifetime<'a> = FunctionMacro<'a>;
-        const KIND: &'static str = "{! | identifier}";
-        #[inline]
-        fn try_from_raw(node: type_sitter::raw::Node<'tree>) -> type_sitter::NodeResult<Self> {
-            match node.kind() {
-                "!" => Ok(unsafe {
-                    Self::Not(
-                        <symbols::Not<'tree> as type_sitter::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                }),
-                "identifier" => Ok(unsafe {
-                    Self::Identifier(
-                        <Identifier<'tree> as type_sitter::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                }),
-                _ => Err(type_sitter::IncorrectKind::new::<Self>(node)),
-            }
-        }
-        #[inline]
-        fn raw(&self) -> &type_sitter::raw::Node<'tree> {
-            match self {
-                Self::Not(x) => type_sitter::Node::raw(x),
-                Self::Identifier(x) => type_sitter::Node::raw(x),
-            }
-        }
-        #[inline]
-        fn raw_mut(&mut self) -> &mut type_sitter::raw::Node<'tree> {
-            match self {
-                Self::Not(x) => type_sitter::Node::raw_mut(x),
-                Self::Identifier(x) => type_sitter::Node::raw_mut(x),
-            }
-        }
-        #[inline]
-        fn into_raw(self) -> type_sitter::raw::Node<'tree> {
-            match self {
-                Self::Not(x) => x.into_raw(),
-                Self::Identifier(x) => x.into_raw(),
+                Self::AttributeItem(x) => x.into_raw(),
+                Self::InnerAttributeItem(x) => x.into_raw(),
             }
         }
     }
@@ -3053,96 +2907,41 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "One of `{( | ) | < | > | [ | ] | { | }}`:\n- [`symbols::LParen`]\n- [`symbols::RParen`]\n- [`symbols::Lt`]\n- [`symbols::Gt`]\n- [`symbols::LBracket`]\n- [`symbols::RBracket`]\n- [`symbols::LBrace`]\n- [`symbols::RBrace`]"]
+    #[doc = "One of `{boolean_literal | float_literal | integer_literal}`:\n- [`BooleanLiteral`]\n- [`FloatLiteral`]\n- [`IntegerLiteral`]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub enum PunctuationBracket<'tree> {
-        LParen(symbols::LParen<'tree>),
-        RParen(symbols::RParen<'tree>),
-        Lt(symbols::Lt<'tree>),
-        Gt(symbols::Gt<'tree>),
-        LBracket(symbols::LBracket<'tree>),
-        RBracket(symbols::RBracket<'tree>),
-        LBrace(symbols::LBrace<'tree>),
-        RBrace(symbols::RBrace<'tree>),
+    pub enum ConstantBuiltin<'tree> {
+        BooleanLiteral(BooleanLiteral<'tree>),
+        FloatLiteral(FloatLiteral<'tree>),
+        IntegerLiteral(IntegerLiteral<'tree>),
     }
     #[automatically_derived]
-    impl<'tree> PunctuationBracket<'tree> {
-        #[doc = "Returns the node if it is of type `(` ([`symbols::LParen`]), otherwise returns `None`"]
+    impl<'tree> ConstantBuiltin<'tree> {
+        #[doc = "Returns the node if it is of type `boolean_literal` ([`BooleanLiteral`]), otherwise returns `None`"]
         #[inline]
-        pub fn as_l_paren(self) -> Option<symbols::LParen<'tree>> {
+        pub fn as_boolean_literal(self) -> Option<BooleanLiteral<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::LParen(x) = self {
+            if let Self::BooleanLiteral(x) = self {
                 Some(x)
             } else {
                 None
             }
         }
-        #[doc = "Returns the node if it is of type `)` ([`symbols::RParen`]), otherwise returns `None`"]
+        #[doc = "Returns the node if it is of type `float_literal` ([`FloatLiteral`]), otherwise returns `None`"]
         #[inline]
-        pub fn as_r_paren(self) -> Option<symbols::RParen<'tree>> {
+        pub fn as_float_literal(self) -> Option<FloatLiteral<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::RParen(x) = self {
+            if let Self::FloatLiteral(x) = self {
                 Some(x)
             } else {
                 None
             }
         }
-        #[doc = "Returns the node if it is of type `<` ([`symbols::Lt`]), otherwise returns `None`"]
+        #[doc = "Returns the node if it is of type `integer_literal` ([`IntegerLiteral`]), otherwise returns `None`"]
         #[inline]
-        pub fn as_lt(self) -> Option<symbols::Lt<'tree>> {
+        pub fn as_integer_literal(self) -> Option<IntegerLiteral<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Lt(x) = self {
-                Some(x)
-            } else {
-                None
-            }
-        }
-        #[doc = "Returns the node if it is of type `>` ([`symbols::Gt`]), otherwise returns `None`"]
-        #[inline]
-        pub fn as_gt(self) -> Option<symbols::Gt<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::Gt(x) = self {
-                Some(x)
-            } else {
-                None
-            }
-        }
-        #[doc = "Returns the node if it is of type `[` ([`symbols::LBracket`]), otherwise returns `None`"]
-        #[inline]
-        pub fn as_l_bracket(self) -> Option<symbols::LBracket<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::LBracket(x) = self {
-                Some(x)
-            } else {
-                None
-            }
-        }
-        #[doc = "Returns the node if it is of type `]` ([`symbols::RBracket`]), otherwise returns `None`"]
-        #[inline]
-        pub fn as_r_bracket(self) -> Option<symbols::RBracket<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::RBracket(x) = self {
-                Some(x)
-            } else {
-                None
-            }
-        }
-        #[doc = "Returns the node if it is of type `{` ([`symbols::LBrace`]), otherwise returns `None`"]
-        #[inline]
-        pub fn as_l_brace(self) -> Option<symbols::LBrace<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::LBrace(x) = self {
-                Some(x)
-            } else {
-                None
-            }
-        }
-        #[doc = "Returns the node if it is of type `}` ([`symbols::RBrace`]), otherwise returns `None`"]
-        #[inline]
-        pub fn as_r_brace(self) -> Option<symbols::RBrace<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::RBrace(x) = self {
+            if let Self::IntegerLiteral(x) = self {
                 Some(x)
             } else {
                 None
@@ -3150,152 +2949,83 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> type_sitter::Node<'tree> for PunctuationBracket<'tree> {
-        type WithLifetime<'a> = PunctuationBracket<'a>;
-        const KIND: &'static str = "{( | ) | < | > | [ | ] | { | }}";
+    impl<'tree> type_sitter::Node<'tree> for ConstantBuiltin<'tree> {
+        type WithLifetime<'a> = ConstantBuiltin<'a>;
+        const KIND: &'static str = "{boolean_literal | float_literal | integer_literal}";
         #[inline]
         fn try_from_raw(node: type_sitter::raw::Node<'tree>) -> type_sitter::NodeResult<Self> {
             match node.kind() {
-                "(" => {
-                    Ok(unsafe {
-                        Self :: LParen (< symbols :: LParen < 'tree > as type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                ")" => {
-                    Ok(unsafe {
-                        Self :: RParen (< symbols :: RParen < 'tree > as type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                "<" => Ok(unsafe {
-                    Self::Lt(
-                        <symbols::Lt<'tree> as type_sitter::Node<'tree>>::from_raw_unchecked(node),
+                "boolean_literal" => Ok(unsafe {
+                    Self::BooleanLiteral(
+                        <BooleanLiteral<'tree> as type_sitter::Node<'tree>>::from_raw_unchecked(
+                            node,
+                        ),
                     )
                 }),
-                ">" => Ok(unsafe {
-                    Self::Gt(
-                        <symbols::Gt<'tree> as type_sitter::Node<'tree>>::from_raw_unchecked(node),
+                "float_literal" => Ok(unsafe {
+                    Self::FloatLiteral(
+                        <FloatLiteral<'tree> as type_sitter::Node<'tree>>::from_raw_unchecked(node),
                     )
                 }),
-                "[" => {
-                    Ok(unsafe {
-                        Self :: LBracket (< symbols :: LBracket < 'tree > as type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                "]" => {
-                    Ok(unsafe {
-                        Self :: RBracket (< symbols :: RBracket < 'tree > as type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                "{" => {
-                    Ok(unsafe {
-                        Self :: LBrace (< symbols :: LBrace < 'tree > as type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                "}" => {
-                    Ok(unsafe {
-                        Self :: RBrace (< symbols :: RBrace < 'tree > as type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
+                "integer_literal" => Ok(unsafe {
+                    Self::IntegerLiteral(
+                        <IntegerLiteral<'tree> as type_sitter::Node<'tree>>::from_raw_unchecked(
+                            node,
+                        ),
+                    )
+                }),
                 _ => Err(type_sitter::IncorrectKind::new::<Self>(node)),
             }
         }
         #[inline]
         fn raw(&self) -> &type_sitter::raw::Node<'tree> {
             match self {
-                Self::LParen(x) => type_sitter::Node::raw(x),
-                Self::RParen(x) => type_sitter::Node::raw(x),
-                Self::Lt(x) => type_sitter::Node::raw(x),
-                Self::Gt(x) => type_sitter::Node::raw(x),
-                Self::LBracket(x) => type_sitter::Node::raw(x),
-                Self::RBracket(x) => type_sitter::Node::raw(x),
-                Self::LBrace(x) => type_sitter::Node::raw(x),
-                Self::RBrace(x) => type_sitter::Node::raw(x),
+                Self::BooleanLiteral(x) => type_sitter::Node::raw(x),
+                Self::FloatLiteral(x) => type_sitter::Node::raw(x),
+                Self::IntegerLiteral(x) => type_sitter::Node::raw(x),
             }
         }
         #[inline]
         fn raw_mut(&mut self) -> &mut type_sitter::raw::Node<'tree> {
             match self {
-                Self::LParen(x) => type_sitter::Node::raw_mut(x),
-                Self::RParen(x) => type_sitter::Node::raw_mut(x),
-                Self::Lt(x) => type_sitter::Node::raw_mut(x),
-                Self::Gt(x) => type_sitter::Node::raw_mut(x),
-                Self::LBracket(x) => type_sitter::Node::raw_mut(x),
-                Self::RBracket(x) => type_sitter::Node::raw_mut(x),
-                Self::LBrace(x) => type_sitter::Node::raw_mut(x),
-                Self::RBrace(x) => type_sitter::Node::raw_mut(x),
+                Self::BooleanLiteral(x) => type_sitter::Node::raw_mut(x),
+                Self::FloatLiteral(x) => type_sitter::Node::raw_mut(x),
+                Self::IntegerLiteral(x) => type_sitter::Node::raw_mut(x),
             }
         }
         #[inline]
         fn into_raw(self) -> type_sitter::raw::Node<'tree> {
             match self {
-                Self::LParen(x) => x.into_raw(),
-                Self::RParen(x) => x.into_raw(),
-                Self::Lt(x) => x.into_raw(),
-                Self::Gt(x) => x.into_raw(),
-                Self::LBracket(x) => x.into_raw(),
-                Self::RBracket(x) => x.into_raw(),
-                Self::LBrace(x) => x.into_raw(),
-                Self::RBrace(x) => x.into_raw(),
+                Self::BooleanLiteral(x) => x.into_raw(),
+                Self::FloatLiteral(x) => x.into_raw(),
+                Self::IntegerLiteral(x) => x.into_raw(),
             }
         }
     }
-    #[doc = "One of `{, | . | : | :: | ;}`:\n- [`symbols::Comma`]\n- [`symbols::Dot`]\n- [`symbols::Colon`]\n- [`symbols::ColonColon`]\n- [`symbols::Semicolon`]"]
+    #[doc = "One of `{identifier | type_identifier}`:\n- [`Identifier`]\n- [`TypeIdentifier`]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub enum PunctuationDelimiter<'tree> {
-        Comma(symbols::Comma<'tree>),
-        Dot(symbols::Dot<'tree>),
-        Colon(symbols::Colon<'tree>),
-        ColonColon(symbols::ColonColon<'tree>),
-        Semicolon(symbols::Semicolon<'tree>),
+    pub enum Constructor<'tree> {
+        Identifier(Identifier<'tree>),
+        TypeIdentifier(TypeIdentifier<'tree>),
     }
     #[automatically_derived]
-    impl<'tree> PunctuationDelimiter<'tree> {
-        #[doc = "Returns the node if it is of type `,` ([`symbols::Comma`]), otherwise returns `None`"]
+    impl<'tree> Constructor<'tree> {
+        #[doc = "Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`"]
         #[inline]
-        pub fn as_comma(self) -> Option<symbols::Comma<'tree>> {
+        pub fn as_identifier(self) -> Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Comma(x) = self {
+            if let Self::Identifier(x) = self {
                 Some(x)
             } else {
                 None
             }
         }
-        #[doc = "Returns the node if it is of type `.` ([`symbols::Dot`]), otherwise returns `None`"]
+        #[doc = "Returns the node if it is of type `type_identifier` ([`TypeIdentifier`]), otherwise returns `None`"]
         #[inline]
-        pub fn as_dot(self) -> Option<symbols::Dot<'tree>> {
+        pub fn as_type_identifier(self) -> Option<TypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Dot(x) = self {
-                Some(x)
-            } else {
-                None
-            }
-        }
-        #[doc = "Returns the node if it is of type `:` ([`symbols::Colon`]), otherwise returns `None`"]
-        #[inline]
-        pub fn as_colon(self) -> Option<symbols::Colon<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::Colon(x) = self {
-                Some(x)
-            } else {
-                None
-            }
-        }
-        #[doc = "Returns the node if it is of type `::` ([`symbols::ColonColon`]), otherwise returns `None`"]
-        #[inline]
-        pub fn as_colon_colon(self) -> Option<symbols::ColonColon<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::ColonColon(x) = self {
-                Some(x)
-            } else {
-                None
-            }
-        }
-        #[doc = "Returns the node if it is of type `;` ([`symbols::Semicolon`]), otherwise returns `None`"]
-        #[inline]
-        pub fn as_semicolon(self) -> Option<symbols::Semicolon<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::Semicolon(x) = self {
+            if let Self::TypeIdentifier(x) = self {
                 Some(x)
             } else {
                 None
@@ -3303,70 +3033,242 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> type_sitter::Node<'tree> for PunctuationDelimiter<'tree> {
-        type WithLifetime<'a> = PunctuationDelimiter<'a>;
-        const KIND: &'static str = "{, | . | : | :: | ;}";
+    impl<'tree> type_sitter::Node<'tree> for Constructor<'tree> {
+        type WithLifetime<'a> = Constructor<'a>;
+        const KIND: &'static str = "{identifier | type_identifier}";
         #[inline]
         fn try_from_raw(node: type_sitter::raw::Node<'tree>) -> type_sitter::NodeResult<Self> {
             match node.kind() {
-                "," => Ok(unsafe {
-                    Self::Comma(
-                        <symbols::Comma<'tree> as type_sitter::Node<'tree>>::from_raw_unchecked(
+                "identifier" => Ok(unsafe {
+                    Self::Identifier(
+                        <Identifier<'tree> as type_sitter::Node<'tree>>::from_raw_unchecked(node),
+                    )
+                }),
+                "type_identifier" => Ok(unsafe {
+                    Self::TypeIdentifier(
+                        <TypeIdentifier<'tree> as type_sitter::Node<'tree>>::from_raw_unchecked(
                             node,
                         ),
                     )
                 }),
-                "." => Ok(unsafe {
-                    Self::Dot(
-                        <symbols::Dot<'tree> as type_sitter::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                }),
-                ":" => Ok(unsafe {
-                    Self::Colon(
-                        <symbols::Colon<'tree> as type_sitter::Node<'tree>>::from_raw_unchecked(
-                            node,
-                        ),
-                    )
-                }),
-                "::" => Ok(unsafe {
-                    Self :: ColonColon (< symbols :: ColonColon < 'tree > as type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                }),
-                ";" => {
-                    Ok(unsafe {
-                        Self :: Semicolon (< symbols :: Semicolon < 'tree > as type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
                 _ => Err(type_sitter::IncorrectKind::new::<Self>(node)),
             }
         }
         #[inline]
         fn raw(&self) -> &type_sitter::raw::Node<'tree> {
             match self {
-                Self::Comma(x) => type_sitter::Node::raw(x),
-                Self::Dot(x) => type_sitter::Node::raw(x),
-                Self::Colon(x) => type_sitter::Node::raw(x),
-                Self::ColonColon(x) => type_sitter::Node::raw(x),
-                Self::Semicolon(x) => type_sitter::Node::raw(x),
+                Self::Identifier(x) => type_sitter::Node::raw(x),
+                Self::TypeIdentifier(x) => type_sitter::Node::raw(x),
             }
         }
         #[inline]
         fn raw_mut(&mut self) -> &mut type_sitter::raw::Node<'tree> {
             match self {
-                Self::Comma(x) => type_sitter::Node::raw_mut(x),
-                Self::Dot(x) => type_sitter::Node::raw_mut(x),
-                Self::Colon(x) => type_sitter::Node::raw_mut(x),
-                Self::ColonColon(x) => type_sitter::Node::raw_mut(x),
-                Self::Semicolon(x) => type_sitter::Node::raw_mut(x),
+                Self::Identifier(x) => type_sitter::Node::raw_mut(x),
+                Self::TypeIdentifier(x) => type_sitter::Node::raw_mut(x),
             }
         }
         #[inline]
         fn into_raw(self) -> type_sitter::raw::Node<'tree> {
             match self {
-                Self::Comma(x) => x.into_raw(),
-                Self::Dot(x) => x.into_raw(),
-                Self::Colon(x) => x.into_raw(),
-                Self::ColonColon(x) => x.into_raw(),
-                Self::Semicolon(x) => x.into_raw(),
+                Self::Identifier(x) => x.into_raw(),
+                Self::TypeIdentifier(x) => x.into_raw(),
+            }
+        }
+    }
+    #[doc = "One of `{enum_item | struct_item | type_item | union_item}`:\n- [`EnumItem`]\n- [`StructItem`]\n- [`TypeItem`]\n- [`UnionItem`]"]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub enum DefinitionClass<'tree> {
+        EnumItem(EnumItem<'tree>),
+        StructItem(StructItem<'tree>),
+        TypeItem(TypeItem<'tree>),
+        UnionItem(UnionItem<'tree>),
+    }
+    #[automatically_derived]
+    impl<'tree> DefinitionClass<'tree> {
+        #[doc = "Returns the node if it is of type `enum_item` ([`EnumItem`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_enum_item(self) -> Option<EnumItem<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::EnumItem(x) = self {
+                Some(x)
+            } else {
+                None
+            }
+        }
+        #[doc = "Returns the node if it is of type `struct_item` ([`StructItem`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_struct_item(self) -> Option<StructItem<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::StructItem(x) = self {
+                Some(x)
+            } else {
+                None
+            }
+        }
+        #[doc = "Returns the node if it is of type `type_item` ([`TypeItem`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_type_item(self) -> Option<TypeItem<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::TypeItem(x) = self {
+                Some(x)
+            } else {
+                None
+            }
+        }
+        #[doc = "Returns the node if it is of type `union_item` ([`UnionItem`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_union_item(self) -> Option<UnionItem<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::UnionItem(x) = self {
+                Some(x)
+            } else {
+                None
+            }
+        }
+        #[doc = "Get the field `name`.\n\nThis child has type `type_identifier` ([`TypeIdentifier`])"]
+        #[inline]
+        pub fn name(&self) -> type_sitter::NodeResult<'tree, TypeIdentifier<'tree>> {
+            type_sitter :: Node :: raw (self) . child_by_field_name ("name") . map (< TypeIdentifier < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw) . expect ("required child not present, there should at least be a MISSING node in its place")
+        }
+        #[doc = "Get the optional field `type_parameters`.\n\nThis child has type `type_parameters?` ([`TypeParameters`])"]
+        #[inline]
+        pub fn type_parameters(
+            &self,
+        ) -> Option<type_sitter::NodeResult<'tree, TypeParameters<'tree>>> {
+            type_sitter::Node::raw(self)
+                .child_by_field_name("type_parameters")
+                .map(<TypeParameters<'tree> as type_sitter::Node<'tree>>::try_from_raw)
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter::Node<'tree> for DefinitionClass<'tree> {
+        type WithLifetime<'a> = DefinitionClass<'a>;
+        const KIND: &'static str = "{enum_item | struct_item | type_item | union_item}";
+        #[inline]
+        fn try_from_raw(node: type_sitter::raw::Node<'tree>) -> type_sitter::NodeResult<Self> {
+            match node.kind() {
+                "enum_item" => Ok(unsafe {
+                    Self::EnumItem(
+                        <EnumItem<'tree> as type_sitter::Node<'tree>>::from_raw_unchecked(node),
+                    )
+                }),
+                "struct_item" => Ok(unsafe {
+                    Self::StructItem(
+                        <StructItem<'tree> as type_sitter::Node<'tree>>::from_raw_unchecked(node),
+                    )
+                }),
+                "type_item" => Ok(unsafe {
+                    Self::TypeItem(
+                        <TypeItem<'tree> as type_sitter::Node<'tree>>::from_raw_unchecked(node),
+                    )
+                }),
+                "union_item" => Ok(unsafe {
+                    Self::UnionItem(
+                        <UnionItem<'tree> as type_sitter::Node<'tree>>::from_raw_unchecked(node),
+                    )
+                }),
+                _ => Err(type_sitter::IncorrectKind::new::<Self>(node)),
+            }
+        }
+        #[inline]
+        fn raw(&self) -> &type_sitter::raw::Node<'tree> {
+            match self {
+                Self::EnumItem(x) => type_sitter::Node::raw(x),
+                Self::StructItem(x) => type_sitter::Node::raw(x),
+                Self::TypeItem(x) => type_sitter::Node::raw(x),
+                Self::UnionItem(x) => type_sitter::Node::raw(x),
+            }
+        }
+        #[inline]
+        fn raw_mut(&mut self) -> &mut type_sitter::raw::Node<'tree> {
+            match self {
+                Self::EnumItem(x) => type_sitter::Node::raw_mut(x),
+                Self::StructItem(x) => type_sitter::Node::raw_mut(x),
+                Self::TypeItem(x) => type_sitter::Node::raw_mut(x),
+                Self::UnionItem(x) => type_sitter::Node::raw_mut(x),
+            }
+        }
+        #[inline]
+        fn into_raw(self) -> type_sitter::raw::Node<'tree> {
+            match self {
+                Self::EnumItem(x) => x.into_raw(),
+                Self::StructItem(x) => x.into_raw(),
+                Self::TypeItem(x) => x.into_raw(),
+                Self::UnionItem(x) => x.into_raw(),
+            }
+        }
+    }
+    #[doc = "One of `{! | identifier}`:\n- [`symbols::Not`]\n- [`Identifier`]"]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub enum FunctionMacro<'tree> {
+        Not(symbols::Not<'tree>),
+        Identifier(Identifier<'tree>),
+    }
+    #[automatically_derived]
+    impl<'tree> FunctionMacro<'tree> {
+        #[doc = "Returns the node if it is of type `!` ([`symbols::Not`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_not(self) -> Option<symbols::Not<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Not(x) = self {
+                Some(x)
+            } else {
+                None
+            }
+        }
+        #[doc = "Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_identifier(self) -> Option<Identifier<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Identifier(x) = self {
+                Some(x)
+            } else {
+                None
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter::Node<'tree> for FunctionMacro<'tree> {
+        type WithLifetime<'a> = FunctionMacro<'a>;
+        const KIND: &'static str = "{! | identifier}";
+        #[inline]
+        fn try_from_raw(node: type_sitter::raw::Node<'tree>) -> type_sitter::NodeResult<Self> {
+            match node.kind() {
+                "!" => Ok(unsafe {
+                    Self::Not(
+                        <symbols::Not<'tree> as type_sitter::Node<'tree>>::from_raw_unchecked(node),
+                    )
+                }),
+                "identifier" => Ok(unsafe {
+                    Self::Identifier(
+                        <Identifier<'tree> as type_sitter::Node<'tree>>::from_raw_unchecked(node),
+                    )
+                }),
+                _ => Err(type_sitter::IncorrectKind::new::<Self>(node)),
+            }
+        }
+        #[inline]
+        fn raw(&self) -> &type_sitter::raw::Node<'tree> {
+            match self {
+                Self::Not(x) => type_sitter::Node::raw(x),
+                Self::Identifier(x) => type_sitter::Node::raw(x),
+            }
+        }
+        #[inline]
+        fn raw_mut(&mut self) -> &mut type_sitter::raw::Node<'tree> {
+            match self {
+                Self::Not(x) => type_sitter::Node::raw_mut(x),
+                Self::Identifier(x) => type_sitter::Node::raw_mut(x),
+            }
+        }
+        #[inline]
+        fn into_raw(self) -> type_sitter::raw::Node<'tree> {
+            match self {
+                Self::Not(x) => x.into_raw(),
+                Self::Identifier(x) => x.into_raw(),
             }
         }
     }
@@ -4179,41 +4081,41 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "One of `{char_literal | raw_string_literal | string_literal}`:\n- [`CharLiteral`]\n- [`RawStringLiteral`]\n- [`StringLiteral`]"]
+    #[doc = "One of `{field_identifier | identifier | type_identifier}`:\n- [`FieldIdentifier`]\n- [`Identifier`]\n- [`TypeIdentifier`]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub enum String<'tree> {
-        CharLiteral(CharLiteral<'tree>),
-        RawStringLiteral(RawStringLiteral<'tree>),
-        StringLiteral(StringLiteral<'tree>),
+    pub enum Name<'tree> {
+        FieldIdentifier(FieldIdentifier<'tree>),
+        Identifier(Identifier<'tree>),
+        TypeIdentifier(TypeIdentifier<'tree>),
     }
     #[automatically_derived]
-    impl<'tree> String<'tree> {
-        #[doc = "Returns the node if it is of type `char_literal` ([`CharLiteral`]), otherwise returns `None`"]
+    impl<'tree> Name<'tree> {
+        #[doc = "Returns the node if it is of type `field_identifier` ([`FieldIdentifier`]), otherwise returns `None`"]
         #[inline]
-        pub fn as_char_literal(self) -> Option<CharLiteral<'tree>> {
+        pub fn as_field_identifier(self) -> Option<FieldIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::CharLiteral(x) = self {
+            if let Self::FieldIdentifier(x) = self {
                 Some(x)
             } else {
                 None
             }
         }
-        #[doc = "Returns the node if it is of type `raw_string_literal` ([`RawStringLiteral`]), otherwise returns `None`"]
+        #[doc = "Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`"]
         #[inline]
-        pub fn as_raw_string_literal(self) -> Option<RawStringLiteral<'tree>> {
+        pub fn as_identifier(self) -> Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::RawStringLiteral(x) = self {
+            if let Self::Identifier(x) = self {
                 Some(x)
             } else {
                 None
             }
         }
-        #[doc = "Returns the node if it is of type `string_literal` ([`StringLiteral`]), otherwise returns `None`"]
+        #[doc = "Returns the node if it is of type `type_identifier` ([`TypeIdentifier`]), otherwise returns `None`"]
         #[inline]
-        pub fn as_string_literal(self) -> Option<StringLiteral<'tree>> {
+        pub fn as_type_identifier(self) -> Option<TypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::StringLiteral(x) = self {
+            if let Self::TypeIdentifier(x) = self {
                 Some(x)
             } else {
                 None
@@ -4221,27 +4123,27 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> type_sitter::Node<'tree> for String<'tree> {
-        type WithLifetime<'a> = String<'a>;
-        const KIND: &'static str = "{char_literal | raw_string_literal | string_literal}";
+    impl<'tree> type_sitter::Node<'tree> for Name<'tree> {
+        type WithLifetime<'a> = Name<'a>;
+        const KIND: &'static str = "{field_identifier | identifier | type_identifier}";
         #[inline]
         fn try_from_raw(node: type_sitter::raw::Node<'tree>) -> type_sitter::NodeResult<Self> {
             match node.kind() {
-                "char_literal" => Ok(unsafe {
-                    Self::CharLiteral(
-                        <CharLiteral<'tree> as type_sitter::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                }),
-                "raw_string_literal" => {
+                "field_identifier" => {
                     Ok(unsafe {
-                        Self::RawStringLiteral(<RawStringLiteral<'tree> as type_sitter::Node<
+                        Self::FieldIdentifier(<FieldIdentifier<'tree> as type_sitter::Node<
                             'tree,
                         >>::from_raw_unchecked(node))
                     })
                 }
-                "string_literal" => Ok(unsafe {
-                    Self::StringLiteral(
-                        <StringLiteral<'tree> as type_sitter::Node<'tree>>::from_raw_unchecked(
+                "identifier" => Ok(unsafe {
+                    Self::Identifier(
+                        <Identifier<'tree> as type_sitter::Node<'tree>>::from_raw_unchecked(node),
+                    )
+                }),
+                "type_identifier" => Ok(unsafe {
+                    Self::TypeIdentifier(
+                        <TypeIdentifier<'tree> as type_sitter::Node<'tree>>::from_raw_unchecked(
                             node,
                         ),
                     )
@@ -4252,194 +4154,25 @@ pub mod anon_unions {
         #[inline]
         fn raw(&self) -> &type_sitter::raw::Node<'tree> {
             match self {
-                Self::CharLiteral(x) => type_sitter::Node::raw(x),
-                Self::RawStringLiteral(x) => type_sitter::Node::raw(x),
-                Self::StringLiteral(x) => type_sitter::Node::raw(x),
+                Self::FieldIdentifier(x) => type_sitter::Node::raw(x),
+                Self::Identifier(x) => type_sitter::Node::raw(x),
+                Self::TypeIdentifier(x) => type_sitter::Node::raw(x),
             }
         }
         #[inline]
         fn raw_mut(&mut self) -> &mut type_sitter::raw::Node<'tree> {
             match self {
-                Self::CharLiteral(x) => type_sitter::Node::raw_mut(x),
-                Self::RawStringLiteral(x) => type_sitter::Node::raw_mut(x),
-                Self::StringLiteral(x) => type_sitter::Node::raw_mut(x),
+                Self::FieldIdentifier(x) => type_sitter::Node::raw_mut(x),
+                Self::Identifier(x) => type_sitter::Node::raw_mut(x),
+                Self::TypeIdentifier(x) => type_sitter::Node::raw_mut(x),
             }
         }
         #[inline]
         fn into_raw(self) -> type_sitter::raw::Node<'tree> {
             match self {
-                Self::CharLiteral(x) => x.into_raw(),
-                Self::RawStringLiteral(x) => x.into_raw(),
-                Self::StringLiteral(x) => x.into_raw(),
-            }
-        }
-    }
-    #[doc = "One of `{boolean_literal | float_literal | integer_literal}`:\n- [`BooleanLiteral`]\n- [`FloatLiteral`]\n- [`IntegerLiteral`]"]
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[allow(non_camel_case_types)]
-    pub enum ConstantBuiltin<'tree> {
-        BooleanLiteral(BooleanLiteral<'tree>),
-        FloatLiteral(FloatLiteral<'tree>),
-        IntegerLiteral(IntegerLiteral<'tree>),
-    }
-    #[automatically_derived]
-    impl<'tree> ConstantBuiltin<'tree> {
-        #[doc = "Returns the node if it is of type `boolean_literal` ([`BooleanLiteral`]), otherwise returns `None`"]
-        #[inline]
-        pub fn as_boolean_literal(self) -> Option<BooleanLiteral<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::BooleanLiteral(x) = self {
-                Some(x)
-            } else {
-                None
-            }
-        }
-        #[doc = "Returns the node if it is of type `float_literal` ([`FloatLiteral`]), otherwise returns `None`"]
-        #[inline]
-        pub fn as_float_literal(self) -> Option<FloatLiteral<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::FloatLiteral(x) = self {
-                Some(x)
-            } else {
-                None
-            }
-        }
-        #[doc = "Returns the node if it is of type `integer_literal` ([`IntegerLiteral`]), otherwise returns `None`"]
-        #[inline]
-        pub fn as_integer_literal(self) -> Option<IntegerLiteral<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::IntegerLiteral(x) = self {
-                Some(x)
-            } else {
-                None
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter::Node<'tree> for ConstantBuiltin<'tree> {
-        type WithLifetime<'a> = ConstantBuiltin<'a>;
-        const KIND: &'static str = "{boolean_literal | float_literal | integer_literal}";
-        #[inline]
-        fn try_from_raw(node: type_sitter::raw::Node<'tree>) -> type_sitter::NodeResult<Self> {
-            match node.kind() {
-                "boolean_literal" => Ok(unsafe {
-                    Self::BooleanLiteral(
-                        <BooleanLiteral<'tree> as type_sitter::Node<'tree>>::from_raw_unchecked(
-                            node,
-                        ),
-                    )
-                }),
-                "float_literal" => Ok(unsafe {
-                    Self::FloatLiteral(
-                        <FloatLiteral<'tree> as type_sitter::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                }),
-                "integer_literal" => Ok(unsafe {
-                    Self::IntegerLiteral(
-                        <IntegerLiteral<'tree> as type_sitter::Node<'tree>>::from_raw_unchecked(
-                            node,
-                        ),
-                    )
-                }),
-                _ => Err(type_sitter::IncorrectKind::new::<Self>(node)),
-            }
-        }
-        #[inline]
-        fn raw(&self) -> &type_sitter::raw::Node<'tree> {
-            match self {
-                Self::BooleanLiteral(x) => type_sitter::Node::raw(x),
-                Self::FloatLiteral(x) => type_sitter::Node::raw(x),
-                Self::IntegerLiteral(x) => type_sitter::Node::raw(x),
-            }
-        }
-        #[inline]
-        fn raw_mut(&mut self) -> &mut type_sitter::raw::Node<'tree> {
-            match self {
-                Self::BooleanLiteral(x) => type_sitter::Node::raw_mut(x),
-                Self::FloatLiteral(x) => type_sitter::Node::raw_mut(x),
-                Self::IntegerLiteral(x) => type_sitter::Node::raw_mut(x),
-            }
-        }
-        #[inline]
-        fn into_raw(self) -> type_sitter::raw::Node<'tree> {
-            match self {
-                Self::BooleanLiteral(x) => x.into_raw(),
-                Self::FloatLiteral(x) => x.into_raw(),
-                Self::IntegerLiteral(x) => x.into_raw(),
-            }
-        }
-    }
-    #[doc = "One of `{attribute_item | inner_attribute_item}`:\n- [`AttributeItem`]\n- [`InnerAttributeItem`]"]
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[allow(non_camel_case_types)]
-    pub enum Attribute<'tree> {
-        AttributeItem(AttributeItem<'tree>),
-        InnerAttributeItem(InnerAttributeItem<'tree>),
-    }
-    #[automatically_derived]
-    impl<'tree> Attribute<'tree> {
-        #[doc = "Returns the node if it is of type `attribute_item` ([`AttributeItem`]), otherwise returns `None`"]
-        #[inline]
-        pub fn as_attribute_item(self) -> Option<AttributeItem<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::AttributeItem(x) = self {
-                Some(x)
-            } else {
-                None
-            }
-        }
-        #[doc = "Returns the node if it is of type `inner_attribute_item` ([`InnerAttributeItem`]), otherwise returns `None`"]
-        #[inline]
-        pub fn as_inner_attribute_item(self) -> Option<InnerAttributeItem<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::InnerAttributeItem(x) = self {
-                Some(x)
-            } else {
-                None
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter::Node<'tree> for Attribute<'tree> {
-        type WithLifetime<'a> = Attribute<'a>;
-        const KIND: &'static str = "{attribute_item | inner_attribute_item}";
-        #[inline]
-        fn try_from_raw(node: type_sitter::raw::Node<'tree>) -> type_sitter::NodeResult<Self> {
-            match node.kind() {
-                "attribute_item" => Ok(unsafe {
-                    Self::AttributeItem(
-                        <AttributeItem<'tree> as type_sitter::Node<'tree>>::from_raw_unchecked(
-                            node,
-                        ),
-                    )
-                }),
-                "inner_attribute_item" => Ok(unsafe {
-                    Self::InnerAttributeItem(<InnerAttributeItem<'tree> as type_sitter::Node<
-                        'tree,
-                    >>::from_raw_unchecked(node))
-                }),
-                _ => Err(type_sitter::IncorrectKind::new::<Self>(node)),
-            }
-        }
-        #[inline]
-        fn raw(&self) -> &type_sitter::raw::Node<'tree> {
-            match self {
-                Self::AttributeItem(x) => type_sitter::Node::raw(x),
-                Self::InnerAttributeItem(x) => type_sitter::Node::raw(x),
-            }
-        }
-        #[inline]
-        fn raw_mut(&mut self) -> &mut type_sitter::raw::Node<'tree> {
-            match self {
-                Self::AttributeItem(x) => type_sitter::Node::raw_mut(x),
-                Self::InnerAttributeItem(x) => type_sitter::Node::raw_mut(x),
-            }
-        }
-        #[inline]
-        fn into_raw(self) -> type_sitter::raw::Node<'tree> {
-            match self {
-                Self::AttributeItem(x) => x.into_raw(),
-                Self::InnerAttributeItem(x) => x.into_raw(),
+                Self::FieldIdentifier(x) => x.into_raw(),
+                Self::Identifier(x) => x.into_raw(),
+                Self::TypeIdentifier(x) => x.into_raw(),
             }
         }
     }
@@ -4536,41 +4269,96 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "One of `{field_identifier | identifier | type_identifier}`:\n- [`FieldIdentifier`]\n- [`Identifier`]\n- [`TypeIdentifier`]"]
+    #[doc = "One of `{( | ) | < | > | [ | ] | { | }}`:\n- [`symbols::LParen`]\n- [`symbols::RParen`]\n- [`symbols::Lt`]\n- [`symbols::Gt`]\n- [`symbols::LBracket`]\n- [`symbols::RBracket`]\n- [`symbols::LBrace`]\n- [`symbols::RBrace`]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub enum Name<'tree> {
-        FieldIdentifier(FieldIdentifier<'tree>),
-        Identifier(Identifier<'tree>),
-        TypeIdentifier(TypeIdentifier<'tree>),
+    pub enum PunctuationBracket<'tree> {
+        LParen(symbols::LParen<'tree>),
+        RParen(symbols::RParen<'tree>),
+        Lt(symbols::Lt<'tree>),
+        Gt(symbols::Gt<'tree>),
+        LBracket(symbols::LBracket<'tree>),
+        RBracket(symbols::RBracket<'tree>),
+        LBrace(symbols::LBrace<'tree>),
+        RBrace(symbols::RBrace<'tree>),
     }
     #[automatically_derived]
-    impl<'tree> Name<'tree> {
-        #[doc = "Returns the node if it is of type `field_identifier` ([`FieldIdentifier`]), otherwise returns `None`"]
+    impl<'tree> PunctuationBracket<'tree> {
+        #[doc = "Returns the node if it is of type `(` ([`symbols::LParen`]), otherwise returns `None`"]
         #[inline]
-        pub fn as_field_identifier(self) -> Option<FieldIdentifier<'tree>> {
+        pub fn as_l_paren(self) -> Option<symbols::LParen<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::FieldIdentifier(x) = self {
+            if let Self::LParen(x) = self {
                 Some(x)
             } else {
                 None
             }
         }
-        #[doc = "Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`"]
+        #[doc = "Returns the node if it is of type `)` ([`symbols::RParen`]), otherwise returns `None`"]
         #[inline]
-        pub fn as_identifier(self) -> Option<Identifier<'tree>> {
+        pub fn as_r_paren(self) -> Option<symbols::RParen<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Identifier(x) = self {
+            if let Self::RParen(x) = self {
                 Some(x)
             } else {
                 None
             }
         }
-        #[doc = "Returns the node if it is of type `type_identifier` ([`TypeIdentifier`]), otherwise returns `None`"]
+        #[doc = "Returns the node if it is of type `<` ([`symbols::Lt`]), otherwise returns `None`"]
         #[inline]
-        pub fn as_type_identifier(self) -> Option<TypeIdentifier<'tree>> {
+        pub fn as_lt(self) -> Option<symbols::Lt<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::TypeIdentifier(x) = self {
+            if let Self::Lt(x) = self {
+                Some(x)
+            } else {
+                None
+            }
+        }
+        #[doc = "Returns the node if it is of type `>` ([`symbols::Gt`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_gt(self) -> Option<symbols::Gt<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Gt(x) = self {
+                Some(x)
+            } else {
+                None
+            }
+        }
+        #[doc = "Returns the node if it is of type `[` ([`symbols::LBracket`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_l_bracket(self) -> Option<symbols::LBracket<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::LBracket(x) = self {
+                Some(x)
+            } else {
+                None
+            }
+        }
+        #[doc = "Returns the node if it is of type `]` ([`symbols::RBracket`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_r_bracket(self) -> Option<symbols::RBracket<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::RBracket(x) = self {
+                Some(x)
+            } else {
+                None
+            }
+        }
+        #[doc = "Returns the node if it is of type `{` ([`symbols::LBrace`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_l_brace(self) -> Option<symbols::LBrace<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::LBrace(x) = self {
+                Some(x)
+            } else {
+                None
+            }
+        }
+        #[doc = "Returns the node if it is of type `}` ([`symbols::RBrace`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_r_brace(self) -> Option<symbols::RBrace<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::RBrace(x) = self {
                 Some(x)
             } else {
                 None
@@ -4578,180 +4366,223 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> type_sitter::Node<'tree> for Name<'tree> {
-        type WithLifetime<'a> = Name<'a>;
-        const KIND: &'static str = "{field_identifier | identifier | type_identifier}";
+    impl<'tree> type_sitter::Node<'tree> for PunctuationBracket<'tree> {
+        type WithLifetime<'a> = PunctuationBracket<'a>;
+        const KIND: &'static str = "{( | ) | < | > | [ | ] | { | }}";
         #[inline]
         fn try_from_raw(node: type_sitter::raw::Node<'tree>) -> type_sitter::NodeResult<Self> {
             match node.kind() {
-                "field_identifier" => {
+                "(" => {
                     Ok(unsafe {
-                        Self::FieldIdentifier(<FieldIdentifier<'tree> as type_sitter::Node<
-                            'tree,
-                        >>::from_raw_unchecked(node))
+                        Self :: LParen (< symbols :: LParen < 'tree > as type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
                     })
                 }
-                "identifier" => Ok(unsafe {
-                    Self::Identifier(
-                        <Identifier<'tree> as type_sitter::Node<'tree>>::from_raw_unchecked(node),
+                ")" => {
+                    Ok(unsafe {
+                        Self :: RParen (< symbols :: RParen < 'tree > as type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
+                    })
+                }
+                "<" => Ok(unsafe {
+                    Self::Lt(
+                        <symbols::Lt<'tree> as type_sitter::Node<'tree>>::from_raw_unchecked(node),
                     )
                 }),
-                "type_identifier" => Ok(unsafe {
-                    Self::TypeIdentifier(
-                        <TypeIdentifier<'tree> as type_sitter::Node<'tree>>::from_raw_unchecked(
+                ">" => Ok(unsafe {
+                    Self::Gt(
+                        <symbols::Gt<'tree> as type_sitter::Node<'tree>>::from_raw_unchecked(node),
+                    )
+                }),
+                "[" => {
+                    Ok(unsafe {
+                        Self :: LBracket (< symbols :: LBracket < 'tree > as type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
+                    })
+                }
+                "]" => {
+                    Ok(unsafe {
+                        Self :: RBracket (< symbols :: RBracket < 'tree > as type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
+                    })
+                }
+                "{" => {
+                    Ok(unsafe {
+                        Self :: LBrace (< symbols :: LBrace < 'tree > as type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
+                    })
+                }
+                "}" => {
+                    Ok(unsafe {
+                        Self :: RBrace (< symbols :: RBrace < 'tree > as type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
+                    })
+                }
+                _ => Err(type_sitter::IncorrectKind::new::<Self>(node)),
+            }
+        }
+        #[inline]
+        fn raw(&self) -> &type_sitter::raw::Node<'tree> {
+            match self {
+                Self::LParen(x) => type_sitter::Node::raw(x),
+                Self::RParen(x) => type_sitter::Node::raw(x),
+                Self::Lt(x) => type_sitter::Node::raw(x),
+                Self::Gt(x) => type_sitter::Node::raw(x),
+                Self::LBracket(x) => type_sitter::Node::raw(x),
+                Self::RBracket(x) => type_sitter::Node::raw(x),
+                Self::LBrace(x) => type_sitter::Node::raw(x),
+                Self::RBrace(x) => type_sitter::Node::raw(x),
+            }
+        }
+        #[inline]
+        fn raw_mut(&mut self) -> &mut type_sitter::raw::Node<'tree> {
+            match self {
+                Self::LParen(x) => type_sitter::Node::raw_mut(x),
+                Self::RParen(x) => type_sitter::Node::raw_mut(x),
+                Self::Lt(x) => type_sitter::Node::raw_mut(x),
+                Self::Gt(x) => type_sitter::Node::raw_mut(x),
+                Self::LBracket(x) => type_sitter::Node::raw_mut(x),
+                Self::RBracket(x) => type_sitter::Node::raw_mut(x),
+                Self::LBrace(x) => type_sitter::Node::raw_mut(x),
+                Self::RBrace(x) => type_sitter::Node::raw_mut(x),
+            }
+        }
+        #[inline]
+        fn into_raw(self) -> type_sitter::raw::Node<'tree> {
+            match self {
+                Self::LParen(x) => x.into_raw(),
+                Self::RParen(x) => x.into_raw(),
+                Self::Lt(x) => x.into_raw(),
+                Self::Gt(x) => x.into_raw(),
+                Self::LBracket(x) => x.into_raw(),
+                Self::RBracket(x) => x.into_raw(),
+                Self::LBrace(x) => x.into_raw(),
+                Self::RBrace(x) => x.into_raw(),
+            }
+        }
+    }
+    #[doc = "One of `{, | . | : | :: | ;}`:\n- [`symbols::Comma`]\n- [`symbols::Dot`]\n- [`symbols::Colon`]\n- [`symbols::ColonColon`]\n- [`symbols::Semicolon`]"]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub enum PunctuationDelimiter<'tree> {
+        Comma(symbols::Comma<'tree>),
+        Dot(symbols::Dot<'tree>),
+        Colon(symbols::Colon<'tree>),
+        ColonColon(symbols::ColonColon<'tree>),
+        Semicolon(symbols::Semicolon<'tree>),
+    }
+    #[automatically_derived]
+    impl<'tree> PunctuationDelimiter<'tree> {
+        #[doc = "Returns the node if it is of type `,` ([`symbols::Comma`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_comma(self) -> Option<symbols::Comma<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Comma(x) = self {
+                Some(x)
+            } else {
+                None
+            }
+        }
+        #[doc = "Returns the node if it is of type `.` ([`symbols::Dot`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_dot(self) -> Option<symbols::Dot<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Dot(x) = self {
+                Some(x)
+            } else {
+                None
+            }
+        }
+        #[doc = "Returns the node if it is of type `:` ([`symbols::Colon`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_colon(self) -> Option<symbols::Colon<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Colon(x) = self {
+                Some(x)
+            } else {
+                None
+            }
+        }
+        #[doc = "Returns the node if it is of type `::` ([`symbols::ColonColon`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_colon_colon(self) -> Option<symbols::ColonColon<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::ColonColon(x) = self {
+                Some(x)
+            } else {
+                None
+            }
+        }
+        #[doc = "Returns the node if it is of type `;` ([`symbols::Semicolon`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_semicolon(self) -> Option<symbols::Semicolon<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Semicolon(x) = self {
+                Some(x)
+            } else {
+                None
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter::Node<'tree> for PunctuationDelimiter<'tree> {
+        type WithLifetime<'a> = PunctuationDelimiter<'a>;
+        const KIND: &'static str = "{, | . | : | :: | ;}";
+        #[inline]
+        fn try_from_raw(node: type_sitter::raw::Node<'tree>) -> type_sitter::NodeResult<Self> {
+            match node.kind() {
+                "," => Ok(unsafe {
+                    Self::Comma(
+                        <symbols::Comma<'tree> as type_sitter::Node<'tree>>::from_raw_unchecked(
                             node,
                         ),
                     )
                 }),
+                "." => Ok(unsafe {
+                    Self::Dot(
+                        <symbols::Dot<'tree> as type_sitter::Node<'tree>>::from_raw_unchecked(node),
+                    )
+                }),
+                ":" => Ok(unsafe {
+                    Self::Colon(
+                        <symbols::Colon<'tree> as type_sitter::Node<'tree>>::from_raw_unchecked(
+                            node,
+                        ),
+                    )
+                }),
+                "::" => Ok(unsafe {
+                    Self :: ColonColon (< symbols :: ColonColon < 'tree > as type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
+                }),
+                ";" => {
+                    Ok(unsafe {
+                        Self :: Semicolon (< symbols :: Semicolon < 'tree > as type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
+                    })
+                }
                 _ => Err(type_sitter::IncorrectKind::new::<Self>(node)),
             }
         }
         #[inline]
         fn raw(&self) -> &type_sitter::raw::Node<'tree> {
             match self {
-                Self::FieldIdentifier(x) => type_sitter::Node::raw(x),
-                Self::Identifier(x) => type_sitter::Node::raw(x),
-                Self::TypeIdentifier(x) => type_sitter::Node::raw(x),
+                Self::Comma(x) => type_sitter::Node::raw(x),
+                Self::Dot(x) => type_sitter::Node::raw(x),
+                Self::Colon(x) => type_sitter::Node::raw(x),
+                Self::ColonColon(x) => type_sitter::Node::raw(x),
+                Self::Semicolon(x) => type_sitter::Node::raw(x),
             }
         }
         #[inline]
         fn raw_mut(&mut self) -> &mut type_sitter::raw::Node<'tree> {
             match self {
-                Self::FieldIdentifier(x) => type_sitter::Node::raw_mut(x),
-                Self::Identifier(x) => type_sitter::Node::raw_mut(x),
-                Self::TypeIdentifier(x) => type_sitter::Node::raw_mut(x),
+                Self::Comma(x) => type_sitter::Node::raw_mut(x),
+                Self::Dot(x) => type_sitter::Node::raw_mut(x),
+                Self::Colon(x) => type_sitter::Node::raw_mut(x),
+                Self::ColonColon(x) => type_sitter::Node::raw_mut(x),
+                Self::Semicolon(x) => type_sitter::Node::raw_mut(x),
             }
         }
         #[inline]
         fn into_raw(self) -> type_sitter::raw::Node<'tree> {
             match self {
-                Self::FieldIdentifier(x) => x.into_raw(),
-                Self::Identifier(x) => x.into_raw(),
-                Self::TypeIdentifier(x) => x.into_raw(),
-            }
-        }
-    }
-    #[doc = "One of `{enum_item | struct_item | type_item | union_item}`:\n- [`EnumItem`]\n- [`StructItem`]\n- [`TypeItem`]\n- [`UnionItem`]"]
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[allow(non_camel_case_types)]
-    pub enum DefinitionClass<'tree> {
-        EnumItem(EnumItem<'tree>),
-        StructItem(StructItem<'tree>),
-        TypeItem(TypeItem<'tree>),
-        UnionItem(UnionItem<'tree>),
-    }
-    #[automatically_derived]
-    impl<'tree> DefinitionClass<'tree> {
-        #[doc = "Returns the node if it is of type `enum_item` ([`EnumItem`]), otherwise returns `None`"]
-        #[inline]
-        pub fn as_enum_item(self) -> Option<EnumItem<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::EnumItem(x) = self {
-                Some(x)
-            } else {
-                None
-            }
-        }
-        #[doc = "Returns the node if it is of type `struct_item` ([`StructItem`]), otherwise returns `None`"]
-        #[inline]
-        pub fn as_struct_item(self) -> Option<StructItem<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::StructItem(x) = self {
-                Some(x)
-            } else {
-                None
-            }
-        }
-        #[doc = "Returns the node if it is of type `type_item` ([`TypeItem`]), otherwise returns `None`"]
-        #[inline]
-        pub fn as_type_item(self) -> Option<TypeItem<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::TypeItem(x) = self {
-                Some(x)
-            } else {
-                None
-            }
-        }
-        #[doc = "Returns the node if it is of type `union_item` ([`UnionItem`]), otherwise returns `None`"]
-        #[inline]
-        pub fn as_union_item(self) -> Option<UnionItem<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::UnionItem(x) = self {
-                Some(x)
-            } else {
-                None
-            }
-        }
-        #[doc = "Get the field `name`.\n\nThis child has type `type_identifier` ([`TypeIdentifier`])"]
-        #[inline]
-        pub fn name(&self) -> type_sitter::NodeResult<'tree, TypeIdentifier<'tree>> {
-            type_sitter :: Node :: raw (self) . child_by_field_name ("name") . map (< TypeIdentifier < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw) . expect ("required child not present, there should at least be a MISSING node in its place")
-        }
-        #[doc = "Get the optional field `type_parameters`.\n\nThis child has type `type_parameters?` ([`TypeParameters`])"]
-        #[inline]
-        pub fn type_parameters(
-            &self,
-        ) -> Option<type_sitter::NodeResult<'tree, TypeParameters<'tree>>> {
-            type_sitter::Node::raw(self)
-                .child_by_field_name("type_parameters")
-                .map(<TypeParameters<'tree> as type_sitter::Node<'tree>>::try_from_raw)
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> type_sitter::Node<'tree> for DefinitionClass<'tree> {
-        type WithLifetime<'a> = DefinitionClass<'a>;
-        const KIND: &'static str = "{enum_item | struct_item | type_item | union_item}";
-        #[inline]
-        fn try_from_raw(node: type_sitter::raw::Node<'tree>) -> type_sitter::NodeResult<Self> {
-            match node.kind() {
-                "enum_item" => Ok(unsafe {
-                    Self::EnumItem(
-                        <EnumItem<'tree> as type_sitter::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                }),
-                "struct_item" => Ok(unsafe {
-                    Self::StructItem(
-                        <StructItem<'tree> as type_sitter::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                }),
-                "type_item" => Ok(unsafe {
-                    Self::TypeItem(
-                        <TypeItem<'tree> as type_sitter::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                }),
-                "union_item" => Ok(unsafe {
-                    Self::UnionItem(
-                        <UnionItem<'tree> as type_sitter::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                }),
-                _ => Err(type_sitter::IncorrectKind::new::<Self>(node)),
-            }
-        }
-        #[inline]
-        fn raw(&self) -> &type_sitter::raw::Node<'tree> {
-            match self {
-                Self::EnumItem(x) => type_sitter::Node::raw(x),
-                Self::StructItem(x) => type_sitter::Node::raw(x),
-                Self::TypeItem(x) => type_sitter::Node::raw(x),
-                Self::UnionItem(x) => type_sitter::Node::raw(x),
-            }
-        }
-        #[inline]
-        fn raw_mut(&mut self) -> &mut type_sitter::raw::Node<'tree> {
-            match self {
-                Self::EnumItem(x) => type_sitter::Node::raw_mut(x),
-                Self::StructItem(x) => type_sitter::Node::raw_mut(x),
-                Self::TypeItem(x) => type_sitter::Node::raw_mut(x),
-                Self::UnionItem(x) => type_sitter::Node::raw_mut(x),
-            }
-        }
-        #[inline]
-        fn into_raw(self) -> type_sitter::raw::Node<'tree> {
-            match self {
-                Self::EnumItem(x) => x.into_raw(),
-                Self::StructItem(x) => x.into_raw(),
-                Self::TypeItem(x) => x.into_raw(),
-                Self::UnionItem(x) => x.into_raw(),
+                Self::Comma(x) => x.into_raw(),
+                Self::Dot(x) => x.into_raw(),
+                Self::Colon(x) => x.into_raw(),
+                Self::ColonColon(x) => x.into_raw(),
+                Self::Semicolon(x) => x.into_raw(),
             }
         }
     }
@@ -4828,6 +4659,175 @@ pub mod anon_unions {
             match self {
                 Self::CallExpression(x) => x.into_raw(),
                 Self::MacroInvocation(x) => x.into_raw(),
+            }
+        }
+    }
+    #[doc = "One of `{char_literal | raw_string_literal | string_literal}`:\n- [`CharLiteral`]\n- [`RawStringLiteral`]\n- [`StringLiteral`]"]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub enum String<'tree> {
+        CharLiteral(CharLiteral<'tree>),
+        RawStringLiteral(RawStringLiteral<'tree>),
+        StringLiteral(StringLiteral<'tree>),
+    }
+    #[automatically_derived]
+    impl<'tree> String<'tree> {
+        #[doc = "Returns the node if it is of type `char_literal` ([`CharLiteral`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_char_literal(self) -> Option<CharLiteral<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::CharLiteral(x) = self {
+                Some(x)
+            } else {
+                None
+            }
+        }
+        #[doc = "Returns the node if it is of type `raw_string_literal` ([`RawStringLiteral`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_raw_string_literal(self) -> Option<RawStringLiteral<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::RawStringLiteral(x) = self {
+                Some(x)
+            } else {
+                None
+            }
+        }
+        #[doc = "Returns the node if it is of type `string_literal` ([`StringLiteral`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_string_literal(self) -> Option<StringLiteral<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::StringLiteral(x) = self {
+                Some(x)
+            } else {
+                None
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter::Node<'tree> for String<'tree> {
+        type WithLifetime<'a> = String<'a>;
+        const KIND: &'static str = "{char_literal | raw_string_literal | string_literal}";
+        #[inline]
+        fn try_from_raw(node: type_sitter::raw::Node<'tree>) -> type_sitter::NodeResult<Self> {
+            match node.kind() {
+                "char_literal" => Ok(unsafe {
+                    Self::CharLiteral(
+                        <CharLiteral<'tree> as type_sitter::Node<'tree>>::from_raw_unchecked(node),
+                    )
+                }),
+                "raw_string_literal" => {
+                    Ok(unsafe {
+                        Self::RawStringLiteral(<RawStringLiteral<'tree> as type_sitter::Node<
+                            'tree,
+                        >>::from_raw_unchecked(node))
+                    })
+                }
+                "string_literal" => Ok(unsafe {
+                    Self::StringLiteral(
+                        <StringLiteral<'tree> as type_sitter::Node<'tree>>::from_raw_unchecked(
+                            node,
+                        ),
+                    )
+                }),
+                _ => Err(type_sitter::IncorrectKind::new::<Self>(node)),
+            }
+        }
+        #[inline]
+        fn raw(&self) -> &type_sitter::raw::Node<'tree> {
+            match self {
+                Self::CharLiteral(x) => type_sitter::Node::raw(x),
+                Self::RawStringLiteral(x) => type_sitter::Node::raw(x),
+                Self::StringLiteral(x) => type_sitter::Node::raw(x),
+            }
+        }
+        #[inline]
+        fn raw_mut(&mut self) -> &mut type_sitter::raw::Node<'tree> {
+            match self {
+                Self::CharLiteral(x) => type_sitter::Node::raw_mut(x),
+                Self::RawStringLiteral(x) => type_sitter::Node::raw_mut(x),
+                Self::StringLiteral(x) => type_sitter::Node::raw_mut(x),
+            }
+        }
+        #[inline]
+        fn into_raw(self) -> type_sitter::raw::Node<'tree> {
+            match self {
+                Self::CharLiteral(x) => x.into_raw(),
+                Self::RawStringLiteral(x) => x.into_raw(),
+                Self::StringLiteral(x) => x.into_raw(),
+            }
+        }
+    }
+    #[doc = "One of `{identifier | type_identifier}`:\n- [`Identifier`]\n- [`TypeIdentifier`]"]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub enum Type<'tree> {
+        Identifier(Identifier<'tree>),
+        TypeIdentifier(TypeIdentifier<'tree>),
+    }
+    #[automatically_derived]
+    impl<'tree> Type<'tree> {
+        #[doc = "Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_identifier(self) -> Option<Identifier<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Identifier(x) = self {
+                Some(x)
+            } else {
+                None
+            }
+        }
+        #[doc = "Returns the node if it is of type `type_identifier` ([`TypeIdentifier`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_type_identifier(self) -> Option<TypeIdentifier<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::TypeIdentifier(x) = self {
+                Some(x)
+            } else {
+                None
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> type_sitter::Node<'tree> for Type<'tree> {
+        type WithLifetime<'a> = Type<'a>;
+        const KIND: &'static str = "{identifier | type_identifier}";
+        #[inline]
+        fn try_from_raw(node: type_sitter::raw::Node<'tree>) -> type_sitter::NodeResult<Self> {
+            match node.kind() {
+                "identifier" => Ok(unsafe {
+                    Self::Identifier(
+                        <Identifier<'tree> as type_sitter::Node<'tree>>::from_raw_unchecked(node),
+                    )
+                }),
+                "type_identifier" => Ok(unsafe {
+                    Self::TypeIdentifier(
+                        <TypeIdentifier<'tree> as type_sitter::Node<'tree>>::from_raw_unchecked(
+                            node,
+                        ),
+                    )
+                }),
+                _ => Err(type_sitter::IncorrectKind::new::<Self>(node)),
+            }
+        }
+        #[inline]
+        fn raw(&self) -> &type_sitter::raw::Node<'tree> {
+            match self {
+                Self::Identifier(x) => type_sitter::Node::raw(x),
+                Self::TypeIdentifier(x) => type_sitter::Node::raw(x),
+            }
+        }
+        #[inline]
+        fn raw_mut(&mut self) -> &mut type_sitter::raw::Node<'tree> {
+            match self {
+                Self::Identifier(x) => type_sitter::Node::raw_mut(x),
+                Self::TypeIdentifier(x) => type_sitter::Node::raw_mut(x),
+            }
+        }
+        #[inline]
+        fn into_raw(self) -> type_sitter::raw::Node<'tree> {
+            match self {
+                Self::Identifier(x) => x.into_raw(),
+                Self::TypeIdentifier(x) => x.into_raw(),
             }
         }
     }
