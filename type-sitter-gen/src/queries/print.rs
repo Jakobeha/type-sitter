@@ -550,7 +550,8 @@ impl CaptureQuantifierExt for CaptureQuantifier {
             CaptureQuantifier::ZeroOrOne => quote! {},
             CaptureQuantifier::ZeroOrMore => quote! {},
             CaptureQuantifier::One => quote! {},
-            CaptureQuantifier::OneOrMore => quote! { #[doc = "This is guaranteed to return at least one child"] }
+            CaptureQuantifier::OneOrMore =>
+                quote! { #[doc = "\n\nThis is guaranteed to return at least one child"] }
         }
     }
 

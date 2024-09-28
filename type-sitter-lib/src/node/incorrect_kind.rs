@@ -20,7 +20,8 @@ pub enum IncorrectKindCause {
     Error,
     /// Node is a missing node
     Missing,
-    /// Node is valid but simply of a different kind (bad node-types.json? Different language? Broken user invariant)
+    /// Node is valid but simply of a different kind (bad node-types.json? Different language?
+    /// Broken user invariant?)
     OtherKind(&'static str),
 }
 

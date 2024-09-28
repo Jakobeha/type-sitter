@@ -773,7 +773,7 @@ impl Children {
             let ident = ident!(children_name, "node field (rust method name)").unwrap();
 
             let nonempty_doc = if self.required {
-                quote! { #[doc = "\nThis is guaranteed to return at least one child."] }
+                quote! { #[doc = "\n\nThis is guaranteed to return at least one child."] }
             } else {
                 quote! {}
             };
