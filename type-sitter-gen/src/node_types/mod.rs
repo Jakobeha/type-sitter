@@ -13,9 +13,9 @@ pub use generated_tokens::*;
 use std::fs::File;
 use std::io::BufReader;
 use std::path::Path;
-pub(crate) use types::*;
+pub use types::*;
 pub use rust_names::*;
-pub(crate) use names::*;
+pub use names::*;
 
 /// Generate source code (tokens) for typed AST node wrappers.
 ///
@@ -84,3 +84,28 @@ pub(crate) fn parse_node_type_map(path: impl AsRef<Path>) -> Result<NodeTypeMap,
         .collect::<Result<Vec<_>, _>>()?;
     Ok(NodeTypeMap::new(elems))
 }
+
+pub fn generate_code<T, E>(all_types: T) -> Result<GeneratedNodeTokens, E>
+where T: TryInto<NodeTypeMap, Error = E>{
+    generate_code_with_custom_module_paths(all_types, &type_sitter_raw(), &type_sitter())
+}
+
+pub fn generate_code_with_custom_module_paths<T, E>(
+    all_types: T,
+    tree_sitter: &syn::Path,
+    type_sitter_lib: &syn::Path)
+-> Result<GeneratedNodeTokens, E>
+where T: TryInto<NodeTypeMap, Error = E> {
+    let all_types = all_types.try_into()?;
+
+    let ctx = PrintCtx {
+        all_types: &all_types,
+        tree_sitter,
+        type_sitter_lib,
+    };
+
+    Ok(all_types.values()
+        .map(|r| r.print(ctx))
+        .collect::<GeneratedNodeTokens>())
+}
+
