@@ -29,3 +29,8 @@ walkdir = "2.5.0"
 logos = "0.14.1"
 slice-group-by = "0.3.1"
 prettyplease = "0.2.22"
+
+[dev-dependencies]
+# to make these libraries available in doctests
+tree-sitter-rust = { path = "../vendor/tree-sitter-rust" }
+tree-sitter-json = { path = "../vendor/tree-sitter-json" }

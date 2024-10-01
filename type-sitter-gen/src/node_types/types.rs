@@ -1,5 +1,5 @@
 use crate::node_types::rust_names::PrevNodeRustNames;
-use crate::{Error, NodeName, NodeRustNames};
+use crate::{NodeName, NodeRustNames};
 use indexmap::IndexMap;
 use serde::Deserialize;
 use std::borrow::Cow;
@@ -10,14 +10,18 @@ use std::path::Path;
 
 use super::deserialize_json_array_as_stream::iter_json_array;
 
+/// Represents the contents of the `node-types.json` in a form that can be converted to Rust code.
+///
+/// Use [`crate::generate_nodes()`] the Rust code after inspecting and 
 #[derive(Debug)]
 pub struct NodeTypeMap { nodes: HashMap<NodeName, NodeType>, prev_rust_names: PrevNodeRustNames }
 
+/// Describes a grammar node; corresponds to an entry in `node-types.json`
 #[derive(Clone, Debug)]
 pub struct NodeType {
     pub name: NodeName,
-    pub(crate) rust_names: NodeRustNames,
     pub kind: NodeTypeKind,
+    pub(crate) rust_names: NodeRustNames,
 }
 
 /// Type needs to be finished by disambiguating.
@@ -78,20 +82,116 @@ impl NodeTypeMap {
         Self { nodes, prev_rust_names }
     }
 
-    pub fn get(&self, name: &NodeName) -> Option<&NodeType> {
+    pub(crate) fn get(&self, name: &NodeName) -> Option<&NodeType> {
         self.nodes.get(name)
     }
 
+    /// Get all `NodeType`s
+    ///
+    /// # Example
+    ///
+    /// Checking that the grammar contains a node with a certain name:
+    ///
+    /// ```rust
+    /// # use type_sitter_gen::*;
+    /// # fn main() {
+    /// let node_type_map = NodeTypeMap::try_from(tree_sitter_rust::NODE_TYPES)
+    ///         .unwrap();
+    /// assert!(node_type_map.values()
+    ///     .any(|node| node.name.sexp_name == "trait_item"));
+    /// # }
+    /// ```
     pub fn values(&self) -> impl Iterator<Item = &NodeType> {
         self.nodes.values()
     }
 
+    /// Add a supertype that isn't yet defined in the grammar.
+    ///
+    /// This is meant for cases where the original grammar doesn't include a supertype
+    /// that you would like to have in your use case AST. The most common case would
+    /// be to add an `AllNodes` supertype (see example below).
+    ///
+    /// # Example
+    ///
+    /// Adding supertypes for all named and unnamed nodes, and another one for all nodes:
+    ///
+    /// ```rust
+    /// # fn main() {
+    /// # use type_sitter_gen::*;
+    /// let mut node_type_map = NodeTypeMap::try_from(tree_sitter_rust::NODE_TYPES).unwrap();
+    ///
+    /// let (named, unnamed): (Vec<_>, Vec<_>) = node_type_map
+    ///     .values()
+    ///     .map(|node| node.name.clone())
+    ///     .partition(|name| name.is_named);
+    ///
+    /// let named = node_type_map
+    ///     .add_custom_supertype("_all_named", named)
+    ///     .expect("this shouldn't already exist");
+    ///
+    /// let unnamed = node_type_map
+    ///     .add_custom_supertype("_all_unnamed", unnamed)
+    ///     .expect("this shouldn't already exist");
+    ///
+    /// node_type_map
+    ///     .add_custom_supertype("_all_nodes", vec![named, unnamed])
+    ///     .expect("this shouldn't already exist");
+    ///
+    /// let code = generate_nodes(node_type_map).unwrap().into_string();
+    ///
+    /// assert!(code.contains("pub enum AllNamed"));
+    /// assert!(code.contains("pub enum AllUnnamed"));
+    /// assert!(code.contains("pub enum AllNodes"));
+    /// # }
+    /// ```
+    /// 
+    /// # Leading Underscore in supertype name
+    /// 
+    /// Enforces the leading underscore (because that's the convention for supertypes in tree-sitter):
+    /// 
+    /// ```rust
+    /// # fn main() {
+    /// # use type_sitter_gen::*;
+    /// let mut node_type_map = NodeTypeMap::try_from(tree_sitter_rust::NODE_TYPES).unwrap();
+    ///
+    /// let names: Vec<NodeName> = node_type_map.values()
+    ///     .filter(|node| node.name.sexp_name == "struct_item" || node.name.sexp_name == "enum_item")
+    ///     .map(|node| node.name.clone())
+    ///     .collect();
+    ///
+    /// let new_name = node_type_map.add_custom_supertype("my_supertype", names).unwrap();
+    /// assert_eq!(new_name.sexp_name, "_my_supertype");  // added the underscore
+    /// # }
+    /// ```
+    /// 
+    /// # Return Value
+    /// 
+    /// Returns `Ok(new_node_name)` if the new supertype has been added,
+    /// or `Err(existing_node_name)` if a node with that name already exists:
+    ///
+    /// ```rust
+    /// # fn main() {
+    /// # use type_sitter_gen::*;
+    /// let mut node_type_map = NodeTypeMap::try_from(tree_sitter_rust::NODE_TYPES).unwrap();
+    ///
+    /// let type_sexps: Vec<NodeName> = node_type_map.values()
+    ///     .filter(|node| node.name.sexp_name == "struct_item" || node.name.sexp_name == "enum_item")
+    ///     .map(|node| node.name.clone())
+    ///     .collect();
+    ///
+    /// let result = node_type_map.add_custom_supertype("_declaration_statement", type_sexps.clone());
+    /// assert!(result.is_err());  // the Rust grammar already defines this name
+    ///
+    /// let result = node_type_map.add_custom_supertype("_my_declaration_statement", type_sexps);
+    /// assert!(result.is_ok());
+    /// # }
+    /// ```
     pub fn add_custom_supertype(&mut self, name: &str, subtypes: impl Into<Vec<NodeName>>)
         -> Result<NodeName, NodeName>
     {
         // Supertypes should be hidden nodes, so ensure the leading underscore.
         let name = if !name.starts_with("_") {
-            eprintln!("Warning: Custom supertype '{name}' without leading underscore found! Converting name to '_{name}'.");
+            eprintln!("Warning: Custom supertype '{name}' without leading underscore! Converting to '_{name}'.");
             format!("_{name}")
         } else {
             name.to_owned()
