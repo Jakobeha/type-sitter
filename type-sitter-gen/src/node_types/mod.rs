@@ -13,35 +13,64 @@ pub use generated_tokens::*;
 use std::fs::File;
 use std::io::BufReader;
 use std::path::Path;
-pub(crate) use types::*;
+pub use types::*;
 pub use rust_names::*;
-pub(crate) use names::*;
+pub use names::*;
 
 /// Generate source code (tokens) for typed AST node wrappers.
 ///
 /// # Parameters
-/// - `path`: Path to the `node-types.json` file of the language.
+/// - `types`: Anything that can be converted to a `NodeTypeMap`
 ///
-/// # Example
+/// # Examples
+///
+/// Using a file path:
+///
+/// ```rust
+/// use type_sitter_gen::generate_nodes;
+/// use std::path::Path;
+///
+/// fn main() {
+///     let path = Path::new("../vendor/tree-sitter-rust/src/node-types.json");
+///     let code = generate_nodes(path).unwrap().into_string();
+///     assert!(code.contains("pub struct TraitItem"));
+/// }
+/// ```
+///
+/// Using the contents of `node-types.json` directly:
 ///
 /// ```rust
 /// use type_sitter_gen::generate_nodes;
 ///
 /// fn main() {
-///     println!("{}", generate_nodes(
-///         "../vendor/tree-sitter-rust/src/node-types.json"
-///     ).unwrap().into_string());
+///     let contents: &str = tree_sitter_rust::NODE_TYPES;
+///     let code = generate_nodes(contents).unwrap().into_string();
+///     assert!(code.contains("pub struct TraitItem"));
 /// }
 /// ```
-pub fn generate_nodes(path: impl AsRef<Path>) -> Result<GeneratedNodeTokens, Error> {
-    generate_nodes_with_custom_module_paths(path, &type_sitter_raw(), &type_sitter())
+///
+/// Using a `NodeTypeMap`:
+///
+/// ```rust
+/// use type_sitter_gen::{generate_nodes, NodeTypeMap};
+///
+/// fn main() {
+///     let mut node_type_map = NodeTypeMap::try_from(tree_sitter_rust::NODE_TYPES).unwrap();
+///     // customize node_type_map
+///     let code = generate_nodes(node_type_map).unwrap().into_string();
+///     assert!(code.contains("pub struct TraitItem"));
+/// }
+/// ```
+pub fn generate_nodes<T, E>(types: T) -> Result<GeneratedNodeTokens, E>
+where T: TryInto<NodeTypeMap, Error = E> {
+    generate_nodes_with_custom_module_paths(types, &type_sitter_raw(), &type_sitter())
 }
 
 /// Generate source code (tokens) for typed AST node wrappers, and the generated code will refer to
 /// the provided modules instead of `type_sitter::raw` and `type_sitter` respectively.
 ///
 /// # Parameters
-/// - `path`: Path to the `node-types.json` file of the language.
+/// - `types`: Anything that can be converted to a `NodeTypeMap`
 /// - `tree_sitter`: Path to the crate with the tree-sitter API. In [`generate_nodes`] this is
 ///   [`type_sitter_raw`] but you can provide something else, like the re-exported [`tree_sitter`]
 ///   or [`yak_sitter`] directly.
@@ -53,17 +82,20 @@ pub fn generate_nodes(path: impl AsRef<Path>) -> Result<GeneratedNodeTokens, Err
 ///
 /// ```rust
 /// use type_sitter_gen::{generate_nodes_with_custom_module_paths, tree_sitter, type_sitter_lib};
+/// use std::path::Path;
 ///
 /// fn main() {
-///     println!("{}", generate_nodes_with_custom_module_paths(
-///         "../vendor/tree-sitter-rust/src/node-types.json",
+///     let code = generate_nodes_with_custom_module_paths(
+///         Path::new("../vendor/tree-sitter-rust/src/node-types.json"),
 ///         &tree_sitter(),
 ///         &type_sitter_lib()
-///     ).unwrap().into_string());
+///     ).unwrap().into_string();
+///     assert!(code.contains("pub struct TraitItem"));
 /// }
 /// ```
-pub fn generate_nodes_with_custom_module_paths(path: impl AsRef<Path>, tree_sitter: &syn::Path, type_sitter_lib: &syn::Path) -> Result<GeneratedNodeTokens, Error> {
-    let all_types = parse_node_type_map(path)?;
+pub fn generate_nodes_with_custom_module_paths<T, E>(all_types: T, tree_sitter: &syn::Path, type_sitter_lib: &syn::Path) -> Result<GeneratedNodeTokens, E>
+where T: TryInto<NodeTypeMap, Error = E> {
+    let all_types = all_types.try_into()?;
 
     let ctx = PrintCtx {
         all_types: &all_types,
@@ -77,6 +109,7 @@ pub fn generate_nodes_with_custom_module_paths(path: impl AsRef<Path>, tree_sitt
 }
 
 /// Parse a `node-types.json` file into a map of [SEXP name](NodeName::sexp_name) to [`NodeType`].
+#[deprecated = "use NodeTypeMap::try_from(...) instead"]
 pub(crate) fn parse_node_type_map(path: impl AsRef<Path>) -> Result<NodeTypeMap, Error> {
     let path = path.as_ref();
     let reader = BufReader::new(File::open(path)?);
@@ -84,3 +117,4 @@ pub(crate) fn parse_node_type_map(path: impl AsRef<Path>) -> Result<NodeTypeMap,
         .collect::<Result<Vec<_>, _>>()?;
     Ok(NodeTypeMap::new(elems))
 }
+

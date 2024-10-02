@@ -29,7 +29,7 @@ mod generate_queries_args;
 #[proc_macro]
 pub fn generate_nodes(item: proc_macro::TokenStream) -> proc_macro::TokenStream {
     let args = parse_macro_input!(item as GenerateNodesArgs);
-    type_sitter_gen::generate_nodes(&args.path)
+    type_sitter_gen::generate_nodes(args.path.as_path())
         .map(|g| g.collapse())
         .unwrap_or_else(|err| err.to_compile_error())
         .into()
