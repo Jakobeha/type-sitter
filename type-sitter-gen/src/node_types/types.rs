@@ -145,28 +145,22 @@ impl NodeTypeMap {
     /// # }
     /// ```
     /// 
-    /// # Leading Underscore in supertype name
+    /// # Panics
     /// 
-    /// Enforces the leading underscore (because that's the convention for supertypes in tree-sitter):
+    /// Supertype names must be hidden (i.e. start with an underscore).
+    /// Therefore this function panics when `name` doesn't have a leading `_`.
     /// 
-    /// ```rust
+    /// ```rust should_panic
     /// # fn main() {
     /// # use type_sitter_gen::*;
-    /// let mut node_type_map = NodeTypeMap::try_from(tree_sitter_rust::NODE_TYPES).unwrap();
-    ///
-    /// let names: Vec<NodeName> = node_type_map.values()
-    ///     .filter(|node| node.name.sexp_name == "struct_item" || node.name.sexp_name == "enum_item")
-    ///     .map(|node| node.name.clone())
-    ///     .collect();
-    ///
-    /// let new_name = node_type_map.add_custom_supertype("my_supertype", names).unwrap();
-    /// assert_eq!(new_name.sexp_name, "_my_supertype");  // added the underscore
+    /// # let mut node_type_map = NodeTypeMap::try_from(tree_sitter_rust::NODE_TYPES).unwrap();
+    /// node_type_map.add_custom_supertype("my_supertype", vec![]);  // Panic!
     /// # }
     /// ```
     /// 
     /// # Return Value
     /// 
-    /// Returns `Ok(new_node_name)` if the new supertype has been added,
+    /// Returns `Ok(new_node_name)` if the new supertype has been add ed,
     /// or `Err(existing_node_name)` if a node with that name already exists:
     ///
     /// ```rust
@@ -174,15 +168,16 @@ impl NodeTypeMap {
     /// # use type_sitter_gen::*;
     /// let mut node_type_map = NodeTypeMap::try_from(tree_sitter_rust::NODE_TYPES).unwrap();
     ///
-    /// let type_sexps: Vec<NodeName> = node_type_map.values()
-    ///     .filter(|node| node.name.sexp_name == "struct_item" || node.name.sexp_name == "enum_item")
+    /// let declarations: Vec<NodeName> = node_type_map.values()
+    /// #   .filter(|node| node.name.sexp_name == "struct_item" || node.name.sexp_name == "enum_item")
+    ///     // select some declarations
     ///     .map(|node| node.name.clone())
     ///     .collect();
     ///
-    /// let result = node_type_map.add_custom_supertype("_declaration_statement", type_sexps.clone());
+    /// let result = node_type_map.add_custom_supertype("_declaration_statement", declarations.clone());
     /// assert!(result.is_err());  // the Rust grammar already defines this name
     ///
-    /// let result = node_type_map.add_custom_supertype("_my_declaration_statement", type_sexps);
+    /// let result = node_type_map.add_custom_supertype("_my_declaration_statement", declarations);
     /// assert!(result.is_ok());
     /// # }
     /// ```
@@ -190,15 +185,12 @@ impl NodeTypeMap {
         -> Result<NodeName, NodeName>
     {
         // Supertypes should be hidden nodes, so ensure the leading underscore.
-        let name = if !name.starts_with("_") {
-            eprintln!("Warning: Custom supertype '{name}' without leading underscore! Converting to '_{name}'.");
-            format!("_{name}")
-        } else {
-            name.to_owned()
-        };
+        if !name.starts_with("_") {
+            panic!("Illegal supertype name '{name}'. Supertypes must start with an underscore, i.e. '_{name}'.");
+        }
 
         let name = NodeName {
-            sexp_name: name,
+            sexp_name: name.to_owned(),
             is_named: true,
         };
         let new_node = ContextFreeNodeType {
