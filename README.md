@@ -15,7 +15,7 @@
 "Type-safe" here means that:
 
 - Instead of representing all tree-sitter nodes by [`tree_sitter::Node`](https://docs.rs/tree-sitter/latest/tree_sitter/struct.Node.html), each node type has its own data-type which wraps `tree_sitter::Node`.
-  - Supertype nodes are `enum`s, so they can be safely specialized using `match` statements.
+  - Supertype nodes are `enum`s, so you can pattern-match their subtypes with compile-time exhaustiveness checking.
   - Each node data-type implements [`type_sitter::Node`](https://docs.rs/type-sitter-lib/latest/type_sitter_lib/trait.Node.html). You can use generics and convert to/from [`type_sitter::UntypedNode`](https://docs.rs/type-sitter-lib/latest/type_sitter_lib/struct.UntypedNode.html) to write methods that take or return arbitrary-typed nodes.
 - Instead of accessing fields by `field("field_name")`, you access by specific methods like `field_name()`.
   - These methods, and every other generated method, also return typed nodes.
