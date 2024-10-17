@@ -2,7 +2,7 @@ use crate::node_types::rust_names::PrevNodeRustNames;
 use crate::{NodeName, NodeRustNames};
 use serde::Deserialize;
 use std::borrow::Cow;
-use std::collections::{BTreeMap, BTreeSet, HashMap};
+use std::collections::{BTreeMap, BTreeSet};
 use std::fmt::Display;
 use std::ops::{BitOrAssign, Index};
 use std::path::{Path, PathBuf};
@@ -14,7 +14,10 @@ use super::deserialize_json_array_as_stream::iter_json_array;
 ///
 /// Use [`crate::generate_nodes()`] the Rust code after inspecting and
 #[derive(Debug)]
-pub struct NodeTypeMap { nodes: HashMap<NodeName, NodeType>, prev_rust_names: PrevNodeRustNames }
+pub struct NodeTypeMap {
+    nodes: BTreeMap<NodeName, NodeType>,
+    prev_rust_names: PrevNodeRustNames
+}
 
 /// Describes a grammar node; corresponds to an entry in `node-types.json`
 #[derive(Clone, Debug)]

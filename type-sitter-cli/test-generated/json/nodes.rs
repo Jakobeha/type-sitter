@@ -1,246 +1,3 @@
-#[doc = "Typed node `comment`\n\nThis node has no named children\n"]
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-#[repr(transparent)]
-#[allow(non_camel_case_types)]
-pub struct Comment<'tree>(type_sitter::raw::Node<'tree>);
-#[automatically_derived]
-impl<'tree> Comment<'tree> {}
-#[automatically_derived]
-impl<'tree> type_sitter::Node<'tree> for Comment<'tree> {
-    type WithLifetime<'a> = Comment<'a>;
-    const KIND: &'static str = "comment";
-    #[inline]
-    fn try_from_raw(node: type_sitter::raw::Node<'tree>) -> type_sitter::NodeResult<Self> {
-        if node.kind() == "comment" {
-            Ok(Self(node))
-        } else {
-            Err(type_sitter::IncorrectKind::new::<Self>(node))
-        }
-    }
-    #[inline]
-    unsafe fn from_raw_unchecked(node: type_sitter::raw::Node<'tree>) -> Self {
-        debug_assert_eq!(node.kind(), "comment");
-        Self(node)
-    }
-    #[inline]
-    fn raw(&self) -> &type_sitter::raw::Node<'tree> {
-        &self.0
-    }
-    #[inline]
-    fn raw_mut(&mut self) -> &mut type_sitter::raw::Node<'tree> {
-        &mut self.0
-    }
-    #[inline]
-    fn into_raw(self) -> type_sitter::raw::Node<'tree> {
-        self.0
-    }
-}
-#[doc = "Typed node `string_content`\n\nThis node has no named children\n"]
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-#[repr(transparent)]
-#[allow(non_camel_case_types)]
-pub struct StringContent<'tree>(type_sitter::raw::Node<'tree>);
-#[automatically_derived]
-impl<'tree> StringContent<'tree> {}
-#[automatically_derived]
-impl<'tree> type_sitter::Node<'tree> for StringContent<'tree> {
-    type WithLifetime<'a> = StringContent<'a>;
-    const KIND: &'static str = "string_content";
-    #[inline]
-    fn try_from_raw(node: type_sitter::raw::Node<'tree>) -> type_sitter::NodeResult<Self> {
-        if node.kind() == "string_content" {
-            Ok(Self(node))
-        } else {
-            Err(type_sitter::IncorrectKind::new::<Self>(node))
-        }
-    }
-    #[inline]
-    unsafe fn from_raw_unchecked(node: type_sitter::raw::Node<'tree>) -> Self {
-        debug_assert_eq!(node.kind(), "string_content");
-        Self(node)
-    }
-    #[inline]
-    fn raw(&self) -> &type_sitter::raw::Node<'tree> {
-        &self.0
-    }
-    #[inline]
-    fn raw_mut(&mut self) -> &mut type_sitter::raw::Node<'tree> {
-        &mut self.0
-    }
-    #[inline]
-    fn into_raw(self) -> type_sitter::raw::Node<'tree> {
-        self.0
-    }
-}
-#[doc = "Typed node `true`\n\nThis node has no named children\n"]
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-#[repr(transparent)]
-#[allow(non_camel_case_types)]
-pub struct True<'tree>(type_sitter::raw::Node<'tree>);
-#[automatically_derived]
-impl<'tree> True<'tree> {}
-#[automatically_derived]
-impl<'tree> type_sitter::Node<'tree> for True<'tree> {
-    type WithLifetime<'a> = True<'a>;
-    const KIND: &'static str = "true";
-    #[inline]
-    fn try_from_raw(node: type_sitter::raw::Node<'tree>) -> type_sitter::NodeResult<Self> {
-        if node.kind() == "true" {
-            Ok(Self(node))
-        } else {
-            Err(type_sitter::IncorrectKind::new::<Self>(node))
-        }
-    }
-    #[inline]
-    unsafe fn from_raw_unchecked(node: type_sitter::raw::Node<'tree>) -> Self {
-        debug_assert_eq!(node.kind(), "true");
-        Self(node)
-    }
-    #[inline]
-    fn raw(&self) -> &type_sitter::raw::Node<'tree> {
-        &self.0
-    }
-    #[inline]
-    fn raw_mut(&mut self) -> &mut type_sitter::raw::Node<'tree> {
-        &mut self.0
-    }
-    #[inline]
-    fn into_raw(self) -> type_sitter::raw::Node<'tree> {
-        self.0
-    }
-}
-#[doc = "Typed node `null`\n\nThis node has no named children\n"]
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-#[repr(transparent)]
-#[allow(non_camel_case_types)]
-pub struct Null<'tree>(type_sitter::raw::Node<'tree>);
-#[automatically_derived]
-impl<'tree> Null<'tree> {}
-#[automatically_derived]
-impl<'tree> type_sitter::Node<'tree> for Null<'tree> {
-    type WithLifetime<'a> = Null<'a>;
-    const KIND: &'static str = "null";
-    #[inline]
-    fn try_from_raw(node: type_sitter::raw::Node<'tree>) -> type_sitter::NodeResult<Self> {
-        if node.kind() == "null" {
-            Ok(Self(node))
-        } else {
-            Err(type_sitter::IncorrectKind::new::<Self>(node))
-        }
-    }
-    #[inline]
-    unsafe fn from_raw_unchecked(node: type_sitter::raw::Node<'tree>) -> Self {
-        debug_assert_eq!(node.kind(), "null");
-        Self(node)
-    }
-    #[inline]
-    fn raw(&self) -> &type_sitter::raw::Node<'tree> {
-        &self.0
-    }
-    #[inline]
-    fn raw_mut(&mut self) -> &mut type_sitter::raw::Node<'tree> {
-        &mut self.0
-    }
-    #[inline]
-    fn into_raw(self) -> type_sitter::raw::Node<'tree> {
-        self.0
-    }
-}
-#[doc = "Typed node `pair`\n\nThis node has these fields:\n\n- `key`: `string` ([`String`])\n- `value`: `_value` ([`Value`])\n"]
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-#[repr(transparent)]
-#[allow(non_camel_case_types)]
-pub struct Pair<'tree>(type_sitter::raw::Node<'tree>);
-#[automatically_derived]
-impl<'tree> Pair<'tree> {
-    #[doc = "Get the field `key`.\n\nThis child has type `string` ([`String`])"]
-    #[inline]
-    pub fn key(&self) -> type_sitter::NodeResult<'tree, String<'tree>> {
-        type_sitter::Node::raw(self)
-            .child_by_field_name("key")
-            .map(<String<'tree> as type_sitter::Node<'tree>>::try_from_raw)
-            .expect(
-                "required child not present, there should at least be a MISSING node in its place",
-            )
-    }
-    #[doc = "Get the field `value`.\n\nThis child has type `_value` ([`Value`])"]
-    #[inline]
-    pub fn value(&self) -> type_sitter::NodeResult<'tree, Value<'tree>> {
-        type_sitter::Node::raw(self)
-            .child_by_field_name("value")
-            .map(<Value<'tree> as type_sitter::Node<'tree>>::try_from_raw)
-            .expect(
-                "required child not present, there should at least be a MISSING node in its place",
-            )
-    }
-}
-#[automatically_derived]
-impl<'tree> type_sitter::Node<'tree> for Pair<'tree> {
-    type WithLifetime<'a> = Pair<'a>;
-    const KIND: &'static str = "pair";
-    #[inline]
-    fn try_from_raw(node: type_sitter::raw::Node<'tree>) -> type_sitter::NodeResult<Self> {
-        if node.kind() == "pair" {
-            Ok(Self(node))
-        } else {
-            Err(type_sitter::IncorrectKind::new::<Self>(node))
-        }
-    }
-    #[inline]
-    unsafe fn from_raw_unchecked(node: type_sitter::raw::Node<'tree>) -> Self {
-        debug_assert_eq!(node.kind(), "pair");
-        Self(node)
-    }
-    #[inline]
-    fn raw(&self) -> &type_sitter::raw::Node<'tree> {
-        &self.0
-    }
-    #[inline]
-    fn raw_mut(&mut self) -> &mut type_sitter::raw::Node<'tree> {
-        &mut self.0
-    }
-    #[inline]
-    fn into_raw(self) -> type_sitter::raw::Node<'tree> {
-        self.0
-    }
-}
-#[doc = "Typed node `escape_sequence`\n\nThis node has no named children\n"]
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-#[repr(transparent)]
-#[allow(non_camel_case_types)]
-pub struct EscapeSequence<'tree>(type_sitter::raw::Node<'tree>);
-#[automatically_derived]
-impl<'tree> EscapeSequence<'tree> {}
-#[automatically_derived]
-impl<'tree> type_sitter::Node<'tree> for EscapeSequence<'tree> {
-    type WithLifetime<'a> = EscapeSequence<'a>;
-    const KIND: &'static str = "escape_sequence";
-    #[inline]
-    fn try_from_raw(node: type_sitter::raw::Node<'tree>) -> type_sitter::NodeResult<Self> {
-        if node.kind() == "escape_sequence" {
-            Ok(Self(node))
-        } else {
-            Err(type_sitter::IncorrectKind::new::<Self>(node))
-        }
-    }
-    #[inline]
-    unsafe fn from_raw_unchecked(node: type_sitter::raw::Node<'tree>) -> Self {
-        debug_assert_eq!(node.kind(), "escape_sequence");
-        Self(node)
-    }
-    #[inline]
-    fn raw(&self) -> &type_sitter::raw::Node<'tree> {
-        &self.0
-    }
-    #[inline]
-    fn raw_mut(&mut self) -> &mut type_sitter::raw::Node<'tree> {
-        &mut self.0
-    }
-    #[inline]
-    fn into_raw(self) -> type_sitter::raw::Node<'tree> {
-        self.0
-    }
-}
 #[doc = "Typed node `_value`\n\nThis node type has subtypes:\n\n- `array` ([`Array`])\n- `false` ([`False`])\n- `null` ([`Null`])\n- `number` ([`Number`])\n- `object` ([`Object`])\n- `string` ([`String`])\n- `true` ([`True`])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
@@ -394,43 +151,6 @@ impl<'tree> type_sitter::Node<'tree> for Value<'tree> {
         }
     }
 }
-#[doc = "Typed node `false`\n\nThis node has no named children\n"]
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-#[repr(transparent)]
-#[allow(non_camel_case_types)]
-pub struct False<'tree>(type_sitter::raw::Node<'tree>);
-#[automatically_derived]
-impl<'tree> False<'tree> {}
-#[automatically_derived]
-impl<'tree> type_sitter::Node<'tree> for False<'tree> {
-    type WithLifetime<'a> = False<'a>;
-    const KIND: &'static str = "false";
-    #[inline]
-    fn try_from_raw(node: type_sitter::raw::Node<'tree>) -> type_sitter::NodeResult<Self> {
-        if node.kind() == "false" {
-            Ok(Self(node))
-        } else {
-            Err(type_sitter::IncorrectKind::new::<Self>(node))
-        }
-    }
-    #[inline]
-    unsafe fn from_raw_unchecked(node: type_sitter::raw::Node<'tree>) -> Self {
-        debug_assert_eq!(node.kind(), "false");
-        Self(node)
-    }
-    #[inline]
-    fn raw(&self) -> &type_sitter::raw::Node<'tree> {
-        &self.0
-    }
-    #[inline]
-    fn raw_mut(&mut self) -> &mut type_sitter::raw::Node<'tree> {
-        &mut self.0
-    }
-    #[inline]
-    fn into_raw(self) -> type_sitter::raw::Node<'tree> {
-        self.0
-    }
-}
 #[doc = "Typed node `array`\n\nThis node has named children of type `_value*` ([`Value`])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -465,6 +185,43 @@ impl<'tree> type_sitter::Node<'tree> for Array<'tree> {
     #[inline]
     unsafe fn from_raw_unchecked(node: type_sitter::raw::Node<'tree>) -> Self {
         debug_assert_eq!(node.kind(), "array");
+        Self(node)
+    }
+    #[inline]
+    fn raw(&self) -> &type_sitter::raw::Node<'tree> {
+        &self.0
+    }
+    #[inline]
+    fn raw_mut(&mut self) -> &mut type_sitter::raw::Node<'tree> {
+        &mut self.0
+    }
+    #[inline]
+    fn into_raw(self) -> type_sitter::raw::Node<'tree> {
+        self.0
+    }
+}
+#[doc = "Typed node `comment`\n\nThis node has no named children\n"]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[repr(transparent)]
+#[allow(non_camel_case_types)]
+pub struct Comment<'tree>(type_sitter::raw::Node<'tree>);
+#[automatically_derived]
+impl<'tree> Comment<'tree> {}
+#[automatically_derived]
+impl<'tree> type_sitter::Node<'tree> for Comment<'tree> {
+    type WithLifetime<'a> = Comment<'a>;
+    const KIND: &'static str = "comment";
+    #[inline]
+    fn try_from_raw(node: type_sitter::raw::Node<'tree>) -> type_sitter::NodeResult<Self> {
+        if node.kind() == "comment" {
+            Ok(Self(node))
+        } else {
+            Err(type_sitter::IncorrectKind::new::<Self>(node))
+        }
+    }
+    #[inline]
+    unsafe fn from_raw_unchecked(node: type_sitter::raw::Node<'tree>) -> Self {
+        debug_assert_eq!(node.kind(), "comment");
         Self(node)
     }
     #[inline]
@@ -529,6 +286,154 @@ impl<'tree> type_sitter::Node<'tree> for Document<'tree> {
         self.0
     }
 }
+#[doc = "Typed node `escape_sequence`\n\nThis node has no named children\n"]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[repr(transparent)]
+#[allow(non_camel_case_types)]
+pub struct EscapeSequence<'tree>(type_sitter::raw::Node<'tree>);
+#[automatically_derived]
+impl<'tree> EscapeSequence<'tree> {}
+#[automatically_derived]
+impl<'tree> type_sitter::Node<'tree> for EscapeSequence<'tree> {
+    type WithLifetime<'a> = EscapeSequence<'a>;
+    const KIND: &'static str = "escape_sequence";
+    #[inline]
+    fn try_from_raw(node: type_sitter::raw::Node<'tree>) -> type_sitter::NodeResult<Self> {
+        if node.kind() == "escape_sequence" {
+            Ok(Self(node))
+        } else {
+            Err(type_sitter::IncorrectKind::new::<Self>(node))
+        }
+    }
+    #[inline]
+    unsafe fn from_raw_unchecked(node: type_sitter::raw::Node<'tree>) -> Self {
+        debug_assert_eq!(node.kind(), "escape_sequence");
+        Self(node)
+    }
+    #[inline]
+    fn raw(&self) -> &type_sitter::raw::Node<'tree> {
+        &self.0
+    }
+    #[inline]
+    fn raw_mut(&mut self) -> &mut type_sitter::raw::Node<'tree> {
+        &mut self.0
+    }
+    #[inline]
+    fn into_raw(self) -> type_sitter::raw::Node<'tree> {
+        self.0
+    }
+}
+#[doc = "Typed node `false`\n\nThis node has no named children\n"]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[repr(transparent)]
+#[allow(non_camel_case_types)]
+pub struct False<'tree>(type_sitter::raw::Node<'tree>);
+#[automatically_derived]
+impl<'tree> False<'tree> {}
+#[automatically_derived]
+impl<'tree> type_sitter::Node<'tree> for False<'tree> {
+    type WithLifetime<'a> = False<'a>;
+    const KIND: &'static str = "false";
+    #[inline]
+    fn try_from_raw(node: type_sitter::raw::Node<'tree>) -> type_sitter::NodeResult<Self> {
+        if node.kind() == "false" {
+            Ok(Self(node))
+        } else {
+            Err(type_sitter::IncorrectKind::new::<Self>(node))
+        }
+    }
+    #[inline]
+    unsafe fn from_raw_unchecked(node: type_sitter::raw::Node<'tree>) -> Self {
+        debug_assert_eq!(node.kind(), "false");
+        Self(node)
+    }
+    #[inline]
+    fn raw(&self) -> &type_sitter::raw::Node<'tree> {
+        &self.0
+    }
+    #[inline]
+    fn raw_mut(&mut self) -> &mut type_sitter::raw::Node<'tree> {
+        &mut self.0
+    }
+    #[inline]
+    fn into_raw(self) -> type_sitter::raw::Node<'tree> {
+        self.0
+    }
+}
+#[doc = "Typed node `null`\n\nThis node has no named children\n"]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[repr(transparent)]
+#[allow(non_camel_case_types)]
+pub struct Null<'tree>(type_sitter::raw::Node<'tree>);
+#[automatically_derived]
+impl<'tree> Null<'tree> {}
+#[automatically_derived]
+impl<'tree> type_sitter::Node<'tree> for Null<'tree> {
+    type WithLifetime<'a> = Null<'a>;
+    const KIND: &'static str = "null";
+    #[inline]
+    fn try_from_raw(node: type_sitter::raw::Node<'tree>) -> type_sitter::NodeResult<Self> {
+        if node.kind() == "null" {
+            Ok(Self(node))
+        } else {
+            Err(type_sitter::IncorrectKind::new::<Self>(node))
+        }
+    }
+    #[inline]
+    unsafe fn from_raw_unchecked(node: type_sitter::raw::Node<'tree>) -> Self {
+        debug_assert_eq!(node.kind(), "null");
+        Self(node)
+    }
+    #[inline]
+    fn raw(&self) -> &type_sitter::raw::Node<'tree> {
+        &self.0
+    }
+    #[inline]
+    fn raw_mut(&mut self) -> &mut type_sitter::raw::Node<'tree> {
+        &mut self.0
+    }
+    #[inline]
+    fn into_raw(self) -> type_sitter::raw::Node<'tree> {
+        self.0
+    }
+}
+#[doc = "Typed node `number`\n\nThis node has no named children\n"]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[repr(transparent)]
+#[allow(non_camel_case_types)]
+pub struct Number<'tree>(type_sitter::raw::Node<'tree>);
+#[automatically_derived]
+impl<'tree> Number<'tree> {}
+#[automatically_derived]
+impl<'tree> type_sitter::Node<'tree> for Number<'tree> {
+    type WithLifetime<'a> = Number<'a>;
+    const KIND: &'static str = "number";
+    #[inline]
+    fn try_from_raw(node: type_sitter::raw::Node<'tree>) -> type_sitter::NodeResult<Self> {
+        if node.kind() == "number" {
+            Ok(Self(node))
+        } else {
+            Err(type_sitter::IncorrectKind::new::<Self>(node))
+        }
+    }
+    #[inline]
+    unsafe fn from_raw_unchecked(node: type_sitter::raw::Node<'tree>) -> Self {
+        debug_assert_eq!(node.kind(), "number");
+        Self(node)
+    }
+    #[inline]
+    fn raw(&self) -> &type_sitter::raw::Node<'tree> {
+        &self.0
+    }
+    #[inline]
+    fn raw_mut(&mut self) -> &mut type_sitter::raw::Node<'tree> {
+        &mut self.0
+    }
+    #[inline]
+    fn into_raw(self) -> type_sitter::raw::Node<'tree> {
+        self.0
+    }
+}
 #[doc = "Typed node `object`\n\nThis node has named children of type `pair*` ([`Pair`])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -578,20 +483,41 @@ impl<'tree> type_sitter::Node<'tree> for Object<'tree> {
         self.0
     }
 }
-#[doc = "Typed node `number`\n\nThis node has no named children\n"]
+#[doc = "Typed node `pair`\n\nThis node has these fields:\n\n- `key`: `string` ([`String`])\n- `value`: `_value` ([`Value`])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
 #[allow(non_camel_case_types)]
-pub struct Number<'tree>(type_sitter::raw::Node<'tree>);
+pub struct Pair<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
-impl<'tree> Number<'tree> {}
+impl<'tree> Pair<'tree> {
+    #[doc = "Get the field `key`.\n\nThis child has type `string` ([`String`])"]
+    #[inline]
+    pub fn key(&self) -> type_sitter::NodeResult<'tree, String<'tree>> {
+        type_sitter::Node::raw(self)
+            .child_by_field_name("key")
+            .map(<String<'tree> as type_sitter::Node<'tree>>::try_from_raw)
+            .expect(
+                "required child not present, there should at least be a MISSING node in its place",
+            )
+    }
+    #[doc = "Get the field `value`.\n\nThis child has type `_value` ([`Value`])"]
+    #[inline]
+    pub fn value(&self) -> type_sitter::NodeResult<'tree, Value<'tree>> {
+        type_sitter::Node::raw(self)
+            .child_by_field_name("value")
+            .map(<Value<'tree> as type_sitter::Node<'tree>>::try_from_raw)
+            .expect(
+                "required child not present, there should at least be a MISSING node in its place",
+            )
+    }
+}
 #[automatically_derived]
-impl<'tree> type_sitter::Node<'tree> for Number<'tree> {
-    type WithLifetime<'a> = Number<'a>;
-    const KIND: &'static str = "number";
+impl<'tree> type_sitter::Node<'tree> for Pair<'tree> {
+    type WithLifetime<'a> = Pair<'a>;
+    const KIND: &'static str = "pair";
     #[inline]
     fn try_from_raw(node: type_sitter::raw::Node<'tree>) -> type_sitter::NodeResult<Self> {
-        if node.kind() == "number" {
+        if node.kind() == "pair" {
             Ok(Self(node))
         } else {
             Err(type_sitter::IncorrectKind::new::<Self>(node))
@@ -599,7 +525,7 @@ impl<'tree> type_sitter::Node<'tree> for Number<'tree> {
     }
     #[inline]
     unsafe fn from_raw_unchecked(node: type_sitter::raw::Node<'tree>) -> Self {
-        debug_assert_eq!(node.kind(), "number");
+        debug_assert_eq!(node.kind(), "pair");
         Self(node)
     }
     #[inline]
@@ -663,23 +589,97 @@ impl<'tree> type_sitter::Node<'tree> for String<'tree> {
         self.0
     }
 }
+#[doc = "Typed node `string_content`\n\nThis node has no named children\n"]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[repr(transparent)]
+#[allow(non_camel_case_types)]
+pub struct StringContent<'tree>(type_sitter::raw::Node<'tree>);
+#[automatically_derived]
+impl<'tree> StringContent<'tree> {}
+#[automatically_derived]
+impl<'tree> type_sitter::Node<'tree> for StringContent<'tree> {
+    type WithLifetime<'a> = StringContent<'a>;
+    const KIND: &'static str = "string_content";
+    #[inline]
+    fn try_from_raw(node: type_sitter::raw::Node<'tree>) -> type_sitter::NodeResult<Self> {
+        if node.kind() == "string_content" {
+            Ok(Self(node))
+        } else {
+            Err(type_sitter::IncorrectKind::new::<Self>(node))
+        }
+    }
+    #[inline]
+    unsafe fn from_raw_unchecked(node: type_sitter::raw::Node<'tree>) -> Self {
+        debug_assert_eq!(node.kind(), "string_content");
+        Self(node)
+    }
+    #[inline]
+    fn raw(&self) -> &type_sitter::raw::Node<'tree> {
+        &self.0
+    }
+    #[inline]
+    fn raw_mut(&mut self) -> &mut type_sitter::raw::Node<'tree> {
+        &mut self.0
+    }
+    #[inline]
+    fn into_raw(self) -> type_sitter::raw::Node<'tree> {
+        self.0
+    }
+}
+#[doc = "Typed node `true`\n\nThis node has no named children\n"]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[repr(transparent)]
+#[allow(non_camel_case_types)]
+pub struct True<'tree>(type_sitter::raw::Node<'tree>);
+#[automatically_derived]
+impl<'tree> True<'tree> {}
+#[automatically_derived]
+impl<'tree> type_sitter::Node<'tree> for True<'tree> {
+    type WithLifetime<'a> = True<'a>;
+    const KIND: &'static str = "true";
+    #[inline]
+    fn try_from_raw(node: type_sitter::raw::Node<'tree>) -> type_sitter::NodeResult<Self> {
+        if node.kind() == "true" {
+            Ok(Self(node))
+        } else {
+            Err(type_sitter::IncorrectKind::new::<Self>(node))
+        }
+    }
+    #[inline]
+    unsafe fn from_raw_unchecked(node: type_sitter::raw::Node<'tree>) -> Self {
+        debug_assert_eq!(node.kind(), "true");
+        Self(node)
+    }
+    #[inline]
+    fn raw(&self) -> &type_sitter::raw::Node<'tree> {
+        &self.0
+    }
+    #[inline]
+    fn raw_mut(&mut self) -> &mut type_sitter::raw::Node<'tree> {
+        &mut self.0
+    }
+    #[inline]
+    fn into_raw(self) -> type_sitter::raw::Node<'tree> {
+        self.0
+    }
+}
 pub mod symbols {
     #[allow(unused_imports)]
     use super::*;
-    #[doc = "Typed node `]`\n\nThis node has no named children\n"]
+    #[doc = "Typed node `\"`\n\nThis node has no named children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
     #[allow(non_camel_case_types)]
-    pub struct RBracket<'tree>(type_sitter::raw::Node<'tree>);
+    pub struct DoubleQuote<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
-    impl<'tree> RBracket<'tree> {}
+    impl<'tree> DoubleQuote<'tree> {}
     #[automatically_derived]
-    impl<'tree> type_sitter::Node<'tree> for RBracket<'tree> {
-        type WithLifetime<'a> = RBracket<'a>;
-        const KIND: &'static str = "]";
+    impl<'tree> type_sitter::Node<'tree> for DoubleQuote<'tree> {
+        type WithLifetime<'a> = DoubleQuote<'a>;
+        const KIND: &'static str = "\"";
         #[inline]
         fn try_from_raw(node: type_sitter::raw::Node<'tree>) -> type_sitter::NodeResult<Self> {
-            if node.kind() == "]" {
+            if node.kind() == "\"" {
                 Ok(Self(node))
             } else {
                 Err(type_sitter::IncorrectKind::new::<Self>(node))
@@ -687,7 +687,7 @@ pub mod symbols {
         }
         #[inline]
         unsafe fn from_raw_unchecked(node: type_sitter::raw::Node<'tree>) -> Self {
-            debug_assert_eq!(node.kind(), "]");
+            debug_assert_eq!(node.kind(), "\"");
             Self(node)
         }
         #[inline]
@@ -777,43 +777,6 @@ pub mod symbols {
             self.0
         }
     }
-    #[doc = "Typed node `\"`\n\nThis node has no named children\n"]
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[repr(transparent)]
-    #[allow(non_camel_case_types)]
-    pub struct DoubleQuote<'tree>(type_sitter::raw::Node<'tree>);
-    #[automatically_derived]
-    impl<'tree> DoubleQuote<'tree> {}
-    #[automatically_derived]
-    impl<'tree> type_sitter::Node<'tree> for DoubleQuote<'tree> {
-        type WithLifetime<'a> = DoubleQuote<'a>;
-        const KIND: &'static str = "\"";
-        #[inline]
-        fn try_from_raw(node: type_sitter::raw::Node<'tree>) -> type_sitter::NodeResult<Self> {
-            if node.kind() == "\"" {
-                Ok(Self(node))
-            } else {
-                Err(type_sitter::IncorrectKind::new::<Self>(node))
-            }
-        }
-        #[inline]
-        unsafe fn from_raw_unchecked(node: type_sitter::raw::Node<'tree>) -> Self {
-            debug_assert_eq!(node.kind(), "\"");
-            Self(node)
-        }
-        #[inline]
-        fn raw(&self) -> &type_sitter::raw::Node<'tree> {
-            &self.0
-        }
-        #[inline]
-        fn raw_mut(&mut self) -> &mut type_sitter::raw::Node<'tree> {
-            &mut self.0
-        }
-        #[inline]
-        fn into_raw(self) -> type_sitter::raw::Node<'tree> {
-            self.0
-        }
-    }
     #[doc = "Typed node `[`\n\nThis node has no named children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
@@ -851,20 +814,20 @@ pub mod symbols {
             self.0
         }
     }
-    #[doc = "Typed node `}`\n\nThis node has no named children\n"]
+    #[doc = "Typed node `]`\n\nThis node has no named children\n"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[repr(transparent)]
     #[allow(non_camel_case_types)]
-    pub struct RBrace<'tree>(type_sitter::raw::Node<'tree>);
+    pub struct RBracket<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
-    impl<'tree> RBrace<'tree> {}
+    impl<'tree> RBracket<'tree> {}
     #[automatically_derived]
-    impl<'tree> type_sitter::Node<'tree> for RBrace<'tree> {
-        type WithLifetime<'a> = RBrace<'a>;
-        const KIND: &'static str = "}";
+    impl<'tree> type_sitter::Node<'tree> for RBracket<'tree> {
+        type WithLifetime<'a> = RBracket<'a>;
+        const KIND: &'static str = "]";
         #[inline]
         fn try_from_raw(node: type_sitter::raw::Node<'tree>) -> type_sitter::NodeResult<Self> {
-            if node.kind() == "}" {
+            if node.kind() == "]" {
                 Ok(Self(node))
             } else {
                 Err(type_sitter::IncorrectKind::new::<Self>(node))
@@ -872,7 +835,7 @@ pub mod symbols {
         }
         #[inline]
         unsafe fn from_raw_unchecked(node: type_sitter::raw::Node<'tree>) -> Self {
-            debug_assert_eq!(node.kind(), "}");
+            debug_assert_eq!(node.kind(), "]");
             Self(node)
         }
         #[inline]
@@ -910,6 +873,43 @@ pub mod symbols {
         #[inline]
         unsafe fn from_raw_unchecked(node: type_sitter::raw::Node<'tree>) -> Self {
             debug_assert_eq!(node.kind(), "{");
+            Self(node)
+        }
+        #[inline]
+        fn raw(&self) -> &type_sitter::raw::Node<'tree> {
+            &self.0
+        }
+        #[inline]
+        fn raw_mut(&mut self) -> &mut type_sitter::raw::Node<'tree> {
+            &mut self.0
+        }
+        #[inline]
+        fn into_raw(self) -> type_sitter::raw::Node<'tree> {
+            self.0
+        }
+    }
+    #[doc = "Typed node `}`\n\nThis node has no named children\n"]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[repr(transparent)]
+    #[allow(non_camel_case_types)]
+    pub struct RBrace<'tree>(type_sitter::raw::Node<'tree>);
+    #[automatically_derived]
+    impl<'tree> RBrace<'tree> {}
+    #[automatically_derived]
+    impl<'tree> type_sitter::Node<'tree> for RBrace<'tree> {
+        type WithLifetime<'a> = RBrace<'a>;
+        const KIND: &'static str = "}";
+        #[inline]
+        fn try_from_raw(node: type_sitter::raw::Node<'tree>) -> type_sitter::NodeResult<Self> {
+            if node.kind() == "}" {
+                Ok(Self(node))
+            } else {
+                Err(type_sitter::IncorrectKind::new::<Self>(node))
+            }
+        }
+        #[inline]
+        unsafe fn from_raw_unchecked(node: type_sitter::raw::Node<'tree>) -> Self {
+            debug_assert_eq!(node.kind(), "}");
             Self(node)
         }
         #[inline]
