@@ -5,6 +5,7 @@ use std::borrow::Cow;
 use std::collections::{BTreeMap, BTreeSet, HashMap};
 use std::fmt::Display;
 use std::ops::{BitOrAssign, Index};
+use std::path::{Path, PathBuf};
 use crate::vec_set::VecSet;
 
 use super::deserialize_json_array_as_stream::iter_json_array;
@@ -148,6 +149,7 @@ impl NodeTypeMap {
     /// # fn main() {
     /// # use type_sitter_gen::*;
     /// # let mut node_type_map = NodeTypeMap::try_from(tree_sitter_rust::NODE_TYPES).unwrap();
+    /// # let _ =
     /// node_type_map.add_custom_supertype("my_supertype", vec![]);  // Panic!
     /// # }
     /// ```
@@ -175,7 +177,7 @@ impl NodeTypeMap {
     /// assert!(result.is_ok());
     /// # }
     /// ```
-    pub fn add_custom_supertype(&mut self, name: &str, subtypes: impl Into<Vec<NodeName>>)
+    pub fn add_custom_supertype(&mut self, name: &str, subtypes: impl IntoIterator<Item=NodeName>)
         -> Result<NodeName, NodeName>
     {
         // Supertypes should be hidden nodes, so ensure the leading underscore.
@@ -189,7 +191,7 @@ impl NodeTypeMap {
         };
         let new_node = ContextFreeNodeType {
             name: name.clone(),
-            kind: NodeTypeKind::Supertype { subtypes: subtypes.into() },
+            kind: NodeTypeKind::Supertype { subtypes: BTreeSet::from_iter(subtypes) },
         };
         let new_node = NodeType::new(new_node, &mut self.prev_rust_names);
 
@@ -205,25 +207,31 @@ impl NodeTypeMap {
 impl TryFrom<&Path> for NodeTypeMap {
     type Error = crate::Error;
 
+    /// Read and parse the file at the path, which should be a `node-types.json`.
     fn try_from(path: &Path) -> Result<Self, Self::Error> {
         let text = std::fs::read_to_string(path)?;
         NodeTypeMap::try_from(text.as_str())
     }
 }
 
+impl TryFrom<PathBuf> for NodeTypeMap {
+    type Error = crate::Error;
+
+    /// Read and parse the file at the path, which should be a `node-types.json`.
+    fn try_from(value: PathBuf) -> Result<Self, Self::Error> {
+        Self::try_from(value.as_path())
+    }
+}
+
 impl TryFrom<&str> for NodeTypeMap {
     type Error = crate::Error;
 
+    /// Parse the given text, which should be the content of a `node-types.json` or
+    /// a tree-sitter `NODE_TYPES` constant.
     fn try_from(text: &str) -> Result<Self, Self::Error> {
         let elems = iter_json_array::<ContextFreeNodeType, _>(text.as_bytes())
             .collect::<Result<Vec<_>, _>>()?;
         Ok(NodeTypeMap::new(elems))
-    }
-}
-
-impl ToString for NodeTypeMap {
-    fn to_string(&self) -> String {
-        todo!()
     }
 }
 

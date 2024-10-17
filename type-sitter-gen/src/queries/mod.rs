@@ -10,7 +10,7 @@ mod generated_tokens;
 use crate::mk_syntax::ident;
 use crate::queries::dyload_language::dyload_language;
 use crate::queries::sexp::SExpSeq;
-use crate::{make_valid, parse_node_type_map, type_sitter, type_sitter_raw, Error, PrintCtx};
+use crate::{make_valid, type_sitter, type_sitter_raw, Error, NodeTypeMap, PrintCtx};
 use convert_case::{Case, Casing};
 pub use generated_tokens::*;
 use quote::quote;
@@ -115,7 +115,7 @@ pub fn generate_queries_with_custom_module_paths(
 ) -> Result<GeneratedQueryTokens, Error> {
     let language_path = language_path.as_ref();
     let node_types_path = language_path.join("src/node-types.json");
-    let all_types = parse_node_type_map(node_types_path)?;
+    let all_types = NodeTypeMap::try_from(node_types_path)?;
 
     _generate_queries(
         path,
@@ -227,7 +227,7 @@ pub fn generate_query_from_file_with_custom_module_paths(
 ) -> Result<GeneratedQueryTokens, Error> {
     let language_path = language_path.as_ref();
     let node_types_path = language_path.join("src/node-types.json");
-    let all_types = parse_node_type_map(node_types_path)?;
+    let all_types = NodeTypeMap::try_from(node_types_path)?;
 
     _generate_query_from_file(
         path,

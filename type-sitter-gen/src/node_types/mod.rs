@@ -7,15 +7,11 @@ mod generated_tokens;
 mod rust_names;
 mod names;
 
-use crate::node_types::deserialize_json_array_as_stream::iter_json_array;
-use crate::{type_sitter, type_sitter_raw, Error, PrintCtx};
+use crate::{type_sitter, type_sitter_raw, PrintCtx};
 pub use generated_tokens::*;
-use std::fs::File;
-use std::io::BufReader;
-use std::path::Path;
-pub use types::*;
-pub use rust_names::*;
 pub use names::*;
+pub use rust_names::*;
+pub use types::*;
 
 /// Generate source code (tokens) for typed AST node wrappers.
 ///
@@ -106,15 +102,5 @@ where T: TryInto<NodeTypeMap, Error = E> {
     Ok(all_types.values()
         .map(|r| r.print(ctx))
         .collect::<GeneratedNodeTokens>())
-}
-
-/// Parse a `node-types.json` file into a map of [SEXP name](NodeName::sexp_name) to [`NodeType`].
-#[deprecated = "use NodeTypeMap::try_from(...) instead"]
-pub(crate) fn parse_node_type_map(path: impl AsRef<Path>) -> Result<NodeTypeMap, Error> {
-    let path = path.as_ref();
-    let reader = BufReader::new(File::open(path)?);
-    let elems = iter_json_array::<ContextFreeNodeType, _>(reader)
-        .collect::<Result<Vec<_>, _>>()?;
-    Ok(NodeTypeMap::new(elems))
 }
 
