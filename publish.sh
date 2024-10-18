@@ -12,3 +12,5 @@ cargo publish -p type-sitter-proc
 echo "*** PUBLISHING type-sitter-cli"
 cargo publish -p type-sitter-cli
 echo "*** PUBLISHED"
+cargo publish -p type-sitter
+echo "*** PUBLISHED"
