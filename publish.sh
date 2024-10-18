@@ -11,6 +11,13 @@ echo "*** PUBLISHING type-sitter-proc"
 cargo publish -p type-sitter-proc
 echo "*** PUBLISHING type-sitter-cli"
 cargo publish -p type-sitter-cli
-echo "*** PUBLISHED"
-cargo publish -p type-sitter
+
+echo "*** PUBLISHING type-sitter"
+# Hack to get around `cargo publish` not accepting dependency outside crate
+rm type-sitter/README.md
+cp README.md type-sitter/README.md
+cargo publish -p type-sitter --allow-dirty
+rm type-sitter/README.md
+ln -s ../README.md type-sitter/README.md
+
 echo "*** PUBLISHED"
