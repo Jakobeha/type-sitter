@@ -8,6 +8,8 @@
 [![docs.rs | type-sitter-gen](https://img.shields.io/docsrs/type-sitter-gen?label=docs%20%7C%20type-sitter-gen)](https://docs.rs/type-sitter-gen)
 [![docs.rs | yak-sitter](https://img.shields.io/docsrs/yak-sitter?label=docs%20%7C%20yak-sitter)](https://docs.rs/yak-sitter)
 
+Type-sitter currently depends on [**tree-sitter v0.24**](https://github.com/tree-sitter/tree-sitter/releases/tag/v0.24.3).
+
 ## Overview
 
 `type-sitter` generates type-safe wrappers for tree-sitter nodes and queries in a specific language. Nodes are generated from [`node-types.json`](https://tree-sitter.github.io/tree-sitter/using-parsers#static-node-types), and queries from [query s-expressions](https://tree-sitter.github.io/tree-sitter/using-parsers#pattern-matching-with-queries).
