@@ -1,6 +1,6 @@
 use crate::NodeResult;
 
-/// Useful trait to unwrap an `Option<NodeResult<'tree, T>`
+/// Useful trait to unwrap an `Option<NodeResult<'tree, T>>`
 pub trait OptionNodeResultExt<T> {
     /// Unwrap the `Option` and then `NodeResult`, **panic** if either is `None`/`Err`.
     fn unwrap2(self) -> T;

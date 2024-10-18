@@ -31,7 +31,7 @@ pub struct QueryMatches<'query, 'tree: 'query, Query: crate::Query + 'tree, Text
     current_match: Option<*const Query::Match<'query, 'tree>>,
 }
 
-/// A match from a [Query] with [typed nodes](Node)
+/// A match from a [`Query`] with [typed nodes](Node)
 pub trait QueryMatch<'query, 'tree: 'query>: Debug {
     /// The type of query this match came from
     type Query: Query<Match<'query, 'tree> = Self>;
