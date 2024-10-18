@@ -27,7 +27,7 @@ Type-sitter currently depends on [**tree-sitter v0.24**](https://github.com/tree
 
 - Typed error, missing, and extra nodes.
 - From a typed node you can lookup the "extra" nodes before and after, e.g. to handle comments.
-- [`Option<NodeResult<'_>>.flatten()`](https://docs.rs/type-sitter-lib/latest/type_sitter_lib/trait.NodeResultExtraOrExt.html#tymethod.flatten).
+- [`Option<NodeResult<'_>>.unwrap2()`, `.expect2()`, and `.flatten()`](https://docs.rs/type-sitter-lib/latest/type_sitter_lib/trait.OptionNodeResultExt.html).
 - Custom supertypes can be created at build time, to group nodes that are't grouped in the original grammar. You could, for instance, create create a supertype for all named nodes, all nodes that have named fields, or any other grouping that makes sense for the tool that you're building.
 
 Lastly, there's an optional feature, `yak-sitter`, which re-exports the `tree-sitter` API with a few small changes, most notably nodes being able to access their text and filepath directly. The [`yak-sitter`](./yak-sitter/README.md) library is a drop-in replacement for `tree-sitter` and can by used by itself without `type-sitter` (and `yak-sitter` is optional in `type-sitter`).
