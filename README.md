@@ -272,7 +272,7 @@ The source for all this is [`type-sitter-gen/src/node_types/rust_names.rs`](type
 
 - `_declaration_statement` ⇒ `DeclarationStatement`
 - `use_declaration` ⇒ `UseDeclaration`
-- `self` ⇒ `unnamed::_Self`
+- `self` ⇒ `unnamed::Self_`
 - `%` ⇒ `symbols::Mod`
 - `mod` ⇒ `unnamed::Mod`
 - `true` selector ⇒ `r#true` (`true` ⇒ `unnamed::True`)
