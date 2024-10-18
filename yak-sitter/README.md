@@ -10,7 +10,6 @@ This library provides an API almost identical to [`tree-sitter`](https://crates.
 - Trees also store the path they were parsed from, and nodes can access this path
 - Nodes are ordered based on their location in the tree, and nodes from different trees are ordered based on their paths.
 - `TreeCursor` is split into [`LocalTreeCursor`](https://docs.rs/yak-sitter/latest/yak_sitter/struct.LocalTreeCursor.html) and [`GlobalTreeCursor`](https://docs.rs/yak-sitter/latest/yak_sitter/struct.GlobalTreeCursor.html). When `GlobalTreeCursor` is reset to a node it can still go to parents and siblings, albeit with a performance penalty. `LocalTreeCursor` is the original [`TreeCursor`](https://docs.rs/tree-sitter/latest/tree_sitter/struct.TreeCursor.html) [since its behavior a bit confusing](https://github.com/tree-sitter/tree-sitter/issues/567).
-- [`QueryMatches`](https://docs.rs/yak-sitter/latest/yak_sitter/struct.QueryMatches.html)  is a [`StreamingIterator`](https://docs.rs/streaming-iterator/latest/streaming_iterator/trait.StreamingIterator.html) [as it should be](https://github.com/tree-sitter/tree-sitter/issues/608)
 - All parsed text must be valid UTF-8
 
 The library is an attempt to integrate tree-sitter with an existing project (https://github.com/Jakobeha/nominalscript), hence the [name](https://www.techtarget.com/whatis/definition/yak-shaving). Regardless, if you want any changes or have any suggestions, feel free to submit a github issue or PR

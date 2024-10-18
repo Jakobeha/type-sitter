@@ -163,18 +163,16 @@ impl<'tree> SExpSeq<'tree> {
             #[repr(transparent)]
             pub struct #query_match<'query, 'tree: 'query>(#tree_sitter::QueryMatch<'query, 'tree>);
             #[doc = #query_capture_doc]
-            pub enum #query_capture<'query, 'tree: 'query> {
-                #(#capture_variant_documentations #capture_variants {
-                    node: #capture_node_types,
-                    r#match: Option<#query_match<'query, 'tree>>
-                },)*
+            #[derive(Clone, Debug)]
+            pub enum #query_capture<'tree> {
+                #(#capture_variant_documentations #capture_variants(#capture_node_types),)*
                 #non_existent_variant
             }
 
             #[automatically_derived]
             impl #type_sitter_lib::Query for #def_ident {
                 type Match<'query, 'tree: 'query> = #query_match<'query, 'tree>;
-                type Capture<'query, 'tree: 'query> = #query_capture<'query, 'tree>;
+                type Capture<'query, 'tree: 'query> = #query_capture<'tree>;
 
                 fn as_str(&self) -> &'static str {
                     #query_str
@@ -205,18 +203,25 @@ impl<'tree> SExpSeq<'tree> {
                 }
 
                 #[inline]
+                unsafe fn wrap_match_ref<'m, 'query, 'tree>(
+                    &self,
+                    r#match: &'m #tree_sitter::QueryMatch<'query, 'tree>
+                ) -> &'m #query_match<'query, 'tree> {
+                    // SAFETY: Same repr
+                    &*(r#match as *const #tree_sitter::QueryMatch<'query, 'tree> as *const #query_match<'query, 'tree>)
+                }
+
+                #[inline]
                 unsafe fn wrap_capture<'query, 'tree: 'query>(
                     &self,
                     capture: #tree_sitter::QueryCapture<#tree_query 'tree>,
-                    r#match: Option<#query_match<'query, 'tree>>
-                ) -> #query_capture<'query, 'tree> {
+                ) -> #query_capture<'tree> {
                     // SAFETY: As long as the capture came from the query this is safe, because the
                     // query only captures nodes of the correct type
                     match capture.index as usize {
-                        #(#capture_idxs => #query_capture::#capture_variants {
-                            node: <#capture_node_types as #type_sitter_lib::Node<'tree>>::from_raw_unchecked(capture.node),
-                            r#match
-                        },)*
+                        #(#capture_idxs => #query_capture::#capture_variants(
+                            <#capture_node_types as #type_sitter_lib::Node<'tree>>::from_raw_unchecked(capture.node)
+                        ),)*
                         capture_index => unreachable!("Invalid capture index: {}", capture_index)
                     }
                 }
@@ -259,38 +264,12 @@ impl<'tree> SExpSeq<'tree> {
             }
 
             #[automatically_derived]
-            impl<'query, 'tree: 'query> #query_capture<'query, 'tree> {
+            impl<'tree> #query_capture<'tree> {
                 #capture_variant_extract_methods
             }
 
             #[automatically_derived]
-            impl<'query, 'tree: 'query> std::fmt::Debug for #query_capture<'query, 'tree> {
-                fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-                    match self {
-                        #(Self::#capture_variants { node, .. } => f.debug_struct(concat!(stringify!(#query_capture), "::", stringify!(#capture_variants)))
-                            .field("node", node)
-                            .finish(),)*
-                        // https://github.com/rust-lang/rust/issues/78123 for empty enums is why this exists
-                        #[allow(unreachable_patterns)]
-                        _ => unreachable!()
-                    }
-                }
-            }
-
-            #[automatically_derived]
-            impl<'query, 'tree: 'query> Clone for #query_capture<'query, 'tree> {
-                fn clone(&self) -> Self {
-                    match self {
-                        #(Self::#capture_variants { node, .. } => Self::#capture_variants { node: *node, r#match: None },)*
-                        // https://github.com/rust-lang/rust/issues/78123 for empty enums is why this exists
-                        #[allow(unreachable_patterns)]
-                        _ => unreachable!()
-                    }
-                }
-            }
-
-            #[automatically_derived]
-            impl<'query, 'tree: 'query> #type_sitter_lib::QueryCapture<'query, 'tree> for #query_capture<'query, 'tree> {
+            impl<'query, 'tree: 'query> #type_sitter_lib::QueryCapture<'query, 'tree> for #query_capture<'tree> {
                 type Query = #def_ident;
 
                 #[inline]
@@ -299,31 +278,11 @@ impl<'tree> SExpSeq<'tree> {
                 }
 
                 #[inline]
-                fn r#match(&self) -> Option<&<Self::Query as #type_sitter_lib::Query>::Match<'query, 'tree>> {
-                    match self {
-                        #(Self::#capture_variants { r#match, .. } => r#match.as_ref(),)*
-                        // https://github.com/rust-lang/rust/issues/78123 for empty enums is why this exists
-                        #[allow(unreachable_patterns)]
-                        _ => unreachable!()
-                    }
-                }
-
-                #[inline]
-                fn into_match(self) -> Option<<Self::Query as #type_sitter_lib::Query>::Match<'query, 'tree>> {
-                    match self {
-                        #(Self::#capture_variants { r#match, .. } => r#match,)*
-                        // https://github.com/rust-lang/rust/issues/78123 for empty enums is why this exists
-                        #[allow(unreachable_patterns)]
-                        _ => unreachable!()
-                    }
-                }
-
-                #[inline]
                 fn raw(&self) -> #tree_sitter::QueryCapture<#tree_query 'tree> {
                     #[allow(unused_imports)]
                     use #type_sitter_lib::Node;
                     match self {
-                        #(Self::#capture_variants { node, .. } => #tree_to_raws,)*
+                        #(Self::#capture_variants(node) => #tree_to_raws,)*
                         // https://github.com/rust-lang/rust/issues/78123 for empty enums is why this exists
                         #[allow(unreachable_patterns)]
                         _ => unreachable!()
@@ -335,7 +294,7 @@ impl<'tree> SExpSeq<'tree> {
                     #[allow(unused_imports)]
                     use #type_sitter_lib::Node;
                     match self {
-                        #(Self::#capture_variants { node, .. } => #type_sitter_lib::UntypedNode::r#ref(node.raw()),)*
+                        #(Self::#capture_variants(node) => #type_sitter_lib::UntypedNode::r#ref(node.raw()),)*
                         // https://github.com/rust-lang/rust/issues/78123 for empty enums is why this exists
                         #[allow(unreachable_patterns)]
                         _ => unreachable!()
@@ -347,7 +306,7 @@ impl<'tree> SExpSeq<'tree> {
                     #[allow(unused_imports)]
                     use #type_sitter_lib::Node;
                     match self {
-                        #(Self::#capture_variants { node, .. } => #type_sitter_lib::UntypedNode::r#mut(node.raw_mut()),)*
+                        #(Self::#capture_variants(node) => #type_sitter_lib::UntypedNode::r#mut(node.raw_mut()),)*
                         // https://github.com/rust-lang/rust/issues/78123 for empty enums is why this exists
                         #[allow(unreachable_patterns)]
                         _ => unreachable!()
@@ -451,7 +410,7 @@ impl<'tree> SExpSeq<'tree> {
             #[inline]
             pub fn #as_capture_method(&self) -> Option<&#capture_node_type_tokens> {
                 #[allow(irrefutable_let_patterns)]
-                if let Self::#capture_variant { node, .. } = self {
+                if let Self::#capture_variant(node) = self {
                     Some(node)
                 } else {
                     None

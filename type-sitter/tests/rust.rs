@@ -125,39 +125,39 @@ HighlightsMatch(QueryMatch { id: 46, pattern_index: 28, captures: [QueryCapture 
         .collect::<String>();
     // println!("---\n{captures_str}\n---");
     assert_eq!(captures_str, r#"
-HighlightsCapture::Comment { node: LineComment(LineComment({Node line_comment (0, 0) - (1, 0)})) }
-HighlightsCapture::CommentDocumentation { node: LineComment(LineComment({Node line_comment (0, 0) - (1, 0)})) }
-HighlightsCapture::Keyword { node: Fn(Fn({Node fn (1, 0) - (1, 2)})) }
-HighlightsCapture::Function { node: Identifier({Node identifier (1, 3) - (1, 7)}) }
-HighlightsCapture::PunctuationBracket { node: LParen(LParen({Node ( (1, 7) - (1, 8)})) }
-HighlightsCapture::PunctuationBracket { node: RParen(RParen({Node ) (1, 8) - (1, 9)})) }
-HighlightsCapture::PunctuationBracket { node: LBrace(LBrace({Node { (1, 10) - (1, 11)})) }
-HighlightsCapture::Keyword { node: Let(Let({Node let (2, 4) - (2, 7)})) }
-HighlightsCapture::String { node: StringLiteral(StringLiteral({Node string_literal (2, 15) - (5, 6)})) }
-HighlightsCapture::Escape { node: EscapeSequence({Node escape_sequence (3, 8) - (3, 10)}) }
-HighlightsCapture::Escape { node: EscapeSequence({Node escape_sequence (3, 14) - (3, 16)}) }
-HighlightsCapture::Escape { node: EscapeSequence({Node escape_sequence (3, 18) - (3, 20)}) }
-HighlightsCapture::Escape { node: EscapeSequence({Node escape_sequence (3, 25) - (3, 27)}) }
-HighlightsCapture::Escape { node: EscapeSequence({Node escape_sequence (4, 8) - (4, 10)}) }
-HighlightsCapture::Escape { node: EscapeSequence({Node escape_sequence (4, 17) - (4, 19)}) }
-HighlightsCapture::Escape { node: EscapeSequence({Node escape_sequence (4, 21) - (4, 23)}) }
-HighlightsCapture::Escape { node: EscapeSequence({Node escape_sequence (4, 28) - (4, 30)}) }
-HighlightsCapture::PunctuationDelimiter { node: Semicolon(Semicolon({Node ; (5, 6) - (5, 7)})) }
-HighlightsCapture::Keyword { node: Let(Let({Node let (6, 4) - (6, 7)})) }
-HighlightsCapture::Keyword { node: MutableSpecifier(MutableSpecifier({Node mutable_specifier (6, 8) - (6, 11)})) }
-HighlightsCapture::PunctuationDelimiter { node: ColonColon(ColonColon({Node :: (6, 32) - (6, 34)})) }
-HighlightsCapture::Constructor { node: Identifier(Identifier({Node identifier (6, 34) - (6, 40)})) }
-HighlightsCapture::Type { node: Identifier(Identifier({Node identifier (6, 34) - (6, 40)})) }
-HighlightsCapture::PunctuationDelimiter { node: ColonColon(ColonColon({Node :: (6, 40) - (6, 42)})) }
-HighlightsCapture::Function { node: Identifier({Node identifier (6, 42) - (6, 45)}) }
-HighlightsCapture::PunctuationBracket { node: LParen(LParen({Node ( (6, 45) - (6, 46)})) }
-HighlightsCapture::PunctuationBracket { node: RParen(RParen({Node ) (6, 46) - (6, 47)})) }
-HighlightsCapture::PunctuationDelimiter { node: Semicolon(Semicolon({Node ; (6, 47) - (6, 48)})) }
-HighlightsCapture::FunctionMacro { node: Identifier(Identifier({Node identifier (7, 4) - (7, 8)})) }
-HighlightsCapture::FunctionMacro { node: Not(Not({Node ! (7, 8) - (7, 9)})) }
-HighlightsCapture::PunctuationBracket { node: LParen(LParen({Node ( (7, 9) - (7, 10)})) }
-HighlightsCapture::String { node: StringLiteral(StringLiteral({Node string_literal (7, 10) - (7, 15)})) }
-HighlightsCapture::PunctuationBracket { node: RParen(RParen({Node ) (7, 15) - (7, 16)})) }
-HighlightsCapture::PunctuationBracket { node: RBrace(RBrace({Node } (8, 0) - (8, 1)})) }
+Comment(LineComment(LineComment({Node line_comment (0, 0) - (1, 0)})))
+CommentDocumentation(LineComment(LineComment({Node line_comment (0, 0) - (1, 0)})))
+Keyword(Fn(Fn({Node fn (1, 0) - (1, 2)})))
+Function(Identifier({Node identifier (1, 3) - (1, 7)}))
+PunctuationBracket(LParen(LParen({Node ( (1, 7) - (1, 8)})))
+PunctuationBracket(RParen(RParen({Node ) (1, 8) - (1, 9)})))
+PunctuationBracket(LBrace(LBrace({Node { (1, 10) - (1, 11)})))
+Keyword(Let(Let({Node let (2, 4) - (2, 7)})))
+String(StringLiteral(StringLiteral({Node string_literal (2, 15) - (5, 6)})))
+Escape(EscapeSequence({Node escape_sequence (3, 8) - (3, 10)}))
+Escape(EscapeSequence({Node escape_sequence (3, 14) - (3, 16)}))
+Escape(EscapeSequence({Node escape_sequence (3, 18) - (3, 20)}))
+Escape(EscapeSequence({Node escape_sequence (3, 25) - (3, 27)}))
+Escape(EscapeSequence({Node escape_sequence (4, 8) - (4, 10)}))
+Escape(EscapeSequence({Node escape_sequence (4, 17) - (4, 19)}))
+Escape(EscapeSequence({Node escape_sequence (4, 21) - (4, 23)}))
+Escape(EscapeSequence({Node escape_sequence (4, 28) - (4, 30)}))
+PunctuationDelimiter(Semicolon(Semicolon({Node ; (5, 6) - (5, 7)})))
+Keyword(Let(Let({Node let (6, 4) - (6, 7)})))
+Keyword(MutableSpecifier(MutableSpecifier({Node mutable_specifier (6, 8) - (6, 11)})))
+PunctuationDelimiter(ColonColon(ColonColon({Node :: (6, 32) - (6, 34)})))
+Constructor(Identifier(Identifier({Node identifier (6, 34) - (6, 40)})))
+Type(Identifier(Identifier({Node identifier (6, 34) - (6, 40)})))
+PunctuationDelimiter(ColonColon(ColonColon({Node :: (6, 40) - (6, 42)})))
+Function(Identifier({Node identifier (6, 42) - (6, 45)}))
+PunctuationBracket(LParen(LParen({Node ( (6, 45) - (6, 46)})))
+PunctuationBracket(RParen(RParen({Node ) (6, 46) - (6, 47)})))
+PunctuationDelimiter(Semicolon(Semicolon({Node ; (6, 47) - (6, 48)})))
+FunctionMacro(Identifier(Identifier({Node identifier (7, 4) - (7, 8)})))
+FunctionMacro(Not(Not({Node ! (7, 8) - (7, 9)})))
+PunctuationBracket(LParen(LParen({Node ( (7, 9) - (7, 10)})))
+String(StringLiteral(StringLiteral({Node string_literal (7, 10) - (7, 15)})))
+PunctuationBracket(RParen(RParen({Node ) (7, 15) - (7, 16)})))
+PunctuationBracket(RBrace(RBrace({Node } (8, 0) - (8, 1)})))
 "#[1..]);
 }

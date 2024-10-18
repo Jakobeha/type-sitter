@@ -1,5 +1,6 @@
 use crate::{raw, Query, UntypedNode};
 use std::fmt::Debug;
+use streaming_iterator::StreamingIterator;
 #[cfg(not(feature = "yak-sitter"))]
 use tree_sitter::Point;
 #[cfg(feature = "yak-sitter")]
@@ -26,17 +27,6 @@ pub trait QueryCapture<'query, 'tree: 'query>: Debug + Clone {
 
     /// The query this capture came from
     fn query(&self) -> &'query Self::Query;
-
-    /// This capture's match, if iterating via [`QueryCaptures`].
-    ///
-    /// If iterating via [crate::QueryMatchCaptures] this will be `None`.
-    fn r#match(&self) -> Option<&<Self::Query as Query>::Match<'query, 'tree>>;
-
-    /// Destruct into this capture's match, if iterating via [`QueryCaptures`].
-    ///
-    /// If iterating via [crate::QueryMatchCaptures] this will be `None`.
-    fn into_match(self) -> Option<<Self::Query as Query>::Match<'query, 'tree>>
-        where <Self::Query as Query>::Match<'query, 'tree>: Sized;
 
     /// Get the raw tree-sitter query capture
     #[cfg(feature = "yak-sitter")]
@@ -125,18 +115,18 @@ impl<'query, 'tree: 'query, Query: crate::Query> Iterator for QueryCaptures<'que
     //noinspection RsIncorrectFunctionArgumentCount -- IntelliJ inspection bug.
     #[inline]
     fn next(&mut self) -> Option<Self::Item> {
-        // SAFETY: Match and captures come from the same query and tree, and node from the same tree
+        let query = self.untyped_captures.query();
+        let tree = self.untyped_captures.tree();
+
+        // SAFETY: Captures come from the same query and tree, and node from the same tree
         unsafe { self.untyped_captures.as_inner_mut().next().map(|(m, index)| {
-            let inner_capture = m.captures[index];
-            let query = self.untyped_captures.query();
-            let tree = self.untyped_captures.tree();
+            let inner_capture = m.captures[*index];
             self.typed_query.wrap_capture(
                 raw::QueryCapture {
                     node: raw::Node::new(inner_capture.node, tree),
                     index: inner_capture.index as usize,
                     name: query.capture_names()[inner_capture.index as usize],
                 },
-                Some(self.typed_query.wrap_match(raw::QueryMatch::new(m, query, tree))),
             )
         }) }
     }
@@ -153,12 +143,9 @@ impl<'query, 'tree: 'query, Query: crate::Query, Text: raw::TextProvider<I>, I: 
 
     #[inline]
     fn next(&mut self) -> Option<Self::Item> {
-        // SAFETY: Match and captures come from the same query
+        // SAFETY: Captures come from the same query
         unsafe { self.untyped_captures.next().map(|(m, index)| {
-            self.typed_query.wrap_capture(
-                m.captures[index],
-                Some(self.typed_query.wrap_match(m))
-            )
+            self.typed_query.wrap_capture(m.captures[*index])
         }) }
     }
 

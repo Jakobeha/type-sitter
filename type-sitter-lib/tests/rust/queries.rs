@@ -835,7 +835,8 @@ pub struct HighlightsMatch<'query, 'tree: 'query>(yak_sitter::QueryMatch<'query,
 "'" @operator
 
 ```*/
-pub enum HighlightsCapture<'query, 'tree: 'query> {
+#[derive(Clone, Debug)]
+pub enum HighlightsCapture<'tree> {
     ///A `type` ([`anon_unions::Type`])
     ///
     ///The full capture including pattern(s) is:
@@ -846,40 +847,28 @@ pub enum HighlightsCapture<'query, 'tree: 'query> {
     ///(identifier) @type
     ///(identifier) @type
     ///```
-    Type {
-        node: anon_unions::Type<'tree>,
-        r#match: Option<HighlightsMatch<'query, 'tree>>,
-    },
+    Type(anon_unions::Type<'tree>),
     ///A `type.builtin` ([`super::nodes::PrimitiveType`])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
     ///(primitive_type) @type.builtin
     ///```
-    TypeBuiltin {
-        node: super::nodes::PrimitiveType<'tree>,
-        r#match: Option<HighlightsMatch<'query, 'tree>>,
-    },
+    TypeBuiltin(super::nodes::PrimitiveType<'tree>),
     ///A `property` ([`super::nodes::FieldIdentifier`])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
     ///(field_identifier) @property
     ///```
-    Property {
-        node: super::nodes::FieldIdentifier<'tree>,
-        r#match: Option<HighlightsMatch<'query, 'tree>>,
-    },
+    Property(super::nodes::FieldIdentifier<'tree>),
     ///A `constant` ([`super::nodes::Identifier`])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
     ///(identifier) @constant
     ///```
-    Constant {
-        node: super::nodes::Identifier<'tree>,
-        r#match: Option<HighlightsMatch<'query, 'tree>>,
-    },
+    Constant(super::nodes::Identifier<'tree>),
     ///A `constructor` ([`anon_unions::Constructor`])
     ///
     ///The full capture including pattern(s) is:
@@ -887,10 +876,7 @@ pub enum HighlightsCapture<'query, 'tree: 'query> {
     ///(identifier) @constructor
     ///(type_identifier) @constructor
     ///```
-    Constructor {
-        node: anon_unions::Constructor<'tree>,
-        r#match: Option<HighlightsMatch<'query, 'tree>>,
-    },
+    Constructor(anon_unions::Constructor<'tree>),
     ///A `function` ([`anon_unions::Function`])
     ///
     ///The full capture including pattern(s) is:
@@ -902,10 +888,7 @@ pub enum HighlightsCapture<'query, 'tree: 'query> {
     ///(identifier) @function
     ///(identifier) @function
     ///```
-    Function {
-        node: super::nodes::Identifier<'tree>,
-        r#match: Option<HighlightsMatch<'query, 'tree>>,
-    },
+    Function(super::nodes::Identifier<'tree>),
     ///A `function.method` ([`anon_unions::FunctionMethod`])
     ///
     ///The full capture including pattern(s) is:
@@ -913,10 +896,7 @@ pub enum HighlightsCapture<'query, 'tree: 'query> {
     ///(field_identifier) @function.method
     ///(field_identifier) @function.method
     ///```
-    FunctionMethod {
-        node: super::nodes::FieldIdentifier<'tree>,
-        r#match: Option<HighlightsMatch<'query, 'tree>>,
-    },
+    FunctionMethod(super::nodes::FieldIdentifier<'tree>),
     ///A `function.macro` ([`anon_unions::FunctionMacro`])
     ///
     ///The full capture including pattern(s) is:
@@ -924,10 +904,7 @@ pub enum HighlightsCapture<'query, 'tree: 'query> {
     ///(identifier) @function.macro
     ///"!" @function.macro
     ///```
-    FunctionMacro {
-        node: anon_unions::FunctionMacro<'tree>,
-        r#match: Option<HighlightsMatch<'query, 'tree>>,
-    },
+    FunctionMacro(anon_unions::FunctionMacro<'tree>),
     ///A `comment` ([`anon_unions::Comment`])
     ///
     ///The full capture including pattern(s) is:
@@ -935,10 +912,7 @@ pub enum HighlightsCapture<'query, 'tree: 'query> {
     ///(line_comment) @comment
     ///(block_comment) @comment
     ///```
-    Comment {
-        node: anon_unions::Comment<'tree>,
-        r#match: Option<HighlightsMatch<'query, 'tree>>,
-    },
+    Comment(anon_unions::Comment<'tree>),
     ///A `comment.documentation` ([`anon_unions::CommentDocumentation`])
     ///
     ///The full capture including pattern(s) is:
@@ -946,10 +920,7 @@ pub enum HighlightsCapture<'query, 'tree: 'query> {
     ///(line_comment (doc_comment)) @comment.documentation
     ///(block_comment (doc_comment)) @comment.documentation
     ///```
-    CommentDocumentation {
-        node: anon_unions::CommentDocumentation<'tree>,
-        r#match: Option<HighlightsMatch<'query, 'tree>>,
-    },
+    CommentDocumentation(anon_unions::CommentDocumentation<'tree>),
     ///A `punctuation.bracket` ([`anon_unions::PunctuationBracket`])
     ///
     ///The full capture including pattern(s) is:
@@ -965,10 +936,7 @@ pub enum HighlightsCapture<'query, 'tree: 'query> {
     ///"<" @punctuation.bracket
     ///">" @punctuation.bracket
     ///```
-    PunctuationBracket {
-        node: anon_unions::PunctuationBracket<'tree>,
-        r#match: Option<HighlightsMatch<'query, 'tree>>,
-    },
+    PunctuationBracket(anon_unions::PunctuationBracket<'tree>),
     ///A `punctuation.delimiter` ([`anon_unions::PunctuationDelimiter`])
     ///
     ///The full capture including pattern(s) is:
@@ -979,30 +947,21 @@ pub enum HighlightsCapture<'query, 'tree: 'query> {
     ///"," @punctuation.delimiter
     ///";" @punctuation.delimiter
     ///```
-    PunctuationDelimiter {
-        node: anon_unions::PunctuationDelimiter<'tree>,
-        r#match: Option<HighlightsMatch<'query, 'tree>>,
-    },
+    PunctuationDelimiter(anon_unions::PunctuationDelimiter<'tree>),
     ///A `variable.parameter` ([`super::nodes::Identifier`])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
     ///(identifier) @variable.parameter
     ///```
-    VariableParameter {
-        node: super::nodes::Identifier<'tree>,
-        r#match: Option<HighlightsMatch<'query, 'tree>>,
-    },
+    VariableParameter(super::nodes::Identifier<'tree>),
     ///A `label` ([`super::nodes::Identifier`])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
     ///(identifier) @label
     ///```
-    Label {
-        node: super::nodes::Identifier<'tree>,
-        r#match: Option<HighlightsMatch<'query, 'tree>>,
-    },
+    Label(super::nodes::Identifier<'tree>),
     ///A `keyword` ([`anon_unions::Keyword`])
     ///
     ///The full capture including pattern(s) is:
@@ -1049,20 +1008,14 @@ pub enum HighlightsCapture<'query, 'tree: 'query> {
     ///(self) @keyword
     ///(self) @keyword
     ///```
-    Keyword {
-        node: anon_unions::Keyword<'tree>,
-        r#match: Option<HighlightsMatch<'query, 'tree>>,
-    },
+    Keyword(anon_unions::Keyword<'tree>),
     ///A `variable.builtin` ([`super::nodes::Self_`])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
     ///(self) @variable.builtin
     ///```
-    VariableBuiltin {
-        node: super::nodes::Self_<'tree>,
-        r#match: Option<HighlightsMatch<'query, 'tree>>,
-    },
+    VariableBuiltin(super::nodes::Self_<'tree>),
     ///A `string` ([`anon_unions::String`])
     ///
     ///The full capture including pattern(s) is:
@@ -1071,10 +1024,7 @@ pub enum HighlightsCapture<'query, 'tree: 'query> {
     ///(string_literal) @string
     ///(raw_string_literal) @string
     ///```
-    String {
-        node: anon_unions::String<'tree>,
-        r#match: Option<HighlightsMatch<'query, 'tree>>,
-    },
+    String(anon_unions::String<'tree>),
     ///A `constant.builtin` ([`anon_unions::ConstantBuiltin`])
     ///
     ///The full capture including pattern(s) is:
@@ -1083,20 +1033,14 @@ pub enum HighlightsCapture<'query, 'tree: 'query> {
     ///(integer_literal) @constant.builtin
     ///(float_literal) @constant.builtin
     ///```
-    ConstantBuiltin {
-        node: anon_unions::ConstantBuiltin<'tree>,
-        r#match: Option<HighlightsMatch<'query, 'tree>>,
-    },
+    ConstantBuiltin(anon_unions::ConstantBuiltin<'tree>),
     ///A `escape` ([`super::nodes::EscapeSequence`])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
     ///(escape_sequence) @escape
     ///```
-    Escape {
-        node: super::nodes::EscapeSequence<'tree>,
-        r#match: Option<HighlightsMatch<'query, 'tree>>,
-    },
+    Escape(super::nodes::EscapeSequence<'tree>),
     ///A `attribute` ([`anon_unions::Attribute`])
     ///
     ///The full capture including pattern(s) is:
@@ -1104,10 +1048,7 @@ pub enum HighlightsCapture<'query, 'tree: 'query> {
     ///(attribute_item) @attribute
     ///(inner_attribute_item) @attribute
     ///```
-    Attribute {
-        node: anon_unions::Attribute<'tree>,
-        r#match: Option<HighlightsMatch<'query, 'tree>>,
-    },
+    Attribute(anon_unions::Attribute<'tree>),
     ///A `operator` ([`anon_unions::Operator`])
     ///
     ///The full capture including pattern(s) is:
@@ -1116,15 +1057,12 @@ pub enum HighlightsCapture<'query, 'tree: 'query> {
     ///"&" @operator
     ///"'" @operator
     ///```
-    Operator {
-        node: anon_unions::Operator<'tree>,
-        r#match: Option<HighlightsMatch<'query, 'tree>>,
-    },
+    Operator(anon_unions::Operator<'tree>),
 }
 #[automatically_derived]
 impl type_sitter_lib::Query for Highlights {
     type Match<'query, 'tree: 'query> = HighlightsMatch<'query, 'tree>;
-    type Capture<'query, 'tree: 'query> = HighlightsCapture<'query, 'tree>;
+    type Capture<'query, 'tree: 'query> = HighlightsCapture<'tree>;
     fn as_str(&self) -> &'static str {
         "; Identifiers\n\n(type_identifier) @type\n(primitive_type) @type.builtin\n(field_identifier) @property\n\n; Identifier conventions\n\n; Assume all-caps names are constants\n((identifier) @constant\n (#match? @constant \"^[A-Z][A-Z\\\\d_]+$'\"))\n\n; Assume uppercase names are enum constructors\n((identifier) @constructor\n (#match? @constructor \"^[A-Z]\"))\n\n; Assume that uppercase names in paths are types\n((scoped_identifier\n  path: (identifier) @type)\n (#match? @type \"^[A-Z]\"))\n((scoped_identifier\n  path: (scoped_identifier\n    name: (identifier) @type))\n (#match? @type \"^[A-Z]\"))\n((scoped_type_identifier\n  path: (identifier) @type)\n (#match? @type \"^[A-Z]\"))\n((scoped_type_identifier\n  path: (scoped_identifier\n    name: (identifier) @type))\n (#match? @type \"^[A-Z]\"))\n\n; Assume all qualified names in struct patterns are enum constructors. (They're\n; either that, or struct names; highlighting both as constructors seems to be\n; the less glaring choice of error, visually.)\n(struct_pattern\n  type: (scoped_type_identifier\n    name: (type_identifier) @constructor))\n\n; Function calls\n\n(call_expression\n  function: (identifier) @function)\n(call_expression\n  function: (field_expression\n    field: (field_identifier) @function.method))\n(call_expression\n  function: (scoped_identifier\n    \"::\"\n    name: (identifier) @function))\n\n(generic_function\n  function: (identifier) @function)\n(generic_function\n  function: (scoped_identifier\n    name: (identifier) @function))\n(generic_function\n  function: (field_expression\n    field: (field_identifier) @function.method))\n\n(macro_invocation\n  macro: (identifier) @function.macro\n  \"!\" @function.macro)\n\n; Function definitions\n\n(function_item (identifier) @function)\n(function_signature_item (identifier) @function)\n\n(line_comment) @comment\n(block_comment) @comment\n\n(line_comment (doc_comment)) @comment.documentation\n(block_comment (doc_comment)) @comment.documentation\n\n\"(\" @punctuation.bracket\n\")\" @punctuation.bracket\n\"[\" @punctuation.bracket\n\"]\" @punctuation.bracket\n\"{\" @punctuation.bracket\n\"}\" @punctuation.bracket\n\n(type_arguments\n  \"<\" @punctuation.bracket\n  \">\" @punctuation.bracket)\n(type_parameters\n  \"<\" @punctuation.bracket\n  \">\" @punctuation.bracket)\n\n\"::\" @punctuation.delimiter\n\":\" @punctuation.delimiter\n\".\" @punctuation.delimiter\n\",\" @punctuation.delimiter\n\";\" @punctuation.delimiter\n\n(parameter (identifier) @variable.parameter)\n\n(lifetime (identifier) @label)\n\n\"as\" @keyword\n\"async\" @keyword\n\"await\" @keyword\n\"break\" @keyword\n\"const\" @keyword\n\"continue\" @keyword\n\"default\" @keyword\n\"dyn\" @keyword\n\"else\" @keyword\n\"enum\" @keyword\n\"extern\" @keyword\n\"fn\" @keyword\n\"for\" @keyword\n\"if\" @keyword\n\"impl\" @keyword\n\"in\" @keyword\n\"let\" @keyword\n\"loop\" @keyword\n\"macro_rules!\" @keyword\n\"match\" @keyword\n\"mod\" @keyword\n\"move\" @keyword\n\"pub\" @keyword\n\"ref\" @keyword\n\"return\" @keyword\n\"static\" @keyword\n\"struct\" @keyword\n\"trait\" @keyword\n\"type\" @keyword\n\"union\" @keyword\n\"unsafe\" @keyword\n\"use\" @keyword\n\"where\" @keyword\n\"while\" @keyword\n\"yield\" @keyword\n(crate) @keyword\n(mutable_specifier) @keyword\n(use_list (self) @keyword)\n(scoped_use_list (self) @keyword)\n(scoped_identifier (self) @keyword)\n(super) @keyword\n\n(self) @variable.builtin\n\n(char_literal) @string\n(string_literal) @string\n(raw_string_literal) @string\n\n(boolean_literal) @constant.builtin\n(integer_literal) @constant.builtin\n(float_literal) @constant.builtin\n\n(escape_sequence) @escape\n\n(attribute_item) @attribute\n(inner_attribute_item) @attribute\n\n\"*\" @operator\n\"&\" @operator\n\"'\" @operator\n"
     }
@@ -1152,179 +1090,165 @@ impl type_sitter_lib::Query for Highlights {
         HighlightsMatch(r#match)
     }
     #[inline]
+    unsafe fn wrap_match_ref<'m, 'query, 'tree>(
+        &self,
+        r#match: &'m yak_sitter::QueryMatch<'query, 'tree>,
+    ) -> &'m HighlightsMatch<'query, 'tree> {
+        &*(r#match as *const yak_sitter::QueryMatch<'query, 'tree>
+            as *const HighlightsMatch<'query, 'tree>)
+    }
+    #[inline]
     unsafe fn wrap_capture<'query, 'tree: 'query>(
         &self,
         capture: yak_sitter::QueryCapture<'query, 'tree>,
-        r#match: Option<HighlightsMatch<'query, 'tree>>,
-    ) -> HighlightsCapture<'query, 'tree> {
+    ) -> HighlightsCapture<'tree> {
         match capture.index as usize {
             0usize => {
-                HighlightsCapture::Type {
-                    node: <anon_unions::Type<
+                HighlightsCapture::Type(
+                    <anon_unions::Type<
                         'tree,
                     > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(capture.node),
-                    r#match,
-                }
+                )
             }
             1usize => {
-                HighlightsCapture::TypeBuiltin {
-                    node: <super::nodes::PrimitiveType<
+                HighlightsCapture::TypeBuiltin(
+                    <super::nodes::PrimitiveType<
                         'tree,
                     > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(capture.node),
-                    r#match,
-                }
+                )
             }
             2usize => {
-                HighlightsCapture::Property {
-                    node: <super::nodes::FieldIdentifier<
+                HighlightsCapture::Property(
+                    <super::nodes::FieldIdentifier<
                         'tree,
                     > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(capture.node),
-                    r#match,
-                }
+                )
             }
             3usize => {
-                HighlightsCapture::Constant {
-                    node: <super::nodes::Identifier<
+                HighlightsCapture::Constant(
+                    <super::nodes::Identifier<
                         'tree,
                     > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(capture.node),
-                    r#match,
-                }
+                )
             }
             4usize => {
-                HighlightsCapture::Constructor {
-                    node: <anon_unions::Constructor<
+                HighlightsCapture::Constructor(
+                    <anon_unions::Constructor<
                         'tree,
                     > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(capture.node),
-                    r#match,
-                }
+                )
             }
             5usize => {
-                HighlightsCapture::Function {
-                    node: <super::nodes::Identifier<
+                HighlightsCapture::Function(
+                    <super::nodes::Identifier<
                         'tree,
                     > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(capture.node),
-                    r#match,
-                }
+                )
             }
             6usize => {
-                HighlightsCapture::FunctionMethod {
-                    node: <super::nodes::FieldIdentifier<
+                HighlightsCapture::FunctionMethod(
+                    <super::nodes::FieldIdentifier<
                         'tree,
                     > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(capture.node),
-                    r#match,
-                }
+                )
             }
             7usize => {
-                HighlightsCapture::FunctionMacro {
-                    node: <anon_unions::FunctionMacro<
+                HighlightsCapture::FunctionMacro(
+                    <anon_unions::FunctionMacro<
                         'tree,
                     > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(capture.node),
-                    r#match,
-                }
+                )
             }
             8usize => {
-                HighlightsCapture::Comment {
-                    node: <anon_unions::Comment<
+                HighlightsCapture::Comment(
+                    <anon_unions::Comment<
                         'tree,
                     > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(capture.node),
-                    r#match,
-                }
+                )
             }
             9usize => {
-                HighlightsCapture::CommentDocumentation {
-                    node: <anon_unions::CommentDocumentation<
+                HighlightsCapture::CommentDocumentation(
+                    <anon_unions::CommentDocumentation<
                         'tree,
                     > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(capture.node),
-                    r#match,
-                }
+                )
             }
             10usize => {
-                HighlightsCapture::PunctuationBracket {
-                    node: <anon_unions::PunctuationBracket<
+                HighlightsCapture::PunctuationBracket(
+                    <anon_unions::PunctuationBracket<
                         'tree,
                     > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(capture.node),
-                    r#match,
-                }
+                )
             }
             11usize => {
-                HighlightsCapture::PunctuationDelimiter {
-                    node: <anon_unions::PunctuationDelimiter<
+                HighlightsCapture::PunctuationDelimiter(
+                    <anon_unions::PunctuationDelimiter<
                         'tree,
                     > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(capture.node),
-                    r#match,
-                }
+                )
             }
             12usize => {
-                HighlightsCapture::VariableParameter {
-                    node: <super::nodes::Identifier<
+                HighlightsCapture::VariableParameter(
+                    <super::nodes::Identifier<
                         'tree,
                     > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(capture.node),
-                    r#match,
-                }
+                )
             }
             13usize => {
-                HighlightsCapture::Label {
-                    node: <super::nodes::Identifier<
+                HighlightsCapture::Label(
+                    <super::nodes::Identifier<
                         'tree,
                     > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(capture.node),
-                    r#match,
-                }
+                )
             }
             14usize => {
-                HighlightsCapture::Keyword {
-                    node: <anon_unions::Keyword<
+                HighlightsCapture::Keyword(
+                    <anon_unions::Keyword<
                         'tree,
                     > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(capture.node),
-                    r#match,
-                }
+                )
             }
             15usize => {
-                HighlightsCapture::VariableBuiltin {
-                    node: <super::nodes::Self_<
+                HighlightsCapture::VariableBuiltin(
+                    <super::nodes::Self_<
                         'tree,
                     > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(capture.node),
-                    r#match,
-                }
+                )
             }
             16usize => {
-                HighlightsCapture::String {
-                    node: <anon_unions::String<
+                HighlightsCapture::String(
+                    <anon_unions::String<
                         'tree,
                     > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(capture.node),
-                    r#match,
-                }
+                )
             }
             17usize => {
-                HighlightsCapture::ConstantBuiltin {
-                    node: <anon_unions::ConstantBuiltin<
+                HighlightsCapture::ConstantBuiltin(
+                    <anon_unions::ConstantBuiltin<
                         'tree,
                     > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(capture.node),
-                    r#match,
-                }
+                )
             }
             18usize => {
-                HighlightsCapture::Escape {
-                    node: <super::nodes::EscapeSequence<
+                HighlightsCapture::Escape(
+                    <super::nodes::EscapeSequence<
                         'tree,
                     > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(capture.node),
-                    r#match,
-                }
+                )
             }
             19usize => {
-                HighlightsCapture::Attribute {
-                    node: <anon_unions::Attribute<
+                HighlightsCapture::Attribute(
+                    <anon_unions::Attribute<
                         'tree,
                     > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(capture.node),
-                    r#match,
-                }
+                )
             }
             20usize => {
-                HighlightsCapture::Operator {
-                    node: <anon_unions::Operator<
+                HighlightsCapture::Operator(
+                    <anon_unions::Operator<
                         'tree,
                     > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(capture.node),
-                    r#match,
-                }
+                )
             }
             capture_index => unreachable!("Invalid capture index: {}", capture_index),
         }
@@ -1858,7 +1782,7 @@ for HighlightsMatch<'query, 'tree> {
     }
 }
 #[automatically_derived]
-impl<'query, 'tree: 'query> HighlightsCapture<'query, 'tree> {
+impl<'tree> HighlightsCapture<'tree> {
     ///Try to interpret this capture as a `type` ([`anon_unions::Type`])
     ///
     ///The full capture including pattern(s) is:
@@ -1872,7 +1796,7 @@ impl<'query, 'tree: 'query> HighlightsCapture<'query, 'tree> {
     #[inline]
     pub fn as_type(&self) -> Option<&anon_unions::Type<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::Type { node, .. } = self { Some(node) } else { None }
+        if let Self::Type(node) = self { Some(node) } else { None }
     }
     ///Try to interpret this capture as a `type.builtin` ([`super::nodes::PrimitiveType`])
     ///
@@ -1883,7 +1807,7 @@ impl<'query, 'tree: 'query> HighlightsCapture<'query, 'tree> {
     #[inline]
     pub fn as_type_builtin(&self) -> Option<&super::nodes::PrimitiveType<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::TypeBuiltin { node, .. } = self { Some(node) } else { None }
+        if let Self::TypeBuiltin(node) = self { Some(node) } else { None }
     }
     ///Try to interpret this capture as a `property` ([`super::nodes::FieldIdentifier`])
     ///
@@ -1894,7 +1818,7 @@ impl<'query, 'tree: 'query> HighlightsCapture<'query, 'tree> {
     #[inline]
     pub fn as_property(&self) -> Option<&super::nodes::FieldIdentifier<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::Property { node, .. } = self { Some(node) } else { None }
+        if let Self::Property(node) = self { Some(node) } else { None }
     }
     ///Try to interpret this capture as a `constant` ([`super::nodes::Identifier`])
     ///
@@ -1905,7 +1829,7 @@ impl<'query, 'tree: 'query> HighlightsCapture<'query, 'tree> {
     #[inline]
     pub fn as_constant(&self) -> Option<&super::nodes::Identifier<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::Constant { node, .. } = self { Some(node) } else { None }
+        if let Self::Constant(node) = self { Some(node) } else { None }
     }
     ///Try to interpret this capture as a `constructor` ([`anon_unions::Constructor`])
     ///
@@ -1917,7 +1841,7 @@ impl<'query, 'tree: 'query> HighlightsCapture<'query, 'tree> {
     #[inline]
     pub fn as_constructor(&self) -> Option<&anon_unions::Constructor<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::Constructor { node, .. } = self { Some(node) } else { None }
+        if let Self::Constructor(node) = self { Some(node) } else { None }
     }
     ///Try to interpret this capture as a `function` ([`anon_unions::Function`])
     ///
@@ -1933,7 +1857,7 @@ impl<'query, 'tree: 'query> HighlightsCapture<'query, 'tree> {
     #[inline]
     pub fn as_function(&self) -> Option<&super::nodes::Identifier<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::Function { node, .. } = self { Some(node) } else { None }
+        if let Self::Function(node) = self { Some(node) } else { None }
     }
     ///Try to interpret this capture as a `function.method` ([`anon_unions::FunctionMethod`])
     ///
@@ -1945,7 +1869,7 @@ impl<'query, 'tree: 'query> HighlightsCapture<'query, 'tree> {
     #[inline]
     pub fn as_function_method(&self) -> Option<&super::nodes::FieldIdentifier<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::FunctionMethod { node, .. } = self { Some(node) } else { None }
+        if let Self::FunctionMethod(node) = self { Some(node) } else { None }
     }
     ///Try to interpret this capture as a `function.macro` ([`anon_unions::FunctionMacro`])
     ///
@@ -1957,7 +1881,7 @@ impl<'query, 'tree: 'query> HighlightsCapture<'query, 'tree> {
     #[inline]
     pub fn as_function_macro(&self) -> Option<&anon_unions::FunctionMacro<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::FunctionMacro { node, .. } = self { Some(node) } else { None }
+        if let Self::FunctionMacro(node) = self { Some(node) } else { None }
     }
     ///Try to interpret this capture as a `comment` ([`anon_unions::Comment`])
     ///
@@ -1969,7 +1893,7 @@ impl<'query, 'tree: 'query> HighlightsCapture<'query, 'tree> {
     #[inline]
     pub fn as_comment(&self) -> Option<&anon_unions::Comment<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::Comment { node, .. } = self { Some(node) } else { None }
+        if let Self::Comment(node) = self { Some(node) } else { None }
     }
     ///Try to interpret this capture as a `comment.documentation` ([`anon_unions::CommentDocumentation`])
     ///
@@ -1983,11 +1907,7 @@ impl<'query, 'tree: 'query> HighlightsCapture<'query, 'tree> {
         &self,
     ) -> Option<&anon_unions::CommentDocumentation<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::CommentDocumentation { node, .. } = self {
-            Some(node)
-        } else {
-            None
-        }
+        if let Self::CommentDocumentation(node) = self { Some(node) } else { None }
     }
     ///Try to interpret this capture as a `punctuation.bracket` ([`anon_unions::PunctuationBracket`])
     ///
@@ -2009,7 +1929,7 @@ impl<'query, 'tree: 'query> HighlightsCapture<'query, 'tree> {
         &self,
     ) -> Option<&anon_unions::PunctuationBracket<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::PunctuationBracket { node, .. } = self { Some(node) } else { None }
+        if let Self::PunctuationBracket(node) = self { Some(node) } else { None }
     }
     ///Try to interpret this capture as a `punctuation.delimiter` ([`anon_unions::PunctuationDelimiter`])
     ///
@@ -2026,11 +1946,7 @@ impl<'query, 'tree: 'query> HighlightsCapture<'query, 'tree> {
         &self,
     ) -> Option<&anon_unions::PunctuationDelimiter<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::PunctuationDelimiter { node, .. } = self {
-            Some(node)
-        } else {
-            None
-        }
+        if let Self::PunctuationDelimiter(node) = self { Some(node) } else { None }
     }
     ///Try to interpret this capture as a `variable.parameter` ([`super::nodes::Identifier`])
     ///
@@ -2041,7 +1957,7 @@ impl<'query, 'tree: 'query> HighlightsCapture<'query, 'tree> {
     #[inline]
     pub fn as_variable_parameter(&self) -> Option<&super::nodes::Identifier<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::VariableParameter { node, .. } = self { Some(node) } else { None }
+        if let Self::VariableParameter(node) = self { Some(node) } else { None }
     }
     ///Try to interpret this capture as a `label` ([`super::nodes::Identifier`])
     ///
@@ -2052,7 +1968,7 @@ impl<'query, 'tree: 'query> HighlightsCapture<'query, 'tree> {
     #[inline]
     pub fn as_label(&self) -> Option<&super::nodes::Identifier<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::Label { node, .. } = self { Some(node) } else { None }
+        if let Self::Label(node) = self { Some(node) } else { None }
     }
     ///Try to interpret this capture as a `keyword` ([`anon_unions::Keyword`])
     ///
@@ -2103,7 +2019,7 @@ impl<'query, 'tree: 'query> HighlightsCapture<'query, 'tree> {
     #[inline]
     pub fn as_keyword(&self) -> Option<&anon_unions::Keyword<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::Keyword { node, .. } = self { Some(node) } else { None }
+        if let Self::Keyword(node) = self { Some(node) } else { None }
     }
     ///Try to interpret this capture as a `variable.builtin` ([`super::nodes::Self_`])
     ///
@@ -2114,7 +2030,7 @@ impl<'query, 'tree: 'query> HighlightsCapture<'query, 'tree> {
     #[inline]
     pub fn as_variable_builtin(&self) -> Option<&super::nodes::Self_<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::VariableBuiltin { node, .. } = self { Some(node) } else { None }
+        if let Self::VariableBuiltin(node) = self { Some(node) } else { None }
     }
     ///Try to interpret this capture as a `string` ([`anon_unions::String`])
     ///
@@ -2127,7 +2043,7 @@ impl<'query, 'tree: 'query> HighlightsCapture<'query, 'tree> {
     #[inline]
     pub fn as_string(&self) -> Option<&anon_unions::String<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::String { node, .. } = self { Some(node) } else { None }
+        if let Self::String(node) = self { Some(node) } else { None }
     }
     ///Try to interpret this capture as a `constant.builtin` ([`anon_unions::ConstantBuiltin`])
     ///
@@ -2140,7 +2056,7 @@ impl<'query, 'tree: 'query> HighlightsCapture<'query, 'tree> {
     #[inline]
     pub fn as_constant_builtin(&self) -> Option<&anon_unions::ConstantBuiltin<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::ConstantBuiltin { node, .. } = self { Some(node) } else { None }
+        if let Self::ConstantBuiltin(node) = self { Some(node) } else { None }
     }
     ///Try to interpret this capture as a `escape` ([`super::nodes::EscapeSequence`])
     ///
@@ -2151,7 +2067,7 @@ impl<'query, 'tree: 'query> HighlightsCapture<'query, 'tree> {
     #[inline]
     pub fn as_escape(&self) -> Option<&super::nodes::EscapeSequence<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::Escape { node, .. } = self { Some(node) } else { None }
+        if let Self::Escape(node) = self { Some(node) } else { None }
     }
     ///Try to interpret this capture as a `attribute` ([`anon_unions::Attribute`])
     ///
@@ -2163,7 +2079,7 @@ impl<'query, 'tree: 'query> HighlightsCapture<'query, 'tree> {
     #[inline]
     pub fn as_attribute(&self) -> Option<&anon_unions::Attribute<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::Attribute { node, .. } = self { Some(node) } else { None }
+        if let Self::Attribute(node) = self { Some(node) } else { None }
     }
     ///Try to interpret this capture as a `operator` ([`anon_unions::Operator`])
     ///
@@ -2176,552 +2092,163 @@ impl<'query, 'tree: 'query> HighlightsCapture<'query, 'tree> {
     #[inline]
     pub fn as_operator(&self) -> Option<&anon_unions::Operator<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::Operator { node, .. } = self { Some(node) } else { None }
-    }
-}
-#[automatically_derived]
-impl<'query, 'tree: 'query> std::fmt::Debug for HighlightsCapture<'query, 'tree> {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        match self {
-            Self::Type { node, .. } => {
-                f.debug_struct(
-                        concat!(stringify!(HighlightsCapture), "::", stringify!(Type)),
-                    )
-                    .field("node", node)
-                    .finish()
-            }
-            Self::TypeBuiltin { node, .. } => {
-                f.debug_struct(
-                        concat!(
-                            stringify!(HighlightsCapture), "::", stringify!(TypeBuiltin)
-                        ),
-                    )
-                    .field("node", node)
-                    .finish()
-            }
-            Self::Property { node, .. } => {
-                f.debug_struct(
-                        concat!(
-                            stringify!(HighlightsCapture), "::", stringify!(Property)
-                        ),
-                    )
-                    .field("node", node)
-                    .finish()
-            }
-            Self::Constant { node, .. } => {
-                f.debug_struct(
-                        concat!(
-                            stringify!(HighlightsCapture), "::", stringify!(Constant)
-                        ),
-                    )
-                    .field("node", node)
-                    .finish()
-            }
-            Self::Constructor { node, .. } => {
-                f.debug_struct(
-                        concat!(
-                            stringify!(HighlightsCapture), "::", stringify!(Constructor)
-                        ),
-                    )
-                    .field("node", node)
-                    .finish()
-            }
-            Self::Function { node, .. } => {
-                f.debug_struct(
-                        concat!(
-                            stringify!(HighlightsCapture), "::", stringify!(Function)
-                        ),
-                    )
-                    .field("node", node)
-                    .finish()
-            }
-            Self::FunctionMethod { node, .. } => {
-                f.debug_struct(
-                        concat!(
-                            stringify!(HighlightsCapture), "::",
-                            stringify!(FunctionMethod)
-                        ),
-                    )
-                    .field("node", node)
-                    .finish()
-            }
-            Self::FunctionMacro { node, .. } => {
-                f.debug_struct(
-                        concat!(
-                            stringify!(HighlightsCapture), "::",
-                            stringify!(FunctionMacro)
-                        ),
-                    )
-                    .field("node", node)
-                    .finish()
-            }
-            Self::Comment { node, .. } => {
-                f.debug_struct(
-                        concat!(stringify!(HighlightsCapture), "::", stringify!(Comment)),
-                    )
-                    .field("node", node)
-                    .finish()
-            }
-            Self::CommentDocumentation { node, .. } => {
-                f.debug_struct(
-                        concat!(
-                            stringify!(HighlightsCapture), "::",
-                            stringify!(CommentDocumentation)
-                        ),
-                    )
-                    .field("node", node)
-                    .finish()
-            }
-            Self::PunctuationBracket { node, .. } => {
-                f.debug_struct(
-                        concat!(
-                            stringify!(HighlightsCapture), "::",
-                            stringify!(PunctuationBracket)
-                        ),
-                    )
-                    .field("node", node)
-                    .finish()
-            }
-            Self::PunctuationDelimiter { node, .. } => {
-                f.debug_struct(
-                        concat!(
-                            stringify!(HighlightsCapture), "::",
-                            stringify!(PunctuationDelimiter)
-                        ),
-                    )
-                    .field("node", node)
-                    .finish()
-            }
-            Self::VariableParameter { node, .. } => {
-                f.debug_struct(
-                        concat!(
-                            stringify!(HighlightsCapture), "::",
-                            stringify!(VariableParameter)
-                        ),
-                    )
-                    .field("node", node)
-                    .finish()
-            }
-            Self::Label { node, .. } => {
-                f.debug_struct(
-                        concat!(stringify!(HighlightsCapture), "::", stringify!(Label)),
-                    )
-                    .field("node", node)
-                    .finish()
-            }
-            Self::Keyword { node, .. } => {
-                f.debug_struct(
-                        concat!(stringify!(HighlightsCapture), "::", stringify!(Keyword)),
-                    )
-                    .field("node", node)
-                    .finish()
-            }
-            Self::VariableBuiltin { node, .. } => {
-                f.debug_struct(
-                        concat!(
-                            stringify!(HighlightsCapture), "::",
-                            stringify!(VariableBuiltin)
-                        ),
-                    )
-                    .field("node", node)
-                    .finish()
-            }
-            Self::String { node, .. } => {
-                f.debug_struct(
-                        concat!(stringify!(HighlightsCapture), "::", stringify!(String)),
-                    )
-                    .field("node", node)
-                    .finish()
-            }
-            Self::ConstantBuiltin { node, .. } => {
-                f.debug_struct(
-                        concat!(
-                            stringify!(HighlightsCapture), "::",
-                            stringify!(ConstantBuiltin)
-                        ),
-                    )
-                    .field("node", node)
-                    .finish()
-            }
-            Self::Escape { node, .. } => {
-                f.debug_struct(
-                        concat!(stringify!(HighlightsCapture), "::", stringify!(Escape)),
-                    )
-                    .field("node", node)
-                    .finish()
-            }
-            Self::Attribute { node, .. } => {
-                f.debug_struct(
-                        concat!(
-                            stringify!(HighlightsCapture), "::", stringify!(Attribute)
-                        ),
-                    )
-                    .field("node", node)
-                    .finish()
-            }
-            Self::Operator { node, .. } => {
-                f.debug_struct(
-                        concat!(
-                            stringify!(HighlightsCapture), "::", stringify!(Operator)
-                        ),
-                    )
-                    .field("node", node)
-                    .finish()
-            }
-            #[allow(unreachable_patterns)]
-            _ => unreachable!(),
-        }
-    }
-}
-#[automatically_derived]
-impl<'query, 'tree: 'query> Clone for HighlightsCapture<'query, 'tree> {
-    fn clone(&self) -> Self {
-        match self {
-            Self::Type { node, .. } => {
-                Self::Type {
-                    node: *node,
-                    r#match: None,
-                }
-            }
-            Self::TypeBuiltin { node, .. } => {
-                Self::TypeBuiltin {
-                    node: *node,
-                    r#match: None,
-                }
-            }
-            Self::Property { node, .. } => {
-                Self::Property {
-                    node: *node,
-                    r#match: None,
-                }
-            }
-            Self::Constant { node, .. } => {
-                Self::Constant {
-                    node: *node,
-                    r#match: None,
-                }
-            }
-            Self::Constructor { node, .. } => {
-                Self::Constructor {
-                    node: *node,
-                    r#match: None,
-                }
-            }
-            Self::Function { node, .. } => {
-                Self::Function {
-                    node: *node,
-                    r#match: None,
-                }
-            }
-            Self::FunctionMethod { node, .. } => {
-                Self::FunctionMethod {
-                    node: *node,
-                    r#match: None,
-                }
-            }
-            Self::FunctionMacro { node, .. } => {
-                Self::FunctionMacro {
-                    node: *node,
-                    r#match: None,
-                }
-            }
-            Self::Comment { node, .. } => {
-                Self::Comment {
-                    node: *node,
-                    r#match: None,
-                }
-            }
-            Self::CommentDocumentation { node, .. } => {
-                Self::CommentDocumentation {
-                    node: *node,
-                    r#match: None,
-                }
-            }
-            Self::PunctuationBracket { node, .. } => {
-                Self::PunctuationBracket {
-                    node: *node,
-                    r#match: None,
-                }
-            }
-            Self::PunctuationDelimiter { node, .. } => {
-                Self::PunctuationDelimiter {
-                    node: *node,
-                    r#match: None,
-                }
-            }
-            Self::VariableParameter { node, .. } => {
-                Self::VariableParameter {
-                    node: *node,
-                    r#match: None,
-                }
-            }
-            Self::Label { node, .. } => {
-                Self::Label {
-                    node: *node,
-                    r#match: None,
-                }
-            }
-            Self::Keyword { node, .. } => {
-                Self::Keyword {
-                    node: *node,
-                    r#match: None,
-                }
-            }
-            Self::VariableBuiltin { node, .. } => {
-                Self::VariableBuiltin {
-                    node: *node,
-                    r#match: None,
-                }
-            }
-            Self::String { node, .. } => {
-                Self::String {
-                    node: *node,
-                    r#match: None,
-                }
-            }
-            Self::ConstantBuiltin { node, .. } => {
-                Self::ConstantBuiltin {
-                    node: *node,
-                    r#match: None,
-                }
-            }
-            Self::Escape { node, .. } => {
-                Self::Escape {
-                    node: *node,
-                    r#match: None,
-                }
-            }
-            Self::Attribute { node, .. } => {
-                Self::Attribute {
-                    node: *node,
-                    r#match: None,
-                }
-            }
-            Self::Operator { node, .. } => {
-                Self::Operator {
-                    node: *node,
-                    r#match: None,
-                }
-            }
-            #[allow(unreachable_patterns)]
-            _ => unreachable!(),
-        }
+        if let Self::Operator(node) = self { Some(node) } else { None }
     }
 }
 #[automatically_derived]
 impl<'query, 'tree: 'query> type_sitter_lib::QueryCapture<'query, 'tree>
-for HighlightsCapture<'query, 'tree> {
+for HighlightsCapture<'tree> {
     type Query = Highlights;
     #[inline]
     fn query(&self) -> &'query Self::Query {
         &Highlights
     }
     #[inline]
-    fn r#match(
-        &self,
-    ) -> Option<&<Self::Query as type_sitter_lib::Query>::Match<'query, 'tree>> {
-        match self {
-            Self::Type { r#match, .. } => r#match.as_ref(),
-            Self::TypeBuiltin { r#match, .. } => r#match.as_ref(),
-            Self::Property { r#match, .. } => r#match.as_ref(),
-            Self::Constant { r#match, .. } => r#match.as_ref(),
-            Self::Constructor { r#match, .. } => r#match.as_ref(),
-            Self::Function { r#match, .. } => r#match.as_ref(),
-            Self::FunctionMethod { r#match, .. } => r#match.as_ref(),
-            Self::FunctionMacro { r#match, .. } => r#match.as_ref(),
-            Self::Comment { r#match, .. } => r#match.as_ref(),
-            Self::CommentDocumentation { r#match, .. } => r#match.as_ref(),
-            Self::PunctuationBracket { r#match, .. } => r#match.as_ref(),
-            Self::PunctuationDelimiter { r#match, .. } => r#match.as_ref(),
-            Self::VariableParameter { r#match, .. } => r#match.as_ref(),
-            Self::Label { r#match, .. } => r#match.as_ref(),
-            Self::Keyword { r#match, .. } => r#match.as_ref(),
-            Self::VariableBuiltin { r#match, .. } => r#match.as_ref(),
-            Self::String { r#match, .. } => r#match.as_ref(),
-            Self::ConstantBuiltin { r#match, .. } => r#match.as_ref(),
-            Self::Escape { r#match, .. } => r#match.as_ref(),
-            Self::Attribute { r#match, .. } => r#match.as_ref(),
-            Self::Operator { r#match, .. } => r#match.as_ref(),
-            #[allow(unreachable_patterns)]
-            _ => unreachable!(),
-        }
-    }
-    #[inline]
-    fn into_match(
-        self,
-    ) -> Option<<Self::Query as type_sitter_lib::Query>::Match<'query, 'tree>> {
-        match self {
-            Self::Type { r#match, .. } => r#match,
-            Self::TypeBuiltin { r#match, .. } => r#match,
-            Self::Property { r#match, .. } => r#match,
-            Self::Constant { r#match, .. } => r#match,
-            Self::Constructor { r#match, .. } => r#match,
-            Self::Function { r#match, .. } => r#match,
-            Self::FunctionMethod { r#match, .. } => r#match,
-            Self::FunctionMacro { r#match, .. } => r#match,
-            Self::Comment { r#match, .. } => r#match,
-            Self::CommentDocumentation { r#match, .. } => r#match,
-            Self::PunctuationBracket { r#match, .. } => r#match,
-            Self::PunctuationDelimiter { r#match, .. } => r#match,
-            Self::VariableParameter { r#match, .. } => r#match,
-            Self::Label { r#match, .. } => r#match,
-            Self::Keyword { r#match, .. } => r#match,
-            Self::VariableBuiltin { r#match, .. } => r#match,
-            Self::String { r#match, .. } => r#match,
-            Self::ConstantBuiltin { r#match, .. } => r#match,
-            Self::Escape { r#match, .. } => r#match,
-            Self::Attribute { r#match, .. } => r#match,
-            Self::Operator { r#match, .. } => r#match,
-            #[allow(unreachable_patterns)]
-            _ => unreachable!(),
-        }
-    }
-    #[inline]
     fn raw(&self) -> yak_sitter::QueryCapture<'query, 'tree> {
         #[allow(unused_imports)]
         use type_sitter_lib::Node;
         match self {
-            Self::Type { node, .. } => {
+            Self::Type(node) => {
                 yak_sitter::QueryCapture {
                     node: *node.raw(),
                     index: 0usize,
                     name: "type",
                 }
             }
-            Self::TypeBuiltin { node, .. } => {
+            Self::TypeBuiltin(node) => {
                 yak_sitter::QueryCapture {
                     node: *node.raw(),
                     index: 1usize,
                     name: "type.builtin",
                 }
             }
-            Self::Property { node, .. } => {
+            Self::Property(node) => {
                 yak_sitter::QueryCapture {
                     node: *node.raw(),
                     index: 2usize,
                     name: "property",
                 }
             }
-            Self::Constant { node, .. } => {
+            Self::Constant(node) => {
                 yak_sitter::QueryCapture {
                     node: *node.raw(),
                     index: 3usize,
                     name: "constant",
                 }
             }
-            Self::Constructor { node, .. } => {
+            Self::Constructor(node) => {
                 yak_sitter::QueryCapture {
                     node: *node.raw(),
                     index: 4usize,
                     name: "constructor",
                 }
             }
-            Self::Function { node, .. } => {
+            Self::Function(node) => {
                 yak_sitter::QueryCapture {
                     node: *node.raw(),
                     index: 5usize,
                     name: "function",
                 }
             }
-            Self::FunctionMethod { node, .. } => {
+            Self::FunctionMethod(node) => {
                 yak_sitter::QueryCapture {
                     node: *node.raw(),
                     index: 6usize,
                     name: "function.method",
                 }
             }
-            Self::FunctionMacro { node, .. } => {
+            Self::FunctionMacro(node) => {
                 yak_sitter::QueryCapture {
                     node: *node.raw(),
                     index: 7usize,
                     name: "function.macro",
                 }
             }
-            Self::Comment { node, .. } => {
+            Self::Comment(node) => {
                 yak_sitter::QueryCapture {
                     node: *node.raw(),
                     index: 8usize,
                     name: "comment",
                 }
             }
-            Self::CommentDocumentation { node, .. } => {
+            Self::CommentDocumentation(node) => {
                 yak_sitter::QueryCapture {
                     node: *node.raw(),
                     index: 9usize,
                     name: "comment.documentation",
                 }
             }
-            Self::PunctuationBracket { node, .. } => {
+            Self::PunctuationBracket(node) => {
                 yak_sitter::QueryCapture {
                     node: *node.raw(),
                     index: 10usize,
                     name: "punctuation.bracket",
                 }
             }
-            Self::PunctuationDelimiter { node, .. } => {
+            Self::PunctuationDelimiter(node) => {
                 yak_sitter::QueryCapture {
                     node: *node.raw(),
                     index: 11usize,
                     name: "punctuation.delimiter",
                 }
             }
-            Self::VariableParameter { node, .. } => {
+            Self::VariableParameter(node) => {
                 yak_sitter::QueryCapture {
                     node: *node.raw(),
                     index: 12usize,
                     name: "variable.parameter",
                 }
             }
-            Self::Label { node, .. } => {
+            Self::Label(node) => {
                 yak_sitter::QueryCapture {
                     node: *node.raw(),
                     index: 13usize,
                     name: "label",
                 }
             }
-            Self::Keyword { node, .. } => {
+            Self::Keyword(node) => {
                 yak_sitter::QueryCapture {
                     node: *node.raw(),
                     index: 14usize,
                     name: "keyword",
                 }
             }
-            Self::VariableBuiltin { node, .. } => {
+            Self::VariableBuiltin(node) => {
                 yak_sitter::QueryCapture {
                     node: *node.raw(),
                     index: 15usize,
                     name: "variable.builtin",
                 }
             }
-            Self::String { node, .. } => {
+            Self::String(node) => {
                 yak_sitter::QueryCapture {
                     node: *node.raw(),
                     index: 16usize,
                     name: "string",
                 }
             }
-            Self::ConstantBuiltin { node, .. } => {
+            Self::ConstantBuiltin(node) => {
                 yak_sitter::QueryCapture {
                     node: *node.raw(),
                     index: 17usize,
                     name: "constant.builtin",
                 }
             }
-            Self::Escape { node, .. } => {
+            Self::Escape(node) => {
                 yak_sitter::QueryCapture {
                     node: *node.raw(),
                     index: 18usize,
                     name: "escape",
                 }
             }
-            Self::Attribute { node, .. } => {
+            Self::Attribute(node) => {
                 yak_sitter::QueryCapture {
                     node: *node.raw(),
                     index: 19usize,
                     name: "attribute",
                 }
             }
-            Self::Operator { node, .. } => {
+            Self::Operator(node) => {
                 yak_sitter::QueryCapture {
                     node: *node.raw(),
                     index: 20usize,
@@ -2737,57 +2264,39 @@ for HighlightsCapture<'query, 'tree> {
         #[allow(unused_imports)]
         use type_sitter_lib::Node;
         match self {
-            Self::Type { node, .. } => type_sitter_lib::UntypedNode::r#ref(node.raw()),
-            Self::TypeBuiltin { node, .. } => {
+            Self::Type(node) => type_sitter_lib::UntypedNode::r#ref(node.raw()),
+            Self::TypeBuiltin(node) => type_sitter_lib::UntypedNode::r#ref(node.raw()),
+            Self::Property(node) => type_sitter_lib::UntypedNode::r#ref(node.raw()),
+            Self::Constant(node) => type_sitter_lib::UntypedNode::r#ref(node.raw()),
+            Self::Constructor(node) => type_sitter_lib::UntypedNode::r#ref(node.raw()),
+            Self::Function(node) => type_sitter_lib::UntypedNode::r#ref(node.raw()),
+            Self::FunctionMethod(node) => type_sitter_lib::UntypedNode::r#ref(node.raw()),
+            Self::FunctionMacro(node) => type_sitter_lib::UntypedNode::r#ref(node.raw()),
+            Self::Comment(node) => type_sitter_lib::UntypedNode::r#ref(node.raw()),
+            Self::CommentDocumentation(node) => {
                 type_sitter_lib::UntypedNode::r#ref(node.raw())
             }
-            Self::Property { node, .. } => {
+            Self::PunctuationBracket(node) => {
                 type_sitter_lib::UntypedNode::r#ref(node.raw())
             }
-            Self::Constant { node, .. } => {
+            Self::PunctuationDelimiter(node) => {
                 type_sitter_lib::UntypedNode::r#ref(node.raw())
             }
-            Self::Constructor { node, .. } => {
+            Self::VariableParameter(node) => {
                 type_sitter_lib::UntypedNode::r#ref(node.raw())
             }
-            Self::Function { node, .. } => {
+            Self::Label(node) => type_sitter_lib::UntypedNode::r#ref(node.raw()),
+            Self::Keyword(node) => type_sitter_lib::UntypedNode::r#ref(node.raw()),
+            Self::VariableBuiltin(node) => {
                 type_sitter_lib::UntypedNode::r#ref(node.raw())
             }
-            Self::FunctionMethod { node, .. } => {
+            Self::String(node) => type_sitter_lib::UntypedNode::r#ref(node.raw()),
+            Self::ConstantBuiltin(node) => {
                 type_sitter_lib::UntypedNode::r#ref(node.raw())
             }
-            Self::FunctionMacro { node, .. } => {
-                type_sitter_lib::UntypedNode::r#ref(node.raw())
-            }
-            Self::Comment { node, .. } => type_sitter_lib::UntypedNode::r#ref(node.raw()),
-            Self::CommentDocumentation { node, .. } => {
-                type_sitter_lib::UntypedNode::r#ref(node.raw())
-            }
-            Self::PunctuationBracket { node, .. } => {
-                type_sitter_lib::UntypedNode::r#ref(node.raw())
-            }
-            Self::PunctuationDelimiter { node, .. } => {
-                type_sitter_lib::UntypedNode::r#ref(node.raw())
-            }
-            Self::VariableParameter { node, .. } => {
-                type_sitter_lib::UntypedNode::r#ref(node.raw())
-            }
-            Self::Label { node, .. } => type_sitter_lib::UntypedNode::r#ref(node.raw()),
-            Self::Keyword { node, .. } => type_sitter_lib::UntypedNode::r#ref(node.raw()),
-            Self::VariableBuiltin { node, .. } => {
-                type_sitter_lib::UntypedNode::r#ref(node.raw())
-            }
-            Self::String { node, .. } => type_sitter_lib::UntypedNode::r#ref(node.raw()),
-            Self::ConstantBuiltin { node, .. } => {
-                type_sitter_lib::UntypedNode::r#ref(node.raw())
-            }
-            Self::Escape { node, .. } => type_sitter_lib::UntypedNode::r#ref(node.raw()),
-            Self::Attribute { node, .. } => {
-                type_sitter_lib::UntypedNode::r#ref(node.raw())
-            }
-            Self::Operator { node, .. } => {
-                type_sitter_lib::UntypedNode::r#ref(node.raw())
-            }
+            Self::Escape(node) => type_sitter_lib::UntypedNode::r#ref(node.raw()),
+            Self::Attribute(node) => type_sitter_lib::UntypedNode::r#ref(node.raw()),
+            Self::Operator(node) => type_sitter_lib::UntypedNode::r#ref(node.raw()),
             #[allow(unreachable_patterns)]
             _ => unreachable!(),
         }
@@ -2797,69 +2306,47 @@ for HighlightsCapture<'query, 'tree> {
         #[allow(unused_imports)]
         use type_sitter_lib::Node;
         match self {
-            Self::Type { node, .. } => {
+            Self::Type(node) => type_sitter_lib::UntypedNode::r#mut(node.raw_mut()),
+            Self::TypeBuiltin(node) => {
                 type_sitter_lib::UntypedNode::r#mut(node.raw_mut())
             }
-            Self::TypeBuiltin { node, .. } => {
+            Self::Property(node) => type_sitter_lib::UntypedNode::r#mut(node.raw_mut()),
+            Self::Constant(node) => type_sitter_lib::UntypedNode::r#mut(node.raw_mut()),
+            Self::Constructor(node) => {
                 type_sitter_lib::UntypedNode::r#mut(node.raw_mut())
             }
-            Self::Property { node, .. } => {
+            Self::Function(node) => type_sitter_lib::UntypedNode::r#mut(node.raw_mut()),
+            Self::FunctionMethod(node) => {
                 type_sitter_lib::UntypedNode::r#mut(node.raw_mut())
             }
-            Self::Constant { node, .. } => {
+            Self::FunctionMacro(node) => {
                 type_sitter_lib::UntypedNode::r#mut(node.raw_mut())
             }
-            Self::Constructor { node, .. } => {
+            Self::Comment(node) => type_sitter_lib::UntypedNode::r#mut(node.raw_mut()),
+            Self::CommentDocumentation(node) => {
                 type_sitter_lib::UntypedNode::r#mut(node.raw_mut())
             }
-            Self::Function { node, .. } => {
+            Self::PunctuationBracket(node) => {
                 type_sitter_lib::UntypedNode::r#mut(node.raw_mut())
             }
-            Self::FunctionMethod { node, .. } => {
+            Self::PunctuationDelimiter(node) => {
                 type_sitter_lib::UntypedNode::r#mut(node.raw_mut())
             }
-            Self::FunctionMacro { node, .. } => {
+            Self::VariableParameter(node) => {
                 type_sitter_lib::UntypedNode::r#mut(node.raw_mut())
             }
-            Self::Comment { node, .. } => {
+            Self::Label(node) => type_sitter_lib::UntypedNode::r#mut(node.raw_mut()),
+            Self::Keyword(node) => type_sitter_lib::UntypedNode::r#mut(node.raw_mut()),
+            Self::VariableBuiltin(node) => {
                 type_sitter_lib::UntypedNode::r#mut(node.raw_mut())
             }
-            Self::CommentDocumentation { node, .. } => {
+            Self::String(node) => type_sitter_lib::UntypedNode::r#mut(node.raw_mut()),
+            Self::ConstantBuiltin(node) => {
                 type_sitter_lib::UntypedNode::r#mut(node.raw_mut())
             }
-            Self::PunctuationBracket { node, .. } => {
-                type_sitter_lib::UntypedNode::r#mut(node.raw_mut())
-            }
-            Self::PunctuationDelimiter { node, .. } => {
-                type_sitter_lib::UntypedNode::r#mut(node.raw_mut())
-            }
-            Self::VariableParameter { node, .. } => {
-                type_sitter_lib::UntypedNode::r#mut(node.raw_mut())
-            }
-            Self::Label { node, .. } => {
-                type_sitter_lib::UntypedNode::r#mut(node.raw_mut())
-            }
-            Self::Keyword { node, .. } => {
-                type_sitter_lib::UntypedNode::r#mut(node.raw_mut())
-            }
-            Self::VariableBuiltin { node, .. } => {
-                type_sitter_lib::UntypedNode::r#mut(node.raw_mut())
-            }
-            Self::String { node, .. } => {
-                type_sitter_lib::UntypedNode::r#mut(node.raw_mut())
-            }
-            Self::ConstantBuiltin { node, .. } => {
-                type_sitter_lib::UntypedNode::r#mut(node.raw_mut())
-            }
-            Self::Escape { node, .. } => {
-                type_sitter_lib::UntypedNode::r#mut(node.raw_mut())
-            }
-            Self::Attribute { node, .. } => {
-                type_sitter_lib::UntypedNode::r#mut(node.raw_mut())
-            }
-            Self::Operator { node, .. } => {
-                type_sitter_lib::UntypedNode::r#mut(node.raw_mut())
-            }
+            Self::Escape(node) => type_sitter_lib::UntypedNode::r#mut(node.raw_mut()),
+            Self::Attribute(node) => type_sitter_lib::UntypedNode::r#mut(node.raw_mut()),
+            Self::Operator(node) => type_sitter_lib::UntypedNode::r#mut(node.raw_mut()),
             #[allow(unreachable_patterns)]
             _ => unreachable!(),
         }
@@ -3008,7 +2495,8 @@ pub struct InjectionsMatch<'query, 'tree: 'query>(yak_sitter::QueryMatch<'query,
  (#set! injection.include-children))
 
 ```*/
-pub enum InjectionsCapture<'query, 'tree: 'query> {
+#[derive(Clone, Debug)]
+pub enum InjectionsCapture<'tree> {
     ///A `injection.content` ([`anon_unions::InjectionContent`])
     ///
     ///The full capture including pattern(s) is:
@@ -3016,15 +2504,12 @@ pub enum InjectionsCapture<'query, 'tree: 'query> {
     ///(token_tree) @injection.content
     ///(token_tree) @injection.content
     ///```
-    InjectionContent {
-        node: super::nodes::TokenTree<'tree>,
-        r#match: Option<InjectionsMatch<'query, 'tree>>,
-    },
+    InjectionContent(super::nodes::TokenTree<'tree>),
 }
 #[automatically_derived]
 impl type_sitter_lib::Query for Injections {
     type Match<'query, 'tree: 'query> = InjectionsMatch<'query, 'tree>;
-    type Capture<'query, 'tree: 'query> = InjectionsCapture<'query, 'tree>;
+    type Capture<'query, 'tree: 'query> = InjectionsCapture<'tree>;
     fn as_str(&self) -> &'static str {
         "((macro_invocation\n  (token_tree) @injection.content)\n (#set! injection.language \"rust\")\n (#set! injection.include-children))\n\n((macro_rule\n  (token_tree) @injection.content)\n (#set! injection.language \"rust\")\n (#set! injection.include-children))\n"
     }
@@ -3052,19 +2537,25 @@ impl type_sitter_lib::Query for Injections {
         InjectionsMatch(r#match)
     }
     #[inline]
+    unsafe fn wrap_match_ref<'m, 'query, 'tree>(
+        &self,
+        r#match: &'m yak_sitter::QueryMatch<'query, 'tree>,
+    ) -> &'m InjectionsMatch<'query, 'tree> {
+        &*(r#match as *const yak_sitter::QueryMatch<'query, 'tree>
+            as *const InjectionsMatch<'query, 'tree>)
+    }
+    #[inline]
     unsafe fn wrap_capture<'query, 'tree: 'query>(
         &self,
         capture: yak_sitter::QueryCapture<'query, 'tree>,
-        r#match: Option<InjectionsMatch<'query, 'tree>>,
-    ) -> InjectionsCapture<'query, 'tree> {
+    ) -> InjectionsCapture<'tree> {
         match capture.index as usize {
             0usize => {
-                InjectionsCapture::InjectionContent {
-                    node: <super::nodes::TokenTree<
+                InjectionsCapture::InjectionContent(
+                    <super::nodes::TokenTree<
                         'tree,
                     > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(capture.node),
-                    r#match,
-                }
+                )
             }
             capture_index => unreachable!("Invalid capture index: {}", capture_index),
         }
@@ -3130,7 +2621,7 @@ for InjectionsMatch<'query, 'tree> {
     }
 }
 #[automatically_derived]
-impl<'query, 'tree: 'query> InjectionsCapture<'query, 'tree> {
+impl<'tree> InjectionsCapture<'tree> {
     ///Try to interpret this capture as a `injection.content` ([`anon_unions::InjectionContent`])
     ///
     ///The full capture including pattern(s) is:
@@ -3141,77 +2632,23 @@ impl<'query, 'tree: 'query> InjectionsCapture<'query, 'tree> {
     #[inline]
     pub fn as_injection_content(&self) -> Option<&super::nodes::TokenTree<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::InjectionContent { node, .. } = self { Some(node) } else { None }
-    }
-}
-#[automatically_derived]
-impl<'query, 'tree: 'query> std::fmt::Debug for InjectionsCapture<'query, 'tree> {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        match self {
-            Self::InjectionContent { node, .. } => {
-                f.debug_struct(
-                        concat!(
-                            stringify!(InjectionsCapture), "::",
-                            stringify!(InjectionContent)
-                        ),
-                    )
-                    .field("node", node)
-                    .finish()
-            }
-            #[allow(unreachable_patterns)]
-            _ => unreachable!(),
-        }
-    }
-}
-#[automatically_derived]
-impl<'query, 'tree: 'query> Clone for InjectionsCapture<'query, 'tree> {
-    fn clone(&self) -> Self {
-        match self {
-            Self::InjectionContent { node, .. } => {
-                Self::InjectionContent {
-                    node: *node,
-                    r#match: None,
-                }
-            }
-            #[allow(unreachable_patterns)]
-            _ => unreachable!(),
-        }
+        if let Self::InjectionContent(node) = self { Some(node) } else { None }
     }
 }
 #[automatically_derived]
 impl<'query, 'tree: 'query> type_sitter_lib::QueryCapture<'query, 'tree>
-for InjectionsCapture<'query, 'tree> {
+for InjectionsCapture<'tree> {
     type Query = Injections;
     #[inline]
     fn query(&self) -> &'query Self::Query {
         &Injections
     }
     #[inline]
-    fn r#match(
-        &self,
-    ) -> Option<&<Self::Query as type_sitter_lib::Query>::Match<'query, 'tree>> {
-        match self {
-            Self::InjectionContent { r#match, .. } => r#match.as_ref(),
-            #[allow(unreachable_patterns)]
-            _ => unreachable!(),
-        }
-    }
-    #[inline]
-    fn into_match(
-        self,
-    ) -> Option<<Self::Query as type_sitter_lib::Query>::Match<'query, 'tree>> {
-        match self {
-            Self::InjectionContent { r#match, .. } => r#match,
-            #[allow(unreachable_patterns)]
-            _ => unreachable!(),
-        }
-    }
-    #[inline]
     fn raw(&self) -> yak_sitter::QueryCapture<'query, 'tree> {
         #[allow(unused_imports)]
         use type_sitter_lib::Node;
         match self {
-            Self::InjectionContent { node, .. } => {
+            Self::InjectionContent(node) => {
                 yak_sitter::QueryCapture {
                     node: *node.raw(),
                     index: 0usize,
@@ -3227,7 +2664,7 @@ for InjectionsCapture<'query, 'tree> {
         #[allow(unused_imports)]
         use type_sitter_lib::Node;
         match self {
-            Self::InjectionContent { node, .. } => {
+            Self::InjectionContent(node) => {
                 type_sitter_lib::UntypedNode::r#ref(node.raw())
             }
             #[allow(unreachable_patterns)]
@@ -3239,7 +2676,7 @@ for InjectionsCapture<'query, 'tree> {
         #[allow(unused_imports)]
         use type_sitter_lib::Node;
         match self {
-            Self::InjectionContent { node, .. } => {
+            Self::InjectionContent(node) => {
                 type_sitter_lib::UntypedNode::r#mut(node.raw_mut())
             }
             #[allow(unreachable_patterns)]
@@ -3601,7 +3038,8 @@ pub struct TagsMatch<'query, 'tree: 'query>(yak_sitter::QueryMatch<'query, 'tree
     !trait) @reference.implementation
 
 ```*/
-pub enum TagsCapture<'query, 'tree: 'query> {
+#[derive(Clone, Debug)]
+pub enum TagsCapture<'tree> {
     ///A `name` ([`anon_unions::Name`])
     ///
     ///The full capture including pattern(s) is:
@@ -3621,7 +3059,7 @@ pub enum TagsCapture<'query, 'tree: 'query> {
     ///(type_identifier) @name
     ///(type_identifier) @name
     ///```
-    Name { node: anon_unions::Name<'tree>, r#match: Option<TagsMatch<'query, 'tree>> },
+    Name(anon_unions::Name<'tree>),
     ///A `definition.class` ([`anon_unions::DefinitionClass`])
     ///
     ///The full capture including pattern(s) is:
@@ -3635,10 +3073,7 @@ pub enum TagsCapture<'query, 'tree: 'query> {
     /**(type_item
     name: (type_identifier) @name) @definition.class*/
     ///```
-    DefinitionClass {
-        node: anon_unions::DefinitionClass<'tree>,
-        r#match: Option<TagsMatch<'query, 'tree>>,
-    },
+    DefinitionClass(anon_unions::DefinitionClass<'tree>),
     ///A `definition.method` ([`super::nodes::DeclarationList`])
     ///
     ///The full capture including pattern(s) is:
@@ -3647,10 +3082,7 @@ pub enum TagsCapture<'query, 'tree: 'query> {
     (function_item
         name: (identifier) @name)) @definition.method*/
     ///```
-    DefinitionMethod {
-        node: super::nodes::DeclarationList<'tree>,
-        r#match: Option<TagsMatch<'query, 'tree>>,
-    },
+    DefinitionMethod(super::nodes::DeclarationList<'tree>),
     ///A `definition.function` ([`super::nodes::FunctionItem`])
     ///
     ///The full capture including pattern(s) is:
@@ -3658,10 +3090,7 @@ pub enum TagsCapture<'query, 'tree: 'query> {
     /**(function_item
     name: (identifier) @name) @definition.function*/
     ///```
-    DefinitionFunction {
-        node: super::nodes::FunctionItem<'tree>,
-        r#match: Option<TagsMatch<'query, 'tree>>,
-    },
+    DefinitionFunction(super::nodes::FunctionItem<'tree>),
     ///A `definition.interface` ([`super::nodes::TraitItem`])
     ///
     ///The full capture including pattern(s) is:
@@ -3669,10 +3098,7 @@ pub enum TagsCapture<'query, 'tree: 'query> {
     /**(trait_item
     name: (type_identifier) @name) @definition.interface*/
     ///```
-    DefinitionInterface {
-        node: super::nodes::TraitItem<'tree>,
-        r#match: Option<TagsMatch<'query, 'tree>>,
-    },
+    DefinitionInterface(super::nodes::TraitItem<'tree>),
     ///A `definition.module` ([`super::nodes::ModItem`])
     ///
     ///The full capture including pattern(s) is:
@@ -3680,10 +3106,7 @@ pub enum TagsCapture<'query, 'tree: 'query> {
     /**(mod_item
     name: (identifier) @name) @definition.module*/
     ///```
-    DefinitionModule {
-        node: super::nodes::ModItem<'tree>,
-        r#match: Option<TagsMatch<'query, 'tree>>,
-    },
+    DefinitionModule(super::nodes::ModItem<'tree>),
     ///A `definition.macro` ([`super::nodes::MacroDefinition`])
     ///
     ///The full capture including pattern(s) is:
@@ -3691,10 +3114,7 @@ pub enum TagsCapture<'query, 'tree: 'query> {
     /**(macro_definition
     name: (identifier) @name) @definition.macro*/
     ///```
-    DefinitionMacro {
-        node: super::nodes::MacroDefinition<'tree>,
-        r#match: Option<TagsMatch<'query, 'tree>>,
-    },
+    DefinitionMacro(super::nodes::MacroDefinition<'tree>),
     ///A `reference.call` ([`anon_unions::ReferenceCall`])
     ///
     ///The full capture including pattern(s) is:
@@ -3707,10 +3127,7 @@ pub enum TagsCapture<'query, 'tree: 'query> {
     /**(macro_invocation
     macro: (identifier) @name) @reference.call*/
     ///```
-    ReferenceCall {
-        node: anon_unions::ReferenceCall<'tree>,
-        r#match: Option<TagsMatch<'query, 'tree>>,
-    },
+    ReferenceCall(anon_unions::ReferenceCall<'tree>),
     ///A `reference.implementation` ([`anon_unions::ReferenceImplementation`])
     ///
     ///The full capture including pattern(s) is:
@@ -3721,15 +3138,12 @@ pub enum TagsCapture<'query, 'tree: 'query> {
     type: (type_identifier) @name
     !trait) @reference.implementation*/
     ///```
-    ReferenceImplementation {
-        node: super::nodes::ImplItem<'tree>,
-        r#match: Option<TagsMatch<'query, 'tree>>,
-    },
+    ReferenceImplementation(super::nodes::ImplItem<'tree>),
 }
 #[automatically_derived]
 impl type_sitter_lib::Query for Tags {
     type Match<'query, 'tree: 'query> = TagsMatch<'query, 'tree>;
-    type Capture<'query, 'tree: 'query> = TagsCapture<'query, 'tree>;
+    type Capture<'query, 'tree: 'query> = TagsCapture<'tree>;
     fn as_str(&self) -> &'static str {
         "; ADT definitions\n\n(struct_item\n    name: (type_identifier) @name) @definition.class\n\n(enum_item\n    name: (type_identifier) @name) @definition.class\n\n(union_item\n    name: (type_identifier) @name) @definition.class\n\n; type aliases\n\n(type_item\n    name: (type_identifier) @name) @definition.class\n\n; method definitions\n\n(declaration_list\n    (function_item\n        name: (identifier) @name)) @definition.method\n\n; function definitions\n\n(function_item\n    name: (identifier) @name) @definition.function\n\n; trait definitions\n(trait_item\n    name: (type_identifier) @name) @definition.interface\n\n; module definitions\n(mod_item\n    name: (identifier) @name) @definition.module\n\n; macro definitions\n\n(macro_definition\n    name: (identifier) @name) @definition.macro\n\n; references\n\n(call_expression\n    function: (identifier) @name) @reference.call\n\n(call_expression\n    function: (field_expression\n        field: (field_identifier) @name)) @reference.call\n\n(macro_invocation\n    macro: (identifier) @name) @reference.call\n\n; implementations\n\n(impl_item\n    trait: (type_identifier) @name) @reference.implementation\n\n(impl_item\n    type: (type_identifier) @name\n    !trait) @reference.implementation\n"
     }
@@ -3757,83 +3171,81 @@ impl type_sitter_lib::Query for Tags {
         TagsMatch(r#match)
     }
     #[inline]
+    unsafe fn wrap_match_ref<'m, 'query, 'tree>(
+        &self,
+        r#match: &'m yak_sitter::QueryMatch<'query, 'tree>,
+    ) -> &'m TagsMatch<'query, 'tree> {
+        &*(r#match as *const yak_sitter::QueryMatch<'query, 'tree>
+            as *const TagsMatch<'query, 'tree>)
+    }
+    #[inline]
     unsafe fn wrap_capture<'query, 'tree: 'query>(
         &self,
         capture: yak_sitter::QueryCapture<'query, 'tree>,
-        r#match: Option<TagsMatch<'query, 'tree>>,
-    ) -> TagsCapture<'query, 'tree> {
+    ) -> TagsCapture<'tree> {
         match capture.index as usize {
             0usize => {
-                TagsCapture::Name {
-                    node: <anon_unions::Name<
+                TagsCapture::Name(
+                    <anon_unions::Name<
                         'tree,
                     > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(capture.node),
-                    r#match,
-                }
+                )
             }
             1usize => {
-                TagsCapture::DefinitionClass {
-                    node: <anon_unions::DefinitionClass<
+                TagsCapture::DefinitionClass(
+                    <anon_unions::DefinitionClass<
                         'tree,
                     > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(capture.node),
-                    r#match,
-                }
+                )
             }
             2usize => {
-                TagsCapture::DefinitionMethod {
-                    node: <super::nodes::DeclarationList<
+                TagsCapture::DefinitionMethod(
+                    <super::nodes::DeclarationList<
                         'tree,
                     > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(capture.node),
-                    r#match,
-                }
+                )
             }
             3usize => {
-                TagsCapture::DefinitionFunction {
-                    node: <super::nodes::FunctionItem<
+                TagsCapture::DefinitionFunction(
+                    <super::nodes::FunctionItem<
                         'tree,
                     > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(capture.node),
-                    r#match,
-                }
+                )
             }
             4usize => {
-                TagsCapture::DefinitionInterface {
-                    node: <super::nodes::TraitItem<
+                TagsCapture::DefinitionInterface(
+                    <super::nodes::TraitItem<
                         'tree,
                     > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(capture.node),
-                    r#match,
-                }
+                )
             }
             5usize => {
-                TagsCapture::DefinitionModule {
-                    node: <super::nodes::ModItem<
+                TagsCapture::DefinitionModule(
+                    <super::nodes::ModItem<
                         'tree,
                     > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(capture.node),
-                    r#match,
-                }
+                )
             }
             6usize => {
-                TagsCapture::DefinitionMacro {
-                    node: <super::nodes::MacroDefinition<
+                TagsCapture::DefinitionMacro(
+                    <super::nodes::MacroDefinition<
                         'tree,
                     > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(capture.node),
-                    r#match,
-                }
+                )
             }
             7usize => {
-                TagsCapture::ReferenceCall {
-                    node: <anon_unions::ReferenceCall<
+                TagsCapture::ReferenceCall(
+                    <anon_unions::ReferenceCall<
                         'tree,
                     > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(capture.node),
-                    r#match,
-                }
+                )
             }
             8usize => {
-                TagsCapture::ReferenceImplementation {
-                    node: <super::nodes::ImplItem<
+                TagsCapture::ReferenceImplementation(
+                    <super::nodes::ImplItem<
                         'tree,
                     > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(capture.node),
-                    r#match,
-                }
+                )
             }
             capture_index => unreachable!("Invalid capture index: {}", capture_index),
         }
@@ -4086,7 +3498,7 @@ for TagsMatch<'query, 'tree> {
     }
 }
 #[automatically_derived]
-impl<'query, 'tree: 'query> TagsCapture<'query, 'tree> {
+impl<'tree> TagsCapture<'tree> {
     ///Try to interpret this capture as a `name` ([`anon_unions::Name`])
     ///
     ///The full capture including pattern(s) is:
@@ -4109,7 +3521,7 @@ impl<'query, 'tree: 'query> TagsCapture<'query, 'tree> {
     #[inline]
     pub fn as_name(&self) -> Option<&anon_unions::Name<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::Name { node, .. } = self { Some(node) } else { None }
+        if let Self::Name(node) = self { Some(node) } else { None }
     }
     ///Try to interpret this capture as a `definition.class` ([`anon_unions::DefinitionClass`])
     ///
@@ -4127,7 +3539,7 @@ impl<'query, 'tree: 'query> TagsCapture<'query, 'tree> {
     #[inline]
     pub fn as_definition_class(&self) -> Option<&anon_unions::DefinitionClass<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::DefinitionClass { node, .. } = self { Some(node) } else { None }
+        if let Self::DefinitionClass(node) = self { Some(node) } else { None }
     }
     ///Try to interpret this capture as a `definition.method` ([`super::nodes::DeclarationList`])
     ///
@@ -4140,7 +3552,7 @@ impl<'query, 'tree: 'query> TagsCapture<'query, 'tree> {
     #[inline]
     pub fn as_definition_method(&self) -> Option<&super::nodes::DeclarationList<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::DefinitionMethod { node, .. } = self { Some(node) } else { None }
+        if let Self::DefinitionMethod(node) = self { Some(node) } else { None }
     }
     ///Try to interpret this capture as a `definition.function` ([`super::nodes::FunctionItem`])
     ///
@@ -4152,7 +3564,7 @@ impl<'query, 'tree: 'query> TagsCapture<'query, 'tree> {
     #[inline]
     pub fn as_definition_function(&self) -> Option<&super::nodes::FunctionItem<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::DefinitionFunction { node, .. } = self { Some(node) } else { None }
+        if let Self::DefinitionFunction(node) = self { Some(node) } else { None }
     }
     ///Try to interpret this capture as a `definition.interface` ([`super::nodes::TraitItem`])
     ///
@@ -4164,7 +3576,7 @@ impl<'query, 'tree: 'query> TagsCapture<'query, 'tree> {
     #[inline]
     pub fn as_definition_interface(&self) -> Option<&super::nodes::TraitItem<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::DefinitionInterface { node, .. } = self { Some(node) } else { None }
+        if let Self::DefinitionInterface(node) = self { Some(node) } else { None }
     }
     ///Try to interpret this capture as a `definition.module` ([`super::nodes::ModItem`])
     ///
@@ -4176,7 +3588,7 @@ impl<'query, 'tree: 'query> TagsCapture<'query, 'tree> {
     #[inline]
     pub fn as_definition_module(&self) -> Option<&super::nodes::ModItem<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::DefinitionModule { node, .. } = self { Some(node) } else { None }
+        if let Self::DefinitionModule(node) = self { Some(node) } else { None }
     }
     ///Try to interpret this capture as a `definition.macro` ([`super::nodes::MacroDefinition`])
     ///
@@ -4188,7 +3600,7 @@ impl<'query, 'tree: 'query> TagsCapture<'query, 'tree> {
     #[inline]
     pub fn as_definition_macro(&self) -> Option<&super::nodes::MacroDefinition<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::DefinitionMacro { node, .. } = self { Some(node) } else { None }
+        if let Self::DefinitionMacro(node) = self { Some(node) } else { None }
     }
     ///Try to interpret this capture as a `reference.call` ([`anon_unions::ReferenceCall`])
     ///
@@ -4205,7 +3617,7 @@ impl<'query, 'tree: 'query> TagsCapture<'query, 'tree> {
     #[inline]
     pub fn as_reference_call(&self) -> Option<&anon_unions::ReferenceCall<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::ReferenceCall { node, .. } = self { Some(node) } else { None }
+        if let Self::ReferenceCall(node) = self { Some(node) } else { None }
     }
     ///Try to interpret this capture as a `reference.implementation` ([`anon_unions::ReferenceImplementation`])
     ///
@@ -4220,268 +3632,79 @@ impl<'query, 'tree: 'query> TagsCapture<'query, 'tree> {
     #[inline]
     pub fn as_reference_implementation(&self) -> Option<&super::nodes::ImplItem<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::ReferenceImplementation { node, .. } = self {
-            Some(node)
-        } else {
-            None
-        }
-    }
-}
-#[automatically_derived]
-impl<'query, 'tree: 'query> std::fmt::Debug for TagsCapture<'query, 'tree> {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        match self {
-            Self::Name { node, .. } => {
-                f.debug_struct(concat!(stringify!(TagsCapture), "::", stringify!(Name)))
-                    .field("node", node)
-                    .finish()
-            }
-            Self::DefinitionClass { node, .. } => {
-                f.debug_struct(
-                        concat!(
-                            stringify!(TagsCapture), "::", stringify!(DefinitionClass)
-                        ),
-                    )
-                    .field("node", node)
-                    .finish()
-            }
-            Self::DefinitionMethod { node, .. } => {
-                f.debug_struct(
-                        concat!(
-                            stringify!(TagsCapture), "::", stringify!(DefinitionMethod)
-                        ),
-                    )
-                    .field("node", node)
-                    .finish()
-            }
-            Self::DefinitionFunction { node, .. } => {
-                f.debug_struct(
-                        concat!(
-                            stringify!(TagsCapture), "::", stringify!(DefinitionFunction)
-                        ),
-                    )
-                    .field("node", node)
-                    .finish()
-            }
-            Self::DefinitionInterface { node, .. } => {
-                f.debug_struct(
-                        concat!(
-                            stringify!(TagsCapture), "::",
-                            stringify!(DefinitionInterface)
-                        ),
-                    )
-                    .field("node", node)
-                    .finish()
-            }
-            Self::DefinitionModule { node, .. } => {
-                f.debug_struct(
-                        concat!(
-                            stringify!(TagsCapture), "::", stringify!(DefinitionModule)
-                        ),
-                    )
-                    .field("node", node)
-                    .finish()
-            }
-            Self::DefinitionMacro { node, .. } => {
-                f.debug_struct(
-                        concat!(
-                            stringify!(TagsCapture), "::", stringify!(DefinitionMacro)
-                        ),
-                    )
-                    .field("node", node)
-                    .finish()
-            }
-            Self::ReferenceCall { node, .. } => {
-                f.debug_struct(
-                        concat!(stringify!(TagsCapture), "::", stringify!(ReferenceCall)),
-                    )
-                    .field("node", node)
-                    .finish()
-            }
-            Self::ReferenceImplementation { node, .. } => {
-                f.debug_struct(
-                        concat!(
-                            stringify!(TagsCapture), "::",
-                            stringify!(ReferenceImplementation)
-                        ),
-                    )
-                    .field("node", node)
-                    .finish()
-            }
-            #[allow(unreachable_patterns)]
-            _ => unreachable!(),
-        }
-    }
-}
-#[automatically_derived]
-impl<'query, 'tree: 'query> Clone for TagsCapture<'query, 'tree> {
-    fn clone(&self) -> Self {
-        match self {
-            Self::Name { node, .. } => {
-                Self::Name {
-                    node: *node,
-                    r#match: None,
-                }
-            }
-            Self::DefinitionClass { node, .. } => {
-                Self::DefinitionClass {
-                    node: *node,
-                    r#match: None,
-                }
-            }
-            Self::DefinitionMethod { node, .. } => {
-                Self::DefinitionMethod {
-                    node: *node,
-                    r#match: None,
-                }
-            }
-            Self::DefinitionFunction { node, .. } => {
-                Self::DefinitionFunction {
-                    node: *node,
-                    r#match: None,
-                }
-            }
-            Self::DefinitionInterface { node, .. } => {
-                Self::DefinitionInterface {
-                    node: *node,
-                    r#match: None,
-                }
-            }
-            Self::DefinitionModule { node, .. } => {
-                Self::DefinitionModule {
-                    node: *node,
-                    r#match: None,
-                }
-            }
-            Self::DefinitionMacro { node, .. } => {
-                Self::DefinitionMacro {
-                    node: *node,
-                    r#match: None,
-                }
-            }
-            Self::ReferenceCall { node, .. } => {
-                Self::ReferenceCall {
-                    node: *node,
-                    r#match: None,
-                }
-            }
-            Self::ReferenceImplementation { node, .. } => {
-                Self::ReferenceImplementation {
-                    node: *node,
-                    r#match: None,
-                }
-            }
-            #[allow(unreachable_patterns)]
-            _ => unreachable!(),
-        }
+        if let Self::ReferenceImplementation(node) = self { Some(node) } else { None }
     }
 }
 #[automatically_derived]
 impl<'query, 'tree: 'query> type_sitter_lib::QueryCapture<'query, 'tree>
-for TagsCapture<'query, 'tree> {
+for TagsCapture<'tree> {
     type Query = Tags;
     #[inline]
     fn query(&self) -> &'query Self::Query {
         &Tags
     }
     #[inline]
-    fn r#match(
-        &self,
-    ) -> Option<&<Self::Query as type_sitter_lib::Query>::Match<'query, 'tree>> {
-        match self {
-            Self::Name { r#match, .. } => r#match.as_ref(),
-            Self::DefinitionClass { r#match, .. } => r#match.as_ref(),
-            Self::DefinitionMethod { r#match, .. } => r#match.as_ref(),
-            Self::DefinitionFunction { r#match, .. } => r#match.as_ref(),
-            Self::DefinitionInterface { r#match, .. } => r#match.as_ref(),
-            Self::DefinitionModule { r#match, .. } => r#match.as_ref(),
-            Self::DefinitionMacro { r#match, .. } => r#match.as_ref(),
-            Self::ReferenceCall { r#match, .. } => r#match.as_ref(),
-            Self::ReferenceImplementation { r#match, .. } => r#match.as_ref(),
-            #[allow(unreachable_patterns)]
-            _ => unreachable!(),
-        }
-    }
-    #[inline]
-    fn into_match(
-        self,
-    ) -> Option<<Self::Query as type_sitter_lib::Query>::Match<'query, 'tree>> {
-        match self {
-            Self::Name { r#match, .. } => r#match,
-            Self::DefinitionClass { r#match, .. } => r#match,
-            Self::DefinitionMethod { r#match, .. } => r#match,
-            Self::DefinitionFunction { r#match, .. } => r#match,
-            Self::DefinitionInterface { r#match, .. } => r#match,
-            Self::DefinitionModule { r#match, .. } => r#match,
-            Self::DefinitionMacro { r#match, .. } => r#match,
-            Self::ReferenceCall { r#match, .. } => r#match,
-            Self::ReferenceImplementation { r#match, .. } => r#match,
-            #[allow(unreachable_patterns)]
-            _ => unreachable!(),
-        }
-    }
-    #[inline]
     fn raw(&self) -> yak_sitter::QueryCapture<'query, 'tree> {
         #[allow(unused_imports)]
         use type_sitter_lib::Node;
         match self {
-            Self::Name { node, .. } => {
+            Self::Name(node) => {
                 yak_sitter::QueryCapture {
                     node: *node.raw(),
                     index: 0usize,
                     name: "name",
                 }
             }
-            Self::DefinitionClass { node, .. } => {
+            Self::DefinitionClass(node) => {
                 yak_sitter::QueryCapture {
                     node: *node.raw(),
                     index: 1usize,
                     name: "definition.class",
                 }
             }
-            Self::DefinitionMethod { node, .. } => {
+            Self::DefinitionMethod(node) => {
                 yak_sitter::QueryCapture {
                     node: *node.raw(),
                     index: 2usize,
                     name: "definition.method",
                 }
             }
-            Self::DefinitionFunction { node, .. } => {
+            Self::DefinitionFunction(node) => {
                 yak_sitter::QueryCapture {
                     node: *node.raw(),
                     index: 3usize,
                     name: "definition.function",
                 }
             }
-            Self::DefinitionInterface { node, .. } => {
+            Self::DefinitionInterface(node) => {
                 yak_sitter::QueryCapture {
                     node: *node.raw(),
                     index: 4usize,
                     name: "definition.interface",
                 }
             }
-            Self::DefinitionModule { node, .. } => {
+            Self::DefinitionModule(node) => {
                 yak_sitter::QueryCapture {
                     node: *node.raw(),
                     index: 5usize,
                     name: "definition.module",
                 }
             }
-            Self::DefinitionMacro { node, .. } => {
+            Self::DefinitionMacro(node) => {
                 yak_sitter::QueryCapture {
                     node: *node.raw(),
                     index: 6usize,
                     name: "definition.macro",
                 }
             }
-            Self::ReferenceCall { node, .. } => {
+            Self::ReferenceCall(node) => {
                 yak_sitter::QueryCapture {
                     node: *node.raw(),
                     index: 7usize,
                     name: "reference.call",
                 }
             }
-            Self::ReferenceImplementation { node, .. } => {
+            Self::ReferenceImplementation(node) => {
                 yak_sitter::QueryCapture {
                     node: *node.raw(),
                     index: 8usize,
@@ -4497,29 +3720,27 @@ for TagsCapture<'query, 'tree> {
         #[allow(unused_imports)]
         use type_sitter_lib::Node;
         match self {
-            Self::Name { node, .. } => type_sitter_lib::UntypedNode::r#ref(node.raw()),
-            Self::DefinitionClass { node, .. } => {
+            Self::Name(node) => type_sitter_lib::UntypedNode::r#ref(node.raw()),
+            Self::DefinitionClass(node) => {
                 type_sitter_lib::UntypedNode::r#ref(node.raw())
             }
-            Self::DefinitionMethod { node, .. } => {
+            Self::DefinitionMethod(node) => {
                 type_sitter_lib::UntypedNode::r#ref(node.raw())
             }
-            Self::DefinitionFunction { node, .. } => {
+            Self::DefinitionFunction(node) => {
                 type_sitter_lib::UntypedNode::r#ref(node.raw())
             }
-            Self::DefinitionInterface { node, .. } => {
+            Self::DefinitionInterface(node) => {
                 type_sitter_lib::UntypedNode::r#ref(node.raw())
             }
-            Self::DefinitionModule { node, .. } => {
+            Self::DefinitionModule(node) => {
                 type_sitter_lib::UntypedNode::r#ref(node.raw())
             }
-            Self::DefinitionMacro { node, .. } => {
+            Self::DefinitionMacro(node) => {
                 type_sitter_lib::UntypedNode::r#ref(node.raw())
             }
-            Self::ReferenceCall { node, .. } => {
-                type_sitter_lib::UntypedNode::r#ref(node.raw())
-            }
-            Self::ReferenceImplementation { node, .. } => {
+            Self::ReferenceCall(node) => type_sitter_lib::UntypedNode::r#ref(node.raw()),
+            Self::ReferenceImplementation(node) => {
                 type_sitter_lib::UntypedNode::r#ref(node.raw())
             }
             #[allow(unreachable_patterns)]
@@ -4531,31 +3752,29 @@ for TagsCapture<'query, 'tree> {
         #[allow(unused_imports)]
         use type_sitter_lib::Node;
         match self {
-            Self::Name { node, .. } => {
+            Self::Name(node) => type_sitter_lib::UntypedNode::r#mut(node.raw_mut()),
+            Self::DefinitionClass(node) => {
                 type_sitter_lib::UntypedNode::r#mut(node.raw_mut())
             }
-            Self::DefinitionClass { node, .. } => {
+            Self::DefinitionMethod(node) => {
                 type_sitter_lib::UntypedNode::r#mut(node.raw_mut())
             }
-            Self::DefinitionMethod { node, .. } => {
+            Self::DefinitionFunction(node) => {
                 type_sitter_lib::UntypedNode::r#mut(node.raw_mut())
             }
-            Self::DefinitionFunction { node, .. } => {
+            Self::DefinitionInterface(node) => {
                 type_sitter_lib::UntypedNode::r#mut(node.raw_mut())
             }
-            Self::DefinitionInterface { node, .. } => {
+            Self::DefinitionModule(node) => {
                 type_sitter_lib::UntypedNode::r#mut(node.raw_mut())
             }
-            Self::DefinitionModule { node, .. } => {
+            Self::DefinitionMacro(node) => {
                 type_sitter_lib::UntypedNode::r#mut(node.raw_mut())
             }
-            Self::DefinitionMacro { node, .. } => {
+            Self::ReferenceCall(node) => {
                 type_sitter_lib::UntypedNode::r#mut(node.raw_mut())
             }
-            Self::ReferenceCall { node, .. } => {
-                type_sitter_lib::UntypedNode::r#mut(node.raw_mut())
-            }
-            Self::ReferenceImplementation { node, .. } => {
+            Self::ReferenceImplementation(node) => {
                 type_sitter_lib::UntypedNode::r#mut(node.raw_mut())
             }
             #[allow(unreachable_patterns)]

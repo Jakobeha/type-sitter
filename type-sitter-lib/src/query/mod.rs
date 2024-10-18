@@ -35,21 +35,25 @@ pub trait Query {
         r#match: raw::QueryMatch<'query, 'tree>
     ) -> Self::Match<'query, 'tree>;
 
+    /// Wrap a reference to a tree-sitter `QueryMatch` which you know came from this query.
+    ///
+    /// # Safety
+    /// The match must have come from this query.
+    unsafe fn wrap_match_ref<'m, 'query, 'tree>(
+        &self,
+        r#match: &'m raw::QueryMatch<'query, 'tree>
+    ) -> &'m Self::Match<'query, 'tree>;
+
     //noinspection RsDuplicatedTraitMethodBinding -- IntelliJ inspection bug.
     /// Wrap a tree-sitter `QueryCapture` which you know came from this query.
     ///
-    /// If iterating [`QueryCaptures`], `r#match` will contain the current match, but if iterating
-    /// [`QueryMatchCaptures`], `r#match` will be `None`.
-    ///
     /// # Safety
-    /// The capture must have come from this query. Additionally, if `r#match` is `Some`, it must
-    /// contain the capture.
+    /// The capture must have come from this query.
     unsafe fn wrap_capture<'query, 'tree: 'query>(
         &self,
         #[cfg(feature = "yak-sitter")]
         capture: raw::QueryCapture<'query, 'tree>,
         #[cfg(not(feature = "yak-sitter"))]
         capture: raw::QueryCapture<'tree>,
-        r#match: Option<Self::Match<'query, 'tree>>
     ) -> Self::Capture<'query, 'tree>;
 }

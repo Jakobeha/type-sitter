@@ -60,7 +60,6 @@ impl<'query, 'tree, Query: crate::Query + 'tree> QueryMatchCaptures<'query, 'tre
             },
             #[cfg(not(feature = "yak-sitter"))]
             capture,
-            None
         ) }
     }
 

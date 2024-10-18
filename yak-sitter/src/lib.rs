@@ -4,7 +4,7 @@ use std::error::Error;
 use std::fmt::{Debug, Display, Formatter};
 use std::path::{Path, PathBuf};
 use std::iter::{FusedIterator, once, Once};
-use streaming_iterator::{StreamingIterator, StreamingIteratorMut};
+use streaming_iterator::StreamingIterator;
 use std::str::Utf8Error;
 use std::hash::{Hash, Hasher};
 use std::ops::{BitAnd, BitOr, BitOrAssign, RangeBounds};
@@ -88,7 +88,7 @@ pub struct QueryMatches<'query, 'tree> {
 
 /// Wrapper around [`tree_sitter::QueryMatch`]
 pub struct QueryMatch<'query, 'tree> {
-    query_match: tree_sitter::QueryMatch<'query, 'tree>,
+    query_match: *const tree_sitter::QueryMatch<'query, 'tree>,
     query: &'query Query,
     tree: &'tree Tree
 }
@@ -1071,8 +1071,9 @@ impl<'query, 'tree: 'query> StreamingIterator for QueryMatches<'query, 'tree> {
 
     #[inline]
     fn advance(&mut self) {
-        self.current_match = self.query_matches.next().map(|query_match| QueryMatch {
-            query_match,
+        self.query_matches.advance();
+        self.current_match = self.query_matches.get().map(|query_match| QueryMatch {
+            query_match: query_match as *const _,
             query: self.query,
             tree: self.tree
         });
@@ -1085,12 +1086,6 @@ impl<'query, 'tree: 'query> StreamingIterator for QueryMatches<'query, 'tree> {
 
     fn size_hint(&self) -> (usize, Option<usize>) {
         self.query_matches.size_hint()
-    }
-}
-
-impl<'query, 'tree: 'query> StreamingIteratorMut for QueryMatches<'query, 'tree> {
-    fn get_mut(&mut self) -> Option<&mut Self::Item> {
-        self.current_match.as_mut()
     }
 }
 
@@ -1144,7 +1139,7 @@ impl<'query, 'tree: 'query> Iterator for QueryCaptures<'query, 'tree> {
     #[inline]
     fn next(&mut self) -> Option<Self::Item> {
         self.query_captures.next().map(|(query_match, index)|
-            QueryCapture::new(query_match.captures[index], self.query, self.tree))
+            QueryCapture::new(query_match.captures[*index], self.query, self.tree))
     }
 }
 
@@ -1152,14 +1147,18 @@ impl<'query, 'tree> QueryMatch<'query, 'tree> {
     /// Wrap a tree-sitter query match.
     ///
     /// # Safety
-    /// The query match must be from the given tree and query.
+    /// The query match must be from the given tree and query. Additionally, *`query_match`'s
+    /// lifetime must be longer than the "lifetime" where any methods may be called on this
+    /// structure, despite not being captured in the signature* (the structure can outlive
+    /// `query_match` because it stores a raw pointer, but most of its methods dereference, so when
+    /// `query_match` is no longer live they cause UB).
     #[inline]
     pub unsafe fn new(
-        query_match: tree_sitter::QueryMatch<'query, 'tree>,
+        query_match: &tree_sitter::QueryMatch<'query, 'tree>,
         query: &'query Query,
         tree: &'tree Tree
     ) -> Self {
-        Self { query_match, query, tree }
+        Self { query_match: query_match as *const _, query, tree }
     }
 
     /// Get the query that the match is from
@@ -1177,14 +1176,14 @@ impl<'query, 'tree> QueryMatch<'query, 'tree> {
     /// Iterate all captures in the order they appear.
     #[inline]
     pub fn iter_captures(&self) -> impl Iterator<Item = QueryCapture<'query, 'tree>> {
-        self.query_match.captures.iter().map(|&query_capture|
+        self.as_inner().captures.iter().map(|&query_capture|
             QueryCapture::new(query_capture, self.query, self.tree))
     }
 
     /// Get the capture at the given index (order it appears).
     #[inline]
     pub fn capture(&self, index: usize) -> Option<QueryCapture<'query, 'tree>> {
-        self.query_match.captures.get(index).map(|&query_capture|
+        self.as_inner().captures.get(index).map(|&query_capture|
             QueryCapture::new(query_capture, self.query, self.tree))
     }
 
@@ -1203,32 +1202,32 @@ impl<'query, 'tree> QueryMatch<'query, 'tree> {
     /// Get the number of captures in this match.
     #[inline]
     pub fn capture_count(&self) -> usize {
-        self.query_match.captures.len()
+        self.as_inner().captures.len()
     }
 
     /// Get the pattern index of this match.
     #[inline]
     pub fn pattern_index(&self) -> usize {
-        self.query_match.pattern_index
+        self.as_inner().pattern_index
     }
 
     /// Get the id of this match  (honestly I don't know what this does because it's not documented)
     #[inline]
     pub fn id(&self) -> u32 {
-        self.query_match.id()
+        self.as_inner().id()
     }
 
     /// Remove the match (honestly I don't know what this does because it's not documented)
     #[inline]
-    pub fn remove(self) {
-        self.query_match.remove()
+    pub fn remove(&self) {
+        self.as_inner().remove()
     }
 
     /// Get the nodes that were captures by the capture at the given index.
     #[inline]
     pub fn nodes_for_capture_index(&self, capture_index: u32) -> impl Iterator<Item = Node<'tree>> + '_ {
         // SAFETY: Same tree
-        self.query_match
+        self.as_inner()
             .nodes_for_capture_index(capture_index)
              .map(move |node| unsafe { Node::new(node, self.tree) })
     }
@@ -1236,18 +1235,14 @@ impl<'query, 'tree> QueryMatch<'query, 'tree> {
     /// Get the underlying [`tree_sitter::QueryMatch`]
     #[inline]
     pub fn as_inner(&self) -> &tree_sitter::QueryMatch<'query, 'tree> {
-        &self.query_match
+        // SAFETY: The `unsafe` constructor requires that the pointer is live.
+        unsafe { &*self.query_match }
     }
 
-    /// Get the underlying [`tree_sitter::QueryMatch`] (mutable)
+    /// Destruct into the underlying [`tree_sitter::QueryMatch`] raw pointer, as well as the query and
+    /// tree
     #[inline]
-    pub fn as_inner_mut(&mut self) -> &mut tree_sitter::QueryMatch<'query, 'tree> {
-        &mut self.query_match
-    }
-
-    /// Destruct into the underlying [`tree_sitter::QueryMatch`], as well as the query and tree
-    #[inline]
-    pub fn into_inner(self) -> (tree_sitter::QueryMatch<'query, 'tree>, &'query Query, &'tree Tree) {
+    pub fn into_inner(self) -> (*const tree_sitter::QueryMatch<'query, 'tree>, &'query Query, &'tree Tree) {
         (self.query_match, self.query, self.tree)
     }
 }

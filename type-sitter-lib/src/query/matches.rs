@@ -1,7 +1,7 @@
 use crate::query::match_captures::QueryMatchCaptures;
 use crate::{raw, Query};
 use std::fmt::Debug;
-use streaming_iterator::{StreamingIterator, StreamingIteratorMut};
+use streaming_iterator::StreamingIterator;
 #[cfg(not(feature = "yak-sitter"))]
 use tree_sitter::Point;
 #[cfg(feature = "yak-sitter")]
@@ -15,10 +15,8 @@ use yak_sitter::PointRange;
 #[cfg(feature = "yak-sitter")]
 pub struct QueryMatches<'query, 'tree: 'query, Query: crate::Query> {
     typed_query: &'query Query,
-    untyped_matches: tree_sitter::QueryMatches<'query, 'tree, &'tree raw::Tree, &'tree str>,
-    untyped_query: &'query raw::Query,
-    tree: &'tree raw::Tree,
-    current_match: Option<Query::Match<'query, 'tree>>,
+    untyped_matches: raw::QueryMatches<'query, 'tree>,
+    current_match: Option<*const Query::Match<'query, 'tree>>,
 }
 
 /// Iterate a typed query's matches (see [tree-sitter's `QueryMatches`](raw::QueryMatches)).
@@ -30,7 +28,7 @@ pub struct QueryMatches<'query, 'tree: 'query, Query: crate::Query> {
 pub struct QueryMatches<'query, 'tree: 'query, Query: crate::Query + 'tree, Text: raw::TextProvider<I>, I: AsRef<[u8]>> {
     typed_query: &'query Query,
     untyped_matches: raw::QueryMatches<'query, 'tree, Text, I>,
-    current_match: Option<Query::Match<'query, 'tree>>,
+    current_match: Option<*const Query::Match<'query, 'tree>>,
 }
 
 /// A match from a [Query] with [typed nodes](Node)
@@ -91,13 +89,9 @@ impl<'query, 'tree: 'query, Query: crate::Query + 'tree> QueryMatches<'query, 't
         typed_query: &'query Query,
         untyped_matches: raw::QueryMatches<'query, 'tree>
     ) -> Self {
-        let (untyped_matches, untyped_query, tree) =
-            untyped_matches.into_inner();
         Self {
             typed_query,
             untyped_matches,
-            untyped_query,
-            tree,
             current_match: None
         }
     }
@@ -112,7 +106,7 @@ impl<'query, 'tree: 'query, Query: crate::Query + 'tree> QueryMatches<'query, 't
     #[inline]
     #[cfg(feature = "yak-sitter")]
     pub fn set_point_range(&mut self, range: PointRange) {
-        self.untyped_matches.set_point_range(range.to_ts_point_range())
+        self.untyped_matches.set_point_range(range)
     }
 }
 
@@ -154,16 +148,21 @@ impl<'query, 'tree: 'query, Query: crate::Query + 'tree> StreamingIterator for Q
 
     #[inline]
     fn advance(&mut self) {
-        // SAFETY: Matches come from the same query and tree
+        self.untyped_matches.advance();
+        // SAFETY: Matches come from the same query and tree.
         self.current_match = unsafe {
-            self.untyped_matches.next().map(|m|
-                self.typed_query.wrap_match(raw::QueryMatch::new(m, self.untyped_query, self.tree)))
+            self.untyped_matches.get().map(|m|
+                self.typed_query.wrap_match_ref(m) as *const _)
         }
     }
 
     #[inline]
     fn get(&self) -> Option<&Self::Item> {
-        self.current_match.as_ref()
+        // SAFETY: `m` is still live, because it's only invalidated when this `untyped_matches` is
+        // dropped (which only happens when `self` is dropped, which can't have happened here) or
+        // `untyped_matches.advance` is called (which can only happen when `self.advance` is called,
+        // which replaces `current_match` with another value where, if `Some`, `m` is live).
+        self.current_match.map(|m| unsafe { &*m })
     }
 
     #[inline]
@@ -179,37 +178,25 @@ impl<'query, 'tree: 'query, Query: crate::Query + 'tree, Text: raw::TextProvider
 
     #[inline]
     fn advance(&mut self) {
-        // SAFETY: Matches come from the same query
+        self.untyped_matches.advance();
+        // SAFETY: Matches come from the same query and tree.
         self.current_match = unsafe {
-            self.untyped_matches.next().map(|m| self.typed_query.wrap_match(m))
+            self.untyped_matches.get().map(|m|
+                self.typed_query.wrap_match_ref(m) as *const _)
         }
     }
 
     #[inline]
     fn get(&self) -> Option<&Self::Item> {
-        self.current_match.as_ref()
+        // SAFETY: `m` is still live, because it's only invalidated when this `untyped_matches` is
+        // dropped (which only happens when `self` is dropped, which can't have happened here) or
+        // `untyped_matches.advance` is called (which can only happen when `self.advance` is called,
+        // which replaces `current_match` with another value where, if `Some`, `m` is live).
+        self.current_match.map(|m| unsafe { &*m })
     }
 
     #[inline]
     fn size_hint(&self) -> (usize, Option<usize>) {
         self.untyped_matches.size_hint()
-    }
-}
-
-//noinspection DuplicatedCode
-#[cfg(feature = "yak-sitter")]
-impl<'query, 'tree: 'query, Query: crate::Query + 'tree> StreamingIteratorMut for QueryMatches<'query, 'tree, Query> {
-    #[inline]
-    fn get_mut(&mut self) -> Option<&mut Self::Item> {
-        self.current_match.as_mut()
-    }
-}
-
-//noinspection DuplicatedCode
-#[cfg(not(feature = "yak-sitter"))]
-impl<'query, 'tree: 'query, Query: crate::Query + 'tree, Text: raw::TextProvider<I>, I: AsRef<[u8]>> StreamingIteratorMut for QueryMatches<'query, 'tree, Query, Text, I> {
-    #[inline]
-    fn get_mut(&mut self) -> Option<&mut Self::Item> {
-        self.current_match.as_mut()
     }
 }

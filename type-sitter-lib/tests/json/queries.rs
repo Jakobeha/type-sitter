@@ -120,37 +120,29 @@ pub struct HighlightsMatch<'query, 'tree: 'query>(yak_sitter::QueryMatch<'query,
 (comment) @comment
 
 ```*/
-pub enum HighlightsCapture<'query, 'tree: 'query> {
+#[derive(Clone, Debug)]
+pub enum HighlightsCapture<'tree> {
     ///A `string.special.key` ([`type_sitter_lib::UntypedNamedNode`])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
     ///(_) @string.special.key
     ///```
-    StringSpecialKey {
-        node: type_sitter_lib::UntypedNamedNode<'tree>,
-        r#match: Option<HighlightsMatch<'query, 'tree>>,
-    },
+    StringSpecialKey(type_sitter_lib::UntypedNamedNode<'tree>),
     ///A `string` ([`super::nodes::String`])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
     ///(string) @string
     ///```
-    String {
-        node: super::nodes::String<'tree>,
-        r#match: Option<HighlightsMatch<'query, 'tree>>,
-    },
+    String(super::nodes::String<'tree>),
     ///A `number` ([`super::nodes::Number`])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
     ///(number) @number
     ///```
-    Number {
-        node: super::nodes::Number<'tree>,
-        r#match: Option<HighlightsMatch<'query, 'tree>>,
-    },
+    Number(super::nodes::Number<'tree>),
     ///A `constant.builtin` ([`anon_unions::ConstantBuiltin`])
     ///
     ///The full capture including pattern(s) is:
@@ -161,35 +153,26 @@ pub enum HighlightsCapture<'query, 'tree: 'query> {
   (false)
 ] @constant.builtin*/
     ///```
-    ConstantBuiltin {
-        node: anon_unions::ConstantBuiltin<'tree>,
-        r#match: Option<HighlightsMatch<'query, 'tree>>,
-    },
+    ConstantBuiltin(anon_unions::ConstantBuiltin<'tree>),
     ///A `escape` ([`super::nodes::EscapeSequence`])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
     ///(escape_sequence) @escape
     ///```
-    Escape {
-        node: super::nodes::EscapeSequence<'tree>,
-        r#match: Option<HighlightsMatch<'query, 'tree>>,
-    },
+    Escape(super::nodes::EscapeSequence<'tree>),
     ///A `comment` ([`super::nodes::Comment`])
     ///
     ///The full capture including pattern(s) is:
     ///```sexp
     ///(comment) @comment
     ///```
-    Comment {
-        node: super::nodes::Comment<'tree>,
-        r#match: Option<HighlightsMatch<'query, 'tree>>,
-    },
+    Comment(super::nodes::Comment<'tree>),
 }
 #[automatically_derived]
 impl type_sitter_lib::Query for Highlights {
     type Match<'query, 'tree: 'query> = HighlightsMatch<'query, 'tree>;
-    type Capture<'query, 'tree: 'query> = HighlightsCapture<'query, 'tree>;
+    type Capture<'query, 'tree: 'query> = HighlightsCapture<'tree>;
     fn as_str(&self) -> &'static str {
         "(pair\n  key: (_) @string.special.key)\n\n(string) @string\n\n(number) @number\n\n[\n  (null)\n  (true)\n  (false)\n] @constant.builtin\n\n(escape_sequence) @escape\n\n(comment) @comment\n"
     }
@@ -217,59 +200,60 @@ impl type_sitter_lib::Query for Highlights {
         HighlightsMatch(r#match)
     }
     #[inline]
+    unsafe fn wrap_match_ref<'m, 'query, 'tree>(
+        &self,
+        r#match: &'m yak_sitter::QueryMatch<'query, 'tree>,
+    ) -> &'m HighlightsMatch<'query, 'tree> {
+        &*(r#match as *const yak_sitter::QueryMatch<'query, 'tree>
+            as *const HighlightsMatch<'query, 'tree>)
+    }
+    #[inline]
     unsafe fn wrap_capture<'query, 'tree: 'query>(
         &self,
         capture: yak_sitter::QueryCapture<'query, 'tree>,
-        r#match: Option<HighlightsMatch<'query, 'tree>>,
-    ) -> HighlightsCapture<'query, 'tree> {
+    ) -> HighlightsCapture<'tree> {
         match capture.index as usize {
             0usize => {
-                HighlightsCapture::StringSpecialKey {
-                    node: <type_sitter_lib::UntypedNamedNode<
+                HighlightsCapture::StringSpecialKey(
+                    <type_sitter_lib::UntypedNamedNode<
                         'tree,
                     > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(capture.node),
-                    r#match,
-                }
+                )
             }
             1usize => {
-                HighlightsCapture::String {
-                    node: <super::nodes::String<
+                HighlightsCapture::String(
+                    <super::nodes::String<
                         'tree,
                     > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(capture.node),
-                    r#match,
-                }
+                )
             }
             2usize => {
-                HighlightsCapture::Number {
-                    node: <super::nodes::Number<
+                HighlightsCapture::Number(
+                    <super::nodes::Number<
                         'tree,
                     > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(capture.node),
-                    r#match,
-                }
+                )
             }
             3usize => {
-                HighlightsCapture::ConstantBuiltin {
-                    node: <anon_unions::ConstantBuiltin<
+                HighlightsCapture::ConstantBuiltin(
+                    <anon_unions::ConstantBuiltin<
                         'tree,
                     > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(capture.node),
-                    r#match,
-                }
+                )
             }
             4usize => {
-                HighlightsCapture::Escape {
-                    node: <super::nodes::EscapeSequence<
+                HighlightsCapture::Escape(
+                    <super::nodes::EscapeSequence<
                         'tree,
                     > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(capture.node),
-                    r#match,
-                }
+                )
             }
             5usize => {
-                HighlightsCapture::Comment {
-                    node: <super::nodes::Comment<
+                HighlightsCapture::Comment(
+                    <super::nodes::Comment<
                         'tree,
                     > as type_sitter_lib::Node<'tree>>::from_raw_unchecked(capture.node),
-                    r#match,
-                }
+                )
             }
             capture_index => unreachable!("Invalid capture index: {}", capture_index),
         }
@@ -432,7 +416,7 @@ for HighlightsMatch<'query, 'tree> {
     }
 }
 #[automatically_derived]
-impl<'query, 'tree: 'query> HighlightsCapture<'query, 'tree> {
+impl<'tree> HighlightsCapture<'tree> {
     ///Try to interpret this capture as a `string.special.key` ([`type_sitter_lib::UntypedNamedNode`])
     ///
     ///The full capture including pattern(s) is:
@@ -444,7 +428,7 @@ impl<'query, 'tree: 'query> HighlightsCapture<'query, 'tree> {
         &self,
     ) -> Option<&type_sitter_lib::UntypedNamedNode<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::StringSpecialKey { node, .. } = self { Some(node) } else { None }
+        if let Self::StringSpecialKey(node) = self { Some(node) } else { None }
     }
     ///Try to interpret this capture as a `string` ([`super::nodes::String`])
     ///
@@ -455,7 +439,7 @@ impl<'query, 'tree: 'query> HighlightsCapture<'query, 'tree> {
     #[inline]
     pub fn as_string(&self) -> Option<&super::nodes::String<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::String { node, .. } = self { Some(node) } else { None }
+        if let Self::String(node) = self { Some(node) } else { None }
     }
     ///Try to interpret this capture as a `number` ([`super::nodes::Number`])
     ///
@@ -466,7 +450,7 @@ impl<'query, 'tree: 'query> HighlightsCapture<'query, 'tree> {
     #[inline]
     pub fn as_number(&self) -> Option<&super::nodes::Number<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::Number { node, .. } = self { Some(node) } else { None }
+        if let Self::Number(node) = self { Some(node) } else { None }
     }
     ///Try to interpret this capture as a `constant.builtin` ([`anon_unions::ConstantBuiltin`])
     ///
@@ -481,7 +465,7 @@ impl<'query, 'tree: 'query> HighlightsCapture<'query, 'tree> {
     #[inline]
     pub fn as_constant_builtin(&self) -> Option<&anon_unions::ConstantBuiltin<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::ConstantBuiltin { node, .. } = self { Some(node) } else { None }
+        if let Self::ConstantBuiltin(node) = self { Some(node) } else { None }
     }
     ///Try to interpret this capture as a `escape` ([`super::nodes::EscapeSequence`])
     ///
@@ -492,7 +476,7 @@ impl<'query, 'tree: 'query> HighlightsCapture<'query, 'tree> {
     #[inline]
     pub fn as_escape(&self) -> Option<&super::nodes::EscapeSequence<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::Escape { node, .. } = self { Some(node) } else { None }
+        if let Self::Escape(node) = self { Some(node) } else { None }
     }
     ///Try to interpret this capture as a `comment` ([`super::nodes::Comment`])
     ///
@@ -503,190 +487,58 @@ impl<'query, 'tree: 'query> HighlightsCapture<'query, 'tree> {
     #[inline]
     pub fn as_comment(&self) -> Option<&super::nodes::Comment<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::Comment { node, .. } = self { Some(node) } else { None }
-    }
-}
-#[automatically_derived]
-impl<'query, 'tree: 'query> std::fmt::Debug for HighlightsCapture<'query, 'tree> {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        match self {
-            Self::StringSpecialKey { node, .. } => {
-                f.debug_struct(
-                        concat!(
-                            stringify!(HighlightsCapture), "::",
-                            stringify!(StringSpecialKey)
-                        ),
-                    )
-                    .field("node", node)
-                    .finish()
-            }
-            Self::String { node, .. } => {
-                f.debug_struct(
-                        concat!(stringify!(HighlightsCapture), "::", stringify!(String)),
-                    )
-                    .field("node", node)
-                    .finish()
-            }
-            Self::Number { node, .. } => {
-                f.debug_struct(
-                        concat!(stringify!(HighlightsCapture), "::", stringify!(Number)),
-                    )
-                    .field("node", node)
-                    .finish()
-            }
-            Self::ConstantBuiltin { node, .. } => {
-                f.debug_struct(
-                        concat!(
-                            stringify!(HighlightsCapture), "::",
-                            stringify!(ConstantBuiltin)
-                        ),
-                    )
-                    .field("node", node)
-                    .finish()
-            }
-            Self::Escape { node, .. } => {
-                f.debug_struct(
-                        concat!(stringify!(HighlightsCapture), "::", stringify!(Escape)),
-                    )
-                    .field("node", node)
-                    .finish()
-            }
-            Self::Comment { node, .. } => {
-                f.debug_struct(
-                        concat!(stringify!(HighlightsCapture), "::", stringify!(Comment)),
-                    )
-                    .field("node", node)
-                    .finish()
-            }
-            #[allow(unreachable_patterns)]
-            _ => unreachable!(),
-        }
-    }
-}
-#[automatically_derived]
-impl<'query, 'tree: 'query> Clone for HighlightsCapture<'query, 'tree> {
-    fn clone(&self) -> Self {
-        match self {
-            Self::StringSpecialKey { node, .. } => {
-                Self::StringSpecialKey {
-                    node: *node,
-                    r#match: None,
-                }
-            }
-            Self::String { node, .. } => {
-                Self::String {
-                    node: *node,
-                    r#match: None,
-                }
-            }
-            Self::Number { node, .. } => {
-                Self::Number {
-                    node: *node,
-                    r#match: None,
-                }
-            }
-            Self::ConstantBuiltin { node, .. } => {
-                Self::ConstantBuiltin {
-                    node: *node,
-                    r#match: None,
-                }
-            }
-            Self::Escape { node, .. } => {
-                Self::Escape {
-                    node: *node,
-                    r#match: None,
-                }
-            }
-            Self::Comment { node, .. } => {
-                Self::Comment {
-                    node: *node,
-                    r#match: None,
-                }
-            }
-            #[allow(unreachable_patterns)]
-            _ => unreachable!(),
-        }
+        if let Self::Comment(node) = self { Some(node) } else { None }
     }
 }
 #[automatically_derived]
 impl<'query, 'tree: 'query> type_sitter_lib::QueryCapture<'query, 'tree>
-for HighlightsCapture<'query, 'tree> {
+for HighlightsCapture<'tree> {
     type Query = Highlights;
     #[inline]
     fn query(&self) -> &'query Self::Query {
         &Highlights
     }
     #[inline]
-    fn r#match(
-        &self,
-    ) -> Option<&<Self::Query as type_sitter_lib::Query>::Match<'query, 'tree>> {
-        match self {
-            Self::StringSpecialKey { r#match, .. } => r#match.as_ref(),
-            Self::String { r#match, .. } => r#match.as_ref(),
-            Self::Number { r#match, .. } => r#match.as_ref(),
-            Self::ConstantBuiltin { r#match, .. } => r#match.as_ref(),
-            Self::Escape { r#match, .. } => r#match.as_ref(),
-            Self::Comment { r#match, .. } => r#match.as_ref(),
-            #[allow(unreachable_patterns)]
-            _ => unreachable!(),
-        }
-    }
-    #[inline]
-    fn into_match(
-        self,
-    ) -> Option<<Self::Query as type_sitter_lib::Query>::Match<'query, 'tree>> {
-        match self {
-            Self::StringSpecialKey { r#match, .. } => r#match,
-            Self::String { r#match, .. } => r#match,
-            Self::Number { r#match, .. } => r#match,
-            Self::ConstantBuiltin { r#match, .. } => r#match,
-            Self::Escape { r#match, .. } => r#match,
-            Self::Comment { r#match, .. } => r#match,
-            #[allow(unreachable_patterns)]
-            _ => unreachable!(),
-        }
-    }
-    #[inline]
     fn raw(&self) -> yak_sitter::QueryCapture<'query, 'tree> {
         #[allow(unused_imports)]
         use type_sitter_lib::Node;
         match self {
-            Self::StringSpecialKey { node, .. } => {
+            Self::StringSpecialKey(node) => {
                 yak_sitter::QueryCapture {
                     node: *node.raw(),
                     index: 0usize,
                     name: "string.special.key",
                 }
             }
-            Self::String { node, .. } => {
+            Self::String(node) => {
                 yak_sitter::QueryCapture {
                     node: *node.raw(),
                     index: 1usize,
                     name: "string",
                 }
             }
-            Self::Number { node, .. } => {
+            Self::Number(node) => {
                 yak_sitter::QueryCapture {
                     node: *node.raw(),
                     index: 2usize,
                     name: "number",
                 }
             }
-            Self::ConstantBuiltin { node, .. } => {
+            Self::ConstantBuiltin(node) => {
                 yak_sitter::QueryCapture {
                     node: *node.raw(),
                     index: 3usize,
                     name: "constant.builtin",
                 }
             }
-            Self::Escape { node, .. } => {
+            Self::Escape(node) => {
                 yak_sitter::QueryCapture {
                     node: *node.raw(),
                     index: 4usize,
                     name: "escape",
                 }
             }
-            Self::Comment { node, .. } => {
+            Self::Comment(node) => {
                 yak_sitter::QueryCapture {
                     node: *node.raw(),
                     index: 5usize,
@@ -702,16 +554,16 @@ for HighlightsCapture<'query, 'tree> {
         #[allow(unused_imports)]
         use type_sitter_lib::Node;
         match self {
-            Self::StringSpecialKey { node, .. } => {
+            Self::StringSpecialKey(node) => {
                 type_sitter_lib::UntypedNode::r#ref(node.raw())
             }
-            Self::String { node, .. } => type_sitter_lib::UntypedNode::r#ref(node.raw()),
-            Self::Number { node, .. } => type_sitter_lib::UntypedNode::r#ref(node.raw()),
-            Self::ConstantBuiltin { node, .. } => {
+            Self::String(node) => type_sitter_lib::UntypedNode::r#ref(node.raw()),
+            Self::Number(node) => type_sitter_lib::UntypedNode::r#ref(node.raw()),
+            Self::ConstantBuiltin(node) => {
                 type_sitter_lib::UntypedNode::r#ref(node.raw())
             }
-            Self::Escape { node, .. } => type_sitter_lib::UntypedNode::r#ref(node.raw()),
-            Self::Comment { node, .. } => type_sitter_lib::UntypedNode::r#ref(node.raw()),
+            Self::Escape(node) => type_sitter_lib::UntypedNode::r#ref(node.raw()),
+            Self::Comment(node) => type_sitter_lib::UntypedNode::r#ref(node.raw()),
             #[allow(unreachable_patterns)]
             _ => unreachable!(),
         }
@@ -721,24 +573,16 @@ for HighlightsCapture<'query, 'tree> {
         #[allow(unused_imports)]
         use type_sitter_lib::Node;
         match self {
-            Self::StringSpecialKey { node, .. } => {
+            Self::StringSpecialKey(node) => {
                 type_sitter_lib::UntypedNode::r#mut(node.raw_mut())
             }
-            Self::String { node, .. } => {
+            Self::String(node) => type_sitter_lib::UntypedNode::r#mut(node.raw_mut()),
+            Self::Number(node) => type_sitter_lib::UntypedNode::r#mut(node.raw_mut()),
+            Self::ConstantBuiltin(node) => {
                 type_sitter_lib::UntypedNode::r#mut(node.raw_mut())
             }
-            Self::Number { node, .. } => {
-                type_sitter_lib::UntypedNode::r#mut(node.raw_mut())
-            }
-            Self::ConstantBuiltin { node, .. } => {
-                type_sitter_lib::UntypedNode::r#mut(node.raw_mut())
-            }
-            Self::Escape { node, .. } => {
-                type_sitter_lib::UntypedNode::r#mut(node.raw_mut())
-            }
-            Self::Comment { node, .. } => {
-                type_sitter_lib::UntypedNode::r#mut(node.raw_mut())
-            }
+            Self::Escape(node) => type_sitter_lib::UntypedNode::r#mut(node.raw_mut()),
+            Self::Comment(node) => type_sitter_lib::UntypedNode::r#mut(node.raw_mut()),
             #[allow(unreachable_patterns)]
             _ => unreachable!(),
         }
