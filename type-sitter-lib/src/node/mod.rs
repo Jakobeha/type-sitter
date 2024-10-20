@@ -29,6 +29,9 @@ mod parser;
 /// That is how you convert untyped nodes into types nodes. If you're absolutely sure the node is
 /// correct, you may also use [`Node::from_raw_unchecked`], though it's honestly probably not
 /// worth the possible performance gain.
+///
+/// You can get extra nodes (e.g. comments) that are before and after this node with [`prefixes`](
+/// Self::prefixes) and [`suffixes`](Self::suffixes).
 pub trait Node<'tree>: Debug + Clone + Copy + PartialEq + Eq + Hash {
     /// The same type, but with a different lifetime.
     type WithLifetime<'a>: Node<'a>;
