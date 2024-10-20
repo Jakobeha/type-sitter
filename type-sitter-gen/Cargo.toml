@@ -1,6 +1,6 @@
 [package]
 name = "type-sitter-gen"
-version = "0.5.0"
+version = "0.5.2"
 authors = ["Jakob Hain <jakobeha@fastmail.com>"]
 description = "generate typed wrappers for tree-sitter grammars from node-types.json and queries"
 license = "MIT OR Apache-2.0"
