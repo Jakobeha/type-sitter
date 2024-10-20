@@ -10,7 +10,7 @@ pub struct QueryMatchCaptures<'query, 'tree, Query: crate::Query + 'tree> {
     tree: &'tree raw::Tree
 }
 
-/// Iterate captures from a [`crate::QueryMatch`](QueryMatch)
+/// Iterate captures from a [`QueryMatch`](crate::QueryMatch)
 pub struct QueryMatchCapturesIntoIter<'query, 'tree, Query: crate::Query + 'tree> {
     captures: QueryMatchCaptures<'query, 'tree, Query>,
     index: usize,
