@@ -1,6 +1,6 @@
 /// Print query
 mod print;
-/// Dynamically-load a [tree_sitter::Language] to create [Query]s
+/// Dynamically-load a [`tree_sitter::Language`] to create [`Query`]s
 mod dyload_language;
 /// Tree-sitter query s-expression dialect
 mod sexp;
@@ -24,9 +24,9 @@ use tree_sitter::Query;
 /// # Parameters
 /// - `path`: Path to the queries. Must point to a `.scm` or directory of `.scm` files. If a
 ///   directory, this function will generate submodules for each `.scm`.
-/// - `language_path`: path to the tree-sitter language module, where the [tree_sitter::Language]
+/// - `language_path`: path to the tree-sitter language module, where the [`tree_sitter::Language`]
 ///   will be dynamically loaded. It must also contain `src/node-types.json`.
-/// - `nodes`: Path to the crate with the typed node wrappers. Typically [crate::super_nodes]
+/// - `nodes`: Path to the crate with the typed node wrappers. Typically [`crate::super_nodes`]
 /// - `use_yak_sitter`: Whether to generate queries that depend on the `yak_sitter` feature.
 ///
 /// # Example
@@ -70,9 +70,9 @@ pub fn generate_queries(
 /// # Parameters
 /// - `path`: Path to the queries. Must point to a `.scm` or directory of `.scm` files. If a
 ///   directory, this function will generate submodules for each `.scm`.
-/// - `language_path`: path to the tree-sitter language module, where the [tree_sitter::Language]
+/// - `language_path`: path to the tree-sitter language module, where the [`tree_sitter::Language`]
 ///   will be dynamically loaded. It must also contain `src/node-types.json`.
-/// - `nodes`: Path to the crate with the typed node wrappers. Typically [crate::super_nodes]
+/// - `nodes`: Path to the crate with the typed node wrappers. Typically [`crate::super_nodes`]
 /// - `use_yak_sitter`: Whether to generate queries that depend on the `yak_sitter` feature.
 /// - `tree_sitter`: Path to the crate with the tree-sitter API. In [`generate_nodes`] this is
 ///   [`type_sitter_raw`] but you can provide something else, like the re-exported [`tree_sitter`]

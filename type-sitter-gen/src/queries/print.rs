@@ -24,16 +24,16 @@ impl<'tree> SExpSeq<'tree> {
     /// - `disabled_capture_idxs`: List of capture indices to ignore on the query (both these and
     ///   all indices with names in `disabled_capture_names` are disabled)
     /// - `nodes`: Path to the crate with the typed node wrappers. Typically
-    ///   [type_sitter_gen::super_nodes]
+    ///   [`type_sitter_gen::super_nodes`]
     /// - `use_yak_sitter`: Whether to use `yak_sitter` or `tree_sitter`
     /// - `ctx.all_types`: Map of node type names to their types.
     /// - `ctx.tree_sitter`: Path to the crate with the tree-sitter API. For cli-generated sources,
-    ///    use [crate::tree_sitter] if `use_yak_sitter` is false or [crate::yak_sitter] if
-    ///    `use_yak_sitter` is true. For proc-macro generated sources, use [crate::type_sitter_raw]
-    ///    either way.
+    ///    use [`crate::tree_sitter`] if `use_yak_sitter` is false or [`crate::yak_sitter`] if
+    ///    `use_yak_sitter` is true. For proc-macro generated sources, use
+    ///    [`crate::type_sitter_raw`] either way.
     /// - `ctx.type_sitter_lib`: Path to the crate with the type-sitter API. For cli-generated
-    ///   sources, use [crate::type_sitter_lib]. For proc-macro generated sources, use
-    ///   [crate::type_sitter].
+    ///   sources, use [`crate::type_sitter_lib`]. For proc-macro generated sources, use
+    ///   [`crate::type_sitter`].
     /// - `anon_unions`: Anonymous unions for query capture type
     pub(crate) fn print(
         &self,

@@ -2,7 +2,7 @@ use std::path::PathBuf;
 use syn::parse::{Parse, ParseStream};
 use syn::LitStr;
 
-/// Args to [crate::generate_nodes]
+/// Args to [`crate::generate_nodes`]
 #[allow(dead_code)]
 pub struct GenerateNodesArgs {
     path_str: LitStr,

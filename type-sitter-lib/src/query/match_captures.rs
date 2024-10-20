@@ -2,7 +2,7 @@ use std::iter::FusedIterator;
 #[cfg(feature = "yak-sitter")]
 use crate::raw;
 
-/// Captures from a [crate::QueryMatch]
+/// Captures from a [`QueryMatch`](crate::QueryMatch)
 pub struct QueryMatchCaptures<'query, 'tree, Query: crate::Query + 'tree> {
     query: &'query Query,
     captures: &'query [tree_sitter::QueryCapture<'tree>],
@@ -10,7 +10,7 @@ pub struct QueryMatchCaptures<'query, 'tree, Query: crate::Query + 'tree> {
     tree: &'tree raw::Tree
 }
 
-/// Iterate captures from a [crate::QueryMatch]
+/// Iterate captures from a [`crate::QueryMatch`](QueryMatch)
 pub struct QueryMatchCapturesIntoIter<'query, 'tree, Query: crate::Query + 'tree> {
     captures: QueryMatchCaptures<'query, 'tree, Query>,
     index: usize,

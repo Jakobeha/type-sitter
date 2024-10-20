@@ -30,18 +30,19 @@ Type-sitter currently depends on [**tree-sitter v0.24**](https://github.com/tree
 - [`Option<NodeResult<'_>>.unwrap2()`, `.expect2()`, and `.flatten()`](https://docs.rs/type-sitter-lib/latest/type_sitter_lib/trait.OptionNodeResultExt.html).
 - Custom supertypes can be created at build time, to group nodes that are't grouped in the original grammar. You could, for instance, create create a supertype for all named nodes, all nodes that have named fields, or any other grouping that makes sense for the tool that you're building.
 
-Lastly, there's an optional feature, `yak-sitter`, which re-exports the `tree-sitter` API with a few small changes, most notably nodes being able to access their text and filepath directly. The [`yak-sitter`](./yak-sitter/README.md) library is a drop-in replacement for `tree-sitter` and can by used by itself without `type-sitter` (and `yak-sitter` is optional in `type-sitter`).
+Lastly, there's an optional feature, `yak-sitter`, which re-exports the `tree-sitter` API with a few small changes, most notably nodes being able to access their text and filepath directly. The [`yak-sitter`](yak-sitter/README.md) library is a drop-in replacement for `tree-sitter` and can by used by itself without `type-sitter` (and `yak-sitter` is optional in `type-sitter`).
 
 ## Usage
 
 There are three ways to use `type-sitter`: procedural macros, build script, or the CLI tool. Procedural macros is the easiest. Build script is recommended because it's much faster (only runs when the grammar changes) and lets you see the generated code. The CLI tool is the most flexible, as it lets you edit the generated code, but it requires you to re-generate the code manually.
 
-Every method requires that you **vendor** the tree-sitter grammar you want to generate bindings for: you cannot just include it as a dependency in `Cargo.toml`, because the node generator needs a hard-coded (relative) path to the grammar's `node-types.json`, and the query generator needs a hard-coded path to the grammar's root folder (containing `src/node-types.json`), which must also contain a built shared object (at `build/tree_sitter_foobar_binding.dylib` or `build/tree_sitter_foobar_binding.so`).
+Every method *except the build script for node-types only* requires that you **vendor** the tree-sitter grammar you want to generate bindings for: you cannot just include it as a dependency in `Cargo.toml`, because the node generator needs a hard-coded (relative) path to the grammar's `node-types.json`, and the query generator needs a hard-coded path to the grammar's root folder (containing `src/node-types.json`), which must also contain a built shared object (at `build/tree_sitter_foobar_binding.dylib` or `build/tree_sitter_foobar_binding.so`).
 
 ### Procedural macros (easiest)
 
 ```shell
 cargo add type-sitter  # Or add to Cargo.toml manually
+cargo add tree-sitter-foobar-lang  # Replace `foobar-lang` with the name of your language
 ```
 
 To generate typed nodes:
@@ -77,6 +78,7 @@ generate_queries! {
 ```shell
 cargo add type-sitter --no-default-features  # Or add to Cargo.toml manually
 cargo add --build type-sitter-gen  # Notice `cargo add --build`
+cargo add tree-sitter-foobar-lang  # Replace `foobar-lang` with the name of your language
 ```
 
 Then, in `build.rs`
@@ -96,7 +98,7 @@ fn main() {
     println!("cargo::rerun-if-changed=vendor/path/to/tree-sitter-foobar-lang");
     
     // To generate nodes
-    let path = Path::new("vendor/path/to/tree-sitter-foobar-lang/src/node-types.json")
+    let path = Path::new("vendor/path/to/tree-sitter-foobar-lang/src/node-types.json");
     fs::write(
         out_dir.join("nodes.rs"),
         generate_nodes(path).unwrap().into_string()
@@ -129,14 +131,18 @@ mod queries {
 }
 ```
 
-To generate custom supertypes, modify the above to something like
+#### Custom supertypes
+
+To generate custom supertypes, follow the same steps as above, but modify the build script to something like
 
 ```rust
-    use type_sitter_gen::{NodeTypeMap, NodeName, NodeTypeKind}
+use type_sitter_gen::{NodeTypeMap, NodeName, NodeTypeKind};
+
+fn main() {
     // ...
 
-    // To generate nodes
-    let path = Path::new("vendor/path/to/tree-sitter-foobar-lang/src/node-types.json")
+    // To generate nodes (THIS SECTION IS DIFFERENT)
+    let path = Path::new("vendor/path/to/tree-sitter-foobar-lang/src/node-types.json");
     let node_type_map = NodeTypeMap::try_from(path).unwrap();
 
     let named: Vec<NodeName> = node_type_map
@@ -151,13 +157,63 @@ To generate custom supertypes, modify the above to something like
         out_dir.join("nodes.rs"),
         generate_nodes(node_type_map).unwrap().into_string()
     ).unwrap();
+  
+    // ...
+}
 ```
+
+#### Build script (without vendoring the grammar, only nodes)
+
+Run these commands or add the dependencies manually:
+
+```shell
+cargo add type-sitter --no-default-features  # Or add to Cargo.toml manually
+cargo add --build type-sitter-gen  # Notice `cargo add --build`
+cargo add tree-sitter-foobar-lang  # Replace `foobar-lang` with the name of your language
+# Since the grammar isn't vendored, you must also include your language's tree-sitter grammar as a build-dependency.
+cargo add --build tree-sitter-foobar-lang  # Replace `foobar-lang` with the name of your language
+```
+
+Then, in `build.rs`
+
+```rust
+use std::path::PathBuf;
+use std::{env, fs};
+use type_sitter_gen::generate_nodes;
+
+fn main() {
+    // Common setup. Same as before
+    let out_dir = PathBuf::from(env::var_os("OUT_DIR").unwrap());
+    println!("cargo::rerun-if-changed=build.rs");
+
+    // Obligatory: in this and future lines, replace `vendor/path/to/tree-sitter-foobar-lang`
+    // with the path to your grammar's folder, relative to the folder containing `Cargo.toml`
+    println!("cargo::rerun-if-changed=vendor/path/to/tree-sitter-foobar-lang");
+    
+    // To generate nodes
+    fs::write(
+        out_dir.join("nodes.rs"),
+        generate_nodes(tree_sitter_foobar_lang::NODE_TYPES).unwrap().into_string()
+    ).unwrap();
+}
+```
+
+then make sure to include the generated code somewhere:
+
+```rust
+mod nodes {
+    include!(concat!(env!("OUT_DIR"), "/nodes.rs"));
+}
+```
+
+Currently you can't generate queries without [vendoring the grammar](#build-script-recommended).
 
 ### CLI tool (flexible)
 
 ```shell
 cargo add type-sitter --no-default-features  # Or add to Cargo.toml manually
 cargo add --dev type-sitter-cli  # Notice `cargo add --dev`
+cargo add tree-sitter-foobar-lang  # Replace `foobar-lang` with the name of your language
 ```
 
 Then, *manually* generate typed nodes and queries with the CLI tool:

@@ -3,7 +3,7 @@ use syn::{LitStr, Token};
 use syn::parse::{Parse, ParseStream};
 use crate::generate_nodes_args::normalize;
 
-/// Args to [crate::generate_queries]
+/// Args to [`crate::generate_queries`]
 #[allow(dead_code)]
 pub struct GenerateQueriesArgs {
     path_str: LitStr,
