@@ -27,7 +27,7 @@ mod parser;
 ///
 /// This implements `TryFrom<tree_sitter::Node<'tree>>`, which will succeed iff the node is of the correct type.
 /// That is how you convert untyped nodes into types nodes. If you're absolutely sure the node is
-/// correct, you may also use [Node::from_raw_unchecked], though it's honestly probably not
+/// correct, you may also use [`Node::from_raw_unchecked`], though it's honestly probably not
 /// worth the possible performance gain.
 pub trait Node<'tree>: Debug + Clone + Copy + PartialEq + Eq + Hash {
     /// The same type, but with a different lifetime.
