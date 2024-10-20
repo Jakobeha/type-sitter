@@ -11,6 +11,7 @@ pub enum Value<'tree> {
     True(True<'tree>),
 }
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> Value<'tree> {
     #[doc = "Returns the node if it is of type `array` ([`Array`]), otherwise returns `None`"]
     #[inline]
@@ -157,6 +158,7 @@ impl<'tree> type_sitter::Node<'tree> for Value<'tree> {
 #[allow(non_camel_case_types)]
 pub struct Array<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> Array<'tree> {
     #[doc = "Get the node's not-extra named children.\n\nThese children have type `_value*` ([`Value`])"]
     #[inline]
@@ -206,6 +208,7 @@ impl<'tree> type_sitter::Node<'tree> for Array<'tree> {
 #[allow(non_camel_case_types)]
 pub struct Comment<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> Comment<'tree> {}
 #[automatically_derived]
 impl<'tree> type_sitter::Node<'tree> for Comment<'tree> {
@@ -243,6 +246,7 @@ impl<'tree> type_sitter::Node<'tree> for Comment<'tree> {
 #[allow(non_camel_case_types)]
 pub struct Document<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> Document<'tree> {
     #[doc = "Get the node's not-extra named children.\n\nThese children have type `_value*` ([`Value`])"]
     #[inline]
@@ -292,6 +296,7 @@ impl<'tree> type_sitter::Node<'tree> for Document<'tree> {
 #[allow(non_camel_case_types)]
 pub struct EscapeSequence<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> EscapeSequence<'tree> {}
 #[automatically_derived]
 impl<'tree> type_sitter::Node<'tree> for EscapeSequence<'tree> {
@@ -329,6 +334,7 @@ impl<'tree> type_sitter::Node<'tree> for EscapeSequence<'tree> {
 #[allow(non_camel_case_types)]
 pub struct False<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> False<'tree> {}
 #[automatically_derived]
 impl<'tree> type_sitter::Node<'tree> for False<'tree> {
@@ -366,6 +372,7 @@ impl<'tree> type_sitter::Node<'tree> for False<'tree> {
 #[allow(non_camel_case_types)]
 pub struct Null<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> Null<'tree> {}
 #[automatically_derived]
 impl<'tree> type_sitter::Node<'tree> for Null<'tree> {
@@ -403,6 +410,7 @@ impl<'tree> type_sitter::Node<'tree> for Null<'tree> {
 #[allow(non_camel_case_types)]
 pub struct Number<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> Number<'tree> {}
 #[automatically_derived]
 impl<'tree> type_sitter::Node<'tree> for Number<'tree> {
@@ -440,6 +448,7 @@ impl<'tree> type_sitter::Node<'tree> for Number<'tree> {
 #[allow(non_camel_case_types)]
 pub struct Object<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> Object<'tree> {
     #[doc = "Get the node's not-extra named children.\n\nThese children have type `pair*` ([`Pair`])"]
     #[inline]
@@ -489,6 +498,7 @@ impl<'tree> type_sitter::Node<'tree> for Object<'tree> {
 #[allow(non_camel_case_types)]
 pub struct Pair<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> Pair<'tree> {
     #[doc = "Get the field `key`.\n\nThis child has type `string` ([`String`])"]
     #[inline]
@@ -547,6 +557,7 @@ impl<'tree> type_sitter::Node<'tree> for Pair<'tree> {
 #[allow(non_camel_case_types)]
 pub struct String<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> String<'tree> {
     #[doc = "Get the node's not-extra named children.\n\nThese children have type `{escape_sequence | string_content}*`:\n\n- [`EscapeSequence`]\n- [`StringContent`]\n"]
     #[inline]
@@ -595,6 +606,7 @@ impl<'tree> type_sitter::Node<'tree> for String<'tree> {
 #[allow(non_camel_case_types)]
 pub struct StringContent<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> StringContent<'tree> {}
 #[automatically_derived]
 impl<'tree> type_sitter::Node<'tree> for StringContent<'tree> {
@@ -632,6 +644,7 @@ impl<'tree> type_sitter::Node<'tree> for StringContent<'tree> {
 #[allow(non_camel_case_types)]
 pub struct True<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> True<'tree> {}
 #[automatically_derived]
 impl<'tree> type_sitter::Node<'tree> for True<'tree> {
@@ -672,6 +685,7 @@ pub mod symbols {
     #[allow(non_camel_case_types)]
     pub struct DoubleQuote<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> DoubleQuote<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for DoubleQuote<'tree> {
@@ -709,6 +723,7 @@ pub mod symbols {
     #[allow(non_camel_case_types)]
     pub struct Comma<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Comma<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for Comma<'tree> {
@@ -746,6 +761,7 @@ pub mod symbols {
     #[allow(non_camel_case_types)]
     pub struct Colon<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Colon<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for Colon<'tree> {
@@ -783,6 +799,7 @@ pub mod symbols {
     #[allow(non_camel_case_types)]
     pub struct LBracket<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> LBracket<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for LBracket<'tree> {
@@ -820,6 +837,7 @@ pub mod symbols {
     #[allow(non_camel_case_types)]
     pub struct RBracket<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> RBracket<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for RBracket<'tree> {
@@ -857,6 +875,7 @@ pub mod symbols {
     #[allow(non_camel_case_types)]
     pub struct LBrace<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> LBrace<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for LBrace<'tree> {
@@ -894,6 +913,7 @@ pub mod symbols {
     #[allow(non_camel_case_types)]
     pub struct RBrace<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> RBrace<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for RBrace<'tree> {
@@ -937,6 +957,7 @@ pub mod anon_unions {
         StringContent(StringContent<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> EscapeSequence_StringContent<'tree> {
         #[doc = "Returns the node if it is of type `escape_sequence` ([`EscapeSequence`]), otherwise returns `None`"]
         #[inline]

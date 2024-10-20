@@ -22,6 +22,7 @@ pub enum Value<'tree> {
     True(True<'tree>),
 }
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> Value<'tree> {
     ///Returns the node if it is of type `array` ([`Array`]), otherwise returns `None`
     #[inline]
@@ -185,6 +186,7 @@ This node has named children of type `_value*` ([`Value`])
 #[allow(non_camel_case_types)]
 pub struct Array<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> Array<'tree> {
     /**Get the node's not-extra named children.
 
@@ -239,6 +241,7 @@ This node has no named children
 #[allow(non_camel_case_types)]
 pub struct Comment<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> Comment<'tree> {}
 #[automatically_derived]
 impl<'tree> type_sitter_lib::Node<'tree> for Comment<'tree> {
@@ -279,6 +282,7 @@ This node has named children of type `_value*` ([`Value`])
 #[allow(non_camel_case_types)]
 pub struct Document<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> Document<'tree> {
     /**Get the node's not-extra named children.
 
@@ -333,6 +337,7 @@ This node has no named children
 #[allow(non_camel_case_types)]
 pub struct EscapeSequence<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> EscapeSequence<'tree> {}
 #[automatically_derived]
 impl<'tree> type_sitter_lib::Node<'tree> for EscapeSequence<'tree> {
@@ -373,6 +378,7 @@ This node has no named children
 #[allow(non_camel_case_types)]
 pub struct False<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> False<'tree> {}
 #[automatically_derived]
 impl<'tree> type_sitter_lib::Node<'tree> for False<'tree> {
@@ -413,6 +419,7 @@ This node has no named children
 #[allow(non_camel_case_types)]
 pub struct Null<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> Null<'tree> {}
 #[automatically_derived]
 impl<'tree> type_sitter_lib::Node<'tree> for Null<'tree> {
@@ -453,6 +460,7 @@ This node has no named children
 #[allow(non_camel_case_types)]
 pub struct Number<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> Number<'tree> {}
 #[automatically_derived]
 impl<'tree> type_sitter_lib::Node<'tree> for Number<'tree> {
@@ -493,6 +501,7 @@ This node has named children of type `pair*` ([`Pair`])
 #[allow(non_camel_case_types)]
 pub struct Object<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> Object<'tree> {
     /**Get the node's not-extra named children.
 
@@ -550,6 +559,7 @@ This node has these fields:
 #[allow(non_camel_case_types)]
 pub struct Pair<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> Pair<'tree> {
     /**Get the field `key`.
 
@@ -619,6 +629,7 @@ This node has named children of type `{escape_sequence | string_content}*`:
 #[allow(non_camel_case_types)]
 pub struct String<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> String<'tree> {
     /**Get the node's not-extra named children.
 
@@ -686,6 +697,7 @@ This node has no named children
 #[allow(non_camel_case_types)]
 pub struct StringContent<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> StringContent<'tree> {}
 #[automatically_derived]
 impl<'tree> type_sitter_lib::Node<'tree> for StringContent<'tree> {
@@ -726,6 +738,7 @@ This node has no named children
 #[allow(non_camel_case_types)]
 pub struct True<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> True<'tree> {}
 #[automatically_derived]
 impl<'tree> type_sitter_lib::Node<'tree> for True<'tree> {
@@ -769,6 +782,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct DoubleQuote<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> DoubleQuote<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for DoubleQuote<'tree> {
@@ -811,6 +825,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct Comma<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Comma<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for Comma<'tree> {
@@ -853,6 +868,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct Colon<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Colon<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for Colon<'tree> {
@@ -895,6 +911,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct LBracket<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> LBracket<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for LBracket<'tree> {
@@ -937,6 +954,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct RBracket<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> RBracket<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for RBracket<'tree> {
@@ -979,6 +997,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct LBrace<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> LBrace<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for LBrace<'tree> {
@@ -1021,6 +1040,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct RBrace<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> RBrace<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for RBrace<'tree> {
@@ -1068,6 +1088,7 @@ pub mod anon_unions {
         StringContent(StringContent<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> EscapeSequence_StringContent<'tree> {
         ///Returns the node if it is of type `escape_sequence` ([`EscapeSequence`]), otherwise returns `None`
         #[inline]

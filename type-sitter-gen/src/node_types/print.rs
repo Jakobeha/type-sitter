@@ -86,6 +86,7 @@ impl NodeType {
             pub struct #ident<'tree>(#tree_sitter::Node<'tree>);
 
             #[automatically_derived]
+            #[allow(unused)]
             impl<'tree> #ident<'tree> {
                 #child_accessors
             }
@@ -220,6 +221,7 @@ impl NodeType {
             }
 
             #[automatically_derived]
+            #[allow(unused)]
             impl<'tree> #ident<'tree> {
                 #variant_accessors
                 #inlined_variant_accessors

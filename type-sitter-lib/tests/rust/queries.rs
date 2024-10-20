@@ -1255,6 +1255,7 @@ impl type_sitter_lib::Query for Highlights {
     }
 }
 #[automatically_derived]
+#[allow(unused)]
 impl<'query, 'tree: 'query> HighlightsMatch<'query, 'tree> {
     ///Returns an iterator over the nodes captured by `type` ([`anon_unions::Type`])
     ///
@@ -1782,6 +1783,7 @@ for HighlightsMatch<'query, 'tree> {
     }
 }
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> HighlightsCapture<'tree> {
     ///Try to interpret this capture as a `type` ([`anon_unions::Type`])
     ///
@@ -2562,6 +2564,7 @@ impl type_sitter_lib::Query for Injections {
     }
 }
 #[automatically_derived]
+#[allow(unused)]
 impl<'query, 'tree: 'query> InjectionsMatch<'query, 'tree> {
     ///Returns an iterator over the nodes captured by `injection.content` ([`anon_unions::InjectionContent`])
     ///
@@ -2621,6 +2624,7 @@ for InjectionsMatch<'query, 'tree> {
     }
 }
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> InjectionsCapture<'tree> {
     ///Try to interpret this capture as a `injection.content` ([`anon_unions::InjectionContent`])
     ///
@@ -3252,6 +3256,7 @@ impl type_sitter_lib::Query for Tags {
     }
 }
 #[automatically_derived]
+#[allow(unused)]
 impl<'query, 'tree: 'query> TagsMatch<'query, 'tree> {
     ///Returns an iterator over the nodes captured by `name` ([`anon_unions::Name`])
     ///
@@ -3498,6 +3503,7 @@ for TagsMatch<'query, 'tree> {
     }
 }
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> TagsCapture<'tree> {
     ///Try to interpret this capture as a `name` ([`anon_unions::Name`])
     ///
@@ -3827,6 +3833,7 @@ pub mod anon_unions {
         InnerAttributeItem(InnerAttributeItem<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Attribute<'tree> {
         ///Returns the node if it is of type `attribute_item` ([`AttributeItem`]), otherwise returns `None`
         #[inline]
@@ -3903,6 +3910,7 @@ pub mod anon_unions {
         LineComment(LineComment<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Comment<'tree> {
         ///Returns the node if it is of type `block_comment` ([`BlockComment`]), otherwise returns `None`
         #[inline]
@@ -4020,6 +4028,7 @@ This child has type `outer_doc_comment_marker?` ([`OuterDocCommentMarker`])*/
         LineComment(LineComment<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> CommentDocumentation<'tree> {
         ///Returns the node if it is of type `block_comment` ([`BlockComment`]), otherwise returns `None`
         #[inline]
@@ -4139,6 +4148,7 @@ This child has type `outer_doc_comment_marker?` ([`OuterDocCommentMarker`])*/
         IntegerLiteral(IntegerLiteral<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> ConstantBuiltin<'tree> {
         ///Returns the node if it is of type `boolean_literal` ([`BooleanLiteral`]), otherwise returns `None`
         #[inline]
@@ -4233,6 +4243,7 @@ This child has type `outer_doc_comment_marker?` ([`OuterDocCommentMarker`])*/
         TypeIdentifier(TypeIdentifier<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Constructor<'tree> {
         ///Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`
         #[inline]
@@ -4313,6 +4324,7 @@ This child has type `outer_doc_comment_marker?` ([`OuterDocCommentMarker`])*/
         UnionItem(UnionItem<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> DefinitionClass<'tree> {
         ///Returns the node if it is of type `enum_item` ([`EnumItem`]), otherwise returns `None`
         #[inline]
@@ -4452,6 +4464,7 @@ This child has type `type_parameters?` ([`TypeParameters`])*/
         Identifier(Identifier<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> FunctionMacro<'tree> {
         ///Returns the node if it is of type `!` ([`symbols::Not`]), otherwise returns `None`
         #[inline]
@@ -4602,6 +4615,7 @@ This child has type `type_parameters?` ([`TypeParameters`])*/
         Yield(unnamed::Yield<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Keyword<'tree> {
         ///Returns the node if it is of type `as` ([`unnamed::As`]), otherwise returns `None`
         #[inline]
@@ -5346,6 +5360,7 @@ This child has type `type_parameters?` ([`TypeParameters`])*/
         TypeIdentifier(TypeIdentifier<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Name<'tree> {
         ///Returns the node if it is of type `field_identifier` ([`FieldIdentifier`]), otherwise returns `None`
         #[inline]
@@ -5442,6 +5457,7 @@ This child has type `type_parameters?` ([`TypeParameters`])*/
         Mul(symbols::Mul<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Operator<'tree> {
         ///Returns the node if it is of type `&` ([`symbols::And`]), otherwise returns `None`
         #[inline]
@@ -5548,6 +5564,7 @@ This child has type `type_parameters?` ([`TypeParameters`])*/
         RBrace(symbols::RBrace<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> PunctuationBracket<'tree> {
         ///Returns the node if it is of type `(` ([`symbols::LParen`]), otherwise returns `None`
         #[inline]
@@ -5738,6 +5755,7 @@ This child has type `type_parameters?` ([`TypeParameters`])*/
         Semicolon(symbols::Semicolon<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> PunctuationDelimiter<'tree> {
         ///Returns the node if it is of type `,` ([`symbols::Comma`]), otherwise returns `None`
         #[inline]
@@ -5868,6 +5886,7 @@ This child has type `type_parameters?` ([`TypeParameters`])*/
         MacroInvocation(MacroInvocation<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> ReferenceCall<'tree> {
         ///Returns the node if it is of type `call_expression` ([`CallExpression`]), otherwise returns `None`
         #[inline]
@@ -5946,6 +5965,7 @@ This child has type `type_parameters?` ([`TypeParameters`])*/
         StringLiteral(StringLiteral<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> String<'tree> {
         ///Returns the node if it is of type `char_literal` ([`CharLiteral`]), otherwise returns `None`
         #[inline]
@@ -6040,6 +6060,7 @@ This child has type `type_parameters?` ([`TypeParameters`])*/
         TypeIdentifier(TypeIdentifier<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Type<'tree> {
         ///Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`
         #[inline]

@@ -228,6 +228,7 @@ impl<'tree> SExpSeq<'tree> {
             }
 
             #[automatically_derived]
+            #[allow(unused)]
             impl<'query, 'tree: 'query> #query_match<'query, 'tree> {
                 #capture_methods
             }
@@ -264,6 +265,7 @@ impl<'tree> SExpSeq<'tree> {
             }
 
             #[automatically_derived]
+            #[allow(unused)]
             impl<'tree> #query_capture<'tree> {
                 #capture_variant_extract_methods
             }

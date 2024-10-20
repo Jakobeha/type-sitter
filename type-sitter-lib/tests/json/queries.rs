@@ -260,6 +260,7 @@ impl type_sitter_lib::Query for Highlights {
     }
 }
 #[automatically_derived]
+#[allow(unused)]
 impl<'query, 'tree: 'query> HighlightsMatch<'query, 'tree> {
     ///Returns an iterator over the nodes captured by `string.special.key` ([`type_sitter_lib::UntypedNamedNode`])
     ///
@@ -416,6 +417,7 @@ for HighlightsMatch<'query, 'tree> {
     }
 }
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> HighlightsCapture<'tree> {
     ///Try to interpret this capture as a `string.special.key` ([`type_sitter_lib::UntypedNamedNode`])
     ///
@@ -629,6 +631,7 @@ pub mod anon_unions {
         True(True<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> ConstantBuiltin<'tree> {
         ///Returns the node if it is of type `false` ([`False`]), otherwise returns `None`
         #[inline]

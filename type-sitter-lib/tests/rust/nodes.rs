@@ -50,6 +50,7 @@ pub enum DeclarationStatement<'tree> {
     UseDeclaration(UseDeclaration<'tree>),
 }
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> DeclarationStatement<'tree> {
     ///Returns the node if it is of type `associated_type` ([`AssociatedType`]), otherwise returns `None`
     #[inline]
@@ -544,6 +545,7 @@ pub enum Expression<'tree> {
     YieldExpression(YieldExpression<'tree>),
 }
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> Expression<'tree> {
     ///Returns the node if it is of type `_literal` ([`Literal`]), otherwise returns `None`
     #[inline]
@@ -1186,6 +1188,7 @@ pub enum Literal<'tree> {
     StringLiteral(StringLiteral<'tree>),
 }
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> Literal<'tree> {
     ///Returns the node if it is of type `boolean_literal` ([`BooleanLiteral`]), otherwise returns `None`
     #[inline]
@@ -1346,6 +1349,7 @@ pub enum LiteralPattern<'tree> {
     StringLiteral(StringLiteral<'tree>),
 }
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> LiteralPattern<'tree> {
     ///Returns the node if it is of type `boolean_literal` ([`BooleanLiteral`]), otherwise returns `None`
     #[inline]
@@ -1544,6 +1548,7 @@ pub enum Pattern<'tree> {
     TupleStructPattern(TupleStructPattern<'tree>),
 }
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> Pattern<'tree> {
     ///Returns the node if it is of type `_` ([`symbols::__`]), otherwise returns `None`
     #[inline]
@@ -1908,6 +1913,7 @@ pub enum Type<'tree> {
     UnitType(UnitType<'tree>),
 }
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> Type<'tree> {
     ///Returns the node if it is of type `abstract_type` ([`AbstractType`]), otherwise returns `None`
     #[inline]
@@ -2255,6 +2261,7 @@ And an optional additional named child of type `type_parameters?` ([`TypeParamet
 #[allow(non_camel_case_types)]
 pub struct AbstractType<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> AbstractType<'tree> {
     /**Get the field `trait`.
 
@@ -2349,6 +2356,7 @@ This node has named children of type `{_expression | attribute_item}*`:
 #[allow(non_camel_case_types)]
 pub struct Arguments<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> Arguments<'tree> {
     /**Get the node's not-extra named children.
 
@@ -2424,6 +2432,7 @@ And additional named children of type `{_expression | attribute_item}*`:
 #[allow(non_camel_case_types)]
 pub struct ArrayExpression<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> ArrayExpression<'tree> {
     /**Get the optional field `length`.
 
@@ -2512,6 +2521,7 @@ This node has these fields:
 #[allow(non_camel_case_types)]
 pub struct ArrayType<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> ArrayType<'tree> {
     /**Get the field `element`.
 
@@ -2579,6 +2589,7 @@ This node has these fields:
 #[allow(non_camel_case_types)]
 pub struct AssignmentExpression<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> AssignmentExpression<'tree> {
     /**Get the field `left`.
 
@@ -2650,6 +2661,7 @@ And an optional additional named child of type `where_clause?` ([`WhereClause`])
 #[allow(non_camel_case_types)]
 pub struct AssociatedType<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> AssociatedType<'tree> {
     /**Get the optional field `bounds`.
 
@@ -2743,6 +2755,7 @@ This node has a named child of type `block` ([`Block`])
 #[allow(non_camel_case_types)]
 pub struct AsyncBlock<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> AsyncBlock<'tree> {
     /**Get the node's only not-extra named child.
 
@@ -2811,6 +2824,7 @@ And an additional named child of type `{crate | identifier | metavariable | scop
 #[allow(non_camel_case_types)]
 pub struct Attribute<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> Attribute<'tree> {
     /**Get the optional field `arguments`.
 
@@ -2910,6 +2924,7 @@ This node has a named child of type `attribute` ([`Attribute`])
 #[allow(non_camel_case_types)]
 pub struct AttributeItem<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> AttributeItem<'tree> {
     /**Get the node's only not-extra named child.
 
@@ -2965,6 +2980,7 @@ This node has a named child of type `_expression` ([`Expression`])
 #[allow(non_camel_case_types)]
 pub struct AwaitExpression<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> AwaitExpression<'tree> {
     /**Get the node's only not-extra named child.
 
@@ -3020,6 +3036,7 @@ This node has a named child of type `_expression` ([`Expression`])
 #[allow(non_camel_case_types)]
 pub struct BaseFieldInitializer<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> BaseFieldInitializer<'tree> {
     /**Get the node's only not-extra named child.
 
@@ -3079,6 +3096,7 @@ This node has these fields:
 #[allow(non_camel_case_types)]
 pub struct BinaryExpression<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> BinaryExpression<'tree> {
     /**Get the field `left`.
 
@@ -3193,6 +3211,7 @@ This node has named children of type `{_declaration_statement | _expression | ex
 #[allow(non_camel_case_types)]
 pub struct Block<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> Block<'tree> {
     /**Get the node's not-extra named children.
 
@@ -3266,6 +3285,7 @@ This node has these fields:
 #[allow(non_camel_case_types)]
 pub struct BlockComment<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> BlockComment<'tree> {
     /**Get the optional field `doc`.
 
@@ -3346,6 +3366,7 @@ This node has no named children
 #[allow(non_camel_case_types)]
 pub struct BooleanLiteral<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> BooleanLiteral<'tree> {}
 #[automatically_derived]
 impl<'tree> type_sitter_lib::Node<'tree> for BooleanLiteral<'tree> {
@@ -3390,6 +3411,7 @@ This node has named children of type `{_type | lifetime}+`:
 #[allow(non_camel_case_types)]
 pub struct BoundedType<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> BoundedType<'tree> {
     /**Get the node's not-extra named children.
 
@@ -3461,6 +3483,7 @@ This node has a named child of type `{_type | qualified_type}`:
 #[allow(non_camel_case_types)]
 pub struct BracketedType<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> BracketedType<'tree> {
     /**Get the node's only not-extra named child.
 
@@ -3530,6 +3553,7 @@ This node has named children of type `{_expression | label}*`:
 #[allow(non_camel_case_types)]
 pub struct BreakExpression<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> BreakExpression<'tree> {
     /**Get the node's not-extra named children.
 
@@ -3597,6 +3621,7 @@ This node has these fields:
 #[allow(non_camel_case_types)]
 pub struct CallExpression<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> CallExpression<'tree> {
     /**Get the field `arguments`.
 
@@ -3713,6 +3738,7 @@ This node has named children of type `_pattern+` ([`Pattern`])
 #[allow(non_camel_case_types)]
 pub struct CapturedPattern<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> CapturedPattern<'tree> {
     /**Get the node's not-extra named children.
 
@@ -3770,6 +3796,7 @@ This node has no named children
 #[allow(non_camel_case_types)]
 pub struct CharLiteral<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> CharLiteral<'tree> {}
 #[automatically_derived]
 impl<'tree> type_sitter_lib::Node<'tree> for CharLiteral<'tree> {
@@ -3814,6 +3841,7 @@ This node has these fields:
 #[allow(non_camel_case_types)]
 pub struct ClosureExpression<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> ClosureExpression<'tree> {
     /**Get the field `body`.
 
@@ -3908,6 +3936,7 @@ This node has named children of type `{_pattern | parameter}*`:
 #[allow(non_camel_case_types)]
 pub struct ClosureParameters<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> ClosureParameters<'tree> {
     /**Get the node's not-extra named children.
 
@@ -3976,6 +4005,7 @@ This node has these fields:
 #[allow(non_camel_case_types)]
 pub struct CompoundAssignmentExpr<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> CompoundAssignmentExpr<'tree> {
     /**Get the field `left`.
 
@@ -4078,6 +4108,7 @@ This node has these fields:
 #[allow(non_camel_case_types)]
 pub struct ConstBlock<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> ConstBlock<'tree> {
     /**Get the field `body`.
 
@@ -4137,6 +4168,7 @@ And an optional additional named child of type `visibility_modifier?` ([`Visibil
 #[allow(non_camel_case_types)]
 pub struct ConstItem<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> ConstItem<'tree> {
     /**Get the field `name`.
 
@@ -4236,6 +4268,7 @@ This node has these fields:
 #[allow(non_camel_case_types)]
 pub struct ConstParameter<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> ConstParameter<'tree> {
     /**Get the field `name`.
 
@@ -4304,6 +4337,7 @@ This node has these fields:
 #[allow(non_camel_case_types)]
 pub struct ConstrainedTypeParameter<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> ConstrainedTypeParameter<'tree> {
     /**Get the field `bounds`.
 
@@ -4382,6 +4416,7 @@ This node has an optional named child of type `label?` ([`Label`])
 #[allow(non_camel_case_types)]
 pub struct ContinueExpression<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> ContinueExpression<'tree> {
     /**Get the node's only not-extra named child, if it has one.
 
@@ -4434,6 +4469,7 @@ This node has no named children
 #[allow(non_camel_case_types)]
 pub struct Crate<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> Crate<'tree> {}
 #[automatically_derived]
 impl<'tree> type_sitter_lib::Node<'tree> for Crate<'tree> {
@@ -4474,6 +4510,7 @@ This node has named children of type `_declaration_statement*` ([`DeclarationSta
 #[allow(non_camel_case_types)]
 pub struct DeclarationList<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> DeclarationList<'tree> {
     /**Get the node's not-extra named children.
 
@@ -4534,6 +4571,7 @@ This node has no named children
 #[allow(non_camel_case_types)]
 pub struct DocComment<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> DocComment<'tree> {}
 #[automatically_derived]
 impl<'tree> type_sitter_lib::Node<'tree> for DocComment<'tree> {
@@ -4576,6 +4614,7 @@ This node has these fields:
 #[allow(non_camel_case_types)]
 pub struct DynamicType<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> DynamicType<'tree> {
     /**Get the field `trait`.
 
@@ -4651,6 +4690,7 @@ This node has a named child of type `{block | if_expression}`:
 #[allow(non_camel_case_types)]
 pub struct ElseClause<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> ElseClause<'tree> {
     /**Get the node's only not-extra named child.
 
@@ -4716,6 +4756,7 @@ This node has no named children
 #[allow(non_camel_case_types)]
 pub struct EmptyStatement<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> EmptyStatement<'tree> {}
 #[automatically_derived]
 impl<'tree> type_sitter_lib::Node<'tree> for EmptyStatement<'tree> {
@@ -4766,6 +4807,7 @@ And additional named children of type `{visibility_modifier | where_clause}*`:
 #[allow(non_camel_case_types)]
 pub struct EnumItem<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> EnumItem<'tree> {
     /**Get the field `body`.
 
@@ -4881,6 +4923,7 @@ And an optional additional named child of type `visibility_modifier?` ([`Visibil
 #[allow(non_camel_case_types)]
 pub struct EnumVariant<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> EnumVariant<'tree> {
     /**Get the optional field `body`.
 
@@ -4993,6 +5036,7 @@ This node has named children of type `{attribute_item | enum_variant}*`:
 #[allow(non_camel_case_types)]
 pub struct EnumVariantList<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> EnumVariantList<'tree> {
     /**Get the node's not-extra named children.
 
@@ -5060,6 +5104,7 @@ This node has no named children
 #[allow(non_camel_case_types)]
 pub struct EscapeSequence<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> EscapeSequence<'tree> {}
 #[automatically_derived]
 impl<'tree> type_sitter_lib::Node<'tree> for EscapeSequence<'tree> {
@@ -5100,6 +5145,7 @@ This node has a named child of type `_expression` ([`Expression`])
 #[allow(non_camel_case_types)]
 pub struct ExpressionStatement<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> ExpressionStatement<'tree> {
     /**Get the node's only not-extra named child.
 
@@ -5164,6 +5210,7 @@ And additional named children of type `{crate | visibility_modifier}+`:
 #[allow(non_camel_case_types)]
 pub struct ExternCrateDeclaration<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> ExternCrateDeclaration<'tree> {
     /**Get the optional field `alias`.
 
@@ -5264,6 +5311,7 @@ This node has an optional named child of type `string_literal?` ([`StringLiteral
 #[allow(non_camel_case_types)]
 pub struct ExternModifier<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> ExternModifier<'tree> {
     /**Get the node's only not-extra named child, if it has one.
 
@@ -5323,6 +5371,7 @@ And an optional additional named child of type `visibility_modifier?` ([`Visibil
 #[allow(non_camel_case_types)]
 pub struct FieldDeclaration<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> FieldDeclaration<'tree> {
     /**Get the field `name`.
 
@@ -5412,6 +5461,7 @@ This node has named children of type `{attribute_item | field_declaration}*`:
 #[allow(non_camel_case_types)]
 pub struct FieldDeclarationList<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> FieldDeclarationList<'tree> {
     /**Get the node's not-extra named children.
 
@@ -5482,6 +5532,7 @@ This node has these fields:
 #[allow(non_camel_case_types)]
 pub struct FieldExpression<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> FieldExpression<'tree> {
     /**Get the field `field`.
 
@@ -5560,6 +5611,7 @@ This node has no named children
 #[allow(non_camel_case_types)]
 pub struct FieldIdentifier<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> FieldIdentifier<'tree> {}
 #[automatically_derived]
 impl<'tree> type_sitter_lib::Node<'tree> for FieldIdentifier<'tree> {
@@ -5605,6 +5657,7 @@ And additional named children of type `attribute_item*` ([`AttributeItem`])
 #[allow(non_camel_case_types)]
 pub struct FieldInitializer<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> FieldInitializer<'tree> {
     /**Get the field `field`.
 
@@ -5710,6 +5763,7 @@ This node has named children of type `{base_field_initializer | field_initialize
 #[allow(non_camel_case_types)]
 pub struct FieldInitializerList<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> FieldInitializerList<'tree> {
     /**Get the node's not-extra named children.
 
@@ -5785,6 +5839,7 @@ And an optional additional named child of type `mutable_specifier?` ([`MutableSp
 #[allow(non_camel_case_types)]
 pub struct FieldPattern<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> FieldPattern<'tree> {
     /**Get the field `name`.
 
@@ -5878,6 +5933,7 @@ This node has no named children
 #[allow(non_camel_case_types)]
 pub struct FloatLiteral<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> FloatLiteral<'tree> {}
 #[automatically_derived]
 impl<'tree> type_sitter_lib::Node<'tree> for FloatLiteral<'tree> {
@@ -5924,6 +5980,7 @@ And an optional additional named child of type `label?` ([`Label`])
 #[allow(non_camel_case_types)]
 pub struct ForExpression<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> ForExpression<'tree> {
     /**Get the field `body`.
 
@@ -6017,6 +6074,7 @@ This node has named children of type `lifetime+` ([`Lifetime`])
 #[allow(non_camel_case_types)]
 pub struct ForLifetimes<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> ForLifetimes<'tree> {
     /**Get the node's not-extra named children.
 
@@ -6082,6 +6140,7 @@ And additional named children of type `{extern_modifier | visibility_modifier}+`
 #[allow(non_camel_case_types)]
 pub struct ForeignModItem<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> ForeignModItem<'tree> {
     /**Get the optional field `body`.
 
@@ -6170,6 +6229,7 @@ This node has no named children
 #[allow(non_camel_case_types)]
 pub struct FragmentSpecifier<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> FragmentSpecifier<'tree> {}
 #[automatically_derived]
 impl<'tree> type_sitter_lib::Node<'tree> for FragmentSpecifier<'tree> {
@@ -6223,6 +6283,7 @@ And additional named children of type `{function_modifiers | visibility_modifier
 #[allow(non_camel_case_types)]
 pub struct FunctionItem<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> FunctionItem<'tree> {
     /**Get the field `body`.
 
@@ -6369,6 +6430,7 @@ This node has named children of type `extern_modifier*` ([`ExternModifier`])
 #[allow(non_camel_case_types)]
 pub struct FunctionModifiers<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> FunctionModifiers<'tree> {
     /**Get the node's not-extra named children.
 
@@ -6437,6 +6499,7 @@ And additional named children of type `{function_modifiers | visibility_modifier
 #[allow(non_camel_case_types)]
 pub struct FunctionSignatureItem<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> FunctionSignatureItem<'tree> {
     /**Get the field `name`.
 
@@ -6581,6 +6644,7 @@ And additional named children of type `{for_lifetimes | function_modifiers}*`:
 #[allow(non_camel_case_types)]
 pub struct FunctionType<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> FunctionType<'tree> {
     /**Get the field `parameters`.
 
@@ -6705,6 +6769,7 @@ This node has these fields:
 #[allow(non_camel_case_types)]
 pub struct GenericFunction<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> GenericFunction<'tree> {
     /**Get the field `function`.
 
@@ -6789,6 +6854,7 @@ This node has these fields:
 #[allow(non_camel_case_types)]
 pub struct GenericType<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> GenericType<'tree> {
     /**Get the field `type`.
 
@@ -6876,6 +6942,7 @@ This node has these fields:
 #[allow(non_camel_case_types)]
 pub struct GenericTypeWithTurbofish<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> GenericTypeWithTurbofish<'tree> {
     /**Get the field `type`.
 
@@ -6959,6 +7026,7 @@ This node has these fields:
 #[allow(non_camel_case_types)]
 pub struct HigherRankedTraitBound<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> HigherRankedTraitBound<'tree> {
     /**Get the field `type`.
 
@@ -7026,6 +7094,7 @@ This node has no named children
 #[allow(non_camel_case_types)]
 pub struct Identifier<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> Identifier<'tree> {}
 #[automatically_derived]
 impl<'tree> type_sitter_lib::Node<'tree> for Identifier<'tree> {
@@ -7070,6 +7139,7 @@ This node has these fields:
 #[allow(non_camel_case_types)]
 pub struct IfExpression<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> IfExpression<'tree> {
     /**Get the optional field `alternative`.
 
@@ -7167,6 +7237,7 @@ And an optional additional named child of type `where_clause?` ([`WhereClause`])
 #[allow(non_camel_case_types)]
 pub struct ImplItem<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> ImplItem<'tree> {
     /**Get the optional field `body`.
 
@@ -7285,6 +7356,7 @@ This node has named children of type `_expression+` ([`Expression`])
 #[allow(non_camel_case_types)]
 pub struct IndexExpression<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> IndexExpression<'tree> {
     /**Get the node's not-extra named children.
 
@@ -7344,6 +7416,7 @@ This node has a named child of type `attribute` ([`Attribute`])
 #[allow(non_camel_case_types)]
 pub struct InnerAttributeItem<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> InnerAttributeItem<'tree> {
     /**Get the node's only not-extra named child.
 
@@ -7399,6 +7472,7 @@ This node has no named children
 #[allow(non_camel_case_types)]
 pub struct InnerDocCommentMarker<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> InnerDocCommentMarker<'tree> {}
 #[automatically_derived]
 impl<'tree> type_sitter_lib::Node<'tree> for InnerDocCommentMarker<'tree> {
@@ -7439,6 +7513,7 @@ This node has no named children
 #[allow(non_camel_case_types)]
 pub struct IntegerLiteral<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> IntegerLiteral<'tree> {}
 #[automatically_derived]
 impl<'tree> type_sitter_lib::Node<'tree> for IntegerLiteral<'tree> {
@@ -7479,6 +7554,7 @@ This node has a named child of type `identifier` ([`Identifier`])
 #[allow(non_camel_case_types)]
 pub struct Label<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> Label<'tree> {
     /**Get the node's only not-extra named child.
 
@@ -7538,6 +7614,7 @@ This node has named children of type `{_expression | let_condition}+`:
 #[allow(non_camel_case_types)]
 pub struct LetChain<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> LetChain<'tree> {
     /**Get the node's not-extra named children.
 
@@ -7611,6 +7688,7 @@ This node has these fields:
 #[allow(non_camel_case_types)]
 pub struct LetCondition<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> LetCondition<'tree> {
     /**Get the field `pattern`.
 
@@ -7683,6 +7761,7 @@ And an optional additional named child of type `mutable_specifier?` ([`MutableSp
 #[allow(non_camel_case_types)]
 pub struct LetDeclaration<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> LetDeclaration<'tree> {
     /**Get the optional field `alternative`.
 
@@ -7785,6 +7864,7 @@ This node has a named child of type `identifier` ([`Identifier`])
 #[allow(non_camel_case_types)]
 pub struct Lifetime<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> Lifetime<'tree> {
     /**Get the node's only not-extra named child.
 
@@ -7844,6 +7924,7 @@ This node has these fields:
 #[allow(non_camel_case_types)]
 pub struct LineComment<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> LineComment<'tree> {
     /**Get the optional field `doc`.
 
@@ -7928,6 +8009,7 @@ And an optional additional named child of type `label?` ([`Label`])
 #[allow(non_camel_case_types)]
 pub struct LoopExpression<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> LoopExpression<'tree> {
     /**Get the field `body`.
 
@@ -8001,6 +8083,7 @@ And additional named children of type `macro_rule*` ([`MacroRule`])
 #[allow(non_camel_case_types)]
 pub struct MacroDefinition<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> MacroDefinition<'tree> {
     /**Get the field `name`.
 
@@ -8080,6 +8163,7 @@ And an additional named child of type `token_tree` ([`TokenTree`])
 #[allow(non_camel_case_types)]
 pub struct MacroInvocation<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> MacroInvocation<'tree> {
     /**Get the field `macro`.
 
@@ -8168,6 +8252,7 @@ This node has these fields:
 #[allow(non_camel_case_types)]
 pub struct MacroRule<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> MacroRule<'tree> {
     /**Get the field `left`.
 
@@ -8242,6 +8327,7 @@ And additional named children of type `{attribute_item | inner_attribute_item}*`
 #[allow(non_camel_case_types)]
 pub struct MatchArm<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> MatchArm<'tree> {
     /**Get the field `pattern`.
 
@@ -8340,6 +8426,7 @@ This node has named children of type `match_arm*` ([`MatchArm`])
 #[allow(non_camel_case_types)]
 pub struct MatchBlock<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> MatchBlock<'tree> {
     /**Get the node's not-extra named children.
 
@@ -8397,6 +8484,7 @@ This node has these fields:
 #[allow(non_camel_case_types)]
 pub struct MatchExpression<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> MatchExpression<'tree> {
     /**Get the field `body`.
 
@@ -8466,6 +8554,7 @@ And an additional named child of type `_pattern` ([`Pattern`])
 #[allow(non_camel_case_types)]
 pub struct MatchPattern<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> MatchPattern<'tree> {
     /**Get the optional field `condition`.
 
@@ -8551,6 +8640,7 @@ This node has no named children
 #[allow(non_camel_case_types)]
 pub struct Metavariable<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> Metavariable<'tree> {}
 #[automatically_derived]
 impl<'tree> type_sitter_lib::Node<'tree> for Metavariable<'tree> {
@@ -8596,6 +8686,7 @@ And an optional additional named child of type `visibility_modifier?` ([`Visibil
 #[allow(non_camel_case_types)]
 pub struct ModItem<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> ModItem<'tree> {
     /**Get the optional field `body`.
 
@@ -8684,6 +8775,7 @@ This node has named children of type `{_pattern | mutable_specifier}+`:
 #[allow(non_camel_case_types)]
 pub struct MutPattern<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> MutPattern<'tree> {
     /**Get the node's not-extra named children.
 
@@ -8754,6 +8846,7 @@ This node has no named children
 #[allow(non_camel_case_types)]
 pub struct MutableSpecifier<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> MutableSpecifier<'tree> {}
 #[automatically_derived]
 impl<'tree> type_sitter_lib::Node<'tree> for MutableSpecifier<'tree> {
@@ -8798,6 +8891,7 @@ This node has a named child of type `{float_literal | integer_literal}`:
 #[allow(non_camel_case_types)]
 pub struct NegativeLiteral<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> NegativeLiteral<'tree> {
     /**Get the node's only not-extra named child.
 
@@ -8866,6 +8960,7 @@ This node has no named children
 #[allow(non_camel_case_types)]
 pub struct NeverType<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> NeverType<'tree> {}
 #[automatically_derived]
 impl<'tree> type_sitter_lib::Node<'tree> for NeverType<'tree> {
@@ -8909,6 +9004,7 @@ This node has these fields:
 #[allow(non_camel_case_types)]
 pub struct OptionalTypeParameter<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> OptionalTypeParameter<'tree> {
     /**Get the field `default_type`.
 
@@ -8987,6 +9083,7 @@ This node has named children of type `_pattern+` ([`Pattern`])
 #[allow(non_camel_case_types)]
 pub struct OrPattern<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> OrPattern<'tree> {
     /**Get the node's not-extra named children.
 
@@ -9052,6 +9149,7 @@ And additional named children of type `{attribute_item | visibility_modifier}*`:
 #[allow(non_camel_case_types)]
 pub struct OrderedFieldDeclarationList<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> OrderedFieldDeclarationList<'tree> {
     /**Get the children of field `type`.
 
@@ -9138,6 +9236,7 @@ This node has no named children
 #[allow(non_camel_case_types)]
 pub struct OuterDocCommentMarker<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> OuterDocCommentMarker<'tree> {}
 #[automatically_derived]
 impl<'tree> type_sitter_lib::Node<'tree> for OuterDocCommentMarker<'tree> {
@@ -9183,6 +9282,7 @@ And an optional additional named child of type `mutable_specifier?` ([`MutableSp
 #[allow(non_camel_case_types)]
 pub struct Parameter<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> Parameter<'tree> {
     /**Get the field `pattern`.
 
@@ -9283,6 +9383,7 @@ This node has named children of type `{_type | attribute_item | parameter | self
 #[allow(non_camel_case_types)]
 pub struct Parameters<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> Parameters<'tree> {
     /**Get the node's not-extra named children.
 
@@ -9355,6 +9456,7 @@ This node has a named child of type `_expression` ([`Expression`])
 #[allow(non_camel_case_types)]
 pub struct ParenthesizedExpression<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> ParenthesizedExpression<'tree> {
     /**Get the node's only not-extra named child.
 
@@ -9414,6 +9516,7 @@ And an optional additional named child of type `mutable_specifier?` ([`MutableSp
 #[allow(non_camel_case_types)]
 pub struct PointerType<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> PointerType<'tree> {
     /**Get the field `type`.
 
@@ -9485,6 +9588,7 @@ This node has no named children
 #[allow(non_camel_case_types)]
 pub struct PrimitiveType<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> PrimitiveType<'tree> {}
 #[automatically_derived]
 impl<'tree> type_sitter_lib::Node<'tree> for PrimitiveType<'tree> {
@@ -9528,6 +9632,7 @@ This node has these fields:
 #[allow(non_camel_case_types)]
 pub struct QualifiedType<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> QualifiedType<'tree> {
     /**Get the field `alias`.
 
@@ -9593,6 +9698,7 @@ This node has named children of type `_expression*` ([`Expression`])
 #[allow(non_camel_case_types)]
 pub struct RangeExpression<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> RangeExpression<'tree> {
     /**Get the node's not-extra named children.
 
@@ -9658,6 +9764,7 @@ This node has named children of type `{_literal_pattern | crate | identifier | m
 #[allow(non_camel_case_types)]
 pub struct RangePattern<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> RangePattern<'tree> {
     /**Get the node's not-extra named children.
 
@@ -9735,6 +9842,7 @@ This node has a named child of type `string_content` ([`StringContent`])
 #[allow(non_camel_case_types)]
 pub struct RawStringLiteral<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> RawStringLiteral<'tree> {
     /**Get the node's only not-extra named child.
 
@@ -9792,6 +9900,7 @@ This node has a named child of type `_pattern` ([`Pattern`])
 #[allow(non_camel_case_types)]
 pub struct RefPattern<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> RefPattern<'tree> {
     /**Get the node's only not-extra named child.
 
@@ -9851,6 +9960,7 @@ And an optional additional named child of type `mutable_specifier?` ([`MutableSp
 #[allow(non_camel_case_types)]
 pub struct ReferenceExpression<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> ReferenceExpression<'tree> {
     /**Get the field `value`.
 
@@ -9926,6 +10036,7 @@ This node has named children of type `{_pattern | mutable_specifier}+`:
 #[allow(non_camel_case_types)]
 pub struct ReferencePattern<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> ReferencePattern<'tree> {
     /**Get the node's not-extra named children.
 
@@ -10004,6 +10115,7 @@ And additional named children of type `{lifetime | mutable_specifier}*`:
 #[allow(non_camel_case_types)]
 pub struct ReferenceType<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> ReferenceType<'tree> {
     /**Get the field `type`.
 
@@ -10090,6 +10202,7 @@ This node has no named children
 #[allow(non_camel_case_types)]
 pub struct RemainingFieldPattern<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> RemainingFieldPattern<'tree> {}
 #[automatically_derived]
 impl<'tree> type_sitter_lib::Node<'tree> for RemainingFieldPattern<'tree> {
@@ -10130,6 +10243,7 @@ This node has a named child of type `_type` ([`Type`])
 #[allow(non_camel_case_types)]
 pub struct RemovedTraitBound<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> RemovedTraitBound<'tree> {
     /**Get the node's only not-extra named child.
 
@@ -10185,6 +10299,7 @@ This node has an optional named child of type `_expression?` ([`Expression`])
 #[allow(non_camel_case_types)]
 pub struct ReturnExpression<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> ReturnExpression<'tree> {
     /**Get the node's only not-extra named child, if it has one.
 
@@ -10242,6 +10357,7 @@ This node has these fields:
 #[allow(non_camel_case_types)]
 pub struct ScopedIdentifier<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> ScopedIdentifier<'tree> {
     /**Get the field `name`.
 
@@ -10340,6 +10456,7 @@ This node has these fields:
 #[allow(non_camel_case_types)]
 pub struct ScopedTypeIdentifier<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> ScopedTypeIdentifier<'tree> {
     /**Get the field `name`.
 
@@ -10428,6 +10545,7 @@ This node has these fields:
 #[allow(non_camel_case_types)]
 pub struct ScopedUseList<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> ScopedUseList<'tree> {
     /**Get the field `list`.
 
@@ -10511,6 +10629,7 @@ This node has no named children
 #[allow(non_camel_case_types)]
 pub struct Self_<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> Self_<'tree> {}
 #[automatically_derived]
 impl<'tree> type_sitter_lib::Node<'tree> for Self_<'tree> {
@@ -10556,6 +10675,7 @@ This node has named children of type `{lifetime | mutable_specifier | self}+`:
 #[allow(non_camel_case_types)]
 pub struct SelfParameter<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> SelfParameter<'tree> {
     /**Get the node's not-extra named children.
 
@@ -10627,6 +10747,7 @@ This node has no named children
 #[allow(non_camel_case_types)]
 pub struct Shebang<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> Shebang<'tree> {}
 #[automatically_derived]
 impl<'tree> type_sitter_lib::Node<'tree> for Shebang<'tree> {
@@ -10667,6 +10788,7 @@ This node has no named children
 #[allow(non_camel_case_types)]
 pub struct ShorthandFieldIdentifier<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> ShorthandFieldIdentifier<'tree> {}
 #[automatically_derived]
 impl<'tree> type_sitter_lib::Node<'tree> for ShorthandFieldIdentifier<'tree> {
@@ -10711,6 +10833,7 @@ This node has named children of type `{attribute_item | identifier}+`:
 #[allow(non_camel_case_types)]
 pub struct ShorthandFieldInitializer<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> ShorthandFieldInitializer<'tree> {
     /**Get the node's not-extra named children.
 
@@ -10781,6 +10904,7 @@ This node has named children of type `_pattern*` ([`Pattern`])
 #[allow(non_camel_case_types)]
 pub struct SlicePattern<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> SlicePattern<'tree> {
     /**Get the node's not-extra named children.
 
@@ -10840,6 +10964,7 @@ This node has named children of type `{_declaration_statement | expression_state
 #[allow(non_camel_case_types)]
 pub struct SourceFile<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> SourceFile<'tree> {
     /**Get the node's not-extra named children.
 
@@ -10918,6 +11043,7 @@ And additional named children of type `{mutable_specifier | visibility_modifier}
 #[allow(non_camel_case_types)]
 pub struct StaticItem<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> StaticItem<'tree> {
     /**Get the field `name`.
 
@@ -11027,6 +11153,7 @@ This node has no named children
 #[allow(non_camel_case_types)]
 pub struct StringContent<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> StringContent<'tree> {}
 #[automatically_derived]
 impl<'tree> type_sitter_lib::Node<'tree> for StringContent<'tree> {
@@ -11071,6 +11198,7 @@ This node has named children of type `{escape_sequence | string_content}*`:
 #[allow(non_camel_case_types)]
 pub struct StringLiteral<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> StringLiteral<'tree> {
     /**Get the node's not-extra named children.
 
@@ -11141,6 +11269,7 @@ This node has these fields:
 #[allow(non_camel_case_types)]
 pub struct StructExpression<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> StructExpression<'tree> {
     /**Get the field `body`.
 
@@ -11236,6 +11365,7 @@ And additional named children of type `{visibility_modifier | where_clause}*`:
 #[allow(non_camel_case_types)]
 pub struct StructItem<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> StructItem<'tree> {
     /**Get the optional field `body`.
 
@@ -11365,6 +11495,7 @@ And additional named children of type `{field_pattern | remaining_field_pattern}
 #[allow(non_camel_case_types)]
 pub struct StructPattern<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> StructPattern<'tree> {
     /**Get the field `type`.
 
@@ -11464,6 +11595,7 @@ This node has no named children
 #[allow(non_camel_case_types)]
 pub struct Super<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> Super<'tree> {}
 #[automatically_derived]
 impl<'tree> type_sitter_lib::Node<'tree> for Super<'tree> {
@@ -11507,6 +11639,7 @@ This node has these fields:
 #[allow(non_camel_case_types)]
 pub struct TokenBindingPattern<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> TokenBindingPattern<'tree> {
     /**Get the field `name`.
 
@@ -11588,6 +11721,7 @@ This node has named children of type `{_literal | crate | identifier | metavaria
 #[allow(non_camel_case_types)]
 pub struct TokenRepetition<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> TokenRepetition<'tree> {
     /**Get the node's not-extra named children.
 
@@ -11678,6 +11812,7 @@ This node has named children of type `{_literal | crate | identifier | metavaria
 #[allow(non_camel_case_types)]
 pub struct TokenRepetitionPattern<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> TokenRepetitionPattern<'tree> {
     /**Get the node's not-extra named children.
 
@@ -11768,6 +11903,7 @@ This node has named children of type `{_literal | crate | identifier | metavaria
 #[allow(non_camel_case_types)]
 pub struct TokenTree<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> TokenTree<'tree> {
     /**Get the node's not-extra named children.
 
@@ -11858,6 +11994,7 @@ This node has named children of type `{_literal | crate | identifier | metavaria
 #[allow(non_camel_case_types)]
 pub struct TokenTreePattern<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> TokenTreePattern<'tree> {
     /**Get the node's not-extra named children.
 
@@ -11941,6 +12078,7 @@ This node has named children of type `{_type | higher_ranked_trait_bound | lifet
 #[allow(non_camel_case_types)]
 pub struct TraitBounds<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> TraitBounds<'tree> {
     /**Get the node's not-extra named children.
 
@@ -12023,6 +12161,7 @@ And additional named children of type `{visibility_modifier | where_clause}*`:
 #[allow(non_camel_case_types)]
 pub struct TraitItem<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> TraitItem<'tree> {
     /**Get the field `body`.
 
@@ -12143,6 +12282,7 @@ This node has a named child of type `block` ([`Block`])
 #[allow(non_camel_case_types)]
 pub struct TryBlock<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> TryBlock<'tree> {
     /**Get the node's only not-extra named child.
 
@@ -12198,6 +12338,7 @@ This node has a named child of type `_expression` ([`Expression`])
 #[allow(non_camel_case_types)]
 pub struct TryExpression<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> TryExpression<'tree> {
     /**Get the node's only not-extra named child.
 
@@ -12257,6 +12398,7 @@ This node has named children of type `{_expression | attribute_item}+`:
 #[allow(non_camel_case_types)]
 pub struct TupleExpression<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> TupleExpression<'tree> {
     /**Get the node's not-extra named children.
 
@@ -12331,6 +12473,7 @@ This node has named children of type `{_pattern | closure_expression}*`:
 #[allow(non_camel_case_types)]
 pub struct TuplePattern<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> TuplePattern<'tree> {
     /**Get the node's not-extra named children.
 
@@ -12402,6 +12545,7 @@ And additional named children of type `_pattern*` ([`Pattern`])
 #[allow(non_camel_case_types)]
 pub struct TupleStructPattern<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> TupleStructPattern<'tree> {
     /**Get the field `type`.
 
@@ -12489,6 +12633,7 @@ This node has named children of type `_type+` ([`Type`])
 #[allow(non_camel_case_types)]
 pub struct TupleType<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> TupleType<'tree> {
     /**Get the node's not-extra named children.
 
@@ -12554,6 +12699,7 @@ This node has named children of type `{_literal | _type | block | lifetime | tra
 #[allow(non_camel_case_types)]
 pub struct TypeArguments<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> TypeArguments<'tree> {
     /**Get the node's not-extra named children.
 
@@ -12632,6 +12778,7 @@ This node has these fields:
 #[allow(non_camel_case_types)]
 pub struct TypeBinding<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> TypeBinding<'tree> {
     /**Get the field `name`.
 
@@ -12711,6 +12858,7 @@ This node has these fields:
 #[allow(non_camel_case_types)]
 pub struct TypeCastExpression<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> TypeCastExpression<'tree> {
     /**Get the field `type`.
 
@@ -12776,6 +12924,7 @@ This node has no named children
 #[allow(non_camel_case_types)]
 pub struct TypeIdentifier<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> TypeIdentifier<'tree> {}
 #[automatically_derived]
 impl<'tree> type_sitter_lib::Node<'tree> for TypeIdentifier<'tree> {
@@ -12826,6 +12975,7 @@ And additional named children of type `{visibility_modifier | where_clause}*`:
 #[allow(non_camel_case_types)]
 pub struct TypeItem<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> TypeItem<'tree> {
     /**Get the field `name`.
 
@@ -12944,6 +13094,7 @@ This node has named children of type `{attribute_item | const_parameter | constr
 #[allow(non_camel_case_types)]
 pub struct TypeParameters<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> TypeParameters<'tree> {
     /**Get the node's not-extra named children.
 
@@ -13021,6 +13172,7 @@ This node has a named child of type `_expression` ([`Expression`])
 #[allow(non_camel_case_types)]
 pub struct UnaryExpression<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> UnaryExpression<'tree> {
     /**Get the node's only not-extra named child.
 
@@ -13086,6 +13238,7 @@ And additional named children of type `{visibility_modifier | where_clause}*`:
 #[allow(non_camel_case_types)]
 pub struct UnionItem<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> UnionItem<'tree> {
     /**Get the field `body`.
 
@@ -13201,6 +13354,7 @@ This node has no named children
 #[allow(non_camel_case_types)]
 pub struct UnitExpression<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> UnitExpression<'tree> {}
 #[automatically_derived]
 impl<'tree> type_sitter_lib::Node<'tree> for UnitExpression<'tree> {
@@ -13241,6 +13395,7 @@ This node has no named children
 #[allow(non_camel_case_types)]
 pub struct UnitType<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> UnitType<'tree> {}
 #[automatically_derived]
 impl<'tree> type_sitter_lib::Node<'tree> for UnitType<'tree> {
@@ -13281,6 +13436,7 @@ This node has a named child of type `block` ([`Block`])
 #[allow(non_camel_case_types)]
 pub struct UnsafeBlock<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> UnsafeBlock<'tree> {
     /**Get the node's only not-extra named child.
 
@@ -13339,6 +13495,7 @@ This node has these fields:
 #[allow(non_camel_case_types)]
 pub struct UseAsClause<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> UseAsClause<'tree> {
     /**Get the field `alias`.
 
@@ -13425,6 +13582,7 @@ And an optional additional named child of type `visibility_modifier?` ([`Visibil
 #[allow(non_camel_case_types)]
 pub struct UseDeclaration<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> UseDeclaration<'tree> {
     /**Get the field `argument`.
 
@@ -13533,6 +13691,7 @@ This node has named children of type `{crate | identifier | metavariable | scope
 #[allow(non_camel_case_types)]
 pub struct UseList<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> UseList<'tree> {
     /**Get the node's not-extra named children.
 
@@ -13618,6 +13777,7 @@ This node has an optional named child of type `{crate | identifier | metavariabl
 #[allow(non_camel_case_types)]
 pub struct UseWildcard<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> UseWildcard<'tree> {
     /**Get the node's only not-extra named child, if it has one.
 
@@ -13695,6 +13855,7 @@ And an optional additional named child of type `mutable_specifier?` ([`MutableSp
 #[allow(non_camel_case_types)]
 pub struct VariadicParameter<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> VariadicParameter<'tree> {
     /**Get the optional field `pattern`.
 
@@ -13771,6 +13932,7 @@ This node has an optional named child of type `{crate | identifier | metavariabl
 #[allow(non_camel_case_types)]
 pub struct VisibilityModifier<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> VisibilityModifier<'tree> {
     /**Get the node's only not-extra named child, if it has one.
 
@@ -13844,6 +14006,7 @@ This node has named children of type `where_predicate+` ([`WherePredicate`])
 #[allow(non_camel_case_types)]
 pub struct WhereClause<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> WhereClause<'tree> {
     /**Get the node's not-extra named children.
 
@@ -13906,6 +14069,7 @@ This node has these fields:
 #[allow(non_camel_case_types)]
 pub struct WherePredicate<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> WherePredicate<'tree> {
     /**Get the field `bounds`.
 
@@ -13999,6 +14163,7 @@ And an optional additional named child of type `label?` ([`Label`])
 #[allow(non_camel_case_types)]
 pub struct WhileExpression<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> WhileExpression<'tree> {
     /**Get the field `body`.
 
@@ -14094,6 +14259,7 @@ This node has an optional named child of type `_expression?` ([`Expression`])
 #[allow(non_camel_case_types)]
 pub struct YieldExpression<'tree>(yak_sitter::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> YieldExpression<'tree> {
     /**Get the node's only not-extra named child, if it has one.
 
@@ -14151,6 +14317,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct As<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> As<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for As<'tree> {
@@ -14193,6 +14360,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct Async<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Async<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for Async<'tree> {
@@ -14235,6 +14403,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct Await<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Await<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for Await<'tree> {
@@ -14277,6 +14446,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct Block<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Block<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for Block<'tree> {
@@ -14319,6 +14489,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct Break<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Break<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for Break<'tree> {
@@ -14361,6 +14532,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct Const<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Const<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for Const<'tree> {
@@ -14403,6 +14575,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct Continue<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Continue<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for Continue<'tree> {
@@ -14445,6 +14618,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct Default<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Default<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for Default<'tree> {
@@ -14487,6 +14661,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct Dyn<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Dyn<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for Dyn<'tree> {
@@ -14529,6 +14704,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct Else<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Else<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for Else<'tree> {
@@ -14571,6 +14747,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct Enum<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Enum<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for Enum<'tree> {
@@ -14613,6 +14790,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct Expr<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Expr<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for Expr<'tree> {
@@ -14655,6 +14833,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct Extern<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Extern<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for Extern<'tree> {
@@ -14697,6 +14876,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct False<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> False<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for False<'tree> {
@@ -14739,6 +14919,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct Fn<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Fn<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for Fn<'tree> {
@@ -14781,6 +14962,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct For<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> For<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for For<'tree> {
@@ -14823,6 +15005,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct Ident<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Ident<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for Ident<'tree> {
@@ -14865,6 +15048,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct If<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> If<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for If<'tree> {
@@ -14907,6 +15091,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct Impl<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Impl<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for Impl<'tree> {
@@ -14949,6 +15134,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct In<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> In<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for In<'tree> {
@@ -14991,6 +15177,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct Item<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Item<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for Item<'tree> {
@@ -15033,6 +15220,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct Let<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Let<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for Let<'tree> {
@@ -15075,6 +15263,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct Lifetime<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Lifetime<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for Lifetime<'tree> {
@@ -15117,6 +15306,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct Literal<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Literal<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for Literal<'tree> {
@@ -15159,6 +15349,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct Loop<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Loop<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for Loop<'tree> {
@@ -15201,6 +15392,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct Match<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Match<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for Match<'tree> {
@@ -15243,6 +15435,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct Meta<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Meta<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for Meta<'tree> {
@@ -15285,6 +15478,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct Mod<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Mod<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for Mod<'tree> {
@@ -15327,6 +15521,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct Move<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Move<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for Move<'tree> {
@@ -15369,6 +15564,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct Pat<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Pat<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for Pat<'tree> {
@@ -15411,6 +15607,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct Path<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Path<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for Path<'tree> {
@@ -15453,6 +15650,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct Pub<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Pub<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for Pub<'tree> {
@@ -15495,6 +15693,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct Ref<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Ref<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for Ref<'tree> {
@@ -15537,6 +15736,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct Return<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Return<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for Return<'tree> {
@@ -15579,6 +15779,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct Static<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Static<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for Static<'tree> {
@@ -15621,6 +15822,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct Stmt<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Stmt<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for Stmt<'tree> {
@@ -15663,6 +15865,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct Struct<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Struct<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for Struct<'tree> {
@@ -15705,6 +15908,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct Trait<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Trait<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for Trait<'tree> {
@@ -15747,6 +15951,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct True<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> True<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for True<'tree> {
@@ -15789,6 +15994,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct Try<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Try<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for Try<'tree> {
@@ -15831,6 +16037,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct Tt<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Tt<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for Tt<'tree> {
@@ -15873,6 +16080,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct Ty<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Ty<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for Ty<'tree> {
@@ -15915,6 +16123,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct Type<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Type<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for Type<'tree> {
@@ -15957,6 +16166,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct Union<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Union<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for Union<'tree> {
@@ -15999,6 +16209,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct Unsafe<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Unsafe<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for Unsafe<'tree> {
@@ -16041,6 +16252,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct Use<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Use<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for Use<'tree> {
@@ -16083,6 +16295,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct Vis<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Vis<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for Vis<'tree> {
@@ -16125,6 +16338,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct Where<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Where<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for Where<'tree> {
@@ -16167,6 +16381,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct While<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> While<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for While<'tree> {
@@ -16209,6 +16424,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct Yield<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Yield<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for Yield<'tree> {
@@ -16255,6 +16471,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct Not<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Not<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for Not<'tree> {
@@ -16297,6 +16514,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct NotEq<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> NotEq<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for NotEq<'tree> {
@@ -16339,6 +16557,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct DoubleQuote<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> DoubleQuote<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for DoubleQuote<'tree> {
@@ -16381,6 +16600,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct Hash<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Hash<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for Hash<'tree> {
@@ -16423,6 +16643,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct Dollar<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Dollar<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for Dollar<'tree> {
@@ -16465,6 +16686,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct Mod<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Mod<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for Mod<'tree> {
@@ -16507,6 +16729,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct ModEq<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> ModEq<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for ModEq<'tree> {
@@ -16549,6 +16772,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct And<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> And<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for And<'tree> {
@@ -16591,6 +16815,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct AndAnd<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> AndAnd<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for AndAnd<'tree> {
@@ -16633,6 +16858,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct AndEq<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> AndEq<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for AndEq<'tree> {
@@ -16675,6 +16901,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct Quote<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Quote<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for Quote<'tree> {
@@ -16717,6 +16944,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct LParen<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> LParen<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for LParen<'tree> {
@@ -16759,6 +16987,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct RParen<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> RParen<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for RParen<'tree> {
@@ -16801,6 +17030,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct Mul<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Mul<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for Mul<'tree> {
@@ -16840,6 +17070,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct MulDiv<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> MulDiv<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for MulDiv<'tree> {
@@ -16882,6 +17113,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct MulEq<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> MulEq<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for MulEq<'tree> {
@@ -16924,6 +17156,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct Add<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Add<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for Add<'tree> {
@@ -16966,6 +17199,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct AddEq<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> AddEq<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for AddEq<'tree> {
@@ -17008,6 +17242,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct Comma<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Comma<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for Comma<'tree> {
@@ -17050,6 +17285,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct Sub<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Sub<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for Sub<'tree> {
@@ -17092,6 +17328,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct SubEq<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> SubEq<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for SubEq<'tree> {
@@ -17134,6 +17371,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct SubGt<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> SubGt<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for SubGt<'tree> {
@@ -17176,6 +17414,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct Dot<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Dot<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for Dot<'tree> {
@@ -17218,6 +17457,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct DotDot<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> DotDot<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for DotDot<'tree> {
@@ -17260,6 +17500,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct DotDotDot<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> DotDotDot<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for DotDotDot<'tree> {
@@ -17302,6 +17543,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct DotDotEq<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> DotDotEq<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for DotDotEq<'tree> {
@@ -17344,6 +17586,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct Div<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Div<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for Div<'tree> {
@@ -17383,6 +17626,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct DivMul<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> DivMul<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for DivMul<'tree> {
@@ -17425,6 +17669,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct DivDiv<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> DivDiv<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for DivDiv<'tree> {
@@ -17467,6 +17712,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct DivEq<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> DivEq<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for DivEq<'tree> {
@@ -17509,6 +17755,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct Colon<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Colon<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for Colon<'tree> {
@@ -17551,6 +17798,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct ColonColon<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> ColonColon<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for ColonColon<'tree> {
@@ -17593,6 +17841,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct Semicolon<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Semicolon<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for Semicolon<'tree> {
@@ -17635,6 +17884,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct Lt<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Lt<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for Lt<'tree> {
@@ -17677,6 +17927,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct LtLt<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> LtLt<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for LtLt<'tree> {
@@ -17719,6 +17970,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct LtLtEq<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> LtLtEq<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for LtLtEq<'tree> {
@@ -17761,6 +18013,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct LtEq<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> LtEq<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for LtEq<'tree> {
@@ -17803,6 +18056,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct Eq<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Eq<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for Eq<'tree> {
@@ -17845,6 +18099,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct EqEq<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> EqEq<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for EqEq<'tree> {
@@ -17887,6 +18142,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct EqGt<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> EqGt<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for EqGt<'tree> {
@@ -17929,6 +18185,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct Gt<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Gt<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for Gt<'tree> {
@@ -17971,6 +18228,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct GtEq<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> GtEq<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for GtEq<'tree> {
@@ -18013,6 +18271,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct GtGt<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> GtGt<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for GtGt<'tree> {
@@ -18055,6 +18314,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct GtGtEq<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> GtGtEq<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for GtGtEq<'tree> {
@@ -18097,6 +18357,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct Question<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Question<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for Question<'tree> {
@@ -18139,6 +18400,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct At<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> At<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for At<'tree> {
@@ -18181,6 +18443,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct LBracket<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> LBracket<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for LBracket<'tree> {
@@ -18223,6 +18486,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct RBracket<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> RBracket<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for RBracket<'tree> {
@@ -18265,6 +18529,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct BitXor<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> BitXor<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for BitXor<'tree> {
@@ -18307,6 +18572,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct BitXorEq<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> BitXorEq<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for BitXorEq<'tree> {
@@ -18349,6 +18615,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct __<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> __<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for __<'tree> {
@@ -18391,6 +18658,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct MacroRulesNot<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> MacroRulesNot<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for MacroRulesNot<'tree> {
@@ -18433,6 +18701,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct LBrace<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> LBrace<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for LBrace<'tree> {
@@ -18475,6 +18744,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct Or<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Or<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for Or<'tree> {
@@ -18517,6 +18787,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct OrEq<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> OrEq<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for OrEq<'tree> {
@@ -18559,6 +18830,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct OrOr<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> OrOr<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for OrOr<'tree> {
@@ -18601,6 +18873,7 @@ This node has no named children
     #[allow(non_camel_case_types)]
     pub struct RBrace<'tree>(yak_sitter::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> RBrace<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter_lib::Node<'tree> for RBrace<'tree> {
@@ -18666,6 +18939,7 @@ pub mod anon_unions {
         TypeIdentifier(TypeIdentifier<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<
         'tree,
     > ArrayType_GenericType_HigherRankedTraitBound_Lifetime_PointerType_PrimitiveType_ReferenceType_ScopedTypeIdentifier_TupleType_TypeIdentifier<
@@ -18909,6 +19183,7 @@ pub mod anon_unions {
         TypeIdentifier(TypeIdentifier<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<
         'tree,
     > AttributeItem_ConstParameter_ConstrainedTypeParameter_Lifetime_Metavariable_OptionalTypeParameter_TypeIdentifier<
@@ -19086,6 +19361,7 @@ pub mod anon_unions {
         EnumVariant(EnumVariant<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> AttributeItem_EnumVariant<'tree> {
         ///Returns the node if it is of type `attribute_item` ([`AttributeItem`]), otherwise returns `None`
         #[inline]
@@ -19162,6 +19438,7 @@ pub mod anon_unions {
         FieldDeclaration(FieldDeclaration<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> AttributeItem_FieldDeclaration<'tree> {
         ///Returns the node if it is of type `attribute_item` ([`AttributeItem`]), otherwise returns `None`
         #[inline]
@@ -19238,6 +19515,7 @@ pub mod anon_unions {
         Identifier(Identifier<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> AttributeItem_Identifier<'tree> {
         ///Returns the node if it is of type `attribute_item` ([`AttributeItem`]), otherwise returns `None`
         #[inline]
@@ -19314,6 +19592,7 @@ pub mod anon_unions {
         InnerAttributeItem(InnerAttributeItem<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> AttributeItem_InnerAttributeItem<'tree> {
         ///Returns the node if it is of type `attribute_item` ([`AttributeItem`]), otherwise returns `None`
         #[inline]
@@ -19391,6 +19670,7 @@ pub mod anon_unions {
         VisibilityModifier(VisibilityModifier<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> AttributeItem_VisibilityModifier<'tree> {
         ///Returns the node if it is of type `attribute_item` ([`AttributeItem`]), otherwise returns `None`
         #[inline]
@@ -19470,6 +19750,7 @@ pub mod anon_unions {
         ShorthandFieldInitializer(ShorthandFieldInitializer<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> BaseFieldInitializer_FieldInitializer_ShorthandFieldInitializer<'tree> {
         ///Returns the node if it is of type `base_field_initializer` ([`BaseFieldInitializer`]), otherwise returns `None`
         #[inline]
@@ -19569,6 +19850,7 @@ pub mod anon_unions {
         IfExpression(IfExpression<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Block_IfExpression<'tree> {
         ///Returns the node if it is of type `block` ([`Block`]), otherwise returns `None`
         #[inline]
@@ -19659,6 +19941,7 @@ pub mod anon_unions {
         Super(Super<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<
         'tree,
     > BracketedType_Crate_GenericType_Identifier_Metavariable_ScopedIdentifier_Self__Super<
@@ -19852,6 +20135,7 @@ pub mod anon_unions {
         TypeIdentifier(TypeIdentifier<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> ConstrainedTypeParameter_TypeIdentifier<'tree> {
         ///Returns the node if it is of type `constrained_type_parameter` ([`ConstrainedTypeParameter`]), otherwise returns `None`
         #[inline]
@@ -19949,6 +20233,7 @@ pub mod anon_unions {
         UseWildcard(UseWildcard<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<
         'tree,
     > Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList_Self__Super_UseAsClause_UseList_UseWildcard<
@@ -20186,6 +20471,7 @@ pub mod anon_unions {
         Super(Super<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Crate_Identifier_Metavariable_ScopedIdentifier_Self__Super<'tree> {
         ///Returns the node if it is of type `crate` ([`Crate`]), otherwise returns `None`
         #[inline]
@@ -20337,6 +20623,7 @@ pub mod anon_unions {
         VisibilityModifier(VisibilityModifier<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Crate_VisibilityModifier<'tree> {
         ///Returns the node if it is of type `crate` ([`Crate`]), otherwise returns `None`
         #[inline]
@@ -20415,6 +20702,7 @@ pub mod anon_unions {
         Shebang(Shebang<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> DeclarationStatement_ExpressionStatement_Shebang<'tree> {
         ///Returns the node if it is of type `_declaration_statement` ([`DeclarationStatement`]), otherwise returns `None`
         #[inline]
@@ -20670,6 +20958,7 @@ Follows the following chain:
         Label(Label<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> DeclarationStatement_Expression_ExpressionStatement_Label<'tree> {
         ///Returns the node if it is of type `_declaration_statement` ([`DeclarationStatement`]), otherwise returns `None`
         #[inline]
@@ -21307,6 +21596,7 @@ Follows the following chain:
         StringContent(StringContent<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> EscapeSequence_StringContent<'tree> {
         ///Returns the node if it is of type `escape_sequence` ([`EscapeSequence`]), otherwise returns `None`
         #[inline]
@@ -21383,6 +21673,7 @@ Follows the following chain:
         AttributeItem(AttributeItem<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Expression_AttributeItem<'tree> {
         ///Returns the node if it is of type `_expression` ([`Expression`]), otherwise returns `None`
         #[inline]
@@ -21819,6 +22110,7 @@ Follows the following chain:
         Label(Label<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Expression_Label<'tree> {
         ///Returns the node if it is of type `_expression` ([`Expression`]), otherwise returns `None`
         #[inline]
@@ -22257,6 +22549,7 @@ Follows the following chain:
         LetCondition(LetCondition<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Expression_LetChain_LetCondition<'tree> {
         ///Returns the node if it is of type `_expression` ([`Expression`]), otherwise returns `None`
         #[inline]
@@ -22708,6 +23001,7 @@ Follows the following chain:
         LetCondition(LetCondition<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Expression_LetCondition<'tree> {
         ///Returns the node if it is of type `_expression` ([`Expression`]), otherwise returns `None`
         #[inline]
@@ -23144,6 +23438,7 @@ Follows the following chain:
         VisibilityModifier(VisibilityModifier<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> ExternModifier_VisibilityModifier<'tree> {
         ///Returns the node if it is of type `extern_modifier` ([`ExternModifier`]), otherwise returns `None`
         #[inline]
@@ -23221,6 +23516,7 @@ Follows the following chain:
         OrderedFieldDeclarationList(OrderedFieldDeclarationList<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> FieldDeclarationList_OrderedFieldDeclarationList<'tree> {
         ///Returns the node if it is of type `field_declaration_list` ([`FieldDeclarationList`]), otherwise returns `None`
         #[inline]
@@ -23302,6 +23598,7 @@ Follows the following chain:
         ScopedIdentifier(ScopedIdentifier<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> FieldExpression_Identifier_ScopedIdentifier<'tree> {
         ///Returns the node if it is of type `field_expression` ([`FieldExpression`]), otherwise returns `None`
         #[inline]
@@ -23397,6 +23694,7 @@ Follows the following chain:
         IntegerLiteral(IntegerLiteral<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> FieldIdentifier_IntegerLiteral<'tree> {
         ///Returns the node if it is of type `field_identifier` ([`FieldIdentifier`]), otherwise returns `None`
         #[inline]
@@ -23473,6 +23771,7 @@ Follows the following chain:
         ShorthandFieldIdentifier(ShorthandFieldIdentifier<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> FieldIdentifier_ShorthandFieldIdentifier<'tree> {
         ///Returns the node if it is of type `field_identifier` ([`FieldIdentifier`]), otherwise returns `None`
         #[inline]
@@ -23552,6 +23851,7 @@ Follows the following chain:
         RemainingFieldPattern(RemainingFieldPattern<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> FieldPattern_RemainingFieldPattern<'tree> {
         ///Returns the node if it is of type `field_pattern` ([`FieldPattern`]), otherwise returns `None`
         #[inline]
@@ -23629,6 +23929,7 @@ Follows the following chain:
         IntegerLiteral(IntegerLiteral<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> FloatLiteral_IntegerLiteral<'tree> {
         ///Returns the node if it is of type `float_literal` ([`FloatLiteral`]), otherwise returns `None`
         #[inline]
@@ -23705,6 +24006,7 @@ Follows the following chain:
         FunctionModifiers(FunctionModifiers<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> ForLifetimes_FunctionModifiers<'tree> {
         ///Returns the node if it is of type `for_lifetimes` ([`ForLifetimes`]), otherwise returns `None`
         #[inline]
@@ -23783,6 +24085,7 @@ Follows the following chain:
         WhereClause(WhereClause<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> FunctionModifiers_VisibilityModifier_WhereClause<'tree> {
         ///Returns the node if it is of type `function_modifiers` ([`FunctionModifiers`]), otherwise returns `None`
         #[inline]
@@ -23886,6 +24189,7 @@ Follows the following chain:
         TypeIdentifier(TypeIdentifier<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<
         'tree,
     > FunctionType_GenericType_HigherRankedTraitBound_ScopedTypeIdentifier_TypeIdentifier<
@@ -24037,6 +24341,7 @@ Follows the following chain:
         TypeIdentifier(TypeIdentifier<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<
         'tree,
     > FunctionType_GenericType_RemovedTraitBound_ScopedTypeIdentifier_TupleType_TypeIdentifier<
@@ -24196,6 +24501,7 @@ Follows the following chain:
         TypeIdentifier(TypeIdentifier<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> GenericTypeWithTurbofish_ScopedTypeIdentifier_TypeIdentifier<'tree> {
         ///Returns the node if it is of type `generic_type_with_turbofish` ([`GenericTypeWithTurbofish`]), otherwise returns `None`
         #[inline]
@@ -24297,6 +24603,7 @@ Follows the following chain:
         ScopedIdentifier(ScopedIdentifier<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> GenericType_Identifier_ScopedIdentifier<'tree> {
         ///Returns the node if it is of type `generic_type` ([`GenericType`]), otherwise returns `None`
         #[inline]
@@ -24394,6 +24701,7 @@ Follows the following chain:
         TypeIdentifier(TypeIdentifier<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> GenericType_ScopedTypeIdentifier_TypeIdentifier<'tree> {
         ///Returns the node if it is of type `generic_type` ([`GenericType`]), otherwise returns `None`
         #[inline]
@@ -24489,6 +24797,7 @@ Follows the following chain:
         Metavariable(Metavariable<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Identifier_Metavariable<'tree> {
         ///Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`
         #[inline]
@@ -24565,6 +24874,7 @@ Follows the following chain:
         ScopedIdentifier(ScopedIdentifier<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Identifier_ScopedIdentifier<'tree> {
         ///Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`
         #[inline]
@@ -24645,6 +24955,7 @@ Follows the following chain:
         TypeIdentifier(TypeIdentifier<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Identifier_ScopedIdentifier_ScopedTypeIdentifier_TypeIdentifier<'tree> {
         ///Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`
         #[inline]
@@ -24760,6 +25071,7 @@ Follows the following chain:
         Super(Super<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Identifier_Super<'tree> {
         ///Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`
         #[inline]
@@ -24836,6 +25148,7 @@ Follows the following chain:
         MutableSpecifier(MutableSpecifier<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Lifetime_MutableSpecifier<'tree> {
         ///Returns the node if it is of type `lifetime` ([`Lifetime`]), otherwise returns `None`
         #[inline]
@@ -24914,6 +25227,7 @@ Follows the following chain:
         Self_(Self_<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Lifetime_MutableSpecifier_Self_<'tree> {
         ///Returns the node if it is of type `lifetime` ([`Lifetime`]), otherwise returns `None`
         #[inline]
@@ -25008,6 +25322,7 @@ Follows the following chain:
         TypeIdentifier(TypeIdentifier<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Lifetime_TypeIdentifier<'tree> {
         ///Returns the node if it is of type `lifetime` ([`Lifetime`]), otherwise returns `None`
         #[inline]
@@ -25096,6 +25411,7 @@ Follows the following chain:
         Super(Super<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<
         'tree,
     > LiteralPattern_Crate_Identifier_Metavariable_ScopedIdentifier_Self__Super<'tree> {
@@ -25369,6 +25685,7 @@ Follows the following chain:
         YieldExpression(YieldExpression<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<
         'tree,
     > Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier_Self__StructExpression_TryBlock_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression<
@@ -26020,6 +26337,7 @@ Follows the following chain:
         TokenTreePattern(TokenTreePattern<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<
         'tree,
     > Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType_Self__Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern<
@@ -26289,6 +26607,7 @@ Follows the following chain:
         TokenTree(TokenTree<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<
         'tree,
     > Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType_Self__Super_TokenRepetition_TokenTree<
@@ -26532,6 +26851,7 @@ Follows the following chain:
         TypeBinding(TypeBinding<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Literal_Type_Block_Lifetime_TraitBounds_TypeBinding<'tree> {
         ///Returns the node if it is of type `_literal` ([`Literal`]), otherwise returns `None`
         #[inline]
@@ -26855,6 +27175,7 @@ Follows the following chain:
         OrEq(symbols::OrEq<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> ModEq_AndEq_MulEq_AddEq_SubEq_DivEq_LtLtEq_GtGtEq_BitXorEq_OrEq<'tree> {
         ///Returns the node if it is of type `%=` ([`symbols::ModEq`]), otherwise returns `None`
         #[inline]
@@ -27078,6 +27399,7 @@ Follows the following chain:
         VisibilityModifier(VisibilityModifier<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> MutableSpecifier_VisibilityModifier<'tree> {
         ///Returns the node if it is of type `mutable_specifier` ([`MutableSpecifier`]), otherwise returns `None`
         #[inline]
@@ -27189,6 +27511,7 @@ Follows the following chain:
         OrOr(symbols::OrOr<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<
         'tree,
     > NotEq_Mod_And_AndAnd_Mul_Add_Sub_Div_Lt_LtLt_LtEq_EqEq_Gt_GtEq_GtGt_BitXor_Or_OrOr<
@@ -27562,6 +27885,7 @@ Follows the following chain:
         ClosureExpression(ClosureExpression<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Pattern_ClosureExpression<'tree> {
         ///Returns the node if it is of type `_pattern` ([`Pattern`]), otherwise returns `None`
         #[inline]
@@ -27827,6 +28151,7 @@ Follows the following chain:
         MutableSpecifier(MutableSpecifier<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Pattern_MutableSpecifier<'tree> {
         ///Returns the node if it is of type `_pattern` ([`Pattern`]), otherwise returns `None`
         #[inline]
@@ -28092,6 +28417,7 @@ Follows the following chain:
         Parameter(Parameter<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Pattern_Parameter<'tree> {
         ///Returns the node if it is of type `_pattern` ([`Pattern`]), otherwise returns `None`
         #[inline]
@@ -28357,6 +28683,7 @@ Follows the following chain:
         Self_(Self_<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Pattern_Self_<'tree> {
         ///Returns the node if it is of type `_pattern` ([`Pattern`]), otherwise returns `None`
         #[inline]
@@ -28622,6 +28949,7 @@ Follows the following chain:
         TypeIdentifier(TypeIdentifier<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> ScopedIdentifier_TypeIdentifier<'tree> {
         ///Returns the node if it is of type `scoped_identifier` ([`ScopedIdentifier`]), otherwise returns `None`
         #[inline]
@@ -28698,6 +29026,7 @@ Follows the following chain:
         TypeIdentifier(TypeIdentifier<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> ScopedTypeIdentifier_TypeIdentifier<'tree> {
         ///Returns the node if it is of type `scoped_type_identifier` ([`ScopedTypeIdentifier`]), otherwise returns `None`
         #[inline]
@@ -28781,6 +29110,7 @@ Follows the following chain:
         VariadicParameter(VariadicParameter<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Type_AttributeItem_Parameter_SelfParameter_VariadicParameter<'tree> {
         ///Returns the node if it is of type `_type` ([`Type`]), otherwise returns `None`
         #[inline]
@@ -29030,6 +29360,7 @@ Follows the following chain:
         Lifetime(Lifetime<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Type_HigherRankedTraitBound_Lifetime<'tree> {
         ///Returns the node if it is of type `_type` ([`Type`]), otherwise returns `None`
         #[inline]
@@ -29249,6 +29580,7 @@ Follows the following chain:
         Lifetime(Lifetime<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Type_Lifetime<'tree> {
         ///Returns the node if it is of type `_type` ([`Type`]), otherwise returns `None`
         #[inline]
@@ -29451,6 +29783,7 @@ Follows the following chain:
         QualifiedType(QualifiedType<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Type_QualifiedType<'tree> {
         ///Returns the node if it is of type `_type` ([`Type`]), otherwise returns `None`
         #[inline]
@@ -29653,6 +29986,7 @@ Follows the following chain:
         WhereClause(WhereClause<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> VisibilityModifier_WhereClause<'tree> {
         ///Returns the node if it is of type `visibility_modifier` ([`VisibilityModifier`]), otherwise returns `None`
         #[inline]
@@ -29729,6 +30063,7 @@ Follows the following chain:
         Expression(Expression<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> ___Expression<'tree> {
         ///Returns the node if it is of type `_` ([`symbols::__`]), otherwise returns `None`
         #[inline]

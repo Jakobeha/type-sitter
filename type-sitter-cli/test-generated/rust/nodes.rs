@@ -25,6 +25,7 @@ pub enum DeclarationStatement<'tree> {
     UseDeclaration(UseDeclaration<'tree>),
 }
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> DeclarationStatement<'tree> {
     #[doc = "Returns the node if it is of type `associated_type` ([`AssociatedType`]), otherwise returns `None`"]
     #[inline]
@@ -478,6 +479,7 @@ pub enum Expression<'tree> {
     YieldExpression(YieldExpression<'tree>),
 }
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> Expression<'tree> {
     #[doc = "Returns the node if it is of type `_literal` ([`Literal`]), otherwise returns `None`"]
     #[inline]
@@ -1187,6 +1189,7 @@ pub enum Literal<'tree> {
     StringLiteral(StringLiteral<'tree>),
 }
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> Literal<'tree> {
     #[doc = "Returns the node if it is of type `boolean_literal` ([`BooleanLiteral`]), otherwise returns `None`"]
     #[inline]
@@ -1336,6 +1339,7 @@ pub enum LiteralPattern<'tree> {
     StringLiteral(StringLiteral<'tree>),
 }
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> LiteralPattern<'tree> {
     #[doc = "Returns the node if it is of type `boolean_literal` ([`BooleanLiteral`]), otherwise returns `None`"]
     #[inline]
@@ -1513,6 +1517,7 @@ pub enum Pattern<'tree> {
     TupleStructPattern(TupleStructPattern<'tree>),
 }
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> Pattern<'tree> {
     #[doc = "Returns the node if it is of type `_` ([`symbols::__`]), otherwise returns `None`"]
     #[inline]
@@ -1875,6 +1880,7 @@ pub enum Type<'tree> {
     UnitType(UnitType<'tree>),
 }
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> Type<'tree> {
     #[doc = "Returns the node if it is of type `abstract_type` ([`AbstractType`]), otherwise returns `None`"]
     #[inline]
@@ -2217,6 +2223,7 @@ impl<'tree> type_sitter::Node<'tree> for Type<'tree> {
 #[allow(non_camel_case_types)]
 pub struct AbstractType<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> AbstractType<'tree> {
     #[doc = "Get the field `trait`.\n\nThis child has type `{function_type | generic_type | removed_trait_bound | scoped_type_identifier | tuple_type | type_identifier}`:\n\n- [`FunctionType`]\n- [`GenericType`]\n- [`RemovedTraitBound`]\n- [`ScopedTypeIdentifier`]\n- [`TupleType`]\n- [`TypeIdentifier`]\n"]
     #[inline]    pub fn r#trait (& self) -> type_sitter :: NodeResult < 'tree , anon_unions :: FunctionType_GenericType_RemovedTraitBound_ScopedTypeIdentifier_TupleType_TypeIdentifier < 'tree > >{
@@ -2273,6 +2280,7 @@ impl<'tree> type_sitter::Node<'tree> for AbstractType<'tree> {
 #[allow(non_camel_case_types)]
 pub struct Arguments<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> Arguments<'tree> {
     #[doc = "Get the node's not-extra named children.\n\nThese children have type `{_expression | attribute_item}*`:\n\n- [`Expression`]\n- [`AttributeItem`]\n"]
     #[inline]
@@ -2321,6 +2329,7 @@ impl<'tree> type_sitter::Node<'tree> for Arguments<'tree> {
 #[allow(non_camel_case_types)]
 pub struct ArrayExpression<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> ArrayExpression<'tree> {
     #[doc = "Get the optional field `length`.\n\nThis child has type `_expression?` ([`Expression`])"]
     #[inline]
@@ -2376,6 +2385,7 @@ impl<'tree> type_sitter::Node<'tree> for ArrayExpression<'tree> {
 #[allow(non_camel_case_types)]
 pub struct ArrayType<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> ArrayType<'tree> {
     #[doc = "Get the field `element`.\n\nThis child has type `_type` ([`Type`])"]
     #[inline]
@@ -2431,6 +2441,7 @@ impl<'tree> type_sitter::Node<'tree> for ArrayType<'tree> {
 #[allow(non_camel_case_types)]
 pub struct AssignmentExpression<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> AssignmentExpression<'tree> {
     #[doc = "Get the field `left`.\n\nThis child has type `_expression` ([`Expression`])"]
     #[inline]
@@ -2489,6 +2500,7 @@ impl<'tree> type_sitter::Node<'tree> for AssignmentExpression<'tree> {
 #[allow(non_camel_case_types)]
 pub struct AssociatedType<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> AssociatedType<'tree> {
     #[doc = "Get the optional field `bounds`.\n\nThis child has type `trait_bounds?` ([`TraitBounds`])"]
     #[inline]
@@ -2565,6 +2577,7 @@ impl<'tree> type_sitter::Node<'tree> for AssociatedType<'tree> {
 #[allow(non_camel_case_types)]
 pub struct AsyncBlock<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> AsyncBlock<'tree> {
     #[doc = "Get the node's only not-extra named child.\n\nThis child has type `block` ([`Block`])"]
     #[inline]
@@ -2615,6 +2628,7 @@ impl<'tree> type_sitter::Node<'tree> for AsyncBlock<'tree> {
 #[allow(non_camel_case_types)]
 pub struct Attribute<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> Attribute<'tree> {
     #[doc = "Get the optional field `arguments`.\n\nThis child has type `token_tree?` ([`TokenTree`])"]
     #[inline]
@@ -2677,6 +2691,7 @@ impl<'tree> type_sitter::Node<'tree> for Attribute<'tree> {
 #[allow(non_camel_case_types)]
 pub struct AttributeItem<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> AttributeItem<'tree> {
     #[doc = "Get the node's only not-extra named child.\n\nThis child has type `attribute` ([`Attribute`])"]
     #[inline]
@@ -2727,6 +2742,7 @@ impl<'tree> type_sitter::Node<'tree> for AttributeItem<'tree> {
 #[allow(non_camel_case_types)]
 pub struct AwaitExpression<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> AwaitExpression<'tree> {
     #[doc = "Get the node's only not-extra named child.\n\nThis child has type `_expression` ([`Expression`])"]
     #[inline]
@@ -2777,6 +2793,7 @@ impl<'tree> type_sitter::Node<'tree> for AwaitExpression<'tree> {
 #[allow(non_camel_case_types)]
 pub struct BaseFieldInitializer<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> BaseFieldInitializer<'tree> {
     #[doc = "Get the node's only not-extra named child.\n\nThis child has type `_expression` ([`Expression`])"]
     #[inline]
@@ -2827,6 +2844,7 @@ impl<'tree> type_sitter::Node<'tree> for BaseFieldInitializer<'tree> {
 #[allow(non_camel_case_types)]
 pub struct BinaryExpression<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> BinaryExpression<'tree> {
     #[doc = "Get the field `left`.\n\nThis child has type `_expression` ([`Expression`])"]
     #[inline]
@@ -2889,6 +2907,7 @@ impl<'tree> type_sitter::Node<'tree> for BinaryExpression<'tree> {
 #[allow(non_camel_case_types)]
 pub struct Block<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> Block<'tree> {
     #[doc = "Get the node's not-extra named children.\n\nThese children have type `{_declaration_statement | _expression | expression_statement | label}*`:\n\n- [`DeclarationStatement`]\n- [`Expression`]\n- [`ExpressionStatement`]\n- [`Label`]\n"]
     #[inline]
@@ -2940,6 +2959,7 @@ impl<'tree> type_sitter::Node<'tree> for Block<'tree> {
 #[allow(non_camel_case_types)]
 pub struct BlockComment<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> BlockComment<'tree> {
     #[doc = "Get the optional field `doc`.\n\nThis child has type `doc_comment?` ([`DocComment`])"]
     #[inline]
@@ -2999,6 +3019,7 @@ impl<'tree> type_sitter::Node<'tree> for BlockComment<'tree> {
 #[allow(non_camel_case_types)]
 pub struct BooleanLiteral<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> BooleanLiteral<'tree> {}
 #[automatically_derived]
 impl<'tree> type_sitter::Node<'tree> for BooleanLiteral<'tree> {
@@ -3036,6 +3057,7 @@ impl<'tree> type_sitter::Node<'tree> for BooleanLiteral<'tree> {
 #[allow(non_camel_case_types)]
 pub struct BoundedType<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> BoundedType<'tree> {
     #[doc = "Get the node's not-extra named children.\n\nThese children have type `{_type | lifetime}+`:\n\n- [`Type`]\n- [`Lifetime`]\n"]
     #[doc = "\n\nThis is guaranteed to return at least one child."]
@@ -3087,6 +3109,7 @@ impl<'tree> type_sitter::Node<'tree> for BoundedType<'tree> {
 #[allow(non_camel_case_types)]
 pub struct BracketedType<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> BracketedType<'tree> {
     #[doc = "Get the node's only not-extra named child.\n\nThis child has type `{_type | qualified_type}`:\n\n- [`Type`]\n- [`QualifiedType`]\n"]
     #[inline]
@@ -3137,6 +3160,7 @@ impl<'tree> type_sitter::Node<'tree> for BracketedType<'tree> {
 #[allow(non_camel_case_types)]
 pub struct BreakExpression<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> BreakExpression<'tree> {
     #[doc = "Get the node's not-extra named children.\n\nThese children have type `{_expression | label}*`:\n\n- [`Expression`]\n- [`Label`]\n"]
     #[inline]
@@ -3187,6 +3211,7 @@ impl<'tree> type_sitter::Node<'tree> for BreakExpression<'tree> {
 #[allow(non_camel_case_types)]
 pub struct CallExpression<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> CallExpression<'tree> {
     #[doc = "Get the field `arguments`.\n\nThis child has type `arguments` ([`Arguments`])"]
     #[inline]
@@ -3239,6 +3264,7 @@ impl<'tree> type_sitter::Node<'tree> for CallExpression<'tree> {
 #[allow(non_camel_case_types)]
 pub struct CapturedPattern<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> CapturedPattern<'tree> {
     #[doc = "Get the node's not-extra named children.\n\nThese children have type `_pattern+` ([`Pattern`])"]
     #[doc = "\n\nThis is guaranteed to return at least one child."]
@@ -3289,6 +3315,7 @@ impl<'tree> type_sitter::Node<'tree> for CapturedPattern<'tree> {
 #[allow(non_camel_case_types)]
 pub struct CharLiteral<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> CharLiteral<'tree> {}
 #[automatically_derived]
 impl<'tree> type_sitter::Node<'tree> for CharLiteral<'tree> {
@@ -3326,6 +3353,7 @@ impl<'tree> type_sitter::Node<'tree> for CharLiteral<'tree> {
 #[allow(non_camel_case_types)]
 pub struct ClosureExpression<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> ClosureExpression<'tree> {
     #[doc = "Get the field `body`.\n\nThis child has type `{_ | _expression}`:\n\n- [`symbols::__`]\n- [`Expression`]\n"]
     #[inline]
@@ -3391,6 +3419,7 @@ impl<'tree> type_sitter::Node<'tree> for ClosureExpression<'tree> {
 #[allow(non_camel_case_types)]
 pub struct ClosureParameters<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> ClosureParameters<'tree> {
     #[doc = "Get the node's not-extra named children.\n\nThese children have type `{_pattern | parameter}*`:\n\n- [`Pattern`]\n- [`Parameter`]\n"]
     #[inline]
@@ -3441,6 +3470,7 @@ impl<'tree> type_sitter::Node<'tree> for ClosureParameters<'tree> {
 #[allow(non_camel_case_types)]
 pub struct CompoundAssignmentExpr<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> CompoundAssignmentExpr<'tree> {
     #[doc = "Get the field `left`.\n\nThis child has type `_expression` ([`Expression`])"]
     #[inline]
@@ -3509,6 +3539,7 @@ impl<'tree> type_sitter::Node<'tree> for CompoundAssignmentExpr<'tree> {
 #[allow(non_camel_case_types)]
 pub struct ConstBlock<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> ConstBlock<'tree> {
     #[doc = "Get the field `body`.\n\nThis child has type `block` ([`Block`])"]
     #[inline]
@@ -3557,6 +3588,7 @@ impl<'tree> type_sitter::Node<'tree> for ConstBlock<'tree> {
 #[allow(non_camel_case_types)]
 pub struct ConstItem<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> ConstItem<'tree> {
     #[doc = "Get the field `name`.\n\nThis child has type `identifier` ([`Identifier`])"]
     #[inline]
@@ -3638,6 +3670,7 @@ impl<'tree> type_sitter::Node<'tree> for ConstItem<'tree> {
 #[allow(non_camel_case_types)]
 pub struct ConstParameter<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> ConstParameter<'tree> {
     #[doc = "Get the field `name`.\n\nThis child has type `identifier` ([`Identifier`])"]
     #[inline]
@@ -3696,6 +3729,7 @@ impl<'tree> type_sitter::Node<'tree> for ConstParameter<'tree> {
 #[allow(non_camel_case_types)]
 pub struct ConstrainedTypeParameter<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> ConstrainedTypeParameter<'tree> {
     #[doc = "Get the field `bounds`.\n\nThis child has type `trait_bounds` ([`TraitBounds`])"]
     #[inline]
@@ -3751,6 +3785,7 @@ impl<'tree> type_sitter::Node<'tree> for ConstrainedTypeParameter<'tree> {
 #[allow(non_camel_case_types)]
 pub struct ContinueExpression<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> ContinueExpression<'tree> {
     #[doc = "Get the node's only not-extra named child, if it has one.\n\nThis child has type `label?` ([`Label`])"]
     #[inline]
@@ -3798,6 +3833,7 @@ impl<'tree> type_sitter::Node<'tree> for ContinueExpression<'tree> {
 #[allow(non_camel_case_types)]
 pub struct Crate<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> Crate<'tree> {}
 #[automatically_derived]
 impl<'tree> type_sitter::Node<'tree> for Crate<'tree> {
@@ -3835,6 +3871,7 @@ impl<'tree> type_sitter::Node<'tree> for Crate<'tree> {
 #[allow(non_camel_case_types)]
 pub struct DeclarationList<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> DeclarationList<'tree> {
     #[doc = "Get the node's not-extra named children.\n\nThese children have type `_declaration_statement*` ([`DeclarationStatement`])"]
     #[inline]
@@ -3885,6 +3922,7 @@ impl<'tree> type_sitter::Node<'tree> for DeclarationList<'tree> {
 #[allow(non_camel_case_types)]
 pub struct DocComment<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> DocComment<'tree> {}
 #[automatically_derived]
 impl<'tree> type_sitter::Node<'tree> for DocComment<'tree> {
@@ -3922,6 +3960,7 @@ impl<'tree> type_sitter::Node<'tree> for DocComment<'tree> {
 #[allow(non_camel_case_types)]
 pub struct DynamicType<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> DynamicType<'tree> {
     #[doc = "Get the field `trait`.\n\nThis child has type `{function_type | generic_type | higher_ranked_trait_bound | scoped_type_identifier | type_identifier}`:\n\n- [`FunctionType`]\n- [`GenericType`]\n- [`HigherRankedTraitBound`]\n- [`ScopedTypeIdentifier`]\n- [`TypeIdentifier`]\n"]
     #[inline]    pub fn r#trait (& self) -> type_sitter :: NodeResult < 'tree , anon_unions :: FunctionType_GenericType_HigherRankedTraitBound_ScopedTypeIdentifier_TypeIdentifier < 'tree > >{
@@ -3964,6 +4003,7 @@ impl<'tree> type_sitter::Node<'tree> for DynamicType<'tree> {
 #[allow(non_camel_case_types)]
 pub struct ElseClause<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> ElseClause<'tree> {
     #[doc = "Get the node's only not-extra named child.\n\nThis child has type `{block | if_expression}`:\n\n- [`Block`]\n- [`IfExpression`]\n"]
     #[inline]
@@ -4014,6 +4054,7 @@ impl<'tree> type_sitter::Node<'tree> for ElseClause<'tree> {
 #[allow(non_camel_case_types)]
 pub struct EmptyStatement<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> EmptyStatement<'tree> {}
 #[automatically_derived]
 impl<'tree> type_sitter::Node<'tree> for EmptyStatement<'tree> {
@@ -4051,6 +4092,7 @@ impl<'tree> type_sitter::Node<'tree> for EmptyStatement<'tree> {
 #[allow(non_camel_case_types)]
 pub struct EnumItem<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> EnumItem<'tree> {
     #[doc = "Get the field `body`.\n\nThis child has type `enum_variant_list` ([`EnumVariantList`])"]
     #[inline]
@@ -4126,6 +4168,7 @@ impl<'tree> type_sitter::Node<'tree> for EnumItem<'tree> {
 #[allow(non_camel_case_types)]
 pub struct EnumVariant<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> EnumVariant<'tree> {
     #[doc = "Get the optional field `body`.\n\nThis child has type `{field_declaration_list | ordered_field_declaration_list}?`:\n\n- [`FieldDeclarationList`]\n- [`OrderedFieldDeclarationList`]\n"]
     #[inline]
@@ -4209,6 +4252,7 @@ impl<'tree> type_sitter::Node<'tree> for EnumVariant<'tree> {
 #[allow(non_camel_case_types)]
 pub struct EnumVariantList<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> EnumVariantList<'tree> {
     #[doc = "Get the node's not-extra named children.\n\nThese children have type `{attribute_item | enum_variant}*`:\n\n- [`AttributeItem`]\n- [`EnumVariant`]\n"]
     #[inline]
@@ -4257,6 +4301,7 @@ impl<'tree> type_sitter::Node<'tree> for EnumVariantList<'tree> {
 #[allow(non_camel_case_types)]
 pub struct EscapeSequence<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> EscapeSequence<'tree> {}
 #[automatically_derived]
 impl<'tree> type_sitter::Node<'tree> for EscapeSequence<'tree> {
@@ -4294,6 +4339,7 @@ impl<'tree> type_sitter::Node<'tree> for EscapeSequence<'tree> {
 #[allow(non_camel_case_types)]
 pub struct ExpressionStatement<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> ExpressionStatement<'tree> {
     #[doc = "Get the node's only not-extra named child.\n\nThis child has type `_expression` ([`Expression`])"]
     #[inline]
@@ -4344,6 +4390,7 @@ impl<'tree> type_sitter::Node<'tree> for ExpressionStatement<'tree> {
 #[allow(non_camel_case_types)]
 pub struct ExternCrateDeclaration<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> ExternCrateDeclaration<'tree> {
     #[doc = "Get the optional field `alias`.\n\nThis child has type `identifier?` ([`Identifier`])"]
     #[inline]
@@ -4410,6 +4457,7 @@ impl<'tree> type_sitter::Node<'tree> for ExternCrateDeclaration<'tree> {
 #[allow(non_camel_case_types)]
 pub struct ExternModifier<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> ExternModifier<'tree> {
     #[doc = "Get the node's only not-extra named child, if it has one.\n\nThis child has type `string_literal?` ([`StringLiteral`])"]
     #[inline]
@@ -4457,6 +4505,7 @@ impl<'tree> type_sitter::Node<'tree> for ExternModifier<'tree> {
 #[allow(non_camel_case_types)]
 pub struct FieldDeclaration<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> FieldDeclaration<'tree> {
     #[doc = "Get the field `name`.\n\nThis child has type `field_identifier` ([`FieldIdentifier`])"]
     #[inline]
@@ -4531,6 +4580,7 @@ impl<'tree> type_sitter::Node<'tree> for FieldDeclaration<'tree> {
 #[allow(non_camel_case_types)]
 pub struct FieldDeclarationList<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> FieldDeclarationList<'tree> {
     #[doc = "Get the node's not-extra named children.\n\nThese children have type `{attribute_item | field_declaration}*`:\n\n- [`AttributeItem`]\n- [`FieldDeclaration`]\n"]
     #[inline]
@@ -4579,6 +4629,7 @@ impl<'tree> type_sitter::Node<'tree> for FieldDeclarationList<'tree> {
 #[allow(non_camel_case_types)]
 pub struct FieldExpression<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> FieldExpression<'tree> {
     #[doc = "Get the field `field`.\n\nThis child has type `{field_identifier | integer_literal}`:\n\n- [`FieldIdentifier`]\n- [`IntegerLiteral`]\n"]
     #[inline]
@@ -4634,6 +4685,7 @@ impl<'tree> type_sitter::Node<'tree> for FieldExpression<'tree> {
 #[allow(non_camel_case_types)]
 pub struct FieldIdentifier<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> FieldIdentifier<'tree> {}
 #[automatically_derived]
 impl<'tree> type_sitter::Node<'tree> for FieldIdentifier<'tree> {
@@ -4671,6 +4723,7 @@ impl<'tree> type_sitter::Node<'tree> for FieldIdentifier<'tree> {
 #[allow(non_camel_case_types)]
 pub struct FieldInitializer<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> FieldInitializer<'tree> {
     #[doc = "Get the field `field`.\n\nThis child has type `{field_identifier | integer_literal}`:\n\n- [`FieldIdentifier`]\n- [`IntegerLiteral`]\n"]
     #[inline]
@@ -4744,6 +4797,7 @@ impl<'tree> type_sitter::Node<'tree> for FieldInitializer<'tree> {
 #[allow(non_camel_case_types)]
 pub struct FieldInitializerList<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> FieldInitializerList<'tree> {
     #[doc = "Get the node's not-extra named children.\n\nThese children have type `{base_field_initializer | field_initializer | shorthand_field_initializer}*`:\n\n- [`BaseFieldInitializer`]\n- [`FieldInitializer`]\n- [`ShorthandFieldInitializer`]\n"]
     #[inline]
@@ -4795,6 +4849,7 @@ impl<'tree> type_sitter::Node<'tree> for FieldInitializerList<'tree> {
 #[allow(non_camel_case_types)]
 pub struct FieldPattern<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> FieldPattern<'tree> {
     #[doc = "Get the field `name`.\n\nThis child has type `{field_identifier | shorthand_field_identifier}`:\n\n- [`FieldIdentifier`]\n- [`ShorthandFieldIdentifier`]\n"]
     #[inline]
@@ -4864,6 +4919,7 @@ impl<'tree> type_sitter::Node<'tree> for FieldPattern<'tree> {
 #[allow(non_camel_case_types)]
 pub struct FloatLiteral<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> FloatLiteral<'tree> {}
 #[automatically_derived]
 impl<'tree> type_sitter::Node<'tree> for FloatLiteral<'tree> {
@@ -4901,6 +4957,7 @@ impl<'tree> type_sitter::Node<'tree> for FloatLiteral<'tree> {
 #[allow(non_camel_case_types)]
 pub struct ForExpression<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> ForExpression<'tree> {
     #[doc = "Get the field `body`.\n\nThis child has type `block` ([`Block`])"]
     #[inline]
@@ -4983,6 +5040,7 @@ impl<'tree> type_sitter::Node<'tree> for ForExpression<'tree> {
 #[allow(non_camel_case_types)]
 pub struct ForLifetimes<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> ForLifetimes<'tree> {
     #[doc = "Get the node's not-extra named children.\n\nThese children have type `lifetime+` ([`Lifetime`])"]
     #[doc = "\n\nThis is guaranteed to return at least one child."]
@@ -5033,6 +5091,7 @@ impl<'tree> type_sitter::Node<'tree> for ForLifetimes<'tree> {
 #[allow(non_camel_case_types)]
 pub struct ForeignModItem<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> ForeignModItem<'tree> {
     #[doc = "Get the optional field `body`.\n\nThis child has type `declaration_list?` ([`DeclarationList`])"]
     #[inline]
@@ -5092,6 +5151,7 @@ impl<'tree> type_sitter::Node<'tree> for ForeignModItem<'tree> {
 #[allow(non_camel_case_types)]
 pub struct FragmentSpecifier<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> FragmentSpecifier<'tree> {}
 #[automatically_derived]
 impl<'tree> type_sitter::Node<'tree> for FragmentSpecifier<'tree> {
@@ -5129,6 +5189,7 @@ impl<'tree> type_sitter::Node<'tree> for FragmentSpecifier<'tree> {
 #[allow(non_camel_case_types)]
 pub struct FunctionItem<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> FunctionItem<'tree> {
     #[doc = "Get the field `body`.\n\nThis child has type `block` ([`Block`])"]
     #[inline]
@@ -5221,6 +5282,7 @@ impl<'tree> type_sitter::Node<'tree> for FunctionItem<'tree> {
 #[allow(non_camel_case_types)]
 pub struct FunctionModifiers<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> FunctionModifiers<'tree> {
     #[doc = "Get the node's not-extra named children.\n\nThese children have type `extern_modifier*` ([`ExternModifier`])"]
     #[inline]
@@ -5270,6 +5332,7 @@ impl<'tree> type_sitter::Node<'tree> for FunctionModifiers<'tree> {
 #[allow(non_camel_case_types)]
 pub struct FunctionSignatureItem<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> FunctionSignatureItem<'tree> {
     #[doc = "Get the field `name`.\n\nThis child has type `{identifier | metavariable}`:\n\n- [`Identifier`]\n- [`Metavariable`]\n"]
     #[inline]
@@ -5352,6 +5415,7 @@ impl<'tree> type_sitter::Node<'tree> for FunctionSignatureItem<'tree> {
 #[allow(non_camel_case_types)]
 pub struct FunctionType<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> FunctionType<'tree> {
     #[doc = "Get the field `parameters`.\n\nThis child has type `parameters` ([`Parameters`])"]
     #[inline]
@@ -5426,6 +5490,7 @@ impl<'tree> type_sitter::Node<'tree> for FunctionType<'tree> {
 #[allow(non_camel_case_types)]
 pub struct GenericFunction<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> GenericFunction<'tree> {
     #[doc = "Get the field `function`.\n\nThis child has type `{field_expression | identifier | scoped_identifier}`:\n\n- [`FieldExpression`]\n- [`Identifier`]\n- [`ScopedIdentifier`]\n"]
     #[inline]
@@ -5484,6 +5549,7 @@ impl<'tree> type_sitter::Node<'tree> for GenericFunction<'tree> {
 #[allow(non_camel_case_types)]
 pub struct GenericType<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> GenericType<'tree> {
     #[doc = "Get the field `type`.\n\nThis child has type `{identifier | scoped_identifier | scoped_type_identifier | type_identifier}`:\n\n- [`Identifier`]\n- [`ScopedIdentifier`]\n- [`ScopedTypeIdentifier`]\n- [`TypeIdentifier`]\n"]
     #[inline]
@@ -5542,6 +5608,7 @@ impl<'tree> type_sitter::Node<'tree> for GenericType<'tree> {
 #[allow(non_camel_case_types)]
 pub struct GenericTypeWithTurbofish<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> GenericTypeWithTurbofish<'tree> {
     #[doc = "Get the field `type`.\n\nThis child has type `{scoped_identifier | type_identifier}`:\n\n- [`ScopedIdentifier`]\n- [`TypeIdentifier`]\n"]
     #[inline]
@@ -5597,6 +5664,7 @@ impl<'tree> type_sitter::Node<'tree> for GenericTypeWithTurbofish<'tree> {
 #[allow(non_camel_case_types)]
 pub struct HigherRankedTraitBound<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> HigherRankedTraitBound<'tree> {
     #[doc = "Get the field `type`.\n\nThis child has type `_type` ([`Type`])"]
     #[inline]
@@ -5655,6 +5723,7 @@ impl<'tree> type_sitter::Node<'tree> for HigherRankedTraitBound<'tree> {
 #[allow(non_camel_case_types)]
 pub struct Identifier<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> Identifier<'tree> {}
 #[automatically_derived]
 impl<'tree> type_sitter::Node<'tree> for Identifier<'tree> {
@@ -5692,6 +5761,7 @@ impl<'tree> type_sitter::Node<'tree> for Identifier<'tree> {
 #[allow(non_camel_case_types)]
 pub struct IfExpression<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> IfExpression<'tree> {
     #[doc = "Get the optional field `alternative`.\n\nThis child has type `else_clause?` ([`ElseClause`])"]
     #[inline]
@@ -5763,6 +5833,7 @@ impl<'tree> type_sitter::Node<'tree> for IfExpression<'tree> {
 #[allow(non_camel_case_types)]
 pub struct ImplItem<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> ImplItem<'tree> {
     #[doc = "Get the optional field `body`.\n\nThis child has type `declaration_list?` ([`DeclarationList`])"]
     #[inline]
@@ -5851,6 +5922,7 @@ impl<'tree> type_sitter::Node<'tree> for ImplItem<'tree> {
 #[allow(non_camel_case_types)]
 pub struct IndexExpression<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> IndexExpression<'tree> {
     #[doc = "Get the node's not-extra named children.\n\nThese children have type `_expression+` ([`Expression`])"]
     #[doc = "\n\nThis is guaranteed to return at least one child."]
@@ -5901,6 +5973,7 @@ impl<'tree> type_sitter::Node<'tree> for IndexExpression<'tree> {
 #[allow(non_camel_case_types)]
 pub struct InnerAttributeItem<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> InnerAttributeItem<'tree> {
     #[doc = "Get the node's only not-extra named child.\n\nThis child has type `attribute` ([`Attribute`])"]
     #[inline]
@@ -5951,6 +6024,7 @@ impl<'tree> type_sitter::Node<'tree> for InnerAttributeItem<'tree> {
 #[allow(non_camel_case_types)]
 pub struct InnerDocCommentMarker<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> InnerDocCommentMarker<'tree> {}
 #[automatically_derived]
 impl<'tree> type_sitter::Node<'tree> for InnerDocCommentMarker<'tree> {
@@ -5988,6 +6062,7 @@ impl<'tree> type_sitter::Node<'tree> for InnerDocCommentMarker<'tree> {
 #[allow(non_camel_case_types)]
 pub struct IntegerLiteral<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> IntegerLiteral<'tree> {}
 #[automatically_derived]
 impl<'tree> type_sitter::Node<'tree> for IntegerLiteral<'tree> {
@@ -6025,6 +6100,7 @@ impl<'tree> type_sitter::Node<'tree> for IntegerLiteral<'tree> {
 #[allow(non_camel_case_types)]
 pub struct Label<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> Label<'tree> {
     #[doc = "Get the node's only not-extra named child.\n\nThis child has type `identifier` ([`Identifier`])"]
     #[inline]
@@ -6075,6 +6151,7 @@ impl<'tree> type_sitter::Node<'tree> for Label<'tree> {
 #[allow(non_camel_case_types)]
 pub struct LetChain<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> LetChain<'tree> {
     #[doc = "Get the node's not-extra named children.\n\nThese children have type `{_expression | let_condition}+`:\n\n- [`Expression`]\n- [`LetCondition`]\n"]
     #[doc = "\n\nThis is guaranteed to return at least one child."]
@@ -6124,6 +6201,7 @@ impl<'tree> type_sitter::Node<'tree> for LetChain<'tree> {
 #[allow(non_camel_case_types)]
 pub struct LetCondition<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> LetCondition<'tree> {
     #[doc = "Get the field `pattern`.\n\nThis child has type `_pattern` ([`Pattern`])"]
     #[inline]
@@ -6182,6 +6260,7 @@ impl<'tree> type_sitter::Node<'tree> for LetCondition<'tree> {
 #[allow(non_camel_case_types)]
 pub struct LetDeclaration<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> LetDeclaration<'tree> {
     #[doc = "Get the optional field `alternative`.\n\nThis child has type `block?` ([`Block`])"]
     #[inline]
@@ -6267,6 +6346,7 @@ impl<'tree> type_sitter::Node<'tree> for LetDeclaration<'tree> {
 #[allow(non_camel_case_types)]
 pub struct Lifetime<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> Lifetime<'tree> {
     #[doc = "Get the node's only not-extra named child.\n\nThis child has type `identifier` ([`Identifier`])"]
     #[inline]
@@ -6317,6 +6397,7 @@ impl<'tree> type_sitter::Node<'tree> for Lifetime<'tree> {
 #[allow(non_camel_case_types)]
 pub struct LineComment<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> LineComment<'tree> {
     #[doc = "Get the optional field `doc`.\n\nThis child has type `doc_comment?` ([`DocComment`])"]
     #[inline]
@@ -6376,6 +6457,7 @@ impl<'tree> type_sitter::Node<'tree> for LineComment<'tree> {
 #[allow(non_camel_case_types)]
 pub struct LoopExpression<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> LoopExpression<'tree> {
     #[doc = "Get the field `body`.\n\nThis child has type `block` ([`Block`])"]
     #[inline]
@@ -6438,6 +6520,7 @@ impl<'tree> type_sitter::Node<'tree> for LoopExpression<'tree> {
 #[allow(non_camel_case_types)]
 pub struct MacroDefinition<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> MacroDefinition<'tree> {
     #[doc = "Get the field `name`.\n\nThis child has type `identifier` ([`Identifier`])"]
     #[inline]
@@ -6504,6 +6587,7 @@ impl<'tree> type_sitter::Node<'tree> for MacroDefinition<'tree> {
 #[allow(non_camel_case_types)]
 pub struct MacroInvocation<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> MacroInvocation<'tree> {
     #[doc = "Get the field `macro`.\n\nThis child has type `{identifier | scoped_identifier}`:\n\n- [`Identifier`]\n- [`ScopedIdentifier`]\n"]
     #[inline]
@@ -6566,6 +6650,7 @@ impl<'tree> type_sitter::Node<'tree> for MacroInvocation<'tree> {
 #[allow(non_camel_case_types)]
 pub struct MacroRule<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> MacroRule<'tree> {
     #[doc = "Get the field `left`.\n\nThis child has type `token_tree_pattern` ([`TokenTreePattern`])"]
     #[inline]
@@ -6624,6 +6709,7 @@ impl<'tree> type_sitter::Node<'tree> for MacroRule<'tree> {
 #[allow(non_camel_case_types)]
 pub struct MatchArm<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> MatchArm<'tree> {
     #[doc = "Get the field `pattern`.\n\nThis child has type `match_pattern` ([`MatchPattern`])"]
     #[inline]
@@ -6692,6 +6778,7 @@ impl<'tree> type_sitter::Node<'tree> for MatchArm<'tree> {
 #[allow(non_camel_case_types)]
 pub struct MatchBlock<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> MatchBlock<'tree> {
     #[doc = "Get the node's not-extra named children.\n\nThese children have type `match_arm*` ([`MatchArm`])"]
     #[inline]
@@ -6741,6 +6828,7 @@ impl<'tree> type_sitter::Node<'tree> for MatchBlock<'tree> {
 #[allow(non_camel_case_types)]
 pub struct MatchExpression<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> MatchExpression<'tree> {
     #[doc = "Get the field `body`.\n\nThis child has type `match_block` ([`MatchBlock`])"]
     #[inline]
@@ -6799,6 +6887,7 @@ impl<'tree> type_sitter::Node<'tree> for MatchExpression<'tree> {
 #[allow(non_camel_case_types)]
 pub struct MatchPattern<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> MatchPattern<'tree> {
     #[doc = "Get the optional field `condition`.\n\nThis child has type `{_expression | let_chain | let_condition}?`:\n\n- [`Expression`]\n- [`LetChain`]\n- [`LetCondition`]\n"]
     #[inline]
@@ -6868,6 +6957,7 @@ impl<'tree> type_sitter::Node<'tree> for MatchPattern<'tree> {
 #[allow(non_camel_case_types)]
 pub struct Metavariable<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> Metavariable<'tree> {}
 #[automatically_derived]
 impl<'tree> type_sitter::Node<'tree> for Metavariable<'tree> {
@@ -6905,6 +6995,7 @@ impl<'tree> type_sitter::Node<'tree> for Metavariable<'tree> {
 #[allow(non_camel_case_types)]
 pub struct ModItem<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> ModItem<'tree> {
     #[doc = "Get the optional field `body`.\n\nThis child has type `declaration_list?` ([`DeclarationList`])"]
     #[inline]
@@ -6976,6 +7067,7 @@ impl<'tree> type_sitter::Node<'tree> for ModItem<'tree> {
 #[allow(non_camel_case_types)]
 pub struct MutPattern<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> MutPattern<'tree> {
     #[doc = "Get the node's not-extra named children.\n\nThese children have type `{_pattern | mutable_specifier}+`:\n\n- [`Pattern`]\n- [`MutableSpecifier`]\n"]
     #[doc = "\n\nThis is guaranteed to return at least one child."]
@@ -7025,6 +7117,7 @@ impl<'tree> type_sitter::Node<'tree> for MutPattern<'tree> {
 #[allow(non_camel_case_types)]
 pub struct MutableSpecifier<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> MutableSpecifier<'tree> {}
 #[automatically_derived]
 impl<'tree> type_sitter::Node<'tree> for MutableSpecifier<'tree> {
@@ -7062,6 +7155,7 @@ impl<'tree> type_sitter::Node<'tree> for MutableSpecifier<'tree> {
 #[allow(non_camel_case_types)]
 pub struct NegativeLiteral<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> NegativeLiteral<'tree> {
     #[doc = "Get the node's only not-extra named child.\n\nThis child has type `{float_literal | integer_literal}`:\n\n- [`FloatLiteral`]\n- [`IntegerLiteral`]\n"]
     #[inline]
@@ -7107,6 +7201,7 @@ impl<'tree> type_sitter::Node<'tree> for NegativeLiteral<'tree> {
 #[allow(non_camel_case_types)]
 pub struct NeverType<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> NeverType<'tree> {}
 #[automatically_derived]
 impl<'tree> type_sitter::Node<'tree> for NeverType<'tree> {
@@ -7144,6 +7239,7 @@ impl<'tree> type_sitter::Node<'tree> for NeverType<'tree> {
 #[allow(non_camel_case_types)]
 pub struct OptionalTypeParameter<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> OptionalTypeParameter<'tree> {
     #[doc = "Get the field `default_type`.\n\nThis child has type `_type` ([`Type`])"]
     #[inline]
@@ -7200,6 +7296,7 @@ impl<'tree> type_sitter::Node<'tree> for OptionalTypeParameter<'tree> {
 #[allow(non_camel_case_types)]
 pub struct OrPattern<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> OrPattern<'tree> {
     #[doc = "Get the node's not-extra named children.\n\nThese children have type `_pattern+` ([`Pattern`])"]
     #[doc = "\n\nThis is guaranteed to return at least one child."]
@@ -7250,6 +7347,7 @@ impl<'tree> type_sitter::Node<'tree> for OrPattern<'tree> {
 #[allow(non_camel_case_types)]
 pub struct OrderedFieldDeclarationList<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> OrderedFieldDeclarationList<'tree> {
     #[doc = "Get the children of field `type`.\n\nThese children have type `_type*` ([`Type`])"]
     #[inline]
@@ -7308,6 +7406,7 @@ impl<'tree> type_sitter::Node<'tree> for OrderedFieldDeclarationList<'tree> {
 #[allow(non_camel_case_types)]
 pub struct OuterDocCommentMarker<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> OuterDocCommentMarker<'tree> {}
 #[automatically_derived]
 impl<'tree> type_sitter::Node<'tree> for OuterDocCommentMarker<'tree> {
@@ -7345,6 +7444,7 @@ impl<'tree> type_sitter::Node<'tree> for OuterDocCommentMarker<'tree> {
 #[allow(non_camel_case_types)]
 pub struct Parameter<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> Parameter<'tree> {
     #[doc = "Get the field `pattern`.\n\nThis child has type `{_pattern | self}`:\n\n- [`Pattern`]\n- [`Self_`]\n"]
     #[inline]
@@ -7419,6 +7519,7 @@ impl<'tree> type_sitter::Node<'tree> for Parameter<'tree> {
 #[allow(non_camel_case_types)]
 pub struct Parameters<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> Parameters<'tree> {
     #[doc = "Get the node's not-extra named children.\n\nThese children have type `{_type | attribute_item | parameter | self_parameter | variadic_parameter}*`:\n\n- [`Type`]\n- [`AttributeItem`]\n- [`Parameter`]\n- [`SelfParameter`]\n- [`VariadicParameter`]\n"]
     #[inline]
@@ -7470,6 +7571,7 @@ impl<'tree> type_sitter::Node<'tree> for Parameters<'tree> {
 #[allow(non_camel_case_types)]
 pub struct ParenthesizedExpression<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> ParenthesizedExpression<'tree> {
     #[doc = "Get the node's only not-extra named child.\n\nThis child has type `_expression` ([`Expression`])"]
     #[inline]
@@ -7520,6 +7622,7 @@ impl<'tree> type_sitter::Node<'tree> for ParenthesizedExpression<'tree> {
 #[allow(non_camel_case_types)]
 pub struct PointerType<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> PointerType<'tree> {
     #[doc = "Get the field `type`.\n\nThis child has type `_type` ([`Type`])"]
     #[inline]
@@ -7584,6 +7687,7 @@ impl<'tree> type_sitter::Node<'tree> for PointerType<'tree> {
 #[allow(non_camel_case_types)]
 pub struct PrimitiveType<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> PrimitiveType<'tree> {}
 #[automatically_derived]
 impl<'tree> type_sitter::Node<'tree> for PrimitiveType<'tree> {
@@ -7621,6 +7725,7 @@ impl<'tree> type_sitter::Node<'tree> for PrimitiveType<'tree> {
 #[allow(non_camel_case_types)]
 pub struct QualifiedType<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> QualifiedType<'tree> {
     #[doc = "Get the field `alias`.\n\nThis child has type `_type` ([`Type`])"]
     #[inline]
@@ -7679,6 +7784,7 @@ impl<'tree> type_sitter::Node<'tree> for QualifiedType<'tree> {
 #[allow(non_camel_case_types)]
 pub struct RangeExpression<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> RangeExpression<'tree> {
     #[doc = "Get the node's not-extra named children.\n\nThese children have type `_expression*` ([`Expression`])"]
     #[inline]
@@ -7728,6 +7834,7 @@ impl<'tree> type_sitter::Node<'tree> for RangeExpression<'tree> {
 #[allow(non_camel_case_types)]
 pub struct RangePattern<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> RangePattern<'tree> {
     #[doc = "Get the node's not-extra named children.\n\nThese children have type `{_literal_pattern | crate | identifier | metavariable | scoped_identifier | self | super}+`:\n\n- [`LiteralPattern`]\n- [`Crate`]\n- [`Identifier`]\n- [`Metavariable`]\n- [`ScopedIdentifier`]\n- [`Self_`]\n- [`Super`]\n"]
     #[doc = "\n\nThis is guaranteed to return at least one child."]
@@ -7782,6 +7889,7 @@ impl<'tree> type_sitter::Node<'tree> for RangePattern<'tree> {
 #[allow(non_camel_case_types)]
 pub struct RawStringLiteral<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> RawStringLiteral<'tree> {
     #[doc = "Get the node's only not-extra named child.\n\nThis child has type `string_content` ([`StringContent`])"]
     #[inline]
@@ -7832,6 +7940,7 @@ impl<'tree> type_sitter::Node<'tree> for RawStringLiteral<'tree> {
 #[allow(non_camel_case_types)]
 pub struct RefPattern<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> RefPattern<'tree> {
     #[doc = "Get the node's only not-extra named child.\n\nThis child has type `_pattern` ([`Pattern`])"]
     #[inline]
@@ -7882,6 +7991,7 @@ impl<'tree> type_sitter::Node<'tree> for RefPattern<'tree> {
 #[allow(non_camel_case_types)]
 pub struct ReferenceExpression<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> ReferenceExpression<'tree> {
     #[doc = "Get the field `value`.\n\nThis child has type `_expression` ([`Expression`])"]
     #[inline]
@@ -7946,6 +8056,7 @@ impl<'tree> type_sitter::Node<'tree> for ReferenceExpression<'tree> {
 #[allow(non_camel_case_types)]
 pub struct ReferencePattern<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> ReferencePattern<'tree> {
     #[doc = "Get the node's not-extra named children.\n\nThese children have type `{_pattern | mutable_specifier}+`:\n\n- [`Pattern`]\n- [`MutableSpecifier`]\n"]
     #[doc = "\n\nThis is guaranteed to return at least one child."]
@@ -7995,6 +8106,7 @@ impl<'tree> type_sitter::Node<'tree> for ReferencePattern<'tree> {
 #[allow(non_camel_case_types)]
 pub struct ReferenceType<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> ReferenceType<'tree> {
     #[doc = "Get the field `type`.\n\nThis child has type `_type` ([`Type`])"]
     #[inline]
@@ -8053,6 +8165,7 @@ impl<'tree> type_sitter::Node<'tree> for ReferenceType<'tree> {
 #[allow(non_camel_case_types)]
 pub struct RemainingFieldPattern<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> RemainingFieldPattern<'tree> {}
 #[automatically_derived]
 impl<'tree> type_sitter::Node<'tree> for RemainingFieldPattern<'tree> {
@@ -8090,6 +8203,7 @@ impl<'tree> type_sitter::Node<'tree> for RemainingFieldPattern<'tree> {
 #[allow(non_camel_case_types)]
 pub struct RemovedTraitBound<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> RemovedTraitBound<'tree> {
     #[doc = "Get the node's only not-extra named child.\n\nThis child has type `_type` ([`Type`])"]
     #[inline]
@@ -8140,6 +8254,7 @@ impl<'tree> type_sitter::Node<'tree> for RemovedTraitBound<'tree> {
 #[allow(non_camel_case_types)]
 pub struct ReturnExpression<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> ReturnExpression<'tree> {
     #[doc = "Get the node's only not-extra named child, if it has one.\n\nThis child has type `_expression?` ([`Expression`])"]
     #[inline]
@@ -8187,6 +8302,7 @@ impl<'tree> type_sitter::Node<'tree> for ReturnExpression<'tree> {
 #[allow(non_camel_case_types)]
 pub struct ScopedIdentifier<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> ScopedIdentifier<'tree> {
     #[doc = "Get the field `name`.\n\nThis child has type `{identifier | super}`:\n\n- [`Identifier`]\n- [`Super`]\n"]
     #[inline]
@@ -8239,6 +8355,7 @@ impl<'tree> type_sitter::Node<'tree> for ScopedIdentifier<'tree> {
 #[allow(non_camel_case_types)]
 pub struct ScopedTypeIdentifier<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> ScopedTypeIdentifier<'tree> {
     #[doc = "Get the field `name`.\n\nThis child has type `type_identifier` ([`TypeIdentifier`])"]
     #[inline]
@@ -8291,6 +8408,7 @@ impl<'tree> type_sitter::Node<'tree> for ScopedTypeIdentifier<'tree> {
 #[allow(non_camel_case_types)]
 pub struct ScopedUseList<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> ScopedUseList<'tree> {
     #[doc = "Get the field `list`.\n\nThis child has type `use_list` ([`UseList`])"]
     #[inline]
@@ -8351,6 +8469,7 @@ impl<'tree> type_sitter::Node<'tree> for ScopedUseList<'tree> {
 #[allow(non_camel_case_types)]
 pub struct Self_<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> Self_<'tree> {}
 #[automatically_derived]
 impl<'tree> type_sitter::Node<'tree> for Self_<'tree> {
@@ -8388,6 +8507,7 @@ impl<'tree> type_sitter::Node<'tree> for Self_<'tree> {
 #[allow(non_camel_case_types)]
 pub struct SelfParameter<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> SelfParameter<'tree> {
     #[doc = "Get the node's not-extra named children.\n\nThese children have type `{lifetime | mutable_specifier | self}+`:\n\n- [`Lifetime`]\n- [`MutableSpecifier`]\n- [`Self_`]\n"]
     #[doc = "\n\nThis is guaranteed to return at least one child."]
@@ -8437,6 +8557,7 @@ impl<'tree> type_sitter::Node<'tree> for SelfParameter<'tree> {
 #[allow(non_camel_case_types)]
 pub struct Shebang<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> Shebang<'tree> {}
 #[automatically_derived]
 impl<'tree> type_sitter::Node<'tree> for Shebang<'tree> {
@@ -8474,6 +8595,7 @@ impl<'tree> type_sitter::Node<'tree> for Shebang<'tree> {
 #[allow(non_camel_case_types)]
 pub struct ShorthandFieldIdentifier<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> ShorthandFieldIdentifier<'tree> {}
 #[automatically_derived]
 impl<'tree> type_sitter::Node<'tree> for ShorthandFieldIdentifier<'tree> {
@@ -8511,6 +8633,7 @@ impl<'tree> type_sitter::Node<'tree> for ShorthandFieldIdentifier<'tree> {
 #[allow(non_camel_case_types)]
 pub struct ShorthandFieldInitializer<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> ShorthandFieldInitializer<'tree> {
     #[doc = "Get the node's not-extra named children.\n\nThese children have type `{attribute_item | identifier}+`:\n\n- [`AttributeItem`]\n- [`Identifier`]\n"]
     #[doc = "\n\nThis is guaranteed to return at least one child."]
@@ -8560,6 +8683,7 @@ impl<'tree> type_sitter::Node<'tree> for ShorthandFieldInitializer<'tree> {
 #[allow(non_camel_case_types)]
 pub struct SlicePattern<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> SlicePattern<'tree> {
     #[doc = "Get the node's not-extra named children.\n\nThese children have type `_pattern*` ([`Pattern`])"]
     #[inline]
@@ -8609,6 +8733,7 @@ impl<'tree> type_sitter::Node<'tree> for SlicePattern<'tree> {
 #[allow(non_camel_case_types)]
 pub struct SourceFile<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> SourceFile<'tree> {
     #[doc = "Get the node's not-extra named children.\n\nThese children have type `{_declaration_statement | expression_statement | shebang}*`:\n\n- [`DeclarationStatement`]\n- [`ExpressionStatement`]\n- [`Shebang`]\n"]
     #[inline]
@@ -8660,6 +8785,7 @@ impl<'tree> type_sitter::Node<'tree> for SourceFile<'tree> {
 #[allow(non_camel_case_types)]
 pub struct StaticItem<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> StaticItem<'tree> {
     #[doc = "Get the field `name`.\n\nThis child has type `identifier` ([`Identifier`])"]
     #[inline]
@@ -8738,6 +8864,7 @@ impl<'tree> type_sitter::Node<'tree> for StaticItem<'tree> {
 #[allow(non_camel_case_types)]
 pub struct StringContent<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> StringContent<'tree> {}
 #[automatically_derived]
 impl<'tree> type_sitter::Node<'tree> for StringContent<'tree> {
@@ -8775,6 +8902,7 @@ impl<'tree> type_sitter::Node<'tree> for StringContent<'tree> {
 #[allow(non_camel_case_types)]
 pub struct StringLiteral<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> StringLiteral<'tree> {
     #[doc = "Get the node's not-extra named children.\n\nThese children have type `{escape_sequence | string_content}*`:\n\n- [`EscapeSequence`]\n- [`StringContent`]\n"]
     #[inline]
@@ -8823,6 +8951,7 @@ impl<'tree> type_sitter::Node<'tree> for StringLiteral<'tree> {
 #[allow(non_camel_case_types)]
 pub struct StructExpression<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> StructExpression<'tree> {
     #[doc = "Get the field `body`.\n\nThis child has type `field_initializer_list` ([`FieldInitializerList`])"]
     #[inline]
@@ -8881,6 +9010,7 @@ impl<'tree> type_sitter::Node<'tree> for StructExpression<'tree> {
 #[allow(non_camel_case_types)]
 pub struct StructItem<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> StructItem<'tree> {
     #[doc = "Get the optional field `body`.\n\nThis child has type `{field_declaration_list | ordered_field_declaration_list}?`:\n\n- [`FieldDeclarationList`]\n- [`OrderedFieldDeclarationList`]\n"]
     #[inline]
@@ -8958,6 +9088,7 @@ impl<'tree> type_sitter::Node<'tree> for StructItem<'tree> {
 #[allow(non_camel_case_types)]
 pub struct StructPattern<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> StructPattern<'tree> {
     #[doc = "Get the field `type`.\n\nThis child has type `{scoped_type_identifier | type_identifier}`:\n\n- [`ScopedTypeIdentifier`]\n- [`TypeIdentifier`]\n"]
     #[inline]
@@ -9026,6 +9157,7 @@ impl<'tree> type_sitter::Node<'tree> for StructPattern<'tree> {
 #[allow(non_camel_case_types)]
 pub struct Super<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> Super<'tree> {}
 #[automatically_derived]
 impl<'tree> type_sitter::Node<'tree> for Super<'tree> {
@@ -9063,6 +9195,7 @@ impl<'tree> type_sitter::Node<'tree> for Super<'tree> {
 #[allow(non_camel_case_types)]
 pub struct TokenBindingPattern<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> TokenBindingPattern<'tree> {
     #[doc = "Get the field `name`.\n\nThis child has type `metavariable` ([`Metavariable`])"]
     #[inline]
@@ -9121,6 +9254,7 @@ impl<'tree> type_sitter::Node<'tree> for TokenBindingPattern<'tree> {
 #[allow(non_camel_case_types)]
 pub struct TokenRepetition<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> TokenRepetition<'tree> {
     #[doc = "Get the node's not-extra named children.\n\nThese children have type `{_literal | crate | identifier | metavariable | mutable_specifier | primitive_type | self | super | token_repetition | token_tree}*`:\n\n- [`Literal`]\n- [`Crate`]\n- [`Identifier`]\n- [`Metavariable`]\n- [`MutableSpecifier`]\n- [`PrimitiveType`]\n- [`Self_`]\n- [`Super`]\n- [`TokenRepetition`]\n- [`TokenTree`]\n"]
     #[inline]    pub fn children < 'a > (& self , c : & 'a mut type_sitter :: TreeCursor < 'tree >) -> impl Iterator < Item = type_sitter :: NodeResult < 'tree , anon_unions :: Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType_Self__Super_TokenRepetition_TokenTree < 'tree > >> + 'a{
@@ -9163,6 +9297,7 @@ impl<'tree> type_sitter::Node<'tree> for TokenRepetition<'tree> {
 #[allow(non_camel_case_types)]
 pub struct TokenRepetitionPattern<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> TokenRepetitionPattern<'tree> {
     #[doc = "Get the node's not-extra named children.\n\nThese children have type `{_literal | crate | identifier | metavariable | mutable_specifier | primitive_type | self | super | token_binding_pattern | token_repetition_pattern | token_tree_pattern}*`:\n\n- [`Literal`]\n- [`Crate`]\n- [`Identifier`]\n- [`Metavariable`]\n- [`MutableSpecifier`]\n- [`PrimitiveType`]\n- [`Self_`]\n- [`Super`]\n- [`TokenBindingPattern`]\n- [`TokenRepetitionPattern`]\n- [`TokenTreePattern`]\n"]
     #[inline]    pub fn children < 'a > (& self , c : & 'a mut type_sitter :: TreeCursor < 'tree >) -> impl Iterator < Item = type_sitter :: NodeResult < 'tree , anon_unions :: Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType_Self__Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern < 'tree > >> + 'a{
@@ -9205,6 +9340,7 @@ impl<'tree> type_sitter::Node<'tree> for TokenRepetitionPattern<'tree> {
 #[allow(non_camel_case_types)]
 pub struct TokenTree<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> TokenTree<'tree> {
     #[doc = "Get the node's not-extra named children.\n\nThese children have type `{_literal | crate | identifier | metavariable | mutable_specifier | primitive_type | self | super | token_repetition | token_tree}*`:\n\n- [`Literal`]\n- [`Crate`]\n- [`Identifier`]\n- [`Metavariable`]\n- [`MutableSpecifier`]\n- [`PrimitiveType`]\n- [`Self_`]\n- [`Super`]\n- [`TokenRepetition`]\n- [`TokenTree`]\n"]
     #[inline]    pub fn children < 'a > (& self , c : & 'a mut type_sitter :: TreeCursor < 'tree >) -> impl Iterator < Item = type_sitter :: NodeResult < 'tree , anon_unions :: Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType_Self__Super_TokenRepetition_TokenTree < 'tree > >> + 'a{
@@ -9247,6 +9383,7 @@ impl<'tree> type_sitter::Node<'tree> for TokenTree<'tree> {
 #[allow(non_camel_case_types)]
 pub struct TokenTreePattern<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> TokenTreePattern<'tree> {
     #[doc = "Get the node's not-extra named children.\n\nThese children have type `{_literal | crate | identifier | metavariable | mutable_specifier | primitive_type | self | super | token_binding_pattern | token_repetition_pattern | token_tree_pattern}*`:\n\n- [`Literal`]\n- [`Crate`]\n- [`Identifier`]\n- [`Metavariable`]\n- [`MutableSpecifier`]\n- [`PrimitiveType`]\n- [`Self_`]\n- [`Super`]\n- [`TokenBindingPattern`]\n- [`TokenRepetitionPattern`]\n- [`TokenTreePattern`]\n"]
     #[inline]    pub fn children < 'a > (& self , c : & 'a mut type_sitter :: TreeCursor < 'tree >) -> impl Iterator < Item = type_sitter :: NodeResult < 'tree , anon_unions :: Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType_Self__Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern < 'tree > >> + 'a{
@@ -9289,6 +9426,7 @@ impl<'tree> type_sitter::Node<'tree> for TokenTreePattern<'tree> {
 #[allow(non_camel_case_types)]
 pub struct TraitBounds<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> TraitBounds<'tree> {
     #[doc = "Get the node's not-extra named children.\n\nThese children have type `{_type | higher_ranked_trait_bound | lifetime}+`:\n\n- [`Type`]\n- [`HigherRankedTraitBound`]\n- [`Lifetime`]\n"]
     #[doc = "\n\nThis is guaranteed to return at least one child."]
@@ -9348,6 +9486,7 @@ impl<'tree> type_sitter::Node<'tree> for TraitBounds<'tree> {
 #[allow(non_camel_case_types)]
 pub struct TraitItem<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> TraitItem<'tree> {
     #[doc = "Get the field `body`.\n\nThis child has type `declaration_list` ([`DeclarationList`])"]
     #[inline]
@@ -9430,6 +9569,7 @@ impl<'tree> type_sitter::Node<'tree> for TraitItem<'tree> {
 #[allow(non_camel_case_types)]
 pub struct TryBlock<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> TryBlock<'tree> {
     #[doc = "Get the node's only not-extra named child.\n\nThis child has type `block` ([`Block`])"]
     #[inline]
@@ -9480,6 +9620,7 @@ impl<'tree> type_sitter::Node<'tree> for TryBlock<'tree> {
 #[allow(non_camel_case_types)]
 pub struct TryExpression<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> TryExpression<'tree> {
     #[doc = "Get the node's only not-extra named child.\n\nThis child has type `_expression` ([`Expression`])"]
     #[inline]
@@ -9530,6 +9671,7 @@ impl<'tree> type_sitter::Node<'tree> for TryExpression<'tree> {
 #[allow(non_camel_case_types)]
 pub struct TupleExpression<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> TupleExpression<'tree> {
     #[doc = "Get the node's not-extra named children.\n\nThese children have type `{_expression | attribute_item}+`:\n\n- [`Expression`]\n- [`AttributeItem`]\n"]
     #[doc = "\n\nThis is guaranteed to return at least one child."]
@@ -9579,6 +9721,7 @@ impl<'tree> type_sitter::Node<'tree> for TupleExpression<'tree> {
 #[allow(non_camel_case_types)]
 pub struct TuplePattern<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> TuplePattern<'tree> {
     #[doc = "Get the node's not-extra named children.\n\nThese children have type `{_pattern | closure_expression}*`:\n\n- [`Pattern`]\n- [`ClosureExpression`]\n"]
     #[inline]
@@ -9627,6 +9770,7 @@ impl<'tree> type_sitter::Node<'tree> for TuplePattern<'tree> {
 #[allow(non_camel_case_types)]
 pub struct TupleStructPattern<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> TupleStructPattern<'tree> {
     #[doc = "Get the field `type`.\n\nThis child has type `{generic_type | identifier | scoped_identifier}`:\n\n- [`GenericType`]\n- [`Identifier`]\n- [`ScopedIdentifier`]\n"]
     #[inline]
@@ -9691,6 +9835,7 @@ impl<'tree> type_sitter::Node<'tree> for TupleStructPattern<'tree> {
 #[allow(non_camel_case_types)]
 pub struct TupleType<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> TupleType<'tree> {
     #[doc = "Get the node's not-extra named children.\n\nThese children have type `_type+` ([`Type`])"]
     #[doc = "\n\nThis is guaranteed to return at least one child."]
@@ -9741,6 +9886,7 @@ impl<'tree> type_sitter::Node<'tree> for TupleType<'tree> {
 #[allow(non_camel_case_types)]
 pub struct TypeArguments<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> TypeArguments<'tree> {
     #[doc = "Get the node's not-extra named children.\n\nThese children have type `{_literal | _type | block | lifetime | trait_bounds | type_binding}+`:\n\n- [`Literal`]\n- [`Type`]\n- [`Block`]\n- [`Lifetime`]\n- [`TraitBounds`]\n- [`TypeBinding`]\n"]
     #[doc = "\n\nThis is guaranteed to return at least one child."]
@@ -9793,6 +9939,7 @@ impl<'tree> type_sitter::Node<'tree> for TypeArguments<'tree> {
 #[allow(non_camel_case_types)]
 pub struct TypeBinding<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> TypeBinding<'tree> {
     #[doc = "Get the field `name`.\n\nThis child has type `type_identifier` ([`TypeIdentifier`])"]
     #[inline]
@@ -9858,6 +10005,7 @@ impl<'tree> type_sitter::Node<'tree> for TypeBinding<'tree> {
 #[allow(non_camel_case_types)]
 pub struct TypeCastExpression<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> TypeCastExpression<'tree> {
     #[doc = "Get the field `type`.\n\nThis child has type `_type` ([`Type`])"]
     #[inline]
@@ -9916,6 +10064,7 @@ impl<'tree> type_sitter::Node<'tree> for TypeCastExpression<'tree> {
 #[allow(non_camel_case_types)]
 pub struct TypeIdentifier<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> TypeIdentifier<'tree> {}
 #[automatically_derived]
 impl<'tree> type_sitter::Node<'tree> for TypeIdentifier<'tree> {
@@ -9953,6 +10102,7 @@ impl<'tree> type_sitter::Node<'tree> for TypeIdentifier<'tree> {
 #[allow(non_camel_case_types)]
 pub struct TypeItem<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> TypeItem<'tree> {
     #[doc = "Get the field `name`.\n\nThis child has type `type_identifier` ([`TypeIdentifier`])"]
     #[inline]
@@ -10028,6 +10178,7 @@ impl<'tree> type_sitter::Node<'tree> for TypeItem<'tree> {
 #[allow(non_camel_case_types)]
 pub struct TypeParameters<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> TypeParameters<'tree> {
     #[doc = "Get the node's not-extra named children.\n\nThese children have type `{attribute_item | const_parameter | constrained_type_parameter | lifetime | metavariable | optional_type_parameter | type_identifier}+`:\n\n- [`AttributeItem`]\n- [`ConstParameter`]\n- [`ConstrainedTypeParameter`]\n- [`Lifetime`]\n- [`Metavariable`]\n- [`OptionalTypeParameter`]\n- [`TypeIdentifier`]\n"]
     #[doc = "\n\nThis is guaranteed to return at least one child."]
@@ -10071,6 +10222,7 @@ impl<'tree> type_sitter::Node<'tree> for TypeParameters<'tree> {
 #[allow(non_camel_case_types)]
 pub struct UnaryExpression<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> UnaryExpression<'tree> {
     #[doc = "Get the node's only not-extra named child.\n\nThis child has type `_expression` ([`Expression`])"]
     #[inline]
@@ -10121,6 +10273,7 @@ impl<'tree> type_sitter::Node<'tree> for UnaryExpression<'tree> {
 #[allow(non_camel_case_types)]
 pub struct UnionItem<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> UnionItem<'tree> {
     #[doc = "Get the field `body`.\n\nThis child has type `field_declaration_list` ([`FieldDeclarationList`])"]
     #[inline]
@@ -10196,6 +10349,7 @@ impl<'tree> type_sitter::Node<'tree> for UnionItem<'tree> {
 #[allow(non_camel_case_types)]
 pub struct UnitExpression<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> UnitExpression<'tree> {}
 #[automatically_derived]
 impl<'tree> type_sitter::Node<'tree> for UnitExpression<'tree> {
@@ -10233,6 +10387,7 @@ impl<'tree> type_sitter::Node<'tree> for UnitExpression<'tree> {
 #[allow(non_camel_case_types)]
 pub struct UnitType<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> UnitType<'tree> {}
 #[automatically_derived]
 impl<'tree> type_sitter::Node<'tree> for UnitType<'tree> {
@@ -10270,6 +10425,7 @@ impl<'tree> type_sitter::Node<'tree> for UnitType<'tree> {
 #[allow(non_camel_case_types)]
 pub struct UnsafeBlock<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> UnsafeBlock<'tree> {
     #[doc = "Get the node's only not-extra named child.\n\nThis child has type `block` ([`Block`])"]
     #[inline]
@@ -10320,6 +10476,7 @@ impl<'tree> type_sitter::Node<'tree> for UnsafeBlock<'tree> {
 #[allow(non_camel_case_types)]
 pub struct UseAsClause<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> UseAsClause<'tree> {
     #[doc = "Get the field `alias`.\n\nThis child has type `identifier` ([`Identifier`])"]
     #[inline]
@@ -10378,6 +10535,7 @@ impl<'tree> type_sitter::Node<'tree> for UseAsClause<'tree> {
 #[allow(non_camel_case_types)]
 pub struct UseDeclaration<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> UseDeclaration<'tree> {
     #[doc = "Get the field `argument`.\n\nThis child has type `{crate | identifier | metavariable | scoped_identifier | scoped_use_list | self | super | use_as_clause | use_list | use_wildcard}`:\n\n- [`Crate`]\n- [`Identifier`]\n- [`Metavariable`]\n- [`ScopedIdentifier`]\n- [`ScopedUseList`]\n- [`Self_`]\n- [`Super`]\n- [`UseAsClause`]\n- [`UseList`]\n- [`UseWildcard`]\n"]
     #[inline]    pub fn argument (& self) -> type_sitter :: NodeResult < 'tree , anon_unions :: Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList_Self__Super_UseAsClause_UseList_UseWildcard < 'tree > >{
@@ -10436,6 +10594,7 @@ impl<'tree> type_sitter::Node<'tree> for UseDeclaration<'tree> {
 #[allow(non_camel_case_types)]
 pub struct UseList<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> UseList<'tree> {
     #[doc = "Get the node's not-extra named children.\n\nThese children have type `{crate | identifier | metavariable | scoped_identifier | scoped_use_list | self | super | use_as_clause | use_list | use_wildcard}*`:\n\n- [`Crate`]\n- [`Identifier`]\n- [`Metavariable`]\n- [`ScopedIdentifier`]\n- [`ScopedUseList`]\n- [`Self_`]\n- [`Super`]\n- [`UseAsClause`]\n- [`UseList`]\n- [`UseWildcard`]\n"]
     #[inline]    pub fn children < 'a > (& self , c : & 'a mut type_sitter :: TreeCursor < 'tree >) -> impl Iterator < Item = type_sitter :: NodeResult < 'tree , anon_unions :: Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList_Self__Super_UseAsClause_UseList_UseWildcard < 'tree > >> + 'a{
@@ -10478,6 +10637,7 @@ impl<'tree> type_sitter::Node<'tree> for UseList<'tree> {
 #[allow(non_camel_case_types)]
 pub struct UseWildcard<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> UseWildcard<'tree> {
     #[doc = "Get the node's only not-extra named child, if it has one.\n\nThis child has type `{crate | identifier | metavariable | scoped_identifier | self | super}?`:\n\n- [`Crate`]\n- [`Identifier`]\n- [`Metavariable`]\n- [`ScopedIdentifier`]\n- [`Self_`]\n- [`Super`]\n"]
     #[inline]
@@ -10528,6 +10688,7 @@ impl<'tree> type_sitter::Node<'tree> for UseWildcard<'tree> {
 #[allow(non_camel_case_types)]
 pub struct VariadicParameter<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> VariadicParameter<'tree> {
     #[doc = "Get the optional field `pattern`.\n\nThis child has type `_pattern?` ([`Pattern`])"]
     #[inline]
@@ -10589,6 +10750,7 @@ impl<'tree> type_sitter::Node<'tree> for VariadicParameter<'tree> {
 #[allow(non_camel_case_types)]
 pub struct VisibilityModifier<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> VisibilityModifier<'tree> {
     #[doc = "Get the node's only not-extra named child, if it has one.\n\nThis child has type `{crate | identifier | metavariable | scoped_identifier | self | super}?`:\n\n- [`Crate`]\n- [`Identifier`]\n- [`Metavariable`]\n- [`ScopedIdentifier`]\n- [`Self_`]\n- [`Super`]\n"]
     #[inline]
@@ -10639,6 +10801,7 @@ impl<'tree> type_sitter::Node<'tree> for VisibilityModifier<'tree> {
 #[allow(non_camel_case_types)]
 pub struct WhereClause<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> WhereClause<'tree> {
     #[doc = "Get the node's not-extra named children.\n\nThese children have type `where_predicate+` ([`WherePredicate`])"]
     #[doc = "\n\nThis is guaranteed to return at least one child."]
@@ -10689,6 +10852,7 @@ impl<'tree> type_sitter::Node<'tree> for WhereClause<'tree> {
 #[allow(non_camel_case_types)]
 pub struct WherePredicate<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> WherePredicate<'tree> {
     #[doc = "Get the field `bounds`.\n\nThis child has type `trait_bounds` ([`TraitBounds`])"]
     #[inline]
@@ -10741,6 +10905,7 @@ impl<'tree> type_sitter::Node<'tree> for WherePredicate<'tree> {
 #[allow(non_camel_case_types)]
 pub struct WhileExpression<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> WhileExpression<'tree> {
     #[doc = "Get the field `body`.\n\nThis child has type `block` ([`Block`])"]
     #[inline]
@@ -10819,6 +10984,7 @@ impl<'tree> type_sitter::Node<'tree> for WhileExpression<'tree> {
 #[allow(non_camel_case_types)]
 pub struct YieldExpression<'tree>(type_sitter::raw::Node<'tree>);
 #[automatically_derived]
+#[allow(unused)]
 impl<'tree> YieldExpression<'tree> {
     #[doc = "Get the node's only not-extra named child, if it has one.\n\nThis child has type `_expression?` ([`Expression`])"]
     #[inline]
@@ -10869,6 +11035,7 @@ pub mod unnamed {
     #[allow(non_camel_case_types)]
     pub struct As<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> As<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for As<'tree> {
@@ -10906,6 +11073,7 @@ pub mod unnamed {
     #[allow(non_camel_case_types)]
     pub struct Async<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Async<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for Async<'tree> {
@@ -10943,6 +11111,7 @@ pub mod unnamed {
     #[allow(non_camel_case_types)]
     pub struct Await<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Await<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for Await<'tree> {
@@ -10980,6 +11149,7 @@ pub mod unnamed {
     #[allow(non_camel_case_types)]
     pub struct Block<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Block<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for Block<'tree> {
@@ -11017,6 +11187,7 @@ pub mod unnamed {
     #[allow(non_camel_case_types)]
     pub struct Break<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Break<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for Break<'tree> {
@@ -11054,6 +11225,7 @@ pub mod unnamed {
     #[allow(non_camel_case_types)]
     pub struct Const<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Const<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for Const<'tree> {
@@ -11091,6 +11263,7 @@ pub mod unnamed {
     #[allow(non_camel_case_types)]
     pub struct Continue<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Continue<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for Continue<'tree> {
@@ -11128,6 +11301,7 @@ pub mod unnamed {
     #[allow(non_camel_case_types)]
     pub struct Default<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Default<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for Default<'tree> {
@@ -11165,6 +11339,7 @@ pub mod unnamed {
     #[allow(non_camel_case_types)]
     pub struct Dyn<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Dyn<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for Dyn<'tree> {
@@ -11202,6 +11377,7 @@ pub mod unnamed {
     #[allow(non_camel_case_types)]
     pub struct Else<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Else<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for Else<'tree> {
@@ -11239,6 +11415,7 @@ pub mod unnamed {
     #[allow(non_camel_case_types)]
     pub struct Enum<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Enum<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for Enum<'tree> {
@@ -11276,6 +11453,7 @@ pub mod unnamed {
     #[allow(non_camel_case_types)]
     pub struct Expr<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Expr<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for Expr<'tree> {
@@ -11313,6 +11491,7 @@ pub mod unnamed {
     #[allow(non_camel_case_types)]
     pub struct Extern<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Extern<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for Extern<'tree> {
@@ -11350,6 +11529,7 @@ pub mod unnamed {
     #[allow(non_camel_case_types)]
     pub struct False<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> False<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for False<'tree> {
@@ -11387,6 +11567,7 @@ pub mod unnamed {
     #[allow(non_camel_case_types)]
     pub struct Fn<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Fn<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for Fn<'tree> {
@@ -11424,6 +11605,7 @@ pub mod unnamed {
     #[allow(non_camel_case_types)]
     pub struct For<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> For<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for For<'tree> {
@@ -11461,6 +11643,7 @@ pub mod unnamed {
     #[allow(non_camel_case_types)]
     pub struct Ident<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Ident<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for Ident<'tree> {
@@ -11498,6 +11681,7 @@ pub mod unnamed {
     #[allow(non_camel_case_types)]
     pub struct If<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> If<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for If<'tree> {
@@ -11535,6 +11719,7 @@ pub mod unnamed {
     #[allow(non_camel_case_types)]
     pub struct Impl<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Impl<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for Impl<'tree> {
@@ -11572,6 +11757,7 @@ pub mod unnamed {
     #[allow(non_camel_case_types)]
     pub struct In<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> In<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for In<'tree> {
@@ -11609,6 +11795,7 @@ pub mod unnamed {
     #[allow(non_camel_case_types)]
     pub struct Item<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Item<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for Item<'tree> {
@@ -11646,6 +11833,7 @@ pub mod unnamed {
     #[allow(non_camel_case_types)]
     pub struct Let<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Let<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for Let<'tree> {
@@ -11683,6 +11871,7 @@ pub mod unnamed {
     #[allow(non_camel_case_types)]
     pub struct Lifetime<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Lifetime<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for Lifetime<'tree> {
@@ -11720,6 +11909,7 @@ pub mod unnamed {
     #[allow(non_camel_case_types)]
     pub struct Literal<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Literal<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for Literal<'tree> {
@@ -11757,6 +11947,7 @@ pub mod unnamed {
     #[allow(non_camel_case_types)]
     pub struct Loop<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Loop<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for Loop<'tree> {
@@ -11794,6 +11985,7 @@ pub mod unnamed {
     #[allow(non_camel_case_types)]
     pub struct Match<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Match<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for Match<'tree> {
@@ -11831,6 +12023,7 @@ pub mod unnamed {
     #[allow(non_camel_case_types)]
     pub struct Meta<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Meta<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for Meta<'tree> {
@@ -11868,6 +12061,7 @@ pub mod unnamed {
     #[allow(non_camel_case_types)]
     pub struct Mod<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Mod<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for Mod<'tree> {
@@ -11905,6 +12099,7 @@ pub mod unnamed {
     #[allow(non_camel_case_types)]
     pub struct Move<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Move<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for Move<'tree> {
@@ -11942,6 +12137,7 @@ pub mod unnamed {
     #[allow(non_camel_case_types)]
     pub struct Pat<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Pat<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for Pat<'tree> {
@@ -11979,6 +12175,7 @@ pub mod unnamed {
     #[allow(non_camel_case_types)]
     pub struct Path<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Path<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for Path<'tree> {
@@ -12016,6 +12213,7 @@ pub mod unnamed {
     #[allow(non_camel_case_types)]
     pub struct Pub<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Pub<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for Pub<'tree> {
@@ -12053,6 +12251,7 @@ pub mod unnamed {
     #[allow(non_camel_case_types)]
     pub struct Ref<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Ref<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for Ref<'tree> {
@@ -12090,6 +12289,7 @@ pub mod unnamed {
     #[allow(non_camel_case_types)]
     pub struct Return<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Return<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for Return<'tree> {
@@ -12127,6 +12327,7 @@ pub mod unnamed {
     #[allow(non_camel_case_types)]
     pub struct Static<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Static<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for Static<'tree> {
@@ -12164,6 +12365,7 @@ pub mod unnamed {
     #[allow(non_camel_case_types)]
     pub struct Stmt<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Stmt<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for Stmt<'tree> {
@@ -12201,6 +12403,7 @@ pub mod unnamed {
     #[allow(non_camel_case_types)]
     pub struct Struct<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Struct<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for Struct<'tree> {
@@ -12238,6 +12441,7 @@ pub mod unnamed {
     #[allow(non_camel_case_types)]
     pub struct Trait<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Trait<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for Trait<'tree> {
@@ -12275,6 +12479,7 @@ pub mod unnamed {
     #[allow(non_camel_case_types)]
     pub struct True<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> True<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for True<'tree> {
@@ -12312,6 +12517,7 @@ pub mod unnamed {
     #[allow(non_camel_case_types)]
     pub struct Try<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Try<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for Try<'tree> {
@@ -12349,6 +12555,7 @@ pub mod unnamed {
     #[allow(non_camel_case_types)]
     pub struct Tt<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Tt<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for Tt<'tree> {
@@ -12386,6 +12593,7 @@ pub mod unnamed {
     #[allow(non_camel_case_types)]
     pub struct Ty<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Ty<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for Ty<'tree> {
@@ -12423,6 +12631,7 @@ pub mod unnamed {
     #[allow(non_camel_case_types)]
     pub struct Type<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Type<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for Type<'tree> {
@@ -12460,6 +12669,7 @@ pub mod unnamed {
     #[allow(non_camel_case_types)]
     pub struct Union<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Union<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for Union<'tree> {
@@ -12497,6 +12707,7 @@ pub mod unnamed {
     #[allow(non_camel_case_types)]
     pub struct Unsafe<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Unsafe<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for Unsafe<'tree> {
@@ -12534,6 +12745,7 @@ pub mod unnamed {
     #[allow(non_camel_case_types)]
     pub struct Use<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Use<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for Use<'tree> {
@@ -12571,6 +12783,7 @@ pub mod unnamed {
     #[allow(non_camel_case_types)]
     pub struct Vis<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Vis<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for Vis<'tree> {
@@ -12608,6 +12821,7 @@ pub mod unnamed {
     #[allow(non_camel_case_types)]
     pub struct Where<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Where<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for Where<'tree> {
@@ -12645,6 +12859,7 @@ pub mod unnamed {
     #[allow(non_camel_case_types)]
     pub struct While<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> While<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for While<'tree> {
@@ -12682,6 +12897,7 @@ pub mod unnamed {
     #[allow(non_camel_case_types)]
     pub struct Yield<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Yield<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for Yield<'tree> {
@@ -12723,6 +12939,7 @@ pub mod symbols {
     #[allow(non_camel_case_types)]
     pub struct Not<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Not<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for Not<'tree> {
@@ -12760,6 +12977,7 @@ pub mod symbols {
     #[allow(non_camel_case_types)]
     pub struct NotEq<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> NotEq<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for NotEq<'tree> {
@@ -12797,6 +13015,7 @@ pub mod symbols {
     #[allow(non_camel_case_types)]
     pub struct DoubleQuote<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> DoubleQuote<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for DoubleQuote<'tree> {
@@ -12834,6 +13053,7 @@ pub mod symbols {
     #[allow(non_camel_case_types)]
     pub struct Hash<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Hash<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for Hash<'tree> {
@@ -12871,6 +13091,7 @@ pub mod symbols {
     #[allow(non_camel_case_types)]
     pub struct Dollar<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Dollar<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for Dollar<'tree> {
@@ -12908,6 +13129,7 @@ pub mod symbols {
     #[allow(non_camel_case_types)]
     pub struct Mod<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Mod<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for Mod<'tree> {
@@ -12945,6 +13167,7 @@ pub mod symbols {
     #[allow(non_camel_case_types)]
     pub struct ModEq<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> ModEq<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for ModEq<'tree> {
@@ -12982,6 +13205,7 @@ pub mod symbols {
     #[allow(non_camel_case_types)]
     pub struct And<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> And<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for And<'tree> {
@@ -13019,6 +13243,7 @@ pub mod symbols {
     #[allow(non_camel_case_types)]
     pub struct AndAnd<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> AndAnd<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for AndAnd<'tree> {
@@ -13056,6 +13281,7 @@ pub mod symbols {
     #[allow(non_camel_case_types)]
     pub struct AndEq<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> AndEq<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for AndEq<'tree> {
@@ -13093,6 +13319,7 @@ pub mod symbols {
     #[allow(non_camel_case_types)]
     pub struct Quote<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Quote<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for Quote<'tree> {
@@ -13130,6 +13357,7 @@ pub mod symbols {
     #[allow(non_camel_case_types)]
     pub struct LParen<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> LParen<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for LParen<'tree> {
@@ -13167,6 +13395,7 @@ pub mod symbols {
     #[allow(non_camel_case_types)]
     pub struct RParen<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> RParen<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for RParen<'tree> {
@@ -13204,6 +13433,7 @@ pub mod symbols {
     #[allow(non_camel_case_types)]
     pub struct Mul<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Mul<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for Mul<'tree> {
@@ -13241,6 +13471,7 @@ pub mod symbols {
     #[allow(non_camel_case_types)]
     pub struct MulDiv<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> MulDiv<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for MulDiv<'tree> {
@@ -13278,6 +13509,7 @@ pub mod symbols {
     #[allow(non_camel_case_types)]
     pub struct MulEq<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> MulEq<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for MulEq<'tree> {
@@ -13315,6 +13547,7 @@ pub mod symbols {
     #[allow(non_camel_case_types)]
     pub struct Add<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Add<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for Add<'tree> {
@@ -13352,6 +13585,7 @@ pub mod symbols {
     #[allow(non_camel_case_types)]
     pub struct AddEq<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> AddEq<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for AddEq<'tree> {
@@ -13389,6 +13623,7 @@ pub mod symbols {
     #[allow(non_camel_case_types)]
     pub struct Comma<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Comma<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for Comma<'tree> {
@@ -13426,6 +13661,7 @@ pub mod symbols {
     #[allow(non_camel_case_types)]
     pub struct Sub<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Sub<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for Sub<'tree> {
@@ -13463,6 +13699,7 @@ pub mod symbols {
     #[allow(non_camel_case_types)]
     pub struct SubEq<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> SubEq<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for SubEq<'tree> {
@@ -13500,6 +13737,7 @@ pub mod symbols {
     #[allow(non_camel_case_types)]
     pub struct SubGt<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> SubGt<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for SubGt<'tree> {
@@ -13537,6 +13775,7 @@ pub mod symbols {
     #[allow(non_camel_case_types)]
     pub struct Dot<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Dot<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for Dot<'tree> {
@@ -13574,6 +13813,7 @@ pub mod symbols {
     #[allow(non_camel_case_types)]
     pub struct DotDot<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> DotDot<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for DotDot<'tree> {
@@ -13611,6 +13851,7 @@ pub mod symbols {
     #[allow(non_camel_case_types)]
     pub struct DotDotDot<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> DotDotDot<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for DotDotDot<'tree> {
@@ -13648,6 +13889,7 @@ pub mod symbols {
     #[allow(non_camel_case_types)]
     pub struct DotDotEq<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> DotDotEq<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for DotDotEq<'tree> {
@@ -13685,6 +13927,7 @@ pub mod symbols {
     #[allow(non_camel_case_types)]
     pub struct Div<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Div<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for Div<'tree> {
@@ -13722,6 +13965,7 @@ pub mod symbols {
     #[allow(non_camel_case_types)]
     pub struct DivMul<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> DivMul<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for DivMul<'tree> {
@@ -13759,6 +14003,7 @@ pub mod symbols {
     #[allow(non_camel_case_types)]
     pub struct DivDiv<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> DivDiv<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for DivDiv<'tree> {
@@ -13796,6 +14041,7 @@ pub mod symbols {
     #[allow(non_camel_case_types)]
     pub struct DivEq<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> DivEq<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for DivEq<'tree> {
@@ -13833,6 +14079,7 @@ pub mod symbols {
     #[allow(non_camel_case_types)]
     pub struct Colon<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Colon<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for Colon<'tree> {
@@ -13870,6 +14117,7 @@ pub mod symbols {
     #[allow(non_camel_case_types)]
     pub struct ColonColon<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> ColonColon<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for ColonColon<'tree> {
@@ -13907,6 +14155,7 @@ pub mod symbols {
     #[allow(non_camel_case_types)]
     pub struct Semicolon<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Semicolon<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for Semicolon<'tree> {
@@ -13944,6 +14193,7 @@ pub mod symbols {
     #[allow(non_camel_case_types)]
     pub struct Lt<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Lt<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for Lt<'tree> {
@@ -13981,6 +14231,7 @@ pub mod symbols {
     #[allow(non_camel_case_types)]
     pub struct LtLt<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> LtLt<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for LtLt<'tree> {
@@ -14018,6 +14269,7 @@ pub mod symbols {
     #[allow(non_camel_case_types)]
     pub struct LtLtEq<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> LtLtEq<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for LtLtEq<'tree> {
@@ -14055,6 +14307,7 @@ pub mod symbols {
     #[allow(non_camel_case_types)]
     pub struct LtEq<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> LtEq<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for LtEq<'tree> {
@@ -14092,6 +14345,7 @@ pub mod symbols {
     #[allow(non_camel_case_types)]
     pub struct Eq<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Eq<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for Eq<'tree> {
@@ -14129,6 +14383,7 @@ pub mod symbols {
     #[allow(non_camel_case_types)]
     pub struct EqEq<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> EqEq<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for EqEq<'tree> {
@@ -14166,6 +14421,7 @@ pub mod symbols {
     #[allow(non_camel_case_types)]
     pub struct EqGt<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> EqGt<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for EqGt<'tree> {
@@ -14203,6 +14459,7 @@ pub mod symbols {
     #[allow(non_camel_case_types)]
     pub struct Gt<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Gt<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for Gt<'tree> {
@@ -14240,6 +14497,7 @@ pub mod symbols {
     #[allow(non_camel_case_types)]
     pub struct GtEq<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> GtEq<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for GtEq<'tree> {
@@ -14277,6 +14535,7 @@ pub mod symbols {
     #[allow(non_camel_case_types)]
     pub struct GtGt<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> GtGt<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for GtGt<'tree> {
@@ -14314,6 +14573,7 @@ pub mod symbols {
     #[allow(non_camel_case_types)]
     pub struct GtGtEq<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> GtGtEq<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for GtGtEq<'tree> {
@@ -14351,6 +14611,7 @@ pub mod symbols {
     #[allow(non_camel_case_types)]
     pub struct Question<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Question<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for Question<'tree> {
@@ -14388,6 +14649,7 @@ pub mod symbols {
     #[allow(non_camel_case_types)]
     pub struct At<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> At<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for At<'tree> {
@@ -14425,6 +14687,7 @@ pub mod symbols {
     #[allow(non_camel_case_types)]
     pub struct LBracket<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> LBracket<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for LBracket<'tree> {
@@ -14462,6 +14725,7 @@ pub mod symbols {
     #[allow(non_camel_case_types)]
     pub struct RBracket<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> RBracket<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for RBracket<'tree> {
@@ -14499,6 +14763,7 @@ pub mod symbols {
     #[allow(non_camel_case_types)]
     pub struct BitXor<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> BitXor<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for BitXor<'tree> {
@@ -14536,6 +14801,7 @@ pub mod symbols {
     #[allow(non_camel_case_types)]
     pub struct BitXorEq<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> BitXorEq<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for BitXorEq<'tree> {
@@ -14573,6 +14839,7 @@ pub mod symbols {
     #[allow(non_camel_case_types)]
     pub struct __<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> __<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for __<'tree> {
@@ -14610,6 +14877,7 @@ pub mod symbols {
     #[allow(non_camel_case_types)]
     pub struct MacroRulesNot<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> MacroRulesNot<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for MacroRulesNot<'tree> {
@@ -14647,6 +14915,7 @@ pub mod symbols {
     #[allow(non_camel_case_types)]
     pub struct LBrace<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> LBrace<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for LBrace<'tree> {
@@ -14684,6 +14953,7 @@ pub mod symbols {
     #[allow(non_camel_case_types)]
     pub struct Or<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Or<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for Or<'tree> {
@@ -14721,6 +14991,7 @@ pub mod symbols {
     #[allow(non_camel_case_types)]
     pub struct OrEq<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> OrEq<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for OrEq<'tree> {
@@ -14758,6 +15029,7 @@ pub mod symbols {
     #[allow(non_camel_case_types)]
     pub struct OrOr<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> OrOr<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for OrOr<'tree> {
@@ -14795,6 +15067,7 @@ pub mod symbols {
     #[allow(non_camel_case_types)]
     pub struct RBrace<'tree>(type_sitter::raw::Node<'tree>);
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> RBrace<'tree> {}
     #[automatically_derived]
     impl<'tree> type_sitter::Node<'tree> for RBrace<'tree> {
@@ -14848,6 +15121,7 @@ pub mod anon_unions {
         TypeIdentifier(TypeIdentifier<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl < 'tree > ArrayType_GenericType_HigherRankedTraitBound_Lifetime_PointerType_PrimitiveType_ReferenceType_ScopedTypeIdentifier_TupleType_TypeIdentifier < 'tree > { # [doc = "Returns the node if it is of type `array_type` ([`ArrayType`]), otherwise returns `None`"] # [inline] pub fn as_array_type (self) -> Option < ArrayType < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ArrayType (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `generic_type` ([`GenericType`]), otherwise returns `None`"] # [inline] pub fn as_generic_type (self) -> Option < GenericType < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: GenericType (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `higher_ranked_trait_bound` ([`HigherRankedTraitBound`]), otherwise returns `None`"] # [inline] pub fn as_higher_ranked_trait_bound (self) -> Option < HigherRankedTraitBound < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: HigherRankedTraitBound (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `lifetime` ([`Lifetime`]), otherwise returns `None`"] # [inline] pub fn as_lifetime (self) -> Option < Lifetime < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Lifetime (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `pointer_type` ([`PointerType`]), otherwise returns `None`"] # [inline] pub fn as_pointer_type (self) -> Option < PointerType < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: PointerType (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `primitive_type` ([`PrimitiveType`]), otherwise returns `None`"] # [inline] pub fn as_primitive_type (self) -> Option < PrimitiveType < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: PrimitiveType (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `reference_type` ([`ReferenceType`]), otherwise returns `None`"] # [inline] pub fn as_reference_type (self) -> Option < ReferenceType < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ReferenceType (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `scoped_type_identifier` ([`ScopedTypeIdentifier`]), otherwise returns `None`"] # [inline] pub fn as_scoped_type_identifier (self) -> Option < ScopedTypeIdentifier < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ScopedTypeIdentifier (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `tuple_type` ([`TupleType`]), otherwise returns `None`"] # [inline] pub fn as_tuple_type (self) -> Option < TupleType < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: TupleType (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `type_identifier` ([`TypeIdentifier`]), otherwise returns `None`"] # [inline] pub fn as_type_identifier (self) -> Option < TypeIdentifier < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: TypeIdentifier (x) = self { Some (x) } else { None } } }
     #[automatically_derived]
     impl < 'tree > type_sitter :: Node < 'tree > for ArrayType_GenericType_HigherRankedTraitBound_Lifetime_PointerType_PrimitiveType_ReferenceType_ScopedTypeIdentifier_TupleType_TypeIdentifier < 'tree > { type WithLifetime < 'a > = ArrayType_GenericType_HigherRankedTraitBound_Lifetime_PointerType_PrimitiveType_ReferenceType_ScopedTypeIdentifier_TupleType_TypeIdentifier < 'a > ; const KIND : & 'static str = "{array_type | generic_type | higher_ranked_trait_bound | lifetime | pointer_type | primitive_type | reference_type | scoped_type_identifier | tuple_type | type_identifier}" ; # [inline] fn try_from_raw (node : type_sitter :: raw :: Node < 'tree >) -> type_sitter :: NodeResult < Self > { match node . kind () { "array_type" => Ok (unsafe { Self :: ArrayType (< ArrayType < 'tree > as type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "generic_type" => Ok (unsafe { Self :: GenericType (< GenericType < 'tree > as type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "higher_ranked_trait_bound" => Ok (unsafe { Self :: HigherRankedTraitBound (< HigherRankedTraitBound < 'tree > as type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "lifetime" => Ok (unsafe { Self :: Lifetime (< Lifetime < 'tree > as type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "pointer_type" => Ok (unsafe { Self :: PointerType (< PointerType < 'tree > as type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "primitive_type" => Ok (unsafe { Self :: PrimitiveType (< PrimitiveType < 'tree > as type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "reference_type" => Ok (unsafe { Self :: ReferenceType (< ReferenceType < 'tree > as type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "scoped_type_identifier" => Ok (unsafe { Self :: ScopedTypeIdentifier (< ScopedTypeIdentifier < 'tree > as type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "tuple_type" => Ok (unsafe { Self :: TupleType (< TupleType < 'tree > as type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "type_identifier" => Ok (unsafe { Self :: TypeIdentifier (< TypeIdentifier < 'tree > as type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , _ => Err (type_sitter :: IncorrectKind :: new :: < Self > (node)) } } # [inline] fn raw (& self) -> & type_sitter :: raw :: Node < 'tree > { match self { Self :: ArrayType (x) => type_sitter :: Node :: raw (x) , Self :: GenericType (x) => type_sitter :: Node :: raw (x) , Self :: HigherRankedTraitBound (x) => type_sitter :: Node :: raw (x) , Self :: Lifetime (x) => type_sitter :: Node :: raw (x) , Self :: PointerType (x) => type_sitter :: Node :: raw (x) , Self :: PrimitiveType (x) => type_sitter :: Node :: raw (x) , Self :: ReferenceType (x) => type_sitter :: Node :: raw (x) , Self :: ScopedTypeIdentifier (x) => type_sitter :: Node :: raw (x) , Self :: TupleType (x) => type_sitter :: Node :: raw (x) , Self :: TypeIdentifier (x) => type_sitter :: Node :: raw (x) , } } # [inline] fn raw_mut (& mut self) -> & mut type_sitter :: raw :: Node < 'tree > { match self { Self :: ArrayType (x) => type_sitter :: Node :: raw_mut (x) , Self :: GenericType (x) => type_sitter :: Node :: raw_mut (x) , Self :: HigherRankedTraitBound (x) => type_sitter :: Node :: raw_mut (x) , Self :: Lifetime (x) => type_sitter :: Node :: raw_mut (x) , Self :: PointerType (x) => type_sitter :: Node :: raw_mut (x) , Self :: PrimitiveType (x) => type_sitter :: Node :: raw_mut (x) , Self :: ReferenceType (x) => type_sitter :: Node :: raw_mut (x) , Self :: ScopedTypeIdentifier (x) => type_sitter :: Node :: raw_mut (x) , Self :: TupleType (x) => type_sitter :: Node :: raw_mut (x) , Self :: TypeIdentifier (x) => type_sitter :: Node :: raw_mut (x) , } } # [inline] fn into_raw (self) -> type_sitter :: raw :: Node < 'tree > { match self { Self :: ArrayType (x) => x . into_raw () , Self :: GenericType (x) => x . into_raw () , Self :: HigherRankedTraitBound (x) => x . into_raw () , Self :: Lifetime (x) => x . into_raw () , Self :: PointerType (x) => x . into_raw () , Self :: PrimitiveType (x) => x . into_raw () , Self :: ReferenceType (x) => x . into_raw () , Self :: ScopedTypeIdentifier (x) => x . into_raw () , Self :: TupleType (x) => x . into_raw () , Self :: TypeIdentifier (x) => x . into_raw () , } } }
@@ -14866,6 +15140,7 @@ pub mod anon_unions {
         TypeIdentifier(TypeIdentifier<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl < 'tree > AttributeItem_ConstParameter_ConstrainedTypeParameter_Lifetime_Metavariable_OptionalTypeParameter_TypeIdentifier < 'tree > { # [doc = "Returns the node if it is of type `attribute_item` ([`AttributeItem`]), otherwise returns `None`"] # [inline] pub fn as_attribute_item (self) -> Option < AttributeItem < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: AttributeItem (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `const_parameter` ([`ConstParameter`]), otherwise returns `None`"] # [inline] pub fn as_const_parameter (self) -> Option < ConstParameter < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ConstParameter (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `constrained_type_parameter` ([`ConstrainedTypeParameter`]), otherwise returns `None`"] # [inline] pub fn as_constrained_type_parameter (self) -> Option < ConstrainedTypeParameter < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ConstrainedTypeParameter (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `lifetime` ([`Lifetime`]), otherwise returns `None`"] # [inline] pub fn as_lifetime (self) -> Option < Lifetime < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Lifetime (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `metavariable` ([`Metavariable`]), otherwise returns `None`"] # [inline] pub fn as_metavariable (self) -> Option < Metavariable < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Metavariable (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `optional_type_parameter` ([`OptionalTypeParameter`]), otherwise returns `None`"] # [inline] pub fn as_optional_type_parameter (self) -> Option < OptionalTypeParameter < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: OptionalTypeParameter (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `type_identifier` ([`TypeIdentifier`]), otherwise returns `None`"] # [inline] pub fn as_type_identifier (self) -> Option < TypeIdentifier < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: TypeIdentifier (x) = self { Some (x) } else { None } } }
     #[automatically_derived]
     impl < 'tree > type_sitter :: Node < 'tree > for AttributeItem_ConstParameter_ConstrainedTypeParameter_Lifetime_Metavariable_OptionalTypeParameter_TypeIdentifier < 'tree > { type WithLifetime < 'a > = AttributeItem_ConstParameter_ConstrainedTypeParameter_Lifetime_Metavariable_OptionalTypeParameter_TypeIdentifier < 'a > ; const KIND : & 'static str = "{attribute_item | const_parameter | constrained_type_parameter | lifetime | metavariable | optional_type_parameter | type_identifier}" ; # [inline] fn try_from_raw (node : type_sitter :: raw :: Node < 'tree >) -> type_sitter :: NodeResult < Self > { match node . kind () { "attribute_item" => Ok (unsafe { Self :: AttributeItem (< AttributeItem < 'tree > as type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "const_parameter" => Ok (unsafe { Self :: ConstParameter (< ConstParameter < 'tree > as type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "constrained_type_parameter" => Ok (unsafe { Self :: ConstrainedTypeParameter (< ConstrainedTypeParameter < 'tree > as type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "lifetime" => Ok (unsafe { Self :: Lifetime (< Lifetime < 'tree > as type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "metavariable" => Ok (unsafe { Self :: Metavariable (< Metavariable < 'tree > as type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "optional_type_parameter" => Ok (unsafe { Self :: OptionalTypeParameter (< OptionalTypeParameter < 'tree > as type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "type_identifier" => Ok (unsafe { Self :: TypeIdentifier (< TypeIdentifier < 'tree > as type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , _ => Err (type_sitter :: IncorrectKind :: new :: < Self > (node)) } } # [inline] fn raw (& self) -> & type_sitter :: raw :: Node < 'tree > { match self { Self :: AttributeItem (x) => type_sitter :: Node :: raw (x) , Self :: ConstParameter (x) => type_sitter :: Node :: raw (x) , Self :: ConstrainedTypeParameter (x) => type_sitter :: Node :: raw (x) , Self :: Lifetime (x) => type_sitter :: Node :: raw (x) , Self :: Metavariable (x) => type_sitter :: Node :: raw (x) , Self :: OptionalTypeParameter (x) => type_sitter :: Node :: raw (x) , Self :: TypeIdentifier (x) => type_sitter :: Node :: raw (x) , } } # [inline] fn raw_mut (& mut self) -> & mut type_sitter :: raw :: Node < 'tree > { match self { Self :: AttributeItem (x) => type_sitter :: Node :: raw_mut (x) , Self :: ConstParameter (x) => type_sitter :: Node :: raw_mut (x) , Self :: ConstrainedTypeParameter (x) => type_sitter :: Node :: raw_mut (x) , Self :: Lifetime (x) => type_sitter :: Node :: raw_mut (x) , Self :: Metavariable (x) => type_sitter :: Node :: raw_mut (x) , Self :: OptionalTypeParameter (x) => type_sitter :: Node :: raw_mut (x) , Self :: TypeIdentifier (x) => type_sitter :: Node :: raw_mut (x) , } } # [inline] fn into_raw (self) -> type_sitter :: raw :: Node < 'tree > { match self { Self :: AttributeItem (x) => x . into_raw () , Self :: ConstParameter (x) => x . into_raw () , Self :: ConstrainedTypeParameter (x) => x . into_raw () , Self :: Lifetime (x) => x . into_raw () , Self :: Metavariable (x) => x . into_raw () , Self :: OptionalTypeParameter (x) => x . into_raw () , Self :: TypeIdentifier (x) => x . into_raw () , } } }
@@ -14877,6 +15152,7 @@ pub mod anon_unions {
         EnumVariant(EnumVariant<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> AttributeItem_EnumVariant<'tree> {
         #[doc = "Returns the node if it is of type `attribute_item` ([`AttributeItem`]), otherwise returns `None`"]
         #[inline]
@@ -14951,6 +15227,7 @@ pub mod anon_unions {
         FieldDeclaration(FieldDeclaration<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> AttributeItem_FieldDeclaration<'tree> {
         #[doc = "Returns the node if it is of type `attribute_item` ([`AttributeItem`]), otherwise returns `None`"]
         #[inline]
@@ -15027,6 +15304,7 @@ pub mod anon_unions {
         Identifier(Identifier<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> AttributeItem_Identifier<'tree> {
         #[doc = "Returns the node if it is of type `attribute_item` ([`AttributeItem`]), otherwise returns `None`"]
         #[inline]
@@ -15101,6 +15379,7 @@ pub mod anon_unions {
         InnerAttributeItem(InnerAttributeItem<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> AttributeItem_InnerAttributeItem<'tree> {
         #[doc = "Returns the node if it is of type `attribute_item` ([`AttributeItem`]), otherwise returns `None`"]
         #[inline]
@@ -15175,6 +15454,7 @@ pub mod anon_unions {
         VisibilityModifier(VisibilityModifier<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> AttributeItem_VisibilityModifier<'tree> {
         #[doc = "Returns the node if it is of type `attribute_item` ([`AttributeItem`]), otherwise returns `None`"]
         #[inline]
@@ -15250,6 +15530,7 @@ pub mod anon_unions {
         ShorthandFieldInitializer(ShorthandFieldInitializer<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> BaseFieldInitializer_FieldInitializer_ShorthandFieldInitializer<'tree> {
         #[doc = "Returns the node if it is of type `base_field_initializer` ([`BaseFieldInitializer`]), otherwise returns `None`"]
         #[inline]
@@ -15343,6 +15624,7 @@ pub mod anon_unions {
         IfExpression(IfExpression<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Block_IfExpression<'tree> {
         #[doc = "Returns the node if it is of type `block` ([`Block`]), otherwise returns `None`"]
         #[inline]
@@ -15423,6 +15705,7 @@ pub mod anon_unions {
         Super(Super<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree>
         BracketedType_Crate_GenericType_Identifier_Metavariable_ScopedIdentifier_Self__Super<'tree>
     {
@@ -15616,6 +15899,7 @@ pub mod anon_unions {
         TypeIdentifier(TypeIdentifier<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> ConstrainedTypeParameter_TypeIdentifier<'tree> {
         #[doc = "Returns the node if it is of type `constrained_type_parameter` ([`ConstrainedTypeParameter`]), otherwise returns `None`"]
         #[inline]
@@ -15698,6 +15982,7 @@ pub mod anon_unions {
         UseWildcard(UseWildcard<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl < 'tree > Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList_Self__Super_UseAsClause_UseList_UseWildcard < 'tree > { # [doc = "Returns the node if it is of type `crate` ([`Crate`]), otherwise returns `None`"] # [inline] pub fn as_crate (self) -> Option < Crate < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Crate (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`"] # [inline] pub fn as_identifier (self) -> Option < Identifier < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Identifier (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `metavariable` ([`Metavariable`]), otherwise returns `None`"] # [inline] pub fn as_metavariable (self) -> Option < Metavariable < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Metavariable (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `scoped_identifier` ([`ScopedIdentifier`]), otherwise returns `None`"] # [inline] pub fn as_scoped_identifier (self) -> Option < ScopedIdentifier < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ScopedIdentifier (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `scoped_use_list` ([`ScopedUseList`]), otherwise returns `None`"] # [inline] pub fn as_scoped_use_list (self) -> Option < ScopedUseList < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ScopedUseList (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `self` ([`Self_`]), otherwise returns `None`"] # [inline] pub fn as_self (self) -> Option < Self_ < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Self_ (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `super` ([`Super`]), otherwise returns `None`"] # [inline] pub fn as_super (self) -> Option < Super < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Super (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `use_as_clause` ([`UseAsClause`]), otherwise returns `None`"] # [inline] pub fn as_use_as_clause (self) -> Option < UseAsClause < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: UseAsClause (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `use_list` ([`UseList`]), otherwise returns `None`"] # [inline] pub fn as_use_list (self) -> Option < UseList < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: UseList (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `use_wildcard` ([`UseWildcard`]), otherwise returns `None`"] # [inline] pub fn as_use_wildcard (self) -> Option < UseWildcard < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: UseWildcard (x) = self { Some (x) } else { None } } }
     #[automatically_derived]
     impl < 'tree > type_sitter :: Node < 'tree > for Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList_Self__Super_UseAsClause_UseList_UseWildcard < 'tree > { type WithLifetime < 'a > = Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList_Self__Super_UseAsClause_UseList_UseWildcard < 'a > ; const KIND : & 'static str = "{crate | identifier | metavariable | scoped_identifier | scoped_use_list | self | super | use_as_clause | use_list | use_wildcard}" ; # [inline] fn try_from_raw (node : type_sitter :: raw :: Node < 'tree >) -> type_sitter :: NodeResult < Self > { match node . kind () { "crate" => Ok (unsafe { Self :: Crate (< Crate < 'tree > as type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "identifier" => Ok (unsafe { Self :: Identifier (< Identifier < 'tree > as type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "metavariable" => Ok (unsafe { Self :: Metavariable (< Metavariable < 'tree > as type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "scoped_identifier" => Ok (unsafe { Self :: ScopedIdentifier (< ScopedIdentifier < 'tree > as type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "scoped_use_list" => Ok (unsafe { Self :: ScopedUseList (< ScopedUseList < 'tree > as type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "self" => Ok (unsafe { Self :: Self_ (< Self_ < 'tree > as type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "super" => Ok (unsafe { Self :: Super (< Super < 'tree > as type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "use_as_clause" => Ok (unsafe { Self :: UseAsClause (< UseAsClause < 'tree > as type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "use_list" => Ok (unsafe { Self :: UseList (< UseList < 'tree > as type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "use_wildcard" => Ok (unsafe { Self :: UseWildcard (< UseWildcard < 'tree > as type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , _ => Err (type_sitter :: IncorrectKind :: new :: < Self > (node)) } } # [inline] fn raw (& self) -> & type_sitter :: raw :: Node < 'tree > { match self { Self :: Crate (x) => type_sitter :: Node :: raw (x) , Self :: Identifier (x) => type_sitter :: Node :: raw (x) , Self :: Metavariable (x) => type_sitter :: Node :: raw (x) , Self :: ScopedIdentifier (x) => type_sitter :: Node :: raw (x) , Self :: ScopedUseList (x) => type_sitter :: Node :: raw (x) , Self :: Self_ (x) => type_sitter :: Node :: raw (x) , Self :: Super (x) => type_sitter :: Node :: raw (x) , Self :: UseAsClause (x) => type_sitter :: Node :: raw (x) , Self :: UseList (x) => type_sitter :: Node :: raw (x) , Self :: UseWildcard (x) => type_sitter :: Node :: raw (x) , } } # [inline] fn raw_mut (& mut self) -> & mut type_sitter :: raw :: Node < 'tree > { match self { Self :: Crate (x) => type_sitter :: Node :: raw_mut (x) , Self :: Identifier (x) => type_sitter :: Node :: raw_mut (x) , Self :: Metavariable (x) => type_sitter :: Node :: raw_mut (x) , Self :: ScopedIdentifier (x) => type_sitter :: Node :: raw_mut (x) , Self :: ScopedUseList (x) => type_sitter :: Node :: raw_mut (x) , Self :: Self_ (x) => type_sitter :: Node :: raw_mut (x) , Self :: Super (x) => type_sitter :: Node :: raw_mut (x) , Self :: UseAsClause (x) => type_sitter :: Node :: raw_mut (x) , Self :: UseList (x) => type_sitter :: Node :: raw_mut (x) , Self :: UseWildcard (x) => type_sitter :: Node :: raw_mut (x) , } } # [inline] fn into_raw (self) -> type_sitter :: raw :: Node < 'tree > { match self { Self :: Crate (x) => x . into_raw () , Self :: Identifier (x) => x . into_raw () , Self :: Metavariable (x) => x . into_raw () , Self :: ScopedIdentifier (x) => x . into_raw () , Self :: ScopedUseList (x) => x . into_raw () , Self :: Self_ (x) => x . into_raw () , Self :: Super (x) => x . into_raw () , Self :: UseAsClause (x) => x . into_raw () , Self :: UseList (x) => x . into_raw () , Self :: UseWildcard (x) => x . into_raw () , } } }
@@ -15713,6 +15998,7 @@ pub mod anon_unions {
         Super(Super<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Crate_Identifier_Metavariable_ScopedIdentifier_Self__Super<'tree> {
         #[doc = "Returns the node if it is of type `crate` ([`Crate`]), otherwise returns `None`"]
         #[inline]
@@ -15862,6 +16148,7 @@ pub mod anon_unions {
         VisibilityModifier(VisibilityModifier<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Crate_VisibilityModifier<'tree> {
         #[doc = "Returns the node if it is of type `crate` ([`Crate`]), otherwise returns `None`"]
         #[inline]
@@ -15935,6 +16222,7 @@ pub mod anon_unions {
         Shebang(Shebang<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> DeclarationStatement_ExpressionStatement_Shebang<'tree> {
         #[doc = "Returns the node if it is of type `_declaration_statement` ([`DeclarationStatement`]), otherwise returns `None`"]
         #[inline]
@@ -16130,6 +16418,7 @@ pub mod anon_unions {
         Label(Label<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> DeclarationStatement_Expression_ExpressionStatement_Label<'tree> {
         #[doc = "Returns the node if it is of type `_declaration_statement` ([`DeclarationStatement`]), otherwise returns `None`"]
         #[inline]
@@ -16567,6 +16856,7 @@ pub mod anon_unions {
         StringContent(StringContent<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> EscapeSequence_StringContent<'tree> {
         #[doc = "Returns the node if it is of type `escape_sequence` ([`EscapeSequence`]), otherwise returns `None`"]
         #[inline]
@@ -16643,6 +16933,7 @@ pub mod anon_unions {
         AttributeItem(AttributeItem<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Expression_AttributeItem<'tree> {
         #[doc = "Returns the node if it is of type `_expression` ([`Expression`]), otherwise returns `None`"]
         #[inline]
@@ -16935,6 +17226,7 @@ pub mod anon_unions {
         Label(Label<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Expression_Label<'tree> {
         #[doc = "Returns the node if it is of type `_expression` ([`Expression`]), otherwise returns `None`"]
         #[inline]
@@ -17227,6 +17519,7 @@ pub mod anon_unions {
         LetCondition(LetCondition<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Expression_LetChain_LetCondition<'tree> {
         #[doc = "Returns the node if it is of type `_expression` ([`Expression`]), otherwise returns `None`"]
         #[inline]
@@ -17535,6 +17828,7 @@ pub mod anon_unions {
         LetCondition(LetCondition<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Expression_LetCondition<'tree> {
         #[doc = "Returns the node if it is of type `_expression` ([`Expression`]), otherwise returns `None`"]
         #[inline]
@@ -17827,6 +18121,7 @@ pub mod anon_unions {
         VisibilityModifier(VisibilityModifier<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> ExternModifier_VisibilityModifier<'tree> {
         #[doc = "Returns the node if it is of type `extern_modifier` ([`ExternModifier`]), otherwise returns `None`"]
         #[inline]
@@ -17901,6 +18196,7 @@ pub mod anon_unions {
         OrderedFieldDeclarationList(OrderedFieldDeclarationList<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> FieldDeclarationList_OrderedFieldDeclarationList<'tree> {
         #[doc = "Returns the node if it is of type `field_declaration_list` ([`FieldDeclarationList`]), otherwise returns `None`"]
         #[inline]
@@ -17974,6 +18270,7 @@ pub mod anon_unions {
         ScopedIdentifier(ScopedIdentifier<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> FieldExpression_Identifier_ScopedIdentifier<'tree> {
         #[doc = "Returns the node if it is of type `field_expression` ([`FieldExpression`]), otherwise returns `None`"]
         #[inline]
@@ -18068,6 +18365,7 @@ pub mod anon_unions {
         IntegerLiteral(IntegerLiteral<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> FieldIdentifier_IntegerLiteral<'tree> {
         #[doc = "Returns the node if it is of type `field_identifier` ([`FieldIdentifier`]), otherwise returns `None`"]
         #[inline]
@@ -18144,6 +18442,7 @@ pub mod anon_unions {
         ShorthandFieldIdentifier(ShorthandFieldIdentifier<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> FieldIdentifier_ShorthandFieldIdentifier<'tree> {
         #[doc = "Returns the node if it is of type `field_identifier` ([`FieldIdentifier`]), otherwise returns `None`"]
         #[inline]
@@ -18216,6 +18515,7 @@ pub mod anon_unions {
         RemainingFieldPattern(RemainingFieldPattern<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> FieldPattern_RemainingFieldPattern<'tree> {
         #[doc = "Returns the node if it is of type `field_pattern` ([`FieldPattern`]), otherwise returns `None`"]
         #[inline]
@@ -18286,6 +18586,7 @@ pub mod anon_unions {
         IntegerLiteral(IntegerLiteral<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> FloatLiteral_IntegerLiteral<'tree> {
         #[doc = "Returns the node if it is of type `float_literal` ([`FloatLiteral`]), otherwise returns `None`"]
         #[inline]
@@ -18360,6 +18661,7 @@ pub mod anon_unions {
         FunctionModifiers(FunctionModifiers<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> ForLifetimes_FunctionModifiers<'tree> {
         #[doc = "Returns the node if it is of type `for_lifetimes` ([`ForLifetimes`]), otherwise returns `None`"]
         #[inline]
@@ -18433,6 +18735,7 @@ pub mod anon_unions {
         WhereClause(WhereClause<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> FunctionModifiers_VisibilityModifier_WhereClause<'tree> {
         #[doc = "Returns the node if it is of type `function_modifiers` ([`FunctionModifiers`]), otherwise returns `None`"]
         #[inline]
@@ -18528,6 +18831,7 @@ pub mod anon_unions {
         TypeIdentifier(TypeIdentifier<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree>
         FunctionType_GenericType_HigherRankedTraitBound_ScopedTypeIdentifier_TypeIdentifier<'tree>
     {
@@ -18667,6 +18971,7 @@ pub mod anon_unions {
         TypeIdentifier(TypeIdentifier<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree>
         FunctionType_GenericType_RemovedTraitBound_ScopedTypeIdentifier_TupleType_TypeIdentifier<
             'tree,
@@ -18822,6 +19127,7 @@ pub mod anon_unions {
         TypeIdentifier(TypeIdentifier<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> GenericTypeWithTurbofish_ScopedTypeIdentifier_TypeIdentifier<'tree> {
         #[doc = "Returns the node if it is of type `generic_type_with_turbofish` ([`GenericTypeWithTurbofish`]), otherwise returns `None`"]
         #[inline]
@@ -18916,6 +19222,7 @@ pub mod anon_unions {
         ScopedIdentifier(ScopedIdentifier<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> GenericType_Identifier_ScopedIdentifier<'tree> {
         #[doc = "Returns the node if it is of type `generic_type` ([`GenericType`]), otherwise returns `None`"]
         #[inline]
@@ -19009,6 +19316,7 @@ pub mod anon_unions {
         TypeIdentifier(TypeIdentifier<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> GenericType_ScopedTypeIdentifier_TypeIdentifier<'tree> {
         #[doc = "Returns the node if it is of type `generic_type` ([`GenericType`]), otherwise returns `None`"]
         #[inline]
@@ -19101,6 +19409,7 @@ pub mod anon_unions {
         Metavariable(Metavariable<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Identifier_Metavariable<'tree> {
         #[doc = "Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`"]
         #[inline]
@@ -19173,6 +19482,7 @@ pub mod anon_unions {
         ScopedIdentifier(ScopedIdentifier<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Identifier_ScopedIdentifier<'tree> {
         #[doc = "Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`"]
         #[inline]
@@ -19249,6 +19559,7 @@ pub mod anon_unions {
         TypeIdentifier(TypeIdentifier<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Identifier_ScopedIdentifier_ScopedTypeIdentifier_TypeIdentifier<'tree> {
         #[doc = "Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`"]
         #[inline]
@@ -19364,6 +19675,7 @@ pub mod anon_unions {
         Super(Super<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Identifier_Super<'tree> {
         #[doc = "Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`"]
         #[inline]
@@ -19436,6 +19748,7 @@ pub mod anon_unions {
         MutableSpecifier(MutableSpecifier<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Lifetime_MutableSpecifier<'tree> {
         #[doc = "Returns the node if it is of type `lifetime` ([`Lifetime`]), otherwise returns `None`"]
         #[inline]
@@ -19511,6 +19824,7 @@ pub mod anon_unions {
         Self_(Self_<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Lifetime_MutableSpecifier_Self_<'tree> {
         #[doc = "Returns the node if it is of type `lifetime` ([`Lifetime`]), otherwise returns `None`"]
         #[inline]
@@ -19603,6 +19917,7 @@ pub mod anon_unions {
         TypeIdentifier(TypeIdentifier<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Lifetime_TypeIdentifier<'tree> {
         #[doc = "Returns the node if it is of type `lifetime` ([`Lifetime`]), otherwise returns `None`"]
         #[inline]
@@ -19682,6 +19997,7 @@ pub mod anon_unions {
         Super(Super<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> LiteralPattern_Crate_Identifier_Metavariable_ScopedIdentifier_Self__Super<'tree> {
         #[doc = "Returns the node if it is of type `_literal_pattern` ([`LiteralPattern`]), otherwise returns `None`"]
         #[inline]
@@ -19909,6 +20225,7 @@ pub mod anon_unions {
         YieldExpression(YieldExpression<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl < 'tree > Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier_Self__StructExpression_TryBlock_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression < 'tree > { # [doc = "Returns the node if it is of type `_literal` ([`Literal`]), otherwise returns `None`"] # [inline] pub fn as_literal (self) -> Option < Literal < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Literal (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `array_expression` ([`ArrayExpression`]), otherwise returns `None`"] # [inline] pub fn as_array_expression (self) -> Option < ArrayExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ArrayExpression (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `assignment_expression` ([`AssignmentExpression`]), otherwise returns `None`"] # [inline] pub fn as_assignment_expression (self) -> Option < AssignmentExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: AssignmentExpression (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `async_block` ([`AsyncBlock`]), otherwise returns `None`"] # [inline] pub fn as_async_block (self) -> Option < AsyncBlock < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: AsyncBlock (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `await_expression` ([`AwaitExpression`]), otherwise returns `None`"] # [inline] pub fn as_await_expression (self) -> Option < AwaitExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: AwaitExpression (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `binary_expression` ([`BinaryExpression`]), otherwise returns `None`"] # [inline] pub fn as_binary_expression (self) -> Option < BinaryExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: BinaryExpression (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `block` ([`Block`]), otherwise returns `None`"] # [inline] pub fn as_block (self) -> Option < Block < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Block (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `break_expression` ([`BreakExpression`]), otherwise returns `None`"] # [inline] pub fn as_break_expression (self) -> Option < BreakExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: BreakExpression (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `call_expression` ([`CallExpression`]), otherwise returns `None`"] # [inline] pub fn as_call_expression (self) -> Option < CallExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: CallExpression (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `closure_expression` ([`ClosureExpression`]), otherwise returns `None`"] # [inline] pub fn as_closure_expression (self) -> Option < ClosureExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ClosureExpression (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `compound_assignment_expr` ([`CompoundAssignmentExpr`]), otherwise returns `None`"] # [inline] pub fn as_compound_assignment_expr (self) -> Option < CompoundAssignmentExpr < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: CompoundAssignmentExpr (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `const_block` ([`ConstBlock`]), otherwise returns `None`"] # [inline] pub fn as_const_block (self) -> Option < ConstBlock < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ConstBlock (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `continue_expression` ([`ContinueExpression`]), otherwise returns `None`"] # [inline] pub fn as_continue_expression (self) -> Option < ContinueExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ContinueExpression (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `field_expression` ([`FieldExpression`]), otherwise returns `None`"] # [inline] pub fn as_field_expression (self) -> Option < FieldExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: FieldExpression (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `for_expression` ([`ForExpression`]), otherwise returns `None`"] # [inline] pub fn as_for_expression (self) -> Option < ForExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ForExpression (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `generic_function` ([`GenericFunction`]), otherwise returns `None`"] # [inline] pub fn as_generic_function (self) -> Option < GenericFunction < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: GenericFunction (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`"] # [inline] pub fn as_identifier (self) -> Option < Identifier < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Identifier (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `if_expression` ([`IfExpression`]), otherwise returns `None`"] # [inline] pub fn as_if_expression (self) -> Option < IfExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: IfExpression (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `index_expression` ([`IndexExpression`]), otherwise returns `None`"] # [inline] pub fn as_index_expression (self) -> Option < IndexExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: IndexExpression (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `loop_expression` ([`LoopExpression`]), otherwise returns `None`"] # [inline] pub fn as_loop_expression (self) -> Option < LoopExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: LoopExpression (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `macro_invocation` ([`MacroInvocation`]), otherwise returns `None`"] # [inline] pub fn as_macro_invocation (self) -> Option < MacroInvocation < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: MacroInvocation (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `match_expression` ([`MatchExpression`]), otherwise returns `None`"] # [inline] pub fn as_match_expression (self) -> Option < MatchExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: MatchExpression (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `metavariable` ([`Metavariable`]), otherwise returns `None`"] # [inline] pub fn as_metavariable (self) -> Option < Metavariable < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Metavariable (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `parenthesized_expression` ([`ParenthesizedExpression`]), otherwise returns `None`"] # [inline] pub fn as_parenthesized_expression (self) -> Option < ParenthesizedExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ParenthesizedExpression (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `reference_expression` ([`ReferenceExpression`]), otherwise returns `None`"] # [inline] pub fn as_reference_expression (self) -> Option < ReferenceExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ReferenceExpression (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `return_expression` ([`ReturnExpression`]), otherwise returns `None`"] # [inline] pub fn as_return_expression (self) -> Option < ReturnExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ReturnExpression (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `scoped_identifier` ([`ScopedIdentifier`]), otherwise returns `None`"] # [inline] pub fn as_scoped_identifier (self) -> Option < ScopedIdentifier < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ScopedIdentifier (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `self` ([`Self_`]), otherwise returns `None`"] # [inline] pub fn as_self (self) -> Option < Self_ < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Self_ (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `struct_expression` ([`StructExpression`]), otherwise returns `None`"] # [inline] pub fn as_struct_expression (self) -> Option < StructExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: StructExpression (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `try_block` ([`TryBlock`]), otherwise returns `None`"] # [inline] pub fn as_try_block (self) -> Option < TryBlock < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: TryBlock (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `try_expression` ([`TryExpression`]), otherwise returns `None`"] # [inline] pub fn as_try_expression (self) -> Option < TryExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: TryExpression (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `tuple_expression` ([`TupleExpression`]), otherwise returns `None`"] # [inline] pub fn as_tuple_expression (self) -> Option < TupleExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: TupleExpression (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `type_cast_expression` ([`TypeCastExpression`]), otherwise returns `None`"] # [inline] pub fn as_type_cast_expression (self) -> Option < TypeCastExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: TypeCastExpression (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `unary_expression` ([`UnaryExpression`]), otherwise returns `None`"] # [inline] pub fn as_unary_expression (self) -> Option < UnaryExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: UnaryExpression (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `unit_expression` ([`UnitExpression`]), otherwise returns `None`"] # [inline] pub fn as_unit_expression (self) -> Option < UnitExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: UnitExpression (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `unsafe_block` ([`UnsafeBlock`]), otherwise returns `None`"] # [inline] pub fn as_unsafe_block (self) -> Option < UnsafeBlock < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: UnsafeBlock (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `while_expression` ([`WhileExpression`]), otherwise returns `None`"] # [inline] pub fn as_while_expression (self) -> Option < WhileExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: WhileExpression (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `yield_expression` ([`YieldExpression`]), otherwise returns `None`"] # [inline] pub fn as_yield_expression (self) -> Option < YieldExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: YieldExpression (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `boolean_literal` ([`BooleanLiteral`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_literal` ([`Literal < 'tree >`], from [`as_literal`](Self::as_literal))"] # [inline] pub fn as_boolean_literal (self) -> Option < BooleanLiteral < 'tree > > { self . as_literal () ? . as_boolean_literal () } # [doc = "Returns the node if it is of type `char_literal` ([`CharLiteral`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_literal` ([`Literal < 'tree >`], from [`as_literal`](Self::as_literal))"] # [inline] pub fn as_char_literal (self) -> Option < CharLiteral < 'tree > > { self . as_literal () ? . as_char_literal () } # [doc = "Returns the node if it is of type `float_literal` ([`FloatLiteral`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_literal` ([`Literal < 'tree >`], from [`as_literal`](Self::as_literal))"] # [inline] pub fn as_float_literal (self) -> Option < FloatLiteral < 'tree > > { self . as_literal () ? . as_float_literal () } # [doc = "Returns the node if it is of type `integer_literal` ([`IntegerLiteral`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_literal` ([`Literal < 'tree >`], from [`as_literal`](Self::as_literal))"] # [inline] pub fn as_integer_literal (self) -> Option < IntegerLiteral < 'tree > > { self . as_literal () ? . as_integer_literal () } # [doc = "Returns the node if it is of type `raw_string_literal` ([`RawStringLiteral`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_literal` ([`Literal < 'tree >`], from [`as_literal`](Self::as_literal))"] # [inline] pub fn as_raw_string_literal (self) -> Option < RawStringLiteral < 'tree > > { self . as_literal () ? . as_raw_string_literal () } # [doc = "Returns the node if it is of type `string_literal` ([`StringLiteral`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_literal` ([`Literal < 'tree >`], from [`as_literal`](Self::as_literal))"] # [inline] pub fn as_string_literal (self) -> Option < StringLiteral < 'tree > > { self . as_literal () ? . as_string_literal () } }
     #[automatically_derived]
     impl < 'tree > type_sitter :: Node < 'tree > for Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier_Self__StructExpression_TryBlock_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression < 'tree > { type WithLifetime < 'a > = Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier_Self__StructExpression_TryBlock_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression < 'a > ; const KIND : & 'static str = "{_literal | array_expression | assignment_expression | async_block | await_expression | binary_expression | block | break_expression | call_expression | closure_expression | compound_assignment_expr | const_block | continue_expression | field_expression | for_expression | generic_function | identifier | if_expression | index_expression | loop_expression | macro_invocation | match_expression | metavariable | parenthesized_expression | reference_expression | return_expression | scoped_identifier | self | struct_expression | try_block | try_expression | tuple_expression | type_cast_expression | unary_expression | unit_expression | unsafe_block | while_expression | yield_expression}" ; # [inline] fn try_from_raw (node : type_sitter :: raw :: Node < 'tree >) -> type_sitter :: NodeResult < Self > { if let Ok (this) = < Literal < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: Literal (this)) ; } if let Ok (this) = < ArrayExpression < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: ArrayExpression (this)) ; } if let Ok (this) = < AssignmentExpression < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: AssignmentExpression (this)) ; } if let Ok (this) = < AsyncBlock < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: AsyncBlock (this)) ; } if let Ok (this) = < AwaitExpression < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: AwaitExpression (this)) ; } if let Ok (this) = < BinaryExpression < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: BinaryExpression (this)) ; } if let Ok (this) = < Block < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: Block (this)) ; } if let Ok (this) = < BreakExpression < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: BreakExpression (this)) ; } if let Ok (this) = < CallExpression < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: CallExpression (this)) ; } if let Ok (this) = < ClosureExpression < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: ClosureExpression (this)) ; } if let Ok (this) = < CompoundAssignmentExpr < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: CompoundAssignmentExpr (this)) ; } if let Ok (this) = < ConstBlock < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: ConstBlock (this)) ; } if let Ok (this) = < ContinueExpression < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: ContinueExpression (this)) ; } if let Ok (this) = < FieldExpression < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: FieldExpression (this)) ; } if let Ok (this) = < ForExpression < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: ForExpression (this)) ; } if let Ok (this) = < GenericFunction < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: GenericFunction (this)) ; } if let Ok (this) = < Identifier < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: Identifier (this)) ; } if let Ok (this) = < IfExpression < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: IfExpression (this)) ; } if let Ok (this) = < IndexExpression < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: IndexExpression (this)) ; } if let Ok (this) = < LoopExpression < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: LoopExpression (this)) ; } if let Ok (this) = < MacroInvocation < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: MacroInvocation (this)) ; } if let Ok (this) = < MatchExpression < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: MatchExpression (this)) ; } if let Ok (this) = < Metavariable < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: Metavariable (this)) ; } if let Ok (this) = < ParenthesizedExpression < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: ParenthesizedExpression (this)) ; } if let Ok (this) = < ReferenceExpression < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: ReferenceExpression (this)) ; } if let Ok (this) = < ReturnExpression < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: ReturnExpression (this)) ; } if let Ok (this) = < ScopedIdentifier < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: ScopedIdentifier (this)) ; } if let Ok (this) = < Self_ < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: Self_ (this)) ; } if let Ok (this) = < StructExpression < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: StructExpression (this)) ; } if let Ok (this) = < TryBlock < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: TryBlock (this)) ; } if let Ok (this) = < TryExpression < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: TryExpression (this)) ; } if let Ok (this) = < TupleExpression < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: TupleExpression (this)) ; } if let Ok (this) = < TypeCastExpression < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: TypeCastExpression (this)) ; } if let Ok (this) = < UnaryExpression < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: UnaryExpression (this)) ; } if let Ok (this) = < UnitExpression < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: UnitExpression (this)) ; } if let Ok (this) = < UnsafeBlock < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: UnsafeBlock (this)) ; } if let Ok (this) = < WhileExpression < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: WhileExpression (this)) ; } if let Ok (this) = < YieldExpression < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: YieldExpression (this)) ; } Err (type_sitter :: IncorrectKind :: new :: < Self > (node)) } # [inline] fn raw (& self) -> & type_sitter :: raw :: Node < 'tree > { match self { Self :: Literal (x) => type_sitter :: Node :: raw (x) , Self :: ArrayExpression (x) => type_sitter :: Node :: raw (x) , Self :: AssignmentExpression (x) => type_sitter :: Node :: raw (x) , Self :: AsyncBlock (x) => type_sitter :: Node :: raw (x) , Self :: AwaitExpression (x) => type_sitter :: Node :: raw (x) , Self :: BinaryExpression (x) => type_sitter :: Node :: raw (x) , Self :: Block (x) => type_sitter :: Node :: raw (x) , Self :: BreakExpression (x) => type_sitter :: Node :: raw (x) , Self :: CallExpression (x) => type_sitter :: Node :: raw (x) , Self :: ClosureExpression (x) => type_sitter :: Node :: raw (x) , Self :: CompoundAssignmentExpr (x) => type_sitter :: Node :: raw (x) , Self :: ConstBlock (x) => type_sitter :: Node :: raw (x) , Self :: ContinueExpression (x) => type_sitter :: Node :: raw (x) , Self :: FieldExpression (x) => type_sitter :: Node :: raw (x) , Self :: ForExpression (x) => type_sitter :: Node :: raw (x) , Self :: GenericFunction (x) => type_sitter :: Node :: raw (x) , Self :: Identifier (x) => type_sitter :: Node :: raw (x) , Self :: IfExpression (x) => type_sitter :: Node :: raw (x) , Self :: IndexExpression (x) => type_sitter :: Node :: raw (x) , Self :: LoopExpression (x) => type_sitter :: Node :: raw (x) , Self :: MacroInvocation (x) => type_sitter :: Node :: raw (x) , Self :: MatchExpression (x) => type_sitter :: Node :: raw (x) , Self :: Metavariable (x) => type_sitter :: Node :: raw (x) , Self :: ParenthesizedExpression (x) => type_sitter :: Node :: raw (x) , Self :: ReferenceExpression (x) => type_sitter :: Node :: raw (x) , Self :: ReturnExpression (x) => type_sitter :: Node :: raw (x) , Self :: ScopedIdentifier (x) => type_sitter :: Node :: raw (x) , Self :: Self_ (x) => type_sitter :: Node :: raw (x) , Self :: StructExpression (x) => type_sitter :: Node :: raw (x) , Self :: TryBlock (x) => type_sitter :: Node :: raw (x) , Self :: TryExpression (x) => type_sitter :: Node :: raw (x) , Self :: TupleExpression (x) => type_sitter :: Node :: raw (x) , Self :: TypeCastExpression (x) => type_sitter :: Node :: raw (x) , Self :: UnaryExpression (x) => type_sitter :: Node :: raw (x) , Self :: UnitExpression (x) => type_sitter :: Node :: raw (x) , Self :: UnsafeBlock (x) => type_sitter :: Node :: raw (x) , Self :: WhileExpression (x) => type_sitter :: Node :: raw (x) , Self :: YieldExpression (x) => type_sitter :: Node :: raw (x) , } } # [inline] fn raw_mut (& mut self) -> & mut type_sitter :: raw :: Node < 'tree > { match self { Self :: Literal (x) => type_sitter :: Node :: raw_mut (x) , Self :: ArrayExpression (x) => type_sitter :: Node :: raw_mut (x) , Self :: AssignmentExpression (x) => type_sitter :: Node :: raw_mut (x) , Self :: AsyncBlock (x) => type_sitter :: Node :: raw_mut (x) , Self :: AwaitExpression (x) => type_sitter :: Node :: raw_mut (x) , Self :: BinaryExpression (x) => type_sitter :: Node :: raw_mut (x) , Self :: Block (x) => type_sitter :: Node :: raw_mut (x) , Self :: BreakExpression (x) => type_sitter :: Node :: raw_mut (x) , Self :: CallExpression (x) => type_sitter :: Node :: raw_mut (x) , Self :: ClosureExpression (x) => type_sitter :: Node :: raw_mut (x) , Self :: CompoundAssignmentExpr (x) => type_sitter :: Node :: raw_mut (x) , Self :: ConstBlock (x) => type_sitter :: Node :: raw_mut (x) , Self :: ContinueExpression (x) => type_sitter :: Node :: raw_mut (x) , Self :: FieldExpression (x) => type_sitter :: Node :: raw_mut (x) , Self :: ForExpression (x) => type_sitter :: Node :: raw_mut (x) , Self :: GenericFunction (x) => type_sitter :: Node :: raw_mut (x) , Self :: Identifier (x) => type_sitter :: Node :: raw_mut (x) , Self :: IfExpression (x) => type_sitter :: Node :: raw_mut (x) , Self :: IndexExpression (x) => type_sitter :: Node :: raw_mut (x) , Self :: LoopExpression (x) => type_sitter :: Node :: raw_mut (x) , Self :: MacroInvocation (x) => type_sitter :: Node :: raw_mut (x) , Self :: MatchExpression (x) => type_sitter :: Node :: raw_mut (x) , Self :: Metavariable (x) => type_sitter :: Node :: raw_mut (x) , Self :: ParenthesizedExpression (x) => type_sitter :: Node :: raw_mut (x) , Self :: ReferenceExpression (x) => type_sitter :: Node :: raw_mut (x) , Self :: ReturnExpression (x) => type_sitter :: Node :: raw_mut (x) , Self :: ScopedIdentifier (x) => type_sitter :: Node :: raw_mut (x) , Self :: Self_ (x) => type_sitter :: Node :: raw_mut (x) , Self :: StructExpression (x) => type_sitter :: Node :: raw_mut (x) , Self :: TryBlock (x) => type_sitter :: Node :: raw_mut (x) , Self :: TryExpression (x) => type_sitter :: Node :: raw_mut (x) , Self :: TupleExpression (x) => type_sitter :: Node :: raw_mut (x) , Self :: TypeCastExpression (x) => type_sitter :: Node :: raw_mut (x) , Self :: UnaryExpression (x) => type_sitter :: Node :: raw_mut (x) , Self :: UnitExpression (x) => type_sitter :: Node :: raw_mut (x) , Self :: UnsafeBlock (x) => type_sitter :: Node :: raw_mut (x) , Self :: WhileExpression (x) => type_sitter :: Node :: raw_mut (x) , Self :: YieldExpression (x) => type_sitter :: Node :: raw_mut (x) , } } # [inline] fn into_raw (self) -> type_sitter :: raw :: Node < 'tree > { match self { Self :: Literal (x) => x . into_raw () , Self :: ArrayExpression (x) => x . into_raw () , Self :: AssignmentExpression (x) => x . into_raw () , Self :: AsyncBlock (x) => x . into_raw () , Self :: AwaitExpression (x) => x . into_raw () , Self :: BinaryExpression (x) => x . into_raw () , Self :: Block (x) => x . into_raw () , Self :: BreakExpression (x) => x . into_raw () , Self :: CallExpression (x) => x . into_raw () , Self :: ClosureExpression (x) => x . into_raw () , Self :: CompoundAssignmentExpr (x) => x . into_raw () , Self :: ConstBlock (x) => x . into_raw () , Self :: ContinueExpression (x) => x . into_raw () , Self :: FieldExpression (x) => x . into_raw () , Self :: ForExpression (x) => x . into_raw () , Self :: GenericFunction (x) => x . into_raw () , Self :: Identifier (x) => x . into_raw () , Self :: IfExpression (x) => x . into_raw () , Self :: IndexExpression (x) => x . into_raw () , Self :: LoopExpression (x) => x . into_raw () , Self :: MacroInvocation (x) => x . into_raw () , Self :: MatchExpression (x) => x . into_raw () , Self :: Metavariable (x) => x . into_raw () , Self :: ParenthesizedExpression (x) => x . into_raw () , Self :: ReferenceExpression (x) => x . into_raw () , Self :: ReturnExpression (x) => x . into_raw () , Self :: ScopedIdentifier (x) => x . into_raw () , Self :: Self_ (x) => x . into_raw () , Self :: StructExpression (x) => x . into_raw () , Self :: TryBlock (x) => x . into_raw () , Self :: TryExpression (x) => x . into_raw () , Self :: TupleExpression (x) => x . into_raw () , Self :: TypeCastExpression (x) => x . into_raw () , Self :: UnaryExpression (x) => x . into_raw () , Self :: UnitExpression (x) => x . into_raw () , Self :: UnsafeBlock (x) => x . into_raw () , Self :: WhileExpression (x) => x . into_raw () , Self :: YieldExpression (x) => x . into_raw () , } } }
@@ -19931,6 +20248,7 @@ pub mod anon_unions {
         TokenTreePattern(TokenTreePattern<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl < 'tree > Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType_Self__Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern < 'tree > { # [doc = "Returns the node if it is of type `_literal` ([`Literal`]), otherwise returns `None`"] # [inline] pub fn as_literal (self) -> Option < Literal < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Literal (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `crate` ([`Crate`]), otherwise returns `None`"] # [inline] pub fn as_crate (self) -> Option < Crate < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Crate (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`"] # [inline] pub fn as_identifier (self) -> Option < Identifier < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Identifier (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `metavariable` ([`Metavariable`]), otherwise returns `None`"] # [inline] pub fn as_metavariable (self) -> Option < Metavariable < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Metavariable (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `mutable_specifier` ([`MutableSpecifier`]), otherwise returns `None`"] # [inline] pub fn as_mutable_specifier (self) -> Option < MutableSpecifier < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: MutableSpecifier (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `primitive_type` ([`PrimitiveType`]), otherwise returns `None`"] # [inline] pub fn as_primitive_type (self) -> Option < PrimitiveType < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: PrimitiveType (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `self` ([`Self_`]), otherwise returns `None`"] # [inline] pub fn as_self (self) -> Option < Self_ < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Self_ (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `super` ([`Super`]), otherwise returns `None`"] # [inline] pub fn as_super (self) -> Option < Super < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Super (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `token_binding_pattern` ([`TokenBindingPattern`]), otherwise returns `None`"] # [inline] pub fn as_token_binding_pattern (self) -> Option < TokenBindingPattern < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: TokenBindingPattern (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `token_repetition_pattern` ([`TokenRepetitionPattern`]), otherwise returns `None`"] # [inline] pub fn as_token_repetition_pattern (self) -> Option < TokenRepetitionPattern < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: TokenRepetitionPattern (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `token_tree_pattern` ([`TokenTreePattern`]), otherwise returns `None`"] # [inline] pub fn as_token_tree_pattern (self) -> Option < TokenTreePattern < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: TokenTreePattern (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `boolean_literal` ([`BooleanLiteral`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_literal` ([`Literal < 'tree >`], from [`as_literal`](Self::as_literal))"] # [inline] pub fn as_boolean_literal (self) -> Option < BooleanLiteral < 'tree > > { self . as_literal () ? . as_boolean_literal () } # [doc = "Returns the node if it is of type `char_literal` ([`CharLiteral`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_literal` ([`Literal < 'tree >`], from [`as_literal`](Self::as_literal))"] # [inline] pub fn as_char_literal (self) -> Option < CharLiteral < 'tree > > { self . as_literal () ? . as_char_literal () } # [doc = "Returns the node if it is of type `float_literal` ([`FloatLiteral`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_literal` ([`Literal < 'tree >`], from [`as_literal`](Self::as_literal))"] # [inline] pub fn as_float_literal (self) -> Option < FloatLiteral < 'tree > > { self . as_literal () ? . as_float_literal () } # [doc = "Returns the node if it is of type `integer_literal` ([`IntegerLiteral`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_literal` ([`Literal < 'tree >`], from [`as_literal`](Self::as_literal))"] # [inline] pub fn as_integer_literal (self) -> Option < IntegerLiteral < 'tree > > { self . as_literal () ? . as_integer_literal () } # [doc = "Returns the node if it is of type `raw_string_literal` ([`RawStringLiteral`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_literal` ([`Literal < 'tree >`], from [`as_literal`](Self::as_literal))"] # [inline] pub fn as_raw_string_literal (self) -> Option < RawStringLiteral < 'tree > > { self . as_literal () ? . as_raw_string_literal () } # [doc = "Returns the node if it is of type `string_literal` ([`StringLiteral`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_literal` ([`Literal < 'tree >`], from [`as_literal`](Self::as_literal))"] # [inline] pub fn as_string_literal (self) -> Option < StringLiteral < 'tree > > { self . as_literal () ? . as_string_literal () } }
     #[automatically_derived]
     impl < 'tree > type_sitter :: Node < 'tree > for Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType_Self__Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern < 'tree > { type WithLifetime < 'a > = Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType_Self__Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern < 'a > ; const KIND : & 'static str = "{_literal | crate | identifier | metavariable | mutable_specifier | primitive_type | self | super | token_binding_pattern | token_repetition_pattern | token_tree_pattern}" ; # [inline] fn try_from_raw (node : type_sitter :: raw :: Node < 'tree >) -> type_sitter :: NodeResult < Self > { if let Ok (this) = < Literal < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: Literal (this)) ; } if let Ok (this) = < Crate < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: Crate (this)) ; } if let Ok (this) = < Identifier < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: Identifier (this)) ; } if let Ok (this) = < Metavariable < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: Metavariable (this)) ; } if let Ok (this) = < MutableSpecifier < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: MutableSpecifier (this)) ; } if let Ok (this) = < PrimitiveType < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: PrimitiveType (this)) ; } if let Ok (this) = < Self_ < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: Self_ (this)) ; } if let Ok (this) = < Super < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: Super (this)) ; } if let Ok (this) = < TokenBindingPattern < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: TokenBindingPattern (this)) ; } if let Ok (this) = < TokenRepetitionPattern < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: TokenRepetitionPattern (this)) ; } if let Ok (this) = < TokenTreePattern < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: TokenTreePattern (this)) ; } Err (type_sitter :: IncorrectKind :: new :: < Self > (node)) } # [inline] fn raw (& self) -> & type_sitter :: raw :: Node < 'tree > { match self { Self :: Literal (x) => type_sitter :: Node :: raw (x) , Self :: Crate (x) => type_sitter :: Node :: raw (x) , Self :: Identifier (x) => type_sitter :: Node :: raw (x) , Self :: Metavariable (x) => type_sitter :: Node :: raw (x) , Self :: MutableSpecifier (x) => type_sitter :: Node :: raw (x) , Self :: PrimitiveType (x) => type_sitter :: Node :: raw (x) , Self :: Self_ (x) => type_sitter :: Node :: raw (x) , Self :: Super (x) => type_sitter :: Node :: raw (x) , Self :: TokenBindingPattern (x) => type_sitter :: Node :: raw (x) , Self :: TokenRepetitionPattern (x) => type_sitter :: Node :: raw (x) , Self :: TokenTreePattern (x) => type_sitter :: Node :: raw (x) , } } # [inline] fn raw_mut (& mut self) -> & mut type_sitter :: raw :: Node < 'tree > { match self { Self :: Literal (x) => type_sitter :: Node :: raw_mut (x) , Self :: Crate (x) => type_sitter :: Node :: raw_mut (x) , Self :: Identifier (x) => type_sitter :: Node :: raw_mut (x) , Self :: Metavariable (x) => type_sitter :: Node :: raw_mut (x) , Self :: MutableSpecifier (x) => type_sitter :: Node :: raw_mut (x) , Self :: PrimitiveType (x) => type_sitter :: Node :: raw_mut (x) , Self :: Self_ (x) => type_sitter :: Node :: raw_mut (x) , Self :: Super (x) => type_sitter :: Node :: raw_mut (x) , Self :: TokenBindingPattern (x) => type_sitter :: Node :: raw_mut (x) , Self :: TokenRepetitionPattern (x) => type_sitter :: Node :: raw_mut (x) , Self :: TokenTreePattern (x) => type_sitter :: Node :: raw_mut (x) , } } # [inline] fn into_raw (self) -> type_sitter :: raw :: Node < 'tree > { match self { Self :: Literal (x) => x . into_raw () , Self :: Crate (x) => x . into_raw () , Self :: Identifier (x) => x . into_raw () , Self :: Metavariable (x) => x . into_raw () , Self :: MutableSpecifier (x) => x . into_raw () , Self :: PrimitiveType (x) => x . into_raw () , Self :: Self_ (x) => x . into_raw () , Self :: Super (x) => x . into_raw () , Self :: TokenBindingPattern (x) => x . into_raw () , Self :: TokenRepetitionPattern (x) => x . into_raw () , Self :: TokenTreePattern (x) => x . into_raw () , } } }
@@ -19952,6 +20270,7 @@ pub mod anon_unions {
         TokenTree(TokenTree<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl < 'tree > Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType_Self__Super_TokenRepetition_TokenTree < 'tree > { # [doc = "Returns the node if it is of type `_literal` ([`Literal`]), otherwise returns `None`"] # [inline] pub fn as_literal (self) -> Option < Literal < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Literal (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `crate` ([`Crate`]), otherwise returns `None`"] # [inline] pub fn as_crate (self) -> Option < Crate < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Crate (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`"] # [inline] pub fn as_identifier (self) -> Option < Identifier < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Identifier (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `metavariable` ([`Metavariable`]), otherwise returns `None`"] # [inline] pub fn as_metavariable (self) -> Option < Metavariable < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Metavariable (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `mutable_specifier` ([`MutableSpecifier`]), otherwise returns `None`"] # [inline] pub fn as_mutable_specifier (self) -> Option < MutableSpecifier < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: MutableSpecifier (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `primitive_type` ([`PrimitiveType`]), otherwise returns `None`"] # [inline] pub fn as_primitive_type (self) -> Option < PrimitiveType < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: PrimitiveType (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `self` ([`Self_`]), otherwise returns `None`"] # [inline] pub fn as_self (self) -> Option < Self_ < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Self_ (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `super` ([`Super`]), otherwise returns `None`"] # [inline] pub fn as_super (self) -> Option < Super < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Super (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `token_repetition` ([`TokenRepetition`]), otherwise returns `None`"] # [inline] pub fn as_token_repetition (self) -> Option < TokenRepetition < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: TokenRepetition (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `token_tree` ([`TokenTree`]), otherwise returns `None`"] # [inline] pub fn as_token_tree (self) -> Option < TokenTree < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: TokenTree (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `boolean_literal` ([`BooleanLiteral`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_literal` ([`Literal < 'tree >`], from [`as_literal`](Self::as_literal))"] # [inline] pub fn as_boolean_literal (self) -> Option < BooleanLiteral < 'tree > > { self . as_literal () ? . as_boolean_literal () } # [doc = "Returns the node if it is of type `char_literal` ([`CharLiteral`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_literal` ([`Literal < 'tree >`], from [`as_literal`](Self::as_literal))"] # [inline] pub fn as_char_literal (self) -> Option < CharLiteral < 'tree > > { self . as_literal () ? . as_char_literal () } # [doc = "Returns the node if it is of type `float_literal` ([`FloatLiteral`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_literal` ([`Literal < 'tree >`], from [`as_literal`](Self::as_literal))"] # [inline] pub fn as_float_literal (self) -> Option < FloatLiteral < 'tree > > { self . as_literal () ? . as_float_literal () } # [doc = "Returns the node if it is of type `integer_literal` ([`IntegerLiteral`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_literal` ([`Literal < 'tree >`], from [`as_literal`](Self::as_literal))"] # [inline] pub fn as_integer_literal (self) -> Option < IntegerLiteral < 'tree > > { self . as_literal () ? . as_integer_literal () } # [doc = "Returns the node if it is of type `raw_string_literal` ([`RawStringLiteral`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_literal` ([`Literal < 'tree >`], from [`as_literal`](Self::as_literal))"] # [inline] pub fn as_raw_string_literal (self) -> Option < RawStringLiteral < 'tree > > { self . as_literal () ? . as_raw_string_literal () } # [doc = "Returns the node if it is of type `string_literal` ([`StringLiteral`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_literal` ([`Literal < 'tree >`], from [`as_literal`](Self::as_literal))"] # [inline] pub fn as_string_literal (self) -> Option < StringLiteral < 'tree > > { self . as_literal () ? . as_string_literal () } }
     #[automatically_derived]
     impl < 'tree > type_sitter :: Node < 'tree > for Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType_Self__Super_TokenRepetition_TokenTree < 'tree > { type WithLifetime < 'a > = Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType_Self__Super_TokenRepetition_TokenTree < 'a > ; const KIND : & 'static str = "{_literal | crate | identifier | metavariable | mutable_specifier | primitive_type | self | super | token_repetition | token_tree}" ; # [inline] fn try_from_raw (node : type_sitter :: raw :: Node < 'tree >) -> type_sitter :: NodeResult < Self > { if let Ok (this) = < Literal < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: Literal (this)) ; } if let Ok (this) = < Crate < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: Crate (this)) ; } if let Ok (this) = < Identifier < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: Identifier (this)) ; } if let Ok (this) = < Metavariable < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: Metavariable (this)) ; } if let Ok (this) = < MutableSpecifier < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: MutableSpecifier (this)) ; } if let Ok (this) = < PrimitiveType < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: PrimitiveType (this)) ; } if let Ok (this) = < Self_ < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: Self_ (this)) ; } if let Ok (this) = < Super < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: Super (this)) ; } if let Ok (this) = < TokenRepetition < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: TokenRepetition (this)) ; } if let Ok (this) = < TokenTree < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: TokenTree (this)) ; } Err (type_sitter :: IncorrectKind :: new :: < Self > (node)) } # [inline] fn raw (& self) -> & type_sitter :: raw :: Node < 'tree > { match self { Self :: Literal (x) => type_sitter :: Node :: raw (x) , Self :: Crate (x) => type_sitter :: Node :: raw (x) , Self :: Identifier (x) => type_sitter :: Node :: raw (x) , Self :: Metavariable (x) => type_sitter :: Node :: raw (x) , Self :: MutableSpecifier (x) => type_sitter :: Node :: raw (x) , Self :: PrimitiveType (x) => type_sitter :: Node :: raw (x) , Self :: Self_ (x) => type_sitter :: Node :: raw (x) , Self :: Super (x) => type_sitter :: Node :: raw (x) , Self :: TokenRepetition (x) => type_sitter :: Node :: raw (x) , Self :: TokenTree (x) => type_sitter :: Node :: raw (x) , } } # [inline] fn raw_mut (& mut self) -> & mut type_sitter :: raw :: Node < 'tree > { match self { Self :: Literal (x) => type_sitter :: Node :: raw_mut (x) , Self :: Crate (x) => type_sitter :: Node :: raw_mut (x) , Self :: Identifier (x) => type_sitter :: Node :: raw_mut (x) , Self :: Metavariable (x) => type_sitter :: Node :: raw_mut (x) , Self :: MutableSpecifier (x) => type_sitter :: Node :: raw_mut (x) , Self :: PrimitiveType (x) => type_sitter :: Node :: raw_mut (x) , Self :: Self_ (x) => type_sitter :: Node :: raw_mut (x) , Self :: Super (x) => type_sitter :: Node :: raw_mut (x) , Self :: TokenRepetition (x) => type_sitter :: Node :: raw_mut (x) , Self :: TokenTree (x) => type_sitter :: Node :: raw_mut (x) , } } # [inline] fn into_raw (self) -> type_sitter :: raw :: Node < 'tree > { match self { Self :: Literal (x) => x . into_raw () , Self :: Crate (x) => x . into_raw () , Self :: Identifier (x) => x . into_raw () , Self :: Metavariable (x) => x . into_raw () , Self :: MutableSpecifier (x) => x . into_raw () , Self :: PrimitiveType (x) => x . into_raw () , Self :: Self_ (x) => x . into_raw () , Self :: Super (x) => x . into_raw () , Self :: TokenRepetition (x) => x . into_raw () , Self :: TokenTree (x) => x . into_raw () , } } }
@@ -19967,6 +20286,7 @@ pub mod anon_unions {
         TypeBinding(TypeBinding<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Literal_Type_Block_Lifetime_TraitBounds_TypeBinding<'tree> {
         #[doc = "Returns the node if it is of type `_literal` ([`Literal`]), otherwise returns `None`"]
         #[inline]
@@ -20223,6 +20543,7 @@ pub mod anon_unions {
         OrEq(symbols::OrEq<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> ModEq_AndEq_MulEq_AddEq_SubEq_DivEq_LtLtEq_GtGtEq_BitXorEq_OrEq<'tree> {
         #[doc = "Returns the node if it is of type `%=` ([`symbols::ModEq`]), otherwise returns `None`"]
         #[inline]
@@ -20455,6 +20776,7 @@ pub mod anon_unions {
         VisibilityModifier(VisibilityModifier<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> MutableSpecifier_VisibilityModifier<'tree> {
         #[doc = "Returns the node if it is of type `mutable_specifier` ([`MutableSpecifier`]), otherwise returns `None`"]
         #[inline]
@@ -20547,6 +20869,7 @@ pub mod anon_unions {
         OrOr(symbols::OrOr<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree>
         NotEq_Mod_And_AndAnd_Mul_Add_Sub_Div_Lt_LtLt_LtEq_EqEq_Gt_GtEq_GtGt_BitXor_Or_OrOr<'tree>
     {
@@ -20929,6 +21252,7 @@ pub mod anon_unions {
         ClosureExpression(ClosureExpression<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Pattern_ClosureExpression<'tree> {
         #[doc = "Returns the node if it is of type `_pattern` ([`Pattern`]), otherwise returns `None`"]
         #[inline]
@@ -21125,6 +21449,7 @@ pub mod anon_unions {
         MutableSpecifier(MutableSpecifier<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Pattern_MutableSpecifier<'tree> {
         #[doc = "Returns the node if it is of type `_pattern` ([`Pattern`]), otherwise returns `None`"]
         #[inline]
@@ -21321,6 +21646,7 @@ pub mod anon_unions {
         Parameter(Parameter<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Pattern_Parameter<'tree> {
         #[doc = "Returns the node if it is of type `_pattern` ([`Pattern`]), otherwise returns `None`"]
         #[inline]
@@ -21515,6 +21841,7 @@ pub mod anon_unions {
         Self_(Self_<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Pattern_Self_<'tree> {
         #[doc = "Returns the node if it is of type `_pattern` ([`Pattern`]), otherwise returns `None`"]
         #[inline]
@@ -21709,6 +22036,7 @@ pub mod anon_unions {
         TypeIdentifier(TypeIdentifier<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> ScopedIdentifier_TypeIdentifier<'tree> {
         #[doc = "Returns the node if it is of type `scoped_identifier` ([`ScopedIdentifier`]), otherwise returns `None`"]
         #[inline]
@@ -21785,6 +22113,7 @@ pub mod anon_unions {
         TypeIdentifier(TypeIdentifier<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> ScopedTypeIdentifier_TypeIdentifier<'tree> {
         #[doc = "Returns the node if it is of type `scoped_type_identifier` ([`ScopedTypeIdentifier`]), otherwise returns `None`"]
         #[inline]
@@ -21862,6 +22191,7 @@ pub mod anon_unions {
         VariadicParameter(VariadicParameter<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Type_AttributeItem_Parameter_SelfParameter_VariadicParameter<'tree> {
         #[doc = "Returns the node if it is of type `_type` ([`Type`]), otherwise returns `None`"]
         #[inline]
@@ -22069,6 +22399,7 @@ pub mod anon_unions {
         Lifetime(Lifetime<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Type_HigherRankedTraitBound_Lifetime<'tree> {
         #[doc = "Returns the node if it is of type `_type` ([`Type`]), otherwise returns `None`"]
         #[inline]
@@ -22238,6 +22569,7 @@ pub mod anon_unions {
         Lifetime(Lifetime<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Type_Lifetime<'tree> {
         #[doc = "Returns the node if it is of type `_type` ([`Type`]), otherwise returns `None`"]
         #[inline]
@@ -22389,6 +22721,7 @@ pub mod anon_unions {
         QualifiedType(QualifiedType<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> Type_QualifiedType<'tree> {
         #[doc = "Returns the node if it is of type `_type` ([`Type`]), otherwise returns `None`"]
         #[inline]
@@ -22541,6 +22874,7 @@ pub mod anon_unions {
         WhereClause(WhereClause<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> VisibilityModifier_WhereClause<'tree> {
         #[doc = "Returns the node if it is of type `visibility_modifier` ([`VisibilityModifier`]), otherwise returns `None`"]
         #[inline]
@@ -22613,6 +22947,7 @@ pub mod anon_unions {
         Expression(Expression<'tree>),
     }
     #[automatically_derived]
+    #[allow(unused)]
     impl<'tree> ___Expression<'tree> {
         #[doc = "Returns the node if it is of type `_` ([`symbols::__`]), otherwise returns `None`"]
         #[inline]
