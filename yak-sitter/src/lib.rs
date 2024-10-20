@@ -653,6 +653,12 @@ impl<'tree> Node<'tree> {
         self.node.field_name_for_child(i as u32)
     }
 
+    /// Get the field name of the named child at the given index
+    #[inline]
+    pub fn field_name_for_named_child(&self, i: usize) -> Option<&'static str> {
+        self.node.field_name_for_named_child(i as u32)
+    }
+
     /// Get the node's field name.
     ///
     /// This is done by looking at the parent's children and finding the one that matches this node,

@@ -2294,22 +2294,15 @@ This child has type `type_parameters?` ([`TypeParameters`])*/
     pub fn type_parameters(
         &self,
     ) -> Option<type_sitter_lib::NodeResult<'tree, TypeParameters<'tree>>> {
-        {
-            let raw = *type_sitter_lib::Node::raw(self);
-            let mut c = raw.walk();
-            c.reset(raw);
-            c.goto_first_child();
-            loop {
-                let has_field = c.field_name().is_some();
-                let node = c.node();
-                let keep_going = c.goto_next_sibling();
-                if !has_field && node.is_named() && !node.is_extra() {
-                    break Some(node)
-                } else if !keep_going {
-                    break None
-                }
-            }
-        }
+        (0..type_sitter_lib::Node::raw(self).named_child_count())
+            .filter(|i| {
+                type_sitter_lib::Node::raw(self)
+                    .field_name_for_named_child(*i as _)
+                    .is_none()
+            })
+            .map(|i| type_sitter_lib::Node::raw(self).named_child(i).unwrap())
+            .filter(|n| !n.is_extra())
+            .next()
             .map(<TypeParameters<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
     }
 }
@@ -2461,21 +2454,14 @@ These children have type `{_expression | attribute_item}*`:
         >,
     > + 'a {
         {
-            let raw = *type_sitter_lib::Node::raw(self);
-            c.0.reset(raw);
-            c.0.goto_first_child();
-            std::iter::from_fn(move || {
-                loop {
-                    let has_field = c.0.field_name().is_some();
-                    let node = c.0.node();
-                    let keep_going = c.0.goto_next_sibling();
-                    if !has_field && node.is_named() && !node.is_extra() {
-                        break Some(node)
-                    } else if !keep_going {
-                        break None
-                    }
-                }
-            })
+            let me = *type_sitter_lib::Node::raw(self);
+            type_sitter_lib::Node::raw(self)
+                .named_children(&mut c.0)
+                .enumerate()
+                .filter(move |(i, n)| {
+                    !n.is_extra() && me.field_name_for_named_child(*i as _).is_none()
+                })
+                .map(|(_, n)| n)
         }
             .map(
                 <anon_unions::Expression_AttributeItem<
@@ -2706,22 +2692,15 @@ This child has type `where_clause?` ([`WhereClause`])*/
     pub fn where_clause(
         &self,
     ) -> Option<type_sitter_lib::NodeResult<'tree, WhereClause<'tree>>> {
-        {
-            let raw = *type_sitter_lib::Node::raw(self);
-            let mut c = raw.walk();
-            c.reset(raw);
-            c.goto_first_child();
-            loop {
-                let has_field = c.field_name().is_some();
-                let node = c.node();
-                let keep_going = c.goto_next_sibling();
-                if !has_field && node.is_named() && !node.is_extra() {
-                    break Some(node)
-                } else if !keep_going {
-                    break None
-                }
-            }
-        }
+        (0..type_sitter_lib::Node::raw(self).named_child_count())
+            .filter(|i| {
+                type_sitter_lib::Node::raw(self)
+                    .field_name_for_named_child(*i as _)
+                    .is_none()
+            })
+            .map(|i| type_sitter_lib::Node::raw(self).named_child(i).unwrap())
+            .filter(|n| !n.is_extra())
+            .next()
             .map(<WhereClause<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
     }
 }
@@ -2873,22 +2852,15 @@ This child has type `{crate | identifier | metavariable | scoped_identifier | se
         'tree,
         anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier_Self__Super<'tree>,
     > {
-        {
-            let raw = *type_sitter_lib::Node::raw(self);
-            let mut c = raw.walk();
-            c.reset(raw);
-            c.goto_first_child();
-            loop {
-                let has_field = c.field_name().is_some();
-                let node = c.node();
-                let keep_going = c.goto_next_sibling();
-                if !has_field && node.is_named() && !node.is_extra() {
-                    break Some(node)
-                } else if !keep_going {
-                    break None
-                }
-            }
-        }
+        (0..type_sitter_lib::Node::raw(self).named_child_count())
+            .filter(|i| {
+                type_sitter_lib::Node::raw(self)
+                    .field_name_for_named_child(*i as _)
+                    .is_none()
+            })
+            .map(|i| type_sitter_lib::Node::raw(self).named_child(i).unwrap())
+            .filter(|n| !n.is_extra())
+            .next()
             .map(
                 <anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier_Self__Super<
                     'tree,
@@ -4208,22 +4180,15 @@ This child has type `visibility_modifier?` ([`VisibilityModifier`])*/
     pub fn visibility_modifier(
         &self,
     ) -> Option<type_sitter_lib::NodeResult<'tree, VisibilityModifier<'tree>>> {
-        {
-            let raw = *type_sitter_lib::Node::raw(self);
-            let mut c = raw.walk();
-            c.reset(raw);
-            c.goto_first_child();
-            loop {
-                let has_field = c.field_name().is_some();
-                let node = c.node();
-                let keep_going = c.goto_next_sibling();
-                if !has_field && node.is_named() && !node.is_extra() {
-                    break Some(node)
-                } else if !keep_going {
-                    break None
-                }
-            }
-        }
+        (0..type_sitter_lib::Node::raw(self).named_child_count())
+            .filter(|i| {
+                type_sitter_lib::Node::raw(self)
+                    .field_name_for_named_child(*i as _)
+                    .is_none()
+            })
+            .map(|i| type_sitter_lib::Node::raw(self).named_child(i).unwrap())
+            .filter(|n| !n.is_extra())
+            .next()
             .map(
                 <VisibilityModifier<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw,
             )
@@ -4855,21 +4820,14 @@ These children have type `{visibility_modifier | where_clause}*`:
         >,
     > + 'a {
         {
-            let raw = *type_sitter_lib::Node::raw(self);
-            c.0.reset(raw);
-            c.0.goto_first_child();
-            std::iter::from_fn(move || {
-                loop {
-                    let has_field = c.0.field_name().is_some();
-                    let node = c.0.node();
-                    let keep_going = c.0.goto_next_sibling();
-                    if !has_field && node.is_named() && !node.is_extra() {
-                        break Some(node)
-                    } else if !keep_going {
-                        break None
-                    }
-                }
-            })
+            let me = *type_sitter_lib::Node::raw(self);
+            type_sitter_lib::Node::raw(self)
+                .named_children(&mut c.0)
+                .enumerate()
+                .filter(move |(i, n)| {
+                    !n.is_extra() && me.field_name_for_named_child(*i as _).is_none()
+                })
+                .map(|(_, n)| n)
         }
             .map(
                 <anon_unions::VisibilityModifier_WhereClause<
@@ -4978,22 +4936,15 @@ This child has type `visibility_modifier?` ([`VisibilityModifier`])*/
     pub fn visibility_modifier(
         &self,
     ) -> Option<type_sitter_lib::NodeResult<'tree, VisibilityModifier<'tree>>> {
-        {
-            let raw = *type_sitter_lib::Node::raw(self);
-            let mut c = raw.walk();
-            c.reset(raw);
-            c.goto_first_child();
-            loop {
-                let has_field = c.field_name().is_some();
-                let node = c.node();
-                let keep_going = c.goto_next_sibling();
-                if !has_field && node.is_named() && !node.is_extra() {
-                    break Some(node)
-                } else if !keep_going {
-                    break None
-                }
-            }
-        }
+        (0..type_sitter_lib::Node::raw(self).named_child_count())
+            .filter(|i| {
+                type_sitter_lib::Node::raw(self)
+                    .field_name_for_named_child(*i as _)
+                    .is_none()
+            })
+            .map(|i| type_sitter_lib::Node::raw(self).named_child(i).unwrap())
+            .filter(|n| !n.is_extra())
+            .next()
             .map(
                 <VisibilityModifier<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw,
             )
@@ -5258,21 +5209,14 @@ This is guaranteed to return at least one child.*/
         >,
     > + 'a {
         {
-            let raw = *type_sitter_lib::Node::raw(self);
-            c.0.reset(raw);
-            c.0.goto_first_child();
-            std::iter::from_fn(move || {
-                loop {
-                    let has_field = c.0.field_name().is_some();
-                    let node = c.0.node();
-                    let keep_going = c.0.goto_next_sibling();
-                    if !has_field && node.is_named() && !node.is_extra() {
-                        break Some(node)
-                    } else if !keep_going {
-                        break None
-                    }
-                }
-            })
+            let me = *type_sitter_lib::Node::raw(self);
+            type_sitter_lib::Node::raw(self)
+                .named_children(&mut c.0)
+                .enumerate()
+                .filter(move |(i, n)| {
+                    !n.is_extra() && me.field_name_for_named_child(*i as _).is_none()
+                })
+                .map(|(_, n)| n)
         }
             .map(
                 <anon_unions::Crate_VisibilityModifier<
@@ -5411,22 +5355,15 @@ This child has type `visibility_modifier?` ([`VisibilityModifier`])*/
     pub fn visibility_modifier(
         &self,
     ) -> Option<type_sitter_lib::NodeResult<'tree, VisibilityModifier<'tree>>> {
-        {
-            let raw = *type_sitter_lib::Node::raw(self);
-            let mut c = raw.walk();
-            c.reset(raw);
-            c.goto_first_child();
-            loop {
-                let has_field = c.field_name().is_some();
-                let node = c.node();
-                let keep_going = c.goto_next_sibling();
-                if !has_field && node.is_named() && !node.is_extra() {
-                    break Some(node)
-                } else if !keep_going {
-                    break None
-                }
-            }
-        }
+        (0..type_sitter_lib::Node::raw(self).named_child_count())
+            .filter(|i| {
+                type_sitter_lib::Node::raw(self)
+                    .field_name_for_named_child(*i as _)
+                    .is_none()
+            })
+            .map(|i| type_sitter_lib::Node::raw(self).named_child(i).unwrap())
+            .filter(|n| !n.is_extra())
+            .next()
             .map(
                 <VisibilityModifier<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw,
             )
@@ -5717,21 +5654,14 @@ These children have type `attribute_item*` ([`AttributeItem`])*/
         Item = type_sitter_lib::NodeResult<'tree, AttributeItem<'tree>>,
     > + 'a {
         {
-            let raw = *type_sitter_lib::Node::raw(self);
-            c.0.reset(raw);
-            c.0.goto_first_child();
-            std::iter::from_fn(move || {
-                loop {
-                    let has_field = c.0.field_name().is_some();
-                    let node = c.0.node();
-                    let keep_going = c.0.goto_next_sibling();
-                    if !has_field && node.is_named() && !node.is_extra() {
-                        break Some(node)
-                    } else if !keep_going {
-                        break None
-                    }
-                }
-            })
+            let me = *type_sitter_lib::Node::raw(self);
+            type_sitter_lib::Node::raw(self)
+                .named_children(&mut c.0)
+                .enumerate()
+                .filter(move |(i, n)| {
+                    !n.is_extra() && me.field_name_for_named_child(*i as _).is_none()
+                })
+                .map(|(_, n)| n)
         }
             .map(<AttributeItem<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
     }
@@ -5897,22 +5827,15 @@ This child has type `mutable_specifier?` ([`MutableSpecifier`])*/
     pub fn mutable_specifier(
         &self,
     ) -> Option<type_sitter_lib::NodeResult<'tree, MutableSpecifier<'tree>>> {
-        {
-            let raw = *type_sitter_lib::Node::raw(self);
-            let mut c = raw.walk();
-            c.reset(raw);
-            c.goto_first_child();
-            loop {
-                let has_field = c.field_name().is_some();
-                let node = c.node();
-                let keep_going = c.goto_next_sibling();
-                if !has_field && node.is_named() && !node.is_extra() {
-                    break Some(node)
-                } else if !keep_going {
-                    break None
-                }
-            }
-        }
+        (0..type_sitter_lib::Node::raw(self).named_child_count())
+            .filter(|i| {
+                type_sitter_lib::Node::raw(self)
+                    .field_name_for_named_child(*i as _)
+                    .is_none()
+            })
+            .map(|i| type_sitter_lib::Node::raw(self).named_child(i).unwrap())
+            .filter(|n| !n.is_extra())
+            .next()
             .map(<MutableSpecifier<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
     }
 }
@@ -6043,22 +5966,15 @@ This child has type `_expression` ([`Expression`])*/
 This child has type `label?` ([`Label`])*/
     #[inline]
     pub fn label(&self) -> Option<type_sitter_lib::NodeResult<'tree, Label<'tree>>> {
-        {
-            let raw = *type_sitter_lib::Node::raw(self);
-            let mut c = raw.walk();
-            c.reset(raw);
-            c.goto_first_child();
-            loop {
-                let has_field = c.field_name().is_some();
-                let node = c.node();
-                let keep_going = c.goto_next_sibling();
-                if !has_field && node.is_named() && !node.is_extra() {
-                    break Some(node)
-                } else if !keep_going {
-                    break None
-                }
-            }
-        }
+        (0..type_sitter_lib::Node::raw(self).named_child_count())
+            .filter(|i| {
+                type_sitter_lib::Node::raw(self)
+                    .field_name_for_named_child(*i as _)
+                    .is_none()
+            })
+            .map(|i| type_sitter_lib::Node::raw(self).named_child(i).unwrap())
+            .filter(|n| !n.is_extra())
+            .next()
             .map(<Label<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
     }
 }
@@ -6199,21 +6115,14 @@ This is guaranteed to return at least one child.*/
         >,
     > + 'a {
         {
-            let raw = *type_sitter_lib::Node::raw(self);
-            c.0.reset(raw);
-            c.0.goto_first_child();
-            std::iter::from_fn(move || {
-                loop {
-                    let has_field = c.0.field_name().is_some();
-                    let node = c.0.node();
-                    let keep_going = c.0.goto_next_sibling();
-                    if !has_field && node.is_named() && !node.is_extra() {
-                        break Some(node)
-                    } else if !keep_going {
-                        break None
-                    }
-                }
-            })
+            let me = *type_sitter_lib::Node::raw(self);
+            type_sitter_lib::Node::raw(self)
+                .named_children(&mut c.0)
+                .enumerate()
+                .filter(move |(i, n)| {
+                    !n.is_extra() && me.field_name_for_named_child(*i as _).is_none()
+                })
+                .map(|(_, n)| n)
         }
             .map(
                 <anon_unions::ExternModifier_VisibilityModifier<
@@ -6405,21 +6314,14 @@ These children have type `{function_modifiers | visibility_modifier | where_clau
         >,
     > + 'a {
         {
-            let raw = *type_sitter_lib::Node::raw(self);
-            c.0.reset(raw);
-            c.0.goto_first_child();
-            std::iter::from_fn(move || {
-                loop {
-                    let has_field = c.0.field_name().is_some();
-                    let node = c.0.node();
-                    let keep_going = c.0.goto_next_sibling();
-                    if !has_field && node.is_named() && !node.is_extra() {
-                        break Some(node)
-                    } else if !keep_going {
-                        break None
-                    }
-                }
-            })
+            let me = *type_sitter_lib::Node::raw(self);
+            type_sitter_lib::Node::raw(self)
+                .named_children(&mut c.0)
+                .enumerate()
+                .filter(move |(i, n)| {
+                    !n.is_extra() && me.field_name_for_named_child(*i as _).is_none()
+                })
+                .map(|(_, n)| n)
         }
             .map(
                 <anon_unions::FunctionModifiers_VisibilityModifier_WhereClause<
@@ -6614,21 +6516,14 @@ These children have type `{function_modifiers | visibility_modifier | where_clau
         >,
     > + 'a {
         {
-            let raw = *type_sitter_lib::Node::raw(self);
-            c.0.reset(raw);
-            c.0.goto_first_child();
-            std::iter::from_fn(move || {
-                loop {
-                    let has_field = c.0.field_name().is_some();
-                    let node = c.0.node();
-                    let keep_going = c.0.goto_next_sibling();
-                    if !has_field && node.is_named() && !node.is_extra() {
-                        break Some(node)
-                    } else if !keep_going {
-                        break None
-                    }
-                }
-            })
+            let me = *type_sitter_lib::Node::raw(self);
+            type_sitter_lib::Node::raw(self)
+                .named_children(&mut c.0)
+                .enumerate()
+                .filter(move |(i, n)| {
+                    !n.is_extra() && me.field_name_for_named_child(*i as _).is_none()
+                })
+                .map(|(_, n)| n)
         }
             .map(
                 <anon_unions::FunctionModifiers_VisibilityModifier_WhereClause<
@@ -6752,21 +6647,14 @@ These children have type `{for_lifetimes | function_modifiers}*`:
         >,
     > + 'a {
         {
-            let raw = *type_sitter_lib::Node::raw(self);
-            c.0.reset(raw);
-            c.0.goto_first_child();
-            std::iter::from_fn(move || {
-                loop {
-                    let has_field = c.0.field_name().is_some();
-                    let node = c.0.node();
-                    let keep_going = c.0.goto_next_sibling();
-                    if !has_field && node.is_named() && !node.is_extra() {
-                        break Some(node)
-                    } else if !keep_going {
-                        break None
-                    }
-                }
-            })
+            let me = *type_sitter_lib::Node::raw(self);
+            type_sitter_lib::Node::raw(self)
+                .named_children(&mut c.0)
+                .enumerate()
+                .filter(move |(i, n)| {
+                    !n.is_extra() && me.field_name_for_named_child(*i as _).is_none()
+                })
+                .map(|(_, n)| n)
         }
             .map(
                 <anon_unions::ForLifetimes_FunctionModifiers<
@@ -7346,22 +7234,15 @@ This child has type `where_clause?` ([`WhereClause`])*/
     pub fn where_clause(
         &self,
     ) -> Option<type_sitter_lib::NodeResult<'tree, WhereClause<'tree>>> {
-        {
-            let raw = *type_sitter_lib::Node::raw(self);
-            let mut c = raw.walk();
-            c.reset(raw);
-            c.goto_first_child();
-            loop {
-                let has_field = c.field_name().is_some();
-                let node = c.node();
-                let keep_going = c.goto_next_sibling();
-                if !has_field && node.is_named() && !node.is_extra() {
-                    break Some(node)
-                } else if !keep_going {
-                    break None
-                }
-            }
-        }
+        (0..type_sitter_lib::Node::raw(self).named_child_count())
+            .filter(|i| {
+                type_sitter_lib::Node::raw(self)
+                    .field_name_for_named_child(*i as _)
+                    .is_none()
+            })
+            .map(|i| type_sitter_lib::Node::raw(self).named_child(i).unwrap())
+            .filter(|n| !n.is_extra())
+            .next()
             .map(<WhereClause<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
     }
 }
@@ -7853,22 +7734,15 @@ This child has type `mutable_specifier?` ([`MutableSpecifier`])*/
     pub fn mutable_specifier(
         &self,
     ) -> Option<type_sitter_lib::NodeResult<'tree, MutableSpecifier<'tree>>> {
-        {
-            let raw = *type_sitter_lib::Node::raw(self);
-            let mut c = raw.walk();
-            c.reset(raw);
-            c.goto_first_child();
-            loop {
-                let has_field = c.field_name().is_some();
-                let node = c.node();
-                let keep_going = c.goto_next_sibling();
-                if !has_field && node.is_named() && !node.is_extra() {
-                    break Some(node)
-                } else if !keep_going {
-                    break None
-                }
-            }
-        }
+        (0..type_sitter_lib::Node::raw(self).named_child_count())
+            .filter(|i| {
+                type_sitter_lib::Node::raw(self)
+                    .field_name_for_named_child(*i as _)
+                    .is_none()
+            })
+            .map(|i| type_sitter_lib::Node::raw(self).named_child(i).unwrap())
+            .filter(|n| !n.is_extra())
+            .next()
             .map(<MutableSpecifier<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
     }
 }
@@ -8072,22 +7946,15 @@ This child has type `block` ([`Block`])*/
 This child has type `label?` ([`Label`])*/
     #[inline]
     pub fn label(&self) -> Option<type_sitter_lib::NodeResult<'tree, Label<'tree>>> {
-        {
-            let raw = *type_sitter_lib::Node::raw(self);
-            let mut c = raw.walk();
-            c.reset(raw);
-            c.goto_first_child();
-            loop {
-                let has_field = c.field_name().is_some();
-                let node = c.node();
-                let keep_going = c.goto_next_sibling();
-                if !has_field && node.is_named() && !node.is_extra() {
-                    break Some(node)
-                } else if !keep_going {
-                    break None
-                }
-            }
-        }
+        (0..type_sitter_lib::Node::raw(self).named_child_count())
+            .filter(|i| {
+                type_sitter_lib::Node::raw(self)
+                    .field_name_for_named_child(*i as _)
+                    .is_none()
+            })
+            .map(|i| type_sitter_lib::Node::raw(self).named_child(i).unwrap())
+            .filter(|n| !n.is_extra())
+            .next()
             .map(<Label<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
     }
 }
@@ -8158,21 +8025,14 @@ These children have type `macro_rule*` ([`MacroRule`])*/
         Item = type_sitter_lib::NodeResult<'tree, MacroRule<'tree>>,
     > + 'a {
         {
-            let raw = *type_sitter_lib::Node::raw(self);
-            c.0.reset(raw);
-            c.0.goto_first_child();
-            std::iter::from_fn(move || {
-                loop {
-                    let has_field = c.0.field_name().is_some();
-                    let node = c.0.node();
-                    let keep_going = c.0.goto_next_sibling();
-                    if !has_field && node.is_named() && !node.is_extra() {
-                        break Some(node)
-                    } else if !keep_going {
-                        break None
-                    }
-                }
-            })
+            let me = *type_sitter_lib::Node::raw(self);
+            type_sitter_lib::Node::raw(self)
+                .named_children(&mut c.0)
+                .enumerate()
+                .filter(move |(i, n)| {
+                    !n.is_extra() && me.field_name_for_named_child(*i as _).is_none()
+                })
+                .map(|(_, n)| n)
         }
             .map(<MacroRule<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
     }
@@ -8251,22 +8111,15 @@ This child has type `{identifier | scoped_identifier}`:
 This child has type `token_tree` ([`TokenTree`])*/
     #[inline]
     pub fn token_tree(&self) -> type_sitter_lib::NodeResult<'tree, TokenTree<'tree>> {
-        {
-            let raw = *type_sitter_lib::Node::raw(self);
-            let mut c = raw.walk();
-            c.reset(raw);
-            c.goto_first_child();
-            loop {
-                let has_field = c.field_name().is_some();
-                let node = c.node();
-                let keep_going = c.goto_next_sibling();
-                if !has_field && node.is_named() && !node.is_extra() {
-                    break Some(node)
-                } else if !keep_going {
-                    break None
-                }
-            }
-        }
+        (0..type_sitter_lib::Node::raw(self).named_child_count())
+            .filter(|i| {
+                type_sitter_lib::Node::raw(self)
+                    .field_name_for_named_child(*i as _)
+                    .is_none()
+            })
+            .map(|i| type_sitter_lib::Node::raw(self).named_child(i).unwrap())
+            .filter(|n| !n.is_extra())
+            .next()
             .map(<TokenTree<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
                 "required child not present, there should at least be a MISSING node in its place",
@@ -8432,21 +8285,14 @@ These children have type `{attribute_item | inner_attribute_item}*`:
         >,
     > + 'a {
         {
-            let raw = *type_sitter_lib::Node::raw(self);
-            c.0.reset(raw);
-            c.0.goto_first_child();
-            std::iter::from_fn(move || {
-                loop {
-                    let has_field = c.0.field_name().is_some();
-                    let node = c.0.node();
-                    let keep_going = c.0.goto_next_sibling();
-                    if !has_field && node.is_named() && !node.is_extra() {
-                        break Some(node)
-                    } else if !keep_going {
-                        break None
-                    }
-                }
-            })
+            let me = *type_sitter_lib::Node::raw(self);
+            type_sitter_lib::Node::raw(self)
+                .named_children(&mut c.0)
+                .enumerate()
+                .filter(move |(i, n)| {
+                    !n.is_extra() && me.field_name_for_named_child(*i as _).is_none()
+                })
+                .map(|(_, n)| n)
         }
             .map(
                 <anon_unions::AttributeItem_InnerAttributeItem<
@@ -8651,22 +8497,15 @@ This child has type `{_expression | let_chain | let_condition}?`:
 This child has type `_pattern` ([`Pattern`])*/
     #[inline]
     pub fn pattern(&self) -> type_sitter_lib::NodeResult<'tree, Pattern<'tree>> {
-        {
-            let raw = *type_sitter_lib::Node::raw(self);
-            let mut c = raw.walk();
-            c.reset(raw);
-            c.goto_first_child();
-            loop {
-                let has_field = c.field_name().is_some();
-                let node = c.node();
-                let keep_going = c.goto_next_sibling();
-                if !has_field && node.is_named() && !node.is_extra() {
-                    break Some(node)
-                } else if !keep_going {
-                    break None
-                }
-            }
-        }
+        (0..type_sitter_lib::Node::raw(self).named_child_count())
+            .filter(|i| {
+                type_sitter_lib::Node::raw(self)
+                    .field_name_for_named_child(*i as _)
+                    .is_none()
+            })
+            .map(|i| type_sitter_lib::Node::raw(self).named_child(i).unwrap())
+            .filter(|n| !n.is_extra())
+            .next()
             .map(<Pattern<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
             .expect(
                 "required child not present, there should at least be a MISSING node in its place",
@@ -8788,22 +8627,15 @@ This child has type `visibility_modifier?` ([`VisibilityModifier`])*/
     pub fn visibility_modifier(
         &self,
     ) -> Option<type_sitter_lib::NodeResult<'tree, VisibilityModifier<'tree>>> {
-        {
-            let raw = *type_sitter_lib::Node::raw(self);
-            let mut c = raw.walk();
-            c.reset(raw);
-            c.goto_first_child();
-            loop {
-                let has_field = c.field_name().is_some();
-                let node = c.node();
-                let keep_going = c.goto_next_sibling();
-                if !has_field && node.is_named() && !node.is_extra() {
-                    break Some(node)
-                } else if !keep_going {
-                    break None
-                }
-            }
-        }
+        (0..type_sitter_lib::Node::raw(self).named_child_count())
+            .filter(|i| {
+                type_sitter_lib::Node::raw(self)
+                    .field_name_for_named_child(*i as _)
+                    .is_none()
+            })
+            .map(|i| type_sitter_lib::Node::raw(self).named_child(i).unwrap())
+            .filter(|n| !n.is_extra())
+            .next()
             .map(
                 <VisibilityModifier<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw,
             )
@@ -9251,21 +9083,14 @@ These children have type `{attribute_item | visibility_modifier}*`:
         >,
     > + 'a {
         {
-            let raw = *type_sitter_lib::Node::raw(self);
-            c.0.reset(raw);
-            c.0.goto_first_child();
-            std::iter::from_fn(move || {
-                loop {
-                    let has_field = c.0.field_name().is_some();
-                    let node = c.0.node();
-                    let keep_going = c.0.goto_next_sibling();
-                    if !has_field && node.is_named() && !node.is_extra() {
-                        break Some(node)
-                    } else if !keep_going {
-                        break None
-                    }
-                }
-            })
+            let me = *type_sitter_lib::Node::raw(self);
+            type_sitter_lib::Node::raw(self)
+                .named_children(&mut c.0)
+                .enumerate()
+                .filter(move |(i, n)| {
+                    !n.is_extra() && me.field_name_for_named_child(*i as _).is_none()
+                })
+                .map(|(_, n)| n)
         }
             .map(
                 <anon_unions::AttributeItem_VisibilityModifier<
@@ -9400,22 +9225,15 @@ This child has type `mutable_specifier?` ([`MutableSpecifier`])*/
     pub fn mutable_specifier(
         &self,
     ) -> Option<type_sitter_lib::NodeResult<'tree, MutableSpecifier<'tree>>> {
-        {
-            let raw = *type_sitter_lib::Node::raw(self);
-            let mut c = raw.walk();
-            c.reset(raw);
-            c.goto_first_child();
-            loop {
-                let has_field = c.field_name().is_some();
-                let node = c.node();
-                let keep_going = c.goto_next_sibling();
-                if !has_field && node.is_named() && !node.is_extra() {
-                    break Some(node)
-                } else if !keep_going {
-                    break None
-                }
-            }
-        }
+        (0..type_sitter_lib::Node::raw(self).named_child_count())
+            .filter(|i| {
+                type_sitter_lib::Node::raw(self)
+                    .field_name_for_named_child(*i as _)
+                    .is_none()
+            })
+            .map(|i| type_sitter_lib::Node::raw(self).named_child(i).unwrap())
+            .filter(|n| !n.is_extra())
+            .next()
             .map(<MutableSpecifier<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
     }
 }
@@ -9616,22 +9434,15 @@ This child has type `mutable_specifier?` ([`MutableSpecifier`])*/
     pub fn mutable_specifier(
         &self,
     ) -> Option<type_sitter_lib::NodeResult<'tree, MutableSpecifier<'tree>>> {
-        {
-            let raw = *type_sitter_lib::Node::raw(self);
-            let mut c = raw.walk();
-            c.reset(raw);
-            c.goto_first_child();
-            loop {
-                let has_field = c.field_name().is_some();
-                let node = c.node();
-                let keep_going = c.goto_next_sibling();
-                if !has_field && node.is_named() && !node.is_extra() {
-                    break Some(node)
-                } else if !keep_going {
-                    break None
-                }
-            }
-        }
+        (0..type_sitter_lib::Node::raw(self).named_child_count())
+            .filter(|i| {
+                type_sitter_lib::Node::raw(self)
+                    .field_name_for_named_child(*i as _)
+                    .is_none()
+            })
+            .map(|i| type_sitter_lib::Node::raw(self).named_child(i).unwrap())
+            .filter(|n| !n.is_extra())
+            .next()
             .map(<MutableSpecifier<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
     }
 }
@@ -10060,22 +9871,15 @@ This child has type `mutable_specifier?` ([`MutableSpecifier`])*/
     pub fn mutable_specifier(
         &self,
     ) -> Option<type_sitter_lib::NodeResult<'tree, MutableSpecifier<'tree>>> {
-        {
-            let raw = *type_sitter_lib::Node::raw(self);
-            let mut c = raw.walk();
-            c.reset(raw);
-            c.goto_first_child();
-            loop {
-                let has_field = c.field_name().is_some();
-                let node = c.node();
-                let keep_going = c.goto_next_sibling();
-                if !has_field && node.is_named() && !node.is_extra() {
-                    break Some(node)
-                } else if !keep_going {
-                    break None
-                }
-            }
-        }
+        (0..type_sitter_lib::Node::raw(self).named_child_count())
+            .filter(|i| {
+                type_sitter_lib::Node::raw(self)
+                    .field_name_for_named_child(*i as _)
+                    .is_none()
+            })
+            .map(|i| type_sitter_lib::Node::raw(self).named_child(i).unwrap())
+            .filter(|n| !n.is_extra())
+            .next()
             .map(<MutableSpecifier<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
     }
 }
@@ -10231,21 +10035,14 @@ These children have type `{lifetime | mutable_specifier}*`:
         >,
     > + 'a {
         {
-            let raw = *type_sitter_lib::Node::raw(self);
-            c.0.reset(raw);
-            c.0.goto_first_child();
-            std::iter::from_fn(move || {
-                loop {
-                    let has_field = c.0.field_name().is_some();
-                    let node = c.0.node();
-                    let keep_going = c.0.goto_next_sibling();
-                    if !has_field && node.is_named() && !node.is_extra() {
-                        break Some(node)
-                    } else if !keep_going {
-                        break None
-                    }
-                }
-            })
+            let me = *type_sitter_lib::Node::raw(self);
+            type_sitter_lib::Node::raw(self)
+                .named_children(&mut c.0)
+                .enumerate()
+                .filter(move |(i, n)| {
+                    !n.is_extra() && me.field_name_for_named_child(*i as _).is_none()
+                })
+                .map(|(_, n)| n)
         }
             .map(
                 <anon_unions::Lifetime_MutableSpecifier<
@@ -11175,21 +10972,14 @@ These children have type `{mutable_specifier | visibility_modifier}*`:
         >,
     > + 'a {
         {
-            let raw = *type_sitter_lib::Node::raw(self);
-            c.0.reset(raw);
-            c.0.goto_first_child();
-            std::iter::from_fn(move || {
-                loop {
-                    let has_field = c.0.field_name().is_some();
-                    let node = c.0.node();
-                    let keep_going = c.0.goto_next_sibling();
-                    if !has_field && node.is_named() && !node.is_extra() {
-                        break Some(node)
-                    } else if !keep_going {
-                        break None
-                    }
-                }
-            })
+            let me = *type_sitter_lib::Node::raw(self);
+            type_sitter_lib::Node::raw(self)
+                .named_children(&mut c.0)
+                .enumerate()
+                .filter(move |(i, n)| {
+                    !n.is_extra() && me.field_name_for_named_child(*i as _).is_none()
+                })
+                .map(|(_, n)| n)
         }
             .map(
                 <anon_unions::MutableSpecifier_VisibilityModifier<
@@ -11512,21 +11302,14 @@ These children have type `{visibility_modifier | where_clause}*`:
         >,
     > + 'a {
         {
-            let raw = *type_sitter_lib::Node::raw(self);
-            c.0.reset(raw);
-            c.0.goto_first_child();
-            std::iter::from_fn(move || {
-                loop {
-                    let has_field = c.0.field_name().is_some();
-                    let node = c.0.node();
-                    let keep_going = c.0.goto_next_sibling();
-                    if !has_field && node.is_named() && !node.is_extra() {
-                        break Some(node)
-                    } else if !keep_going {
-                        break None
-                    }
-                }
-            })
+            let me = *type_sitter_lib::Node::raw(self);
+            type_sitter_lib::Node::raw(self)
+                .named_children(&mut c.0)
+                .enumerate()
+                .filter(move |(i, n)| {
+                    !n.is_extra() && me.field_name_for_named_child(*i as _).is_none()
+                })
+                .map(|(_, n)| n)
         }
             .map(
                 <anon_unions::VisibilityModifier_WhereClause<
@@ -11626,21 +11409,14 @@ These children have type `{field_pattern | remaining_field_pattern}*`:
         >,
     > + 'a {
         {
-            let raw = *type_sitter_lib::Node::raw(self);
-            c.0.reset(raw);
-            c.0.goto_first_child();
-            std::iter::from_fn(move || {
-                loop {
-                    let has_field = c.0.field_name().is_some();
-                    let node = c.0.node();
-                    let keep_going = c.0.goto_next_sibling();
-                    if !has_field && node.is_named() && !node.is_extra() {
-                        break Some(node)
-                    } else if !keep_going {
-                        break None
-                    }
-                }
-            })
+            let me = *type_sitter_lib::Node::raw(self);
+            type_sitter_lib::Node::raw(self)
+                .named_children(&mut c.0)
+                .enumerate()
+                .filter(move |(i, n)| {
+                    !n.is_extra() && me.field_name_for_named_child(*i as _).is_none()
+                })
+                .map(|(_, n)| n)
         }
             .map(
                 <anon_unions::FieldPattern_RemainingFieldPattern<
@@ -12312,21 +12088,14 @@ These children have type `{visibility_modifier | where_clause}*`:
         >,
     > + 'a {
         {
-            let raw = *type_sitter_lib::Node::raw(self);
-            c.0.reset(raw);
-            c.0.goto_first_child();
-            std::iter::from_fn(move || {
-                loop {
-                    let has_field = c.0.field_name().is_some();
-                    let node = c.0.node();
-                    let keep_going = c.0.goto_next_sibling();
-                    if !has_field && node.is_named() && !node.is_extra() {
-                        break Some(node)
-                    } else if !keep_going {
-                        break None
-                    }
-                }
-            })
+            let me = *type_sitter_lib::Node::raw(self);
+            type_sitter_lib::Node::raw(self)
+                .named_children(&mut c.0)
+                .enumerate()
+                .filter(move |(i, n)| {
+                    !n.is_extra() && me.field_name_for_named_child(*i as _).is_none()
+                })
+                .map(|(_, n)| n)
         }
             .map(
                 <anon_unions::VisibilityModifier_WhereClause<
@@ -12669,21 +12438,14 @@ These children have type `_pattern*` ([`Pattern`])*/
         c: &'a mut type_sitter_lib::TreeCursor<'tree>,
     ) -> impl Iterator<Item = type_sitter_lib::NodeResult<'tree, Pattern<'tree>>> + 'a {
         {
-            let raw = *type_sitter_lib::Node::raw(self);
-            c.0.reset(raw);
-            c.0.goto_first_child();
-            std::iter::from_fn(move || {
-                loop {
-                    let has_field = c.0.field_name().is_some();
-                    let node = c.0.node();
-                    let keep_going = c.0.goto_next_sibling();
-                    if !has_field && node.is_named() && !node.is_extra() {
-                        break Some(node)
-                    } else if !keep_going {
-                        break None
-                    }
-                }
-            })
+            let me = *type_sitter_lib::Node::raw(self);
+            type_sitter_lib::Node::raw(self)
+                .named_children(&mut c.0)
+                .enumerate()
+                .filter(move |(i, n)| {
+                    !n.is_extra() && me.field_name_for_named_child(*i as _).is_none()
+                })
+                .map(|(_, n)| n)
         }
             .map(<Pattern<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
     }
@@ -13118,21 +12880,14 @@ These children have type `{visibility_modifier | where_clause}*`:
         >,
     > + 'a {
         {
-            let raw = *type_sitter_lib::Node::raw(self);
-            c.0.reset(raw);
-            c.0.goto_first_child();
-            std::iter::from_fn(move || {
-                loop {
-                    let has_field = c.0.field_name().is_some();
-                    let node = c.0.node();
-                    let keep_going = c.0.goto_next_sibling();
-                    if !has_field && node.is_named() && !node.is_extra() {
-                        break Some(node)
-                    } else if !keep_going {
-                        break None
-                    }
-                }
-            })
+            let me = *type_sitter_lib::Node::raw(self);
+            type_sitter_lib::Node::raw(self)
+                .named_children(&mut c.0)
+                .enumerate()
+                .filter(move |(i, n)| {
+                    !n.is_extra() && me.field_name_for_named_child(*i as _).is_none()
+                })
+                .map(|(_, n)| n)
         }
             .map(
                 <anon_unions::VisibilityModifier_WhereClause<
@@ -13391,21 +13146,14 @@ These children have type `{visibility_modifier | where_clause}*`:
         >,
     > + 'a {
         {
-            let raw = *type_sitter_lib::Node::raw(self);
-            c.0.reset(raw);
-            c.0.goto_first_child();
-            std::iter::from_fn(move || {
-                loop {
-                    let has_field = c.0.field_name().is_some();
-                    let node = c.0.node();
-                    let keep_going = c.0.goto_next_sibling();
-                    if !has_field && node.is_named() && !node.is_extra() {
-                        break Some(node)
-                    } else if !keep_going {
-                        break None
-                    }
-                }
-            })
+            let me = *type_sitter_lib::Node::raw(self);
+            type_sitter_lib::Node::raw(self)
+                .named_children(&mut c.0)
+                .enumerate()
+                .filter(move |(i, n)| {
+                    !n.is_extra() && me.field_name_for_named_child(*i as _).is_none()
+                })
+                .map(|(_, n)| n)
         }
             .map(
                 <anon_unions::VisibilityModifier_WhereClause<
@@ -13720,22 +13468,15 @@ This child has type `visibility_modifier?` ([`VisibilityModifier`])*/
     pub fn visibility_modifier(
         &self,
     ) -> Option<type_sitter_lib::NodeResult<'tree, VisibilityModifier<'tree>>> {
-        {
-            let raw = *type_sitter_lib::Node::raw(self);
-            let mut c = raw.walk();
-            c.reset(raw);
-            c.goto_first_child();
-            loop {
-                let has_field = c.field_name().is_some();
-                let node = c.node();
-                let keep_going = c.goto_next_sibling();
-                if !has_field && node.is_named() && !node.is_extra() {
-                    break Some(node)
-                } else if !keep_going {
-                    break None
-                }
-            }
-        }
+        (0..type_sitter_lib::Node::raw(self).named_child_count())
+            .filter(|i| {
+                type_sitter_lib::Node::raw(self)
+                    .field_name_for_named_child(*i as _)
+                    .is_none()
+            })
+            .map(|i| type_sitter_lib::Node::raw(self).named_child(i).unwrap())
+            .filter(|n| !n.is_extra())
+            .next()
             .map(
                 <VisibilityModifier<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw,
             )
@@ -13971,22 +13712,15 @@ This child has type `mutable_specifier?` ([`MutableSpecifier`])*/
     pub fn mutable_specifier(
         &self,
     ) -> Option<type_sitter_lib::NodeResult<'tree, MutableSpecifier<'tree>>> {
-        {
-            let raw = *type_sitter_lib::Node::raw(self);
-            let mut c = raw.walk();
-            c.reset(raw);
-            c.goto_first_child();
-            loop {
-                let has_field = c.field_name().is_some();
-                let node = c.node();
-                let keep_going = c.goto_next_sibling();
-                if !has_field && node.is_named() && !node.is_extra() {
-                    break Some(node)
-                } else if !keep_going {
-                    break None
-                }
-            }
-        }
+        (0..type_sitter_lib::Node::raw(self).named_child_count())
+            .filter(|i| {
+                type_sitter_lib::Node::raw(self)
+                    .field_name_for_named_child(*i as _)
+                    .is_none()
+            })
+            .map(|i| type_sitter_lib::Node::raw(self).named_child(i).unwrap())
+            .filter(|n| !n.is_extra())
+            .next()
             .map(<MutableSpecifier<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
     }
 }
@@ -14309,22 +14043,15 @@ This child has type `{_expression | let_chain | let_condition}`:
 This child has type `label?` ([`Label`])*/
     #[inline]
     pub fn label(&self) -> Option<type_sitter_lib::NodeResult<'tree, Label<'tree>>> {
-        {
-            let raw = *type_sitter_lib::Node::raw(self);
-            let mut c = raw.walk();
-            c.reset(raw);
-            c.goto_first_child();
-            loop {
-                let has_field = c.field_name().is_some();
-                let node = c.node();
-                let keep_going = c.goto_next_sibling();
-                if !has_field && node.is_named() && !node.is_extra() {
-                    break Some(node)
-                } else if !keep_going {
-                    break None
-                }
-            }
-        }
+        (0..type_sitter_lib::Node::raw(self).named_child_count())
+            .filter(|i| {
+                type_sitter_lib::Node::raw(self)
+                    .field_name_for_named_child(*i as _)
+                    .is_none()
+            })
+            .map(|i| type_sitter_lib::Node::raw(self).named_child(i).unwrap())
+            .filter(|n| !n.is_extra())
+            .next()
             .map(<Label<'tree> as type_sitter_lib::Node<'tree>>::try_from_raw)
     }
 }

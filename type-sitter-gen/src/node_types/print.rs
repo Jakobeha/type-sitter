@@ -489,7 +489,11 @@ impl NodeType {
                     (
                         other_name_plural,
                         concat_doc!("Get the node's not-extra named children.\n\nThese children have type ", kind_desc),
-                        quote! { #type_sitter_lib::Node::raw(self).named_children(&mut c.0).filter(|n| !n.is_extra()) }
+                        quote! {
+                            #type_sitter_lib::Node::raw(self)
+                                .named_children(&mut c.0)
+                                .filter(|n| !n.is_extra())
+                        }
                     ),
                     (
                         other_name,
@@ -515,43 +519,26 @@ impl NodeType {
                         other_name_plural,
                         concat_doc!("Get the node's non-field not-extra named children.\n\nThese children have type ", kind_desc),
                         quote! {{
-                        let raw = *#type_sitter_lib::Node::raw(self);
-                        c.0.reset(raw);
-                        c.0.goto_first_child();
-                        std::iter::from_fn(move || loop {
-                            let has_field = c.0.field_name().is_some();
-                            let node = c.0.node();
-                            let keep_going = c.0.goto_next_sibling();
-                            if !has_field && node.is_named() && !node.is_extra() {
-                                break Some(node)
-                            } else if !keep_going {
-                                break None
-                            }
-                        })
-                    }}
+                            let me = *#type_sitter_lib::Node::raw(self);
+                            #type_sitter_lib::Node::raw(self)
+                                .named_children(&mut c.0)
+                                .enumerate()
+                                .filter(move |(i, n)| !n.is_extra() && me.field_name_for_named_child(*i as _).is_none())
+                                .map(|(_, n)| n)
+                        }}
                     ),
                     (
                         other_name,
                         concat_doc!("Get the node's only non-field not-extra named child.\n\nThis child has type ", kind_desc),
                         concat_doc!("Get the node's only non-field not-extra named child, if it has one.\n\nThis child has type ", kind_desc),
-                        quote! {{
-                        // This is the equivalent to the `others` body then calling `next`,
-                        // though we create the cursor locally.
-                        let raw = *#type_sitter_lib::Node::raw(self);
-                        let mut c = raw.walk();
-                        c.reset(raw);
-                        c.goto_first_child();
-                        loop {
-                            let has_field = c.field_name().is_some();
-                            let node = c.node();
-                            let keep_going = c.goto_next_sibling();
-                            if !has_field && node.is_named() && !node.is_extra() {
-                                break Some(node)
-                            } else if !keep_going {
-                                break None
-                            }
+                        quote! {
+                            // We don't use a cursor because usually the first child will pass.
+                            (0..#type_sitter_lib::Node::raw(self).named_child_count())
+                                .filter(|i| #type_sitter_lib::Node::raw(self).field_name_for_named_child(*i as _).is_none())
+                                .map(|i| #type_sitter_lib::Node::raw(self).named_child(i).unwrap())
+                                .filter(|n| !n.is_extra())
+                                .next()
                         }
-                    }}
                     ),
                     prev_methods,
                     ctx,

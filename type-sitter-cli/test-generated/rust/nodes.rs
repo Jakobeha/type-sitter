@@ -2225,23 +2225,16 @@ impl<'tree> AbstractType<'tree> {
     #[doc = "Get the node's only non-field not-extra named child, if it has one.\n\nThis child has type `type_parameters?` ([`TypeParameters`])"]
     #[inline]
     pub fn type_parameters(&self) -> Option<type_sitter::NodeResult<'tree, TypeParameters<'tree>>> {
-        {
-            let raw = *type_sitter::Node::raw(self);
-            let mut c = raw.walk();
-            c.reset(raw);
-            c.goto_first_child();
-            loop {
-                let has_field = c.field_name().is_some();
-                let node = c.node();
-                let keep_going = c.goto_next_sibling();
-                if !has_field && node.is_named() && !node.is_extra() {
-                    break Some(node);
-                } else if !keep_going {
-                    break None;
-                }
-            }
-        }
-        .map(<TypeParameters<'tree> as type_sitter::Node<'tree>>::try_from_raw)
+        (0..type_sitter::Node::raw(self).named_child_count())
+            .filter(|i| {
+                type_sitter::Node::raw(self)
+                    .field_name_for_named_child(*i as _)
+                    .is_none()
+            })
+            .map(|i| type_sitter::Node::raw(self).named_child(i).unwrap())
+            .filter(|n| !n.is_extra())
+            .next()
+            .map(<TypeParameters<'tree> as type_sitter::Node<'tree>>::try_from_raw)
     }
 }
 #[automatically_derived]
@@ -2344,7 +2337,7 @@ impl<'tree> ArrayExpression<'tree> {
     ) -> impl Iterator<
         Item = type_sitter::NodeResult<'tree, anon_unions::Expression_AttributeItem<'tree>>,
     > + 'a {
-        { let raw = * type_sitter :: Node :: raw (self) ; c . 0 . reset (raw) ; c . 0 . goto_first_child () ; std :: iter :: from_fn (move || loop { let has_field = c . 0 . field_name () . is_some () ; let node = c . 0 . node () ; let keep_going = c . 0 . goto_next_sibling () ; if ! has_field && node . is_named () && ! node . is_extra () { break Some (node) } else if ! keep_going { break None } }) } . map (< anon_unions :: Expression_AttributeItem < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw)
+        { let me = * type_sitter :: Node :: raw (self) ; type_sitter :: Node :: raw (self) . named_children (& mut c . 0) . enumerate () . filter (move | (i , n) | ! n . is_extra () && me . field_name_for_named_child (* i as _) . is_none ()) . map (| (_ , n) | n) } . map (< anon_unions :: Expression_AttributeItem < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw)
     }
 }
 #[automatically_derived]
@@ -2524,23 +2517,16 @@ impl<'tree> AssociatedType<'tree> {
     #[doc = "Get the node's only non-field not-extra named child, if it has one.\n\nThis child has type `where_clause?` ([`WhereClause`])"]
     #[inline]
     pub fn where_clause(&self) -> Option<type_sitter::NodeResult<'tree, WhereClause<'tree>>> {
-        {
-            let raw = *type_sitter::Node::raw(self);
-            let mut c = raw.walk();
-            c.reset(raw);
-            c.goto_first_child();
-            loop {
-                let has_field = c.field_name().is_some();
-                let node = c.node();
-                let keep_going = c.goto_next_sibling();
-                if !has_field && node.is_named() && !node.is_extra() {
-                    break Some(node);
-                } else if !keep_going {
-                    break None;
-                }
-            }
-        }
-        .map(<WhereClause<'tree> as type_sitter::Node<'tree>>::try_from_raw)
+        (0..type_sitter::Node::raw(self).named_child_count())
+            .filter(|i| {
+                type_sitter::Node::raw(self)
+                    .field_name_for_named_child(*i as _)
+                    .is_none()
+            })
+            .map(|i| type_sitter::Node::raw(self).named_child(i).unwrap())
+            .filter(|n| !n.is_extra())
+            .next()
+            .map(<WhereClause<'tree> as type_sitter::Node<'tree>>::try_from_raw)
     }
 }
 #[automatically_derived]
@@ -2652,7 +2638,7 @@ impl<'tree> Attribute<'tree> {
         'tree,
         anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier_Self__Super<'tree>,
     > {
-        { let raw = * type_sitter :: Node :: raw (self) ; let mut c = raw . walk () ; c . reset (raw) ; c . goto_first_child () ; loop { let has_field = c . field_name () . is_some () ; let node = c . node () ; let keep_going = c . goto_next_sibling () ; if ! has_field && node . is_named () && ! node . is_extra () { break Some (node) } else if ! keep_going { break None } } } . map (< anon_unions :: Crate_Identifier_Metavariable_ScopedIdentifier_Self__Super < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw) . expect ("required child not present, there should at least be a MISSING node in its place")
+        (0 .. type_sitter :: Node :: raw (self) . named_child_count ()) . filter (| i | type_sitter :: Node :: raw (self) . field_name_for_named_child (* i as _) . is_none ()) . map (| i | type_sitter :: Node :: raw (self) . named_child (i) . unwrap ()) . filter (| n | ! n . is_extra ()) . next () . map (< anon_unions :: Crate_Identifier_Metavariable_ScopedIdentifier_Self__Super < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw) . expect ("required child not present, there should at least be a MISSING node in its place")
     }
 }
 #[automatically_derived]
@@ -3604,23 +3590,16 @@ impl<'tree> ConstItem<'tree> {
     pub fn visibility_modifier(
         &self,
     ) -> Option<type_sitter::NodeResult<'tree, VisibilityModifier<'tree>>> {
-        {
-            let raw = *type_sitter::Node::raw(self);
-            let mut c = raw.walk();
-            c.reset(raw);
-            c.goto_first_child();
-            loop {
-                let has_field = c.field_name().is_some();
-                let node = c.node();
-                let keep_going = c.goto_next_sibling();
-                if !has_field && node.is_named() && !node.is_extra() {
-                    break Some(node);
-                } else if !keep_going {
-                    break None;
-                }
-            }
-        }
-        .map(<VisibilityModifier<'tree> as type_sitter::Node<'tree>>::try_from_raw)
+        (0..type_sitter::Node::raw(self).named_child_count())
+            .filter(|i| {
+                type_sitter::Node::raw(self)
+                    .field_name_for_named_child(*i as _)
+                    .is_none()
+            })
+            .map(|i| type_sitter::Node::raw(self).named_child(i).unwrap())
+            .filter(|n| !n.is_extra())
+            .next()
+            .map(<VisibilityModifier<'tree> as type_sitter::Node<'tree>>::try_from_raw)
     }
 }
 #[automatically_derived]
@@ -4108,7 +4087,7 @@ impl<'tree> EnumItem<'tree> {
     ) -> impl Iterator<
         Item = type_sitter::NodeResult<'tree, anon_unions::VisibilityModifier_WhereClause<'tree>>,
     > + 'a {
-        { let raw = * type_sitter :: Node :: raw (self) ; c . 0 . reset (raw) ; c . 0 . goto_first_child () ; std :: iter :: from_fn (move || loop { let has_field = c . 0 . field_name () . is_some () ; let node = c . 0 . node () ; let keep_going = c . 0 . goto_next_sibling () ; if ! has_field && node . is_named () && ! node . is_extra () { break Some (node) } else if ! keep_going { break None } }) } . map (< anon_unions :: VisibilityModifier_WhereClause < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw)
+        { let me = * type_sitter :: Node :: raw (self) ; type_sitter :: Node :: raw (self) . named_children (& mut c . 0) . enumerate () . filter (move | (i , n) | ! n . is_extra () && me . field_name_for_named_child (* i as _) . is_none ()) . map (| (_ , n) | n) } . map (< anon_unions :: VisibilityModifier_WhereClause < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw)
     }
 }
 #[automatically_derived]
@@ -4182,23 +4161,16 @@ impl<'tree> EnumVariant<'tree> {
     pub fn visibility_modifier(
         &self,
     ) -> Option<type_sitter::NodeResult<'tree, VisibilityModifier<'tree>>> {
-        {
-            let raw = *type_sitter::Node::raw(self);
-            let mut c = raw.walk();
-            c.reset(raw);
-            c.goto_first_child();
-            loop {
-                let has_field = c.field_name().is_some();
-                let node = c.node();
-                let keep_going = c.goto_next_sibling();
-                if !has_field && node.is_named() && !node.is_extra() {
-                    break Some(node);
-                } else if !keep_going {
-                    break None;
-                }
-            }
-        }
-        .map(<VisibilityModifier<'tree> as type_sitter::Node<'tree>>::try_from_raw)
+        (0..type_sitter::Node::raw(self).named_child_count())
+            .filter(|i| {
+                type_sitter::Node::raw(self)
+                    .field_name_for_named_child(*i as _)
+                    .is_none()
+            })
+            .map(|i| type_sitter::Node::raw(self).named_child(i).unwrap())
+            .filter(|n| !n.is_extra())
+            .next()
+            .map(<VisibilityModifier<'tree> as type_sitter::Node<'tree>>::try_from_raw)
     }
 }
 #[automatically_derived]
@@ -4399,7 +4371,7 @@ impl<'tree> ExternCrateDeclaration<'tree> {
     ) -> impl Iterator<
         Item = type_sitter::NodeResult<'tree, anon_unions::Crate_VisibilityModifier<'tree>>,
     > + 'a {
-        { let raw = * type_sitter :: Node :: raw (self) ; c . 0 . reset (raw) ; c . 0 . goto_first_child () ; std :: iter :: from_fn (move || loop { let has_field = c . 0 . field_name () . is_some () ; let node = c . 0 . node () ; let keep_going = c . 0 . goto_next_sibling () ; if ! has_field && node . is_named () && ! node . is_extra () { break Some (node) } else if ! keep_going { break None } }) } . map (< anon_unions :: Crate_VisibilityModifier < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw)
+        { let me = * type_sitter :: Node :: raw (self) ; type_sitter :: Node :: raw (self) . named_children (& mut c . 0) . enumerate () . filter (move | (i , n) | ! n . is_extra () && me . field_name_for_named_child (* i as _) . is_none ()) . map (| (_ , n) | n) } . map (< anon_unions :: Crate_VisibilityModifier < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw)
     }
 }
 #[automatically_derived]
@@ -4511,23 +4483,16 @@ impl<'tree> FieldDeclaration<'tree> {
     pub fn visibility_modifier(
         &self,
     ) -> Option<type_sitter::NodeResult<'tree, VisibilityModifier<'tree>>> {
-        {
-            let raw = *type_sitter::Node::raw(self);
-            let mut c = raw.walk();
-            c.reset(raw);
-            c.goto_first_child();
-            loop {
-                let has_field = c.field_name().is_some();
-                let node = c.node();
-                let keep_going = c.goto_next_sibling();
-                if !has_field && node.is_named() && !node.is_extra() {
-                    break Some(node);
-                } else if !keep_going {
-                    break None;
-                }
-            }
-        }
-        .map(<VisibilityModifier<'tree> as type_sitter::Node<'tree>>::try_from_raw)
+        (0..type_sitter::Node::raw(self).named_child_count())
+            .filter(|i| {
+                type_sitter::Node::raw(self)
+                    .field_name_for_named_child(*i as _)
+                    .is_none()
+            })
+            .map(|i| type_sitter::Node::raw(self).named_child(i).unwrap())
+            .filter(|n| !n.is_extra())
+            .next()
+            .map(<VisibilityModifier<'tree> as type_sitter::Node<'tree>>::try_from_raw)
     }
 }
 #[automatically_derived]
@@ -4731,19 +4696,14 @@ impl<'tree> FieldInitializer<'tree> {
         c: &'a mut type_sitter::TreeCursor<'tree>,
     ) -> impl Iterator<Item = type_sitter::NodeResult<'tree, AttributeItem<'tree>>> + 'a {
         {
-            let raw = *type_sitter::Node::raw(self);
-            c.0.reset(raw);
-            c.0.goto_first_child();
-            std::iter::from_fn(move || loop {
-                let has_field = c.0.field_name().is_some();
-                let node = c.0.node();
-                let keep_going = c.0.goto_next_sibling();
-                if !has_field && node.is_named() && !node.is_extra() {
-                    break Some(node);
-                } else if !keep_going {
-                    break None;
-                }
-            })
+            let me = *type_sitter::Node::raw(self);
+            type_sitter::Node::raw(self)
+                .named_children(&mut c.0)
+                .enumerate()
+                .filter(move |(i, n)| {
+                    !n.is_extra() && me.field_name_for_named_child(*i as _).is_none()
+                })
+                .map(|(_, n)| n)
         }
         .map(<AttributeItem<'tree> as type_sitter::Node<'tree>>::try_from_raw)
     }
@@ -4856,23 +4816,16 @@ impl<'tree> FieldPattern<'tree> {
     pub fn mutable_specifier(
         &self,
     ) -> Option<type_sitter::NodeResult<'tree, MutableSpecifier<'tree>>> {
-        {
-            let raw = *type_sitter::Node::raw(self);
-            let mut c = raw.walk();
-            c.reset(raw);
-            c.goto_first_child();
-            loop {
-                let has_field = c.field_name().is_some();
-                let node = c.node();
-                let keep_going = c.goto_next_sibling();
-                if !has_field && node.is_named() && !node.is_extra() {
-                    break Some(node);
-                } else if !keep_going {
-                    break None;
-                }
-            }
-        }
-        .map(<MutableSpecifier<'tree> as type_sitter::Node<'tree>>::try_from_raw)
+        (0..type_sitter::Node::raw(self).named_child_count())
+            .filter(|i| {
+                type_sitter::Node::raw(self)
+                    .field_name_for_named_child(*i as _)
+                    .is_none()
+            })
+            .map(|i| type_sitter::Node::raw(self).named_child(i).unwrap())
+            .filter(|n| !n.is_extra())
+            .next()
+            .map(<MutableSpecifier<'tree> as type_sitter::Node<'tree>>::try_from_raw)
     }
 }
 #[automatically_derived]
@@ -4982,23 +4935,16 @@ impl<'tree> ForExpression<'tree> {
     #[doc = "Get the node's only non-field not-extra named child, if it has one.\n\nThis child has type `label?` ([`Label`])"]
     #[inline]
     pub fn label(&self) -> Option<type_sitter::NodeResult<'tree, Label<'tree>>> {
-        {
-            let raw = *type_sitter::Node::raw(self);
-            let mut c = raw.walk();
-            c.reset(raw);
-            c.goto_first_child();
-            loop {
-                let has_field = c.field_name().is_some();
-                let node = c.node();
-                let keep_going = c.goto_next_sibling();
-                if !has_field && node.is_named() && !node.is_extra() {
-                    break Some(node);
-                } else if !keep_going {
-                    break None;
-                }
-            }
-        }
-        .map(<Label<'tree> as type_sitter::Node<'tree>>::try_from_raw)
+        (0..type_sitter::Node::raw(self).named_child_count())
+            .filter(|i| {
+                type_sitter::Node::raw(self)
+                    .field_name_for_named_child(*i as _)
+                    .is_none()
+            })
+            .map(|i| type_sitter::Node::raw(self).named_child(i).unwrap())
+            .filter(|n| !n.is_extra())
+            .next()
+            .map(<Label<'tree> as type_sitter::Node<'tree>>::try_from_raw)
     }
 }
 #[automatically_derived]
@@ -5107,7 +5053,7 @@ impl<'tree> ForeignModItem<'tree> {
             anon_unions::ExternModifier_VisibilityModifier<'tree>,
         >,
     > + 'a {
-        { let raw = * type_sitter :: Node :: raw (self) ; c . 0 . reset (raw) ; c . 0 . goto_first_child () ; std :: iter :: from_fn (move || loop { let has_field = c . 0 . field_name () . is_some () ; let node = c . 0 . node () ; let keep_going = c . 0 . goto_next_sibling () ; if ! has_field && node . is_named () && ! node . is_extra () { break Some (node) } else if ! keep_going { break None } }) } . map (< anon_unions :: ExternModifier_VisibilityModifier < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw)
+        { let me = * type_sitter :: Node :: raw (self) ; type_sitter :: Node :: raw (self) . named_children (& mut c . 0) . enumerate () . filter (move | (i , n) | ! n . is_extra () && me . field_name_for_named_child (* i as _) . is_none ()) . map (| (_ , n) | n) } . map (< anon_unions :: ExternModifier_VisibilityModifier < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw)
     }
 }
 #[automatically_derived]
@@ -5236,7 +5182,7 @@ impl<'tree> FunctionItem<'tree> {
             anon_unions::FunctionModifiers_VisibilityModifier_WhereClause<'tree>,
         >,
     > + 'a {
-        { let raw = * type_sitter :: Node :: raw (self) ; c . 0 . reset (raw) ; c . 0 . goto_first_child () ; std :: iter :: from_fn (move || loop { let has_field = c . 0 . field_name () . is_some () ; let node = c . 0 . node () ; let keep_going = c . 0 . goto_next_sibling () ; if ! has_field && node . is_named () && ! node . is_extra () { break Some (node) } else if ! keep_going { break None } }) } . map (< anon_unions :: FunctionModifiers_VisibilityModifier_WhereClause < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw)
+        { let me = * type_sitter :: Node :: raw (self) ; type_sitter :: Node :: raw (self) . named_children (& mut c . 0) . enumerate () . filter (move | (i , n) | ! n . is_extra () && me . field_name_for_named_child (* i as _) . is_none ()) . map (| (_ , n) | n) } . map (< anon_unions :: FunctionModifiers_VisibilityModifier_WhereClause < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw)
     }
 }
 #[automatically_derived]
@@ -5367,7 +5313,7 @@ impl<'tree> FunctionSignatureItem<'tree> {
             anon_unions::FunctionModifiers_VisibilityModifier_WhereClause<'tree>,
         >,
     > + 'a {
-        { let raw = * type_sitter :: Node :: raw (self) ; c . 0 . reset (raw) ; c . 0 . goto_first_child () ; std :: iter :: from_fn (move || loop { let has_field = c . 0 . field_name () . is_some () ; let node = c . 0 . node () ; let keep_going = c . 0 . goto_next_sibling () ; if ! has_field && node . is_named () && ! node . is_extra () { break Some (node) } else if ! keep_going { break None } }) } . map (< anon_unions :: FunctionModifiers_VisibilityModifier_WhereClause < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw)
+        { let me = * type_sitter :: Node :: raw (self) ; type_sitter :: Node :: raw (self) . named_children (& mut c . 0) . enumerate () . filter (move | (i , n) | ! n . is_extra () && me . field_name_for_named_child (* i as _) . is_none ()) . map (| (_ , n) | n) } . map (< anon_unions :: FunctionModifiers_VisibilityModifier_WhereClause < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw)
     }
 }
 #[automatically_derived]
@@ -5441,7 +5387,7 @@ impl<'tree> FunctionType<'tree> {
     ) -> impl Iterator<
         Item = type_sitter::NodeResult<'tree, anon_unions::ForLifetimes_FunctionModifiers<'tree>>,
     > + 'a {
-        { let raw = * type_sitter :: Node :: raw (self) ; c . 0 . reset (raw) ; c . 0 . goto_first_child () ; std :: iter :: from_fn (move || loop { let has_field = c . 0 . field_name () . is_some () ; let node = c . 0 . node () ; let keep_going = c . 0 . goto_next_sibling () ; if ! has_field && node . is_named () && ! node . is_extra () { break Some (node) } else if ! keep_going { break None } }) } . map (< anon_unions :: ForLifetimes_FunctionModifiers < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw)
+        { let me = * type_sitter :: Node :: raw (self) ; type_sitter :: Node :: raw (self) . named_children (& mut c . 0) . enumerate () . filter (move | (i , n) | ! n . is_extra () && me . field_name_for_named_child (* i as _) . is_none ()) . map (| (_ , n) | n) } . map (< anon_unions :: ForLifetimes_FunctionModifiers < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw)
     }
 }
 #[automatically_derived]
@@ -5857,23 +5803,16 @@ impl<'tree> ImplItem<'tree> {
     #[doc = "Get the node's only non-field not-extra named child, if it has one.\n\nThis child has type `where_clause?` ([`WhereClause`])"]
     #[inline]
     pub fn where_clause(&self) -> Option<type_sitter::NodeResult<'tree, WhereClause<'tree>>> {
-        {
-            let raw = *type_sitter::Node::raw(self);
-            let mut c = raw.walk();
-            c.reset(raw);
-            c.goto_first_child();
-            loop {
-                let has_field = c.field_name().is_some();
-                let node = c.node();
-                let keep_going = c.goto_next_sibling();
-                if !has_field && node.is_named() && !node.is_extra() {
-                    break Some(node);
-                } else if !keep_going {
-                    break None;
-                }
-            }
-        }
-        .map(<WhereClause<'tree> as type_sitter::Node<'tree>>::try_from_raw)
+        (0..type_sitter::Node::raw(self).named_child_count())
+            .filter(|i| {
+                type_sitter::Node::raw(self)
+                    .field_name_for_named_child(*i as _)
+                    .is_none()
+            })
+            .map(|i| type_sitter::Node::raw(self).named_child(i).unwrap())
+            .filter(|n| !n.is_extra())
+            .next()
+            .map(<WhereClause<'tree> as type_sitter::Node<'tree>>::try_from_raw)
     }
 }
 #[automatically_derived]
@@ -6280,23 +6219,16 @@ impl<'tree> LetDeclaration<'tree> {
     pub fn mutable_specifier(
         &self,
     ) -> Option<type_sitter::NodeResult<'tree, MutableSpecifier<'tree>>> {
-        {
-            let raw = *type_sitter::Node::raw(self);
-            let mut c = raw.walk();
-            c.reset(raw);
-            c.goto_first_child();
-            loop {
-                let has_field = c.field_name().is_some();
-                let node = c.node();
-                let keep_going = c.goto_next_sibling();
-                if !has_field && node.is_named() && !node.is_extra() {
-                    break Some(node);
-                } else if !keep_going {
-                    break None;
-                }
-            }
-        }
-        .map(<MutableSpecifier<'tree> as type_sitter::Node<'tree>>::try_from_raw)
+        (0..type_sitter::Node::raw(self).named_child_count())
+            .filter(|i| {
+                type_sitter::Node::raw(self)
+                    .field_name_for_named_child(*i as _)
+                    .is_none()
+            })
+            .map(|i| type_sitter::Node::raw(self).named_child(i).unwrap())
+            .filter(|n| !n.is_extra())
+            .next()
+            .map(<MutableSpecifier<'tree> as type_sitter::Node<'tree>>::try_from_raw)
     }
 }
 #[automatically_derived]
@@ -6458,23 +6390,16 @@ impl<'tree> LoopExpression<'tree> {
     #[doc = "Get the node's only non-field not-extra named child, if it has one.\n\nThis child has type `label?` ([`Label`])"]
     #[inline]
     pub fn label(&self) -> Option<type_sitter::NodeResult<'tree, Label<'tree>>> {
-        {
-            let raw = *type_sitter::Node::raw(self);
-            let mut c = raw.walk();
-            c.reset(raw);
-            c.goto_first_child();
-            loop {
-                let has_field = c.field_name().is_some();
-                let node = c.node();
-                let keep_going = c.goto_next_sibling();
-                if !has_field && node.is_named() && !node.is_extra() {
-                    break Some(node);
-                } else if !keep_going {
-                    break None;
-                }
-            }
-        }
-        .map(<Label<'tree> as type_sitter::Node<'tree>>::try_from_raw)
+        (0..type_sitter::Node::raw(self).named_child_count())
+            .filter(|i| {
+                type_sitter::Node::raw(self)
+                    .field_name_for_named_child(*i as _)
+                    .is_none()
+            })
+            .map(|i| type_sitter::Node::raw(self).named_child(i).unwrap())
+            .filter(|n| !n.is_extra())
+            .next()
+            .map(<Label<'tree> as type_sitter::Node<'tree>>::try_from_raw)
     }
 }
 #[automatically_derived]
@@ -6531,19 +6456,14 @@ impl<'tree> MacroDefinition<'tree> {
         c: &'a mut type_sitter::TreeCursor<'tree>,
     ) -> impl Iterator<Item = type_sitter::NodeResult<'tree, MacroRule<'tree>>> + 'a {
         {
-            let raw = *type_sitter::Node::raw(self);
-            c.0.reset(raw);
-            c.0.goto_first_child();
-            std::iter::from_fn(move || loop {
-                let has_field = c.0.field_name().is_some();
-                let node = c.0.node();
-                let keep_going = c.0.goto_next_sibling();
-                if !has_field && node.is_named() && !node.is_extra() {
-                    break Some(node);
-                } else if !keep_going {
-                    break None;
-                }
-            })
+            let me = *type_sitter::Node::raw(self);
+            type_sitter::Node::raw(self)
+                .named_children(&mut c.0)
+                .enumerate()
+                .filter(move |(i, n)| {
+                    !n.is_extra() && me.field_name_for_named_child(*i as _).is_none()
+                })
+                .map(|(_, n)| n)
         }
         .map(<MacroRule<'tree> as type_sitter::Node<'tree>>::try_from_raw)
     }
@@ -6595,24 +6515,19 @@ impl<'tree> MacroInvocation<'tree> {
     #[doc = "Get the node's only non-field not-extra named child.\n\nThis child has type `token_tree` ([`TokenTree`])"]
     #[inline]
     pub fn token_tree(&self) -> type_sitter::NodeResult<'tree, TokenTree<'tree>> {
-        {
-            let raw = *type_sitter::Node::raw(self);
-            let mut c = raw.walk();
-            c.reset(raw);
-            c.goto_first_child();
-            loop {
-                let has_field = c.field_name().is_some();
-                let node = c.node();
-                let keep_going = c.goto_next_sibling();
-                if !has_field && node.is_named() && !node.is_extra() {
-                    break Some(node);
-                } else if !keep_going {
-                    break None;
-                }
-            }
-        }
-        .map(<TokenTree<'tree> as type_sitter::Node<'tree>>::try_from_raw)
-        .expect("required child not present, there should at least be a MISSING node in its place")
+        (0..type_sitter::Node::raw(self).named_child_count())
+            .filter(|i| {
+                type_sitter::Node::raw(self)
+                    .field_name_for_named_child(*i as _)
+                    .is_none()
+            })
+            .map(|i| type_sitter::Node::raw(self).named_child(i).unwrap())
+            .filter(|n| !n.is_extra())
+            .next()
+            .map(<TokenTree<'tree> as type_sitter::Node<'tree>>::try_from_raw)
+            .expect(
+                "required child not present, there should at least be a MISSING node in its place",
+            )
     }
 }
 #[automatically_derived]
@@ -6738,7 +6653,7 @@ impl<'tree> MatchArm<'tree> {
     ) -> impl Iterator<
         Item = type_sitter::NodeResult<'tree, anon_unions::AttributeItem_InnerAttributeItem<'tree>>,
     > + 'a {
-        { let raw = * type_sitter :: Node :: raw (self) ; c . 0 . reset (raw) ; c . 0 . goto_first_child () ; std :: iter :: from_fn (move || loop { let has_field = c . 0 . field_name () . is_some () ; let node = c . 0 . node () ; let keep_going = c . 0 . goto_next_sibling () ; if ! has_field && node . is_named () && ! node . is_extra () { break Some (node) } else if ! keep_going { break None } }) } . map (< anon_unions :: AttributeItem_InnerAttributeItem < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw)
+        { let me = * type_sitter :: Node :: raw (self) ; type_sitter :: Node :: raw (self) . named_children (& mut c . 0) . enumerate () . filter (move | (i , n) | ! n . is_extra () && me . field_name_for_named_child (* i as _) . is_none ()) . map (| (_ , n) | n) } . map (< anon_unions :: AttributeItem_InnerAttributeItem < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw)
     }
 }
 #[automatically_derived]
@@ -6902,24 +6817,19 @@ impl<'tree> MatchPattern<'tree> {
     #[doc = "Get the node's only non-field not-extra named child.\n\nThis child has type `_pattern` ([`Pattern`])"]
     #[inline]
     pub fn pattern(&self) -> type_sitter::NodeResult<'tree, Pattern<'tree>> {
-        {
-            let raw = *type_sitter::Node::raw(self);
-            let mut c = raw.walk();
-            c.reset(raw);
-            c.goto_first_child();
-            loop {
-                let has_field = c.field_name().is_some();
-                let node = c.node();
-                let keep_going = c.goto_next_sibling();
-                if !has_field && node.is_named() && !node.is_extra() {
-                    break Some(node);
-                } else if !keep_going {
-                    break None;
-                }
-            }
-        }
-        .map(<Pattern<'tree> as type_sitter::Node<'tree>>::try_from_raw)
-        .expect("required child not present, there should at least be a MISSING node in its place")
+        (0..type_sitter::Node::raw(self).named_child_count())
+            .filter(|i| {
+                type_sitter::Node::raw(self)
+                    .field_name_for_named_child(*i as _)
+                    .is_none()
+            })
+            .map(|i| type_sitter::Node::raw(self).named_child(i).unwrap())
+            .filter(|n| !n.is_extra())
+            .next()
+            .map(<Pattern<'tree> as type_sitter::Node<'tree>>::try_from_raw)
+            .expect(
+                "required child not present, there should at least be a MISSING node in its place",
+            )
     }
 }
 #[automatically_derived]
@@ -7018,23 +6928,16 @@ impl<'tree> ModItem<'tree> {
     pub fn visibility_modifier(
         &self,
     ) -> Option<type_sitter::NodeResult<'tree, VisibilityModifier<'tree>>> {
-        {
-            let raw = *type_sitter::Node::raw(self);
-            let mut c = raw.walk();
-            c.reset(raw);
-            c.goto_first_child();
-            loop {
-                let has_field = c.field_name().is_some();
-                let node = c.node();
-                let keep_going = c.goto_next_sibling();
-                if !has_field && node.is_named() && !node.is_extra() {
-                    break Some(node);
-                } else if !keep_going {
-                    break None;
-                }
-            }
-        }
-        .map(<VisibilityModifier<'tree> as type_sitter::Node<'tree>>::try_from_raw)
+        (0..type_sitter::Node::raw(self).named_child_count())
+            .filter(|i| {
+                type_sitter::Node::raw(self)
+                    .field_name_for_named_child(*i as _)
+                    .is_none()
+            })
+            .map(|i| type_sitter::Node::raw(self).named_child(i).unwrap())
+            .filter(|n| !n.is_extra())
+            .next()
+            .map(<VisibilityModifier<'tree> as type_sitter::Node<'tree>>::try_from_raw)
     }
 }
 #[automatically_derived]
@@ -7366,7 +7269,7 @@ impl<'tree> OrderedFieldDeclarationList<'tree> {
     ) -> impl Iterator<
         Item = type_sitter::NodeResult<'tree, anon_unions::AttributeItem_VisibilityModifier<'tree>>,
     > + 'a {
-        { let raw = * type_sitter :: Node :: raw (self) ; c . 0 . reset (raw) ; c . 0 . goto_first_child () ; std :: iter :: from_fn (move || loop { let has_field = c . 0 . field_name () . is_some () ; let node = c . 0 . node () ; let keep_going = c . 0 . goto_next_sibling () ; if ! has_field && node . is_named () && ! node . is_extra () { break Some (node) } else if ! keep_going { break None } }) } . map (< anon_unions :: AttributeItem_VisibilityModifier < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw)
+        { let me = * type_sitter :: Node :: raw (self) ; type_sitter :: Node :: raw (self) . named_children (& mut c . 0) . enumerate () . filter (move | (i , n) | ! n . is_extra () && me . field_name_for_named_child (* i as _) . is_none ()) . map (| (_ , n) | n) } . map (< anon_unions :: AttributeItem_VisibilityModifier < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw)
     }
 }
 #[automatically_derived]
@@ -7468,23 +7371,16 @@ impl<'tree> Parameter<'tree> {
     pub fn mutable_specifier(
         &self,
     ) -> Option<type_sitter::NodeResult<'tree, MutableSpecifier<'tree>>> {
-        {
-            let raw = *type_sitter::Node::raw(self);
-            let mut c = raw.walk();
-            c.reset(raw);
-            c.goto_first_child();
-            loop {
-                let has_field = c.field_name().is_some();
-                let node = c.node();
-                let keep_going = c.goto_next_sibling();
-                if !has_field && node.is_named() && !node.is_extra() {
-                    break Some(node);
-                } else if !keep_going {
-                    break None;
-                }
-            }
-        }
-        .map(<MutableSpecifier<'tree> as type_sitter::Node<'tree>>::try_from_raw)
+        (0..type_sitter::Node::raw(self).named_child_count())
+            .filter(|i| {
+                type_sitter::Node::raw(self)
+                    .field_name_for_named_child(*i as _)
+                    .is_none()
+            })
+            .map(|i| type_sitter::Node::raw(self).named_child(i).unwrap())
+            .filter(|n| !n.is_extra())
+            .next()
+            .map(<MutableSpecifier<'tree> as type_sitter::Node<'tree>>::try_from_raw)
     }
 }
 #[automatically_derived]
@@ -7640,23 +7536,16 @@ impl<'tree> PointerType<'tree> {
     pub fn mutable_specifier(
         &self,
     ) -> Option<type_sitter::NodeResult<'tree, MutableSpecifier<'tree>>> {
-        {
-            let raw = *type_sitter::Node::raw(self);
-            let mut c = raw.walk();
-            c.reset(raw);
-            c.goto_first_child();
-            loop {
-                let has_field = c.field_name().is_some();
-                let node = c.node();
-                let keep_going = c.goto_next_sibling();
-                if !has_field && node.is_named() && !node.is_extra() {
-                    break Some(node);
-                } else if !keep_going {
-                    break None;
-                }
-            }
-        }
-        .map(<MutableSpecifier<'tree> as type_sitter::Node<'tree>>::try_from_raw)
+        (0..type_sitter::Node::raw(self).named_child_count())
+            .filter(|i| {
+                type_sitter::Node::raw(self)
+                    .field_name_for_named_child(*i as _)
+                    .is_none()
+            })
+            .map(|i| type_sitter::Node::raw(self).named_child(i).unwrap())
+            .filter(|n| !n.is_extra())
+            .next()
+            .map(<MutableSpecifier<'tree> as type_sitter::Node<'tree>>::try_from_raw)
     }
 }
 #[automatically_derived]
@@ -8009,23 +7898,16 @@ impl<'tree> ReferenceExpression<'tree> {
     pub fn mutable_specifier(
         &self,
     ) -> Option<type_sitter::NodeResult<'tree, MutableSpecifier<'tree>>> {
-        {
-            let raw = *type_sitter::Node::raw(self);
-            let mut c = raw.walk();
-            c.reset(raw);
-            c.goto_first_child();
-            loop {
-                let has_field = c.field_name().is_some();
-                let node = c.node();
-                let keep_going = c.goto_next_sibling();
-                if !has_field && node.is_named() && !node.is_extra() {
-                    break Some(node);
-                } else if !keep_going {
-                    break None;
-                }
-            }
-        }
-        .map(<MutableSpecifier<'tree> as type_sitter::Node<'tree>>::try_from_raw)
+        (0..type_sitter::Node::raw(self).named_child_count())
+            .filter(|i| {
+                type_sitter::Node::raw(self)
+                    .field_name_for_named_child(*i as _)
+                    .is_none()
+            })
+            .map(|i| type_sitter::Node::raw(self).named_child(i).unwrap())
+            .filter(|n| !n.is_extra())
+            .next()
+            .map(<MutableSpecifier<'tree> as type_sitter::Node<'tree>>::try_from_raw)
     }
 }
 #[automatically_derived]
@@ -8132,7 +8014,7 @@ impl<'tree> ReferenceType<'tree> {
     ) -> impl Iterator<
         Item = type_sitter::NodeResult<'tree, anon_unions::Lifetime_MutableSpecifier<'tree>>,
     > + 'a {
-        { let raw = * type_sitter :: Node :: raw (self) ; c . 0 . reset (raw) ; c . 0 . goto_first_child () ; std :: iter :: from_fn (move || loop { let has_field = c . 0 . field_name () . is_some () ; let node = c . 0 . node () ; let keep_going = c . 0 . goto_next_sibling () ; if ! has_field && node . is_named () && ! node . is_extra () { break Some (node) } else if ! keep_going { break None } }) } . map (< anon_unions :: Lifetime_MutableSpecifier < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw)
+        { let me = * type_sitter :: Node :: raw (self) ; type_sitter :: Node :: raw (self) . named_children (& mut c . 0) . enumerate () . filter (move | (i , n) | ! n . is_extra () && me . field_name_for_named_child (* i as _) . is_none ()) . map (| (_ , n) | n) } . map (< anon_unions :: Lifetime_MutableSpecifier < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw)
     }
 }
 #[automatically_derived]
@@ -8817,7 +8699,7 @@ impl<'tree> StaticItem<'tree> {
             anon_unions::MutableSpecifier_VisibilityModifier<'tree>,
         >,
     > + 'a {
-        { let raw = * type_sitter :: Node :: raw (self) ; c . 0 . reset (raw) ; c . 0 . goto_first_child () ; std :: iter :: from_fn (move || loop { let has_field = c . 0 . field_name () . is_some () ; let node = c . 0 . node () ; let keep_going = c . 0 . goto_next_sibling () ; if ! has_field && node . is_named () && ! node . is_extra () { break Some (node) } else if ! keep_going { break None } }) } . map (< anon_unions :: MutableSpecifier_VisibilityModifier < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw)
+        { let me = * type_sitter :: Node :: raw (self) ; type_sitter :: Node :: raw (self) . named_children (& mut c . 0) . enumerate () . filter (move | (i , n) | ! n . is_extra () && me . field_name_for_named_child (* i as _) . is_none ()) . map (| (_ , n) | n) } . map (< anon_unions :: MutableSpecifier_VisibilityModifier < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw)
     }
 }
 #[automatically_derived]
@@ -9037,7 +8919,7 @@ impl<'tree> StructItem<'tree> {
     ) -> impl Iterator<
         Item = type_sitter::NodeResult<'tree, anon_unions::VisibilityModifier_WhereClause<'tree>>,
     > + 'a {
-        { let raw = * type_sitter :: Node :: raw (self) ; c . 0 . reset (raw) ; c . 0 . goto_first_child () ; std :: iter :: from_fn (move || loop { let has_field = c . 0 . field_name () . is_some () ; let node = c . 0 . node () ; let keep_going = c . 0 . goto_next_sibling () ; if ! has_field && node . is_named () && ! node . is_extra () { break Some (node) } else if ! keep_going { break None } }) } . map (< anon_unions :: VisibilityModifier_WhereClause < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw)
+        { let me = * type_sitter :: Node :: raw (self) ; type_sitter :: Node :: raw (self) . named_children (& mut c . 0) . enumerate () . filter (move | (i , n) | ! n . is_extra () && me . field_name_for_named_child (* i as _) . is_none ()) . map (| (_ , n) | n) } . map (< anon_unions :: VisibilityModifier_WhereClause < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw)
     }
 }
 #[automatically_derived]
@@ -9105,7 +8987,7 @@ impl<'tree> StructPattern<'tree> {
             anon_unions::FieldPattern_RemainingFieldPattern<'tree>,
         >,
     > + 'a {
-        { let raw = * type_sitter :: Node :: raw (self) ; c . 0 . reset (raw) ; c . 0 . goto_first_child () ; std :: iter :: from_fn (move || loop { let has_field = c . 0 . field_name () . is_some () ; let node = c . 0 . node () ; let keep_going = c . 0 . goto_next_sibling () ; if ! has_field && node . is_named () && ! node . is_extra () { break Some (node) } else if ! keep_going { break None } }) } . map (< anon_unions :: FieldPattern_RemainingFieldPattern < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw)
+        { let me = * type_sitter :: Node :: raw (self) ; type_sitter :: Node :: raw (self) . named_children (& mut c . 0) . enumerate () . filter (move | (i , n) | ! n . is_extra () && me . field_name_for_named_child (* i as _) . is_none ()) . map (| (_ , n) | n) } . map (< anon_unions :: FieldPattern_RemainingFieldPattern < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw)
     }
 }
 #[automatically_derived]
@@ -9509,7 +9391,7 @@ impl<'tree> TraitItem<'tree> {
     ) -> impl Iterator<
         Item = type_sitter::NodeResult<'tree, anon_unions::VisibilityModifier_WhereClause<'tree>>,
     > + 'a {
-        { let raw = * type_sitter :: Node :: raw (self) ; c . 0 . reset (raw) ; c . 0 . goto_first_child () ; std :: iter :: from_fn (move || loop { let has_field = c . 0 . field_name () . is_some () ; let node = c . 0 . node () ; let keep_going = c . 0 . goto_next_sibling () ; if ! has_field && node . is_named () && ! node . is_extra () { break Some (node) } else if ! keep_going { break None } }) } . map (< anon_unions :: VisibilityModifier_WhereClause < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw)
+        { let me = * type_sitter :: Node :: raw (self) ; type_sitter :: Node :: raw (self) . named_children (& mut c . 0) . enumerate () . filter (move | (i , n) | ! n . is_extra () && me . field_name_for_named_child (* i as _) . is_none ()) . map (| (_ , n) | n) } . map (< anon_unions :: VisibilityModifier_WhereClause < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw)
     }
 }
 #[automatically_derived]
@@ -9761,19 +9643,14 @@ impl<'tree> TupleStructPattern<'tree> {
         c: &'a mut type_sitter::TreeCursor<'tree>,
     ) -> impl Iterator<Item = type_sitter::NodeResult<'tree, Pattern<'tree>>> + 'a {
         {
-            let raw = *type_sitter::Node::raw(self);
-            c.0.reset(raw);
-            c.0.goto_first_child();
-            std::iter::from_fn(move || loop {
-                let has_field = c.0.field_name().is_some();
-                let node = c.0.node();
-                let keep_going = c.0.goto_next_sibling();
-                if !has_field && node.is_named() && !node.is_extra() {
-                    break Some(node);
-                } else if !keep_going {
-                    break None;
-                }
-            })
+            let me = *type_sitter::Node::raw(self);
+            type_sitter::Node::raw(self)
+                .named_children(&mut c.0)
+                .enumerate()
+                .filter(move |(i, n)| {
+                    !n.is_extra() && me.field_name_for_named_child(*i as _).is_none()
+                })
+                .map(|(_, n)| n)
         }
         .map(<Pattern<'tree> as type_sitter::Node<'tree>>::try_from_raw)
     }
@@ -10112,7 +9989,7 @@ impl<'tree> TypeItem<'tree> {
     ) -> impl Iterator<
         Item = type_sitter::NodeResult<'tree, anon_unions::VisibilityModifier_WhereClause<'tree>>,
     > + 'a {
-        { let raw = * type_sitter :: Node :: raw (self) ; c . 0 . reset (raw) ; c . 0 . goto_first_child () ; std :: iter :: from_fn (move || loop { let has_field = c . 0 . field_name () . is_some () ; let node = c . 0 . node () ; let keep_going = c . 0 . goto_next_sibling () ; if ! has_field && node . is_named () && ! node . is_extra () { break Some (node) } else if ! keep_going { break None } }) } . map (< anon_unions :: VisibilityModifier_WhereClause < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw)
+        { let me = * type_sitter :: Node :: raw (self) ; type_sitter :: Node :: raw (self) . named_children (& mut c . 0) . enumerate () . filter (move | (i , n) | ! n . is_extra () && me . field_name_for_named_child (* i as _) . is_none ()) . map (| (_ , n) | n) } . map (< anon_unions :: VisibilityModifier_WhereClause < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw)
     }
 }
 #[automatically_derived]
@@ -10280,7 +10157,7 @@ impl<'tree> UnionItem<'tree> {
     ) -> impl Iterator<
         Item = type_sitter::NodeResult<'tree, anon_unions::VisibilityModifier_WhereClause<'tree>>,
     > + 'a {
-        { let raw = * type_sitter :: Node :: raw (self) ; c . 0 . reset (raw) ; c . 0 . goto_first_child () ; std :: iter :: from_fn (move || loop { let has_field = c . 0 . field_name () . is_some () ; let node = c . 0 . node () ; let keep_going = c . 0 . goto_next_sibling () ; if ! has_field && node . is_named () && ! node . is_extra () { break Some (node) } else if ! keep_going { break None } }) } . map (< anon_unions :: VisibilityModifier_WhereClause < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw)
+        { let me = * type_sitter :: Node :: raw (self) ; type_sitter :: Node :: raw (self) . named_children (& mut c . 0) . enumerate () . filter (move | (i , n) | ! n . is_extra () && me . field_name_for_named_child (* i as _) . is_none ()) . map (| (_ , n) | n) } . map (< anon_unions :: VisibilityModifier_WhereClause < 'tree > as type_sitter :: Node < 'tree >> :: try_from_raw)
     }
 }
 #[automatically_derived]
@@ -10511,23 +10388,16 @@ impl<'tree> UseDeclaration<'tree> {
     pub fn visibility_modifier(
         &self,
     ) -> Option<type_sitter::NodeResult<'tree, VisibilityModifier<'tree>>> {
-        {
-            let raw = *type_sitter::Node::raw(self);
-            let mut c = raw.walk();
-            c.reset(raw);
-            c.goto_first_child();
-            loop {
-                let has_field = c.field_name().is_some();
-                let node = c.node();
-                let keep_going = c.goto_next_sibling();
-                if !has_field && node.is_named() && !node.is_extra() {
-                    break Some(node);
-                } else if !keep_going {
-                    break None;
-                }
-            }
-        }
-        .map(<VisibilityModifier<'tree> as type_sitter::Node<'tree>>::try_from_raw)
+        (0..type_sitter::Node::raw(self).named_child_count())
+            .filter(|i| {
+                type_sitter::Node::raw(self)
+                    .field_name_for_named_child(*i as _)
+                    .is_none()
+            })
+            .map(|i| type_sitter::Node::raw(self).named_child(i).unwrap())
+            .filter(|n| !n.is_extra())
+            .next()
+            .map(<VisibilityModifier<'tree> as type_sitter::Node<'tree>>::try_from_raw)
     }
 }
 #[automatically_derived]
@@ -10671,23 +10541,16 @@ impl<'tree> VariadicParameter<'tree> {
     pub fn mutable_specifier(
         &self,
     ) -> Option<type_sitter::NodeResult<'tree, MutableSpecifier<'tree>>> {
-        {
-            let raw = *type_sitter::Node::raw(self);
-            let mut c = raw.walk();
-            c.reset(raw);
-            c.goto_first_child();
-            loop {
-                let has_field = c.field_name().is_some();
-                let node = c.node();
-                let keep_going = c.goto_next_sibling();
-                if !has_field && node.is_named() && !node.is_extra() {
-                    break Some(node);
-                } else if !keep_going {
-                    break None;
-                }
-            }
-        }
-        .map(<MutableSpecifier<'tree> as type_sitter::Node<'tree>>::try_from_raw)
+        (0..type_sitter::Node::raw(self).named_child_count())
+            .filter(|i| {
+                type_sitter::Node::raw(self)
+                    .field_name_for_named_child(*i as _)
+                    .is_none()
+            })
+            .map(|i| type_sitter::Node::raw(self).named_child(i).unwrap())
+            .filter(|n| !n.is_extra())
+            .next()
+            .map(<MutableSpecifier<'tree> as type_sitter::Node<'tree>>::try_from_raw)
     }
 }
 #[automatically_derived]
@@ -10908,23 +10771,16 @@ impl<'tree> WhileExpression<'tree> {
     #[doc = "Get the node's only non-field not-extra named child, if it has one.\n\nThis child has type `label?` ([`Label`])"]
     #[inline]
     pub fn label(&self) -> Option<type_sitter::NodeResult<'tree, Label<'tree>>> {
-        {
-            let raw = *type_sitter::Node::raw(self);
-            let mut c = raw.walk();
-            c.reset(raw);
-            c.goto_first_child();
-            loop {
-                let has_field = c.field_name().is_some();
-                let node = c.node();
-                let keep_going = c.goto_next_sibling();
-                if !has_field && node.is_named() && !node.is_extra() {
-                    break Some(node);
-                } else if !keep_going {
-                    break None;
-                }
-            }
-        }
-        .map(<Label<'tree> as type_sitter::Node<'tree>>::try_from_raw)
+        (0..type_sitter::Node::raw(self).named_child_count())
+            .filter(|i| {
+                type_sitter::Node::raw(self)
+                    .field_name_for_named_child(*i as _)
+                    .is_none()
+            })
+            .map(|i| type_sitter::Node::raw(self).named_child(i).unwrap())
+            .filter(|n| !n.is_extra())
+            .next()
+            .map(<Label<'tree> as type_sitter::Node<'tree>>::try_from_raw)
     }
 }
 #[automatically_derived]
