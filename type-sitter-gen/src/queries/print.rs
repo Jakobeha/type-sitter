@@ -235,7 +235,7 @@ impl<'tree> SExpSeq<'tree> {
 
             #[automatically_derived]
             impl<'query, 'tree: 'query> std::fmt::Debug for #query_match<'query, 'tree> {
-                fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
                     f.debug_tuple(stringify!(#query_match))
                         .field(&self.0)
                         .finish()
@@ -410,7 +410,7 @@ impl<'tree> SExpSeq<'tree> {
             #[doc = #capture_variant_extract_method_doc]
             #full_capture_documentation
             #[inline]
-            pub fn #as_capture_method(&self) -> Option<&#capture_node_type_tokens> {
+            pub fn #as_capture_method(&self) -> ::std::option::Option<&#capture_node_type_tokens> {
                 #[allow(irrefutable_let_patterns)]
                 if let Self::#capture_variant(node) = self {
                     Some(node)
@@ -498,10 +498,10 @@ impl CaptureQuantifierExt for CaptureQuantifier {
     fn print_type(&self, inner_type: &TokenStream) -> TokenStream {
         match self {
             CaptureQuantifier::Zero => quote! { () },
-            CaptureQuantifier::ZeroOrOne => quote! { Option<#inner_type> },
-            CaptureQuantifier::ZeroOrMore => quote! { impl Iterator<Item=#inner_type> + '_ },
+            CaptureQuantifier::ZeroOrOne => quote! { ::std::option::Option<#inner_type> },
+            CaptureQuantifier::ZeroOrMore => quote! { impl ::std::iter::Iterator<Item=#inner_type> + '_ },
             CaptureQuantifier::One => quote! { #inner_type },
-            CaptureQuantifier::OneOrMore => quote! { impl Iterator<Item=#inner_type> + '_ },
+            CaptureQuantifier::OneOrMore => quote! { impl ::std::iter::Iterator<Item=#inner_type> + '_ },
         }
     }
 
@@ -519,12 +519,12 @@ impl CaptureQuantifierExt for CaptureQuantifier {
     fn print_expr(&self, iterator: &TokenStream) -> TokenStream {
         let iterator = quote! {{ #iterator }};
         match self {
-            CaptureQuantifier::Zero => quote! { debug_assert!(#iterator.next().is_none(), "zero quantifier returned an item") },
+            CaptureQuantifier::Zero => quote! { ::std::debug_assert!(#iterator.next().is_none(), "zero quantifier returned an item") },
             CaptureQuantifier::ZeroOrOne => quote! { #iterator.next() },
             CaptureQuantifier::ZeroOrMore => quote! { #iterator },
             CaptureQuantifier::One => quote! {
                 let result = #iterator.next().expect("one quantifier returned nothing");
-                debug_assert!(#iterator.next().is_none(), "one quantifier returned more than one item");
+                ::std::debug_assert!(#iterator.next().is_none(), "one quantifier returned more than one item");
                 result
             },
             CaptureQuantifier::OneOrMore => quote! { #iterator },

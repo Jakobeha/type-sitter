@@ -351,7 +351,7 @@ impl NodeType {
                         quote! {
                             #[doc = #doc_str]
                             #[inline]
-                            pub fn #as_method(self) -> Option<#rust_type> {
+                            pub fn #as_method(self) -> ::std::option::Option<#rust_type> {
                                 self #accessor_chain .#inner_as_method()
                             }
                         }
@@ -660,7 +660,7 @@ impl NodeType {
         quote! {
             #[doc = #doc]
             #[inline]
-            pub fn #as_method(self) -> Option<#rust_type> {
+            pub fn #as_method(self) -> ::std::option::Option<#rust_type> {
                 #[allow(irrefutable_let_patterns)]
                 if let Self::#ident(x) = self {
                     Some(x)
@@ -772,7 +772,7 @@ impl Children {
                 #[doc = #children_doc]
                 #nonempty_doc
                 #[inline]
-                pub fn #ident<'a>(&self, c: &'a mut #type_sitter_lib::TreeCursor<'tree>) -> impl Iterator<Item = #type_sitter_lib::NodeResult<'tree, #child_type>> + 'a {
+                pub fn #ident<'a>(&self, c: &'a mut #type_sitter_lib::TreeCursor<'tree>) -> impl ::std::iter::Iterator<Item = #type_sitter_lib::NodeResult<'tree, #child_type>> + 'a {
                     #children_body.map(<#child_type as #type_sitter_lib::Node<'tree>>::try_from_raw)
                 }
             }
@@ -786,7 +786,7 @@ impl Children {
             if self.required {
                 child_body = quote! { #child_body.expect("required child not present, there should at least be a MISSING node in its place") };
             } else {
-                child_type = quote! { Option<#child_type> };
+                child_type = quote! { ::std::option::Option<#child_type> };
             }
             let child_doc = if self.required {
                 required_child_doc
