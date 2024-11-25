@@ -212,7 +212,7 @@ Currently you can't generate queries without [vendoring the grammar](#build-scri
 
 ```shell
 cargo add type-sitter --no-default-features  # Or add to Cargo.toml manually
-cargo add --dev type-sitter-cli  # Notice `cargo add --dev`
+cargo install type-sitter-cli  # Notice `cargo install`
 cargo add tree-sitter-foobar-lang  # Replace `foobar-lang` with the name of your language
 ```
 
@@ -230,6 +230,8 @@ Additionally, you must pass `--use-yak-sitter` if the `yak-sitter` feature is en
 Alternatively, instead of the path to the grammar's root folder, if you specify the path to the `node-types.json` directly, the CLI tool will only generate node types; or if you specify the path to the `queries` directory, it will only generate queries.
 
 A downside with the CLI approach is that you need to manually re-generate the nodes if the grammar changes. An upside is that, if you know the grammar won't change and you won't have to manually re-generate, you can edit the generated code and the edits will persist.
+
+Another downside is that the CLI can only be used on systems that have run `cargo install type-sitter-cli`. See https://github.com/rust-lang/cargo/issues/2267 for why the CLI method can't easily be made portable; if you want portability, use procedural macros or a build script.
 
 ## Example
 
