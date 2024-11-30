@@ -154,8 +154,8 @@ fn main() {
         .expect("this mustn't already exist");
   
     // To give an explicit name to a hidden node that is not a supertype in the grammar.
-    // (e.g. make `Class::members` return `ClassMember` instead of `anon_unions:...`, assuming the original `grammar.js`
-    //  contains:
+    // (e.g. make `Class::members` return `ClassMember` instead of `anon_unions::...`, assuming the
+    //  original `grammar.js` contains:
     //  ```
     //  class: $ => seq(
     //      ...
