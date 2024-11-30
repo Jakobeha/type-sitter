@@ -65,12 +65,26 @@ fn test_node_types() {
         DeclarationStatement(decl) => decl.as_macro_invocation(),
         Expression(expr) => expr.as_macro_invocation(),
         ExpressionStatement(expr) => expr.expression().unwrap().as_macro_invocation(),
-        Label(label) => panic!("Expected declaration statement, expression, or expression statement, but got label: {:?}", label),
+        Label(label) => panic!("Expected declaration statement, expression, or expression statement, but got label: {label:?}"),
     }.unwrap();
     assert_eq!(rust_todo.r#macro().unwrap().as_identifier().unwrap().utf8_text(RUST_STR.as_bytes()).unwrap(), "todo");
     let rust_todo_arg = rust_todo.token_tree().unwrap();
     assert_eq!(rust_todo_arg.children(&mut cursor3).count(), 1);
     assert_eq!(rust_todo_arg.children(&mut cursor3).next().unwrap2().as_literal().unwrap().as_string_literal().unwrap().utf8_text(RUST_STR.as_bytes()).unwrap(), "\"baz\"");
+}
+
+#[test]
+fn test_child_type() {
+    let rust_tree = rust_tree();
+    let rust_source_file = rust_tree.root_node().unwrap();
+    let child = rust_source_file.children(&mut rust_tree.walk()).next().unwrap2();
+
+    type TopLevelItem<'t> = <rust::SourceFile<'t> as HasChildren<'t>>::Child;
+    match child {
+        TopLevelItem::DeclarationStatement(rust::DeclarationStatement::FunctionItem(function)) =>
+            assert_eq!(function.name().utf8_text(RUST_STR.as_bytes()).unwrap(), "main"),
+        _ => panic!("Expected function item, but got {child:?}"),
+    }
 }
 
 #[test]
@@ -81,7 +95,7 @@ fn test_queries() {
     let mut q = QueryCursor::new();
     let matches_str = q
         .matches(&rust::queries::Highlights, rust_source_file, RUST_STR.as_bytes())
-        .map_deref(|r#match| format!("{:?}\n", r#match))
+        .map_deref(|r#match| format!("{match:?}\n"))
         .collect::<String>();
     // println!("---\n{}\n---", matches_str);
     assert_eq!(matches_str, r#"
@@ -121,7 +135,7 @@ HighlightsMatch(QueryMatch { id: 46, pattern_index: 28, captures: [QueryCapture 
 "#[1..]);
     let captures_str = q
         .captures(&rust::queries::Highlights, rust_source_file, RUST_STR.as_bytes())
-        .map(|capture| format!("{:?}\n", capture))
+        .map(|capture| format!("{capture:?}\n"))
         .collect::<String>();
     // println!("---\n{captures_str}\n---");
     assert_eq!(captures_str, r#"
