@@ -679,7 +679,7 @@ pub mod anon_unions {
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             match node.kind() {
                 "false" => {
                     Ok(unsafe {

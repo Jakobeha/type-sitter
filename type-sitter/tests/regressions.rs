@@ -1,4 +1,4 @@
-use type_sitter::{Node, OptionNodeResultExt, Parser, Tree};
+use type_sitter::{Node, HasChildren, OptionNodeResultExt, Parser, Tree};
 
 mod rust {
     type_sitter::generate_nodes!("../vendor/tree-sitter-rust/src/node-types.json");

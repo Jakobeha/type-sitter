@@ -1,4 +1,4 @@
-use type_sitter::{Node, OptionNodeResultExt, Parser, QueryCursor, StreamingIterator, Tree};
+use type_sitter::{Node, HasChildren, OptionNodeResultExt, Parser, QueryCursor, StreamingIterator, Tree};
 
 mod rust {
     use type_sitter::generate_nodes;

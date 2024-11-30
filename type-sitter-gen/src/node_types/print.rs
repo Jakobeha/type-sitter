@@ -70,7 +70,8 @@ impl NodeType {
     ) -> TokenStream {
         let mut prev_methods = HashSet::new();
 
-        let child_accessors = Self::child_accessors(
+        let (child_accessors, trait_child_accessor) = Self::child_accessors(
+            ident,
             fields,
             other_children,
             &mut prev_methods,
@@ -90,6 +91,8 @@ impl NodeType {
             impl<'tree> #ident<'tree> {
                 #child_accessors
             }
+
+            #trait_child_accessor
 
             #[automatically_derived]
             impl<'tree> #type_sitter_lib::Node<'tree> for #ident<'tree> {
@@ -160,7 +163,8 @@ impl NodeType {
 
         // We want accessors for the fields that are common to every variant.
         let common_fields = Self::common_subtype_fields(subtypes, all_types);
-        let inlined_child_accessors = Self::child_accessors(
+        let (inlined_child_accessors, trait_child_accessor) = Self::child_accessors(
+            ident,
             &common_fields,
             &Children::EMPTY,
             &mut prev_methods,
@@ -227,6 +231,8 @@ impl NodeType {
                 #inlined_variant_accessors
                 #inlined_child_accessors
             }
+
+            #trait_child_accessor
 
             #[automatically_derived]
             impl<'tree> #type_sitter_lib::Node<'tree> for #ident<'tree> {
@@ -429,12 +435,13 @@ impl NodeType {
 
     //noinspection DuplicatedCode
     fn child_accessors(
+        ident: &Ident,
         fields: &BTreeMap<String, Children>,
         other_children: &Children,
         prev_methods: &mut HashSet<String>,
         ctx @ PrintCtx { all_types, type_sitter_lib, .. }: PrintCtx,
         anon_unions: &mut AnonUnions
-    ) -> TokenStream {
+    ) -> (TokenStream, TokenStream) {
         let field_accessors = fields.iter().map(|(name, field)| {
             let name_sexp = lit_str(name);
             let kind_desc = ChildrenKind::new(field, true, all_types).to_string();
@@ -457,7 +464,7 @@ impl NodeType {
             )
         }).collect::<TokenStream>();
 
-        let children_accessor = if other_children.is_empty() {
+        let special_children_accessor = if other_children.is_empty() || (fields.is_empty() && other_children.types.len() != 1) {
             TokenStream::new()
         } else {
             let kind_desc = ChildrenKind::new(other_children, true, all_types).to_string();
@@ -468,21 +475,9 @@ impl NodeType {
                 unmake_reserved(&mut method_name);
                 method_name
             } else {
-                if fields.is_empty() {
-                    "child"
-                } else {
-                    "other"
-                }.to_string()
+                "other".to_string()
             };
-            let mut other_name_plural = if other_children.types.len() == 1 {
-                format!("{}s", other_name)
-            } else {
-                if fields.is_empty() {
-                    "children"
-                } else {
-                    "others"
-                }.to_string()
-            };
+            let mut other_name_plural = format!("{}s", other_name);
             make_not_reserved(&mut other_name);
             make_not_reserved(&mut other_name_plural);
 
@@ -549,10 +544,33 @@ impl NodeType {
             }
         };
 
-        quote! {
-            #field_accessors
-            #children_accessor
-        }
+        let trait_children_accessor = if fields.is_empty() && !other_children.is_empty() {
+            let trait_name = if other_children.multiple {
+                quote!(HasChildren)
+            } else if other_children.required {
+                quote!(HasChild)
+            } else {
+                quote!(HasOptionalChild)
+            };
+            let associated_type = other_children.print_type(ctx, &mut *anon_unions);
+
+            quote! {
+                #[automatically_derived]
+                impl<'tree> #type_sitter_lib::#trait_name<'tree> for #ident<'tree> {
+                    type Child = #associated_type;
+                }
+            }
+        } else {
+            TokenStream::new()
+        };
+
+        (
+            quote! {
+                #field_accessors
+                #special_children_accessor
+            },
+            trait_children_accessor
+        )
     }
 
     pub(crate) fn print_sum_type(
@@ -753,11 +771,9 @@ impl Children {
         (children_name, children_doc, children_body): (String, TokenStream, TokenStream),
         (child_name, required_child_doc, optional_child_doc, mut child_body): (String, TokenStream, TokenStream, TokenStream),
         prev_methods: &mut HashSet<String>,
-        ctx @ PrintCtx { all_types, type_sitter_lib, .. }: PrintCtx,
+        ctx @ PrintCtx { type_sitter_lib, .. }: PrintCtx,
         anon_unions: &mut AnonUnions,
     ) -> TokenStream {
-        let types = self.types.iter().map(|name| &all_types[name]).collect::<Vec<_>>();
-
         if self.multiple {
             let children_name = disambiguate_then_add(children_name, prev_methods);
             let ident = ident!(children_name, "node field (rust method name)").unwrap();
@@ -767,7 +783,7 @@ impl Children {
             } else {
                 quote! {}
             };
-            let child_type = NodeType::print_sum_type(&types, ctx, anon_unions);
+            let child_type = self.print_type(ctx, &mut *anon_unions);
             quote! {
                 #[doc = #children_doc]
                 #nonempty_doc
@@ -780,7 +796,7 @@ impl Children {
             let child_name = disambiguate_then_add(child_name, prev_methods);
             let ident = ident!(child_name, "node field (rust method name)").unwrap();
 
-            let mut child_type = NodeType::print_sum_type(&types, ctx, anon_unions);
+            let mut child_type = self.print_type(ctx, &mut *anon_unions);
             child_body = quote! { #child_body.map(<#child_type as #type_sitter_lib::Node<'tree>>::try_from_raw) };
             child_type = quote! { #type_sitter_lib::NodeResult<'tree, #child_type> };
             if self.required {
@@ -801,6 +817,16 @@ impl Children {
                 }
             }
         }
+    }
+
+    fn print_type(
+        &self,
+        ctx @ PrintCtx { all_types, .. }: PrintCtx,
+        anon_unions: &mut AnonUnions
+    ) -> TokenStream {
+        let types = self.types.iter().map(|name| &all_types[name]).collect::<Vec<_>>();
+
+        NodeType::print_sum_type(&types, ctx, anon_unions)
     }
 }
 

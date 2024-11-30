@@ -230,6 +230,64 @@ pub trait Node<'tree>: Debug + Clone + Copy + PartialEq + Eq + Hash {
     // endregion
 }
 
+/// A node that has a single optional named child (besides [extras](tree_sitter::Node::is_extra))
+/// and no fields.
+///
+/// The trait mainly exists for the associated type, because usually these kinds of nodes' child
+/// type is anonymous.
+pub trait HasOptionalChild<'tree>: Node<'tree> {
+    type Child: Node<'tree>;
+
+    /// Gets the node's only not-extra named child, if it exists.
+    #[inline]
+    fn child(&self) -> Option<NodeResult<'tree, Self::Child>> {
+        optional_child(self)
+    }
+}
+
+/// A node that has a single named child (besides [extras](tree_sitter::Node::is_extra)) and no
+/// fields.
+///
+/// The trait mainly exists for the associated type, because usually these kinds of nodes' child
+/// type is anonymous.
+pub trait HasChild<'tree>: Node<'tree> {
+    type Child: Node<'tree>;
+
+    /// Gets the node's only not-extra named child.
+    #[inline]
+    fn child(&self) -> NodeResult<'tree, Self::Child> {
+        optional_child(self)
+            .expect("required child not present, there should at least be a MISSING node in its place")
+    }
+}
+
+#[inline]
+fn optional_child<'tree, Child: Node<'tree>>(this: &impl Node<'tree>) -> Option<NodeResult<'tree, Child>> {
+    (0..this.raw().named_child_count())
+        .map(|i| this.raw().named_child(i).unwrap())
+        .filter(|n| !n.is_extra())
+        .next()
+        .map(Child::try_from_raw)
+}
+
+/// A node that has multiple named children (besides [extras](tree_sitter::Node::is_extra)) and no
+/// fields.
+///
+/// The trait mainly exists for the associated type, because usually these kinds of nodes' child
+/// type is anonymous.
+pub trait HasChildren<'tree>: Node<'tree> {
+    type Child: Node<'tree>;
+
+    /// Gets the node's not-extra named children.
+    #[inline]
+    fn children<'a>(&self, c: &'a mut TreeCursor<'tree>) -> impl Iterator<Item=NodeResult<'tree, Self::Child>> + 'a where Self: 'a {
+        self.raw()
+            .named_children(&mut c.0)
+            .filter(|n| !n.is_extra())
+            .map(Self::Child::try_from_raw)
+    }
+}
+
 struct Prefixes<'tree> {
     cursor: raw::TreeCursor<'tree>,
     end: raw::Node<'tree>,

@@ -454,7 +454,9 @@ pub mod anon_unions {
         type WithLifetime<'a> = ConstantBuiltin<'a>;
         const KIND: &'static str = "{false | null | true}";
         #[inline]
-        fn try_from_raw(node: ::type_sitter::raw::Node<'tree>) -> ::type_sitter::NodeResult<Self> {
+        fn try_from_raw(
+            node: ::type_sitter::raw::Node<'tree>,
+        ) -> ::type_sitter::NodeResult<'tree, Self> {
             match node.kind() {
                 "false" => Ok(unsafe {
                     Self::False(

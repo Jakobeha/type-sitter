@@ -192,7 +192,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for DeclarationStatement<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         match node.kind() {
             "associated_type" => {
                 Ok(unsafe {
@@ -861,7 +861,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for Expression<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if let Ok(this) = <Literal<
             'tree,
         > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
@@ -1262,7 +1262,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for Literal<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         match node.kind() {
             "boolean_literal" => {
                 Ok(unsafe {
@@ -1433,7 +1433,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for LiteralPattern<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         match node.kind() {
             "boolean_literal" => {
                 Ok(unsafe {
@@ -1756,7 +1756,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for Pattern<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if let Ok(this) = <symbols::__<
             'tree,
         > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
@@ -2071,7 +2071,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for Type<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         match node.kind() {
             "abstract_type" => {
                 Ok(unsafe {
@@ -2370,7 +2370,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for AbstractType<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "abstract_type" {
             Ok(Self(node))
         } else {
@@ -2409,33 +2409,10 @@ This node has named children of type `{_expression | attribute_item}*`:
 pub struct Arguments<'tree>(::yak_sitter::Node<'tree>);
 #[automatically_derived]
 #[allow(unused)]
-impl<'tree> Arguments<'tree> {
-    /**Get the node's not-extra named children.
-
-These children have type `{_expression | attribute_item}*`:
-
-- [`Expression`]
-- [`AttributeItem`]
-*/
-    #[inline]
-    pub fn children<'a>(
-        &self,
-        c: &'a mut ::type_sitter_lib::TreeCursor<'tree>,
-    ) -> impl ::std::iter::Iterator<
-        Item = ::type_sitter_lib::NodeResult<
-            'tree,
-            anon_unions::Expression_AttributeItem<'tree>,
-        >,
-    > + 'a {
-        ::type_sitter_lib::Node::raw(self)
-            .named_children(&mut c.0)
-            .filter(|n| !n.is_extra())
-            .map(
-                <anon_unions::Expression_AttributeItem<
-                    'tree,
-                > as ::type_sitter_lib::Node<'tree>>::try_from_raw,
-            )
-    }
+impl<'tree> Arguments<'tree> {}
+#[automatically_derived]
+impl<'tree> ::type_sitter_lib::HasChildren<'tree> for Arguments<'tree> {
+    type Child = anon_unions::Expression_AttributeItem<'tree>;
 }
 #[automatically_derived]
 impl<'tree> ::type_sitter_lib::Node<'tree> for Arguments<'tree> {
@@ -2444,7 +2421,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for Arguments<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "arguments" {
             Ok(Self(node))
         } else {
@@ -2540,7 +2517,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for ArrayExpression<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "array_expression" {
             Ok(Self(node))
         } else {
@@ -2610,7 +2587,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for ArrayType<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "array_type" {
             Ok(Self(node))
         } else {
@@ -2681,7 +2658,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for AssignmentExpression<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "assignment_expression" {
             Ok(Self(node))
         } else {
@@ -2789,7 +2766,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for AssociatedType<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "associated_type" {
             Ok(Self(node))
         } else {
@@ -2841,13 +2818,17 @@ This child has type `block` ([`Block`])*/
     }
 }
 #[automatically_derived]
+impl<'tree> ::type_sitter_lib::HasChild<'tree> for AsyncBlock<'tree> {
+    type Child = Block<'tree>;
+}
+#[automatically_derived]
 impl<'tree> ::type_sitter_lib::Node<'tree> for AsyncBlock<'tree> {
     type WithLifetime<'a> = AsyncBlock<'a>;
     const KIND: &'static str = "async_block";
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "async_block" {
             Ok(Self(node))
         } else {
@@ -2962,7 +2943,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for Attribute<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "attribute" {
             Ok(Self(node))
         } else {
@@ -3014,13 +2995,17 @@ This child has type `attribute` ([`Attribute`])*/
     }
 }
 #[automatically_derived]
+impl<'tree> ::type_sitter_lib::HasChild<'tree> for AttributeItem<'tree> {
+    type Child = Attribute<'tree>;
+}
+#[automatically_derived]
 impl<'tree> ::type_sitter_lib::Node<'tree> for AttributeItem<'tree> {
     type WithLifetime<'a> = AttributeItem<'a>;
     const KIND: &'static str = "attribute_item";
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "attribute_item" {
             Ok(Self(node))
         } else {
@@ -3072,13 +3057,17 @@ This child has type `_expression` ([`Expression`])*/
     }
 }
 #[automatically_derived]
+impl<'tree> ::type_sitter_lib::HasChild<'tree> for AwaitExpression<'tree> {
+    type Child = Expression<'tree>;
+}
+#[automatically_derived]
 impl<'tree> ::type_sitter_lib::Node<'tree> for AwaitExpression<'tree> {
     type WithLifetime<'a> = AwaitExpression<'a>;
     const KIND: &'static str = "await_expression";
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "await_expression" {
             Ok(Self(node))
         } else {
@@ -3130,13 +3119,17 @@ This child has type `_expression` ([`Expression`])*/
     }
 }
 #[automatically_derived]
+impl<'tree> ::type_sitter_lib::HasChild<'tree> for BaseFieldInitializer<'tree> {
+    type Child = Expression<'tree>;
+}
+#[automatically_derived]
 impl<'tree> ::type_sitter_lib::Node<'tree> for BaseFieldInitializer<'tree> {
     type WithLifetime<'a> = BaseFieldInitializer<'a>;
     const KIND: &'static str = "base_field_initializer";
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "base_field_initializer" {
             Ok(Self(node))
         } else {
@@ -3251,7 +3244,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for BinaryExpression<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "binary_expression" {
             Ok(Self(node))
         } else {
@@ -3292,35 +3285,12 @@ This node has named children of type `{_declaration_statement | _expression | ex
 pub struct Block<'tree>(::yak_sitter::Node<'tree>);
 #[automatically_derived]
 #[allow(unused)]
-impl<'tree> Block<'tree> {
-    /**Get the node's not-extra named children.
-
-These children have type `{_declaration_statement | _expression | expression_statement | label}*`:
-
-- [`DeclarationStatement`]
-- [`Expression`]
-- [`ExpressionStatement`]
-- [`Label`]
-*/
-    #[inline]
-    pub fn children<'a>(
-        &self,
-        c: &'a mut ::type_sitter_lib::TreeCursor<'tree>,
-    ) -> impl ::std::iter::Iterator<
-        Item = ::type_sitter_lib::NodeResult<
-            'tree,
-            anon_unions::DeclarationStatement_Expression_ExpressionStatement_Label<'tree>,
-        >,
-    > + 'a {
-        ::type_sitter_lib::Node::raw(self)
-            .named_children(&mut c.0)
-            .filter(|n| !n.is_extra())
-            .map(
-                <anon_unions::DeclarationStatement_Expression_ExpressionStatement_Label<
-                    'tree,
-                > as ::type_sitter_lib::Node<'tree>>::try_from_raw,
-            )
-    }
+impl<'tree> Block<'tree> {}
+#[automatically_derived]
+impl<'tree> ::type_sitter_lib::HasChildren<'tree> for Block<'tree> {
+    type Child = anon_unions::DeclarationStatement_Expression_ExpressionStatement_Label<
+        'tree,
+    >;
 }
 #[automatically_derived]
 impl<'tree> ::type_sitter_lib::Node<'tree> for Block<'tree> {
@@ -3329,7 +3299,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for Block<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "block" {
             Ok(Self(node))
         } else {
@@ -3422,7 +3392,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for BlockComment<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "block_comment" {
             Ok(Self(node))
         } else {
@@ -3465,7 +3435,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for BooleanLiteral<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "boolean_literal" {
             Ok(Self(node))
         } else {
@@ -3504,33 +3474,10 @@ This node has named children of type `{_type | lifetime}+`:
 pub struct BoundedType<'tree>(::yak_sitter::Node<'tree>);
 #[automatically_derived]
 #[allow(unused)]
-impl<'tree> BoundedType<'tree> {
-    /**Get the node's not-extra named children.
-
-These children have type `{_type | lifetime}+`:
-
-- [`Type`]
-- [`Lifetime`]
-*/
-    /**
-
-This is guaranteed to return at least one child.*/
-    #[inline]
-    pub fn children<'a>(
-        &self,
-        c: &'a mut ::type_sitter_lib::TreeCursor<'tree>,
-    ) -> impl ::std::iter::Iterator<
-        Item = ::type_sitter_lib::NodeResult<'tree, anon_unions::Type_Lifetime<'tree>>,
-    > + 'a {
-        ::type_sitter_lib::Node::raw(self)
-            .named_children(&mut c.0)
-            .filter(|n| !n.is_extra())
-            .map(
-                <anon_unions::Type_Lifetime<
-                    'tree,
-                > as ::type_sitter_lib::Node<'tree>>::try_from_raw,
-            )
-    }
+impl<'tree> BoundedType<'tree> {}
+#[automatically_derived]
+impl<'tree> ::type_sitter_lib::HasChildren<'tree> for BoundedType<'tree> {
+    type Child = anon_unions::Type_Lifetime<'tree>;
 }
 #[automatically_derived]
 impl<'tree> ::type_sitter_lib::Node<'tree> for BoundedType<'tree> {
@@ -3539,7 +3486,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for BoundedType<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "bounded_type" {
             Ok(Self(node))
         } else {
@@ -3578,31 +3525,10 @@ This node has a named child of type `{_type | qualified_type}`:
 pub struct BracketedType<'tree>(::yak_sitter::Node<'tree>);
 #[automatically_derived]
 #[allow(unused)]
-impl<'tree> BracketedType<'tree> {
-    /**Get the node's only not-extra named child.
-
-This child has type `{_type | qualified_type}`:
-
-- [`Type`]
-- [`QualifiedType`]
-*/
-    #[inline]
-    pub fn child(
-        &self,
-    ) -> ::type_sitter_lib::NodeResult<'tree, anon_unions::Type_QualifiedType<'tree>> {
-        (0..::type_sitter_lib::Node::raw(self).named_child_count())
-            .map(|i| ::type_sitter_lib::Node::raw(self).named_child(i).unwrap())
-            .filter(|n| !n.is_extra())
-            .next()
-            .map(
-                <anon_unions::Type_QualifiedType<
-                    'tree,
-                > as ::type_sitter_lib::Node<'tree>>::try_from_raw,
-            )
-            .expect(
-                "required child not present, there should at least be a MISSING node in its place",
-            )
-    }
+impl<'tree> BracketedType<'tree> {}
+#[automatically_derived]
+impl<'tree> ::type_sitter_lib::HasChild<'tree> for BracketedType<'tree> {
+    type Child = anon_unions::Type_QualifiedType<'tree>;
 }
 #[automatically_derived]
 impl<'tree> ::type_sitter_lib::Node<'tree> for BracketedType<'tree> {
@@ -3611,7 +3537,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for BracketedType<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "bracketed_type" {
             Ok(Self(node))
         } else {
@@ -3650,30 +3576,10 @@ This node has named children of type `{_expression | label}*`:
 pub struct BreakExpression<'tree>(::yak_sitter::Node<'tree>);
 #[automatically_derived]
 #[allow(unused)]
-impl<'tree> BreakExpression<'tree> {
-    /**Get the node's not-extra named children.
-
-These children have type `{_expression | label}*`:
-
-- [`Expression`]
-- [`Label`]
-*/
-    #[inline]
-    pub fn children<'a>(
-        &self,
-        c: &'a mut ::type_sitter_lib::TreeCursor<'tree>,
-    ) -> impl ::std::iter::Iterator<
-        Item = ::type_sitter_lib::NodeResult<'tree, anon_unions::Expression_Label<'tree>>,
-    > + 'a {
-        ::type_sitter_lib::Node::raw(self)
-            .named_children(&mut c.0)
-            .filter(|n| !n.is_extra())
-            .map(
-                <anon_unions::Expression_Label<
-                    'tree,
-                > as ::type_sitter_lib::Node<'tree>>::try_from_raw,
-            )
-    }
+impl<'tree> BreakExpression<'tree> {}
+#[automatically_derived]
+impl<'tree> ::type_sitter_lib::HasChildren<'tree> for BreakExpression<'tree> {
+    type Child = anon_unions::Expression_Label<'tree>;
 }
 #[automatically_derived]
 impl<'tree> ::type_sitter_lib::Node<'tree> for BreakExpression<'tree> {
@@ -3682,7 +3588,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for BreakExpression<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "break_expression" {
             Ok(Self(node))
         } else {
@@ -3804,7 +3710,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for CallExpression<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "call_expression" {
             Ok(Self(node))
         } else {
@@ -3860,13 +3766,17 @@ This is guaranteed to return at least one child.*/
     }
 }
 #[automatically_derived]
+impl<'tree> ::type_sitter_lib::HasChildren<'tree> for CapturedPattern<'tree> {
+    type Child = Pattern<'tree>;
+}
+#[automatically_derived]
 impl<'tree> ::type_sitter_lib::Node<'tree> for CapturedPattern<'tree> {
     type WithLifetime<'a> = CapturedPattern<'a>;
     const KIND: &'static str = "captured_pattern";
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "captured_pattern" {
             Ok(Self(node))
         } else {
@@ -3909,7 +3819,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for CharLiteral<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "char_literal" {
             Ok(Self(node))
         } else {
@@ -4008,7 +3918,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for ClosureExpression<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "closure_expression" {
             Ok(Self(node))
         } else {
@@ -4047,33 +3957,10 @@ This node has named children of type `{_pattern | parameter}*`:
 pub struct ClosureParameters<'tree>(::yak_sitter::Node<'tree>);
 #[automatically_derived]
 #[allow(unused)]
-impl<'tree> ClosureParameters<'tree> {
-    /**Get the node's not-extra named children.
-
-These children have type `{_pattern | parameter}*`:
-
-- [`Pattern`]
-- [`Parameter`]
-*/
-    #[inline]
-    pub fn children<'a>(
-        &self,
-        c: &'a mut ::type_sitter_lib::TreeCursor<'tree>,
-    ) -> impl ::std::iter::Iterator<
-        Item = ::type_sitter_lib::NodeResult<
-            'tree,
-            anon_unions::Pattern_Parameter<'tree>,
-        >,
-    > + 'a {
-        ::type_sitter_lib::Node::raw(self)
-            .named_children(&mut c.0)
-            .filter(|n| !n.is_extra())
-            .map(
-                <anon_unions::Pattern_Parameter<
-                    'tree,
-                > as ::type_sitter_lib::Node<'tree>>::try_from_raw,
-            )
-    }
+impl<'tree> ClosureParameters<'tree> {}
+#[automatically_derived]
+impl<'tree> ::type_sitter_lib::HasChildren<'tree> for ClosureParameters<'tree> {
+    type Child = anon_unions::Pattern_Parameter<'tree>;
 }
 #[automatically_derived]
 impl<'tree> ::type_sitter_lib::Node<'tree> for ClosureParameters<'tree> {
@@ -4082,7 +3969,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for ClosureParameters<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "closure_parameters" {
             Ok(Self(node))
         } else {
@@ -4189,7 +4076,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for CompoundAssignmentExpr<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "compound_assignment_expr" {
             Ok(Self(node))
         } else {
@@ -4247,7 +4134,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for ConstBlock<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "const_block" {
             Ok(Self(node))
         } else {
@@ -4356,7 +4243,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for ConstItem<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "const_item" {
             Ok(Self(node))
         } else {
@@ -4427,7 +4314,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for ConstParameter<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "const_parameter" {
             Ok(Self(node))
         } else {
@@ -4511,7 +4398,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for ConstrainedTypeParameter<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "constrained_type_parameter" {
             Ok(Self(node))
         } else {
@@ -4562,13 +4449,17 @@ This child has type `label?` ([`Label`])*/
     }
 }
 #[automatically_derived]
+impl<'tree> ::type_sitter_lib::HasOptionalChild<'tree> for ContinueExpression<'tree> {
+    type Child = Label<'tree>;
+}
+#[automatically_derived]
 impl<'tree> ::type_sitter_lib::Node<'tree> for ContinueExpression<'tree> {
     type WithLifetime<'a> = ContinueExpression<'a>;
     const KIND: &'static str = "continue_expression";
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "continue_expression" {
             Ok(Self(node))
         } else {
@@ -4611,7 +4502,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for Crate<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "crate" {
             Ok(Self(node))
         } else {
@@ -4668,13 +4559,17 @@ These children have type `_declaration_statement*` ([`DeclarationStatement`])*/
     }
 }
 #[automatically_derived]
+impl<'tree> ::type_sitter_lib::HasChildren<'tree> for DeclarationList<'tree> {
+    type Child = DeclarationStatement<'tree>;
+}
+#[automatically_derived]
 impl<'tree> ::type_sitter_lib::Node<'tree> for DeclarationList<'tree> {
     type WithLifetime<'a> = DeclarationList<'a>;
     const KIND: &'static str = "declaration_list";
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "declaration_list" {
             Ok(Self(node))
         } else {
@@ -4717,7 +4612,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for DocComment<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "doc_comment" {
             Ok(Self(node))
         } else {
@@ -4793,7 +4688,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for DynamicType<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "dynamic_type" {
             Ok(Self(node))
         } else {
@@ -4832,31 +4727,10 @@ This node has a named child of type `{block | if_expression}`:
 pub struct ElseClause<'tree>(::yak_sitter::Node<'tree>);
 #[automatically_derived]
 #[allow(unused)]
-impl<'tree> ElseClause<'tree> {
-    /**Get the node's only not-extra named child.
-
-This child has type `{block | if_expression}`:
-
-- [`Block`]
-- [`IfExpression`]
-*/
-    #[inline]
-    pub fn child(
-        &self,
-    ) -> ::type_sitter_lib::NodeResult<'tree, anon_unions::Block_IfExpression<'tree>> {
-        (0..::type_sitter_lib::Node::raw(self).named_child_count())
-            .map(|i| ::type_sitter_lib::Node::raw(self).named_child(i).unwrap())
-            .filter(|n| !n.is_extra())
-            .next()
-            .map(
-                <anon_unions::Block_IfExpression<
-                    'tree,
-                > as ::type_sitter_lib::Node<'tree>>::try_from_raw,
-            )
-            .expect(
-                "required child not present, there should at least be a MISSING node in its place",
-            )
-    }
+impl<'tree> ElseClause<'tree> {}
+#[automatically_derived]
+impl<'tree> ::type_sitter_lib::HasChild<'tree> for ElseClause<'tree> {
+    type Child = anon_unions::Block_IfExpression<'tree>;
 }
 #[automatically_derived]
 impl<'tree> ::type_sitter_lib::Node<'tree> for ElseClause<'tree> {
@@ -4865,7 +4739,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for ElseClause<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "else_clause" {
             Ok(Self(node))
         } else {
@@ -4908,7 +4782,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for EmptyStatement<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "empty_statement" {
             Ok(Self(node))
         } else {
@@ -5034,7 +4908,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for EnumItem<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "enum_item" {
             Ok(Self(node))
         } else {
@@ -5155,7 +5029,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for EnumVariant<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "enum_variant" {
             Ok(Self(node))
         } else {
@@ -5194,33 +5068,10 @@ This node has named children of type `{attribute_item | enum_variant}*`:
 pub struct EnumVariantList<'tree>(::yak_sitter::Node<'tree>);
 #[automatically_derived]
 #[allow(unused)]
-impl<'tree> EnumVariantList<'tree> {
-    /**Get the node's not-extra named children.
-
-These children have type `{attribute_item | enum_variant}*`:
-
-- [`AttributeItem`]
-- [`EnumVariant`]
-*/
-    #[inline]
-    pub fn children<'a>(
-        &self,
-        c: &'a mut ::type_sitter_lib::TreeCursor<'tree>,
-    ) -> impl ::std::iter::Iterator<
-        Item = ::type_sitter_lib::NodeResult<
-            'tree,
-            anon_unions::AttributeItem_EnumVariant<'tree>,
-        >,
-    > + 'a {
-        ::type_sitter_lib::Node::raw(self)
-            .named_children(&mut c.0)
-            .filter(|n| !n.is_extra())
-            .map(
-                <anon_unions::AttributeItem_EnumVariant<
-                    'tree,
-                > as ::type_sitter_lib::Node<'tree>>::try_from_raw,
-            )
-    }
+impl<'tree> EnumVariantList<'tree> {}
+#[automatically_derived]
+impl<'tree> ::type_sitter_lib::HasChildren<'tree> for EnumVariantList<'tree> {
+    type Child = anon_unions::AttributeItem_EnumVariant<'tree>;
 }
 #[automatically_derived]
 impl<'tree> ::type_sitter_lib::Node<'tree> for EnumVariantList<'tree> {
@@ -5229,7 +5080,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for EnumVariantList<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "enum_variant_list" {
             Ok(Self(node))
         } else {
@@ -5272,7 +5123,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for EscapeSequence<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "escape_sequence" {
             Ok(Self(node))
         } else {
@@ -5324,13 +5175,17 @@ This child has type `_expression` ([`Expression`])*/
     }
 }
 #[automatically_derived]
+impl<'tree> ::type_sitter_lib::HasChild<'tree> for ExpressionStatement<'tree> {
+    type Child = Expression<'tree>;
+}
+#[automatically_derived]
 impl<'tree> ::type_sitter_lib::Node<'tree> for ExpressionStatement<'tree> {
     type WithLifetime<'a> = ExpressionStatement<'a>;
     const KIND: &'static str = "expression_statement";
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "expression_statement" {
             Ok(Self(node))
         } else {
@@ -5442,7 +5297,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for ExternCrateDeclaration<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "extern_crate_declaration" {
             Ok(Self(node))
         } else {
@@ -5495,13 +5350,17 @@ This child has type `string_literal?` ([`StringLiteral`])*/
     }
 }
 #[automatically_derived]
+impl<'tree> ::type_sitter_lib::HasOptionalChild<'tree> for ExternModifier<'tree> {
+    type Child = StringLiteral<'tree>;
+}
+#[automatically_derived]
 impl<'tree> ::type_sitter_lib::Node<'tree> for ExternModifier<'tree> {
     type WithLifetime<'a> = ExternModifier<'a>;
     const KIND: &'static str = "extern_modifier";
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "extern_modifier" {
             Ok(Self(node))
         } else {
@@ -5600,7 +5459,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for FieldDeclaration<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "field_declaration" {
             Ok(Self(node))
         } else {
@@ -5639,33 +5498,10 @@ This node has named children of type `{attribute_item | field_declaration}*`:
 pub struct FieldDeclarationList<'tree>(::yak_sitter::Node<'tree>);
 #[automatically_derived]
 #[allow(unused)]
-impl<'tree> FieldDeclarationList<'tree> {
-    /**Get the node's not-extra named children.
-
-These children have type `{attribute_item | field_declaration}*`:
-
-- [`AttributeItem`]
-- [`FieldDeclaration`]
-*/
-    #[inline]
-    pub fn children<'a>(
-        &self,
-        c: &'a mut ::type_sitter_lib::TreeCursor<'tree>,
-    ) -> impl ::std::iter::Iterator<
-        Item = ::type_sitter_lib::NodeResult<
-            'tree,
-            anon_unions::AttributeItem_FieldDeclaration<'tree>,
-        >,
-    > + 'a {
-        ::type_sitter_lib::Node::raw(self)
-            .named_children(&mut c.0)
-            .filter(|n| !n.is_extra())
-            .map(
-                <anon_unions::AttributeItem_FieldDeclaration<
-                    'tree,
-                > as ::type_sitter_lib::Node<'tree>>::try_from_raw,
-            )
-    }
+impl<'tree> FieldDeclarationList<'tree> {}
+#[automatically_derived]
+impl<'tree> ::type_sitter_lib::HasChildren<'tree> for FieldDeclarationList<'tree> {
+    type Child = anon_unions::AttributeItem_FieldDeclaration<'tree>;
 }
 #[automatically_derived]
 impl<'tree> ::type_sitter_lib::Node<'tree> for FieldDeclarationList<'tree> {
@@ -5674,7 +5510,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for FieldDeclarationList<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "field_declaration_list" {
             Ok(Self(node))
         } else {
@@ -5758,7 +5594,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for FieldExpression<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "field_expression" {
             Ok(Self(node))
         } else {
@@ -5801,7 +5637,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for FieldIdentifier<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "field_identifier" {
             Ok(Self(node))
         } else {
@@ -5909,7 +5745,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for FieldInitializer<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "field_initializer" {
             Ok(Self(node))
         } else {
@@ -5949,36 +5785,12 @@ This node has named children of type `{base_field_initializer | field_initialize
 pub struct FieldInitializerList<'tree>(::yak_sitter::Node<'tree>);
 #[automatically_derived]
 #[allow(unused)]
-impl<'tree> FieldInitializerList<'tree> {
-    /**Get the node's not-extra named children.
-
-These children have type `{base_field_initializer | field_initializer | shorthand_field_initializer}*`:
-
-- [`BaseFieldInitializer`]
-- [`FieldInitializer`]
-- [`ShorthandFieldInitializer`]
-*/
-    #[inline]
-    pub fn children<'a>(
-        &self,
-        c: &'a mut ::type_sitter_lib::TreeCursor<'tree>,
-    ) -> impl ::std::iter::Iterator<
-        Item = ::type_sitter_lib::NodeResult<
-            'tree,
-            anon_unions::BaseFieldInitializer_FieldInitializer_ShorthandFieldInitializer<
-                'tree,
-            >,
-        >,
-    > + 'a {
-        ::type_sitter_lib::Node::raw(self)
-            .named_children(&mut c.0)
-            .filter(|n| !n.is_extra())
-            .map(
-                <anon_unions::BaseFieldInitializer_FieldInitializer_ShorthandFieldInitializer<
-                    'tree,
-                > as ::type_sitter_lib::Node<'tree>>::try_from_raw,
-            )
-    }
+impl<'tree> FieldInitializerList<'tree> {}
+#[automatically_derived]
+impl<'tree> ::type_sitter_lib::HasChildren<'tree> for FieldInitializerList<'tree> {
+    type Child = anon_unions::BaseFieldInitializer_FieldInitializer_ShorthandFieldInitializer<
+        'tree,
+    >;
 }
 #[automatically_derived]
 impl<'tree> ::type_sitter_lib::Node<'tree> for FieldInitializerList<'tree> {
@@ -5987,7 +5799,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for FieldInitializerList<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "field_initializer_list" {
             Ok(Self(node))
         } else {
@@ -6094,7 +5906,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for FieldPattern<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "field_pattern" {
             Ok(Self(node))
         } else {
@@ -6137,7 +5949,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for FloatLiteral<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "float_literal" {
             Ok(Self(node))
         } else {
@@ -6241,7 +6053,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for ForExpression<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "for_expression" {
             Ok(Self(node))
         } else {
@@ -6297,13 +6109,17 @@ This is guaranteed to return at least one child.*/
     }
 }
 #[automatically_derived]
+impl<'tree> ::type_sitter_lib::HasChildren<'tree> for ForLifetimes<'tree> {
+    type Child = Lifetime<'tree>;
+}
+#[automatically_derived]
 impl<'tree> ::type_sitter_lib::Node<'tree> for ForLifetimes<'tree> {
     type WithLifetime<'a> = ForLifetimes<'a>;
     const KIND: &'static str = "for_lifetimes";
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "for_lifetimes" {
             Ok(Self(node))
         } else {
@@ -6406,7 +6222,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for ForeignModItem<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "foreign_mod_item" {
             Ok(Self(node))
         } else {
@@ -6449,7 +6265,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for FragmentSpecifier<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "fragment_specifier" {
             Ok(Self(node))
         } else {
@@ -6613,7 +6429,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for FunctionItem<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "function_item" {
             Ok(Self(node))
         } else {
@@ -6666,13 +6482,17 @@ These children have type `extern_modifier*` ([`ExternModifier`])*/
     }
 }
 #[automatically_derived]
+impl<'tree> ::type_sitter_lib::HasChildren<'tree> for FunctionModifiers<'tree> {
+    type Child = ExternModifier<'tree>;
+}
+#[automatically_derived]
 impl<'tree> ::type_sitter_lib::Node<'tree> for FunctionModifiers<'tree> {
     type WithLifetime<'a> = FunctionModifiers<'a>;
     const KIND: &'static str = "function_modifiers";
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "function_modifiers" {
             Ok(Self(node))
         } else {
@@ -6823,7 +6643,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for FunctionSignatureItem<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "function_signature_item" {
             Ok(Self(node))
         } else {
@@ -6957,7 +6777,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for FunctionType<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "function_type" {
             Ok(Self(node))
         } else {
@@ -7044,7 +6864,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for GenericFunction<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "generic_function" {
             Ok(Self(node))
         } else {
@@ -7134,7 +6954,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for GenericType<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "generic_type" {
             Ok(Self(node))
         } else {
@@ -7220,7 +7040,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for GenericTypeWithTurbofish<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "generic_type_with_turbofish" {
             Ok(Self(node))
         } else {
@@ -7293,7 +7113,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for HigherRankedTraitBound<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "higher_ranked_trait_bound" {
             Ok(Self(node))
         } else {
@@ -7336,7 +7156,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for Identifier<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "identifier" {
             Ok(Self(node))
         } else {
@@ -7433,7 +7253,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for IfExpression<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "if_expression" {
             Ok(Self(node))
         } else {
@@ -7569,7 +7389,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for ImplItem<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "impl_item" {
             Ok(Self(node))
         } else {
@@ -7625,13 +7445,17 @@ This is guaranteed to return at least one child.*/
     }
 }
 #[automatically_derived]
+impl<'tree> ::type_sitter_lib::HasChildren<'tree> for IndexExpression<'tree> {
+    type Child = Expression<'tree>;
+}
+#[automatically_derived]
 impl<'tree> ::type_sitter_lib::Node<'tree> for IndexExpression<'tree> {
     type WithLifetime<'a> = IndexExpression<'a>;
     const KIND: &'static str = "index_expression";
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "index_expression" {
             Ok(Self(node))
         } else {
@@ -7683,13 +7507,17 @@ This child has type `attribute` ([`Attribute`])*/
     }
 }
 #[automatically_derived]
+impl<'tree> ::type_sitter_lib::HasChild<'tree> for InnerAttributeItem<'tree> {
+    type Child = Attribute<'tree>;
+}
+#[automatically_derived]
 impl<'tree> ::type_sitter_lib::Node<'tree> for InnerAttributeItem<'tree> {
     type WithLifetime<'a> = InnerAttributeItem<'a>;
     const KIND: &'static str = "inner_attribute_item";
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "inner_attribute_item" {
             Ok(Self(node))
         } else {
@@ -7732,7 +7560,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for InnerDocCommentMarker<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "inner_doc_comment_marker" {
             Ok(Self(node))
         } else {
@@ -7775,7 +7603,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for IntegerLiteral<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "integer_literal" {
             Ok(Self(node))
         } else {
@@ -7827,13 +7655,17 @@ This child has type `identifier` ([`Identifier`])*/
     }
 }
 #[automatically_derived]
+impl<'tree> ::type_sitter_lib::HasChild<'tree> for Label<'tree> {
+    type Child = Identifier<'tree>;
+}
+#[automatically_derived]
 impl<'tree> ::type_sitter_lib::Node<'tree> for Label<'tree> {
     type WithLifetime<'a> = Label<'a>;
     const KIND: &'static str = "label";
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "label" {
             Ok(Self(node))
         } else {
@@ -7872,36 +7704,10 @@ This node has named children of type `{_expression | let_condition}+`:
 pub struct LetChain<'tree>(::yak_sitter::Node<'tree>);
 #[automatically_derived]
 #[allow(unused)]
-impl<'tree> LetChain<'tree> {
-    /**Get the node's not-extra named children.
-
-These children have type `{_expression | let_condition}+`:
-
-- [`Expression`]
-- [`LetCondition`]
-*/
-    /**
-
-This is guaranteed to return at least one child.*/
-    #[inline]
-    pub fn children<'a>(
-        &self,
-        c: &'a mut ::type_sitter_lib::TreeCursor<'tree>,
-    ) -> impl ::std::iter::Iterator<
-        Item = ::type_sitter_lib::NodeResult<
-            'tree,
-            anon_unions::Expression_LetCondition<'tree>,
-        >,
-    > + 'a {
-        ::type_sitter_lib::Node::raw(self)
-            .named_children(&mut c.0)
-            .filter(|n| !n.is_extra())
-            .map(
-                <anon_unions::Expression_LetCondition<
-                    'tree,
-                > as ::type_sitter_lib::Node<'tree>>::try_from_raw,
-            )
-    }
+impl<'tree> LetChain<'tree> {}
+#[automatically_derived]
+impl<'tree> ::type_sitter_lib::HasChildren<'tree> for LetChain<'tree> {
+    type Child = anon_unions::Expression_LetCondition<'tree>;
 }
 #[automatically_derived]
 impl<'tree> ::type_sitter_lib::Node<'tree> for LetChain<'tree> {
@@ -7910,7 +7716,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for LetChain<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "let_chain" {
             Ok(Self(node))
         } else {
@@ -7981,7 +7787,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for LetCondition<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "let_condition" {
             Ok(Self(node))
         } else {
@@ -8099,7 +7905,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for LetDeclaration<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "let_declaration" {
             Ok(Self(node))
         } else {
@@ -8151,13 +7957,17 @@ This child has type `identifier` ([`Identifier`])*/
     }
 }
 #[automatically_derived]
+impl<'tree> ::type_sitter_lib::HasChild<'tree> for Lifetime<'tree> {
+    type Child = Identifier<'tree>;
+}
+#[automatically_derived]
 impl<'tree> ::type_sitter_lib::Node<'tree> for Lifetime<'tree> {
     type WithLifetime<'a> = Lifetime<'a>;
     const KIND: &'static str = "lifetime";
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "lifetime" {
             Ok(Self(node))
         } else {
@@ -8250,7 +8060,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for LineComment<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "line_comment" {
             Ok(Self(node))
         } else {
@@ -8328,7 +8138,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for LoopExpression<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "loop_expression" {
             Ok(Self(node))
         } else {
@@ -8410,7 +8220,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for MacroDefinition<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "macro_definition" {
             Ok(Self(node))
         } else {
@@ -8502,7 +8312,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for MacroInvocation<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "macro_invocation" {
             Ok(Self(node))
         } else {
@@ -8575,7 +8385,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for MacroRule<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "macro_rule" {
             Ok(Self(node))
         } else {
@@ -8685,7 +8495,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for MatchArm<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "match_arm" {
             Ok(Self(node))
         } else {
@@ -8738,13 +8548,17 @@ These children have type `match_arm*` ([`MatchArm`])*/
     }
 }
 #[automatically_derived]
+impl<'tree> ::type_sitter_lib::HasChildren<'tree> for MatchBlock<'tree> {
+    type Child = MatchArm<'tree>;
+}
+#[automatically_derived]
 impl<'tree> ::type_sitter_lib::Node<'tree> for MatchBlock<'tree> {
     type WithLifetime<'a> = MatchBlock<'a>;
     const KIND: &'static str = "match_block";
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "match_block" {
             Ok(Self(node))
         } else {
@@ -8815,7 +8629,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for MatchExpression<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "match_expression" {
             Ok(Self(node))
         } else {
@@ -8907,7 +8721,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for MatchPattern<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "match_pattern" {
             Ok(Self(node))
         } else {
@@ -8950,7 +8764,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for Metavariable<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "metavariable" {
             Ok(Self(node))
         } else {
@@ -9050,7 +8864,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for ModItem<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "mod_item" {
             Ok(Self(node))
         } else {
@@ -9089,36 +8903,10 @@ This node has named children of type `{_pattern | mutable_specifier}+`:
 pub struct MutPattern<'tree>(::yak_sitter::Node<'tree>);
 #[automatically_derived]
 #[allow(unused)]
-impl<'tree> MutPattern<'tree> {
-    /**Get the node's not-extra named children.
-
-These children have type `{_pattern | mutable_specifier}+`:
-
-- [`Pattern`]
-- [`MutableSpecifier`]
-*/
-    /**
-
-This is guaranteed to return at least one child.*/
-    #[inline]
-    pub fn children<'a>(
-        &self,
-        c: &'a mut ::type_sitter_lib::TreeCursor<'tree>,
-    ) -> impl ::std::iter::Iterator<
-        Item = ::type_sitter_lib::NodeResult<
-            'tree,
-            anon_unions::Pattern_MutableSpecifier<'tree>,
-        >,
-    > + 'a {
-        ::type_sitter_lib::Node::raw(self)
-            .named_children(&mut c.0)
-            .filter(|n| !n.is_extra())
-            .map(
-                <anon_unions::Pattern_MutableSpecifier<
-                    'tree,
-                > as ::type_sitter_lib::Node<'tree>>::try_from_raw,
-            )
-    }
+impl<'tree> MutPattern<'tree> {}
+#[automatically_derived]
+impl<'tree> ::type_sitter_lib::HasChildren<'tree> for MutPattern<'tree> {
+    type Child = anon_unions::Pattern_MutableSpecifier<'tree>;
 }
 #[automatically_derived]
 impl<'tree> ::type_sitter_lib::Node<'tree> for MutPattern<'tree> {
@@ -9127,7 +8915,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for MutPattern<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "mut_pattern" {
             Ok(Self(node))
         } else {
@@ -9170,7 +8958,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for MutableSpecifier<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "mutable_specifier" {
             Ok(Self(node))
         } else {
@@ -9209,34 +8997,10 @@ This node has a named child of type `{float_literal | integer_literal}`:
 pub struct NegativeLiteral<'tree>(::yak_sitter::Node<'tree>);
 #[automatically_derived]
 #[allow(unused)]
-impl<'tree> NegativeLiteral<'tree> {
-    /**Get the node's only not-extra named child.
-
-This child has type `{float_literal | integer_literal}`:
-
-- [`FloatLiteral`]
-- [`IntegerLiteral`]
-*/
-    #[inline]
-    pub fn child(
-        &self,
-    ) -> ::type_sitter_lib::NodeResult<
-        'tree,
-        anon_unions::FloatLiteral_IntegerLiteral<'tree>,
-    > {
-        (0..::type_sitter_lib::Node::raw(self).named_child_count())
-            .map(|i| ::type_sitter_lib::Node::raw(self).named_child(i).unwrap())
-            .filter(|n| !n.is_extra())
-            .next()
-            .map(
-                <anon_unions::FloatLiteral_IntegerLiteral<
-                    'tree,
-                > as ::type_sitter_lib::Node<'tree>>::try_from_raw,
-            )
-            .expect(
-                "required child not present, there should at least be a MISSING node in its place",
-            )
-    }
+impl<'tree> NegativeLiteral<'tree> {}
+#[automatically_derived]
+impl<'tree> ::type_sitter_lib::HasChild<'tree> for NegativeLiteral<'tree> {
+    type Child = anon_unions::FloatLiteral_IntegerLiteral<'tree>;
 }
 #[automatically_derived]
 impl<'tree> ::type_sitter_lib::Node<'tree> for NegativeLiteral<'tree> {
@@ -9245,7 +9009,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for NegativeLiteral<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "negative_literal" {
             Ok(Self(node))
         } else {
@@ -9288,7 +9052,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for NeverType<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "never_type" {
             Ok(Self(node))
         } else {
@@ -9372,7 +9136,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for OptionalTypeParameter<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "optional_type_parameter" {
             Ok(Self(node))
         } else {
@@ -9428,13 +9192,17 @@ This is guaranteed to return at least one child.*/
     }
 }
 #[automatically_derived]
+impl<'tree> ::type_sitter_lib::HasChildren<'tree> for OrPattern<'tree> {
+    type Child = Pattern<'tree>;
+}
+#[automatically_derived]
 impl<'tree> ::type_sitter_lib::Node<'tree> for OrPattern<'tree> {
     type WithLifetime<'a> = OrPattern<'a>;
     const KIND: &'static str = "or_pattern";
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "or_pattern" {
             Ok(Self(node))
         } else {
@@ -9533,7 +9301,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for OrderedFieldDeclarationList<'tree
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "ordered_field_declaration_list" {
             Ok(Self(node))
         } else {
@@ -9576,7 +9344,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for OuterDocCommentMarker<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "outer_doc_comment_marker" {
             Ok(Self(node))
         } else {
@@ -9681,7 +9449,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for Parameter<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "parameter" {
             Ok(Self(node))
         } else {
@@ -9723,38 +9491,12 @@ This node has named children of type `{_type | attribute_item | parameter | self
 pub struct Parameters<'tree>(::yak_sitter::Node<'tree>);
 #[automatically_derived]
 #[allow(unused)]
-impl<'tree> Parameters<'tree> {
-    /**Get the node's not-extra named children.
-
-These children have type `{_type | attribute_item | parameter | self_parameter | variadic_parameter}*`:
-
-- [`Type`]
-- [`AttributeItem`]
-- [`Parameter`]
-- [`SelfParameter`]
-- [`VariadicParameter`]
-*/
-    #[inline]
-    pub fn children<'a>(
-        &self,
-        c: &'a mut ::type_sitter_lib::TreeCursor<'tree>,
-    ) -> impl ::std::iter::Iterator<
-        Item = ::type_sitter_lib::NodeResult<
-            'tree,
-            anon_unions::Type_AttributeItem_Parameter_SelfParameter_VariadicParameter<
-                'tree,
-            >,
-        >,
-    > + 'a {
-        ::type_sitter_lib::Node::raw(self)
-            .named_children(&mut c.0)
-            .filter(|n| !n.is_extra())
-            .map(
-                <anon_unions::Type_AttributeItem_Parameter_SelfParameter_VariadicParameter<
-                    'tree,
-                > as ::type_sitter_lib::Node<'tree>>::try_from_raw,
-            )
-    }
+impl<'tree> Parameters<'tree> {}
+#[automatically_derived]
+impl<'tree> ::type_sitter_lib::HasChildren<'tree> for Parameters<'tree> {
+    type Child = anon_unions::Type_AttributeItem_Parameter_SelfParameter_VariadicParameter<
+        'tree,
+    >;
 }
 #[automatically_derived]
 impl<'tree> ::type_sitter_lib::Node<'tree> for Parameters<'tree> {
@@ -9763,7 +9505,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for Parameters<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "parameters" {
             Ok(Self(node))
         } else {
@@ -9815,13 +9557,17 @@ This child has type `_expression` ([`Expression`])*/
     }
 }
 #[automatically_derived]
+impl<'tree> ::type_sitter_lib::HasChild<'tree> for ParenthesizedExpression<'tree> {
+    type Child = Expression<'tree>;
+}
+#[automatically_derived]
 impl<'tree> ::type_sitter_lib::Node<'tree> for ParenthesizedExpression<'tree> {
     type WithLifetime<'a> = ParenthesizedExpression<'a>;
     const KIND: &'static str = "parenthesized_expression";
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "parenthesized_expression" {
             Ok(Self(node))
         } else {
@@ -9903,7 +9649,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for PointerType<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "pointer_type" {
             Ok(Self(node))
         } else {
@@ -9946,7 +9692,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for PrimitiveType<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "primitive_type" {
             Ok(Self(node))
         } else {
@@ -10017,7 +9763,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for QualifiedType<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "qualified_type" {
             Ok(Self(node))
         } else {
@@ -10070,13 +9816,17 @@ These children have type `_expression*` ([`Expression`])*/
     }
 }
 #[automatically_derived]
+impl<'tree> ::type_sitter_lib::HasChildren<'tree> for RangeExpression<'tree> {
+    type Child = Expression<'tree>;
+}
+#[automatically_derived]
 impl<'tree> ::type_sitter_lib::Node<'tree> for RangeExpression<'tree> {
     type WithLifetime<'a> = RangeExpression<'a>;
     const KIND: &'static str = "range_expression";
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "range_expression" {
             Ok(Self(node))
         } else {
@@ -10120,43 +9870,12 @@ This node has named children of type `{_literal_pattern | crate | identifier | m
 pub struct RangePattern<'tree>(::yak_sitter::Node<'tree>);
 #[automatically_derived]
 #[allow(unused)]
-impl<'tree> RangePattern<'tree> {
-    /**Get the node's not-extra named children.
-
-These children have type `{_literal_pattern | crate | identifier | metavariable | scoped_identifier | self | super}+`:
-
-- [`LiteralPattern`]
-- [`Crate`]
-- [`Identifier`]
-- [`Metavariable`]
-- [`ScopedIdentifier`]
-- [`Self_`]
-- [`Super`]
-*/
-    /**
-
-This is guaranteed to return at least one child.*/
-    #[inline]
-    pub fn children<'a>(
-        &self,
-        c: &'a mut ::type_sitter_lib::TreeCursor<'tree>,
-    ) -> impl ::std::iter::Iterator<
-        Item = ::type_sitter_lib::NodeResult<
-            'tree,
-            anon_unions::LiteralPattern_Crate_Identifier_Metavariable_ScopedIdentifier_Self__Super<
-                'tree,
-            >,
-        >,
-    > + 'a {
-        ::type_sitter_lib::Node::raw(self)
-            .named_children(&mut c.0)
-            .filter(|n| !n.is_extra())
-            .map(
-                <anon_unions::LiteralPattern_Crate_Identifier_Metavariable_ScopedIdentifier_Self__Super<
-                    'tree,
-                > as ::type_sitter_lib::Node<'tree>>::try_from_raw,
-            )
-    }
+impl<'tree> RangePattern<'tree> {}
+#[automatically_derived]
+impl<'tree> ::type_sitter_lib::HasChildren<'tree> for RangePattern<'tree> {
+    type Child = anon_unions::LiteralPattern_Crate_Identifier_Metavariable_ScopedIdentifier_Self__Super<
+        'tree,
+    >;
 }
 #[automatically_derived]
 impl<'tree> ::type_sitter_lib::Node<'tree> for RangePattern<'tree> {
@@ -10165,7 +9884,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for RangePattern<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "range_pattern" {
             Ok(Self(node))
         } else {
@@ -10219,13 +9938,17 @@ This child has type `string_content` ([`StringContent`])*/
     }
 }
 #[automatically_derived]
+impl<'tree> ::type_sitter_lib::HasChild<'tree> for RawStringLiteral<'tree> {
+    type Child = StringContent<'tree>;
+}
+#[automatically_derived]
 impl<'tree> ::type_sitter_lib::Node<'tree> for RawStringLiteral<'tree> {
     type WithLifetime<'a> = RawStringLiteral<'a>;
     const KIND: &'static str = "raw_string_literal";
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "raw_string_literal" {
             Ok(Self(node))
         } else {
@@ -10277,13 +10000,17 @@ This child has type `_pattern` ([`Pattern`])*/
     }
 }
 #[automatically_derived]
+impl<'tree> ::type_sitter_lib::HasChild<'tree> for RefPattern<'tree> {
+    type Child = Pattern<'tree>;
+}
+#[automatically_derived]
 impl<'tree> ::type_sitter_lib::Node<'tree> for RefPattern<'tree> {
     type WithLifetime<'a> = RefPattern<'a>;
     const KIND: &'static str = "ref_pattern";
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "ref_pattern" {
             Ok(Self(node))
         } else {
@@ -10365,7 +10092,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for ReferenceExpression<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "reference_expression" {
             Ok(Self(node))
         } else {
@@ -10404,36 +10131,10 @@ This node has named children of type `{_pattern | mutable_specifier}+`:
 pub struct ReferencePattern<'tree>(::yak_sitter::Node<'tree>);
 #[automatically_derived]
 #[allow(unused)]
-impl<'tree> ReferencePattern<'tree> {
-    /**Get the node's not-extra named children.
-
-These children have type `{_pattern | mutable_specifier}+`:
-
-- [`Pattern`]
-- [`MutableSpecifier`]
-*/
-    /**
-
-This is guaranteed to return at least one child.*/
-    #[inline]
-    pub fn children<'a>(
-        &self,
-        c: &'a mut ::type_sitter_lib::TreeCursor<'tree>,
-    ) -> impl ::std::iter::Iterator<
-        Item = ::type_sitter_lib::NodeResult<
-            'tree,
-            anon_unions::Pattern_MutableSpecifier<'tree>,
-        >,
-    > + 'a {
-        ::type_sitter_lib::Node::raw(self)
-            .named_children(&mut c.0)
-            .filter(|n| !n.is_extra())
-            .map(
-                <anon_unions::Pattern_MutableSpecifier<
-                    'tree,
-                > as ::type_sitter_lib::Node<'tree>>::try_from_raw,
-            )
-    }
+impl<'tree> ReferencePattern<'tree> {}
+#[automatically_derived]
+impl<'tree> ::type_sitter_lib::HasChildren<'tree> for ReferencePattern<'tree> {
+    type Child = anon_unions::Pattern_MutableSpecifier<'tree>;
 }
 #[automatically_derived]
 impl<'tree> ::type_sitter_lib::Node<'tree> for ReferencePattern<'tree> {
@@ -10442,7 +10143,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for ReferencePattern<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "reference_pattern" {
             Ok(Self(node))
         } else {
@@ -10539,7 +10240,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for ReferenceType<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "reference_type" {
             Ok(Self(node))
         } else {
@@ -10582,7 +10283,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for RemainingFieldPattern<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "remaining_field_pattern" {
             Ok(Self(node))
         } else {
@@ -10634,13 +10335,17 @@ This child has type `_type` ([`Type`])*/
     }
 }
 #[automatically_derived]
+impl<'tree> ::type_sitter_lib::HasChild<'tree> for RemovedTraitBound<'tree> {
+    type Child = Type<'tree>;
+}
+#[automatically_derived]
 impl<'tree> ::type_sitter_lib::Node<'tree> for RemovedTraitBound<'tree> {
     type WithLifetime<'a> = RemovedTraitBound<'a>;
     const KIND: &'static str = "removed_trait_bound";
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "removed_trait_bound" {
             Ok(Self(node))
         } else {
@@ -10691,13 +10396,17 @@ This child has type `_expression?` ([`Expression`])*/
     }
 }
 #[automatically_derived]
+impl<'tree> ::type_sitter_lib::HasOptionalChild<'tree> for ReturnExpression<'tree> {
+    type Child = Expression<'tree>;
+}
+#[automatically_derived]
 impl<'tree> ::type_sitter_lib::Node<'tree> for ReturnExpression<'tree> {
     type WithLifetime<'a> = ReturnExpression<'a>;
     const KIND: &'static str = "return_expression";
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "return_expression" {
             Ok(Self(node))
         } else {
@@ -10798,7 +10507,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for ScopedIdentifier<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "scoped_identifier" {
             Ok(Self(node))
         } else {
@@ -10889,7 +10598,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for ScopedTypeIdentifier<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "scoped_type_identifier" {
             Ok(Self(node))
         } else {
@@ -10978,7 +10687,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for ScopedUseList<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "scoped_use_list" {
             Ok(Self(node))
         } else {
@@ -11021,7 +10730,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for Self_<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "self" {
             Ok(Self(node))
         } else {
@@ -11061,37 +10770,10 @@ This node has named children of type `{lifetime | mutable_specifier | self}+`:
 pub struct SelfParameter<'tree>(::yak_sitter::Node<'tree>);
 #[automatically_derived]
 #[allow(unused)]
-impl<'tree> SelfParameter<'tree> {
-    /**Get the node's not-extra named children.
-
-These children have type `{lifetime | mutable_specifier | self}+`:
-
-- [`Lifetime`]
-- [`MutableSpecifier`]
-- [`Self_`]
-*/
-    /**
-
-This is guaranteed to return at least one child.*/
-    #[inline]
-    pub fn children<'a>(
-        &self,
-        c: &'a mut ::type_sitter_lib::TreeCursor<'tree>,
-    ) -> impl ::std::iter::Iterator<
-        Item = ::type_sitter_lib::NodeResult<
-            'tree,
-            anon_unions::Lifetime_MutableSpecifier_Self_<'tree>,
-        >,
-    > + 'a {
-        ::type_sitter_lib::Node::raw(self)
-            .named_children(&mut c.0)
-            .filter(|n| !n.is_extra())
-            .map(
-                <anon_unions::Lifetime_MutableSpecifier_Self_<
-                    'tree,
-                > as ::type_sitter_lib::Node<'tree>>::try_from_raw,
-            )
-    }
+impl<'tree> SelfParameter<'tree> {}
+#[automatically_derived]
+impl<'tree> ::type_sitter_lib::HasChildren<'tree> for SelfParameter<'tree> {
+    type Child = anon_unions::Lifetime_MutableSpecifier_Self_<'tree>;
 }
 #[automatically_derived]
 impl<'tree> ::type_sitter_lib::Node<'tree> for SelfParameter<'tree> {
@@ -11100,7 +10782,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for SelfParameter<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "self_parameter" {
             Ok(Self(node))
         } else {
@@ -11143,7 +10825,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for Shebang<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "shebang" {
             Ok(Self(node))
         } else {
@@ -11186,7 +10868,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for ShorthandFieldIdentifier<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "shorthand_field_identifier" {
             Ok(Self(node))
         } else {
@@ -11225,36 +10907,10 @@ This node has named children of type `{attribute_item | identifier}+`:
 pub struct ShorthandFieldInitializer<'tree>(::yak_sitter::Node<'tree>);
 #[automatically_derived]
 #[allow(unused)]
-impl<'tree> ShorthandFieldInitializer<'tree> {
-    /**Get the node's not-extra named children.
-
-These children have type `{attribute_item | identifier}+`:
-
-- [`AttributeItem`]
-- [`Identifier`]
-*/
-    /**
-
-This is guaranteed to return at least one child.*/
-    #[inline]
-    pub fn children<'a>(
-        &self,
-        c: &'a mut ::type_sitter_lib::TreeCursor<'tree>,
-    ) -> impl ::std::iter::Iterator<
-        Item = ::type_sitter_lib::NodeResult<
-            'tree,
-            anon_unions::AttributeItem_Identifier<'tree>,
-        >,
-    > + 'a {
-        ::type_sitter_lib::Node::raw(self)
-            .named_children(&mut c.0)
-            .filter(|n| !n.is_extra())
-            .map(
-                <anon_unions::AttributeItem_Identifier<
-                    'tree,
-                > as ::type_sitter_lib::Node<'tree>>::try_from_raw,
-            )
-    }
+impl<'tree> ShorthandFieldInitializer<'tree> {}
+#[automatically_derived]
+impl<'tree> ::type_sitter_lib::HasChildren<'tree> for ShorthandFieldInitializer<'tree> {
+    type Child = anon_unions::AttributeItem_Identifier<'tree>;
 }
 #[automatically_derived]
 impl<'tree> ::type_sitter_lib::Node<'tree> for ShorthandFieldInitializer<'tree> {
@@ -11263,7 +10919,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for ShorthandFieldInitializer<'tree> 
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "shorthand_field_initializer" {
             Ok(Self(node))
         } else {
@@ -11316,13 +10972,17 @@ These children have type `_pattern*` ([`Pattern`])*/
     }
 }
 #[automatically_derived]
+impl<'tree> ::type_sitter_lib::HasChildren<'tree> for SlicePattern<'tree> {
+    type Child = Pattern<'tree>;
+}
+#[automatically_derived]
 impl<'tree> ::type_sitter_lib::Node<'tree> for SlicePattern<'tree> {
     type WithLifetime<'a> = SlicePattern<'a>;
     const KIND: &'static str = "slice_pattern";
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "slice_pattern" {
             Ok(Self(node))
         } else {
@@ -11362,34 +11022,10 @@ This node has named children of type `{_declaration_statement | expression_state
 pub struct SourceFile<'tree>(::yak_sitter::Node<'tree>);
 #[automatically_derived]
 #[allow(unused)]
-impl<'tree> SourceFile<'tree> {
-    /**Get the node's not-extra named children.
-
-These children have type `{_declaration_statement | expression_statement | shebang}*`:
-
-- [`DeclarationStatement`]
-- [`ExpressionStatement`]
-- [`Shebang`]
-*/
-    #[inline]
-    pub fn children<'a>(
-        &self,
-        c: &'a mut ::type_sitter_lib::TreeCursor<'tree>,
-    ) -> impl ::std::iter::Iterator<
-        Item = ::type_sitter_lib::NodeResult<
-            'tree,
-            anon_unions::DeclarationStatement_ExpressionStatement_Shebang<'tree>,
-        >,
-    > + 'a {
-        ::type_sitter_lib::Node::raw(self)
-            .named_children(&mut c.0)
-            .filter(|n| !n.is_extra())
-            .map(
-                <anon_unions::DeclarationStatement_ExpressionStatement_Shebang<
-                    'tree,
-                > as ::type_sitter_lib::Node<'tree>>::try_from_raw,
-            )
-    }
+impl<'tree> SourceFile<'tree> {}
+#[automatically_derived]
+impl<'tree> ::type_sitter_lib::HasChildren<'tree> for SourceFile<'tree> {
+    type Child = anon_unions::DeclarationStatement_ExpressionStatement_Shebang<'tree>;
 }
 #[automatically_derived]
 impl<'tree> ::type_sitter_lib::Node<'tree> for SourceFile<'tree> {
@@ -11398,7 +11034,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for SourceFile<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "source_file" {
             Ok(Self(node))
         } else {
@@ -11520,7 +11156,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for StaticItem<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "static_item" {
             Ok(Self(node))
         } else {
@@ -11563,7 +11199,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for StringContent<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "string_content" {
             Ok(Self(node))
         } else {
@@ -11602,33 +11238,10 @@ This node has named children of type `{escape_sequence | string_content}*`:
 pub struct StringLiteral<'tree>(::yak_sitter::Node<'tree>);
 #[automatically_derived]
 #[allow(unused)]
-impl<'tree> StringLiteral<'tree> {
-    /**Get the node's not-extra named children.
-
-These children have type `{escape_sequence | string_content}*`:
-
-- [`EscapeSequence`]
-- [`StringContent`]
-*/
-    #[inline]
-    pub fn children<'a>(
-        &self,
-        c: &'a mut ::type_sitter_lib::TreeCursor<'tree>,
-    ) -> impl ::std::iter::Iterator<
-        Item = ::type_sitter_lib::NodeResult<
-            'tree,
-            anon_unions::EscapeSequence_StringContent<'tree>,
-        >,
-    > + 'a {
-        ::type_sitter_lib::Node::raw(self)
-            .named_children(&mut c.0)
-            .filter(|n| !n.is_extra())
-            .map(
-                <anon_unions::EscapeSequence_StringContent<
-                    'tree,
-                > as ::type_sitter_lib::Node<'tree>>::try_from_raw,
-            )
-    }
+impl<'tree> StringLiteral<'tree> {}
+#[automatically_derived]
+impl<'tree> ::type_sitter_lib::HasChildren<'tree> for StringLiteral<'tree> {
+    type Child = anon_unions::EscapeSequence_StringContent<'tree>;
 }
 #[automatically_derived]
 impl<'tree> ::type_sitter_lib::Node<'tree> for StringLiteral<'tree> {
@@ -11637,7 +11250,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for StringLiteral<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "string_literal" {
             Ok(Self(node))
         } else {
@@ -11728,7 +11341,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for StructExpression<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "struct_expression" {
             Ok(Self(node))
         } else {
@@ -11864,7 +11477,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for StructItem<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "struct_item" {
             Ok(Self(node))
         } else {
@@ -11974,7 +11587,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for StructPattern<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "struct_pattern" {
             Ok(Self(node))
         } else {
@@ -12017,7 +11630,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for Super<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "super" {
             Ok(Self(node))
         } else {
@@ -12094,7 +11707,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for TokenBindingPattern<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "token_binding_pattern" {
             Ok(Self(node))
         } else {
@@ -12141,43 +11754,12 @@ This node has named children of type `{_literal | crate | identifier | metavaria
 pub struct TokenRepetition<'tree>(::yak_sitter::Node<'tree>);
 #[automatically_derived]
 #[allow(unused)]
-impl<'tree> TokenRepetition<'tree> {
-    /**Get the node's not-extra named children.
-
-These children have type `{_literal | crate | identifier | metavariable | mutable_specifier | primitive_type | self | super | token_repetition | token_tree}*`:
-
-- [`Literal`]
-- [`Crate`]
-- [`Identifier`]
-- [`Metavariable`]
-- [`MutableSpecifier`]
-- [`PrimitiveType`]
-- [`Self_`]
-- [`Super`]
-- [`TokenRepetition`]
-- [`TokenTree`]
-*/
-    #[inline]
-    pub fn children<'a>(
-        &self,
-        c: &'a mut ::type_sitter_lib::TreeCursor<'tree>,
-    ) -> impl ::std::iter::Iterator<
-        Item = ::type_sitter_lib::NodeResult<
-            'tree,
-            anon_unions::Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType_Self__Super_TokenRepetition_TokenTree<
-                'tree,
-            >,
-        >,
-    > + 'a {
-        ::type_sitter_lib::Node::raw(self)
-            .named_children(&mut c.0)
-            .filter(|n| !n.is_extra())
-            .map(
-                <anon_unions::Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType_Self__Super_TokenRepetition_TokenTree<
-                    'tree,
-                > as ::type_sitter_lib::Node<'tree>>::try_from_raw,
-            )
-    }
+impl<'tree> TokenRepetition<'tree> {}
+#[automatically_derived]
+impl<'tree> ::type_sitter_lib::HasChildren<'tree> for TokenRepetition<'tree> {
+    type Child = anon_unions::Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType_Self__Super_TokenRepetition_TokenTree<
+        'tree,
+    >;
 }
 #[automatically_derived]
 impl<'tree> ::type_sitter_lib::Node<'tree> for TokenRepetition<'tree> {
@@ -12186,7 +11768,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for TokenRepetition<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "token_repetition" {
             Ok(Self(node))
         } else {
@@ -12234,44 +11816,12 @@ This node has named children of type `{_literal | crate | identifier | metavaria
 pub struct TokenRepetitionPattern<'tree>(::yak_sitter::Node<'tree>);
 #[automatically_derived]
 #[allow(unused)]
-impl<'tree> TokenRepetitionPattern<'tree> {
-    /**Get the node's not-extra named children.
-
-These children have type `{_literal | crate | identifier | metavariable | mutable_specifier | primitive_type | self | super | token_binding_pattern | token_repetition_pattern | token_tree_pattern}*`:
-
-- [`Literal`]
-- [`Crate`]
-- [`Identifier`]
-- [`Metavariable`]
-- [`MutableSpecifier`]
-- [`PrimitiveType`]
-- [`Self_`]
-- [`Super`]
-- [`TokenBindingPattern`]
-- [`TokenRepetitionPattern`]
-- [`TokenTreePattern`]
-*/
-    #[inline]
-    pub fn children<'a>(
-        &self,
-        c: &'a mut ::type_sitter_lib::TreeCursor<'tree>,
-    ) -> impl ::std::iter::Iterator<
-        Item = ::type_sitter_lib::NodeResult<
-            'tree,
-            anon_unions::Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType_Self__Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern<
-                'tree,
-            >,
-        >,
-    > + 'a {
-        ::type_sitter_lib::Node::raw(self)
-            .named_children(&mut c.0)
-            .filter(|n| !n.is_extra())
-            .map(
-                <anon_unions::Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType_Self__Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern<
-                    'tree,
-                > as ::type_sitter_lib::Node<'tree>>::try_from_raw,
-            )
-    }
+impl<'tree> TokenRepetitionPattern<'tree> {}
+#[automatically_derived]
+impl<'tree> ::type_sitter_lib::HasChildren<'tree> for TokenRepetitionPattern<'tree> {
+    type Child = anon_unions::Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType_Self__Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern<
+        'tree,
+    >;
 }
 #[automatically_derived]
 impl<'tree> ::type_sitter_lib::Node<'tree> for TokenRepetitionPattern<'tree> {
@@ -12280,7 +11830,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for TokenRepetitionPattern<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "token_repetition_pattern" {
             Ok(Self(node))
         } else {
@@ -12327,43 +11877,12 @@ This node has named children of type `{_literal | crate | identifier | metavaria
 pub struct TokenTree<'tree>(::yak_sitter::Node<'tree>);
 #[automatically_derived]
 #[allow(unused)]
-impl<'tree> TokenTree<'tree> {
-    /**Get the node's not-extra named children.
-
-These children have type `{_literal | crate | identifier | metavariable | mutable_specifier | primitive_type | self | super | token_repetition | token_tree}*`:
-
-- [`Literal`]
-- [`Crate`]
-- [`Identifier`]
-- [`Metavariable`]
-- [`MutableSpecifier`]
-- [`PrimitiveType`]
-- [`Self_`]
-- [`Super`]
-- [`TokenRepetition`]
-- [`TokenTree`]
-*/
-    #[inline]
-    pub fn children<'a>(
-        &self,
-        c: &'a mut ::type_sitter_lib::TreeCursor<'tree>,
-    ) -> impl ::std::iter::Iterator<
-        Item = ::type_sitter_lib::NodeResult<
-            'tree,
-            anon_unions::Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType_Self__Super_TokenRepetition_TokenTree<
-                'tree,
-            >,
-        >,
-    > + 'a {
-        ::type_sitter_lib::Node::raw(self)
-            .named_children(&mut c.0)
-            .filter(|n| !n.is_extra())
-            .map(
-                <anon_unions::Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType_Self__Super_TokenRepetition_TokenTree<
-                    'tree,
-                > as ::type_sitter_lib::Node<'tree>>::try_from_raw,
-            )
-    }
+impl<'tree> TokenTree<'tree> {}
+#[automatically_derived]
+impl<'tree> ::type_sitter_lib::HasChildren<'tree> for TokenTree<'tree> {
+    type Child = anon_unions::Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType_Self__Super_TokenRepetition_TokenTree<
+        'tree,
+    >;
 }
 #[automatically_derived]
 impl<'tree> ::type_sitter_lib::Node<'tree> for TokenTree<'tree> {
@@ -12372,7 +11891,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for TokenTree<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "token_tree" {
             Ok(Self(node))
         } else {
@@ -12420,44 +11939,12 @@ This node has named children of type `{_literal | crate | identifier | metavaria
 pub struct TokenTreePattern<'tree>(::yak_sitter::Node<'tree>);
 #[automatically_derived]
 #[allow(unused)]
-impl<'tree> TokenTreePattern<'tree> {
-    /**Get the node's not-extra named children.
-
-These children have type `{_literal | crate | identifier | metavariable | mutable_specifier | primitive_type | self | super | token_binding_pattern | token_repetition_pattern | token_tree_pattern}*`:
-
-- [`Literal`]
-- [`Crate`]
-- [`Identifier`]
-- [`Metavariable`]
-- [`MutableSpecifier`]
-- [`PrimitiveType`]
-- [`Self_`]
-- [`Super`]
-- [`TokenBindingPattern`]
-- [`TokenRepetitionPattern`]
-- [`TokenTreePattern`]
-*/
-    #[inline]
-    pub fn children<'a>(
-        &self,
-        c: &'a mut ::type_sitter_lib::TreeCursor<'tree>,
-    ) -> impl ::std::iter::Iterator<
-        Item = ::type_sitter_lib::NodeResult<
-            'tree,
-            anon_unions::Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType_Self__Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern<
-                'tree,
-            >,
-        >,
-    > + 'a {
-        ::type_sitter_lib::Node::raw(self)
-            .named_children(&mut c.0)
-            .filter(|n| !n.is_extra())
-            .map(
-                <anon_unions::Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType_Self__Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern<
-                    'tree,
-                > as ::type_sitter_lib::Node<'tree>>::try_from_raw,
-            )
-    }
+impl<'tree> TokenTreePattern<'tree> {}
+#[automatically_derived]
+impl<'tree> ::type_sitter_lib::HasChildren<'tree> for TokenTreePattern<'tree> {
+    type Child = anon_unions::Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType_Self__Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern<
+        'tree,
+    >;
 }
 #[automatically_derived]
 impl<'tree> ::type_sitter_lib::Node<'tree> for TokenTreePattern<'tree> {
@@ -12466,7 +11953,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for TokenTreePattern<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "token_tree_pattern" {
             Ok(Self(node))
         } else {
@@ -12506,37 +11993,10 @@ This node has named children of type `{_type | higher_ranked_trait_bound | lifet
 pub struct TraitBounds<'tree>(::yak_sitter::Node<'tree>);
 #[automatically_derived]
 #[allow(unused)]
-impl<'tree> TraitBounds<'tree> {
-    /**Get the node's not-extra named children.
-
-These children have type `{_type | higher_ranked_trait_bound | lifetime}+`:
-
-- [`Type`]
-- [`HigherRankedTraitBound`]
-- [`Lifetime`]
-*/
-    /**
-
-This is guaranteed to return at least one child.*/
-    #[inline]
-    pub fn children<'a>(
-        &self,
-        c: &'a mut ::type_sitter_lib::TreeCursor<'tree>,
-    ) -> impl ::std::iter::Iterator<
-        Item = ::type_sitter_lib::NodeResult<
-            'tree,
-            anon_unions::Type_HigherRankedTraitBound_Lifetime<'tree>,
-        >,
-    > + 'a {
-        ::type_sitter_lib::Node::raw(self)
-            .named_children(&mut c.0)
-            .filter(|n| !n.is_extra())
-            .map(
-                <anon_unions::Type_HigherRankedTraitBound_Lifetime<
-                    'tree,
-                > as ::type_sitter_lib::Node<'tree>>::try_from_raw,
-            )
-    }
+impl<'tree> TraitBounds<'tree> {}
+#[automatically_derived]
+impl<'tree> ::type_sitter_lib::HasChildren<'tree> for TraitBounds<'tree> {
+    type Child = anon_unions::Type_HigherRankedTraitBound_Lifetime<'tree>;
 }
 #[automatically_derived]
 impl<'tree> ::type_sitter_lib::Node<'tree> for TraitBounds<'tree> {
@@ -12545,7 +12005,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for TraitBounds<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "trait_bounds" {
             Ok(Self(node))
         } else {
@@ -12685,7 +12145,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for TraitItem<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "trait_item" {
             Ok(Self(node))
         } else {
@@ -12737,13 +12197,17 @@ This child has type `block` ([`Block`])*/
     }
 }
 #[automatically_derived]
+impl<'tree> ::type_sitter_lib::HasChild<'tree> for TryBlock<'tree> {
+    type Child = Block<'tree>;
+}
+#[automatically_derived]
 impl<'tree> ::type_sitter_lib::Node<'tree> for TryBlock<'tree> {
     type WithLifetime<'a> = TryBlock<'a>;
     const KIND: &'static str = "try_block";
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "try_block" {
             Ok(Self(node))
         } else {
@@ -12795,13 +12259,17 @@ This child has type `_expression` ([`Expression`])*/
     }
 }
 #[automatically_derived]
+impl<'tree> ::type_sitter_lib::HasChild<'tree> for TryExpression<'tree> {
+    type Child = Expression<'tree>;
+}
+#[automatically_derived]
 impl<'tree> ::type_sitter_lib::Node<'tree> for TryExpression<'tree> {
     type WithLifetime<'a> = TryExpression<'a>;
     const KIND: &'static str = "try_expression";
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "try_expression" {
             Ok(Self(node))
         } else {
@@ -12840,36 +12308,10 @@ This node has named children of type `{_expression | attribute_item}+`:
 pub struct TupleExpression<'tree>(::yak_sitter::Node<'tree>);
 #[automatically_derived]
 #[allow(unused)]
-impl<'tree> TupleExpression<'tree> {
-    /**Get the node's not-extra named children.
-
-These children have type `{_expression | attribute_item}+`:
-
-- [`Expression`]
-- [`AttributeItem`]
-*/
-    /**
-
-This is guaranteed to return at least one child.*/
-    #[inline]
-    pub fn children<'a>(
-        &self,
-        c: &'a mut ::type_sitter_lib::TreeCursor<'tree>,
-    ) -> impl ::std::iter::Iterator<
-        Item = ::type_sitter_lib::NodeResult<
-            'tree,
-            anon_unions::Expression_AttributeItem<'tree>,
-        >,
-    > + 'a {
-        ::type_sitter_lib::Node::raw(self)
-            .named_children(&mut c.0)
-            .filter(|n| !n.is_extra())
-            .map(
-                <anon_unions::Expression_AttributeItem<
-                    'tree,
-                > as ::type_sitter_lib::Node<'tree>>::try_from_raw,
-            )
-    }
+impl<'tree> TupleExpression<'tree> {}
+#[automatically_derived]
+impl<'tree> ::type_sitter_lib::HasChildren<'tree> for TupleExpression<'tree> {
+    type Child = anon_unions::Expression_AttributeItem<'tree>;
 }
 #[automatically_derived]
 impl<'tree> ::type_sitter_lib::Node<'tree> for TupleExpression<'tree> {
@@ -12878,7 +12320,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for TupleExpression<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "tuple_expression" {
             Ok(Self(node))
         } else {
@@ -12917,33 +12359,10 @@ This node has named children of type `{_pattern | closure_expression}*`:
 pub struct TuplePattern<'tree>(::yak_sitter::Node<'tree>);
 #[automatically_derived]
 #[allow(unused)]
-impl<'tree> TuplePattern<'tree> {
-    /**Get the node's not-extra named children.
-
-These children have type `{_pattern | closure_expression}*`:
-
-- [`Pattern`]
-- [`ClosureExpression`]
-*/
-    #[inline]
-    pub fn children<'a>(
-        &self,
-        c: &'a mut ::type_sitter_lib::TreeCursor<'tree>,
-    ) -> impl ::std::iter::Iterator<
-        Item = ::type_sitter_lib::NodeResult<
-            'tree,
-            anon_unions::Pattern_ClosureExpression<'tree>,
-        >,
-    > + 'a {
-        ::type_sitter_lib::Node::raw(self)
-            .named_children(&mut c.0)
-            .filter(|n| !n.is_extra())
-            .map(
-                <anon_unions::Pattern_ClosureExpression<
-                    'tree,
-                > as ::type_sitter_lib::Node<'tree>>::try_from_raw,
-            )
-    }
+impl<'tree> TuplePattern<'tree> {}
+#[automatically_derived]
+impl<'tree> ::type_sitter_lib::HasChildren<'tree> for TuplePattern<'tree> {
+    type Child = anon_unions::Pattern_ClosureExpression<'tree>;
 }
 #[automatically_derived]
 impl<'tree> ::type_sitter_lib::Node<'tree> for TuplePattern<'tree> {
@@ -12952,7 +12371,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for TuplePattern<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "tuple_pattern" {
             Ok(Self(node))
         } else {
@@ -13048,7 +12467,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for TupleStructPattern<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "tuple_struct_pattern" {
             Ok(Self(node))
         } else {
@@ -13104,13 +12523,17 @@ This is guaranteed to return at least one child.*/
     }
 }
 #[automatically_derived]
+impl<'tree> ::type_sitter_lib::HasChildren<'tree> for TupleType<'tree> {
+    type Child = Type<'tree>;
+}
+#[automatically_derived]
 impl<'tree> ::type_sitter_lib::Node<'tree> for TupleType<'tree> {
     type WithLifetime<'a> = TupleType<'a>;
     const KIND: &'static str = "tuple_type";
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "tuple_type" {
             Ok(Self(node))
         } else {
@@ -13153,40 +12576,10 @@ This node has named children of type `{_literal | _type | block | lifetime | tra
 pub struct TypeArguments<'tree>(::yak_sitter::Node<'tree>);
 #[automatically_derived]
 #[allow(unused)]
-impl<'tree> TypeArguments<'tree> {
-    /**Get the node's not-extra named children.
-
-These children have type `{_literal | _type | block | lifetime | trait_bounds | type_binding}+`:
-
-- [`Literal`]
-- [`Type`]
-- [`Block`]
-- [`Lifetime`]
-- [`TraitBounds`]
-- [`TypeBinding`]
-*/
-    /**
-
-This is guaranteed to return at least one child.*/
-    #[inline]
-    pub fn children<'a>(
-        &self,
-        c: &'a mut ::type_sitter_lib::TreeCursor<'tree>,
-    ) -> impl ::std::iter::Iterator<
-        Item = ::type_sitter_lib::NodeResult<
-            'tree,
-            anon_unions::Literal_Type_Block_Lifetime_TraitBounds_TypeBinding<'tree>,
-        >,
-    > + 'a {
-        ::type_sitter_lib::Node::raw(self)
-            .named_children(&mut c.0)
-            .filter(|n| !n.is_extra())
-            .map(
-                <anon_unions::Literal_Type_Block_Lifetime_TraitBounds_TypeBinding<
-                    'tree,
-                > as ::type_sitter_lib::Node<'tree>>::try_from_raw,
-            )
-    }
+impl<'tree> TypeArguments<'tree> {}
+#[automatically_derived]
+impl<'tree> ::type_sitter_lib::HasChildren<'tree> for TypeArguments<'tree> {
+    type Child = anon_unions::Literal_Type_Block_Lifetime_TraitBounds_TypeBinding<'tree>;
 }
 #[automatically_derived]
 impl<'tree> ::type_sitter_lib::Node<'tree> for TypeArguments<'tree> {
@@ -13195,7 +12588,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for TypeArguments<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "type_arguments" {
             Ok(Self(node))
         } else {
@@ -13280,7 +12673,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for TypeBinding<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "type_binding" {
             Ok(Self(node))
         } else {
@@ -13351,7 +12744,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for TypeCastExpression<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "type_cast_expression" {
             Ok(Self(node))
         } else {
@@ -13394,7 +12787,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for TypeIdentifier<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "type_identifier" {
             Ok(Self(node))
         } else {
@@ -13518,7 +12911,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for TypeItem<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "type_item" {
             Ok(Self(node))
         } else {
@@ -13562,43 +12955,12 @@ This node has named children of type `{attribute_item | const_parameter | constr
 pub struct TypeParameters<'tree>(::yak_sitter::Node<'tree>);
 #[automatically_derived]
 #[allow(unused)]
-impl<'tree> TypeParameters<'tree> {
-    /**Get the node's not-extra named children.
-
-These children have type `{attribute_item | const_parameter | constrained_type_parameter | lifetime | metavariable | optional_type_parameter | type_identifier}+`:
-
-- [`AttributeItem`]
-- [`ConstParameter`]
-- [`ConstrainedTypeParameter`]
-- [`Lifetime`]
-- [`Metavariable`]
-- [`OptionalTypeParameter`]
-- [`TypeIdentifier`]
-*/
-    /**
-
-This is guaranteed to return at least one child.*/
-    #[inline]
-    pub fn children<'a>(
-        &self,
-        c: &'a mut ::type_sitter_lib::TreeCursor<'tree>,
-    ) -> impl ::std::iter::Iterator<
-        Item = ::type_sitter_lib::NodeResult<
-            'tree,
-            anon_unions::AttributeItem_ConstParameter_ConstrainedTypeParameter_Lifetime_Metavariable_OptionalTypeParameter_TypeIdentifier<
-                'tree,
-            >,
-        >,
-    > + 'a {
-        ::type_sitter_lib::Node::raw(self)
-            .named_children(&mut c.0)
-            .filter(|n| !n.is_extra())
-            .map(
-                <anon_unions::AttributeItem_ConstParameter_ConstrainedTypeParameter_Lifetime_Metavariable_OptionalTypeParameter_TypeIdentifier<
-                    'tree,
-                > as ::type_sitter_lib::Node<'tree>>::try_from_raw,
-            )
-    }
+impl<'tree> TypeParameters<'tree> {}
+#[automatically_derived]
+impl<'tree> ::type_sitter_lib::HasChildren<'tree> for TypeParameters<'tree> {
+    type Child = anon_unions::AttributeItem_ConstParameter_ConstrainedTypeParameter_Lifetime_Metavariable_OptionalTypeParameter_TypeIdentifier<
+        'tree,
+    >;
 }
 #[automatically_derived]
 impl<'tree> ::type_sitter_lib::Node<'tree> for TypeParameters<'tree> {
@@ -13607,7 +12969,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for TypeParameters<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "type_parameters" {
             Ok(Self(node))
         } else {
@@ -13659,13 +13021,17 @@ This child has type `_expression` ([`Expression`])*/
     }
 }
 #[automatically_derived]
+impl<'tree> ::type_sitter_lib::HasChild<'tree> for UnaryExpression<'tree> {
+    type Child = Expression<'tree>;
+}
+#[automatically_derived]
 impl<'tree> ::type_sitter_lib::Node<'tree> for UnaryExpression<'tree> {
     type WithLifetime<'a> = UnaryExpression<'a>;
     const KIND: &'static str = "unary_expression";
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "unary_expression" {
             Ok(Self(node))
         } else {
@@ -13795,7 +13161,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for UnionItem<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "union_item" {
             Ok(Self(node))
         } else {
@@ -13838,7 +13204,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for UnitExpression<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "unit_expression" {
             Ok(Self(node))
         } else {
@@ -13881,7 +13247,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for UnitType<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "unit_type" {
             Ok(Self(node))
         } else {
@@ -13933,13 +13299,17 @@ This child has type `block` ([`Block`])*/
     }
 }
 #[automatically_derived]
+impl<'tree> ::type_sitter_lib::HasChild<'tree> for UnsafeBlock<'tree> {
+    type Child = Block<'tree>;
+}
+#[automatically_derived]
 impl<'tree> ::type_sitter_lib::Node<'tree> for UnsafeBlock<'tree> {
     type WithLifetime<'a> = UnsafeBlock<'a>;
     const KIND: &'static str = "unsafe_block";
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "unsafe_block" {
             Ok(Self(node))
         } else {
@@ -14027,7 +13397,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for UseAsClause<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "use_as_clause" {
             Ok(Self(node))
         } else {
@@ -14134,7 +13504,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for UseDeclaration<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "use_declaration" {
             Ok(Self(node))
         } else {
@@ -14181,43 +13551,12 @@ This node has named children of type `{crate | identifier | metavariable | scope
 pub struct UseList<'tree>(::yak_sitter::Node<'tree>);
 #[automatically_derived]
 #[allow(unused)]
-impl<'tree> UseList<'tree> {
-    /**Get the node's not-extra named children.
-
-These children have type `{crate | identifier | metavariable | scoped_identifier | scoped_use_list | self | super | use_as_clause | use_list | use_wildcard}*`:
-
-- [`Crate`]
-- [`Identifier`]
-- [`Metavariable`]
-- [`ScopedIdentifier`]
-- [`ScopedUseList`]
-- [`Self_`]
-- [`Super`]
-- [`UseAsClause`]
-- [`UseList`]
-- [`UseWildcard`]
-*/
-    #[inline]
-    pub fn children<'a>(
-        &self,
-        c: &'a mut ::type_sitter_lib::TreeCursor<'tree>,
-    ) -> impl ::std::iter::Iterator<
-        Item = ::type_sitter_lib::NodeResult<
-            'tree,
-            anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList_Self__Super_UseAsClause_UseList_UseWildcard<
-                'tree,
-            >,
-        >,
-    > + 'a {
-        ::type_sitter_lib::Node::raw(self)
-            .named_children(&mut c.0)
-            .filter(|n| !n.is_extra())
-            .map(
-                <anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList_Self__Super_UseAsClause_UseList_UseWildcard<
-                    'tree,
-                > as ::type_sitter_lib::Node<'tree>>::try_from_raw,
-            )
-    }
+impl<'tree> UseList<'tree> {}
+#[automatically_derived]
+impl<'tree> ::type_sitter_lib::HasChildren<'tree> for UseList<'tree> {
+    type Child = anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList_Self__Super_UseAsClause_UseList_UseWildcard<
+        'tree,
+    >;
 }
 #[automatically_derived]
 impl<'tree> ::type_sitter_lib::Node<'tree> for UseList<'tree> {
@@ -14226,7 +13565,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for UseList<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "use_list" {
             Ok(Self(node))
         } else {
@@ -14269,39 +13608,12 @@ This node has an optional named child of type `{crate | identifier | metavariabl
 pub struct UseWildcard<'tree>(::yak_sitter::Node<'tree>);
 #[automatically_derived]
 #[allow(unused)]
-impl<'tree> UseWildcard<'tree> {
-    /**Get the node's only not-extra named child, if it has one.
-
-This child has type `{crate | identifier | metavariable | scoped_identifier | self | super}?`:
-
-- [`Crate`]
-- [`Identifier`]
-- [`Metavariable`]
-- [`ScopedIdentifier`]
-- [`Self_`]
-- [`Super`]
-*/
-    #[inline]
-    pub fn child(
-        &self,
-    ) -> ::std::option::Option<
-        ::type_sitter_lib::NodeResult<
-            'tree,
-            anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier_Self__Super<
-                'tree,
-            >,
-        >,
-    > {
-        (0..::type_sitter_lib::Node::raw(self).named_child_count())
-            .map(|i| ::type_sitter_lib::Node::raw(self).named_child(i).unwrap())
-            .filter(|n| !n.is_extra())
-            .next()
-            .map(
-                <anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier_Self__Super<
-                    'tree,
-                > as ::type_sitter_lib::Node<'tree>>::try_from_raw,
-            )
-    }
+impl<'tree> UseWildcard<'tree> {}
+#[automatically_derived]
+impl<'tree> ::type_sitter_lib::HasOptionalChild<'tree> for UseWildcard<'tree> {
+    type Child = anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier_Self__Super<
+        'tree,
+    >;
 }
 #[automatically_derived]
 impl<'tree> ::type_sitter_lib::Node<'tree> for UseWildcard<'tree> {
@@ -14310,7 +13622,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for UseWildcard<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "use_wildcard" {
             Ok(Self(node))
         } else {
@@ -14391,7 +13703,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for VariadicParameter<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "variadic_parameter" {
             Ok(Self(node))
         } else {
@@ -14434,39 +13746,12 @@ This node has an optional named child of type `{crate | identifier | metavariabl
 pub struct VisibilityModifier<'tree>(::yak_sitter::Node<'tree>);
 #[automatically_derived]
 #[allow(unused)]
-impl<'tree> VisibilityModifier<'tree> {
-    /**Get the node's only not-extra named child, if it has one.
-
-This child has type `{crate | identifier | metavariable | scoped_identifier | self | super}?`:
-
-- [`Crate`]
-- [`Identifier`]
-- [`Metavariable`]
-- [`ScopedIdentifier`]
-- [`Self_`]
-- [`Super`]
-*/
-    #[inline]
-    pub fn child(
-        &self,
-    ) -> ::std::option::Option<
-        ::type_sitter_lib::NodeResult<
-            'tree,
-            anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier_Self__Super<
-                'tree,
-            >,
-        >,
-    > {
-        (0..::type_sitter_lib::Node::raw(self).named_child_count())
-            .map(|i| ::type_sitter_lib::Node::raw(self).named_child(i).unwrap())
-            .filter(|n| !n.is_extra())
-            .next()
-            .map(
-                <anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier_Self__Super<
-                    'tree,
-                > as ::type_sitter_lib::Node<'tree>>::try_from_raw,
-            )
-    }
+impl<'tree> VisibilityModifier<'tree> {}
+#[automatically_derived]
+impl<'tree> ::type_sitter_lib::HasOptionalChild<'tree> for VisibilityModifier<'tree> {
+    type Child = anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier_Self__Super<
+        'tree,
+    >;
 }
 #[automatically_derived]
 impl<'tree> ::type_sitter_lib::Node<'tree> for VisibilityModifier<'tree> {
@@ -14475,7 +13760,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for VisibilityModifier<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "visibility_modifier" {
             Ok(Self(node))
         } else {
@@ -14531,13 +13816,17 @@ This is guaranteed to return at least one child.*/
     }
 }
 #[automatically_derived]
+impl<'tree> ::type_sitter_lib::HasChildren<'tree> for WhereClause<'tree> {
+    type Child = WherePredicate<'tree>;
+}
+#[automatically_derived]
 impl<'tree> ::type_sitter_lib::Node<'tree> for WhereClause<'tree> {
     type WithLifetime<'a> = WhereClause<'a>;
     const KIND: &'static str = "where_clause";
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "where_clause" {
             Ok(Self(node))
         } else {
@@ -14631,7 +13920,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for WherePredicate<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "where_predicate" {
             Ok(Self(node))
         } else {
@@ -14736,7 +14025,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for WhileExpression<'tree> {
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "while_expression" {
             Ok(Self(node))
         } else {
@@ -14787,13 +14076,17 @@ This child has type `_expression?` ([`Expression`])*/
     }
 }
 #[automatically_derived]
+impl<'tree> ::type_sitter_lib::HasOptionalChild<'tree> for YieldExpression<'tree> {
+    type Child = Expression<'tree>;
+}
+#[automatically_derived]
 impl<'tree> ::type_sitter_lib::Node<'tree> for YieldExpression<'tree> {
     type WithLifetime<'a> = YieldExpression<'a>;
     const KIND: &'static str = "yield_expression";
     #[inline]
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
-    ) -> ::type_sitter_lib::NodeResult<Self> {
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
         if node.kind() == "yield_expression" {
             Ok(Self(node))
         } else {
@@ -14839,7 +14132,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "as" {
                 Ok(Self(node))
             } else {
@@ -14882,7 +14175,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "async" {
                 Ok(Self(node))
             } else {
@@ -14925,7 +14218,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "await" {
                 Ok(Self(node))
             } else {
@@ -14968,7 +14261,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "block" {
                 Ok(Self(node))
             } else {
@@ -15011,7 +14304,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "break" {
                 Ok(Self(node))
             } else {
@@ -15054,7 +14347,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "const" {
                 Ok(Self(node))
             } else {
@@ -15097,7 +14390,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "continue" {
                 Ok(Self(node))
             } else {
@@ -15140,7 +14433,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "default" {
                 Ok(Self(node))
             } else {
@@ -15183,7 +14476,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "dyn" {
                 Ok(Self(node))
             } else {
@@ -15226,7 +14519,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "else" {
                 Ok(Self(node))
             } else {
@@ -15269,7 +14562,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "enum" {
                 Ok(Self(node))
             } else {
@@ -15312,7 +14605,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "expr" {
                 Ok(Self(node))
             } else {
@@ -15355,7 +14648,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "extern" {
                 Ok(Self(node))
             } else {
@@ -15398,7 +14691,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "false" {
                 Ok(Self(node))
             } else {
@@ -15441,7 +14734,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "fn" {
                 Ok(Self(node))
             } else {
@@ -15484,7 +14777,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "for" {
                 Ok(Self(node))
             } else {
@@ -15527,7 +14820,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "ident" {
                 Ok(Self(node))
             } else {
@@ -15570,7 +14863,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "if" {
                 Ok(Self(node))
             } else {
@@ -15613,7 +14906,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "impl" {
                 Ok(Self(node))
             } else {
@@ -15656,7 +14949,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "in" {
                 Ok(Self(node))
             } else {
@@ -15699,7 +14992,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "item" {
                 Ok(Self(node))
             } else {
@@ -15742,7 +15035,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "let" {
                 Ok(Self(node))
             } else {
@@ -15785,7 +15078,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "lifetime" {
                 Ok(Self(node))
             } else {
@@ -15828,7 +15121,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "literal" {
                 Ok(Self(node))
             } else {
@@ -15871,7 +15164,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "loop" {
                 Ok(Self(node))
             } else {
@@ -15914,7 +15207,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "match" {
                 Ok(Self(node))
             } else {
@@ -15957,7 +15250,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "meta" {
                 Ok(Self(node))
             } else {
@@ -16000,7 +15293,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "mod" {
                 Ok(Self(node))
             } else {
@@ -16043,7 +15336,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "move" {
                 Ok(Self(node))
             } else {
@@ -16086,7 +15379,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "pat" {
                 Ok(Self(node))
             } else {
@@ -16129,7 +15422,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "path" {
                 Ok(Self(node))
             } else {
@@ -16172,7 +15465,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "pub" {
                 Ok(Self(node))
             } else {
@@ -16215,7 +15508,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "ref" {
                 Ok(Self(node))
             } else {
@@ -16258,7 +15551,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "return" {
                 Ok(Self(node))
             } else {
@@ -16301,7 +15594,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "static" {
                 Ok(Self(node))
             } else {
@@ -16344,7 +15637,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "stmt" {
                 Ok(Self(node))
             } else {
@@ -16387,7 +15680,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "struct" {
                 Ok(Self(node))
             } else {
@@ -16430,7 +15723,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "trait" {
                 Ok(Self(node))
             } else {
@@ -16473,7 +15766,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "true" {
                 Ok(Self(node))
             } else {
@@ -16516,7 +15809,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "try" {
                 Ok(Self(node))
             } else {
@@ -16559,7 +15852,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "tt" {
                 Ok(Self(node))
             } else {
@@ -16602,7 +15895,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "ty" {
                 Ok(Self(node))
             } else {
@@ -16645,7 +15938,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "type" {
                 Ok(Self(node))
             } else {
@@ -16688,7 +15981,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "union" {
                 Ok(Self(node))
             } else {
@@ -16731,7 +16024,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "unsafe" {
                 Ok(Self(node))
             } else {
@@ -16774,7 +16067,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "use" {
                 Ok(Self(node))
             } else {
@@ -16817,7 +16110,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "vis" {
                 Ok(Self(node))
             } else {
@@ -16860,7 +16153,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "where" {
                 Ok(Self(node))
             } else {
@@ -16903,7 +16196,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "while" {
                 Ok(Self(node))
             } else {
@@ -16946,7 +16239,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "yield" {
                 Ok(Self(node))
             } else {
@@ -16993,7 +16286,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "!" {
                 Ok(Self(node))
             } else {
@@ -17036,7 +16329,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "!=" {
                 Ok(Self(node))
             } else {
@@ -17079,7 +16372,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "\"" {
                 Ok(Self(node))
             } else {
@@ -17122,7 +16415,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "#" {
                 Ok(Self(node))
             } else {
@@ -17165,7 +16458,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "$" {
                 Ok(Self(node))
             } else {
@@ -17208,7 +16501,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "%" {
                 Ok(Self(node))
             } else {
@@ -17251,7 +16544,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "%=" {
                 Ok(Self(node))
             } else {
@@ -17294,7 +16587,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "&" {
                 Ok(Self(node))
             } else {
@@ -17337,7 +16630,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "&&" {
                 Ok(Self(node))
             } else {
@@ -17380,7 +16673,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "&=" {
                 Ok(Self(node))
             } else {
@@ -17423,7 +16716,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "'" {
                 Ok(Self(node))
             } else {
@@ -17466,7 +16759,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "(" {
                 Ok(Self(node))
             } else {
@@ -17509,7 +16802,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == ")" {
                 Ok(Self(node))
             } else {
@@ -17552,7 +16845,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "*" {
                 Ok(Self(node))
             } else {
@@ -17592,7 +16885,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "*/" {
                 Ok(Self(node))
             } else {
@@ -17635,7 +16928,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "*=" {
                 Ok(Self(node))
             } else {
@@ -17678,7 +16971,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "+" {
                 Ok(Self(node))
             } else {
@@ -17721,7 +17014,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "+=" {
                 Ok(Self(node))
             } else {
@@ -17764,7 +17057,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "," {
                 Ok(Self(node))
             } else {
@@ -17807,7 +17100,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "-" {
                 Ok(Self(node))
             } else {
@@ -17850,7 +17143,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "-=" {
                 Ok(Self(node))
             } else {
@@ -17893,7 +17186,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "->" {
                 Ok(Self(node))
             } else {
@@ -17936,7 +17229,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "." {
                 Ok(Self(node))
             } else {
@@ -17979,7 +17272,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == ".." {
                 Ok(Self(node))
             } else {
@@ -18022,7 +17315,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "..." {
                 Ok(Self(node))
             } else {
@@ -18065,7 +17358,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "..=" {
                 Ok(Self(node))
             } else {
@@ -18108,7 +17401,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "/" {
                 Ok(Self(node))
             } else {
@@ -18148,7 +17441,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "/*" {
                 Ok(Self(node))
             } else {
@@ -18191,7 +17484,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "//" {
                 Ok(Self(node))
             } else {
@@ -18234,7 +17527,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "/=" {
                 Ok(Self(node))
             } else {
@@ -18277,7 +17570,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == ":" {
                 Ok(Self(node))
             } else {
@@ -18320,7 +17613,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "::" {
                 Ok(Self(node))
             } else {
@@ -18363,7 +17656,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == ";" {
                 Ok(Self(node))
             } else {
@@ -18406,7 +17699,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "<" {
                 Ok(Self(node))
             } else {
@@ -18449,7 +17742,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "<<" {
                 Ok(Self(node))
             } else {
@@ -18492,7 +17785,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "<<=" {
                 Ok(Self(node))
             } else {
@@ -18535,7 +17828,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "<=" {
                 Ok(Self(node))
             } else {
@@ -18578,7 +17871,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "=" {
                 Ok(Self(node))
             } else {
@@ -18621,7 +17914,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "==" {
                 Ok(Self(node))
             } else {
@@ -18664,7 +17957,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "=>" {
                 Ok(Self(node))
             } else {
@@ -18707,7 +18000,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == ">" {
                 Ok(Self(node))
             } else {
@@ -18750,7 +18043,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == ">=" {
                 Ok(Self(node))
             } else {
@@ -18793,7 +18086,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == ">>" {
                 Ok(Self(node))
             } else {
@@ -18836,7 +18129,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == ">>=" {
                 Ok(Self(node))
             } else {
@@ -18879,7 +18172,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "?" {
                 Ok(Self(node))
             } else {
@@ -18922,7 +18215,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "@" {
                 Ok(Self(node))
             } else {
@@ -18965,7 +18258,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "[" {
                 Ok(Self(node))
             } else {
@@ -19008,7 +18301,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "]" {
                 Ok(Self(node))
             } else {
@@ -19051,7 +18344,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "^" {
                 Ok(Self(node))
             } else {
@@ -19094,7 +18387,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "^=" {
                 Ok(Self(node))
             } else {
@@ -19137,7 +18430,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "_" {
                 Ok(Self(node))
             } else {
@@ -19180,7 +18473,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "macro_rules!" {
                 Ok(Self(node))
             } else {
@@ -19223,7 +18516,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "{" {
                 Ok(Self(node))
             } else {
@@ -19266,7 +18559,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "|" {
                 Ok(Self(node))
             } else {
@@ -19309,7 +18602,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "|=" {
                 Ok(Self(node))
             } else {
@@ -19352,7 +18645,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "||" {
                 Ok(Self(node))
             } else {
@@ -19395,7 +18688,7 @@ This node has no named children
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if node.kind() == "}" {
                 Ok(Self(node))
             } else {
@@ -19535,7 +18828,7 @@ pub mod anon_unions {
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             match node.kind() {
                 "array_type" => {
                     Ok(unsafe {
@@ -19783,7 +19076,7 @@ pub mod anon_unions {
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             match node.kind() {
                 "attribute_item" => {
                     Ok(unsafe {
@@ -19934,7 +19227,7 @@ pub mod anon_unions {
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             match node.kind() {
                 "attribute_item" => {
                     Ok(unsafe {
@@ -20018,7 +19311,7 @@ pub mod anon_unions {
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             match node.kind() {
                 "attribute_item" => {
                     Ok(unsafe {
@@ -20099,7 +19392,7 @@ pub mod anon_unions {
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             match node.kind() {
                 "attribute_item" => {
                     Ok(unsafe {
@@ -20183,7 +19476,7 @@ pub mod anon_unions {
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             match node.kind() {
                 "attribute_item" => {
                     Ok(unsafe {
@@ -20267,7 +19560,7 @@ pub mod anon_unions {
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             match node.kind() {
                 "attribute_item" => {
                     Ok(unsafe {
@@ -20365,7 +19658,7 @@ pub mod anon_unions {
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             match node.kind() {
                 "base_field_initializer" => {
                     Ok(unsafe {
@@ -20460,7 +19753,7 @@ pub mod anon_unions {
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             match node.kind() {
                 "block" => {
                     Ok(unsafe {
@@ -20602,7 +19895,7 @@ pub mod anon_unions {
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             match node.kind() {
                 "bracketed_type" => {
                     Ok(unsafe {
@@ -20770,7 +20063,7 @@ pub mod anon_unions {
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             match node.kind() {
                 "constrained_type_parameter" => {
                     Ok(unsafe {
@@ -20928,7 +20221,7 @@ pub mod anon_unions {
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             match node.kind() {
                 "crate" => {
                     Ok(unsafe {
@@ -21158,7 +20451,7 @@ pub mod anon_unions {
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             match node.kind() {
                 "crate" => {
                     Ok(unsafe {
@@ -21297,7 +20590,7 @@ pub mod anon_unions {
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             match node.kind() {
                 "crate" => {
                     Ok(unsafe {
@@ -21571,7 +20864,7 @@ Follows the following chain:
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if let Ok(this) = <DeclarationStatement<
                 'tree,
             > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
@@ -22265,7 +21558,7 @@ Follows the following chain:
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if let Ok(this) = <DeclarationStatement<
                 'tree,
             > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
@@ -22348,7 +21641,7 @@ Follows the following chain:
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             match node.kind() {
                 "escape_sequence" => {
                     Ok(unsafe {
@@ -22845,7 +22138,7 @@ Follows the following chain:
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if let Ok(this) = <Expression<
                 'tree,
             > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
@@ -23328,7 +22621,7 @@ Follows the following chain:
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if let Ok(this) = <Expression<
                 'tree,
             > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
@@ -23820,7 +23113,7 @@ Follows the following chain:
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if let Ok(this) = <Expression<
                 'tree,
             > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
@@ -24311,7 +23604,7 @@ Follows the following chain:
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if let Ok(this) = <Expression<
                 'tree,
             > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
@@ -24381,7 +23674,7 @@ Follows the following chain:
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             match node.kind() {
                 "extern_modifier" => {
                     Ok(unsafe {
@@ -24467,7 +23760,7 @@ Follows the following chain:
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             match node.kind() {
                 "field_declaration_list" => {
                     Ok(unsafe {
@@ -24563,7 +23856,7 @@ Follows the following chain:
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             match node.kind() {
                 "field_expression" => {
                     Ok(unsafe {
@@ -24661,7 +23954,7 @@ Follows the following chain:
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             match node.kind() {
                 "field_identifier" => {
                     Ok(unsafe {
@@ -24747,7 +24040,7 @@ Follows the following chain:
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             match node.kind() {
                 "field_identifier" => {
                     Ok(unsafe {
@@ -24831,7 +24124,7 @@ Follows the following chain:
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             match node.kind() {
                 "field_pattern" => {
                     Ok(unsafe {
@@ -24912,7 +24205,7 @@ Follows the following chain:
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             match node.kind() {
                 "float_literal" => {
                     Ok(unsafe {
@@ -24996,7 +24289,7 @@ Follows the following chain:
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             match node.kind() {
                 "for_lifetimes" => {
                     Ok(unsafe {
@@ -25090,7 +24383,7 @@ Follows the following chain:
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             match node.kind() {
                 "function_modifiers" => {
                     Ok(unsafe {
@@ -25224,7 +24517,7 @@ Follows the following chain:
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             match node.kind() {
                 "function_type" => {
                     Ok(unsafe {
@@ -25394,7 +24687,7 @@ Follows the following chain:
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             match node.kind() {
                 "function_type" => {
                     Ok(unsafe {
@@ -25546,7 +24839,7 @@ Follows the following chain:
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             match node.kind() {
                 "generic_type_with_turbofish" => {
                     Ok(unsafe {
@@ -25652,7 +24945,7 @@ Follows the following chain:
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             match node.kind() {
                 "generic_type" => {
                     Ok(unsafe {
@@ -25758,7 +25051,7 @@ Follows the following chain:
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             match node.kind() {
                 "generic_type" => {
                     Ok(unsafe {
@@ -25853,7 +25146,7 @@ Follows the following chain:
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             match node.kind() {
                 "identifier" => {
                     Ok(unsafe {
@@ -25936,7 +25229,7 @@ Follows the following chain:
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             match node.kind() {
                 "identifier" => {
                     Ok(unsafe {
@@ -26040,7 +25333,7 @@ Follows the following chain:
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             match node.kind() {
                 "identifier" => {
                     Ok(unsafe {
@@ -26149,7 +25442,7 @@ Follows the following chain:
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             match node.kind() {
                 "identifier" => {
                     Ok(unsafe {
@@ -26232,7 +25525,7 @@ Follows the following chain:
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             match node.kind() {
                 "lifetime" => {
                     Ok(unsafe {
@@ -26324,7 +25617,7 @@ Follows the following chain:
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             match node.kind() {
                 "lifetime" => {
                     Ok(unsafe {
@@ -26419,7 +25712,7 @@ Follows the following chain:
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             match node.kind() {
                 "lifetime" => {
                     Ok(unsafe {
@@ -26611,7 +25904,7 @@ Follows the following chain:
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if let Ok(this) = <LiteralPattern<
                 'tree,
             > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
@@ -27113,7 +26406,7 @@ Follows the following chain:
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if let Ok(this) = <Literal<
                 'tree,
             > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
@@ -27609,7 +26902,7 @@ Follows the following chain:
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if let Ok(this) = <Literal<
                 'tree,
             > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
@@ -27877,7 +27170,7 @@ Follows the following chain:
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if let Ok(this) = <Literal<
                 'tree,
             > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
@@ -28233,7 +27526,7 @@ Follows the following chain:
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if let Ok(this) = <Literal<
                 'tree,
             > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
@@ -28399,7 +27692,7 @@ Follows the following chain:
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             match node.kind() {
                 "%=" => {
                     Ok(unsafe {
@@ -28597,7 +27890,7 @@ Follows the following chain:
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             match node.kind() {
                 "mutable_specifier" => {
                     Ok(unsafe {
@@ -28817,7 +28110,7 @@ Follows the following chain:
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             match node.kind() {
                 "!=" => {
                     Ok(unsafe {
@@ -29339,7 +28632,7 @@ Follows the following chain:
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if let Ok(this) = <Pattern<
                 'tree,
             > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
@@ -29623,7 +28916,7 @@ Follows the following chain:
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if let Ok(this) = <Pattern<
                 'tree,
             > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
@@ -29905,7 +29198,7 @@ Follows the following chain:
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if let Ok(this) = <Pattern<
                 'tree,
             > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
@@ -30187,7 +29480,7 @@ Follows the following chain:
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if let Ok(this) = <Pattern<
                 'tree,
             > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
@@ -30257,7 +29550,7 @@ Follows the following chain:
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             match node.kind() {
                 "scoped_identifier" => {
                     Ok(unsafe {
@@ -30341,7 +29634,7 @@ Follows the following chain:
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             match node.kind() {
                 "scoped_type_identifier" => {
                     Ok(unsafe {
@@ -30593,7 +29886,7 @@ Follows the following chain:
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if let Ok(this) = <Type<
                 'tree,
             > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
@@ -30837,7 +30130,7 @@ Follows the following chain:
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if let Ok(this) = <Type<
                 'tree,
             > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
@@ -31054,7 +30347,7 @@ Follows the following chain:
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if let Ok(this) = <Type<
                 'tree,
             > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
@@ -31263,7 +30556,7 @@ Follows the following chain:
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if let Ok(this) = <Type<
                 'tree,
             > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
@@ -31333,7 +30626,7 @@ Follows the following chain:
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             match node.kind() {
                 "visibility_modifier" => {
                     Ok(unsafe {
@@ -31830,7 +31123,7 @@ Follows the following chain:
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             if let Ok(this) = <symbols::__<
                 'tree,
             > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {

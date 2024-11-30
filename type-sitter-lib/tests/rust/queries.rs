@@ -4007,7 +4007,7 @@ pub mod anon_unions {
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             match node.kind() {
                 "attribute_item" => {
                     Ok(unsafe {
@@ -4135,7 +4135,7 @@ This child has type `outer_doc_comment_marker?` ([`OuterDocCommentMarker`])*/
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             match node.kind() {
                 "block_comment" => {
                     Ok(unsafe {
@@ -4263,7 +4263,7 @@ This child has type `outer_doc_comment_marker?` ([`OuterDocCommentMarker`])*/
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             match node.kind() {
                 "block_comment" => {
                     Ok(unsafe {
@@ -4352,7 +4352,7 @@ This child has type `outer_doc_comment_marker?` ([`OuterDocCommentMarker`])*/
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             match node.kind() {
                 "boolean_literal" => {
                     Ok(unsafe {
@@ -4447,7 +4447,7 @@ This child has type `outer_doc_comment_marker?` ([`OuterDocCommentMarker`])*/
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             match node.kind() {
                 "identifier" => {
                     Ok(unsafe {
@@ -4579,7 +4579,7 @@ This child has type `type_parameters?` ([`TypeParameters`])*/
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             match node.kind() {
                 "enum_item" => {
                     Ok(unsafe {
@@ -4688,7 +4688,7 @@ This child has type `type_parameters?` ([`TypeParameters`])*/
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             match node.kind() {
                 "!" => {
                     Ok(unsafe {
@@ -5069,7 +5069,7 @@ This child has type `type_parameters?` ([`TypeParameters`])*/
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             match node.kind() {
                 "as" => {
                     Ok(unsafe {
@@ -5678,7 +5678,7 @@ This child has type `type_parameters?` ([`TypeParameters`])*/
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             match node.kind() {
                 "field_identifier" => {
                     Ok(unsafe {
@@ -5781,7 +5781,7 @@ This child has type `type_parameters?` ([`TypeParameters`])*/
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             match node.kind() {
                 "&" => {
                     Ok(unsafe {
@@ -5924,7 +5924,7 @@ This child has type `type_parameters?` ([`TypeParameters`])*/
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             match node.kind() {
                 "(" => {
                     Ok(unsafe {
@@ -6115,7 +6115,7 @@ This child has type `type_parameters?` ([`TypeParameters`])*/
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             match node.kind() {
                 "," => {
                     Ok(unsafe {
@@ -6240,7 +6240,7 @@ This child has type `type_parameters?` ([`TypeParameters`])*/
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             match node.kind() {
                 "call_expression" => {
                     Ok(unsafe {
@@ -6331,7 +6331,7 @@ This child has type `type_parameters?` ([`TypeParameters`])*/
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             match node.kind() {
                 "char_literal" => {
                     Ok(unsafe {
@@ -6426,7 +6426,7 @@ This child has type `type_parameters?` ([`TypeParameters`])*/
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<Self> {
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             match node.kind() {
                 "identifier" => {
                     Ok(unsafe {

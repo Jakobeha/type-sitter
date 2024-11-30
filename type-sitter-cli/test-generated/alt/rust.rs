@@ -2067,7 +2067,9 @@ pub mod anon_unions {
         type WithLifetime<'a> = Attribute<'a>;
         const KIND: &'static str = "{attribute_item | inner_attribute_item}";
         #[inline]
-        fn try_from_raw(node: ::type_sitter::raw::Node<'tree>) -> ::type_sitter::NodeResult<Self> {
+        fn try_from_raw(
+            node: ::type_sitter::raw::Node<'tree>,
+        ) -> ::type_sitter::NodeResult<'tree, Self> {
             match node.kind() {
                 "attribute_item" => {
                     Ok(unsafe {
@@ -2169,7 +2171,9 @@ pub mod anon_unions {
         type WithLifetime<'a> = Comment<'a>;
         const KIND: &'static str = "{block_comment | line_comment}";
         #[inline]
-        fn try_from_raw(node: ::type_sitter::raw::Node<'tree>) -> ::type_sitter::NodeResult<Self> {
+        fn try_from_raw(
+            node: ::type_sitter::raw::Node<'tree>,
+        ) -> ::type_sitter::NodeResult<'tree, Self> {
             match node.kind() {
                 "block_comment" => Ok(unsafe {
                     Self::BlockComment(
@@ -2275,7 +2279,9 @@ pub mod anon_unions {
         type WithLifetime<'a> = CommentDocumentation<'a>;
         const KIND: &'static str = "{block_comment | line_comment}";
         #[inline]
-        fn try_from_raw(node: ::type_sitter::raw::Node<'tree>) -> ::type_sitter::NodeResult<Self> {
+        fn try_from_raw(
+            node: ::type_sitter::raw::Node<'tree>,
+        ) -> ::type_sitter::NodeResult<'tree, Self> {
             match node.kind() {
                 "block_comment" => Ok(unsafe {
                     Self::BlockComment(
@@ -2363,7 +2369,9 @@ pub mod anon_unions {
         type WithLifetime<'a> = ConstantBuiltin<'a>;
         const KIND: &'static str = "{boolean_literal | float_literal | integer_literal}";
         #[inline]
-        fn try_from_raw(node: ::type_sitter::raw::Node<'tree>) -> ::type_sitter::NodeResult<Self> {
+        fn try_from_raw(
+            node: ::type_sitter::raw::Node<'tree>,
+        ) -> ::type_sitter::NodeResult<'tree, Self> {
             match node.kind() {
                 "boolean_literal" => {
                     Ok(unsafe {
@@ -2450,7 +2458,9 @@ pub mod anon_unions {
         type WithLifetime<'a> = Constructor<'a>;
         const KIND: &'static str = "{identifier | type_identifier}";
         #[inline]
-        fn try_from_raw(node: ::type_sitter::raw::Node<'tree>) -> ::type_sitter::NodeResult<Self> {
+        fn try_from_raw(
+            node: ::type_sitter::raw::Node<'tree>,
+        ) -> ::type_sitter::NodeResult<'tree, Self> {
             match node.kind() {
                 "identifier" => Ok(unsafe {
                     Self::Identifier(
@@ -2562,7 +2572,9 @@ pub mod anon_unions {
         type WithLifetime<'a> = DefinitionClass<'a>;
         const KIND: &'static str = "{enum_item | struct_item | type_item | union_item}";
         #[inline]
-        fn try_from_raw(node: ::type_sitter::raw::Node<'tree>) -> ::type_sitter::NodeResult<Self> {
+        fn try_from_raw(
+            node: ::type_sitter::raw::Node<'tree>,
+        ) -> ::type_sitter::NodeResult<'tree, Self> {
             match node.kind() {
                 "enum_item" => Ok(unsafe {
                     Self::EnumItem(
@@ -2651,7 +2663,9 @@ pub mod anon_unions {
         type WithLifetime<'a> = FunctionMacro<'a>;
         const KIND: &'static str = "{! | identifier}";
         #[inline]
-        fn try_from_raw(node: ::type_sitter::raw::Node<'tree>) -> ::type_sitter::NodeResult<Self> {
+        fn try_from_raw(
+            node: ::type_sitter::raw::Node<'tree>,
+        ) -> ::type_sitter::NodeResult<'tree, Self> {
             match node.kind() {
                 "!" => Ok(unsafe {
                     Self::Not(
@@ -3133,7 +3147,9 @@ pub mod anon_unions {
         type WithLifetime<'a> = Keyword<'a>;
         const KIND : & 'static str = "{as | async | await | break | const | continue | crate | default | dyn | else | enum | extern | fn | for | if | impl | in | let | loop | macro_rules! | match | mod | move | mutable_specifier | pub | ref | return | self | static | struct | super | trait | type | union | unsafe | use | where | while | yield}" ;
         #[inline]
-        fn try_from_raw(node: ::type_sitter::raw::Node<'tree>) -> ::type_sitter::NodeResult<Self> {
+        fn try_from_raw(
+            node: ::type_sitter::raw::Node<'tree>,
+        ) -> ::type_sitter::NodeResult<'tree, Self> {
             match node.kind() {
                 "as" => Ok(unsafe {
                     Self::As(
@@ -3533,7 +3549,9 @@ pub mod anon_unions {
         type WithLifetime<'a> = Name<'a>;
         const KIND: &'static str = "{field_identifier | identifier | type_identifier}";
         #[inline]
-        fn try_from_raw(node: ::type_sitter::raw::Node<'tree>) -> ::type_sitter::NodeResult<Self> {
+        fn try_from_raw(
+            node: ::type_sitter::raw::Node<'tree>,
+        ) -> ::type_sitter::NodeResult<'tree, Self> {
             match node.kind() {
                 "field_identifier" => {
                     Ok(unsafe {
@@ -3629,7 +3647,9 @@ pub mod anon_unions {
         type WithLifetime<'a> = Operator<'a>;
         const KIND: &'static str = "{& | ' | *}";
         #[inline]
-        fn try_from_raw(node: ::type_sitter::raw::Node<'tree>) -> ::type_sitter::NodeResult<Self> {
+        fn try_from_raw(
+            node: ::type_sitter::raw::Node<'tree>,
+        ) -> ::type_sitter::NodeResult<'tree, Self> {
             match node.kind() {
                 "&" => Ok(unsafe {
                     Self::And(
@@ -3780,7 +3800,9 @@ pub mod anon_unions {
         type WithLifetime<'a> = PunctuationBracket<'a>;
         const KIND: &'static str = "{( | ) | < | > | [ | ] | { | }}";
         #[inline]
-        fn try_from_raw(node: ::type_sitter::raw::Node<'tree>) -> ::type_sitter::NodeResult<Self> {
+        fn try_from_raw(
+            node: ::type_sitter::raw::Node<'tree>,
+        ) -> ::type_sitter::NodeResult<'tree, Self> {
             match node.kind() {
                 "(" => {
                     Ok(unsafe {
@@ -3934,7 +3956,9 @@ pub mod anon_unions {
         type WithLifetime<'a> = PunctuationDelimiter<'a>;
         const KIND: &'static str = "{, | . | : | :: | ;}";
         #[inline]
-        fn try_from_raw(node: ::type_sitter::raw::Node<'tree>) -> ::type_sitter::NodeResult<Self> {
+        fn try_from_raw(
+            node: ::type_sitter::raw::Node<'tree>,
+        ) -> ::type_sitter::NodeResult<'tree, Self> {
             match node.kind() {
                 "," => {
                     Ok(unsafe {
@@ -4029,7 +4053,9 @@ pub mod anon_unions {
         type WithLifetime<'a> = ReferenceCall<'a>;
         const KIND: &'static str = "{call_expression | macro_invocation}";
         #[inline]
-        fn try_from_raw(node: ::type_sitter::raw::Node<'tree>) -> ::type_sitter::NodeResult<Self> {
+        fn try_from_raw(
+            node: ::type_sitter::raw::Node<'tree>,
+        ) -> ::type_sitter::NodeResult<'tree, Self> {
             match node.kind() {
                 "call_expression" => {
                     Ok(unsafe {
@@ -4117,7 +4143,9 @@ pub mod anon_unions {
         type WithLifetime<'a> = String<'a>;
         const KIND: &'static str = "{char_literal | raw_string_literal | string_literal}";
         #[inline]
-        fn try_from_raw(node: ::type_sitter::raw::Node<'tree>) -> ::type_sitter::NodeResult<Self> {
+        fn try_from_raw(
+            node: ::type_sitter::raw::Node<'tree>,
+        ) -> ::type_sitter::NodeResult<'tree, Self> {
             match node.kind() {
                 "char_literal" => Ok(unsafe {
                     Self::CharLiteral(
@@ -4200,7 +4228,9 @@ pub mod anon_unions {
         type WithLifetime<'a> = Type<'a>;
         const KIND: &'static str = "{identifier | type_identifier}";
         #[inline]
-        fn try_from_raw(node: ::type_sitter::raw::Node<'tree>) -> ::type_sitter::NodeResult<Self> {
+        fn try_from_raw(
+            node: ::type_sitter::raw::Node<'tree>,
+        ) -> ::type_sitter::NodeResult<'tree, Self> {
             match node.kind() {
                 "identifier" => Ok(unsafe {
                     Self::Identifier(

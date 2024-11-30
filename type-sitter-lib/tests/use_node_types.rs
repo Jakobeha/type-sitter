@@ -4,7 +4,7 @@ mod json;
 mod rust;
 
 use std::path::Path;
-use type_sitter_lib::{Node, Parser};
+use type_sitter_lib::{Node, HasChildren, Parser};
 
 #[test]
 pub fn test_use_node_types_rust() {

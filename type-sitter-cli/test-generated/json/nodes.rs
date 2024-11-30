@@ -89,7 +89,9 @@ impl<'tree> ::type_sitter::Node<'tree> for Value<'tree> {
     type WithLifetime<'a> = Value<'a>;
     const KIND: &'static str = "_value";
     #[inline]
-    fn try_from_raw(node: ::type_sitter::raw::Node<'tree>) -> ::type_sitter::NodeResult<Self> {
+    fn try_from_raw(
+        node: ::type_sitter::raw::Node<'tree>,
+    ) -> ::type_sitter::NodeResult<'tree, Self> {
         match node.kind() {
             "array" => Ok(unsafe {
                 Self::Array(<Array<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node))
@@ -180,11 +182,17 @@ impl<'tree> Array<'tree> {
     }
 }
 #[automatically_derived]
+impl<'tree> ::type_sitter::HasChildren<'tree> for Array<'tree> {
+    type Child = Value<'tree>;
+}
+#[automatically_derived]
 impl<'tree> ::type_sitter::Node<'tree> for Array<'tree> {
     type WithLifetime<'a> = Array<'a>;
     const KIND: &'static str = "array";
     #[inline]
-    fn try_from_raw(node: ::type_sitter::raw::Node<'tree>) -> ::type_sitter::NodeResult<Self> {
+    fn try_from_raw(
+        node: ::type_sitter::raw::Node<'tree>,
+    ) -> ::type_sitter::NodeResult<'tree, Self> {
         if node.kind() == "array" {
             Ok(Self(node))
         } else {
@@ -222,7 +230,9 @@ impl<'tree> ::type_sitter::Node<'tree> for Comment<'tree> {
     type WithLifetime<'a> = Comment<'a>;
     const KIND: &'static str = "comment";
     #[inline]
-    fn try_from_raw(node: ::type_sitter::raw::Node<'tree>) -> ::type_sitter::NodeResult<Self> {
+    fn try_from_raw(
+        node: ::type_sitter::raw::Node<'tree>,
+    ) -> ::type_sitter::NodeResult<'tree, Self> {
         if node.kind() == "comment" {
             Ok(Self(node))
         } else {
@@ -269,11 +279,17 @@ impl<'tree> Document<'tree> {
     }
 }
 #[automatically_derived]
+impl<'tree> ::type_sitter::HasChildren<'tree> for Document<'tree> {
+    type Child = Value<'tree>;
+}
+#[automatically_derived]
 impl<'tree> ::type_sitter::Node<'tree> for Document<'tree> {
     type WithLifetime<'a> = Document<'a>;
     const KIND: &'static str = "document";
     #[inline]
-    fn try_from_raw(node: ::type_sitter::raw::Node<'tree>) -> ::type_sitter::NodeResult<Self> {
+    fn try_from_raw(
+        node: ::type_sitter::raw::Node<'tree>,
+    ) -> ::type_sitter::NodeResult<'tree, Self> {
         if node.kind() == "document" {
             Ok(Self(node))
         } else {
@@ -311,7 +327,9 @@ impl<'tree> ::type_sitter::Node<'tree> for EscapeSequence<'tree> {
     type WithLifetime<'a> = EscapeSequence<'a>;
     const KIND: &'static str = "escape_sequence";
     #[inline]
-    fn try_from_raw(node: ::type_sitter::raw::Node<'tree>) -> ::type_sitter::NodeResult<Self> {
+    fn try_from_raw(
+        node: ::type_sitter::raw::Node<'tree>,
+    ) -> ::type_sitter::NodeResult<'tree, Self> {
         if node.kind() == "escape_sequence" {
             Ok(Self(node))
         } else {
@@ -349,7 +367,9 @@ impl<'tree> ::type_sitter::Node<'tree> for False<'tree> {
     type WithLifetime<'a> = False<'a>;
     const KIND: &'static str = "false";
     #[inline]
-    fn try_from_raw(node: ::type_sitter::raw::Node<'tree>) -> ::type_sitter::NodeResult<Self> {
+    fn try_from_raw(
+        node: ::type_sitter::raw::Node<'tree>,
+    ) -> ::type_sitter::NodeResult<'tree, Self> {
         if node.kind() == "false" {
             Ok(Self(node))
         } else {
@@ -387,7 +407,9 @@ impl<'tree> ::type_sitter::Node<'tree> for Null<'tree> {
     type WithLifetime<'a> = Null<'a>;
     const KIND: &'static str = "null";
     #[inline]
-    fn try_from_raw(node: ::type_sitter::raw::Node<'tree>) -> ::type_sitter::NodeResult<Self> {
+    fn try_from_raw(
+        node: ::type_sitter::raw::Node<'tree>,
+    ) -> ::type_sitter::NodeResult<'tree, Self> {
         if node.kind() == "null" {
             Ok(Self(node))
         } else {
@@ -425,7 +447,9 @@ impl<'tree> ::type_sitter::Node<'tree> for Number<'tree> {
     type WithLifetime<'a> = Number<'a>;
     const KIND: &'static str = "number";
     #[inline]
-    fn try_from_raw(node: ::type_sitter::raw::Node<'tree>) -> ::type_sitter::NodeResult<Self> {
+    fn try_from_raw(
+        node: ::type_sitter::raw::Node<'tree>,
+    ) -> ::type_sitter::NodeResult<'tree, Self> {
         if node.kind() == "number" {
             Ok(Self(node))
         } else {
@@ -471,11 +495,17 @@ impl<'tree> Object<'tree> {
     }
 }
 #[automatically_derived]
+impl<'tree> ::type_sitter::HasChildren<'tree> for Object<'tree> {
+    type Child = Pair<'tree>;
+}
+#[automatically_derived]
 impl<'tree> ::type_sitter::Node<'tree> for Object<'tree> {
     type WithLifetime<'a> = Object<'a>;
     const KIND: &'static str = "object";
     #[inline]
-    fn try_from_raw(node: ::type_sitter::raw::Node<'tree>) -> ::type_sitter::NodeResult<Self> {
+    fn try_from_raw(
+        node: ::type_sitter::raw::Node<'tree>,
+    ) -> ::type_sitter::NodeResult<'tree, Self> {
         if node.kind() == "object" {
             Ok(Self(node))
         } else {
@@ -534,7 +564,9 @@ impl<'tree> ::type_sitter::Node<'tree> for Pair<'tree> {
     type WithLifetime<'a> = Pair<'a>;
     const KIND: &'static str = "pair";
     #[inline]
-    fn try_from_raw(node: ::type_sitter::raw::Node<'tree>) -> ::type_sitter::NodeResult<Self> {
+    fn try_from_raw(
+        node: ::type_sitter::raw::Node<'tree>,
+    ) -> ::type_sitter::NodeResult<'tree, Self> {
         if node.kind() == "pair" {
             Ok(Self(node))
         } else {
@@ -566,24 +598,19 @@ impl<'tree> ::type_sitter::Node<'tree> for Pair<'tree> {
 pub struct String<'tree>(::type_sitter::raw::Node<'tree>);
 #[automatically_derived]
 #[allow(unused)]
-impl<'tree> String<'tree> {
-    #[doc = "Get the node's not-extra named children.\n\nThese children have type `{escape_sequence | string_content}*`:\n\n- [`EscapeSequence`]\n- [`StringContent`]\n"]
-    #[inline]
-    pub fn children<'a>(
-        &self,
-        c: &'a mut ::type_sitter::TreeCursor<'tree>,
-    ) -> impl ::std::iter::Iterator<
-        Item = ::type_sitter::NodeResult<'tree, anon_unions::EscapeSequence_StringContent<'tree>>,
-    > + 'a {
-        :: type_sitter :: Node :: raw (self) . named_children (& mut c . 0) . filter (| n | ! n . is_extra ()) . map (< anon_unions :: EscapeSequence_StringContent < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw)
-    }
+impl<'tree> String<'tree> {}
+#[automatically_derived]
+impl<'tree> ::type_sitter::HasChildren<'tree> for String<'tree> {
+    type Child = anon_unions::EscapeSequence_StringContent<'tree>;
 }
 #[automatically_derived]
 impl<'tree> ::type_sitter::Node<'tree> for String<'tree> {
     type WithLifetime<'a> = String<'a>;
     const KIND: &'static str = "string";
     #[inline]
-    fn try_from_raw(node: ::type_sitter::raw::Node<'tree>) -> ::type_sitter::NodeResult<Self> {
+    fn try_from_raw(
+        node: ::type_sitter::raw::Node<'tree>,
+    ) -> ::type_sitter::NodeResult<'tree, Self> {
         if node.kind() == "string" {
             Ok(Self(node))
         } else {
@@ -621,7 +648,9 @@ impl<'tree> ::type_sitter::Node<'tree> for StringContent<'tree> {
     type WithLifetime<'a> = StringContent<'a>;
     const KIND: &'static str = "string_content";
     #[inline]
-    fn try_from_raw(node: ::type_sitter::raw::Node<'tree>) -> ::type_sitter::NodeResult<Self> {
+    fn try_from_raw(
+        node: ::type_sitter::raw::Node<'tree>,
+    ) -> ::type_sitter::NodeResult<'tree, Self> {
         if node.kind() == "string_content" {
             Ok(Self(node))
         } else {
@@ -659,7 +688,9 @@ impl<'tree> ::type_sitter::Node<'tree> for True<'tree> {
     type WithLifetime<'a> = True<'a>;
     const KIND: &'static str = "true";
     #[inline]
-    fn try_from_raw(node: ::type_sitter::raw::Node<'tree>) -> ::type_sitter::NodeResult<Self> {
+    fn try_from_raw(
+        node: ::type_sitter::raw::Node<'tree>,
+    ) -> ::type_sitter::NodeResult<'tree, Self> {
         if node.kind() == "true" {
             Ok(Self(node))
         } else {
@@ -700,7 +731,9 @@ pub mod symbols {
         type WithLifetime<'a> = DoubleQuote<'a>;
         const KIND: &'static str = "\"";
         #[inline]
-        fn try_from_raw(node: ::type_sitter::raw::Node<'tree>) -> ::type_sitter::NodeResult<Self> {
+        fn try_from_raw(
+            node: ::type_sitter::raw::Node<'tree>,
+        ) -> ::type_sitter::NodeResult<'tree, Self> {
             if node.kind() == "\"" {
                 Ok(Self(node))
             } else {
@@ -738,7 +771,9 @@ pub mod symbols {
         type WithLifetime<'a> = Comma<'a>;
         const KIND: &'static str = ",";
         #[inline]
-        fn try_from_raw(node: ::type_sitter::raw::Node<'tree>) -> ::type_sitter::NodeResult<Self> {
+        fn try_from_raw(
+            node: ::type_sitter::raw::Node<'tree>,
+        ) -> ::type_sitter::NodeResult<'tree, Self> {
             if node.kind() == "," {
                 Ok(Self(node))
             } else {
@@ -776,7 +811,9 @@ pub mod symbols {
         type WithLifetime<'a> = Colon<'a>;
         const KIND: &'static str = ":";
         #[inline]
-        fn try_from_raw(node: ::type_sitter::raw::Node<'tree>) -> ::type_sitter::NodeResult<Self> {
+        fn try_from_raw(
+            node: ::type_sitter::raw::Node<'tree>,
+        ) -> ::type_sitter::NodeResult<'tree, Self> {
             if node.kind() == ":" {
                 Ok(Self(node))
             } else {
@@ -814,7 +851,9 @@ pub mod symbols {
         type WithLifetime<'a> = LBracket<'a>;
         const KIND: &'static str = "[";
         #[inline]
-        fn try_from_raw(node: ::type_sitter::raw::Node<'tree>) -> ::type_sitter::NodeResult<Self> {
+        fn try_from_raw(
+            node: ::type_sitter::raw::Node<'tree>,
+        ) -> ::type_sitter::NodeResult<'tree, Self> {
             if node.kind() == "[" {
                 Ok(Self(node))
             } else {
@@ -852,7 +891,9 @@ pub mod symbols {
         type WithLifetime<'a> = RBracket<'a>;
         const KIND: &'static str = "]";
         #[inline]
-        fn try_from_raw(node: ::type_sitter::raw::Node<'tree>) -> ::type_sitter::NodeResult<Self> {
+        fn try_from_raw(
+            node: ::type_sitter::raw::Node<'tree>,
+        ) -> ::type_sitter::NodeResult<'tree, Self> {
             if node.kind() == "]" {
                 Ok(Self(node))
             } else {
@@ -890,7 +931,9 @@ pub mod symbols {
         type WithLifetime<'a> = LBrace<'a>;
         const KIND: &'static str = "{";
         #[inline]
-        fn try_from_raw(node: ::type_sitter::raw::Node<'tree>) -> ::type_sitter::NodeResult<Self> {
+        fn try_from_raw(
+            node: ::type_sitter::raw::Node<'tree>,
+        ) -> ::type_sitter::NodeResult<'tree, Self> {
             if node.kind() == "{" {
                 Ok(Self(node))
             } else {
@@ -928,7 +971,9 @@ pub mod symbols {
         type WithLifetime<'a> = RBrace<'a>;
         const KIND: &'static str = "}";
         #[inline]
-        fn try_from_raw(node: ::type_sitter::raw::Node<'tree>) -> ::type_sitter::NodeResult<Self> {
+        fn try_from_raw(
+            node: ::type_sitter::raw::Node<'tree>,
+        ) -> ::type_sitter::NodeResult<'tree, Self> {
             if node.kind() == "}" {
                 Ok(Self(node))
             } else {
@@ -993,7 +1038,9 @@ pub mod anon_unions {
         type WithLifetime<'a> = EscapeSequence_StringContent<'a>;
         const KIND: &'static str = "{escape_sequence | string_content}";
         #[inline]
-        fn try_from_raw(node: ::type_sitter::raw::Node<'tree>) -> ::type_sitter::NodeResult<Self> {
+        fn try_from_raw(
+            node: ::type_sitter::raw::Node<'tree>,
+        ) -> ::type_sitter::NodeResult<'tree, Self> {
             match node.kind() {
                 "escape_sequence" => {
                     Ok(unsafe {
