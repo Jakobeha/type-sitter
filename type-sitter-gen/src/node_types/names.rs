@@ -1,4 +1,4 @@
-use std::borrow::Cow;
+use std::borrow::{Borrow, Cow};
 use std::iter::once;
 use join_lazy_fmt::Join;
 use serde::Deserialize;
@@ -32,5 +32,11 @@ impl NodeName {
         let names = once(first).chain(once(second)).chain(names);
 
         Cow::Owned(format!("{{{}}}", " | ".join(names.map(|n| &n.sexp_name))))
+    }
+}
+
+impl Borrow<str> for NodeName {
+    fn borrow(&self) -> &str {
+        &self.sexp_name
     }
 }

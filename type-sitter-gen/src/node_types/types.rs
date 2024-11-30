@@ -1,7 +1,7 @@
 use crate::node_types::rust_names::PrevNodeRustNames;
 use crate::{NodeName, NodeRustNames};
 use serde::Deserialize;
-use std::borrow::Cow;
+use std::borrow::{Borrow, Cow};
 use std::collections::{BTreeMap, BTreeSet};
 use std::fmt::Display;
 use std::ops::{BitOrAssign, Index};
@@ -80,7 +80,7 @@ impl NodeTypeMap {
         Self { nodes, prev_rust_names }
     }
 
-    pub(crate) fn get(&self, name: &NodeName) -> Option<&NodeType> {
+    pub fn get<Q: Ord + ?Sized>(&self, name: &Q) -> Option<&NodeType> where NodeName: Borrow<Q> {
         self.nodes.get(name)
     }
 
@@ -109,7 +109,10 @@ impl NodeTypeMap {
     /// that you would like to have in your use case AST. The most common case would
     /// be to add an `AllNodes` supertype (see example below).
     ///
-    /// # Example
+    /// It's also a good way to give an explicit name to a hidden node that is not a supertype in
+    /// the original grammar.
+    ///
+    /// # Examples
     ///
     /// Adding supertypes for all named and unnamed nodes, and another one for all nodes:
     ///
@@ -140,6 +143,25 @@ impl NodeTypeMap {
     /// assert!(code.contains("pub enum AllNamed"));
     /// assert!(code.contains("pub enum AllUnnamed"));
     /// assert!(code.contains("pub enum AllNodes"));
+    /// # }
+    /// ```
+    ///
+    /// Make the return type of `StructDeclaration::body` be `StructBody` instead of a generated
+    /// anonymous union type.
+    ///
+    /// ```rust
+    /// # fn main() {
+    /// # use type_sitter_gen::*;
+    /// let mut node_type_map = NodeTypeMap::try_from(tree_sitter_rust::NODE_TYPES).unwrap();
+    ///
+    /// let struct_body_variants = node_type_map["struct_item"]["body"].types.clone();
+    /// node_type_map.add_custom_supertype("_struct_body", struct_body_variants)
+    ///     .expect("this shouldn't already exist");
+    ///
+    /// let code = generate_nodes(node_type_map).unwrap().into_string();
+    ///
+    /// assert!(code.contains("pub enum StructBody"));
+    /// assert!(code.contains("- `body`: `_struct_body?` ([`StructBody`])"));
     /// # }
     /// ```
     ///
@@ -188,22 +210,43 @@ impl NodeTypeMap {
             panic!("Illegal supertype name '{name}'. Supertypes must start with an underscore, i.e. '_{name}'.");
         }
 
+        let subtypes = BTreeSet::from_iter(subtypes);
+        let subtypes_vecset = VecSet::from_iter(subtypes.clone());
+
+        // Create the supertype
         let name = NodeName {
             sexp_name: name.to_owned(),
             is_named: true,
         };
         let new_node = ContextFreeNodeType {
             name: name.clone(),
-            kind: NodeTypeKind::Supertype { subtypes: BTreeSet::from_iter(subtypes) },
+            kind: NodeTypeKind::Supertype { subtypes },
         };
         let new_node = NodeType::new(new_node, &mut self.prev_rust_names);
 
-        if !self.nodes.contains_key(&name) {
-            self.nodes.insert(name.clone(), new_node);
-            Ok(name)
-        } else {
-            Err(name)
+        // `Err` if it exists
+        if self.nodes.contains_key(&name) {
+            return Err(name);
         }
+
+        // Add the supertype
+        self.nodes.insert(name.clone(), new_node);
+
+        // Replace anonymous unions of the supertype's exact subtypes with the supertype itself
+        for node in self.nodes.values_mut() {
+            match &mut node.kind {
+                NodeTypeKind::Regular { fields, children, .. } => {
+                    for children in fields.values_mut().chain(std::iter::once(children)) {
+                        if children.types == subtypes_vecset {
+                            children.types = VecSet::from_iter([name.clone()]);
+                        }
+                    }
+                }
+                NodeTypeKind::Supertype { .. } => {}
+            }
+        }
+
+        Ok(name)
     }
 }
 
@@ -238,10 +281,10 @@ impl TryFrom<&str> for NodeTypeMap {
     }
 }
 
-impl<'a> Index<&'a NodeName> for NodeTypeMap {
+impl<Q: Ord + ?Sized> Index<&Q> for NodeTypeMap where NodeName: Borrow<Q> {
     type Output = NodeType;
 
-    fn index(&self, name: &'a NodeName) -> &Self::Output {
+    fn index(&self, name: &Q) -> &Self::Output {
         &self.nodes[name]
     }
 }
@@ -268,6 +311,27 @@ impl NodeType {
         types: impl IntoIterator<Item = &'a NodeType, IntoIter: 'a>,
     ) -> impl Display + 'a {
         NodeRustNames::anon_union_type_name(types.into_iter().map(|t| &t.rust_names))
+    }
+
+    /// If the node type has a field with the given name, returns a [`Children`] describing the
+    /// possible field values.
+    pub fn field(&self, name: &str) -> Option<&Children> {
+        match &self.kind {
+            NodeTypeKind::Supertype { .. } => None,
+            NodeTypeKind::Regular { fields, .. } => fields.get(name),
+        }
+    }
+}
+
+impl Index<&str> for NodeType {
+    type Output = Children;
+
+    /// Assumes the node type has a field with the given name. Returns a [`Children`] describing the
+    /// possible field values.
+    ///
+    /// **Panics** if the node type doesn't have a field with the name.
+    fn index(&self, name: &str) -> &Self::Output {
+        self.field(&name).expect("this node doesn't have a field with the given name")
     }
 }
 

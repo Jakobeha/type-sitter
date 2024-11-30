@@ -152,6 +152,23 @@ fn main() {
     node_type_map
         .add_custom_supertype("_all_named", named)
         .expect("this mustn't already exist");
+  
+    // To give an explicit name to a hidden node that is not a supertype in the grammar.
+    // (e.g. make `Class::members` return `ClassMember` instead of `anon_unions:...`, assuming the original `grammar.js`
+    //  contains:
+    //  ```
+    //  class: $ => seq(
+    //      ...
+    //      field('members', $._class_members),
+    //      ...
+    //  ),
+    //  _class_members: $ => choice(...),
+    //  ```
+    //  and `_class_members` is not in `supertypes`)
+    let class_member_variants = node_type_map["class"]["members"].types.clone();
+    node_type_map
+        .add_custom_supertype("_class_member", class_member_variants)
+        .expect("this mustn't already exist");
 
     fs::write(
         out_dir.join("nodes.rs"),
