@@ -17,5 +17,4 @@ yak-sitter = []
 
 [dependencies]
 type-sitter-gen = { path = "../type-sitter-gen", version = "0.6.0" }
-proc-macro2 = "1.0.86"
 syn = "2.0.77"
