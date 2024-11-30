@@ -14,7 +14,7 @@ macro_rules! define_simple_wrapper {
 
             const KIND: &'static str = concat!("{", $name, "}");
 
-            fn try_from_raw(node: raw::Node<'tree>) -> NodeResult<Self> {
+            fn try_from_raw(node: raw::Node<'tree>) -> NodeResult<'tree, Self> {
                 if node.$method() {
                     Ok($Type(node))
                 } else {

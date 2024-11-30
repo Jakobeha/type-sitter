@@ -98,7 +98,7 @@ impl NodeType {
                 const KIND: &'static str = #kind;
 
                 #[inline]
-                fn try_from_raw(node: #tree_sitter::Node<'tree>) -> #type_sitter_lib::NodeResult<Self> {
+                fn try_from_raw(node: #tree_sitter::Node<'tree>) -> #type_sitter_lib::NodeResult<'tree, Self> {
                     if node.kind() == #kind {
                         Ok(Self(node))
                     } else {
@@ -235,7 +235,7 @@ impl NodeType {
                 const KIND: &'static str = #kind;
 
                 #[inline]
-                fn try_from_raw(node: #tree_sitter::Node<'tree>) -> #type_sitter_lib::NodeResult<Self> {
+                fn try_from_raw(node: #tree_sitter::Node<'tree>) -> #type_sitter_lib::NodeResult<'tree, Self> {
                     #try_from_raw_body
                 }
 
