@@ -1,6 +1,6 @@
 [package]
 name = "type-sitter-lib"
-version = "0.5.4"
+version = "0.6.0"
 description = "library code for type-sitter generated / downstream code"
 license = "MIT OR Apache-2.0"
 repository = "https://github.com/Jakobeha/type-sitter/"
@@ -14,7 +14,7 @@ yak-sitter = ["dep:yak-sitter"]
 [dependencies]
 tree-sitter = "0.24.3"
 streaming-iterator = "0.1.9"
-yak-sitter = { path = "../yak-sitter", version = "0.5.4", optional = true}
+yak-sitter = { path = "../yak-sitter", version = "0.6.0", optional = true}
 
 [dev-dependencies]
 tree-sitter-rust = "0.23.0"
