@@ -1,6 +1,6 @@
 [package]
 name = "type-sitter"
-version = "0.5.3"
+version = "0.5.4"
 authors = ["Jakob Hain <jakobeha@fastmail.com>"]
 description = "generate typed wrappers for tree-sitter grammars from node-types.json and queries"
 license = "MIT OR Apache-2.0"
@@ -19,8 +19,8 @@ proc = ["dep:type-sitter-proc"]
 yak-sitter = ["type-sitter-proc/yak-sitter", "type-sitter-lib/yak-sitter"]
 
 [dependencies]
-type-sitter-proc = { path = "../type-sitter-proc", version = "0.5.3", optional = true }
-type-sitter-lib = { path = "../type-sitter-lib", version = "0.5.3" }
+type-sitter-proc = { path = "../type-sitter-proc", version = "0.5.4", optional = true }
+type-sitter-lib = { path = "../type-sitter-lib", version = "0.5.4" }
 
 [dev-dependencies]
 tree-sitter-json = "0.24.1"

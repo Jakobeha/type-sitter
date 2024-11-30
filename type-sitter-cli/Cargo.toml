@@ -1,6 +1,6 @@
 [package]
 name = "type-sitter-cli"
-version = "0.5.3"
+version = "0.5.4"
 authors = ["Jakob Hain <jakobeha@fastmail.com>"]
 description = "CLI for type-sitter (generate typed wrappers for tree-sitter grammars from node-types.json and queries)"
 license = "MIT OR Apache-2.0"
@@ -12,6 +12,6 @@ edition = "2021"
 [dependencies]
 clap = { version = "4.5.17", features = ["derive"] }
 thiserror = "1.0.63"
-type-sitter-gen = { path = "../type-sitter-gen", version = "0.5.3" }
+type-sitter-gen = { path = "../type-sitter-gen", version = "0.5.4" }
 rust-format = "0.3.4"
 syn = "2.0.77"
