@@ -1,8 +1,8 @@
+use logos::Logos;
 use std::borrow::Cow;
 use std::fmt::{Display, Formatter};
-use std::iter::{empty, zip};
+use std::iter::zip;
 use std::ops::{Bound, Index, RangeBounds};
-use logos::Logos;
 use tree_sitter::CaptureQuantifier;
 
 /// Parsed tree-sitter query = sequence of s-expressions
@@ -101,7 +101,7 @@ pub(super) enum ParseError {
     IllegalQuantifierPosition { span: Span, quantifier: CaptureQuantifier }
 }
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]
 pub(super) struct Span {
     /// Byte offset immediately before first char
     start: usize,
@@ -111,12 +111,26 @@ pub(super) struct Span {
 
 impl<'a> SExpSeq<'a> {
     pub(super) fn captured_patterns(&self, name: &'a str) -> impl Iterator<Item=SExp<'a>> + '_ {
-        self.toplevel_captured_patterns(name).chain(
-            self.iter().flat_map(|sexp| match sexp {
-                SExp::Atom { .. } => Box::new(empty()) as Box<dyn Iterator<Item=SExp<'a>> + '_>,
-                SExp::Group { items, .. } => Box::new(items.captured_patterns(name)) as Box<dyn Iterator<Item=SExp<'a>> + '_>
-            })
-        )
+        self.me_and_nested().flat_map(|sexp| sexp.toplevel_captured_patterns(name))
+    }
+
+    fn me_and_nested(&self) -> impl Iterator<Item=&Self> {
+        let mut worklist = vec![self];
+
+        std::iter::from_fn(move || {
+            let next = worklist.pop()?;
+
+            worklist.extend(
+                next.iter().filter_map(|element|
+                    match element {
+                        SExp::Atom { .. } => None,
+                        SExp::Group { items, .. } => Some(items)
+                    }
+                )
+            );
+
+            Some(next)
+        })
     }
 
     fn toplevel_captured_patterns(&self, name: &'a str) -> impl Iterator<Item=SExp<'a>> + '_ {
@@ -340,7 +354,7 @@ impl Display for ParseError {
 }
 
 impl Span {
-    fn of(lexer: &Lexer<'_>) -> Self {
+    fn of(lexer: &Lexer) -> Self {
         Self::from(lexer.span())
     }
 

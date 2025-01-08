@@ -197,17 +197,20 @@ fn testing_loaded_language(f: impl FnOnce() -> Result<(), Error> + UnwindSafe) -
 }
 
 unsafe extern "C" fn loaded_language_sigsegv_handler(signal: libc::c_int) {
-    if signal != libc::SIGSEGV || !TESTING_LOADED_LANGUAGE.load(std::sync::atomic::Ordering::Relaxed) {
-        // Forward the signal to the default handler.
-        libc::signal(signal, libc::SIG_DFL);
-        libc::raise(signal);
-    }
+    unsafe {
+        if signal != libc::SIGSEGV || !TESTING_LOADED_LANGUAGE.load(std::sync::atomic::Ordering::Relaxed) {
+            // Forward the signal to the default handler.
+            libc::signal(signal, libc::SIG_DFL);
+            libc::raise(signal);
+        }
 
-    // We convert the signal into a panic, which can be caught, so we can exit gracefully.
-    // From https://gist.github.com/ksqsf/b90877ae12c293c933800e3ead11a2e3
-    let sigs = MaybeUninit::<libc::sigset_t>::uninit().as_mut_ptr();
-    libc::sigemptyset(sigs);
-    libc::sigaddset(sigs, signal);
-    libc::sigprocmask(libc::SIG_UNBLOCK, sigs.cast_const(), std::ptr::null_mut());
+        // We convert the signal into a panic, which can be caught, so we can exit gracefully.
+        // From https://gist.github.com/ksqsf/b90877ae12c293c933800e3ead11a2e3
+        #[allow(dangling_pointers_from_temporaries)]
+        let sigs = MaybeUninit::<libc::sigset_t>::uninit().as_mut_ptr();
+        libc::sigemptyset(sigs);
+        libc::sigaddset(sigs, signal);
+        libc::sigprocmask(libc::SIG_UNBLOCK, sigs.cast_const(), std::ptr::null_mut());
+    }
     panic!("SIGSEGV!");
 }

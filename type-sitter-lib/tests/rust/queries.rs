@@ -1005,10 +1005,10 @@ pub enum HighlightsCapture<'tree> {
     ///"yield" @keyword
     ///(crate) @keyword
     ///(mutable_specifier) @keyword
+    ///(self) @keyword
+    ///(self) @keyword
+    ///(self) @keyword
     ///(super) @keyword
-    ///(self) @keyword
-    ///(self) @keyword
-    ///(self) @keyword
     ///```
     Keyword(anon_unions::Keyword<'tree>),
     ///A `variable.builtin` ([`super::nodes::Self_`])
@@ -1665,10 +1665,10 @@ impl<'query, 'tree: 'query> HighlightsMatch<'query, 'tree> {
     ///"yield" @keyword
     ///(crate) @keyword
     ///(mutable_specifier) @keyword
+    ///(self) @keyword
+    ///(self) @keyword
+    ///(self) @keyword
     ///(super) @keyword
-    ///(self) @keyword
-    ///(self) @keyword
-    ///(self) @keyword
     ///```
     #[inline]
     pub fn keyword(&self) -> ::std::option::Option<anon_unions::Keyword<'tree>> {
@@ -2089,10 +2089,10 @@ impl<'tree> HighlightsCapture<'tree> {
     ///"yield" @keyword
     ///(crate) @keyword
     ///(mutable_specifier) @keyword
+    ///(self) @keyword
+    ///(self) @keyword
+    ///(self) @keyword
     ///(super) @keyword
-    ///(self) @keyword
-    ///(self) @keyword
-    ///(self) @keyword
     ///```
     #[inline]
     pub fn as_keyword(&self) -> ::std::option::Option<&anon_unions::Keyword<'tree>> {

@@ -361,7 +361,8 @@ impl<'tree> SExpSeq<'tree> {
         unmake_reserved(&mut capture_method_name);
         let as_capture_method = format_ident!("as_{}", capture_method_name);
 
-        let captured_sexps = self.captured_patterns(capture_name).collect::<Vec<_>>();
+        let mut captured_sexps = self.captured_patterns(capture_name).collect::<Vec<_>>();
+        captured_sexps.sort_by(|lhs, rhs| lhs.span().cmp(rhs.span()));
         let captured_sexp_strs = captured_sexps.iter().map(|s| &query_str[s.span()]);
         let capture_node_type = captured_sexps.iter().map(|s| s.node_type(false, all_types))
             .collect::<SExpNodeType>();
