@@ -1,6 +1,6 @@
 [package]
 name = "yak-sitter"
-version = "0.6.0"
+version = "0.6.1"
 description = "opinionated tree-sitter facade which lets you store data visible to nodes and provides other improvements"
 license = "MIT OR Apache-2.0"
 repository = "https://github.com/Jakobeha/type-sitter/"
