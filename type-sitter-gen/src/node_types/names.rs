@@ -14,7 +14,7 @@ pub struct NodeName {
 
 impl NodeName {
     pub fn is_implicit(&self) -> bool {
-        self.sexp_name != "_" && self.sexp_name.starts_with('_')
+        self.is_named && self.sexp_name != "_" && self.sexp_name.starts_with('_')
     }
 
     pub(super) fn kind<'a>(names: impl IntoIterator<Item=&'a NodeName>) -> Cow<'a, str> {
