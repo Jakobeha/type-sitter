@@ -14,13 +14,18 @@ pub fn test_parse_queries_rust() {
     test_parse_queries("rust")
 }
 
+#[test]
+pub fn test_parse_queries_c() {
+    test_parse_queries("c")
+}
+
 pub fn test_parse_queries(lang: &str) {
-    let Common { input_dir, expected_dir } = setup_common(lang);
-    let input_queries_dir = input_dir.join("queries");
-    let expected_queries_path = expected_dir.join("queries.rs");
+    let Common { input_dir, output_dir } = setup_common(lang);
+    let queries_scm_dir = input_dir.join("queries");
+    let queries_code_path = output_dir.join("queries.rs");
 
     let queries_code = generate_queries_with_custom_module_paths(
-        input_queries_dir,
+        queries_scm_dir,
         input_dir,
         &super_nodes(),
         true,
@@ -28,6 +33,6 @@ pub fn test_parse_queries(lang: &str) {
         &type_sitter_lib(),
     ).expect("Failed to generate queries");
 
-    write(&expected_queries_path, queries_code.into_string())
+    write(&queries_code_path, queries_code.into_string())
         .expect("Failed to create expected queries file");
 }
