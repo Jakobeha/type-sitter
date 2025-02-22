@@ -1,16 +1,16 @@
 [package]
 name = "type-sitter-cli"
-version = "0.6.1"
-authors = ["Jakob Hain <jakobeha@fastmail.com>"]
+version.workspace = true
+authors.workspace = true
 description = "CLI for type-sitter (generate typed wrappers for tree-sitter grammars from node-types.json and queries)"
-license = "MIT OR Apache-2.0"
-repository = "https://github.com/Jakobeha/type-sitter/"
-categories = ["parsing", "compilers"]
-keywords = ["type-sitter", "tree-sitter"]
-edition = "2021"
+license.workspace = true
+repository.workspace = true
+categories.workspace = true
+keywords.workspace = true
+edition.workspace = true
 
 [dependencies]
+type-sitter-gen = { workspace = true }
 clap = { version = "4.5.17", features = ["derive"] }
 thiserror = "1.0.63"
-type-sitter-gen = { path = "../type-sitter-gen", version = "0.6.1" }
 rust-format = "0.3.4"

@@ -1,17 +1,18 @@
 [package]
 name = "yak-sitter"
-version = "0.6.1"
+version.workspace = true
+authors.workspace = true
 description = "opinionated tree-sitter facade which lets you store data visible to nodes and provides other improvements"
-license = "MIT OR Apache-2.0"
-repository = "https://github.com/Jakobeha/type-sitter/"
-categories = ["parsing", "compilers"]
-keywords = ["tree-sitter"]
-edition = "2021"
+license.workspace = true
+repository.workspace = true
+categories.workspace = true
+keywords.workspace = true
+edition.workspace = true
 
 [dependencies]
-tree-sitter = "0.24.3"
-streaming-iterator = "0.1.9"
+tree-sitter = { workspace = true }
+streaming-iterator = { workspace = true }
 
 [dev-dependencies]
-tree-sitter-rust = "0.23.0"
-tree-sitter-json = "0.23.0"
+tree-sitter-rust = { workspace = true }
+tree-sitter-json = { workspace = true }
