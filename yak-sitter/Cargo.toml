@@ -12,7 +12,3 @@ edition.workspace = true
 [dependencies]
 tree-sitter = { workspace = true }
 streaming-iterator = { workspace = true }
-
-[dev-dependencies]
-tree-sitter-rust = { workspace = true }
-tree-sitter-json = { workspace = true }

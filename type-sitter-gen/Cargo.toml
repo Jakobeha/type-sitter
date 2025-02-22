@@ -30,6 +30,4 @@ slice-group-by = "0.3"
 prettyplease = "0.2"
 
 [dev-dependencies]
-# to make these libraries available in doctests
-tree-sitter-rust = { path = "../vendor/tree-sitter-rust" }
-tree-sitter-json = { path = "../vendor/tree-sitter-json" }
+tree-sitter-rust = { workspace = true }
