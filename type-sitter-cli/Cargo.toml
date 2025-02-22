@@ -11,6 +11,6 @@ edition.workspace = true
 
 [dependencies]
 type-sitter-gen = { workspace = true }
-clap = { version = "4.5.17", features = ["derive"] }
-thiserror = "1.0.63"
-rust-format = "0.3.4"
+clap = { version = "4.5", features = ["derive"] }
+thiserror = "2.0"
+rust-format = "0.3"

@@ -68,7 +68,7 @@ fn dyload_new_language(path: &Path) -> Result<LanguageFn, Error> {
         // Test the language. If it's a bad pointer, this will segfault or return something weird.
         testing_loaded_language(|| {
             let language = Language::from(copy_language_fn(&language_fn));
-            let version = language.version();
+            let version = language.abi_version();
             if version < tree_sitter::MIN_COMPATIBLE_LANGUAGE_VERSION || version > tree_sitter::LANGUAGE_VERSION {
                 return Err(Error::IncompatibleLanguageVersion { version });
             }
