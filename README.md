@@ -282,7 +282,7 @@ pub fn process_declaration(decl: rust::DeclarationStatement<'_>) {
 
 ## Drawbacks
 
-Be aware that the generated wrapper code is very large: the [generated node wrappers for `tree-sitter-rust`](type-sitter-lib/tests/rust/nodes.rs) are 31162 LOC, and [queries](type-sitter-lib/tests/rust/queries.rs) are 6479 LOC. I don't know how that impacts compilation or analysis speed.
+Be aware that the generated wrapper code is very large: the [generated node wrappers for `tree-sitter-rust`](type-sitter-lib/tests/rust/nodes.rs) are >30000 LOC, and [queries](type-sitter-lib/tests/rust/queries.rs) are >6000 LOC. I don't know how that impacts compilation or analysis speed.
 
 `type-sitter-proc` is particularly slow because it must re-generate this code every build. `type-sitter-gen` or `type-sitter-cli` can be configured to only re-generate when the tree-sitter grammar changes.
 
