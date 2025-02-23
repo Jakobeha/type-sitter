@@ -484,6 +484,7 @@ This node type has subtypes:
 - `continue_expression` ([`ContinueExpression`])
 - `field_expression` ([`FieldExpression`])
 - `for_expression` ([`ForExpression`])
+- `gen_block` ([`GenBlock`])
 - `generic_function` ([`GenericFunction`])
 - `identifier` ([`Identifier`])
 - `if_expression` ([`IfExpression`])
@@ -527,6 +528,7 @@ pub enum Expression<'tree> {
     ContinueExpression(ContinueExpression<'tree>),
     FieldExpression(FieldExpression<'tree>),
     ForExpression(ForExpression<'tree>),
+    GenBlock(GenBlock<'tree>),
     GenericFunction(GenericFunction<'tree>),
     Identifier(Identifier<'tree>),
     IfExpression(IfExpression<'tree>),
@@ -652,6 +654,12 @@ impl<'tree> Expression<'tree> {
     pub fn as_for_expression(self) -> ::std::option::Option<ForExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::ForExpression(x) = self { Some(x) } else { None }
+    }
+    ///Returns the node if it is of type `gen_block` ([`GenBlock`]), otherwise returns `None`
+    #[inline]
+    pub fn as_gen_block(self) -> ::std::option::Option<GenBlock<'tree>> {
+        #[allow(irrefutable_let_patterns)]
+        if let Self::GenBlock(x) = self { Some(x) } else { None }
     }
     ///Returns the node if it is of type `generic_function` ([`GenericFunction`]), otherwise returns `None`
     #[inline]
@@ -937,6 +945,11 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for Expression<'tree> {
         > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
             return Ok(Self::ForExpression(this));
         }
+        if let Ok(this) = <GenBlock<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::GenBlock(this));
+        }
         if let Ok(this) = <GenericFunction<
             'tree,
         > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
@@ -1077,6 +1090,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for Expression<'tree> {
             Self::ContinueExpression(x) => ::type_sitter_lib::Node::raw(x),
             Self::FieldExpression(x) => ::type_sitter_lib::Node::raw(x),
             Self::ForExpression(x) => ::type_sitter_lib::Node::raw(x),
+            Self::GenBlock(x) => ::type_sitter_lib::Node::raw(x),
             Self::GenericFunction(x) => ::type_sitter_lib::Node::raw(x),
             Self::Identifier(x) => ::type_sitter_lib::Node::raw(x),
             Self::IfExpression(x) => ::type_sitter_lib::Node::raw(x),
@@ -1121,6 +1135,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for Expression<'tree> {
             Self::ContinueExpression(x) => ::type_sitter_lib::Node::raw_mut(x),
             Self::FieldExpression(x) => ::type_sitter_lib::Node::raw_mut(x),
             Self::ForExpression(x) => ::type_sitter_lib::Node::raw_mut(x),
+            Self::GenBlock(x) => ::type_sitter_lib::Node::raw_mut(x),
             Self::GenericFunction(x) => ::type_sitter_lib::Node::raw_mut(x),
             Self::Identifier(x) => ::type_sitter_lib::Node::raw_mut(x),
             Self::IfExpression(x) => ::type_sitter_lib::Node::raw_mut(x),
@@ -1165,6 +1180,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for Expression<'tree> {
             Self::ContinueExpression(x) => x.into_raw(),
             Self::FieldExpression(x) => x.into_raw(),
             Self::ForExpression(x) => x.into_raw(),
+            Self::GenBlock(x) => x.into_raw(),
             Self::GenericFunction(x) => x.into_raw(),
             Self::Identifier(x) => x.into_raw(),
             Self::IfExpression(x) => x.into_raw(),
@@ -3618,7 +3634,7 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for BreakExpression<'tree> {
 This node has these fields:
 
 - `arguments`: `arguments` ([`Arguments`])
-- `function`: `{_literal | array_expression | assignment_expression | async_block | await_expression | binary_expression | block | break_expression | call_expression | closure_expression | compound_assignment_expr | const_block | continue_expression | field_expression | for_expression | generic_function | identifier | if_expression | index_expression | loop_expression | macro_invocation | match_expression | metavariable | parenthesized_expression | reference_expression | return_expression | scoped_identifier | self | struct_expression | try_block | try_expression | tuple_expression | type_cast_expression | unary_expression | unit_expression | unsafe_block | while_expression | yield_expression}` ([`Literal`] | [`ArrayExpression`] | [`AssignmentExpression`] | [`AsyncBlock`] | [`AwaitExpression`] | [`BinaryExpression`] | [`Block`] | [`BreakExpression`] | [`CallExpression`] | [`ClosureExpression`] | [`CompoundAssignmentExpr`] | [`ConstBlock`] | [`ContinueExpression`] | [`FieldExpression`] | [`ForExpression`] | [`GenericFunction`] | [`Identifier`] | [`IfExpression`] | [`IndexExpression`] | [`LoopExpression`] | [`MacroInvocation`] | [`MatchExpression`] | [`Metavariable`] | [`ParenthesizedExpression`] | [`ReferenceExpression`] | [`ReturnExpression`] | [`ScopedIdentifier`] | [`Self_`] | [`StructExpression`] | [`TryBlock`] | [`TryExpression`] | [`TupleExpression`] | [`TypeCastExpression`] | [`UnaryExpression`] | [`UnitExpression`] | [`UnsafeBlock`] | [`WhileExpression`] | [`YieldExpression`])
+- `function`: `{_literal | array_expression | assignment_expression | async_block | await_expression | binary_expression | block | break_expression | call_expression | closure_expression | compound_assignment_expr | const_block | continue_expression | field_expression | for_expression | gen_block | generic_function | identifier | if_expression | index_expression | loop_expression | macro_invocation | match_expression | metavariable | parenthesized_expression | reference_expression | return_expression | scoped_identifier | self | struct_expression | try_block | try_expression | tuple_expression | type_cast_expression | unary_expression | unit_expression | unsafe_block | while_expression | yield_expression}` ([`Literal`] | [`ArrayExpression`] | [`AssignmentExpression`] | [`AsyncBlock`] | [`AwaitExpression`] | [`BinaryExpression`] | [`Block`] | [`BreakExpression`] | [`CallExpression`] | [`ClosureExpression`] | [`CompoundAssignmentExpr`] | [`ConstBlock`] | [`ContinueExpression`] | [`FieldExpression`] | [`ForExpression`] | [`GenBlock`] | [`GenericFunction`] | [`Identifier`] | [`IfExpression`] | [`IndexExpression`] | [`LoopExpression`] | [`MacroInvocation`] | [`MatchExpression`] | [`Metavariable`] | [`ParenthesizedExpression`] | [`ReferenceExpression`] | [`ReturnExpression`] | [`ScopedIdentifier`] | [`Self_`] | [`StructExpression`] | [`TryBlock`] | [`TryExpression`] | [`TupleExpression`] | [`TypeCastExpression`] | [`UnaryExpression`] | [`UnitExpression`] | [`UnsafeBlock`] | [`WhileExpression`] | [`YieldExpression`])
 */
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -3641,7 +3657,7 @@ This child has type `arguments` ([`Arguments`])*/
     }
     /**Get the field `function`.
 
-This child has type `{_literal | array_expression | assignment_expression | async_block | await_expression | binary_expression | block | break_expression | call_expression | closure_expression | compound_assignment_expr | const_block | continue_expression | field_expression | for_expression | generic_function | identifier | if_expression | index_expression | loop_expression | macro_invocation | match_expression | metavariable | parenthesized_expression | reference_expression | return_expression | scoped_identifier | self | struct_expression | try_block | try_expression | tuple_expression | type_cast_expression | unary_expression | unit_expression | unsafe_block | while_expression | yield_expression}`:
+This child has type `{_literal | array_expression | assignment_expression | async_block | await_expression | binary_expression | block | break_expression | call_expression | closure_expression | compound_assignment_expr | const_block | continue_expression | field_expression | for_expression | gen_block | generic_function | identifier | if_expression | index_expression | loop_expression | macro_invocation | match_expression | metavariable | parenthesized_expression | reference_expression | return_expression | scoped_identifier | self | struct_expression | try_block | try_expression | tuple_expression | type_cast_expression | unary_expression | unit_expression | unsafe_block | while_expression | yield_expression}`:
 
 - [`Literal`]
 - [`ArrayExpression`]
@@ -3658,6 +3674,7 @@ This child has type `{_literal | array_expression | assignment_expression | asyn
 - [`ContinueExpression`]
 - [`FieldExpression`]
 - [`ForExpression`]
+- [`GenBlock`]
 - [`GenericFunction`]
 - [`Identifier`]
 - [`IfExpression`]
@@ -3687,14 +3704,14 @@ This child has type `{_literal | array_expression | assignment_expression | asyn
         &self,
     ) -> ::type_sitter_lib::NodeResult<
         'tree,
-        anon_unions::Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier_Self__StructExpression_TryBlock_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression<
+        anon_unions::Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenBlock_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier_Self__StructExpression_TryBlock_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression<
             'tree,
         >,
     > {
         ::type_sitter_lib::Node::raw(self)
             .child_by_field_name("function")
             .map(
-                <anon_unions::Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier_Self__StructExpression_TryBlock_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression<
+                <anon_unions::Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenBlock_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier_Self__StructExpression_TryBlock_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression<
                     'tree,
                 > as ::type_sitter_lib::Node<'tree>>::try_from_raw,
             )
@@ -6787,6 +6804,68 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for FunctionType<'tree> {
     #[inline]
     unsafe fn from_raw_unchecked(node: ::yak_sitter::Node<'tree>) -> Self {
         debug_assert_eq!(node.kind(), "function_type");
+        Self(node)
+    }
+    #[inline]
+    fn raw(&self) -> &::yak_sitter::Node<'tree> {
+        &self.0
+    }
+    #[inline]
+    fn raw_mut(&mut self) -> &mut ::yak_sitter::Node<'tree> {
+        &mut self.0
+    }
+    #[inline]
+    fn into_raw(self) -> ::yak_sitter::Node<'tree> {
+        self.0
+    }
+}
+/**Typed node `gen_block`
+
+This node has a named child of type `block` ([`Block`])
+*/
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[repr(transparent)]
+#[allow(non_camel_case_types)]
+pub struct GenBlock<'tree>(::yak_sitter::Node<'tree>);
+#[automatically_derived]
+#[allow(unused)]
+impl<'tree> GenBlock<'tree> {
+    /**Get the node's only not-extra named child.
+
+This child has type `block` ([`Block`])*/
+    #[inline]
+    pub fn block(&self) -> ::type_sitter_lib::NodeResult<'tree, Block<'tree>> {
+        (0..::type_sitter_lib::Node::raw(self).named_child_count())
+            .map(|i| ::type_sitter_lib::Node::raw(self).named_child(i).unwrap())
+            .filter(|n| !n.is_extra())
+            .next()
+            .map(<Block<'tree> as ::type_sitter_lib::Node<'tree>>::try_from_raw)
+            .expect(
+                "required child not present, there should at least be a MISSING node in its place",
+            )
+    }
+}
+#[automatically_derived]
+impl<'tree> ::type_sitter_lib::HasChild<'tree> for GenBlock<'tree> {
+    type Child = Block<'tree>;
+}
+#[automatically_derived]
+impl<'tree> ::type_sitter_lib::Node<'tree> for GenBlock<'tree> {
+    type WithLifetime<'a> = GenBlock<'a>;
+    const KIND: &'static str = "gen_block";
+    #[inline]
+    fn try_from_raw(
+        node: ::yak_sitter::Node<'tree>,
+    ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
+        if node.kind() == "gen_block" {
+            Ok(Self(node))
+        } else {
+            Err(::type_sitter_lib::IncorrectKind::new::<Self>(node))
+        }
+    }
+    #[inline]
+    unsafe fn from_raw_unchecked(node: ::yak_sitter::Node<'tree>) -> Self {
+        debug_assert_eq!(node.kind(), "gen_block");
         Self(node)
     }
     #[inline]
@@ -14802,6 +14881,49 @@ This node has no named children
             self.0
         }
     }
+    /**Typed node `gen`
+
+This node has no named children
+*/
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[repr(transparent)]
+    #[allow(non_camel_case_types)]
+    pub struct Gen<'tree>(::yak_sitter::Node<'tree>);
+    #[automatically_derived]
+    #[allow(unused)]
+    impl<'tree> Gen<'tree> {}
+    #[automatically_derived]
+    impl<'tree> ::type_sitter_lib::Node<'tree> for Gen<'tree> {
+        type WithLifetime<'a> = Gen<'a>;
+        const KIND: &'static str = "gen";
+        #[inline]
+        fn try_from_raw(
+            node: ::yak_sitter::Node<'tree>,
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
+            if node.kind() == "gen" {
+                Ok(Self(node))
+            } else {
+                Err(::type_sitter_lib::IncorrectKind::new::<Self>(node))
+            }
+        }
+        #[inline]
+        unsafe fn from_raw_unchecked(node: ::yak_sitter::Node<'tree>) -> Self {
+            debug_assert_eq!(node.kind(), "gen");
+            Self(node)
+        }
+        #[inline]
+        fn raw(&self) -> &::yak_sitter::Node<'tree> {
+            &self.0
+        }
+        #[inline]
+        fn raw_mut(&mut self) -> &mut ::yak_sitter::Node<'tree> {
+            &mut self.0
+        }
+        #[inline]
+        fn into_raw(self) -> ::yak_sitter::Node<'tree> {
+            self.0
+        }
+    }
     /**Typed node `ident`
 
 This node has no named children
@@ -15475,6 +15597,49 @@ This node has no named children
         #[inline]
         unsafe fn from_raw_unchecked(node: ::yak_sitter::Node<'tree>) -> Self {
             debug_assert_eq!(node.kind(), "pub");
+            Self(node)
+        }
+        #[inline]
+        fn raw(&self) -> &::yak_sitter::Node<'tree> {
+            &self.0
+        }
+        #[inline]
+        fn raw_mut(&mut self) -> &mut ::yak_sitter::Node<'tree> {
+            &mut self.0
+        }
+        #[inline]
+        fn into_raw(self) -> ::yak_sitter::Node<'tree> {
+            self.0
+        }
+    }
+    /**Typed node `raw`
+
+This node has no named children
+*/
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[repr(transparent)]
+    #[allow(non_camel_case_types)]
+    pub struct Raw<'tree>(::yak_sitter::Node<'tree>);
+    #[automatically_derived]
+    #[allow(unused)]
+    impl<'tree> Raw<'tree> {}
+    #[automatically_derived]
+    impl<'tree> ::type_sitter_lib::Node<'tree> for Raw<'tree> {
+        type WithLifetime<'a> = Raw<'a>;
+        const KIND: &'static str = "raw";
+        #[inline]
+        fn try_from_raw(
+            node: ::yak_sitter::Node<'tree>,
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
+            if node.kind() == "raw" {
+                Ok(Self(node))
+            } else {
+                Err(::type_sitter_lib::IncorrectKind::new::<Self>(node))
+            }
+        }
+        #[inline]
+        unsafe fn from_raw_unchecked(node: ::yak_sitter::Node<'tree>) -> Self {
+            debug_assert_eq!(node.kind(), "raw");
             Self(node)
         }
         #[inline]
@@ -21269,6 +21434,14 @@ Follows the following chain:
         pub fn as_for_expression(self) -> ::std::option::Option<ForExpression<'tree>> {
             self.as_expression()?.as_for_expression()
         }
+        /**Returns the node if it is of type `gen_block` ([`GenBlock`]), otherwise returns `None`.
+
+Follows the following chain:
+- `_expression` ([`Expression < 'tree >`], from [`as_expression`](Self::as_expression))*/
+        #[inline]
+        pub fn as_gen_block(self) -> ::std::option::Option<GenBlock<'tree>> {
+            self.as_expression()?.as_gen_block()
+        }
         /**Returns the node if it is of type `generic_function` ([`GenericFunction`]), otherwise returns `None`.
 
 Follows the following chain:
@@ -21852,6 +22025,14 @@ Follows the following chain:
         pub fn as_for_expression(self) -> ::std::option::Option<ForExpression<'tree>> {
             self.as_expression()?.as_for_expression()
         }
+        /**Returns the node if it is of type `gen_block` ([`GenBlock`]), otherwise returns `None`.
+
+Follows the following chain:
+- `_expression` ([`Expression < 'tree >`], from [`as_expression`](Self::as_expression))*/
+        #[inline]
+        pub fn as_gen_block(self) -> ::std::option::Option<GenBlock<'tree>> {
+            self.as_expression()?.as_gen_block()
+        }
         /**Returns the node if it is of type `generic_function` ([`GenericFunction`]), otherwise returns `None`.
 
 Follows the following chain:
@@ -22334,6 +22515,14 @@ Follows the following chain:
         #[inline]
         pub fn as_for_expression(self) -> ::std::option::Option<ForExpression<'tree>> {
             self.as_expression()?.as_for_expression()
+        }
+        /**Returns the node if it is of type `gen_block` ([`GenBlock`]), otherwise returns `None`.
+
+Follows the following chain:
+- `_expression` ([`Expression < 'tree >`], from [`as_expression`](Self::as_expression))*/
+        #[inline]
+        pub fn as_gen_block(self) -> ::std::option::Option<GenBlock<'tree>> {
+            self.as_expression()?.as_gen_block()
         }
         /**Returns the node if it is of type `generic_function` ([`GenericFunction`]), otherwise returns `None`.
 
@@ -22826,6 +23015,14 @@ Follows the following chain:
         pub fn as_for_expression(self) -> ::std::option::Option<ForExpression<'tree>> {
             self.as_expression()?.as_for_expression()
         }
+        /**Returns the node if it is of type `gen_block` ([`GenBlock`]), otherwise returns `None`.
+
+Follows the following chain:
+- `_expression` ([`Expression < 'tree >`], from [`as_expression`](Self::as_expression))*/
+        #[inline]
+        pub fn as_gen_block(self) -> ::std::option::Option<GenBlock<'tree>> {
+            self.as_expression()?.as_gen_block()
+        }
         /**Returns the node if it is of type `generic_function` ([`GenericFunction`]), otherwise returns `None`.
 
 Follows the following chain:
@@ -23317,6 +23514,14 @@ Follows the following chain:
         #[inline]
         pub fn as_for_expression(self) -> ::std::option::Option<ForExpression<'tree>> {
             self.as_expression()?.as_for_expression()
+        }
+        /**Returns the node if it is of type `gen_block` ([`GenBlock`]), otherwise returns `None`.
+
+Follows the following chain:
+- `_expression` ([`Expression < 'tree >`], from [`as_expression`](Self::as_expression))*/
+        #[inline]
+        pub fn as_gen_block(self) -> ::std::option::Option<GenBlock<'tree>> {
+            self.as_expression()?.as_gen_block()
         }
         /**Returns the node if it is of type `generic_function` ([`GenericFunction`]), otherwise returns `None`.
 
@@ -25979,7 +26184,7 @@ Follows the following chain:
             }
         }
     }
-    /**One of `{_literal | array_expression | assignment_expression | async_block | await_expression | binary_expression | block | break_expression | call_expression | closure_expression | compound_assignment_expr | const_block | continue_expression | field_expression | for_expression | generic_function | identifier | if_expression | index_expression | loop_expression | macro_invocation | match_expression | metavariable | parenthesized_expression | reference_expression | return_expression | scoped_identifier | self | struct_expression | try_block | try_expression | tuple_expression | type_cast_expression | unary_expression | unit_expression | unsafe_block | while_expression | yield_expression}`:
+    /**One of `{_literal | array_expression | assignment_expression | async_block | await_expression | binary_expression | block | break_expression | call_expression | closure_expression | compound_assignment_expr | const_block | continue_expression | field_expression | for_expression | gen_block | generic_function | identifier | if_expression | index_expression | loop_expression | macro_invocation | match_expression | metavariable | parenthesized_expression | reference_expression | return_expression | scoped_identifier | self | struct_expression | try_block | try_expression | tuple_expression | type_cast_expression | unary_expression | unit_expression | unsafe_block | while_expression | yield_expression}`:
 - [`Literal`]
 - [`ArrayExpression`]
 - [`AssignmentExpression`]
@@ -25995,6 +26200,7 @@ Follows the following chain:
 - [`ContinueExpression`]
 - [`FieldExpression`]
 - [`ForExpression`]
+- [`GenBlock`]
 - [`GenericFunction`]
 - [`Identifier`]
 - [`IfExpression`]
@@ -26020,7 +26226,7 @@ Follows the following chain:
 - [`YieldExpression`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub enum Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier_Self__StructExpression_TryBlock_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression<
+    pub enum Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenBlock_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier_Self__StructExpression_TryBlock_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression<
         'tree,
     > {
         Literal(Literal<'tree>),
@@ -26038,6 +26244,7 @@ Follows the following chain:
         ContinueExpression(ContinueExpression<'tree>),
         FieldExpression(FieldExpression<'tree>),
         ForExpression(ForExpression<'tree>),
+        GenBlock(GenBlock<'tree>),
         GenericFunction(GenericFunction<'tree>),
         Identifier(Identifier<'tree>),
         IfExpression(IfExpression<'tree>),
@@ -26066,7 +26273,7 @@ Follows the following chain:
     #[allow(unused)]
     impl<
         'tree,
-    > Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier_Self__StructExpression_TryBlock_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression<
+    > Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenBlock_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier_Self__StructExpression_TryBlock_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression<
         'tree,
     > {
         ///Returns the node if it is of type `_literal` ([`Literal`]), otherwise returns `None`
@@ -26176,6 +26383,12 @@ Follows the following chain:
         pub fn as_for_expression(self) -> ::std::option::Option<ForExpression<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::ForExpression(x) = self { Some(x) } else { None }
+        }
+        ///Returns the node if it is of type `gen_block` ([`GenBlock`]), otherwise returns `None`
+        #[inline]
+        pub fn as_gen_block(self) -> ::std::option::Option<GenBlock<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::GenBlock(x) = self { Some(x) } else { None }
         }
         ///Returns the node if it is of type `generic_function` ([`GenericFunction`]), otherwise returns `None`
         #[inline]
@@ -26396,13 +26609,13 @@ Follows the following chain:
     }
     #[automatically_derived]
     impl<'tree> ::type_sitter_lib::Node<'tree>
-    for Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier_Self__StructExpression_TryBlock_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression<
+    for Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenBlock_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier_Self__StructExpression_TryBlock_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression<
         'tree,
     > {
-        type WithLifetime<'a> = Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier_Self__StructExpression_TryBlock_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression<
+        type WithLifetime<'a> = Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenBlock_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier_Self__StructExpression_TryBlock_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression<
             'a,
         >;
-        const KIND: &'static str = "{_literal | array_expression | assignment_expression | async_block | await_expression | binary_expression | block | break_expression | call_expression | closure_expression | compound_assignment_expr | const_block | continue_expression | field_expression | for_expression | generic_function | identifier | if_expression | index_expression | loop_expression | macro_invocation | match_expression | metavariable | parenthesized_expression | reference_expression | return_expression | scoped_identifier | self | struct_expression | try_block | try_expression | tuple_expression | type_cast_expression | unary_expression | unit_expression | unsafe_block | while_expression | yield_expression}";
+        const KIND: &'static str = "{_literal | array_expression | assignment_expression | async_block | await_expression | binary_expression | block | break_expression | call_expression | closure_expression | compound_assignment_expr | const_block | continue_expression | field_expression | for_expression | gen_block | generic_function | identifier | if_expression | index_expression | loop_expression | macro_invocation | match_expression | metavariable | parenthesized_expression | reference_expression | return_expression | scoped_identifier | self | struct_expression | try_block | try_expression | tuple_expression | type_cast_expression | unary_expression | unit_expression | unsafe_block | while_expression | yield_expression}";
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
@@ -26481,6 +26694,11 @@ Follows the following chain:
                 'tree,
             > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
                 return Ok(Self::ForExpression(this));
+            }
+            if let Ok(this) = <GenBlock<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::GenBlock(this));
             }
             if let Ok(this) = <GenericFunction<
                 'tree,
@@ -26617,6 +26835,7 @@ Follows the following chain:
                 Self::ContinueExpression(x) => ::type_sitter_lib::Node::raw(x),
                 Self::FieldExpression(x) => ::type_sitter_lib::Node::raw(x),
                 Self::ForExpression(x) => ::type_sitter_lib::Node::raw(x),
+                Self::GenBlock(x) => ::type_sitter_lib::Node::raw(x),
                 Self::GenericFunction(x) => ::type_sitter_lib::Node::raw(x),
                 Self::Identifier(x) => ::type_sitter_lib::Node::raw(x),
                 Self::IfExpression(x) => ::type_sitter_lib::Node::raw(x),
@@ -26660,6 +26879,7 @@ Follows the following chain:
                 Self::ContinueExpression(x) => ::type_sitter_lib::Node::raw_mut(x),
                 Self::FieldExpression(x) => ::type_sitter_lib::Node::raw_mut(x),
                 Self::ForExpression(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::GenBlock(x) => ::type_sitter_lib::Node::raw_mut(x),
                 Self::GenericFunction(x) => ::type_sitter_lib::Node::raw_mut(x),
                 Self::Identifier(x) => ::type_sitter_lib::Node::raw_mut(x),
                 Self::IfExpression(x) => ::type_sitter_lib::Node::raw_mut(x),
@@ -26703,6 +26923,7 @@ Follows the following chain:
                 Self::ContinueExpression(x) => x.into_raw(),
                 Self::FieldExpression(x) => x.into_raw(),
                 Self::ForExpression(x) => x.into_raw(),
+                Self::GenBlock(x) => x.into_raw(),
                 Self::GenericFunction(x) => x.into_raw(),
                 Self::Identifier(x) => x.into_raw(),
                 Self::IfExpression(x) => x.into_raw(),
@@ -30836,6 +31057,14 @@ Follows the following chain:
         #[inline]
         pub fn as_for_expression(self) -> ::std::option::Option<ForExpression<'tree>> {
             self.as_expression()?.as_for_expression()
+        }
+        /**Returns the node if it is of type `gen_block` ([`GenBlock`]), otherwise returns `None`.
+
+Follows the following chain:
+- `_expression` ([`Expression < 'tree >`], from [`as_expression`](Self::as_expression))*/
+        #[inline]
+        pub fn as_gen_block(self) -> ::std::option::Option<GenBlock<'tree>> {
+            self.as_expression()?.as_gen_block()
         }
         /**Returns the node if it is of type `generic_function` ([`GenericFunction`]), otherwise returns `None`.
 

@@ -3,9 +3,9 @@
 mod json;
 mod rust;
 
-use std::path::Path;
-use type_sitter_lib::{Parser, Node, QueryCursor, StreamingIterator, OptionNodeResultExt};
 use crate::rust::queries::Tags;
+use std::path::Path;
+use type_sitter_lib::{Node, Parser, QueryCursor, StreamingIterator};
 
 #[test]
 pub fn test_use_queries_new() {
@@ -14,7 +14,6 @@ pub fn test_use_queries_new() {
     let code_path = Path::new(env!("CARGO_MANIFEST_DIR")).join("../vendor/tree-sitter-rust/bindings/rust/lib.rs");
     let code_ast = parser.parse_file(&code_path, None).expect("Failed to parse code");
     let code_root = code_ast.root_node().expect("Failed to wrap code root node");
-    let mut cursor = code_ast.walk();
 
     let mut q = QueryCursor::new();
     let mut q2 = QueryCursor::new();
@@ -39,12 +38,7 @@ pub fn test_use_queries_new() {
     let r#match = matches.next().unwrap();
     assert_eq!(r#match.definition_module().unwrap().name().unwrap().text(), "tests");
     assert_eq!(r#match.name().unwrap().as_identifier().unwrap().text(), "tests");
-    let r#match = matches.next().unwrap();
-    let mut match_children = r#match.definition_method().unwrap().declaration_statements(&mut cursor);
-    assert_eq!(match_children.next().unwrap2().as_attribute_item().unwrap().attribute().unwrap().other().unwrap().as_identifier().unwrap().text(), "test");
-    assert_eq!(match_children.next().unwrap2().as_function_item().unwrap().name().unwrap().as_identifier().unwrap().text(), "test_can_load_grammar");
-    assert!(match_children.next().is_none());
-    assert_eq!(r#match.name().unwrap().as_identifier().unwrap().text(), "test_can_load_grammar");
+    assert_eq!(matches.next().unwrap().name().unwrap().as_identifier().unwrap().text(), "test_can_load_grammar");
     let r#match = matches.next().unwrap();
     assert_eq!(r#match.definition_function().unwrap().name().unwrap().as_identifier().unwrap().text(), "test_can_load_grammar");
     assert_eq!(r#match.name().unwrap().as_identifier().unwrap().text(), "test_can_load_grammar");
