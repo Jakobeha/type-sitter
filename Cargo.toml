@@ -29,5 +29,5 @@ yak-sitter = { path = "yak-sitter", version = "0.7" }
 streaming-iterator = "0.1"
 syn = "2.0"
 tree-sitter = "0.25"
-tree-sitter-json = "0.24"
-tree-sitter-rust = "0.23"
+tree-sitter-json = { path = "vendor/tree-sitter-json", version = "0.24" }
+tree-sitter-rust = { path = "vendor/tree-sitter-rust", version = "0.23" }
