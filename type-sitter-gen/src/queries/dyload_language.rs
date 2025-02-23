@@ -1,3 +1,7 @@
+use crate::queries::{has_extension, language_name};
+use crate::Error;
+use cc::Build;
+use libloading::Library;
 use std::cell::LazyCell;
 use std::collections::HashMap;
 use std::ffi::CString;
@@ -8,13 +12,9 @@ use std::path::{Path, PathBuf};
 use std::process::Command;
 use std::sync::atomic::AtomicBool;
 use std::sync::RwLock;
-use cc::Build;
-use libloading::Library;
 use tree_sitter::Language;
 use tree_sitter_language::LanguageFn;
 use walkdir::WalkDir;
-use crate::Error;
-use crate::queries::{has_extension, language_name};
 
 // We don't want to load the same library multiple times, and we also need to store the Library
 //    so that it doesn't get unloaded.
@@ -89,7 +89,26 @@ fn build_dylib_if_needed(path: &Path, dylib_path: &Path) -> Result<(), Error> {
     Ok(())
 }
 
-fn dylib_path(path: &Path) -> PathBuf {
+/// Returns the path of the dynamic library that type-sitter looks for when generating queries.
+///
+/// # Example
+///
+/// ```no_run
+/// # use std::path::Path;
+/// # use type_sitter_gen::dylib_path;
+///
+/// let path = dylib_path(Path::new("path/to/your/language"));
+///
+/// #[cfg(target_os = "macos")]
+/// assert_eq!(path, Path::new("path/to/your/language/target/c-release-so/libtree-sitter.dylib"));
+///
+/// #[cfg(target_os = "windows")]
+/// assert_eq!(path, Path::new("path/to/your/language/target/c-release-so/libtree-sitter.dll"));
+///
+/// #[cfg(target_os = "linux")]
+/// assert_eq!(path, Path::new("path/to/your/language/target/c-release-so/libtree-sitter.so"));
+/// ```
+pub fn dylib_path(path: &Path) -> PathBuf {
     let mut path = path.join("target/c-release-so/libtree-sitter");
     if cfg!(target_os = "macos") {
         path.set_extension("dylib");
@@ -137,7 +156,7 @@ fn build_dylib(path: &Path, dylib_path: &Path) -> Result<(), Error> {
     eprintln!("Dynamic linking {}...", dylib_path.display());
     let status = if cfg!(target_os = "macos") {
         Command::new("/usr/bin/clang")
-            .args(["-dynamiclib", "-undefined", "error", "-o"])
+            .args(["-dynamiclib", "-o"])
             .arg(&dylib_path)
             .args(find_object_files_in(dylib_dir))
             .status()

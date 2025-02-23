@@ -8,6 +8,7 @@ mod sexp_node_type;
 mod generated_tokens;
 
 use crate::mk_syntax::ident;
+pub use crate::queries::dyload_language::dylib_path;
 use crate::queries::dyload_language::dyload_language;
 use crate::queries::sexp::SExpSeq;
 use crate::{make_valid, type_sitter, type_sitter_raw, Error, NodeTypeMap, PrintCtx};
