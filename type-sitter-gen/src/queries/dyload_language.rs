@@ -17,7 +17,7 @@ use tree_sitter_language::LanguageFn;
 use walkdir::WalkDir;
 
 // We don't want to load the same library multiple times, and we also need to store the Library
-//    so that it doesn't get unloaded.
+//    so that it doesn't get unloaded
 const LOADED_LANGUAGES: LazyCell<RwLock<HashMap<PathBuf, LanguageFn>>> =
     LazyCell::new(|| RwLock::new(HashMap::new()));
 
@@ -36,7 +36,10 @@ pub(crate) fn dyload_language(path: impl AsRef<Path>) -> Result<Language, Error>
     // Load the language
     let language_fn = dyload_new_language(path)?;
     // Cache the language
-    LOADED_LANGUAGES.write().unwrap().insert(path.to_path_buf(), copy_language_fn(&language_fn));
+    LOADED_LANGUAGES
+        .write()
+        .unwrap()
+        .insert(path.to_path_buf(), copy_language_fn(&language_fn));
     Ok(language_fn.into())
 }
 
@@ -45,8 +48,8 @@ fn dyload_new_language(path: &Path) -> Result<LanguageFn, Error> {
     // Symbol name = language name, and it has type `fn() -> *const ()`
     //     e.g. `tree-sitter-rust => { extern "C" fn tree_sitter_rust() -> *const () ... }`
     // In order to convert this into a language, you need `LanguageFn::from_raw(language_fn).into()`
-    let symbol_name = CString::new(language_name(path)?)
-        .map_err(|_| Error::IllegalTSLanguageSymbolName)?;
+    let symbol_name =
+        CString::new(language_name(path)?).map_err(|_| Error::IllegalTSLanguageSymbolName)?;
     build_dylib_if_needed(path, &dylib_path)?;
     eprintln!("Dynamically loading {}...", symbol_name.to_str().unwrap());
     // SAFETY: We are literally calling into arbitrary code, so...we can't rule out UB. However,
@@ -69,7 +72,9 @@ fn dyload_new_language(path: &Path) -> Result<LanguageFn, Error> {
         testing_loaded_language(|| {
             let language = Language::from(copy_language_fn(&language_fn));
             let version = language.abi_version();
-            if version < tree_sitter::MIN_COMPATIBLE_LANGUAGE_VERSION || version > tree_sitter::LANGUAGE_VERSION {
+            if version < tree_sitter::MIN_COMPATIBLE_LANGUAGE_VERSION
+                || version > tree_sitter::LANGUAGE_VERSION
+            {
                 return Err(Error::IncompatibleLanguageVersion { version });
             }
             Ok(())
@@ -108,6 +113,7 @@ fn build_dylib_if_needed(path: &Path, dylib_path: &Path) -> Result<(), Error> {
 /// #[cfg(target_os = "linux")]
 /// assert_eq!(path, Path::new("path/to/your/language/target/c-release-so/libtree-sitter.so"));
 /// ```
+
 pub fn dylib_path(path: &Path) -> PathBuf {
     let mut path = path.join("target/c-release-so/libtree-sitter");
     if cfg!(target_os = "macos") {
@@ -127,7 +133,8 @@ fn build_dylib(path: &Path, dylib_path: &Path) -> Result<(), Error> {
     // Derived from tree-sitter-rust's build.rs
     eprintln!("Building {}...", dylib_path.display());
     let src_dir = path.join("src");
-    let sources = src_dir.read_dir()?
+    let sources = src_dir
+        .read_dir()?
         .filter_map(|e| e.ok())
         .map(|e| e.path())
         .filter(|p| has_extension(p, "c"));
@@ -172,13 +179,15 @@ fn build_dylib(path: &Path, dylib_path: &Path) -> Result<(), Error> {
         return Err(Error::LinkDylibUnsupported);
     };
     if !status.success() {
-        return Err(Error::LinkDylibFailed { exit_status: status });
+        return Err(Error::LinkDylibFailed {
+            exit_status: status,
+        });
     }
 
     Ok(())
 }
 
-fn find_object_files_in(dir: &Path) -> impl Iterator<Item=PathBuf> {
+fn find_object_files_in(dir: &Path) -> impl Iterator<Item = PathBuf> {
     WalkDir::new(dir)
         .into_iter()
         .filter_map(|entry| entry.ok())
@@ -196,6 +205,10 @@ fn copy_language_fn(language_fn: &LanguageFn) -> LanguageFn {
     }
 }
 
+#[cfg(target_os = "windows")]
+fn register_handler_if_necessary() {}
+
+#[cfg(not(target_os = "windows"))]
 fn register_handler_if_necessary() {
     if !REGISTERED_HANDLER.swap(true, std::sync::atomic::Ordering::Relaxed) {
         unsafe {
@@ -203,21 +216,29 @@ fn register_handler_if_necessary() {
             // `signal` function should be safe to call.
             // The function can be `unsafe` because if it is called, we already got a segfault so
             // "safety" doesn't matter anymore.
-            libc::signal(libc::SIGSEGV, loaded_language_sigsegv_handler as libc::size_t);
+            libc::signal(
+                libc::SIGSEGV,
+                loaded_language_sigsegv_handler as libc::size_t,
+            );
         }
     }
 }
 
-fn testing_loaded_language(f: impl FnOnce() -> Result<(), Error> + UnwindSafe) -> Result<(), Error> {
+fn testing_loaded_language(
+    f: impl FnOnce() -> Result<(), Error> + UnwindSafe,
+) -> Result<(), Error> {
     TESTING_LOADED_LANGUAGE.store(true, std::sync::atomic::Ordering::Relaxed);
     let result = std::panic::catch_unwind(f).unwrap_or(Err(Error::CorruptDylib));
     TESTING_LOADED_LANGUAGE.store(false, std::sync::atomic::Ordering::Relaxed);
     result
 }
 
+#[cfg(not(target_os = "windows"))]
 unsafe extern "C" fn loaded_language_sigsegv_handler(signal: libc::c_int) {
     unsafe {
-        if signal != libc::SIGSEGV || !TESTING_LOADED_LANGUAGE.load(std::sync::atomic::Ordering::Relaxed) {
+        if signal != libc::SIGSEGV
+            || !TESTING_LOADED_LANGUAGE.load(std::sync::atomic::Ordering::Relaxed)
+        {
             // Forward the signal to the default handler.
             libc::signal(signal, libc::SIG_DFL);
             libc::raise(signal);
