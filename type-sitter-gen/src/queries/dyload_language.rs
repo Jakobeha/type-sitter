@@ -17,7 +17,7 @@ use tree_sitter_language::LanguageFn;
 use walkdir::WalkDir;
 
 // We don't want to load the same library multiple times, and we also need to store the Library
-//    so that it doesn't get unloaded
+//    so that it doesn't get unloaded.
 const LOADED_LANGUAGES: LazyCell<RwLock<HashMap<PathBuf, LanguageFn>>> =
     LazyCell::new(|| RwLock::new(HashMap::new()));
 
@@ -25,7 +25,10 @@ const REGISTERED_HANDLER: AtomicBool = AtomicBool::new(false);
 const TESTING_LOADED_LANGUAGE: AtomicBool = AtomicBool::new(false);
 
 pub(crate) fn dyload_language(path: impl AsRef<Path>) -> Result<Language, Error> {
-    register_handler_if_necessary();
+    // On Unixes, we can sometimes intercept loading a corrupted language and exit gracefully.
+    // On Windows, currently we can only exit gracefully on `panic!`.
+    #[cfg(unix)]
+    register_crash_handler_if_necessary();
 
     let path = path.as_ref();
     // Check if the language has already been loaded
@@ -205,11 +208,8 @@ fn copy_language_fn(language_fn: &LanguageFn) -> LanguageFn {
     }
 }
 
-#[cfg(target_os = "windows")]
-fn register_handler_if_necessary() {}
-
-#[cfg(not(target_os = "windows"))]
-fn register_handler_if_necessary() {
+#[cfg(unix)]
+fn register_crash_handler_if_necessary() {
     if !REGISTERED_HANDLER.swap(true, std::sync::atomic::Ordering::Relaxed) {
         unsafe {
             // SAFETY: Registering the signal handler, it's the correct unchecked type and the
@@ -218,7 +218,7 @@ fn register_handler_if_necessary() {
             // "safety" doesn't matter anymore.
             libc::signal(
                 libc::SIGSEGV,
-                loaded_language_sigsegv_handler as libc::size_t,
+                loaded_language_crash_handler as libc::size_t,
             );
         }
     }
@@ -233,8 +233,8 @@ fn testing_loaded_language(
     result
 }
 
-#[cfg(not(target_os = "windows"))]
-unsafe extern "C" fn loaded_language_sigsegv_handler(signal: libc::c_int) {
+#[cfg(unix)]
+unsafe extern "C" fn loaded_language_crash_handler(signal: libc::c_int) {
     unsafe {
         if signal != libc::SIGSEGV
             || !TESTING_LOADED_LANGUAGE.load(std::sync::atomic::Ordering::Relaxed)
@@ -245,7 +245,7 @@ unsafe extern "C" fn loaded_language_sigsegv_handler(signal: libc::c_int) {
         }
 
         // We convert the signal into a panic, which can be caught, so we can exit gracefully.
-        // From https://gist.github.com/ksqsf/b90877ae12c293c933800e3ead11a2e3
+        // From https://gist.github.com/ksqsf/b90877ae12c293c933800e3ead11a2e3.
         #[allow(dangling_pointers_from_temporaries)]
         let sigs = MaybeUninit::<libc::sigset_t>::uninit().as_mut_ptr();
         libc::sigemptyset(sigs);
