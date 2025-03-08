@@ -10,7 +10,7 @@ keywords.workspace = true
 edition.workspace = true
 
 [dependencies]
-convert_case = "0.7"
+convert_case = "0.8"
 check_keyword = "0.3"
 proc-macro2 = "1.0"
 quote = "1.0"
