@@ -9,9 +9,9 @@ use std::str::Utf8Error;
 use std::hash::{Hash, Hasher};
 use std::ops::{BitAnd, BitOr, BitOrAssign, RangeBounds};
 #[cfg(unix)]
-use std::os::fd::AsRawFd;
+use std::os::unix::io::AsRawFd;
 #[cfg(windows)]
-use std::os::fd::AsRawHandle;
+use std::os::windows::io::AsRawHandle;
 use std::ptr::NonNull;
 use utf8_error_offset_by::Utf8ErrorOffsetBy;
 
