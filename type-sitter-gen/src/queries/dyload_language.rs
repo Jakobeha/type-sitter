@@ -6,7 +6,6 @@ use std::cell::LazyCell;
 use std::collections::HashMap;
 use std::ffi::CString;
 use std::fs::create_dir_all;
-use std::mem::MaybeUninit;
 use std::panic::UnwindSafe;
 use std::path::{Path, PathBuf};
 use std::process::Command;
@@ -21,6 +20,7 @@ use walkdir::WalkDir;
 const LOADED_LANGUAGES: LazyCell<RwLock<HashMap<PathBuf, LanguageFn>>> =
     LazyCell::new(|| RwLock::new(HashMap::new()));
 
+#[cfg(unix)]
 const REGISTERED_HANDLER: AtomicBool = AtomicBool::new(false);
 const TESTING_LOADED_LANGUAGE: AtomicBool = AtomicBool::new(false);
 
@@ -244,7 +244,7 @@ unsafe extern "C" fn loaded_language_crash_handler(signal: libc::c_int) {
         // We convert the signal into a panic, which can be caught, so we can exit gracefully.
         // From https://gist.github.com/ksqsf/b90877ae12c293c933800e3ead11a2e3.
         #[allow(dangling_pointers_from_temporaries)]
-        let sigs = MaybeUninit::<libc::sigset_t>::uninit().as_mut_ptr();
+        let sigs = std::mem::MaybeUninit::<libc::sigset_t>::uninit().as_mut_ptr();
         libc::sigemptyset(sigs);
         libc::sigaddset(sigs, signal);
         libc::sigprocmask(libc::SIG_UNBLOCK, sigs.cast_const(), std::ptr::null_mut());
