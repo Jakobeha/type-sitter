@@ -1,5 +1,5 @@
-use std::ops::Deref;
 use serde::Deserialize;
+use std::ops::Deref;
 
 /// Sorted set backed by a vector. Insertion and retrieval via binary search.
 #[derive(Clone, Debug, Deserialize, Eq, PartialEq, Hash)]

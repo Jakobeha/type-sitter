@@ -15,7 +15,13 @@ pub struct QueryCaptures<'query, 'tree: 'query, Query: crate::Query> {
 
 /// Iterate a query's captures (see [RawQueryCaptures])
 #[cfg(not(feature = "yak-sitter"))]
-pub struct QueryCaptures<'query, 'tree: 'query, Query: crate::Query, Text: raw::TextProvider<I>, I: AsRef<[u8]>> {
+pub struct QueryCaptures<
+    'query,
+    'tree: 'query,
+    Query: crate::Query,
+    Text: raw::TextProvider<I>,
+    I: AsRef<[u8]>,
+> {
     typed_query: &'query Query,
     untyped_captures: raw::QueryCaptures<'query, 'tree, Text, I>,
 }
@@ -65,7 +71,10 @@ impl<'query, 'tree: 'query, Query: crate::Query> QueryCaptures<'query, 'tree, Qu
         typed_query: &'query Query,
         untyped_captures: raw::QueryCaptures<'query, 'tree>,
     ) -> Self {
-        Self { typed_query, untyped_captures }
+        Self {
+            typed_query,
+            untyped_captures,
+        }
     }
 
     /// Limit captures to a byte range
@@ -82,7 +91,9 @@ impl<'query, 'tree: 'query, Query: crate::Query> QueryCaptures<'query, 'tree, Qu
 }
 
 #[cfg(not(feature = "yak-sitter"))]
-impl<'query, 'tree: 'query, Query: crate::Query, Text: raw::TextProvider<I>, I: AsRef<[u8]>> QueryCaptures<'query, 'tree, Query, Text, I> {
+impl<'query, 'tree: 'query, Query: crate::Query, Text: raw::TextProvider<I>, I: AsRef<[u8]>>
+    QueryCaptures<'query, 'tree, Query, Text, I>
+{
     /// Construct from [tree-sitter's `QueryCaptures`](raw::QueryCaptures)
     ///
     /// # Safety
@@ -92,7 +103,10 @@ impl<'query, 'tree: 'query, Query: crate::Query, Text: raw::TextProvider<I>, I: 
         typed_query: &'query Query,
         untyped_captures: raw::QueryCaptures<'query, 'tree, Text, I>,
     ) -> Self {
-        Self { typed_query, untyped_captures }
+        Self {
+            typed_query,
+            untyped_captures,
+        }
     }
 
     /// Limit captures to a byte range
@@ -119,16 +133,19 @@ impl<'query, 'tree: 'query, Query: crate::Query> Iterator for QueryCaptures<'que
         let tree = self.untyped_captures.tree();
 
         // SAFETY: Captures come from the same query and tree, and node from the same tree
-        unsafe { self.untyped_captures.as_inner_mut().next().map(|(m, index)| {
-            let inner_capture = m.captures[*index];
-            self.typed_query.wrap_capture(
-                raw::QueryCapture {
-                    node: raw::Node::new(inner_capture.node, tree),
-                    index: inner_capture.index as usize,
-                    name: query.capture_names()[inner_capture.index as usize],
-                },
-            )
-        }) }
+        unsafe {
+            self.untyped_captures
+                .as_inner_mut()
+                .next()
+                .map(|(m, index)| {
+                    let inner_capture = m.captures[*index];
+                    self.typed_query.wrap_capture(raw::QueryCapture {
+                        node: raw::Node::new(inner_capture.node, tree),
+                        index: inner_capture.index as usize,
+                        name: query.capture_names()[inner_capture.index as usize],
+                    })
+                })
+        }
     }
 
     #[inline]
@@ -138,15 +155,19 @@ impl<'query, 'tree: 'query, Query: crate::Query> Iterator for QueryCaptures<'que
 }
 
 #[cfg(not(feature = "yak-sitter"))]
-impl<'query, 'tree: 'query, Query: crate::Query, Text: raw::TextProvider<I>, I: AsRef<[u8]>> Iterator for QueryCaptures<'query, 'tree, Query, Text, I> {
+impl<'query, 'tree: 'query, Query: crate::Query, Text: raw::TextProvider<I>, I: AsRef<[u8]>>
+    Iterator for QueryCaptures<'query, 'tree, Query, Text, I>
+{
     type Item = Query::Capture<'query, 'tree>;
 
     #[inline]
     fn next(&mut self) -> Option<Self::Item> {
         // SAFETY: Captures come from the same query
-        unsafe { self.untyped_captures.next().map(|(m, index)| {
-            self.typed_query.wrap_capture(m.captures[*index])
-        }) }
+        unsafe {
+            self.untyped_captures
+                .next()
+                .map(|(m, index)| self.typed_query.wrap_capture(m.captures[*index]))
+        }
     }
 
     #[inline]

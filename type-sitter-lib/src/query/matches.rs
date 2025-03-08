@@ -25,7 +25,13 @@ pub struct QueryMatches<'query, 'tree: 'query, Query: crate::Query> {
 ///     [`StreamingIterator`] (see <https://github.com/tree-sitter/tree-sitter/issues/608>).
 ///     Therefore this doesn't implement [`Iterator`].
 #[cfg(not(feature = "yak-sitter"))]
-pub struct QueryMatches<'query, 'tree: 'query, Query: crate::Query + 'tree, Text: raw::TextProvider<I>, I: AsRef<[u8]>> {
+pub struct QueryMatches<
+    'query,
+    'tree: 'query,
+    Query: crate::Query + 'tree,
+    Text: raw::TextProvider<I>,
+    I: AsRef<[u8]>,
+> {
     typed_query: &'query Query,
     untyped_matches: raw::QueryMatches<'query, 'tree, Text, I>,
     current_match: Option<*const Query::Match<'query, 'tree>>,
@@ -54,11 +60,9 @@ pub trait QueryMatch<'query, 'tree: 'query>: Debug {
     #[inline]
     fn captures(&self) -> QueryMatchCaptures<'query, 'tree, Self::Query> {
         // SAFETY: Captures come from the same query
-        unsafe { QueryMatchCaptures::new(
-            self.query(),
-            self.raw().as_inner().captures,
-            self.tree()
-        ) }
+        unsafe {
+            QueryMatchCaptures::new(self.query(), self.raw().as_inner().captures, self.tree())
+        }
     }
 
     /// See [tree-sitter's `QueryMatch::captures`](raw::QueryMatch::captures)
@@ -73,7 +77,11 @@ pub trait QueryMatch<'query, 'tree: 'query>: Debug {
     // I don't know why `tree: 'query` is required, since it's not in any bounds from anything in
     // the function body.
     #[inline]
-    fn remove(self) where Self: Sized, 'tree: 'query {
+    fn remove(self)
+    where
+        Self: Sized,
+        'tree: 'query,
+    {
         self.into_raw().remove()
     }
 }
@@ -87,12 +95,12 @@ impl<'query, 'tree: 'query, Query: crate::Query + 'tree> QueryMatches<'query, 't
     #[inline]
     pub(super) unsafe fn from_raw(
         typed_query: &'query Query,
-        untyped_matches: raw::QueryMatches<'query, 'tree>
+        untyped_matches: raw::QueryMatches<'query, 'tree>,
     ) -> Self {
         Self {
             typed_query,
             untyped_matches,
-            current_match: None
+            current_match: None,
         }
     }
 
@@ -111,7 +119,14 @@ impl<'query, 'tree: 'query, Query: crate::Query + 'tree> QueryMatches<'query, 't
 }
 
 #[cfg(not(feature = "yak-sitter"))]
-impl<'query, 'tree: 'query, Query: crate::Query + 'tree, Text: raw::TextProvider<I>, I: AsRef<[u8]>> QueryMatches<'query, 'tree, Query, Text, I> {
+impl<
+        'query,
+        'tree: 'query,
+        Query: crate::Query + 'tree,
+        Text: raw::TextProvider<I>,
+        I: AsRef<[u8]>,
+    > QueryMatches<'query, 'tree, Query, Text, I>
+{
     /// Wrap untyped matches along with the query.
     ///
     /// # Safety
@@ -119,12 +134,12 @@ impl<'query, 'tree: 'query, Query: crate::Query + 'tree, Text: raw::TextProvider
     #[inline]
     pub(super) unsafe fn from_raw(
         typed_query: &'query Query,
-        untyped_matches: raw::QueryMatches<'query, 'tree, Text, I>
+        untyped_matches: raw::QueryMatches<'query, 'tree, Text, I>,
     ) -> Self {
         Self {
             typed_query,
             untyped_matches,
-            current_match: None
+            current_match: None,
         }
     }
 
@@ -143,7 +158,9 @@ impl<'query, 'tree: 'query, Query: crate::Query + 'tree, Text: raw::TextProvider
 
 //noinspection DuplicatedCode
 #[cfg(feature = "yak-sitter")]
-impl<'query, 'tree: 'query, Query: crate::Query + 'tree> StreamingIterator for QueryMatches<'query, 'tree, Query> {
+impl<'query, 'tree: 'query, Query: crate::Query + 'tree> StreamingIterator
+    for QueryMatches<'query, 'tree, Query>
+{
     type Item = Query::Match<'query, 'tree>;
 
     #[inline]
@@ -151,8 +168,9 @@ impl<'query, 'tree: 'query, Query: crate::Query + 'tree> StreamingIterator for Q
         self.untyped_matches.advance();
         // SAFETY: Matches come from the same query and tree.
         self.current_match = unsafe {
-            self.untyped_matches.get().map(|m|
-                self.typed_query.wrap_match_ref(m) as *const _)
+            self.untyped_matches
+                .get()
+                .map(|m| self.typed_query.wrap_match_ref(m) as *const _)
         }
     }
 
@@ -173,7 +191,14 @@ impl<'query, 'tree: 'query, Query: crate::Query + 'tree> StreamingIterator for Q
 
 //noinspection DuplicatedCode
 #[cfg(not(feature = "yak-sitter"))]
-impl<'query, 'tree: 'query, Query: crate::Query + 'tree, Text: raw::TextProvider<I>, I: AsRef<[u8]>> StreamingIterator for QueryMatches<'query, 'tree, Query, Text, I> {
+impl<
+        'query,
+        'tree: 'query,
+        Query: crate::Query + 'tree,
+        Text: raw::TextProvider<I>,
+        I: AsRef<[u8]>,
+    > StreamingIterator for QueryMatches<'query, 'tree, Query, Text, I>
+{
     type Item = Query::Match<'query, 'tree>;
 
     #[inline]
@@ -181,8 +206,9 @@ impl<'query, 'tree: 'query, Query: crate::Query + 'tree, Text: raw::TextProvider
         self.untyped_matches.advance();
         // SAFETY: Matches come from the same query and tree.
         self.current_match = unsafe {
-            self.untyped_matches.get().map(|m|
-                self.typed_query.wrap_match_ref(m) as *const _)
+            self.untyped_matches
+                .get()
+                .map(|m| self.typed_query.wrap_match_ref(m) as *const _)
         }
     }
 

@@ -1,6 +1,6 @@
-use proc_macro2::TokenStream;
 use crate::anon_unions::AnonUnions;
 use crate::{pretty_print, NodeModule};
+use proc_macro2::TokenStream;
 
 /// Generated AST tokens from calling [`NodeType::print`] on a single instance or each element of a
 /// collection.

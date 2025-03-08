@@ -12,13 +12,21 @@ pub enum Error {
     LoadDylibFailed(libloading::Error),
     LoadDylibSymbolFailed(libloading::Error),
     CorruptDylib,
-    IncompatibleLanguageVersion { version: usize },
+    IncompatibleLanguageVersion {
+        version: usize,
+    },
     LinkDylibUnsupported,
     LinkDylibCmdFailed(std::io::Error),
-    LinkDylibFailed { exit_status: ExitStatus },
+    LinkDylibFailed {
+        exit_status: ExitStatus,
+    },
     IllegalTSLanguageSymbolName,
     ParseQuery(QueryError),
-    IllegalIdentifier { type_desc: String, name: String, source: syn::Error }
+    IllegalIdentifier {
+        type_desc: String,
+        name: String,
+        source: syn::Error,
+    },
 }
 
 impl Error {

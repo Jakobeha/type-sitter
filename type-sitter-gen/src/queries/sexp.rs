@@ -12,15 +12,24 @@ pub(super) struct SExpSeq<'a>(Vec<SExp<'a>>);
 /// Tree-sitter query s-expression
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub(super) enum SExp<'a> {
-    Atom { span: Span, quantifier: CaptureQuantifier, atom: Atom<'a> },
-    Group { span: Span, quantifier: CaptureQuantifier, group_type: GroupType, items: SExpSeq<'a> }
+    Atom {
+        span: Span,
+        quantifier: CaptureQuantifier,
+        atom: Atom<'a>,
+    },
+    Group {
+        span: Span,
+        quantifier: CaptureQuantifier,
+        group_type: GroupType,
+        items: SExpSeq<'a>,
+    },
 }
 
 /// S-expression "parenthesis type"
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub(super) enum GroupType {
     Paren,
-    Bracket
+    Bracket,
 }
 
 /// S-expression which is not a group
@@ -79,7 +88,11 @@ enum Token<'a> {
     QuantifyOneOrMore,
     #[regex(r#"[a-zA-Z_][a-zA-Z0-9_\-+\.!?@#$%^&*|'/<>]*:"#, lex_snoc)]
     Field(&'a str),
-    #[regex(r#"[a-zA-Z_][a-zA-Z0-9_\-+\.!?@#$%^&*|'/<>]*"#, Lexer::slice, priority = 0)]
+    #[regex(
+        r#"[a-zA-Z_][a-zA-Z0-9_\-+\.!?@#$%^&*|'/<>]*"#,
+        Lexer::slice,
+        priority = 0
+    )]
     Ident(&'a str),
     #[regex(r#""([^"\\]|\\.)*""#, unquote_simple)]
     String(Cow<'a, str>),
@@ -94,11 +107,24 @@ enum Token<'a> {
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub(super) enum ParseError {
-    Eof { span: Span },
-    BadToken { span: Span },
-    IllegalGroupClose { span: Span, group_type: GroupType },
-    UnclosedGroup { span: Span, group_type: GroupType },
-    IllegalQuantifierPosition { span: Span, quantifier: CaptureQuantifier }
+    Eof {
+        span: Span,
+    },
+    BadToken {
+        span: Span,
+    },
+    IllegalGroupClose {
+        span: Span,
+        group_type: GroupType,
+    },
+    UnclosedGroup {
+        span: Span,
+        group_type: GroupType,
+    },
+    IllegalQuantifierPosition {
+        span: Span,
+        quantifier: CaptureQuantifier,
+    },
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]
@@ -106,38 +132,40 @@ pub(super) struct Span {
     /// Byte offset immediately before first char
     start: usize,
     /// Byte offset immediately after last char
-    end: usize
+    end: usize,
 }
 
 impl<'a> SExpSeq<'a> {
-    pub(super) fn captured_patterns(&self, name: &'a str) -> impl Iterator<Item=SExp<'a>> + '_ {
-        self.me_and_nested().flat_map(|sexp| sexp.toplevel_captured_patterns(name))
+    pub(super) fn captured_patterns(&self, name: &'a str) -> impl Iterator<Item = SExp<'a>> + '_ {
+        self.me_and_nested()
+            .flat_map(|sexp| sexp.toplevel_captured_patterns(name))
     }
 
-    fn me_and_nested(&self) -> impl Iterator<Item=&Self> {
+    fn me_and_nested(&self) -> impl Iterator<Item = &Self> {
         let mut worklist = vec![self];
 
         std::iter::from_fn(move || {
             let next = worklist.pop()?;
 
-            worklist.extend(
-                next.iter().filter_map(|element|
-                    match element {
-                        SExp::Atom { .. } => None,
-                        SExp::Group { items, .. } => Some(items)
-                    }
-                )
-            );
+            worklist.extend(next.iter().filter_map(|element| match element {
+                SExp::Atom { .. } => None,
+                SExp::Group { items, .. } => Some(items),
+            }));
 
             Some(next)
         })
     }
 
-    fn toplevel_captured_patterns(&self, name: &'a str) -> impl Iterator<Item=SExp<'a>> + '_ {
+    fn toplevel_captured_patterns(&self, name: &'a str) -> impl Iterator<Item = SExp<'a>> + '_ {
         zip(self, self.iter().skip(1))
             .filter(|(captured, capture)| {
-                !matches!(captured, SExp::Atom { atom: Atom::Predicate { .. }, .. }) &&
-                    capture.is_capture(name)
+                !matches!(
+                    captured,
+                    SExp::Atom {
+                        atom: Atom::Predicate { .. },
+                        ..
+                    }
+                ) && capture.is_capture(name)
             })
             .map(|(pattern, _)| pattern.clone())
     }
@@ -153,7 +181,7 @@ impl<'a> TryFrom<&'a str> for SExpSeq<'a> {
             match parser.parse_next(this.last_mut()) {
                 Ok(next) => this.push(next),
                 Err(ParseError::Eof { .. }) => break,
-                Err(err) => return Err(err)
+                Err(err) => return Err(err),
             }
         }
         Ok(SExpSeq(this))
@@ -176,22 +204,25 @@ impl<'a> Display for SExpSeq<'a> {
 impl<'a> SExp<'a> {
     pub(super) fn is_capture(&self, name: &'a str) -> bool {
         match self {
-            Self::Atom { atom: Atom::Capture { name: atom_name }, .. } => name == *atom_name,
-            _ => false
+            Self::Atom {
+                atom: Atom::Capture { name: atom_name },
+                ..
+            } => name == *atom_name,
+            _ => false,
         }
     }
 
     pub(super) fn span(&self) -> &Span {
         match self {
             Self::Atom { span, .. } => span,
-            Self::Group { span, .. } => span
+            Self::Group { span, .. } => span,
         }
     }
 
     pub(super) fn quantifier_mut(&mut self) -> &mut CaptureQuantifier {
         match self {
             SExp::Atom { quantifier, .. } => quantifier,
-            SExp::Group { quantifier, .. } => quantifier
+            SExp::Group { quantifier, .. } => quantifier,
         }
     }
 }
@@ -199,9 +230,23 @@ impl<'a> SExp<'a> {
 impl<'a> Display for SExp<'a> {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
         match self {
-            Self::Atom { quantifier, atom, .. } => write!(f, "{}{}", atom, quantifier.print()),
-            Self::Group { quantifier, items, group_type, .. } => {
-                write!(f, "{}{}{}{}", group_type.start_char(), items, group_type.end_char(), quantifier.print())
+            Self::Atom {
+                quantifier, atom, ..
+            } => write!(f, "{}{}", atom, quantifier.print()),
+            Self::Group {
+                quantifier,
+                items,
+                group_type,
+                ..
+            } => {
+                write!(
+                    f,
+                    "{}{}{}{}",
+                    group_type.start_char(),
+                    items,
+                    group_type.end_char(),
+                    quantifier.print()
+                )
             }
         }
     }
@@ -211,14 +256,14 @@ impl GroupType {
     pub(super) fn start_char(&self) -> char {
         match self {
             Self::Paren => '(',
-            Self::Bracket => '['
+            Self::Bracket => '[',
         }
     }
 
     pub(super) fn end_char(&self) -> char {
         match self {
             Self::Paren => ')',
-            Self::Bracket => ']'
+            Self::Bracket => ']',
         }
     }
 }
@@ -227,7 +272,7 @@ impl Display for GroupType {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
         match self {
             Self::Paren => write!(f, "paren"),
-            Self::Bracket => write!(f, "bracket")
+            Self::Bracket => write!(f, "bracket"),
         }
     }
 }
@@ -245,7 +290,7 @@ impl<'a> TryFrom<Token<'a>> for Atom<'a> {
             Token::Negation(name) => Ok(Self::Negation { name }),
             Token::Capture(name) => Ok(Self::Capture { name }),
             Token::Predicate(name) => Ok(Self::Predicate { name }),
-            token => Err(token)
+            token => Err(token),
         }
     }
 }
@@ -260,14 +305,16 @@ impl<'a> Display for Atom<'a> {
             Atom::String { content } => write!(f, "{:?}", content),
             Atom::Negation { name } => write!(f, "!{}", name),
             Atom::Capture { name } => write!(f, "@{}", name),
-            Atom::Predicate { name } => write!(f, "#{}", name)
+            Atom::Predicate { name } => write!(f, "#{}", name),
         }
     }
 }
 
 impl<'a> Parser<'a> {
     pub(super) fn new(source: &'a str) -> Self {
-        Self { lexer: Lexer::new(source) }
+        Self {
+            lexer: Lexer::new(source),
+        }
     }
 
     fn parse_next(&mut self, prev: Option<&mut SExp<'a>>) -> Result<SExp<'a>, ParseError> {
@@ -277,18 +324,34 @@ impl<'a> Parser<'a> {
             None => Err(ParseError::Eof { span }),
             Some(Err(())) => Err(ParseError::BadToken { span }),
             Some(Ok(token)) => match Atom::try_from(token) {
-                Ok(atom) => Ok(SExp::Atom { span, quantifier: CaptureQuantifier::One, atom }),
+                Ok(atom) => Ok(SExp::Atom {
+                    span,
+                    quantifier: CaptureQuantifier::One,
+                    atom,
+                }),
                 Err(token) => match token {
                     Token::LParen => self.finish_parsing_group(GroupType::Paren),
                     Token::LBracket => self.finish_parsing_group(GroupType::Bracket),
-                    Token::RParen => Err(ParseError::IllegalGroupClose { span, group_type: GroupType::Paren }),
-                    Token::RBracket => Err(ParseError::IllegalGroupClose { span, group_type: GroupType::Bracket }),
-                    Token::QuantifyZeroOrOne => self.parse_quantifier(prev, span, CaptureQuantifier::ZeroOrOne),
-                    Token::QuantifyZeroOrMore => self.parse_quantifier(prev, span, CaptureQuantifier::ZeroOrMore),
-                    Token::QuantifyOneOrMore => self.parse_quantifier(prev, span, CaptureQuantifier::OneOrMore),
-                    _ => unreachable!("should've been handled by atom or group")
-                }
-            }
+                    Token::RParen => Err(ParseError::IllegalGroupClose {
+                        span,
+                        group_type: GroupType::Paren,
+                    }),
+                    Token::RBracket => Err(ParseError::IllegalGroupClose {
+                        span,
+                        group_type: GroupType::Bracket,
+                    }),
+                    Token::QuantifyZeroOrOne => {
+                        self.parse_quantifier(prev, span, CaptureQuantifier::ZeroOrOne)
+                    }
+                    Token::QuantifyZeroOrMore => {
+                        self.parse_quantifier(prev, span, CaptureQuantifier::ZeroOrMore)
+                    }
+                    Token::QuantifyOneOrMore => {
+                        self.parse_quantifier(prev, span, CaptureQuantifier::OneOrMore)
+                    }
+                    _ => unreachable!("should've been handled by atom or group"),
+                },
+            },
         }
     }
 
@@ -296,7 +359,7 @@ impl<'a> Parser<'a> {
         &mut self,
         prev: Option<&mut SExp<'a>>,
         span: Span,
-        quantifier: CaptureQuantifier
+        quantifier: CaptureQuantifier,
     ) -> Result<SExp<'a>, ParseError> {
         match prev {
             None => Err(ParseError::IllegalQuantifierPosition { span, quantifier }),
@@ -313,17 +376,31 @@ impl<'a> Parser<'a> {
         loop {
             match self.parse_next(items.last_mut()) {
                 Ok(item) => items.push(item),
-                Err(ParseError::IllegalGroupClose { span, group_type: close_type }) if group_type == close_type => {
+                Err(ParseError::IllegalGroupClose {
+                    span,
+                    group_type: close_type,
+                }) if group_type == close_type => {
                     let span_end = span.end;
-                    let span = Span { start: span_start, end: span_end };
-                    break Ok(SExp::Group { span, quantifier: CaptureQuantifier::One, group_type, items })
-                },
+                    let span = Span {
+                        start: span_start,
+                        end: span_end,
+                    };
+                    break Ok(SExp::Group {
+                        span,
+                        quantifier: CaptureQuantifier::One,
+                        group_type,
+                        items,
+                    });
+                }
                 Err(ParseError::Eof { span }) => {
                     let span_end = span.end;
-                    let span = Span { start: span_start, end: span_end };
-                    break Err(ParseError::UnclosedGroup { span, group_type })
+                    let span = Span {
+                        start: span_start,
+                        end: span_end,
+                    };
+                    break Err(ParseError::UnclosedGroup { span, group_type });
                 }
-                Err(err) => return Err(err)
+                Err(err) => return Err(err),
             }
         }
     }
@@ -346,9 +423,17 @@ impl Display for ParseError {
         match self {
             Self::Eof { span } => write!(f, "unexpected end of input at {}", span),
             Self::BadToken { span } => write!(f, "bad token at {}", span),
-            Self::IllegalGroupClose { span, group_type } => write!(f, "illegal group close at {} (expected {})", span, group_type),
-            Self::UnclosedGroup { span, group_type } => write!(f, "unclosed group at {} (expected {})", span, group_type),
-            Self::IllegalQuantifierPosition { span, .. } => write!(f, "illegal quantifier position at {}", span)
+            Self::IllegalGroupClose { span, group_type } => write!(
+                f,
+                "illegal group close at {} (expected {})",
+                span, group_type
+            ),
+            Self::UnclosedGroup { span, group_type } => {
+                write!(f, "unclosed group at {} (expected {})", span, group_type)
+            }
+            Self::IllegalQuantifierPosition { span, .. } => {
+                write!(f, "illegal quantifier position at {}", span)
+            }
         }
     }
 }
@@ -375,7 +460,10 @@ impl RangeBounds<usize> for Span {
 
 impl From<logos::Span> for Span {
     fn from(value: logos::Span) -> Self {
-        Span { start: value.start, end: value.end }
+        Span {
+            start: value.start,
+            end: value.end,
+        }
     }
 }
 
@@ -408,11 +496,13 @@ trait CaptureQuantifierExt {
 impl CaptureQuantifierExt for CaptureQuantifier {
     fn print(&self) -> &'static str {
         match self {
-            Self::Zero => panic!("zero quantifier should never be printed (it isn't even possible)"),
+            Self::Zero => {
+                panic!("zero quantifier should never be printed (it isn't even possible)")
+            }
             Self::One => "",
             Self::ZeroOrOne => "?",
             Self::ZeroOrMore => "*",
-            Self::OneOrMore => "+"
+            Self::OneOrMore => "+",
         }
     }
 }
@@ -429,15 +519,16 @@ fn lex_tail<'a>(lex: &mut Lexer<'a>) -> &'a str {
 fn unquote_simple<'a>(lex: &mut Lexer<'a>) -> Cow<'a, str> {
     let slice = &lex.slice()[1..lex.slice().len() - 1];
     if slice.contains("\\") {
-        Cow::Owned(slice
-            .replace("\\\"", "\"")
-            .replace("\\\\", "\\")
-            .replace("\\n", "\n")
-            .replace("\\r", "\r")
-            .replace("\\t", "\t")
-            .replace("\\0", "\0")
-            .replace("\\'", "'"))
-
+        Cow::Owned(
+            slice
+                .replace("\\\"", "\"")
+                .replace("\\\\", "\\")
+                .replace("\\n", "\n")
+                .replace("\\r", "\r")
+                .replace("\\t", "\t")
+                .replace("\\0", "\0")
+                .replace("\\'", "'"),
+        )
     } else {
         Cow::Borrowed(slice)
     }
@@ -457,7 +548,7 @@ impl<'a> SExpSeq<'a> {
         self.0.last_mut()
     }
 
-    pub(super) fn iter(&self) -> impl Iterator<Item=&SExp<'a>> {
+    pub(super) fn iter(&self) -> impl Iterator<Item = &SExp<'a>> {
         self.0.iter()
     }
 
@@ -467,7 +558,7 @@ impl<'a> SExpSeq<'a> {
 }
 
 impl<'a> FromIterator<SExp<'a>> for SExpSeq<'a> {
-    fn from_iter<T: IntoIterator<Item=SExp<'a>>>(iter: T) -> Self {
+    fn from_iter<T: IntoIterator<Item = SExp<'a>>>(iter: T) -> Self {
         Self(iter.into_iter().collect())
     }
 }

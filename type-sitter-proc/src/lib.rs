@@ -57,10 +57,15 @@ pub fn generate_nodes(item: proc_macro::TokenStream) -> proc_macro::TokenStream 
 #[proc_macro]
 pub fn generate_queries(item: proc_macro::TokenStream) -> proc_macro::TokenStream {
     let args = parse_macro_input!(item as GenerateQueriesArgs);
-    type_sitter_gen::generate_queries(&args.path, &args.language_path, &args.nodes, use_yak_sitter())
-        .map(|g| g.collapse(&args.nodes))
-        .unwrap_or_else(|err| err.to_compile_error())
-        .into()
+    type_sitter_gen::generate_queries(
+        &args.path,
+        &args.language_path,
+        &args.nodes,
+        use_yak_sitter(),
+    )
+    .map(|g| g.collapse(&args.nodes))
+    .unwrap_or_else(|err| err.to_compile_error())
+    .into()
 }
 
 #[cfg(feature = "yak-sitter")]

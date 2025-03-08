@@ -9,12 +9,12 @@ pub(crate) use crate::print_ctx::*;
 pub use crate::queries::*;
 pub use anon_unions::*;
 
-mod error;
-mod node_types;
-mod mk_syntax;
-mod queries;
 mod anon_unions;
+mod error;
+mod mk_syntax;
+mod node_types;
 mod print_ctx;
+mod queries;
 mod vec_set;
 
 /// = `parse_quote!(::type_sitter)`. The default path to the `type_sitter` crate.
@@ -57,8 +57,10 @@ pub fn super_nodes() -> syn::Path {
 /// pretty-printed tokens because the proc-macro returns a [`TokenStream`] instead of a string.
 fn pretty_print(tokens: &TokenStream) -> String {
     let str = tokens.to_string();
-    syn::parse_file(&str).map(|f| prettyplease::unparse(&f)).unwrap_or_else(|err| {
-        eprintln!("Failed to pretty print tokens: {}", err);
-        str
-    })
+    syn::parse_file(&str)
+        .map(|f| prettyplease::unparse(&f))
+        .unwrap_or_else(|err| {
+            eprintln!("Failed to pretty print tokens: {}", err);
+            str
+        })
 }

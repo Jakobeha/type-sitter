@@ -2,7 +2,10 @@ use crate::anon_unions::{AnonUnionId, AnonUnions};
 use crate::mk_syntax::{concat_doc, ident, lit_str, modularize};
 use crate::node_types::detail_doc::{ChildrenKind, DetailDoc};
 use crate::node_types::{make_not_reserved, NodeTypeMap};
-use crate::{make_valid, unmake_reserved, unmake_reserved_if_raw, Children, GeneratedNodeTokens, NodeModule, NodeName, NodeRustNames, NodeType, NodeTypeKind, PrintCtx};
+use crate::{
+    make_valid, unmake_reserved, unmake_reserved_if_raw, Children, GeneratedNodeTokens, NodeModule,
+    NodeName, NodeRustNames, NodeType, NodeTypeKind, PrintCtx,
+};
 use join_lazy_fmt::Join;
 use proc_macro2::TokenStream;
 use quote::quote;
@@ -14,18 +17,33 @@ impl NodeType {
     pub(crate) fn print(&self, ctx @ PrintCtx { all_types, .. }: PrintCtx) -> GeneratedNodeTokens {
         let mut tokens = GeneratedNodeTokens::new();
 
-        let NodeName { sexp_name, is_named: _ } = &self.name;
-        let NodeRustNames { type_name: rust_type_name, method_name: _, module } = &self.rust_names;
+        let NodeName {
+            sexp_name,
+            is_named: _,
+        } = &self.name;
+        let NodeRustNames {
+            type_name: rust_type_name,
+            method_name: _,
+            module,
+        } = &self.rust_names;
         let is_implicit = self.name.is_implicit();
 
         // Node type names are always valid identifiers
         let ident = ident!(rust_type_name, "node kind (rust type name)").unwrap();
         let kind = lit_str(sexp_name);
-        let doc = concat_doc!("Typed node `", sexp_name, "`\n\n", DetailDoc::new(self, all_types).to_string());
+        let doc = concat_doc!(
+            "Typed node `",
+            sexp_name,
+            "`\n\n",
+            DetailDoc::new(self, all_types).to_string()
+        );
 
         let definition = match &self.kind {
-            NodeTypeKind::Supertype { subtypes: subtype_names } => {
-                let subtypes = subtype_names.iter()
+            NodeTypeKind::Supertype {
+                subtypes: subtype_names,
+            } => {
+                let subtypes = subtype_names
+                    .iter()
                     .map(|name| &all_types[name])
                     .collect::<Vec<_>>();
 
@@ -35,7 +53,7 @@ impl NodeType {
                     &kind,
                     &subtypes,
                     ctx,
-                    &mut tokens.anon_unions
+                    &mut tokens.anon_unions,
                 )
             }
             NodeTypeKind::Regular { fields, children } => {
@@ -50,7 +68,7 @@ impl NodeType {
                     fields,
                     children,
                     ctx,
-                    &mut tokens.anon_unions
+                    &mut tokens.anon_unions,
                 )
             }
         };
@@ -65,7 +83,11 @@ impl NodeType {
         kind: &LitStr,
         fields: &BTreeMap<String, Children>,
         other_children: &Children,
-        ctx @ PrintCtx { tree_sitter, type_sitter_lib, .. }: PrintCtx,
+        ctx @ PrintCtx {
+            tree_sitter,
+            type_sitter_lib,
+            ..
+        }: PrintCtx,
         anon_unions: &mut AnonUnions,
     ) -> TokenStream {
         let mut prev_methods = HashSet::new();
@@ -76,7 +98,7 @@ impl NodeType {
             other_children,
             &mut prev_methods,
             ctx,
-            anon_unions
+            anon_unions,
         );
 
         quote! {
@@ -138,7 +160,11 @@ impl NodeType {
         ident: &Ident,
         kind: &LitStr,
         subtypes: &[&NodeType],
-        ctx @ PrintCtx { all_types, tree_sitter, type_sitter_lib }: PrintCtx,
+        ctx @ PrintCtx {
+            all_types,
+            tree_sitter,
+            type_sitter_lib,
+        }: PrintCtx,
         anon_unions: &mut AnonUnions,
     ) -> TokenStream {
         let has_implicit_subtypes = subtypes.iter().any(|subtype| subtype.name.is_implicit());
@@ -149,12 +175,14 @@ impl NodeType {
         let mut prev_variants = HashSet::new();
         let mut prev_methods = HashSet::new();
 
-        let variants = subtypes.iter()
+        let variants = subtypes
+            .iter()
             .map(|subtype| subtype.print_variant_definition(&mut prev_variants))
             .collect::<TokenStream>();
 
         prev_variants.clear();
-        let variant_accessors = subtypes.iter()
+        let variant_accessors = subtypes
+            .iter()
             .map(|subtype| subtype.print_variant_accessor(&mut prev_variants, &mut prev_methods))
             .collect::<TokenStream>();
 
@@ -169,7 +197,7 @@ impl NodeType {
             &Children::EMPTY,
             &mut prev_methods,
             ctx,
-            anon_unions
+            anon_unions,
         );
 
         let try_from_raw_body = {
@@ -178,7 +206,8 @@ impl NodeType {
             };
             if has_implicit_subtypes {
                 prev_variants.clear();
-                let try_from_ifs = subtypes.iter()
+                let try_from_ifs = subtypes
+                    .iter()
                     .map(|name| name.print_try_from_if(&mut prev_variants, type_sitter_lib))
                     .collect::<TokenStream>();
 
@@ -188,7 +217,8 @@ impl NodeType {
                 }
             } else {
                 prev_variants.clear();
-                let from_cases = subtypes.iter()
+                let from_cases = subtypes
+                    .iter()
                     .map(|name| name.print_from_case(&mut prev_variants, type_sitter_lib))
                     .collect::<TokenStream>();
 
@@ -202,17 +232,20 @@ impl NodeType {
         };
 
         prev_variants.clear();
-        let node_cases = subtypes.iter()
+        let node_cases = subtypes
+            .iter()
             .map(|name| name.print_raw_case(&mut prev_variants, type_sitter_lib))
             .collect::<TokenStream>();
 
         prev_variants.clear();
-        let node_mut_cases = subtypes.iter()
+        let node_mut_cases = subtypes
+            .iter()
             .map(|name| name.print_raw_mut_case(&mut prev_variants, type_sitter_lib))
             .collect::<TokenStream>();
 
         prev_variants.clear();
-        let into_node_cases = subtypes.iter()
+        let into_node_cases = subtypes
+            .iter()
             .map(|name| name.print_into_raw_case(&mut prev_variants))
             .collect::<TokenStream>();
 
@@ -272,13 +305,13 @@ impl NodeType {
     fn print_inlined_subtype_variant_accessors(
         subtypes: &[&NodeType],
         prev_methods: &mut HashSet<String>,
-        all_types: &NodeTypeMap
+        all_types: &NodeTypeMap,
     ) -> TokenStream {
         struct Frame<'a> {
             outer_outer_rust_type: TokenStream,
             outer_sexp_name: &'a str,
             outer_rust_type: TokenStream,
-            outer_as_method: Ident
+            outer_as_method: Ident,
         }
 
         // TODO: Unify this and `print_variant_accessors` because it doesn't handle the diamond
@@ -292,97 +325,121 @@ impl NodeType {
             prev_methods: &mut HashSet<String>,
             all_types: &'a NodeTypeMap,
         ) -> TokenStream {
-            let outer_outer_rust_type = if let Some(Frame { outer_rust_type, .. }) = path.last() {
+            let outer_outer_rust_type = if let Some(Frame {
+                outer_rust_type, ..
+            }) = path.last()
+            {
                 outer_rust_type.clone()
             } else {
                 quote!(Self)
             };
 
             let mut prev_outer_methods = HashSet::new();
-            outer_subtypes.iter().copied().map(|outer_subtype| {
-                if let NodeTypeKind::Supertype { subtypes: inner_subtype_names } = &outer_subtype.kind {
-                    let inner_subtypes = inner_subtype_names.iter()
-                        .map(|name| &all_types[name])
-                        .collect::<Vec<_>>();
-                    let outer_sexp_name = &outer_subtype.name.sexp_name;
-                    let outer_rust_type = outer_subtype.print_rust_type();
-                    let outer_as_method = outer_subtype.rust_as_method_ident(&mut prev_outer_methods);
+            outer_subtypes
+                .iter()
+                .copied()
+                .map(|outer_subtype| {
+                    if let NodeTypeKind::Supertype {
+                        subtypes: inner_subtype_names,
+                    } = &outer_subtype.kind
+                    {
+                        let inner_subtypes = inner_subtype_names
+                            .iter()
+                            .map(|name| &all_types[name])
+                            .collect::<Vec<_>>();
+                        let outer_sexp_name = &outer_subtype.name.sexp_name;
+                        let outer_rust_type = outer_subtype.print_rust_type();
+                        let outer_as_method =
+                            outer_subtype.rust_as_method_ident(&mut prev_outer_methods);
 
-                    // Importantly, we only continue after adding to `prev_outer_methods` if
-                    // necessary. This is because we need the outer method names to be the same as
-                    // they were non-transitively printed.
-                    if already_recursed.contains(&outer_subtype.name) {
-                        return TokenStream::new();
-                    }
-
-                    path.push(Frame {
-                        outer_outer_rust_type: outer_outer_rust_type.clone(),
-                        outer_sexp_name,
-                        outer_rust_type,
-                        outer_as_method
-                    });
-
-                    // Process immediate transitive accessor
-                    let mut prev_inner_methods = HashSet::new();
-                    let immediate_inlined = inner_subtypes.iter().map(|inner_subtype| {
-                        let rust_type = inner_subtype.print_rust_type();
-                        let inner_as_method = inner_subtype.rust_as_method_ident(&mut prev_inner_methods);
-                        let as_method = inner_subtype.rust_as_method_ident(prev_methods);
-
-                        // Importantly, we only continue after adding to `prev_inner_methods` if
-                        // necessary. This is because we need the inner method names to be the same
-                        // as they were non-transitively printed (same with `already_recursed`).
-                        if already_printed.contains(&inner_subtype.name) {
+                        // Importantly, we only continue after adding to `prev_outer_methods` if
+                        // necessary. This is because we need the outer method names to be the same as
+                        // they were non-transitively printed.
+                        if already_recursed.contains(&outer_subtype.name) {
                             return TokenStream::new();
                         }
 
-                        let mut doc_str = inner_subtype.variant_accessor_doc_str();
-                        doc_str.push_str(".\n\nFollows the following chain:");
-                        for frame in path.iter() {
-                            write!(
-                                doc_str,
-                                "\n- `{}` ([`{}`], from [`{}`]({}::{}))",
-                                frame.outer_sexp_name,
-                                frame.outer_rust_type,
-                                frame.outer_as_method,
-                                frame.outer_outer_rust_type,
-                                frame.outer_as_method
-                            ).unwrap();
-                        }
+                        path.push(Frame {
+                            outer_outer_rust_type: outer_outer_rust_type.clone(),
+                            outer_sexp_name,
+                            outer_rust_type,
+                            outer_as_method,
+                        });
 
-                        let accessor_chain = path.iter().map(|Frame { outer_as_method, .. }| {
-                            quote! { .#outer_as_method()? }
-                        }).collect::<TokenStream>();
+                        // Process immediate transitive accessor
+                        let mut prev_inner_methods = HashSet::new();
+                        let immediate_inlined = inner_subtypes
+                            .iter()
+                            .map(|inner_subtype| {
+                                let rust_type = inner_subtype.print_rust_type();
+                                let inner_as_method =
+                                    inner_subtype.rust_as_method_ident(&mut prev_inner_methods);
+                                let as_method = inner_subtype.rust_as_method_ident(prev_methods);
+
+                                // Importantly, we only continue after adding to `prev_inner_methods` if
+                                // necessary. This is because we need the inner method names to be the same
+                                // as they were non-transitively printed (same with `already_recursed`).
+                                if already_printed.contains(&inner_subtype.name) {
+                                    return TokenStream::new();
+                                }
+
+                                let mut doc_str = inner_subtype.variant_accessor_doc_str();
+                                doc_str.push_str(".\n\nFollows the following chain:");
+                                for frame in path.iter() {
+                                    write!(
+                                        doc_str,
+                                        "\n- `{}` ([`{}`], from [`{}`]({}::{}))",
+                                        frame.outer_sexp_name,
+                                        frame.outer_rust_type,
+                                        frame.outer_as_method,
+                                        frame.outer_outer_rust_type,
+                                        frame.outer_as_method
+                                    )
+                                    .unwrap();
+                                }
+
+                                let accessor_chain = path
+                                    .iter()
+                                    .map(
+                                        |Frame {
+                                             outer_as_method, ..
+                                         }| {
+                                            quote! { .#outer_as_method()? }
+                                        },
+                                    )
+                                    .collect::<TokenStream>();
+
+                                quote! {
+                                    #[doc = #doc_str]
+                                    #[inline]
+                                    pub fn #as_method(self) -> ::std::option::Option<#rust_type> {
+                                        self #accessor_chain .#inner_as_method()
+                                    }
+                                }
+                            })
+                            .collect::<TokenStream>();
+
+                        // Process further transitive accessors
+                        let transitive_inlined = rec(
+                            &inner_subtypes,
+                            path,
+                            already_recursed,
+                            already_printed,
+                            prev_methods,
+                            all_types,
+                        );
+
+                        path.pop();
 
                         quote! {
-                            #[doc = #doc_str]
-                            #[inline]
-                            pub fn #as_method(self) -> ::std::option::Option<#rust_type> {
-                                self #accessor_chain .#inner_as_method()
-                            }
+                            #immediate_inlined
+                            #transitive_inlined
                         }
-                    }).collect::<TokenStream>();
-
-                    // Process further transitive accessors
-                    let transitive_inlined = rec(
-                        &inner_subtypes,
-                        path,
-                        already_recursed,
-                        already_printed,
-                        prev_methods,
-                        all_types
-                    );
-
-                    path.pop();
-
-                    quote! {
-                        #immediate_inlined
-                        #transitive_inlined
+                    } else {
+                        TokenStream::new()
                     }
-                } else {
-                    TokenStream::new()
-                }
-            }).collect::<TokenStream>()
+                })
+                .collect::<TokenStream>()
         }
 
         rec(
@@ -391,13 +448,13 @@ impl NodeType {
             &mut HashSet::new(),
             &mut subtypes.iter().map(|t| &t.name).collect(),
             prev_methods,
-            all_types
+            all_types,
         )
     }
 
     fn common_subtype_fields(
         subtypes: &[&NodeType],
-        all_types: &NodeTypeMap
+        all_types: &NodeTypeMap,
     ) -> BTreeMap<String, Children> {
         let mut common_fields = None::<BTreeMap<String, Children>>;
 
@@ -418,15 +475,21 @@ impl NodeType {
 
         while let Some(subtype) = worklist.pop() {
             match &subtype.kind {
-                NodeTypeKind::Supertype { subtypes: subtype_names } => {
-                    let subtypes = subtype_names.iter()
+                NodeTypeKind::Supertype {
+                    subtypes: subtype_names,
+                } => {
+                    let subtypes = subtype_names
+                        .iter()
                         .map(|name| &all_types[name])
                         .collect::<Vec<_>>();
 
                     worklist.extend(subtypes.iter().copied().rev());
                 }
                 // Why do I need to add `&` to `fields` and `children` in `process`?
-                NodeTypeKind::Regular { fields, children: _ } => process(&fields)
+                NodeTypeKind::Regular {
+                    fields,
+                    children: _,
+                } => process(&fields),
             }
         }
 
@@ -439,8 +502,12 @@ impl NodeType {
         fields: &BTreeMap<String, Children>,
         other_children: &Children,
         prev_methods: &mut HashSet<String>,
-        ctx @ PrintCtx { all_types, type_sitter_lib, .. }: PrintCtx,
-        anon_unions: &mut AnonUnions
+        ctx @ PrintCtx {
+            all_types,
+            type_sitter_lib,
+            ..
+        }: PrintCtx,
+        anon_unions: &mut AnonUnions,
     ) -> (TokenStream, TokenStream) {
         let field_accessors = fields.iter().map(|(name, field)| {
             let name_sexp = lit_str(name);
@@ -464,7 +531,9 @@ impl NodeType {
             )
         }).collect::<TokenStream>();
 
-        let special_children_accessor = if other_children.is_empty() || (fields.is_empty() && other_children.types.len() != 1) {
+        let special_children_accessor = if other_children.is_empty()
+            || (fields.is_empty() && other_children.types.len() != 1)
+        {
             TokenStream::new()
         } else {
             let kind_desc = ChildrenKind::new(other_children, true, all_types).to_string();
@@ -569,22 +638,18 @@ impl NodeType {
                 #field_accessors
                 #special_children_accessor
             },
-            trait_children_accessor
+            trait_children_accessor,
         )
     }
 
     pub(crate) fn print_sum_type(
         types: &[&NodeType],
         ctx: PrintCtx,
-        anon_unions: &mut AnonUnions
+        anon_unions: &mut AnonUnions,
     ) -> TokenStream {
-        Self::print_general_sum_type(
-            types,
-            quote! {},
-            ctx,
-            anon_unions,
-            || AnonUnionId::new(types)
-        )
+        Self::print_general_sum_type(types, quote! {}, ctx, anon_unions, || {
+            AnonUnionId::new(types)
+        })
     }
 
     pub(crate) fn print_query_capture_sum_type(
@@ -592,23 +657,21 @@ impl NodeType {
         types: &[&NodeType],
         nodes: &Path,
         ctx: PrintCtx,
-        anon_unions: &mut AnonUnions
+        anon_unions: &mut AnonUnions,
     ) -> TokenStream {
-        Self::print_general_sum_type(
-            types,
-            quote! { #nodes:: },
-            ctx,
-            anon_unions,
-            || AnonUnionId::query_capture(capture_variant_name)
-        )
+        Self::print_general_sum_type(types, quote! { #nodes:: }, ctx, anon_unions, || {
+            AnonUnionId::query_capture(capture_variant_name)
+        })
     }
 
     fn print_general_sum_type(
         types: &[&NodeType],
         nodes_prefix: TokenStream,
-        ctx @ PrintCtx { type_sitter_lib, .. }: PrintCtx,
+        ctx @ PrintCtx {
+            type_sitter_lib, ..
+        }: PrintCtx,
         anon_unions: &mut AnonUnions,
-        mk_anon_union_id: impl FnOnce() -> AnonUnionId
+        mk_anon_union_id: impl FnOnce() -> AnonUnionId,
     ) -> TokenStream {
         match types.len() {
             // Never type
@@ -617,17 +680,21 @@ impl NodeType {
             1 => {
                 let type_ = types[0].print_rust_type();
                 quote! { #nodes_prefix #type_ }
-            },
+            }
             // Anonymous union
             _ => {
                 let anon_union_id = mk_anon_union_id();
-                let anon_union_name = ident!(anon_union_id.name, "generated (anon union name)").unwrap();
+                let anon_union_name =
+                    ident!(anon_union_id.name, "generated (anon union name)").unwrap();
                 if !anon_unions.contains_key(&anon_union_id) {
                     // Insert a dummy value so we don't recurse.
                     anon_unions.insert(anon_union_id.clone(), TokenStream::new());
 
                     let kind_str = NodeName::kind(types.iter().map(|t| &t.name));
-                    let kind_refs = format!("- [`{}`]", "`]\n- [`".join(types.iter().map(|t| t.rust_names.type_path())));
+                    let kind_refs = format!(
+                        "- [`{}`]",
+                        "`]\n- [`".join(types.iter().map(|t| t.rust_names.type_path()))
+                    );
                     let kind = lit_str(&kind_str);
                     let definition = NodeType::print_sum_definition(
                         concat_doc!("One of `", kind_str, "`:\n", kind_refs),
@@ -635,10 +702,11 @@ impl NodeType {
                         &kind,
                         types,
                         ctx,
-                        anon_unions
+                        anon_unions,
                     );
 
-                    let entry = anon_unions.get_mut(&anon_union_id)
+                    let entry = anon_unions
+                        .get_mut(&anon_union_id)
                         .expect("just inserted a dummy value, and we don't remove from this map");
                     *entry = definition;
                 }
@@ -667,7 +735,7 @@ impl NodeType {
     fn print_variant_accessor(
         &self,
         prev_variants: &mut HashSet<String>,
-        prev_methods: &mut HashSet<String>
+        prev_methods: &mut HashSet<String>,
     ) -> TokenStream {
         let ident = self.rust_variant_ident(prev_variants);
         let rust_type = self.print_rust_type();
@@ -697,7 +765,11 @@ impl NodeType {
         )
     }
 
-    fn print_try_from_if(&self, prev_variants: &mut HashSet<String>, type_sitter_lib: &Path) -> TokenStream {
+    fn print_try_from_if(
+        &self,
+        prev_variants: &mut HashSet<String>,
+        type_sitter_lib: &Path,
+    ) -> TokenStream {
         let ident = self.rust_variant_ident(prev_variants);
         let rust_type = self.print_rust_type();
 
@@ -708,7 +780,11 @@ impl NodeType {
         }
     }
 
-    fn print_from_case(&self, prev_variants: &mut HashSet<String>, type_sitter_lib: &Path) -> TokenStream {
+    fn print_from_case(
+        &self,
+        prev_variants: &mut HashSet<String>,
+        type_sitter_lib: &Path,
+    ) -> TokenStream {
         let ident = self.rust_variant_ident(prev_variants);
         let rust_type = self.print_rust_type();
         let kind = self.sexp_lit_str();
@@ -718,7 +794,11 @@ impl NodeType {
         }
     }
 
-    fn print_raw_case(&self, prev_variants: &mut HashSet<String>, type_sitter_lib: &Path) -> TokenStream {
+    fn print_raw_case(
+        &self,
+        prev_variants: &mut HashSet<String>,
+        type_sitter_lib: &Path,
+    ) -> TokenStream {
         let ident = self.rust_variant_ident(prev_variants);
 
         quote! {
@@ -726,7 +806,11 @@ impl NodeType {
         }
     }
 
-    fn print_raw_mut_case(&self, prev_variants: &mut HashSet<String>, type_sitter_lib: &Path) -> TokenStream {
+    fn print_raw_mut_case(
+        &self,
+        prev_variants: &mut HashSet<String>,
+        type_sitter_lib: &Path,
+    ) -> TokenStream {
         let ident = self.rust_variant_ident(prev_variants);
 
         quote! {
@@ -747,7 +831,11 @@ impl NodeType {
     }
 
     fn rust_variant_ident(&self, prev_variants: &mut HashSet<String>) -> Ident {
-        ident!(disambiguate_then_add(self.rust_names.type_name.clone(), prev_variants), "node kind (rust variant name)").unwrap()
+        ident!(
+            disambiguate_then_add(self.rust_names.type_name.clone(), prev_variants),
+            "node kind (rust variant name)"
+        )
+        .unwrap()
     }
 
     fn rust_as_method_ident(&self, prev_methods: &mut HashSet<String>) -> Ident {
@@ -757,7 +845,11 @@ impl NodeType {
         unmake_reserved(&mut as_method_name);
         as_method_name.insert_str(0, "as_");
 
-        ident!(disambiguate_then_add(as_method_name, prev_methods), "node kind (rust variant selector method name)").unwrap()
+        ident!(
+            disambiguate_then_add(as_method_name, prev_methods),
+            "node kind (rust variant selector method name)"
+        )
+        .unwrap()
     }
 
     fn sexp_lit_str(&self) -> LitStr {
@@ -769,9 +861,16 @@ impl Children {
     fn print(
         &self,
         (children_name, children_doc, children_body): (String, TokenStream, TokenStream),
-        (child_name, required_child_doc, optional_child_doc, mut child_body): (String, TokenStream, TokenStream, TokenStream),
+        (child_name, required_child_doc, optional_child_doc, mut child_body): (
+            String,
+            TokenStream,
+            TokenStream,
+            TokenStream,
+        ),
         prev_methods: &mut HashSet<String>,
-        ctx @ PrintCtx { type_sitter_lib, .. }: PrintCtx,
+        ctx @ PrintCtx {
+            type_sitter_lib, ..
+        }: PrintCtx,
         anon_unions: &mut AnonUnions,
     ) -> TokenStream {
         if self.multiple {
@@ -822,9 +921,13 @@ impl Children {
     fn print_type(
         &self,
         ctx @ PrintCtx { all_types, .. }: PrintCtx,
-        anon_unions: &mut AnonUnions
+        anon_unions: &mut AnonUnions,
     ) -> TokenStream {
-        let types = self.types.iter().map(|name| &all_types[name]).collect::<Vec<_>>();
+        let types = self
+            .types
+            .iter()
+            .map(|name| &all_types[name])
+            .collect::<Vec<_>>();
 
         NodeType::print_sum_type(&types, ctx, anon_unions)
     }
@@ -839,7 +942,7 @@ impl GeneratedNodeTokens {
             toplevel,
             unnamed,
             symbols,
-            anon_unions
+            anon_unions,
         } = self;
         let anon_unions = anon_unions.into_values().collect::<TokenStream>();
         let unnamed = modularize!(unnamed);

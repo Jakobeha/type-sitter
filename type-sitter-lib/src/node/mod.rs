@@ -13,15 +13,15 @@ pub use tree::*;
 pub use unwrap_and_flatten_multi::*;
 pub use wrappers::*;
 
-/// Extra, missing, untyped nodes
-mod wrappers;
+mod cursor;
 /// Errors when a node has the wrong kind so it can't be wrapped
 mod incorrect_kind;
+mod parser;
+mod tree;
 /// Unwrapping multiple `Try`-types at once
 mod unwrap_and_flatten_multi;
-mod tree;
-mod cursor;
-mod parser;
+/// Extra, missing, untyped nodes
+mod wrappers;
 
 /// Typed node wrapper.
 ///
@@ -105,7 +105,7 @@ pub trait Node<'tree>: Debug + Clone + Copy + PartialEq + Eq + Hash {
     ///
     /// Nodes are iterated first to last (by source location).
     #[inline]
-    fn prefixes(&self) -> impl Iterator<Item=UntypedNode<'tree>> {
+    fn prefixes(&self) -> impl Iterator<Item = UntypedNode<'tree>> {
         Prefixes::new(*self.raw())
     }
 
@@ -113,7 +113,7 @@ pub trait Node<'tree>: Debug + Clone + Copy + PartialEq + Eq + Hash {
     ///
     /// Nodes are iterated first to last (by source location).
     #[inline]
-    fn suffixes(&self) -> impl Iterator<Item=UntypedNode<'tree>> {
+    fn suffixes(&self) -> impl Iterator<Item = UntypedNode<'tree>> {
         Suffixes::new(*self.raw())
     }
 
@@ -256,13 +256,16 @@ pub trait HasChild<'tree>: Node<'tree> {
     /// Gets the node's only not-extra named child.
     #[inline]
     fn child(&self) -> NodeResult<'tree, Self::Child> {
-        optional_child(self)
-            .expect("required child not present, there should at least be a MISSING node in its place")
+        optional_child(self).expect(
+            "required child not present, there should at least be a MISSING node in its place",
+        )
     }
 }
 
 #[inline]
-fn optional_child<'tree, Child: Node<'tree>>(this: &impl Node<'tree>) -> Option<NodeResult<'tree, Child>> {
+fn optional_child<'tree, Child: Node<'tree>>(
+    this: &impl Node<'tree>,
+) -> Option<NodeResult<'tree, Child>> {
     (0..this.raw().named_child_count())
         .map(|i| this.raw().named_child(i).unwrap())
         .filter(|n| !n.is_extra())
@@ -280,7 +283,13 @@ pub trait HasChildren<'tree>: Node<'tree> {
 
     /// Gets the node's not-extra named children.
     #[inline]
-    fn children<'a>(&self, c: &'a mut TreeCursor<'tree>) -> impl Iterator<Item=NodeResult<'tree, Self::Child>> + 'a where Self: 'a {
+    fn children<'a>(
+        &self,
+        c: &'a mut TreeCursor<'tree>,
+    ) -> impl Iterator<Item = NodeResult<'tree, Self::Child>> + 'a
+    where
+        Self: 'a,
+    {
         self.raw()
             .named_children(&mut c.0)
             .filter(|n| !n.is_extra())
@@ -300,7 +309,10 @@ struct Suffixes<'tree> {
 impl<'tree> Prefixes<'tree> {
     fn new(raw: raw::Node<'tree>) -> Self {
         let Some(parent) = raw.parent() else {
-            return Self { cursor: raw.walk(), end: raw };
+            return Self {
+                cursor: raw.walk(),
+                end: raw,
+            };
         };
 
         let mut cursor = parent.walk();
@@ -308,14 +320,20 @@ impl<'tree> Prefixes<'tree> {
 
         'outer: loop {
             if cursor.node() == raw {
-                break Self { cursor: raw.walk(), end: raw };
+                break Self {
+                    cursor: raw.walk(),
+                    end: raw,
+                };
             }
 
             if cursor.node().is_extra() {
                 let mut cursor2 = cursor.clone();
                 while cursor2.node().is_extra() {
                     if !cursor2.goto_next_sibling() {
-                        break 'outer Self { cursor: raw.walk(), end: raw };
+                        break 'outer Self {
+                            cursor: raw.walk(),
+                            end: raw,
+                        };
                     }
 
                     if cursor2.node() == raw {
@@ -325,7 +343,10 @@ impl<'tree> Prefixes<'tree> {
             }
 
             if !cursor.goto_next_sibling() {
-                break Self { cursor: raw.walk(), end: raw };
+                break Self {
+                    cursor: raw.walk(),
+                    end: raw,
+                };
             }
         }
     }
@@ -334,7 +355,7 @@ impl<'tree> Prefixes<'tree> {
 impl<'tree> Suffixes<'tree> {
     fn new(raw: raw::Node<'tree>) -> Self {
         let Some(parent) = raw.parent() else {
-            return Self { cursor: raw.walk() }
+            return Self { cursor: raw.walk() };
         };
 
         let mut cursor = parent.walk();
@@ -363,7 +384,10 @@ impl<'tree> Iterator for Prefixes<'tree> {
             "node before our iteration target isn't an extra, but we thought it would be"
         );
         let next = self.cursor.goto_next_sibling();
-        assert!(next, "node (that we've been iterating the prefixes of) not found in parent");
+        assert!(
+            next,
+            "node (that we've been iterating the prefixes of) not found in parent"
+        );
         Some(result)
     }
 }
@@ -373,7 +397,7 @@ impl<'tree> Iterator for Suffixes<'tree> {
 
     fn next(&mut self) -> Option<Self::Item> {
         if !self.cursor.goto_next_sibling() || !self.cursor.node().is_extra() {
-            return None
+            return None;
         }
 
         Some(UntypedNode::new(self.cursor.node()))

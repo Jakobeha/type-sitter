@@ -1,7 +1,7 @@
+use crate::Error;
 use proc_macro2::{Span, TokenStream};
 use quote::{quote, ToTokens};
-use syn::{Ident, LitStr, parse_str};
-use crate::Error;
+use syn::{parse_str, Ident, LitStr};
 
 macro_rules! modularize {
     ($module:ident) => {
@@ -49,8 +49,8 @@ pub(crate) fn _ident(name: &str, type_desc: impl FnOnce() -> String) -> Result<I
         Err(err) => Err(Error::IllegalIdentifier {
             type_desc: type_desc(),
             name: name.to_string(),
-            source: err
-        })
+            source: err,
+        }),
     }
 }
 
@@ -60,6 +60,6 @@ pub(crate) fn lit_str(contents: &str) -> LitStr {
 }
 
 /// Create a literal array
-pub(crate) fn lit_array<T: ToTokens>(contents: impl Iterator<Item=T>) -> TokenStream {
+pub(crate) fn lit_array<T: ToTokens>(contents: impl Iterator<Item = T>) -> TokenStream {
     quote! { [#(#contents),*] }
 }

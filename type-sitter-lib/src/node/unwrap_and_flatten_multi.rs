@@ -16,7 +16,9 @@ impl<'tree, T> OptionNodeResultExt<T> for Option<NodeResult<'tree, T>> {
     fn unwrap2(self) -> T {
         match self {
             None => panic!("unwrap2 called on None"),
-            Some(Err(incorrect_kind)) => panic!("unwrap2 called on Some(Err({:?}))", incorrect_kind),
+            Some(Err(incorrect_kind)) => {
+                panic!("unwrap2 called on Some(Err({:?}))", incorrect_kind)
+            }
             Some(Ok(value)) => value,
         }
     }

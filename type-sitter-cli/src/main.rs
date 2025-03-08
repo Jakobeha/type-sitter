@@ -9,8 +9,8 @@ use errors::Error;
 
 mod args;
 mod errors;
-mod process;
 mod path_utils;
+mod process;
 
 fn main() {
     if let Err(err) = run(Args::parse()) {

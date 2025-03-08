@@ -1,7 +1,7 @@
-use std::marker::PhantomData;
-use crate::{raw, IncludedRangesError, Language, LanguageError, Node, Range, Tree};
 #[cfg(feature = "yak-sitter")]
 use crate::TreeParseError;
+use crate::{raw, IncludedRangesError, Language, LanguageError, Node, Range, Tree};
+use std::marker::PhantomData;
 #[cfg(feature = "yak-sitter")]
 use std::path::Path;
 
@@ -69,9 +69,11 @@ impl<Root: Node<'static>> Parser<Root> {
     pub fn parse_file(
         &mut self,
         path: &Path,
-        old_tree: Option<&Tree<Root>>
+        old_tree: Option<&Tree<Root>>,
     ) -> Result<Tree<Root>, TreeParseError> {
-        self.0.parse_file(path, old_tree.map(|t| &t.0)).map(Tree::wrap)
+        self.0
+            .parse_file(path, old_tree.map(|t| &t.0))
+            .map(Tree::wrap)
     }
 
     /// Parse a string. See [`tree_sitter::Parser::parse`].
@@ -84,9 +86,11 @@ impl<Root: Node<'static>> Parser<Root> {
         &mut self,
         text: String,
         path: Option<&Path>,
-        old_tree: Option<&Tree<Root>>
+        old_tree: Option<&Tree<Root>>,
     ) -> Result<Tree<Root>, TreeParseError> {
-        self.0.parse_string(text, path, old_tree.map(|t| &t.0)).map(Tree::wrap)
+        self.0
+            .parse_string(text, path, old_tree.map(|t| &t.0))
+            .map(Tree::wrap)
     }
 
     /// Parse a byte string. See [`tree_sitter::Parser::parse`].
@@ -102,9 +106,11 @@ impl<Root: Node<'static>> Parser<Root> {
         &mut self,
         byte_text: Vec<u8>,
         path: Option<&Path>,
-        old_tree: Option<&Tree<Root>>
+        old_tree: Option<&Tree<Root>>,
     ) -> Result<Tree<Root>, TreeParseError> {
-        self.0.parse_bytes(byte_text, path, old_tree.map(|t| &t.0)).map(Tree::wrap)
+        self.0
+            .parse_bytes(byte_text, path, old_tree.map(|t| &t.0))
+            .map(Tree::wrap)
     }
 
     /// Parse a byte string. See [`tree_sitter::Parser::parse`]
@@ -113,8 +119,11 @@ impl<Root: Node<'static>> Parser<Root> {
     pub fn parse(
         &mut self,
         text: impl AsRef<[u8]>,
-        old_tree: Option<&Tree<Root>>
+        old_tree: Option<&Tree<Root>>,
     ) -> Result<Tree<Root>, ()> {
-        self.0.parse(text, old_tree.map(|t| &t.0)).ok_or(()).map(Tree::wrap)
+        self.0
+            .parse(text, old_tree.map(|t| &t.0))
+            .ok_or(())
+            .map(Tree::wrap)
     }
 }

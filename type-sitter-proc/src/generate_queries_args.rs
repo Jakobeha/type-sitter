@@ -1,7 +1,7 @@
-use std::path::PathBuf;
-use syn::{LitStr, Token};
-use syn::parse::{Parse, ParseStream};
 use crate::generate_nodes_args::normalize;
+use std::path::PathBuf;
+use syn::parse::{Parse, ParseStream};
+use syn::{LitStr, Token};
 
 /// Args to [`crate::generate_queries`]
 #[allow(dead_code)]

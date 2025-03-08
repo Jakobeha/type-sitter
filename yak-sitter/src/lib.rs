@@ -2,17 +2,17 @@ use std::cmp::Ordering;
 use std::collections::Bound;
 use std::error::Error;
 use std::fmt::{Debug, Display, Formatter};
-use std::path::{Path, PathBuf};
-use std::iter::{FusedIterator, once, Once};
-use streaming_iterator::StreamingIterator;
-use std::str::Utf8Error;
 use std::hash::{Hash, Hasher};
+use std::iter::{once, FusedIterator, Once};
 use std::ops::{BitAnd, BitOr, BitOrAssign, RangeBounds};
 #[cfg(unix)]
 use std::os::unix::io::AsRawFd;
 #[cfg(windows)]
 use std::os::windows::io::AsRawHandle;
+use std::path::{Path, PathBuf};
 use std::ptr::NonNull;
+use std::str::Utf8Error;
+use streaming_iterator::StreamingIterator;
 use utf8_error_offset_by::Utf8ErrorOffsetBy;
 
 mod utf8_error_offset_by;
@@ -41,7 +41,7 @@ pub struct Node<'tree> {
 #[derive(Clone, Copy)]
 pub struct NodePtr {
     node_data: TsNodePtr,
-    tree: NonNull<Tree>
+    tree: NonNull<Tree>,
 }
 
 /// Taken straight from [`tree_sitter::ffi::TSNode`]. This must maintain the same layout
@@ -71,7 +71,7 @@ pub struct TreeCursor<'tree> {
 
 /// Wrapper around [`tree_sitter::QueryCursor`]
 pub struct QueryCursor {
-    query_cursor: tree_sitter::QueryCursor
+    query_cursor: tree_sitter::QueryCursor,
 }
 
 /// Wrapper around [`tree_sitter::QueryMatches`].
@@ -83,21 +83,21 @@ pub struct QueryMatches<'query, 'tree> {
     query_matches: tree_sitter::QueryMatches<'query, 'tree, &'tree Tree, &'tree str>,
     current_match: Option<QueryMatch<'query, 'tree>>,
     query: &'query Query,
-    tree: &'tree Tree
+    tree: &'tree Tree,
 }
 
 /// Wrapper around [`tree_sitter::QueryMatch`]
 pub struct QueryMatch<'query, 'tree> {
     query_match: *const tree_sitter::QueryMatch<'query, 'tree>,
     query: &'query Query,
-    tree: &'tree Tree
+    tree: &'tree Tree,
 }
 
 /// Wrapper around [`tree_sitter::QueryCaptures`]
 pub struct QueryCaptures<'query, 'tree> {
     query_captures: tree_sitter::QueryCaptures<'query, 'tree, &'tree Tree, &'tree str>,
     query: &'query Query,
-    tree: &'tree Tree
+    tree: &'tree Tree,
 }
 
 /// Wrapper around [`tree_sitter::QueryCapture`]
@@ -158,7 +158,7 @@ pub type InputEdit = tree_sitter::InputEdit;
 pub enum TreeParseError {
     IO(std::io::Error),
     ParsingFailed,
-    NotUtf8(Utf8Error)
+    NotUtf8(Utf8Error),
 }
 
 /// Describes the previous traversal action in a pre-order traversal which iterates nodes with
@@ -169,14 +169,14 @@ pub enum TraversalState {
     Down,
     Right,
     Up,
-    End
+    End,
 }
 
 /// Iterator over a tree in pre-order traversal which iterates nodes with children both up and down
 #[derive(Clone)]
 pub struct PreorderTraversal<'tree> {
     cursor: TreeCursor<'tree>,
-    last_state: TraversalState
+    last_state: TraversalState,
 }
 
 /// Iterated node in a traversal (includes field name and last state)
@@ -187,7 +187,7 @@ pub struct TraversalItem<'tree> {
     /// The node's field name
     pub field_name: Option<&'static str>,
     /// Last traversal state to reach this node
-    pub last_state: TraversalState
+    pub last_state: TraversalState,
 }
 
 impl Parser {
@@ -209,7 +209,11 @@ impl Parser {
     /// [`tree_sitter::Parser::set_included_ranges`]
     #[inline]
     pub fn set_included_ranges(&mut self, ranges: &[Range]) -> Result<(), IncludedRangesError> {
-        let ranges = ranges.iter().copied().map(tree_sitter::Range::from).collect::<Vec<_>>();
+        let ranges = ranges
+            .iter()
+            .copied()
+            .map(tree_sitter::Range::from)
+            .collect::<Vec<_>>();
         self.0.set_included_ranges(&ranges)
     }
 
@@ -219,9 +223,9 @@ impl Parser {
     /// for stable node comparison between trees.
     #[inline]
     pub fn parse_file(
-        &mut self, 
-        path: &Path, 
-        old_tree: Option<&Tree>
+        &mut self,
+        path: &Path,
+        old_tree: Option<&Tree>,
     ) -> Result<Tree, TreeParseError> {
         let byte_text = std::fs::read(path)?;
         self.parse_bytes(byte_text, Some(path), old_tree)
@@ -233,10 +237,10 @@ impl Parser {
     /// `None`.
     #[inline]
     pub fn parse_string(
-        &mut self, 
-        text: String, 
+        &mut self,
+        text: String,
         path: Option<&Path>,
-        old_tree: Option<&Tree>
+        old_tree: Option<&Tree>,
     ) -> Result<Tree, TreeParseError> {
         self.parse_bytes(text.into_bytes(), path, old_tree)
     }
@@ -251,11 +255,14 @@ impl Parser {
     #[inline]
     pub fn parse_bytes(
         &mut self,
-        byte_text: Vec<u8>, 
+        byte_text: Vec<u8>,
         path: Option<&Path>,
-        old_tree: Option<&Tree>
+        old_tree: Option<&Tree>,
     ) -> Result<Tree, TreeParseError> {
-        let tree = self.0.parse(&byte_text, old_tree.map(|t| &t.tree)).ok_or(TreeParseError::ParsingFailed)?;
+        let tree = self
+            .0
+            .parse(&byte_text, old_tree.map(|t| &t.tree))
+            .ok_or(TreeParseError::ParsingFailed)?;
         Ok(Tree::new(tree, byte_text, path.map(|p| p.to_path_buf()))?)
     }
 }
@@ -268,25 +275,29 @@ impl Tree {
     #[inline]
     fn new(
         tree: tree_sitter::Tree,
-        byte_text: Vec<u8>, 
-        path: Option<PathBuf>
+        byte_text: Vec<u8>,
+        path: Option<PathBuf>,
     ) -> Result<Self, Utf8Error> {
         Self::validate_utf8(&tree, &byte_text)?;
-        Ok(Self { tree, byte_text, path })
+        Ok(Self {
+            tree,
+            byte_text,
+            path,
+        })
     }
 
     fn validate_utf8(tree: &tree_sitter::Tree, byte_text: &[u8]) -> Result<(), Utf8Error> {
         let _ = std::str::from_utf8(byte_text)?;
         let mut cursor = tree.walk();
         let mut went_up = false;
-        while (!went_up && cursor.goto_first_child()) ||
-            cursor.goto_next_sibling() ||
-            { went_up = true; cursor.goto_parent() } {
+        while (!went_up && cursor.goto_first_child()) || cursor.goto_next_sibling() || {
+            went_up = true;
+            cursor.goto_parent()
+        } {
             let node = cursor.node();
             let range = node.byte_range();
-            let _ = std::str::from_utf8(&byte_text[range]).map_err(|e| {
-                e.offset_by(node.start_byte())
-            })?;
+            let _ = std::str::from_utf8(&byte_text[range])
+                .map_err(|e| e.offset_by(node.start_byte()))?;
         }
         Ok(())
     }
@@ -322,12 +333,16 @@ impl Tree {
     /// Get the included ranges used to parse the tree
     #[inline]
     pub fn included_ranges(&self) -> Vec<Range> {
-        self.tree.included_ranges().into_iter().map(Range::from).collect()
+        self.tree
+            .included_ranges()
+            .into_iter()
+            .map(Range::from)
+            .collect()
     }
 
     /// Get the changed ranges. See [`tree_sitter::Tree::changed_ranges`]
     #[inline]
-    pub fn changed_ranges(&self, other: &Tree) -> impl ExactSizeIterator<Item=Range> {
+    pub fn changed_ranges(&self, other: &Tree) -> impl ExactSizeIterator<Item = Range> {
         self.tree.changed_ranges(&other.tree).map(Range::from)
     }
 
@@ -471,7 +486,7 @@ impl<'tree> Node<'tree> {
     pub fn position_range(&self) -> PointRange {
         PointRange {
             start: self.start_position(),
-            end: self.end_position()
+            end: self.end_position(),
         }
     }
 
@@ -508,18 +523,28 @@ impl<'tree> Node<'tree> {
 
     /// Get the node's named and unnamed children. See [`tree_sitter::Node::children`]
     #[inline]
-    pub fn all_children<'a>(&self, cursor: &'a mut TreeCursor<'tree>) -> impl ExactSizeIterator<Item = Node<'tree>> + 'a {
+    pub fn all_children<'a>(
+        &self,
+        cursor: &'a mut TreeCursor<'tree>,
+    ) -> impl ExactSizeIterator<Item = Node<'tree>> + 'a {
         let tree = self.tree;
         // SAFETY: Same tree
-        self.node.children(&mut cursor.cursor).map(move |node| unsafe { Node::new(node, tree) })
+        self.node
+            .children(&mut cursor.cursor)
+            .map(move |node| unsafe { Node::new(node, tree) })
     }
 
     /// Get the node's named children. See [`tree_sitter::Node::named_children`]
     #[inline]
-    pub fn named_children<'a>(&self, cursor: &'a mut TreeCursor<'tree>) -> impl ExactSizeIterator<Item = Node<'tree>> + 'a {
+    pub fn named_children<'a>(
+        &self,
+        cursor: &'a mut TreeCursor<'tree>,
+    ) -> impl ExactSizeIterator<Item = Node<'tree>> + 'a {
         let tree = self.tree;
         // SAFETY: Same tree
-        self.node.named_children(&mut cursor.cursor).map(move |node| unsafe { Node::new(node, tree) })
+        self.node
+            .named_children(&mut cursor.cursor)
+            .map(move |node| unsafe { Node::new(node, tree) })
     }
 
     /// Get the number of named and unnamed children
@@ -538,49 +563,63 @@ impl<'tree> Node<'tree> {
     #[inline]
     pub fn parent(&self) -> Option<Node<'tree>> {
         // SAFETY: Same tree
-        self.node.parent().map(|node| unsafe { Node::new(node, self.tree) })
+        self.node
+            .parent()
+            .map(|node| unsafe { Node::new(node, self.tree) })
     }
 
     /// Get the node's immediate next sibling, named or unnamed
     #[inline]
     pub fn next_any_sibling(&self) -> Option<Node<'tree>> {
         // SAFETY: Same tree
-        self.node.next_sibling().map(|node| unsafe { Node::new(node, self.tree) })
+        self.node
+            .next_sibling()
+            .map(|node| unsafe { Node::new(node, self.tree) })
     }
 
     /// Get the node's immediate named next sibling
     #[inline]
     pub fn next_named_sibling(&self) -> Option<Node<'tree>> {
         // SAFETY: Same tree
-        self.node.next_named_sibling().map(|node| unsafe { Node::new(node, self.tree) })
+        self.node
+            .next_named_sibling()
+            .map(|node| unsafe { Node::new(node, self.tree) })
     }
 
     /// Get the node's immediate previous sibling, named or unnamed
     #[inline]
     pub fn prev_any_sibling(&self) -> Option<Node<'tree>> {
         // SAFETY: Same tree
-        self.node.prev_sibling().map(|node| unsafe { Node::new(node, self.tree) })
+        self.node
+            .prev_sibling()
+            .map(|node| unsafe { Node::new(node, self.tree) })
     }
 
     /// Get the node's immediate named previous sibling
     #[inline]
     pub fn prev_named_sibling(&self) -> Option<Node<'tree>> {
         // SAFETY: Same tree
-        self.node.prev_named_sibling().map(|node| unsafe { Node::new(node, self.tree) })
+        self.node
+            .prev_named_sibling()
+            .map(|node| unsafe { Node::new(node, self.tree) })
     }
 
     /// Get the node's child at the given index, named or unnamed. See [`tree_sitter::Node::child`]
     #[inline]
     pub fn any_child(&self, i: usize) -> Option<Node<'tree>> {
         // SAFETY: Same tree
-        self.node.child(i).map(|node| unsafe { Node::new(node, self.tree) })
+        self.node
+            .child(i)
+            .map(|node| unsafe { Node::new(node, self.tree) })
     }
 
     /// Get the node's named child at the given index. See [`tree_sitter::Node::named_child`]
     #[inline]
     pub fn named_child(&self, i: usize) -> Option<Node<'tree>> {
         // SAFETY: Same tree
-        self.node.named_child(i).map(|node| unsafe { Node::new(node, self.tree) })
+        self.node
+            .named_child(i)
+            .map(|node| unsafe { Node::new(node, self.tree) })
     }
 
     /// Get the node's last child, named or unnamed
@@ -588,7 +627,9 @@ impl<'tree> Node<'tree> {
     pub fn last_any_child(&self) -> Option<Node<'tree>> {
         // .child is already bounds-checked so we use wrapping_sub for iff the count is 0
         // SAFETY: Same tree
-        self.node.child(self.any_child_count().wrapping_sub(1)).map(|node| unsafe { Node::new(node, self.tree) })
+        self.node
+            .child(self.any_child_count().wrapping_sub(1))
+            .map(|node| unsafe { Node::new(node, self.tree) })
     }
 
     /// Get the node's last named child
@@ -596,20 +637,19 @@ impl<'tree> Node<'tree> {
     pub fn last_named_child(&self) -> Option<Node<'tree>> {
         // .named_child is already bounds-checked so we use wrapping_sub for iff the count is 0
         // SAFETY: Same tree
-        self.node.named_child(self.named_child_count().wrapping_sub(1)).map(|node| unsafe { Node::new(node, self.tree) })
+        self.node
+            .named_child(self.named_child_count().wrapping_sub(1))
+            .map(|node| unsafe { Node::new(node, self.tree) })
     }
 
     /// Get the node's first child of the given kind, named or unnamed.
     ///
     /// The cursor is used to iterate the node's immediate children in order to find said child.
     #[inline]
-    pub fn child_of_kind(
-        &self,
-        kind: &str,
-        cursor: &mut TreeCursor<'tree>
-    ) -> Option<Node<'tree>> {
+    pub fn child_of_kind(&self, kind: &str, cursor: &mut TreeCursor<'tree>) -> Option<Node<'tree>> {
         // SAFETY: Same tree
-        self.node.named_children(&mut cursor.cursor)
+        self.node
+            .named_children(&mut cursor.cursor)
             .find(|node| node.kind() == kind)
             .map(|node| unsafe { Node::new(node, self.tree) })
     }
@@ -621,10 +661,11 @@ impl<'tree> Node<'tree> {
     pub fn children_of_kind<'a>(
         &self,
         kind: &'a str,
-        cursor: &'a mut TreeCursor<'tree>
+        cursor: &'a mut TreeCursor<'tree>,
     ) -> impl Iterator<Item = Node<'tree>> + 'a {
         // SAFETY: Same tree
-        self.node.named_children(&mut cursor.cursor)
+        self.node
+            .named_children(&mut cursor.cursor)
             .filter(move |node| node.kind() == kind)
             .map(|node| unsafe { Node::new(node, self.tree) })
     }
@@ -633,7 +674,9 @@ impl<'tree> Node<'tree> {
     #[inline]
     pub fn child_by_field_name(&self, field_name: &str) -> Option<Node<'tree>> {
         // SAFETY: Same tree
-        self.node.child_by_field_name(field_name).map(|node| unsafe { Node::new(node, self.tree) })
+        self.node
+            .child_by_field_name(field_name)
+            .map(|node| unsafe { Node::new(node, self.tree) })
     }
 
     /// Get the node's children with the given field name
@@ -641,10 +684,12 @@ impl<'tree> Node<'tree> {
     pub fn children_by_field_name<'a>(
         &self,
         field_name: &str,
-        c: &'a mut TreeCursor<'tree>
+        c: &'a mut TreeCursor<'tree>,
     ) -> impl Iterator<Item = Node<'tree>> + 'a {
         // SAFETY: Same tree
-        self.node.children_by_field_name(field_name, &mut c.cursor).map(|node| unsafe { Node::new(node, self.tree) })
+        self.node
+            .children_by_field_name(field_name, &mut c.cursor)
+            .map(|node| unsafe { Node::new(node, self.tree) })
     }
 
     /// Get the field name of the child at the given index
@@ -665,7 +710,8 @@ impl<'tree> Node<'tree> {
     /// then returning its field name, hence the need for a cursor.
     pub fn field_name(&self, cursor: &mut TreeCursor<'tree>) -> Option<&'static str> {
         self.parent().and_then(|parent| {
-            let i = parent.all_children(cursor)
+            let i = parent
+                .all_children(cursor)
                 .position(|x| x == *self)
                 .expect("node not one of its parent's children");
             parent.field_name_for_child(i)
@@ -720,10 +766,12 @@ impl<'tree> Ord for Node<'tree> {
         if self.id() == other.id() {
             Ordering::Equal
         } else if std::ptr::eq(self.tree as *const _, other.tree as *const _) {
-            self.start_byte().cmp(&other.start_byte())
+            self.start_byte()
+                .cmp(&other.start_byte())
                 .then(self.end_byte().cmp(&other.end_byte()))
         } else {
-            self.path().cmp(&other.path())
+            self.path()
+                .cmp(&other.path())
                 .then(self.id().0.cmp(&other.id().0))
         }
     }
@@ -800,8 +848,8 @@ impl<'tree> TreeCursor<'tree> {
             tree,
             child_depth: match is_rooted {
                 false => 0,
-                true => 1
-            }
+                true => 1,
+            },
         }
     }
 
@@ -814,19 +862,21 @@ impl<'tree> TreeCursor<'tree> {
 
     /// Gets the field name of the cursor's current node
     pub fn field_name(&mut self) -> Option<&'static str> {
-        self.cursor.field_name().or_else(|| if self.child_depth > 0 {
-            None
-        } else {
-            match self.node().parent() {
-                None => None,
-                Some(parent) => {
-                    let original_node = self.node();
-                    self.reset(parent);
-                    self.goto_first_child();
-                    while self.node() != original_node {
-                        self.goto_next_sibling();
+        self.cursor.field_name().or_else(|| {
+            if self.child_depth > 0 {
+                None
+            } else {
+                match self.node().parent() {
+                    None => None,
+                    Some(parent) => {
+                        let original_node = self.node();
+                        self.reset(parent);
+                        self.goto_first_child();
+                        while self.node() != original_node {
+                            self.goto_next_sibling();
+                        }
+                        self.cursor.field_name()
                     }
-                    self.cursor.field_name()
                 }
             }
         })
@@ -837,11 +887,7 @@ impl<'tree> TreeCursor<'tree> {
     pub fn reset(&mut self, node: Node<'tree>) {
         if self.cursor.node() != node.node {
             self.cursor.reset(node.node);
-            self.child_depth = if node.tree.root_node() == node {
-                1
-            } else {
-                0
-            };
+            self.child_depth = if node.tree.root_node() == node { 1 } else { 0 };
         }
     }
 
@@ -856,7 +902,6 @@ impl<'tree> TreeCursor<'tree> {
             false
         }
     }
-
 
     /// Move the cursor to the first child of the current node that extends beyond the given byte
     /// offset, and return its index.
@@ -876,10 +921,12 @@ impl<'tree> TreeCursor<'tree> {
     /// Returns `None` if the current node has no children past that row and column.
     #[inline]
     pub fn goto_first_child_for_point(&mut self, point: Point) -> Option<usize> {
-        self.cursor.goto_first_child_for_point(point.into()).map(|index| {
-            self.child_depth += 1;
-            index
-        })
+        self.cursor
+            .goto_first_child_for_point(point.into())
+            .map(|index| {
+                self.child_depth += 1;
+                index
+            })
     }
 
     /// Move the cursor to the next sibling of the current node and return `true`, or return `false`
@@ -888,22 +935,23 @@ impl<'tree> TreeCursor<'tree> {
     /// Unlike [`tree_sitter::TreeCursor.goto_next_sibling`], this will try (isn't guaranteed to
     /// return `false`) if the cursor is rooted (e.g. reset) to its current node.
     pub fn goto_next_sibling(&mut self) -> bool {
-        self.cursor.goto_next_sibling() || if self.child_depth > 0 {
-            false
-        } else {
-            match self.node().parent() {
-                None => false,
-                Some(parent) => {
-                    let original_node = self.node();
-                    self.reset(parent);
-                    self.goto_first_child();
-                    while self.node() != original_node {
-                        self.goto_next_sibling();
+        self.cursor.goto_next_sibling()
+            || if self.child_depth > 0 {
+                false
+            } else {
+                match self.node().parent() {
+                    None => false,
+                    Some(parent) => {
+                        let original_node = self.node();
+                        self.reset(parent);
+                        self.goto_first_child();
+                        while self.node() != original_node {
+                            self.goto_next_sibling();
+                        }
+                        self.goto_next_sibling()
                     }
-                    self.goto_next_sibling()
                 }
             }
-        }
     }
 
     /// Move the cursor to the parent of the current node and return `true`, or return `false`
@@ -954,7 +1002,9 @@ impl QueryCursor {
     /// Creates a new cursor. See [`tree_sitter::QueryCursor::new`]
     #[inline]
     pub fn new() -> Self {
-        Self { query_cursor: tree_sitter::QueryCursor::new() }
+        Self {
+            query_cursor: tree_sitter::QueryCursor::new(),
+        }
     }
 
     /// Iterate over all matches in the order they were found. See
@@ -963,13 +1013,13 @@ impl QueryCursor {
     pub fn matches<'query, 'cursor: 'query, 'tree>(
         &'cursor mut self,
         query: &'query Query,
-        node: Node<'tree>
+        node: Node<'tree>,
     ) -> QueryMatches<'query, 'tree> {
         QueryMatches {
             query_matches: self.query_cursor.matches(&query, node.node, node.tree),
             current_match: None,
             tree: node.tree,
-            query
+            query,
         }
     }
 
@@ -979,12 +1029,12 @@ impl QueryCursor {
     pub fn captures<'query, 'cursor: 'query, 'tree>(
         &'cursor mut self,
         query: &'query Query,
-        node: Node<'tree>
+        node: Node<'tree>,
     ) -> QueryCaptures<'query, 'tree> {
         QueryCaptures {
             query_captures: self.query_cursor.captures(query, node.node, node.tree),
             tree: node.tree,
-            query
+            query,
         }
     }
 
@@ -1050,7 +1100,8 @@ impl<'query, 'tree> QueryMatches<'query, 'tree> {
     /// Limit captures to a point range
     #[inline]
     pub fn set_point_range(&mut self, range: PointRange) {
-        self.query_matches.set_point_range(range.to_ts_point_range());
+        self.query_matches
+            .set_point_range(range.to_ts_point_range());
     }
 
     /// Get the underlying [`tree_sitter::QueryMatches`]
@@ -1061,13 +1112,21 @@ impl<'query, 'tree> QueryMatches<'query, 'tree> {
 
     /// Get the underlying [`tree_sitter::QueryMatches`] (mutable)
     #[inline]
-    pub fn as_inner_mut(&mut self) -> &mut tree_sitter::QueryMatches<'query, 'tree, &'tree Tree, &'tree str> {
+    pub fn as_inner_mut(
+        &mut self,
+    ) -> &mut tree_sitter::QueryMatches<'query, 'tree, &'tree Tree, &'tree str> {
         &mut self.query_matches
     }
 
     /// Destruct into the underlying [`tree_sitter::QueryMatches`], as well as the query and tree
     #[inline]
-    pub fn into_inner(self) -> (tree_sitter::QueryMatches<'query, 'tree, &'tree Tree, &'tree str>, &'query Query, &'tree Tree) {
+    pub fn into_inner(
+        self,
+    ) -> (
+        tree_sitter::QueryMatches<'query, 'tree, &'tree Tree, &'tree str>,
+        &'query Query,
+        &'tree Tree,
+    ) {
         (self.query_matches, self.query, self.tree)
     }
 }
@@ -1081,7 +1140,7 @@ impl<'query, 'tree: 'query> StreamingIterator for QueryMatches<'query, 'tree> {
         self.current_match = self.query_matches.get().map(|query_match| QueryMatch {
             query_match: query_match as *const _,
             query: self.query,
-            tree: self.tree
+            tree: self.tree,
         });
     }
 
@@ -1117,7 +1176,8 @@ impl<'query, 'tree> QueryCaptures<'query, 'tree> {
     /// Limit captures to a point range
     #[inline]
     pub fn set_point_range(&mut self, range: PointRange) {
-        self.query_captures.set_point_range(range.to_ts_point_range());
+        self.query_captures
+            .set_point_range(range.to_ts_point_range());
     }
 
     /// Get the underlying [`tree_sitter::QueryCaptures`]
@@ -1128,13 +1188,21 @@ impl<'query, 'tree> QueryCaptures<'query, 'tree> {
 
     /// Get the underlying [`tree_sitter::QueryCaptures`] (mutable)
     #[inline]
-    pub fn as_inner_mut(&mut self) -> &mut tree_sitter::QueryCaptures<'query, 'tree, &'tree Tree, &'tree str> {
+    pub fn as_inner_mut(
+        &mut self,
+    ) -> &mut tree_sitter::QueryCaptures<'query, 'tree, &'tree Tree, &'tree str> {
         &mut self.query_captures
     }
 
     /// Destruct into the underlying [`tree_sitter::QueryCaptures`], as well as query and tree
     #[inline]
-    pub fn into_inner(self) -> (tree_sitter::QueryCaptures<'query, 'tree, &'tree Tree, &'tree str>, &'query Query, &'tree Tree) {
+    pub fn into_inner(
+        self,
+    ) -> (
+        tree_sitter::QueryCaptures<'query, 'tree, &'tree Tree, &'tree str>,
+        &'query Query,
+        &'tree Tree,
+    ) {
         (self.query_captures, self.query, self.tree)
     }
 }
@@ -1144,8 +1212,9 @@ impl<'query, 'tree: 'query> Iterator for QueryCaptures<'query, 'tree> {
 
     #[inline]
     fn next(&mut self) -> Option<Self::Item> {
-        self.query_captures.next().map(|(query_match, index)|
-            QueryCapture::new(query_match.captures[*index], self.query, self.tree))
+        self.query_captures.next().map(|(query_match, index)| {
+            QueryCapture::new(query_match.captures[*index], self.query, self.tree)
+        })
     }
 }
 
@@ -1162,9 +1231,13 @@ impl<'query, 'tree> QueryMatch<'query, 'tree> {
     pub unsafe fn new(
         query_match: &tree_sitter::QueryMatch<'query, 'tree>,
         query: &'query Query,
-        tree: &'tree Tree
+        tree: &'tree Tree,
     ) -> Self {
-        Self { query_match: query_match as *const _, query, tree }
+        Self {
+            query_match: query_match as *const _,
+            query,
+            tree,
+        }
     }
 
     /// Get the query that the match is from
@@ -1182,15 +1255,19 @@ impl<'query, 'tree> QueryMatch<'query, 'tree> {
     /// Iterate all captures in the order they appear.
     #[inline]
     pub fn iter_captures(&self) -> impl Iterator<Item = QueryCapture<'query, 'tree>> {
-        self.as_inner().captures.iter().map(|&query_capture|
-            QueryCapture::new(query_capture, self.query, self.tree))
+        self.as_inner()
+            .captures
+            .iter()
+            .map(|&query_capture| QueryCapture::new(query_capture, self.query, self.tree))
     }
 
     /// Get the capture at the given index (order it appears).
     #[inline]
     pub fn capture(&self, index: usize) -> Option<QueryCapture<'query, 'tree>> {
-        self.as_inner().captures.get(index).map(|&query_capture|
-            QueryCapture::new(query_capture, self.query, self.tree))
+        self.as_inner()
+            .captures
+            .get(index)
+            .map(|&query_capture| QueryCapture::new(query_capture, self.query, self.tree))
     }
 
     /// Get the first occurrence of the capture with the given name.
@@ -1201,8 +1278,12 @@ impl<'query, 'tree> QueryMatch<'query, 'tree> {
 
     /// Get every occurrence of the captures with the given name.
     #[inline]
-    pub fn captures_named<'a>(&'a self, name: &'a str) -> impl Iterator<Item = QueryCapture<'query, 'tree>> + 'a {
-        self.iter_captures().filter(move |capture| capture.name == name)
+    pub fn captures_named<'a>(
+        &'a self,
+        name: &'a str,
+    ) -> impl Iterator<Item = QueryCapture<'query, 'tree>> + 'a {
+        self.iter_captures()
+            .filter(move |capture| capture.name == name)
     }
 
     /// Get the number of captures in this match.
@@ -1231,11 +1312,14 @@ impl<'query, 'tree> QueryMatch<'query, 'tree> {
 
     /// Get the nodes that were captures by the capture at the given index.
     #[inline]
-    pub fn nodes_for_capture_index(&self, capture_index: u32) -> impl Iterator<Item = Node<'tree>> + '_ {
+    pub fn nodes_for_capture_index(
+        &self,
+        capture_index: u32,
+    ) -> impl Iterator<Item = Node<'tree>> + '_ {
         // SAFETY: Same tree
         self.as_inner()
             .nodes_for_capture_index(capture_index)
-             .map(move |node| unsafe { Node::new(node, self.tree) })
+            .map(move |node| unsafe { Node::new(node, self.tree) })
     }
 
     /// Get the underlying [`tree_sitter::QueryMatch`]
@@ -1248,7 +1332,13 @@ impl<'query, 'tree> QueryMatch<'query, 'tree> {
     /// Destruct into the underlying [`tree_sitter::QueryMatch`] raw pointer, as well as the query and
     /// tree
     #[inline]
-    pub fn into_inner(self) -> (*const tree_sitter::QueryMatch<'query, 'tree>, &'query Query, &'tree Tree) {
+    pub fn into_inner(
+        self,
+    ) -> (
+        *const tree_sitter::QueryMatch<'query, 'tree>,
+        &'query Query,
+        &'tree Tree,
+    ) {
         (self.query_match, self.query, self.tree)
     }
 }
@@ -1256,13 +1346,17 @@ impl<'query, 'tree> QueryMatch<'query, 'tree> {
 impl<'query, 'tree> QueryCapture<'query, 'tree> {
     /// Wrap a [`tree_sitter::QueryCapture`]. This also needs the tree and query for helper methods
     #[inline]
-    fn new(query_capture: tree_sitter::QueryCapture<'tree>, query: &'query Query, tree: &'tree Tree) -> Self {
+    fn new(
+        query_capture: tree_sitter::QueryCapture<'tree>,
+        query: &'query Query,
+        tree: &'tree Tree,
+    ) -> Self {
         // SAFETY: fn is internal so the provided tree is always the same as the node's tree
         unsafe {
             Self {
                 node: Node::new(query_capture.node, tree),
                 index: query_capture.index as usize,
-                name: &query.capture_names()[query_capture.index as usize]
+                name: &query.capture_names()[query_capture.index as usize],
             }
         }
     }
@@ -1273,7 +1367,7 @@ impl From<tree_sitter::Point> for Point {
     fn from(value: tree_sitter::Point) -> Self {
         Self {
             row: value.row,
-            column: value.column
+            column: value.column,
         }
     }
 }
@@ -1283,7 +1377,7 @@ impl From<Point> for tree_sitter::Point {
     fn from(value: Point) -> Self {
         Self {
             row: value.row,
-            column: value.column
+            column: value.column,
         }
     }
 }
@@ -1314,7 +1408,7 @@ impl From<std::ops::Range<Point>> for PointRange {
     fn from(value: std::ops::Range<Point>) -> Self {
         Self {
             start: value.start,
-            end: value.end
+            end: value.end,
         }
     }
 }
@@ -1349,7 +1443,7 @@ impl From<tree_sitter::Range> for Range {
             start_byte: value.start_byte,
             end_byte: value.end_byte,
             start_point: Point::from(value.start_point),
-            end_point: Point::from(value.end_point)
+            end_point: Point::from(value.end_point),
         }
     }
 }
@@ -1361,7 +1455,7 @@ impl From<Range> for tree_sitter::Range {
             start_byte: value.start_byte,
             end_byte: value.end_byte,
             start_point: value.start_point.into(),
-            end_point: value.end_point.into()
+            end_point: value.end_point.into(),
         }
     }
 }
@@ -1371,7 +1465,7 @@ impl From<Range> for PointRange {
     fn from(value: Range) -> Self {
         Self {
             start: value.start_point,
-            end: value.end_point
+            end: value.end_point,
         }
     }
 }
@@ -1382,12 +1476,12 @@ impl BitOr for Range {
     /// Smallest range which contains both ranges
     #[inline]
     fn bitor(self, rhs: Self) -> Self::Output {
-         Range {
-             start_byte: self.start_byte.min(rhs.start_byte),
-             end_byte: self.end_byte.max(rhs.end_byte),
-             start_point: self.start_point.min(rhs.start_point),
-             end_point: self.end_point.max(rhs.end_point),
-         }
+        Range {
+            start_byte: self.start_byte.min(rhs.start_byte),
+            end_byte: self.end_byte.max(rhs.end_byte),
+            start_point: self.start_point.min(rhs.start_point),
+            end_point: self.end_point.max(rhs.end_point),
+        }
     }
 }
 
@@ -1411,7 +1505,12 @@ impl BitAnd for Range {
         let end_point = self.end_point.min(rhs.end_point);
 
         if start_byte <= end_byte && start_point <= end_point {
-            Some(Range { start_byte, end_byte, start_point, end_point })
+            Some(Range {
+                start_byte,
+                end_byte,
+                start_point,
+                end_point,
+            })
         } else {
             None
         }
@@ -1462,7 +1561,7 @@ impl Clone for TreeParseError {
         match self {
             TreeParseError::IO(e) => TreeParseError::IO(std::io::Error::from(e.kind())),
             TreeParseError::ParsingFailed => TreeParseError::ParsingFailed,
-            TreeParseError::NotUtf8(e) => TreeParseError::NotUtf8(*e)
+            TreeParseError::NotUtf8(e) => TreeParseError::NotUtf8(*e),
         }
     }
 }
@@ -1484,7 +1583,7 @@ impl Display for TreeParseError {
         match self {
             TreeParseError::IO(e) => write!(f, "IO error: {}", e),
             TreeParseError::ParsingFailed => write!(f, "Parsing failed"),
-            TreeParseError::NotUtf8(e) => write!(f, "Not UTF-8: {}", e)
+            TreeParseError::NotUtf8(e) => write!(f, "Not UTF-8: {}", e),
         }
     }
 }
@@ -1494,7 +1593,7 @@ impl Error for TreeParseError {
         match self {
             TreeParseError::IO(e) => Some(e),
             TreeParseError::ParsingFailed => None,
-            TreeParseError::NotUtf8(e) => Some(e)
+            TreeParseError::NotUtf8(e) => Some(e),
         }
     }
 }
@@ -1505,7 +1604,7 @@ impl TraversalState {
     pub fn is_up(&self) -> bool {
         match self {
             TraversalState::Up => true,
-            _ => false
+            _ => false,
         }
     }
 
@@ -1514,7 +1613,7 @@ impl TraversalState {
     pub fn is_end(&self) -> bool {
         match self {
             TraversalState::End => true,
-            _ => false
+            _ => false,
         }
     }
 }
@@ -1547,7 +1646,7 @@ impl<'tree> PreorderTraversal<'tree> {
         TraversalItem {
             node: self.cursor.node(),
             field_name: self.cursor.field_name(),
-            last_state: self.last_state
+            last_state: self.last_state,
         }
     }
 
@@ -1569,7 +1668,7 @@ impl<'tree> Iterator for PreorderTraversal<'tree> {
     #[inline]
     fn next(&mut self) -> Option<TraversalItem<'tree>> {
         if self.last_state.is_end() {
-            return None
+            return None;
         }
         let item = self.peek();
         self.last_state = self.cursor.goto_preorder(self.last_state);
@@ -1602,7 +1701,10 @@ impl<'query, 'tree> Debug for QueryMatch<'query, 'tree> {
 impl<'tree> PartialEq for TraversalItem<'tree> {
     fn eq(&self, other: &Self) -> bool {
         if self.node == other.node {
-            debug_assert_eq!(self.field_name, other.field_name, "field_name must be the same if node is the same");
+            debug_assert_eq!(
+                self.field_name, other.field_name,
+                "field_name must be the same if node is the same"
+            );
         }
         self.node == other.node && self.last_state == other.last_state
     }

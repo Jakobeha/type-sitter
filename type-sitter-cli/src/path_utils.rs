@@ -1,12 +1,12 @@
+use crate::errors;
+use crate::errors::Error;
+use rust_format::{Formatter, RustFmt};
 use std::cell::LazyCell;
-use std::path::Path;
+use std::ffi::OsString;
 use std::fmt::Display;
 use std::fs::File;
 use std::io::Write;
-use std::ffi::OsString;
-use rust_format::{RustFmt, Formatter};
-use crate::errors;
-use crate::errors::Error;
+use std::path::Path;
 
 const RUST_FMT: LazyCell<RustFmt> = LazyCell::new(|| RustFmt::new());
 
@@ -23,8 +23,8 @@ pub fn is_dir_of_only_rust_files(dir: &Path) -> bool {
             f.map_or(false, |f| {
                 f.metadata().map_or(false, |m| {
                     let path = f.path();
-                    (m.is_file() && (has_extension(&path, "rs") || path.ends_with(".DS_Store"))) ||
-                        (m.is_dir() && is_dir_of_only_rust_files(&path))
+                    (m.is_file() && (has_extension(&path, "rs") || path.ends_with(".DS_Store")))
+                        || (m.is_dir() && is_dir_of_only_rust_files(&path))
                 })
             })
         })
@@ -33,7 +33,9 @@ pub fn is_dir_of_only_rust_files(dir: &Path) -> bool {
 
 pub fn language_name(path: &Path) -> String {
     let temp = OsString::new();
-    path.file_stem().unwrap_or(&temp).to_string_lossy()
+    path.file_stem()
+        .unwrap_or(&temp)
+        .to_string_lossy()
         .trim_start_matches("tree-sitter-")
         .replace("-", "_")
 }

@@ -1,11 +1,11 @@
 /// From <https://github.com/serde-rs/json/issues/404#issuecomment-892957228>
 mod deserialize_json_array_as_stream;
 mod detail_doc;
-mod types;
-mod print;
 mod generated_tokens;
-mod rust_names;
 mod names;
+mod print;
+mod rust_names;
+mod types;
 
 use crate::{type_sitter, type_sitter_raw, PrintCtx};
 pub use generated_tokens::*;
@@ -58,7 +58,9 @@ pub use types::*;
 /// }
 /// ```
 pub fn generate_nodes<T, E>(types: T) -> Result<GeneratedNodeTokens, E>
-where T: TryInto<NodeTypeMap, Error = E> {
+where
+    T: TryInto<NodeTypeMap, Error = E>,
+{
     generate_nodes_with_custom_module_paths(types, &type_sitter_raw(), &type_sitter())
 }
 
@@ -89,8 +91,14 @@ where T: TryInto<NodeTypeMap, Error = E> {
 ///     assert!(code.contains("pub struct TraitItem"));
 /// }
 /// ```
-pub fn generate_nodes_with_custom_module_paths<T, E>(all_types: T, tree_sitter: &syn::Path, type_sitter_lib: &syn::Path) -> Result<GeneratedNodeTokens, E>
-where T: TryInto<NodeTypeMap, Error = E> {
+pub fn generate_nodes_with_custom_module_paths<T, E>(
+    all_types: T,
+    tree_sitter: &syn::Path,
+    type_sitter_lib: &syn::Path,
+) -> Result<GeneratedNodeTokens, E>
+where
+    T: TryInto<NodeTypeMap, Error = E>,
+{
     let all_types = all_types.try_into()?;
 
     let ctx = PrintCtx {
@@ -99,8 +107,8 @@ where T: TryInto<NodeTypeMap, Error = E> {
         type_sitter_lib,
     };
 
-    Ok(all_types.values()
+    Ok(all_types
+        .values()
         .map(|r| r.print(ctx))
         .collect::<GeneratedNodeTokens>())
 }
-

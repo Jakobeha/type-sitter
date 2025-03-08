@@ -2,7 +2,10 @@
 
 pub use node::*;
 pub use query::*;
-pub use raw::{IncludedRangesError, InputEdit, Language, LanguageError, LanguageRef, Point, QueryProperty, Range};
+pub use raw::{
+    IncludedRangesError, InputEdit, Language, LanguageError, LanguageRef, Point, QueryProperty,
+    Range,
+};
 #[cfg(feature = "yak-sitter")]
 pub use raw::{NodeId, NodePtr, PointRange, TreeParseError};
 use std::convert::Infallible;

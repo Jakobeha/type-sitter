@@ -1,11 +1,11 @@
-/// Print query
-mod print;
 /// Dynamically-load a [`tree_sitter::Language`] to create [`Query`]s
 mod dyload_language;
+mod generated_tokens;
+/// Print query
+mod print;
 /// Tree-sitter query s-expression dialect
 mod sexp;
 mod sexp_node_type;
-mod generated_tokens;
 
 use crate::mk_syntax::ident;
 pub use crate::queries::dyload_language::dylib_path;
@@ -126,8 +126,8 @@ pub fn generate_queries_with_custom_module_paths(
         PrintCtx {
             all_types: &all_types,
             tree_sitter,
-            type_sitter_lib
-        }
+            type_sitter_lib,
+        },
     )
 }
 
@@ -137,12 +137,21 @@ fn _generate_queries(
     nodes: &syn::Path,
     use_yak_sitter: bool,
     ctx: PrintCtx,
-) -> Result<GeneratedQueryTokens, Error>{
+) -> Result<GeneratedQueryTokens, Error> {
     let path = path.as_ref();
     if path.is_dir() {
         _generate_queries_from_dir(path, language_path, nodes, use_yak_sitter, ctx)
     } else {
-        _generate_query_from_file(path, language_path, &[], &[], &[], nodes, use_yak_sitter, ctx)
+        _generate_query_from_file(
+            path,
+            language_path,
+            &[],
+            &[],
+            &[],
+            nodes,
+            use_yak_sitter,
+            ctx,
+        )
     }
 }
 
@@ -168,12 +177,16 @@ fn _generate_queries_from_dir(
         if entry_is_dir || has_extension(&entry_path, "scm") {
             let entry_name = entry_path.file_stem().unwrap().to_string_lossy();
 
-            let entry_code = _generate_queries(&entry_path, language_path, nodes, use_yak_sitter, ctx)?;
+            let entry_code =
+                _generate_queries(&entry_path, language_path, nodes, use_yak_sitter, ctx)?;
 
             match entry_is_dir {
                 false => queries.append(entry_code),
                 true => {
-                    let entry_ident = ident!(make_valid(&*entry_name), "query module name (subfolder name)")?;
+                    let entry_ident = ident!(
+                        make_valid(&*entry_name),
+                        "query module name (subfolder name)"
+                    )?;
                     let entry_tokens = entry_code.collapse(nodes);
 
                     queries.append_tokens(quote! {
@@ -241,8 +254,8 @@ pub fn generate_query_from_file_with_custom_module_paths(
         PrintCtx {
             all_types: &all_types,
             tree_sitter,
-            type_sitter_lib
-        }
+            type_sitter_lib,
+        },
     )
 }
 
@@ -262,7 +275,13 @@ fn _generate_query_from_file(
     let language_ident = ident!(language_name, "language name")?;
     let language = dyload_language(language_path)?;
     let def_ident = ident!(
-        make_valid(&path.file_stem().and_then(|f| f.to_str()).unwrap_or("�").to_case(Case::Pascal)),
+        make_valid(
+            &path
+                .file_stem()
+                .and_then(|f| f.to_str())
+                .unwrap_or("�")
+                .to_case(Case::Pascal)
+        ),
         "query name (filename)"
     )?;
     let query_str = read_to_string(path)?;
@@ -294,7 +313,8 @@ fn _generate_query_from_file(
 }
 
 fn language_name(path: &Path) -> Result<String, Error> {
-    let mut name = path.file_name()
+    let mut name = path
+        .file_name()
         .and_then(|s| s.to_str())
         .ok_or(Error::IllegalTSLanguageSymbolName)?
         .replace("-", "_");

@@ -1,4 +1,5 @@
 use crate::node_types::rust_names::PrevNodeRustNames;
+use crate::vec_set::VecSet;
 use crate::{NodeName, NodeRustNames};
 use serde::Deserialize;
 use std::borrow::{Borrow, Cow};
@@ -6,7 +7,6 @@ use std::collections::{BTreeMap, BTreeSet};
 use std::fmt::Display;
 use std::ops::{BitOrAssign, Index};
 use std::path::{Path, PathBuf};
-use crate::vec_set::VecSet;
 
 use super::deserialize_json_array_as_stream::iter_json_array;
 
@@ -16,7 +16,7 @@ use super::deserialize_json_array_as_stream::iter_json_array;
 #[derive(Debug)]
 pub struct NodeTypeMap {
     nodes: BTreeMap<NodeName, NodeType>,
-    prev_rust_names: PrevNodeRustNames
+    prev_rust_names: PrevNodeRustNames,
 }
 
 /// Describes a grammar node; corresponds to an entry in `node-types.json`
@@ -39,7 +39,9 @@ pub(crate) struct ContextFreeNodeType {
 #[derive(Clone, Debug, Deserialize)]
 #[serde(untagged)]
 pub enum NodeTypeKind {
-    Supertype { subtypes: BTreeSet<NodeName> },
+    Supertype {
+        subtypes: BTreeSet<NodeName>,
+    },
     Regular {
         #[serde(default)]
         fields: BTreeMap<String, Children>,
@@ -73,14 +75,26 @@ pub struct Children {
 impl NodeTypeMap {
     pub(crate) fn new(node_types: Vec<ContextFreeNodeType>) -> Self {
         let mut prev_rust_names = PrevNodeRustNames::new();
-        let nodes = node_types.into_iter()
-            .map(|node_type| (node_type.name.clone(), NodeType::new(node_type, &mut prev_rust_names)))
+        let nodes = node_types
+            .into_iter()
+            .map(|node_type| {
+                (
+                    node_type.name.clone(),
+                    NodeType::new(node_type, &mut prev_rust_names),
+                )
+            })
             .collect();
 
-        Self { nodes, prev_rust_names }
+        Self {
+            nodes,
+            prev_rust_names,
+        }
     }
 
-    pub fn get<Q: Ord + ?Sized>(&self, name: &Q) -> Option<&NodeType> where NodeName: Borrow<Q> {
+    pub fn get<Q: Ord + ?Sized>(&self, name: &Q) -> Option<&NodeType>
+    where
+        NodeName: Borrow<Q>,
+    {
         self.nodes.get(name)
     }
 
@@ -202,9 +216,11 @@ impl NodeTypeMap {
     /// assert!(result.is_ok());
     /// # }
     /// ```
-    pub fn add_custom_supertype(&mut self, name: &str, subtypes: impl IntoIterator<Item=NodeName>)
-        -> Result<NodeName, NodeName>
-    {
+    pub fn add_custom_supertype(
+        &mut self,
+        name: &str,
+        subtypes: impl IntoIterator<Item = NodeName>,
+    ) -> Result<NodeName, NodeName> {
         // Supertypes should be hidden nodes, so ensure the leading underscore.
         if !name.starts_with("_") {
             panic!("Illegal supertype name '{name}'. Supertypes must start with an underscore, i.e. '_{name}'.");
@@ -235,7 +251,9 @@ impl NodeTypeMap {
         // Replace anonymous unions of the supertype's exact subtypes with the supertype itself
         for node in self.nodes.values_mut() {
             match &mut node.kind {
-                NodeTypeKind::Regular { fields, children, .. } => {
+                NodeTypeKind::Regular {
+                    fields, children, ..
+                } => {
                     for children in fields.values_mut().chain(std::iter::once(children)) {
                         if children.types == subtypes_vecset {
                             children.types = VecSet::from_iter([name.clone()]);
@@ -281,7 +299,10 @@ impl TryFrom<&str> for NodeTypeMap {
     }
 }
 
-impl<Q: Ord + ?Sized> Index<&Q> for NodeTypeMap where NodeName: Borrow<Q> {
+impl<Q: Ord + ?Sized> Index<&Q> for NodeTypeMap
+where
+    NodeName: Borrow<Q>,
+{
     type Output = NodeType;
 
     fn index(&self, name: &Q) -> &Self::Output {
@@ -331,7 +352,8 @@ impl Index<&str> for NodeType {
     ///
     /// **Panics** if the node type doesn't have a field with the name.
     fn index(&self, name: &str) -> &Self::Output {
-        self.field(&name).expect("this node doesn't have a field with the given name")
+        self.field(&name)
+            .expect("this node doesn't have a field with the given name")
     }
 }
 
@@ -340,7 +362,11 @@ impl Children {
     ///
     /// Specifically, there are no child types. `required` and `multiple` are at the bottom of the
     /// lattice created by the [`Extend`] impl: that is, both are `false`.
-    pub const EMPTY: Self = Self { multiple: false, required: false, types: VecSet::new() };
+    pub const EMPTY: Self = Self {
+        multiple: false,
+        required: false,
+        types: VecSet::new(),
+    };
 
     /// Whether there are no children.
     pub fn is_empty(&self) -> bool {

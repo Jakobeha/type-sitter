@@ -1,20 +1,20 @@
-use std::iter::FusedIterator;
 #[cfg(feature = "yak-sitter")]
 use crate::raw;
+use std::iter::FusedIterator;
 
 /// Captures from a [`QueryMatch`](crate::QueryMatch)
 pub struct QueryMatchCaptures<'query, 'tree, Query: crate::Query + 'tree> {
     query: &'query Query,
     captures: &'query [tree_sitter::QueryCapture<'tree>],
     #[cfg(feature = "yak-sitter")]
-    tree: &'tree raw::Tree
+    tree: &'tree raw::Tree,
 }
 
 /// Iterate captures from a [`QueryMatch`](crate::QueryMatch)
 pub struct QueryMatchCapturesIntoIter<'query, 'tree, Query: crate::Query + 'tree> {
     captures: QueryMatchCaptures<'query, 'tree, Query>,
     index: usize,
-    limit: usize
+    limit: usize,
 }
 
 impl<'query, 'tree, Query: crate::Query + 'tree> QueryMatchCaptures<'query, 'tree, Query> {
@@ -28,20 +28,28 @@ impl<'query, 'tree, Query: crate::Query + 'tree> QueryMatchCaptures<'query, 'tre
     pub(super) unsafe fn new(
         query: &'query Query,
         captures: &'query [tree_sitter::QueryCapture<'tree>],
-        #[cfg(feature = "yak-sitter")]
-        tree: &'tree raw::Tree
+        #[cfg(feature = "yak-sitter")] tree: &'tree raw::Tree,
     ) -> Self {
-        Self { query, captures, #[cfg(feature = "yak-sitter")] tree }
+        Self {
+            query,
+            captures,
+            #[cfg(feature = "yak-sitter")]
+            tree,
+        }
     }
 
     /// Iterate the captures
     pub fn iter(&self) -> impl Iterator<Item = Query::Capture<'query, 'tree>> + '_ {
-        self.captures.iter().map(|capture| self.wrap_capture(*capture))
+        self.captures
+            .iter()
+            .map(|capture| self.wrap_capture(*capture))
     }
 
     /// Get the capture at the index
     pub fn get(&self, index: usize) -> Option<Query::Capture<'query, 'tree>> {
-        self.captures.get(index).map(|capture| self.wrap_capture(*capture))
+        self.captures
+            .get(index)
+            .map(|capture| self.wrap_capture(*capture))
     }
 
     /// Get the capture at the index. **Panics** if the index is out of bounds
@@ -49,18 +57,23 @@ impl<'query, 'tree, Query: crate::Query + 'tree> QueryMatchCaptures<'query, 'tre
         self.wrap_capture(self.captures[index])
     }
 
-    fn wrap_capture(&self, capture: tree_sitter::QueryCapture<'tree>) -> Query::Capture<'query, 'tree> {
+    fn wrap_capture(
+        &self,
+        capture: tree_sitter::QueryCapture<'tree>,
+    ) -> Query::Capture<'query, 'tree> {
         // SAFETY: Captures come from the same query, and nodes from the same tree
-        unsafe { self.query.wrap_capture(
-            #[cfg(feature = "yak-sitter")]
-            raw::QueryCapture {
-                node: raw::Node::new(capture.node, self.tree),
-                index: capture.index as usize,
-                name: self.query.raw().capture_names()[capture.index as usize],
-            },
-            #[cfg(not(feature = "yak-sitter"))]
-            capture,
-        ) }
+        unsafe {
+            self.query.wrap_capture(
+                #[cfg(feature = "yak-sitter")]
+                raw::QueryCapture {
+                    node: raw::Node::new(capture.node, self.tree),
+                    index: capture.index as usize,
+                    name: self.query.raw().capture_names()[capture.index as usize],
+                },
+                #[cfg(not(feature = "yak-sitter"))]
+                capture,
+            )
+        }
     }
 
     /// Are there any captures?
@@ -74,7 +87,9 @@ impl<'query, 'tree, Query: crate::Query + 'tree> QueryMatchCaptures<'query, 'tre
     }
 }
 
-impl<'query, 'tree, Query: crate::Query + 'tree> IntoIterator for QueryMatchCaptures<'query, 'tree, Query> {
+impl<'query, 'tree, Query: crate::Query + 'tree> IntoIterator
+    for QueryMatchCaptures<'query, 'tree, Query>
+{
     type Item = Query::Capture<'query, 'tree>;
     type IntoIter = QueryMatchCapturesIntoIter<'query, 'tree, Query>;
 
@@ -83,17 +98,19 @@ impl<'query, 'tree, Query: crate::Query + 'tree> IntoIterator for QueryMatchCapt
         QueryMatchCapturesIntoIter {
             captures: self,
             index: 0,
-            limit
+            limit,
         }
     }
 }
 
-impl<'query, 'tree, Query: crate::Query + 'tree> Iterator for QueryMatchCapturesIntoIter<'query, 'tree, Query> {
+impl<'query, 'tree, Query: crate::Query + 'tree> Iterator
+    for QueryMatchCapturesIntoIter<'query, 'tree, Query>
+{
     type Item = Query::Capture<'query, 'tree>;
 
     fn next(&mut self) -> Option<Self::Item> {
         if self.index >= self.limit {
-            return None
+            return None;
         }
         let capture = self.captures.index(self.index);
         self.index += 1;
@@ -106,10 +123,12 @@ impl<'query, 'tree, Query: crate::Query + 'tree> Iterator for QueryMatchCaptures
     }
 }
 
-impl<'query, 'tree, Query: crate::Query + 'tree> DoubleEndedIterator for QueryMatchCapturesIntoIter<'query, 'tree, Query> {
+impl<'query, 'tree, Query: crate::Query + 'tree> DoubleEndedIterator
+    for QueryMatchCapturesIntoIter<'query, 'tree, Query>
+{
     fn next_back(&mut self) -> Option<Self::Item> {
         if self.index >= self.limit {
-            return None
+            return None;
         }
         self.limit -= 1;
         let capture = self.captures.index(self.limit);
@@ -117,10 +136,15 @@ impl<'query, 'tree, Query: crate::Query + 'tree> DoubleEndedIterator for QueryMa
     }
 }
 
-impl<'query, 'tree, Query: crate::Query + 'tree> ExactSizeIterator for QueryMatchCapturesIntoIter<'query, 'tree, Query> {
+impl<'query, 'tree, Query: crate::Query + 'tree> ExactSizeIterator
+    for QueryMatchCapturesIntoIter<'query, 'tree, Query>
+{
     fn len(&self) -> usize {
         self.limit - self.index
     }
 }
 
-impl<'query, 'tree, Query: crate::Query + 'tree> FusedIterator for QueryMatchCapturesIntoIter<'query, 'tree, Query> {}
+impl<'query, 'tree, Query: crate::Query + 'tree> FusedIterator
+    for QueryMatchCapturesIntoIter<'query, 'tree, Query>
+{
+}

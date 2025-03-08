@@ -1,6 +1,6 @@
+use crate::{raw, Node, Point, UntypedNode};
 #[cfg(feature = "yak-sitter")]
 use yak_sitter::TraversalState;
-use crate::{Point, Node, UntypedNode, raw};
 
 /// A stateful object for walking a syntax tree efficiently. See [`raw::TreeCursor`]
 #[derive(Clone)]
@@ -53,7 +53,6 @@ impl<'tree> TreeCursor<'tree> {
         self.0.goto_first_child()
     }
 
-
     /// Move the cursor to the first child of the current node that extends beyond the given byte
     /// offset, and return its index.
     ///
@@ -78,7 +77,7 @@ impl<'tree> TreeCursor<'tree> {
     /// Unlike [`tree_sitter::TreeCursor.goto_next_sibling`], this will try (isn't guaranteed to
     /// return `false`) if the cursor is rooted (e.g. reset) to its current node.
     #[cfg(feature = "yak-sitter")]
-   #[inline]
+    #[inline]
     pub fn goto_next_sibling(&mut self) -> bool {
         self.0.goto_next_sibling()
     }

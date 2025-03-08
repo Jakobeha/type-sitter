@@ -44,18 +44,46 @@ pub(crate) struct NodeRustNames {
 pub enum NodeModule {
     Toplevel,
     Unnamed,
-    Symbols
+    Symbols,
 }
 
 /// Common punctuation, which we replace with something descriptive instead of unicode.
 const PUNCTUATION_TABLE: [(char, &'static str); 35] = [
-    ('&', "And"), ('|', "Or"), ('!', "Not"), ('=', "Eq"), ('<', "Lt"),
-    ('>', "Gt"), ('+', "Add"), ('-', "Sub"), ('*', "Mul"), ('/', "Div"),
-    ('~', "BitNot"), ('%', "Mod"), ('^', "BitXor"), ('?', "Question"), (':', "Colon"),
-    ('.', "Dot"), (',', "Comma"), (';', "Semicolon"), ('(', "LParen"), (')', "RParen"),
-    ('[', "LBracket"), (']', "RBracket"), ('{', "LBrace"), ('}', "RBrace"), ('\\', "Backslash"),
-    ('\'', "Quote"), ('"', "DoubleQuote"), ('#', "Hash"), ('@', "At"), ('$', "Dollar"),
-    ('`', "Backtick"), (' ', "Space"), ('\t', "Tab"), ('\n', "Newline"), ('\r', "CarriageReturn")
+    ('&', "And"),
+    ('|', "Or"),
+    ('!', "Not"),
+    ('=', "Eq"),
+    ('<', "Lt"),
+    ('>', "Gt"),
+    ('+', "Add"),
+    ('-', "Sub"),
+    ('*', "Mul"),
+    ('/', "Div"),
+    ('~', "BitNot"),
+    ('%', "Mod"),
+    ('^', "BitXor"),
+    ('?', "Question"),
+    (':', "Colon"),
+    ('.', "Dot"),
+    (',', "Comma"),
+    (';', "Semicolon"),
+    ('(', "LParen"),
+    (')', "RParen"),
+    ('[', "LBracket"),
+    (']', "RBracket"),
+    ('{', "LBrace"),
+    ('}', "RBrace"),
+    ('\\', "Backslash"),
+    ('\'', "Quote"),
+    ('"', "DoubleQuote"),
+    ('#', "Hash"),
+    ('@', "At"),
+    ('$', "Dollar"),
+    ('`', "Backtick"),
+    (' ', "Space"),
+    ('\t', "Tab"),
+    ('\n', "Newline"),
+    ('\r', "CarriageReturn"),
 ];
 
 impl NodeRustNames {
@@ -65,7 +93,12 @@ impl NodeRustNames {
         this
     }
 
-    fn context_free(NodeName { sexp_name, is_named }: &NodeName) -> Self {
+    fn context_free(
+        NodeName {
+            sexp_name,
+            is_named,
+        }: &NodeName,
+    ) -> Self {
         if sexp_name == "_" {
             // Special-cased
             return Self {
@@ -73,7 +106,7 @@ impl NodeRustNames {
                 method_name: "__".to_owned(),
                 module: match *is_named {
                     false => NodeModule::Symbols,
-                    true => NodeModule::Toplevel
+                    true => NodeModule::Toplevel,
                 },
             };
         }
@@ -86,13 +119,18 @@ impl NodeRustNames {
         let (rust_type_name, rust_method_name) = sexp_name_to_rust_names(raw_sexp_name);
 
         let module = match *is_named {
-            false if sexp_name.contains(|c| PUNCTUATION_TABLE.iter().any(|(c2, _)| c == *c2)) => NodeModule::Symbols,
+            false if sexp_name.contains(|c| PUNCTUATION_TABLE.iter().any(|(c2, _)| c == *c2)) => {
+                NodeModule::Symbols
+            }
             false => NodeModule::Unnamed,
-            true => NodeModule::Toplevel
+            true => NodeModule::Toplevel,
         };
 
-        Self { type_name: rust_type_name, method_name: rust_method_name, module }
-
+        Self {
+            type_name: rust_type_name,
+            method_name: rust_method_name,
+            module,
+        }
     }
 
     /// If this has the same `rust_type_name` as another [`NodeName`] as indicated by the set,
@@ -114,12 +152,12 @@ impl NodeRustNames {
         match self.module {
             NodeModule::Toplevel => Cow::Borrowed(&self.type_name),
             NodeModule::Unnamed => Cow::Owned(format!("unnamed::{}", self.type_name)),
-            NodeModule::Symbols => Cow::Owned(format!("symbols::{}", self.type_name))
+            NodeModule::Symbols => Cow::Owned(format!("symbols::{}", self.type_name)),
         }
     }
 
     pub(super) fn anon_union_type_name<'a>(
-        names: impl IntoIterator<Item=&'a NodeRustNames, IntoIter: 'a>
+        names: impl IntoIterator<Item = &'a NodeRustNames, IntoIter: 'a>,
     ) -> impl Display + 'a {
         "_".join(names.into_iter().map(|name| &name.type_name))
     }
@@ -127,7 +165,10 @@ impl NodeRustNames {
 
 impl PrevNodeRustNames {
     pub(super) fn new() -> Self {
-        Self { types: EnumMap::default(), methods: HashSet::new() }
+        Self {
+            types: EnumMap::default(),
+            methods: HashSet::new(),
+        }
     }
 }
 
@@ -156,10 +197,16 @@ pub(crate) fn make_valid(str: &str) -> String {
         result.insert(0, '_');
     }
     for char in str.chars() {
-        match PUNCTUATION_TABLE.iter().find(|(c, _)| *c == char).map(|(_, s)| *s) {
+        match PUNCTUATION_TABLE
+            .iter()
+            .find(|(c, _)| *c == char)
+            .map(|(_, s)| *s)
+        {
             Some(name) => result.push_str(name),
-            None if !char.is_ascii_alphanumeric() && char != '_' => write!(result, "U{:X}", char as u32).unwrap(),
-            None => result.push(char)
+            None if !char.is_ascii_alphanumeric() && char != '_' => {
+                write!(result, "U{:X}", char as u32).unwrap()
+            }
+            None => result.push(char),
         }
     }
     result
@@ -184,7 +231,7 @@ pub(crate) fn unmake_reserved(name: &mut String) {
     match name.as_str() {
         "crate_" | "self_" | "Self_" | "super_" => {
             name.pop().unwrap();
-        },
+        }
         _ => unmake_reserved_if_raw(name),
     }
 }

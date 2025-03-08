@@ -74,7 +74,7 @@ impl<Root: Node<'static>> Tree<Root> {
 
     /// Get the changed ranges. See [`tree_sitter::Tree::changed_ranges`]
     #[inline]
-    pub fn changed_ranges(&self, other: &Tree<Root>) -> impl ExactSizeIterator<Item=Range> {
+    pub fn changed_ranges(&self, other: &Tree<Root>) -> impl ExactSizeIterator<Item = Range> {
         self.0.changed_ranges(&other.0)
     }
 

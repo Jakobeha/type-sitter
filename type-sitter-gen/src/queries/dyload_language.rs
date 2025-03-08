@@ -216,10 +216,7 @@ fn register_crash_handler_if_necessary() {
             // `signal` function should be safe to call.
             // The function can be `unsafe` because if it is called, we already got a segfault so
             // "safety" doesn't matter anymore.
-            libc::signal(
-                libc::SIGSEGV,
-                loaded_language_crash_handler as libc::size_t,
-            );
+            libc::signal(libc::SIGSEGV, loaded_language_crash_handler as libc::size_t);
         }
     }
 }

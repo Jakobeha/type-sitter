@@ -1,6 +1,6 @@
+use crate::{raw, Node, UntypedNode};
 use std::error::Error;
 use std::fmt::{Display, Formatter};
-use crate::{raw, Node, UntypedNode};
 
 /// Result of attempting to wrap a node
 pub type NodeResult<'tree, T> = Result<T, IncorrectKind<'tree>>;
@@ -34,7 +34,10 @@ impl<'tree> IncorrectKind<'tree> {
     /// `Node` is the type of node that was expected.
     #[inline]
     pub fn new<Node: crate::Node<'tree>>(node: raw::Node<'tree>) -> Self {
-        Self { node: UntypedNode::new(node), kind: Node::KIND }
+        Self {
+            node: UntypedNode::new(node),
+            kind: Node::KIND,
+        }
     }
 
     /// The actual kind of node that we encountered, not `kind` which is the one we expected.
@@ -82,7 +85,7 @@ impl<'tree> IncorrectKind<'tree> {
 
 impl<'tree, T: Node<'tree>> Node<'tree> for NodeResult<'tree, T> {
     type WithLifetime<'a> = NodeResult<'a, T::WithLifetime<'a>>;
-    
+
     const KIND: &'static str = "{result}";
 
     fn try_from_raw(node: raw::Node<'tree>) -> NodeResult<'tree, Self> {
@@ -130,11 +133,29 @@ impl Display for DisplayWithSourceRange<'_, '_> {
         // Inline yak-sitter's `impl Display for Range`.
         let range = self.0.node.range();
         if range.start_byte == range.end_byte {
-            write!(f, "{}:{}", range.start_point.row + 1, range.start_point.column + 1)
+            write!(
+                f,
+                "{}:{}",
+                range.start_point.row + 1,
+                range.start_point.column + 1
+            )
         } else if range.start_point.row == range.end_point.row {
-            write!(f, "{}:{}-{}", range.start_point.row + 1, range.start_point.column + 1, range.end_point.column + 1)
+            write!(
+                f,
+                "{}:{}-{}",
+                range.start_point.row + 1,
+                range.start_point.column + 1,
+                range.end_point.column + 1
+            )
         } else {
-            write!(f, "{}:{}-{}:{}", range.start_point.row + 1, range.start_point.column + 1, range.end_point.row + 1, range.end_point.column + 1)
+            write!(
+                f,
+                "{}:{}-{}:{}",
+                range.start_point.row + 1,
+                range.start_point.column + 1,
+                range.end_point.row + 1,
+                range.end_point.column + 1
+            )
         }?;
 
         write!(f, ": {}", self.0)
@@ -146,7 +167,9 @@ impl Display for IncorrectKind<'_> {
         match self.cause() {
             IncorrectKindCause::Error => write!(f, "expected {}", self.kind),
             IncorrectKindCause::Missing => write!(f, "missing {}", self.kind),
-            IncorrectKindCause::OtherKind(other) => write!(f, "expected {}, got {}", self.kind, other),
+            IncorrectKindCause::OtherKind(other) => {
+                write!(f, "expected {}, got {}", self.kind, other)
+            }
         }
     }
 }

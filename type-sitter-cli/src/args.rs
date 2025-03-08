@@ -1,11 +1,11 @@
-use clap::{Parser, ValueEnum};
-use std::path::{Path, PathBuf};
-use std::str::FromStr;
-use std::iter::successors;
-use std::fs::DirEntry;
-use crate::Error;
 use crate::errors::InOutPairParseError;
 use crate::path_utils::has_extension;
+use crate::Error;
+use clap::{Parser, ValueEnum};
+use std::fs::DirEntry;
+use std::iter::successors;
+use std::path::{Path, PathBuf};
+use std::str::FromStr;
 
 /// CLI arguments
 #[derive(Parser, Debug)]
@@ -26,7 +26,11 @@ pub struct Args {
     #[arg(short = 'o', long = "output-dir", default_value = "src/type_sitter")]
     pub output_dir: PathBuf,
     /// Output name. Don't include the `.rs` extension. Defaults to the language name.
-    #[arg(short = 'n', long = "name", default_value = "src/type_sitter_generated")]
+    #[arg(
+        short = 'n',
+        long = "name",
+        default_value = "src/type_sitter_generated"
+    )]
     pub output_name: Option<String>,
     /// Language directory. Not used/needed when generating node wrappers. Inferred by default
     #[arg(short = 'l', long = "language")]
@@ -72,10 +76,11 @@ impl InputType {
         } else if has_extension(path, "scm") {
             Ok(Self::Query)
         } else if path.is_dir() {
-            let entries = Self::read_parent_dir(path, Error::io("inferring input type"))?.collect::<Vec<_>>();
+            let entries =
+                Self::read_parent_dir(path, Error::io("inferring input type"))?.collect::<Vec<_>>();
             if entries.iter().any(|e| has_extension(&e.path(), "scm")) {
                 Ok(Self::Query)
-            } else if entries.iter().any(|e| e.path().ends_with( "src")) {
+            } else if entries.iter().any(|e| e.path().ends_with("src")) {
                 Ok(Self::LanguageRoot)
             } else {
                 Err(Error::CouldntInferInputType)
@@ -90,12 +95,13 @@ impl InputType {
             InputType::NodeTypes | InputType::Query => {
                 successors(input_path.parent(), |p| p.parent())
                     .find(|parent| {
-                        Self::read_parent_dir(parent, Error::io("inferring language directory")).ok()
-                            .map_or(false, |mut i| i.any(|e| e.path().ends_with( "package.json")))
+                        Self::read_parent_dir(parent, Error::io("inferring language directory"))
+                            .ok()
+                            .map_or(false, |mut i| i.any(|e| e.path().ends_with("package.json")))
                     })
                     .map(|p| p.to_path_buf())
             }
-            InputType::LanguageRoot => Some(input_path.to_path_buf())
+            InputType::LanguageRoot => Some(input_path.to_path_buf()),
         }
     }
 
@@ -106,7 +112,10 @@ impl InputType {
         }
     }
 
-    fn read_parent_dir(path: &Path, io_ctor: impl FnOnce(std::io::Error) -> Error) -> crate::errors::Result<impl Iterator<Item=DirEntry>> {
+    fn read_parent_dir(
+        path: &Path,
+        io_ctor: impl FnOnce(std::io::Error) -> Error,
+    ) -> crate::errors::Result<impl Iterator<Item = DirEntry>> {
         Ok(path.read_dir().map_err(io_ctor)?.filter_map(|e| e.ok()))
     }
 }
@@ -119,7 +128,7 @@ impl FromStr for InOutPair {
         let input = PathBuf::from(components.next().ok_or(InOutPairParseError::MissingInput)?);
         let output = components.next().map(PathBuf::from);
         if components.next().is_some() {
-            return Err(InOutPairParseError::TooManySeparators)
+            return Err(InOutPairParseError::TooManySeparators);
         }
         Ok(Self { input, output })
     }

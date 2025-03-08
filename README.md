@@ -8,35 +8,58 @@
 [![docs.rs | type-sitter-gen](https://img.shields.io/docsrs/type-sitter-gen?label=docs%20%7C%20type-sitter-gen)](https://docs.rs/type-sitter-gen)
 [![docs.rs | yak-sitter](https://img.shields.io/docsrs/yak-sitter?label=docs%20%7C%20yak-sitter)](https://docs.rs/yak-sitter)
 
-Type-sitter currently depends on [**tree-sitter v0.25**](https://github.com/tree-sitter/tree-sitter/releases/tag/v0.25.2).
+Type-sitter currently depends on [**tree-sitter v0.25
+**](https://github.com/tree-sitter/tree-sitter/releases/tag/v0.25.2).
 
 ## Overview
 
-`type-sitter` generates type-safe wrappers for tree-sitter nodes and queries in a specific language. Nodes are generated from [`node-types.json`](https://tree-sitter.github.io/tree-sitter/using-parsers#static-node-types), and queries from [query s-expressions](https://tree-sitter.github.io/tree-sitter/using-parsers#pattern-matching-with-queries).
+`type-sitter` generates type-safe wrappers for tree-sitter nodes and queries in a specific language. Nodes are generated
+from [`node-types.json`](https://tree-sitter.github.io/tree-sitter/using-parsers#static-node-types), and queries
+from [query s-expressions](https://tree-sitter.github.io/tree-sitter/using-parsers#pattern-matching-with-queries).
 
 "Type-safe" here means that:
 
-- Instead of representing all tree-sitter nodes by [`tree_sitter::Node`](https://docs.rs/tree-sitter/latest/tree_sitter/struct.Node.html), each node type has its own data-type which wraps `tree_sitter::Node`.
-  - Supertype nodes are `enum`s, so you can pattern-match their subtypes with compile-time exhaustiveness checking.
-  - Each node data-type implements [`type_sitter::Node`](https://docs.rs/type-sitter-lib/latest/type_sitter_lib/trait.Node.html). You can use generics and convert to/from [`type_sitter::UntypedNode`](https://docs.rs/type-sitter-lib/latest/type_sitter_lib/struct.UntypedNode.html) to write methods that take or return arbitrary-typed nodes.
+- Instead of representing all tree-sitter nodes by [
+  `tree_sitter::Node`](https://docs.rs/tree-sitter/latest/tree_sitter/struct.Node.html), each node type has its own
+  data-type which wraps `tree_sitter::Node`.
+    - Supertype nodes are `enum`s, so you can pattern-match their subtypes with compile-time exhaustiveness checking.
+    - Each node data-type implements [
+      `type_sitter::Node`](https://docs.rs/type-sitter-lib/latest/type_sitter_lib/trait.Node.html). You can use generics
+      and convert to/from [
+      `type_sitter::UntypedNode`](https://docs.rs/type-sitter-lib/latest/type_sitter_lib/struct.UntypedNode.html) to
+      write methods that take or return arbitrary-typed nodes.
 - Instead of accessing fields by `field("field_name")`, you access by specific methods like `field_name()`.
-  - These methods, and every other generated method, also return typed nodes.
-- Queries also have their own data-types, you access captures by specific methods instead of `capture("capture_name")`, and query methods return typed nodes.
+    - These methods, and every other generated method, also return typed nodes.
+- Queries also have their own data-types, you access captures by specific methods instead of `capture("capture_name")`,
+  and query methods return typed nodes.
 
 `type-sitter` has other useful features:
 
 - Typed error, missing, and extra nodes.
 - From a typed node you can lookup the "extra" nodes before and after, e.g. to handle comments.
-- [`Option<NodeResult<'_>>.unwrap2()`, `.expect2()`, and `.flatten()`](https://docs.rs/type-sitter-lib/latest/type_sitter_lib/trait.OptionNodeResultExt.html).
-- Custom supertypes can be created at build time, to group nodes that are't grouped in the original grammar. You could, for instance, create create a supertype for all named nodes, all nodes that have named fields, or any other grouping that makes sense for the tool that you're building.
+- [`Option<NodeResult<'_>>.unwrap2()`, `.expect2()`, and
+  `.flatten()`](https://docs.rs/type-sitter-lib/latest/type_sitter_lib/trait.OptionNodeResultExt.html).
+- Custom supertypes can be created at build time, to group nodes that are't grouped in the original grammar. You could,
+  for instance, create create a supertype for all named nodes, all nodes that have named fields, or any other grouping
+  that makes sense for the tool that you're building.
 
-Lastly, there's an optional feature, `yak-sitter`, which re-exports the `tree-sitter` API with a few small changes, most notably nodes being able to access their text and filepath directly. The [`yak-sitter`](yak-sitter/README.md) library is a drop-in replacement for `tree-sitter` and can by used by itself without `type-sitter` (and `yak-sitter` is optional in `type-sitter`).
+Lastly, there's an optional feature, `yak-sitter`, which re-exports the `tree-sitter` API with a few small changes, most
+notably nodes being able to access their text and filepath directly. The [`yak-sitter`](yak-sitter/README.md) library is
+a drop-in replacement for `tree-sitter` and can by used by itself without `type-sitter` (and `yak-sitter` is optional in
+`type-sitter`).
 
 ## Usage
 
-There are three ways to use `type-sitter`: procedural macros, build script, or the CLI tool. Procedural macros is the easiest. Build script is recommended because it's much faster (only runs when the grammar changes) and lets you see the generated code. The CLI tool is the most flexible, as it lets you edit the generated code, but it requires you to re-generate the code manually.
+There are three ways to use `type-sitter`: procedural macros, build script, or the CLI tool. Procedural macros is the
+easiest. Build script is recommended because it's much faster (only runs when the grammar changes) and lets you see the
+generated code. The CLI tool is the most flexible, as it lets you edit the generated code, but it requires you to
+re-generate the code manually.
 
-Every method *except the build script for node-types only* requires that you **vendor** the tree-sitter grammar you want to generate bindings for: you cannot just include it as a dependency in `Cargo.toml`, because the node generator needs a hard-coded (relative) path to the grammar's `node-types.json`, and the query generator needs a hard-coded path to the grammar's root folder (containing `src/node-types.json`), which must also contain a built shared object (at `build/tree_sitter_foobar_binding.dylib` or `build/tree_sitter_foobar_binding.so`).
+Every method *except the build script for node-types only* requires that you **vendor** the tree-sitter grammar you want
+to generate bindings for: you cannot just include it as a dependency in `Cargo.toml`, because the node generator needs a
+hard-coded (relative) path to the grammar's `node-types.json`, and the query generator needs a hard-coded path to the
+grammar's root folder (containing `src/node-types.json`), which must also contain a built shared object (at
+`build/tree_sitter_foobar_binding.dylib` or `build/tree_sitter_foobar_binding.so`).
 
 ### Procedural macros (easiest)
 
@@ -242,13 +265,20 @@ Then, *manually* generate typed nodes and queries with the CLI tool:
 > cargo run -p type-sitter-cli vendor/path/to/tree-sitter-foobar-lang -o src/parent/of/generated/module
 ```
 
-Additionally, you must pass `--use-yak-sitter` if the `yak-sitter` feature is enabled. If you skip `-o`, it defaults to `src/type_sitter`.
+Additionally, you must pass `--use-yak-sitter` if the `yak-sitter` feature is enabled. If you skip `-o`, it defaults to
+`src/type_sitter`.
 
-Alternatively, instead of the path to the grammar's root folder, if you specify the path to the `node-types.json` directly, the CLI tool will only generate node types; or if you specify the path to the `queries` directory, it will only generate queries.
+Alternatively, instead of the path to the grammar's root folder, if you specify the path to the `node-types.json`
+directly, the CLI tool will only generate node types; or if you specify the path to the `queries` directory, it will
+only generate queries.
 
-A downside with the CLI approach is that you need to manually re-generate the nodes if the grammar changes. An upside is that, if you know the grammar won't change and you won't have to manually re-generate, you can edit the generated code and the edits will persist.
+A downside with the CLI approach is that you need to manually re-generate the nodes if the grammar changes. An upside is
+that, if you know the grammar won't change and you won't have to manually re-generate, you can edit the generated code
+and the edits will persist.
 
-Another downside is that the CLI can only be used on systems that have run `cargo install type-sitter-cli`. See https://github.com/rust-lang/cargo/issues/2267 for why the CLI method can't easily be made portable; if you want portability, use procedural macros or a build script.
+Another downside is that the CLI can only be used on systems that have run `cargo install type-sitter-cli`.
+See https://github.com/rust-lang/cargo/issues/2267 for why the CLI method can't easily be made portable; if you want
+portability, use procedural macros or a build script.
 
 ## Example
 
@@ -282,13 +312,19 @@ pub fn process_declaration(decl: rust::DeclarationStatement<'_>) {
 
 ## Drawbacks
 
-Be aware that the generated wrapper code is very large: the [generated node wrappers for `tree-sitter-rust`](type-sitter-lib/tests/rust/nodes.rs) are >30000 LOC, and [queries](type-sitter-lib/tests/rust/queries.rs) are >6000 LOC. I don't know how that impacts compilation or analysis speed.
+Be aware that the generated wrapper code is very large: the [generated node wrappers for
+`tree-sitter-rust`](type-sitter-lib/tests/rust/nodes.rs) are >30000 LOC,
+and [queries](type-sitter-lib/tests/rust/queries.rs) are >6000 LOC. I don't know how that impacts compilation or
+analysis speed.
 
-`type-sitter-proc` is particularly slow because it must re-generate this code every build. `type-sitter-gen` or `type-sitter-cli` can be configured to only re-generate when the tree-sitter grammar changes.
+`type-sitter-proc` is particularly slow because it must re-generate this code every build. `type-sitter-gen` or
+`type-sitter-cli` can be configured to only re-generate when the tree-sitter grammar changes.
 
 ## Naming Rules
 
-`type-sitter` generates data-types based on the names of the nodes in the grammar. However, these nodes are in snake-case and contain punctuation which is illegal in Rust, so we convert them to camel-case and perform the following illegal-character substitutions:
+`type-sitter` generates data-types based on the names of the nodes in the grammar. However, these nodes are in
+snake-case and contain punctuation which is illegal in Rust, so we convert them to camel-case and perform the following
+illegal-character substitutions:
 
 - `&` ⇒ `And`
 - `|` ⇒ `Or`
@@ -331,17 +367,26 @@ For method names (variant selectors), we simply convert back to snake case.
 
 Additionally, if a node is implicit (starts with `_`), we remove the prepended `_`.
 
-Next, if a type or method name would start with a digit, `type-sitter` prepends a `_`. If the type or method name would be `_`, `type-sitter` uses `__`. If the type or method name would be a reserved identifier that can be raw, `type-sitter` prepends `r#`. And, if the type or method name would be a reserved identifier that can't be raw (`Self`, `self`, `super`, `crate`), `type-sitter` appends `_`.
+Next, if a type or method name would start with a digit, `type-sitter` prepends a `_`. If the type or method name would
+be `_`, `type-sitter` uses `__`. If the type or method name would be a reserved identifier that can be raw,
+`type-sitter` prepends `r#`. And, if the type or method name would be a reserved identifier that can't be raw (`Self`,
+`self`, `super`, `crate`), `type-sitter` appends `_`.
 
-Lastly, if there are ever multiple types with the same name in the same module, or methods or variants with the same name in the same type, type-sitter appends `_` to the later one until it's unique. For example, if there are two unnamed nodes `Fn` and `fn`, one of them will have type `Fn`, and the other will have type `Fn_`. You can see which node is which by looking at the documentation, which contains the original tree-sitter name. The disambiguation is guaranteed to be deterministic.
+Lastly, if there are ever multiple types with the same name in the same module, or methods or variants with the same
+name in the same type, type-sitter appends `_` to the later one until it's unique. For example, if there are two unnamed
+nodes `Fn` and `fn`, one of them will have type `Fn`, and the other will have type `Fn_`. You can see which node is
+which by looking at the documentation, which contains the original tree-sitter name. The disambiguation is guaranteed to
+be deterministic.
 
-Naming rules also determine the module. Unnamed nodes and symbols are in modules specifically to reduce naming conflicts without having to disambiguate the nodes as described above.
+Naming rules also determine the module. Unnamed nodes and symbols are in modules specifically to reduce naming conflicts
+without having to disambiguate the nodes as described above.
 
 - Unnamed and contains symbols: `symbol::`.
 - Unnamed and doesn't contain symbols: `unnamed::`.
 - Otherwise the node is at the toplevel of the generated source.
 
-The source for all this is [`type-sitter-gen/src/node_types/rust_names.rs`](type-sitter-gen/src/node_types/rust_names.rs).
+The source for all this is [
+`type-sitter-gen/src/node_types/rust_names.rs`](type-sitter-gen/src/node_types/rust_names.rs).
 
 ### Naming Rule Examples
 
@@ -354,17 +399,21 @@ The source for all this is [`type-sitter-gen/src/node_types/rust_names.rs`](type
 
 ### Query Capture Naming Rules
 
-Query capture naming rules are the exact same as node rules, except that in captures, `.` is interpreted as `_` when converting to camel-case (e.g. `method.definition` => `MethodDefinition` and `method_definition`).
+Query capture naming rules are the exact same as node rules, except that in captures, `.` is interpreted as `_` when
+converting to camel-case (e.g. `method.definition` => `MethodDefinition` and `method_definition`).
 
 ## Comparison to [rust-sitter](https://www.shadaj.me/writing/introducing-rust-sitter)
 
-[rust-sitter](https://www.shadaj.me/writing/introducing-rust-sitter) is the primary alternative which also provides convenience over tree-sitter's Rust API. However, rust-sitter takes a much different approach by fully generating the tree-sitter grammar from a Rust file.
+[rust-sitter](https://www.shadaj.me/writing/introducing-rust-sitter) is the primary alternative which also provides
+convenience over tree-sitter's Rust API. However, rust-sitter takes a much different approach by fully generating the
+tree-sitter grammar from a Rust file.
 
 Advantages of type-sitter:
 
 - arbitrary tree-sitter grammars, not only ones written in Rust
 - Error node and incremental parsing support, since typed nodes directly wrap `tree-sitter` nodes
-- Less API difference from the native tree-sitter API: if you don't use the `yak-sitter` feature it only provides typed wrappers for nodes (and even `yak-sitter` isn't much different)
+- Less API difference from the native tree-sitter API: if you don't use the `yak-sitter` feature it only provides typed
+  wrappers for nodes (and even `yak-sitter` isn't much different)
 - Less complexity because of the above
 
 Advantages of rust-sitter:
@@ -376,7 +425,8 @@ Advantages of rust-sitter:
 
 ## Contributing
 
-Feel free to submit an issue or pull request if you want a new feature or anything is missing, and don't hesitate to submit an issue if you encounter any bugs or have any questions.
+Feel free to submit an issue or pull request if you want a new feature or anything is missing, and don't hesitate to
+submit an issue if you encounter any bugs or have any questions.
 
 ## Licence
 

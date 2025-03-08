@@ -95,9 +95,7 @@ impl QueryCursor {
         query: &'query Query,
         node: impl Node<'tree>,
     ) -> QueryMatches<'query, 'tree, Query> {
-        unsafe {
-            QueryMatches::from_raw(query, self.0.matches(query.raw(), node.into_raw()))
-        }
+        unsafe { QueryMatches::from_raw(query, self.0.matches(query.raw(), node.into_raw())) }
     }
 
     /// Run a typed query on the cursor, iterating over the matches in order they are found.
@@ -107,15 +105,20 @@ impl QueryCursor {
     /// appear before some of the captures from a previous match.
     #[inline]
     #[cfg(not(feature = "yak-sitter"))]
-    pub fn matches<'query, 'cursor: 'query, 'tree, Query: crate::Query, Text: tree_sitter::TextProvider<I> + 'query, I: AsRef<[u8]>>(
+    pub fn matches<
+        'query,
+        'cursor: 'query,
+        'tree,
+        Query: crate::Query,
+        Text: tree_sitter::TextProvider<I> + 'query,
+        I: AsRef<[u8]>,
+    >(
         &'cursor mut self,
         query: &'query Query,
         node: impl Node<'tree>,
-        text: Text
+        text: Text,
     ) -> QueryMatches<'query, 'tree, Query, Text, I> {
-        unsafe {
-            QueryMatches::from_raw(query, self.0.matches(query.raw(), node.into_raw(), text))
-        }
+        unsafe { QueryMatches::from_raw(query, self.0.matches(query.raw(), node.into_raw(), text)) }
     }
 
     /// Run a typed query on the cursor, iterating over the captures in order they appear.
@@ -129,9 +132,7 @@ impl QueryCursor {
         query: &'query Query,
         node: impl Node<'tree>,
     ) -> QueryCaptures<'query, 'tree, Query> {
-        unsafe {
-            QueryCaptures::new(query, self.0.captures(query.raw(), node.into_raw()))
-        }
+        unsafe { QueryCaptures::new(query, self.0.captures(query.raw(), node.into_raw())) }
     }
 
     /// Run a typed query on the cursor, iterating over the captures in order they appear.
@@ -140,14 +141,19 @@ impl QueryCursor {
     /// ordered sequence of captures.
     #[inline]
     #[cfg(not(feature = "yak-sitter"))]
-    pub fn captures<'query, 'cursor: 'query, 'tree, Query: crate::Query, Text: tree_sitter::TextProvider<I> + 'query, I: AsRef<[u8]>>(
+    pub fn captures<
+        'query,
+        'cursor: 'query,
+        'tree,
+        Query: crate::Query,
+        Text: tree_sitter::TextProvider<I> + 'query,
+        I: AsRef<[u8]>,
+    >(
         &'cursor mut self,
         query: &'query Query,
         node: impl Node<'tree>,
-        text: Text
+        text: Text,
     ) -> QueryCaptures<'query, 'tree, Query, Text, I> {
-        unsafe {
-            QueryCaptures::new(query, self.0.captures(query.raw(), node.into_raw(), text))
-        }
+        unsafe { QueryCaptures::new(query, self.0.captures(query.raw(), node.into_raw(), text)) }
     }
 }

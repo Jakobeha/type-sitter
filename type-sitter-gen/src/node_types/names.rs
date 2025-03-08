@@ -1,7 +1,7 @@
-use std::borrow::{Borrow, Cow};
-use std::iter::once;
 use join_lazy_fmt::Join;
 use serde::Deserialize;
+use std::borrow::{Borrow, Cow};
+use std::iter::once;
 
 /// Uniquely identifies a node within a grammar.
 #[derive(Clone, Debug, Deserialize, Eq, PartialEq, Ord, PartialOrd, Hash)]
@@ -17,7 +17,7 @@ impl NodeName {
         self.is_named && self.sexp_name != "_" && self.sexp_name.starts_with('_')
     }
 
-    pub(super) fn kind<'a>(names: impl IntoIterator<Item=&'a NodeName>) -> Cow<'a, str> {
+    pub(super) fn kind<'a>(names: impl IntoIterator<Item = &'a NodeName>) -> Cow<'a, str> {
         let mut names = names.into_iter();
 
         let Some(first) = names.next() else {

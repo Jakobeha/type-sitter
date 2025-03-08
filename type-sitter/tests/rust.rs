@@ -1,4 +1,6 @@
-use type_sitter::{Node, HasChildren, OptionNodeResultExt, Parser, QueryCursor, StreamingIterator, Tree};
+use type_sitter::{
+    HasChildren, Node, OptionNodeResultExt, Parser, QueryCursor, StreamingIterator, Tree,
+};
 
 mod rust {
     use type_sitter::generate_nodes;
@@ -8,7 +10,11 @@ mod rust {
     pub mod queries {
         use type_sitter::generate_queries;
 
-        generate_queries!("../vendor/tree-sitter-rust/queries", "../vendor/tree-sitter-rust", super);
+        generate_queries!(
+            "../vendor/tree-sitter-rust/queries",
+            "../vendor/tree-sitter-rust",
+            super
+        );
     }
 }
 
@@ -42,24 +48,103 @@ fn test_node_types() {
     assert_eq!(rust_source_file_child.prefixes().count(), 1);
     assert_eq!(rust_source_file_child.suffixes().count(), 0);
     let rust_doc = rust_source_file_child.prefixes().next().unwrap();
-    assert_eq!(rust_doc.utf8_text(RUST_STR.as_bytes()).unwrap(), "/// Foo bar\n");
-    let rust_main_fn = rust_source_file_child.as_declaration_statement().unwrap().as_function_item().unwrap();
-    assert_eq!(rust_main_fn.name().unwrap().as_identifier().unwrap().utf8_text(RUST_STR.as_bytes()).unwrap(), "main");
-    assert_eq!(rust_main_fn.parameters().unwrap().children(&mut cursor).count(), 0);
+    assert_eq!(
+        rust_doc.utf8_text(RUST_STR.as_bytes()).unwrap(),
+        "/// Foo bar\n"
+    );
+    let rust_main_fn = rust_source_file_child
+        .as_declaration_statement()
+        .unwrap()
+        .as_function_item()
+        .unwrap();
+    assert_eq!(
+        rust_main_fn
+            .name()
+            .unwrap()
+            .as_identifier()
+            .unwrap()
+            .utf8_text(RUST_STR.as_bytes())
+            .unwrap(),
+        "main"
+    );
+    assert_eq!(
+        rust_main_fn
+            .parameters()
+            .unwrap()
+            .children(&mut cursor)
+            .count(),
+        0
+    );
     let rust_main_fn_body = rust_main_fn.body().unwrap();
     assert_eq!(rust_main_fn_body.children(&mut cursor).count(), 3);
     let mut rust_main_fn_body_children = rust_main_fn_body.children(&mut cursor);
-    let rust_let_json = rust_main_fn_body_children.next().unwrap2().as_declaration_statement().unwrap().as_let_declaration().unwrap();
-    assert_eq!(rust_let_json.pattern().unwrap().as_identifier().unwrap().utf8_text(RUST_STR.as_bytes()).unwrap(), "json");
+    let rust_let_json = rust_main_fn_body_children
+        .next()
+        .unwrap2()
+        .as_declaration_statement()
+        .unwrap()
+        .as_let_declaration()
+        .unwrap();
+    assert_eq!(
+        rust_let_json
+            .pattern()
+            .unwrap()
+            .as_identifier()
+            .unwrap()
+            .utf8_text(RUST_STR.as_bytes())
+            .unwrap(),
+        "json"
+    );
     assert!(rust_let_json.mutable_specifier().is_none());
-    let rust_json_str = rust_let_json.value().unwrap2().as_literal().unwrap().as_string_literal().unwrap();
+    let rust_json_str = rust_let_json
+        .value()
+        .unwrap2()
+        .as_literal()
+        .unwrap()
+        .as_string_literal()
+        .unwrap();
     assert_eq!(rust_json_str.utf8_text(RUST_STR.as_bytes()).unwrap(), "\"{\n        \\\"type\\\": \\\"array\\\",\n        \\\"content\\\": \\\"value\\\"\n    }\"");
-    let rust_let_mut_parser = rust_main_fn_body_children.next().unwrap2().as_declaration_statement().unwrap().as_let_declaration().unwrap();
-    assert_eq!(rust_let_mut_parser.pattern().unwrap().as_identifier().unwrap().utf8_text(RUST_STR.as_bytes()).unwrap(), "parser");
+    let rust_let_mut_parser = rust_main_fn_body_children
+        .next()
+        .unwrap2()
+        .as_declaration_statement()
+        .unwrap()
+        .as_let_declaration()
+        .unwrap();
+    assert_eq!(
+        rust_let_mut_parser
+            .pattern()
+            .unwrap()
+            .as_identifier()
+            .unwrap()
+            .utf8_text(RUST_STR.as_bytes())
+            .unwrap(),
+        "parser"
+    );
     assert!(rust_let_mut_parser.mutable_specifier().is_some());
-    let rust_parser_new = rust_let_mut_parser.value().unwrap2().as_call_expression().unwrap();
-    assert_eq!(rust_parser_new.function().unwrap().as_scoped_identifier().unwrap().utf8_text(RUST_STR.as_bytes()).unwrap(), "tree_sitter::Parser::new");
-    assert_eq!(rust_parser_new.arguments().unwrap().children(&mut cursor2).count(), 0);
+    let rust_parser_new = rust_let_mut_parser
+        .value()
+        .unwrap2()
+        .as_call_expression()
+        .unwrap();
+    assert_eq!(
+        rust_parser_new
+            .function()
+            .unwrap()
+            .as_scoped_identifier()
+            .unwrap()
+            .utf8_text(RUST_STR.as_bytes())
+            .unwrap(),
+        "tree_sitter::Parser::new"
+    );
+    assert_eq!(
+        rust_parser_new
+            .arguments()
+            .unwrap()
+            .children(&mut cursor2)
+            .count(),
+        0
+    );
     use rust::anon_unions::DeclarationStatement_Expression_ExpressionStatement_Label::*;
     let rust_todo = match rust_main_fn_body_children.next().unwrap2() {
         DeclarationStatement(decl) => decl.as_macro_invocation(),
@@ -67,22 +152,50 @@ fn test_node_types() {
         ExpressionStatement(expr) => expr.expression().unwrap().as_macro_invocation(),
         Label(label) => panic!("Expected declaration statement, expression, or expression statement, but got label: {label:?}"),
     }.unwrap();
-    assert_eq!(rust_todo.r#macro().unwrap().as_identifier().unwrap().utf8_text(RUST_STR.as_bytes()).unwrap(), "todo");
+    assert_eq!(
+        rust_todo
+            .r#macro()
+            .unwrap()
+            .as_identifier()
+            .unwrap()
+            .utf8_text(RUST_STR.as_bytes())
+            .unwrap(),
+        "todo"
+    );
     let rust_todo_arg = rust_todo.token_tree().unwrap();
     assert_eq!(rust_todo_arg.children(&mut cursor3).count(), 1);
-    assert_eq!(rust_todo_arg.children(&mut cursor3).next().unwrap2().as_literal().unwrap().as_string_literal().unwrap().utf8_text(RUST_STR.as_bytes()).unwrap(), "\"baz\"");
+    assert_eq!(
+        rust_todo_arg
+            .children(&mut cursor3)
+            .next()
+            .unwrap2()
+            .as_literal()
+            .unwrap()
+            .as_string_literal()
+            .unwrap()
+            .utf8_text(RUST_STR.as_bytes())
+            .unwrap(),
+        "\"baz\""
+    );
 }
 
 #[test]
 fn test_child_type() {
     let rust_tree = rust_tree();
     let rust_source_file = rust_tree.root_node().unwrap();
-    let child = rust_source_file.children(&mut rust_tree.walk()).next().unwrap2();
+    let child = rust_source_file
+        .children(&mut rust_tree.walk())
+        .next()
+        .unwrap2();
 
     type TopLevelItem<'t> = <rust::SourceFile<'t> as HasChildren<'t>>::Child;
     match child {
-        TopLevelItem::DeclarationStatement(rust::DeclarationStatement::FunctionItem(function)) =>
-            assert_eq!(function.name().utf8_text(RUST_STR.as_bytes()).unwrap(), "main"),
+        TopLevelItem::DeclarationStatement(rust::DeclarationStatement::FunctionItem(function)) => {
+            assert_eq!(
+                function.name().utf8_text(RUST_STR.as_bytes()).unwrap(),
+                "main"
+            )
+        }
         _ => panic!("Expected function item, but got {child:?}"),
     }
 }
@@ -94,11 +207,17 @@ fn test_queries() {
 
     let mut q = QueryCursor::new();
     let matches_str = q
-        .matches(&rust::queries::Highlights, rust_source_file, RUST_STR.as_bytes())
+        .matches(
+            &rust::queries::Highlights,
+            rust_source_file,
+            RUST_STR.as_bytes(),
+        )
         .map_deref(|r#match| format!("{match:?}\n"))
         .collect::<String>();
     // println!("---\n{}\n---", matches_str);
-    assert_eq!(matches_str, r#"
+    assert_eq!(
+        matches_str,
+        r#"
 HighlightsMatch(QueryMatch { id: 0, pattern_index: 19, captures: [QueryCapture { node: {Node line_comment (0, 0) - (1, 0)}, index: 8 }] })
 HighlightsMatch(QueryMatch { id: 1, pattern_index: 21, captures: [QueryCapture { node: {Node line_comment (0, 0) - (1, 0)}, index: 9 }] })
 HighlightsMatch(QueryMatch { id: 2, pattern_index: 49, captures: [QueryCapture { node: {Node fn (1, 0) - (1, 2)}, index: 14 }] })
@@ -132,13 +251,20 @@ HighlightsMatch(QueryMatch { id: 43, pattern_index: 23, captures: [QueryCapture 
 HighlightsMatch(QueryMatch { id: 44, pattern_index: 83, captures: [QueryCapture { node: {Node string_literal (7, 10) - (7, 15)}, index: 16 }] })
 HighlightsMatch(QueryMatch { id: 45, pattern_index: 24, captures: [QueryCapture { node: {Node ) (7, 15) - (7, 16)}, index: 10 }] })
 HighlightsMatch(QueryMatch { id: 46, pattern_index: 28, captures: [QueryCapture { node: {Node } (8, 0) - (8, 1)}, index: 10 }] })
-"#[1..]);
+"#[1..]
+    );
     let captures_str = q
-        .captures(&rust::queries::Highlights, rust_source_file, RUST_STR.as_bytes())
+        .captures(
+            &rust::queries::Highlights,
+            rust_source_file,
+            RUST_STR.as_bytes(),
+        )
         .map(|capture| format!("{capture:?}\n"))
         .collect::<String>();
     // println!("---\n{captures_str}\n---");
-    assert_eq!(captures_str, r#"
+    assert_eq!(
+        captures_str,
+        r#"
 Comment(LineComment(LineComment({Node line_comment (0, 0) - (1, 0)})))
 CommentDocumentation(LineComment(LineComment({Node line_comment (0, 0) - (1, 0)})))
 Keyword(Fn(Fn({Node fn (1, 0) - (1, 2)})))
@@ -173,5 +299,6 @@ PunctuationBracket(LParen(LParen({Node ( (7, 9) - (7, 10)})))
 String(StringLiteral(StringLiteral({Node string_literal (7, 10) - (7, 15)})))
 PunctuationBracket(RParen(RParen({Node ) (7, 15) - (7, 16)})))
 PunctuationBracket(RBrace(RBrace({Node } (8, 0) - (8, 1)})))
-"#[1..]);
+"#[1..]
+    );
 }

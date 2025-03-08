@@ -2,7 +2,9 @@
 
 [![crates.io](https://img.shields.io/crates/v/type-sitter-cli.svg)](https://crates.io/crates/type-sitter-cli)
 
-See [type-sitter](https://github.com/Jakobeha/type-sitter#readme) for background information, and [type-sitter\#cli-tool](https://github.com/Jakobeha/type-sitter#cli-tool) for a guide on how to use that applied to most cases. This is the command-line tool which generates typed-safe wrappers for tree-sitter nodes.
+See [type-sitter](https://github.com/Jakobeha/type-sitter#readme) for background information,
+and [type-sitter\#cli-tool](https://github.com/Jakobeha/type-sitter#cli-tool) for a guide on how to use that applied to
+most cases. This is the command-line tool which generates typed-safe wrappers for tree-sitter nodes.
 
 ## Advanced usage
 
@@ -27,12 +29,15 @@ type-sitter-cli --help
 ## Issues
 
 - **Q:** I can't import the generated sources.
-- **A:** `type-sitter-cli` doesn't generate the root module for generated sources itself, you must do so manually. e.g. if the root module is the default (`src/type_sitter`), either create `src/type_sitter.rs` or `src/type_sitter/mod.rs` and add `pub mod <my_language>;` to it.
+- **A:** `type-sitter-cli` doesn't generate the root module for generated sources itself, you must do so manually. e.g.
+  if the root module is the default (`src/type_sitter`), either create `src/type_sitter.rs` or `src/type_sitter/mod.rs`
+  and add `pub mod <my_language>;` to it.
 
 <br/>
 
 - **Q:** I get build errors for missing symbols within `type_sitter`.
-- **A:** Make sure you have the `type-sitter` dependency in your `Cargo.toml`. Also, make sure `use-default-features` is set to `false`, because the default features includes the proc macros, which the CLI is an alternative to.
+- **A:** Make sure you have the `type-sitter` dependency in your `Cargo.toml`. Also, make sure `use-default-features` is
+  set to `false`, because the default features includes the proc macros, which the CLI is an alternative to.
 
 <br/>
 

@@ -20,7 +20,10 @@ pub fn test_parse_node_types_c() {
 }
 
 pub fn test_parse_node_types(lang: &str) {
-    let Common { input_dir, output_dir } = setup_common(lang);
+    let Common {
+        input_dir,
+        output_dir,
+    } = setup_common(lang);
     let node_types_json_path = input_dir.join("src/node-types.json");
     let node_types_code_path = output_dir.join("nodes.rs");
 
@@ -28,7 +31,8 @@ pub fn test_parse_node_types(lang: &str) {
         node_types_json_path.as_path(),
         &yak_sitter(),
         &type_sitter_lib(),
-    ).expect("Failed to generate node types");
+    )
+    .expect("Failed to generate node types");
 
     write(&node_types_code_path, node_types_code.into_string())
         .expect("Failed to create expected node types file");
