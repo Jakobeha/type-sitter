@@ -749,9 +749,9 @@ impl NodeType {
             pub fn #as_method(self) -> ::std::option::Option<#rust_type> {
                 #[allow(irrefutable_let_patterns)]
                 if let Self::#ident(x) = self {
-                    Some(x)
+                    ::std::option::Option::Some(x)
                 } else {
-                    None
+                    ::std::option::Option::None
                 }
             }
         }
@@ -926,7 +926,7 @@ impl Children {
         let types = self
             .types
             .iter()
-            .map(|name| &all_types[name])
+            .filter_map(|name| all_types.get(name))
             .collect::<Vec<_>>();
 
         NodeType::print_sum_type(&types, ctx, anon_unions)
