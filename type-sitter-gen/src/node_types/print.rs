@@ -749,9 +749,9 @@ impl NodeType {
             pub fn #as_method(self) -> ::std::option::Option<#rust_type> {
                 #[allow(irrefutable_let_patterns)]
                 if let Self::#ident(x) = self {
-                    Some(x)
+                    ::std::option::Option::Some(x)
                 } else {
-                    None
+                    ::std::option::Option::None
                 }
             }
         }
