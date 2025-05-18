@@ -181,7 +181,7 @@ fn build_dylib(path: &Path, dylib_path: &Path) -> Result<(), Error> {
     } else if cfg!(target_family = "windows") {
         let link_exe_where_output = String::from_utf8(
             Command::new("where")
-                .arg("link.exe")
+                .arg("link")
                 .output()
                 .map_err(Error::LinkDylibCmdFailed)?
                 .stdout,
@@ -189,11 +189,8 @@ fn build_dylib(path: &Path, dylib_path: &Path) -> Result<(), Error> {
         .unwrap_or_default();
         let link_exe_path = link_exe_where_output
             .lines()
+            .filter(|line| line.contains("MSVC"))
             .map(Path::new)
-            .filter(|line| {
-                line.components()
-                    .any(|c| c.as_os_str().to_str() == Some("MSVC"))
-            })
             .next()
             .ok_or(Error::LinkDylibCmdFailed(std::io::Error::new(
                 std::io::ErrorKind::NotFound,
