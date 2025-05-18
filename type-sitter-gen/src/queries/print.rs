@@ -446,7 +446,10 @@ impl<'tree> SExpSeq<'tree> {
 
         let capture_quantifier = capture_idxs
             .iter()
-            .flat_map(|capture_idx| ts_query.capture_quantifiers(*capture_idx))
+            .flat_map(|capture_idx| {
+                (0..ts_query.pattern_count())
+                    .map(|pattern_idx| &ts_query.capture_quantifiers(pattern_idx)[*capture_idx])
+            })
             .copied()
             .reduce(CaptureQuantifierExt::union)
             .unwrap_or(CaptureQuantifier::Zero);

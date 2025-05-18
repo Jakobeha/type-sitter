@@ -21,6 +21,11 @@ pub fn test_parse_queries_c() {
     test_parse_queries("c")
 }
 
+#[test]
+pub fn test_parse_queries_python() {
+    test_parse_queries("python")
+}
+
 pub fn test_parse_queries(lang: &str) {
     let Common {
         input_dir,

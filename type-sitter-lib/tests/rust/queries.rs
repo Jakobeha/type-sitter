@@ -1480,7 +1480,7 @@ impl<'query, 'tree: 'query> HighlightsMatch<'query, 'tree> {
     #[inline]
     pub fn function_macro(
         &self,
-    ) -> ::std::option::Option<anon_unions::FunctionMacro<'tree>> {
+    ) -> impl ::std::iter::Iterator<Item = anon_unions::FunctionMacro<'tree>> + '_ {
         {
             [7u32]
                 .into_iter()
@@ -1491,7 +1491,6 @@ impl<'query, 'tree: 'query> HighlightsMatch<'query, 'tree> {
                     > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(n)
                 })
         }
-            .next()
     }
     ///Returns an iterator over the nodes captured by `comment` ([`anon_unions::Comment`])
     ///
@@ -1555,7 +1554,7 @@ impl<'query, 'tree: 'query> HighlightsMatch<'query, 'tree> {
     #[inline]
     pub fn punctuation_bracket(
         &self,
-    ) -> ::std::option::Option<anon_unions::PunctuationBracket<'tree>> {
+    ) -> impl ::std::iter::Iterator<Item = anon_unions::PunctuationBracket<'tree>> + '_ {
         {
             [10u32]
                 .into_iter()
@@ -1566,7 +1565,6 @@ impl<'query, 'tree: 'query> HighlightsMatch<'query, 'tree> {
                     > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(n)
                 })
         }
-            .next()
     }
     ///Returns an iterator over the nodes captured by `punctuation.delimiter` ([`anon_unions::PunctuationDelimiter`])
     ///
@@ -1727,9 +1725,7 @@ impl<'query, 'tree: 'query> HighlightsMatch<'query, 'tree> {
     ///(raw_string_literal) @string
     ///```
     #[inline]
-    pub fn string(
-        &self,
-    ) -> impl ::std::iter::Iterator<Item = anon_unions::String<'tree>> + '_ {
+    pub fn string(&self) -> ::std::option::Option<anon_unions::String<'tree>> {
         {
             [16u32]
                 .into_iter()
@@ -1740,6 +1736,7 @@ impl<'query, 'tree: 'query> HighlightsMatch<'query, 'tree> {
                     > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(n)
                 })
         }
+            .next()
     }
     ///Returns an iterator over the nodes captured by `constant.builtin` ([`anon_unions::ConstantBuiltin`])
     ///
@@ -3409,8 +3406,8 @@ impl<'query, 'tree: 'query> TagsMatch<'query, 'tree> {
     ///(type_identifier) @name
     ///```
     #[inline]
-    pub fn name(&self) -> ::std::option::Option<anon_unions::Name<'tree>> {
-        {
+    pub fn name(&self) -> anon_unions::Name<'tree> {
+        let result = {
             [0u32]
                 .into_iter()
                 .flat_map(|i| self.0.nodes_for_capture_index(i))
@@ -3421,6 +3418,14 @@ impl<'query, 'tree: 'query> TagsMatch<'query, 'tree> {
                 })
         }
             .next()
+            .expect("one quantifier returned nothing");
+        ::std::debug_assert!(
+            { [0u32].into_iter().flat_map(| i | self.0.nodes_for_capture_index(i)).map(|
+            n | unsafe { < anon_unions::Name < 'tree > as ::type_sitter_lib::Node < 'tree
+            >> ::from_raw_unchecked(n) }) } .next().is_none(),
+            "one quantifier returned more than one item"
+        );
+        result
     }
     ///Returns an iterator over the nodes captured by `definition.class` ([`anon_unions::DefinitionClass`])
     ///
