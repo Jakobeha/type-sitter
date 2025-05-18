@@ -178,6 +178,13 @@ fn build_dylib(path: &Path, dylib_path: &Path) -> Result<(), Error> {
             .args(find_object_files_in(dylib_dir))
             .status()
             .map_err(Error::LinkDylibCmdFailed)?
+    } else if cfg!(target_family = "windows") {
+        Command::new("link")
+            .args(["/DLL", "/OUT:"])
+            .arg(&dylib_path)
+            .args(find_object_files_in(dylib_dir))
+            .status()
+            .map_err(Error::LinkDylibCmdFailed)?
     } else {
         return Err(Error::LinkDylibUnsupported);
     };

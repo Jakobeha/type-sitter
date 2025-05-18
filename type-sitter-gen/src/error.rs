@@ -86,7 +86,7 @@ impl Display for Error {
                 tree_sitter::MIN_COMPATIBLE_LANGUAGE_VERSION,
                 tree_sitter::LANGUAGE_VERSION
             ),
-            Error::LinkDylibUnsupported => write!(f, "dynamic linking isn't supported on this platform, use macOS or Unix or file a PR"),
+            Error::LinkDylibUnsupported => write!(f, "dynamic linking isn't supported on this platform, use macOS, Unix, Windows, or file a PR"),
             Error::LinkDylibCmdFailed(e) => write!(f, "couldn't link tree-sitter language dylib: {}", e),
             Error::LinkDylibFailed { exit_status} => write!(f, "couldn't link tree-sitter language dylib: exit code {}", exit_status),
             Error::IllegalTSLanguageSymbolName => write!(f, "inferred language symbol name is not a valid UTF-8 string"),
