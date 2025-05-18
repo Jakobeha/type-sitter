@@ -179,6 +179,7 @@ fn build_dylib(path: &Path, dylib_path: &Path) -> Result<(), Error> {
             .status()
             .map_err(Error::LinkDylibCmdFailed)?
     } else if cfg!(target_family = "windows") {
+        // Try GNU/MinGW
         let status = Command::new("/usr/bin/ld")
             .args(["-shared", "-o"])
             .arg(&dylib_path)
@@ -187,6 +188,7 @@ fn build_dylib(path: &Path, dylib_path: &Path) -> Result<(), Error> {
         if status.as_ref().is_ok_and(|s| s.success()) {
             ExitStatus::default()
         } else {
+            // Try MSVC
             Command::new("link.exe")
                 .arg("/DLL")
                 .arg(format!("/OUT:{}", dylib_path.display()))
