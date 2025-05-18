@@ -659,8 +659,9 @@ impl CaptureQuantifierExt for CaptureQuantifier {
             CaptureQuantifier::ZeroOrOne => quote! { #iterator.next() },
             CaptureQuantifier::ZeroOrMore => quote! { #iterator },
             CaptureQuantifier::One => quote! {
-                let result = #iterator.next().expect("one quantifier returned nothing");
-                ::std::debug_assert!(#iterator.next().is_none(), "one quantifier returned more than one item");
+                let mut iterator = #iterator;
+                let result = iterator.next().expect("one quantifier returned nothing");
+                ::std::debug_assert!(iterator.next().is_none(), "one quantifier returned more than one item");
                 result
             },
             CaptureQuantifier::OneOrMore => quote! { #iterator },

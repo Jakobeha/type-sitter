@@ -32,9 +32,9 @@ impl<'tree> DeclarationStatement<'tree> {
     pub fn as_associated_type(self) -> ::std::option::Option<AssociatedType<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::AssociatedType(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `attribute_item` ([`AttributeItem`]), otherwise returns `None`"]
@@ -42,9 +42,9 @@ impl<'tree> DeclarationStatement<'tree> {
     pub fn as_attribute_item(self) -> ::std::option::Option<AttributeItem<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::AttributeItem(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `const_item` ([`ConstItem`]), otherwise returns `None`"]
@@ -52,9 +52,9 @@ impl<'tree> DeclarationStatement<'tree> {
     pub fn as_const_item(self) -> ::std::option::Option<ConstItem<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::ConstItem(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `empty_statement` ([`EmptyStatement`]), otherwise returns `None`"]
@@ -62,9 +62,9 @@ impl<'tree> DeclarationStatement<'tree> {
     pub fn as_empty_statement(self) -> ::std::option::Option<EmptyStatement<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::EmptyStatement(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `enum_item` ([`EnumItem`]), otherwise returns `None`"]
@@ -72,9 +72,9 @@ impl<'tree> DeclarationStatement<'tree> {
     pub fn as_enum_item(self) -> ::std::option::Option<EnumItem<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::EnumItem(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `extern_crate_declaration` ([`ExternCrateDeclaration`]), otherwise returns `None`"]
@@ -84,9 +84,9 @@ impl<'tree> DeclarationStatement<'tree> {
     ) -> ::std::option::Option<ExternCrateDeclaration<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::ExternCrateDeclaration(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `foreign_mod_item` ([`ForeignModItem`]), otherwise returns `None`"]
@@ -94,9 +94,9 @@ impl<'tree> DeclarationStatement<'tree> {
     pub fn as_foreign_mod_item(self) -> ::std::option::Option<ForeignModItem<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::ForeignModItem(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `function_item` ([`FunctionItem`]), otherwise returns `None`"]
@@ -104,9 +104,9 @@ impl<'tree> DeclarationStatement<'tree> {
     pub fn as_function_item(self) -> ::std::option::Option<FunctionItem<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::FunctionItem(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `function_signature_item` ([`FunctionSignatureItem`]), otherwise returns `None`"]
@@ -114,9 +114,9 @@ impl<'tree> DeclarationStatement<'tree> {
     pub fn as_function_signature_item(self) -> ::std::option::Option<FunctionSignatureItem<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::FunctionSignatureItem(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `impl_item` ([`ImplItem`]), otherwise returns `None`"]
@@ -124,9 +124,9 @@ impl<'tree> DeclarationStatement<'tree> {
     pub fn as_impl_item(self) -> ::std::option::Option<ImplItem<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::ImplItem(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `inner_attribute_item` ([`InnerAttributeItem`]), otherwise returns `None`"]
@@ -134,9 +134,9 @@ impl<'tree> DeclarationStatement<'tree> {
     pub fn as_inner_attribute_item(self) -> ::std::option::Option<InnerAttributeItem<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::InnerAttributeItem(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `let_declaration` ([`LetDeclaration`]), otherwise returns `None`"]
@@ -144,9 +144,9 @@ impl<'tree> DeclarationStatement<'tree> {
     pub fn as_let_declaration(self) -> ::std::option::Option<LetDeclaration<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::LetDeclaration(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `macro_definition` ([`MacroDefinition`]), otherwise returns `None`"]
@@ -154,9 +154,9 @@ impl<'tree> DeclarationStatement<'tree> {
     pub fn as_macro_definition(self) -> ::std::option::Option<MacroDefinition<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::MacroDefinition(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `macro_invocation` ([`MacroInvocation`]), otherwise returns `None`"]
@@ -164,9 +164,9 @@ impl<'tree> DeclarationStatement<'tree> {
     pub fn as_macro_invocation(self) -> ::std::option::Option<MacroInvocation<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::MacroInvocation(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `mod_item` ([`ModItem`]), otherwise returns `None`"]
@@ -174,9 +174,9 @@ impl<'tree> DeclarationStatement<'tree> {
     pub fn as_mod_item(self) -> ::std::option::Option<ModItem<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::ModItem(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `static_item` ([`StaticItem`]), otherwise returns `None`"]
@@ -184,9 +184,9 @@ impl<'tree> DeclarationStatement<'tree> {
     pub fn as_static_item(self) -> ::std::option::Option<StaticItem<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::StaticItem(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `struct_item` ([`StructItem`]), otherwise returns `None`"]
@@ -194,9 +194,9 @@ impl<'tree> DeclarationStatement<'tree> {
     pub fn as_struct_item(self) -> ::std::option::Option<StructItem<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::StructItem(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `trait_item` ([`TraitItem`]), otherwise returns `None`"]
@@ -204,9 +204,9 @@ impl<'tree> DeclarationStatement<'tree> {
     pub fn as_trait_item(self) -> ::std::option::Option<TraitItem<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::TraitItem(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `type_item` ([`TypeItem`]), otherwise returns `None`"]
@@ -214,9 +214,9 @@ impl<'tree> DeclarationStatement<'tree> {
     pub fn as_type_item(self) -> ::std::option::Option<TypeItem<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::TypeItem(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `union_item` ([`UnionItem`]), otherwise returns `None`"]
@@ -224,9 +224,9 @@ impl<'tree> DeclarationStatement<'tree> {
     pub fn as_union_item(self) -> ::std::option::Option<UnionItem<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::UnionItem(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `use_declaration` ([`UseDeclaration`]), otherwise returns `None`"]
@@ -234,9 +234,9 @@ impl<'tree> DeclarationStatement<'tree> {
     pub fn as_use_declaration(self) -> ::std::option::Option<UseDeclaration<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::UseDeclaration(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
 }
@@ -491,9 +491,9 @@ impl<'tree> Expression<'tree> {
     pub fn as_literal(self) -> ::std::option::Option<Literal<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::Literal(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `array_expression` ([`ArrayExpression`]), otherwise returns `None`"]
@@ -501,9 +501,9 @@ impl<'tree> Expression<'tree> {
     pub fn as_array_expression(self) -> ::std::option::Option<ArrayExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::ArrayExpression(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `assignment_expression` ([`AssignmentExpression`]), otherwise returns `None`"]
@@ -511,9 +511,9 @@ impl<'tree> Expression<'tree> {
     pub fn as_assignment_expression(self) -> ::std::option::Option<AssignmentExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::AssignmentExpression(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `async_block` ([`AsyncBlock`]), otherwise returns `None`"]
@@ -521,9 +521,9 @@ impl<'tree> Expression<'tree> {
     pub fn as_async_block(self) -> ::std::option::Option<AsyncBlock<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::AsyncBlock(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `await_expression` ([`AwaitExpression`]), otherwise returns `None`"]
@@ -531,9 +531,9 @@ impl<'tree> Expression<'tree> {
     pub fn as_await_expression(self) -> ::std::option::Option<AwaitExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::AwaitExpression(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `binary_expression` ([`BinaryExpression`]), otherwise returns `None`"]
@@ -541,9 +541,9 @@ impl<'tree> Expression<'tree> {
     pub fn as_binary_expression(self) -> ::std::option::Option<BinaryExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::BinaryExpression(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `block` ([`Block`]), otherwise returns `None`"]
@@ -551,9 +551,9 @@ impl<'tree> Expression<'tree> {
     pub fn as_block(self) -> ::std::option::Option<Block<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::Block(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `break_expression` ([`BreakExpression`]), otherwise returns `None`"]
@@ -561,9 +561,9 @@ impl<'tree> Expression<'tree> {
     pub fn as_break_expression(self) -> ::std::option::Option<BreakExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::BreakExpression(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `call_expression` ([`CallExpression`]), otherwise returns `None`"]
@@ -571,9 +571,9 @@ impl<'tree> Expression<'tree> {
     pub fn as_call_expression(self) -> ::std::option::Option<CallExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::CallExpression(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `closure_expression` ([`ClosureExpression`]), otherwise returns `None`"]
@@ -581,9 +581,9 @@ impl<'tree> Expression<'tree> {
     pub fn as_closure_expression(self) -> ::std::option::Option<ClosureExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::ClosureExpression(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `compound_assignment_expr` ([`CompoundAssignmentExpr`]), otherwise returns `None`"]
@@ -593,9 +593,9 @@ impl<'tree> Expression<'tree> {
     ) -> ::std::option::Option<CompoundAssignmentExpr<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::CompoundAssignmentExpr(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `const_block` ([`ConstBlock`]), otherwise returns `None`"]
@@ -603,9 +603,9 @@ impl<'tree> Expression<'tree> {
     pub fn as_const_block(self) -> ::std::option::Option<ConstBlock<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::ConstBlock(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `continue_expression` ([`ContinueExpression`]), otherwise returns `None`"]
@@ -613,9 +613,9 @@ impl<'tree> Expression<'tree> {
     pub fn as_continue_expression(self) -> ::std::option::Option<ContinueExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::ContinueExpression(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `field_expression` ([`FieldExpression`]), otherwise returns `None`"]
@@ -623,9 +623,9 @@ impl<'tree> Expression<'tree> {
     pub fn as_field_expression(self) -> ::std::option::Option<FieldExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::FieldExpression(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `for_expression` ([`ForExpression`]), otherwise returns `None`"]
@@ -633,9 +633,9 @@ impl<'tree> Expression<'tree> {
     pub fn as_for_expression(self) -> ::std::option::Option<ForExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::ForExpression(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `gen_block` ([`GenBlock`]), otherwise returns `None`"]
@@ -643,9 +643,9 @@ impl<'tree> Expression<'tree> {
     pub fn as_gen_block(self) -> ::std::option::Option<GenBlock<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::GenBlock(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `generic_function` ([`GenericFunction`]), otherwise returns `None`"]
@@ -653,9 +653,9 @@ impl<'tree> Expression<'tree> {
     pub fn as_generic_function(self) -> ::std::option::Option<GenericFunction<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::GenericFunction(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`"]
@@ -663,9 +663,9 @@ impl<'tree> Expression<'tree> {
     pub fn as_identifier(self) -> ::std::option::Option<Identifier<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::Identifier(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `if_expression` ([`IfExpression`]), otherwise returns `None`"]
@@ -673,9 +673,9 @@ impl<'tree> Expression<'tree> {
     pub fn as_if_expression(self) -> ::std::option::Option<IfExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::IfExpression(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `index_expression` ([`IndexExpression`]), otherwise returns `None`"]
@@ -683,9 +683,9 @@ impl<'tree> Expression<'tree> {
     pub fn as_index_expression(self) -> ::std::option::Option<IndexExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::IndexExpression(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `loop_expression` ([`LoopExpression`]), otherwise returns `None`"]
@@ -693,9 +693,9 @@ impl<'tree> Expression<'tree> {
     pub fn as_loop_expression(self) -> ::std::option::Option<LoopExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::LoopExpression(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `macro_invocation` ([`MacroInvocation`]), otherwise returns `None`"]
@@ -703,9 +703,9 @@ impl<'tree> Expression<'tree> {
     pub fn as_macro_invocation(self) -> ::std::option::Option<MacroInvocation<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::MacroInvocation(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `match_expression` ([`MatchExpression`]), otherwise returns `None`"]
@@ -713,9 +713,9 @@ impl<'tree> Expression<'tree> {
     pub fn as_match_expression(self) -> ::std::option::Option<MatchExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::MatchExpression(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `metavariable` ([`Metavariable`]), otherwise returns `None`"]
@@ -723,9 +723,9 @@ impl<'tree> Expression<'tree> {
     pub fn as_metavariable(self) -> ::std::option::Option<Metavariable<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::Metavariable(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `parenthesized_expression` ([`ParenthesizedExpression`]), otherwise returns `None`"]
@@ -735,9 +735,9 @@ impl<'tree> Expression<'tree> {
     ) -> ::std::option::Option<ParenthesizedExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::ParenthesizedExpression(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `range_expression` ([`RangeExpression`]), otherwise returns `None`"]
@@ -745,9 +745,9 @@ impl<'tree> Expression<'tree> {
     pub fn as_range_expression(self) -> ::std::option::Option<RangeExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::RangeExpression(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `reference_expression` ([`ReferenceExpression`]), otherwise returns `None`"]
@@ -755,9 +755,9 @@ impl<'tree> Expression<'tree> {
     pub fn as_reference_expression(self) -> ::std::option::Option<ReferenceExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::ReferenceExpression(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `return_expression` ([`ReturnExpression`]), otherwise returns `None`"]
@@ -765,9 +765,9 @@ impl<'tree> Expression<'tree> {
     pub fn as_return_expression(self) -> ::std::option::Option<ReturnExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::ReturnExpression(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `scoped_identifier` ([`ScopedIdentifier`]), otherwise returns `None`"]
@@ -775,9 +775,9 @@ impl<'tree> Expression<'tree> {
     pub fn as_scoped_identifier(self) -> ::std::option::Option<ScopedIdentifier<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::ScopedIdentifier(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `self` ([`Self_`]), otherwise returns `None`"]
@@ -785,9 +785,9 @@ impl<'tree> Expression<'tree> {
     pub fn as_self(self) -> ::std::option::Option<Self_<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::Self_(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `struct_expression` ([`StructExpression`]), otherwise returns `None`"]
@@ -795,9 +795,9 @@ impl<'tree> Expression<'tree> {
     pub fn as_struct_expression(self) -> ::std::option::Option<StructExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::StructExpression(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `try_block` ([`TryBlock`]), otherwise returns `None`"]
@@ -805,9 +805,9 @@ impl<'tree> Expression<'tree> {
     pub fn as_try_block(self) -> ::std::option::Option<TryBlock<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::TryBlock(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `try_expression` ([`TryExpression`]), otherwise returns `None`"]
@@ -815,9 +815,9 @@ impl<'tree> Expression<'tree> {
     pub fn as_try_expression(self) -> ::std::option::Option<TryExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::TryExpression(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `tuple_expression` ([`TupleExpression`]), otherwise returns `None`"]
@@ -825,9 +825,9 @@ impl<'tree> Expression<'tree> {
     pub fn as_tuple_expression(self) -> ::std::option::Option<TupleExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::TupleExpression(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `type_cast_expression` ([`TypeCastExpression`]), otherwise returns `None`"]
@@ -835,9 +835,9 @@ impl<'tree> Expression<'tree> {
     pub fn as_type_cast_expression(self) -> ::std::option::Option<TypeCastExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::TypeCastExpression(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `unary_expression` ([`UnaryExpression`]), otherwise returns `None`"]
@@ -845,9 +845,9 @@ impl<'tree> Expression<'tree> {
     pub fn as_unary_expression(self) -> ::std::option::Option<UnaryExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::UnaryExpression(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `unit_expression` ([`UnitExpression`]), otherwise returns `None`"]
@@ -855,9 +855,9 @@ impl<'tree> Expression<'tree> {
     pub fn as_unit_expression(self) -> ::std::option::Option<UnitExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::UnitExpression(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `unsafe_block` ([`UnsafeBlock`]), otherwise returns `None`"]
@@ -865,9 +865,9 @@ impl<'tree> Expression<'tree> {
     pub fn as_unsafe_block(self) -> ::std::option::Option<UnsafeBlock<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::UnsafeBlock(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `while_expression` ([`WhileExpression`]), otherwise returns `None`"]
@@ -875,9 +875,9 @@ impl<'tree> Expression<'tree> {
     pub fn as_while_expression(self) -> ::std::option::Option<WhileExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::WhileExpression(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `yield_expression` ([`YieldExpression`]), otherwise returns `None`"]
@@ -885,9 +885,9 @@ impl<'tree> Expression<'tree> {
     pub fn as_yield_expression(self) -> ::std::option::Option<YieldExpression<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::YieldExpression(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `boolean_literal` ([`BooleanLiteral`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_literal` ([`Literal < 'tree >`], from [`as_literal`](Self::as_literal))"]
@@ -1244,9 +1244,9 @@ impl<'tree> Literal<'tree> {
     pub fn as_boolean_literal(self) -> ::std::option::Option<BooleanLiteral<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::BooleanLiteral(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `char_literal` ([`CharLiteral`]), otherwise returns `None`"]
@@ -1254,9 +1254,9 @@ impl<'tree> Literal<'tree> {
     pub fn as_char_literal(self) -> ::std::option::Option<CharLiteral<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::CharLiteral(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `float_literal` ([`FloatLiteral`]), otherwise returns `None`"]
@@ -1264,9 +1264,9 @@ impl<'tree> Literal<'tree> {
     pub fn as_float_literal(self) -> ::std::option::Option<FloatLiteral<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::FloatLiteral(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `integer_literal` ([`IntegerLiteral`]), otherwise returns `None`"]
@@ -1274,9 +1274,9 @@ impl<'tree> Literal<'tree> {
     pub fn as_integer_literal(self) -> ::std::option::Option<IntegerLiteral<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::IntegerLiteral(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `raw_string_literal` ([`RawStringLiteral`]), otherwise returns `None`"]
@@ -1284,9 +1284,9 @@ impl<'tree> Literal<'tree> {
     pub fn as_raw_string_literal(self) -> ::std::option::Option<RawStringLiteral<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::RawStringLiteral(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `string_literal` ([`StringLiteral`]), otherwise returns `None`"]
@@ -1294,9 +1294,9 @@ impl<'tree> Literal<'tree> {
     pub fn as_string_literal(self) -> ::std::option::Option<StringLiteral<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::StringLiteral(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
 }
@@ -1398,9 +1398,9 @@ impl<'tree> LiteralPattern<'tree> {
     pub fn as_boolean_literal(self) -> ::std::option::Option<BooleanLiteral<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::BooleanLiteral(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `char_literal` ([`CharLiteral`]), otherwise returns `None`"]
@@ -1408,9 +1408,9 @@ impl<'tree> LiteralPattern<'tree> {
     pub fn as_char_literal(self) -> ::std::option::Option<CharLiteral<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::CharLiteral(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `float_literal` ([`FloatLiteral`]), otherwise returns `None`"]
@@ -1418,9 +1418,9 @@ impl<'tree> LiteralPattern<'tree> {
     pub fn as_float_literal(self) -> ::std::option::Option<FloatLiteral<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::FloatLiteral(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `integer_literal` ([`IntegerLiteral`]), otherwise returns `None`"]
@@ -1428,9 +1428,9 @@ impl<'tree> LiteralPattern<'tree> {
     pub fn as_integer_literal(self) -> ::std::option::Option<IntegerLiteral<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::IntegerLiteral(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `negative_literal` ([`NegativeLiteral`]), otherwise returns `None`"]
@@ -1438,9 +1438,9 @@ impl<'tree> LiteralPattern<'tree> {
     pub fn as_negative_literal(self) -> ::std::option::Option<NegativeLiteral<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::NegativeLiteral(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `raw_string_literal` ([`RawStringLiteral`]), otherwise returns `None`"]
@@ -1448,9 +1448,9 @@ impl<'tree> LiteralPattern<'tree> {
     pub fn as_raw_string_literal(self) -> ::std::option::Option<RawStringLiteral<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::RawStringLiteral(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `string_literal` ([`StringLiteral`]), otherwise returns `None`"]
@@ -1458,9 +1458,9 @@ impl<'tree> LiteralPattern<'tree> {
     pub fn as_string_literal(self) -> ::std::option::Option<StringLiteral<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::StringLiteral(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
 }
@@ -1582,9 +1582,9 @@ impl<'tree> Pattern<'tree> {
     pub fn as___(self) -> ::std::option::Option<symbols::__<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::__(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `_literal_pattern` ([`LiteralPattern`]), otherwise returns `None`"]
@@ -1592,9 +1592,9 @@ impl<'tree> Pattern<'tree> {
     pub fn as_literal_pattern(self) -> ::std::option::Option<LiteralPattern<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::LiteralPattern(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `captured_pattern` ([`CapturedPattern`]), otherwise returns `None`"]
@@ -1602,9 +1602,9 @@ impl<'tree> Pattern<'tree> {
     pub fn as_captured_pattern(self) -> ::std::option::Option<CapturedPattern<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::CapturedPattern(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `const_block` ([`ConstBlock`]), otherwise returns `None`"]
@@ -1612,9 +1612,9 @@ impl<'tree> Pattern<'tree> {
     pub fn as_const_block(self) -> ::std::option::Option<ConstBlock<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::ConstBlock(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`"]
@@ -1622,9 +1622,9 @@ impl<'tree> Pattern<'tree> {
     pub fn as_identifier(self) -> ::std::option::Option<Identifier<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::Identifier(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `macro_invocation` ([`MacroInvocation`]), otherwise returns `None`"]
@@ -1632,9 +1632,9 @@ impl<'tree> Pattern<'tree> {
     pub fn as_macro_invocation(self) -> ::std::option::Option<MacroInvocation<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::MacroInvocation(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `mut_pattern` ([`MutPattern`]), otherwise returns `None`"]
@@ -1642,9 +1642,9 @@ impl<'tree> Pattern<'tree> {
     pub fn as_mut_pattern(self) -> ::std::option::Option<MutPattern<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::MutPattern(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `or_pattern` ([`OrPattern`]), otherwise returns `None`"]
@@ -1652,9 +1652,9 @@ impl<'tree> Pattern<'tree> {
     pub fn as_or_pattern(self) -> ::std::option::Option<OrPattern<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::OrPattern(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `range_pattern` ([`RangePattern`]), otherwise returns `None`"]
@@ -1662,9 +1662,9 @@ impl<'tree> Pattern<'tree> {
     pub fn as_range_pattern(self) -> ::std::option::Option<RangePattern<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::RangePattern(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `ref_pattern` ([`RefPattern`]), otherwise returns `None`"]
@@ -1672,9 +1672,9 @@ impl<'tree> Pattern<'tree> {
     pub fn as_ref_pattern(self) -> ::std::option::Option<RefPattern<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::RefPattern(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `reference_pattern` ([`ReferencePattern`]), otherwise returns `None`"]
@@ -1682,9 +1682,9 @@ impl<'tree> Pattern<'tree> {
     pub fn as_reference_pattern(self) -> ::std::option::Option<ReferencePattern<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::ReferencePattern(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `remaining_field_pattern` ([`RemainingFieldPattern`]), otherwise returns `None`"]
@@ -1692,9 +1692,9 @@ impl<'tree> Pattern<'tree> {
     pub fn as_remaining_field_pattern(self) -> ::std::option::Option<RemainingFieldPattern<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::RemainingFieldPattern(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `scoped_identifier` ([`ScopedIdentifier`]), otherwise returns `None`"]
@@ -1702,9 +1702,9 @@ impl<'tree> Pattern<'tree> {
     pub fn as_scoped_identifier(self) -> ::std::option::Option<ScopedIdentifier<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::ScopedIdentifier(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `slice_pattern` ([`SlicePattern`]), otherwise returns `None`"]
@@ -1712,9 +1712,9 @@ impl<'tree> Pattern<'tree> {
     pub fn as_slice_pattern(self) -> ::std::option::Option<SlicePattern<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::SlicePattern(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `struct_pattern` ([`StructPattern`]), otherwise returns `None`"]
@@ -1722,9 +1722,9 @@ impl<'tree> Pattern<'tree> {
     pub fn as_struct_pattern(self) -> ::std::option::Option<StructPattern<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::StructPattern(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `tuple_pattern` ([`TuplePattern`]), otherwise returns `None`"]
@@ -1732,9 +1732,9 @@ impl<'tree> Pattern<'tree> {
     pub fn as_tuple_pattern(self) -> ::std::option::Option<TuplePattern<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::TuplePattern(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `tuple_struct_pattern` ([`TupleStructPattern`]), otherwise returns `None`"]
@@ -1742,9 +1742,9 @@ impl<'tree> Pattern<'tree> {
     pub fn as_tuple_struct_pattern(self) -> ::std::option::Option<TupleStructPattern<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::TupleStructPattern(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `boolean_literal` ([`BooleanLiteral`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_literal_pattern` ([`LiteralPattern < 'tree >`], from [`as_literal_pattern`](Self::as_literal_pattern))"]
@@ -1952,9 +1952,9 @@ impl<'tree> Type<'tree> {
     pub fn as_abstract_type(self) -> ::std::option::Option<AbstractType<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::AbstractType(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `array_type` ([`ArrayType`]), otherwise returns `None`"]
@@ -1962,9 +1962,9 @@ impl<'tree> Type<'tree> {
     pub fn as_array_type(self) -> ::std::option::Option<ArrayType<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::ArrayType(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `bounded_type` ([`BoundedType`]), otherwise returns `None`"]
@@ -1972,9 +1972,9 @@ impl<'tree> Type<'tree> {
     pub fn as_bounded_type(self) -> ::std::option::Option<BoundedType<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::BoundedType(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `dynamic_type` ([`DynamicType`]), otherwise returns `None`"]
@@ -1982,9 +1982,9 @@ impl<'tree> Type<'tree> {
     pub fn as_dynamic_type(self) -> ::std::option::Option<DynamicType<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::DynamicType(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `function_type` ([`FunctionType`]), otherwise returns `None`"]
@@ -1992,9 +1992,9 @@ impl<'tree> Type<'tree> {
     pub fn as_function_type(self) -> ::std::option::Option<FunctionType<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::FunctionType(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `generic_type` ([`GenericType`]), otherwise returns `None`"]
@@ -2002,9 +2002,9 @@ impl<'tree> Type<'tree> {
     pub fn as_generic_type(self) -> ::std::option::Option<GenericType<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::GenericType(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `macro_invocation` ([`MacroInvocation`]), otherwise returns `None`"]
@@ -2012,9 +2012,9 @@ impl<'tree> Type<'tree> {
     pub fn as_macro_invocation(self) -> ::std::option::Option<MacroInvocation<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::MacroInvocation(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `metavariable` ([`Metavariable`]), otherwise returns `None`"]
@@ -2022,9 +2022,9 @@ impl<'tree> Type<'tree> {
     pub fn as_metavariable(self) -> ::std::option::Option<Metavariable<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::Metavariable(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `never_type` ([`NeverType`]), otherwise returns `None`"]
@@ -2032,9 +2032,9 @@ impl<'tree> Type<'tree> {
     pub fn as_never_type(self) -> ::std::option::Option<NeverType<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::NeverType(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `pointer_type` ([`PointerType`]), otherwise returns `None`"]
@@ -2042,9 +2042,9 @@ impl<'tree> Type<'tree> {
     pub fn as_pointer_type(self) -> ::std::option::Option<PointerType<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::PointerType(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `primitive_type` ([`PrimitiveType`]), otherwise returns `None`"]
@@ -2052,9 +2052,9 @@ impl<'tree> Type<'tree> {
     pub fn as_primitive_type(self) -> ::std::option::Option<PrimitiveType<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::PrimitiveType(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `reference_type` ([`ReferenceType`]), otherwise returns `None`"]
@@ -2062,9 +2062,9 @@ impl<'tree> Type<'tree> {
     pub fn as_reference_type(self) -> ::std::option::Option<ReferenceType<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::ReferenceType(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `removed_trait_bound` ([`RemovedTraitBound`]), otherwise returns `None`"]
@@ -2072,9 +2072,9 @@ impl<'tree> Type<'tree> {
     pub fn as_removed_trait_bound(self) -> ::std::option::Option<RemovedTraitBound<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::RemovedTraitBound(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `scoped_type_identifier` ([`ScopedTypeIdentifier`]), otherwise returns `None`"]
@@ -2082,9 +2082,9 @@ impl<'tree> Type<'tree> {
     pub fn as_scoped_type_identifier(self) -> ::std::option::Option<ScopedTypeIdentifier<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::ScopedTypeIdentifier(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `tuple_type` ([`TupleType`]), otherwise returns `None`"]
@@ -2092,9 +2092,9 @@ impl<'tree> Type<'tree> {
     pub fn as_tuple_type(self) -> ::std::option::Option<TupleType<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::TupleType(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `type_identifier` ([`TypeIdentifier`]), otherwise returns `None`"]
@@ -2102,9 +2102,9 @@ impl<'tree> Type<'tree> {
     pub fn as_type_identifier(self) -> ::std::option::Option<TypeIdentifier<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::TypeIdentifier(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `unit_type` ([`UnitType`]), otherwise returns `None`"]
@@ -2112,9 +2112,9 @@ impl<'tree> Type<'tree> {
     pub fn as_unit_type(self) -> ::std::option::Option<UnitType<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::UnitType(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
 }
@@ -15923,7 +15923,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     #[allow(unused)]
-    impl < 'tree > ArrayType_GenericType_HigherRankedTraitBound_Lifetime_PointerType_PrimitiveType_ReferenceType_ScopedTypeIdentifier_TupleType_TypeIdentifier < 'tree > { # [doc = "Returns the node if it is of type `array_type` ([`ArrayType`]), otherwise returns `None`"] # [inline] pub fn as_array_type (self) -> :: std :: option :: Option < ArrayType < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ArrayType (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `generic_type` ([`GenericType`]), otherwise returns `None`"] # [inline] pub fn as_generic_type (self) -> :: std :: option :: Option < GenericType < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: GenericType (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `higher_ranked_trait_bound` ([`HigherRankedTraitBound`]), otherwise returns `None`"] # [inline] pub fn as_higher_ranked_trait_bound (self) -> :: std :: option :: Option < HigherRankedTraitBound < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: HigherRankedTraitBound (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `lifetime` ([`Lifetime`]), otherwise returns `None`"] # [inline] pub fn as_lifetime (self) -> :: std :: option :: Option < Lifetime < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Lifetime (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `pointer_type` ([`PointerType`]), otherwise returns `None`"] # [inline] pub fn as_pointer_type (self) -> :: std :: option :: Option < PointerType < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: PointerType (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `primitive_type` ([`PrimitiveType`]), otherwise returns `None`"] # [inline] pub fn as_primitive_type (self) -> :: std :: option :: Option < PrimitiveType < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: PrimitiveType (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `reference_type` ([`ReferenceType`]), otherwise returns `None`"] # [inline] pub fn as_reference_type (self) -> :: std :: option :: Option < ReferenceType < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ReferenceType (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `scoped_type_identifier` ([`ScopedTypeIdentifier`]), otherwise returns `None`"] # [inline] pub fn as_scoped_type_identifier (self) -> :: std :: option :: Option < ScopedTypeIdentifier < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ScopedTypeIdentifier (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `tuple_type` ([`TupleType`]), otherwise returns `None`"] # [inline] pub fn as_tuple_type (self) -> :: std :: option :: Option < TupleType < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: TupleType (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `type_identifier` ([`TypeIdentifier`]), otherwise returns `None`"] # [inline] pub fn as_type_identifier (self) -> :: std :: option :: Option < TypeIdentifier < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: TypeIdentifier (x) = self { Some (x) } else { None } } }
+    impl < 'tree > ArrayType_GenericType_HigherRankedTraitBound_Lifetime_PointerType_PrimitiveType_ReferenceType_ScopedTypeIdentifier_TupleType_TypeIdentifier < 'tree > { # [doc = "Returns the node if it is of type `array_type` ([`ArrayType`]), otherwise returns `None`"] # [inline] pub fn as_array_type (self) -> :: std :: option :: Option < ArrayType < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ArrayType (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `generic_type` ([`GenericType`]), otherwise returns `None`"] # [inline] pub fn as_generic_type (self) -> :: std :: option :: Option < GenericType < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: GenericType (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `higher_ranked_trait_bound` ([`HigherRankedTraitBound`]), otherwise returns `None`"] # [inline] pub fn as_higher_ranked_trait_bound (self) -> :: std :: option :: Option < HigherRankedTraitBound < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: HigherRankedTraitBound (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `lifetime` ([`Lifetime`]), otherwise returns `None`"] # [inline] pub fn as_lifetime (self) -> :: std :: option :: Option < Lifetime < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Lifetime (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `pointer_type` ([`PointerType`]), otherwise returns `None`"] # [inline] pub fn as_pointer_type (self) -> :: std :: option :: Option < PointerType < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: PointerType (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `primitive_type` ([`PrimitiveType`]), otherwise returns `None`"] # [inline] pub fn as_primitive_type (self) -> :: std :: option :: Option < PrimitiveType < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: PrimitiveType (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `reference_type` ([`ReferenceType`]), otherwise returns `None`"] # [inline] pub fn as_reference_type (self) -> :: std :: option :: Option < ReferenceType < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ReferenceType (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `scoped_type_identifier` ([`ScopedTypeIdentifier`]), otherwise returns `None`"] # [inline] pub fn as_scoped_type_identifier (self) -> :: std :: option :: Option < ScopedTypeIdentifier < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ScopedTypeIdentifier (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `tuple_type` ([`TupleType`]), otherwise returns `None`"] # [inline] pub fn as_tuple_type (self) -> :: std :: option :: Option < TupleType < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: TupleType (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `type_identifier` ([`TypeIdentifier`]), otherwise returns `None`"] # [inline] pub fn as_type_identifier (self) -> :: std :: option :: Option < TypeIdentifier < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: TypeIdentifier (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } }
     #[automatically_derived]
     impl < 'tree > :: type_sitter :: Node < 'tree > for ArrayType_GenericType_HigherRankedTraitBound_Lifetime_PointerType_PrimitiveType_ReferenceType_ScopedTypeIdentifier_TupleType_TypeIdentifier < 'tree > { type WithLifetime < 'a > = ArrayType_GenericType_HigherRankedTraitBound_Lifetime_PointerType_PrimitiveType_ReferenceType_ScopedTypeIdentifier_TupleType_TypeIdentifier < 'a > ; const KIND : & 'static str = "{array_type | generic_type | higher_ranked_trait_bound | lifetime | pointer_type | primitive_type | reference_type | scoped_type_identifier | tuple_type | type_identifier}" ; # [inline] fn try_from_raw (node : :: type_sitter :: raw :: Node < 'tree >) -> :: type_sitter :: NodeResult < 'tree , Self > { match node . kind () { "array_type" => Ok (unsafe { Self :: ArrayType (< ArrayType < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "generic_type" => Ok (unsafe { Self :: GenericType (< GenericType < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "higher_ranked_trait_bound" => Ok (unsafe { Self :: HigherRankedTraitBound (< HigherRankedTraitBound < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "lifetime" => Ok (unsafe { Self :: Lifetime (< Lifetime < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "pointer_type" => Ok (unsafe { Self :: PointerType (< PointerType < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "primitive_type" => Ok (unsafe { Self :: PrimitiveType (< PrimitiveType < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "reference_type" => Ok (unsafe { Self :: ReferenceType (< ReferenceType < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "scoped_type_identifier" => Ok (unsafe { Self :: ScopedTypeIdentifier (< ScopedTypeIdentifier < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "tuple_type" => Ok (unsafe { Self :: TupleType (< TupleType < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "type_identifier" => Ok (unsafe { Self :: TypeIdentifier (< TypeIdentifier < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , _ => Err (:: type_sitter :: IncorrectKind :: new :: < Self > (node)) } } # [inline] fn raw (& self) -> & :: type_sitter :: raw :: Node < 'tree > { match self { Self :: ArrayType (x) => :: type_sitter :: Node :: raw (x) , Self :: GenericType (x) => :: type_sitter :: Node :: raw (x) , Self :: HigherRankedTraitBound (x) => :: type_sitter :: Node :: raw (x) , Self :: Lifetime (x) => :: type_sitter :: Node :: raw (x) , Self :: PointerType (x) => :: type_sitter :: Node :: raw (x) , Self :: PrimitiveType (x) => :: type_sitter :: Node :: raw (x) , Self :: ReferenceType (x) => :: type_sitter :: Node :: raw (x) , Self :: ScopedTypeIdentifier (x) => :: type_sitter :: Node :: raw (x) , Self :: TupleType (x) => :: type_sitter :: Node :: raw (x) , Self :: TypeIdentifier (x) => :: type_sitter :: Node :: raw (x) , } } # [inline] fn raw_mut (& mut self) -> & mut :: type_sitter :: raw :: Node < 'tree > { match self { Self :: ArrayType (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: GenericType (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: HigherRankedTraitBound (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: Lifetime (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: PointerType (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: PrimitiveType (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: ReferenceType (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: ScopedTypeIdentifier (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: TupleType (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: TypeIdentifier (x) => :: type_sitter :: Node :: raw_mut (x) , } } # [inline] fn into_raw (self) -> :: type_sitter :: raw :: Node < 'tree > { match self { Self :: ArrayType (x) => x . into_raw () , Self :: GenericType (x) => x . into_raw () , Self :: HigherRankedTraitBound (x) => x . into_raw () , Self :: Lifetime (x) => x . into_raw () , Self :: PointerType (x) => x . into_raw () , Self :: PrimitiveType (x) => x . into_raw () , Self :: ReferenceType (x) => x . into_raw () , Self :: ScopedTypeIdentifier (x) => x . into_raw () , Self :: TupleType (x) => x . into_raw () , Self :: TypeIdentifier (x) => x . into_raw () , } } }
     #[doc = "One of `{attribute_item | const_parameter | constrained_type_parameter | lifetime | metavariable | optional_type_parameter | type_identifier}`:\n- [`AttributeItem`]\n- [`ConstParameter`]\n- [`ConstrainedTypeParameter`]\n- [`Lifetime`]\n- [`Metavariable`]\n- [`OptionalTypeParameter`]\n- [`TypeIdentifier`]"]
@@ -15942,7 +15942,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     #[allow(unused)]
-    impl < 'tree > AttributeItem_ConstParameter_ConstrainedTypeParameter_Lifetime_Metavariable_OptionalTypeParameter_TypeIdentifier < 'tree > { # [doc = "Returns the node if it is of type `attribute_item` ([`AttributeItem`]), otherwise returns `None`"] # [inline] pub fn as_attribute_item (self) -> :: std :: option :: Option < AttributeItem < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: AttributeItem (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `const_parameter` ([`ConstParameter`]), otherwise returns `None`"] # [inline] pub fn as_const_parameter (self) -> :: std :: option :: Option < ConstParameter < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ConstParameter (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `constrained_type_parameter` ([`ConstrainedTypeParameter`]), otherwise returns `None`"] # [inline] pub fn as_constrained_type_parameter (self) -> :: std :: option :: Option < ConstrainedTypeParameter < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ConstrainedTypeParameter (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `lifetime` ([`Lifetime`]), otherwise returns `None`"] # [inline] pub fn as_lifetime (self) -> :: std :: option :: Option < Lifetime < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Lifetime (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `metavariable` ([`Metavariable`]), otherwise returns `None`"] # [inline] pub fn as_metavariable (self) -> :: std :: option :: Option < Metavariable < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Metavariable (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `optional_type_parameter` ([`OptionalTypeParameter`]), otherwise returns `None`"] # [inline] pub fn as_optional_type_parameter (self) -> :: std :: option :: Option < OptionalTypeParameter < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: OptionalTypeParameter (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `type_identifier` ([`TypeIdentifier`]), otherwise returns `None`"] # [inline] pub fn as_type_identifier (self) -> :: std :: option :: Option < TypeIdentifier < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: TypeIdentifier (x) = self { Some (x) } else { None } } }
+    impl < 'tree > AttributeItem_ConstParameter_ConstrainedTypeParameter_Lifetime_Metavariable_OptionalTypeParameter_TypeIdentifier < 'tree > { # [doc = "Returns the node if it is of type `attribute_item` ([`AttributeItem`]), otherwise returns `None`"] # [inline] pub fn as_attribute_item (self) -> :: std :: option :: Option < AttributeItem < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: AttributeItem (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `const_parameter` ([`ConstParameter`]), otherwise returns `None`"] # [inline] pub fn as_const_parameter (self) -> :: std :: option :: Option < ConstParameter < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ConstParameter (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `constrained_type_parameter` ([`ConstrainedTypeParameter`]), otherwise returns `None`"] # [inline] pub fn as_constrained_type_parameter (self) -> :: std :: option :: Option < ConstrainedTypeParameter < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ConstrainedTypeParameter (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `lifetime` ([`Lifetime`]), otherwise returns `None`"] # [inline] pub fn as_lifetime (self) -> :: std :: option :: Option < Lifetime < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Lifetime (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `metavariable` ([`Metavariable`]), otherwise returns `None`"] # [inline] pub fn as_metavariable (self) -> :: std :: option :: Option < Metavariable < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Metavariable (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `optional_type_parameter` ([`OptionalTypeParameter`]), otherwise returns `None`"] # [inline] pub fn as_optional_type_parameter (self) -> :: std :: option :: Option < OptionalTypeParameter < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: OptionalTypeParameter (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `type_identifier` ([`TypeIdentifier`]), otherwise returns `None`"] # [inline] pub fn as_type_identifier (self) -> :: std :: option :: Option < TypeIdentifier < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: TypeIdentifier (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } }
     #[automatically_derived]
     impl < 'tree > :: type_sitter :: Node < 'tree > for AttributeItem_ConstParameter_ConstrainedTypeParameter_Lifetime_Metavariable_OptionalTypeParameter_TypeIdentifier < 'tree > { type WithLifetime < 'a > = AttributeItem_ConstParameter_ConstrainedTypeParameter_Lifetime_Metavariable_OptionalTypeParameter_TypeIdentifier < 'a > ; const KIND : & 'static str = "{attribute_item | const_parameter | constrained_type_parameter | lifetime | metavariable | optional_type_parameter | type_identifier}" ; # [inline] fn try_from_raw (node : :: type_sitter :: raw :: Node < 'tree >) -> :: type_sitter :: NodeResult < 'tree , Self > { match node . kind () { "attribute_item" => Ok (unsafe { Self :: AttributeItem (< AttributeItem < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "const_parameter" => Ok (unsafe { Self :: ConstParameter (< ConstParameter < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "constrained_type_parameter" => Ok (unsafe { Self :: ConstrainedTypeParameter (< ConstrainedTypeParameter < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "lifetime" => Ok (unsafe { Self :: Lifetime (< Lifetime < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "metavariable" => Ok (unsafe { Self :: Metavariable (< Metavariable < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "optional_type_parameter" => Ok (unsafe { Self :: OptionalTypeParameter (< OptionalTypeParameter < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "type_identifier" => Ok (unsafe { Self :: TypeIdentifier (< TypeIdentifier < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , _ => Err (:: type_sitter :: IncorrectKind :: new :: < Self > (node)) } } # [inline] fn raw (& self) -> & :: type_sitter :: raw :: Node < 'tree > { match self { Self :: AttributeItem (x) => :: type_sitter :: Node :: raw (x) , Self :: ConstParameter (x) => :: type_sitter :: Node :: raw (x) , Self :: ConstrainedTypeParameter (x) => :: type_sitter :: Node :: raw (x) , Self :: Lifetime (x) => :: type_sitter :: Node :: raw (x) , Self :: Metavariable (x) => :: type_sitter :: Node :: raw (x) , Self :: OptionalTypeParameter (x) => :: type_sitter :: Node :: raw (x) , Self :: TypeIdentifier (x) => :: type_sitter :: Node :: raw (x) , } } # [inline] fn raw_mut (& mut self) -> & mut :: type_sitter :: raw :: Node < 'tree > { match self { Self :: AttributeItem (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: ConstParameter (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: ConstrainedTypeParameter (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: Lifetime (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: Metavariable (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: OptionalTypeParameter (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: TypeIdentifier (x) => :: type_sitter :: Node :: raw_mut (x) , } } # [inline] fn into_raw (self) -> :: type_sitter :: raw :: Node < 'tree > { match self { Self :: AttributeItem (x) => x . into_raw () , Self :: ConstParameter (x) => x . into_raw () , Self :: ConstrainedTypeParameter (x) => x . into_raw () , Self :: Lifetime (x) => x . into_raw () , Self :: Metavariable (x) => x . into_raw () , Self :: OptionalTypeParameter (x) => x . into_raw () , Self :: TypeIdentifier (x) => x . into_raw () , } } }
     #[doc = "One of `{attribute_item | enum_variant}`:\n- [`AttributeItem`]\n- [`EnumVariant`]"]
@@ -15960,9 +15960,9 @@ pub mod anon_unions {
         pub fn as_attribute_item(self) -> ::std::option::Option<AttributeItem<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::AttributeItem(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `enum_variant` ([`EnumVariant`]), otherwise returns `None`"]
@@ -15970,9 +15970,9 @@ pub mod anon_unions {
         pub fn as_enum_variant(self) -> ::std::option::Option<EnumVariant<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::EnumVariant(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
     }
@@ -16037,9 +16037,9 @@ pub mod anon_unions {
         pub fn as_attribute_item(self) -> ::std::option::Option<AttributeItem<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::AttributeItem(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `field_declaration` ([`FieldDeclaration`]), otherwise returns `None`"]
@@ -16047,9 +16047,9 @@ pub mod anon_unions {
         pub fn as_field_declaration(self) -> ::std::option::Option<FieldDeclaration<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::FieldDeclaration(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
     }
@@ -16112,9 +16112,9 @@ pub mod anon_unions {
         pub fn as_attribute_item(self) -> ::std::option::Option<AttributeItem<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::AttributeItem(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`"]
@@ -16122,9 +16122,9 @@ pub mod anon_unions {
         pub fn as_identifier(self) -> ::std::option::Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Identifier(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
     }
@@ -16187,9 +16187,9 @@ pub mod anon_unions {
         pub fn as_attribute_item(self) -> ::std::option::Option<AttributeItem<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::AttributeItem(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `inner_attribute_item` ([`InnerAttributeItem`]), otherwise returns `None`"]
@@ -16197,9 +16197,9 @@ pub mod anon_unions {
         pub fn as_inner_attribute_item(self) -> ::std::option::Option<InnerAttributeItem<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::InnerAttributeItem(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
     }
@@ -16262,9 +16262,9 @@ pub mod anon_unions {
         pub fn as_attribute_item(self) -> ::std::option::Option<AttributeItem<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::AttributeItem(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `visibility_modifier` ([`VisibilityModifier`]), otherwise returns `None`"]
@@ -16272,9 +16272,9 @@ pub mod anon_unions {
         pub fn as_visibility_modifier(self) -> ::std::option::Option<VisibilityModifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::VisibilityModifier(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
     }
@@ -16340,9 +16340,9 @@ pub mod anon_unions {
         ) -> ::std::option::Option<BaseFieldInitializer<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::BaseFieldInitializer(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `field_initializer` ([`FieldInitializer`]), otherwise returns `None`"]
@@ -16350,9 +16350,9 @@ pub mod anon_unions {
         pub fn as_field_initializer(self) -> ::std::option::Option<FieldInitializer<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::FieldInitializer(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `shorthand_field_initializer` ([`ShorthandFieldInitializer`]), otherwise returns `None`"]
@@ -16362,9 +16362,9 @@ pub mod anon_unions {
         ) -> ::std::option::Option<ShorthandFieldInitializer<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::ShorthandFieldInitializer(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
     }
@@ -16434,9 +16434,9 @@ pub mod anon_unions {
         pub fn as_block(self) -> ::std::option::Option<Block<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Block(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `if_expression` ([`IfExpression`]), otherwise returns `None`"]
@@ -16444,9 +16444,9 @@ pub mod anon_unions {
         pub fn as_if_expression(self) -> ::std::option::Option<IfExpression<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::IfExpression(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
     }
@@ -16521,9 +16521,9 @@ pub mod anon_unions {
         pub fn as_bracketed_type(self) -> ::std::option::Option<BracketedType<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::BracketedType(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `crate` ([`Crate`]), otherwise returns `None`"]
@@ -16531,9 +16531,9 @@ pub mod anon_unions {
         pub fn as_crate(self) -> ::std::option::Option<Crate<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Crate(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `generic_type` ([`GenericType`]), otherwise returns `None`"]
@@ -16541,9 +16541,9 @@ pub mod anon_unions {
         pub fn as_generic_type(self) -> ::std::option::Option<GenericType<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::GenericType(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`"]
@@ -16551,9 +16551,9 @@ pub mod anon_unions {
         pub fn as_identifier(self) -> ::std::option::Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Identifier(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `metavariable` ([`Metavariable`]), otherwise returns `None`"]
@@ -16561,9 +16561,9 @@ pub mod anon_unions {
         pub fn as_metavariable(self) -> ::std::option::Option<Metavariable<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Metavariable(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `scoped_identifier` ([`ScopedIdentifier`]), otherwise returns `None`"]
@@ -16571,9 +16571,9 @@ pub mod anon_unions {
         pub fn as_scoped_identifier(self) -> ::std::option::Option<ScopedIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::ScopedIdentifier(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `self` ([`Self_`]), otherwise returns `None`"]
@@ -16581,9 +16581,9 @@ pub mod anon_unions {
         pub fn as_self(self) -> ::std::option::Option<Self_<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Self_(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `super` ([`Super`]), otherwise returns `None`"]
@@ -16591,9 +16591,9 @@ pub mod anon_unions {
         pub fn as_super(self) -> ::std::option::Option<Super<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Super(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
     }
@@ -16717,9 +16717,9 @@ pub mod anon_unions {
         ) -> ::std::option::Option<ConstrainedTypeParameter<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::ConstrainedTypeParameter(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `type_identifier` ([`TypeIdentifier`]), otherwise returns `None`"]
@@ -16727,9 +16727,9 @@ pub mod anon_unions {
         pub fn as_type_identifier(self) -> ::std::option::Option<TypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::TypeIdentifier(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
     }
@@ -16796,7 +16796,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     #[allow(unused)]
-    impl < 'tree > Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList_Self__Super_UseAsClause_UseList_UseWildcard < 'tree > { # [doc = "Returns the node if it is of type `crate` ([`Crate`]), otherwise returns `None`"] # [inline] pub fn as_crate (self) -> :: std :: option :: Option < Crate < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Crate (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`"] # [inline] pub fn as_identifier (self) -> :: std :: option :: Option < Identifier < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Identifier (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `metavariable` ([`Metavariable`]), otherwise returns `None`"] # [inline] pub fn as_metavariable (self) -> :: std :: option :: Option < Metavariable < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Metavariable (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `scoped_identifier` ([`ScopedIdentifier`]), otherwise returns `None`"] # [inline] pub fn as_scoped_identifier (self) -> :: std :: option :: Option < ScopedIdentifier < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ScopedIdentifier (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `scoped_use_list` ([`ScopedUseList`]), otherwise returns `None`"] # [inline] pub fn as_scoped_use_list (self) -> :: std :: option :: Option < ScopedUseList < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ScopedUseList (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `self` ([`Self_`]), otherwise returns `None`"] # [inline] pub fn as_self (self) -> :: std :: option :: Option < Self_ < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Self_ (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `super` ([`Super`]), otherwise returns `None`"] # [inline] pub fn as_super (self) -> :: std :: option :: Option < Super < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Super (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `use_as_clause` ([`UseAsClause`]), otherwise returns `None`"] # [inline] pub fn as_use_as_clause (self) -> :: std :: option :: Option < UseAsClause < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: UseAsClause (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `use_list` ([`UseList`]), otherwise returns `None`"] # [inline] pub fn as_use_list (self) -> :: std :: option :: Option < UseList < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: UseList (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `use_wildcard` ([`UseWildcard`]), otherwise returns `None`"] # [inline] pub fn as_use_wildcard (self) -> :: std :: option :: Option < UseWildcard < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: UseWildcard (x) = self { Some (x) } else { None } } }
+    impl < 'tree > Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList_Self__Super_UseAsClause_UseList_UseWildcard < 'tree > { # [doc = "Returns the node if it is of type `crate` ([`Crate`]), otherwise returns `None`"] # [inline] pub fn as_crate (self) -> :: std :: option :: Option < Crate < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Crate (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`"] # [inline] pub fn as_identifier (self) -> :: std :: option :: Option < Identifier < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Identifier (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `metavariable` ([`Metavariable`]), otherwise returns `None`"] # [inline] pub fn as_metavariable (self) -> :: std :: option :: Option < Metavariable < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Metavariable (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `scoped_identifier` ([`ScopedIdentifier`]), otherwise returns `None`"] # [inline] pub fn as_scoped_identifier (self) -> :: std :: option :: Option < ScopedIdentifier < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ScopedIdentifier (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `scoped_use_list` ([`ScopedUseList`]), otherwise returns `None`"] # [inline] pub fn as_scoped_use_list (self) -> :: std :: option :: Option < ScopedUseList < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ScopedUseList (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `self` ([`Self_`]), otherwise returns `None`"] # [inline] pub fn as_self (self) -> :: std :: option :: Option < Self_ < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Self_ (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `super` ([`Super`]), otherwise returns `None`"] # [inline] pub fn as_super (self) -> :: std :: option :: Option < Super < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Super (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `use_as_clause` ([`UseAsClause`]), otherwise returns `None`"] # [inline] pub fn as_use_as_clause (self) -> :: std :: option :: Option < UseAsClause < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: UseAsClause (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `use_list` ([`UseList`]), otherwise returns `None`"] # [inline] pub fn as_use_list (self) -> :: std :: option :: Option < UseList < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: UseList (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `use_wildcard` ([`UseWildcard`]), otherwise returns `None`"] # [inline] pub fn as_use_wildcard (self) -> :: std :: option :: Option < UseWildcard < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: UseWildcard (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } }
     #[automatically_derived]
     impl < 'tree > :: type_sitter :: Node < 'tree > for Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList_Self__Super_UseAsClause_UseList_UseWildcard < 'tree > { type WithLifetime < 'a > = Crate_Identifier_Metavariable_ScopedIdentifier_ScopedUseList_Self__Super_UseAsClause_UseList_UseWildcard < 'a > ; const KIND : & 'static str = "{crate | identifier | metavariable | scoped_identifier | scoped_use_list | self | super | use_as_clause | use_list | use_wildcard}" ; # [inline] fn try_from_raw (node : :: type_sitter :: raw :: Node < 'tree >) -> :: type_sitter :: NodeResult < 'tree , Self > { match node . kind () { "crate" => Ok (unsafe { Self :: Crate (< Crate < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "identifier" => Ok (unsafe { Self :: Identifier (< Identifier < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "metavariable" => Ok (unsafe { Self :: Metavariable (< Metavariable < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "scoped_identifier" => Ok (unsafe { Self :: ScopedIdentifier (< ScopedIdentifier < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "scoped_use_list" => Ok (unsafe { Self :: ScopedUseList (< ScopedUseList < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "self" => Ok (unsafe { Self :: Self_ (< Self_ < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "super" => Ok (unsafe { Self :: Super (< Super < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "use_as_clause" => Ok (unsafe { Self :: UseAsClause (< UseAsClause < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "use_list" => Ok (unsafe { Self :: UseList (< UseList < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "use_wildcard" => Ok (unsafe { Self :: UseWildcard (< UseWildcard < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , _ => Err (:: type_sitter :: IncorrectKind :: new :: < Self > (node)) } } # [inline] fn raw (& self) -> & :: type_sitter :: raw :: Node < 'tree > { match self { Self :: Crate (x) => :: type_sitter :: Node :: raw (x) , Self :: Identifier (x) => :: type_sitter :: Node :: raw (x) , Self :: Metavariable (x) => :: type_sitter :: Node :: raw (x) , Self :: ScopedIdentifier (x) => :: type_sitter :: Node :: raw (x) , Self :: ScopedUseList (x) => :: type_sitter :: Node :: raw (x) , Self :: Self_ (x) => :: type_sitter :: Node :: raw (x) , Self :: Super (x) => :: type_sitter :: Node :: raw (x) , Self :: UseAsClause (x) => :: type_sitter :: Node :: raw (x) , Self :: UseList (x) => :: type_sitter :: Node :: raw (x) , Self :: UseWildcard (x) => :: type_sitter :: Node :: raw (x) , } } # [inline] fn raw_mut (& mut self) -> & mut :: type_sitter :: raw :: Node < 'tree > { match self { Self :: Crate (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: Identifier (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: Metavariable (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: ScopedIdentifier (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: ScopedUseList (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: Self_ (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: Super (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: UseAsClause (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: UseList (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: UseWildcard (x) => :: type_sitter :: Node :: raw_mut (x) , } } # [inline] fn into_raw (self) -> :: type_sitter :: raw :: Node < 'tree > { match self { Self :: Crate (x) => x . into_raw () , Self :: Identifier (x) => x . into_raw () , Self :: Metavariable (x) => x . into_raw () , Self :: ScopedIdentifier (x) => x . into_raw () , Self :: ScopedUseList (x) => x . into_raw () , Self :: Self_ (x) => x . into_raw () , Self :: Super (x) => x . into_raw () , Self :: UseAsClause (x) => x . into_raw () , Self :: UseList (x) => x . into_raw () , Self :: UseWildcard (x) => x . into_raw () , } } }
     #[doc = "One of `{crate | identifier | metavariable | scoped_identifier | self | super}`:\n- [`Crate`]\n- [`Identifier`]\n- [`Metavariable`]\n- [`ScopedIdentifier`]\n- [`Self_`]\n- [`Super`]"]
@@ -16818,9 +16818,9 @@ pub mod anon_unions {
         pub fn as_crate(self) -> ::std::option::Option<Crate<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Crate(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`"]
@@ -16828,9 +16828,9 @@ pub mod anon_unions {
         pub fn as_identifier(self) -> ::std::option::Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Identifier(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `metavariable` ([`Metavariable`]), otherwise returns `None`"]
@@ -16838,9 +16838,9 @@ pub mod anon_unions {
         pub fn as_metavariable(self) -> ::std::option::Option<Metavariable<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Metavariable(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `scoped_identifier` ([`ScopedIdentifier`]), otherwise returns `None`"]
@@ -16848,9 +16848,9 @@ pub mod anon_unions {
         pub fn as_scoped_identifier(self) -> ::std::option::Option<ScopedIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::ScopedIdentifier(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `self` ([`Self_`]), otherwise returns `None`"]
@@ -16858,9 +16858,9 @@ pub mod anon_unions {
         pub fn as_self(self) -> ::std::option::Option<Self_<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Self_(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `super` ([`Super`]), otherwise returns `None`"]
@@ -16868,9 +16868,9 @@ pub mod anon_unions {
         pub fn as_super(self) -> ::std::option::Option<Super<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Super(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
     }
@@ -16970,9 +16970,9 @@ pub mod anon_unions {
         pub fn as_crate(self) -> ::std::option::Option<Crate<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Crate(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `visibility_modifier` ([`VisibilityModifier`]), otherwise returns `None`"]
@@ -16980,9 +16980,9 @@ pub mod anon_unions {
         pub fn as_visibility_modifier(self) -> ::std::option::Option<VisibilityModifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::VisibilityModifier(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
     }
@@ -17048,9 +17048,9 @@ pub mod anon_unions {
         ) -> ::std::option::Option<DeclarationStatement<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::DeclarationStatement(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `expression_statement` ([`ExpressionStatement`]), otherwise returns `None`"]
@@ -17058,9 +17058,9 @@ pub mod anon_unions {
         pub fn as_expression_statement(self) -> ::std::option::Option<ExpressionStatement<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::ExpressionStatement(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `shebang` ([`Shebang`]), otherwise returns `None`"]
@@ -17068,9 +17068,9 @@ pub mod anon_unions {
         pub fn as_shebang(self) -> ::std::option::Option<Shebang<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Shebang(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `associated_type` ([`AssociatedType`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_declaration_statement` ([`DeclarationStatement < 'tree >`], from [`as_declaration_statement`](Self::as_declaration_statement))"]
@@ -17252,9 +17252,9 @@ pub mod anon_unions {
         ) -> ::std::option::Option<DeclarationStatement<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::DeclarationStatement(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `_expression` ([`Expression`]), otherwise returns `None`"]
@@ -17262,9 +17262,9 @@ pub mod anon_unions {
         pub fn as_expression(self) -> ::std::option::Option<Expression<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Expression(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `expression_statement` ([`ExpressionStatement`]), otherwise returns `None`"]
@@ -17272,9 +17272,9 @@ pub mod anon_unions {
         pub fn as_expression_statement(self) -> ::std::option::Option<ExpressionStatement<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::ExpressionStatement(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `label` ([`Label`]), otherwise returns `None`"]
@@ -17282,9 +17282,9 @@ pub mod anon_unions {
         pub fn as_label(self) -> ::std::option::Option<Label<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Label(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `associated_type` ([`AssociatedType`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_declaration_statement` ([`DeclarationStatement < 'tree >`], from [`as_declaration_statement`](Self::as_declaration_statement))"]
@@ -17708,9 +17708,9 @@ pub mod anon_unions {
         pub fn as_escape_sequence(self) -> ::std::option::Option<EscapeSequence<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::EscapeSequence(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `string_content` ([`StringContent`]), otherwise returns `None`"]
@@ -17718,9 +17718,9 @@ pub mod anon_unions {
         pub fn as_string_content(self) -> ::std::option::Option<StringContent<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::StringContent(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
     }
@@ -17785,9 +17785,9 @@ pub mod anon_unions {
         pub fn as_expression(self) -> ::std::option::Option<Expression<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Expression(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `attribute_item` ([`AttributeItem`]), otherwise returns `None`"]
@@ -17795,9 +17795,9 @@ pub mod anon_unions {
         pub fn as_attribute_item(self) -> ::std::option::Option<AttributeItem<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::AttributeItem(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `_literal` ([`Literal`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_expression` ([`Expression < 'tree >`], from [`as_expression`](Self::as_expression))"]
@@ -18093,9 +18093,9 @@ pub mod anon_unions {
         pub fn as_expression(self) -> ::std::option::Option<Expression<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Expression(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `label` ([`Label`]), otherwise returns `None`"]
@@ -18103,9 +18103,9 @@ pub mod anon_unions {
         pub fn as_label(self) -> ::std::option::Option<Label<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Label(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `_literal` ([`Literal`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_expression` ([`Expression < 'tree >`], from [`as_expression`](Self::as_expression))"]
@@ -18400,9 +18400,9 @@ pub mod anon_unions {
         pub fn as_expression(self) -> ::std::option::Option<Expression<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Expression(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `let_chain` ([`LetChain`]), otherwise returns `None`"]
@@ -18410,9 +18410,9 @@ pub mod anon_unions {
         pub fn as_let_chain(self) -> ::std::option::Option<LetChain<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::LetChain(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `let_condition` ([`LetCondition`]), otherwise returns `None`"]
@@ -18420,9 +18420,9 @@ pub mod anon_unions {
         pub fn as_let_condition(self) -> ::std::option::Option<LetCondition<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::LetCondition(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `_literal` ([`Literal`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_expression` ([`Expression < 'tree >`], from [`as_expression`](Self::as_expression))"]
@@ -18724,9 +18724,9 @@ pub mod anon_unions {
         pub fn as_expression(self) -> ::std::option::Option<Expression<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Expression(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `let_condition` ([`LetCondition`]), otherwise returns `None`"]
@@ -18734,9 +18734,9 @@ pub mod anon_unions {
         pub fn as_let_condition(self) -> ::std::option::Option<LetCondition<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::LetCondition(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `_literal` ([`Literal`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_expression` ([`Expression < 'tree >`], from [`as_expression`](Self::as_expression))"]
@@ -19032,9 +19032,9 @@ pub mod anon_unions {
         pub fn as_extern_modifier(self) -> ::std::option::Option<ExternModifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::ExternModifier(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `visibility_modifier` ([`VisibilityModifier`]), otherwise returns `None`"]
@@ -19042,9 +19042,9 @@ pub mod anon_unions {
         pub fn as_visibility_modifier(self) -> ::std::option::Option<VisibilityModifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::VisibilityModifier(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
     }
@@ -19111,9 +19111,9 @@ pub mod anon_unions {
         ) -> ::std::option::Option<FieldDeclarationList<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::FieldDeclarationList(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `ordered_field_declaration_list` ([`OrderedFieldDeclarationList`]), otherwise returns `None`"]
@@ -19123,9 +19123,9 @@ pub mod anon_unions {
         ) -> ::std::option::Option<OrderedFieldDeclarationList<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::OrderedFieldDeclarationList(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
     }
@@ -19185,9 +19185,9 @@ pub mod anon_unions {
         pub fn as_field_expression(self) -> ::std::option::Option<FieldExpression<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::FieldExpression(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`"]
@@ -19195,9 +19195,9 @@ pub mod anon_unions {
         pub fn as_identifier(self) -> ::std::option::Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Identifier(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `scoped_identifier` ([`ScopedIdentifier`]), otherwise returns `None`"]
@@ -19205,9 +19205,9 @@ pub mod anon_unions {
         pub fn as_scoped_identifier(self) -> ::std::option::Option<ScopedIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::ScopedIdentifier(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
     }
@@ -19280,9 +19280,9 @@ pub mod anon_unions {
         pub fn as_field_identifier(self) -> ::std::option::Option<FieldIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::FieldIdentifier(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `integer_literal` ([`IntegerLiteral`]), otherwise returns `None`"]
@@ -19290,9 +19290,9 @@ pub mod anon_unions {
         pub fn as_integer_literal(self) -> ::std::option::Option<IntegerLiteral<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::IntegerLiteral(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
     }
@@ -19359,9 +19359,9 @@ pub mod anon_unions {
         pub fn as_field_identifier(self) -> ::std::option::Option<FieldIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::FieldIdentifier(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `shorthand_field_identifier` ([`ShorthandFieldIdentifier`]), otherwise returns `None`"]
@@ -19371,9 +19371,9 @@ pub mod anon_unions {
         ) -> ::std::option::Option<ShorthandFieldIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::ShorthandFieldIdentifier(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
     }
@@ -19436,9 +19436,9 @@ pub mod anon_unions {
         pub fn as_field_pattern(self) -> ::std::option::Option<FieldPattern<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::FieldPattern(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `remaining_field_pattern` ([`RemainingFieldPattern`]), otherwise returns `None`"]
@@ -19448,9 +19448,9 @@ pub mod anon_unions {
         ) -> ::std::option::Option<RemainingFieldPattern<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::RemainingFieldPattern(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
     }
@@ -19513,9 +19513,9 @@ pub mod anon_unions {
         pub fn as_float_literal(self) -> ::std::option::Option<FloatLiteral<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::FloatLiteral(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `integer_literal` ([`IntegerLiteral`]), otherwise returns `None`"]
@@ -19523,9 +19523,9 @@ pub mod anon_unions {
         pub fn as_integer_literal(self) -> ::std::option::Option<IntegerLiteral<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::IntegerLiteral(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
     }
@@ -19592,9 +19592,9 @@ pub mod anon_unions {
         pub fn as_for_lifetimes(self) -> ::std::option::Option<ForLifetimes<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::ForLifetimes(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `function_modifiers` ([`FunctionModifiers`]), otherwise returns `None`"]
@@ -19602,9 +19602,9 @@ pub mod anon_unions {
         pub fn as_function_modifiers(self) -> ::std::option::Option<FunctionModifiers<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::FunctionModifiers(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
     }
@@ -19670,9 +19670,9 @@ pub mod anon_unions {
         pub fn as_function_modifiers(self) -> ::std::option::Option<FunctionModifiers<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::FunctionModifiers(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `visibility_modifier` ([`VisibilityModifier`]), otherwise returns `None`"]
@@ -19680,9 +19680,9 @@ pub mod anon_unions {
         pub fn as_visibility_modifier(self) -> ::std::option::Option<VisibilityModifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::VisibilityModifier(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `where_clause` ([`WhereClause`]), otherwise returns `None`"]
@@ -19690,9 +19690,9 @@ pub mod anon_unions {
         pub fn as_where_clause(self) -> ::std::option::Option<WhereClause<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::WhereClause(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
     }
@@ -19772,9 +19772,9 @@ pub mod anon_unions {
         pub fn as_function_type(self) -> ::std::option::Option<FunctionType<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::FunctionType(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `generic_type` ([`GenericType`]), otherwise returns `None`"]
@@ -19782,9 +19782,9 @@ pub mod anon_unions {
         pub fn as_generic_type(self) -> ::std::option::Option<GenericType<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::GenericType(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `higher_ranked_trait_bound` ([`HigherRankedTraitBound`]), otherwise returns `None`"]
@@ -19794,9 +19794,9 @@ pub mod anon_unions {
         ) -> ::std::option::Option<HigherRankedTraitBound<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::HigherRankedTraitBound(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `scoped_type_identifier` ([`ScopedTypeIdentifier`]), otherwise returns `None`"]
@@ -19806,9 +19806,9 @@ pub mod anon_unions {
         ) -> ::std::option::Option<ScopedTypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::ScopedTypeIdentifier(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `type_identifier` ([`TypeIdentifier`]), otherwise returns `None`"]
@@ -19816,9 +19816,9 @@ pub mod anon_unions {
         pub fn as_type_identifier(self) -> ::std::option::Option<TypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::TypeIdentifier(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
     }
@@ -19922,9 +19922,9 @@ pub mod anon_unions {
         pub fn as_function_type(self) -> ::std::option::Option<FunctionType<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::FunctionType(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `generic_type` ([`GenericType`]), otherwise returns `None`"]
@@ -19932,9 +19932,9 @@ pub mod anon_unions {
         pub fn as_generic_type(self) -> ::std::option::Option<GenericType<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::GenericType(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `removed_trait_bound` ([`RemovedTraitBound`]), otherwise returns `None`"]
@@ -19942,9 +19942,9 @@ pub mod anon_unions {
         pub fn as_removed_trait_bound(self) -> ::std::option::Option<RemovedTraitBound<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::RemovedTraitBound(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `scoped_type_identifier` ([`ScopedTypeIdentifier`]), otherwise returns `None`"]
@@ -19954,9 +19954,9 @@ pub mod anon_unions {
         ) -> ::std::option::Option<ScopedTypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::ScopedTypeIdentifier(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `tuple_type` ([`TupleType`]), otherwise returns `None`"]
@@ -19964,9 +19964,9 @@ pub mod anon_unions {
         pub fn as_tuple_type(self) -> ::std::option::Option<TupleType<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::TupleType(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `type_identifier` ([`TypeIdentifier`]), otherwise returns `None`"]
@@ -19974,9 +19974,9 @@ pub mod anon_unions {
         pub fn as_type_identifier(self) -> ::std::option::Option<TypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::TypeIdentifier(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
     }
@@ -20082,9 +20082,9 @@ pub mod anon_unions {
         ) -> ::std::option::Option<GenericTypeWithTurbofish<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::GenericTypeWithTurbofish(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `scoped_type_identifier` ([`ScopedTypeIdentifier`]), otherwise returns `None`"]
@@ -20094,9 +20094,9 @@ pub mod anon_unions {
         ) -> ::std::option::Option<ScopedTypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::ScopedTypeIdentifier(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `type_identifier` ([`TypeIdentifier`]), otherwise returns `None`"]
@@ -20104,9 +20104,9 @@ pub mod anon_unions {
         pub fn as_type_identifier(self) -> ::std::option::Option<TypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::TypeIdentifier(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
     }
@@ -20179,9 +20179,9 @@ pub mod anon_unions {
         pub fn as_generic_type(self) -> ::std::option::Option<GenericType<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::GenericType(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`"]
@@ -20189,9 +20189,9 @@ pub mod anon_unions {
         pub fn as_identifier(self) -> ::std::option::Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Identifier(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `scoped_identifier` ([`ScopedIdentifier`]), otherwise returns `None`"]
@@ -20199,9 +20199,9 @@ pub mod anon_unions {
         pub fn as_scoped_identifier(self) -> ::std::option::Option<ScopedIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::ScopedIdentifier(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
     }
@@ -20275,9 +20275,9 @@ pub mod anon_unions {
         pub fn as_generic_type(self) -> ::std::option::Option<GenericType<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::GenericType(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `scoped_type_identifier` ([`ScopedTypeIdentifier`]), otherwise returns `None`"]
@@ -20287,9 +20287,9 @@ pub mod anon_unions {
         ) -> ::std::option::Option<ScopedTypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::ScopedTypeIdentifier(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `type_identifier` ([`TypeIdentifier`]), otherwise returns `None`"]
@@ -20297,9 +20297,9 @@ pub mod anon_unions {
         pub fn as_type_identifier(self) -> ::std::option::Option<TypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::TypeIdentifier(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
     }
@@ -20372,9 +20372,9 @@ pub mod anon_unions {
         pub fn as_identifier(self) -> ::std::option::Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Identifier(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `metavariable` ([`Metavariable`]), otherwise returns `None`"]
@@ -20382,9 +20382,9 @@ pub mod anon_unions {
         pub fn as_metavariable(self) -> ::std::option::Option<Metavariable<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Metavariable(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
     }
@@ -20449,9 +20449,9 @@ pub mod anon_unions {
         pub fn as_identifier(self) -> ::std::option::Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Identifier(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `scoped_identifier` ([`ScopedIdentifier`]), otherwise returns `None`"]
@@ -20459,9 +20459,9 @@ pub mod anon_unions {
         pub fn as_scoped_identifier(self) -> ::std::option::Option<ScopedIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::ScopedIdentifier(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
     }
@@ -20526,9 +20526,9 @@ pub mod anon_unions {
         pub fn as_identifier(self) -> ::std::option::Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Identifier(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `scoped_identifier` ([`ScopedIdentifier`]), otherwise returns `None`"]
@@ -20536,9 +20536,9 @@ pub mod anon_unions {
         pub fn as_scoped_identifier(self) -> ::std::option::Option<ScopedIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::ScopedIdentifier(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `scoped_type_identifier` ([`ScopedTypeIdentifier`]), otherwise returns `None`"]
@@ -20548,9 +20548,9 @@ pub mod anon_unions {
         ) -> ::std::option::Option<ScopedTypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::ScopedTypeIdentifier(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `type_identifier` ([`TypeIdentifier`]), otherwise returns `None`"]
@@ -20558,9 +20558,9 @@ pub mod anon_unions {
         pub fn as_type_identifier(self) -> ::std::option::Option<TypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::TypeIdentifier(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
     }
@@ -20642,9 +20642,9 @@ pub mod anon_unions {
         pub fn as_identifier(self) -> ::std::option::Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Identifier(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `super` ([`Super`]), otherwise returns `None`"]
@@ -20652,9 +20652,9 @@ pub mod anon_unions {
         pub fn as_super(self) -> ::std::option::Option<Super<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Super(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
     }
@@ -20717,9 +20717,9 @@ pub mod anon_unions {
         pub fn as_lifetime(self) -> ::std::option::Option<Lifetime<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Lifetime(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `mutable_specifier` ([`MutableSpecifier`]), otherwise returns `None`"]
@@ -20727,9 +20727,9 @@ pub mod anon_unions {
         pub fn as_mutable_specifier(self) -> ::std::option::Option<MutableSpecifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::MutableSpecifier(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
     }
@@ -20793,9 +20793,9 @@ pub mod anon_unions {
         pub fn as_lifetime(self) -> ::std::option::Option<Lifetime<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Lifetime(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `mutable_specifier` ([`MutableSpecifier`]), otherwise returns `None`"]
@@ -20803,9 +20803,9 @@ pub mod anon_unions {
         pub fn as_mutable_specifier(self) -> ::std::option::Option<MutableSpecifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::MutableSpecifier(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `self` ([`Self_`]), otherwise returns `None`"]
@@ -20813,9 +20813,9 @@ pub mod anon_unions {
         pub fn as_self(self) -> ::std::option::Option<Self_<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Self_(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
     }
@@ -20886,9 +20886,9 @@ pub mod anon_unions {
         pub fn as_lifetime(self) -> ::std::option::Option<Lifetime<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Lifetime(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `type_identifier` ([`TypeIdentifier`]), otherwise returns `None`"]
@@ -20896,9 +20896,9 @@ pub mod anon_unions {
         pub fn as_type_identifier(self) -> ::std::option::Option<TypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::TypeIdentifier(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
     }
@@ -20968,9 +20968,9 @@ pub mod anon_unions {
         pub fn as_literal_pattern(self) -> ::std::option::Option<LiteralPattern<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::LiteralPattern(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `crate` ([`Crate`]), otherwise returns `None`"]
@@ -20978,9 +20978,9 @@ pub mod anon_unions {
         pub fn as_crate(self) -> ::std::option::Option<Crate<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Crate(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`"]
@@ -20988,9 +20988,9 @@ pub mod anon_unions {
         pub fn as_identifier(self) -> ::std::option::Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Identifier(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `metavariable` ([`Metavariable`]), otherwise returns `None`"]
@@ -20998,9 +20998,9 @@ pub mod anon_unions {
         pub fn as_metavariable(self) -> ::std::option::Option<Metavariable<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Metavariable(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `scoped_identifier` ([`ScopedIdentifier`]), otherwise returns `None`"]
@@ -21008,9 +21008,9 @@ pub mod anon_unions {
         pub fn as_scoped_identifier(self) -> ::std::option::Option<ScopedIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::ScopedIdentifier(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `self` ([`Self_`]), otherwise returns `None`"]
@@ -21018,9 +21018,9 @@ pub mod anon_unions {
         pub fn as_self(self) -> ::std::option::Option<Self_<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Self_(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `super` ([`Super`]), otherwise returns `None`"]
@@ -21028,9 +21028,9 @@ pub mod anon_unions {
         pub fn as_super(self) -> ::std::option::Option<Super<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Super(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `boolean_literal` ([`BooleanLiteral`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_literal_pattern` ([`LiteralPattern < 'tree >`], from [`as_literal_pattern`](Self::as_literal_pattern))"]
@@ -21195,7 +21195,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     #[allow(unused)]
-    impl < 'tree > Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenBlock_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier_Self__StructExpression_TryBlock_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression < 'tree > { # [doc = "Returns the node if it is of type `_literal` ([`Literal`]), otherwise returns `None`"] # [inline] pub fn as_literal (self) -> :: std :: option :: Option < Literal < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Literal (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `array_expression` ([`ArrayExpression`]), otherwise returns `None`"] # [inline] pub fn as_array_expression (self) -> :: std :: option :: Option < ArrayExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ArrayExpression (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `assignment_expression` ([`AssignmentExpression`]), otherwise returns `None`"] # [inline] pub fn as_assignment_expression (self) -> :: std :: option :: Option < AssignmentExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: AssignmentExpression (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `async_block` ([`AsyncBlock`]), otherwise returns `None`"] # [inline] pub fn as_async_block (self) -> :: std :: option :: Option < AsyncBlock < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: AsyncBlock (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `await_expression` ([`AwaitExpression`]), otherwise returns `None`"] # [inline] pub fn as_await_expression (self) -> :: std :: option :: Option < AwaitExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: AwaitExpression (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `binary_expression` ([`BinaryExpression`]), otherwise returns `None`"] # [inline] pub fn as_binary_expression (self) -> :: std :: option :: Option < BinaryExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: BinaryExpression (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `block` ([`Block`]), otherwise returns `None`"] # [inline] pub fn as_block (self) -> :: std :: option :: Option < Block < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Block (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `break_expression` ([`BreakExpression`]), otherwise returns `None`"] # [inline] pub fn as_break_expression (self) -> :: std :: option :: Option < BreakExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: BreakExpression (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `call_expression` ([`CallExpression`]), otherwise returns `None`"] # [inline] pub fn as_call_expression (self) -> :: std :: option :: Option < CallExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: CallExpression (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `closure_expression` ([`ClosureExpression`]), otherwise returns `None`"] # [inline] pub fn as_closure_expression (self) -> :: std :: option :: Option < ClosureExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ClosureExpression (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `compound_assignment_expr` ([`CompoundAssignmentExpr`]), otherwise returns `None`"] # [inline] pub fn as_compound_assignment_expr (self) -> :: std :: option :: Option < CompoundAssignmentExpr < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: CompoundAssignmentExpr (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `const_block` ([`ConstBlock`]), otherwise returns `None`"] # [inline] pub fn as_const_block (self) -> :: std :: option :: Option < ConstBlock < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ConstBlock (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `continue_expression` ([`ContinueExpression`]), otherwise returns `None`"] # [inline] pub fn as_continue_expression (self) -> :: std :: option :: Option < ContinueExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ContinueExpression (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `field_expression` ([`FieldExpression`]), otherwise returns `None`"] # [inline] pub fn as_field_expression (self) -> :: std :: option :: Option < FieldExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: FieldExpression (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `for_expression` ([`ForExpression`]), otherwise returns `None`"] # [inline] pub fn as_for_expression (self) -> :: std :: option :: Option < ForExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ForExpression (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `gen_block` ([`GenBlock`]), otherwise returns `None`"] # [inline] pub fn as_gen_block (self) -> :: std :: option :: Option < GenBlock < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: GenBlock (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `generic_function` ([`GenericFunction`]), otherwise returns `None`"] # [inline] pub fn as_generic_function (self) -> :: std :: option :: Option < GenericFunction < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: GenericFunction (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`"] # [inline] pub fn as_identifier (self) -> :: std :: option :: Option < Identifier < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Identifier (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `if_expression` ([`IfExpression`]), otherwise returns `None`"] # [inline] pub fn as_if_expression (self) -> :: std :: option :: Option < IfExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: IfExpression (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `index_expression` ([`IndexExpression`]), otherwise returns `None`"] # [inline] pub fn as_index_expression (self) -> :: std :: option :: Option < IndexExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: IndexExpression (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `loop_expression` ([`LoopExpression`]), otherwise returns `None`"] # [inline] pub fn as_loop_expression (self) -> :: std :: option :: Option < LoopExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: LoopExpression (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `macro_invocation` ([`MacroInvocation`]), otherwise returns `None`"] # [inline] pub fn as_macro_invocation (self) -> :: std :: option :: Option < MacroInvocation < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: MacroInvocation (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `match_expression` ([`MatchExpression`]), otherwise returns `None`"] # [inline] pub fn as_match_expression (self) -> :: std :: option :: Option < MatchExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: MatchExpression (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `metavariable` ([`Metavariable`]), otherwise returns `None`"] # [inline] pub fn as_metavariable (self) -> :: std :: option :: Option < Metavariable < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Metavariable (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `parenthesized_expression` ([`ParenthesizedExpression`]), otherwise returns `None`"] # [inline] pub fn as_parenthesized_expression (self) -> :: std :: option :: Option < ParenthesizedExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ParenthesizedExpression (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `reference_expression` ([`ReferenceExpression`]), otherwise returns `None`"] # [inline] pub fn as_reference_expression (self) -> :: std :: option :: Option < ReferenceExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ReferenceExpression (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `return_expression` ([`ReturnExpression`]), otherwise returns `None`"] # [inline] pub fn as_return_expression (self) -> :: std :: option :: Option < ReturnExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ReturnExpression (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `scoped_identifier` ([`ScopedIdentifier`]), otherwise returns `None`"] # [inline] pub fn as_scoped_identifier (self) -> :: std :: option :: Option < ScopedIdentifier < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ScopedIdentifier (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `self` ([`Self_`]), otherwise returns `None`"] # [inline] pub fn as_self (self) -> :: std :: option :: Option < Self_ < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Self_ (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `struct_expression` ([`StructExpression`]), otherwise returns `None`"] # [inline] pub fn as_struct_expression (self) -> :: std :: option :: Option < StructExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: StructExpression (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `try_block` ([`TryBlock`]), otherwise returns `None`"] # [inline] pub fn as_try_block (self) -> :: std :: option :: Option < TryBlock < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: TryBlock (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `try_expression` ([`TryExpression`]), otherwise returns `None`"] # [inline] pub fn as_try_expression (self) -> :: std :: option :: Option < TryExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: TryExpression (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `tuple_expression` ([`TupleExpression`]), otherwise returns `None`"] # [inline] pub fn as_tuple_expression (self) -> :: std :: option :: Option < TupleExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: TupleExpression (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `type_cast_expression` ([`TypeCastExpression`]), otherwise returns `None`"] # [inline] pub fn as_type_cast_expression (self) -> :: std :: option :: Option < TypeCastExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: TypeCastExpression (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `unary_expression` ([`UnaryExpression`]), otherwise returns `None`"] # [inline] pub fn as_unary_expression (self) -> :: std :: option :: Option < UnaryExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: UnaryExpression (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `unit_expression` ([`UnitExpression`]), otherwise returns `None`"] # [inline] pub fn as_unit_expression (self) -> :: std :: option :: Option < UnitExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: UnitExpression (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `unsafe_block` ([`UnsafeBlock`]), otherwise returns `None`"] # [inline] pub fn as_unsafe_block (self) -> :: std :: option :: Option < UnsafeBlock < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: UnsafeBlock (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `while_expression` ([`WhileExpression`]), otherwise returns `None`"] # [inline] pub fn as_while_expression (self) -> :: std :: option :: Option < WhileExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: WhileExpression (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `yield_expression` ([`YieldExpression`]), otherwise returns `None`"] # [inline] pub fn as_yield_expression (self) -> :: std :: option :: Option < YieldExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: YieldExpression (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `boolean_literal` ([`BooleanLiteral`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_literal` ([`Literal < 'tree >`], from [`as_literal`](Self::as_literal))"] # [inline] pub fn as_boolean_literal (self) -> :: std :: option :: Option < BooleanLiteral < 'tree > > { self . as_literal () ? . as_boolean_literal () } # [doc = "Returns the node if it is of type `char_literal` ([`CharLiteral`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_literal` ([`Literal < 'tree >`], from [`as_literal`](Self::as_literal))"] # [inline] pub fn as_char_literal (self) -> :: std :: option :: Option < CharLiteral < 'tree > > { self . as_literal () ? . as_char_literal () } # [doc = "Returns the node if it is of type `float_literal` ([`FloatLiteral`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_literal` ([`Literal < 'tree >`], from [`as_literal`](Self::as_literal))"] # [inline] pub fn as_float_literal (self) -> :: std :: option :: Option < FloatLiteral < 'tree > > { self . as_literal () ? . as_float_literal () } # [doc = "Returns the node if it is of type `integer_literal` ([`IntegerLiteral`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_literal` ([`Literal < 'tree >`], from [`as_literal`](Self::as_literal))"] # [inline] pub fn as_integer_literal (self) -> :: std :: option :: Option < IntegerLiteral < 'tree > > { self . as_literal () ? . as_integer_literal () } # [doc = "Returns the node if it is of type `raw_string_literal` ([`RawStringLiteral`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_literal` ([`Literal < 'tree >`], from [`as_literal`](Self::as_literal))"] # [inline] pub fn as_raw_string_literal (self) -> :: std :: option :: Option < RawStringLiteral < 'tree > > { self . as_literal () ? . as_raw_string_literal () } # [doc = "Returns the node if it is of type `string_literal` ([`StringLiteral`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_literal` ([`Literal < 'tree >`], from [`as_literal`](Self::as_literal))"] # [inline] pub fn as_string_literal (self) -> :: std :: option :: Option < StringLiteral < 'tree > > { self . as_literal () ? . as_string_literal () } }
+    impl < 'tree > Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenBlock_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier_Self__StructExpression_TryBlock_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression < 'tree > { # [doc = "Returns the node if it is of type `_literal` ([`Literal`]), otherwise returns `None`"] # [inline] pub fn as_literal (self) -> :: std :: option :: Option < Literal < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Literal (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `array_expression` ([`ArrayExpression`]), otherwise returns `None`"] # [inline] pub fn as_array_expression (self) -> :: std :: option :: Option < ArrayExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ArrayExpression (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `assignment_expression` ([`AssignmentExpression`]), otherwise returns `None`"] # [inline] pub fn as_assignment_expression (self) -> :: std :: option :: Option < AssignmentExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: AssignmentExpression (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `async_block` ([`AsyncBlock`]), otherwise returns `None`"] # [inline] pub fn as_async_block (self) -> :: std :: option :: Option < AsyncBlock < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: AsyncBlock (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `await_expression` ([`AwaitExpression`]), otherwise returns `None`"] # [inline] pub fn as_await_expression (self) -> :: std :: option :: Option < AwaitExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: AwaitExpression (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `binary_expression` ([`BinaryExpression`]), otherwise returns `None`"] # [inline] pub fn as_binary_expression (self) -> :: std :: option :: Option < BinaryExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: BinaryExpression (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `block` ([`Block`]), otherwise returns `None`"] # [inline] pub fn as_block (self) -> :: std :: option :: Option < Block < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Block (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `break_expression` ([`BreakExpression`]), otherwise returns `None`"] # [inline] pub fn as_break_expression (self) -> :: std :: option :: Option < BreakExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: BreakExpression (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `call_expression` ([`CallExpression`]), otherwise returns `None`"] # [inline] pub fn as_call_expression (self) -> :: std :: option :: Option < CallExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: CallExpression (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `closure_expression` ([`ClosureExpression`]), otherwise returns `None`"] # [inline] pub fn as_closure_expression (self) -> :: std :: option :: Option < ClosureExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ClosureExpression (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `compound_assignment_expr` ([`CompoundAssignmentExpr`]), otherwise returns `None`"] # [inline] pub fn as_compound_assignment_expr (self) -> :: std :: option :: Option < CompoundAssignmentExpr < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: CompoundAssignmentExpr (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `const_block` ([`ConstBlock`]), otherwise returns `None`"] # [inline] pub fn as_const_block (self) -> :: std :: option :: Option < ConstBlock < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ConstBlock (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `continue_expression` ([`ContinueExpression`]), otherwise returns `None`"] # [inline] pub fn as_continue_expression (self) -> :: std :: option :: Option < ContinueExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ContinueExpression (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `field_expression` ([`FieldExpression`]), otherwise returns `None`"] # [inline] pub fn as_field_expression (self) -> :: std :: option :: Option < FieldExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: FieldExpression (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `for_expression` ([`ForExpression`]), otherwise returns `None`"] # [inline] pub fn as_for_expression (self) -> :: std :: option :: Option < ForExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ForExpression (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `gen_block` ([`GenBlock`]), otherwise returns `None`"] # [inline] pub fn as_gen_block (self) -> :: std :: option :: Option < GenBlock < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: GenBlock (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `generic_function` ([`GenericFunction`]), otherwise returns `None`"] # [inline] pub fn as_generic_function (self) -> :: std :: option :: Option < GenericFunction < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: GenericFunction (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`"] # [inline] pub fn as_identifier (self) -> :: std :: option :: Option < Identifier < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Identifier (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `if_expression` ([`IfExpression`]), otherwise returns `None`"] # [inline] pub fn as_if_expression (self) -> :: std :: option :: Option < IfExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: IfExpression (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `index_expression` ([`IndexExpression`]), otherwise returns `None`"] # [inline] pub fn as_index_expression (self) -> :: std :: option :: Option < IndexExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: IndexExpression (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `loop_expression` ([`LoopExpression`]), otherwise returns `None`"] # [inline] pub fn as_loop_expression (self) -> :: std :: option :: Option < LoopExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: LoopExpression (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `macro_invocation` ([`MacroInvocation`]), otherwise returns `None`"] # [inline] pub fn as_macro_invocation (self) -> :: std :: option :: Option < MacroInvocation < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: MacroInvocation (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `match_expression` ([`MatchExpression`]), otherwise returns `None`"] # [inline] pub fn as_match_expression (self) -> :: std :: option :: Option < MatchExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: MatchExpression (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `metavariable` ([`Metavariable`]), otherwise returns `None`"] # [inline] pub fn as_metavariable (self) -> :: std :: option :: Option < Metavariable < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Metavariable (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `parenthesized_expression` ([`ParenthesizedExpression`]), otherwise returns `None`"] # [inline] pub fn as_parenthesized_expression (self) -> :: std :: option :: Option < ParenthesizedExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ParenthesizedExpression (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `reference_expression` ([`ReferenceExpression`]), otherwise returns `None`"] # [inline] pub fn as_reference_expression (self) -> :: std :: option :: Option < ReferenceExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ReferenceExpression (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `return_expression` ([`ReturnExpression`]), otherwise returns `None`"] # [inline] pub fn as_return_expression (self) -> :: std :: option :: Option < ReturnExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ReturnExpression (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `scoped_identifier` ([`ScopedIdentifier`]), otherwise returns `None`"] # [inline] pub fn as_scoped_identifier (self) -> :: std :: option :: Option < ScopedIdentifier < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ScopedIdentifier (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `self` ([`Self_`]), otherwise returns `None`"] # [inline] pub fn as_self (self) -> :: std :: option :: Option < Self_ < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Self_ (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `struct_expression` ([`StructExpression`]), otherwise returns `None`"] # [inline] pub fn as_struct_expression (self) -> :: std :: option :: Option < StructExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: StructExpression (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `try_block` ([`TryBlock`]), otherwise returns `None`"] # [inline] pub fn as_try_block (self) -> :: std :: option :: Option < TryBlock < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: TryBlock (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `try_expression` ([`TryExpression`]), otherwise returns `None`"] # [inline] pub fn as_try_expression (self) -> :: std :: option :: Option < TryExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: TryExpression (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `tuple_expression` ([`TupleExpression`]), otherwise returns `None`"] # [inline] pub fn as_tuple_expression (self) -> :: std :: option :: Option < TupleExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: TupleExpression (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `type_cast_expression` ([`TypeCastExpression`]), otherwise returns `None`"] # [inline] pub fn as_type_cast_expression (self) -> :: std :: option :: Option < TypeCastExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: TypeCastExpression (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `unary_expression` ([`UnaryExpression`]), otherwise returns `None`"] # [inline] pub fn as_unary_expression (self) -> :: std :: option :: Option < UnaryExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: UnaryExpression (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `unit_expression` ([`UnitExpression`]), otherwise returns `None`"] # [inline] pub fn as_unit_expression (self) -> :: std :: option :: Option < UnitExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: UnitExpression (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `unsafe_block` ([`UnsafeBlock`]), otherwise returns `None`"] # [inline] pub fn as_unsafe_block (self) -> :: std :: option :: Option < UnsafeBlock < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: UnsafeBlock (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `while_expression` ([`WhileExpression`]), otherwise returns `None`"] # [inline] pub fn as_while_expression (self) -> :: std :: option :: Option < WhileExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: WhileExpression (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `yield_expression` ([`YieldExpression`]), otherwise returns `None`"] # [inline] pub fn as_yield_expression (self) -> :: std :: option :: Option < YieldExpression < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: YieldExpression (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `boolean_literal` ([`BooleanLiteral`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_literal` ([`Literal < 'tree >`], from [`as_literal`](Self::as_literal))"] # [inline] pub fn as_boolean_literal (self) -> :: std :: option :: Option < BooleanLiteral < 'tree > > { self . as_literal () ? . as_boolean_literal () } # [doc = "Returns the node if it is of type `char_literal` ([`CharLiteral`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_literal` ([`Literal < 'tree >`], from [`as_literal`](Self::as_literal))"] # [inline] pub fn as_char_literal (self) -> :: std :: option :: Option < CharLiteral < 'tree > > { self . as_literal () ? . as_char_literal () } # [doc = "Returns the node if it is of type `float_literal` ([`FloatLiteral`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_literal` ([`Literal < 'tree >`], from [`as_literal`](Self::as_literal))"] # [inline] pub fn as_float_literal (self) -> :: std :: option :: Option < FloatLiteral < 'tree > > { self . as_literal () ? . as_float_literal () } # [doc = "Returns the node if it is of type `integer_literal` ([`IntegerLiteral`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_literal` ([`Literal < 'tree >`], from [`as_literal`](Self::as_literal))"] # [inline] pub fn as_integer_literal (self) -> :: std :: option :: Option < IntegerLiteral < 'tree > > { self . as_literal () ? . as_integer_literal () } # [doc = "Returns the node if it is of type `raw_string_literal` ([`RawStringLiteral`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_literal` ([`Literal < 'tree >`], from [`as_literal`](Self::as_literal))"] # [inline] pub fn as_raw_string_literal (self) -> :: std :: option :: Option < RawStringLiteral < 'tree > > { self . as_literal () ? . as_raw_string_literal () } # [doc = "Returns the node if it is of type `string_literal` ([`StringLiteral`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_literal` ([`Literal < 'tree >`], from [`as_literal`](Self::as_literal))"] # [inline] pub fn as_string_literal (self) -> :: std :: option :: Option < StringLiteral < 'tree > > { self . as_literal () ? . as_string_literal () } }
     #[automatically_derived]
     impl < 'tree > :: type_sitter :: Node < 'tree > for Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenBlock_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier_Self__StructExpression_TryBlock_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression < 'tree > { type WithLifetime < 'a > = Literal_ArrayExpression_AssignmentExpression_AsyncBlock_AwaitExpression_BinaryExpression_Block_BreakExpression_CallExpression_ClosureExpression_CompoundAssignmentExpr_ConstBlock_ContinueExpression_FieldExpression_ForExpression_GenBlock_GenericFunction_Identifier_IfExpression_IndexExpression_LoopExpression_MacroInvocation_MatchExpression_Metavariable_ParenthesizedExpression_ReferenceExpression_ReturnExpression_ScopedIdentifier_Self__StructExpression_TryBlock_TryExpression_TupleExpression_TypeCastExpression_UnaryExpression_UnitExpression_UnsafeBlock_WhileExpression_YieldExpression < 'a > ; const KIND : & 'static str = "{_literal | array_expression | assignment_expression | async_block | await_expression | binary_expression | block | break_expression | call_expression | closure_expression | compound_assignment_expr | const_block | continue_expression | field_expression | for_expression | gen_block | generic_function | identifier | if_expression | index_expression | loop_expression | macro_invocation | match_expression | metavariable | parenthesized_expression | reference_expression | return_expression | scoped_identifier | self | struct_expression | try_block | try_expression | tuple_expression | type_cast_expression | unary_expression | unit_expression | unsafe_block | while_expression | yield_expression}" ; # [inline] fn try_from_raw (node : :: type_sitter :: raw :: Node < 'tree >) -> :: type_sitter :: NodeResult < 'tree , Self > { if let Ok (this) = < Literal < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: Literal (this)) ; } if let Ok (this) = < ArrayExpression < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: ArrayExpression (this)) ; } if let Ok (this) = < AssignmentExpression < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: AssignmentExpression (this)) ; } if let Ok (this) = < AsyncBlock < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: AsyncBlock (this)) ; } if let Ok (this) = < AwaitExpression < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: AwaitExpression (this)) ; } if let Ok (this) = < BinaryExpression < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: BinaryExpression (this)) ; } if let Ok (this) = < Block < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: Block (this)) ; } if let Ok (this) = < BreakExpression < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: BreakExpression (this)) ; } if let Ok (this) = < CallExpression < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: CallExpression (this)) ; } if let Ok (this) = < ClosureExpression < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: ClosureExpression (this)) ; } if let Ok (this) = < CompoundAssignmentExpr < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: CompoundAssignmentExpr (this)) ; } if let Ok (this) = < ConstBlock < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: ConstBlock (this)) ; } if let Ok (this) = < ContinueExpression < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: ContinueExpression (this)) ; } if let Ok (this) = < FieldExpression < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: FieldExpression (this)) ; } if let Ok (this) = < ForExpression < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: ForExpression (this)) ; } if let Ok (this) = < GenBlock < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: GenBlock (this)) ; } if let Ok (this) = < GenericFunction < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: GenericFunction (this)) ; } if let Ok (this) = < Identifier < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: Identifier (this)) ; } if let Ok (this) = < IfExpression < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: IfExpression (this)) ; } if let Ok (this) = < IndexExpression < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: IndexExpression (this)) ; } if let Ok (this) = < LoopExpression < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: LoopExpression (this)) ; } if let Ok (this) = < MacroInvocation < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: MacroInvocation (this)) ; } if let Ok (this) = < MatchExpression < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: MatchExpression (this)) ; } if let Ok (this) = < Metavariable < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: Metavariable (this)) ; } if let Ok (this) = < ParenthesizedExpression < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: ParenthesizedExpression (this)) ; } if let Ok (this) = < ReferenceExpression < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: ReferenceExpression (this)) ; } if let Ok (this) = < ReturnExpression < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: ReturnExpression (this)) ; } if let Ok (this) = < ScopedIdentifier < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: ScopedIdentifier (this)) ; } if let Ok (this) = < Self_ < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: Self_ (this)) ; } if let Ok (this) = < StructExpression < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: StructExpression (this)) ; } if let Ok (this) = < TryBlock < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: TryBlock (this)) ; } if let Ok (this) = < TryExpression < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: TryExpression (this)) ; } if let Ok (this) = < TupleExpression < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: TupleExpression (this)) ; } if let Ok (this) = < TypeCastExpression < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: TypeCastExpression (this)) ; } if let Ok (this) = < UnaryExpression < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: UnaryExpression (this)) ; } if let Ok (this) = < UnitExpression < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: UnitExpression (this)) ; } if let Ok (this) = < UnsafeBlock < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: UnsafeBlock (this)) ; } if let Ok (this) = < WhileExpression < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: WhileExpression (this)) ; } if let Ok (this) = < YieldExpression < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: YieldExpression (this)) ; } Err (:: type_sitter :: IncorrectKind :: new :: < Self > (node)) } # [inline] fn raw (& self) -> & :: type_sitter :: raw :: Node < 'tree > { match self { Self :: Literal (x) => :: type_sitter :: Node :: raw (x) , Self :: ArrayExpression (x) => :: type_sitter :: Node :: raw (x) , Self :: AssignmentExpression (x) => :: type_sitter :: Node :: raw (x) , Self :: AsyncBlock (x) => :: type_sitter :: Node :: raw (x) , Self :: AwaitExpression (x) => :: type_sitter :: Node :: raw (x) , Self :: BinaryExpression (x) => :: type_sitter :: Node :: raw (x) , Self :: Block (x) => :: type_sitter :: Node :: raw (x) , Self :: BreakExpression (x) => :: type_sitter :: Node :: raw (x) , Self :: CallExpression (x) => :: type_sitter :: Node :: raw (x) , Self :: ClosureExpression (x) => :: type_sitter :: Node :: raw (x) , Self :: CompoundAssignmentExpr (x) => :: type_sitter :: Node :: raw (x) , Self :: ConstBlock (x) => :: type_sitter :: Node :: raw (x) , Self :: ContinueExpression (x) => :: type_sitter :: Node :: raw (x) , Self :: FieldExpression (x) => :: type_sitter :: Node :: raw (x) , Self :: ForExpression (x) => :: type_sitter :: Node :: raw (x) , Self :: GenBlock (x) => :: type_sitter :: Node :: raw (x) , Self :: GenericFunction (x) => :: type_sitter :: Node :: raw (x) , Self :: Identifier (x) => :: type_sitter :: Node :: raw (x) , Self :: IfExpression (x) => :: type_sitter :: Node :: raw (x) , Self :: IndexExpression (x) => :: type_sitter :: Node :: raw (x) , Self :: LoopExpression (x) => :: type_sitter :: Node :: raw (x) , Self :: MacroInvocation (x) => :: type_sitter :: Node :: raw (x) , Self :: MatchExpression (x) => :: type_sitter :: Node :: raw (x) , Self :: Metavariable (x) => :: type_sitter :: Node :: raw (x) , Self :: ParenthesizedExpression (x) => :: type_sitter :: Node :: raw (x) , Self :: ReferenceExpression (x) => :: type_sitter :: Node :: raw (x) , Self :: ReturnExpression (x) => :: type_sitter :: Node :: raw (x) , Self :: ScopedIdentifier (x) => :: type_sitter :: Node :: raw (x) , Self :: Self_ (x) => :: type_sitter :: Node :: raw (x) , Self :: StructExpression (x) => :: type_sitter :: Node :: raw (x) , Self :: TryBlock (x) => :: type_sitter :: Node :: raw (x) , Self :: TryExpression (x) => :: type_sitter :: Node :: raw (x) , Self :: TupleExpression (x) => :: type_sitter :: Node :: raw (x) , Self :: TypeCastExpression (x) => :: type_sitter :: Node :: raw (x) , Self :: UnaryExpression (x) => :: type_sitter :: Node :: raw (x) , Self :: UnitExpression (x) => :: type_sitter :: Node :: raw (x) , Self :: UnsafeBlock (x) => :: type_sitter :: Node :: raw (x) , Self :: WhileExpression (x) => :: type_sitter :: Node :: raw (x) , Self :: YieldExpression (x) => :: type_sitter :: Node :: raw (x) , } } # [inline] fn raw_mut (& mut self) -> & mut :: type_sitter :: raw :: Node < 'tree > { match self { Self :: Literal (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: ArrayExpression (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: AssignmentExpression (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: AsyncBlock (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: AwaitExpression (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: BinaryExpression (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: Block (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: BreakExpression (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: CallExpression (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: ClosureExpression (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: CompoundAssignmentExpr (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: ConstBlock (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: ContinueExpression (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: FieldExpression (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: ForExpression (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: GenBlock (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: GenericFunction (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: Identifier (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: IfExpression (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: IndexExpression (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: LoopExpression (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: MacroInvocation (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: MatchExpression (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: Metavariable (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: ParenthesizedExpression (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: ReferenceExpression (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: ReturnExpression (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: ScopedIdentifier (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: Self_ (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: StructExpression (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: TryBlock (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: TryExpression (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: TupleExpression (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: TypeCastExpression (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: UnaryExpression (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: UnitExpression (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: UnsafeBlock (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: WhileExpression (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: YieldExpression (x) => :: type_sitter :: Node :: raw_mut (x) , } } # [inline] fn into_raw (self) -> :: type_sitter :: raw :: Node < 'tree > { match self { Self :: Literal (x) => x . into_raw () , Self :: ArrayExpression (x) => x . into_raw () , Self :: AssignmentExpression (x) => x . into_raw () , Self :: AsyncBlock (x) => x . into_raw () , Self :: AwaitExpression (x) => x . into_raw () , Self :: BinaryExpression (x) => x . into_raw () , Self :: Block (x) => x . into_raw () , Self :: BreakExpression (x) => x . into_raw () , Self :: CallExpression (x) => x . into_raw () , Self :: ClosureExpression (x) => x . into_raw () , Self :: CompoundAssignmentExpr (x) => x . into_raw () , Self :: ConstBlock (x) => x . into_raw () , Self :: ContinueExpression (x) => x . into_raw () , Self :: FieldExpression (x) => x . into_raw () , Self :: ForExpression (x) => x . into_raw () , Self :: GenBlock (x) => x . into_raw () , Self :: GenericFunction (x) => x . into_raw () , Self :: Identifier (x) => x . into_raw () , Self :: IfExpression (x) => x . into_raw () , Self :: IndexExpression (x) => x . into_raw () , Self :: LoopExpression (x) => x . into_raw () , Self :: MacroInvocation (x) => x . into_raw () , Self :: MatchExpression (x) => x . into_raw () , Self :: Metavariable (x) => x . into_raw () , Self :: ParenthesizedExpression (x) => x . into_raw () , Self :: ReferenceExpression (x) => x . into_raw () , Self :: ReturnExpression (x) => x . into_raw () , Self :: ScopedIdentifier (x) => x . into_raw () , Self :: Self_ (x) => x . into_raw () , Self :: StructExpression (x) => x . into_raw () , Self :: TryBlock (x) => x . into_raw () , Self :: TryExpression (x) => x . into_raw () , Self :: TupleExpression (x) => x . into_raw () , Self :: TypeCastExpression (x) => x . into_raw () , Self :: UnaryExpression (x) => x . into_raw () , Self :: UnitExpression (x) => x . into_raw () , Self :: UnsafeBlock (x) => x . into_raw () , Self :: WhileExpression (x) => x . into_raw () , Self :: YieldExpression (x) => x . into_raw () , } } }
     #[doc = "One of `{_literal | crate | identifier | metavariable | mutable_specifier | primitive_type | self | super | token_binding_pattern | token_repetition_pattern | token_tree_pattern}`:\n- [`Literal`]\n- [`Crate`]\n- [`Identifier`]\n- [`Metavariable`]\n- [`MutableSpecifier`]\n- [`PrimitiveType`]\n- [`Self_`]\n- [`Super`]\n- [`TokenBindingPattern`]\n- [`TokenRepetitionPattern`]\n- [`TokenTreePattern`]"]
@@ -21218,7 +21218,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     #[allow(unused)]
-    impl < 'tree > Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType_Self__Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern < 'tree > { # [doc = "Returns the node if it is of type `_literal` ([`Literal`]), otherwise returns `None`"] # [inline] pub fn as_literal (self) -> :: std :: option :: Option < Literal < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Literal (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `crate` ([`Crate`]), otherwise returns `None`"] # [inline] pub fn as_crate (self) -> :: std :: option :: Option < Crate < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Crate (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`"] # [inline] pub fn as_identifier (self) -> :: std :: option :: Option < Identifier < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Identifier (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `metavariable` ([`Metavariable`]), otherwise returns `None`"] # [inline] pub fn as_metavariable (self) -> :: std :: option :: Option < Metavariable < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Metavariable (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `mutable_specifier` ([`MutableSpecifier`]), otherwise returns `None`"] # [inline] pub fn as_mutable_specifier (self) -> :: std :: option :: Option < MutableSpecifier < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: MutableSpecifier (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `primitive_type` ([`PrimitiveType`]), otherwise returns `None`"] # [inline] pub fn as_primitive_type (self) -> :: std :: option :: Option < PrimitiveType < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: PrimitiveType (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `self` ([`Self_`]), otherwise returns `None`"] # [inline] pub fn as_self (self) -> :: std :: option :: Option < Self_ < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Self_ (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `super` ([`Super`]), otherwise returns `None`"] # [inline] pub fn as_super (self) -> :: std :: option :: Option < Super < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Super (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `token_binding_pattern` ([`TokenBindingPattern`]), otherwise returns `None`"] # [inline] pub fn as_token_binding_pattern (self) -> :: std :: option :: Option < TokenBindingPattern < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: TokenBindingPattern (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `token_repetition_pattern` ([`TokenRepetitionPattern`]), otherwise returns `None`"] # [inline] pub fn as_token_repetition_pattern (self) -> :: std :: option :: Option < TokenRepetitionPattern < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: TokenRepetitionPattern (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `token_tree_pattern` ([`TokenTreePattern`]), otherwise returns `None`"] # [inline] pub fn as_token_tree_pattern (self) -> :: std :: option :: Option < TokenTreePattern < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: TokenTreePattern (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `boolean_literal` ([`BooleanLiteral`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_literal` ([`Literal < 'tree >`], from [`as_literal`](Self::as_literal))"] # [inline] pub fn as_boolean_literal (self) -> :: std :: option :: Option < BooleanLiteral < 'tree > > { self . as_literal () ? . as_boolean_literal () } # [doc = "Returns the node if it is of type `char_literal` ([`CharLiteral`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_literal` ([`Literal < 'tree >`], from [`as_literal`](Self::as_literal))"] # [inline] pub fn as_char_literal (self) -> :: std :: option :: Option < CharLiteral < 'tree > > { self . as_literal () ? . as_char_literal () } # [doc = "Returns the node if it is of type `float_literal` ([`FloatLiteral`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_literal` ([`Literal < 'tree >`], from [`as_literal`](Self::as_literal))"] # [inline] pub fn as_float_literal (self) -> :: std :: option :: Option < FloatLiteral < 'tree > > { self . as_literal () ? . as_float_literal () } # [doc = "Returns the node if it is of type `integer_literal` ([`IntegerLiteral`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_literal` ([`Literal < 'tree >`], from [`as_literal`](Self::as_literal))"] # [inline] pub fn as_integer_literal (self) -> :: std :: option :: Option < IntegerLiteral < 'tree > > { self . as_literal () ? . as_integer_literal () } # [doc = "Returns the node if it is of type `raw_string_literal` ([`RawStringLiteral`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_literal` ([`Literal < 'tree >`], from [`as_literal`](Self::as_literal))"] # [inline] pub fn as_raw_string_literal (self) -> :: std :: option :: Option < RawStringLiteral < 'tree > > { self . as_literal () ? . as_raw_string_literal () } # [doc = "Returns the node if it is of type `string_literal` ([`StringLiteral`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_literal` ([`Literal < 'tree >`], from [`as_literal`](Self::as_literal))"] # [inline] pub fn as_string_literal (self) -> :: std :: option :: Option < StringLiteral < 'tree > > { self . as_literal () ? . as_string_literal () } }
+    impl < 'tree > Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType_Self__Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern < 'tree > { # [doc = "Returns the node if it is of type `_literal` ([`Literal`]), otherwise returns `None`"] # [inline] pub fn as_literal (self) -> :: std :: option :: Option < Literal < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Literal (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `crate` ([`Crate`]), otherwise returns `None`"] # [inline] pub fn as_crate (self) -> :: std :: option :: Option < Crate < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Crate (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`"] # [inline] pub fn as_identifier (self) -> :: std :: option :: Option < Identifier < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Identifier (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `metavariable` ([`Metavariable`]), otherwise returns `None`"] # [inline] pub fn as_metavariable (self) -> :: std :: option :: Option < Metavariable < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Metavariable (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `mutable_specifier` ([`MutableSpecifier`]), otherwise returns `None`"] # [inline] pub fn as_mutable_specifier (self) -> :: std :: option :: Option < MutableSpecifier < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: MutableSpecifier (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `primitive_type` ([`PrimitiveType`]), otherwise returns `None`"] # [inline] pub fn as_primitive_type (self) -> :: std :: option :: Option < PrimitiveType < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: PrimitiveType (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `self` ([`Self_`]), otherwise returns `None`"] # [inline] pub fn as_self (self) -> :: std :: option :: Option < Self_ < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Self_ (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `super` ([`Super`]), otherwise returns `None`"] # [inline] pub fn as_super (self) -> :: std :: option :: Option < Super < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Super (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `token_binding_pattern` ([`TokenBindingPattern`]), otherwise returns `None`"] # [inline] pub fn as_token_binding_pattern (self) -> :: std :: option :: Option < TokenBindingPattern < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: TokenBindingPattern (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `token_repetition_pattern` ([`TokenRepetitionPattern`]), otherwise returns `None`"] # [inline] pub fn as_token_repetition_pattern (self) -> :: std :: option :: Option < TokenRepetitionPattern < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: TokenRepetitionPattern (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `token_tree_pattern` ([`TokenTreePattern`]), otherwise returns `None`"] # [inline] pub fn as_token_tree_pattern (self) -> :: std :: option :: Option < TokenTreePattern < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: TokenTreePattern (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `boolean_literal` ([`BooleanLiteral`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_literal` ([`Literal < 'tree >`], from [`as_literal`](Self::as_literal))"] # [inline] pub fn as_boolean_literal (self) -> :: std :: option :: Option < BooleanLiteral < 'tree > > { self . as_literal () ? . as_boolean_literal () } # [doc = "Returns the node if it is of type `char_literal` ([`CharLiteral`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_literal` ([`Literal < 'tree >`], from [`as_literal`](Self::as_literal))"] # [inline] pub fn as_char_literal (self) -> :: std :: option :: Option < CharLiteral < 'tree > > { self . as_literal () ? . as_char_literal () } # [doc = "Returns the node if it is of type `float_literal` ([`FloatLiteral`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_literal` ([`Literal < 'tree >`], from [`as_literal`](Self::as_literal))"] # [inline] pub fn as_float_literal (self) -> :: std :: option :: Option < FloatLiteral < 'tree > > { self . as_literal () ? . as_float_literal () } # [doc = "Returns the node if it is of type `integer_literal` ([`IntegerLiteral`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_literal` ([`Literal < 'tree >`], from [`as_literal`](Self::as_literal))"] # [inline] pub fn as_integer_literal (self) -> :: std :: option :: Option < IntegerLiteral < 'tree > > { self . as_literal () ? . as_integer_literal () } # [doc = "Returns the node if it is of type `raw_string_literal` ([`RawStringLiteral`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_literal` ([`Literal < 'tree >`], from [`as_literal`](Self::as_literal))"] # [inline] pub fn as_raw_string_literal (self) -> :: std :: option :: Option < RawStringLiteral < 'tree > > { self . as_literal () ? . as_raw_string_literal () } # [doc = "Returns the node if it is of type `string_literal` ([`StringLiteral`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_literal` ([`Literal < 'tree >`], from [`as_literal`](Self::as_literal))"] # [inline] pub fn as_string_literal (self) -> :: std :: option :: Option < StringLiteral < 'tree > > { self . as_literal () ? . as_string_literal () } }
     #[automatically_derived]
     impl < 'tree > :: type_sitter :: Node < 'tree > for Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType_Self__Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern < 'tree > { type WithLifetime < 'a > = Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType_Self__Super_TokenBindingPattern_TokenRepetitionPattern_TokenTreePattern < 'a > ; const KIND : & 'static str = "{_literal | crate | identifier | metavariable | mutable_specifier | primitive_type | self | super | token_binding_pattern | token_repetition_pattern | token_tree_pattern}" ; # [inline] fn try_from_raw (node : :: type_sitter :: raw :: Node < 'tree >) -> :: type_sitter :: NodeResult < 'tree , Self > { if let Ok (this) = < Literal < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: Literal (this)) ; } if let Ok (this) = < Crate < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: Crate (this)) ; } if let Ok (this) = < Identifier < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: Identifier (this)) ; } if let Ok (this) = < Metavariable < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: Metavariable (this)) ; } if let Ok (this) = < MutableSpecifier < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: MutableSpecifier (this)) ; } if let Ok (this) = < PrimitiveType < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: PrimitiveType (this)) ; } if let Ok (this) = < Self_ < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: Self_ (this)) ; } if let Ok (this) = < Super < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: Super (this)) ; } if let Ok (this) = < TokenBindingPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: TokenBindingPattern (this)) ; } if let Ok (this) = < TokenRepetitionPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: TokenRepetitionPattern (this)) ; } if let Ok (this) = < TokenTreePattern < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: TokenTreePattern (this)) ; } Err (:: type_sitter :: IncorrectKind :: new :: < Self > (node)) } # [inline] fn raw (& self) -> & :: type_sitter :: raw :: Node < 'tree > { match self { Self :: Literal (x) => :: type_sitter :: Node :: raw (x) , Self :: Crate (x) => :: type_sitter :: Node :: raw (x) , Self :: Identifier (x) => :: type_sitter :: Node :: raw (x) , Self :: Metavariable (x) => :: type_sitter :: Node :: raw (x) , Self :: MutableSpecifier (x) => :: type_sitter :: Node :: raw (x) , Self :: PrimitiveType (x) => :: type_sitter :: Node :: raw (x) , Self :: Self_ (x) => :: type_sitter :: Node :: raw (x) , Self :: Super (x) => :: type_sitter :: Node :: raw (x) , Self :: TokenBindingPattern (x) => :: type_sitter :: Node :: raw (x) , Self :: TokenRepetitionPattern (x) => :: type_sitter :: Node :: raw (x) , Self :: TokenTreePattern (x) => :: type_sitter :: Node :: raw (x) , } } # [inline] fn raw_mut (& mut self) -> & mut :: type_sitter :: raw :: Node < 'tree > { match self { Self :: Literal (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: Crate (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: Identifier (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: Metavariable (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: MutableSpecifier (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: PrimitiveType (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: Self_ (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: Super (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: TokenBindingPattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: TokenRepetitionPattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: TokenTreePattern (x) => :: type_sitter :: Node :: raw_mut (x) , } } # [inline] fn into_raw (self) -> :: type_sitter :: raw :: Node < 'tree > { match self { Self :: Literal (x) => x . into_raw () , Self :: Crate (x) => x . into_raw () , Self :: Identifier (x) => x . into_raw () , Self :: Metavariable (x) => x . into_raw () , Self :: MutableSpecifier (x) => x . into_raw () , Self :: PrimitiveType (x) => x . into_raw () , Self :: Self_ (x) => x . into_raw () , Self :: Super (x) => x . into_raw () , Self :: TokenBindingPattern (x) => x . into_raw () , Self :: TokenRepetitionPattern (x) => x . into_raw () , Self :: TokenTreePattern (x) => x . into_raw () , } } }
     #[doc = "One of `{_literal | crate | identifier | metavariable | mutable_specifier | primitive_type | self | super | token_repetition | token_tree}`:\n- [`Literal`]\n- [`Crate`]\n- [`Identifier`]\n- [`Metavariable`]\n- [`MutableSpecifier`]\n- [`PrimitiveType`]\n- [`Self_`]\n- [`Super`]\n- [`TokenRepetition`]\n- [`TokenTree`]"]
@@ -21240,7 +21240,7 @@ pub mod anon_unions {
     }
     #[automatically_derived]
     #[allow(unused)]
-    impl < 'tree > Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType_Self__Super_TokenRepetition_TokenTree < 'tree > { # [doc = "Returns the node if it is of type `_literal` ([`Literal`]), otherwise returns `None`"] # [inline] pub fn as_literal (self) -> :: std :: option :: Option < Literal < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Literal (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `crate` ([`Crate`]), otherwise returns `None`"] # [inline] pub fn as_crate (self) -> :: std :: option :: Option < Crate < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Crate (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`"] # [inline] pub fn as_identifier (self) -> :: std :: option :: Option < Identifier < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Identifier (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `metavariable` ([`Metavariable`]), otherwise returns `None`"] # [inline] pub fn as_metavariable (self) -> :: std :: option :: Option < Metavariable < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Metavariable (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `mutable_specifier` ([`MutableSpecifier`]), otherwise returns `None`"] # [inline] pub fn as_mutable_specifier (self) -> :: std :: option :: Option < MutableSpecifier < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: MutableSpecifier (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `primitive_type` ([`PrimitiveType`]), otherwise returns `None`"] # [inline] pub fn as_primitive_type (self) -> :: std :: option :: Option < PrimitiveType < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: PrimitiveType (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `self` ([`Self_`]), otherwise returns `None`"] # [inline] pub fn as_self (self) -> :: std :: option :: Option < Self_ < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Self_ (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `super` ([`Super`]), otherwise returns `None`"] # [inline] pub fn as_super (self) -> :: std :: option :: Option < Super < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Super (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `token_repetition` ([`TokenRepetition`]), otherwise returns `None`"] # [inline] pub fn as_token_repetition (self) -> :: std :: option :: Option < TokenRepetition < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: TokenRepetition (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `token_tree` ([`TokenTree`]), otherwise returns `None`"] # [inline] pub fn as_token_tree (self) -> :: std :: option :: Option < TokenTree < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: TokenTree (x) = self { Some (x) } else { None } } # [doc = "Returns the node if it is of type `boolean_literal` ([`BooleanLiteral`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_literal` ([`Literal < 'tree >`], from [`as_literal`](Self::as_literal))"] # [inline] pub fn as_boolean_literal (self) -> :: std :: option :: Option < BooleanLiteral < 'tree > > { self . as_literal () ? . as_boolean_literal () } # [doc = "Returns the node if it is of type `char_literal` ([`CharLiteral`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_literal` ([`Literal < 'tree >`], from [`as_literal`](Self::as_literal))"] # [inline] pub fn as_char_literal (self) -> :: std :: option :: Option < CharLiteral < 'tree > > { self . as_literal () ? . as_char_literal () } # [doc = "Returns the node if it is of type `float_literal` ([`FloatLiteral`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_literal` ([`Literal < 'tree >`], from [`as_literal`](Self::as_literal))"] # [inline] pub fn as_float_literal (self) -> :: std :: option :: Option < FloatLiteral < 'tree > > { self . as_literal () ? . as_float_literal () } # [doc = "Returns the node if it is of type `integer_literal` ([`IntegerLiteral`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_literal` ([`Literal < 'tree >`], from [`as_literal`](Self::as_literal))"] # [inline] pub fn as_integer_literal (self) -> :: std :: option :: Option < IntegerLiteral < 'tree > > { self . as_literal () ? . as_integer_literal () } # [doc = "Returns the node if it is of type `raw_string_literal` ([`RawStringLiteral`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_literal` ([`Literal < 'tree >`], from [`as_literal`](Self::as_literal))"] # [inline] pub fn as_raw_string_literal (self) -> :: std :: option :: Option < RawStringLiteral < 'tree > > { self . as_literal () ? . as_raw_string_literal () } # [doc = "Returns the node if it is of type `string_literal` ([`StringLiteral`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_literal` ([`Literal < 'tree >`], from [`as_literal`](Self::as_literal))"] # [inline] pub fn as_string_literal (self) -> :: std :: option :: Option < StringLiteral < 'tree > > { self . as_literal () ? . as_string_literal () } }
+    impl < 'tree > Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType_Self__Super_TokenRepetition_TokenTree < 'tree > { # [doc = "Returns the node if it is of type `_literal` ([`Literal`]), otherwise returns `None`"] # [inline] pub fn as_literal (self) -> :: std :: option :: Option < Literal < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Literal (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `crate` ([`Crate`]), otherwise returns `None`"] # [inline] pub fn as_crate (self) -> :: std :: option :: Option < Crate < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Crate (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`"] # [inline] pub fn as_identifier (self) -> :: std :: option :: Option < Identifier < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Identifier (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `metavariable` ([`Metavariable`]), otherwise returns `None`"] # [inline] pub fn as_metavariable (self) -> :: std :: option :: Option < Metavariable < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Metavariable (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `mutable_specifier` ([`MutableSpecifier`]), otherwise returns `None`"] # [inline] pub fn as_mutable_specifier (self) -> :: std :: option :: Option < MutableSpecifier < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: MutableSpecifier (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `primitive_type` ([`PrimitiveType`]), otherwise returns `None`"] # [inline] pub fn as_primitive_type (self) -> :: std :: option :: Option < PrimitiveType < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: PrimitiveType (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `self` ([`Self_`]), otherwise returns `None`"] # [inline] pub fn as_self (self) -> :: std :: option :: Option < Self_ < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Self_ (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `super` ([`Super`]), otherwise returns `None`"] # [inline] pub fn as_super (self) -> :: std :: option :: Option < Super < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Super (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `token_repetition` ([`TokenRepetition`]), otherwise returns `None`"] # [inline] pub fn as_token_repetition (self) -> :: std :: option :: Option < TokenRepetition < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: TokenRepetition (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `token_tree` ([`TokenTree`]), otherwise returns `None`"] # [inline] pub fn as_token_tree (self) -> :: std :: option :: Option < TokenTree < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: TokenTree (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `boolean_literal` ([`BooleanLiteral`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_literal` ([`Literal < 'tree >`], from [`as_literal`](Self::as_literal))"] # [inline] pub fn as_boolean_literal (self) -> :: std :: option :: Option < BooleanLiteral < 'tree > > { self . as_literal () ? . as_boolean_literal () } # [doc = "Returns the node if it is of type `char_literal` ([`CharLiteral`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_literal` ([`Literal < 'tree >`], from [`as_literal`](Self::as_literal))"] # [inline] pub fn as_char_literal (self) -> :: std :: option :: Option < CharLiteral < 'tree > > { self . as_literal () ? . as_char_literal () } # [doc = "Returns the node if it is of type `float_literal` ([`FloatLiteral`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_literal` ([`Literal < 'tree >`], from [`as_literal`](Self::as_literal))"] # [inline] pub fn as_float_literal (self) -> :: std :: option :: Option < FloatLiteral < 'tree > > { self . as_literal () ? . as_float_literal () } # [doc = "Returns the node if it is of type `integer_literal` ([`IntegerLiteral`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_literal` ([`Literal < 'tree >`], from [`as_literal`](Self::as_literal))"] # [inline] pub fn as_integer_literal (self) -> :: std :: option :: Option < IntegerLiteral < 'tree > > { self . as_literal () ? . as_integer_literal () } # [doc = "Returns the node if it is of type `raw_string_literal` ([`RawStringLiteral`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_literal` ([`Literal < 'tree >`], from [`as_literal`](Self::as_literal))"] # [inline] pub fn as_raw_string_literal (self) -> :: std :: option :: Option < RawStringLiteral < 'tree > > { self . as_literal () ? . as_raw_string_literal () } # [doc = "Returns the node if it is of type `string_literal` ([`StringLiteral`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_literal` ([`Literal < 'tree >`], from [`as_literal`](Self::as_literal))"] # [inline] pub fn as_string_literal (self) -> :: std :: option :: Option < StringLiteral < 'tree > > { self . as_literal () ? . as_string_literal () } }
     #[automatically_derived]
     impl < 'tree > :: type_sitter :: Node < 'tree > for Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType_Self__Super_TokenRepetition_TokenTree < 'tree > { type WithLifetime < 'a > = Literal_Crate_Identifier_Metavariable_MutableSpecifier_PrimitiveType_Self__Super_TokenRepetition_TokenTree < 'a > ; const KIND : & 'static str = "{_literal | crate | identifier | metavariable | mutable_specifier | primitive_type | self | super | token_repetition | token_tree}" ; # [inline] fn try_from_raw (node : :: type_sitter :: raw :: Node < 'tree >) -> :: type_sitter :: NodeResult < 'tree , Self > { if let Ok (this) = < Literal < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: Literal (this)) ; } if let Ok (this) = < Crate < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: Crate (this)) ; } if let Ok (this) = < Identifier < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: Identifier (this)) ; } if let Ok (this) = < Metavariable < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: Metavariable (this)) ; } if let Ok (this) = < MutableSpecifier < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: MutableSpecifier (this)) ; } if let Ok (this) = < PrimitiveType < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: PrimitiveType (this)) ; } if let Ok (this) = < Self_ < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: Self_ (this)) ; } if let Ok (this) = < Super < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: Super (this)) ; } if let Ok (this) = < TokenRepetition < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: TokenRepetition (this)) ; } if let Ok (this) = < TokenTree < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: TokenTree (this)) ; } Err (:: type_sitter :: IncorrectKind :: new :: < Self > (node)) } # [inline] fn raw (& self) -> & :: type_sitter :: raw :: Node < 'tree > { match self { Self :: Literal (x) => :: type_sitter :: Node :: raw (x) , Self :: Crate (x) => :: type_sitter :: Node :: raw (x) , Self :: Identifier (x) => :: type_sitter :: Node :: raw (x) , Self :: Metavariable (x) => :: type_sitter :: Node :: raw (x) , Self :: MutableSpecifier (x) => :: type_sitter :: Node :: raw (x) , Self :: PrimitiveType (x) => :: type_sitter :: Node :: raw (x) , Self :: Self_ (x) => :: type_sitter :: Node :: raw (x) , Self :: Super (x) => :: type_sitter :: Node :: raw (x) , Self :: TokenRepetition (x) => :: type_sitter :: Node :: raw (x) , Self :: TokenTree (x) => :: type_sitter :: Node :: raw (x) , } } # [inline] fn raw_mut (& mut self) -> & mut :: type_sitter :: raw :: Node < 'tree > { match self { Self :: Literal (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: Crate (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: Identifier (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: Metavariable (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: MutableSpecifier (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: PrimitiveType (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: Self_ (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: Super (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: TokenRepetition (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: TokenTree (x) => :: type_sitter :: Node :: raw_mut (x) , } } # [inline] fn into_raw (self) -> :: type_sitter :: raw :: Node < 'tree > { match self { Self :: Literal (x) => x . into_raw () , Self :: Crate (x) => x . into_raw () , Self :: Identifier (x) => x . into_raw () , Self :: Metavariable (x) => x . into_raw () , Self :: MutableSpecifier (x) => x . into_raw () , Self :: PrimitiveType (x) => x . into_raw () , Self :: Self_ (x) => x . into_raw () , Self :: Super (x) => x . into_raw () , Self :: TokenRepetition (x) => x . into_raw () , Self :: TokenTree (x) => x . into_raw () , } } }
     #[doc = "One of `{_literal | _type | block | lifetime | trait_bounds | type_binding}`:\n- [`Literal`]\n- [`Type`]\n- [`Block`]\n- [`Lifetime`]\n- [`TraitBounds`]\n- [`TypeBinding`]"]
@@ -21262,9 +21262,9 @@ pub mod anon_unions {
         pub fn as_literal(self) -> ::std::option::Option<Literal<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Literal(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `_type` ([`Type`]), otherwise returns `None`"]
@@ -21272,9 +21272,9 @@ pub mod anon_unions {
         pub fn as_type(self) -> ::std::option::Option<Type<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Type(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `block` ([`Block`]), otherwise returns `None`"]
@@ -21282,9 +21282,9 @@ pub mod anon_unions {
         pub fn as_block(self) -> ::std::option::Option<Block<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Block(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `lifetime` ([`Lifetime`]), otherwise returns `None`"]
@@ -21292,9 +21292,9 @@ pub mod anon_unions {
         pub fn as_lifetime(self) -> ::std::option::Option<Lifetime<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Lifetime(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `trait_bounds` ([`TraitBounds`]), otherwise returns `None`"]
@@ -21302,9 +21302,9 @@ pub mod anon_unions {
         pub fn as_trait_bounds(self) -> ::std::option::Option<TraitBounds<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::TraitBounds(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `type_binding` ([`TypeBinding`]), otherwise returns `None`"]
@@ -21312,9 +21312,9 @@ pub mod anon_unions {
         pub fn as_type_binding(self) -> ::std::option::Option<TypeBinding<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::TypeBinding(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `boolean_literal` ([`BooleanLiteral`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_literal` ([`Literal < 'tree >`], from [`as_literal`](Self::as_literal))"]
@@ -21525,9 +21525,9 @@ pub mod anon_unions {
         pub fn as_mod_eq(self) -> ::std::option::Option<symbols::ModEq<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::ModEq(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `&=` ([`symbols::AndEq`]), otherwise returns `None`"]
@@ -21535,9 +21535,9 @@ pub mod anon_unions {
         pub fn as_and_eq(self) -> ::std::option::Option<symbols::AndEq<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::AndEq(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `*=` ([`symbols::MulEq`]), otherwise returns `None`"]
@@ -21545,9 +21545,9 @@ pub mod anon_unions {
         pub fn as_mul_eq(self) -> ::std::option::Option<symbols::MulEq<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::MulEq(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `+=` ([`symbols::AddEq`]), otherwise returns `None`"]
@@ -21555,9 +21555,9 @@ pub mod anon_unions {
         pub fn as_add_eq(self) -> ::std::option::Option<symbols::AddEq<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::AddEq(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `-=` ([`symbols::SubEq`]), otherwise returns `None`"]
@@ -21565,9 +21565,9 @@ pub mod anon_unions {
         pub fn as_sub_eq(self) -> ::std::option::Option<symbols::SubEq<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::SubEq(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `/=` ([`symbols::DivEq`]), otherwise returns `None`"]
@@ -21575,9 +21575,9 @@ pub mod anon_unions {
         pub fn as_div_eq(self) -> ::std::option::Option<symbols::DivEq<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::DivEq(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `<<=` ([`symbols::LtLtEq`]), otherwise returns `None`"]
@@ -21585,9 +21585,9 @@ pub mod anon_unions {
         pub fn as_lt_lt_eq(self) -> ::std::option::Option<symbols::LtLtEq<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::LtLtEq(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `>>=` ([`symbols::GtGtEq`]), otherwise returns `None`"]
@@ -21595,9 +21595,9 @@ pub mod anon_unions {
         pub fn as_gt_gt_eq(self) -> ::std::option::Option<symbols::GtGtEq<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::GtGtEq(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `^=` ([`symbols::BitXorEq`]), otherwise returns `None`"]
@@ -21605,9 +21605,9 @@ pub mod anon_unions {
         pub fn as_bit_xor_eq(self) -> ::std::option::Option<symbols::BitXorEq<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::BitXorEq(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `|=` ([`symbols::OrEq`]), otherwise returns `None`"]
@@ -21615,9 +21615,9 @@ pub mod anon_unions {
         pub fn as_or_eq(self) -> ::std::option::Option<symbols::OrEq<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::OrEq(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
     }
@@ -21744,9 +21744,9 @@ pub mod anon_unions {
         pub fn as_mutable_specifier(self) -> ::std::option::Option<MutableSpecifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::MutableSpecifier(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `visibility_modifier` ([`VisibilityModifier`]), otherwise returns `None`"]
@@ -21754,9 +21754,9 @@ pub mod anon_unions {
         pub fn as_visibility_modifier(self) -> ::std::option::Option<VisibilityModifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::VisibilityModifier(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
     }
@@ -21839,9 +21839,9 @@ pub mod anon_unions {
         pub fn as_not_eq(self) -> ::std::option::Option<symbols::NotEq<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::NotEq(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `%` ([`symbols::Mod`]), otherwise returns `None`"]
@@ -21849,9 +21849,9 @@ pub mod anon_unions {
         pub fn as_mod(self) -> ::std::option::Option<symbols::Mod<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Mod(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `&` ([`symbols::And`]), otherwise returns `None`"]
@@ -21859,9 +21859,9 @@ pub mod anon_unions {
         pub fn as_and(self) -> ::std::option::Option<symbols::And<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::And(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `&&` ([`symbols::AndAnd`]), otherwise returns `None`"]
@@ -21869,9 +21869,9 @@ pub mod anon_unions {
         pub fn as_and_and(self) -> ::std::option::Option<symbols::AndAnd<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::AndAnd(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `*` ([`symbols::Mul`]), otherwise returns `None`"]
@@ -21879,9 +21879,9 @@ pub mod anon_unions {
         pub fn as_mul(self) -> ::std::option::Option<symbols::Mul<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Mul(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `+` ([`symbols::Add`]), otherwise returns `None`"]
@@ -21889,9 +21889,9 @@ pub mod anon_unions {
         pub fn as_add(self) -> ::std::option::Option<symbols::Add<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Add(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `-` ([`symbols::Sub`]), otherwise returns `None`"]
@@ -21899,9 +21899,9 @@ pub mod anon_unions {
         pub fn as_sub(self) -> ::std::option::Option<symbols::Sub<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Sub(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `/` ([`symbols::Div`]), otherwise returns `None`"]
@@ -21909,9 +21909,9 @@ pub mod anon_unions {
         pub fn as_div(self) -> ::std::option::Option<symbols::Div<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Div(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `<` ([`symbols::Lt`]), otherwise returns `None`"]
@@ -21919,9 +21919,9 @@ pub mod anon_unions {
         pub fn as_lt(self) -> ::std::option::Option<symbols::Lt<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Lt(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `<<` ([`symbols::LtLt`]), otherwise returns `None`"]
@@ -21929,9 +21929,9 @@ pub mod anon_unions {
         pub fn as_lt_lt(self) -> ::std::option::Option<symbols::LtLt<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::LtLt(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `<=` ([`symbols::LtEq`]), otherwise returns `None`"]
@@ -21939,9 +21939,9 @@ pub mod anon_unions {
         pub fn as_lt_eq(self) -> ::std::option::Option<symbols::LtEq<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::LtEq(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `==` ([`symbols::EqEq`]), otherwise returns `None`"]
@@ -21949,9 +21949,9 @@ pub mod anon_unions {
         pub fn as_eq_eq(self) -> ::std::option::Option<symbols::EqEq<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::EqEq(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `>` ([`symbols::Gt`]), otherwise returns `None`"]
@@ -21959,9 +21959,9 @@ pub mod anon_unions {
         pub fn as_gt(self) -> ::std::option::Option<symbols::Gt<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Gt(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `>=` ([`symbols::GtEq`]), otherwise returns `None`"]
@@ -21969,9 +21969,9 @@ pub mod anon_unions {
         pub fn as_gt_eq(self) -> ::std::option::Option<symbols::GtEq<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::GtEq(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `>>` ([`symbols::GtGt`]), otherwise returns `None`"]
@@ -21979,9 +21979,9 @@ pub mod anon_unions {
         pub fn as_gt_gt(self) -> ::std::option::Option<symbols::GtGt<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::GtGt(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `^` ([`symbols::BitXor`]), otherwise returns `None`"]
@@ -21989,9 +21989,9 @@ pub mod anon_unions {
         pub fn as_bit_xor(self) -> ::std::option::Option<symbols::BitXor<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::BitXor(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `|` ([`symbols::Or`]), otherwise returns `None`"]
@@ -21999,9 +21999,9 @@ pub mod anon_unions {
         pub fn as_or(self) -> ::std::option::Option<symbols::Or<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Or(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `||` ([`symbols::OrOr`]), otherwise returns `None`"]
@@ -22009,9 +22009,9 @@ pub mod anon_unions {
         pub fn as_or_or(self) -> ::std::option::Option<symbols::OrOr<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::OrOr(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
     }
@@ -22226,9 +22226,9 @@ pub mod anon_unions {
         pub fn as_pattern(self) -> ::std::option::Option<Pattern<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Pattern(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `closure_expression` ([`ClosureExpression`]), otherwise returns `None`"]
@@ -22236,9 +22236,9 @@ pub mod anon_unions {
         pub fn as_closure_expression(self) -> ::std::option::Option<ClosureExpression<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::ClosureExpression(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `_` ([`symbols::__`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_pattern` ([`Pattern < 'tree >`], from [`as_pattern`](Self::as_pattern))"]
@@ -22427,9 +22427,9 @@ pub mod anon_unions {
         pub fn as_pattern(self) -> ::std::option::Option<Pattern<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Pattern(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `mutable_specifier` ([`MutableSpecifier`]), otherwise returns `None`"]
@@ -22437,9 +22437,9 @@ pub mod anon_unions {
         pub fn as_mutable_specifier(self) -> ::std::option::Option<MutableSpecifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::MutableSpecifier(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `_` ([`symbols::__`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_pattern` ([`Pattern < 'tree >`], from [`as_pattern`](Self::as_pattern))"]
@@ -22628,9 +22628,9 @@ pub mod anon_unions {
         pub fn as_pattern(self) -> ::std::option::Option<Pattern<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Pattern(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `parameter` ([`Parameter`]), otherwise returns `None`"]
@@ -22638,9 +22638,9 @@ pub mod anon_unions {
         pub fn as_parameter(self) -> ::std::option::Option<Parameter<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Parameter(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `_` ([`symbols::__`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_pattern` ([`Pattern < 'tree >`], from [`as_pattern`](Self::as_pattern))"]
@@ -22827,9 +22827,9 @@ pub mod anon_unions {
         pub fn as_pattern(self) -> ::std::option::Option<Pattern<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Pattern(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `self` ([`Self_`]), otherwise returns `None`"]
@@ -22837,9 +22837,9 @@ pub mod anon_unions {
         pub fn as_self(self) -> ::std::option::Option<Self_<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Self_(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `_` ([`symbols::__`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_pattern` ([`Pattern < 'tree >`], from [`as_pattern`](Self::as_pattern))"]
@@ -23026,9 +23026,9 @@ pub mod anon_unions {
         pub fn as_scoped_identifier(self) -> ::std::option::Option<ScopedIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::ScopedIdentifier(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `type_identifier` ([`TypeIdentifier`]), otherwise returns `None`"]
@@ -23036,9 +23036,9 @@ pub mod anon_unions {
         pub fn as_type_identifier(self) -> ::std::option::Option<TypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::TypeIdentifier(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
     }
@@ -23105,9 +23105,9 @@ pub mod anon_unions {
         ) -> ::std::option::Option<ScopedTypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::ScopedTypeIdentifier(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `type_identifier` ([`TypeIdentifier`]), otherwise returns `None`"]
@@ -23115,9 +23115,9 @@ pub mod anon_unions {
         pub fn as_type_identifier(self) -> ::std::option::Option<TypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::TypeIdentifier(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
     }
@@ -23183,9 +23183,9 @@ pub mod anon_unions {
         pub fn as_type(self) -> ::std::option::Option<Type<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Type(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `attribute_item` ([`AttributeItem`]), otherwise returns `None`"]
@@ -23193,9 +23193,9 @@ pub mod anon_unions {
         pub fn as_attribute_item(self) -> ::std::option::Option<AttributeItem<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::AttributeItem(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `parameter` ([`Parameter`]), otherwise returns `None`"]
@@ -23203,9 +23203,9 @@ pub mod anon_unions {
         pub fn as_parameter(self) -> ::std::option::Option<Parameter<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Parameter(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `self_parameter` ([`SelfParameter`]), otherwise returns `None`"]
@@ -23213,9 +23213,9 @@ pub mod anon_unions {
         pub fn as_self_parameter(self) -> ::std::option::Option<SelfParameter<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::SelfParameter(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `variadic_parameter` ([`VariadicParameter`]), otherwise returns `None`"]
@@ -23223,9 +23223,9 @@ pub mod anon_unions {
         pub fn as_variadic_parameter(self) -> ::std::option::Option<VariadicParameter<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::VariadicParameter(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `abstract_type` ([`AbstractType`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_type` ([`Type < 'tree >`], from [`as_type`](Self::as_type))"]
@@ -23397,9 +23397,9 @@ pub mod anon_unions {
         pub fn as_type(self) -> ::std::option::Option<Type<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Type(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `higher_ranked_trait_bound` ([`HigherRankedTraitBound`]), otherwise returns `None`"]
@@ -23409,9 +23409,9 @@ pub mod anon_unions {
         ) -> ::std::option::Option<HigherRankedTraitBound<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::HigherRankedTraitBound(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `lifetime` ([`Lifetime`]), otherwise returns `None`"]
@@ -23419,9 +23419,9 @@ pub mod anon_unions {
         pub fn as_lifetime(self) -> ::std::option::Option<Lifetime<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Lifetime(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `abstract_type` ([`AbstractType`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_type` ([`Type < 'tree >`], from [`as_type`](Self::as_type))"]
@@ -23573,9 +23573,9 @@ pub mod anon_unions {
         pub fn as_type(self) -> ::std::option::Option<Type<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Type(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `lifetime` ([`Lifetime`]), otherwise returns `None`"]
@@ -23583,9 +23583,9 @@ pub mod anon_unions {
         pub fn as_lifetime(self) -> ::std::option::Option<Lifetime<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Lifetime(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `abstract_type` ([`AbstractType`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_type` ([`Type < 'tree >`], from [`as_type`](Self::as_type))"]
@@ -23729,9 +23729,9 @@ pub mod anon_unions {
         pub fn as_type(self) -> ::std::option::Option<Type<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Type(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `qualified_type` ([`QualifiedType`]), otherwise returns `None`"]
@@ -23739,9 +23739,9 @@ pub mod anon_unions {
         pub fn as_qualified_type(self) -> ::std::option::Option<QualifiedType<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::QualifiedType(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `abstract_type` ([`AbstractType`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_type` ([`Type < 'tree >`], from [`as_type`](Self::as_type))"]
@@ -23887,9 +23887,9 @@ pub mod anon_unions {
         pub fn as_visibility_modifier(self) -> ::std::option::Option<VisibilityModifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::VisibilityModifier(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `where_clause` ([`WhereClause`]), otherwise returns `None`"]
@@ -23897,9 +23897,9 @@ pub mod anon_unions {
         pub fn as_where_clause(self) -> ::std::option::Option<WhereClause<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::WhereClause(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
     }
@@ -23964,9 +23964,9 @@ pub mod anon_unions {
         pub fn as___(self) -> ::std::option::Option<symbols::__<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::__(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `_expression` ([`Expression`]), otherwise returns `None`"]
@@ -23974,9 +23974,9 @@ pub mod anon_unions {
         pub fn as_expression(self) -> ::std::option::Option<Expression<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Expression(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `_literal` ([`Literal`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_expression` ([`Expression < 'tree >`], from [`as_expression`](Self::as_expression))"]

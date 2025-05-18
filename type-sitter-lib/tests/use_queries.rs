@@ -50,25 +50,18 @@ pub fn test_use_queries_new() {
             "include_str"
         );
         assert_eq!(
-            r#match.name().unwrap().as_identifier().unwrap().text(),
+            r#match.name().as_identifier().unwrap().text(),
             "include_str"
         );
     }
     let r#match = matches.next().unwrap();
-    assert_eq!(
-        r#match.definition_module().unwrap().name().unwrap().text(),
-        "tests"
-    );
-    assert_eq!(
-        r#match.name().unwrap().as_identifier().unwrap().text(),
-        "tests"
-    );
+    assert_eq!(r#match.definition_module().unwrap().name().text(), "tests");
+    assert_eq!(r#match.name().as_identifier().unwrap().text(), "tests");
     assert_eq!(
         matches
             .next()
             .unwrap()
             .name()
-            .unwrap()
             .as_identifier()
             .unwrap()
             .text(),
@@ -87,7 +80,7 @@ pub fn test_use_queries_new() {
         "test_can_load_grammar"
     );
     assert_eq!(
-        r#match.name().unwrap().as_identifier().unwrap().text(),
+        r#match.name().as_identifier().unwrap().text(),
         "test_can_load_grammar"
     );
     let r#match = matches.next().unwrap();
@@ -107,12 +100,7 @@ pub fn test_use_queries_new() {
         "set_language"
     );
     assert_eq!(
-        r#match
-            .name()
-            .unwrap()
-            .as_field_identifier()
-            .unwrap()
-            .text(),
+        r#match.name().as_field_identifier().unwrap().text(),
         "set_language"
     );
     let r#match = matches.next().unwrap();
@@ -131,15 +119,7 @@ pub fn test_use_queries_new() {
             .text(),
         "into"
     );
-    assert_eq!(
-        r#match
-            .name()
-            .unwrap()
-            .as_field_identifier()
-            .unwrap()
-            .text(),
-        "into"
-    );
+    assert_eq!(r#match.name().as_field_identifier().unwrap().text(), "into");
     let r#match = matches.next().unwrap();
     assert_eq!(
         r#match
@@ -157,12 +137,7 @@ pub fn test_use_queries_new() {
         "expect"
     );
     assert_eq!(
-        r#match
-            .name()
-            .unwrap()
-            .as_field_identifier()
-            .unwrap()
-            .text(),
+        r#match.name().as_field_identifier().unwrap().text(),
         "expect"
     );
     assert!(matches.next().is_none());

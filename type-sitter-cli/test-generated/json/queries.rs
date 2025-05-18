@@ -423,9 +423,9 @@ pub mod anon_unions {
         pub fn as_false(self) -> ::std::option::Option<False<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::False(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `null` ([`Null`]), otherwise returns `None`"]
@@ -433,9 +433,9 @@ pub mod anon_unions {
         pub fn as_null(self) -> ::std::option::Option<Null<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Null(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `true` ([`True`]), otherwise returns `None`"]
@@ -443,9 +443,9 @@ pub mod anon_unions {
         pub fn as_true(self) -> ::std::option::Option<True<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::True(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
     }

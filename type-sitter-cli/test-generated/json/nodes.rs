@@ -18,9 +18,9 @@ impl<'tree> Value<'tree> {
     pub fn as_array(self) -> ::std::option::Option<Array<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::Array(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `false` ([`False`]), otherwise returns `None`"]
@@ -28,9 +28,9 @@ impl<'tree> Value<'tree> {
     pub fn as_false(self) -> ::std::option::Option<False<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::False(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `null` ([`Null`]), otherwise returns `None`"]
@@ -38,9 +38,9 @@ impl<'tree> Value<'tree> {
     pub fn as_null(self) -> ::std::option::Option<Null<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::Null(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `number` ([`Number`]), otherwise returns `None`"]
@@ -48,9 +48,9 @@ impl<'tree> Value<'tree> {
     pub fn as_number(self) -> ::std::option::Option<Number<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::Number(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `object` ([`Object`]), otherwise returns `None`"]
@@ -58,9 +58,9 @@ impl<'tree> Value<'tree> {
     pub fn as_object(self) -> ::std::option::Option<Object<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::Object(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `string` ([`String`]), otherwise returns `None`"]
@@ -68,9 +68,9 @@ impl<'tree> Value<'tree> {
     pub fn as_string(self) -> ::std::option::Option<String<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::String(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
     #[doc = "Returns the node if it is of type `true` ([`True`]), otherwise returns `None`"]
@@ -78,9 +78,9 @@ impl<'tree> Value<'tree> {
     pub fn as_true(self) -> ::std::option::Option<True<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::True(x) = self {
-            Some(x)
+            ::std::option::Option::Some(x)
         } else {
-            None
+            ::std::option::Option::None
         }
     }
 }
@@ -1017,9 +1017,9 @@ pub mod anon_unions {
         pub fn as_escape_sequence(self) -> ::std::option::Option<EscapeSequence<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::EscapeSequence(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
         #[doc = "Returns the node if it is of type `string_content` ([`StringContent`]), otherwise returns `None`"]
@@ -1027,9 +1027,9 @@ pub mod anon_unions {
         pub fn as_string_content(self) -> ::std::option::Option<StringContent<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::StringContent(x) = self {
-                Some(x)
+                ::std::option::Option::Some(x)
             } else {
-                None
+                ::std::option::Option::None
             }
         }
     }

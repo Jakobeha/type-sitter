@@ -2680,7 +2680,7 @@ impl<'query, 'tree: 'query> InjectionsMatch<'query, 'tree> {
     ///```
     #[inline]
     pub fn injection_content(&self) -> super::nodes::TokenTree<'tree> {
-        let result = {
+        let mut iterator = {
             [0u32]
                 .into_iter()
                 .flat_map(|i| self.0.nodes_for_capture_index(i))
@@ -2689,14 +2689,10 @@ impl<'query, 'tree: 'query> InjectionsMatch<'query, 'tree> {
                         'tree,
                     > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(n)
                 })
-        }
-            .next()
-            .expect("one quantifier returned nothing");
+        };
+        let result = iterator.next().expect("one quantifier returned nothing");
         ::std::debug_assert!(
-            { [0u32].into_iter().flat_map(| i | self.0.nodes_for_capture_index(i)).map(|
-            n | unsafe { < super::nodes::TokenTree < 'tree > as ::type_sitter_lib::Node <
-            'tree >> ::from_raw_unchecked(n) }) } .next().is_none(),
-            "one quantifier returned more than one item"
+            iterator.next().is_none(), "one quantifier returned more than one item"
         );
         result
     }
@@ -3407,7 +3403,7 @@ impl<'query, 'tree: 'query> TagsMatch<'query, 'tree> {
     ///```
     #[inline]
     pub fn name(&self) -> anon_unions::Name<'tree> {
-        let result = {
+        let mut iterator = {
             [0u32]
                 .into_iter()
                 .flat_map(|i| self.0.nodes_for_capture_index(i))
@@ -3416,14 +3412,10 @@ impl<'query, 'tree: 'query> TagsMatch<'query, 'tree> {
                         'tree,
                     > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(n)
                 })
-        }
-            .next()
-            .expect("one quantifier returned nothing");
+        };
+        let result = iterator.next().expect("one quantifier returned nothing");
         ::std::debug_assert!(
-            { [0u32].into_iter().flat_map(| i | self.0.nodes_for_capture_index(i)).map(|
-            n | unsafe { < anon_unions::Name < 'tree > as ::type_sitter_lib::Node < 'tree
-            >> ::from_raw_unchecked(n) }) } .next().is_none(),
-            "one quantifier returned more than one item"
+            iterator.next().is_none(), "one quantifier returned more than one item"
         );
         result
     }
