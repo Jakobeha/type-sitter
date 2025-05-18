@@ -73,7 +73,7 @@ pub struct Children {
 impl NodeTypeMap {
     pub(crate) fn new(node_types: Vec<ContextFreeNodeType>) -> Self {
         let mut prev_rust_names = PrevNodeRustNames::new();
-        let nodes = node_types
+        let mut nodes = node_types
             .into_iter()
             .map(|node_type| {
                 (
@@ -81,7 +81,30 @@ impl NodeTypeMap {
                     NodeType::new(node_type, &mut prev_rust_names),
                 )
             })
-            .collect();
+            .collect::<BTreeMap<_, _>>();
+
+        // Add non-existent alias types
+        // (see https://github.com/tree-sitter/tree-sitter/issues/1654)
+        let child_type_names = nodes
+            .values()
+            .flat_map(|node_type| match &node_type.kind {
+                NodeTypeKind::Supertype { .. } => None,
+                NodeTypeKind::Regular { fields, children } => {
+                    Some(fields.values().chain([children]))
+                }
+            })
+            .flatten()
+            .flat_map(|children| &children.types);
+        let nonexistent_alias_type_names =
+            child_type_names.filter(|name| !nodes.contains_key(*name));
+        let nonexistent_alias_type_names =
+            nonexistent_alias_type_names.cloned().collect::<Vec<_>>();
+        nodes.extend(nonexistent_alias_type_names.into_iter().map(|name| {
+            (
+                name.clone(),
+                NodeType::nonexistent_alias_stub(name, &mut prev_rust_names),
+            )
+        }));
 
         Self {
             nodes,
@@ -319,6 +342,23 @@ impl NodeType {
             name,
             rust_names,
             kind,
+        }
+    }
+
+    /// Creates a [regular](NodeTypeKind::Regular) node type with no known children.
+    ///
+    /// See https://github.com/tree-sitter/tree-sitter/issues/1654 and the comment above referencing
+    /// it.
+    fn nonexistent_alias_stub(name: NodeName, prev_rust_names: &mut PrevNodeRustNames) -> Self {
+        let rust_names = NodeRustNames::new(&name, prev_rust_names);
+
+        Self {
+            name,
+            kind: NodeTypeKind::Regular {
+                fields: BTreeMap::default(),
+                children: Children::default(),
+            },
+            rust_names,
         }
     }
 

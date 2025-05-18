@@ -926,7 +926,7 @@ impl Children {
         let types = self
             .types
             .iter()
-            .filter_map(|name| all_types.get(name))
+            .map(|name| &all_types[name])
             .collect::<Vec<_>>();
 
         NodeType::print_sum_type(&types, ctx, anon_unions)

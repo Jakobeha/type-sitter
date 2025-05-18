@@ -129,10 +129,8 @@ impl<'a> Display for ChildrenKind<'a> {
 
             let mut iter = self.children.types.iter();
             if let Some(first_name) = iter.next() {
-                match self.all_types.get(first_name) {
-                    Some(first) => write!(f, "[`{}`]", first.rust_type_path())?,
-                    None => write!(f, "Aliased as [`{}`]", first_name.sexp_name)?,
-                }
+                let first = &self.all_types[first_name];
+                write!(f, "[`{}`]", first.rust_type_path())?;
 
                 for next_name in iter {
                     let next = &self.all_types[next_name];
