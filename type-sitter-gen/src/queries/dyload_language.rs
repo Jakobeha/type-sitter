@@ -1,13 +1,11 @@
 use crate::queries::{has_extension, language_name};
 use crate::Error;
 use cc::Build;
-use join_lazy_fmt::Join;
 use libloading::Library;
 use std::cell::LazyCell;
 use std::collections::HashMap;
 use std::ffi::CString;
 use std::fs::create_dir_all;
-use std::io::Write;
 use std::panic::UnwindSafe;
 use std::path::{Path, PathBuf};
 use std::process::Command;
@@ -181,26 +179,12 @@ fn build_dylib(path: &Path, dylib_path: &Path) -> Result<(), Error> {
             .status()
             .map_err(Error::LinkDylibCmdFailed)?
     } else if cfg!(target_family = "windows") {
-        let tmp_path = dylib_dir.join("tmp.txt");
-        let mut tmp_file = std::fs::File::create(&tmp_path).map_err(Error::LinkDylibCmdFailed)?;
-        for path in find_object_files_in(dylib_dir) {
-            writeln!(
-                tmp_file,
-                "{}",
-                path.canonicalize().unwrap_or(path).display()
-            )
-            .map_err(Error::LinkDylibCmdFailed)?;
-        }
-
-        let status = Command::new("link")
+        Command::new("link")
             .arg("/DLL")
             .arg(format!("/OUT:{}", dylib_path.display()))
-            .arg(format!("@{}", tmp_path.display()))
+            .args(find_object_files_in(dylib_dir))
             .status()
-            .map_err(Error::LinkDylibCmdFailed);
-
-        let _ = std::fs::remove_file(tmp_path);
-        status?
+            .map_err(Error::LinkDylibCmdFailed)?
     } else {
         return Err(Error::LinkDylibUnsupported);
     };
@@ -220,6 +204,7 @@ fn find_object_files_in(dir: &Path) -> impl Iterator<Item = PathBuf> {
         .filter(|entry| entry.file_type().is_file())
         .filter(|entry| has_extension(entry.path(), "o"))
         .map(|entry| entry.into_path())
+        .map(|path| dunce::canonicalize(&path).unwrap_or(path))
 }
 
 fn copy_language_fn(language_fn: &LanguageFn) -> LanguageFn {
