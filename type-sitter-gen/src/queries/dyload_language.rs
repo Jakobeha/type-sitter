@@ -8,7 +8,7 @@ use std::ffi::CString;
 use std::fs::create_dir_all;
 use std::panic::UnwindSafe;
 use std::path::{Path, PathBuf};
-use std::process::Command;
+use std::process::{Command, ExitStatus};
 use std::sync::atomic::AtomicBool;
 use std::sync::RwLock;
 use tree_sitter::Language;
@@ -179,12 +179,21 @@ fn build_dylib(path: &Path, dylib_path: &Path) -> Result<(), Error> {
             .status()
             .map_err(Error::LinkDylibCmdFailed)?
     } else if cfg!(target_family = "windows") {
-        Command::new("lib.exe")
-            .args(["/NOLOGO", "/DLL"])
-            .arg(format!("/OUT:{}", dylib_path.display()))
+        let status = Command::new("/usr/bin/ld")
+            .args(["-shared", "-o"])
+            .arg(&dylib_path)
             .args(find_object_files_in(dylib_dir))
-            .status()
-            .map_err(Error::LinkDylibCmdFailed)?
+            .status();
+        if status.as_ref().is_ok_and(|s| s.success()) {
+            ExitStatus::default()
+        } else {
+            Command::new("link.exe")
+                .arg("/DLL")
+                .arg(format!("/OUT:{}", dylib_path.display()))
+                .args(find_object_files_in(dylib_dir))
+                .status()
+                .map_err(Error::LinkDylibCmdFailed)?
+        }
     } else {
         return Err(Error::LinkDylibUnsupported);
     };
