@@ -182,7 +182,10 @@ fn build_dylib(path: &Path, dylib_path: &Path) -> Result<(), Error> {
         Command::new("link")
             .arg("/DLL")
             .arg(format!("/OUT:{}", dylib_path.display()))
-            .args(find_object_files_in(dylib_dir).map(|p| p.display().to_string()))
+            .args(
+                find_object_files_in(dylib_dir)
+                    .map(|p| p.canonicalize().unwrap_or(p).display().to_string()),
+            )
             .status()
             .map_err(Error::LinkDylibCmdFailed)?
     } else {
