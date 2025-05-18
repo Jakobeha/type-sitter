@@ -179,8 +179,8 @@ fn build_dylib(path: &Path, dylib_path: &Path) -> Result<(), Error> {
             .status()
             .map_err(Error::LinkDylibCmdFailed)?
     } else if cfg!(target_family = "windows") {
-        Command::new("link.exe")
-            .arg("/DLL")
+        Command::new("lib.exe")
+            .args(["/NOLOGO", "/DLL"])
             .arg(format!("/OUT:{}", dylib_path.display()))
             .args(find_object_files_in(dylib_dir))
             .status()
