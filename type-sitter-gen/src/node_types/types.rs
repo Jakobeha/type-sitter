@@ -11,8 +11,6 @@ use std::path::{Path, PathBuf};
 use super::deserialize_json_array_as_stream::iter_json_array;
 
 /// Represents the contents of the `node-types.json` in a form that can be converted to Rust code.
-///
-/// Use [`crate::generate_nodes()`] the Rust code after inspecting and
 #[derive(Debug)]
 pub struct NodeTypeMap {
     nodes: BTreeMap<NodeName, NodeType>,
