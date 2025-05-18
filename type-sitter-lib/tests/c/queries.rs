@@ -2029,13 +2029,21 @@ pub mod anon_unions {
         #[inline]
         pub fn as_identifier(self) -> ::std::option::Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Identifier(x) = self { Some(x) } else { None }
+            if let Self::Identifier(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `null` ([`Null`]), otherwise returns `None`
         #[inline]
         pub fn as_null(self) -> ::std::option::Option<Null<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Null(x) = self { Some(x) } else { None }
+            if let Self::Null(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
     }
     #[automatically_derived]
@@ -2110,7 +2118,11 @@ pub mod anon_unions {
         #[inline]
         pub fn as_declaration(self) -> ::std::option::Option<Declaration<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Declaration(x) = self { Some(x) } else { None }
+            if let Self::Declaration(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `struct_specifier` ([`StructSpecifier`]), otherwise returns `None`
         #[inline]
@@ -2118,7 +2130,11 @@ pub mod anon_unions {
             self,
         ) -> ::std::option::Option<StructSpecifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::StructSpecifier(x) = self { Some(x) } else { None }
+            if let Self::StructSpecifier(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
     }
     #[automatically_derived]
@@ -2193,13 +2209,21 @@ pub mod anon_unions {
         #[inline]
         pub fn as_enum_specifier(self) -> ::std::option::Option<EnumSpecifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::EnumSpecifier(x) = self { Some(x) } else { None }
+            if let Self::EnumSpecifier(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `type_definition` ([`TypeDefinition`]), otherwise returns `None`
         #[inline]
         pub fn as_type_definition(self) -> ::std::option::Option<TypeDefinition<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::TypeDefinition(x) = self { Some(x) } else { None }
+            if let Self::TypeDefinition(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
     }
     #[automatically_derived]
@@ -2274,13 +2298,21 @@ pub mod anon_unions {
         #[inline]
         pub fn as_dot(self) -> ::std::option::Option<symbols::Dot<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Dot(x) = self { Some(x) } else { None }
+            if let Self::Dot(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `;` ([`symbols::Semicolon`]), otherwise returns `None`
         #[inline]
         pub fn as_semicolon(self) -> ::std::option::Option<symbols::Semicolon<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Semicolon(x) = self { Some(x) } else { None }
+            if let Self::Semicolon(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
     }
     #[automatically_derived]
@@ -2357,13 +2389,21 @@ pub mod anon_unions {
             self,
         ) -> ::std::option::Option<FieldIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::FieldIdentifier(x) = self { Some(x) } else { None }
+            if let Self::FieldIdentifier(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`
         #[inline]
         pub fn as_identifier(self) -> ::std::option::Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Identifier(x) = self { Some(x) } else { None }
+            if let Self::Identifier(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
     }
     #[automatically_derived]
@@ -2494,43 +2534,71 @@ pub mod anon_unions {
         #[inline]
         pub fn as_hashdefine(self) -> ::std::option::Option<symbols::Hashdefine<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Hashdefine(x) = self { Some(x) } else { None }
+            if let Self::Hashdefine(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `#elif` ([`symbols::Hashelif`]), otherwise returns `None`
         #[inline]
         pub fn as_hashelif(self) -> ::std::option::Option<symbols::Hashelif<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Hashelif(x) = self { Some(x) } else { None }
+            if let Self::Hashelif(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `#else` ([`symbols::Hashelse`]), otherwise returns `None`
         #[inline]
         pub fn as_hashelse(self) -> ::std::option::Option<symbols::Hashelse<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Hashelse(x) = self { Some(x) } else { None }
+            if let Self::Hashelse(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `#endif` ([`symbols::Hashendif`]), otherwise returns `None`
         #[inline]
         pub fn as_hashendif(self) -> ::std::option::Option<symbols::Hashendif<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Hashendif(x) = self { Some(x) } else { None }
+            if let Self::Hashendif(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `#if` ([`symbols::Hashif`]), otherwise returns `None`
         #[inline]
         pub fn as_hashif(self) -> ::std::option::Option<symbols::Hashif<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Hashif(x) = self { Some(x) } else { None }
+            if let Self::Hashif(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `#ifdef` ([`symbols::Hashifdef`]), otherwise returns `None`
         #[inline]
         pub fn as_hashifdef(self) -> ::std::option::Option<symbols::Hashifdef<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Hashifdef(x) = self { Some(x) } else { None }
+            if let Self::Hashifdef(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `#ifndef` ([`symbols::Hashifndef`]), otherwise returns `None`
         #[inline]
         pub fn as_hashifndef(self) -> ::std::option::Option<symbols::Hashifndef<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Hashifndef(x) = self { Some(x) } else { None }
+            if let Self::Hashifndef(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `#include` ([`symbols::Hashinclude`]), otherwise returns `None`
         #[inline]
@@ -2538,79 +2606,131 @@ pub mod anon_unions {
             self,
         ) -> ::std::option::Option<symbols::Hashinclude<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Hashinclude(x) = self { Some(x) } else { None }
+            if let Self::Hashinclude(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `break` ([`unnamed::Break`]), otherwise returns `None`
         #[inline]
         pub fn as_break(self) -> ::std::option::Option<unnamed::Break<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Break(x) = self { Some(x) } else { None }
+            if let Self::Break(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `case` ([`unnamed::Case`]), otherwise returns `None`
         #[inline]
         pub fn as_case(self) -> ::std::option::Option<unnamed::Case<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Case(x) = self { Some(x) } else { None }
+            if let Self::Case(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `const` ([`unnamed::Const`]), otherwise returns `None`
         #[inline]
         pub fn as_const(self) -> ::std::option::Option<unnamed::Const<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Const(x) = self { Some(x) } else { None }
+            if let Self::Const(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `continue` ([`unnamed::Continue`]), otherwise returns `None`
         #[inline]
         pub fn as_continue(self) -> ::std::option::Option<unnamed::Continue<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Continue(x) = self { Some(x) } else { None }
+            if let Self::Continue(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `default` ([`unnamed::Default`]), otherwise returns `None`
         #[inline]
         pub fn as_default(self) -> ::std::option::Option<unnamed::Default<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Default(x) = self { Some(x) } else { None }
+            if let Self::Default(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `do` ([`unnamed::Do`]), otherwise returns `None`
         #[inline]
         pub fn as_do(self) -> ::std::option::Option<unnamed::Do<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Do(x) = self { Some(x) } else { None }
+            if let Self::Do(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `else` ([`unnamed::Else`]), otherwise returns `None`
         #[inline]
         pub fn as_else(self) -> ::std::option::Option<unnamed::Else<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Else(x) = self { Some(x) } else { None }
+            if let Self::Else(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `enum` ([`unnamed::Enum`]), otherwise returns `None`
         #[inline]
         pub fn as_enum(self) -> ::std::option::Option<unnamed::Enum<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Enum(x) = self { Some(x) } else { None }
+            if let Self::Enum(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `extern` ([`unnamed::Extern`]), otherwise returns `None`
         #[inline]
         pub fn as_extern(self) -> ::std::option::Option<unnamed::Extern<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Extern(x) = self { Some(x) } else { None }
+            if let Self::Extern(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `for` ([`unnamed::For`]), otherwise returns `None`
         #[inline]
         pub fn as_for(self) -> ::std::option::Option<unnamed::For<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::For(x) = self { Some(x) } else { None }
+            if let Self::For(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `if` ([`unnamed::If`]), otherwise returns `None`
         #[inline]
         pub fn as_if(self) -> ::std::option::Option<unnamed::If<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::If(x) = self { Some(x) } else { None }
+            if let Self::If(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `inline` ([`unnamed::Inline__`]), otherwise returns `None`
         #[inline]
         pub fn as_inline__(self) -> ::std::option::Option<unnamed::Inline__<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Inline__(x) = self { Some(x) } else { None }
+            if let Self::Inline__(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `preproc_directive` ([`PreprocDirective`]), otherwise returns `None`
         #[inline]
@@ -2618,61 +2738,101 @@ pub mod anon_unions {
             self,
         ) -> ::std::option::Option<PreprocDirective<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::PreprocDirective(x) = self { Some(x) } else { None }
+            if let Self::PreprocDirective(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `return` ([`unnamed::Return`]), otherwise returns `None`
         #[inline]
         pub fn as_return(self) -> ::std::option::Option<unnamed::Return<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Return(x) = self { Some(x) } else { None }
+            if let Self::Return(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `sizeof` ([`unnamed::Sizeof`]), otherwise returns `None`
         #[inline]
         pub fn as_sizeof(self) -> ::std::option::Option<unnamed::Sizeof<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Sizeof(x) = self { Some(x) } else { None }
+            if let Self::Sizeof(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `static` ([`unnamed::Static`]), otherwise returns `None`
         #[inline]
         pub fn as_static(self) -> ::std::option::Option<unnamed::Static<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Static(x) = self { Some(x) } else { None }
+            if let Self::Static(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `struct` ([`unnamed::Struct`]), otherwise returns `None`
         #[inline]
         pub fn as_struct(self) -> ::std::option::Option<unnamed::Struct<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Struct(x) = self { Some(x) } else { None }
+            if let Self::Struct(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `switch` ([`unnamed::Switch`]), otherwise returns `None`
         #[inline]
         pub fn as_switch(self) -> ::std::option::Option<unnamed::Switch<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Switch(x) = self { Some(x) } else { None }
+            if let Self::Switch(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `typedef` ([`unnamed::Typedef`]), otherwise returns `None`
         #[inline]
         pub fn as_typedef(self) -> ::std::option::Option<unnamed::Typedef<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Typedef(x) = self { Some(x) } else { None }
+            if let Self::Typedef(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `union` ([`unnamed::Union`]), otherwise returns `None`
         #[inline]
         pub fn as_union(self) -> ::std::option::Option<unnamed::Union<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Union(x) = self { Some(x) } else { None }
+            if let Self::Union(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `volatile` ([`unnamed::Volatile_`]), otherwise returns `None`
         #[inline]
         pub fn as_volatile_(self) -> ::std::option::Option<unnamed::Volatile_<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Volatile_(x) = self { Some(x) } else { None }
+            if let Self::Volatile_(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `while` ([`unnamed::While`]), otherwise returns `None`
         #[inline]
         pub fn as_while(self) -> ::std::option::Option<unnamed::While<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::While(x) = self { Some(x) } else { None }
+            if let Self::While(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
     }
     #[automatically_derived]
@@ -3139,13 +3299,21 @@ pub mod anon_unions {
         #[inline]
         pub fn as_identifier(self) -> ::std::option::Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Identifier(x) = self { Some(x) } else { None }
+            if let Self::Identifier(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `type_identifier` ([`TypeIdentifier`]), otherwise returns `None`
         #[inline]
         pub fn as_type_identifier(self) -> ::std::option::Option<TypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::TypeIdentifier(x) = self { Some(x) } else { None }
+            if let Self::TypeIdentifier(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
     }
     #[automatically_derived]
@@ -3220,13 +3388,21 @@ pub mod anon_unions {
         #[inline]
         pub fn as_char_literal(self) -> ::std::option::Option<CharLiteral<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::CharLiteral(x) = self { Some(x) } else { None }
+            if let Self::CharLiteral(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `number_literal` ([`NumberLiteral`]), otherwise returns `None`
         #[inline]
         pub fn as_number_literal(self) -> ::std::option::Option<NumberLiteral<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::NumberLiteral(x) = self { Some(x) } else { None }
+            if let Self::NumberLiteral(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
     }
     #[automatically_derived]
@@ -3329,97 +3505,161 @@ pub mod anon_unions {
         #[inline]
         pub fn as_not_eq(self) -> ::std::option::Option<symbols::NotEq<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::NotEq(x) = self { Some(x) } else { None }
+            if let Self::NotEq(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `&` ([`symbols::And`]), otherwise returns `None`
         #[inline]
         pub fn as_and(self) -> ::std::option::Option<symbols::And<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::And(x) = self { Some(x) } else { None }
+            if let Self::And(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `&&` ([`symbols::AndAnd`]), otherwise returns `None`
         #[inline]
         pub fn as_and_and(self) -> ::std::option::Option<symbols::AndAnd<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::AndAnd(x) = self { Some(x) } else { None }
+            if let Self::AndAnd(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `*` ([`symbols::Mul`]), otherwise returns `None`
         #[inline]
         pub fn as_mul(self) -> ::std::option::Option<symbols::Mul<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Mul(x) = self { Some(x) } else { None }
+            if let Self::Mul(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `+` ([`symbols::Add`]), otherwise returns `None`
         #[inline]
         pub fn as_add(self) -> ::std::option::Option<symbols::Add<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Add(x) = self { Some(x) } else { None }
+            if let Self::Add(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `++` ([`symbols::AddAdd`]), otherwise returns `None`
         #[inline]
         pub fn as_add_add(self) -> ::std::option::Option<symbols::AddAdd<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::AddAdd(x) = self { Some(x) } else { None }
+            if let Self::AddAdd(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `+=` ([`symbols::AddEq`]), otherwise returns `None`
         #[inline]
         pub fn as_add_eq(self) -> ::std::option::Option<symbols::AddEq<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::AddEq(x) = self { Some(x) } else { None }
+            if let Self::AddEq(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `-` ([`symbols::Sub`]), otherwise returns `None`
         #[inline]
         pub fn as_sub(self) -> ::std::option::Option<symbols::Sub<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Sub(x) = self { Some(x) } else { None }
+            if let Self::Sub(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `--` ([`symbols::SubSub`]), otherwise returns `None`
         #[inline]
         pub fn as_sub_sub(self) -> ::std::option::Option<symbols::SubSub<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::SubSub(x) = self { Some(x) } else { None }
+            if let Self::SubSub(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `-=` ([`symbols::SubEq`]), otherwise returns `None`
         #[inline]
         pub fn as_sub_eq(self) -> ::std::option::Option<symbols::SubEq<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::SubEq(x) = self { Some(x) } else { None }
+            if let Self::SubEq(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `->` ([`symbols::SubGt`]), otherwise returns `None`
         #[inline]
         pub fn as_sub_gt(self) -> ::std::option::Option<symbols::SubGt<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::SubGt(x) = self { Some(x) } else { None }
+            if let Self::SubGt(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `<` ([`symbols::Lt`]), otherwise returns `None`
         #[inline]
         pub fn as_lt(self) -> ::std::option::Option<symbols::Lt<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Lt(x) = self { Some(x) } else { None }
+            if let Self::Lt(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `=` ([`symbols::Eq`]), otherwise returns `None`
         #[inline]
         pub fn as_eq(self) -> ::std::option::Option<symbols::Eq<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Eq(x) = self { Some(x) } else { None }
+            if let Self::Eq(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `==` ([`symbols::EqEq`]), otherwise returns `None`
         #[inline]
         pub fn as_eq_eq(self) -> ::std::option::Option<symbols::EqEq<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::EqEq(x) = self { Some(x) } else { None }
+            if let Self::EqEq(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `>` ([`symbols::Gt`]), otherwise returns `None`
         #[inline]
         pub fn as_gt(self) -> ::std::option::Option<symbols::Gt<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Gt(x) = self { Some(x) } else { None }
+            if let Self::Gt(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `||` ([`symbols::OrOr`]), otherwise returns `None`
         #[inline]
         pub fn as_or_or(self) -> ::std::option::Option<symbols::OrOr<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::OrOr(x) = self { Some(x) } else { None }
+            if let Self::OrOr(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
     }
     #[automatically_derived]
@@ -3690,7 +3930,11 @@ pub mod anon_unions {
         #[inline]
         pub fn as_string_literal(self) -> ::std::option::Option<StringLiteral<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::StringLiteral(x) = self { Some(x) } else { None }
+            if let Self::StringLiteral(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `system_lib_string` ([`SystemLibString`]), otherwise returns `None`
         #[inline]
@@ -3698,7 +3942,11 @@ pub mod anon_unions {
             self,
         ) -> ::std::option::Option<SystemLibString<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::SystemLibString(x) = self { Some(x) } else { None }
+            if let Self::SystemLibString(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
     }
     #[automatically_derived]
@@ -3775,7 +4023,11 @@ pub mod anon_unions {
         #[inline]
         pub fn as_primitive_type(self) -> ::std::option::Option<PrimitiveType<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::PrimitiveType(x) = self { Some(x) } else { None }
+            if let Self::PrimitiveType(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `sized_type_specifier` ([`SizedTypeSpecifier`]), otherwise returns `None`
         #[inline]
@@ -3783,13 +4035,21 @@ pub mod anon_unions {
             self,
         ) -> ::std::option::Option<SizedTypeSpecifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::SizedTypeSpecifier(x) = self { Some(x) } else { None }
+            if let Self::SizedTypeSpecifier(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `type_identifier` ([`TypeIdentifier`]), otherwise returns `None`
         #[inline]
         pub fn as_type_identifier(self) -> ::std::option::Option<TypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::TypeIdentifier(x) = self { Some(x) } else { None }
+            if let Self::TypeIdentifier(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
     }
     #[automatically_derived]

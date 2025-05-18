@@ -28,43 +28,71 @@ impl<'tree> Value<'tree> {
     #[inline]
     pub fn as_array(self) -> ::std::option::Option<Array<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::Array(x) = self { Some(x) } else { None }
+        if let Self::Array(x) = self {
+            ::std::option::Option::Some(x)
+        } else {
+            ::std::option::Option::None
+        }
     }
     ///Returns the node if it is of type `false` ([`False`]), otherwise returns `None`
     #[inline]
     pub fn as_false(self) -> ::std::option::Option<False<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::False(x) = self { Some(x) } else { None }
+        if let Self::False(x) = self {
+            ::std::option::Option::Some(x)
+        } else {
+            ::std::option::Option::None
+        }
     }
     ///Returns the node if it is of type `null` ([`Null`]), otherwise returns `None`
     #[inline]
     pub fn as_null(self) -> ::std::option::Option<Null<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::Null(x) = self { Some(x) } else { None }
+        if let Self::Null(x) = self {
+            ::std::option::Option::Some(x)
+        } else {
+            ::std::option::Option::None
+        }
     }
     ///Returns the node if it is of type `number` ([`Number`]), otherwise returns `None`
     #[inline]
     pub fn as_number(self) -> ::std::option::Option<Number<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::Number(x) = self { Some(x) } else { None }
+        if let Self::Number(x) = self {
+            ::std::option::Option::Some(x)
+        } else {
+            ::std::option::Option::None
+        }
     }
     ///Returns the node if it is of type `object` ([`Object`]), otherwise returns `None`
     #[inline]
     pub fn as_object(self) -> ::std::option::Option<Object<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::Object(x) = self { Some(x) } else { None }
+        if let Self::Object(x) = self {
+            ::std::option::Option::Some(x)
+        } else {
+            ::std::option::Option::None
+        }
     }
     ///Returns the node if it is of type `string` ([`String`]), otherwise returns `None`
     #[inline]
     pub fn as_string(self) -> ::std::option::Option<String<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::String(x) = self { Some(x) } else { None }
+        if let Self::String(x) = self {
+            ::std::option::Option::Some(x)
+        } else {
+            ::std::option::Option::None
+        }
     }
     ///Returns the node if it is of type `true` ([`True`]), otherwise returns `None`
     #[inline]
     pub fn as_true(self) -> ::std::option::Option<True<'tree>> {
         #[allow(irrefutable_let_patterns)]
-        if let Self::True(x) = self { Some(x) } else { None }
+        if let Self::True(x) = self {
+            ::std::option::Option::Some(x)
+        } else {
+            ::std::option::Option::None
+        }
     }
 }
 #[automatically_derived]
@@ -1115,13 +1143,21 @@ pub mod anon_unions {
         #[inline]
         pub fn as_escape_sequence(self) -> ::std::option::Option<EscapeSequence<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::EscapeSequence(x) = self { Some(x) } else { None }
+            if let Self::EscapeSequence(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `string_content` ([`StringContent`]), otherwise returns `None`
         #[inline]
         pub fn as_string_content(self) -> ::std::option::Option<StringContent<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::StringContent(x) = self { Some(x) } else { None }
+            if let Self::StringContent(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
     }
     #[automatically_derived]

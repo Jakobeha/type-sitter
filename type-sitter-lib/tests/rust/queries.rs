@@ -4002,7 +4002,11 @@ pub mod anon_unions {
         #[inline]
         pub fn as_attribute_item(self) -> ::std::option::Option<AttributeItem<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::AttributeItem(x) = self { Some(x) } else { None }
+            if let Self::AttributeItem(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `inner_attribute_item` ([`InnerAttributeItem`]), otherwise returns `None`
         #[inline]
@@ -4010,7 +4014,11 @@ pub mod anon_unions {
             self,
         ) -> ::std::option::Option<InnerAttributeItem<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::InnerAttributeItem(x) = self { Some(x) } else { None }
+            if let Self::InnerAttributeItem(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
     }
     #[automatically_derived]
@@ -4085,13 +4093,21 @@ pub mod anon_unions {
         #[inline]
         pub fn as_block_comment(self) -> ::std::option::Option<BlockComment<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::BlockComment(x) = self { Some(x) } else { None }
+            if let Self::BlockComment(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `line_comment` ([`LineComment`]), otherwise returns `None`
         #[inline]
         pub fn as_line_comment(self) -> ::std::option::Option<LineComment<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::LineComment(x) = self { Some(x) } else { None }
+            if let Self::LineComment(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         /**Get the optional field `doc`.
 
@@ -4213,13 +4229,21 @@ This child has type `outer_doc_comment_marker?` ([`OuterDocCommentMarker`])*/
         #[inline]
         pub fn as_block_comment(self) -> ::std::option::Option<BlockComment<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::BlockComment(x) = self { Some(x) } else { None }
+            if let Self::BlockComment(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `line_comment` ([`LineComment`]), otherwise returns `None`
         #[inline]
         pub fn as_line_comment(self) -> ::std::option::Option<LineComment<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::LineComment(x) = self { Some(x) } else { None }
+            if let Self::LineComment(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         /**Get the optional field `doc`.
 
@@ -4343,19 +4367,31 @@ This child has type `outer_doc_comment_marker?` ([`OuterDocCommentMarker`])*/
         #[inline]
         pub fn as_boolean_literal(self) -> ::std::option::Option<BooleanLiteral<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::BooleanLiteral(x) = self { Some(x) } else { None }
+            if let Self::BooleanLiteral(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `float_literal` ([`FloatLiteral`]), otherwise returns `None`
         #[inline]
         pub fn as_float_literal(self) -> ::std::option::Option<FloatLiteral<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::FloatLiteral(x) = self { Some(x) } else { None }
+            if let Self::FloatLiteral(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `integer_literal` ([`IntegerLiteral`]), otherwise returns `None`
         #[inline]
         pub fn as_integer_literal(self) -> ::std::option::Option<IntegerLiteral<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::IntegerLiteral(x) = self { Some(x) } else { None }
+            if let Self::IntegerLiteral(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
     }
     #[automatically_derived]
@@ -4444,13 +4480,21 @@ This child has type `outer_doc_comment_marker?` ([`OuterDocCommentMarker`])*/
         #[inline]
         pub fn as_identifier(self) -> ::std::option::Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Identifier(x) = self { Some(x) } else { None }
+            if let Self::Identifier(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `type_identifier` ([`TypeIdentifier`]), otherwise returns `None`
         #[inline]
         pub fn as_type_identifier(self) -> ::std::option::Option<TypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::TypeIdentifier(x) = self { Some(x) } else { None }
+            if let Self::TypeIdentifier(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
     }
     #[automatically_derived]
@@ -4529,25 +4573,41 @@ This child has type `outer_doc_comment_marker?` ([`OuterDocCommentMarker`])*/
         #[inline]
         pub fn as_enum_item(self) -> ::std::option::Option<EnumItem<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::EnumItem(x) = self { Some(x) } else { None }
+            if let Self::EnumItem(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `struct_item` ([`StructItem`]), otherwise returns `None`
         #[inline]
         pub fn as_struct_item(self) -> ::std::option::Option<StructItem<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::StructItem(x) = self { Some(x) } else { None }
+            if let Self::StructItem(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `type_item` ([`TypeItem`]), otherwise returns `None`
         #[inline]
         pub fn as_type_item(self) -> ::std::option::Option<TypeItem<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::TypeItem(x) = self { Some(x) } else { None }
+            if let Self::TypeItem(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `union_item` ([`UnionItem`]), otherwise returns `None`
         #[inline]
         pub fn as_union_item(self) -> ::std::option::Option<UnionItem<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::UnionItem(x) = self { Some(x) } else { None }
+            if let Self::UnionItem(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         /**Get the field `name`.
 
@@ -4685,13 +4745,21 @@ This child has type `type_parameters?` ([`TypeParameters`])*/
         #[inline]
         pub fn as_not(self) -> ::std::option::Option<symbols::Not<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Not(x) = self { Some(x) } else { None }
+            if let Self::Not(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`
         #[inline]
         pub fn as_identifier(self) -> ::std::option::Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Identifier(x) = self { Some(x) } else { None }
+            if let Self::Identifier(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
     }
     #[automatically_derived]
@@ -4844,121 +4912,201 @@ This child has type `type_parameters?` ([`TypeParameters`])*/
         #[inline]
         pub fn as_as(self) -> ::std::option::Option<unnamed::As<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::As(x) = self { Some(x) } else { None }
+            if let Self::As(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `async` ([`unnamed::Async`]), otherwise returns `None`
         #[inline]
         pub fn as_async(self) -> ::std::option::Option<unnamed::Async<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Async(x) = self { Some(x) } else { None }
+            if let Self::Async(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `await` ([`unnamed::Await`]), otherwise returns `None`
         #[inline]
         pub fn as_await(self) -> ::std::option::Option<unnamed::Await<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Await(x) = self { Some(x) } else { None }
+            if let Self::Await(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `break` ([`unnamed::Break`]), otherwise returns `None`
         #[inline]
         pub fn as_break(self) -> ::std::option::Option<unnamed::Break<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Break(x) = self { Some(x) } else { None }
+            if let Self::Break(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `const` ([`unnamed::Const`]), otherwise returns `None`
         #[inline]
         pub fn as_const(self) -> ::std::option::Option<unnamed::Const<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Const(x) = self { Some(x) } else { None }
+            if let Self::Const(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `continue` ([`unnamed::Continue`]), otherwise returns `None`
         #[inline]
         pub fn as_continue(self) -> ::std::option::Option<unnamed::Continue<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Continue(x) = self { Some(x) } else { None }
+            if let Self::Continue(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `crate` ([`Crate`]), otherwise returns `None`
         #[inline]
         pub fn as_crate(self) -> ::std::option::Option<Crate<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Crate(x) = self { Some(x) } else { None }
+            if let Self::Crate(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `default` ([`unnamed::Default`]), otherwise returns `None`
         #[inline]
         pub fn as_default(self) -> ::std::option::Option<unnamed::Default<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Default(x) = self { Some(x) } else { None }
+            if let Self::Default(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `dyn` ([`unnamed::Dyn`]), otherwise returns `None`
         #[inline]
         pub fn as_dyn(self) -> ::std::option::Option<unnamed::Dyn<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Dyn(x) = self { Some(x) } else { None }
+            if let Self::Dyn(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `else` ([`unnamed::Else`]), otherwise returns `None`
         #[inline]
         pub fn as_else(self) -> ::std::option::Option<unnamed::Else<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Else(x) = self { Some(x) } else { None }
+            if let Self::Else(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `enum` ([`unnamed::Enum`]), otherwise returns `None`
         #[inline]
         pub fn as_enum(self) -> ::std::option::Option<unnamed::Enum<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Enum(x) = self { Some(x) } else { None }
+            if let Self::Enum(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `extern` ([`unnamed::Extern`]), otherwise returns `None`
         #[inline]
         pub fn as_extern(self) -> ::std::option::Option<unnamed::Extern<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Extern(x) = self { Some(x) } else { None }
+            if let Self::Extern(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `fn` ([`unnamed::Fn`]), otherwise returns `None`
         #[inline]
         pub fn as_fn(self) -> ::std::option::Option<unnamed::Fn<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Fn(x) = self { Some(x) } else { None }
+            if let Self::Fn(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `for` ([`unnamed::For`]), otherwise returns `None`
         #[inline]
         pub fn as_for(self) -> ::std::option::Option<unnamed::For<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::For(x) = self { Some(x) } else { None }
+            if let Self::For(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `gen` ([`unnamed::Gen`]), otherwise returns `None`
         #[inline]
         pub fn as_gen(self) -> ::std::option::Option<unnamed::Gen<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Gen(x) = self { Some(x) } else { None }
+            if let Self::Gen(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `if` ([`unnamed::If`]), otherwise returns `None`
         #[inline]
         pub fn as_if(self) -> ::std::option::Option<unnamed::If<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::If(x) = self { Some(x) } else { None }
+            if let Self::If(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `impl` ([`unnamed::Impl`]), otherwise returns `None`
         #[inline]
         pub fn as_impl(self) -> ::std::option::Option<unnamed::Impl<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Impl(x) = self { Some(x) } else { None }
+            if let Self::Impl(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `in` ([`unnamed::In`]), otherwise returns `None`
         #[inline]
         pub fn as_in(self) -> ::std::option::Option<unnamed::In<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::In(x) = self { Some(x) } else { None }
+            if let Self::In(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `let` ([`unnamed::Let`]), otherwise returns `None`
         #[inline]
         pub fn as_let(self) -> ::std::option::Option<unnamed::Let<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Let(x) = self { Some(x) } else { None }
+            if let Self::Let(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `loop` ([`unnamed::Loop`]), otherwise returns `None`
         #[inline]
         pub fn as_loop(self) -> ::std::option::Option<unnamed::Loop<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Loop(x) = self { Some(x) } else { None }
+            if let Self::Loop(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `macro_rules!` ([`symbols::MacroRulesNot`]), otherwise returns `None`
         #[inline]
@@ -4966,25 +5114,41 @@ This child has type `type_parameters?` ([`TypeParameters`])*/
             self,
         ) -> ::std::option::Option<symbols::MacroRulesNot<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::MacroRulesNot(x) = self { Some(x) } else { None }
+            if let Self::MacroRulesNot(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `match` ([`unnamed::Match`]), otherwise returns `None`
         #[inline]
         pub fn as_match(self) -> ::std::option::Option<unnamed::Match<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Match(x) = self { Some(x) } else { None }
+            if let Self::Match(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `mod` ([`unnamed::Mod`]), otherwise returns `None`
         #[inline]
         pub fn as_mod_(self) -> ::std::option::Option<unnamed::Mod<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Mod(x) = self { Some(x) } else { None }
+            if let Self::Mod(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `move` ([`unnamed::Move`]), otherwise returns `None`
         #[inline]
         pub fn as_move(self) -> ::std::option::Option<unnamed::Move<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Move(x) = self { Some(x) } else { None }
+            if let Self::Move(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `mutable_specifier` ([`MutableSpecifier`]), otherwise returns `None`
         #[inline]
@@ -4992,103 +5156,171 @@ This child has type `type_parameters?` ([`TypeParameters`])*/
             self,
         ) -> ::std::option::Option<MutableSpecifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::MutableSpecifier(x) = self { Some(x) } else { None }
+            if let Self::MutableSpecifier(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `pub` ([`unnamed::Pub`]), otherwise returns `None`
         #[inline]
         pub fn as_pub(self) -> ::std::option::Option<unnamed::Pub<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Pub(x) = self { Some(x) } else { None }
+            if let Self::Pub(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `raw` ([`unnamed::Raw`]), otherwise returns `None`
         #[inline]
         pub fn as_raw(self) -> ::std::option::Option<unnamed::Raw<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Raw(x) = self { Some(x) } else { None }
+            if let Self::Raw(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `ref` ([`unnamed::Ref`]), otherwise returns `None`
         #[inline]
         pub fn as_ref(self) -> ::std::option::Option<unnamed::Ref<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Ref(x) = self { Some(x) } else { None }
+            if let Self::Ref(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `return` ([`unnamed::Return`]), otherwise returns `None`
         #[inline]
         pub fn as_return(self) -> ::std::option::Option<unnamed::Return<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Return(x) = self { Some(x) } else { None }
+            if let Self::Return(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `self` ([`Self_`]), otherwise returns `None`
         #[inline]
         pub fn as_self(self) -> ::std::option::Option<Self_<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Self_(x) = self { Some(x) } else { None }
+            if let Self::Self_(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `static` ([`unnamed::Static`]), otherwise returns `None`
         #[inline]
         pub fn as_static(self) -> ::std::option::Option<unnamed::Static<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Static(x) = self { Some(x) } else { None }
+            if let Self::Static(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `struct` ([`unnamed::Struct`]), otherwise returns `None`
         #[inline]
         pub fn as_struct(self) -> ::std::option::Option<unnamed::Struct<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Struct(x) = self { Some(x) } else { None }
+            if let Self::Struct(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `super` ([`Super`]), otherwise returns `None`
         #[inline]
         pub fn as_super(self) -> ::std::option::Option<Super<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Super(x) = self { Some(x) } else { None }
+            if let Self::Super(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `trait` ([`unnamed::Trait`]), otherwise returns `None`
         #[inline]
         pub fn as_trait(self) -> ::std::option::Option<unnamed::Trait<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Trait(x) = self { Some(x) } else { None }
+            if let Self::Trait(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `type` ([`unnamed::Type`]), otherwise returns `None`
         #[inline]
         pub fn as_type_(self) -> ::std::option::Option<unnamed::Type<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Type(x) = self { Some(x) } else { None }
+            if let Self::Type(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `union` ([`unnamed::Union`]), otherwise returns `None`
         #[inline]
         pub fn as_union(self) -> ::std::option::Option<unnamed::Union<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Union(x) = self { Some(x) } else { None }
+            if let Self::Union(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `unsafe` ([`unnamed::Unsafe`]), otherwise returns `None`
         #[inline]
         pub fn as_unsafe(self) -> ::std::option::Option<unnamed::Unsafe<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Unsafe(x) = self { Some(x) } else { None }
+            if let Self::Unsafe(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `use` ([`unnamed::Use`]), otherwise returns `None`
         #[inline]
         pub fn as_use(self) -> ::std::option::Option<unnamed::Use<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Use(x) = self { Some(x) } else { None }
+            if let Self::Use(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `where` ([`unnamed::Where`]), otherwise returns `None`
         #[inline]
         pub fn as_where(self) -> ::std::option::Option<unnamed::Where<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Where(x) = self { Some(x) } else { None }
+            if let Self::Where(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `while` ([`unnamed::While`]), otherwise returns `None`
         #[inline]
         pub fn as_while(self) -> ::std::option::Option<unnamed::While<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::While(x) = self { Some(x) } else { None }
+            if let Self::While(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `yield` ([`unnamed::Yield`]), otherwise returns `None`
         #[inline]
         pub fn as_yield(self) -> ::std::option::Option<unnamed::Yield<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Yield(x) = self { Some(x) } else { None }
+            if let Self::Yield(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
     }
     #[automatically_derived]
@@ -5713,19 +5945,31 @@ This child has type `type_parameters?` ([`TypeParameters`])*/
             self,
         ) -> ::std::option::Option<FieldIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::FieldIdentifier(x) = self { Some(x) } else { None }
+            if let Self::FieldIdentifier(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`
         #[inline]
         pub fn as_identifier(self) -> ::std::option::Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Identifier(x) = self { Some(x) } else { None }
+            if let Self::Identifier(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `type_identifier` ([`TypeIdentifier`]), otherwise returns `None`
         #[inline]
         pub fn as_type_identifier(self) -> ::std::option::Option<TypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::TypeIdentifier(x) = self { Some(x) } else { None }
+            if let Self::TypeIdentifier(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
     }
     #[automatically_derived]
@@ -5816,19 +6060,31 @@ This child has type `type_parameters?` ([`TypeParameters`])*/
         #[inline]
         pub fn as_and(self) -> ::std::option::Option<symbols::And<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::And(x) = self { Some(x) } else { None }
+            if let Self::And(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `'` ([`symbols::Quote`]), otherwise returns `None`
         #[inline]
         pub fn as_quote(self) -> ::std::option::Option<symbols::Quote<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Quote(x) = self { Some(x) } else { None }
+            if let Self::Quote(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `*` ([`symbols::Mul`]), otherwise returns `None`
         #[inline]
         pub fn as_mul(self) -> ::std::option::Option<symbols::Mul<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Mul(x) = self { Some(x) } else { None }
+            if let Self::Mul(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
     }
     #[automatically_derived]
@@ -5929,49 +6185,81 @@ This child has type `type_parameters?` ([`TypeParameters`])*/
         #[inline]
         pub fn as_l_paren(self) -> ::std::option::Option<symbols::LParen<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::LParen(x) = self { Some(x) } else { None }
+            if let Self::LParen(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `)` ([`symbols::RParen`]), otherwise returns `None`
         #[inline]
         pub fn as_r_paren(self) -> ::std::option::Option<symbols::RParen<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::RParen(x) = self { Some(x) } else { None }
+            if let Self::RParen(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `<` ([`symbols::Lt`]), otherwise returns `None`
         #[inline]
         pub fn as_lt(self) -> ::std::option::Option<symbols::Lt<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Lt(x) = self { Some(x) } else { None }
+            if let Self::Lt(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `>` ([`symbols::Gt`]), otherwise returns `None`
         #[inline]
         pub fn as_gt(self) -> ::std::option::Option<symbols::Gt<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Gt(x) = self { Some(x) } else { None }
+            if let Self::Gt(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `[` ([`symbols::LBracket`]), otherwise returns `None`
         #[inline]
         pub fn as_l_bracket(self) -> ::std::option::Option<symbols::LBracket<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::LBracket(x) = self { Some(x) } else { None }
+            if let Self::LBracket(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `]` ([`symbols::RBracket`]), otherwise returns `None`
         #[inline]
         pub fn as_r_bracket(self) -> ::std::option::Option<symbols::RBracket<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::RBracket(x) = self { Some(x) } else { None }
+            if let Self::RBracket(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `{` ([`symbols::LBrace`]), otherwise returns `None`
         #[inline]
         pub fn as_l_brace(self) -> ::std::option::Option<symbols::LBrace<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::LBrace(x) = self { Some(x) } else { None }
+            if let Self::LBrace(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `}` ([`symbols::RBrace`]), otherwise returns `None`
         #[inline]
         pub fn as_r_brace(self) -> ::std::option::Option<symbols::RBrace<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::RBrace(x) = self { Some(x) } else { None }
+            if let Self::RBrace(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
     }
     #[automatically_derived]
@@ -6136,19 +6424,31 @@ This child has type `type_parameters?` ([`TypeParameters`])*/
         #[inline]
         pub fn as_comma(self) -> ::std::option::Option<symbols::Comma<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Comma(x) = self { Some(x) } else { None }
+            if let Self::Comma(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `.` ([`symbols::Dot`]), otherwise returns `None`
         #[inline]
         pub fn as_dot(self) -> ::std::option::Option<symbols::Dot<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Dot(x) = self { Some(x) } else { None }
+            if let Self::Dot(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `:` ([`symbols::Colon`]), otherwise returns `None`
         #[inline]
         pub fn as_colon(self) -> ::std::option::Option<symbols::Colon<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Colon(x) = self { Some(x) } else { None }
+            if let Self::Colon(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `::` ([`symbols::ColonColon`]), otherwise returns `None`
         #[inline]
@@ -6156,13 +6456,21 @@ This child has type `type_parameters?` ([`TypeParameters`])*/
             self,
         ) -> ::std::option::Option<symbols::ColonColon<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::ColonColon(x) = self { Some(x) } else { None }
+            if let Self::ColonColon(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `;` ([`symbols::Semicolon`]), otherwise returns `None`
         #[inline]
         pub fn as_semicolon(self) -> ::std::option::Option<symbols::Semicolon<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Semicolon(x) = self { Some(x) } else { None }
+            if let Self::Semicolon(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
     }
     #[automatically_derived]
@@ -6279,7 +6587,11 @@ This child has type `type_parameters?` ([`TypeParameters`])*/
         #[inline]
         pub fn as_call_expression(self) -> ::std::option::Option<CallExpression<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::CallExpression(x) = self { Some(x) } else { None }
+            if let Self::CallExpression(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `macro_invocation` ([`MacroInvocation`]), otherwise returns `None`
         #[inline]
@@ -6287,7 +6599,11 @@ This child has type `type_parameters?` ([`TypeParameters`])*/
             self,
         ) -> ::std::option::Option<MacroInvocation<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::MacroInvocation(x) = self { Some(x) } else { None }
+            if let Self::MacroInvocation(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
     }
     #[automatically_derived]
@@ -6364,7 +6680,11 @@ This child has type `type_parameters?` ([`TypeParameters`])*/
         #[inline]
         pub fn as_char_literal(self) -> ::std::option::Option<CharLiteral<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::CharLiteral(x) = self { Some(x) } else { None }
+            if let Self::CharLiteral(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `raw_string_literal` ([`RawStringLiteral`]), otherwise returns `None`
         #[inline]
@@ -6372,13 +6692,21 @@ This child has type `type_parameters?` ([`TypeParameters`])*/
             self,
         ) -> ::std::option::Option<RawStringLiteral<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::RawStringLiteral(x) = self { Some(x) } else { None }
+            if let Self::RawStringLiteral(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `string_literal` ([`StringLiteral`]), otherwise returns `None`
         #[inline]
         pub fn as_string_literal(self) -> ::std::option::Option<StringLiteral<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::StringLiteral(x) = self { Some(x) } else { None }
+            if let Self::StringLiteral(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
     }
     #[automatically_derived]
@@ -6467,13 +6795,21 @@ This child has type `type_parameters?` ([`TypeParameters`])*/
         #[inline]
         pub fn as_identifier(self) -> ::std::option::Option<Identifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::Identifier(x) = self { Some(x) } else { None }
+            if let Self::Identifier(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
         ///Returns the node if it is of type `type_identifier` ([`TypeIdentifier`]), otherwise returns `None`
         #[inline]
         pub fn as_type_identifier(self) -> ::std::option::Option<TypeIdentifier<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::TypeIdentifier(x) = self { Some(x) } else { None }
+            if let Self::TypeIdentifier(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
         }
     }
     #[automatically_derived]
