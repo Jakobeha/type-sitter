@@ -11,7 +11,7 @@ edition.workspace = true
 
 [dependencies]
 convert_case = "0.8"
-check_keyword = "0.3"
+check_keyword = "0.4.1"
 dunce = "1.0.5"
 proc-macro2 = "1.0"
 quote = "1.0"
