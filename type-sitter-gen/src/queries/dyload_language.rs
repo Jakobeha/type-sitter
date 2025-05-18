@@ -179,23 +179,33 @@ fn build_dylib(path: &Path, dylib_path: &Path) -> Result<(), Error> {
             .status()
             .map_err(Error::LinkDylibCmdFailed)?
     } else if cfg!(target_family = "windows") {
-        // Try GNU/MinGW
-        let status = Command::new("ld")
-            .args(["-shared", "-o"])
-            .arg(&dylib_path)
-            .args(find_object_files_in(dylib_dir))
-            .status();
-        if status.as_ref().is_ok_and(|s| s.success()) {
-            ExitStatus::default()
-        } else {
-            // Try MSVC
-            Command::new("link")
-                .arg("/DLL")
-                .arg(format!("/OUT:{}", dylib_path.display()))
-                .args(find_object_files_in(dylib_dir))
-                .status()
+        let link_exe_where_output = String::from_utf8(
+            Command::new("where")
+                .arg("link.exe")
+                .output()
                 .map_err(Error::LinkDylibCmdFailed)?
-        }
+                .stdout,
+        )
+        .unwrap_or_default();
+        let link_exe_path = link_exe_where_output
+            .lines()
+            .map(Path::new)
+            .filter(|line| {
+                line.components()
+                    .any(|c| c.as_os_str().to_str() == Some("MSVC"))
+            })
+            .next()
+            .ok_or(Error::LinkDylibCmdFailed(std::io::Error::new(
+                std::io::ErrorKind::NotFound,
+                "can't find MSVC `link.exe`. Are Visual Studio Build tools installed?",
+            )))?;
+
+        Command::new(link_exe_path)
+            .arg("/DLL")
+            .arg(format!("/OUT:{}", dylib_path.display()))
+            .args(find_object_files_in(dylib_dir))
+            .status()
+            .map_err(Error::LinkDylibCmdFailed)?
     } else {
         return Err(Error::LinkDylibUnsupported);
     };
