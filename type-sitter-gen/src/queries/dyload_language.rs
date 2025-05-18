@@ -203,7 +203,7 @@ fn find_object_files_in(dir: &Path) -> impl Iterator<Item = PathBuf> {
         .filter_map(|entry| entry.ok())
         .filter(|entry| entry.file_type().is_file())
         .filter(|entry| has_extension(entry.path(), "o"))
-        .map(|entry| entry.into_path())
+        .filter_map(|entry| entry.into_path().canonicalize().ok())
 }
 
 fn copy_language_fn(language_fn: &LanguageFn) -> LanguageFn {
