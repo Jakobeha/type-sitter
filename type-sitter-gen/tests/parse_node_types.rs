@@ -19,6 +19,11 @@ pub fn test_parse_node_types_c() {
     test_parse_node_types("c")
 }
 
+#[test]
+pub fn test_parse_node_types_python() {
+    test_parse_node_types("python")
+}
+
 pub fn test_parse_node_types(lang: &str) {
     let Common {
         input_dir,
