@@ -21,6 +21,7 @@ jobs:
       - name: Build
         run: cargo build --verbose
       - name: Run tests
+        shell: bash
         run: ./test.sh
 
   windows:
@@ -34,4 +35,5 @@ jobs:
       - name: Build
         run: cargo build --verbose
       - name: Run tests
+        shell: bash
         run: ./test.sh
