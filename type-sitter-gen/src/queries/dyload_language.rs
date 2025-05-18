@@ -182,7 +182,7 @@ fn build_dylib(path: &Path, dylib_path: &Path) -> Result<(), Error> {
         Command::new("link")
             .arg("/DLL")
             .arg(format!("/OUT:{}", dylib_path.display()))
-            .args(find_object_files_in(dylib_dir))
+            .args(find_object_files_in(dylib_dir).map(|p| p.display().to_string()))
             .status()
             .map_err(Error::LinkDylibCmdFailed)?
     } else {
@@ -204,7 +204,6 @@ fn find_object_files_in(dir: &Path) -> impl Iterator<Item = PathBuf> {
         .filter(|entry| entry.file_type().is_file())
         .filter(|entry| has_extension(entry.path(), "o"))
         .map(|entry| entry.into_path())
-        .map(|path| path.canonicalize().unwrap_or(path))
 }
 
 fn copy_language_fn(language_fn: &LanguageFn) -> LanguageFn {
