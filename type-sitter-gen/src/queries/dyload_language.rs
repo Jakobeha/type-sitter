@@ -8,7 +8,7 @@ use std::ffi::CString;
 use std::fs::create_dir_all;
 use std::panic::UnwindSafe;
 use std::path::{Path, PathBuf};
-use std::process::{Command, ExitStatus};
+use std::process::Command;
 use std::sync::atomic::AtomicBool;
 use std::sync::RwLock;
 use tree_sitter::Language;
