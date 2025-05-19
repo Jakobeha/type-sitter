@@ -119,13 +119,7 @@ fn build_dylib_if_needed(path: &Path, dylib_path: &Path) -> Result<(), Error> {
 
 pub fn dylib_path(path: &Path) -> PathBuf {
     let mut path = path.join("target/c-release-so/libtree-sitter");
-    if cfg!(target_os = "macos") {
-        path.set_extension("dylib");
-    } else if cfg!(target_os = "windows") {
-        path.set_extension("dll");
-    } else {
-        path.set_extension("so");
-    }
+    path.set_extension(std::env::consts::DLL_EXTENSION);
     path
 }
 
@@ -179,25 +173,13 @@ fn build_dylib(path: &Path, dylib_path: &Path) -> Result<(), Error> {
             .status()
             .map_err(Error::LinkDylibCmdFailed)?
     } else if cfg!(target_family = "windows") {
-        let link_exe_where_output = String::from_utf8(
-            Command::new("where")
-                .arg("link")
-                .output()
-                .map_err(Error::LinkDylibCmdFailed)?
-                .stdout,
-        )
-        .unwrap_or_default();
-        let link_exe_path = link_exe_where_output
-            .lines()
-            .filter(|line| line.contains("MSVC"))
-            .map(Path::new)
-            .next()
+        let mut link_exe = cc::windows_registry::find(std::env::consts::ARCH, "link.exe")
             .ok_or(Error::LinkDylibCmdFailed(std::io::Error::new(
                 std::io::ErrorKind::NotFound,
-                "can't find MSVC `link.exe`. Are Visual Studio Build tools installed?",
+                "can't find `link.exe`. Are Visual Studio Build tools installed?",
             )))?;
 
-        Command::new(link_exe_path)
+        link_exe
             .arg("/DLL")
             .arg(format!("/OUT:{}", dylib_path.display()))
             .args(find_object_files_in(dylib_dir))
