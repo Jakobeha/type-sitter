@@ -167,7 +167,9 @@ impl NodeType {
         }: PrintCtx,
         anon_unions: &mut AnonUnions,
     ) -> TokenStream {
-        let has_implicit_subtypes = subtypes.iter().any(|subtype| subtype.name.is_implicit());
+        let has_implicit_subtypes = subtypes.iter().any(|subtype| {
+            subtype.name.is_implicit() || matches!(subtype.kind, NodeTypeKind::Supertype { .. })
+        });
 
         // Don't clear `prev_methods`, do clear `prev_variants` before every iteration.
         // Because the variants are in the local `match` scope but the methods are in the same type
