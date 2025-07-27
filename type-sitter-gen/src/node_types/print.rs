@@ -167,10 +167,6 @@ impl NodeType {
         }: PrintCtx,
         anon_unions: &mut AnonUnions,
     ) -> TokenStream {
-        let has_implicit_subtypes = subtypes.iter().any(|subtype| {
-            subtype.name.is_implicit() || matches!(subtype.kind, NodeTypeKind::Supertype { .. })
-        });
-
         // Don't clear `prev_methods`, do clear `prev_variants` before every iteration.
         // Because the variants are in the local `match` scope but the methods are in the same type
         // scope.
@@ -206,30 +202,15 @@ impl NodeType {
             let error = quote! {
                 Err(#type_sitter_lib::IncorrectKind::new::<Self>(node))
             };
-            if has_implicit_subtypes {
-                prev_variants.clear();
-                let try_from_ifs = subtypes
-                    .iter()
-                    .map(|name| name.print_try_from_if(&mut prev_variants, type_sitter_lib))
-                    .collect::<TokenStream>();
+            prev_variants.clear();
+            let try_from_ifs = subtypes
+                .iter()
+                .map(|name| name.print_try_from_if(&mut prev_variants, type_sitter_lib))
+                .collect::<TokenStream>();
 
-                quote! {
-                    #try_from_ifs
-                    #error
-                }
-            } else {
-                prev_variants.clear();
-                let from_cases = subtypes
-                    .iter()
-                    .map(|name| name.print_from_case(&mut prev_variants, type_sitter_lib))
-                    .collect::<TokenStream>();
-
-                quote! {
-                    match node.kind() {
-                        #from_cases
-                        _ => #error
-                    }
-                }
+            quote! {
+                #try_from_ifs
+                #error
             }
         };
 
@@ -782,20 +763,6 @@ impl NodeType {
         }
     }
 
-    fn print_from_case(
-        &self,
-        prev_variants: &mut HashSet<String>,
-        type_sitter_lib: &Path,
-    ) -> TokenStream {
-        let ident = self.rust_variant_ident(prev_variants);
-        let rust_type = self.print_rust_type();
-        let kind = self.sexp_lit_str();
-
-        quote! {
-            #kind => Ok(unsafe { Self::#ident(<#rust_type as #type_sitter_lib::Node<'tree>>::from_raw_unchecked(node)) }),
-        }
-    }
-
     fn print_raw_case(
         &self,
         prev_variants: &mut HashSet<String>,
@@ -852,10 +819,6 @@ impl NodeType {
             "node kind (rust variant selector method name)"
         )
         .unwrap()
-    }
-
-    fn sexp_lit_str(&self) -> LitStr {
-        lit_str(&self.name.sexp_name)
     }
 }
 

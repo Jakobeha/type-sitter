@@ -1291,24 +1291,16 @@ pub mod anon_unions {
         fn try_from_raw(
             node: ::type_sitter::raw::Node<'tree>,
         ) -> ::type_sitter::NodeResult<'tree, Self> {
-            match node.kind() {
-                "false" => Ok(unsafe {
-                    Self::False(
-                        <False<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                }),
-                "none" => Ok(unsafe {
-                    Self::None(
-                        <None<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                }),
-                "true" => Ok(unsafe {
-                    Self::True(
-                        <True<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                }),
-                _ => Err(::type_sitter::IncorrectKind::new::<Self>(node)),
+            if let Ok(this) = <False<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::False(this));
             }
+            if let Ok(this) = <None<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::None(this));
+            }
+            if let Ok(this) = <True<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::True(this));
+            }
+            Err(::type_sitter::IncorrectKind::new::<Self>(node))
         }
         #[inline]
         fn raw(&self) -> &::type_sitter::raw::Node<'tree> {
@@ -1374,19 +1366,14 @@ pub mod anon_unions {
         fn try_from_raw(
             node: ::type_sitter::raw::Node<'tree>,
         ) -> ::type_sitter::NodeResult<'tree, Self> {
-            match node.kind() {
-                "decorator" => Ok(unsafe {
-                    Self::Decorator(
-                        <Decorator<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                }),
-                "identifier" => Ok(unsafe {
-                    Self::Identifier(
-                        <Identifier<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                }),
-                _ => Err(::type_sitter::IncorrectKind::new::<Self>(node)),
+            if let Ok(this) = <Decorator<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::Decorator(this));
             }
+            if let Ok(this) = <Identifier<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::Identifier(this));
+            }
+            Err(::type_sitter::IncorrectKind::new::<Self>(node))
         }
         #[inline]
         fn raw(&self) -> &::type_sitter::raw::Node<'tree> {
@@ -1768,172 +1755,160 @@ pub mod anon_unions {
         fn try_from_raw(
             node: ::type_sitter::raw::Node<'tree>,
         ) -> ::type_sitter::NodeResult<'tree, Self> {
-            match node.kind() {
-                "as" => Ok(unsafe {
-                    Self::As(
-                        <unnamed::As<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
-                            node,
-                        ),
-                    )
-                }),
-                "assert" => {
-                    Ok(unsafe {
-                        Self :: Assert (< unnamed :: Assert < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                "async" => {
-                    Ok(unsafe {
-                        Self :: Async (< unnamed :: Async < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                "await" => {
-                    Ok(unsafe {
-                        Self :: Await (< unnamed :: Await < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                "break" => {
-                    Ok(unsafe {
-                        Self :: Break (< unnamed :: Break < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                "case" => {
-                    Ok(unsafe {
-                        Self :: Case (< unnamed :: Case < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                "class" => {
-                    Ok(unsafe {
-                        Self :: Class (< unnamed :: Class < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                "continue" => Ok(unsafe {
-                    Self :: Continue (< unnamed :: Continue < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                }),
-                "def" => Ok(unsafe {
-                    Self::Def(
-                        <unnamed::Def<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
-                            node,
-                        ),
-                    )
-                }),
-                "del" => Ok(unsafe {
-                    Self::Del(
-                        <unnamed::Del<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
-                            node,
-                        ),
-                    )
-                }),
-                "elif" => {
-                    Ok(unsafe {
-                        Self :: Elif (< unnamed :: Elif < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                "else" => {
-                    Ok(unsafe {
-                        Self :: Else (< unnamed :: Else < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                "except" => {
-                    Ok(unsafe {
-                        Self :: Except (< unnamed :: Except < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                "exec" => {
-                    Ok(unsafe {
-                        Self :: Exec (< unnamed :: Exec < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                "finally" => {
-                    Ok(unsafe {
-                        Self :: Finally (< unnamed :: Finally < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                "for" => Ok(unsafe {
-                    Self::For(
-                        <unnamed::For<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
-                            node,
-                        ),
-                    )
-                }),
-                "from" => {
-                    Ok(unsafe {
-                        Self :: From (< unnamed :: From < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                "global" => {
-                    Ok(unsafe {
-                        Self :: Global (< unnamed :: Global < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                "if" => Ok(unsafe {
-                    Self::If(
-                        <unnamed::If<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
-                            node,
-                        ),
-                    )
-                }),
-                "import" => {
-                    Ok(unsafe {
-                        Self :: Import (< unnamed :: Import < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                "lambda" => {
-                    Ok(unsafe {
-                        Self :: Lambda (< unnamed :: Lambda < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                "match" => {
-                    Ok(unsafe {
-                        Self :: Match (< unnamed :: Match < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                "nonlocal" => Ok(unsafe {
-                    Self :: Nonlocal (< unnamed :: Nonlocal < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                }),
-                "pass" => {
-                    Ok(unsafe {
-                        Self :: Pass (< unnamed :: Pass < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                "print" => {
-                    Ok(unsafe {
-                        Self :: Print (< unnamed :: Print < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                "raise" => {
-                    Ok(unsafe {
-                        Self :: Raise (< unnamed :: Raise < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                "return" => {
-                    Ok(unsafe {
-                        Self :: Return (< unnamed :: Return < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                "try" => Ok(unsafe {
-                    Self::Try(
-                        <unnamed::Try<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
-                            node,
-                        ),
-                    )
-                }),
-                "while" => {
-                    Ok(unsafe {
-                        Self :: While (< unnamed :: While < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                "with" => {
-                    Ok(unsafe {
-                        Self :: With (< unnamed :: With < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                "yield" => {
-                    Ok(unsafe {
-                        Self :: Yield (< unnamed :: Yield < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                _ => Err(::type_sitter::IncorrectKind::new::<Self>(node)),
+            if let Ok(this) = <unnamed::As<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::As(this));
             }
+            if let Ok(this) =
+                <unnamed::Assert<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::Assert(this));
+            }
+            if let Ok(this) =
+                <unnamed::Async<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::Async(this));
+            }
+            if let Ok(this) =
+                <unnamed::Await<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::Await(this));
+            }
+            if let Ok(this) =
+                <unnamed::Break<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::Break(this));
+            }
+            if let Ok(this) =
+                <unnamed::Case<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::Case(this));
+            }
+            if let Ok(this) =
+                <unnamed::Class<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::Class(this));
+            }
+            if let Ok(this) =
+                <unnamed::Continue<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::Continue(this));
+            }
+            if let Ok(this) =
+                <unnamed::Def<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::Def(this));
+            }
+            if let Ok(this) =
+                <unnamed::Del<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::Del(this));
+            }
+            if let Ok(this) =
+                <unnamed::Elif<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::Elif(this));
+            }
+            if let Ok(this) =
+                <unnamed::Else<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::Else(this));
+            }
+            if let Ok(this) =
+                <unnamed::Except<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::Except(this));
+            }
+            if let Ok(this) =
+                <unnamed::Exec<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::Exec(this));
+            }
+            if let Ok(this) =
+                <unnamed::Finally<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::Finally(this));
+            }
+            if let Ok(this) =
+                <unnamed::For<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::For(this));
+            }
+            if let Ok(this) =
+                <unnamed::From<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::From(this));
+            }
+            if let Ok(this) =
+                <unnamed::Global<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::Global(this));
+            }
+            if let Ok(this) = <unnamed::If<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::If(this));
+            }
+            if let Ok(this) =
+                <unnamed::Import<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::Import(this));
+            }
+            if let Ok(this) =
+                <unnamed::Lambda<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::Lambda(this));
+            }
+            if let Ok(this) =
+                <unnamed::Match<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::Match(this));
+            }
+            if let Ok(this) =
+                <unnamed::Nonlocal<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::Nonlocal(this));
+            }
+            if let Ok(this) =
+                <unnamed::Pass<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::Pass(this));
+            }
+            if let Ok(this) =
+                <unnamed::Print<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::Print(this));
+            }
+            if let Ok(this) =
+                <unnamed::Raise<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::Raise(this));
+            }
+            if let Ok(this) =
+                <unnamed::Return<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::Return(this));
+            }
+            if let Ok(this) =
+                <unnamed::Try<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::Try(this));
+            }
+            if let Ok(this) =
+                <unnamed::While<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::While(this));
+            }
+            if let Ok(this) =
+                <unnamed::With<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::With(this));
+            }
+            if let Ok(this) =
+                <unnamed::Yield<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::Yield(this));
+            }
+            Err(::type_sitter::IncorrectKind::new::<Self>(node))
         }
         #[inline]
         fn raw(&self) -> &::type_sitter::raw::Node<'tree> {
@@ -2083,19 +2058,13 @@ pub mod anon_unions {
         fn try_from_raw(
             node: ::type_sitter::raw::Node<'tree>,
         ) -> ::type_sitter::NodeResult<'tree, Self> {
-            match node.kind() {
-                "float" => Ok(unsafe {
-                    Self::Float(
-                        <Float<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                }),
-                "integer" => Ok(unsafe {
-                    Self::Integer(
-                        <Integer<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                }),
-                _ => Err(::type_sitter::IncorrectKind::new::<Self>(node)),
+            if let Ok(this) = <Float<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::Float(this));
             }
+            if let Ok(this) = <Integer<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::Integer(this));
+            }
+            Err(::type_sitter::IncorrectKind::new::<Self>(node))
         }
         #[inline]
         fn raw(&self) -> &::type_sitter::raw::Node<'tree> {
@@ -2609,244 +2578,215 @@ pub mod anon_unions {
         fn try_from_raw(
             node: ::type_sitter::raw::Node<'tree>,
         ) -> ::type_sitter::NodeResult<'tree, Self> {
-            match node.kind() {
-                "!=" => {
-                    Ok(unsafe {
-                        Self :: NotEq (< symbols :: NotEq < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                "%" => Ok(unsafe {
-                    Self::Mod(
-                        <symbols::Mod<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
-                            node,
-                        ),
-                    )
-                }),
-                "%=" => {
-                    Ok(unsafe {
-                        Self :: ModEq (< symbols :: ModEq < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                "&" => Ok(unsafe {
-                    Self::And(
-                        <symbols::And<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
-                            node,
-                        ),
-                    )
-                }),
-                "&=" => {
-                    Ok(unsafe {
-                        Self :: AndEq (< symbols :: AndEq < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                "*" => Ok(unsafe {
-                    Self::Mul(
-                        <symbols::Mul<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
-                            node,
-                        ),
-                    )
-                }),
-                "**" => {
-                    Ok(unsafe {
-                        Self :: MulMul (< symbols :: MulMul < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                "**=" => Ok(unsafe {
-                    Self :: MulMulEq (< symbols :: MulMulEq < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                }),
-                "*=" => {
-                    Ok(unsafe {
-                        Self :: MulEq (< symbols :: MulEq < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                "+" => Ok(unsafe {
-                    Self::Add(
-                        <symbols::Add<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
-                            node,
-                        ),
-                    )
-                }),
-                "+=" => {
-                    Ok(unsafe {
-                        Self :: AddEq (< symbols :: AddEq < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                "-" => Ok(unsafe {
-                    Self::Sub(
-                        <symbols::Sub<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
-                            node,
-                        ),
-                    )
-                }),
-                "-=" => {
-                    Ok(unsafe {
-                        Self :: SubEq (< symbols :: SubEq < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                "->" => {
-                    Ok(unsafe {
-                        Self :: SubGt (< symbols :: SubGt < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                "/" => Ok(unsafe {
-                    Self::Div(
-                        <symbols::Div<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
-                            node,
-                        ),
-                    )
-                }),
-                "//" => {
-                    Ok(unsafe {
-                        Self :: DivDiv (< symbols :: DivDiv < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                "//=" => Ok(unsafe {
-                    Self :: DivDivEq (< symbols :: DivDivEq < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                }),
-                "/=" => {
-                    Ok(unsafe {
-                        Self :: DivEq (< symbols :: DivEq < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                ":=" => {
-                    Ok(unsafe {
-                        Self :: ColonEq (< symbols :: ColonEq < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                "<" => Ok(unsafe {
-                    Self::Lt(
-                        <symbols::Lt<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
-                            node,
-                        ),
-                    )
-                }),
-                "<<" => {
-                    Ok(unsafe {
-                        Self :: LtLt (< symbols :: LtLt < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                "<<=" => {
-                    Ok(unsafe {
-                        Self :: LtLtEq (< symbols :: LtLtEq < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                "<=" => {
-                    Ok(unsafe {
-                        Self :: LtEq (< symbols :: LtEq < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                "<>" => {
-                    Ok(unsafe {
-                        Self :: LtGt (< symbols :: LtGt < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                "=" => Ok(unsafe {
-                    Self::Eq(
-                        <symbols::Eq<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
-                            node,
-                        ),
-                    )
-                }),
-                "==" => {
-                    Ok(unsafe {
-                        Self :: EqEq (< symbols :: EqEq < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                ">" => Ok(unsafe {
-                    Self::Gt(
-                        <symbols::Gt<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
-                            node,
-                        ),
-                    )
-                }),
-                ">=" => {
-                    Ok(unsafe {
-                        Self :: GtEq (< symbols :: GtEq < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                ">>" => {
-                    Ok(unsafe {
-                        Self :: GtGt (< symbols :: GtGt < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                ">>=" => {
-                    Ok(unsafe {
-                        Self :: GtGtEq (< symbols :: GtGtEq < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                "@=" => {
-                    Ok(unsafe {
-                        Self :: AtEq (< symbols :: AtEq < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                "^" => {
-                    Ok(unsafe {
-                        Self :: BitXor (< symbols :: BitXor < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                "^=" => Ok(unsafe {
-                    Self :: BitXorEq (< symbols :: BitXorEq < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                }),
-                "and" => Ok(unsafe {
-                    Self::And_(
-                        <unnamed::And<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
-                            node,
-                        ),
-                    )
-                }),
-                "in" => Ok(unsafe {
-                    Self::In(
-                        <unnamed::In<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
-                            node,
-                        ),
-                    )
-                }),
-                "is" => Ok(unsafe {
-                    Self::Is(
-                        <unnamed::Is<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
-                            node,
-                        ),
-                    )
-                }),
-                "is not" => Ok(unsafe {
-                    Self :: IsSpacenot (< symbols :: IsSpacenot < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                }),
-                "not" => Ok(unsafe {
-                    Self::Not(
-                        <unnamed::Not<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
-                            node,
-                        ),
-                    )
-                }),
-                "not in" => Ok(unsafe {
-                    Self :: NotSpacein (< symbols :: NotSpacein < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                }),
-                "or" => Ok(unsafe {
-                    Self::Or(
-                        <unnamed::Or<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
-                            node,
-                        ),
-                    )
-                }),
-                "|" => Ok(unsafe {
-                    Self::Or_(
-                        <symbols::Or<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
-                            node,
-                        ),
-                    )
-                }),
-                "|=" => {
-                    Ok(unsafe {
-                        Self :: OrEq (< symbols :: OrEq < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                "~" => {
-                    Ok(unsafe {
-                        Self :: BitNot (< symbols :: BitNot < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                _ => Err(::type_sitter::IncorrectKind::new::<Self>(node)),
+            if let Ok(this) =
+                <symbols::NotEq<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::NotEq(this));
             }
+            if let Ok(this) =
+                <symbols::Mod<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::Mod(this));
+            }
+            if let Ok(this) =
+                <symbols::ModEq<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::ModEq(this));
+            }
+            if let Ok(this) =
+                <symbols::And<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::And(this));
+            }
+            if let Ok(this) =
+                <symbols::AndEq<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::AndEq(this));
+            }
+            if let Ok(this) =
+                <symbols::Mul<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::Mul(this));
+            }
+            if let Ok(this) =
+                <symbols::MulMul<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::MulMul(this));
+            }
+            if let Ok(this) =
+                <symbols::MulMulEq<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::MulMulEq(this));
+            }
+            if let Ok(this) =
+                <symbols::MulEq<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::MulEq(this));
+            }
+            if let Ok(this) =
+                <symbols::Add<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::Add(this));
+            }
+            if let Ok(this) =
+                <symbols::AddEq<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::AddEq(this));
+            }
+            if let Ok(this) =
+                <symbols::Sub<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::Sub(this));
+            }
+            if let Ok(this) =
+                <symbols::SubEq<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::SubEq(this));
+            }
+            if let Ok(this) =
+                <symbols::SubGt<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::SubGt(this));
+            }
+            if let Ok(this) =
+                <symbols::Div<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::Div(this));
+            }
+            if let Ok(this) =
+                <symbols::DivDiv<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::DivDiv(this));
+            }
+            if let Ok(this) =
+                <symbols::DivDivEq<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::DivDivEq(this));
+            }
+            if let Ok(this) =
+                <symbols::DivEq<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::DivEq(this));
+            }
+            if let Ok(this) =
+                <symbols::ColonEq<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::ColonEq(this));
+            }
+            if let Ok(this) = <symbols::Lt<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::Lt(this));
+            }
+            if let Ok(this) =
+                <symbols::LtLt<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::LtLt(this));
+            }
+            if let Ok(this) =
+                <symbols::LtLtEq<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::LtLtEq(this));
+            }
+            if let Ok(this) =
+                <symbols::LtEq<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::LtEq(this));
+            }
+            if let Ok(this) =
+                <symbols::LtGt<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::LtGt(this));
+            }
+            if let Ok(this) = <symbols::Eq<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::Eq(this));
+            }
+            if let Ok(this) =
+                <symbols::EqEq<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::EqEq(this));
+            }
+            if let Ok(this) = <symbols::Gt<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::Gt(this));
+            }
+            if let Ok(this) =
+                <symbols::GtEq<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::GtEq(this));
+            }
+            if let Ok(this) =
+                <symbols::GtGt<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::GtGt(this));
+            }
+            if let Ok(this) =
+                <symbols::GtGtEq<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::GtGtEq(this));
+            }
+            if let Ok(this) =
+                <symbols::AtEq<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::AtEq(this));
+            }
+            if let Ok(this) =
+                <symbols::BitXor<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::BitXor(this));
+            }
+            if let Ok(this) =
+                <symbols::BitXorEq<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::BitXorEq(this));
+            }
+            if let Ok(this) =
+                <unnamed::And<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::And_(this));
+            }
+            if let Ok(this) = <unnamed::In<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::In(this));
+            }
+            if let Ok(this) = <unnamed::Is<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::Is(this));
+            }
+            if let Ok(this) =
+                <symbols::IsSpacenot<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::IsSpacenot(this));
+            }
+            if let Ok(this) =
+                <unnamed::Not<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::Not(this));
+            }
+            if let Ok(this) =
+                <symbols::NotSpacein<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::NotSpacein(this));
+            }
+            if let Ok(this) = <unnamed::Or<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::Or(this));
+            }
+            if let Ok(this) = <symbols::Or<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::Or_(this));
+            }
+            if let Ok(this) =
+                <symbols::OrEq<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::OrEq(this));
+            }
+            if let Ok(this) =
+                <symbols::BitNot<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::BitNot(this));
+            }
+            Err(::type_sitter::IncorrectKind::new::<Self>(node))
         }
         #[inline]
         fn raw(&self) -> &::type_sitter::raw::Node<'tree> {
@@ -3032,19 +2972,17 @@ pub mod anon_unions {
         fn try_from_raw(
             node: ::type_sitter::raw::Node<'tree>,
         ) -> ::type_sitter::NodeResult<'tree, Self> {
-            match node.kind() {
-                "{" => {
-                    Ok(unsafe {
-                        Self :: LBrace (< symbols :: LBrace < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                "}" => {
-                    Ok(unsafe {
-                        Self :: RBrace (< symbols :: RBrace < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                _ => Err(::type_sitter::IncorrectKind::new::<Self>(node)),
+            if let Ok(this) =
+                <symbols::LBrace<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::LBrace(this));
             }
+            if let Ok(this) =
+                <symbols::RBrace<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::RBrace(this));
+            }
+            Err(::type_sitter::IncorrectKind::new::<Self>(node))
         }
         #[inline]
         fn raw(&self) -> &::type_sitter::raw::Node<'tree> {

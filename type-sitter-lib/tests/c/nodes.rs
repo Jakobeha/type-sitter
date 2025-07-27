@@ -75,45 +75,27 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for AbstractDeclarator<'tree> {
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
     ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
-        match node.kind() {
-            "abstract_array_declarator" => {
-                Ok(unsafe {
-                    Self::AbstractArrayDeclarator(
-                        <AbstractArrayDeclarator<
-                            'tree,
-                        > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                })
-            }
-            "abstract_function_declarator" => {
-                Ok(unsafe {
-                    Self::AbstractFunctionDeclarator(
-                        <AbstractFunctionDeclarator<
-                            'tree,
-                        > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                })
-            }
-            "abstract_parenthesized_declarator" => {
-                Ok(unsafe {
-                    Self::AbstractParenthesizedDeclarator(
-                        <AbstractParenthesizedDeclarator<
-                            'tree,
-                        > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                })
-            }
-            "abstract_pointer_declarator" => {
-                Ok(unsafe {
-                    Self::AbstractPointerDeclarator(
-                        <AbstractPointerDeclarator<
-                            'tree,
-                        > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                })
-            }
-            _ => Err(::type_sitter_lib::IncorrectKind::new::<Self>(node)),
+        if let Ok(this) = <AbstractArrayDeclarator<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::AbstractArrayDeclarator(this));
         }
+        if let Ok(this) = <AbstractFunctionDeclarator<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::AbstractFunctionDeclarator(this));
+        }
+        if let Ok(this) = <AbstractParenthesizedDeclarator<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::AbstractParenthesizedDeclarator(this));
+        }
+        if let Ok(this) = <AbstractPointerDeclarator<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::AbstractPointerDeclarator(this));
+        }
+        Err(::type_sitter_lib::IncorrectKind::new::<Self>(node))
     }
     #[inline]
     fn raw(&self) -> &::yak_sitter::Node<'tree> {
@@ -246,63 +228,37 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for Declarator<'tree> {
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
     ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
-        match node.kind() {
-            "array_declarator" => {
-                Ok(unsafe {
-                    Self::ArrayDeclarator(
-                        <ArrayDeclarator<
-                            'tree,
-                        > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                })
-            }
-            "attributed_declarator" => {
-                Ok(unsafe {
-                    Self::AttributedDeclarator(
-                        <AttributedDeclarator<
-                            'tree,
-                        > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                })
-            }
-            "function_declarator" => {
-                Ok(unsafe {
-                    Self::FunctionDeclarator(
-                        <FunctionDeclarator<
-                            'tree,
-                        > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                })
-            }
-            "identifier" => {
-                Ok(unsafe {
-                    Self::Identifier(
-                        <Identifier<
-                            'tree,
-                        > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                })
-            }
-            "parenthesized_declarator" => {
-                Ok(unsafe {
-                    Self::ParenthesizedDeclarator(
-                        <ParenthesizedDeclarator<
-                            'tree,
-                        > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                })
-            }
-            "pointer_declarator" => {
-                Ok(unsafe {
-                    Self::PointerDeclarator(
-                        <PointerDeclarator<
-                            'tree,
-                        > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                })
-            }
-            _ => Err(::type_sitter_lib::IncorrectKind::new::<Self>(node)),
+        if let Ok(this) = <ArrayDeclarator<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::ArrayDeclarator(this));
         }
+        if let Ok(this) = <AttributedDeclarator<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::AttributedDeclarator(this));
+        }
+        if let Ok(this) = <FunctionDeclarator<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::FunctionDeclarator(this));
+        }
+        if let Ok(this) = <Identifier<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::Identifier(this));
+        }
+        if let Ok(this) = <ParenthesizedDeclarator<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::ParenthesizedDeclarator(this));
+        }
+        if let Ok(this) = <PointerDeclarator<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::PointerDeclarator(this));
+        }
+        Err(::type_sitter_lib::IncorrectKind::new::<Self>(node))
     }
     #[inline]
     fn raw(&self) -> &::yak_sitter::Node<'tree> {
@@ -439,63 +395,37 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for FieldDeclarator<'tree> {
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
     ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
-        match node.kind() {
-            "array_declarator" => {
-                Ok(unsafe {
-                    Self::ArrayDeclarator(
-                        <ArrayDeclarator<
-                            'tree,
-                        > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                })
-            }
-            "attributed_declarator" => {
-                Ok(unsafe {
-                    Self::AttributedDeclarator(
-                        <AttributedDeclarator<
-                            'tree,
-                        > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                })
-            }
-            "field_identifier" => {
-                Ok(unsafe {
-                    Self::FieldIdentifier(
-                        <FieldIdentifier<
-                            'tree,
-                        > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                })
-            }
-            "function_declarator" => {
-                Ok(unsafe {
-                    Self::FunctionDeclarator(
-                        <FunctionDeclarator<
-                            'tree,
-                        > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                })
-            }
-            "parenthesized_declarator" => {
-                Ok(unsafe {
-                    Self::ParenthesizedDeclarator(
-                        <ParenthesizedDeclarator<
-                            'tree,
-                        > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                })
-            }
-            "pointer_declarator" => {
-                Ok(unsafe {
-                    Self::PointerDeclarator(
-                        <PointerDeclarator<
-                            'tree,
-                        > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                })
-            }
-            _ => Err(::type_sitter_lib::IncorrectKind::new::<Self>(node)),
+        if let Ok(this) = <ArrayDeclarator<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::ArrayDeclarator(this));
         }
+        if let Ok(this) = <AttributedDeclarator<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::AttributedDeclarator(this));
+        }
+        if let Ok(this) = <FieldIdentifier<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::FieldIdentifier(this));
+        }
+        if let Ok(this) = <FunctionDeclarator<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::FunctionDeclarator(this));
+        }
+        if let Ok(this) = <ParenthesizedDeclarator<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::ParenthesizedDeclarator(this));
+        }
+        if let Ok(this) = <PointerDeclarator<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::PointerDeclarator(this));
+        }
+        Err(::type_sitter_lib::IncorrectKind::new::<Self>(node))
     }
     #[inline]
     fn raw(&self) -> &::yak_sitter::Node<'tree> {
@@ -644,72 +574,42 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for TypeDeclarator<'tree> {
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
     ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
-        match node.kind() {
-            "array_declarator" => {
-                Ok(unsafe {
-                    Self::ArrayDeclarator(
-                        <ArrayDeclarator<
-                            'tree,
-                        > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                })
-            }
-            "attributed_declarator" => {
-                Ok(unsafe {
-                    Self::AttributedDeclarator(
-                        <AttributedDeclarator<
-                            'tree,
-                        > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                })
-            }
-            "function_declarator" => {
-                Ok(unsafe {
-                    Self::FunctionDeclarator(
-                        <FunctionDeclarator<
-                            'tree,
-                        > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                })
-            }
-            "parenthesized_declarator" => {
-                Ok(unsafe {
-                    Self::ParenthesizedDeclarator(
-                        <ParenthesizedDeclarator<
-                            'tree,
-                        > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                })
-            }
-            "pointer_declarator" => {
-                Ok(unsafe {
-                    Self::PointerDeclarator(
-                        <PointerDeclarator<
-                            'tree,
-                        > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                })
-            }
-            "primitive_type" => {
-                Ok(unsafe {
-                    Self::PrimitiveType(
-                        <PrimitiveType<
-                            'tree,
-                        > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                })
-            }
-            "type_identifier" => {
-                Ok(unsafe {
-                    Self::TypeIdentifier(
-                        <TypeIdentifier<
-                            'tree,
-                        > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                })
-            }
-            _ => Err(::type_sitter_lib::IncorrectKind::new::<Self>(node)),
+        if let Ok(this) = <ArrayDeclarator<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::ArrayDeclarator(this));
         }
+        if let Ok(this) = <AttributedDeclarator<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::AttributedDeclarator(this));
+        }
+        if let Ok(this) = <FunctionDeclarator<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::FunctionDeclarator(this));
+        }
+        if let Ok(this) = <ParenthesizedDeclarator<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::ParenthesizedDeclarator(this));
+        }
+        if let Ok(this) = <PointerDeclarator<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::PointerDeclarator(this));
+        }
+        if let Ok(this) = <PrimitiveType<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::PrimitiveType(this));
+        }
+        if let Ok(this) = <TypeIdentifier<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::TypeIdentifier(this));
+        }
+        Err(::type_sitter_lib::IncorrectKind::new::<Self>(node))
     }
     #[inline]
     fn raw(&self) -> &::yak_sitter::Node<'tree> {
@@ -3871,243 +3771,137 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for Expression<'tree> {
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
     ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
-        match node.kind() {
-            "alignof_expression" => {
-                Ok(unsafe {
-                    Self::AlignofExpression(
-                        <AlignofExpression<
-                            'tree,
-                        > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                })
-            }
-            "assignment_expression" => {
-                Ok(unsafe {
-                    Self::AssignmentExpression(
-                        <AssignmentExpression<
-                            'tree,
-                        > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                })
-            }
-            "binary_expression" => {
-                Ok(unsafe {
-                    Self::BinaryExpression(
-                        <BinaryExpression<
-                            'tree,
-                        > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                })
-            }
-            "call_expression" => {
-                Ok(unsafe {
-                    Self::CallExpression(
-                        <CallExpression<
-                            'tree,
-                        > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                })
-            }
-            "cast_expression" => {
-                Ok(unsafe {
-                    Self::CastExpression(
-                        <CastExpression<
-                            'tree,
-                        > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                })
-            }
-            "char_literal" => {
-                Ok(unsafe {
-                    Self::CharLiteral(
-                        <CharLiteral<
-                            'tree,
-                        > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                })
-            }
-            "compound_literal_expression" => {
-                Ok(unsafe {
-                    Self::CompoundLiteralExpression(
-                        <CompoundLiteralExpression<
-                            'tree,
-                        > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                })
-            }
-            "concatenated_string" => {
-                Ok(unsafe {
-                    Self::ConcatenatedString(
-                        <ConcatenatedString<
-                            'tree,
-                        > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                })
-            }
-            "conditional_expression" => {
-                Ok(unsafe {
-                    Self::ConditionalExpression(
-                        <ConditionalExpression<
-                            'tree,
-                        > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                })
-            }
-            "extension_expression" => {
-                Ok(unsafe {
-                    Self::ExtensionExpression(
-                        <ExtensionExpression<
-                            'tree,
-                        > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                })
-            }
-            "false" => {
-                Ok(unsafe {
-                    Self::False(
-                        <False<
-                            'tree,
-                        > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                })
-            }
-            "field_expression" => {
-                Ok(unsafe {
-                    Self::FieldExpression(
-                        <FieldExpression<
-                            'tree,
-                        > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                })
-            }
-            "generic_expression" => {
-                Ok(unsafe {
-                    Self::GenericExpression(
-                        <GenericExpression<
-                            'tree,
-                        > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                })
-            }
-            "gnu_asm_expression" => {
-                Ok(unsafe {
-                    Self::GnuAsmExpression(
-                        <GnuAsmExpression<
-                            'tree,
-                        > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                })
-            }
-            "identifier" => {
-                Ok(unsafe {
-                    Self::Identifier(
-                        <Identifier<
-                            'tree,
-                        > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                })
-            }
-            "null" => {
-                Ok(unsafe {
-                    Self::Null(
-                        <Null<
-                            'tree,
-                        > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                })
-            }
-            "number_literal" => {
-                Ok(unsafe {
-                    Self::NumberLiteral(
-                        <NumberLiteral<
-                            'tree,
-                        > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                })
-            }
-            "offsetof_expression" => {
-                Ok(unsafe {
-                    Self::OffsetofExpression(
-                        <OffsetofExpression<
-                            'tree,
-                        > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                })
-            }
-            "parenthesized_expression" => {
-                Ok(unsafe {
-                    Self::ParenthesizedExpression(
-                        <ParenthesizedExpression<
-                            'tree,
-                        > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                })
-            }
-            "pointer_expression" => {
-                Ok(unsafe {
-                    Self::PointerExpression(
-                        <PointerExpression<
-                            'tree,
-                        > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                })
-            }
-            "sizeof_expression" => {
-                Ok(unsafe {
-                    Self::SizeofExpression(
-                        <SizeofExpression<
-                            'tree,
-                        > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                })
-            }
-            "string_literal" => {
-                Ok(unsafe {
-                    Self::StringLiteral(
-                        <StringLiteral<
-                            'tree,
-                        > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                })
-            }
-            "subscript_expression" => {
-                Ok(unsafe {
-                    Self::SubscriptExpression(
-                        <SubscriptExpression<
-                            'tree,
-                        > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                })
-            }
-            "true" => {
-                Ok(unsafe {
-                    Self::True(
-                        <True<
-                            'tree,
-                        > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                })
-            }
-            "unary_expression" => {
-                Ok(unsafe {
-                    Self::UnaryExpression(
-                        <UnaryExpression<
-                            'tree,
-                        > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                })
-            }
-            "update_expression" => {
-                Ok(unsafe {
-                    Self::UpdateExpression(
-                        <UpdateExpression<
-                            'tree,
-                        > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                })
-            }
-            _ => Err(::type_sitter_lib::IncorrectKind::new::<Self>(node)),
+        if let Ok(this) = <AlignofExpression<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::AlignofExpression(this));
         }
+        if let Ok(this) = <AssignmentExpression<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::AssignmentExpression(this));
+        }
+        if let Ok(this) = <BinaryExpression<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::BinaryExpression(this));
+        }
+        if let Ok(this) = <CallExpression<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::CallExpression(this));
+        }
+        if let Ok(this) = <CastExpression<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::CastExpression(this));
+        }
+        if let Ok(this) = <CharLiteral<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::CharLiteral(this));
+        }
+        if let Ok(this) = <CompoundLiteralExpression<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::CompoundLiteralExpression(this));
+        }
+        if let Ok(this) = <ConcatenatedString<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::ConcatenatedString(this));
+        }
+        if let Ok(this) = <ConditionalExpression<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::ConditionalExpression(this));
+        }
+        if let Ok(this) = <ExtensionExpression<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::ExtensionExpression(this));
+        }
+        if let Ok(this) = <False<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::False(this));
+        }
+        if let Ok(this) = <FieldExpression<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::FieldExpression(this));
+        }
+        if let Ok(this) = <GenericExpression<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::GenericExpression(this));
+        }
+        if let Ok(this) = <GnuAsmExpression<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::GnuAsmExpression(this));
+        }
+        if let Ok(this) = <Identifier<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::Identifier(this));
+        }
+        if let Ok(this) = <Null<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::Null(this));
+        }
+        if let Ok(this) = <NumberLiteral<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::NumberLiteral(this));
+        }
+        if let Ok(this) = <OffsetofExpression<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::OffsetofExpression(this));
+        }
+        if let Ok(this) = <ParenthesizedExpression<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::ParenthesizedExpression(this));
+        }
+        if let Ok(this) = <PointerExpression<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::PointerExpression(this));
+        }
+        if let Ok(this) = <SizeofExpression<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::SizeofExpression(this));
+        }
+        if let Ok(this) = <StringLiteral<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::StringLiteral(this));
+        }
+        if let Ok(this) = <SubscriptExpression<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::SubscriptExpression(this));
+        }
+        if let Ok(this) = <True<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::True(this));
+        }
+        if let Ok(this) = <UnaryExpression<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::UnaryExpression(this));
+        }
+        if let Ok(this) = <UpdateExpression<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::UpdateExpression(this));
+        }
+        Err(::type_sitter_lib::IncorrectKind::new::<Self>(node))
     }
     #[inline]
     fn raw(&self) -> &::yak_sitter::Node<'tree> {
@@ -9570,153 +9364,87 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for Statement<'tree> {
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
     ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
-        match node.kind() {
-            "attributed_statement" => {
-                Ok(unsafe {
-                    Self::AttributedStatement(
-                        <AttributedStatement<
-                            'tree,
-                        > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                })
-            }
-            "break_statement" => {
-                Ok(unsafe {
-                    Self::BreakStatement(
-                        <BreakStatement<
-                            'tree,
-                        > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                })
-            }
-            "case_statement" => {
-                Ok(unsafe {
-                    Self::CaseStatement(
-                        <CaseStatement<
-                            'tree,
-                        > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                })
-            }
-            "compound_statement" => {
-                Ok(unsafe {
-                    Self::CompoundStatement(
-                        <CompoundStatement<
-                            'tree,
-                        > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                })
-            }
-            "continue_statement" => {
-                Ok(unsafe {
-                    Self::ContinueStatement(
-                        <ContinueStatement<
-                            'tree,
-                        > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                })
-            }
-            "do_statement" => {
-                Ok(unsafe {
-                    Self::DoStatement(
-                        <DoStatement<
-                            'tree,
-                        > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                })
-            }
-            "expression_statement" => {
-                Ok(unsafe {
-                    Self::ExpressionStatement(
-                        <ExpressionStatement<
-                            'tree,
-                        > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                })
-            }
-            "for_statement" => {
-                Ok(unsafe {
-                    Self::ForStatement(
-                        <ForStatement<
-                            'tree,
-                        > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                })
-            }
-            "goto_statement" => {
-                Ok(unsafe {
-                    Self::GotoStatement(
-                        <GotoStatement<
-                            'tree,
-                        > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                })
-            }
-            "if_statement" => {
-                Ok(unsafe {
-                    Self::IfStatement(
-                        <IfStatement<
-                            'tree,
-                        > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                })
-            }
-            "labeled_statement" => {
-                Ok(unsafe {
-                    Self::LabeledStatement(
-                        <LabeledStatement<
-                            'tree,
-                        > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                })
-            }
-            "return_statement" => {
-                Ok(unsafe {
-                    Self::ReturnStatement(
-                        <ReturnStatement<
-                            'tree,
-                        > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                })
-            }
-            "seh_leave_statement" => {
-                Ok(unsafe {
-                    Self::SehLeaveStatement(
-                        <SehLeaveStatement<
-                            'tree,
-                        > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                })
-            }
-            "seh_try_statement" => {
-                Ok(unsafe {
-                    Self::SehTryStatement(
-                        <SehTryStatement<
-                            'tree,
-                        > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                })
-            }
-            "switch_statement" => {
-                Ok(unsafe {
-                    Self::SwitchStatement(
-                        <SwitchStatement<
-                            'tree,
-                        > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                })
-            }
-            "while_statement" => {
-                Ok(unsafe {
-                    Self::WhileStatement(
-                        <WhileStatement<
-                            'tree,
-                        > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                })
-            }
-            _ => Err(::type_sitter_lib::IncorrectKind::new::<Self>(node)),
+        if let Ok(this) = <AttributedStatement<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::AttributedStatement(this));
         }
+        if let Ok(this) = <BreakStatement<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::BreakStatement(this));
+        }
+        if let Ok(this) = <CaseStatement<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::CaseStatement(this));
+        }
+        if let Ok(this) = <CompoundStatement<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::CompoundStatement(this));
+        }
+        if let Ok(this) = <ContinueStatement<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::ContinueStatement(this));
+        }
+        if let Ok(this) = <DoStatement<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::DoStatement(this));
+        }
+        if let Ok(this) = <ExpressionStatement<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::ExpressionStatement(this));
+        }
+        if let Ok(this) = <ForStatement<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::ForStatement(this));
+        }
+        if let Ok(this) = <GotoStatement<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::GotoStatement(this));
+        }
+        if let Ok(this) = <IfStatement<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::IfStatement(this));
+        }
+        if let Ok(this) = <LabeledStatement<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::LabeledStatement(this));
+        }
+        if let Ok(this) = <ReturnStatement<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::ReturnStatement(this));
+        }
+        if let Ok(this) = <SehLeaveStatement<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::SehLeaveStatement(this));
+        }
+        if let Ok(this) = <SehTryStatement<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::SehTryStatement(this));
+        }
+        if let Ok(this) = <SwitchStatement<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::SwitchStatement(this));
+        }
+        if let Ok(this) = <WhileStatement<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::WhileStatement(this));
+        }
+        Err(::type_sitter_lib::IncorrectKind::new::<Self>(node))
     }
     #[inline]
     fn raw(&self) -> &::yak_sitter::Node<'tree> {
@@ -10959,72 +10687,42 @@ impl<'tree> ::type_sitter_lib::Node<'tree> for TypeSpecifier<'tree> {
     fn try_from_raw(
         node: ::yak_sitter::Node<'tree>,
     ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
-        match node.kind() {
-            "enum_specifier" => {
-                Ok(unsafe {
-                    Self::EnumSpecifier(
-                        <EnumSpecifier<
-                            'tree,
-                        > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                })
-            }
-            "macro_type_specifier" => {
-                Ok(unsafe {
-                    Self::MacroTypeSpecifier(
-                        <MacroTypeSpecifier<
-                            'tree,
-                        > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                })
-            }
-            "primitive_type" => {
-                Ok(unsafe {
-                    Self::PrimitiveType(
-                        <PrimitiveType<
-                            'tree,
-                        > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                })
-            }
-            "sized_type_specifier" => {
-                Ok(unsafe {
-                    Self::SizedTypeSpecifier(
-                        <SizedTypeSpecifier<
-                            'tree,
-                        > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                })
-            }
-            "struct_specifier" => {
-                Ok(unsafe {
-                    Self::StructSpecifier(
-                        <StructSpecifier<
-                            'tree,
-                        > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                })
-            }
-            "type_identifier" => {
-                Ok(unsafe {
-                    Self::TypeIdentifier(
-                        <TypeIdentifier<
-                            'tree,
-                        > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                })
-            }
-            "union_specifier" => {
-                Ok(unsafe {
-                    Self::UnionSpecifier(
-                        <UnionSpecifier<
-                            'tree,
-                        > as ::type_sitter_lib::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                })
-            }
-            _ => Err(::type_sitter_lib::IncorrectKind::new::<Self>(node)),
+        if let Ok(this) = <EnumSpecifier<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::EnumSpecifier(this));
         }
+        if let Ok(this) = <MacroTypeSpecifier<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::MacroTypeSpecifier(this));
+        }
+        if let Ok(this) = <PrimitiveType<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::PrimitiveType(this));
+        }
+        if let Ok(this) = <SizedTypeSpecifier<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::SizedTypeSpecifier(this));
+        }
+        if let Ok(this) = <StructSpecifier<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::StructSpecifier(this));
+        }
+        if let Ok(this) = <TypeIdentifier<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::TypeIdentifier(this));
+        }
+        if let Ok(this) = <UnionSpecifier<
+            'tree,
+        > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::UnionSpecifier(this));
+        }
+        Err(::type_sitter_lib::IncorrectKind::new::<Self>(node))
     }
     #[inline]
     fn raw(&self) -> &::yak_sitter::Node<'tree> {
@@ -17973,31 +17671,17 @@ Follows the following chain:
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
         ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
-            match node.kind() {
-                "++" => {
-                    Ok(unsafe {
-                        Self::AddAdd(
-                            <symbols::AddAdd<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "--" => {
-                    Ok(unsafe {
-                        Self::SubSub(
-                            <symbols::SubSub<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                _ => Err(::type_sitter_lib::IncorrectKind::new::<Self>(node)),
+            if let Ok(this) = <symbols::AddAdd<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::AddAdd(this));
             }
+            if let Ok(this) = <symbols::SubSub<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::SubSub(this));
+            }
+            Err(::type_sitter_lib::IncorrectKind::new::<Self>(node))
         }
         #[inline]
         fn raw(&self) -> &::yak_sitter::Node<'tree> {
@@ -18062,31 +17746,17 @@ Follows the following chain:
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
         ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
-            match node.kind() {
-                "&" => {
-                    Ok(unsafe {
-                        Self::And(
-                            <symbols::And<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "*" => {
-                    Ok(unsafe {
-                        Self::Mul(
-                            <symbols::Mul<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                _ => Err(::type_sitter_lib::IncorrectKind::new::<Self>(node)),
+            if let Ok(this) = <symbols::And<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::And(this));
             }
+            if let Ok(this) = <symbols::Mul<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::Mul(this));
+            }
+            Err(::type_sitter_lib::IncorrectKind::new::<Self>(node))
         }
         #[inline]
         fn raw(&self) -> &::yak_sitter::Node<'tree> {
@@ -18260,108 +17930,52 @@ Follows the following chain:
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
         ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
-            match node.kind() {
-                "array_declarator" => {
-                    Ok(unsafe {
-                        Self::ArrayDeclarator(
-                            <ArrayDeclarator<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "attributed_declarator" => {
-                    Ok(unsafe {
-                        Self::AttributedDeclarator(
-                            <AttributedDeclarator<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "function_declarator" => {
-                    Ok(unsafe {
-                        Self::FunctionDeclarator(
-                            <FunctionDeclarator<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "gnu_asm_expression" => {
-                    Ok(unsafe {
-                        Self::GnuAsmExpression(
-                            <GnuAsmExpression<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "identifier" => {
-                    Ok(unsafe {
-                        Self::Identifier(
-                            <Identifier<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "init_declarator" => {
-                    Ok(unsafe {
-                        Self::InitDeclarator(
-                            <InitDeclarator<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "ms_call_modifier" => {
-                    Ok(unsafe {
-                        Self::MsCallModifier(
-                            <MsCallModifier<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "parenthesized_declarator" => {
-                    Ok(unsafe {
-                        Self::ParenthesizedDeclarator(
-                            <ParenthesizedDeclarator<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "pointer_declarator" => {
-                    Ok(unsafe {
-                        Self::PointerDeclarator(
-                            <PointerDeclarator<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                _ => Err(::type_sitter_lib::IncorrectKind::new::<Self>(node)),
+            if let Ok(this) = <ArrayDeclarator<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::ArrayDeclarator(this));
             }
+            if let Ok(this) = <AttributedDeclarator<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::AttributedDeclarator(this));
+            }
+            if let Ok(this) = <FunctionDeclarator<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::FunctionDeclarator(this));
+            }
+            if let Ok(this) = <GnuAsmExpression<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::GnuAsmExpression(this));
+            }
+            if let Ok(this) = <Identifier<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::Identifier(this));
+            }
+            if let Ok(this) = <InitDeclarator<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::InitDeclarator(this));
+            }
+            if let Ok(this) = <MsCallModifier<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::MsCallModifier(this));
+            }
+            if let Ok(this) = <ParenthesizedDeclarator<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::ParenthesizedDeclarator(this));
+            }
+            if let Ok(this) = <PointerDeclarator<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::PointerDeclarator(this));
+            }
+            Err(::type_sitter_lib::IncorrectKind::new::<Self>(node))
         }
         #[inline]
         fn raw(&self) -> &::yak_sitter::Node<'tree> {
@@ -18514,75 +18128,37 @@ Follows the following chain:
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
         ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
-            match node.kind() {
-                "attribute_declaration" => {
-                    Ok(unsafe {
-                        Self::AttributeDeclaration(
-                            <AttributeDeclaration<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "attribute_specifier" => {
-                    Ok(unsafe {
-                        Self::AttributeSpecifier(
-                            <AttributeSpecifier<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "bitfield_clause" => {
-                    Ok(unsafe {
-                        Self::BitfieldClause(
-                            <BitfieldClause<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "ms_declspec_modifier" => {
-                    Ok(unsafe {
-                        Self::MsDeclspecModifier(
-                            <MsDeclspecModifier<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "storage_class_specifier" => {
-                    Ok(unsafe {
-                        Self::StorageClassSpecifier(
-                            <StorageClassSpecifier<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "type_qualifier" => {
-                    Ok(unsafe {
-                        Self::TypeQualifier(
-                            <TypeQualifier<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                _ => Err(::type_sitter_lib::IncorrectKind::new::<Self>(node)),
+            if let Ok(this) = <AttributeDeclaration<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::AttributeDeclaration(this));
             }
+            if let Ok(this) = <AttributeSpecifier<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::AttributeSpecifier(this));
+            }
+            if let Ok(this) = <BitfieldClause<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::BitfieldClause(this));
+            }
+            if let Ok(this) = <MsDeclspecModifier<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::MsDeclspecModifier(this));
+            }
+            if let Ok(this) = <StorageClassSpecifier<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::StorageClassSpecifier(this));
+            }
+            if let Ok(this) = <TypeQualifier<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::TypeQualifier(this));
+            }
+            Err(::type_sitter_lib::IncorrectKind::new::<Self>(node))
         }
         #[inline]
         fn raw(&self) -> &::yak_sitter::Node<'tree> {
@@ -18740,86 +18316,42 @@ Follows the following chain:
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
         ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
-            match node.kind() {
-                "attribute_declaration" => {
-                    Ok(unsafe {
-                        Self::AttributeDeclaration(
-                            <AttributeDeclaration<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "attribute_specifier" => {
-                    Ok(unsafe {
-                        Self::AttributeSpecifier(
-                            <AttributeSpecifier<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "declaration" => {
-                    Ok(unsafe {
-                        Self::Declaration(
-                            <Declaration<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "ms_call_modifier" => {
-                    Ok(unsafe {
-                        Self::MsCallModifier(
-                            <MsCallModifier<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "ms_declspec_modifier" => {
-                    Ok(unsafe {
-                        Self::MsDeclspecModifier(
-                            <MsDeclspecModifier<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "storage_class_specifier" => {
-                    Ok(unsafe {
-                        Self::StorageClassSpecifier(
-                            <StorageClassSpecifier<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "type_qualifier" => {
-                    Ok(unsafe {
-                        Self::TypeQualifier(
-                            <TypeQualifier<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                _ => Err(::type_sitter_lib::IncorrectKind::new::<Self>(node)),
+            if let Ok(this) = <AttributeDeclaration<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::AttributeDeclaration(this));
             }
+            if let Ok(this) = <AttributeSpecifier<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::AttributeSpecifier(this));
+            }
+            if let Ok(this) = <Declaration<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::Declaration(this));
+            }
+            if let Ok(this) = <MsCallModifier<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::MsCallModifier(this));
+            }
+            if let Ok(this) = <MsDeclspecModifier<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::MsDeclspecModifier(this));
+            }
+            if let Ok(this) = <StorageClassSpecifier<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::StorageClassSpecifier(this));
+            }
+            if let Ok(this) = <TypeQualifier<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::TypeQualifier(this));
+            }
+            Err(::type_sitter_lib::IncorrectKind::new::<Self>(node))
         }
         #[inline]
         fn raw(&self) -> &::yak_sitter::Node<'tree> {
@@ -18954,64 +18486,32 @@ Follows the following chain:
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
         ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
-            match node.kind() {
-                "attribute_declaration" => {
-                    Ok(unsafe {
-                        Self::AttributeDeclaration(
-                            <AttributeDeclaration<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "attribute_specifier" => {
-                    Ok(unsafe {
-                        Self::AttributeSpecifier(
-                            <AttributeSpecifier<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "ms_declspec_modifier" => {
-                    Ok(unsafe {
-                        Self::MsDeclspecModifier(
-                            <MsDeclspecModifier<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "storage_class_specifier" => {
-                    Ok(unsafe {
-                        Self::StorageClassSpecifier(
-                            <StorageClassSpecifier<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "type_qualifier" => {
-                    Ok(unsafe {
-                        Self::TypeQualifier(
-                            <TypeQualifier<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                _ => Err(::type_sitter_lib::IncorrectKind::new::<Self>(node)),
+            if let Ok(this) = <AttributeDeclaration<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::AttributeDeclaration(this));
             }
+            if let Ok(this) = <AttributeSpecifier<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::AttributeSpecifier(this));
+            }
+            if let Ok(this) = <MsDeclspecModifier<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::MsDeclspecModifier(this));
+            }
+            if let Ok(this) = <StorageClassSpecifier<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::StorageClassSpecifier(this));
+            }
+            if let Ok(this) = <TypeQualifier<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::TypeQualifier(this));
+            }
+            Err(::type_sitter_lib::IncorrectKind::new::<Self>(node))
         }
         #[inline]
         fn raw(&self) -> &::yak_sitter::Node<'tree> {
@@ -19340,53 +18840,27 @@ Follows the following chain:
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
         ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
-            match node.kind() {
-                "attribute_specifier" => {
-                    Ok(unsafe {
-                        Self::AttributeSpecifier(
-                            <AttributeSpecifier<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "call_expression" => {
-                    Ok(unsafe {
-                        Self::CallExpression(
-                            <CallExpression<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "gnu_asm_expression" => {
-                    Ok(unsafe {
-                        Self::GnuAsmExpression(
-                            <GnuAsmExpression<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "identifier" => {
-                    Ok(unsafe {
-                        Self::Identifier(
-                            <Identifier<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                _ => Err(::type_sitter_lib::IncorrectKind::new::<Self>(node)),
+            if let Ok(this) = <AttributeSpecifier<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::AttributeSpecifier(this));
             }
+            if let Ok(this) = <CallExpression<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::CallExpression(this));
+            }
+            if let Ok(this) = <GnuAsmExpression<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::GnuAsmExpression(this));
+            }
+            if let Ok(this) = <Identifier<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::Identifier(this));
+            }
+            Err(::type_sitter_lib::IncorrectKind::new::<Self>(node))
         }
         #[inline]
         fn raw(&self) -> &::yak_sitter::Node<'tree> {
@@ -19462,31 +18936,17 @@ Follows the following chain:
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
         ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
-            match node.kind() {
-                "attribute_specifier" => {
-                    Ok(unsafe {
-                        Self::AttributeSpecifier(
-                            <AttributeSpecifier<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "ms_declspec_modifier" => {
-                    Ok(unsafe {
-                        Self::MsDeclspecModifier(
-                            <MsDeclspecModifier<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                _ => Err(::type_sitter_lib::IncorrectKind::new::<Self>(node)),
+            if let Ok(this) = <AttributeSpecifier<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::AttributeSpecifier(this));
             }
+            if let Ok(this) = <MsDeclspecModifier<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::MsDeclspecModifier(this));
+            }
+            Err(::type_sitter_lib::IncorrectKind::new::<Self>(node))
         }
         #[inline]
         fn raw(&self) -> &::yak_sitter::Node<'tree> {
@@ -19554,31 +19014,17 @@ Follows the following chain:
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
         ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
-            match node.kind() {
-                "attribute_specifier" => {
-                    Ok(unsafe {
-                        Self::AttributeSpecifier(
-                            <AttributeSpecifier<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "type_qualifier" => {
-                    Ok(unsafe {
-                        Self::TypeQualifier(
-                            <TypeQualifier<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                _ => Err(::type_sitter_lib::IncorrectKind::new::<Self>(node)),
+            if let Ok(this) = <AttributeSpecifier<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::AttributeSpecifier(this));
             }
+            if let Ok(this) = <TypeQualifier<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::TypeQualifier(this));
+            }
+            Err(::type_sitter_lib::IncorrectKind::new::<Self>(node))
         }
         #[inline]
         fn raw(&self) -> &::yak_sitter::Node<'tree> {
@@ -20480,196 +19926,92 @@ Follows the following chain:
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
         ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
-            match node.kind() {
-                "attributed_statement" => {
-                    Ok(unsafe {
-                        Self::AttributedStatement(
-                            <AttributedStatement<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "break_statement" => {
-                    Ok(unsafe {
-                        Self::BreakStatement(
-                            <BreakStatement<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "compound_statement" => {
-                    Ok(unsafe {
-                        Self::CompoundStatement(
-                            <CompoundStatement<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "continue_statement" => {
-                    Ok(unsafe {
-                        Self::ContinueStatement(
-                            <ContinueStatement<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "declaration" => {
-                    Ok(unsafe {
-                        Self::Declaration(
-                            <Declaration<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "do_statement" => {
-                    Ok(unsafe {
-                        Self::DoStatement(
-                            <DoStatement<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "expression_statement" => {
-                    Ok(unsafe {
-                        Self::ExpressionStatement(
-                            <ExpressionStatement<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "for_statement" => {
-                    Ok(unsafe {
-                        Self::ForStatement(
-                            <ForStatement<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "goto_statement" => {
-                    Ok(unsafe {
-                        Self::GotoStatement(
-                            <GotoStatement<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "if_statement" => {
-                    Ok(unsafe {
-                        Self::IfStatement(
-                            <IfStatement<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "labeled_statement" => {
-                    Ok(unsafe {
-                        Self::LabeledStatement(
-                            <LabeledStatement<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "return_statement" => {
-                    Ok(unsafe {
-                        Self::ReturnStatement(
-                            <ReturnStatement<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "seh_leave_statement" => {
-                    Ok(unsafe {
-                        Self::SehLeaveStatement(
-                            <SehLeaveStatement<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "seh_try_statement" => {
-                    Ok(unsafe {
-                        Self::SehTryStatement(
-                            <SehTryStatement<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "switch_statement" => {
-                    Ok(unsafe {
-                        Self::SwitchStatement(
-                            <SwitchStatement<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "type_definition" => {
-                    Ok(unsafe {
-                        Self::TypeDefinition(
-                            <TypeDefinition<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "while_statement" => {
-                    Ok(unsafe {
-                        Self::WhileStatement(
-                            <WhileStatement<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                _ => Err(::type_sitter_lib::IncorrectKind::new::<Self>(node)),
+            if let Ok(this) = <AttributedStatement<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::AttributedStatement(this));
             }
+            if let Ok(this) = <BreakStatement<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::BreakStatement(this));
+            }
+            if let Ok(this) = <CompoundStatement<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::CompoundStatement(this));
+            }
+            if let Ok(this) = <ContinueStatement<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::ContinueStatement(this));
+            }
+            if let Ok(this) = <Declaration<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::Declaration(this));
+            }
+            if let Ok(this) = <DoStatement<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::DoStatement(this));
+            }
+            if let Ok(this) = <ExpressionStatement<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::ExpressionStatement(this));
+            }
+            if let Ok(this) = <ForStatement<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::ForStatement(this));
+            }
+            if let Ok(this) = <GotoStatement<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::GotoStatement(this));
+            }
+            if let Ok(this) = <IfStatement<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::IfStatement(this));
+            }
+            if let Ok(this) = <LabeledStatement<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::LabeledStatement(this));
+            }
+            if let Ok(this) = <ReturnStatement<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::ReturnStatement(this));
+            }
+            if let Ok(this) = <SehLeaveStatement<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::SehLeaveStatement(this));
+            }
+            if let Ok(this) = <SehTryStatement<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::SehTryStatement(this));
+            }
+            if let Ok(this) = <SwitchStatement<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::SwitchStatement(this));
+            }
+            if let Ok(this) = <TypeDefinition<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::TypeDefinition(this));
+            }
+            if let Ok(this) = <WhileStatement<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::WhileStatement(this));
+            }
+            Err(::type_sitter_lib::IncorrectKind::new::<Self>(node))
         }
         #[inline]
         fn raw(&self) -> &::yak_sitter::Node<'tree> {
@@ -20868,97 +20210,47 @@ Follows the following chain:
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
         ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
-            match node.kind() {
-                "binary_expression" => {
-                    Ok(unsafe {
-                        Self::BinaryExpression(
-                            <BinaryExpression<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "call_expression" => {
-                    Ok(unsafe {
-                        Self::CallExpression(
-                            <CallExpression<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "char_literal" => {
-                    Ok(unsafe {
-                        Self::CharLiteral(
-                            <CharLiteral<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "identifier" => {
-                    Ok(unsafe {
-                        Self::Identifier(
-                            <Identifier<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "number_literal" => {
-                    Ok(unsafe {
-                        Self::NumberLiteral(
-                            <NumberLiteral<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "parenthesized_expression" => {
-                    Ok(unsafe {
-                        Self::ParenthesizedExpression(
-                            <ParenthesizedExpression<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "preproc_defined" => {
-                    Ok(unsafe {
-                        Self::PreprocDefined(
-                            <PreprocDefined<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "unary_expression" => {
-                    Ok(unsafe {
-                        Self::UnaryExpression(
-                            <UnaryExpression<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                _ => Err(::type_sitter_lib::IncorrectKind::new::<Self>(node)),
+            if let Ok(this) = <BinaryExpression<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::BinaryExpression(this));
             }
+            if let Ok(this) = <CallExpression<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::CallExpression(this));
+            }
+            if let Ok(this) = <CharLiteral<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::CharLiteral(this));
+            }
+            if let Ok(this) = <Identifier<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::Identifier(this));
+            }
+            if let Ok(this) = <NumberLiteral<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::NumberLiteral(this));
+            }
+            if let Ok(this) = <ParenthesizedExpression<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::ParenthesizedExpression(this));
+            }
+            if let Ok(this) = <PreprocDefined<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::PreprocDefined(this));
+            }
+            if let Ok(this) = <UnaryExpression<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::UnaryExpression(this));
+            }
+            Err(::type_sitter_lib::IncorrectKind::new::<Self>(node))
         }
         #[inline]
         fn raw(&self) -> &::yak_sitter::Node<'tree> {
@@ -21108,75 +20400,37 @@ Follows the following chain:
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
         ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
-            match node.kind() {
-                "call_expression" => {
-                    Ok(unsafe {
-                        Self::CallExpression(
-                            <CallExpression<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "field_expression" => {
-                    Ok(unsafe {
-                        Self::FieldExpression(
-                            <FieldExpression<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "identifier" => {
-                    Ok(unsafe {
-                        Self::Identifier(
-                            <Identifier<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "parenthesized_expression" => {
-                    Ok(unsafe {
-                        Self::ParenthesizedExpression(
-                            <ParenthesizedExpression<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "pointer_expression" => {
-                    Ok(unsafe {
-                        Self::PointerExpression(
-                            <PointerExpression<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "subscript_expression" => {
-                    Ok(unsafe {
-                        Self::SubscriptExpression(
-                            <SubscriptExpression<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                _ => Err(::type_sitter_lib::IncorrectKind::new::<Self>(node)),
+            if let Ok(this) = <CallExpression<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::CallExpression(this));
             }
+            if let Ok(this) = <FieldExpression<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::FieldExpression(this));
+            }
+            if let Ok(this) = <Identifier<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::Identifier(this));
+            }
+            if let Ok(this) = <ParenthesizedExpression<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::ParenthesizedExpression(this));
+            }
+            if let Ok(this) = <PointerExpression<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::PointerExpression(this));
+            }
+            if let Ok(this) = <SubscriptExpression<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::SubscriptExpression(this));
+            }
+            Err(::type_sitter_lib::IncorrectKind::new::<Self>(node))
         }
         #[inline]
         fn raw(&self) -> &::yak_sitter::Node<'tree> {
@@ -21282,53 +20536,27 @@ Follows the following chain:
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
         ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
-            match node.kind() {
-                "call_expression" => {
-                    Ok(unsafe {
-                        Self::CallExpression(
-                            <CallExpression<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "identifier" => {
-                    Ok(unsafe {
-                        Self::Identifier(
-                            <Identifier<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "string_literal" => {
-                    Ok(unsafe {
-                        Self::StringLiteral(
-                            <StringLiteral<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "system_lib_string" => {
-                    Ok(unsafe {
-                        Self::SystemLibString(
-                            <SystemLibString<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                _ => Err(::type_sitter_lib::IncorrectKind::new::<Self>(node)),
+            if let Ok(this) = <CallExpression<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::CallExpression(this));
             }
+            if let Ok(this) = <Identifier<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::Identifier(this));
+            }
+            if let Ok(this) = <StringLiteral<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::StringLiteral(this));
+            }
+            if let Ok(this) = <SystemLibString<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::SystemLibString(this));
+            }
+            Err(::type_sitter_lib::IncorrectKind::new::<Self>(node))
         }
         #[inline]
         fn raw(&self) -> &::yak_sitter::Node<'tree> {
@@ -21399,31 +20627,17 @@ Follows the following chain:
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
         ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
-            match node.kind() {
-                "character" => {
-                    Ok(unsafe {
-                        Self::Character(
-                            <Character<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "escape_sequence" => {
-                    Ok(unsafe {
-                        Self::EscapeSequence(
-                            <EscapeSequence<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                _ => Err(::type_sitter_lib::IncorrectKind::new::<Self>(node)),
+            if let Ok(this) = <Character<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::Character(this));
             }
+            if let Ok(this) = <EscapeSequence<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::EscapeSequence(this));
+            }
+            Err(::type_sitter_lib::IncorrectKind::new::<Self>(node))
         }
         #[inline]
         fn raw(&self) -> &::yak_sitter::Node<'tree> {
@@ -22886,53 +22100,27 @@ Follows the following chain:
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
         ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
-            match node.kind() {
-                "compound_statement" => {
-                    Ok(unsafe {
-                        Self::CompoundStatement(
-                            <CompoundStatement<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "identifier" => {
-                    Ok(unsafe {
-                        Self::Identifier(
-                            <Identifier<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "parameter_declaration" => {
-                    Ok(unsafe {
-                        Self::ParameterDeclaration(
-                            <ParameterDeclaration<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "variadic_parameter" => {
-                    Ok(unsafe {
-                        Self::VariadicParameter(
-                            <VariadicParameter<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                _ => Err(::type_sitter_lib::IncorrectKind::new::<Self>(node)),
+            if let Ok(this) = <CompoundStatement<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::CompoundStatement(this));
             }
+            if let Ok(this) = <Identifier<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::Identifier(this));
+            }
+            if let Ok(this) = <ParameterDeclaration<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::ParameterDeclaration(this));
+            }
+            if let Ok(this) = <VariadicParameter<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::VariadicParameter(this));
+            }
+            Err(::type_sitter_lib::IncorrectKind::new::<Self>(node))
         }
         #[inline]
         fn raw(&self) -> &::yak_sitter::Node<'tree> {
@@ -23006,31 +22194,17 @@ Follows the following chain:
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
         ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
-            match node.kind() {
-                "concatenated_string" => {
-                    Ok(unsafe {
-                        Self::ConcatenatedString(
-                            <ConcatenatedString<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "string_literal" => {
-                    Ok(unsafe {
-                        Self::StringLiteral(
-                            <StringLiteral<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                _ => Err(::type_sitter_lib::IncorrectKind::new::<Self>(node)),
+            if let Ok(this) = <ConcatenatedString<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::ConcatenatedString(this));
             }
+            if let Ok(this) = <StringLiteral<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::StringLiteral(this));
+            }
+            Err(::type_sitter_lib::IncorrectKind::new::<Self>(node))
         }
         #[inline]
         fn raw(&self) -> &::yak_sitter::Node<'tree> {
@@ -23112,42 +22286,22 @@ Follows the following chain:
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
         ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
-            match node.kind() {
-                "declaration" => {
-                    Ok(unsafe {
-                        Self::Declaration(
-                            <Declaration<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "declaration_list" => {
-                    Ok(unsafe {
-                        Self::DeclarationList(
-                            <DeclarationList<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "function_definition" => {
-                    Ok(unsafe {
-                        Self::FunctionDefinition(
-                            <FunctionDefinition<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                _ => Err(::type_sitter_lib::IncorrectKind::new::<Self>(node)),
+            if let Ok(this) = <Declaration<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::Declaration(this));
             }
+            if let Ok(this) = <DeclarationList<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::DeclarationList(this));
+            }
+            if let Ok(this) = <FunctionDefinition<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::FunctionDefinition(this));
+            }
+            Err(::type_sitter_lib::IncorrectKind::new::<Self>(node))
         }
         #[inline]
         fn raw(&self) -> &::yak_sitter::Node<'tree> {
@@ -25397,53 +24551,27 @@ Follows the following chain:
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
         ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
-            match node.kind() {
-                "enumerator" => {
-                    Ok(unsafe {
-                        Self::Enumerator(
-                            <Enumerator<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "preproc_call" => {
-                    Ok(unsafe {
-                        Self::PreprocCall(
-                            <PreprocCall<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "preproc_if" => {
-                    Ok(unsafe {
-                        Self::PreprocIf(
-                            <PreprocIf<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "preproc_ifdef" => {
-                    Ok(unsafe {
-                        Self::PreprocIfdef(
-                            <PreprocIfdef<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                _ => Err(::type_sitter_lib::IncorrectKind::new::<Self>(node)),
+            if let Ok(this) = <Enumerator<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::Enumerator(this));
             }
+            if let Ok(this) = <PreprocCall<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::PreprocCall(this));
+            }
+            if let Ok(this) = <PreprocIf<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::PreprocIf(this));
+            }
+            if let Ok(this) = <PreprocIfdef<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::PreprocIfdef(this));
+            }
+            Err(::type_sitter_lib::IncorrectKind::new::<Self>(node))
         }
         #[inline]
         fn raw(&self) -> &::yak_sitter::Node<'tree> {
@@ -25514,31 +24642,17 @@ Follows the following chain:
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
         ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
-            match node.kind() {
-                "escape_sequence" => {
-                    Ok(unsafe {
-                        Self::EscapeSequence(
-                            <EscapeSequence<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "string_content" => {
-                    Ok(unsafe {
-                        Self::StringContent(
-                            <StringContent<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                _ => Err(::type_sitter_lib::IncorrectKind::new::<Self>(node)),
+            if let Ok(this) = <EscapeSequence<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::EscapeSequence(this));
             }
+            if let Ok(this) = <StringContent<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::StringContent(this));
+            }
+            Err(::type_sitter_lib::IncorrectKind::new::<Self>(node))
         }
         #[inline]
         fn raw(&self) -> &::yak_sitter::Node<'tree> {
@@ -26961,75 +26075,37 @@ Follows the following chain:
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
         ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
-            match node.kind() {
-                "field_declaration" => {
-                    Ok(unsafe {
-                        Self::FieldDeclaration(
-                            <FieldDeclaration<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "preproc_call" => {
-                    Ok(unsafe {
-                        Self::PreprocCall(
-                            <PreprocCall<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "preproc_def" => {
-                    Ok(unsafe {
-                        Self::PreprocDef(
-                            <PreprocDef<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "preproc_function_def" => {
-                    Ok(unsafe {
-                        Self::PreprocFunctionDef(
-                            <PreprocFunctionDef<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "preproc_if" => {
-                    Ok(unsafe {
-                        Self::PreprocIf(
-                            <PreprocIf<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "preproc_ifdef" => {
-                    Ok(unsafe {
-                        Self::PreprocIfdef(
-                            <PreprocIfdef<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                _ => Err(::type_sitter_lib::IncorrectKind::new::<Self>(node)),
+            if let Ok(this) = <FieldDeclaration<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::FieldDeclaration(this));
             }
+            if let Ok(this) = <PreprocCall<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::PreprocCall(this));
+            }
+            if let Ok(this) = <PreprocDef<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::PreprocDef(this));
+            }
+            if let Ok(this) = <PreprocFunctionDef<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::PreprocFunctionDef(this));
+            }
+            if let Ok(this) = <PreprocIf<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::PreprocIf(this));
+            }
+            if let Ok(this) = <PreprocIfdef<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::PreprocIfdef(this));
+            }
+            Err(::type_sitter_lib::IncorrectKind::new::<Self>(node))
         }
         #[inline]
         fn raw(&self) -> &::yak_sitter::Node<'tree> {
@@ -27149,53 +26225,27 @@ Follows the following chain:
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
         ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
-            match node.kind() {
-                "field_designator" => {
-                    Ok(unsafe {
-                        Self::FieldDesignator(
-                            <FieldDesignator<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "field_identifier" => {
-                    Ok(unsafe {
-                        Self::FieldIdentifier(
-                            <FieldIdentifier<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "subscript_designator" => {
-                    Ok(unsafe {
-                        Self::SubscriptDesignator(
-                            <SubscriptDesignator<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "subscript_range_designator" => {
-                    Ok(unsafe {
-                        Self::SubscriptRangeDesignator(
-                            <SubscriptRangeDesignator<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                _ => Err(::type_sitter_lib::IncorrectKind::new::<Self>(node)),
+            if let Ok(this) = <FieldDesignator<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::FieldDesignator(this));
             }
+            if let Ok(this) = <FieldIdentifier<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::FieldIdentifier(this));
+            }
+            if let Ok(this) = <SubscriptDesignator<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::SubscriptDesignator(this));
+            }
+            if let Ok(this) = <SubscriptRangeDesignator<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::SubscriptRangeDesignator(this));
+            }
+            Err(::type_sitter_lib::IncorrectKind::new::<Self>(node))
         }
         #[inline]
         fn raw(&self) -> &::yak_sitter::Node<'tree> {
@@ -27266,31 +26316,17 @@ Follows the following chain:
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
         ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
-            match node.kind() {
-                "identifier" => {
-                    Ok(unsafe {
-                        Self::Identifier(
-                            <Identifier<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "string_literal" => {
-                    Ok(unsafe {
-                        Self::StringLiteral(
-                            <StringLiteral<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                _ => Err(::type_sitter_lib::IncorrectKind::new::<Self>(node)),
+            if let Ok(this) = <Identifier<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::Identifier(this));
             }
+            if let Ok(this) = <StringLiteral<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::StringLiteral(this));
+            }
+            Err(::type_sitter_lib::IncorrectKind::new::<Self>(node))
         }
         #[inline]
         fn raw(&self) -> &::yak_sitter::Node<'tree> {
@@ -27468,130 +26504,62 @@ Follows the following chain:
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
         ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
-            match node.kind() {
-                "%=" => {
-                    Ok(unsafe {
-                        Self::ModEq(
-                            <symbols::ModEq<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "&=" => {
-                    Ok(unsafe {
-                        Self::AndEq(
-                            <symbols::AndEq<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "*=" => {
-                    Ok(unsafe {
-                        Self::MulEq(
-                            <symbols::MulEq<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "+=" => {
-                    Ok(unsafe {
-                        Self::AddEq(
-                            <symbols::AddEq<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "-=" => {
-                    Ok(unsafe {
-                        Self::SubEq(
-                            <symbols::SubEq<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "/=" => {
-                    Ok(unsafe {
-                        Self::DivEq(
-                            <symbols::DivEq<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "<<=" => {
-                    Ok(unsafe {
-                        Self::LtLtEq(
-                            <symbols::LtLtEq<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "=" => {
-                    Ok(unsafe {
-                        Self::Eq(
-                            <symbols::Eq<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                ">>=" => {
-                    Ok(unsafe {
-                        Self::GtGtEq(
-                            <symbols::GtGtEq<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "^=" => {
-                    Ok(unsafe {
-                        Self::BitXorEq(
-                            <symbols::BitXorEq<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "|=" => {
-                    Ok(unsafe {
-                        Self::OrEq(
-                            <symbols::OrEq<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                _ => Err(::type_sitter_lib::IncorrectKind::new::<Self>(node)),
+            if let Ok(this) = <symbols::ModEq<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::ModEq(this));
             }
+            if let Ok(this) = <symbols::AndEq<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::AndEq(this));
+            }
+            if let Ok(this) = <symbols::MulEq<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::MulEq(this));
+            }
+            if let Ok(this) = <symbols::AddEq<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::AddEq(this));
+            }
+            if let Ok(this) = <symbols::SubEq<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::SubEq(this));
+            }
+            if let Ok(this) = <symbols::DivEq<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::DivEq(this));
+            }
+            if let Ok(this) = <symbols::LtLtEq<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::LtLtEq(this));
+            }
+            if let Ok(this) = <symbols::Eq<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::Eq(this));
+            }
+            if let Ok(this) = <symbols::GtGtEq<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::GtGtEq(this));
+            }
+            if let Ok(this) = <symbols::BitXorEq<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::BitXorEq(this));
+            }
+            if let Ok(this) = <symbols::OrEq<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::OrEq(this));
+            }
+            Err(::type_sitter_lib::IncorrectKind::new::<Self>(node))
         }
         #[inline]
         fn raw(&self) -> &::yak_sitter::Node<'tree> {
@@ -27700,42 +26668,22 @@ Follows the following chain:
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
         ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
-            match node.kind() {
-                "ms_based_modifier" => {
-                    Ok(unsafe {
-                        Self::MsBasedModifier(
-                            <MsBasedModifier<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "ms_pointer_modifier" => {
-                    Ok(unsafe {
-                        Self::MsPointerModifier(
-                            <MsPointerModifier<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "type_qualifier" => {
-                    Ok(unsafe {
-                        Self::TypeQualifier(
-                            <TypeQualifier<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                _ => Err(::type_sitter_lib::IncorrectKind::new::<Self>(node)),
+            if let Ok(this) = <MsBasedModifier<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::MsBasedModifier(this));
             }
+            if let Ok(this) = <MsPointerModifier<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::MsPointerModifier(this));
+            }
+            if let Ok(this) = <TypeQualifier<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::TypeQualifier(this));
+            }
+            Err(::type_sitter_lib::IncorrectKind::new::<Self>(node))
         }
         #[inline]
         fn raw(&self) -> &::yak_sitter::Node<'tree> {
@@ -27806,31 +26754,17 @@ Follows the following chain:
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
         ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
-            match node.kind() {
-                "ms_pointer_modifier" => {
-                    Ok(unsafe {
-                        Self::MsPointerModifier(
-                            <MsPointerModifier<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "type_qualifier" => {
-                    Ok(unsafe {
-                        Self::TypeQualifier(
-                            <TypeQualifier<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                _ => Err(::type_sitter_lib::IncorrectKind::new::<Self>(node)),
+            if let Ok(this) = <MsPointerModifier<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::MsPointerModifier(this));
             }
+            if let Ok(this) = <TypeQualifier<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::TypeQualifier(this));
+            }
+            Err(::type_sitter_lib::IncorrectKind::new::<Self>(node))
         }
         #[inline]
         fn raw(&self) -> &::yak_sitter::Node<'tree> {
@@ -27938,53 +26872,27 @@ Follows the following chain:
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
         ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
-            match node.kind() {
-                "ms_restrict_modifier" => {
-                    Ok(unsafe {
-                        Self::MsRestrictModifier(
-                            <MsRestrictModifier<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "ms_signed_ptr_modifier" => {
-                    Ok(unsafe {
-                        Self::MsSignedPtrModifier(
-                            <MsSignedPtrModifier<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "ms_unaligned_ptr_modifier" => {
-                    Ok(unsafe {
-                        Self::MsUnalignedPtrModifier(
-                            <MsUnalignedPtrModifier<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "ms_unsigned_ptr_modifier" => {
-                    Ok(unsafe {
-                        Self::MsUnsignedPtrModifier(
-                            <MsUnsignedPtrModifier<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                _ => Err(::type_sitter_lib::IncorrectKind::new::<Self>(node)),
+            if let Ok(this) = <MsRestrictModifier<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::MsRestrictModifier(this));
             }
+            if let Ok(this) = <MsSignedPtrModifier<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::MsSignedPtrModifier(this));
+            }
+            if let Ok(this) = <MsUnalignedPtrModifier<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::MsUnalignedPtrModifier(this));
+            }
+            if let Ok(this) = <MsUnsignedPtrModifier<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::MsUnsignedPtrModifier(this));
+            }
+            Err(::type_sitter_lib::IncorrectKind::new::<Self>(node))
         }
         #[inline]
         fn raw(&self) -> &::yak_sitter::Node<'tree> {
@@ -28575,207 +27483,97 @@ Follows the following chain:
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
         ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
-            match node.kind() {
-                "!=" => {
-                    Ok(unsafe {
-                        Self::NotEq(
-                            <symbols::NotEq<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "%" => {
-                    Ok(unsafe {
-                        Self::Mod(
-                            <symbols::Mod<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "&" => {
-                    Ok(unsafe {
-                        Self::And(
-                            <symbols::And<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "&&" => {
-                    Ok(unsafe {
-                        Self::AndAnd(
-                            <symbols::AndAnd<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "*" => {
-                    Ok(unsafe {
-                        Self::Mul(
-                            <symbols::Mul<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "+" => {
-                    Ok(unsafe {
-                        Self::Add(
-                            <symbols::Add<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "-" => {
-                    Ok(unsafe {
-                        Self::Sub(
-                            <symbols::Sub<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "/" => {
-                    Ok(unsafe {
-                        Self::Div(
-                            <symbols::Div<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "<" => {
-                    Ok(unsafe {
-                        Self::Lt(
-                            <symbols::Lt<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "<<" => {
-                    Ok(unsafe {
-                        Self::LtLt(
-                            <symbols::LtLt<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "<=" => {
-                    Ok(unsafe {
-                        Self::LtEq(
-                            <symbols::LtEq<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "==" => {
-                    Ok(unsafe {
-                        Self::EqEq(
-                            <symbols::EqEq<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                ">" => {
-                    Ok(unsafe {
-                        Self::Gt(
-                            <symbols::Gt<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                ">=" => {
-                    Ok(unsafe {
-                        Self::GtEq(
-                            <symbols::GtEq<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                ">>" => {
-                    Ok(unsafe {
-                        Self::GtGt(
-                            <symbols::GtGt<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "^" => {
-                    Ok(unsafe {
-                        Self::BitXor(
-                            <symbols::BitXor<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "|" => {
-                    Ok(unsafe {
-                        Self::Or(
-                            <symbols::Or<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "||" => {
-                    Ok(unsafe {
-                        Self::OrOr(
-                            <symbols::OrOr<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                _ => Err(::type_sitter_lib::IncorrectKind::new::<Self>(node)),
+            if let Ok(this) = <symbols::NotEq<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::NotEq(this));
             }
+            if let Ok(this) = <symbols::Mod<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::Mod(this));
+            }
+            if let Ok(this) = <symbols::And<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::And(this));
+            }
+            if let Ok(this) = <symbols::AndAnd<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::AndAnd(this));
+            }
+            if let Ok(this) = <symbols::Mul<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::Mul(this));
+            }
+            if let Ok(this) = <symbols::Add<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::Add(this));
+            }
+            if let Ok(this) = <symbols::Sub<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::Sub(this));
+            }
+            if let Ok(this) = <symbols::Div<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::Div(this));
+            }
+            if let Ok(this) = <symbols::Lt<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::Lt(this));
+            }
+            if let Ok(this) = <symbols::LtLt<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::LtLt(this));
+            }
+            if let Ok(this) = <symbols::LtEq<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::LtEq(this));
+            }
+            if let Ok(this) = <symbols::EqEq<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::EqEq(this));
+            }
+            if let Ok(this) = <symbols::Gt<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::Gt(this));
+            }
+            if let Ok(this) = <symbols::GtEq<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::GtEq(this));
+            }
+            if let Ok(this) = <symbols::GtGt<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::GtGt(this));
+            }
+            if let Ok(this) = <symbols::BitXor<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::BitXor(this));
+            }
+            if let Ok(this) = <symbols::Or<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::Or(this));
+            }
+            if let Ok(this) = <symbols::OrOr<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::OrOr(this));
+            }
+            Err(::type_sitter_lib::IncorrectKind::new::<Self>(node))
         }
         #[inline]
         fn raw(&self) -> &::yak_sitter::Node<'tree> {
@@ -28912,53 +27710,27 @@ Follows the following chain:
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
         ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
-            match node.kind() {
-                "!" => {
-                    Ok(unsafe {
-                        Self::Not(
-                            <symbols::Not<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "+" => {
-                    Ok(unsafe {
-                        Self::Add(
-                            <symbols::Add<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "-" => {
-                    Ok(unsafe {
-                        Self::Sub(
-                            <symbols::Sub<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "~" => {
-                    Ok(unsafe {
-                        Self::BitNot(
-                            <symbols::BitNot<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                _ => Err(::type_sitter_lib::IncorrectKind::new::<Self>(node)),
+            if let Ok(this) = <symbols::Not<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::Not(this));
             }
+            if let Ok(this) = <symbols::Add<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::Add(this));
+            }
+            if let Ok(this) = <symbols::Sub<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::Sub(this));
+            }
+            if let Ok(this) = <symbols::BitNot<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::BitNot(this));
+            }
+            Err(::type_sitter_lib::IncorrectKind::new::<Self>(node))
         }
         #[inline]
         fn raw(&self) -> &::yak_sitter::Node<'tree> {
@@ -29042,42 +27814,22 @@ Follows the following chain:
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
         ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
-            match node.kind() {
-                "preproc_elif" => {
-                    Ok(unsafe {
-                        Self::PreprocElif(
-                            <PreprocElif<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "preproc_elifdef" => {
-                    Ok(unsafe {
-                        Self::PreprocElifdef(
-                            <PreprocElifdef<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "preproc_else" => {
-                    Ok(unsafe {
-                        Self::PreprocElse(
-                            <PreprocElse<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                _ => Err(::type_sitter_lib::IncorrectKind::new::<Self>(node)),
+            if let Ok(this) = <PreprocElif<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::PreprocElif(this));
             }
+            if let Ok(this) = <PreprocElifdef<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::PreprocElifdef(this));
+            }
+            if let Ok(this) = <PreprocElse<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::PreprocElse(this));
+            }
+            Err(::type_sitter_lib::IncorrectKind::new::<Self>(node))
         }
         #[inline]
         fn raw(&self) -> &::yak_sitter::Node<'tree> {
@@ -29145,31 +27897,17 @@ Follows the following chain:
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
         ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
-            match node.kind() {
-                "primitive_type" => {
-                    Ok(unsafe {
-                        Self::PrimitiveType(
-                            <PrimitiveType<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "type_identifier" => {
-                    Ok(unsafe {
-                        Self::TypeIdentifier(
-                            <TypeIdentifier<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                _ => Err(::type_sitter_lib::IncorrectKind::new::<Self>(node)),
+            if let Ok(this) = <PrimitiveType<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::PrimitiveType(this));
             }
+            if let Ok(this) = <TypeIdentifier<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::TypeIdentifier(this));
+            }
+            Err(::type_sitter_lib::IncorrectKind::new::<Self>(node))
         }
         #[inline]
         fn raw(&self) -> &::yak_sitter::Node<'tree> {
@@ -29257,31 +27995,17 @@ This child has type `compound_statement` ([`CompoundStatement`])*/
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
         ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
-            match node.kind() {
-                "seh_except_clause" => {
-                    Ok(unsafe {
-                        Self::SehExceptClause(
-                            <SehExceptClause<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "seh_finally_clause" => {
-                    Ok(unsafe {
-                        Self::SehFinallyClause(
-                            <SehFinallyClause<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                _ => Err(::type_sitter_lib::IncorrectKind::new::<Self>(node)),
+            if let Ok(this) = <SehExceptClause<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::SehExceptClause(this));
             }
+            if let Ok(this) = <SehFinallyClause<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::SehFinallyClause(this));
+            }
+            Err(::type_sitter_lib::IncorrectKind::new::<Self>(node))
         }
         #[inline]
         fn raw(&self) -> &::yak_sitter::Node<'tree> {
@@ -29346,31 +28070,17 @@ This child has type `compound_statement` ([`CompoundStatement`])*/
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
         ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
-            match node.kind() {
-                "->" => {
-                    Ok(unsafe {
-                        Self::SubGt(
-                            <symbols::SubGt<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "." => {
-                    Ok(unsafe {
-                        Self::Dot(
-                            <symbols::Dot<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                _ => Err(::type_sitter_lib::IncorrectKind::new::<Self>(node)),
+            if let Ok(this) = <symbols::SubGt<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::SubGt(this));
             }
+            if let Ok(this) = <symbols::Dot<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::Dot(this));
+            }
+            Err(::type_sitter_lib::IncorrectKind::new::<Self>(node))
         }
         #[inline]
         fn raw(&self) -> &::yak_sitter::Node<'tree> {

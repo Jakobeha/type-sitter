@@ -114,56 +114,41 @@ impl<'tree> ::type_sitter::Node<'tree> for CompoundStatement<'tree> {
     fn try_from_raw(
         node: ::type_sitter::raw::Node<'tree>,
     ) -> ::type_sitter::NodeResult<'tree, Self> {
-        match node.kind() {
-            "class_definition" => Ok(unsafe {
-                Self::ClassDefinition(
-                    <ClassDefinition<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
-                        node,
-                    ),
-                )
-            }),
-            "decorated_definition" => Ok(unsafe {
-                Self::DecoratedDefinition(<DecoratedDefinition<'tree> as ::type_sitter::Node<
-                    'tree,
-                >>::from_raw_unchecked(node))
-            }),
-            "for_statement" => Ok(unsafe {
-                Self::ForStatement(
-                    <ForStatement<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
-                )
-            }),
-            "function_definition" => Ok(unsafe {
-                Self::FunctionDefinition(<FunctionDefinition<'tree> as ::type_sitter::Node<
-                    'tree,
-                >>::from_raw_unchecked(node))
-            }),
-            "if_statement" => Ok(unsafe {
-                Self::IfStatement(
-                    <IfStatement<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
-                )
-            }),
-            "match_statement" => Ok(unsafe {
-                Self::MatchStatement(
-                    <MatchStatement<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
-                )
-            }),
-            "try_statement" => Ok(unsafe {
-                Self::TryStatement(
-                    <TryStatement<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
-                )
-            }),
-            "while_statement" => Ok(unsafe {
-                Self::WhileStatement(
-                    <WhileStatement<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
-                )
-            }),
-            "with_statement" => Ok(unsafe {
-                Self::WithStatement(
-                    <WithStatement<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
-                )
-            }),
-            _ => Err(::type_sitter::IncorrectKind::new::<Self>(node)),
+        if let Ok(this) = <ClassDefinition<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+        {
+            return Ok(Self::ClassDefinition(this));
         }
+        if let Ok(this) =
+            <DecoratedDefinition<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+        {
+            return Ok(Self::DecoratedDefinition(this));
+        }
+        if let Ok(this) = <ForStatement<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::ForStatement(this));
+        }
+        if let Ok(this) =
+            <FunctionDefinition<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+        {
+            return Ok(Self::FunctionDefinition(this));
+        }
+        if let Ok(this) = <IfStatement<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::IfStatement(this));
+        }
+        if let Ok(this) = <MatchStatement<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+        {
+            return Ok(Self::MatchStatement(this));
+        }
+        if let Ok(this) = <TryStatement<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::TryStatement(this));
+        }
+        if let Ok(this) = <WhileStatement<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+        {
+            return Ok(Self::WhileStatement(this));
+        }
+        if let Ok(this) = <WithStatement<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::WithStatement(this));
+        }
+        Err(::type_sitter::IncorrectKind::new::<Self>(node))
     }
     #[inline]
     fn raw(&self) -> &::type_sitter::raw::Node<'tree> {
@@ -401,103 +386,75 @@ impl<'tree> ::type_sitter::Node<'tree> for SimpleStatement<'tree> {
     fn try_from_raw(
         node: ::type_sitter::raw::Node<'tree>,
     ) -> ::type_sitter::NodeResult<'tree, Self> {
-        match node.kind() {
-            "assert_statement" => Ok(unsafe {
-                Self::AssertStatement(
-                    <AssertStatement<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
-                        node,
-                    ),
-                )
-            }),
-            "break_statement" => Ok(unsafe {
-                Self::BreakStatement(
-                    <BreakStatement<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
-                )
-            }),
-            "continue_statement" => {
-                Ok(unsafe {
-                    Self::ContinueStatement(<ContinueStatement<'tree> as ::type_sitter::Node<
-                        'tree,
-                    >>::from_raw_unchecked(node))
-                })
-            }
-            "delete_statement" => Ok(unsafe {
-                Self::DeleteStatement(
-                    <DeleteStatement<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
-                        node,
-                    ),
-                )
-            }),
-            "exec_statement" => Ok(unsafe {
-                Self::ExecStatement(
-                    <ExecStatement<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
-                )
-            }),
-            "expression_statement" => Ok(unsafe {
-                Self::ExpressionStatement(<ExpressionStatement<'tree> as ::type_sitter::Node<
-                    'tree,
-                >>::from_raw_unchecked(node))
-            }),
-            "future_import_statement" => {
-                Ok(unsafe {
-                    Self :: FutureImportStatement (< FutureImportStatement < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                })
-            }
-            "global_statement" => Ok(unsafe {
-                Self::GlobalStatement(
-                    <GlobalStatement<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
-                        node,
-                    ),
-                )
-            }),
-            "import_from_statement" => Ok(unsafe {
-                Self::ImportFromStatement(<ImportFromStatement<'tree> as ::type_sitter::Node<
-                    'tree,
-                >>::from_raw_unchecked(node))
-            }),
-            "import_statement" => Ok(unsafe {
-                Self::ImportStatement(
-                    <ImportStatement<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
-                        node,
-                    ),
-                )
-            }),
-            "nonlocal_statement" => {
-                Ok(unsafe {
-                    Self::NonlocalStatement(<NonlocalStatement<'tree> as ::type_sitter::Node<
-                        'tree,
-                    >>::from_raw_unchecked(node))
-                })
-            }
-            "pass_statement" => Ok(unsafe {
-                Self::PassStatement(
-                    <PassStatement<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
-                )
-            }),
-            "print_statement" => Ok(unsafe {
-                Self::PrintStatement(
-                    <PrintStatement<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
-                )
-            }),
-            "raise_statement" => Ok(unsafe {
-                Self::RaiseStatement(
-                    <RaiseStatement<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
-                )
-            }),
-            "return_statement" => Ok(unsafe {
-                Self::ReturnStatement(
-                    <ReturnStatement<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
-                        node,
-                    ),
-                )
-            }),
-            "type_alias_statement" => Ok(unsafe {
-                Self::TypeAliasStatement(<TypeAliasStatement<'tree> as ::type_sitter::Node<
-                    'tree,
-                >>::from_raw_unchecked(node))
-            }),
-            _ => Err(::type_sitter::IncorrectKind::new::<Self>(node)),
+        if let Ok(this) = <AssertStatement<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+        {
+            return Ok(Self::AssertStatement(this));
         }
+        if let Ok(this) = <BreakStatement<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+        {
+            return Ok(Self::BreakStatement(this));
+        }
+        if let Ok(this) =
+            <ContinueStatement<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+        {
+            return Ok(Self::ContinueStatement(this));
+        }
+        if let Ok(this) = <DeleteStatement<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+        {
+            return Ok(Self::DeleteStatement(this));
+        }
+        if let Ok(this) = <ExecStatement<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::ExecStatement(this));
+        }
+        if let Ok(this) =
+            <ExpressionStatement<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+        {
+            return Ok(Self::ExpressionStatement(this));
+        }
+        if let Ok(this) =
+            <FutureImportStatement<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+        {
+            return Ok(Self::FutureImportStatement(this));
+        }
+        if let Ok(this) = <GlobalStatement<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+        {
+            return Ok(Self::GlobalStatement(this));
+        }
+        if let Ok(this) =
+            <ImportFromStatement<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+        {
+            return Ok(Self::ImportFromStatement(this));
+        }
+        if let Ok(this) = <ImportStatement<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+        {
+            return Ok(Self::ImportStatement(this));
+        }
+        if let Ok(this) =
+            <NonlocalStatement<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+        {
+            return Ok(Self::NonlocalStatement(this));
+        }
+        if let Ok(this) = <PassStatement<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::PassStatement(this));
+        }
+        if let Ok(this) = <PrintStatement<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+        {
+            return Ok(Self::PrintStatement(this));
+        }
+        if let Ok(this) = <RaiseStatement<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+        {
+            return Ok(Self::RaiseStatement(this));
+        }
+        if let Ok(this) = <ReturnStatement<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+        {
+            return Ok(Self::ReturnStatement(this));
+        }
+        if let Ok(this) =
+            <TypeAliasStatement<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+        {
+            return Ok(Self::TypeAliasStatement(this));
+        }
+        Err(::type_sitter::IncorrectKind::new::<Self>(node))
     }
     #[inline]
     fn raw(&self) -> &::type_sitter::raw::Node<'tree> {
@@ -5743,58 +5700,47 @@ impl<'tree> ::type_sitter::Node<'tree> for Parameter<'tree> {
     fn try_from_raw(
         node: ::type_sitter::raw::Node<'tree>,
     ) -> ::type_sitter::NodeResult<'tree, Self> {
-        match node.kind() {
-            "default_parameter" => {
-                Ok(unsafe {
-                    Self::DefaultParameter(<DefaultParameter<'tree> as ::type_sitter::Node<
-                        'tree,
-                    >>::from_raw_unchecked(node))
-                })
-            }
-            "dictionary_splat_pattern" => Ok(unsafe {
-                Self :: DictionarySplatPattern (< DictionarySplatPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-            }),
-            "identifier" => Ok(unsafe {
-                Self::Identifier(
-                    <Identifier<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
-                )
-            }),
-            "keyword_separator" => {
-                Ok(unsafe {
-                    Self::KeywordSeparator(<KeywordSeparator<'tree> as ::type_sitter::Node<
-                        'tree,
-                    >>::from_raw_unchecked(node))
-                })
-            }
-            "list_splat_pattern" => {
-                Ok(unsafe {
-                    Self::ListSplatPattern(<ListSplatPattern<'tree> as ::type_sitter::Node<
-                        'tree,
-                    >>::from_raw_unchecked(node))
-                })
-            }
-            "positional_separator" => Ok(unsafe {
-                Self::PositionalSeparator(<PositionalSeparator<'tree> as ::type_sitter::Node<
-                    'tree,
-                >>::from_raw_unchecked(node))
-            }),
-            "tuple_pattern" => Ok(unsafe {
-                Self::TuplePattern(
-                    <TuplePattern<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
-                )
-            }),
-            "typed_default_parameter" => {
-                Ok(unsafe {
-                    Self :: TypedDefaultParameter (< TypedDefaultParameter < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                })
-            }
-            "typed_parameter" => Ok(unsafe {
-                Self::TypedParameter(
-                    <TypedParameter<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
-                )
-            }),
-            _ => Err(::type_sitter::IncorrectKind::new::<Self>(node)),
+        if let Ok(this) =
+            <DefaultParameter<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+        {
+            return Ok(Self::DefaultParameter(this));
         }
+        if let Ok(this) =
+            <DictionarySplatPattern<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+        {
+            return Ok(Self::DictionarySplatPattern(this));
+        }
+        if let Ok(this) = <Identifier<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::Identifier(this));
+        }
+        if let Ok(this) =
+            <KeywordSeparator<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+        {
+            return Ok(Self::KeywordSeparator(this));
+        }
+        if let Ok(this) =
+            <ListSplatPattern<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+        {
+            return Ok(Self::ListSplatPattern(this));
+        }
+        if let Ok(this) =
+            <PositionalSeparator<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+        {
+            return Ok(Self::PositionalSeparator(this));
+        }
+        if let Ok(this) = <TuplePattern<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::TuplePattern(this));
+        }
+        if let Ok(this) =
+            <TypedDefaultParameter<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+        {
+            return Ok(Self::TypedDefaultParameter(this));
+        }
+        if let Ok(this) = <TypedParameter<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+        {
+            return Ok(Self::TypedParameter(this));
+        }
+        Err(::type_sitter::IncorrectKind::new::<Self>(node))
     }
     #[inline]
     fn raw(&self) -> &::type_sitter::raw::Node<'tree> {
@@ -6107,41 +6053,27 @@ impl<'tree> ::type_sitter::Node<'tree> for Pattern<'tree> {
     fn try_from_raw(
         node: ::type_sitter::raw::Node<'tree>,
     ) -> ::type_sitter::NodeResult<'tree, Self> {
-        match node.kind() {
-            "attribute" => Ok(unsafe {
-                Self::Attribute(
-                    <Attribute<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
-                )
-            }),
-            "identifier" => Ok(unsafe {
-                Self::Identifier(
-                    <Identifier<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
-                )
-            }),
-            "list_pattern" => Ok(unsafe {
-                Self::ListPattern(
-                    <ListPattern<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
-                )
-            }),
-            "list_splat_pattern" => {
-                Ok(unsafe {
-                    Self::ListSplatPattern(<ListSplatPattern<'tree> as ::type_sitter::Node<
-                        'tree,
-                    >>::from_raw_unchecked(node))
-                })
-            }
-            "subscript" => Ok(unsafe {
-                Self::Subscript(
-                    <Subscript<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
-                )
-            }),
-            "tuple_pattern" => Ok(unsafe {
-                Self::TuplePattern(
-                    <TuplePattern<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
-                )
-            }),
-            _ => Err(::type_sitter::IncorrectKind::new::<Self>(node)),
+        if let Ok(this) = <Attribute<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::Attribute(this));
         }
+        if let Ok(this) = <Identifier<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::Identifier(this));
+        }
+        if let Ok(this) = <ListPattern<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::ListPattern(this));
+        }
+        if let Ok(this) =
+            <ListSplatPattern<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+        {
+            return Ok(Self::ListSplatPattern(this));
+        }
+        if let Ok(this) = <Subscript<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::Subscript(this));
+        }
+        if let Ok(this) = <TuplePattern<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::TuplePattern(this));
+        }
+        Err(::type_sitter::IncorrectKind::new::<Self>(node))
     }
     #[inline]
     fn raw(&self) -> &::type_sitter::raw::Node<'tree> {
@@ -6571,116 +6503,95 @@ impl<'tree> ::type_sitter::Node<'tree> for PrimaryExpression<'tree> {
     fn try_from_raw(
         node: ::type_sitter::raw::Node<'tree>,
     ) -> ::type_sitter::NodeResult<'tree, Self> {
-        match node.kind() {
-            "attribute" => Ok(unsafe {
-                Self::Attribute(
-                    <Attribute<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
-                )
-            }),
-            "await" => Ok(unsafe {
-                Self::Await(<Await<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node))
-            }),
-            "binary_operator" => Ok(unsafe {
-                Self::BinaryOperator(
-                    <BinaryOperator<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
-                )
-            }),
-            "call" => Ok(unsafe {
-                Self::Call(<Call<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node))
-            }),
-            "concatenated_string" => Ok(unsafe {
-                Self::ConcatenatedString(<ConcatenatedString<'tree> as ::type_sitter::Node<
-                    'tree,
-                >>::from_raw_unchecked(node))
-            }),
-            "dictionary" => Ok(unsafe {
-                Self::Dictionary(
-                    <Dictionary<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
-                )
-            }),
-            "dictionary_comprehension" => Ok(unsafe {
-                Self :: DictionaryComprehension (< DictionaryComprehension < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-            }),
-            "ellipsis" => Ok(unsafe {
-                Self::Ellipsis(
-                    <Ellipsis<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
-                )
-            }),
-            "false" => Ok(unsafe {
-                Self::False(<False<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node))
-            }),
-            "float" => Ok(unsafe {
-                Self::Float(<Float<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node))
-            }),
-            "generator_expression" => Ok(unsafe {
-                Self::GeneratorExpression(<GeneratorExpression<'tree> as ::type_sitter::Node<
-                    'tree,
-                >>::from_raw_unchecked(node))
-            }),
-            "identifier" => Ok(unsafe {
-                Self::Identifier(
-                    <Identifier<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
-                )
-            }),
-            "integer" => Ok(unsafe {
-                Self::Integer(
-                    <Integer<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
-                )
-            }),
-            "list" => Ok(unsafe {
-                Self::List(<List<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node))
-            }),
-            "list_comprehension" => {
-                Ok(unsafe {
-                    Self::ListComprehension(<ListComprehension<'tree> as ::type_sitter::Node<
-                        'tree,
-                    >>::from_raw_unchecked(node))
-                })
-            }
-            "list_splat" => Ok(unsafe {
-                Self::ListSplat(
-                    <ListSplat<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
-                )
-            }),
-            "none" => Ok(unsafe {
-                Self::None(<None<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node))
-            }),
-            "parenthesized_expression" => Ok(unsafe {
-                Self :: ParenthesizedExpression (< ParenthesizedExpression < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-            }),
-            "set" => Ok(unsafe {
-                Self::Set(<Set<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node))
-            }),
-            "set_comprehension" => {
-                Ok(unsafe {
-                    Self::SetComprehension(<SetComprehension<'tree> as ::type_sitter::Node<
-                        'tree,
-                    >>::from_raw_unchecked(node))
-                })
-            }
-            "string" => Ok(unsafe {
-                Self::String(
-                    <String<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
-                )
-            }),
-            "subscript" => Ok(unsafe {
-                Self::Subscript(
-                    <Subscript<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
-                )
-            }),
-            "true" => Ok(unsafe {
-                Self::True(<True<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node))
-            }),
-            "tuple" => Ok(unsafe {
-                Self::Tuple(<Tuple<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node))
-            }),
-            "unary_operator" => Ok(unsafe {
-                Self::UnaryOperator(
-                    <UnaryOperator<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
-                )
-            }),
-            _ => Err(::type_sitter::IncorrectKind::new::<Self>(node)),
+        if let Ok(this) = <Attribute<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::Attribute(this));
         }
+        if let Ok(this) = <Await<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::Await(this));
+        }
+        if let Ok(this) = <BinaryOperator<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+        {
+            return Ok(Self::BinaryOperator(this));
+        }
+        if let Ok(this) = <Call<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::Call(this));
+        }
+        if let Ok(this) =
+            <ConcatenatedString<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+        {
+            return Ok(Self::ConcatenatedString(this));
+        }
+        if let Ok(this) = <Dictionary<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::Dictionary(this));
+        }
+        if let Ok(this) =
+            <DictionaryComprehension<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+        {
+            return Ok(Self::DictionaryComprehension(this));
+        }
+        if let Ok(this) = <Ellipsis<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::Ellipsis(this));
+        }
+        if let Ok(this) = <False<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::False(this));
+        }
+        if let Ok(this) = <Float<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::Float(this));
+        }
+        if let Ok(this) =
+            <GeneratorExpression<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+        {
+            return Ok(Self::GeneratorExpression(this));
+        }
+        if let Ok(this) = <Identifier<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::Identifier(this));
+        }
+        if let Ok(this) = <Integer<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::Integer(this));
+        }
+        if let Ok(this) = <List<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::List(this));
+        }
+        if let Ok(this) =
+            <ListComprehension<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+        {
+            return Ok(Self::ListComprehension(this));
+        }
+        if let Ok(this) = <ListSplat<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::ListSplat(this));
+        }
+        if let Ok(this) = <None<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::None(this));
+        }
+        if let Ok(this) =
+            <ParenthesizedExpression<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+        {
+            return Ok(Self::ParenthesizedExpression(this));
+        }
+        if let Ok(this) = <Set<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::Set(this));
+        }
+        if let Ok(this) =
+            <SetComprehension<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+        {
+            return Ok(Self::SetComprehension(this));
+        }
+        if let Ok(this) = <String<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::String(this));
+        }
+        if let Ok(this) = <Subscript<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::Subscript(this));
+        }
+        if let Ok(this) = <True<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::True(this));
+        }
+        if let Ok(this) = <Tuple<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::Tuple(this));
+        }
+        if let Ok(this) = <UnaryOperator<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node) {
+            return Ok(Self::UnaryOperator(this));
+        }
+        Err(::type_sitter::IncorrectKind::new::<Self>(node))
     }
     #[inline]
     fn raw(&self) -> &::type_sitter::raw::Node<'tree> {
@@ -12188,28 +12099,22 @@ pub mod anon_unions {
         fn try_from_raw(
             node: ::type_sitter::raw::Node<'tree>,
         ) -> ::type_sitter::NodeResult<'tree, Self> {
-            match node.kind() {
-                "+" => Ok(unsafe {
-                    Self::Add(
-                        <symbols::Add<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
-                            node,
-                        ),
-                    )
-                }),
-                "-" => Ok(unsafe {
-                    Self::Sub(
-                        <symbols::Sub<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
-                            node,
-                        ),
-                    )
-                }),
-                "~" => {
-                    Ok(unsafe {
-                        Self :: BitNot (< symbols :: BitNot < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                _ => Err(::type_sitter::IncorrectKind::new::<Self>(node)),
+            if let Ok(this) =
+                <symbols::Add<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::Add(this));
             }
+            if let Ok(this) =
+                <symbols::Sub<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::Sub(this));
+            }
+            if let Ok(this) =
+                <symbols::BitNot<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::BitNot(this));
+            }
+            Err(::type_sitter::IncorrectKind::new::<Self>(node))
         }
         #[inline]
         fn raw(&self) -> &::type_sitter::raw::Node<'tree> {
@@ -12275,19 +12180,16 @@ pub mod anon_unions {
         fn try_from_raw(
             node: ::type_sitter::raw::Node<'tree>,
         ) -> ::type_sitter::NodeResult<'tree, Self> {
-            match node.kind() {
-                "aliased_import" => {
-                    Ok(unsafe {
-                        Self :: AliasedImport (< AliasedImport < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                "dotted_name" => Ok(unsafe {
-                    Self::DottedName(
-                        <DottedName<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                }),
-                _ => Err(::type_sitter::IncorrectKind::new::<Self>(node)),
+            if let Ok(this) =
+                <AliasedImport<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::AliasedImport(this));
             }
+            if let Ok(this) = <DottedName<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::DottedName(this));
+            }
+            Err(::type_sitter::IncorrectKind::new::<Self>(node))
         }
         #[inline]
         fn raw(&self) -> &::type_sitter::raw::Node<'tree> {
@@ -12350,23 +12252,16 @@ pub mod anon_unions {
         fn try_from_raw(
             node: ::type_sitter::raw::Node<'tree>,
         ) -> ::type_sitter::NodeResult<'tree, Self> {
-            match node.kind() {
-                "and" => Ok(unsafe {
-                    Self::And(
-                        <unnamed::And<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
-                            node,
-                        ),
-                    )
-                }),
-                "or" => Ok(unsafe {
-                    Self::Or(
-                        <unnamed::Or<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
-                            node,
-                        ),
-                    )
-                }),
-                _ => Err(::type_sitter::IncorrectKind::new::<Self>(node)),
+            if let Ok(this) =
+                <unnamed::And<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::And(this));
             }
+            if let Ok(this) = <unnamed::Or<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::Or(this));
+            }
+            Err(::type_sitter::IncorrectKind::new::<Self>(node))
         }
         #[inline]
         fn raw(&self) -> &::type_sitter::raw::Node<'tree> {
@@ -12429,21 +12324,17 @@ pub mod anon_unions {
         fn try_from_raw(
             node: ::type_sitter::raw::Node<'tree>,
         ) -> ::type_sitter::NodeResult<'tree, Self> {
-            match node.kind() {
-                "argument_list" => Ok(unsafe {
-                    Self::ArgumentList(
-                        <ArgumentList<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
-                            node,
-                        ),
-                    )
-                }),
-                "generator_expression" => {
-                    Ok(unsafe {
-                        Self :: GeneratorExpression (< GeneratorExpression < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                _ => Err(::type_sitter::IncorrectKind::new::<Self>(node)),
+            if let Ok(this) =
+                <ArgumentList<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::ArgumentList(this));
             }
+            if let Ok(this) =
+                <GeneratorExpression<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::GeneratorExpression(this));
+            }
+            Err(::type_sitter::IncorrectKind::new::<Self>(node))
         }
         #[inline]
         fn raw(&self) -> &::type_sitter::raw::Node<'tree> {
@@ -12495,7 +12386,7 @@ pub mod anon_unions {
     #[allow(unused)]
     impl < 'tree > AsPattern_ClassPattern_ComplexPattern_ConcatenatedString_DictPattern_DottedName_False_Float_Integer_KeywordPattern_ListPattern_None_SplatPattern_String_True_TuplePattern_UnionPattern < 'tree > { # [doc = "Returns the node if it is of type `as_pattern` ([`AsPattern`]), otherwise returns `None`"] # [inline] pub fn as_as_pattern (self) -> :: std :: option :: Option < AsPattern < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: AsPattern (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `class_pattern` ([`ClassPattern`]), otherwise returns `None`"] # [inline] pub fn as_class_pattern (self) -> :: std :: option :: Option < ClassPattern < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ClassPattern (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `complex_pattern` ([`ComplexPattern`]), otherwise returns `None`"] # [inline] pub fn as_complex_pattern (self) -> :: std :: option :: Option < ComplexPattern < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ComplexPattern (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `concatenated_string` ([`ConcatenatedString`]), otherwise returns `None`"] # [inline] pub fn as_concatenated_string (self) -> :: std :: option :: Option < ConcatenatedString < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ConcatenatedString (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `dict_pattern` ([`DictPattern`]), otherwise returns `None`"] # [inline] pub fn as_dict_pattern (self) -> :: std :: option :: Option < DictPattern < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: DictPattern (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `dotted_name` ([`DottedName`]), otherwise returns `None`"] # [inline] pub fn as_dotted_name (self) -> :: std :: option :: Option < DottedName < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: DottedName (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `false` ([`False`]), otherwise returns `None`"] # [inline] pub fn as_false (self) -> :: std :: option :: Option < False < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: False (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `float` ([`Float`]), otherwise returns `None`"] # [inline] pub fn as_float (self) -> :: std :: option :: Option < Float < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Float (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `integer` ([`Integer`]), otherwise returns `None`"] # [inline] pub fn as_integer (self) -> :: std :: option :: Option < Integer < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Integer (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `keyword_pattern` ([`KeywordPattern`]), otherwise returns `None`"] # [inline] pub fn as_keyword_pattern (self) -> :: std :: option :: Option < KeywordPattern < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: KeywordPattern (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `list_pattern` ([`ListPattern`]), otherwise returns `None`"] # [inline] pub fn as_list_pattern (self) -> :: std :: option :: Option < ListPattern < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ListPattern (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `none` ([`None`]), otherwise returns `None`"] # [inline] pub fn as_none (self) -> :: std :: option :: Option < None < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: None (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `splat_pattern` ([`SplatPattern`]), otherwise returns `None`"] # [inline] pub fn as_splat_pattern (self) -> :: std :: option :: Option < SplatPattern < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: SplatPattern (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `string` ([`String`]), otherwise returns `None`"] # [inline] pub fn as_string (self) -> :: std :: option :: Option < String < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: String (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `true` ([`True`]), otherwise returns `None`"] # [inline] pub fn as_true (self) -> :: std :: option :: Option < True < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: True (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `tuple_pattern` ([`TuplePattern`]), otherwise returns `None`"] # [inline] pub fn as_tuple_pattern (self) -> :: std :: option :: Option < TuplePattern < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: TuplePattern (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `union_pattern` ([`UnionPattern`]), otherwise returns `None`"] # [inline] pub fn as_union_pattern (self) -> :: std :: option :: Option < UnionPattern < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: UnionPattern (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } }
     #[automatically_derived]
-    impl < 'tree > :: type_sitter :: Node < 'tree > for AsPattern_ClassPattern_ComplexPattern_ConcatenatedString_DictPattern_DottedName_False_Float_Integer_KeywordPattern_ListPattern_None_SplatPattern_String_True_TuplePattern_UnionPattern < 'tree > { type WithLifetime < 'a > = AsPattern_ClassPattern_ComplexPattern_ConcatenatedString_DictPattern_DottedName_False_Float_Integer_KeywordPattern_ListPattern_None_SplatPattern_String_True_TuplePattern_UnionPattern < 'a > ; const KIND : & 'static str = "{as_pattern | class_pattern | complex_pattern | concatenated_string | dict_pattern | dotted_name | false | float | integer | keyword_pattern | list_pattern | none | splat_pattern | string | true | tuple_pattern | union_pattern}" ; # [inline] fn try_from_raw (node : :: type_sitter :: raw :: Node < 'tree >) -> :: type_sitter :: NodeResult < 'tree , Self > { match node . kind () { "as_pattern" => Ok (unsafe { Self :: AsPattern (< AsPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "class_pattern" => Ok (unsafe { Self :: ClassPattern (< ClassPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "complex_pattern" => Ok (unsafe { Self :: ComplexPattern (< ComplexPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "concatenated_string" => Ok (unsafe { Self :: ConcatenatedString (< ConcatenatedString < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "dict_pattern" => Ok (unsafe { Self :: DictPattern (< DictPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "dotted_name" => Ok (unsafe { Self :: DottedName (< DottedName < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "false" => Ok (unsafe { Self :: False (< False < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "float" => Ok (unsafe { Self :: Float (< Float < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "integer" => Ok (unsafe { Self :: Integer (< Integer < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "keyword_pattern" => Ok (unsafe { Self :: KeywordPattern (< KeywordPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "list_pattern" => Ok (unsafe { Self :: ListPattern (< ListPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "none" => Ok (unsafe { Self :: None (< None < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "splat_pattern" => Ok (unsafe { Self :: SplatPattern (< SplatPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "string" => Ok (unsafe { Self :: String (< String < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "true" => Ok (unsafe { Self :: True (< True < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "tuple_pattern" => Ok (unsafe { Self :: TuplePattern (< TuplePattern < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "union_pattern" => Ok (unsafe { Self :: UnionPattern (< UnionPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , _ => Err (:: type_sitter :: IncorrectKind :: new :: < Self > (node)) } } # [inline] fn raw (& self) -> & :: type_sitter :: raw :: Node < 'tree > { match self { Self :: AsPattern (x) => :: type_sitter :: Node :: raw (x) , Self :: ClassPattern (x) => :: type_sitter :: Node :: raw (x) , Self :: ComplexPattern (x) => :: type_sitter :: Node :: raw (x) , Self :: ConcatenatedString (x) => :: type_sitter :: Node :: raw (x) , Self :: DictPattern (x) => :: type_sitter :: Node :: raw (x) , Self :: DottedName (x) => :: type_sitter :: Node :: raw (x) , Self :: False (x) => :: type_sitter :: Node :: raw (x) , Self :: Float (x) => :: type_sitter :: Node :: raw (x) , Self :: Integer (x) => :: type_sitter :: Node :: raw (x) , Self :: KeywordPattern (x) => :: type_sitter :: Node :: raw (x) , Self :: ListPattern (x) => :: type_sitter :: Node :: raw (x) , Self :: None (x) => :: type_sitter :: Node :: raw (x) , Self :: SplatPattern (x) => :: type_sitter :: Node :: raw (x) , Self :: String (x) => :: type_sitter :: Node :: raw (x) , Self :: True (x) => :: type_sitter :: Node :: raw (x) , Self :: TuplePattern (x) => :: type_sitter :: Node :: raw (x) , Self :: UnionPattern (x) => :: type_sitter :: Node :: raw (x) , } } # [inline] fn raw_mut (& mut self) -> & mut :: type_sitter :: raw :: Node < 'tree > { match self { Self :: AsPattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: ClassPattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: ComplexPattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: ConcatenatedString (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: DictPattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: DottedName (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: False (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: Float (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: Integer (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: KeywordPattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: ListPattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: None (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: SplatPattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: String (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: True (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: TuplePattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: UnionPattern (x) => :: type_sitter :: Node :: raw_mut (x) , } } # [inline] fn into_raw (self) -> :: type_sitter :: raw :: Node < 'tree > { match self { Self :: AsPattern (x) => x . into_raw () , Self :: ClassPattern (x) => x . into_raw () , Self :: ComplexPattern (x) => x . into_raw () , Self :: ConcatenatedString (x) => x . into_raw () , Self :: DictPattern (x) => x . into_raw () , Self :: DottedName (x) => x . into_raw () , Self :: False (x) => x . into_raw () , Self :: Float (x) => x . into_raw () , Self :: Integer (x) => x . into_raw () , Self :: KeywordPattern (x) => x . into_raw () , Self :: ListPattern (x) => x . into_raw () , Self :: None (x) => x . into_raw () , Self :: SplatPattern (x) => x . into_raw () , Self :: String (x) => x . into_raw () , Self :: True (x) => x . into_raw () , Self :: TuplePattern (x) => x . into_raw () , Self :: UnionPattern (x) => x . into_raw () , } } }
+    impl < 'tree > :: type_sitter :: Node < 'tree > for AsPattern_ClassPattern_ComplexPattern_ConcatenatedString_DictPattern_DottedName_False_Float_Integer_KeywordPattern_ListPattern_None_SplatPattern_String_True_TuplePattern_UnionPattern < 'tree > { type WithLifetime < 'a > = AsPattern_ClassPattern_ComplexPattern_ConcatenatedString_DictPattern_DottedName_False_Float_Integer_KeywordPattern_ListPattern_None_SplatPattern_String_True_TuplePattern_UnionPattern < 'a > ; const KIND : & 'static str = "{as_pattern | class_pattern | complex_pattern | concatenated_string | dict_pattern | dotted_name | false | float | integer | keyword_pattern | list_pattern | none | splat_pattern | string | true | tuple_pattern | union_pattern}" ; # [inline] fn try_from_raw (node : :: type_sitter :: raw :: Node < 'tree >) -> :: type_sitter :: NodeResult < 'tree , Self > { if let Ok (this) = < AsPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: AsPattern (this)) ; } if let Ok (this) = < ClassPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: ClassPattern (this)) ; } if let Ok (this) = < ComplexPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: ComplexPattern (this)) ; } if let Ok (this) = < ConcatenatedString < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: ConcatenatedString (this)) ; } if let Ok (this) = < DictPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: DictPattern (this)) ; } if let Ok (this) = < DottedName < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: DottedName (this)) ; } if let Ok (this) = < False < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: False (this)) ; } if let Ok (this) = < Float < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: Float (this)) ; } if let Ok (this) = < Integer < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: Integer (this)) ; } if let Ok (this) = < KeywordPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: KeywordPattern (this)) ; } if let Ok (this) = < ListPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: ListPattern (this)) ; } if let Ok (this) = < None < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: None (this)) ; } if let Ok (this) = < SplatPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: SplatPattern (this)) ; } if let Ok (this) = < String < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: String (this)) ; } if let Ok (this) = < True < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: True (this)) ; } if let Ok (this) = < TuplePattern < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: TuplePattern (this)) ; } if let Ok (this) = < UnionPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: UnionPattern (this)) ; } Err (:: type_sitter :: IncorrectKind :: new :: < Self > (node)) } # [inline] fn raw (& self) -> & :: type_sitter :: raw :: Node < 'tree > { match self { Self :: AsPattern (x) => :: type_sitter :: Node :: raw (x) , Self :: ClassPattern (x) => :: type_sitter :: Node :: raw (x) , Self :: ComplexPattern (x) => :: type_sitter :: Node :: raw (x) , Self :: ConcatenatedString (x) => :: type_sitter :: Node :: raw (x) , Self :: DictPattern (x) => :: type_sitter :: Node :: raw (x) , Self :: DottedName (x) => :: type_sitter :: Node :: raw (x) , Self :: False (x) => :: type_sitter :: Node :: raw (x) , Self :: Float (x) => :: type_sitter :: Node :: raw (x) , Self :: Integer (x) => :: type_sitter :: Node :: raw (x) , Self :: KeywordPattern (x) => :: type_sitter :: Node :: raw (x) , Self :: ListPattern (x) => :: type_sitter :: Node :: raw (x) , Self :: None (x) => :: type_sitter :: Node :: raw (x) , Self :: SplatPattern (x) => :: type_sitter :: Node :: raw (x) , Self :: String (x) => :: type_sitter :: Node :: raw (x) , Self :: True (x) => :: type_sitter :: Node :: raw (x) , Self :: TuplePattern (x) => :: type_sitter :: Node :: raw (x) , Self :: UnionPattern (x) => :: type_sitter :: Node :: raw (x) , } } # [inline] fn raw_mut (& mut self) -> & mut :: type_sitter :: raw :: Node < 'tree > { match self { Self :: AsPattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: ClassPattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: ComplexPattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: ConcatenatedString (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: DictPattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: DottedName (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: False (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: Float (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: Integer (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: KeywordPattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: ListPattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: None (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: SplatPattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: String (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: True (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: TuplePattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: UnionPattern (x) => :: type_sitter :: Node :: raw_mut (x) , } } # [inline] fn into_raw (self) -> :: type_sitter :: raw :: Node < 'tree > { match self { Self :: AsPattern (x) => x . into_raw () , Self :: ClassPattern (x) => x . into_raw () , Self :: ComplexPattern (x) => x . into_raw () , Self :: ConcatenatedString (x) => x . into_raw () , Self :: DictPattern (x) => x . into_raw () , Self :: DottedName (x) => x . into_raw () , Self :: False (x) => x . into_raw () , Self :: Float (x) => x . into_raw () , Self :: Integer (x) => x . into_raw () , Self :: KeywordPattern (x) => x . into_raw () , Self :: ListPattern (x) => x . into_raw () , Self :: None (x) => x . into_raw () , Self :: SplatPattern (x) => x . into_raw () , Self :: String (x) => x . into_raw () , Self :: True (x) => x . into_raw () , Self :: TuplePattern (x) => x . into_raw () , Self :: UnionPattern (x) => x . into_raw () , } } }
     #[doc = "One of `{assignment | augmented_assignment | expression | expression_list | pattern_list | yield}`:\n- [`Assignment`]\n- [`AugmentedAssignment`]\n- [`Expression`]\n- [`ExpressionList`]\n- [`PatternList`]\n- [`Yield`]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
@@ -13475,24 +13366,17 @@ pub mod anon_unions {
         fn try_from_raw(
             node: ::type_sitter::raw::Node<'tree>,
         ) -> ::type_sitter::NodeResult<'tree, Self> {
-            match node.kind() {
-                "attribute" => Ok(unsafe {
-                    Self::Attribute(
-                        <Attribute<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                }),
-                "identifier" => Ok(unsafe {
-                    Self::Identifier(
-                        <Identifier<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                }),
-                "subscript" => Ok(unsafe {
-                    Self::Subscript(
-                        <Subscript<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                }),
-                _ => Err(::type_sitter::IncorrectKind::new::<Self>(node)),
+            if let Ok(this) = <Attribute<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::Attribute(this));
             }
+            if let Ok(this) = <Identifier<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::Identifier(this));
+            }
+            if let Ok(this) = <Subscript<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::Subscript(this));
+            }
+            Err(::type_sitter::IncorrectKind::new::<Self>(node))
         }
         #[inline]
         fn raw(&self) -> &::type_sitter::raw::Node<'tree> {
@@ -13825,21 +13709,15 @@ pub mod anon_unions {
         fn try_from_raw(
             node: ::type_sitter::raw::Node<'tree>,
         ) -> ::type_sitter::NodeResult<'tree, Self> {
-            match node.kind() {
-                "case_pattern" => Ok(unsafe {
-                    Self::CasePattern(
-                        <CasePattern<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
-                            node,
-                        ),
-                    )
-                }),
-                "dotted_name" => Ok(unsafe {
-                    Self::DottedName(
-                        <DottedName<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                }),
-                _ => Err(::type_sitter::IncorrectKind::new::<Self>(node)),
+            if let Ok(this) = <CasePattern<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::CasePattern(this));
             }
+            if let Ok(this) = <DottedName<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::DottedName(this));
+            }
+            Err(::type_sitter::IncorrectKind::new::<Self>(node))
         }
         #[inline]
         fn raw(&self) -> &::type_sitter::raw::Node<'tree> {
@@ -14300,21 +14178,17 @@ pub mod anon_unions {
         fn try_from_raw(
             node: ::type_sitter::raw::Node<'tree>,
         ) -> ::type_sitter::NodeResult<'tree, Self> {
-            match node.kind() {
-                "class_definition" => {
-                    Ok(unsafe {
-                        Self::ClassDefinition(<ClassDefinition<'tree> as ::type_sitter::Node<
-                            'tree,
-                        >>::from_raw_unchecked(node))
-                    })
-                }
-                "function_definition" => {
-                    Ok(unsafe {
-                        Self :: FunctionDefinition (< FunctionDefinition < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                _ => Err(::type_sitter::IncorrectKind::new::<Self>(node)),
+            if let Ok(this) =
+                <ClassDefinition<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::ClassDefinition(this));
             }
+            if let Ok(this) =
+                <FunctionDefinition<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::FunctionDefinition(this));
+            }
+            Err(::type_sitter::IncorrectKind::new::<Self>(node))
         }
         #[inline]
         fn raw(&self) -> &::type_sitter::raw::Node<'tree> {
@@ -14365,7 +14239,7 @@ pub mod anon_unions {
     #[allow(unused)]
     impl < 'tree > ClassPattern_ComplexPattern_ConcatenatedString_DictPattern_DottedName_False_Float_Identifier_Integer_ListPattern_None_SplatPattern_String_True_TuplePattern_UnionPattern < 'tree > { # [doc = "Returns the node if it is of type `class_pattern` ([`ClassPattern`]), otherwise returns `None`"] # [inline] pub fn as_class_pattern (self) -> :: std :: option :: Option < ClassPattern < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ClassPattern (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `complex_pattern` ([`ComplexPattern`]), otherwise returns `None`"] # [inline] pub fn as_complex_pattern (self) -> :: std :: option :: Option < ComplexPattern < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ComplexPattern (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `concatenated_string` ([`ConcatenatedString`]), otherwise returns `None`"] # [inline] pub fn as_concatenated_string (self) -> :: std :: option :: Option < ConcatenatedString < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ConcatenatedString (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `dict_pattern` ([`DictPattern`]), otherwise returns `None`"] # [inline] pub fn as_dict_pattern (self) -> :: std :: option :: Option < DictPattern < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: DictPattern (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `dotted_name` ([`DottedName`]), otherwise returns `None`"] # [inline] pub fn as_dotted_name (self) -> :: std :: option :: Option < DottedName < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: DottedName (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `false` ([`False`]), otherwise returns `None`"] # [inline] pub fn as_false (self) -> :: std :: option :: Option < False < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: False (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `float` ([`Float`]), otherwise returns `None`"] # [inline] pub fn as_float (self) -> :: std :: option :: Option < Float < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Float (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`"] # [inline] pub fn as_identifier (self) -> :: std :: option :: Option < Identifier < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Identifier (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `integer` ([`Integer`]), otherwise returns `None`"] # [inline] pub fn as_integer (self) -> :: std :: option :: Option < Integer < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Integer (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `list_pattern` ([`ListPattern`]), otherwise returns `None`"] # [inline] pub fn as_list_pattern (self) -> :: std :: option :: Option < ListPattern < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ListPattern (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `none` ([`None`]), otherwise returns `None`"] # [inline] pub fn as_none (self) -> :: std :: option :: Option < None < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: None (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `splat_pattern` ([`SplatPattern`]), otherwise returns `None`"] # [inline] pub fn as_splat_pattern (self) -> :: std :: option :: Option < SplatPattern < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: SplatPattern (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `string` ([`String`]), otherwise returns `None`"] # [inline] pub fn as_string (self) -> :: std :: option :: Option < String < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: String (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `true` ([`True`]), otherwise returns `None`"] # [inline] pub fn as_true (self) -> :: std :: option :: Option < True < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: True (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `tuple_pattern` ([`TuplePattern`]), otherwise returns `None`"] # [inline] pub fn as_tuple_pattern (self) -> :: std :: option :: Option < TuplePattern < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: TuplePattern (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `union_pattern` ([`UnionPattern`]), otherwise returns `None`"] # [inline] pub fn as_union_pattern (self) -> :: std :: option :: Option < UnionPattern < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: UnionPattern (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } }
     #[automatically_derived]
-    impl < 'tree > :: type_sitter :: Node < 'tree > for ClassPattern_ComplexPattern_ConcatenatedString_DictPattern_DottedName_False_Float_Identifier_Integer_ListPattern_None_SplatPattern_String_True_TuplePattern_UnionPattern < 'tree > { type WithLifetime < 'a > = ClassPattern_ComplexPattern_ConcatenatedString_DictPattern_DottedName_False_Float_Identifier_Integer_ListPattern_None_SplatPattern_String_True_TuplePattern_UnionPattern < 'a > ; const KIND : & 'static str = "{class_pattern | complex_pattern | concatenated_string | dict_pattern | dotted_name | false | float | identifier | integer | list_pattern | none | splat_pattern | string | true | tuple_pattern | union_pattern}" ; # [inline] fn try_from_raw (node : :: type_sitter :: raw :: Node < 'tree >) -> :: type_sitter :: NodeResult < 'tree , Self > { match node . kind () { "class_pattern" => Ok (unsafe { Self :: ClassPattern (< ClassPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "complex_pattern" => Ok (unsafe { Self :: ComplexPattern (< ComplexPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "concatenated_string" => Ok (unsafe { Self :: ConcatenatedString (< ConcatenatedString < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "dict_pattern" => Ok (unsafe { Self :: DictPattern (< DictPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "dotted_name" => Ok (unsafe { Self :: DottedName (< DottedName < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "false" => Ok (unsafe { Self :: False (< False < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "float" => Ok (unsafe { Self :: Float (< Float < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "identifier" => Ok (unsafe { Self :: Identifier (< Identifier < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "integer" => Ok (unsafe { Self :: Integer (< Integer < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "list_pattern" => Ok (unsafe { Self :: ListPattern (< ListPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "none" => Ok (unsafe { Self :: None (< None < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "splat_pattern" => Ok (unsafe { Self :: SplatPattern (< SplatPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "string" => Ok (unsafe { Self :: String (< String < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "true" => Ok (unsafe { Self :: True (< True < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "tuple_pattern" => Ok (unsafe { Self :: TuplePattern (< TuplePattern < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "union_pattern" => Ok (unsafe { Self :: UnionPattern (< UnionPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , _ => Err (:: type_sitter :: IncorrectKind :: new :: < Self > (node)) } } # [inline] fn raw (& self) -> & :: type_sitter :: raw :: Node < 'tree > { match self { Self :: ClassPattern (x) => :: type_sitter :: Node :: raw (x) , Self :: ComplexPattern (x) => :: type_sitter :: Node :: raw (x) , Self :: ConcatenatedString (x) => :: type_sitter :: Node :: raw (x) , Self :: DictPattern (x) => :: type_sitter :: Node :: raw (x) , Self :: DottedName (x) => :: type_sitter :: Node :: raw (x) , Self :: False (x) => :: type_sitter :: Node :: raw (x) , Self :: Float (x) => :: type_sitter :: Node :: raw (x) , Self :: Identifier (x) => :: type_sitter :: Node :: raw (x) , Self :: Integer (x) => :: type_sitter :: Node :: raw (x) , Self :: ListPattern (x) => :: type_sitter :: Node :: raw (x) , Self :: None (x) => :: type_sitter :: Node :: raw (x) , Self :: SplatPattern (x) => :: type_sitter :: Node :: raw (x) , Self :: String (x) => :: type_sitter :: Node :: raw (x) , Self :: True (x) => :: type_sitter :: Node :: raw (x) , Self :: TuplePattern (x) => :: type_sitter :: Node :: raw (x) , Self :: UnionPattern (x) => :: type_sitter :: Node :: raw (x) , } } # [inline] fn raw_mut (& mut self) -> & mut :: type_sitter :: raw :: Node < 'tree > { match self { Self :: ClassPattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: ComplexPattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: ConcatenatedString (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: DictPattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: DottedName (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: False (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: Float (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: Identifier (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: Integer (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: ListPattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: None (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: SplatPattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: String (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: True (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: TuplePattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: UnionPattern (x) => :: type_sitter :: Node :: raw_mut (x) , } } # [inline] fn into_raw (self) -> :: type_sitter :: raw :: Node < 'tree > { match self { Self :: ClassPattern (x) => x . into_raw () , Self :: ComplexPattern (x) => x . into_raw () , Self :: ConcatenatedString (x) => x . into_raw () , Self :: DictPattern (x) => x . into_raw () , Self :: DottedName (x) => x . into_raw () , Self :: False (x) => x . into_raw () , Self :: Float (x) => x . into_raw () , Self :: Identifier (x) => x . into_raw () , Self :: Integer (x) => x . into_raw () , Self :: ListPattern (x) => x . into_raw () , Self :: None (x) => x . into_raw () , Self :: SplatPattern (x) => x . into_raw () , Self :: String (x) => x . into_raw () , Self :: True (x) => x . into_raw () , Self :: TuplePattern (x) => x . into_raw () , Self :: UnionPattern (x) => x . into_raw () , } } }
+    impl < 'tree > :: type_sitter :: Node < 'tree > for ClassPattern_ComplexPattern_ConcatenatedString_DictPattern_DottedName_False_Float_Identifier_Integer_ListPattern_None_SplatPattern_String_True_TuplePattern_UnionPattern < 'tree > { type WithLifetime < 'a > = ClassPattern_ComplexPattern_ConcatenatedString_DictPattern_DottedName_False_Float_Identifier_Integer_ListPattern_None_SplatPattern_String_True_TuplePattern_UnionPattern < 'a > ; const KIND : & 'static str = "{class_pattern | complex_pattern | concatenated_string | dict_pattern | dotted_name | false | float | identifier | integer | list_pattern | none | splat_pattern | string | true | tuple_pattern | union_pattern}" ; # [inline] fn try_from_raw (node : :: type_sitter :: raw :: Node < 'tree >) -> :: type_sitter :: NodeResult < 'tree , Self > { if let Ok (this) = < ClassPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: ClassPattern (this)) ; } if let Ok (this) = < ComplexPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: ComplexPattern (this)) ; } if let Ok (this) = < ConcatenatedString < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: ConcatenatedString (this)) ; } if let Ok (this) = < DictPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: DictPattern (this)) ; } if let Ok (this) = < DottedName < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: DottedName (this)) ; } if let Ok (this) = < False < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: False (this)) ; } if let Ok (this) = < Float < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: Float (this)) ; } if let Ok (this) = < Identifier < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: Identifier (this)) ; } if let Ok (this) = < Integer < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: Integer (this)) ; } if let Ok (this) = < ListPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: ListPattern (this)) ; } if let Ok (this) = < None < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: None (this)) ; } if let Ok (this) = < SplatPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: SplatPattern (this)) ; } if let Ok (this) = < String < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: String (this)) ; } if let Ok (this) = < True < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: True (this)) ; } if let Ok (this) = < TuplePattern < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: TuplePattern (this)) ; } if let Ok (this) = < UnionPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: UnionPattern (this)) ; } Err (:: type_sitter :: IncorrectKind :: new :: < Self > (node)) } # [inline] fn raw (& self) -> & :: type_sitter :: raw :: Node < 'tree > { match self { Self :: ClassPattern (x) => :: type_sitter :: Node :: raw (x) , Self :: ComplexPattern (x) => :: type_sitter :: Node :: raw (x) , Self :: ConcatenatedString (x) => :: type_sitter :: Node :: raw (x) , Self :: DictPattern (x) => :: type_sitter :: Node :: raw (x) , Self :: DottedName (x) => :: type_sitter :: Node :: raw (x) , Self :: False (x) => :: type_sitter :: Node :: raw (x) , Self :: Float (x) => :: type_sitter :: Node :: raw (x) , Self :: Identifier (x) => :: type_sitter :: Node :: raw (x) , Self :: Integer (x) => :: type_sitter :: Node :: raw (x) , Self :: ListPattern (x) => :: type_sitter :: Node :: raw (x) , Self :: None (x) => :: type_sitter :: Node :: raw (x) , Self :: SplatPattern (x) => :: type_sitter :: Node :: raw (x) , Self :: String (x) => :: type_sitter :: Node :: raw (x) , Self :: True (x) => :: type_sitter :: Node :: raw (x) , Self :: TuplePattern (x) => :: type_sitter :: Node :: raw (x) , Self :: UnionPattern (x) => :: type_sitter :: Node :: raw (x) , } } # [inline] fn raw_mut (& mut self) -> & mut :: type_sitter :: raw :: Node < 'tree > { match self { Self :: ClassPattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: ComplexPattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: ConcatenatedString (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: DictPattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: DottedName (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: False (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: Float (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: Identifier (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: Integer (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: ListPattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: None (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: SplatPattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: String (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: True (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: TuplePattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: UnionPattern (x) => :: type_sitter :: Node :: raw_mut (x) , } } # [inline] fn into_raw (self) -> :: type_sitter :: raw :: Node < 'tree > { match self { Self :: ClassPattern (x) => x . into_raw () , Self :: ComplexPattern (x) => x . into_raw () , Self :: ConcatenatedString (x) => x . into_raw () , Self :: DictPattern (x) => x . into_raw () , Self :: DottedName (x) => x . into_raw () , Self :: False (x) => x . into_raw () , Self :: Float (x) => x . into_raw () , Self :: Identifier (x) => x . into_raw () , Self :: Integer (x) => x . into_raw () , Self :: ListPattern (x) => x . into_raw () , Self :: None (x) => x . into_raw () , Self :: SplatPattern (x) => x . into_raw () , Self :: String (x) => x . into_raw () , Self :: True (x) => x . into_raw () , Self :: TuplePattern (x) => x . into_raw () , Self :: UnionPattern (x) => x . into_raw () , } } }
     #[doc = "One of `{class_pattern | complex_pattern | concatenated_string | dict_pattern | dotted_name | false | float | integer | list_pattern | none | splat_pattern | string | true | tuple_pattern | union_pattern}`:\n- [`ClassPattern`]\n- [`ComplexPattern`]\n- [`ConcatenatedString`]\n- [`DictPattern`]\n- [`DottedName`]\n- [`False`]\n- [`Float`]\n- [`Integer`]\n- [`ListPattern`]\n- [`None`]\n- [`SplatPattern`]\n- [`String`]\n- [`True`]\n- [`TuplePattern`]\n- [`UnionPattern`]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
@@ -14392,7 +14266,7 @@ pub mod anon_unions {
     #[allow(unused)]
     impl < 'tree > ClassPattern_ComplexPattern_ConcatenatedString_DictPattern_DottedName_False_Float_Integer_ListPattern_None_SplatPattern_String_True_TuplePattern_UnionPattern < 'tree > { # [doc = "Returns the node if it is of type `class_pattern` ([`ClassPattern`]), otherwise returns `None`"] # [inline] pub fn as_class_pattern (self) -> :: std :: option :: Option < ClassPattern < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ClassPattern (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `complex_pattern` ([`ComplexPattern`]), otherwise returns `None`"] # [inline] pub fn as_complex_pattern (self) -> :: std :: option :: Option < ComplexPattern < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ComplexPattern (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `concatenated_string` ([`ConcatenatedString`]), otherwise returns `None`"] # [inline] pub fn as_concatenated_string (self) -> :: std :: option :: Option < ConcatenatedString < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ConcatenatedString (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `dict_pattern` ([`DictPattern`]), otherwise returns `None`"] # [inline] pub fn as_dict_pattern (self) -> :: std :: option :: Option < DictPattern < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: DictPattern (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `dotted_name` ([`DottedName`]), otherwise returns `None`"] # [inline] pub fn as_dotted_name (self) -> :: std :: option :: Option < DottedName < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: DottedName (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `false` ([`False`]), otherwise returns `None`"] # [inline] pub fn as_false (self) -> :: std :: option :: Option < False < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: False (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `float` ([`Float`]), otherwise returns `None`"] # [inline] pub fn as_float (self) -> :: std :: option :: Option < Float < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Float (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `integer` ([`Integer`]), otherwise returns `None`"] # [inline] pub fn as_integer (self) -> :: std :: option :: Option < Integer < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Integer (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `list_pattern` ([`ListPattern`]), otherwise returns `None`"] # [inline] pub fn as_list_pattern (self) -> :: std :: option :: Option < ListPattern < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ListPattern (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `none` ([`None`]), otherwise returns `None`"] # [inline] pub fn as_none (self) -> :: std :: option :: Option < None < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: None (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `splat_pattern` ([`SplatPattern`]), otherwise returns `None`"] # [inline] pub fn as_splat_pattern (self) -> :: std :: option :: Option < SplatPattern < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: SplatPattern (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `string` ([`String`]), otherwise returns `None`"] # [inline] pub fn as_string (self) -> :: std :: option :: Option < String < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: String (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `true` ([`True`]), otherwise returns `None`"] # [inline] pub fn as_true (self) -> :: std :: option :: Option < True < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: True (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `tuple_pattern` ([`TuplePattern`]), otherwise returns `None`"] # [inline] pub fn as_tuple_pattern (self) -> :: std :: option :: Option < TuplePattern < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: TuplePattern (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `union_pattern` ([`UnionPattern`]), otherwise returns `None`"] # [inline] pub fn as_union_pattern (self) -> :: std :: option :: Option < UnionPattern < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: UnionPattern (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } }
     #[automatically_derived]
-    impl < 'tree > :: type_sitter :: Node < 'tree > for ClassPattern_ComplexPattern_ConcatenatedString_DictPattern_DottedName_False_Float_Integer_ListPattern_None_SplatPattern_String_True_TuplePattern_UnionPattern < 'tree > { type WithLifetime < 'a > = ClassPattern_ComplexPattern_ConcatenatedString_DictPattern_DottedName_False_Float_Integer_ListPattern_None_SplatPattern_String_True_TuplePattern_UnionPattern < 'a > ; const KIND : & 'static str = "{class_pattern | complex_pattern | concatenated_string | dict_pattern | dotted_name | false | float | integer | list_pattern | none | splat_pattern | string | true | tuple_pattern | union_pattern}" ; # [inline] fn try_from_raw (node : :: type_sitter :: raw :: Node < 'tree >) -> :: type_sitter :: NodeResult < 'tree , Self > { match node . kind () { "class_pattern" => Ok (unsafe { Self :: ClassPattern (< ClassPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "complex_pattern" => Ok (unsafe { Self :: ComplexPattern (< ComplexPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "concatenated_string" => Ok (unsafe { Self :: ConcatenatedString (< ConcatenatedString < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "dict_pattern" => Ok (unsafe { Self :: DictPattern (< DictPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "dotted_name" => Ok (unsafe { Self :: DottedName (< DottedName < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "false" => Ok (unsafe { Self :: False (< False < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "float" => Ok (unsafe { Self :: Float (< Float < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "integer" => Ok (unsafe { Self :: Integer (< Integer < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "list_pattern" => Ok (unsafe { Self :: ListPattern (< ListPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "none" => Ok (unsafe { Self :: None (< None < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "splat_pattern" => Ok (unsafe { Self :: SplatPattern (< SplatPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "string" => Ok (unsafe { Self :: String (< String < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "true" => Ok (unsafe { Self :: True (< True < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "tuple_pattern" => Ok (unsafe { Self :: TuplePattern (< TuplePattern < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "union_pattern" => Ok (unsafe { Self :: UnionPattern (< UnionPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , _ => Err (:: type_sitter :: IncorrectKind :: new :: < Self > (node)) } } # [inline] fn raw (& self) -> & :: type_sitter :: raw :: Node < 'tree > { match self { Self :: ClassPattern (x) => :: type_sitter :: Node :: raw (x) , Self :: ComplexPattern (x) => :: type_sitter :: Node :: raw (x) , Self :: ConcatenatedString (x) => :: type_sitter :: Node :: raw (x) , Self :: DictPattern (x) => :: type_sitter :: Node :: raw (x) , Self :: DottedName (x) => :: type_sitter :: Node :: raw (x) , Self :: False (x) => :: type_sitter :: Node :: raw (x) , Self :: Float (x) => :: type_sitter :: Node :: raw (x) , Self :: Integer (x) => :: type_sitter :: Node :: raw (x) , Self :: ListPattern (x) => :: type_sitter :: Node :: raw (x) , Self :: None (x) => :: type_sitter :: Node :: raw (x) , Self :: SplatPattern (x) => :: type_sitter :: Node :: raw (x) , Self :: String (x) => :: type_sitter :: Node :: raw (x) , Self :: True (x) => :: type_sitter :: Node :: raw (x) , Self :: TuplePattern (x) => :: type_sitter :: Node :: raw (x) , Self :: UnionPattern (x) => :: type_sitter :: Node :: raw (x) , } } # [inline] fn raw_mut (& mut self) -> & mut :: type_sitter :: raw :: Node < 'tree > { match self { Self :: ClassPattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: ComplexPattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: ConcatenatedString (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: DictPattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: DottedName (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: False (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: Float (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: Integer (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: ListPattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: None (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: SplatPattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: String (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: True (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: TuplePattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: UnionPattern (x) => :: type_sitter :: Node :: raw_mut (x) , } } # [inline] fn into_raw (self) -> :: type_sitter :: raw :: Node < 'tree > { match self { Self :: ClassPattern (x) => x . into_raw () , Self :: ComplexPattern (x) => x . into_raw () , Self :: ConcatenatedString (x) => x . into_raw () , Self :: DictPattern (x) => x . into_raw () , Self :: DottedName (x) => x . into_raw () , Self :: False (x) => x . into_raw () , Self :: Float (x) => x . into_raw () , Self :: Integer (x) => x . into_raw () , Self :: ListPattern (x) => x . into_raw () , Self :: None (x) => x . into_raw () , Self :: SplatPattern (x) => x . into_raw () , Self :: String (x) => x . into_raw () , Self :: True (x) => x . into_raw () , Self :: TuplePattern (x) => x . into_raw () , Self :: UnionPattern (x) => x . into_raw () , } } }
+    impl < 'tree > :: type_sitter :: Node < 'tree > for ClassPattern_ComplexPattern_ConcatenatedString_DictPattern_DottedName_False_Float_Integer_ListPattern_None_SplatPattern_String_True_TuplePattern_UnionPattern < 'tree > { type WithLifetime < 'a > = ClassPattern_ComplexPattern_ConcatenatedString_DictPattern_DottedName_False_Float_Integer_ListPattern_None_SplatPattern_String_True_TuplePattern_UnionPattern < 'a > ; const KIND : & 'static str = "{class_pattern | complex_pattern | concatenated_string | dict_pattern | dotted_name | false | float | integer | list_pattern | none | splat_pattern | string | true | tuple_pattern | union_pattern}" ; # [inline] fn try_from_raw (node : :: type_sitter :: raw :: Node < 'tree >) -> :: type_sitter :: NodeResult < 'tree , Self > { if let Ok (this) = < ClassPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: ClassPattern (this)) ; } if let Ok (this) = < ComplexPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: ComplexPattern (this)) ; } if let Ok (this) = < ConcatenatedString < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: ConcatenatedString (this)) ; } if let Ok (this) = < DictPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: DictPattern (this)) ; } if let Ok (this) = < DottedName < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: DottedName (this)) ; } if let Ok (this) = < False < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: False (this)) ; } if let Ok (this) = < Float < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: Float (this)) ; } if let Ok (this) = < Integer < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: Integer (this)) ; } if let Ok (this) = < ListPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: ListPattern (this)) ; } if let Ok (this) = < None < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: None (this)) ; } if let Ok (this) = < SplatPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: SplatPattern (this)) ; } if let Ok (this) = < String < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: String (this)) ; } if let Ok (this) = < True < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: True (this)) ; } if let Ok (this) = < TuplePattern < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: TuplePattern (this)) ; } if let Ok (this) = < UnionPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: UnionPattern (this)) ; } Err (:: type_sitter :: IncorrectKind :: new :: < Self > (node)) } # [inline] fn raw (& self) -> & :: type_sitter :: raw :: Node < 'tree > { match self { Self :: ClassPattern (x) => :: type_sitter :: Node :: raw (x) , Self :: ComplexPattern (x) => :: type_sitter :: Node :: raw (x) , Self :: ConcatenatedString (x) => :: type_sitter :: Node :: raw (x) , Self :: DictPattern (x) => :: type_sitter :: Node :: raw (x) , Self :: DottedName (x) => :: type_sitter :: Node :: raw (x) , Self :: False (x) => :: type_sitter :: Node :: raw (x) , Self :: Float (x) => :: type_sitter :: Node :: raw (x) , Self :: Integer (x) => :: type_sitter :: Node :: raw (x) , Self :: ListPattern (x) => :: type_sitter :: Node :: raw (x) , Self :: None (x) => :: type_sitter :: Node :: raw (x) , Self :: SplatPattern (x) => :: type_sitter :: Node :: raw (x) , Self :: String (x) => :: type_sitter :: Node :: raw (x) , Self :: True (x) => :: type_sitter :: Node :: raw (x) , Self :: TuplePattern (x) => :: type_sitter :: Node :: raw (x) , Self :: UnionPattern (x) => :: type_sitter :: Node :: raw (x) , } } # [inline] fn raw_mut (& mut self) -> & mut :: type_sitter :: raw :: Node < 'tree > { match self { Self :: ClassPattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: ComplexPattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: ConcatenatedString (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: DictPattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: DottedName (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: False (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: Float (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: Integer (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: ListPattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: None (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: SplatPattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: String (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: True (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: TuplePattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: UnionPattern (x) => :: type_sitter :: Node :: raw_mut (x) , } } # [inline] fn into_raw (self) -> :: type_sitter :: raw :: Node < 'tree > { match self { Self :: ClassPattern (x) => x . into_raw () , Self :: ComplexPattern (x) => x . into_raw () , Self :: ConcatenatedString (x) => x . into_raw () , Self :: DictPattern (x) => x . into_raw () , Self :: DottedName (x) => x . into_raw () , Self :: False (x) => x . into_raw () , Self :: Float (x) => x . into_raw () , Self :: Integer (x) => x . into_raw () , Self :: ListPattern (x) => x . into_raw () , Self :: None (x) => x . into_raw () , Self :: SplatPattern (x) => x . into_raw () , Self :: String (x) => x . into_raw () , Self :: True (x) => x . into_raw () , Self :: TuplePattern (x) => x . into_raw () , Self :: UnionPattern (x) => x . into_raw () , } } }
     #[doc = "One of `{, | expression}`:\n- [`symbols::Comma`]\n- [`Expression`]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
@@ -15258,22 +15132,21 @@ pub mod anon_unions {
         fn try_from_raw(
             node: ::type_sitter::raw::Node<'tree>,
         ) -> ::type_sitter::NodeResult<'tree, Self> {
-            match node.kind() {
-                "dictionary_splat_pattern" => Ok(unsafe {
-                    Self :: DictionarySplatPattern (< DictionarySplatPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                }),
-                "identifier" => Ok(unsafe {
-                    Self::Identifier(
-                        <Identifier<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                }),
-                "list_splat_pattern" => Ok(unsafe {
-                    Self::ListSplatPattern(<ListSplatPattern<'tree> as ::type_sitter::Node<
-                        'tree,
-                    >>::from_raw_unchecked(node))
-                }),
-                _ => Err(::type_sitter::IncorrectKind::new::<Self>(node)),
+            if let Ok(this) =
+                <DictionarySplatPattern<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::DictionarySplatPattern(this));
             }
+            if let Ok(this) = <Identifier<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::Identifier(this));
+            }
+            if let Ok(this) =
+                <ListSplatPattern<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::ListSplatPattern(this));
+            }
+            Err(::type_sitter::IncorrectKind::new::<Self>(node))
         }
         #[inline]
         fn raw(&self) -> &::type_sitter::raw::Node<'tree> {
@@ -15652,21 +15525,15 @@ pub mod anon_unions {
         fn try_from_raw(
             node: ::type_sitter::raw::Node<'tree>,
         ) -> ::type_sitter::NodeResult<'tree, Self> {
-            match node.kind() {
-                "dictionary_splat" => {
-                    Ok(unsafe {
-                        Self::DictionarySplat(<DictionarySplat<'tree> as ::type_sitter::Node<
-                            'tree,
-                        >>::from_raw_unchecked(node))
-                    })
-                }
-                "pair" => Ok(unsafe {
-                    Self::Pair(
-                        <Pair<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                }),
-                _ => Err(::type_sitter::IncorrectKind::new::<Self>(node)),
+            if let Ok(this) =
+                <DictionarySplat<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::DictionarySplat(this));
             }
+            if let Ok(this) = <Pair<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::Pair(this));
+            }
+            Err(::type_sitter::IncorrectKind::new::<Self>(node))
         }
         #[inline]
         fn raw(&self) -> &::type_sitter::raw::Node<'tree> {
@@ -15729,21 +15596,16 @@ pub mod anon_unions {
         fn try_from_raw(
             node: ::type_sitter::raw::Node<'tree>,
         ) -> ::type_sitter::NodeResult<'tree, Self> {
-            match node.kind() {
-                "dotted_name" => Ok(unsafe {
-                    Self::DottedName(
-                        <DottedName<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                }),
-                "import_prefix" => Ok(unsafe {
-                    Self::ImportPrefix(
-                        <ImportPrefix<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
-                            node,
-                        ),
-                    )
-                }),
-                _ => Err(::type_sitter::IncorrectKind::new::<Self>(node)),
+            if let Ok(this) = <DottedName<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::DottedName(this));
             }
+            if let Ok(this) =
+                <ImportPrefix<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::ImportPrefix(this));
+            }
+            Err(::type_sitter::IncorrectKind::new::<Self>(node))
         }
         #[inline]
         fn raw(&self) -> &::type_sitter::raw::Node<'tree> {
@@ -15806,21 +15668,16 @@ pub mod anon_unions {
         fn try_from_raw(
             node: ::type_sitter::raw::Node<'tree>,
         ) -> ::type_sitter::NodeResult<'tree, Self> {
-            match node.kind() {
-                "dotted_name" => Ok(unsafe {
-                    Self::DottedName(
-                        <DottedName<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                }),
-                "relative_import" => {
-                    Ok(unsafe {
-                        Self::RelativeImport(<RelativeImport<'tree> as ::type_sitter::Node<
-                            'tree,
-                        >>::from_raw_unchecked(node))
-                    })
-                }
-                _ => Err(::type_sitter::IncorrectKind::new::<Self>(node)),
+            if let Ok(this) = <DottedName<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::DottedName(this));
             }
+            if let Ok(this) =
+                <RelativeImport<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::RelativeImport(this));
+            }
+            Err(::type_sitter::IncorrectKind::new::<Self>(node))
         }
         #[inline]
         fn raw(&self) -> &::type_sitter::raw::Node<'tree> {
@@ -15883,19 +15740,15 @@ pub mod anon_unions {
         fn try_from_raw(
             node: ::type_sitter::raw::Node<'tree>,
         ) -> ::type_sitter::NodeResult<'tree, Self> {
-            match node.kind() {
-                "elif_clause" => Ok(unsafe {
-                    Self::ElifClause(
-                        <ElifClause<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                }),
-                "else_clause" => Ok(unsafe {
-                    Self::ElseClause(
-                        <ElseClause<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                }),
-                _ => Err(::type_sitter::IncorrectKind::new::<Self>(node)),
+            if let Ok(this) = <ElifClause<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::ElifClause(this));
             }
+            if let Ok(this) = <ElseClause<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::ElseClause(this));
+            }
+            Err(::type_sitter::IncorrectKind::new::<Self>(node))
         }
         #[inline]
         fn raw(&self) -> &::type_sitter::raw::Node<'tree> {
@@ -15983,31 +15836,26 @@ pub mod anon_unions {
         fn try_from_raw(
             node: ::type_sitter::raw::Node<'tree>,
         ) -> ::type_sitter::NodeResult<'tree, Self> {
-            match node.kind() {
-                "else_clause" => Ok(unsafe {
-                    Self::ElseClause(
-                        <ElseClause<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                }),
-                "except_clause" => Ok(unsafe {
-                    Self::ExceptClause(
-                        <ExceptClause<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
-                            node,
-                        ),
-                    )
-                }),
-                "except_group_clause" => Ok(unsafe {
-                    Self::ExceptGroupClause(<ExceptGroupClause<'tree> as ::type_sitter::Node<
-                        'tree,
-                    >>::from_raw_unchecked(node))
-                }),
-                "finally_clause" => {
-                    Ok(unsafe {
-                        Self :: FinallyClause (< FinallyClause < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                _ => Err(::type_sitter::IncorrectKind::new::<Self>(node)),
+            if let Ok(this) = <ElseClause<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::ElseClause(this));
             }
+            if let Ok(this) =
+                <ExceptClause<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::ExceptClause(this));
+            }
+            if let Ok(this) =
+                <ExceptGroupClause<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::ExceptGroupClause(this));
+            }
+            if let Ok(this) =
+                <FinallyClause<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::FinallyClause(this));
+            }
+            Err(::type_sitter::IncorrectKind::new::<Self>(node))
         }
         #[inline]
         fn raw(&self) -> &::type_sitter::raw::Node<'tree> {
@@ -16076,21 +15924,17 @@ pub mod anon_unions {
         fn try_from_raw(
             node: ::type_sitter::raw::Node<'tree>,
         ) -> ::type_sitter::NodeResult<'tree, Self> {
-            match node.kind() {
-                "escape_interpolation" => {
-                    Ok(unsafe {
-                        Self :: EscapeInterpolation (< EscapeInterpolation < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                "escape_sequence" => {
-                    Ok(unsafe {
-                        Self::EscapeSequence(<EscapeSequence<'tree> as ::type_sitter::Node<
-                            'tree,
-                        >>::from_raw_unchecked(node))
-                    })
-                }
-                _ => Err(::type_sitter::IncorrectKind::new::<Self>(node)),
+            if let Ok(this) =
+                <EscapeInterpolation<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::EscapeInterpolation(this));
             }
+            if let Ok(this) =
+                <EscapeSequence<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::EscapeSequence(this));
+            }
+            Err(::type_sitter::IncorrectKind::new::<Self>(node))
         }
         #[inline]
         fn raw(&self) -> &::type_sitter::raw::Node<'tree> {
@@ -17584,19 +17428,13 @@ pub mod anon_unions {
         fn try_from_raw(
             node: ::type_sitter::raw::Node<'tree>,
         ) -> ::type_sitter::NodeResult<'tree, Self> {
-            match node.kind() {
-                "float" => Ok(unsafe {
-                    Self::Float(
-                        <Float<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                }),
-                "integer" => Ok(unsafe {
-                    Self::Integer(
-                        <Integer<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                }),
-                _ => Err(::type_sitter::IncorrectKind::new::<Self>(node)),
+            if let Ok(this) = <Float<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::Float(this));
             }
+            if let Ok(this) = <Integer<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::Integer(this));
+            }
+            Err(::type_sitter::IncorrectKind::new::<Self>(node))
         }
         #[inline]
         fn raw(&self) -> &::type_sitter::raw::Node<'tree> {
@@ -17659,21 +17497,14 @@ pub mod anon_unions {
         fn try_from_raw(
             node: ::type_sitter::raw::Node<'tree>,
         ) -> ::type_sitter::NodeResult<'tree, Self> {
-            match node.kind() {
-                "for_in_clause" => Ok(unsafe {
-                    Self::ForInClause(
-                        <ForInClause<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
-                            node,
-                        ),
-                    )
-                }),
-                "if_clause" => Ok(unsafe {
-                    Self::IfClause(
-                        <IfClause<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                }),
-                _ => Err(::type_sitter::IncorrectKind::new::<Self>(node)),
+            if let Ok(this) = <ForInClause<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::ForInClause(this));
             }
+            if let Ok(this) = <IfClause<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::IfClause(this));
+            }
+            Err(::type_sitter::IncorrectKind::new::<Self>(node))
         }
         #[inline]
         fn raw(&self) -> &::type_sitter::raw::Node<'tree> {
@@ -17736,19 +17567,14 @@ pub mod anon_unions {
         fn try_from_raw(
             node: ::type_sitter::raw::Node<'tree>,
         ) -> ::type_sitter::NodeResult<'tree, Self> {
-            match node.kind() {
-                "identifier" => Ok(unsafe {
-                    Self::Identifier(
-                        <Identifier<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                }),
-                "string" => Ok(unsafe {
-                    Self::String(
-                        <String<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                }),
-                _ => Err(::type_sitter::IncorrectKind::new::<Self>(node)),
+            if let Ok(this) = <Identifier<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::Identifier(this));
             }
+            if let Ok(this) = <String<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::String(this));
+            }
+            Err(::type_sitter::IncorrectKind::new::<Self>(node))
         }
         #[inline]
         fn raw(&self) -> &::type_sitter::raw::Node<'tree> {
@@ -17811,21 +17637,16 @@ pub mod anon_unions {
         fn try_from_raw(
             node: ::type_sitter::raw::Node<'tree>,
         ) -> ::type_sitter::NodeResult<'tree, Self> {
-            match node.kind() {
-                "identifier" => Ok(unsafe {
-                    Self::Identifier(
-                        <Identifier<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                }),
-                "tuple_pattern" => Ok(unsafe {
-                    Self::TuplePattern(
-                        <TuplePattern<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
-                            node,
-                        ),
-                    )
-                }),
-                _ => Err(::type_sitter::IncorrectKind::new::<Self>(node)),
+            if let Ok(this) = <Identifier<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::Identifier(this));
             }
+            if let Ok(this) =
+                <TuplePattern<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::TuplePattern(this));
+            }
+            Err(::type_sitter::IncorrectKind::new::<Self>(node))
         }
         #[inline]
         fn raw(&self) -> &::type_sitter::raw::Node<'tree> {
@@ -17888,19 +17709,14 @@ pub mod anon_unions {
         fn try_from_raw(
             node: ::type_sitter::raw::Node<'tree>,
         ) -> ::type_sitter::NodeResult<'tree, Self> {
-            match node.kind() {
-                "identifier" => Ok(unsafe {
-                    Self::Identifier(
-                        <Identifier<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                }),
-                "type" => Ok(unsafe {
-                    Self::Type(
-                        <Type<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                }),
-                _ => Err(::type_sitter::IncorrectKind::new::<Self>(node)),
+            if let Ok(this) = <Identifier<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::Identifier(this));
             }
+            if let Ok(this) = <Type<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::Type(this));
+            }
+            Err(::type_sitter::IncorrectKind::new::<Self>(node))
         }
         #[inline]
         fn raw(&self) -> &::type_sitter::raw::Node<'tree> {
@@ -17963,19 +17779,16 @@ pub mod anon_unions {
         fn try_from_raw(
             node: ::type_sitter::raw::Node<'tree>,
         ) -> ::type_sitter::NodeResult<'tree, Self> {
-            match node.kind() {
-                "identifier" => Ok(unsafe {
-                    Self::Identifier(
-                        <Identifier<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                }),
-                "type_parameter" => {
-                    Ok(unsafe {
-                        Self :: TypeParameter (< TypeParameter < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                _ => Err(::type_sitter::IncorrectKind::new::<Self>(node)),
+            if let Ok(this) = <Identifier<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::Identifier(this));
             }
+            if let Ok(this) =
+                <TypeParameter<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::TypeParameter(this));
+            }
+            Err(::type_sitter::IncorrectKind::new::<Self>(node))
         }
         #[inline]
         fn raw(&self) -> &::type_sitter::raw::Node<'tree> {
@@ -18062,31 +17875,24 @@ pub mod anon_unions {
         fn try_from_raw(
             node: ::type_sitter::raw::Node<'tree>,
         ) -> ::type_sitter::NodeResult<'tree, Self> {
-            match node.kind() {
-                "interpolation" => {
-                    Ok(unsafe {
-                        Self :: Interpolation (< Interpolation < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                "string_content" => {
-                    Ok(unsafe {
-                        Self :: StringContent (< StringContent < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                "string_end" => Ok(unsafe {
-                    Self::StringEnd(
-                        <StringEnd<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                }),
-                "string_start" => Ok(unsafe {
-                    Self::StringStart(
-                        <StringStart<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
-                            node,
-                        ),
-                    )
-                }),
-                _ => Err(::type_sitter::IncorrectKind::new::<Self>(node)),
+            if let Ok(this) =
+                <Interpolation<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::Interpolation(this));
             }
+            if let Ok(this) =
+                <StringContent<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::StringContent(this));
+            }
+            if let Ok(this) = <StringEnd<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::StringEnd(this));
+            }
+            if let Ok(this) = <StringStart<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::StringStart(this));
+            }
+            Err(::type_sitter::IncorrectKind::new::<Self>(node))
         }
         #[inline]
         fn raw(&self) -> &::type_sitter::raw::Node<'tree> {
@@ -18157,17 +17963,15 @@ pub mod anon_unions {
         fn try_from_raw(
             node: ::type_sitter::raw::Node<'tree>,
         ) -> ::type_sitter::NodeResult<'tree, Self> {
-            match node.kind() {
-                "list_splat" => Ok(unsafe {
-                    Self::ListSplat(
-                        <ListSplat<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                }),
-                "parenthesized_expression" => Ok(unsafe {
-                    Self :: ParenthesizedExpression (< ParenthesizedExpression < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                }),
-                _ => Err(::type_sitter::IncorrectKind::new::<Self>(node)),
+            if let Ok(this) = <ListSplat<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::ListSplat(this));
             }
+            if let Ok(this) =
+                <ParenthesizedExpression<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::ParenthesizedExpression(this));
+            }
+            Err(::type_sitter::IncorrectKind::new::<Self>(node))
         }
         #[inline]
         fn raw(&self) -> &::type_sitter::raw::Node<'tree> {
@@ -18365,68 +18169,72 @@ pub mod anon_unions {
         fn try_from_raw(
             node: ::type_sitter::raw::Node<'tree>,
         ) -> ::type_sitter::NodeResult<'tree, Self> {
-            match node.kind() {
-                "%=" => {
-                    Ok(unsafe {
-                        Self :: ModEq (< symbols :: ModEq < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                "&=" => {
-                    Ok(unsafe {
-                        Self :: AndEq (< symbols :: AndEq < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                "**=" => Ok(unsafe {
-                    Self :: MulMulEq (< symbols :: MulMulEq < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                }),
-                "*=" => {
-                    Ok(unsafe {
-                        Self :: MulEq (< symbols :: MulEq < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                "+=" => {
-                    Ok(unsafe {
-                        Self :: AddEq (< symbols :: AddEq < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                "-=" => {
-                    Ok(unsafe {
-                        Self :: SubEq (< symbols :: SubEq < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                "//=" => Ok(unsafe {
-                    Self :: DivDivEq (< symbols :: DivDivEq < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                }),
-                "/=" => {
-                    Ok(unsafe {
-                        Self :: DivEq (< symbols :: DivEq < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                "<<=" => {
-                    Ok(unsafe {
-                        Self :: LtLtEq (< symbols :: LtLtEq < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                ">>=" => {
-                    Ok(unsafe {
-                        Self :: GtGtEq (< symbols :: GtGtEq < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                "@=" => {
-                    Ok(unsafe {
-                        Self :: AtEq (< symbols :: AtEq < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                "^=" => Ok(unsafe {
-                    Self :: BitXorEq (< symbols :: BitXorEq < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                }),
-                "|=" => {
-                    Ok(unsafe {
-                        Self :: OrEq (< symbols :: OrEq < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                _ => Err(::type_sitter::IncorrectKind::new::<Self>(node)),
+            if let Ok(this) =
+                <symbols::ModEq<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::ModEq(this));
             }
+            if let Ok(this) =
+                <symbols::AndEq<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::AndEq(this));
+            }
+            if let Ok(this) =
+                <symbols::MulMulEq<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::MulMulEq(this));
+            }
+            if let Ok(this) =
+                <symbols::MulEq<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::MulEq(this));
+            }
+            if let Ok(this) =
+                <symbols::AddEq<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::AddEq(this));
+            }
+            if let Ok(this) =
+                <symbols::SubEq<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::SubEq(this));
+            }
+            if let Ok(this) =
+                <symbols::DivDivEq<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::DivDivEq(this));
+            }
+            if let Ok(this) =
+                <symbols::DivEq<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::DivEq(this));
+            }
+            if let Ok(this) =
+                <symbols::LtLtEq<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::LtLtEq(this));
+            }
+            if let Ok(this) =
+                <symbols::GtGtEq<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::GtGtEq(this));
+            }
+            if let Ok(this) =
+                <symbols::AtEq<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::AtEq(this));
+            }
+            if let Ok(this) =
+                <symbols::BitXorEq<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::BitXorEq(this));
+            }
+            if let Ok(this) =
+                <symbols::OrEq<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::OrEq(this));
+            }
+            Err(::type_sitter::IncorrectKind::new::<Self>(node))
         }
         #[inline]
         fn raw(&self) -> &::type_sitter::raw::Node<'tree> {
@@ -18645,90 +18453,70 @@ pub mod anon_unions {
         fn try_from_raw(
             node: ::type_sitter::raw::Node<'tree>,
         ) -> ::type_sitter::NodeResult<'tree, Self> {
-            match node.kind() {
-                "%" => Ok(unsafe {
-                    Self::Mod(
-                        <symbols::Mod<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
-                            node,
-                        ),
-                    )
-                }),
-                "&" => Ok(unsafe {
-                    Self::And(
-                        <symbols::And<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
-                            node,
-                        ),
-                    )
-                }),
-                "*" => Ok(unsafe {
-                    Self::Mul(
-                        <symbols::Mul<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
-                            node,
-                        ),
-                    )
-                }),
-                "**" => {
-                    Ok(unsafe {
-                        Self :: MulMul (< symbols :: MulMul < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                "+" => Ok(unsafe {
-                    Self::Add(
-                        <symbols::Add<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
-                            node,
-                        ),
-                    )
-                }),
-                "-" => Ok(unsafe {
-                    Self::Sub(
-                        <symbols::Sub<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
-                            node,
-                        ),
-                    )
-                }),
-                "/" => Ok(unsafe {
-                    Self::Div(
-                        <symbols::Div<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
-                            node,
-                        ),
-                    )
-                }),
-                "//" => {
-                    Ok(unsafe {
-                        Self :: DivDiv (< symbols :: DivDiv < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                "<<" => {
-                    Ok(unsafe {
-                        Self :: LtLt (< symbols :: LtLt < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                ">>" => {
-                    Ok(unsafe {
-                        Self :: GtGt (< symbols :: GtGt < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                "@" => Ok(unsafe {
-                    Self::At(
-                        <symbols::At<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
-                            node,
-                        ),
-                    )
-                }),
-                "^" => {
-                    Ok(unsafe {
-                        Self :: BitXor (< symbols :: BitXor < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                "|" => Ok(unsafe {
-                    Self::Or(
-                        <symbols::Or<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
-                            node,
-                        ),
-                    )
-                }),
-                _ => Err(::type_sitter::IncorrectKind::new::<Self>(node)),
+            if let Ok(this) =
+                <symbols::Mod<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::Mod(this));
             }
+            if let Ok(this) =
+                <symbols::And<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::And(this));
+            }
+            if let Ok(this) =
+                <symbols::Mul<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::Mul(this));
+            }
+            if let Ok(this) =
+                <symbols::MulMul<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::MulMul(this));
+            }
+            if let Ok(this) =
+                <symbols::Add<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::Add(this));
+            }
+            if let Ok(this) =
+                <symbols::Sub<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::Sub(this));
+            }
+            if let Ok(this) =
+                <symbols::Div<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::Div(this));
+            }
+            if let Ok(this) =
+                <symbols::DivDiv<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::DivDiv(this));
+            }
+            if let Ok(this) =
+                <symbols::LtLt<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::LtLt(this));
+            }
+            if let Ok(this) =
+                <symbols::GtGt<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::GtGt(this));
+            }
+            if let Ok(this) = <symbols::At<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::At(this));
+            }
+            if let Ok(this) =
+                <symbols::BitXor<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::BitXor(this));
+            }
+            if let Ok(this) = <symbols::Or<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::Or(this));
+            }
+            Err(::type_sitter::IncorrectKind::new::<Self>(node))
         }
         #[inline]
         fn raw(&self) -> &::type_sitter::raw::Node<'tree> {
@@ -18925,68 +18713,58 @@ pub mod anon_unions {
         fn try_from_raw(
             node: ::type_sitter::raw::Node<'tree>,
         ) -> ::type_sitter::NodeResult<'tree, Self> {
-            match node.kind() {
-                "!=" => {
-                    Ok(unsafe {
-                        Self :: NotEq (< symbols :: NotEq < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                "<" => Ok(unsafe {
-                    Self::Lt(
-                        <symbols::Lt<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
-                            node,
-                        ),
-                    )
-                }),
-                "<=" => {
-                    Ok(unsafe {
-                        Self :: LtEq (< symbols :: LtEq < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                "<>" => {
-                    Ok(unsafe {
-                        Self :: LtGt (< symbols :: LtGt < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                "==" => {
-                    Ok(unsafe {
-                        Self :: EqEq (< symbols :: EqEq < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                ">" => Ok(unsafe {
-                    Self::Gt(
-                        <symbols::Gt<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
-                            node,
-                        ),
-                    )
-                }),
-                ">=" => {
-                    Ok(unsafe {
-                        Self :: GtEq (< symbols :: GtEq < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                "in" => Ok(unsafe {
-                    Self::In(
-                        <unnamed::In<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
-                            node,
-                        ),
-                    )
-                }),
-                "is" => Ok(unsafe {
-                    Self::Is(
-                        <unnamed::Is<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
-                            node,
-                        ),
-                    )
-                }),
-                "is not" => Ok(unsafe {
-                    Self :: IsSpacenot (< symbols :: IsSpacenot < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                }),
-                "not in" => Ok(unsafe {
-                    Self :: NotSpacein (< symbols :: NotSpacein < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                }),
-                _ => Err(::type_sitter::IncorrectKind::new::<Self>(node)),
+            if let Ok(this) =
+                <symbols::NotEq<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::NotEq(this));
             }
+            if let Ok(this) = <symbols::Lt<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::Lt(this));
+            }
+            if let Ok(this) =
+                <symbols::LtEq<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::LtEq(this));
+            }
+            if let Ok(this) =
+                <symbols::LtGt<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::LtGt(this));
+            }
+            if let Ok(this) =
+                <symbols::EqEq<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::EqEq(this));
+            }
+            if let Ok(this) = <symbols::Gt<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::Gt(this));
+            }
+            if let Ok(this) =
+                <symbols::GtEq<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::GtEq(this));
+            }
+            if let Ok(this) = <unnamed::In<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::In(this));
+            }
+            if let Ok(this) = <unnamed::Is<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::Is(this));
+            }
+            if let Ok(this) =
+                <symbols::IsSpacenot<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::IsSpacenot(this));
+            }
+            if let Ok(this) =
+                <symbols::NotSpacein<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::NotSpacein(this));
+            }
+            Err(::type_sitter::IncorrectKind::new::<Self>(node))
         }
         #[inline]
         fn raw(&self) -> &::type_sitter::raw::Node<'tree> {
@@ -19165,5 +18943,5 @@ pub mod anon_unions {
     #[allow(unused)]
     impl < 'tree > Sub____ClassPattern_ComplexPattern_ConcatenatedString_DictPattern_DottedName_False_Float_Integer_ListPattern_None_SplatPattern_String_True_TuplePattern_UnionPattern < 'tree > { # [doc = "Returns the node if it is of type `-` ([`symbols::Sub`]), otherwise returns `None`"] # [inline] pub fn as_sub (self) -> :: std :: option :: Option < symbols :: Sub < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Sub (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `_` ([`symbols::__`]), otherwise returns `None`"] # [inline] pub fn as___ (self) -> :: std :: option :: Option < symbols :: __ < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: __ (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `class_pattern` ([`ClassPattern`]), otherwise returns `None`"] # [inline] pub fn as_class_pattern (self) -> :: std :: option :: Option < ClassPattern < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ClassPattern (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `complex_pattern` ([`ComplexPattern`]), otherwise returns `None`"] # [inline] pub fn as_complex_pattern (self) -> :: std :: option :: Option < ComplexPattern < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ComplexPattern (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `concatenated_string` ([`ConcatenatedString`]), otherwise returns `None`"] # [inline] pub fn as_concatenated_string (self) -> :: std :: option :: Option < ConcatenatedString < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ConcatenatedString (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `dict_pattern` ([`DictPattern`]), otherwise returns `None`"] # [inline] pub fn as_dict_pattern (self) -> :: std :: option :: Option < DictPattern < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: DictPattern (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `dotted_name` ([`DottedName`]), otherwise returns `None`"] # [inline] pub fn as_dotted_name (self) -> :: std :: option :: Option < DottedName < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: DottedName (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `false` ([`False`]), otherwise returns `None`"] # [inline] pub fn as_false (self) -> :: std :: option :: Option < False < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: False (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `float` ([`Float`]), otherwise returns `None`"] # [inline] pub fn as_float (self) -> :: std :: option :: Option < Float < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Float (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `integer` ([`Integer`]), otherwise returns `None`"] # [inline] pub fn as_integer (self) -> :: std :: option :: Option < Integer < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Integer (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `list_pattern` ([`ListPattern`]), otherwise returns `None`"] # [inline] pub fn as_list_pattern (self) -> :: std :: option :: Option < ListPattern < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ListPattern (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `none` ([`None`]), otherwise returns `None`"] # [inline] pub fn as_none (self) -> :: std :: option :: Option < None < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: None (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `splat_pattern` ([`SplatPattern`]), otherwise returns `None`"] # [inline] pub fn as_splat_pattern (self) -> :: std :: option :: Option < SplatPattern < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: SplatPattern (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `string` ([`String`]), otherwise returns `None`"] # [inline] pub fn as_string (self) -> :: std :: option :: Option < String < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: String (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `true` ([`True`]), otherwise returns `None`"] # [inline] pub fn as_true (self) -> :: std :: option :: Option < True < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: True (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `tuple_pattern` ([`TuplePattern`]), otherwise returns `None`"] # [inline] pub fn as_tuple_pattern (self) -> :: std :: option :: Option < TuplePattern < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: TuplePattern (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `union_pattern` ([`UnionPattern`]), otherwise returns `None`"] # [inline] pub fn as_union_pattern (self) -> :: std :: option :: Option < UnionPattern < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: UnionPattern (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } }
     #[automatically_derived]
-    impl < 'tree > :: type_sitter :: Node < 'tree > for Sub____ClassPattern_ComplexPattern_ConcatenatedString_DictPattern_DottedName_False_Float_Integer_ListPattern_None_SplatPattern_String_True_TuplePattern_UnionPattern < 'tree > { type WithLifetime < 'a > = Sub____ClassPattern_ComplexPattern_ConcatenatedString_DictPattern_DottedName_False_Float_Integer_ListPattern_None_SplatPattern_String_True_TuplePattern_UnionPattern < 'a > ; const KIND : & 'static str = "{- | _ | class_pattern | complex_pattern | concatenated_string | dict_pattern | dotted_name | false | float | integer | list_pattern | none | splat_pattern | string | true | tuple_pattern | union_pattern}" ; # [inline] fn try_from_raw (node : :: type_sitter :: raw :: Node < 'tree >) -> :: type_sitter :: NodeResult < 'tree , Self > { match node . kind () { "-" => Ok (unsafe { Self :: Sub (< symbols :: Sub < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "_" => Ok (unsafe { Self :: __ (< symbols :: __ < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "class_pattern" => Ok (unsafe { Self :: ClassPattern (< ClassPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "complex_pattern" => Ok (unsafe { Self :: ComplexPattern (< ComplexPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "concatenated_string" => Ok (unsafe { Self :: ConcatenatedString (< ConcatenatedString < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "dict_pattern" => Ok (unsafe { Self :: DictPattern (< DictPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "dotted_name" => Ok (unsafe { Self :: DottedName (< DottedName < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "false" => Ok (unsafe { Self :: False (< False < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "float" => Ok (unsafe { Self :: Float (< Float < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "integer" => Ok (unsafe { Self :: Integer (< Integer < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "list_pattern" => Ok (unsafe { Self :: ListPattern (< ListPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "none" => Ok (unsafe { Self :: None (< None < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "splat_pattern" => Ok (unsafe { Self :: SplatPattern (< SplatPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "string" => Ok (unsafe { Self :: String (< String < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "true" => Ok (unsafe { Self :: True (< True < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "tuple_pattern" => Ok (unsafe { Self :: TuplePattern (< TuplePattern < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "union_pattern" => Ok (unsafe { Self :: UnionPattern (< UnionPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , _ => Err (:: type_sitter :: IncorrectKind :: new :: < Self > (node)) } } # [inline] fn raw (& self) -> & :: type_sitter :: raw :: Node < 'tree > { match self { Self :: Sub (x) => :: type_sitter :: Node :: raw (x) , Self :: __ (x) => :: type_sitter :: Node :: raw (x) , Self :: ClassPattern (x) => :: type_sitter :: Node :: raw (x) , Self :: ComplexPattern (x) => :: type_sitter :: Node :: raw (x) , Self :: ConcatenatedString (x) => :: type_sitter :: Node :: raw (x) , Self :: DictPattern (x) => :: type_sitter :: Node :: raw (x) , Self :: DottedName (x) => :: type_sitter :: Node :: raw (x) , Self :: False (x) => :: type_sitter :: Node :: raw (x) , Self :: Float (x) => :: type_sitter :: Node :: raw (x) , Self :: Integer (x) => :: type_sitter :: Node :: raw (x) , Self :: ListPattern (x) => :: type_sitter :: Node :: raw (x) , Self :: None (x) => :: type_sitter :: Node :: raw (x) , Self :: SplatPattern (x) => :: type_sitter :: Node :: raw (x) , Self :: String (x) => :: type_sitter :: Node :: raw (x) , Self :: True (x) => :: type_sitter :: Node :: raw (x) , Self :: TuplePattern (x) => :: type_sitter :: Node :: raw (x) , Self :: UnionPattern (x) => :: type_sitter :: Node :: raw (x) , } } # [inline] fn raw_mut (& mut self) -> & mut :: type_sitter :: raw :: Node < 'tree > { match self { Self :: Sub (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: __ (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: ClassPattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: ComplexPattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: ConcatenatedString (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: DictPattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: DottedName (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: False (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: Float (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: Integer (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: ListPattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: None (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: SplatPattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: String (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: True (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: TuplePattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: UnionPattern (x) => :: type_sitter :: Node :: raw_mut (x) , } } # [inline] fn into_raw (self) -> :: type_sitter :: raw :: Node < 'tree > { match self { Self :: Sub (x) => x . into_raw () , Self :: __ (x) => x . into_raw () , Self :: ClassPattern (x) => x . into_raw () , Self :: ComplexPattern (x) => x . into_raw () , Self :: ConcatenatedString (x) => x . into_raw () , Self :: DictPattern (x) => x . into_raw () , Self :: DottedName (x) => x . into_raw () , Self :: False (x) => x . into_raw () , Self :: Float (x) => x . into_raw () , Self :: Integer (x) => x . into_raw () , Self :: ListPattern (x) => x . into_raw () , Self :: None (x) => x . into_raw () , Self :: SplatPattern (x) => x . into_raw () , Self :: String (x) => x . into_raw () , Self :: True (x) => x . into_raw () , Self :: TuplePattern (x) => x . into_raw () , Self :: UnionPattern (x) => x . into_raw () , } } }
+    impl < 'tree > :: type_sitter :: Node < 'tree > for Sub____ClassPattern_ComplexPattern_ConcatenatedString_DictPattern_DottedName_False_Float_Integer_ListPattern_None_SplatPattern_String_True_TuplePattern_UnionPattern < 'tree > { type WithLifetime < 'a > = Sub____ClassPattern_ComplexPattern_ConcatenatedString_DictPattern_DottedName_False_Float_Integer_ListPattern_None_SplatPattern_String_True_TuplePattern_UnionPattern < 'a > ; const KIND : & 'static str = "{- | _ | class_pattern | complex_pattern | concatenated_string | dict_pattern | dotted_name | false | float | integer | list_pattern | none | splat_pattern | string | true | tuple_pattern | union_pattern}" ; # [inline] fn try_from_raw (node : :: type_sitter :: raw :: Node < 'tree >) -> :: type_sitter :: NodeResult < 'tree , Self > { if let Ok (this) = < symbols :: Sub < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: Sub (this)) ; } if let Ok (this) = < symbols :: __ < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: __ (this)) ; } if let Ok (this) = < ClassPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: ClassPattern (this)) ; } if let Ok (this) = < ComplexPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: ComplexPattern (this)) ; } if let Ok (this) = < ConcatenatedString < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: ConcatenatedString (this)) ; } if let Ok (this) = < DictPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: DictPattern (this)) ; } if let Ok (this) = < DottedName < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: DottedName (this)) ; } if let Ok (this) = < False < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: False (this)) ; } if let Ok (this) = < Float < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: Float (this)) ; } if let Ok (this) = < Integer < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: Integer (this)) ; } if let Ok (this) = < ListPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: ListPattern (this)) ; } if let Ok (this) = < None < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: None (this)) ; } if let Ok (this) = < SplatPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: SplatPattern (this)) ; } if let Ok (this) = < String < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: String (this)) ; } if let Ok (this) = < True < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: True (this)) ; } if let Ok (this) = < TuplePattern < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: TuplePattern (this)) ; } if let Ok (this) = < UnionPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw (node) { return Ok (Self :: UnionPattern (this)) ; } Err (:: type_sitter :: IncorrectKind :: new :: < Self > (node)) } # [inline] fn raw (& self) -> & :: type_sitter :: raw :: Node < 'tree > { match self { Self :: Sub (x) => :: type_sitter :: Node :: raw (x) , Self :: __ (x) => :: type_sitter :: Node :: raw (x) , Self :: ClassPattern (x) => :: type_sitter :: Node :: raw (x) , Self :: ComplexPattern (x) => :: type_sitter :: Node :: raw (x) , Self :: ConcatenatedString (x) => :: type_sitter :: Node :: raw (x) , Self :: DictPattern (x) => :: type_sitter :: Node :: raw (x) , Self :: DottedName (x) => :: type_sitter :: Node :: raw (x) , Self :: False (x) => :: type_sitter :: Node :: raw (x) , Self :: Float (x) => :: type_sitter :: Node :: raw (x) , Self :: Integer (x) => :: type_sitter :: Node :: raw (x) , Self :: ListPattern (x) => :: type_sitter :: Node :: raw (x) , Self :: None (x) => :: type_sitter :: Node :: raw (x) , Self :: SplatPattern (x) => :: type_sitter :: Node :: raw (x) , Self :: String (x) => :: type_sitter :: Node :: raw (x) , Self :: True (x) => :: type_sitter :: Node :: raw (x) , Self :: TuplePattern (x) => :: type_sitter :: Node :: raw (x) , Self :: UnionPattern (x) => :: type_sitter :: Node :: raw (x) , } } # [inline] fn raw_mut (& mut self) -> & mut :: type_sitter :: raw :: Node < 'tree > { match self { Self :: Sub (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: __ (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: ClassPattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: ComplexPattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: ConcatenatedString (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: DictPattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: DottedName (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: False (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: Float (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: Integer (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: ListPattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: None (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: SplatPattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: String (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: True (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: TuplePattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: UnionPattern (x) => :: type_sitter :: Node :: raw_mut (x) , } } # [inline] fn into_raw (self) -> :: type_sitter :: raw :: Node < 'tree > { match self { Self :: Sub (x) => x . into_raw () , Self :: __ (x) => x . into_raw () , Self :: ClassPattern (x) => x . into_raw () , Self :: ComplexPattern (x) => x . into_raw () , Self :: ConcatenatedString (x) => x . into_raw () , Self :: DictPattern (x) => x . into_raw () , Self :: DottedName (x) => x . into_raw () , Self :: False (x) => x . into_raw () , Self :: Float (x) => x . into_raw () , Self :: Integer (x) => x . into_raw () , Self :: ListPattern (x) => x . into_raw () , Self :: None (x) => x . into_raw () , Self :: SplatPattern (x) => x . into_raw () , Self :: String (x) => x . into_raw () , Self :: True (x) => x . into_raw () , Self :: TuplePattern (x) => x . into_raw () , Self :: UnionPattern (x) => x . into_raw () , } } }
 }
