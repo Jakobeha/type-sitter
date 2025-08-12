@@ -22,10 +22,10 @@ keywords = ["type-sitter", "tree-sitter"]
 edition = "2021"
 
 [workspace.dependencies]
-type-sitter-gen = { path = "type-sitter-gen", version = "*" }
-type-sitter-lib = { path = "type-sitter-lib", version = "*" }
-type-sitter-proc = { path = "type-sitter-proc", version = "*" }
-yak-sitter = { path = "yak-sitter", version = "*" }
+type-sitter-gen = { path = "type-sitter-gen", version = "0" }
+type-sitter-lib = { path = "type-sitter-lib", version = "0" }
+type-sitter-proc = { path = "type-sitter-proc", version = "0" }
+yak-sitter = { path = "yak-sitter", version = "0" }
 streaming-iterator = "0.1"
 syn = "2.0"
 tree-sitter = "0.25"
