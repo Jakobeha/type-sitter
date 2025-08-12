@@ -319,14 +319,14 @@ impl Tree {
 
     /// Get the root node.
     #[inline]
-    pub fn root_node(&self) -> Node {
+    pub fn root_node(&self) -> Node<'_> {
         // SAFETY: The node is from this tree
         unsafe { Node::new(self.tree.root_node(), self) }
     }
 
     /// Create a cursor starting at the root node
     #[inline]
-    pub fn walk(&self) -> TreeCursor {
+    pub fn walk(&self) -> TreeCursor<'_> {
         TreeCursor::new(self.tree.walk(), self, true)
     }
 

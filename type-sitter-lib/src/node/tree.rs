@@ -56,13 +56,13 @@ impl<Root: Node<'static>> Tree<Root> {
     ///
     /// Returns `Err` if the root is the wrong type, which may happen even if the language is
     /// correct if the entire tree is an error node.
-    pub fn root_node(&self) -> NodeResult<Root::WithLifetime<'_>> {
+    pub fn root_node(&self) -> NodeResult<'_, Root::WithLifetime<'_>> {
         Root::WithLifetime::try_from_raw(self.0.root_node())
     }
 
     /// Create a cursor starting at the root node
     #[inline]
-    pub fn walk(&self) -> TreeCursor {
+    pub fn walk(&self) -> TreeCursor<'_> {
         TreeCursor(self.0.walk())
     }
 

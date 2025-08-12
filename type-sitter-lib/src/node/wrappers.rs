@@ -128,7 +128,7 @@ impl<'tree> UntypedNode<'tree> {
     ///
     /// See [`Node::try_from_raw`].
     #[inline]
-    pub fn downcast<Type: Node<'tree>>(&self) -> NodeResult<Type> {
+    pub fn downcast<Type: Node<'tree>>(&self) -> NodeResult<'_, Type> {
         Type::try_from_raw(self.0)
     }
 }
@@ -174,7 +174,7 @@ impl<'tree> UntypedNamedNode<'tree> {
     ///
     /// See [`Node::try_from_raw`].
     #[inline]
-    pub fn downcast<Type: Node<'tree>>(&self) -> NodeResult<Type> {
+    pub fn downcast<Type: Node<'tree>>(&self) -> NodeResult<'_, Type> {
         Type::try_from_raw(self.0)
     }
 }
