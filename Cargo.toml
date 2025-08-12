@@ -13,7 +13,7 @@ exclude = [
 ]
 
 [workspace.package]
-version = "0.7.4"
+version = "0.7.5"
 authors = ["Jakob Hain <jakobeha@fastmail.com>"]
 license = "MIT OR Apache-2.0"
 repository = "https://github.com/Jakobeha/type-sitter/"

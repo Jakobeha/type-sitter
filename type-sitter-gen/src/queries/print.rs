@@ -206,7 +206,7 @@ impl<'tree> SExpSeq<'tree> {
                 /// This node has no captures so the enum has no instantiable variants. This variant
                 /// is necessary to keep lifetime parameters, but the `Never` type means it can't be
                 /// instantiated.
-                __NonExistent(#type_sitter_lib::Never, std::marker::PhantomData<&'query &'tree ()>)
+                __NonExistent(#type_sitter_lib::Never, std::marker::PhantomData<&'tree ()>)
             },
         };
 
