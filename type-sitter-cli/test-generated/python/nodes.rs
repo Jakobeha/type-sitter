@@ -1489,7 +1489,7 @@ pub struct CasePattern<'tree>(::type_sitter::raw::Node<'tree>);
 impl<'tree> CasePattern<'tree> {}
 #[automatically_derived]
 impl<'tree> ::type_sitter::HasOptionalChild<'tree> for CasePattern<'tree> {
-    type Child = anon_unions :: AsPattern_ClassPattern_ComplexPattern_ConcatenatedString_DictPattern_DottedName_False_Float_Integer_KeywordPattern_ListPattern_None_SplatPattern_String_True_TuplePattern_UnionPattern < 'tree > ;
+    type Child = anon_unions::Anon229485655885293351611142396350571839217<'tree>;
 }
 #[automatically_derived]
 impl<'tree> ::type_sitter::Node<'tree> for CasePattern<'tree> {
@@ -2321,8 +2321,17 @@ pub struct DictPattern<'tree>(::type_sitter::raw::Node<'tree>);
 #[allow(unused)]
 impl<'tree> DictPattern<'tree> {
     #[doc = "Get the children of field `key`.\n\nThese children have type `{- | _ | class_pattern | complex_pattern | concatenated_string | dict_pattern | dotted_name | false | float | integer | list_pattern | none | splat_pattern | string | true | tuple_pattern | union_pattern}*`:\n\n- [`symbols::Sub`]\n- [`symbols::__`]\n- [`ClassPattern`]\n- [`ComplexPattern`]\n- [`ConcatenatedString`]\n- [`DictPattern`]\n- [`DottedName`]\n- [`False`]\n- [`Float`]\n- [`Integer`]\n- [`ListPattern`]\n- [`None`]\n- [`SplatPattern`]\n- [`String`]\n- [`True`]\n- [`TuplePattern`]\n- [`UnionPattern`]\n"]
-    #[inline]    pub fn keys < 'a > (& self , c : & 'a mut :: type_sitter :: TreeCursor < 'tree >) -> impl :: std :: iter :: Iterator < Item = :: type_sitter :: NodeResult < 'tree , anon_unions :: Sub____ClassPattern_ComplexPattern_ConcatenatedString_DictPattern_DottedName_False_Float_Integer_ListPattern_None_SplatPattern_String_True_TuplePattern_UnionPattern < 'tree > >> + 'a{
-        :: type_sitter :: Node :: raw (self) . children_by_field_name ("key" , & mut c . 0) . map (< anon_unions :: Sub____ClassPattern_ComplexPattern_ConcatenatedString_DictPattern_DottedName_False_Float_Integer_ListPattern_None_SplatPattern_String_True_TuplePattern_UnionPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw)
+    #[inline]
+    pub fn keys<'a>(
+        &self,
+        c: &'a mut ::type_sitter::TreeCursor<'tree>,
+    ) -> impl ::std::iter::Iterator<
+        Item = ::type_sitter::NodeResult<
+            'tree,
+            anon_unions::Anon69184434770287439701619402063275806352<'tree>,
+        >,
+    > + 'a {
+        :: type_sitter :: Node :: raw (self) . children_by_field_name ("key" , & mut c . 0) . map (< anon_unions :: Anon69184434770287439701619402063275806352 < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw)
     }
     #[doc = "Get the children of field `value`.\n\nThese children have type `case_pattern*` ([`CasePattern`])"]
     #[inline]
@@ -4739,7 +4748,7 @@ pub struct KeywordPattern<'tree>(::type_sitter::raw::Node<'tree>);
 impl<'tree> KeywordPattern<'tree> {}
 #[automatically_derived]
 impl<'tree> ::type_sitter::HasChildren<'tree> for KeywordPattern<'tree> {
-    type Child = anon_unions :: ClassPattern_ComplexPattern_ConcatenatedString_DictPattern_DottedName_False_Float_Identifier_Integer_ListPattern_None_SplatPattern_String_True_TuplePattern_UnionPattern < 'tree > ;
+    type Child = anon_unions::Anon34817075775227833758609982580855775002<'tree>;
 }
 #[automatically_derived]
 impl<'tree> ::type_sitter::Node<'tree> for KeywordPattern<'tree> {
@@ -8121,7 +8130,7 @@ pub struct UnionPattern<'tree>(::type_sitter::raw::Node<'tree>);
 impl<'tree> UnionPattern<'tree> {}
 #[automatically_derived]
 impl<'tree> ::type_sitter::HasChildren<'tree> for UnionPattern<'tree> {
-    type Child = anon_unions :: ClassPattern_ComplexPattern_ConcatenatedString_DictPattern_DottedName_False_Float_Integer_ListPattern_None_SplatPattern_String_True_TuplePattern_UnionPattern < 'tree > ;
+    type Child = anon_unions::Anon19138044972977955760340976501314106174<'tree>;
 }
 #[automatically_derived]
 impl<'tree> ::type_sitter::Node<'tree> for UnionPattern<'tree> {
@@ -12406,6 +12415,1451 @@ pub mod anon_unions {
             }
         }
     }
+    #[doc = "One of `{class_pattern | complex_pattern | concatenated_string | dict_pattern | dotted_name | false | float | integer | list_pattern | none | splat_pattern | string | true | tuple_pattern | union_pattern}`:\n- [`ClassPattern`]\n- [`ComplexPattern`]\n- [`ConcatenatedString`]\n- [`DictPattern`]\n- [`DottedName`]\n- [`False`]\n- [`Float`]\n- [`Integer`]\n- [`ListPattern`]\n- [`None`]\n- [`SplatPattern`]\n- [`String`]\n- [`True`]\n- [`TuplePattern`]\n- [`UnionPattern`]"]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub enum Anon19138044972977955760340976501314106174<'tree> {
+        ClassPattern(ClassPattern<'tree>),
+        ComplexPattern(ComplexPattern<'tree>),
+        ConcatenatedString(ConcatenatedString<'tree>),
+        DictPattern(DictPattern<'tree>),
+        DottedName(DottedName<'tree>),
+        False(False<'tree>),
+        Float(Float<'tree>),
+        Integer(Integer<'tree>),
+        ListPattern(ListPattern<'tree>),
+        None(None<'tree>),
+        SplatPattern(SplatPattern<'tree>),
+        String(String<'tree>),
+        True(True<'tree>),
+        TuplePattern(TuplePattern<'tree>),
+        UnionPattern(UnionPattern<'tree>),
+    }
+    #[automatically_derived]
+    #[allow(unused)]
+    impl<'tree> Anon19138044972977955760340976501314106174<'tree> {
+        #[doc = "Returns the node if it is of type `class_pattern` ([`ClassPattern`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_class_pattern(self) -> ::std::option::Option<ClassPattern<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::ClassPattern(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        #[doc = "Returns the node if it is of type `complex_pattern` ([`ComplexPattern`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_complex_pattern(self) -> ::std::option::Option<ComplexPattern<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::ComplexPattern(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        #[doc = "Returns the node if it is of type `concatenated_string` ([`ConcatenatedString`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_concatenated_string(self) -> ::std::option::Option<ConcatenatedString<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::ConcatenatedString(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        #[doc = "Returns the node if it is of type `dict_pattern` ([`DictPattern`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_dict_pattern(self) -> ::std::option::Option<DictPattern<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::DictPattern(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        #[doc = "Returns the node if it is of type `dotted_name` ([`DottedName`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_dotted_name(self) -> ::std::option::Option<DottedName<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::DottedName(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        #[doc = "Returns the node if it is of type `false` ([`False`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_false(self) -> ::std::option::Option<False<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::False(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        #[doc = "Returns the node if it is of type `float` ([`Float`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_float(self) -> ::std::option::Option<Float<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Float(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        #[doc = "Returns the node if it is of type `integer` ([`Integer`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_integer(self) -> ::std::option::Option<Integer<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Integer(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        #[doc = "Returns the node if it is of type `list_pattern` ([`ListPattern`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_list_pattern(self) -> ::std::option::Option<ListPattern<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::ListPattern(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        #[doc = "Returns the node if it is of type `none` ([`None`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_none(self) -> ::std::option::Option<None<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::None(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        #[doc = "Returns the node if it is of type `splat_pattern` ([`SplatPattern`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_splat_pattern(self) -> ::std::option::Option<SplatPattern<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::SplatPattern(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        #[doc = "Returns the node if it is of type `string` ([`String`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_string(self) -> ::std::option::Option<String<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::String(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        #[doc = "Returns the node if it is of type `true` ([`True`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_true(self) -> ::std::option::Option<True<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::True(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        #[doc = "Returns the node if it is of type `tuple_pattern` ([`TuplePattern`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_tuple_pattern(self) -> ::std::option::Option<TuplePattern<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::TuplePattern(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        #[doc = "Returns the node if it is of type `union_pattern` ([`UnionPattern`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_union_pattern(self) -> ::std::option::Option<UnionPattern<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::UnionPattern(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> ::type_sitter::Node<'tree> for Anon19138044972977955760340976501314106174<'tree> {
+        type WithLifetime<'a> = Anon19138044972977955760340976501314106174<'a>;
+        const KIND : & 'static str = "{class_pattern | complex_pattern | concatenated_string | dict_pattern | dotted_name | false | float | integer | list_pattern | none | splat_pattern | string | true | tuple_pattern | union_pattern}" ;
+        #[inline]
+        fn try_from_raw(
+            node: ::type_sitter::raw::Node<'tree>,
+        ) -> ::type_sitter::NodeResult<'tree, Self> {
+            match node.kind() {
+                "class_pattern" => Ok(unsafe {
+                    Self::ClassPattern(
+                        <ClassPattern<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
+                            node,
+                        ),
+                    )
+                }),
+                "complex_pattern" => {
+                    Ok(unsafe {
+                        Self::ComplexPattern(<ComplexPattern<'tree> as ::type_sitter::Node<
+                            'tree,
+                        >>::from_raw_unchecked(node))
+                    })
+                }
+                "concatenated_string" => {
+                    Ok(unsafe {
+                        Self :: ConcatenatedString (< ConcatenatedString < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
+                    })
+                }
+                "dict_pattern" => Ok(unsafe {
+                    Self::DictPattern(
+                        <DictPattern<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
+                            node,
+                        ),
+                    )
+                }),
+                "dotted_name" => Ok(unsafe {
+                    Self::DottedName(
+                        <DottedName<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
+                    )
+                }),
+                "false" => Ok(unsafe {
+                    Self::False(
+                        <False<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
+                    )
+                }),
+                "float" => Ok(unsafe {
+                    Self::Float(
+                        <Float<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
+                    )
+                }),
+                "integer" => Ok(unsafe {
+                    Self::Integer(
+                        <Integer<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
+                    )
+                }),
+                "list_pattern" => Ok(unsafe {
+                    Self::ListPattern(
+                        <ListPattern<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
+                            node,
+                        ),
+                    )
+                }),
+                "none" => Ok(unsafe {
+                    Self::None(
+                        <None<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
+                    )
+                }),
+                "splat_pattern" => Ok(unsafe {
+                    Self::SplatPattern(
+                        <SplatPattern<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
+                            node,
+                        ),
+                    )
+                }),
+                "string" => Ok(unsafe {
+                    Self::String(
+                        <String<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
+                    )
+                }),
+                "true" => Ok(unsafe {
+                    Self::True(
+                        <True<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
+                    )
+                }),
+                "tuple_pattern" => Ok(unsafe {
+                    Self::TuplePattern(
+                        <TuplePattern<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
+                            node,
+                        ),
+                    )
+                }),
+                "union_pattern" => Ok(unsafe {
+                    Self::UnionPattern(
+                        <UnionPattern<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
+                            node,
+                        ),
+                    )
+                }),
+                _ => Err(::type_sitter::IncorrectKind::new::<Self>(node)),
+            }
+        }
+        #[inline]
+        fn raw(&self) -> &::type_sitter::raw::Node<'tree> {
+            match self {
+                Self::ClassPattern(x) => ::type_sitter::Node::raw(x),
+                Self::ComplexPattern(x) => ::type_sitter::Node::raw(x),
+                Self::ConcatenatedString(x) => ::type_sitter::Node::raw(x),
+                Self::DictPattern(x) => ::type_sitter::Node::raw(x),
+                Self::DottedName(x) => ::type_sitter::Node::raw(x),
+                Self::False(x) => ::type_sitter::Node::raw(x),
+                Self::Float(x) => ::type_sitter::Node::raw(x),
+                Self::Integer(x) => ::type_sitter::Node::raw(x),
+                Self::ListPattern(x) => ::type_sitter::Node::raw(x),
+                Self::None(x) => ::type_sitter::Node::raw(x),
+                Self::SplatPattern(x) => ::type_sitter::Node::raw(x),
+                Self::String(x) => ::type_sitter::Node::raw(x),
+                Self::True(x) => ::type_sitter::Node::raw(x),
+                Self::TuplePattern(x) => ::type_sitter::Node::raw(x),
+                Self::UnionPattern(x) => ::type_sitter::Node::raw(x),
+            }
+        }
+        #[inline]
+        fn raw_mut(&mut self) -> &mut ::type_sitter::raw::Node<'tree> {
+            match self {
+                Self::ClassPattern(x) => ::type_sitter::Node::raw_mut(x),
+                Self::ComplexPattern(x) => ::type_sitter::Node::raw_mut(x),
+                Self::ConcatenatedString(x) => ::type_sitter::Node::raw_mut(x),
+                Self::DictPattern(x) => ::type_sitter::Node::raw_mut(x),
+                Self::DottedName(x) => ::type_sitter::Node::raw_mut(x),
+                Self::False(x) => ::type_sitter::Node::raw_mut(x),
+                Self::Float(x) => ::type_sitter::Node::raw_mut(x),
+                Self::Integer(x) => ::type_sitter::Node::raw_mut(x),
+                Self::ListPattern(x) => ::type_sitter::Node::raw_mut(x),
+                Self::None(x) => ::type_sitter::Node::raw_mut(x),
+                Self::SplatPattern(x) => ::type_sitter::Node::raw_mut(x),
+                Self::String(x) => ::type_sitter::Node::raw_mut(x),
+                Self::True(x) => ::type_sitter::Node::raw_mut(x),
+                Self::TuplePattern(x) => ::type_sitter::Node::raw_mut(x),
+                Self::UnionPattern(x) => ::type_sitter::Node::raw_mut(x),
+            }
+        }
+        #[inline]
+        fn into_raw(self) -> ::type_sitter::raw::Node<'tree> {
+            match self {
+                Self::ClassPattern(x) => x.into_raw(),
+                Self::ComplexPattern(x) => x.into_raw(),
+                Self::ConcatenatedString(x) => x.into_raw(),
+                Self::DictPattern(x) => x.into_raw(),
+                Self::DottedName(x) => x.into_raw(),
+                Self::False(x) => x.into_raw(),
+                Self::Float(x) => x.into_raw(),
+                Self::Integer(x) => x.into_raw(),
+                Self::ListPattern(x) => x.into_raw(),
+                Self::None(x) => x.into_raw(),
+                Self::SplatPattern(x) => x.into_raw(),
+                Self::String(x) => x.into_raw(),
+                Self::True(x) => x.into_raw(),
+                Self::TuplePattern(x) => x.into_raw(),
+                Self::UnionPattern(x) => x.into_raw(),
+            }
+        }
+    }
+    #[doc = "One of `{as_pattern | class_pattern | complex_pattern | concatenated_string | dict_pattern | dotted_name | false | float | integer | keyword_pattern | list_pattern | none | splat_pattern | string | true | tuple_pattern | union_pattern}`:\n- [`AsPattern`]\n- [`ClassPattern`]\n- [`ComplexPattern`]\n- [`ConcatenatedString`]\n- [`DictPattern`]\n- [`DottedName`]\n- [`False`]\n- [`Float`]\n- [`Integer`]\n- [`KeywordPattern`]\n- [`ListPattern`]\n- [`None`]\n- [`SplatPattern`]\n- [`String`]\n- [`True`]\n- [`TuplePattern`]\n- [`UnionPattern`]"]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub enum Anon229485655885293351611142396350571839217<'tree> {
+        AsPattern(AsPattern<'tree>),
+        ClassPattern(ClassPattern<'tree>),
+        ComplexPattern(ComplexPattern<'tree>),
+        ConcatenatedString(ConcatenatedString<'tree>),
+        DictPattern(DictPattern<'tree>),
+        DottedName(DottedName<'tree>),
+        False(False<'tree>),
+        Float(Float<'tree>),
+        Integer(Integer<'tree>),
+        KeywordPattern(KeywordPattern<'tree>),
+        ListPattern(ListPattern<'tree>),
+        None(None<'tree>),
+        SplatPattern(SplatPattern<'tree>),
+        String(String<'tree>),
+        True(True<'tree>),
+        TuplePattern(TuplePattern<'tree>),
+        UnionPattern(UnionPattern<'tree>),
+    }
+    #[automatically_derived]
+    #[allow(unused)]
+    impl<'tree> Anon229485655885293351611142396350571839217<'tree> {
+        #[doc = "Returns the node if it is of type `as_pattern` ([`AsPattern`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_as_pattern(self) -> ::std::option::Option<AsPattern<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::AsPattern(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        #[doc = "Returns the node if it is of type `class_pattern` ([`ClassPattern`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_class_pattern(self) -> ::std::option::Option<ClassPattern<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::ClassPattern(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        #[doc = "Returns the node if it is of type `complex_pattern` ([`ComplexPattern`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_complex_pattern(self) -> ::std::option::Option<ComplexPattern<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::ComplexPattern(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        #[doc = "Returns the node if it is of type `concatenated_string` ([`ConcatenatedString`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_concatenated_string(self) -> ::std::option::Option<ConcatenatedString<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::ConcatenatedString(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        #[doc = "Returns the node if it is of type `dict_pattern` ([`DictPattern`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_dict_pattern(self) -> ::std::option::Option<DictPattern<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::DictPattern(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        #[doc = "Returns the node if it is of type `dotted_name` ([`DottedName`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_dotted_name(self) -> ::std::option::Option<DottedName<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::DottedName(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        #[doc = "Returns the node if it is of type `false` ([`False`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_false(self) -> ::std::option::Option<False<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::False(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        #[doc = "Returns the node if it is of type `float` ([`Float`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_float(self) -> ::std::option::Option<Float<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Float(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        #[doc = "Returns the node if it is of type `integer` ([`Integer`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_integer(self) -> ::std::option::Option<Integer<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Integer(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        #[doc = "Returns the node if it is of type `keyword_pattern` ([`KeywordPattern`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_keyword_pattern(self) -> ::std::option::Option<KeywordPattern<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::KeywordPattern(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        #[doc = "Returns the node if it is of type `list_pattern` ([`ListPattern`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_list_pattern(self) -> ::std::option::Option<ListPattern<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::ListPattern(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        #[doc = "Returns the node if it is of type `none` ([`None`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_none(self) -> ::std::option::Option<None<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::None(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        #[doc = "Returns the node if it is of type `splat_pattern` ([`SplatPattern`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_splat_pattern(self) -> ::std::option::Option<SplatPattern<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::SplatPattern(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        #[doc = "Returns the node if it is of type `string` ([`String`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_string(self) -> ::std::option::Option<String<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::String(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        #[doc = "Returns the node if it is of type `true` ([`True`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_true(self) -> ::std::option::Option<True<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::True(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        #[doc = "Returns the node if it is of type `tuple_pattern` ([`TuplePattern`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_tuple_pattern(self) -> ::std::option::Option<TuplePattern<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::TuplePattern(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        #[doc = "Returns the node if it is of type `union_pattern` ([`UnionPattern`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_union_pattern(self) -> ::std::option::Option<UnionPattern<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::UnionPattern(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> ::type_sitter::Node<'tree> for Anon229485655885293351611142396350571839217<'tree> {
+        type WithLifetime<'a> = Anon229485655885293351611142396350571839217<'a>;
+        const KIND : & 'static str = "{as_pattern | class_pattern | complex_pattern | concatenated_string | dict_pattern | dotted_name | false | float | integer | keyword_pattern | list_pattern | none | splat_pattern | string | true | tuple_pattern | union_pattern}" ;
+        #[inline]
+        fn try_from_raw(
+            node: ::type_sitter::raw::Node<'tree>,
+        ) -> ::type_sitter::NodeResult<'tree, Self> {
+            match node.kind() {
+                "as_pattern" => Ok(unsafe {
+                    Self::AsPattern(
+                        <AsPattern<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
+                    )
+                }),
+                "class_pattern" => Ok(unsafe {
+                    Self::ClassPattern(
+                        <ClassPattern<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
+                            node,
+                        ),
+                    )
+                }),
+                "complex_pattern" => {
+                    Ok(unsafe {
+                        Self::ComplexPattern(<ComplexPattern<'tree> as ::type_sitter::Node<
+                            'tree,
+                        >>::from_raw_unchecked(node))
+                    })
+                }
+                "concatenated_string" => {
+                    Ok(unsafe {
+                        Self :: ConcatenatedString (< ConcatenatedString < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
+                    })
+                }
+                "dict_pattern" => Ok(unsafe {
+                    Self::DictPattern(
+                        <DictPattern<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
+                            node,
+                        ),
+                    )
+                }),
+                "dotted_name" => Ok(unsafe {
+                    Self::DottedName(
+                        <DottedName<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
+                    )
+                }),
+                "false" => Ok(unsafe {
+                    Self::False(
+                        <False<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
+                    )
+                }),
+                "float" => Ok(unsafe {
+                    Self::Float(
+                        <Float<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
+                    )
+                }),
+                "integer" => Ok(unsafe {
+                    Self::Integer(
+                        <Integer<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
+                    )
+                }),
+                "keyword_pattern" => {
+                    Ok(unsafe {
+                        Self::KeywordPattern(<KeywordPattern<'tree> as ::type_sitter::Node<
+                            'tree,
+                        >>::from_raw_unchecked(node))
+                    })
+                }
+                "list_pattern" => Ok(unsafe {
+                    Self::ListPattern(
+                        <ListPattern<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
+                            node,
+                        ),
+                    )
+                }),
+                "none" => Ok(unsafe {
+                    Self::None(
+                        <None<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
+                    )
+                }),
+                "splat_pattern" => Ok(unsafe {
+                    Self::SplatPattern(
+                        <SplatPattern<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
+                            node,
+                        ),
+                    )
+                }),
+                "string" => Ok(unsafe {
+                    Self::String(
+                        <String<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
+                    )
+                }),
+                "true" => Ok(unsafe {
+                    Self::True(
+                        <True<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
+                    )
+                }),
+                "tuple_pattern" => Ok(unsafe {
+                    Self::TuplePattern(
+                        <TuplePattern<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
+                            node,
+                        ),
+                    )
+                }),
+                "union_pattern" => Ok(unsafe {
+                    Self::UnionPattern(
+                        <UnionPattern<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
+                            node,
+                        ),
+                    )
+                }),
+                _ => Err(::type_sitter::IncorrectKind::new::<Self>(node)),
+            }
+        }
+        #[inline]
+        fn raw(&self) -> &::type_sitter::raw::Node<'tree> {
+            match self {
+                Self::AsPattern(x) => ::type_sitter::Node::raw(x),
+                Self::ClassPattern(x) => ::type_sitter::Node::raw(x),
+                Self::ComplexPattern(x) => ::type_sitter::Node::raw(x),
+                Self::ConcatenatedString(x) => ::type_sitter::Node::raw(x),
+                Self::DictPattern(x) => ::type_sitter::Node::raw(x),
+                Self::DottedName(x) => ::type_sitter::Node::raw(x),
+                Self::False(x) => ::type_sitter::Node::raw(x),
+                Self::Float(x) => ::type_sitter::Node::raw(x),
+                Self::Integer(x) => ::type_sitter::Node::raw(x),
+                Self::KeywordPattern(x) => ::type_sitter::Node::raw(x),
+                Self::ListPattern(x) => ::type_sitter::Node::raw(x),
+                Self::None(x) => ::type_sitter::Node::raw(x),
+                Self::SplatPattern(x) => ::type_sitter::Node::raw(x),
+                Self::String(x) => ::type_sitter::Node::raw(x),
+                Self::True(x) => ::type_sitter::Node::raw(x),
+                Self::TuplePattern(x) => ::type_sitter::Node::raw(x),
+                Self::UnionPattern(x) => ::type_sitter::Node::raw(x),
+            }
+        }
+        #[inline]
+        fn raw_mut(&mut self) -> &mut ::type_sitter::raw::Node<'tree> {
+            match self {
+                Self::AsPattern(x) => ::type_sitter::Node::raw_mut(x),
+                Self::ClassPattern(x) => ::type_sitter::Node::raw_mut(x),
+                Self::ComplexPattern(x) => ::type_sitter::Node::raw_mut(x),
+                Self::ConcatenatedString(x) => ::type_sitter::Node::raw_mut(x),
+                Self::DictPattern(x) => ::type_sitter::Node::raw_mut(x),
+                Self::DottedName(x) => ::type_sitter::Node::raw_mut(x),
+                Self::False(x) => ::type_sitter::Node::raw_mut(x),
+                Self::Float(x) => ::type_sitter::Node::raw_mut(x),
+                Self::Integer(x) => ::type_sitter::Node::raw_mut(x),
+                Self::KeywordPattern(x) => ::type_sitter::Node::raw_mut(x),
+                Self::ListPattern(x) => ::type_sitter::Node::raw_mut(x),
+                Self::None(x) => ::type_sitter::Node::raw_mut(x),
+                Self::SplatPattern(x) => ::type_sitter::Node::raw_mut(x),
+                Self::String(x) => ::type_sitter::Node::raw_mut(x),
+                Self::True(x) => ::type_sitter::Node::raw_mut(x),
+                Self::TuplePattern(x) => ::type_sitter::Node::raw_mut(x),
+                Self::UnionPattern(x) => ::type_sitter::Node::raw_mut(x),
+            }
+        }
+        #[inline]
+        fn into_raw(self) -> ::type_sitter::raw::Node<'tree> {
+            match self {
+                Self::AsPattern(x) => x.into_raw(),
+                Self::ClassPattern(x) => x.into_raw(),
+                Self::ComplexPattern(x) => x.into_raw(),
+                Self::ConcatenatedString(x) => x.into_raw(),
+                Self::DictPattern(x) => x.into_raw(),
+                Self::DottedName(x) => x.into_raw(),
+                Self::False(x) => x.into_raw(),
+                Self::Float(x) => x.into_raw(),
+                Self::Integer(x) => x.into_raw(),
+                Self::KeywordPattern(x) => x.into_raw(),
+                Self::ListPattern(x) => x.into_raw(),
+                Self::None(x) => x.into_raw(),
+                Self::SplatPattern(x) => x.into_raw(),
+                Self::String(x) => x.into_raw(),
+                Self::True(x) => x.into_raw(),
+                Self::TuplePattern(x) => x.into_raw(),
+                Self::UnionPattern(x) => x.into_raw(),
+            }
+        }
+    }
+    #[doc = "One of `{class_pattern | complex_pattern | concatenated_string | dict_pattern | dotted_name | false | float | identifier | integer | list_pattern | none | splat_pattern | string | true | tuple_pattern | union_pattern}`:\n- [`ClassPattern`]\n- [`ComplexPattern`]\n- [`ConcatenatedString`]\n- [`DictPattern`]\n- [`DottedName`]\n- [`False`]\n- [`Float`]\n- [`Identifier`]\n- [`Integer`]\n- [`ListPattern`]\n- [`None`]\n- [`SplatPattern`]\n- [`String`]\n- [`True`]\n- [`TuplePattern`]\n- [`UnionPattern`]"]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub enum Anon34817075775227833758609982580855775002<'tree> {
+        ClassPattern(ClassPattern<'tree>),
+        ComplexPattern(ComplexPattern<'tree>),
+        ConcatenatedString(ConcatenatedString<'tree>),
+        DictPattern(DictPattern<'tree>),
+        DottedName(DottedName<'tree>),
+        False(False<'tree>),
+        Float(Float<'tree>),
+        Identifier(Identifier<'tree>),
+        Integer(Integer<'tree>),
+        ListPattern(ListPattern<'tree>),
+        None(None<'tree>),
+        SplatPattern(SplatPattern<'tree>),
+        String(String<'tree>),
+        True(True<'tree>),
+        TuplePattern(TuplePattern<'tree>),
+        UnionPattern(UnionPattern<'tree>),
+    }
+    #[automatically_derived]
+    #[allow(unused)]
+    impl<'tree> Anon34817075775227833758609982580855775002<'tree> {
+        #[doc = "Returns the node if it is of type `class_pattern` ([`ClassPattern`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_class_pattern(self) -> ::std::option::Option<ClassPattern<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::ClassPattern(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        #[doc = "Returns the node if it is of type `complex_pattern` ([`ComplexPattern`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_complex_pattern(self) -> ::std::option::Option<ComplexPattern<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::ComplexPattern(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        #[doc = "Returns the node if it is of type `concatenated_string` ([`ConcatenatedString`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_concatenated_string(self) -> ::std::option::Option<ConcatenatedString<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::ConcatenatedString(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        #[doc = "Returns the node if it is of type `dict_pattern` ([`DictPattern`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_dict_pattern(self) -> ::std::option::Option<DictPattern<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::DictPattern(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        #[doc = "Returns the node if it is of type `dotted_name` ([`DottedName`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_dotted_name(self) -> ::std::option::Option<DottedName<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::DottedName(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        #[doc = "Returns the node if it is of type `false` ([`False`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_false(self) -> ::std::option::Option<False<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::False(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        #[doc = "Returns the node if it is of type `float` ([`Float`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_float(self) -> ::std::option::Option<Float<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Float(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        #[doc = "Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_identifier(self) -> ::std::option::Option<Identifier<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Identifier(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        #[doc = "Returns the node if it is of type `integer` ([`Integer`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_integer(self) -> ::std::option::Option<Integer<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Integer(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        #[doc = "Returns the node if it is of type `list_pattern` ([`ListPattern`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_list_pattern(self) -> ::std::option::Option<ListPattern<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::ListPattern(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        #[doc = "Returns the node if it is of type `none` ([`None`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_none(self) -> ::std::option::Option<None<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::None(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        #[doc = "Returns the node if it is of type `splat_pattern` ([`SplatPattern`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_splat_pattern(self) -> ::std::option::Option<SplatPattern<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::SplatPattern(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        #[doc = "Returns the node if it is of type `string` ([`String`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_string(self) -> ::std::option::Option<String<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::String(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        #[doc = "Returns the node if it is of type `true` ([`True`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_true(self) -> ::std::option::Option<True<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::True(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        #[doc = "Returns the node if it is of type `tuple_pattern` ([`TuplePattern`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_tuple_pattern(self) -> ::std::option::Option<TuplePattern<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::TuplePattern(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        #[doc = "Returns the node if it is of type `union_pattern` ([`UnionPattern`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_union_pattern(self) -> ::std::option::Option<UnionPattern<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::UnionPattern(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> ::type_sitter::Node<'tree> for Anon34817075775227833758609982580855775002<'tree> {
+        type WithLifetime<'a> = Anon34817075775227833758609982580855775002<'a>;
+        const KIND : & 'static str = "{class_pattern | complex_pattern | concatenated_string | dict_pattern | dotted_name | false | float | identifier | integer | list_pattern | none | splat_pattern | string | true | tuple_pattern | union_pattern}" ;
+        #[inline]
+        fn try_from_raw(
+            node: ::type_sitter::raw::Node<'tree>,
+        ) -> ::type_sitter::NodeResult<'tree, Self> {
+            match node.kind() {
+                "class_pattern" => Ok(unsafe {
+                    Self::ClassPattern(
+                        <ClassPattern<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
+                            node,
+                        ),
+                    )
+                }),
+                "complex_pattern" => {
+                    Ok(unsafe {
+                        Self::ComplexPattern(<ComplexPattern<'tree> as ::type_sitter::Node<
+                            'tree,
+                        >>::from_raw_unchecked(node))
+                    })
+                }
+                "concatenated_string" => {
+                    Ok(unsafe {
+                        Self :: ConcatenatedString (< ConcatenatedString < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
+                    })
+                }
+                "dict_pattern" => Ok(unsafe {
+                    Self::DictPattern(
+                        <DictPattern<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
+                            node,
+                        ),
+                    )
+                }),
+                "dotted_name" => Ok(unsafe {
+                    Self::DottedName(
+                        <DottedName<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
+                    )
+                }),
+                "false" => Ok(unsafe {
+                    Self::False(
+                        <False<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
+                    )
+                }),
+                "float" => Ok(unsafe {
+                    Self::Float(
+                        <Float<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
+                    )
+                }),
+                "identifier" => Ok(unsafe {
+                    Self::Identifier(
+                        <Identifier<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
+                    )
+                }),
+                "integer" => Ok(unsafe {
+                    Self::Integer(
+                        <Integer<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
+                    )
+                }),
+                "list_pattern" => Ok(unsafe {
+                    Self::ListPattern(
+                        <ListPattern<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
+                            node,
+                        ),
+                    )
+                }),
+                "none" => Ok(unsafe {
+                    Self::None(
+                        <None<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
+                    )
+                }),
+                "splat_pattern" => Ok(unsafe {
+                    Self::SplatPattern(
+                        <SplatPattern<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
+                            node,
+                        ),
+                    )
+                }),
+                "string" => Ok(unsafe {
+                    Self::String(
+                        <String<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
+                    )
+                }),
+                "true" => Ok(unsafe {
+                    Self::True(
+                        <True<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
+                    )
+                }),
+                "tuple_pattern" => Ok(unsafe {
+                    Self::TuplePattern(
+                        <TuplePattern<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
+                            node,
+                        ),
+                    )
+                }),
+                "union_pattern" => Ok(unsafe {
+                    Self::UnionPattern(
+                        <UnionPattern<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
+                            node,
+                        ),
+                    )
+                }),
+                _ => Err(::type_sitter::IncorrectKind::new::<Self>(node)),
+            }
+        }
+        #[inline]
+        fn raw(&self) -> &::type_sitter::raw::Node<'tree> {
+            match self {
+                Self::ClassPattern(x) => ::type_sitter::Node::raw(x),
+                Self::ComplexPattern(x) => ::type_sitter::Node::raw(x),
+                Self::ConcatenatedString(x) => ::type_sitter::Node::raw(x),
+                Self::DictPattern(x) => ::type_sitter::Node::raw(x),
+                Self::DottedName(x) => ::type_sitter::Node::raw(x),
+                Self::False(x) => ::type_sitter::Node::raw(x),
+                Self::Float(x) => ::type_sitter::Node::raw(x),
+                Self::Identifier(x) => ::type_sitter::Node::raw(x),
+                Self::Integer(x) => ::type_sitter::Node::raw(x),
+                Self::ListPattern(x) => ::type_sitter::Node::raw(x),
+                Self::None(x) => ::type_sitter::Node::raw(x),
+                Self::SplatPattern(x) => ::type_sitter::Node::raw(x),
+                Self::String(x) => ::type_sitter::Node::raw(x),
+                Self::True(x) => ::type_sitter::Node::raw(x),
+                Self::TuplePattern(x) => ::type_sitter::Node::raw(x),
+                Self::UnionPattern(x) => ::type_sitter::Node::raw(x),
+            }
+        }
+        #[inline]
+        fn raw_mut(&mut self) -> &mut ::type_sitter::raw::Node<'tree> {
+            match self {
+                Self::ClassPattern(x) => ::type_sitter::Node::raw_mut(x),
+                Self::ComplexPattern(x) => ::type_sitter::Node::raw_mut(x),
+                Self::ConcatenatedString(x) => ::type_sitter::Node::raw_mut(x),
+                Self::DictPattern(x) => ::type_sitter::Node::raw_mut(x),
+                Self::DottedName(x) => ::type_sitter::Node::raw_mut(x),
+                Self::False(x) => ::type_sitter::Node::raw_mut(x),
+                Self::Float(x) => ::type_sitter::Node::raw_mut(x),
+                Self::Identifier(x) => ::type_sitter::Node::raw_mut(x),
+                Self::Integer(x) => ::type_sitter::Node::raw_mut(x),
+                Self::ListPattern(x) => ::type_sitter::Node::raw_mut(x),
+                Self::None(x) => ::type_sitter::Node::raw_mut(x),
+                Self::SplatPattern(x) => ::type_sitter::Node::raw_mut(x),
+                Self::String(x) => ::type_sitter::Node::raw_mut(x),
+                Self::True(x) => ::type_sitter::Node::raw_mut(x),
+                Self::TuplePattern(x) => ::type_sitter::Node::raw_mut(x),
+                Self::UnionPattern(x) => ::type_sitter::Node::raw_mut(x),
+            }
+        }
+        #[inline]
+        fn into_raw(self) -> ::type_sitter::raw::Node<'tree> {
+            match self {
+                Self::ClassPattern(x) => x.into_raw(),
+                Self::ComplexPattern(x) => x.into_raw(),
+                Self::ConcatenatedString(x) => x.into_raw(),
+                Self::DictPattern(x) => x.into_raw(),
+                Self::DottedName(x) => x.into_raw(),
+                Self::False(x) => x.into_raw(),
+                Self::Float(x) => x.into_raw(),
+                Self::Identifier(x) => x.into_raw(),
+                Self::Integer(x) => x.into_raw(),
+                Self::ListPattern(x) => x.into_raw(),
+                Self::None(x) => x.into_raw(),
+                Self::SplatPattern(x) => x.into_raw(),
+                Self::String(x) => x.into_raw(),
+                Self::True(x) => x.into_raw(),
+                Self::TuplePattern(x) => x.into_raw(),
+                Self::UnionPattern(x) => x.into_raw(),
+            }
+        }
+    }
+    #[doc = "One of `{- | _ | class_pattern | complex_pattern | concatenated_string | dict_pattern | dotted_name | false | float | integer | list_pattern | none | splat_pattern | string | true | tuple_pattern | union_pattern}`:\n- [`symbols::Sub`]\n- [`symbols::__`]\n- [`ClassPattern`]\n- [`ComplexPattern`]\n- [`ConcatenatedString`]\n- [`DictPattern`]\n- [`DottedName`]\n- [`False`]\n- [`Float`]\n- [`Integer`]\n- [`ListPattern`]\n- [`None`]\n- [`SplatPattern`]\n- [`String`]\n- [`True`]\n- [`TuplePattern`]\n- [`UnionPattern`]"]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub enum Anon69184434770287439701619402063275806352<'tree> {
+        Sub(symbols::Sub<'tree>),
+        __(symbols::__<'tree>),
+        ClassPattern(ClassPattern<'tree>),
+        ComplexPattern(ComplexPattern<'tree>),
+        ConcatenatedString(ConcatenatedString<'tree>),
+        DictPattern(DictPattern<'tree>),
+        DottedName(DottedName<'tree>),
+        False(False<'tree>),
+        Float(Float<'tree>),
+        Integer(Integer<'tree>),
+        ListPattern(ListPattern<'tree>),
+        None(None<'tree>),
+        SplatPattern(SplatPattern<'tree>),
+        String(String<'tree>),
+        True(True<'tree>),
+        TuplePattern(TuplePattern<'tree>),
+        UnionPattern(UnionPattern<'tree>),
+    }
+    #[automatically_derived]
+    #[allow(unused)]
+    impl<'tree> Anon69184434770287439701619402063275806352<'tree> {
+        #[doc = "Returns the node if it is of type `-` ([`symbols::Sub`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_sub(self) -> ::std::option::Option<symbols::Sub<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Sub(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        #[doc = "Returns the node if it is of type `_` ([`symbols::__`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as___(self) -> ::std::option::Option<symbols::__<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::__(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        #[doc = "Returns the node if it is of type `class_pattern` ([`ClassPattern`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_class_pattern(self) -> ::std::option::Option<ClassPattern<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::ClassPattern(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        #[doc = "Returns the node if it is of type `complex_pattern` ([`ComplexPattern`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_complex_pattern(self) -> ::std::option::Option<ComplexPattern<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::ComplexPattern(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        #[doc = "Returns the node if it is of type `concatenated_string` ([`ConcatenatedString`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_concatenated_string(self) -> ::std::option::Option<ConcatenatedString<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::ConcatenatedString(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        #[doc = "Returns the node if it is of type `dict_pattern` ([`DictPattern`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_dict_pattern(self) -> ::std::option::Option<DictPattern<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::DictPattern(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        #[doc = "Returns the node if it is of type `dotted_name` ([`DottedName`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_dotted_name(self) -> ::std::option::Option<DottedName<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::DottedName(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        #[doc = "Returns the node if it is of type `false` ([`False`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_false(self) -> ::std::option::Option<False<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::False(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        #[doc = "Returns the node if it is of type `float` ([`Float`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_float(self) -> ::std::option::Option<Float<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Float(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        #[doc = "Returns the node if it is of type `integer` ([`Integer`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_integer(self) -> ::std::option::Option<Integer<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Integer(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        #[doc = "Returns the node if it is of type `list_pattern` ([`ListPattern`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_list_pattern(self) -> ::std::option::Option<ListPattern<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::ListPattern(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        #[doc = "Returns the node if it is of type `none` ([`None`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_none(self) -> ::std::option::Option<None<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::None(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        #[doc = "Returns the node if it is of type `splat_pattern` ([`SplatPattern`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_splat_pattern(self) -> ::std::option::Option<SplatPattern<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::SplatPattern(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        #[doc = "Returns the node if it is of type `string` ([`String`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_string(self) -> ::std::option::Option<String<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::String(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        #[doc = "Returns the node if it is of type `true` ([`True`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_true(self) -> ::std::option::Option<True<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::True(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        #[doc = "Returns the node if it is of type `tuple_pattern` ([`TuplePattern`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_tuple_pattern(self) -> ::std::option::Option<TuplePattern<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::TuplePattern(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        #[doc = "Returns the node if it is of type `union_pattern` ([`UnionPattern`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_union_pattern(self) -> ::std::option::Option<UnionPattern<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::UnionPattern(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> ::type_sitter::Node<'tree> for Anon69184434770287439701619402063275806352<'tree> {
+        type WithLifetime<'a> = Anon69184434770287439701619402063275806352<'a>;
+        const KIND : & 'static str = "{- | _ | class_pattern | complex_pattern | concatenated_string | dict_pattern | dotted_name | false | float | integer | list_pattern | none | splat_pattern | string | true | tuple_pattern | union_pattern}" ;
+        #[inline]
+        fn try_from_raw(
+            node: ::type_sitter::raw::Node<'tree>,
+        ) -> ::type_sitter::NodeResult<'tree, Self> {
+            match node.kind() {
+                "-" => Ok(unsafe {
+                    Self::Sub(
+                        <symbols::Sub<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
+                            node,
+                        ),
+                    )
+                }),
+                "_" => Ok(unsafe {
+                    Self::__(
+                        <symbols::__<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
+                            node,
+                        ),
+                    )
+                }),
+                "class_pattern" => Ok(unsafe {
+                    Self::ClassPattern(
+                        <ClassPattern<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
+                            node,
+                        ),
+                    )
+                }),
+                "complex_pattern" => {
+                    Ok(unsafe {
+                        Self::ComplexPattern(<ComplexPattern<'tree> as ::type_sitter::Node<
+                            'tree,
+                        >>::from_raw_unchecked(node))
+                    })
+                }
+                "concatenated_string" => {
+                    Ok(unsafe {
+                        Self :: ConcatenatedString (< ConcatenatedString < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
+                    })
+                }
+                "dict_pattern" => Ok(unsafe {
+                    Self::DictPattern(
+                        <DictPattern<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
+                            node,
+                        ),
+                    )
+                }),
+                "dotted_name" => Ok(unsafe {
+                    Self::DottedName(
+                        <DottedName<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
+                    )
+                }),
+                "false" => Ok(unsafe {
+                    Self::False(
+                        <False<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
+                    )
+                }),
+                "float" => Ok(unsafe {
+                    Self::Float(
+                        <Float<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
+                    )
+                }),
+                "integer" => Ok(unsafe {
+                    Self::Integer(
+                        <Integer<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
+                    )
+                }),
+                "list_pattern" => Ok(unsafe {
+                    Self::ListPattern(
+                        <ListPattern<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
+                            node,
+                        ),
+                    )
+                }),
+                "none" => Ok(unsafe {
+                    Self::None(
+                        <None<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
+                    )
+                }),
+                "splat_pattern" => Ok(unsafe {
+                    Self::SplatPattern(
+                        <SplatPattern<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
+                            node,
+                        ),
+                    )
+                }),
+                "string" => Ok(unsafe {
+                    Self::String(
+                        <String<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
+                    )
+                }),
+                "true" => Ok(unsafe {
+                    Self::True(
+                        <True<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
+                    )
+                }),
+                "tuple_pattern" => Ok(unsafe {
+                    Self::TuplePattern(
+                        <TuplePattern<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
+                            node,
+                        ),
+                    )
+                }),
+                "union_pattern" => Ok(unsafe {
+                    Self::UnionPattern(
+                        <UnionPattern<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
+                            node,
+                        ),
+                    )
+                }),
+                _ => Err(::type_sitter::IncorrectKind::new::<Self>(node)),
+            }
+        }
+        #[inline]
+        fn raw(&self) -> &::type_sitter::raw::Node<'tree> {
+            match self {
+                Self::Sub(x) => ::type_sitter::Node::raw(x),
+                Self::__(x) => ::type_sitter::Node::raw(x),
+                Self::ClassPattern(x) => ::type_sitter::Node::raw(x),
+                Self::ComplexPattern(x) => ::type_sitter::Node::raw(x),
+                Self::ConcatenatedString(x) => ::type_sitter::Node::raw(x),
+                Self::DictPattern(x) => ::type_sitter::Node::raw(x),
+                Self::DottedName(x) => ::type_sitter::Node::raw(x),
+                Self::False(x) => ::type_sitter::Node::raw(x),
+                Self::Float(x) => ::type_sitter::Node::raw(x),
+                Self::Integer(x) => ::type_sitter::Node::raw(x),
+                Self::ListPattern(x) => ::type_sitter::Node::raw(x),
+                Self::None(x) => ::type_sitter::Node::raw(x),
+                Self::SplatPattern(x) => ::type_sitter::Node::raw(x),
+                Self::String(x) => ::type_sitter::Node::raw(x),
+                Self::True(x) => ::type_sitter::Node::raw(x),
+                Self::TuplePattern(x) => ::type_sitter::Node::raw(x),
+                Self::UnionPattern(x) => ::type_sitter::Node::raw(x),
+            }
+        }
+        #[inline]
+        fn raw_mut(&mut self) -> &mut ::type_sitter::raw::Node<'tree> {
+            match self {
+                Self::Sub(x) => ::type_sitter::Node::raw_mut(x),
+                Self::__(x) => ::type_sitter::Node::raw_mut(x),
+                Self::ClassPattern(x) => ::type_sitter::Node::raw_mut(x),
+                Self::ComplexPattern(x) => ::type_sitter::Node::raw_mut(x),
+                Self::ConcatenatedString(x) => ::type_sitter::Node::raw_mut(x),
+                Self::DictPattern(x) => ::type_sitter::Node::raw_mut(x),
+                Self::DottedName(x) => ::type_sitter::Node::raw_mut(x),
+                Self::False(x) => ::type_sitter::Node::raw_mut(x),
+                Self::Float(x) => ::type_sitter::Node::raw_mut(x),
+                Self::Integer(x) => ::type_sitter::Node::raw_mut(x),
+                Self::ListPattern(x) => ::type_sitter::Node::raw_mut(x),
+                Self::None(x) => ::type_sitter::Node::raw_mut(x),
+                Self::SplatPattern(x) => ::type_sitter::Node::raw_mut(x),
+                Self::String(x) => ::type_sitter::Node::raw_mut(x),
+                Self::True(x) => ::type_sitter::Node::raw_mut(x),
+                Self::TuplePattern(x) => ::type_sitter::Node::raw_mut(x),
+                Self::UnionPattern(x) => ::type_sitter::Node::raw_mut(x),
+            }
+        }
+        #[inline]
+        fn into_raw(self) -> ::type_sitter::raw::Node<'tree> {
+            match self {
+                Self::Sub(x) => x.into_raw(),
+                Self::__(x) => x.into_raw(),
+                Self::ClassPattern(x) => x.into_raw(),
+                Self::ComplexPattern(x) => x.into_raw(),
+                Self::ConcatenatedString(x) => x.into_raw(),
+                Self::DictPattern(x) => x.into_raw(),
+                Self::DottedName(x) => x.into_raw(),
+                Self::False(x) => x.into_raw(),
+                Self::Float(x) => x.into_raw(),
+                Self::Integer(x) => x.into_raw(),
+                Self::ListPattern(x) => x.into_raw(),
+                Self::None(x) => x.into_raw(),
+                Self::SplatPattern(x) => x.into_raw(),
+                Self::String(x) => x.into_raw(),
+                Self::True(x) => x.into_raw(),
+                Self::TuplePattern(x) => x.into_raw(),
+                Self::UnionPattern(x) => x.into_raw(),
+            }
+        }
+    }
     #[doc = "One of `{argument_list | generator_expression}`:\n- [`ArgumentList`]\n- [`GeneratorExpression`]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
@@ -12483,35 +13937,6 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "One of `{as_pattern | class_pattern | complex_pattern | concatenated_string | dict_pattern | dotted_name | false | float | integer | keyword_pattern | list_pattern | none | splat_pattern | string | true | tuple_pattern | union_pattern}`:\n- [`AsPattern`]\n- [`ClassPattern`]\n- [`ComplexPattern`]\n- [`ConcatenatedString`]\n- [`DictPattern`]\n- [`DottedName`]\n- [`False`]\n- [`Float`]\n- [`Integer`]\n- [`KeywordPattern`]\n- [`ListPattern`]\n- [`None`]\n- [`SplatPattern`]\n- [`String`]\n- [`True`]\n- [`TuplePattern`]\n- [`UnionPattern`]"]
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[allow(non_camel_case_types)]
-    pub enum AsPattern_ClassPattern_ComplexPattern_ConcatenatedString_DictPattern_DottedName_False_Float_Integer_KeywordPattern_ListPattern_None_SplatPattern_String_True_TuplePattern_UnionPattern<
-        'tree,
-    > {
-        AsPattern(AsPattern<'tree>),
-        ClassPattern(ClassPattern<'tree>),
-        ComplexPattern(ComplexPattern<'tree>),
-        ConcatenatedString(ConcatenatedString<'tree>),
-        DictPattern(DictPattern<'tree>),
-        DottedName(DottedName<'tree>),
-        False(False<'tree>),
-        Float(Float<'tree>),
-        Integer(Integer<'tree>),
-        KeywordPattern(KeywordPattern<'tree>),
-        ListPattern(ListPattern<'tree>),
-        None(None<'tree>),
-        SplatPattern(SplatPattern<'tree>),
-        String(String<'tree>),
-        True(True<'tree>),
-        TuplePattern(TuplePattern<'tree>),
-        UnionPattern(UnionPattern<'tree>),
-    }
-    #[automatically_derived]
-    #[allow(unused)]
-    impl < 'tree > AsPattern_ClassPattern_ComplexPattern_ConcatenatedString_DictPattern_DottedName_False_Float_Integer_KeywordPattern_ListPattern_None_SplatPattern_String_True_TuplePattern_UnionPattern < 'tree > { # [doc = "Returns the node if it is of type `as_pattern` ([`AsPattern`]), otherwise returns `None`"] # [inline] pub fn as_as_pattern (self) -> :: std :: option :: Option < AsPattern < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: AsPattern (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `class_pattern` ([`ClassPattern`]), otherwise returns `None`"] # [inline] pub fn as_class_pattern (self) -> :: std :: option :: Option < ClassPattern < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ClassPattern (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `complex_pattern` ([`ComplexPattern`]), otherwise returns `None`"] # [inline] pub fn as_complex_pattern (self) -> :: std :: option :: Option < ComplexPattern < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ComplexPattern (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `concatenated_string` ([`ConcatenatedString`]), otherwise returns `None`"] # [inline] pub fn as_concatenated_string (self) -> :: std :: option :: Option < ConcatenatedString < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ConcatenatedString (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `dict_pattern` ([`DictPattern`]), otherwise returns `None`"] # [inline] pub fn as_dict_pattern (self) -> :: std :: option :: Option < DictPattern < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: DictPattern (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `dotted_name` ([`DottedName`]), otherwise returns `None`"] # [inline] pub fn as_dotted_name (self) -> :: std :: option :: Option < DottedName < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: DottedName (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `false` ([`False`]), otherwise returns `None`"] # [inline] pub fn as_false (self) -> :: std :: option :: Option < False < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: False (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `float` ([`Float`]), otherwise returns `None`"] # [inline] pub fn as_float (self) -> :: std :: option :: Option < Float < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Float (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `integer` ([`Integer`]), otherwise returns `None`"] # [inline] pub fn as_integer (self) -> :: std :: option :: Option < Integer < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Integer (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `keyword_pattern` ([`KeywordPattern`]), otherwise returns `None`"] # [inline] pub fn as_keyword_pattern (self) -> :: std :: option :: Option < KeywordPattern < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: KeywordPattern (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `list_pattern` ([`ListPattern`]), otherwise returns `None`"] # [inline] pub fn as_list_pattern (self) -> :: std :: option :: Option < ListPattern < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ListPattern (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `none` ([`None`]), otherwise returns `None`"] # [inline] pub fn as_none (self) -> :: std :: option :: Option < None < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: None (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `splat_pattern` ([`SplatPattern`]), otherwise returns `None`"] # [inline] pub fn as_splat_pattern (self) -> :: std :: option :: Option < SplatPattern < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: SplatPattern (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `string` ([`String`]), otherwise returns `None`"] # [inline] pub fn as_string (self) -> :: std :: option :: Option < String < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: String (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `true` ([`True`]), otherwise returns `None`"] # [inline] pub fn as_true (self) -> :: std :: option :: Option < True < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: True (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `tuple_pattern` ([`TuplePattern`]), otherwise returns `None`"] # [inline] pub fn as_tuple_pattern (self) -> :: std :: option :: Option < TuplePattern < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: TuplePattern (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `union_pattern` ([`UnionPattern`]), otherwise returns `None`"] # [inline] pub fn as_union_pattern (self) -> :: std :: option :: Option < UnionPattern < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: UnionPattern (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } }
-    #[automatically_derived]
-    impl < 'tree > :: type_sitter :: Node < 'tree > for AsPattern_ClassPattern_ComplexPattern_ConcatenatedString_DictPattern_DottedName_False_Float_Integer_KeywordPattern_ListPattern_None_SplatPattern_String_True_TuplePattern_UnionPattern < 'tree > { type WithLifetime < 'a > = AsPattern_ClassPattern_ComplexPattern_ConcatenatedString_DictPattern_DottedName_False_Float_Integer_KeywordPattern_ListPattern_None_SplatPattern_String_True_TuplePattern_UnionPattern < 'a > ; const KIND : & 'static str = "{as_pattern | class_pattern | complex_pattern | concatenated_string | dict_pattern | dotted_name | false | float | integer | keyword_pattern | list_pattern | none | splat_pattern | string | true | tuple_pattern | union_pattern}" ; # [inline] fn try_from_raw (node : :: type_sitter :: raw :: Node < 'tree >) -> :: type_sitter :: NodeResult < 'tree , Self > { match node . kind () { "as_pattern" => Ok (unsafe { Self :: AsPattern (< AsPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "class_pattern" => Ok (unsafe { Self :: ClassPattern (< ClassPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "complex_pattern" => Ok (unsafe { Self :: ComplexPattern (< ComplexPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "concatenated_string" => Ok (unsafe { Self :: ConcatenatedString (< ConcatenatedString < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "dict_pattern" => Ok (unsafe { Self :: DictPattern (< DictPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "dotted_name" => Ok (unsafe { Self :: DottedName (< DottedName < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "false" => Ok (unsafe { Self :: False (< False < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "float" => Ok (unsafe { Self :: Float (< Float < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "integer" => Ok (unsafe { Self :: Integer (< Integer < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "keyword_pattern" => Ok (unsafe { Self :: KeywordPattern (< KeywordPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "list_pattern" => Ok (unsafe { Self :: ListPattern (< ListPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "none" => Ok (unsafe { Self :: None (< None < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "splat_pattern" => Ok (unsafe { Self :: SplatPattern (< SplatPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "string" => Ok (unsafe { Self :: String (< String < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "true" => Ok (unsafe { Self :: True (< True < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "tuple_pattern" => Ok (unsafe { Self :: TuplePattern (< TuplePattern < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "union_pattern" => Ok (unsafe { Self :: UnionPattern (< UnionPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , _ => Err (:: type_sitter :: IncorrectKind :: new :: < Self > (node)) } } # [inline] fn raw (& self) -> & :: type_sitter :: raw :: Node < 'tree > { match self { Self :: AsPattern (x) => :: type_sitter :: Node :: raw (x) , Self :: ClassPattern (x) => :: type_sitter :: Node :: raw (x) , Self :: ComplexPattern (x) => :: type_sitter :: Node :: raw (x) , Self :: ConcatenatedString (x) => :: type_sitter :: Node :: raw (x) , Self :: DictPattern (x) => :: type_sitter :: Node :: raw (x) , Self :: DottedName (x) => :: type_sitter :: Node :: raw (x) , Self :: False (x) => :: type_sitter :: Node :: raw (x) , Self :: Float (x) => :: type_sitter :: Node :: raw (x) , Self :: Integer (x) => :: type_sitter :: Node :: raw (x) , Self :: KeywordPattern (x) => :: type_sitter :: Node :: raw (x) , Self :: ListPattern (x) => :: type_sitter :: Node :: raw (x) , Self :: None (x) => :: type_sitter :: Node :: raw (x) , Self :: SplatPattern (x) => :: type_sitter :: Node :: raw (x) , Self :: String (x) => :: type_sitter :: Node :: raw (x) , Self :: True (x) => :: type_sitter :: Node :: raw (x) , Self :: TuplePattern (x) => :: type_sitter :: Node :: raw (x) , Self :: UnionPattern (x) => :: type_sitter :: Node :: raw (x) , } } # [inline] fn raw_mut (& mut self) -> & mut :: type_sitter :: raw :: Node < 'tree > { match self { Self :: AsPattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: ClassPattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: ComplexPattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: ConcatenatedString (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: DictPattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: DottedName (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: False (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: Float (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: Integer (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: KeywordPattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: ListPattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: None (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: SplatPattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: String (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: True (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: TuplePattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: UnionPattern (x) => :: type_sitter :: Node :: raw_mut (x) , } } # [inline] fn into_raw (self) -> :: type_sitter :: raw :: Node < 'tree > { match self { Self :: AsPattern (x) => x . into_raw () , Self :: ClassPattern (x) => x . into_raw () , Self :: ComplexPattern (x) => x . into_raw () , Self :: ConcatenatedString (x) => x . into_raw () , Self :: DictPattern (x) => x . into_raw () , Self :: DottedName (x) => x . into_raw () , Self :: False (x) => x . into_raw () , Self :: Float (x) => x . into_raw () , Self :: Integer (x) => x . into_raw () , Self :: KeywordPattern (x) => x . into_raw () , Self :: ListPattern (x) => x . into_raw () , Self :: None (x) => x . into_raw () , Self :: SplatPattern (x) => x . into_raw () , Self :: String (x) => x . into_raw () , Self :: True (x) => x . into_raw () , Self :: TuplePattern (x) => x . into_raw () , Self :: UnionPattern (x) => x . into_raw () , } } }
     #[doc = "One of `{assignment | augmented_assignment | expression | expression_list | pattern_list | yield}`:\n- [`Assignment`]\n- [`AugmentedAssignment`]\n- [`Expression`]\n- [`ExpressionList`]\n- [`PatternList`]\n- [`Yield`]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
@@ -14398,61 +15823,6 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "One of `{class_pattern | complex_pattern | concatenated_string | dict_pattern | dotted_name | false | float | identifier | integer | list_pattern | none | splat_pattern | string | true | tuple_pattern | union_pattern}`:\n- [`ClassPattern`]\n- [`ComplexPattern`]\n- [`ConcatenatedString`]\n- [`DictPattern`]\n- [`DottedName`]\n- [`False`]\n- [`Float`]\n- [`Identifier`]\n- [`Integer`]\n- [`ListPattern`]\n- [`None`]\n- [`SplatPattern`]\n- [`String`]\n- [`True`]\n- [`TuplePattern`]\n- [`UnionPattern`]"]
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[allow(non_camel_case_types)]
-    pub enum ClassPattern_ComplexPattern_ConcatenatedString_DictPattern_DottedName_False_Float_Identifier_Integer_ListPattern_None_SplatPattern_String_True_TuplePattern_UnionPattern<
-        'tree,
-    > {
-        ClassPattern(ClassPattern<'tree>),
-        ComplexPattern(ComplexPattern<'tree>),
-        ConcatenatedString(ConcatenatedString<'tree>),
-        DictPattern(DictPattern<'tree>),
-        DottedName(DottedName<'tree>),
-        False(False<'tree>),
-        Float(Float<'tree>),
-        Identifier(Identifier<'tree>),
-        Integer(Integer<'tree>),
-        ListPattern(ListPattern<'tree>),
-        None(None<'tree>),
-        SplatPattern(SplatPattern<'tree>),
-        String(String<'tree>),
-        True(True<'tree>),
-        TuplePattern(TuplePattern<'tree>),
-        UnionPattern(UnionPattern<'tree>),
-    }
-    #[automatically_derived]
-    #[allow(unused)]
-    impl < 'tree > ClassPattern_ComplexPattern_ConcatenatedString_DictPattern_DottedName_False_Float_Identifier_Integer_ListPattern_None_SplatPattern_String_True_TuplePattern_UnionPattern < 'tree > { # [doc = "Returns the node if it is of type `class_pattern` ([`ClassPattern`]), otherwise returns `None`"] # [inline] pub fn as_class_pattern (self) -> :: std :: option :: Option < ClassPattern < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ClassPattern (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `complex_pattern` ([`ComplexPattern`]), otherwise returns `None`"] # [inline] pub fn as_complex_pattern (self) -> :: std :: option :: Option < ComplexPattern < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ComplexPattern (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `concatenated_string` ([`ConcatenatedString`]), otherwise returns `None`"] # [inline] pub fn as_concatenated_string (self) -> :: std :: option :: Option < ConcatenatedString < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ConcatenatedString (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `dict_pattern` ([`DictPattern`]), otherwise returns `None`"] # [inline] pub fn as_dict_pattern (self) -> :: std :: option :: Option < DictPattern < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: DictPattern (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `dotted_name` ([`DottedName`]), otherwise returns `None`"] # [inline] pub fn as_dotted_name (self) -> :: std :: option :: Option < DottedName < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: DottedName (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `false` ([`False`]), otherwise returns `None`"] # [inline] pub fn as_false (self) -> :: std :: option :: Option < False < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: False (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `float` ([`Float`]), otherwise returns `None`"] # [inline] pub fn as_float (self) -> :: std :: option :: Option < Float < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Float (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`"] # [inline] pub fn as_identifier (self) -> :: std :: option :: Option < Identifier < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Identifier (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `integer` ([`Integer`]), otherwise returns `None`"] # [inline] pub fn as_integer (self) -> :: std :: option :: Option < Integer < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Integer (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `list_pattern` ([`ListPattern`]), otherwise returns `None`"] # [inline] pub fn as_list_pattern (self) -> :: std :: option :: Option < ListPattern < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ListPattern (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `none` ([`None`]), otherwise returns `None`"] # [inline] pub fn as_none (self) -> :: std :: option :: Option < None < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: None (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `splat_pattern` ([`SplatPattern`]), otherwise returns `None`"] # [inline] pub fn as_splat_pattern (self) -> :: std :: option :: Option < SplatPattern < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: SplatPattern (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `string` ([`String`]), otherwise returns `None`"] # [inline] pub fn as_string (self) -> :: std :: option :: Option < String < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: String (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `true` ([`True`]), otherwise returns `None`"] # [inline] pub fn as_true (self) -> :: std :: option :: Option < True < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: True (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `tuple_pattern` ([`TuplePattern`]), otherwise returns `None`"] # [inline] pub fn as_tuple_pattern (self) -> :: std :: option :: Option < TuplePattern < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: TuplePattern (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `union_pattern` ([`UnionPattern`]), otherwise returns `None`"] # [inline] pub fn as_union_pattern (self) -> :: std :: option :: Option < UnionPattern < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: UnionPattern (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } }
-    #[automatically_derived]
-    impl < 'tree > :: type_sitter :: Node < 'tree > for ClassPattern_ComplexPattern_ConcatenatedString_DictPattern_DottedName_False_Float_Identifier_Integer_ListPattern_None_SplatPattern_String_True_TuplePattern_UnionPattern < 'tree > { type WithLifetime < 'a > = ClassPattern_ComplexPattern_ConcatenatedString_DictPattern_DottedName_False_Float_Identifier_Integer_ListPattern_None_SplatPattern_String_True_TuplePattern_UnionPattern < 'a > ; const KIND : & 'static str = "{class_pattern | complex_pattern | concatenated_string | dict_pattern | dotted_name | false | float | identifier | integer | list_pattern | none | splat_pattern | string | true | tuple_pattern | union_pattern}" ; # [inline] fn try_from_raw (node : :: type_sitter :: raw :: Node < 'tree >) -> :: type_sitter :: NodeResult < 'tree , Self > { match node . kind () { "class_pattern" => Ok (unsafe { Self :: ClassPattern (< ClassPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "complex_pattern" => Ok (unsafe { Self :: ComplexPattern (< ComplexPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "concatenated_string" => Ok (unsafe { Self :: ConcatenatedString (< ConcatenatedString < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "dict_pattern" => Ok (unsafe { Self :: DictPattern (< DictPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "dotted_name" => Ok (unsafe { Self :: DottedName (< DottedName < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "false" => Ok (unsafe { Self :: False (< False < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "float" => Ok (unsafe { Self :: Float (< Float < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "identifier" => Ok (unsafe { Self :: Identifier (< Identifier < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "integer" => Ok (unsafe { Self :: Integer (< Integer < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "list_pattern" => Ok (unsafe { Self :: ListPattern (< ListPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "none" => Ok (unsafe { Self :: None (< None < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "splat_pattern" => Ok (unsafe { Self :: SplatPattern (< SplatPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "string" => Ok (unsafe { Self :: String (< String < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "true" => Ok (unsafe { Self :: True (< True < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "tuple_pattern" => Ok (unsafe { Self :: TuplePattern (< TuplePattern < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "union_pattern" => Ok (unsafe { Self :: UnionPattern (< UnionPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , _ => Err (:: type_sitter :: IncorrectKind :: new :: < Self > (node)) } } # [inline] fn raw (& self) -> & :: type_sitter :: raw :: Node < 'tree > { match self { Self :: ClassPattern (x) => :: type_sitter :: Node :: raw (x) , Self :: ComplexPattern (x) => :: type_sitter :: Node :: raw (x) , Self :: ConcatenatedString (x) => :: type_sitter :: Node :: raw (x) , Self :: DictPattern (x) => :: type_sitter :: Node :: raw (x) , Self :: DottedName (x) => :: type_sitter :: Node :: raw (x) , Self :: False (x) => :: type_sitter :: Node :: raw (x) , Self :: Float (x) => :: type_sitter :: Node :: raw (x) , Self :: Identifier (x) => :: type_sitter :: Node :: raw (x) , Self :: Integer (x) => :: type_sitter :: Node :: raw (x) , Self :: ListPattern (x) => :: type_sitter :: Node :: raw (x) , Self :: None (x) => :: type_sitter :: Node :: raw (x) , Self :: SplatPattern (x) => :: type_sitter :: Node :: raw (x) , Self :: String (x) => :: type_sitter :: Node :: raw (x) , Self :: True (x) => :: type_sitter :: Node :: raw (x) , Self :: TuplePattern (x) => :: type_sitter :: Node :: raw (x) , Self :: UnionPattern (x) => :: type_sitter :: Node :: raw (x) , } } # [inline] fn raw_mut (& mut self) -> & mut :: type_sitter :: raw :: Node < 'tree > { match self { Self :: ClassPattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: ComplexPattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: ConcatenatedString (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: DictPattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: DottedName (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: False (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: Float (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: Identifier (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: Integer (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: ListPattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: None (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: SplatPattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: String (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: True (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: TuplePattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: UnionPattern (x) => :: type_sitter :: Node :: raw_mut (x) , } } # [inline] fn into_raw (self) -> :: type_sitter :: raw :: Node < 'tree > { match self { Self :: ClassPattern (x) => x . into_raw () , Self :: ComplexPattern (x) => x . into_raw () , Self :: ConcatenatedString (x) => x . into_raw () , Self :: DictPattern (x) => x . into_raw () , Self :: DottedName (x) => x . into_raw () , Self :: False (x) => x . into_raw () , Self :: Float (x) => x . into_raw () , Self :: Identifier (x) => x . into_raw () , Self :: Integer (x) => x . into_raw () , Self :: ListPattern (x) => x . into_raw () , Self :: None (x) => x . into_raw () , Self :: SplatPattern (x) => x . into_raw () , Self :: String (x) => x . into_raw () , Self :: True (x) => x . into_raw () , Self :: TuplePattern (x) => x . into_raw () , Self :: UnionPattern (x) => x . into_raw () , } } }
-    #[doc = "One of `{class_pattern | complex_pattern | concatenated_string | dict_pattern | dotted_name | false | float | integer | list_pattern | none | splat_pattern | string | true | tuple_pattern | union_pattern}`:\n- [`ClassPattern`]\n- [`ComplexPattern`]\n- [`ConcatenatedString`]\n- [`DictPattern`]\n- [`DottedName`]\n- [`False`]\n- [`Float`]\n- [`Integer`]\n- [`ListPattern`]\n- [`None`]\n- [`SplatPattern`]\n- [`String`]\n- [`True`]\n- [`TuplePattern`]\n- [`UnionPattern`]"]
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[allow(non_camel_case_types)]
-    pub enum ClassPattern_ComplexPattern_ConcatenatedString_DictPattern_DottedName_False_Float_Integer_ListPattern_None_SplatPattern_String_True_TuplePattern_UnionPattern<
-        'tree,
-    > {
-        ClassPattern(ClassPattern<'tree>),
-        ComplexPattern(ComplexPattern<'tree>),
-        ConcatenatedString(ConcatenatedString<'tree>),
-        DictPattern(DictPattern<'tree>),
-        DottedName(DottedName<'tree>),
-        False(False<'tree>),
-        Float(Float<'tree>),
-        Integer(Integer<'tree>),
-        ListPattern(ListPattern<'tree>),
-        None(None<'tree>),
-        SplatPattern(SplatPattern<'tree>),
-        String(String<'tree>),
-        True(True<'tree>),
-        TuplePattern(TuplePattern<'tree>),
-        UnionPattern(UnionPattern<'tree>),
-    }
-    #[automatically_derived]
-    #[allow(unused)]
-    impl < 'tree > ClassPattern_ComplexPattern_ConcatenatedString_DictPattern_DottedName_False_Float_Integer_ListPattern_None_SplatPattern_String_True_TuplePattern_UnionPattern < 'tree > { # [doc = "Returns the node if it is of type `class_pattern` ([`ClassPattern`]), otherwise returns `None`"] # [inline] pub fn as_class_pattern (self) -> :: std :: option :: Option < ClassPattern < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ClassPattern (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `complex_pattern` ([`ComplexPattern`]), otherwise returns `None`"] # [inline] pub fn as_complex_pattern (self) -> :: std :: option :: Option < ComplexPattern < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ComplexPattern (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `concatenated_string` ([`ConcatenatedString`]), otherwise returns `None`"] # [inline] pub fn as_concatenated_string (self) -> :: std :: option :: Option < ConcatenatedString < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ConcatenatedString (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `dict_pattern` ([`DictPattern`]), otherwise returns `None`"] # [inline] pub fn as_dict_pattern (self) -> :: std :: option :: Option < DictPattern < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: DictPattern (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `dotted_name` ([`DottedName`]), otherwise returns `None`"] # [inline] pub fn as_dotted_name (self) -> :: std :: option :: Option < DottedName < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: DottedName (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `false` ([`False`]), otherwise returns `None`"] # [inline] pub fn as_false (self) -> :: std :: option :: Option < False < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: False (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `float` ([`Float`]), otherwise returns `None`"] # [inline] pub fn as_float (self) -> :: std :: option :: Option < Float < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Float (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `integer` ([`Integer`]), otherwise returns `None`"] # [inline] pub fn as_integer (self) -> :: std :: option :: Option < Integer < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Integer (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `list_pattern` ([`ListPattern`]), otherwise returns `None`"] # [inline] pub fn as_list_pattern (self) -> :: std :: option :: Option < ListPattern < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ListPattern (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `none` ([`None`]), otherwise returns `None`"] # [inline] pub fn as_none (self) -> :: std :: option :: Option < None < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: None (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `splat_pattern` ([`SplatPattern`]), otherwise returns `None`"] # [inline] pub fn as_splat_pattern (self) -> :: std :: option :: Option < SplatPattern < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: SplatPattern (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `string` ([`String`]), otherwise returns `None`"] # [inline] pub fn as_string (self) -> :: std :: option :: Option < String < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: String (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `true` ([`True`]), otherwise returns `None`"] # [inline] pub fn as_true (self) -> :: std :: option :: Option < True < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: True (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `tuple_pattern` ([`TuplePattern`]), otherwise returns `None`"] # [inline] pub fn as_tuple_pattern (self) -> :: std :: option :: Option < TuplePattern < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: TuplePattern (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `union_pattern` ([`UnionPattern`]), otherwise returns `None`"] # [inline] pub fn as_union_pattern (self) -> :: std :: option :: Option < UnionPattern < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: UnionPattern (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } }
-    #[automatically_derived]
-    impl < 'tree > :: type_sitter :: Node < 'tree > for ClassPattern_ComplexPattern_ConcatenatedString_DictPattern_DottedName_False_Float_Integer_ListPattern_None_SplatPattern_String_True_TuplePattern_UnionPattern < 'tree > { type WithLifetime < 'a > = ClassPattern_ComplexPattern_ConcatenatedString_DictPattern_DottedName_False_Float_Integer_ListPattern_None_SplatPattern_String_True_TuplePattern_UnionPattern < 'a > ; const KIND : & 'static str = "{class_pattern | complex_pattern | concatenated_string | dict_pattern | dotted_name | false | float | integer | list_pattern | none | splat_pattern | string | true | tuple_pattern | union_pattern}" ; # [inline] fn try_from_raw (node : :: type_sitter :: raw :: Node < 'tree >) -> :: type_sitter :: NodeResult < 'tree , Self > { match node . kind () { "class_pattern" => Ok (unsafe { Self :: ClassPattern (< ClassPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "complex_pattern" => Ok (unsafe { Self :: ComplexPattern (< ComplexPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "concatenated_string" => Ok (unsafe { Self :: ConcatenatedString (< ConcatenatedString < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "dict_pattern" => Ok (unsafe { Self :: DictPattern (< DictPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "dotted_name" => Ok (unsafe { Self :: DottedName (< DottedName < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "false" => Ok (unsafe { Self :: False (< False < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "float" => Ok (unsafe { Self :: Float (< Float < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "integer" => Ok (unsafe { Self :: Integer (< Integer < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "list_pattern" => Ok (unsafe { Self :: ListPattern (< ListPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "none" => Ok (unsafe { Self :: None (< None < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "splat_pattern" => Ok (unsafe { Self :: SplatPattern (< SplatPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "string" => Ok (unsafe { Self :: String (< String < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "true" => Ok (unsafe { Self :: True (< True < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "tuple_pattern" => Ok (unsafe { Self :: TuplePattern (< TuplePattern < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "union_pattern" => Ok (unsafe { Self :: UnionPattern (< UnionPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , _ => Err (:: type_sitter :: IncorrectKind :: new :: < Self > (node)) } } # [inline] fn raw (& self) -> & :: type_sitter :: raw :: Node < 'tree > { match self { Self :: ClassPattern (x) => :: type_sitter :: Node :: raw (x) , Self :: ComplexPattern (x) => :: type_sitter :: Node :: raw (x) , Self :: ConcatenatedString (x) => :: type_sitter :: Node :: raw (x) , Self :: DictPattern (x) => :: type_sitter :: Node :: raw (x) , Self :: DottedName (x) => :: type_sitter :: Node :: raw (x) , Self :: False (x) => :: type_sitter :: Node :: raw (x) , Self :: Float (x) => :: type_sitter :: Node :: raw (x) , Self :: Integer (x) => :: type_sitter :: Node :: raw (x) , Self :: ListPattern (x) => :: type_sitter :: Node :: raw (x) , Self :: None (x) => :: type_sitter :: Node :: raw (x) , Self :: SplatPattern (x) => :: type_sitter :: Node :: raw (x) , Self :: String (x) => :: type_sitter :: Node :: raw (x) , Self :: True (x) => :: type_sitter :: Node :: raw (x) , Self :: TuplePattern (x) => :: type_sitter :: Node :: raw (x) , Self :: UnionPattern (x) => :: type_sitter :: Node :: raw (x) , } } # [inline] fn raw_mut (& mut self) -> & mut :: type_sitter :: raw :: Node < 'tree > { match self { Self :: ClassPattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: ComplexPattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: ConcatenatedString (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: DictPattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: DottedName (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: False (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: Float (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: Integer (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: ListPattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: None (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: SplatPattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: String (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: True (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: TuplePattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: UnionPattern (x) => :: type_sitter :: Node :: raw_mut (x) , } } # [inline] fn into_raw (self) -> :: type_sitter :: raw :: Node < 'tree > { match self { Self :: ClassPattern (x) => x . into_raw () , Self :: ComplexPattern (x) => x . into_raw () , Self :: ConcatenatedString (x) => x . into_raw () , Self :: DictPattern (x) => x . into_raw () , Self :: DottedName (x) => x . into_raw () , Self :: False (x) => x . into_raw () , Self :: Float (x) => x . into_raw () , Self :: Integer (x) => x . into_raw () , Self :: ListPattern (x) => x . into_raw () , Self :: None (x) => x . into_raw () , Self :: SplatPattern (x) => x . into_raw () , Self :: String (x) => x . into_raw () , Self :: True (x) => x . into_raw () , Self :: TuplePattern (x) => x . into_raw () , Self :: UnionPattern (x) => x . into_raw () , } } }
     #[doc = "One of `{, | expression}`:\n- [`symbols::Comma`]\n- [`Expression`]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
@@ -19257,33 +20627,4 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "One of `{- | _ | class_pattern | complex_pattern | concatenated_string | dict_pattern | dotted_name | false | float | integer | list_pattern | none | splat_pattern | string | true | tuple_pattern | union_pattern}`:\n- [`symbols::Sub`]\n- [`symbols::__`]\n- [`ClassPattern`]\n- [`ComplexPattern`]\n- [`ConcatenatedString`]\n- [`DictPattern`]\n- [`DottedName`]\n- [`False`]\n- [`Float`]\n- [`Integer`]\n- [`ListPattern`]\n- [`None`]\n- [`SplatPattern`]\n- [`String`]\n- [`True`]\n- [`TuplePattern`]\n- [`UnionPattern`]"]
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[allow(non_camel_case_types)]
-    pub enum Sub____ClassPattern_ComplexPattern_ConcatenatedString_DictPattern_DottedName_False_Float_Integer_ListPattern_None_SplatPattern_String_True_TuplePattern_UnionPattern<
-        'tree,
-    > {
-        Sub(symbols::Sub<'tree>),
-        __(symbols::__<'tree>),
-        ClassPattern(ClassPattern<'tree>),
-        ComplexPattern(ComplexPattern<'tree>),
-        ConcatenatedString(ConcatenatedString<'tree>),
-        DictPattern(DictPattern<'tree>),
-        DottedName(DottedName<'tree>),
-        False(False<'tree>),
-        Float(Float<'tree>),
-        Integer(Integer<'tree>),
-        ListPattern(ListPattern<'tree>),
-        None(None<'tree>),
-        SplatPattern(SplatPattern<'tree>),
-        String(String<'tree>),
-        True(True<'tree>),
-        TuplePattern(TuplePattern<'tree>),
-        UnionPattern(UnionPattern<'tree>),
-    }
-    #[automatically_derived]
-    #[allow(unused)]
-    impl < 'tree > Sub____ClassPattern_ComplexPattern_ConcatenatedString_DictPattern_DottedName_False_Float_Integer_ListPattern_None_SplatPattern_String_True_TuplePattern_UnionPattern < 'tree > { # [doc = "Returns the node if it is of type `-` ([`symbols::Sub`]), otherwise returns `None`"] # [inline] pub fn as_sub (self) -> :: std :: option :: Option < symbols :: Sub < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Sub (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `_` ([`symbols::__`]), otherwise returns `None`"] # [inline] pub fn as___ (self) -> :: std :: option :: Option < symbols :: __ < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: __ (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `class_pattern` ([`ClassPattern`]), otherwise returns `None`"] # [inline] pub fn as_class_pattern (self) -> :: std :: option :: Option < ClassPattern < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ClassPattern (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `complex_pattern` ([`ComplexPattern`]), otherwise returns `None`"] # [inline] pub fn as_complex_pattern (self) -> :: std :: option :: Option < ComplexPattern < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ComplexPattern (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `concatenated_string` ([`ConcatenatedString`]), otherwise returns `None`"] # [inline] pub fn as_concatenated_string (self) -> :: std :: option :: Option < ConcatenatedString < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ConcatenatedString (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `dict_pattern` ([`DictPattern`]), otherwise returns `None`"] # [inline] pub fn as_dict_pattern (self) -> :: std :: option :: Option < DictPattern < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: DictPattern (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `dotted_name` ([`DottedName`]), otherwise returns `None`"] # [inline] pub fn as_dotted_name (self) -> :: std :: option :: Option < DottedName < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: DottedName (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `false` ([`False`]), otherwise returns `None`"] # [inline] pub fn as_false (self) -> :: std :: option :: Option < False < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: False (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `float` ([`Float`]), otherwise returns `None`"] # [inline] pub fn as_float (self) -> :: std :: option :: Option < Float < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Float (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `integer` ([`Integer`]), otherwise returns `None`"] # [inline] pub fn as_integer (self) -> :: std :: option :: Option < Integer < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: Integer (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `list_pattern` ([`ListPattern`]), otherwise returns `None`"] # [inline] pub fn as_list_pattern (self) -> :: std :: option :: Option < ListPattern < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ListPattern (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `none` ([`None`]), otherwise returns `None`"] # [inline] pub fn as_none (self) -> :: std :: option :: Option < None < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: None (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `splat_pattern` ([`SplatPattern`]), otherwise returns `None`"] # [inline] pub fn as_splat_pattern (self) -> :: std :: option :: Option < SplatPattern < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: SplatPattern (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `string` ([`String`]), otherwise returns `None`"] # [inline] pub fn as_string (self) -> :: std :: option :: Option < String < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: String (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `true` ([`True`]), otherwise returns `None`"] # [inline] pub fn as_true (self) -> :: std :: option :: Option < True < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: True (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `tuple_pattern` ([`TuplePattern`]), otherwise returns `None`"] # [inline] pub fn as_tuple_pattern (self) -> :: std :: option :: Option < TuplePattern < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: TuplePattern (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `union_pattern` ([`UnionPattern`]), otherwise returns `None`"] # [inline] pub fn as_union_pattern (self) -> :: std :: option :: Option < UnionPattern < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: UnionPattern (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } }
-    #[automatically_derived]
-    impl < 'tree > :: type_sitter :: Node < 'tree > for Sub____ClassPattern_ComplexPattern_ConcatenatedString_DictPattern_DottedName_False_Float_Integer_ListPattern_None_SplatPattern_String_True_TuplePattern_UnionPattern < 'tree > { type WithLifetime < 'a > = Sub____ClassPattern_ComplexPattern_ConcatenatedString_DictPattern_DottedName_False_Float_Integer_ListPattern_None_SplatPattern_String_True_TuplePattern_UnionPattern < 'a > ; const KIND : & 'static str = "{- | _ | class_pattern | complex_pattern | concatenated_string | dict_pattern | dotted_name | false | float | integer | list_pattern | none | splat_pattern | string | true | tuple_pattern | union_pattern}" ; # [inline] fn try_from_raw (node : :: type_sitter :: raw :: Node < 'tree >) -> :: type_sitter :: NodeResult < 'tree , Self > { match node . kind () { "-" => Ok (unsafe { Self :: Sub (< symbols :: Sub < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "_" => Ok (unsafe { Self :: __ (< symbols :: __ < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "class_pattern" => Ok (unsafe { Self :: ClassPattern (< ClassPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "complex_pattern" => Ok (unsafe { Self :: ComplexPattern (< ComplexPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "concatenated_string" => Ok (unsafe { Self :: ConcatenatedString (< ConcatenatedString < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "dict_pattern" => Ok (unsafe { Self :: DictPattern (< DictPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "dotted_name" => Ok (unsafe { Self :: DottedName (< DottedName < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "false" => Ok (unsafe { Self :: False (< False < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "float" => Ok (unsafe { Self :: Float (< Float < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "integer" => Ok (unsafe { Self :: Integer (< Integer < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "list_pattern" => Ok (unsafe { Self :: ListPattern (< ListPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "none" => Ok (unsafe { Self :: None (< None < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "splat_pattern" => Ok (unsafe { Self :: SplatPattern (< SplatPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "string" => Ok (unsafe { Self :: String (< String < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "true" => Ok (unsafe { Self :: True (< True < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "tuple_pattern" => Ok (unsafe { Self :: TuplePattern (< TuplePattern < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "union_pattern" => Ok (unsafe { Self :: UnionPattern (< UnionPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , _ => Err (:: type_sitter :: IncorrectKind :: new :: < Self > (node)) } } # [inline] fn raw (& self) -> & :: type_sitter :: raw :: Node < 'tree > { match self { Self :: Sub (x) => :: type_sitter :: Node :: raw (x) , Self :: __ (x) => :: type_sitter :: Node :: raw (x) , Self :: ClassPattern (x) => :: type_sitter :: Node :: raw (x) , Self :: ComplexPattern (x) => :: type_sitter :: Node :: raw (x) , Self :: ConcatenatedString (x) => :: type_sitter :: Node :: raw (x) , Self :: DictPattern (x) => :: type_sitter :: Node :: raw (x) , Self :: DottedName (x) => :: type_sitter :: Node :: raw (x) , Self :: False (x) => :: type_sitter :: Node :: raw (x) , Self :: Float (x) => :: type_sitter :: Node :: raw (x) , Self :: Integer (x) => :: type_sitter :: Node :: raw (x) , Self :: ListPattern (x) => :: type_sitter :: Node :: raw (x) , Self :: None (x) => :: type_sitter :: Node :: raw (x) , Self :: SplatPattern (x) => :: type_sitter :: Node :: raw (x) , Self :: String (x) => :: type_sitter :: Node :: raw (x) , Self :: True (x) => :: type_sitter :: Node :: raw (x) , Self :: TuplePattern (x) => :: type_sitter :: Node :: raw (x) , Self :: UnionPattern (x) => :: type_sitter :: Node :: raw (x) , } } # [inline] fn raw_mut (& mut self) -> & mut :: type_sitter :: raw :: Node < 'tree > { match self { Self :: Sub (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: __ (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: ClassPattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: ComplexPattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: ConcatenatedString (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: DictPattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: DottedName (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: False (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: Float (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: Integer (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: ListPattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: None (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: SplatPattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: String (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: True (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: TuplePattern (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: UnionPattern (x) => :: type_sitter :: Node :: raw_mut (x) , } } # [inline] fn into_raw (self) -> :: type_sitter :: raw :: Node < 'tree > { match self { Self :: Sub (x) => x . into_raw () , Self :: __ (x) => x . into_raw () , Self :: ClassPattern (x) => x . into_raw () , Self :: ComplexPattern (x) => x . into_raw () , Self :: ConcatenatedString (x) => x . into_raw () , Self :: DictPattern (x) => x . into_raw () , Self :: DottedName (x) => x . into_raw () , Self :: False (x) => x . into_raw () , Self :: Float (x) => x . into_raw () , Self :: Integer (x) => x . into_raw () , Self :: ListPattern (x) => x . into_raw () , Self :: None (x) => x . into_raw () , Self :: SplatPattern (x) => x . into_raw () , Self :: String (x) => x . into_raw () , Self :: True (x) => x . into_raw () , Self :: TuplePattern (x) => x . into_raw () , Self :: UnionPattern (x) => x . into_raw () , } } }
 }

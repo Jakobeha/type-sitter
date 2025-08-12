@@ -4,7 +4,6 @@ use crate::{NodeName, NodeRustNames};
 use serde::Deserialize;
 use std::borrow::{Borrow, Cow};
 use std::collections::{BTreeMap, BTreeSet};
-use std::fmt::Display;
 use std::ops::{BitOrAssign, Index};
 use std::path::{Path, PathBuf};
 
@@ -368,7 +367,7 @@ impl NodeType {
 
     pub fn anon_union_type_name<'a>(
         types: impl IntoIterator<Item = &'a NodeType, IntoIter: 'a>,
-    ) -> impl Display + 'a {
+    ) -> String {
         NodeRustNames::anon_union_type_name(types.into_iter().map(|t| &t.rust_names))
     }
 

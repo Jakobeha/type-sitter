@@ -1399,14 +1399,12 @@ This child has type `{call_expression | field_expression | identifier | parenthe
         &self,
     ) -> ::type_sitter_lib::NodeResult<
         'tree,
-        anon_unions::CallExpression_FieldExpression_Identifier_ParenthesizedExpression_PointerExpression_SubscriptExpression<
-            'tree,
-        >,
+        anon_unions::Anon322931898689134390255042975415799117413<'tree>,
     > {
         ::type_sitter_lib::Node::raw(self)
             .child_by_field_name("left")
             .map(
-                <anon_unions::CallExpression_FieldExpression_Identifier_ParenthesizedExpression_PointerExpression_SubscriptExpression<
+                <anon_unions::Anon322931898689134390255042975415799117413<
                     'tree,
                 > as ::type_sitter_lib::Node<'tree>>::try_from_raw,
             )
@@ -2216,9 +2214,7 @@ These children have type `{attributed_statement | break_statement | compound_sta
     ) -> impl ::std::iter::Iterator<
         Item = ::type_sitter_lib::NodeResult<
             'tree,
-            anon_unions::AttributedStatement_BreakStatement_CompoundStatement_ContinueStatement_Declaration_DoStatement_ExpressionStatement_ForStatement_GotoStatement_IfStatement_LabeledStatement_ReturnStatement_SehLeaveStatement_SehTryStatement_SwitchStatement_TypeDefinition_WhileStatement<
-                'tree,
-            >,
+            anon_unions::Anon183278624942340581816410858871243798377<'tree>,
         >,
     > + 'a {
         {
@@ -2232,7 +2228,7 @@ These children have type `{attributed_statement | break_statement | compound_sta
                 .map(|(_, n)| n)
         }
             .map(
-                <anon_unions::AttributedStatement_BreakStatement_CompoundStatement_ContinueStatement_Declaration_DoStatement_ExpressionStatement_ForStatement_GotoStatement_IfStatement_LabeledStatement_ReturnStatement_SehLeaveStatement_SehTryStatement_SwitchStatement_TypeDefinition_WhileStatement<
+                <anon_unions::Anon183278624942340581816410858871243798377<
                     'tree,
                 > as ::type_sitter_lib::Node<'tree>>::try_from_raw,
             )
@@ -2662,9 +2658,7 @@ pub struct CompoundStatement<'tree>(::yak_sitter::Node<'tree>);
 impl<'tree> CompoundStatement<'tree> {}
 #[automatically_derived]
 impl<'tree> ::type_sitter_lib::HasChildren<'tree> for CompoundStatement<'tree> {
-    type Child = anon_unions::Declaration_FunctionDefinition_LinkageSpecification_PreprocCall_PreprocDef_PreprocFunctionDef_PreprocIf_PreprocIfdef_PreprocInclude_Statement_TypeDefinition_TypeSpecifier<
-        'tree,
-    >;
+    type Child = anon_unions::Anon320125311414366363403436071030129454385<'tree>;
 }
 #[automatically_derived]
 impl<'tree> ::type_sitter_lib::Node<'tree> for CompoundStatement<'tree> {
@@ -2937,15 +2931,13 @@ This is guaranteed to return at least one child.*/
     ) -> impl ::std::iter::Iterator<
         Item = ::type_sitter_lib::NodeResult<
             'tree,
-            anon_unions::ArrayDeclarator_AttributedDeclarator_FunctionDeclarator_GnuAsmExpression_Identifier_InitDeclarator_MsCallModifier_ParenthesizedDeclarator_PointerDeclarator<
-                'tree,
-            >,
+            anon_unions::Anon31709460568964487651942532477213173337<'tree>,
         >,
     > + 'a {
         ::type_sitter_lib::Node::raw(self)
             .children_by_field_name("declarator", &mut c.0)
             .map(
-                <anon_unions::ArrayDeclarator_AttributedDeclarator_FunctionDeclarator_GnuAsmExpression_Identifier_InitDeclarator_MsCallModifier_ParenthesizedDeclarator_PointerDeclarator<
+                <anon_unions::Anon31709460568964487651942532477213173337<
                     'tree,
                 > as ::type_sitter_lib::Node<'tree>>::try_from_raw,
             )
@@ -3060,9 +3052,7 @@ pub struct DeclarationList<'tree>(::yak_sitter::Node<'tree>);
 impl<'tree> DeclarationList<'tree> {}
 #[automatically_derived]
 impl<'tree> ::type_sitter_lib::HasChildren<'tree> for DeclarationList<'tree> {
-    type Child = anon_unions::Declaration_FunctionDefinition_LinkageSpecification_PreprocCall_PreprocDef_PreprocFunctionDef_PreprocIf_PreprocIfdef_PreprocInclude_Statement_TypeDefinition_TypeSpecifier<
-        'tree,
-    >;
+    type Child = anon_unions::Anon320125311414366363403436071030129454385<'tree>;
 }
 #[automatically_derived]
 impl<'tree> ::type_sitter_lib::Node<'tree> for DeclarationList<'tree> {
@@ -4429,9 +4419,7 @@ These children have type `{attribute_declaration | attribute_specifier | bitfiel
     ) -> impl ::std::iter::Iterator<
         Item = ::type_sitter_lib::NodeResult<
             'tree,
-            anon_unions::AttributeDeclaration_AttributeSpecifier_BitfieldClause_MsDeclspecModifier_StorageClassSpecifier_TypeQualifier<
-                'tree,
-            >,
+            anon_unions::Anon60801783647056412391192139585218646527<'tree>,
         >,
     > + 'a {
         {
@@ -4445,7 +4433,7 @@ These children have type `{attribute_declaration | attribute_specifier | bitfiel
                 .map(|(_, n)| n)
         }
             .map(
-                <anon_unions::AttributeDeclaration_AttributeSpecifier_BitfieldClause_MsDeclspecModifier_StorageClassSpecifier_TypeQualifier<
+                <anon_unions::Anon60801783647056412391192139585218646527<
                     'tree,
                 > as ::type_sitter_lib::Node<'tree>>::try_from_raw,
             )
@@ -5098,9 +5086,7 @@ These children have type `{attribute_declaration | attribute_specifier | declara
     ) -> impl ::std::iter::Iterator<
         Item = ::type_sitter_lib::NodeResult<
             'tree,
-            anon_unions::AttributeDeclaration_AttributeSpecifier_Declaration_MsCallModifier_MsDeclspecModifier_StorageClassSpecifier_TypeQualifier<
-                'tree,
-            >,
+            anon_unions::Anon267732478745780035329928636158259030098<'tree>,
         >,
     > + 'a {
         {
@@ -5114,7 +5100,7 @@ These children have type `{attribute_declaration | attribute_specifier | declara
                 .map(|(_, n)| n)
         }
             .map(
-                <anon_unions::AttributeDeclaration_AttributeSpecifier_Declaration_MsCallModifier_MsDeclspecModifier_StorageClassSpecifier_TypeQualifier<
+                <anon_unions::Anon267732478745780035329928636158259030098<
                     'tree,
                 > as ::type_sitter_lib::Node<'tree>>::try_from_raw,
             )
@@ -7947,14 +7933,12 @@ This child has type `{binary_expression | call_expression | char_literal | ident
         &self,
     ) -> ::type_sitter_lib::NodeResult<
         'tree,
-        anon_unions::BinaryExpression_CallExpression_CharLiteral_Identifier_NumberLiteral_ParenthesizedExpression_PreprocDefined_UnaryExpression<
-            'tree,
-        >,
+        anon_unions::Anon252313443193347449155203865256745180226<'tree>,
     > {
         ::type_sitter_lib::Node::raw(self)
             .child_by_field_name("condition")
             .map(
-                <anon_unions::BinaryExpression_CallExpression_CharLiteral_Identifier_NumberLiteral_ParenthesizedExpression_PreprocDefined_UnaryExpression<
+                <anon_unions::Anon252313443193347449155203865256745180226<
                     'tree,
                 > as ::type_sitter_lib::Node<'tree>>::try_from_raw,
             )
@@ -7988,9 +7972,7 @@ These children have type `{declaration | enumerator | field_declaration | functi
     ) -> impl ::std::iter::Iterator<
         Item = ::type_sitter_lib::NodeResult<
             'tree,
-            anon_unions::Declaration_Enumerator_FieldDeclaration_FunctionDefinition_LinkageSpecification_PreprocCall_PreprocDef_PreprocFunctionDef_PreprocIf_PreprocIfdef_PreprocInclude_Statement_TypeDefinition_TypeSpecifier<
-                'tree,
-            >,
+            anon_unions::Anon64011665969386147009847441607881057992<'tree>,
         >,
     > + 'a {
         {
@@ -8004,7 +7986,7 @@ These children have type `{declaration | enumerator | field_declaration | functi
                 .map(|(_, n)| n)
         }
             .map(
-                <anon_unions::Declaration_Enumerator_FieldDeclaration_FunctionDefinition_LinkageSpecification_PreprocCall_PreprocDef_PreprocFunctionDef_PreprocIf_PreprocIfdef_PreprocInclude_Statement_TypeDefinition_TypeSpecifier<
+                <anon_unions::Anon64011665969386147009847441607881057992<
                     'tree,
                 > as ::type_sitter_lib::Node<'tree>>::try_from_raw,
             )
@@ -8137,9 +8119,7 @@ These children have type `{declaration | enumerator | field_declaration | functi
     ) -> impl ::std::iter::Iterator<
         Item = ::type_sitter_lib::NodeResult<
             'tree,
-            anon_unions::Declaration_Enumerator_FieldDeclaration_FunctionDefinition_LinkageSpecification_PreprocCall_PreprocDef_PreprocFunctionDef_PreprocIf_PreprocIfdef_PreprocInclude_Statement_TypeDefinition_TypeSpecifier<
-                'tree,
-            >,
+            anon_unions::Anon64011665969386147009847441607881057992<'tree>,
         >,
     > + 'a {
         {
@@ -8153,7 +8133,7 @@ These children have type `{declaration | enumerator | field_declaration | functi
                 .map(|(_, n)| n)
         }
             .map(
-                <anon_unions::Declaration_Enumerator_FieldDeclaration_FunctionDefinition_LinkageSpecification_PreprocCall_PreprocDef_PreprocFunctionDef_PreprocIf_PreprocIfdef_PreprocInclude_Statement_TypeDefinition_TypeSpecifier<
+                <anon_unions::Anon64011665969386147009847441607881057992<
                     'tree,
                 > as ::type_sitter_lib::Node<'tree>>::try_from_raw,
             )
@@ -8220,9 +8200,7 @@ pub struct PreprocElse<'tree>(::yak_sitter::Node<'tree>);
 impl<'tree> PreprocElse<'tree> {}
 #[automatically_derived]
 impl<'tree> ::type_sitter_lib::HasChildren<'tree> for PreprocElse<'tree> {
-    type Child = anon_unions::Declaration_Enumerator_FieldDeclaration_FunctionDefinition_LinkageSpecification_PreprocCall_PreprocDef_PreprocFunctionDef_PreprocIf_PreprocIfdef_PreprocInclude_Statement_TypeDefinition_TypeSpecifier<
-        'tree,
-    >;
+    type Child = anon_unions::Anon64011665969386147009847441607881057992<'tree>;
 }
 #[automatically_derived]
 impl<'tree> ::type_sitter_lib::Node<'tree> for PreprocElse<'tree> {
@@ -8416,14 +8394,12 @@ This child has type `{binary_expression | call_expression | char_literal | ident
         &self,
     ) -> ::type_sitter_lib::NodeResult<
         'tree,
-        anon_unions::BinaryExpression_CallExpression_CharLiteral_Identifier_NumberLiteral_ParenthesizedExpression_PreprocDefined_UnaryExpression<
-            'tree,
-        >,
+        anon_unions::Anon252313443193347449155203865256745180226<'tree>,
     > {
         ::type_sitter_lib::Node::raw(self)
             .child_by_field_name("condition")
             .map(
-                <anon_unions::BinaryExpression_CallExpression_CharLiteral_Identifier_NumberLiteral_ParenthesizedExpression_PreprocDefined_UnaryExpression<
+                <anon_unions::Anon252313443193347449155203865256745180226<
                     'tree,
                 > as ::type_sitter_lib::Node<'tree>>::try_from_raw,
             )
@@ -8457,9 +8433,7 @@ These children have type `{declaration | enumerator | field_declaration | functi
     ) -> impl ::std::iter::Iterator<
         Item = ::type_sitter_lib::NodeResult<
             'tree,
-            anon_unions::Declaration_Enumerator_FieldDeclaration_FunctionDefinition_LinkageSpecification_PreprocCall_PreprocDef_PreprocFunctionDef_PreprocIf_PreprocIfdef_PreprocInclude_Statement_TypeDefinition_TypeSpecifier<
-                'tree,
-            >,
+            anon_unions::Anon64011665969386147009847441607881057992<'tree>,
         >,
     > + 'a {
         {
@@ -8473,7 +8447,7 @@ These children have type `{declaration | enumerator | field_declaration | functi
                 .map(|(_, n)| n)
         }
             .map(
-                <anon_unions::Declaration_Enumerator_FieldDeclaration_FunctionDefinition_LinkageSpecification_PreprocCall_PreprocDef_PreprocFunctionDef_PreprocIf_PreprocIfdef_PreprocInclude_Statement_TypeDefinition_TypeSpecifier<
+                <anon_unions::Anon64011665969386147009847441607881057992<
                     'tree,
                 > as ::type_sitter_lib::Node<'tree>>::try_from_raw,
             )
@@ -8606,9 +8580,7 @@ These children have type `{declaration | enumerator | field_declaration | functi
     ) -> impl ::std::iter::Iterator<
         Item = ::type_sitter_lib::NodeResult<
             'tree,
-            anon_unions::Declaration_Enumerator_FieldDeclaration_FunctionDefinition_LinkageSpecification_PreprocCall_PreprocDef_PreprocFunctionDef_PreprocIf_PreprocIfdef_PreprocInclude_Statement_TypeDefinition_TypeSpecifier<
-                'tree,
-            >,
+            anon_unions::Anon64011665969386147009847441607881057992<'tree>,
         >,
     > + 'a {
         {
@@ -8622,7 +8594,7 @@ These children have type `{declaration | enumerator | field_declaration | functi
                 .map(|(_, n)| n)
         }
             .map(
-                <anon_unions::Declaration_Enumerator_FieldDeclaration_FunctionDefinition_LinkageSpecification_PreprocCall_PreprocDef_PreprocFunctionDef_PreprocIf_PreprocIfdef_PreprocInclude_Statement_TypeDefinition_TypeSpecifier<
+                <anon_unions::Anon64011665969386147009847441607881057992<
                     'tree,
                 > as ::type_sitter_lib::Node<'tree>>::try_from_raw,
             )
@@ -10448,9 +10420,7 @@ pub struct TranslationUnit<'tree>(::yak_sitter::Node<'tree>);
 impl<'tree> TranslationUnit<'tree> {}
 #[automatically_derived]
 impl<'tree> ::type_sitter_lib::HasChildren<'tree> for TranslationUnit<'tree> {
-    type Child = anon_unions::AttributedStatement_BreakStatement_CaseStatement_CompoundStatement_ContinueStatement_Declaration_DoStatement_ExpressionStatement_ForStatement_FunctionDefinition_GotoStatement_IfStatement_LabeledStatement_LinkageSpecification_PreprocCall_PreprocDef_PreprocFunctionDef_PreprocIf_PreprocIfdef_PreprocInclude_ReturnStatement_SwitchStatement_TypeDefinition_TypeSpecifier_WhileStatement<
-        'tree,
-    >;
+    type Child = anon_unions::Anon221528917966839016187242056758794219644<'tree>;
 }
 #[automatically_derived]
 impl<'tree> ::type_sitter_lib::Node<'tree> for TranslationUnit<'tree> {
@@ -18110,6 +18080,1756 @@ Follows the following chain:
             }
         }
     }
+    /**One of `{attributed_statement | break_statement | compound_statement | continue_statement | declaration | do_statement | expression_statement | for_statement | goto_statement | if_statement | labeled_statement | return_statement | seh_leave_statement | seh_try_statement | switch_statement | type_definition | while_statement}`:
+- [`AttributedStatement`]
+- [`BreakStatement`]
+- [`CompoundStatement`]
+- [`ContinueStatement`]
+- [`Declaration`]
+- [`DoStatement`]
+- [`ExpressionStatement`]
+- [`ForStatement`]
+- [`GotoStatement`]
+- [`IfStatement`]
+- [`LabeledStatement`]
+- [`ReturnStatement`]
+- [`SehLeaveStatement`]
+- [`SehTryStatement`]
+- [`SwitchStatement`]
+- [`TypeDefinition`]
+- [`WhileStatement`]*/
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub enum Anon183278624942340581816410858871243798377<'tree> {
+        AttributedStatement(AttributedStatement<'tree>),
+        BreakStatement(BreakStatement<'tree>),
+        CompoundStatement(CompoundStatement<'tree>),
+        ContinueStatement(ContinueStatement<'tree>),
+        Declaration(Declaration<'tree>),
+        DoStatement(DoStatement<'tree>),
+        ExpressionStatement(ExpressionStatement<'tree>),
+        ForStatement(ForStatement<'tree>),
+        GotoStatement(GotoStatement<'tree>),
+        IfStatement(IfStatement<'tree>),
+        LabeledStatement(LabeledStatement<'tree>),
+        ReturnStatement(ReturnStatement<'tree>),
+        SehLeaveStatement(SehLeaveStatement<'tree>),
+        SehTryStatement(SehTryStatement<'tree>),
+        SwitchStatement(SwitchStatement<'tree>),
+        TypeDefinition(TypeDefinition<'tree>),
+        WhileStatement(WhileStatement<'tree>),
+    }
+    #[automatically_derived]
+    #[allow(unused)]
+    impl<'tree> Anon183278624942340581816410858871243798377<'tree> {
+        ///Returns the node if it is of type `attributed_statement` ([`AttributedStatement`]), otherwise returns `None`
+        #[inline]
+        pub fn as_attributed_statement(
+            self,
+        ) -> ::std::option::Option<AttributedStatement<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::AttributedStatement(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `break_statement` ([`BreakStatement`]), otherwise returns `None`
+        #[inline]
+        pub fn as_break_statement(self) -> ::std::option::Option<BreakStatement<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::BreakStatement(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `compound_statement` ([`CompoundStatement`]), otherwise returns `None`
+        #[inline]
+        pub fn as_compound_statement(
+            self,
+        ) -> ::std::option::Option<CompoundStatement<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::CompoundStatement(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `continue_statement` ([`ContinueStatement`]), otherwise returns `None`
+        #[inline]
+        pub fn as_continue_statement(
+            self,
+        ) -> ::std::option::Option<ContinueStatement<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::ContinueStatement(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `declaration` ([`Declaration`]), otherwise returns `None`
+        #[inline]
+        pub fn as_declaration(self) -> ::std::option::Option<Declaration<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Declaration(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `do_statement` ([`DoStatement`]), otherwise returns `None`
+        #[inline]
+        pub fn as_do_statement(self) -> ::std::option::Option<DoStatement<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::DoStatement(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `expression_statement` ([`ExpressionStatement`]), otherwise returns `None`
+        #[inline]
+        pub fn as_expression_statement(
+            self,
+        ) -> ::std::option::Option<ExpressionStatement<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::ExpressionStatement(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `for_statement` ([`ForStatement`]), otherwise returns `None`
+        #[inline]
+        pub fn as_for_statement(self) -> ::std::option::Option<ForStatement<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::ForStatement(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `goto_statement` ([`GotoStatement`]), otherwise returns `None`
+        #[inline]
+        pub fn as_goto_statement(self) -> ::std::option::Option<GotoStatement<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::GotoStatement(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `if_statement` ([`IfStatement`]), otherwise returns `None`
+        #[inline]
+        pub fn as_if_statement(self) -> ::std::option::Option<IfStatement<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::IfStatement(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `labeled_statement` ([`LabeledStatement`]), otherwise returns `None`
+        #[inline]
+        pub fn as_labeled_statement(
+            self,
+        ) -> ::std::option::Option<LabeledStatement<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::LabeledStatement(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `return_statement` ([`ReturnStatement`]), otherwise returns `None`
+        #[inline]
+        pub fn as_return_statement(
+            self,
+        ) -> ::std::option::Option<ReturnStatement<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::ReturnStatement(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `seh_leave_statement` ([`SehLeaveStatement`]), otherwise returns `None`
+        #[inline]
+        pub fn as_seh_leave_statement(
+            self,
+        ) -> ::std::option::Option<SehLeaveStatement<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::SehLeaveStatement(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `seh_try_statement` ([`SehTryStatement`]), otherwise returns `None`
+        #[inline]
+        pub fn as_seh_try_statement(
+            self,
+        ) -> ::std::option::Option<SehTryStatement<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::SehTryStatement(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `switch_statement` ([`SwitchStatement`]), otherwise returns `None`
+        #[inline]
+        pub fn as_switch_statement(
+            self,
+        ) -> ::std::option::Option<SwitchStatement<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::SwitchStatement(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `type_definition` ([`TypeDefinition`]), otherwise returns `None`
+        #[inline]
+        pub fn as_type_definition(self) -> ::std::option::Option<TypeDefinition<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::TypeDefinition(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `while_statement` ([`WhileStatement`]), otherwise returns `None`
+        #[inline]
+        pub fn as_while_statement(self) -> ::std::option::Option<WhileStatement<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::WhileStatement(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> ::type_sitter_lib::Node<'tree>
+    for Anon183278624942340581816410858871243798377<'tree> {
+        type WithLifetime<'a> = Anon183278624942340581816410858871243798377<'a>;
+        const KIND: &'static str = "{attributed_statement | break_statement | compound_statement | continue_statement | declaration | do_statement | expression_statement | for_statement | goto_statement | if_statement | labeled_statement | return_statement | seh_leave_statement | seh_try_statement | switch_statement | type_definition | while_statement}";
+        #[inline]
+        fn try_from_raw(
+            node: ::yak_sitter::Node<'tree>,
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
+            match node.kind() {
+                "attributed_statement" => {
+                    Ok(unsafe {
+                        Self::AttributedStatement(
+                            <AttributedStatement<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "break_statement" => {
+                    Ok(unsafe {
+                        Self::BreakStatement(
+                            <BreakStatement<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "compound_statement" => {
+                    Ok(unsafe {
+                        Self::CompoundStatement(
+                            <CompoundStatement<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "continue_statement" => {
+                    Ok(unsafe {
+                        Self::ContinueStatement(
+                            <ContinueStatement<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "declaration" => {
+                    Ok(unsafe {
+                        Self::Declaration(
+                            <Declaration<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "do_statement" => {
+                    Ok(unsafe {
+                        Self::DoStatement(
+                            <DoStatement<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "expression_statement" => {
+                    Ok(unsafe {
+                        Self::ExpressionStatement(
+                            <ExpressionStatement<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "for_statement" => {
+                    Ok(unsafe {
+                        Self::ForStatement(
+                            <ForStatement<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "goto_statement" => {
+                    Ok(unsafe {
+                        Self::GotoStatement(
+                            <GotoStatement<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "if_statement" => {
+                    Ok(unsafe {
+                        Self::IfStatement(
+                            <IfStatement<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "labeled_statement" => {
+                    Ok(unsafe {
+                        Self::LabeledStatement(
+                            <LabeledStatement<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "return_statement" => {
+                    Ok(unsafe {
+                        Self::ReturnStatement(
+                            <ReturnStatement<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "seh_leave_statement" => {
+                    Ok(unsafe {
+                        Self::SehLeaveStatement(
+                            <SehLeaveStatement<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "seh_try_statement" => {
+                    Ok(unsafe {
+                        Self::SehTryStatement(
+                            <SehTryStatement<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "switch_statement" => {
+                    Ok(unsafe {
+                        Self::SwitchStatement(
+                            <SwitchStatement<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "type_definition" => {
+                    Ok(unsafe {
+                        Self::TypeDefinition(
+                            <TypeDefinition<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "while_statement" => {
+                    Ok(unsafe {
+                        Self::WhileStatement(
+                            <WhileStatement<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                _ => Err(::type_sitter_lib::IncorrectKind::new::<Self>(node)),
+            }
+        }
+        #[inline]
+        fn raw(&self) -> &::yak_sitter::Node<'tree> {
+            match self {
+                Self::AttributedStatement(x) => ::type_sitter_lib::Node::raw(x),
+                Self::BreakStatement(x) => ::type_sitter_lib::Node::raw(x),
+                Self::CompoundStatement(x) => ::type_sitter_lib::Node::raw(x),
+                Self::ContinueStatement(x) => ::type_sitter_lib::Node::raw(x),
+                Self::Declaration(x) => ::type_sitter_lib::Node::raw(x),
+                Self::DoStatement(x) => ::type_sitter_lib::Node::raw(x),
+                Self::ExpressionStatement(x) => ::type_sitter_lib::Node::raw(x),
+                Self::ForStatement(x) => ::type_sitter_lib::Node::raw(x),
+                Self::GotoStatement(x) => ::type_sitter_lib::Node::raw(x),
+                Self::IfStatement(x) => ::type_sitter_lib::Node::raw(x),
+                Self::LabeledStatement(x) => ::type_sitter_lib::Node::raw(x),
+                Self::ReturnStatement(x) => ::type_sitter_lib::Node::raw(x),
+                Self::SehLeaveStatement(x) => ::type_sitter_lib::Node::raw(x),
+                Self::SehTryStatement(x) => ::type_sitter_lib::Node::raw(x),
+                Self::SwitchStatement(x) => ::type_sitter_lib::Node::raw(x),
+                Self::TypeDefinition(x) => ::type_sitter_lib::Node::raw(x),
+                Self::WhileStatement(x) => ::type_sitter_lib::Node::raw(x),
+            }
+        }
+        #[inline]
+        fn raw_mut(&mut self) -> &mut ::yak_sitter::Node<'tree> {
+            match self {
+                Self::AttributedStatement(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::BreakStatement(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::CompoundStatement(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::ContinueStatement(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::Declaration(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::DoStatement(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::ExpressionStatement(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::ForStatement(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::GotoStatement(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::IfStatement(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::LabeledStatement(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::ReturnStatement(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::SehLeaveStatement(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::SehTryStatement(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::SwitchStatement(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::TypeDefinition(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::WhileStatement(x) => ::type_sitter_lib::Node::raw_mut(x),
+            }
+        }
+        #[inline]
+        fn into_raw(self) -> ::yak_sitter::Node<'tree> {
+            match self {
+                Self::AttributedStatement(x) => x.into_raw(),
+                Self::BreakStatement(x) => x.into_raw(),
+                Self::CompoundStatement(x) => x.into_raw(),
+                Self::ContinueStatement(x) => x.into_raw(),
+                Self::Declaration(x) => x.into_raw(),
+                Self::DoStatement(x) => x.into_raw(),
+                Self::ExpressionStatement(x) => x.into_raw(),
+                Self::ForStatement(x) => x.into_raw(),
+                Self::GotoStatement(x) => x.into_raw(),
+                Self::IfStatement(x) => x.into_raw(),
+                Self::LabeledStatement(x) => x.into_raw(),
+                Self::ReturnStatement(x) => x.into_raw(),
+                Self::SehLeaveStatement(x) => x.into_raw(),
+                Self::SehTryStatement(x) => x.into_raw(),
+                Self::SwitchStatement(x) => x.into_raw(),
+                Self::TypeDefinition(x) => x.into_raw(),
+                Self::WhileStatement(x) => x.into_raw(),
+            }
+        }
+    }
+    /**One of `{attributed_statement | break_statement | case_statement | compound_statement | continue_statement | declaration | do_statement | expression_statement | for_statement | function_definition | goto_statement | if_statement | labeled_statement | linkage_specification | preproc_call | preproc_def | preproc_function_def | preproc_if | preproc_ifdef | preproc_include | return_statement | switch_statement | type_definition | type_specifier | while_statement}`:
+- [`AttributedStatement`]
+- [`BreakStatement`]
+- [`CaseStatement`]
+- [`CompoundStatement`]
+- [`ContinueStatement`]
+- [`Declaration`]
+- [`DoStatement`]
+- [`ExpressionStatement`]
+- [`ForStatement`]
+- [`FunctionDefinition`]
+- [`GotoStatement`]
+- [`IfStatement`]
+- [`LabeledStatement`]
+- [`LinkageSpecification`]
+- [`PreprocCall`]
+- [`PreprocDef`]
+- [`PreprocFunctionDef`]
+- [`PreprocIf`]
+- [`PreprocIfdef`]
+- [`PreprocInclude`]
+- [`ReturnStatement`]
+- [`SwitchStatement`]
+- [`TypeDefinition`]
+- [`TypeSpecifier`]
+- [`WhileStatement`]*/
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub enum Anon221528917966839016187242056758794219644<'tree> {
+        AttributedStatement(AttributedStatement<'tree>),
+        BreakStatement(BreakStatement<'tree>),
+        CaseStatement(CaseStatement<'tree>),
+        CompoundStatement(CompoundStatement<'tree>),
+        ContinueStatement(ContinueStatement<'tree>),
+        Declaration(Declaration<'tree>),
+        DoStatement(DoStatement<'tree>),
+        ExpressionStatement(ExpressionStatement<'tree>),
+        ForStatement(ForStatement<'tree>),
+        FunctionDefinition(FunctionDefinition<'tree>),
+        GotoStatement(GotoStatement<'tree>),
+        IfStatement(IfStatement<'tree>),
+        LabeledStatement(LabeledStatement<'tree>),
+        LinkageSpecification(LinkageSpecification<'tree>),
+        PreprocCall(PreprocCall<'tree>),
+        PreprocDef(PreprocDef<'tree>),
+        PreprocFunctionDef(PreprocFunctionDef<'tree>),
+        PreprocIf(PreprocIf<'tree>),
+        PreprocIfdef(PreprocIfdef<'tree>),
+        PreprocInclude(PreprocInclude<'tree>),
+        ReturnStatement(ReturnStatement<'tree>),
+        SwitchStatement(SwitchStatement<'tree>),
+        TypeDefinition(TypeDefinition<'tree>),
+        TypeSpecifier(TypeSpecifier<'tree>),
+        WhileStatement(WhileStatement<'tree>),
+    }
+    #[automatically_derived]
+    #[allow(unused)]
+    impl<'tree> Anon221528917966839016187242056758794219644<'tree> {
+        ///Returns the node if it is of type `attributed_statement` ([`AttributedStatement`]), otherwise returns `None`
+        #[inline]
+        pub fn as_attributed_statement(
+            self,
+        ) -> ::std::option::Option<AttributedStatement<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::AttributedStatement(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `break_statement` ([`BreakStatement`]), otherwise returns `None`
+        #[inline]
+        pub fn as_break_statement(self) -> ::std::option::Option<BreakStatement<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::BreakStatement(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `case_statement` ([`CaseStatement`]), otherwise returns `None`
+        #[inline]
+        pub fn as_case_statement(self) -> ::std::option::Option<CaseStatement<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::CaseStatement(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `compound_statement` ([`CompoundStatement`]), otherwise returns `None`
+        #[inline]
+        pub fn as_compound_statement(
+            self,
+        ) -> ::std::option::Option<CompoundStatement<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::CompoundStatement(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `continue_statement` ([`ContinueStatement`]), otherwise returns `None`
+        #[inline]
+        pub fn as_continue_statement(
+            self,
+        ) -> ::std::option::Option<ContinueStatement<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::ContinueStatement(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `declaration` ([`Declaration`]), otherwise returns `None`
+        #[inline]
+        pub fn as_declaration(self) -> ::std::option::Option<Declaration<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Declaration(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `do_statement` ([`DoStatement`]), otherwise returns `None`
+        #[inline]
+        pub fn as_do_statement(self) -> ::std::option::Option<DoStatement<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::DoStatement(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `expression_statement` ([`ExpressionStatement`]), otherwise returns `None`
+        #[inline]
+        pub fn as_expression_statement(
+            self,
+        ) -> ::std::option::Option<ExpressionStatement<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::ExpressionStatement(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `for_statement` ([`ForStatement`]), otherwise returns `None`
+        #[inline]
+        pub fn as_for_statement(self) -> ::std::option::Option<ForStatement<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::ForStatement(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `function_definition` ([`FunctionDefinition`]), otherwise returns `None`
+        #[inline]
+        pub fn as_function_definition(
+            self,
+        ) -> ::std::option::Option<FunctionDefinition<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::FunctionDefinition(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `goto_statement` ([`GotoStatement`]), otherwise returns `None`
+        #[inline]
+        pub fn as_goto_statement(self) -> ::std::option::Option<GotoStatement<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::GotoStatement(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `if_statement` ([`IfStatement`]), otherwise returns `None`
+        #[inline]
+        pub fn as_if_statement(self) -> ::std::option::Option<IfStatement<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::IfStatement(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `labeled_statement` ([`LabeledStatement`]), otherwise returns `None`
+        #[inline]
+        pub fn as_labeled_statement(
+            self,
+        ) -> ::std::option::Option<LabeledStatement<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::LabeledStatement(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `linkage_specification` ([`LinkageSpecification`]), otherwise returns `None`
+        #[inline]
+        pub fn as_linkage_specification(
+            self,
+        ) -> ::std::option::Option<LinkageSpecification<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::LinkageSpecification(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `preproc_call` ([`PreprocCall`]), otherwise returns `None`
+        #[inline]
+        pub fn as_preproc_call(self) -> ::std::option::Option<PreprocCall<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::PreprocCall(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `preproc_def` ([`PreprocDef`]), otherwise returns `None`
+        #[inline]
+        pub fn as_preproc_def(self) -> ::std::option::Option<PreprocDef<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::PreprocDef(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `preproc_function_def` ([`PreprocFunctionDef`]), otherwise returns `None`
+        #[inline]
+        pub fn as_preproc_function_def(
+            self,
+        ) -> ::std::option::Option<PreprocFunctionDef<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::PreprocFunctionDef(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `preproc_if` ([`PreprocIf`]), otherwise returns `None`
+        #[inline]
+        pub fn as_preproc_if(self) -> ::std::option::Option<PreprocIf<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::PreprocIf(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `preproc_ifdef` ([`PreprocIfdef`]), otherwise returns `None`
+        #[inline]
+        pub fn as_preproc_ifdef(self) -> ::std::option::Option<PreprocIfdef<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::PreprocIfdef(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `preproc_include` ([`PreprocInclude`]), otherwise returns `None`
+        #[inline]
+        pub fn as_preproc_include(self) -> ::std::option::Option<PreprocInclude<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::PreprocInclude(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `return_statement` ([`ReturnStatement`]), otherwise returns `None`
+        #[inline]
+        pub fn as_return_statement(
+            self,
+        ) -> ::std::option::Option<ReturnStatement<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::ReturnStatement(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `switch_statement` ([`SwitchStatement`]), otherwise returns `None`
+        #[inline]
+        pub fn as_switch_statement(
+            self,
+        ) -> ::std::option::Option<SwitchStatement<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::SwitchStatement(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `type_definition` ([`TypeDefinition`]), otherwise returns `None`
+        #[inline]
+        pub fn as_type_definition(self) -> ::std::option::Option<TypeDefinition<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::TypeDefinition(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `type_specifier` ([`TypeSpecifier`]), otherwise returns `None`
+        #[inline]
+        pub fn as_type_specifier(self) -> ::std::option::Option<TypeSpecifier<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::TypeSpecifier(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `while_statement` ([`WhileStatement`]), otherwise returns `None`
+        #[inline]
+        pub fn as_while_statement(self) -> ::std::option::Option<WhileStatement<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::WhileStatement(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        /**Returns the node if it is of type `enum_specifier` ([`EnumSpecifier`]), otherwise returns `None`.
+
+Follows the following chain:
+- `type_specifier` ([`TypeSpecifier < 'tree >`], from [`as_type_specifier`](Self::as_type_specifier))*/
+        #[inline]
+        pub fn as_enum_specifier(self) -> ::std::option::Option<EnumSpecifier<'tree>> {
+            self.as_type_specifier()?.as_enum_specifier()
+        }
+        /**Returns the node if it is of type `macro_type_specifier` ([`MacroTypeSpecifier`]), otherwise returns `None`.
+
+Follows the following chain:
+- `type_specifier` ([`TypeSpecifier < 'tree >`], from [`as_type_specifier`](Self::as_type_specifier))*/
+        #[inline]
+        pub fn as_macro_type_specifier(
+            self,
+        ) -> ::std::option::Option<MacroTypeSpecifier<'tree>> {
+            self.as_type_specifier()?.as_macro_type_specifier()
+        }
+        /**Returns the node if it is of type `primitive_type` ([`PrimitiveType`]), otherwise returns `None`.
+
+Follows the following chain:
+- `type_specifier` ([`TypeSpecifier < 'tree >`], from [`as_type_specifier`](Self::as_type_specifier))*/
+        #[inline]
+        pub fn as_primitive_type(self) -> ::std::option::Option<PrimitiveType<'tree>> {
+            self.as_type_specifier()?.as_primitive_type()
+        }
+        /**Returns the node if it is of type `sized_type_specifier` ([`SizedTypeSpecifier`]), otherwise returns `None`.
+
+Follows the following chain:
+- `type_specifier` ([`TypeSpecifier < 'tree >`], from [`as_type_specifier`](Self::as_type_specifier))*/
+        #[inline]
+        pub fn as_sized_type_specifier(
+            self,
+        ) -> ::std::option::Option<SizedTypeSpecifier<'tree>> {
+            self.as_type_specifier()?.as_sized_type_specifier()
+        }
+        /**Returns the node if it is of type `struct_specifier` ([`StructSpecifier`]), otherwise returns `None`.
+
+Follows the following chain:
+- `type_specifier` ([`TypeSpecifier < 'tree >`], from [`as_type_specifier`](Self::as_type_specifier))*/
+        #[inline]
+        pub fn as_struct_specifier(
+            self,
+        ) -> ::std::option::Option<StructSpecifier<'tree>> {
+            self.as_type_specifier()?.as_struct_specifier()
+        }
+        /**Returns the node if it is of type `type_identifier` ([`TypeIdentifier`]), otherwise returns `None`.
+
+Follows the following chain:
+- `type_specifier` ([`TypeSpecifier < 'tree >`], from [`as_type_specifier`](Self::as_type_specifier))*/
+        #[inline]
+        pub fn as_type_identifier(self) -> ::std::option::Option<TypeIdentifier<'tree>> {
+            self.as_type_specifier()?.as_type_identifier()
+        }
+        /**Returns the node if it is of type `union_specifier` ([`UnionSpecifier`]), otherwise returns `None`.
+
+Follows the following chain:
+- `type_specifier` ([`TypeSpecifier < 'tree >`], from [`as_type_specifier`](Self::as_type_specifier))*/
+        #[inline]
+        pub fn as_union_specifier(self) -> ::std::option::Option<UnionSpecifier<'tree>> {
+            self.as_type_specifier()?.as_union_specifier()
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> ::type_sitter_lib::Node<'tree>
+    for Anon221528917966839016187242056758794219644<'tree> {
+        type WithLifetime<'a> = Anon221528917966839016187242056758794219644<'a>;
+        const KIND: &'static str = "{attributed_statement | break_statement | case_statement | compound_statement | continue_statement | declaration | do_statement | expression_statement | for_statement | function_definition | goto_statement | if_statement | labeled_statement | linkage_specification | preproc_call | preproc_def | preproc_function_def | preproc_if | preproc_ifdef | preproc_include | return_statement | switch_statement | type_definition | type_specifier | while_statement}";
+        #[inline]
+        fn try_from_raw(
+            node: ::yak_sitter::Node<'tree>,
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
+            match node.kind() {
+                "attributed_statement" => {
+                    Ok(unsafe {
+                        Self::AttributedStatement(
+                            <AttributedStatement<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "break_statement" => {
+                    Ok(unsafe {
+                        Self::BreakStatement(
+                            <BreakStatement<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "case_statement" => {
+                    Ok(unsafe {
+                        Self::CaseStatement(
+                            <CaseStatement<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "compound_statement" => {
+                    Ok(unsafe {
+                        Self::CompoundStatement(
+                            <CompoundStatement<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "continue_statement" => {
+                    Ok(unsafe {
+                        Self::ContinueStatement(
+                            <ContinueStatement<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "declaration" => {
+                    Ok(unsafe {
+                        Self::Declaration(
+                            <Declaration<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "do_statement" => {
+                    Ok(unsafe {
+                        Self::DoStatement(
+                            <DoStatement<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "expression_statement" => {
+                    Ok(unsafe {
+                        Self::ExpressionStatement(
+                            <ExpressionStatement<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "for_statement" => {
+                    Ok(unsafe {
+                        Self::ForStatement(
+                            <ForStatement<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "function_definition" => {
+                    Ok(unsafe {
+                        Self::FunctionDefinition(
+                            <FunctionDefinition<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "goto_statement" => {
+                    Ok(unsafe {
+                        Self::GotoStatement(
+                            <GotoStatement<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "if_statement" => {
+                    Ok(unsafe {
+                        Self::IfStatement(
+                            <IfStatement<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "labeled_statement" => {
+                    Ok(unsafe {
+                        Self::LabeledStatement(
+                            <LabeledStatement<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "linkage_specification" => {
+                    Ok(unsafe {
+                        Self::LinkageSpecification(
+                            <LinkageSpecification<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "preproc_call" => {
+                    Ok(unsafe {
+                        Self::PreprocCall(
+                            <PreprocCall<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "preproc_def" => {
+                    Ok(unsafe {
+                        Self::PreprocDef(
+                            <PreprocDef<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "preproc_function_def" => {
+                    Ok(unsafe {
+                        Self::PreprocFunctionDef(
+                            <PreprocFunctionDef<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "preproc_if" => {
+                    Ok(unsafe {
+                        Self::PreprocIf(
+                            <PreprocIf<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "preproc_ifdef" => {
+                    Ok(unsafe {
+                        Self::PreprocIfdef(
+                            <PreprocIfdef<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "preproc_include" => {
+                    Ok(unsafe {
+                        Self::PreprocInclude(
+                            <PreprocInclude<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "return_statement" => {
+                    Ok(unsafe {
+                        Self::ReturnStatement(
+                            <ReturnStatement<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "switch_statement" => {
+                    Ok(unsafe {
+                        Self::SwitchStatement(
+                            <SwitchStatement<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "type_definition" => {
+                    Ok(unsafe {
+                        Self::TypeDefinition(
+                            <TypeDefinition<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "type_specifier" => {
+                    Ok(unsafe {
+                        Self::TypeSpecifier(
+                            <TypeSpecifier<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "while_statement" => {
+                    Ok(unsafe {
+                        Self::WhileStatement(
+                            <WhileStatement<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                _ => Err(::type_sitter_lib::IncorrectKind::new::<Self>(node)),
+            }
+        }
+        #[inline]
+        fn raw(&self) -> &::yak_sitter::Node<'tree> {
+            match self {
+                Self::AttributedStatement(x) => ::type_sitter_lib::Node::raw(x),
+                Self::BreakStatement(x) => ::type_sitter_lib::Node::raw(x),
+                Self::CaseStatement(x) => ::type_sitter_lib::Node::raw(x),
+                Self::CompoundStatement(x) => ::type_sitter_lib::Node::raw(x),
+                Self::ContinueStatement(x) => ::type_sitter_lib::Node::raw(x),
+                Self::Declaration(x) => ::type_sitter_lib::Node::raw(x),
+                Self::DoStatement(x) => ::type_sitter_lib::Node::raw(x),
+                Self::ExpressionStatement(x) => ::type_sitter_lib::Node::raw(x),
+                Self::ForStatement(x) => ::type_sitter_lib::Node::raw(x),
+                Self::FunctionDefinition(x) => ::type_sitter_lib::Node::raw(x),
+                Self::GotoStatement(x) => ::type_sitter_lib::Node::raw(x),
+                Self::IfStatement(x) => ::type_sitter_lib::Node::raw(x),
+                Self::LabeledStatement(x) => ::type_sitter_lib::Node::raw(x),
+                Self::LinkageSpecification(x) => ::type_sitter_lib::Node::raw(x),
+                Self::PreprocCall(x) => ::type_sitter_lib::Node::raw(x),
+                Self::PreprocDef(x) => ::type_sitter_lib::Node::raw(x),
+                Self::PreprocFunctionDef(x) => ::type_sitter_lib::Node::raw(x),
+                Self::PreprocIf(x) => ::type_sitter_lib::Node::raw(x),
+                Self::PreprocIfdef(x) => ::type_sitter_lib::Node::raw(x),
+                Self::PreprocInclude(x) => ::type_sitter_lib::Node::raw(x),
+                Self::ReturnStatement(x) => ::type_sitter_lib::Node::raw(x),
+                Self::SwitchStatement(x) => ::type_sitter_lib::Node::raw(x),
+                Self::TypeDefinition(x) => ::type_sitter_lib::Node::raw(x),
+                Self::TypeSpecifier(x) => ::type_sitter_lib::Node::raw(x),
+                Self::WhileStatement(x) => ::type_sitter_lib::Node::raw(x),
+            }
+        }
+        #[inline]
+        fn raw_mut(&mut self) -> &mut ::yak_sitter::Node<'tree> {
+            match self {
+                Self::AttributedStatement(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::BreakStatement(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::CaseStatement(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::CompoundStatement(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::ContinueStatement(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::Declaration(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::DoStatement(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::ExpressionStatement(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::ForStatement(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::FunctionDefinition(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::GotoStatement(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::IfStatement(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::LabeledStatement(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::LinkageSpecification(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::PreprocCall(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::PreprocDef(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::PreprocFunctionDef(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::PreprocIf(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::PreprocIfdef(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::PreprocInclude(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::ReturnStatement(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::SwitchStatement(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::TypeDefinition(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::TypeSpecifier(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::WhileStatement(x) => ::type_sitter_lib::Node::raw_mut(x),
+            }
+        }
+        #[inline]
+        fn into_raw(self) -> ::yak_sitter::Node<'tree> {
+            match self {
+                Self::AttributedStatement(x) => x.into_raw(),
+                Self::BreakStatement(x) => x.into_raw(),
+                Self::CaseStatement(x) => x.into_raw(),
+                Self::CompoundStatement(x) => x.into_raw(),
+                Self::ContinueStatement(x) => x.into_raw(),
+                Self::Declaration(x) => x.into_raw(),
+                Self::DoStatement(x) => x.into_raw(),
+                Self::ExpressionStatement(x) => x.into_raw(),
+                Self::ForStatement(x) => x.into_raw(),
+                Self::FunctionDefinition(x) => x.into_raw(),
+                Self::GotoStatement(x) => x.into_raw(),
+                Self::IfStatement(x) => x.into_raw(),
+                Self::LabeledStatement(x) => x.into_raw(),
+                Self::LinkageSpecification(x) => x.into_raw(),
+                Self::PreprocCall(x) => x.into_raw(),
+                Self::PreprocDef(x) => x.into_raw(),
+                Self::PreprocFunctionDef(x) => x.into_raw(),
+                Self::PreprocIf(x) => x.into_raw(),
+                Self::PreprocIfdef(x) => x.into_raw(),
+                Self::PreprocInclude(x) => x.into_raw(),
+                Self::ReturnStatement(x) => x.into_raw(),
+                Self::SwitchStatement(x) => x.into_raw(),
+                Self::TypeDefinition(x) => x.into_raw(),
+                Self::TypeSpecifier(x) => x.into_raw(),
+                Self::WhileStatement(x) => x.into_raw(),
+            }
+        }
+    }
+    /**One of `{binary_expression | call_expression | char_literal | identifier | number_literal | parenthesized_expression | preproc_defined | unary_expression}`:
+- [`BinaryExpression`]
+- [`CallExpression`]
+- [`CharLiteral`]
+- [`Identifier`]
+- [`NumberLiteral`]
+- [`ParenthesizedExpression`]
+- [`PreprocDefined`]
+- [`UnaryExpression`]*/
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub enum Anon252313443193347449155203865256745180226<'tree> {
+        BinaryExpression(BinaryExpression<'tree>),
+        CallExpression(CallExpression<'tree>),
+        CharLiteral(CharLiteral<'tree>),
+        Identifier(Identifier<'tree>),
+        NumberLiteral(NumberLiteral<'tree>),
+        ParenthesizedExpression(ParenthesizedExpression<'tree>),
+        PreprocDefined(PreprocDefined<'tree>),
+        UnaryExpression(UnaryExpression<'tree>),
+    }
+    #[automatically_derived]
+    #[allow(unused)]
+    impl<'tree> Anon252313443193347449155203865256745180226<'tree> {
+        ///Returns the node if it is of type `binary_expression` ([`BinaryExpression`]), otherwise returns `None`
+        #[inline]
+        pub fn as_binary_expression(
+            self,
+        ) -> ::std::option::Option<BinaryExpression<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::BinaryExpression(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `call_expression` ([`CallExpression`]), otherwise returns `None`
+        #[inline]
+        pub fn as_call_expression(self) -> ::std::option::Option<CallExpression<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::CallExpression(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `char_literal` ([`CharLiteral`]), otherwise returns `None`
+        #[inline]
+        pub fn as_char_literal(self) -> ::std::option::Option<CharLiteral<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::CharLiteral(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`
+        #[inline]
+        pub fn as_identifier(self) -> ::std::option::Option<Identifier<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Identifier(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `number_literal` ([`NumberLiteral`]), otherwise returns `None`
+        #[inline]
+        pub fn as_number_literal(self) -> ::std::option::Option<NumberLiteral<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::NumberLiteral(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `parenthesized_expression` ([`ParenthesizedExpression`]), otherwise returns `None`
+        #[inline]
+        pub fn as_parenthesized_expression(
+            self,
+        ) -> ::std::option::Option<ParenthesizedExpression<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::ParenthesizedExpression(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `preproc_defined` ([`PreprocDefined`]), otherwise returns `None`
+        #[inline]
+        pub fn as_preproc_defined(self) -> ::std::option::Option<PreprocDefined<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::PreprocDefined(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `unary_expression` ([`UnaryExpression`]), otherwise returns `None`
+        #[inline]
+        pub fn as_unary_expression(
+            self,
+        ) -> ::std::option::Option<UnaryExpression<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::UnaryExpression(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> ::type_sitter_lib::Node<'tree>
+    for Anon252313443193347449155203865256745180226<'tree> {
+        type WithLifetime<'a> = Anon252313443193347449155203865256745180226<'a>;
+        const KIND: &'static str = "{binary_expression | call_expression | char_literal | identifier | number_literal | parenthesized_expression | preproc_defined | unary_expression}";
+        #[inline]
+        fn try_from_raw(
+            node: ::yak_sitter::Node<'tree>,
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
+            match node.kind() {
+                "binary_expression" => {
+                    Ok(unsafe {
+                        Self::BinaryExpression(
+                            <BinaryExpression<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "call_expression" => {
+                    Ok(unsafe {
+                        Self::CallExpression(
+                            <CallExpression<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "char_literal" => {
+                    Ok(unsafe {
+                        Self::CharLiteral(
+                            <CharLiteral<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "identifier" => {
+                    Ok(unsafe {
+                        Self::Identifier(
+                            <Identifier<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "number_literal" => {
+                    Ok(unsafe {
+                        Self::NumberLiteral(
+                            <NumberLiteral<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "parenthesized_expression" => {
+                    Ok(unsafe {
+                        Self::ParenthesizedExpression(
+                            <ParenthesizedExpression<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "preproc_defined" => {
+                    Ok(unsafe {
+                        Self::PreprocDefined(
+                            <PreprocDefined<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "unary_expression" => {
+                    Ok(unsafe {
+                        Self::UnaryExpression(
+                            <UnaryExpression<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                _ => Err(::type_sitter_lib::IncorrectKind::new::<Self>(node)),
+            }
+        }
+        #[inline]
+        fn raw(&self) -> &::yak_sitter::Node<'tree> {
+            match self {
+                Self::BinaryExpression(x) => ::type_sitter_lib::Node::raw(x),
+                Self::CallExpression(x) => ::type_sitter_lib::Node::raw(x),
+                Self::CharLiteral(x) => ::type_sitter_lib::Node::raw(x),
+                Self::Identifier(x) => ::type_sitter_lib::Node::raw(x),
+                Self::NumberLiteral(x) => ::type_sitter_lib::Node::raw(x),
+                Self::ParenthesizedExpression(x) => ::type_sitter_lib::Node::raw(x),
+                Self::PreprocDefined(x) => ::type_sitter_lib::Node::raw(x),
+                Self::UnaryExpression(x) => ::type_sitter_lib::Node::raw(x),
+            }
+        }
+        #[inline]
+        fn raw_mut(&mut self) -> &mut ::yak_sitter::Node<'tree> {
+            match self {
+                Self::BinaryExpression(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::CallExpression(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::CharLiteral(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::Identifier(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::NumberLiteral(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::ParenthesizedExpression(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::PreprocDefined(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::UnaryExpression(x) => ::type_sitter_lib::Node::raw_mut(x),
+            }
+        }
+        #[inline]
+        fn into_raw(self) -> ::yak_sitter::Node<'tree> {
+            match self {
+                Self::BinaryExpression(x) => x.into_raw(),
+                Self::CallExpression(x) => x.into_raw(),
+                Self::CharLiteral(x) => x.into_raw(),
+                Self::Identifier(x) => x.into_raw(),
+                Self::NumberLiteral(x) => x.into_raw(),
+                Self::ParenthesizedExpression(x) => x.into_raw(),
+                Self::PreprocDefined(x) => x.into_raw(),
+                Self::UnaryExpression(x) => x.into_raw(),
+            }
+        }
+    }
+    /**One of `{attribute_declaration | attribute_specifier | declaration | ms_call_modifier | ms_declspec_modifier | storage_class_specifier | type_qualifier}`:
+- [`AttributeDeclaration`]
+- [`AttributeSpecifier`]
+- [`Declaration`]
+- [`MsCallModifier`]
+- [`MsDeclspecModifier`]
+- [`StorageClassSpecifier`]
+- [`TypeQualifier`]*/
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub enum Anon267732478745780035329928636158259030098<'tree> {
+        AttributeDeclaration(AttributeDeclaration<'tree>),
+        AttributeSpecifier(AttributeSpecifier<'tree>),
+        Declaration(Declaration<'tree>),
+        MsCallModifier(MsCallModifier<'tree>),
+        MsDeclspecModifier(MsDeclspecModifier<'tree>),
+        StorageClassSpecifier(StorageClassSpecifier<'tree>),
+        TypeQualifier(TypeQualifier<'tree>),
+    }
+    #[automatically_derived]
+    #[allow(unused)]
+    impl<'tree> Anon267732478745780035329928636158259030098<'tree> {
+        ///Returns the node if it is of type `attribute_declaration` ([`AttributeDeclaration`]), otherwise returns `None`
+        #[inline]
+        pub fn as_attribute_declaration(
+            self,
+        ) -> ::std::option::Option<AttributeDeclaration<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::AttributeDeclaration(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `attribute_specifier` ([`AttributeSpecifier`]), otherwise returns `None`
+        #[inline]
+        pub fn as_attribute_specifier(
+            self,
+        ) -> ::std::option::Option<AttributeSpecifier<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::AttributeSpecifier(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `declaration` ([`Declaration`]), otherwise returns `None`
+        #[inline]
+        pub fn as_declaration(self) -> ::std::option::Option<Declaration<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Declaration(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `ms_call_modifier` ([`MsCallModifier`]), otherwise returns `None`
+        #[inline]
+        pub fn as_ms_call_modifier(
+            self,
+        ) -> ::std::option::Option<MsCallModifier<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::MsCallModifier(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `ms_declspec_modifier` ([`MsDeclspecModifier`]), otherwise returns `None`
+        #[inline]
+        pub fn as_ms_declspec_modifier(
+            self,
+        ) -> ::std::option::Option<MsDeclspecModifier<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::MsDeclspecModifier(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `storage_class_specifier` ([`StorageClassSpecifier`]), otherwise returns `None`
+        #[inline]
+        pub fn as_storage_class_specifier(
+            self,
+        ) -> ::std::option::Option<StorageClassSpecifier<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::StorageClassSpecifier(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `type_qualifier` ([`TypeQualifier`]), otherwise returns `None`
+        #[inline]
+        pub fn as_type_qualifier(self) -> ::std::option::Option<TypeQualifier<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::TypeQualifier(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> ::type_sitter_lib::Node<'tree>
+    for Anon267732478745780035329928636158259030098<'tree> {
+        type WithLifetime<'a> = Anon267732478745780035329928636158259030098<'a>;
+        const KIND: &'static str = "{attribute_declaration | attribute_specifier | declaration | ms_call_modifier | ms_declspec_modifier | storage_class_specifier | type_qualifier}";
+        #[inline]
+        fn try_from_raw(
+            node: ::yak_sitter::Node<'tree>,
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
+            match node.kind() {
+                "attribute_declaration" => {
+                    Ok(unsafe {
+                        Self::AttributeDeclaration(
+                            <AttributeDeclaration<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "attribute_specifier" => {
+                    Ok(unsafe {
+                        Self::AttributeSpecifier(
+                            <AttributeSpecifier<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "declaration" => {
+                    Ok(unsafe {
+                        Self::Declaration(
+                            <Declaration<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "ms_call_modifier" => {
+                    Ok(unsafe {
+                        Self::MsCallModifier(
+                            <MsCallModifier<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "ms_declspec_modifier" => {
+                    Ok(unsafe {
+                        Self::MsDeclspecModifier(
+                            <MsDeclspecModifier<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "storage_class_specifier" => {
+                    Ok(unsafe {
+                        Self::StorageClassSpecifier(
+                            <StorageClassSpecifier<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "type_qualifier" => {
+                    Ok(unsafe {
+                        Self::TypeQualifier(
+                            <TypeQualifier<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                _ => Err(::type_sitter_lib::IncorrectKind::new::<Self>(node)),
+            }
+        }
+        #[inline]
+        fn raw(&self) -> &::yak_sitter::Node<'tree> {
+            match self {
+                Self::AttributeDeclaration(x) => ::type_sitter_lib::Node::raw(x),
+                Self::AttributeSpecifier(x) => ::type_sitter_lib::Node::raw(x),
+                Self::Declaration(x) => ::type_sitter_lib::Node::raw(x),
+                Self::MsCallModifier(x) => ::type_sitter_lib::Node::raw(x),
+                Self::MsDeclspecModifier(x) => ::type_sitter_lib::Node::raw(x),
+                Self::StorageClassSpecifier(x) => ::type_sitter_lib::Node::raw(x),
+                Self::TypeQualifier(x) => ::type_sitter_lib::Node::raw(x),
+            }
+        }
+        #[inline]
+        fn raw_mut(&mut self) -> &mut ::yak_sitter::Node<'tree> {
+            match self {
+                Self::AttributeDeclaration(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::AttributeSpecifier(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::Declaration(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::MsCallModifier(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::MsDeclspecModifier(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::StorageClassSpecifier(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::TypeQualifier(x) => ::type_sitter_lib::Node::raw_mut(x),
+            }
+        }
+        #[inline]
+        fn into_raw(self) -> ::yak_sitter::Node<'tree> {
+            match self {
+                Self::AttributeDeclaration(x) => x.into_raw(),
+                Self::AttributeSpecifier(x) => x.into_raw(),
+                Self::Declaration(x) => x.into_raw(),
+                Self::MsCallModifier(x) => x.into_raw(),
+                Self::MsDeclspecModifier(x) => x.into_raw(),
+                Self::StorageClassSpecifier(x) => x.into_raw(),
+                Self::TypeQualifier(x) => x.into_raw(),
+            }
+        }
+    }
     /**One of `{array_declarator | attributed_declarator | function_declarator | gnu_asm_expression | identifier | init_declarator | ms_call_modifier | parenthesized_declarator | pointer_declarator}`:
 - [`ArrayDeclarator`]
 - [`AttributedDeclarator`]
@@ -18122,9 +19842,7 @@ Follows the following chain:
 - [`PointerDeclarator`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub enum ArrayDeclarator_AttributedDeclarator_FunctionDeclarator_GnuAsmExpression_Identifier_InitDeclarator_MsCallModifier_ParenthesizedDeclarator_PointerDeclarator<
-        'tree,
-    > {
+    pub enum Anon31709460568964487651942532477213173337<'tree> {
         ArrayDeclarator(ArrayDeclarator<'tree>),
         AttributedDeclarator(AttributedDeclarator<'tree>),
         FunctionDeclarator(FunctionDeclarator<'tree>),
@@ -18137,11 +19855,7 @@ Follows the following chain:
     }
     #[automatically_derived]
     #[allow(unused)]
-    impl<
-        'tree,
-    > ArrayDeclarator_AttributedDeclarator_FunctionDeclarator_GnuAsmExpression_Identifier_InitDeclarator_MsCallModifier_ParenthesizedDeclarator_PointerDeclarator<
-        'tree,
-    > {
+    impl<'tree> Anon31709460568964487651942532477213173337<'tree> {
         ///Returns the node if it is of type `array_declarator` ([`ArrayDeclarator`]), otherwise returns `None`
         #[inline]
         pub fn as_array_declarator(
@@ -18249,12 +19963,8 @@ Follows the following chain:
     }
     #[automatically_derived]
     impl<'tree> ::type_sitter_lib::Node<'tree>
-    for ArrayDeclarator_AttributedDeclarator_FunctionDeclarator_GnuAsmExpression_Identifier_InitDeclarator_MsCallModifier_ParenthesizedDeclarator_PointerDeclarator<
-        'tree,
-    > {
-        type WithLifetime<'a> = ArrayDeclarator_AttributedDeclarator_FunctionDeclarator_GnuAsmExpression_Identifier_InitDeclarator_MsCallModifier_ParenthesizedDeclarator_PointerDeclarator<
-            'a,
-        >;
+    for Anon31709460568964487651942532477213173337<'tree> {
+        type WithLifetime<'a> = Anon31709460568964487651942532477213173337<'a>;
         const KIND: &'static str = "{array_declarator | attributed_declarator | function_declarator | gnu_asm_expression | identifier | init_declarator | ms_call_modifier | parenthesized_declarator | pointer_declarator}";
         #[inline]
         fn try_from_raw(
@@ -18406,6 +20116,772 @@ Follows the following chain:
             }
         }
     }
+    /**One of `{declaration | function_definition | linkage_specification | preproc_call | preproc_def | preproc_function_def | preproc_if | preproc_ifdef | preproc_include | statement | type_definition | type_specifier}`:
+- [`Declaration`]
+- [`FunctionDefinition`]
+- [`LinkageSpecification`]
+- [`PreprocCall`]
+- [`PreprocDef`]
+- [`PreprocFunctionDef`]
+- [`PreprocIf`]
+- [`PreprocIfdef`]
+- [`PreprocInclude`]
+- [`Statement`]
+- [`TypeDefinition`]
+- [`TypeSpecifier`]*/
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub enum Anon320125311414366363403436071030129454385<'tree> {
+        Declaration(Declaration<'tree>),
+        FunctionDefinition(FunctionDefinition<'tree>),
+        LinkageSpecification(LinkageSpecification<'tree>),
+        PreprocCall(PreprocCall<'tree>),
+        PreprocDef(PreprocDef<'tree>),
+        PreprocFunctionDef(PreprocFunctionDef<'tree>),
+        PreprocIf(PreprocIf<'tree>),
+        PreprocIfdef(PreprocIfdef<'tree>),
+        PreprocInclude(PreprocInclude<'tree>),
+        Statement(Statement<'tree>),
+        TypeDefinition(TypeDefinition<'tree>),
+        TypeSpecifier(TypeSpecifier<'tree>),
+    }
+    #[automatically_derived]
+    #[allow(unused)]
+    impl<'tree> Anon320125311414366363403436071030129454385<'tree> {
+        ///Returns the node if it is of type `declaration` ([`Declaration`]), otherwise returns `None`
+        #[inline]
+        pub fn as_declaration(self) -> ::std::option::Option<Declaration<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Declaration(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `function_definition` ([`FunctionDefinition`]), otherwise returns `None`
+        #[inline]
+        pub fn as_function_definition(
+            self,
+        ) -> ::std::option::Option<FunctionDefinition<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::FunctionDefinition(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `linkage_specification` ([`LinkageSpecification`]), otherwise returns `None`
+        #[inline]
+        pub fn as_linkage_specification(
+            self,
+        ) -> ::std::option::Option<LinkageSpecification<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::LinkageSpecification(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `preproc_call` ([`PreprocCall`]), otherwise returns `None`
+        #[inline]
+        pub fn as_preproc_call(self) -> ::std::option::Option<PreprocCall<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::PreprocCall(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `preproc_def` ([`PreprocDef`]), otherwise returns `None`
+        #[inline]
+        pub fn as_preproc_def(self) -> ::std::option::Option<PreprocDef<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::PreprocDef(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `preproc_function_def` ([`PreprocFunctionDef`]), otherwise returns `None`
+        #[inline]
+        pub fn as_preproc_function_def(
+            self,
+        ) -> ::std::option::Option<PreprocFunctionDef<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::PreprocFunctionDef(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `preproc_if` ([`PreprocIf`]), otherwise returns `None`
+        #[inline]
+        pub fn as_preproc_if(self) -> ::std::option::Option<PreprocIf<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::PreprocIf(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `preproc_ifdef` ([`PreprocIfdef`]), otherwise returns `None`
+        #[inline]
+        pub fn as_preproc_ifdef(self) -> ::std::option::Option<PreprocIfdef<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::PreprocIfdef(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `preproc_include` ([`PreprocInclude`]), otherwise returns `None`
+        #[inline]
+        pub fn as_preproc_include(self) -> ::std::option::Option<PreprocInclude<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::PreprocInclude(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `statement` ([`Statement`]), otherwise returns `None`
+        #[inline]
+        pub fn as_statement(self) -> ::std::option::Option<Statement<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Statement(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `type_definition` ([`TypeDefinition`]), otherwise returns `None`
+        #[inline]
+        pub fn as_type_definition(self) -> ::std::option::Option<TypeDefinition<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::TypeDefinition(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `type_specifier` ([`TypeSpecifier`]), otherwise returns `None`
+        #[inline]
+        pub fn as_type_specifier(self) -> ::std::option::Option<TypeSpecifier<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::TypeSpecifier(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        /**Returns the node if it is of type `attributed_statement` ([`AttributedStatement`]), otherwise returns `None`.
+
+Follows the following chain:
+- `statement` ([`Statement < 'tree >`], from [`as_statement`](Self::as_statement))*/
+        #[inline]
+        pub fn as_attributed_statement(
+            self,
+        ) -> ::std::option::Option<AttributedStatement<'tree>> {
+            self.as_statement()?.as_attributed_statement()
+        }
+        /**Returns the node if it is of type `break_statement` ([`BreakStatement`]), otherwise returns `None`.
+
+Follows the following chain:
+- `statement` ([`Statement < 'tree >`], from [`as_statement`](Self::as_statement))*/
+        #[inline]
+        pub fn as_break_statement(self) -> ::std::option::Option<BreakStatement<'tree>> {
+            self.as_statement()?.as_break_statement()
+        }
+        /**Returns the node if it is of type `case_statement` ([`CaseStatement`]), otherwise returns `None`.
+
+Follows the following chain:
+- `statement` ([`Statement < 'tree >`], from [`as_statement`](Self::as_statement))*/
+        #[inline]
+        pub fn as_case_statement(self) -> ::std::option::Option<CaseStatement<'tree>> {
+            self.as_statement()?.as_case_statement()
+        }
+        /**Returns the node if it is of type `compound_statement` ([`CompoundStatement`]), otherwise returns `None`.
+
+Follows the following chain:
+- `statement` ([`Statement < 'tree >`], from [`as_statement`](Self::as_statement))*/
+        #[inline]
+        pub fn as_compound_statement(
+            self,
+        ) -> ::std::option::Option<CompoundStatement<'tree>> {
+            self.as_statement()?.as_compound_statement()
+        }
+        /**Returns the node if it is of type `continue_statement` ([`ContinueStatement`]), otherwise returns `None`.
+
+Follows the following chain:
+- `statement` ([`Statement < 'tree >`], from [`as_statement`](Self::as_statement))*/
+        #[inline]
+        pub fn as_continue_statement(
+            self,
+        ) -> ::std::option::Option<ContinueStatement<'tree>> {
+            self.as_statement()?.as_continue_statement()
+        }
+        /**Returns the node if it is of type `do_statement` ([`DoStatement`]), otherwise returns `None`.
+
+Follows the following chain:
+- `statement` ([`Statement < 'tree >`], from [`as_statement`](Self::as_statement))*/
+        #[inline]
+        pub fn as_do_statement(self) -> ::std::option::Option<DoStatement<'tree>> {
+            self.as_statement()?.as_do_statement()
+        }
+        /**Returns the node if it is of type `expression_statement` ([`ExpressionStatement`]), otherwise returns `None`.
+
+Follows the following chain:
+- `statement` ([`Statement < 'tree >`], from [`as_statement`](Self::as_statement))*/
+        #[inline]
+        pub fn as_expression_statement(
+            self,
+        ) -> ::std::option::Option<ExpressionStatement<'tree>> {
+            self.as_statement()?.as_expression_statement()
+        }
+        /**Returns the node if it is of type `for_statement` ([`ForStatement`]), otherwise returns `None`.
+
+Follows the following chain:
+- `statement` ([`Statement < 'tree >`], from [`as_statement`](Self::as_statement))*/
+        #[inline]
+        pub fn as_for_statement(self) -> ::std::option::Option<ForStatement<'tree>> {
+            self.as_statement()?.as_for_statement()
+        }
+        /**Returns the node if it is of type `goto_statement` ([`GotoStatement`]), otherwise returns `None`.
+
+Follows the following chain:
+- `statement` ([`Statement < 'tree >`], from [`as_statement`](Self::as_statement))*/
+        #[inline]
+        pub fn as_goto_statement(self) -> ::std::option::Option<GotoStatement<'tree>> {
+            self.as_statement()?.as_goto_statement()
+        }
+        /**Returns the node if it is of type `if_statement` ([`IfStatement`]), otherwise returns `None`.
+
+Follows the following chain:
+- `statement` ([`Statement < 'tree >`], from [`as_statement`](Self::as_statement))*/
+        #[inline]
+        pub fn as_if_statement(self) -> ::std::option::Option<IfStatement<'tree>> {
+            self.as_statement()?.as_if_statement()
+        }
+        /**Returns the node if it is of type `labeled_statement` ([`LabeledStatement`]), otherwise returns `None`.
+
+Follows the following chain:
+- `statement` ([`Statement < 'tree >`], from [`as_statement`](Self::as_statement))*/
+        #[inline]
+        pub fn as_labeled_statement(
+            self,
+        ) -> ::std::option::Option<LabeledStatement<'tree>> {
+            self.as_statement()?.as_labeled_statement()
+        }
+        /**Returns the node if it is of type `return_statement` ([`ReturnStatement`]), otherwise returns `None`.
+
+Follows the following chain:
+- `statement` ([`Statement < 'tree >`], from [`as_statement`](Self::as_statement))*/
+        #[inline]
+        pub fn as_return_statement(
+            self,
+        ) -> ::std::option::Option<ReturnStatement<'tree>> {
+            self.as_statement()?.as_return_statement()
+        }
+        /**Returns the node if it is of type `seh_leave_statement` ([`SehLeaveStatement`]), otherwise returns `None`.
+
+Follows the following chain:
+- `statement` ([`Statement < 'tree >`], from [`as_statement`](Self::as_statement))*/
+        #[inline]
+        pub fn as_seh_leave_statement(
+            self,
+        ) -> ::std::option::Option<SehLeaveStatement<'tree>> {
+            self.as_statement()?.as_seh_leave_statement()
+        }
+        /**Returns the node if it is of type `seh_try_statement` ([`SehTryStatement`]), otherwise returns `None`.
+
+Follows the following chain:
+- `statement` ([`Statement < 'tree >`], from [`as_statement`](Self::as_statement))*/
+        #[inline]
+        pub fn as_seh_try_statement(
+            self,
+        ) -> ::std::option::Option<SehTryStatement<'tree>> {
+            self.as_statement()?.as_seh_try_statement()
+        }
+        /**Returns the node if it is of type `switch_statement` ([`SwitchStatement`]), otherwise returns `None`.
+
+Follows the following chain:
+- `statement` ([`Statement < 'tree >`], from [`as_statement`](Self::as_statement))*/
+        #[inline]
+        pub fn as_switch_statement(
+            self,
+        ) -> ::std::option::Option<SwitchStatement<'tree>> {
+            self.as_statement()?.as_switch_statement()
+        }
+        /**Returns the node if it is of type `while_statement` ([`WhileStatement`]), otherwise returns `None`.
+
+Follows the following chain:
+- `statement` ([`Statement < 'tree >`], from [`as_statement`](Self::as_statement))*/
+        #[inline]
+        pub fn as_while_statement(self) -> ::std::option::Option<WhileStatement<'tree>> {
+            self.as_statement()?.as_while_statement()
+        }
+        /**Returns the node if it is of type `enum_specifier` ([`EnumSpecifier`]), otherwise returns `None`.
+
+Follows the following chain:
+- `type_specifier` ([`TypeSpecifier < 'tree >`], from [`as_type_specifier`](Self::as_type_specifier))*/
+        #[inline]
+        pub fn as_enum_specifier(self) -> ::std::option::Option<EnumSpecifier<'tree>> {
+            self.as_type_specifier()?.as_enum_specifier()
+        }
+        /**Returns the node if it is of type `macro_type_specifier` ([`MacroTypeSpecifier`]), otherwise returns `None`.
+
+Follows the following chain:
+- `type_specifier` ([`TypeSpecifier < 'tree >`], from [`as_type_specifier`](Self::as_type_specifier))*/
+        #[inline]
+        pub fn as_macro_type_specifier(
+            self,
+        ) -> ::std::option::Option<MacroTypeSpecifier<'tree>> {
+            self.as_type_specifier()?.as_macro_type_specifier()
+        }
+        /**Returns the node if it is of type `primitive_type` ([`PrimitiveType`]), otherwise returns `None`.
+
+Follows the following chain:
+- `type_specifier` ([`TypeSpecifier < 'tree >`], from [`as_type_specifier`](Self::as_type_specifier))*/
+        #[inline]
+        pub fn as_primitive_type(self) -> ::std::option::Option<PrimitiveType<'tree>> {
+            self.as_type_specifier()?.as_primitive_type()
+        }
+        /**Returns the node if it is of type `sized_type_specifier` ([`SizedTypeSpecifier`]), otherwise returns `None`.
+
+Follows the following chain:
+- `type_specifier` ([`TypeSpecifier < 'tree >`], from [`as_type_specifier`](Self::as_type_specifier))*/
+        #[inline]
+        pub fn as_sized_type_specifier(
+            self,
+        ) -> ::std::option::Option<SizedTypeSpecifier<'tree>> {
+            self.as_type_specifier()?.as_sized_type_specifier()
+        }
+        /**Returns the node if it is of type `struct_specifier` ([`StructSpecifier`]), otherwise returns `None`.
+
+Follows the following chain:
+- `type_specifier` ([`TypeSpecifier < 'tree >`], from [`as_type_specifier`](Self::as_type_specifier))*/
+        #[inline]
+        pub fn as_struct_specifier(
+            self,
+        ) -> ::std::option::Option<StructSpecifier<'tree>> {
+            self.as_type_specifier()?.as_struct_specifier()
+        }
+        /**Returns the node if it is of type `type_identifier` ([`TypeIdentifier`]), otherwise returns `None`.
+
+Follows the following chain:
+- `type_specifier` ([`TypeSpecifier < 'tree >`], from [`as_type_specifier`](Self::as_type_specifier))*/
+        #[inline]
+        pub fn as_type_identifier(self) -> ::std::option::Option<TypeIdentifier<'tree>> {
+            self.as_type_specifier()?.as_type_identifier()
+        }
+        /**Returns the node if it is of type `union_specifier` ([`UnionSpecifier`]), otherwise returns `None`.
+
+Follows the following chain:
+- `type_specifier` ([`TypeSpecifier < 'tree >`], from [`as_type_specifier`](Self::as_type_specifier))*/
+        #[inline]
+        pub fn as_union_specifier(self) -> ::std::option::Option<UnionSpecifier<'tree>> {
+            self.as_type_specifier()?.as_union_specifier()
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> ::type_sitter_lib::Node<'tree>
+    for Anon320125311414366363403436071030129454385<'tree> {
+        type WithLifetime<'a> = Anon320125311414366363403436071030129454385<'a>;
+        const KIND: &'static str = "{declaration | function_definition | linkage_specification | preproc_call | preproc_def | preproc_function_def | preproc_if | preproc_ifdef | preproc_include | statement | type_definition | type_specifier}";
+        #[inline]
+        fn try_from_raw(
+            node: ::yak_sitter::Node<'tree>,
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
+            match node.kind() {
+                "declaration" => {
+                    Ok(unsafe {
+                        Self::Declaration(
+                            <Declaration<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "function_definition" => {
+                    Ok(unsafe {
+                        Self::FunctionDefinition(
+                            <FunctionDefinition<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "linkage_specification" => {
+                    Ok(unsafe {
+                        Self::LinkageSpecification(
+                            <LinkageSpecification<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "preproc_call" => {
+                    Ok(unsafe {
+                        Self::PreprocCall(
+                            <PreprocCall<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "preproc_def" => {
+                    Ok(unsafe {
+                        Self::PreprocDef(
+                            <PreprocDef<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "preproc_function_def" => {
+                    Ok(unsafe {
+                        Self::PreprocFunctionDef(
+                            <PreprocFunctionDef<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "preproc_if" => {
+                    Ok(unsafe {
+                        Self::PreprocIf(
+                            <PreprocIf<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "preproc_ifdef" => {
+                    Ok(unsafe {
+                        Self::PreprocIfdef(
+                            <PreprocIfdef<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "preproc_include" => {
+                    Ok(unsafe {
+                        Self::PreprocInclude(
+                            <PreprocInclude<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "statement" => {
+                    Ok(unsafe {
+                        Self::Statement(
+                            <Statement<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "type_definition" => {
+                    Ok(unsafe {
+                        Self::TypeDefinition(
+                            <TypeDefinition<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "type_specifier" => {
+                    Ok(unsafe {
+                        Self::TypeSpecifier(
+                            <TypeSpecifier<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                _ => Err(::type_sitter_lib::IncorrectKind::new::<Self>(node)),
+            }
+        }
+        #[inline]
+        fn raw(&self) -> &::yak_sitter::Node<'tree> {
+            match self {
+                Self::Declaration(x) => ::type_sitter_lib::Node::raw(x),
+                Self::FunctionDefinition(x) => ::type_sitter_lib::Node::raw(x),
+                Self::LinkageSpecification(x) => ::type_sitter_lib::Node::raw(x),
+                Self::PreprocCall(x) => ::type_sitter_lib::Node::raw(x),
+                Self::PreprocDef(x) => ::type_sitter_lib::Node::raw(x),
+                Self::PreprocFunctionDef(x) => ::type_sitter_lib::Node::raw(x),
+                Self::PreprocIf(x) => ::type_sitter_lib::Node::raw(x),
+                Self::PreprocIfdef(x) => ::type_sitter_lib::Node::raw(x),
+                Self::PreprocInclude(x) => ::type_sitter_lib::Node::raw(x),
+                Self::Statement(x) => ::type_sitter_lib::Node::raw(x),
+                Self::TypeDefinition(x) => ::type_sitter_lib::Node::raw(x),
+                Self::TypeSpecifier(x) => ::type_sitter_lib::Node::raw(x),
+            }
+        }
+        #[inline]
+        fn raw_mut(&mut self) -> &mut ::yak_sitter::Node<'tree> {
+            match self {
+                Self::Declaration(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::FunctionDefinition(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::LinkageSpecification(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::PreprocCall(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::PreprocDef(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::PreprocFunctionDef(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::PreprocIf(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::PreprocIfdef(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::PreprocInclude(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::Statement(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::TypeDefinition(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::TypeSpecifier(x) => ::type_sitter_lib::Node::raw_mut(x),
+            }
+        }
+        #[inline]
+        fn into_raw(self) -> ::yak_sitter::Node<'tree> {
+            match self {
+                Self::Declaration(x) => x.into_raw(),
+                Self::FunctionDefinition(x) => x.into_raw(),
+                Self::LinkageSpecification(x) => x.into_raw(),
+                Self::PreprocCall(x) => x.into_raw(),
+                Self::PreprocDef(x) => x.into_raw(),
+                Self::PreprocFunctionDef(x) => x.into_raw(),
+                Self::PreprocIf(x) => x.into_raw(),
+                Self::PreprocIfdef(x) => x.into_raw(),
+                Self::PreprocInclude(x) => x.into_raw(),
+                Self::Statement(x) => x.into_raw(),
+                Self::TypeDefinition(x) => x.into_raw(),
+                Self::TypeSpecifier(x) => x.into_raw(),
+            }
+        }
+    }
+    /**One of `{call_expression | field_expression | identifier | parenthesized_expression | pointer_expression | subscript_expression}`:
+- [`CallExpression`]
+- [`FieldExpression`]
+- [`Identifier`]
+- [`ParenthesizedExpression`]
+- [`PointerExpression`]
+- [`SubscriptExpression`]*/
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub enum Anon322931898689134390255042975415799117413<'tree> {
+        CallExpression(CallExpression<'tree>),
+        FieldExpression(FieldExpression<'tree>),
+        Identifier(Identifier<'tree>),
+        ParenthesizedExpression(ParenthesizedExpression<'tree>),
+        PointerExpression(PointerExpression<'tree>),
+        SubscriptExpression(SubscriptExpression<'tree>),
+    }
+    #[automatically_derived]
+    #[allow(unused)]
+    impl<'tree> Anon322931898689134390255042975415799117413<'tree> {
+        ///Returns the node if it is of type `call_expression` ([`CallExpression`]), otherwise returns `None`
+        #[inline]
+        pub fn as_call_expression(self) -> ::std::option::Option<CallExpression<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::CallExpression(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `field_expression` ([`FieldExpression`]), otherwise returns `None`
+        #[inline]
+        pub fn as_field_expression(
+            self,
+        ) -> ::std::option::Option<FieldExpression<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::FieldExpression(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`
+        #[inline]
+        pub fn as_identifier(self) -> ::std::option::Option<Identifier<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Identifier(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `parenthesized_expression` ([`ParenthesizedExpression`]), otherwise returns `None`
+        #[inline]
+        pub fn as_parenthesized_expression(
+            self,
+        ) -> ::std::option::Option<ParenthesizedExpression<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::ParenthesizedExpression(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `pointer_expression` ([`PointerExpression`]), otherwise returns `None`
+        #[inline]
+        pub fn as_pointer_expression(
+            self,
+        ) -> ::std::option::Option<PointerExpression<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::PointerExpression(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `subscript_expression` ([`SubscriptExpression`]), otherwise returns `None`
+        #[inline]
+        pub fn as_subscript_expression(
+            self,
+        ) -> ::std::option::Option<SubscriptExpression<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::SubscriptExpression(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> ::type_sitter_lib::Node<'tree>
+    for Anon322931898689134390255042975415799117413<'tree> {
+        type WithLifetime<'a> = Anon322931898689134390255042975415799117413<'a>;
+        const KIND: &'static str = "{call_expression | field_expression | identifier | parenthesized_expression | pointer_expression | subscript_expression}";
+        #[inline]
+        fn try_from_raw(
+            node: ::yak_sitter::Node<'tree>,
+        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
+            match node.kind() {
+                "call_expression" => {
+                    Ok(unsafe {
+                        Self::CallExpression(
+                            <CallExpression<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "field_expression" => {
+                    Ok(unsafe {
+                        Self::FieldExpression(
+                            <FieldExpression<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "identifier" => {
+                    Ok(unsafe {
+                        Self::Identifier(
+                            <Identifier<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "parenthesized_expression" => {
+                    Ok(unsafe {
+                        Self::ParenthesizedExpression(
+                            <ParenthesizedExpression<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "pointer_expression" => {
+                    Ok(unsafe {
+                        Self::PointerExpression(
+                            <PointerExpression<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "subscript_expression" => {
+                    Ok(unsafe {
+                        Self::SubscriptExpression(
+                            <SubscriptExpression<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                _ => Err(::type_sitter_lib::IncorrectKind::new::<Self>(node)),
+            }
+        }
+        #[inline]
+        fn raw(&self) -> &::yak_sitter::Node<'tree> {
+            match self {
+                Self::CallExpression(x) => ::type_sitter_lib::Node::raw(x),
+                Self::FieldExpression(x) => ::type_sitter_lib::Node::raw(x),
+                Self::Identifier(x) => ::type_sitter_lib::Node::raw(x),
+                Self::ParenthesizedExpression(x) => ::type_sitter_lib::Node::raw(x),
+                Self::PointerExpression(x) => ::type_sitter_lib::Node::raw(x),
+                Self::SubscriptExpression(x) => ::type_sitter_lib::Node::raw(x),
+            }
+        }
+        #[inline]
+        fn raw_mut(&mut self) -> &mut ::yak_sitter::Node<'tree> {
+            match self {
+                Self::CallExpression(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::FieldExpression(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::Identifier(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::ParenthesizedExpression(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::PointerExpression(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::SubscriptExpression(x) => ::type_sitter_lib::Node::raw_mut(x),
+            }
+        }
+        #[inline]
+        fn into_raw(self) -> ::yak_sitter::Node<'tree> {
+            match self {
+                Self::CallExpression(x) => x.into_raw(),
+                Self::FieldExpression(x) => x.into_raw(),
+                Self::Identifier(x) => x.into_raw(),
+                Self::ParenthesizedExpression(x) => x.into_raw(),
+                Self::PointerExpression(x) => x.into_raw(),
+                Self::SubscriptExpression(x) => x.into_raw(),
+            }
+        }
+    }
     /**One of `{attribute_declaration | attribute_specifier | bitfield_clause | ms_declspec_modifier | storage_class_specifier | type_qualifier}`:
 - [`AttributeDeclaration`]
 - [`AttributeSpecifier`]
@@ -18415,9 +20891,7 @@ Follows the following chain:
 - [`TypeQualifier`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub enum AttributeDeclaration_AttributeSpecifier_BitfieldClause_MsDeclspecModifier_StorageClassSpecifier_TypeQualifier<
-        'tree,
-    > {
+    pub enum Anon60801783647056412391192139585218646527<'tree> {
         AttributeDeclaration(AttributeDeclaration<'tree>),
         AttributeSpecifier(AttributeSpecifier<'tree>),
         BitfieldClause(BitfieldClause<'tree>),
@@ -18427,11 +20901,7 @@ Follows the following chain:
     }
     #[automatically_derived]
     #[allow(unused)]
-    impl<
-        'tree,
-    > AttributeDeclaration_AttributeSpecifier_BitfieldClause_MsDeclspecModifier_StorageClassSpecifier_TypeQualifier<
-        'tree,
-    > {
+    impl<'tree> Anon60801783647056412391192139585218646527<'tree> {
         ///Returns the node if it is of type `attribute_declaration` ([`AttributeDeclaration`]), otherwise returns `None`
         #[inline]
         pub fn as_attribute_declaration(
@@ -18503,12 +20973,8 @@ Follows the following chain:
     }
     #[automatically_derived]
     impl<'tree> ::type_sitter_lib::Node<'tree>
-    for AttributeDeclaration_AttributeSpecifier_BitfieldClause_MsDeclspecModifier_StorageClassSpecifier_TypeQualifier<
-        'tree,
-    > {
-        type WithLifetime<'a> = AttributeDeclaration_AttributeSpecifier_BitfieldClause_MsDeclspecModifier_StorageClassSpecifier_TypeQualifier<
-            'a,
-        >;
+    for Anon60801783647056412391192139585218646527<'tree> {
+        type WithLifetime<'a> = Anon60801783647056412391192139585218646527<'a>;
         const KIND: &'static str = "{attribute_declaration | attribute_specifier | bitfield_clause | ms_declspec_modifier | storage_class_specifier | type_qualifier}";
         #[inline]
         fn try_from_raw(
@@ -18618,58 +21084,42 @@ Follows the following chain:
             }
         }
     }
-    /**One of `{attribute_declaration | attribute_specifier | declaration | ms_call_modifier | ms_declspec_modifier | storage_class_specifier | type_qualifier}`:
-- [`AttributeDeclaration`]
-- [`AttributeSpecifier`]
+    /**One of `{declaration | enumerator | field_declaration | function_definition | linkage_specification | preproc_call | preproc_def | preproc_function_def | preproc_if | preproc_ifdef | preproc_include | statement | type_definition | type_specifier}`:
 - [`Declaration`]
-- [`MsCallModifier`]
-- [`MsDeclspecModifier`]
-- [`StorageClassSpecifier`]
-- [`TypeQualifier`]*/
+- [`Enumerator`]
+- [`FieldDeclaration`]
+- [`FunctionDefinition`]
+- [`LinkageSpecification`]
+- [`PreprocCall`]
+- [`PreprocDef`]
+- [`PreprocFunctionDef`]
+- [`PreprocIf`]
+- [`PreprocIfdef`]
+- [`PreprocInclude`]
+- [`Statement`]
+- [`TypeDefinition`]
+- [`TypeSpecifier`]*/
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub enum AttributeDeclaration_AttributeSpecifier_Declaration_MsCallModifier_MsDeclspecModifier_StorageClassSpecifier_TypeQualifier<
-        'tree,
-    > {
-        AttributeDeclaration(AttributeDeclaration<'tree>),
-        AttributeSpecifier(AttributeSpecifier<'tree>),
+    pub enum Anon64011665969386147009847441607881057992<'tree> {
         Declaration(Declaration<'tree>),
-        MsCallModifier(MsCallModifier<'tree>),
-        MsDeclspecModifier(MsDeclspecModifier<'tree>),
-        StorageClassSpecifier(StorageClassSpecifier<'tree>),
-        TypeQualifier(TypeQualifier<'tree>),
+        Enumerator(Enumerator<'tree>),
+        FieldDeclaration(FieldDeclaration<'tree>),
+        FunctionDefinition(FunctionDefinition<'tree>),
+        LinkageSpecification(LinkageSpecification<'tree>),
+        PreprocCall(PreprocCall<'tree>),
+        PreprocDef(PreprocDef<'tree>),
+        PreprocFunctionDef(PreprocFunctionDef<'tree>),
+        PreprocIf(PreprocIf<'tree>),
+        PreprocIfdef(PreprocIfdef<'tree>),
+        PreprocInclude(PreprocInclude<'tree>),
+        Statement(Statement<'tree>),
+        TypeDefinition(TypeDefinition<'tree>),
+        TypeSpecifier(TypeSpecifier<'tree>),
     }
     #[automatically_derived]
     #[allow(unused)]
-    impl<
-        'tree,
-    > AttributeDeclaration_AttributeSpecifier_Declaration_MsCallModifier_MsDeclspecModifier_StorageClassSpecifier_TypeQualifier<
-        'tree,
-    > {
-        ///Returns the node if it is of type `attribute_declaration` ([`AttributeDeclaration`]), otherwise returns `None`
-        #[inline]
-        pub fn as_attribute_declaration(
-            self,
-        ) -> ::std::option::Option<AttributeDeclaration<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::AttributeDeclaration(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `attribute_specifier` ([`AttributeSpecifier`]), otherwise returns `None`
-        #[inline]
-        pub fn as_attribute_specifier(
-            self,
-        ) -> ::std::option::Option<AttributeSpecifier<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::AttributeSpecifier(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
+    impl<'tree> Anon64011665969386147009847441607881057992<'tree> {
         ///Returns the node if it is of type `declaration` ([`Declaration`]), otherwise returns `None`
         #[inline]
         pub fn as_declaration(self) -> ::std::option::Option<Declaration<'tree>> {
@@ -18680,89 +21130,363 @@ Follows the following chain:
                 ::std::option::Option::None
             }
         }
-        ///Returns the node if it is of type `ms_call_modifier` ([`MsCallModifier`]), otherwise returns `None`
+        ///Returns the node if it is of type `enumerator` ([`Enumerator`]), otherwise returns `None`
         #[inline]
-        pub fn as_ms_call_modifier(
-            self,
-        ) -> ::std::option::Option<MsCallModifier<'tree>> {
+        pub fn as_enumerator(self) -> ::std::option::Option<Enumerator<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::MsCallModifier(x) = self {
+            if let Self::Enumerator(x) = self {
                 ::std::option::Option::Some(x)
             } else {
                 ::std::option::Option::None
             }
         }
-        ///Returns the node if it is of type `ms_declspec_modifier` ([`MsDeclspecModifier`]), otherwise returns `None`
+        ///Returns the node if it is of type `field_declaration` ([`FieldDeclaration`]), otherwise returns `None`
         #[inline]
-        pub fn as_ms_declspec_modifier(
+        pub fn as_field_declaration(
             self,
-        ) -> ::std::option::Option<MsDeclspecModifier<'tree>> {
+        ) -> ::std::option::Option<FieldDeclaration<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::MsDeclspecModifier(x) = self {
+            if let Self::FieldDeclaration(x) = self {
                 ::std::option::Option::Some(x)
             } else {
                 ::std::option::Option::None
             }
         }
-        ///Returns the node if it is of type `storage_class_specifier` ([`StorageClassSpecifier`]), otherwise returns `None`
+        ///Returns the node if it is of type `function_definition` ([`FunctionDefinition`]), otherwise returns `None`
         #[inline]
-        pub fn as_storage_class_specifier(
+        pub fn as_function_definition(
             self,
-        ) -> ::std::option::Option<StorageClassSpecifier<'tree>> {
+        ) -> ::std::option::Option<FunctionDefinition<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::StorageClassSpecifier(x) = self {
+            if let Self::FunctionDefinition(x) = self {
                 ::std::option::Option::Some(x)
             } else {
                 ::std::option::Option::None
             }
         }
-        ///Returns the node if it is of type `type_qualifier` ([`TypeQualifier`]), otherwise returns `None`
+        ///Returns the node if it is of type `linkage_specification` ([`LinkageSpecification`]), otherwise returns `None`
         #[inline]
-        pub fn as_type_qualifier(self) -> ::std::option::Option<TypeQualifier<'tree>> {
+        pub fn as_linkage_specification(
+            self,
+        ) -> ::std::option::Option<LinkageSpecification<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::TypeQualifier(x) = self {
+            if let Self::LinkageSpecification(x) = self {
                 ::std::option::Option::Some(x)
             } else {
                 ::std::option::Option::None
             }
+        }
+        ///Returns the node if it is of type `preproc_call` ([`PreprocCall`]), otherwise returns `None`
+        #[inline]
+        pub fn as_preproc_call(self) -> ::std::option::Option<PreprocCall<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::PreprocCall(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `preproc_def` ([`PreprocDef`]), otherwise returns `None`
+        #[inline]
+        pub fn as_preproc_def(self) -> ::std::option::Option<PreprocDef<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::PreprocDef(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `preproc_function_def` ([`PreprocFunctionDef`]), otherwise returns `None`
+        #[inline]
+        pub fn as_preproc_function_def(
+            self,
+        ) -> ::std::option::Option<PreprocFunctionDef<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::PreprocFunctionDef(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `preproc_if` ([`PreprocIf`]), otherwise returns `None`
+        #[inline]
+        pub fn as_preproc_if(self) -> ::std::option::Option<PreprocIf<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::PreprocIf(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `preproc_ifdef` ([`PreprocIfdef`]), otherwise returns `None`
+        #[inline]
+        pub fn as_preproc_ifdef(self) -> ::std::option::Option<PreprocIfdef<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::PreprocIfdef(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `preproc_include` ([`PreprocInclude`]), otherwise returns `None`
+        #[inline]
+        pub fn as_preproc_include(self) -> ::std::option::Option<PreprocInclude<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::PreprocInclude(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `statement` ([`Statement`]), otherwise returns `None`
+        #[inline]
+        pub fn as_statement(self) -> ::std::option::Option<Statement<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Statement(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `type_definition` ([`TypeDefinition`]), otherwise returns `None`
+        #[inline]
+        pub fn as_type_definition(self) -> ::std::option::Option<TypeDefinition<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::TypeDefinition(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        ///Returns the node if it is of type `type_specifier` ([`TypeSpecifier`]), otherwise returns `None`
+        #[inline]
+        pub fn as_type_specifier(self) -> ::std::option::Option<TypeSpecifier<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::TypeSpecifier(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        /**Returns the node if it is of type `attributed_statement` ([`AttributedStatement`]), otherwise returns `None`.
+
+Follows the following chain:
+- `statement` ([`Statement < 'tree >`], from [`as_statement`](Self::as_statement))*/
+        #[inline]
+        pub fn as_attributed_statement(
+            self,
+        ) -> ::std::option::Option<AttributedStatement<'tree>> {
+            self.as_statement()?.as_attributed_statement()
+        }
+        /**Returns the node if it is of type `break_statement` ([`BreakStatement`]), otherwise returns `None`.
+
+Follows the following chain:
+- `statement` ([`Statement < 'tree >`], from [`as_statement`](Self::as_statement))*/
+        #[inline]
+        pub fn as_break_statement(self) -> ::std::option::Option<BreakStatement<'tree>> {
+            self.as_statement()?.as_break_statement()
+        }
+        /**Returns the node if it is of type `case_statement` ([`CaseStatement`]), otherwise returns `None`.
+
+Follows the following chain:
+- `statement` ([`Statement < 'tree >`], from [`as_statement`](Self::as_statement))*/
+        #[inline]
+        pub fn as_case_statement(self) -> ::std::option::Option<CaseStatement<'tree>> {
+            self.as_statement()?.as_case_statement()
+        }
+        /**Returns the node if it is of type `compound_statement` ([`CompoundStatement`]), otherwise returns `None`.
+
+Follows the following chain:
+- `statement` ([`Statement < 'tree >`], from [`as_statement`](Self::as_statement))*/
+        #[inline]
+        pub fn as_compound_statement(
+            self,
+        ) -> ::std::option::Option<CompoundStatement<'tree>> {
+            self.as_statement()?.as_compound_statement()
+        }
+        /**Returns the node if it is of type `continue_statement` ([`ContinueStatement`]), otherwise returns `None`.
+
+Follows the following chain:
+- `statement` ([`Statement < 'tree >`], from [`as_statement`](Self::as_statement))*/
+        #[inline]
+        pub fn as_continue_statement(
+            self,
+        ) -> ::std::option::Option<ContinueStatement<'tree>> {
+            self.as_statement()?.as_continue_statement()
+        }
+        /**Returns the node if it is of type `do_statement` ([`DoStatement`]), otherwise returns `None`.
+
+Follows the following chain:
+- `statement` ([`Statement < 'tree >`], from [`as_statement`](Self::as_statement))*/
+        #[inline]
+        pub fn as_do_statement(self) -> ::std::option::Option<DoStatement<'tree>> {
+            self.as_statement()?.as_do_statement()
+        }
+        /**Returns the node if it is of type `expression_statement` ([`ExpressionStatement`]), otherwise returns `None`.
+
+Follows the following chain:
+- `statement` ([`Statement < 'tree >`], from [`as_statement`](Self::as_statement))*/
+        #[inline]
+        pub fn as_expression_statement(
+            self,
+        ) -> ::std::option::Option<ExpressionStatement<'tree>> {
+            self.as_statement()?.as_expression_statement()
+        }
+        /**Returns the node if it is of type `for_statement` ([`ForStatement`]), otherwise returns `None`.
+
+Follows the following chain:
+- `statement` ([`Statement < 'tree >`], from [`as_statement`](Self::as_statement))*/
+        #[inline]
+        pub fn as_for_statement(self) -> ::std::option::Option<ForStatement<'tree>> {
+            self.as_statement()?.as_for_statement()
+        }
+        /**Returns the node if it is of type `goto_statement` ([`GotoStatement`]), otherwise returns `None`.
+
+Follows the following chain:
+- `statement` ([`Statement < 'tree >`], from [`as_statement`](Self::as_statement))*/
+        #[inline]
+        pub fn as_goto_statement(self) -> ::std::option::Option<GotoStatement<'tree>> {
+            self.as_statement()?.as_goto_statement()
+        }
+        /**Returns the node if it is of type `if_statement` ([`IfStatement`]), otherwise returns `None`.
+
+Follows the following chain:
+- `statement` ([`Statement < 'tree >`], from [`as_statement`](Self::as_statement))*/
+        #[inline]
+        pub fn as_if_statement(self) -> ::std::option::Option<IfStatement<'tree>> {
+            self.as_statement()?.as_if_statement()
+        }
+        /**Returns the node if it is of type `labeled_statement` ([`LabeledStatement`]), otherwise returns `None`.
+
+Follows the following chain:
+- `statement` ([`Statement < 'tree >`], from [`as_statement`](Self::as_statement))*/
+        #[inline]
+        pub fn as_labeled_statement(
+            self,
+        ) -> ::std::option::Option<LabeledStatement<'tree>> {
+            self.as_statement()?.as_labeled_statement()
+        }
+        /**Returns the node if it is of type `return_statement` ([`ReturnStatement`]), otherwise returns `None`.
+
+Follows the following chain:
+- `statement` ([`Statement < 'tree >`], from [`as_statement`](Self::as_statement))*/
+        #[inline]
+        pub fn as_return_statement(
+            self,
+        ) -> ::std::option::Option<ReturnStatement<'tree>> {
+            self.as_statement()?.as_return_statement()
+        }
+        /**Returns the node if it is of type `seh_leave_statement` ([`SehLeaveStatement`]), otherwise returns `None`.
+
+Follows the following chain:
+- `statement` ([`Statement < 'tree >`], from [`as_statement`](Self::as_statement))*/
+        #[inline]
+        pub fn as_seh_leave_statement(
+            self,
+        ) -> ::std::option::Option<SehLeaveStatement<'tree>> {
+            self.as_statement()?.as_seh_leave_statement()
+        }
+        /**Returns the node if it is of type `seh_try_statement` ([`SehTryStatement`]), otherwise returns `None`.
+
+Follows the following chain:
+- `statement` ([`Statement < 'tree >`], from [`as_statement`](Self::as_statement))*/
+        #[inline]
+        pub fn as_seh_try_statement(
+            self,
+        ) -> ::std::option::Option<SehTryStatement<'tree>> {
+            self.as_statement()?.as_seh_try_statement()
+        }
+        /**Returns the node if it is of type `switch_statement` ([`SwitchStatement`]), otherwise returns `None`.
+
+Follows the following chain:
+- `statement` ([`Statement < 'tree >`], from [`as_statement`](Self::as_statement))*/
+        #[inline]
+        pub fn as_switch_statement(
+            self,
+        ) -> ::std::option::Option<SwitchStatement<'tree>> {
+            self.as_statement()?.as_switch_statement()
+        }
+        /**Returns the node if it is of type `while_statement` ([`WhileStatement`]), otherwise returns `None`.
+
+Follows the following chain:
+- `statement` ([`Statement < 'tree >`], from [`as_statement`](Self::as_statement))*/
+        #[inline]
+        pub fn as_while_statement(self) -> ::std::option::Option<WhileStatement<'tree>> {
+            self.as_statement()?.as_while_statement()
+        }
+        /**Returns the node if it is of type `enum_specifier` ([`EnumSpecifier`]), otherwise returns `None`.
+
+Follows the following chain:
+- `type_specifier` ([`TypeSpecifier < 'tree >`], from [`as_type_specifier`](Self::as_type_specifier))*/
+        #[inline]
+        pub fn as_enum_specifier(self) -> ::std::option::Option<EnumSpecifier<'tree>> {
+            self.as_type_specifier()?.as_enum_specifier()
+        }
+        /**Returns the node if it is of type `macro_type_specifier` ([`MacroTypeSpecifier`]), otherwise returns `None`.
+
+Follows the following chain:
+- `type_specifier` ([`TypeSpecifier < 'tree >`], from [`as_type_specifier`](Self::as_type_specifier))*/
+        #[inline]
+        pub fn as_macro_type_specifier(
+            self,
+        ) -> ::std::option::Option<MacroTypeSpecifier<'tree>> {
+            self.as_type_specifier()?.as_macro_type_specifier()
+        }
+        /**Returns the node if it is of type `primitive_type` ([`PrimitiveType`]), otherwise returns `None`.
+
+Follows the following chain:
+- `type_specifier` ([`TypeSpecifier < 'tree >`], from [`as_type_specifier`](Self::as_type_specifier))*/
+        #[inline]
+        pub fn as_primitive_type(self) -> ::std::option::Option<PrimitiveType<'tree>> {
+            self.as_type_specifier()?.as_primitive_type()
+        }
+        /**Returns the node if it is of type `sized_type_specifier` ([`SizedTypeSpecifier`]), otherwise returns `None`.
+
+Follows the following chain:
+- `type_specifier` ([`TypeSpecifier < 'tree >`], from [`as_type_specifier`](Self::as_type_specifier))*/
+        #[inline]
+        pub fn as_sized_type_specifier(
+            self,
+        ) -> ::std::option::Option<SizedTypeSpecifier<'tree>> {
+            self.as_type_specifier()?.as_sized_type_specifier()
+        }
+        /**Returns the node if it is of type `struct_specifier` ([`StructSpecifier`]), otherwise returns `None`.
+
+Follows the following chain:
+- `type_specifier` ([`TypeSpecifier < 'tree >`], from [`as_type_specifier`](Self::as_type_specifier))*/
+        #[inline]
+        pub fn as_struct_specifier(
+            self,
+        ) -> ::std::option::Option<StructSpecifier<'tree>> {
+            self.as_type_specifier()?.as_struct_specifier()
+        }
+        /**Returns the node if it is of type `type_identifier` ([`TypeIdentifier`]), otherwise returns `None`.
+
+Follows the following chain:
+- `type_specifier` ([`TypeSpecifier < 'tree >`], from [`as_type_specifier`](Self::as_type_specifier))*/
+        #[inline]
+        pub fn as_type_identifier(self) -> ::std::option::Option<TypeIdentifier<'tree>> {
+            self.as_type_specifier()?.as_type_identifier()
+        }
+        /**Returns the node if it is of type `union_specifier` ([`UnionSpecifier`]), otherwise returns `None`.
+
+Follows the following chain:
+- `type_specifier` ([`TypeSpecifier < 'tree >`], from [`as_type_specifier`](Self::as_type_specifier))*/
+        #[inline]
+        pub fn as_union_specifier(self) -> ::std::option::Option<UnionSpecifier<'tree>> {
+            self.as_type_specifier()?.as_union_specifier()
         }
     }
     #[automatically_derived]
     impl<'tree> ::type_sitter_lib::Node<'tree>
-    for AttributeDeclaration_AttributeSpecifier_Declaration_MsCallModifier_MsDeclspecModifier_StorageClassSpecifier_TypeQualifier<
-        'tree,
-    > {
-        type WithLifetime<'a> = AttributeDeclaration_AttributeSpecifier_Declaration_MsCallModifier_MsDeclspecModifier_StorageClassSpecifier_TypeQualifier<
-            'a,
-        >;
-        const KIND: &'static str = "{attribute_declaration | attribute_specifier | declaration | ms_call_modifier | ms_declspec_modifier | storage_class_specifier | type_qualifier}";
+    for Anon64011665969386147009847441607881057992<'tree> {
+        type WithLifetime<'a> = Anon64011665969386147009847441607881057992<'a>;
+        const KIND: &'static str = "{declaration | enumerator | field_declaration | function_definition | linkage_specification | preproc_call | preproc_def | preproc_function_def | preproc_if | preproc_ifdef | preproc_include | statement | type_definition | type_specifier}";
         #[inline]
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
         ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
             match node.kind() {
-                "attribute_declaration" => {
-                    Ok(unsafe {
-                        Self::AttributeDeclaration(
-                            <AttributeDeclaration<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "attribute_specifier" => {
-                    Ok(unsafe {
-                        Self::AttributeSpecifier(
-                            <AttributeSpecifier<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
                 "declaration" => {
                     Ok(unsafe {
                         Self::Declaration(
@@ -18774,10 +21498,10 @@ Follows the following chain:
                         )
                     })
                 }
-                "ms_call_modifier" => {
+                "enumerator" => {
                     Ok(unsafe {
-                        Self::MsCallModifier(
-                            <MsCallModifier<
+                        Self::Enumerator(
+                            <Enumerator<
                                 'tree,
                             > as ::type_sitter_lib::Node<
                                 'tree,
@@ -18785,10 +21509,10 @@ Follows the following chain:
                         )
                     })
                 }
-                "ms_declspec_modifier" => {
+                "field_declaration" => {
                     Ok(unsafe {
-                        Self::MsDeclspecModifier(
-                            <MsDeclspecModifier<
+                        Self::FieldDeclaration(
+                            <FieldDeclaration<
                                 'tree,
                             > as ::type_sitter_lib::Node<
                                 'tree,
@@ -18796,10 +21520,10 @@ Follows the following chain:
                         )
                     })
                 }
-                "storage_class_specifier" => {
+                "function_definition" => {
                     Ok(unsafe {
-                        Self::StorageClassSpecifier(
-                            <StorageClassSpecifier<
+                        Self::FunctionDefinition(
+                            <FunctionDefinition<
                                 'tree,
                             > as ::type_sitter_lib::Node<
                                 'tree,
@@ -18807,10 +21531,109 @@ Follows the following chain:
                         )
                     })
                 }
-                "type_qualifier" => {
+                "linkage_specification" => {
                     Ok(unsafe {
-                        Self::TypeQualifier(
-                            <TypeQualifier<
+                        Self::LinkageSpecification(
+                            <LinkageSpecification<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "preproc_call" => {
+                    Ok(unsafe {
+                        Self::PreprocCall(
+                            <PreprocCall<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "preproc_def" => {
+                    Ok(unsafe {
+                        Self::PreprocDef(
+                            <PreprocDef<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "preproc_function_def" => {
+                    Ok(unsafe {
+                        Self::PreprocFunctionDef(
+                            <PreprocFunctionDef<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "preproc_if" => {
+                    Ok(unsafe {
+                        Self::PreprocIf(
+                            <PreprocIf<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "preproc_ifdef" => {
+                    Ok(unsafe {
+                        Self::PreprocIfdef(
+                            <PreprocIfdef<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "preproc_include" => {
+                    Ok(unsafe {
+                        Self::PreprocInclude(
+                            <PreprocInclude<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "statement" => {
+                    Ok(unsafe {
+                        Self::Statement(
+                            <Statement<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "type_definition" => {
+                    Ok(unsafe {
+                        Self::TypeDefinition(
+                            <TypeDefinition<
+                                'tree,
+                            > as ::type_sitter_lib::Node<
+                                'tree,
+                            >>::from_raw_unchecked(node),
+                        )
+                    })
+                }
+                "type_specifier" => {
+                    Ok(unsafe {
+                        Self::TypeSpecifier(
+                            <TypeSpecifier<
                                 'tree,
                             > as ::type_sitter_lib::Node<
                                 'tree,
@@ -18824,37 +21647,58 @@ Follows the following chain:
         #[inline]
         fn raw(&self) -> &::yak_sitter::Node<'tree> {
             match self {
-                Self::AttributeDeclaration(x) => ::type_sitter_lib::Node::raw(x),
-                Self::AttributeSpecifier(x) => ::type_sitter_lib::Node::raw(x),
                 Self::Declaration(x) => ::type_sitter_lib::Node::raw(x),
-                Self::MsCallModifier(x) => ::type_sitter_lib::Node::raw(x),
-                Self::MsDeclspecModifier(x) => ::type_sitter_lib::Node::raw(x),
-                Self::StorageClassSpecifier(x) => ::type_sitter_lib::Node::raw(x),
-                Self::TypeQualifier(x) => ::type_sitter_lib::Node::raw(x),
+                Self::Enumerator(x) => ::type_sitter_lib::Node::raw(x),
+                Self::FieldDeclaration(x) => ::type_sitter_lib::Node::raw(x),
+                Self::FunctionDefinition(x) => ::type_sitter_lib::Node::raw(x),
+                Self::LinkageSpecification(x) => ::type_sitter_lib::Node::raw(x),
+                Self::PreprocCall(x) => ::type_sitter_lib::Node::raw(x),
+                Self::PreprocDef(x) => ::type_sitter_lib::Node::raw(x),
+                Self::PreprocFunctionDef(x) => ::type_sitter_lib::Node::raw(x),
+                Self::PreprocIf(x) => ::type_sitter_lib::Node::raw(x),
+                Self::PreprocIfdef(x) => ::type_sitter_lib::Node::raw(x),
+                Self::PreprocInclude(x) => ::type_sitter_lib::Node::raw(x),
+                Self::Statement(x) => ::type_sitter_lib::Node::raw(x),
+                Self::TypeDefinition(x) => ::type_sitter_lib::Node::raw(x),
+                Self::TypeSpecifier(x) => ::type_sitter_lib::Node::raw(x),
             }
         }
         #[inline]
         fn raw_mut(&mut self) -> &mut ::yak_sitter::Node<'tree> {
             match self {
-                Self::AttributeDeclaration(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::AttributeSpecifier(x) => ::type_sitter_lib::Node::raw_mut(x),
                 Self::Declaration(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::MsCallModifier(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::MsDeclspecModifier(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::StorageClassSpecifier(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::TypeQualifier(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::Enumerator(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::FieldDeclaration(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::FunctionDefinition(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::LinkageSpecification(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::PreprocCall(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::PreprocDef(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::PreprocFunctionDef(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::PreprocIf(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::PreprocIfdef(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::PreprocInclude(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::Statement(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::TypeDefinition(x) => ::type_sitter_lib::Node::raw_mut(x),
+                Self::TypeSpecifier(x) => ::type_sitter_lib::Node::raw_mut(x),
             }
         }
         #[inline]
         fn into_raw(self) -> ::yak_sitter::Node<'tree> {
             match self {
-                Self::AttributeDeclaration(x) => x.into_raw(),
-                Self::AttributeSpecifier(x) => x.into_raw(),
                 Self::Declaration(x) => x.into_raw(),
-                Self::MsCallModifier(x) => x.into_raw(),
-                Self::MsDeclspecModifier(x) => x.into_raw(),
-                Self::StorageClassSpecifier(x) => x.into_raw(),
-                Self::TypeQualifier(x) => x.into_raw(),
+                Self::Enumerator(x) => x.into_raw(),
+                Self::FieldDeclaration(x) => x.into_raw(),
+                Self::FunctionDefinition(x) => x.into_raw(),
+                Self::LinkageSpecification(x) => x.into_raw(),
+                Self::PreprocCall(x) => x.into_raw(),
+                Self::PreprocDef(x) => x.into_raw(),
+                Self::PreprocFunctionDef(x) => x.into_raw(),
+                Self::PreprocIf(x) => x.into_raw(),
+                Self::PreprocIfdef(x) => x.into_raw(),
+                Self::PreprocInclude(x) => x.into_raw(),
+                Self::Statement(x) => x.into_raw(),
+                Self::TypeDefinition(x) => x.into_raw(),
+                Self::TypeSpecifier(x) => x.into_raw(),
             }
         }
     }
@@ -19613,1768 +22457,6 @@ Follows the following chain:
             match self {
                 Self::AttributeSpecifier(x) => x.into_raw(),
                 Self::TypeQualifier(x) => x.into_raw(),
-            }
-        }
-    }
-    /**One of `{attributed_statement | break_statement | case_statement | compound_statement | continue_statement | declaration | do_statement | expression_statement | for_statement | function_definition | goto_statement | if_statement | labeled_statement | linkage_specification | preproc_call | preproc_def | preproc_function_def | preproc_if | preproc_ifdef | preproc_include | return_statement | switch_statement | type_definition | type_specifier | while_statement}`:
-- [`AttributedStatement`]
-- [`BreakStatement`]
-- [`CaseStatement`]
-- [`CompoundStatement`]
-- [`ContinueStatement`]
-- [`Declaration`]
-- [`DoStatement`]
-- [`ExpressionStatement`]
-- [`ForStatement`]
-- [`FunctionDefinition`]
-- [`GotoStatement`]
-- [`IfStatement`]
-- [`LabeledStatement`]
-- [`LinkageSpecification`]
-- [`PreprocCall`]
-- [`PreprocDef`]
-- [`PreprocFunctionDef`]
-- [`PreprocIf`]
-- [`PreprocIfdef`]
-- [`PreprocInclude`]
-- [`ReturnStatement`]
-- [`SwitchStatement`]
-- [`TypeDefinition`]
-- [`TypeSpecifier`]
-- [`WhileStatement`]*/
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[allow(non_camel_case_types)]
-    pub enum AttributedStatement_BreakStatement_CaseStatement_CompoundStatement_ContinueStatement_Declaration_DoStatement_ExpressionStatement_ForStatement_FunctionDefinition_GotoStatement_IfStatement_LabeledStatement_LinkageSpecification_PreprocCall_PreprocDef_PreprocFunctionDef_PreprocIf_PreprocIfdef_PreprocInclude_ReturnStatement_SwitchStatement_TypeDefinition_TypeSpecifier_WhileStatement<
-        'tree,
-    > {
-        AttributedStatement(AttributedStatement<'tree>),
-        BreakStatement(BreakStatement<'tree>),
-        CaseStatement(CaseStatement<'tree>),
-        CompoundStatement(CompoundStatement<'tree>),
-        ContinueStatement(ContinueStatement<'tree>),
-        Declaration(Declaration<'tree>),
-        DoStatement(DoStatement<'tree>),
-        ExpressionStatement(ExpressionStatement<'tree>),
-        ForStatement(ForStatement<'tree>),
-        FunctionDefinition(FunctionDefinition<'tree>),
-        GotoStatement(GotoStatement<'tree>),
-        IfStatement(IfStatement<'tree>),
-        LabeledStatement(LabeledStatement<'tree>),
-        LinkageSpecification(LinkageSpecification<'tree>),
-        PreprocCall(PreprocCall<'tree>),
-        PreprocDef(PreprocDef<'tree>),
-        PreprocFunctionDef(PreprocFunctionDef<'tree>),
-        PreprocIf(PreprocIf<'tree>),
-        PreprocIfdef(PreprocIfdef<'tree>),
-        PreprocInclude(PreprocInclude<'tree>),
-        ReturnStatement(ReturnStatement<'tree>),
-        SwitchStatement(SwitchStatement<'tree>),
-        TypeDefinition(TypeDefinition<'tree>),
-        TypeSpecifier(TypeSpecifier<'tree>),
-        WhileStatement(WhileStatement<'tree>),
-    }
-    #[automatically_derived]
-    #[allow(unused)]
-    impl<
-        'tree,
-    > AttributedStatement_BreakStatement_CaseStatement_CompoundStatement_ContinueStatement_Declaration_DoStatement_ExpressionStatement_ForStatement_FunctionDefinition_GotoStatement_IfStatement_LabeledStatement_LinkageSpecification_PreprocCall_PreprocDef_PreprocFunctionDef_PreprocIf_PreprocIfdef_PreprocInclude_ReturnStatement_SwitchStatement_TypeDefinition_TypeSpecifier_WhileStatement<
-        'tree,
-    > {
-        ///Returns the node if it is of type `attributed_statement` ([`AttributedStatement`]), otherwise returns `None`
-        #[inline]
-        pub fn as_attributed_statement(
-            self,
-        ) -> ::std::option::Option<AttributedStatement<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::AttributedStatement(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `break_statement` ([`BreakStatement`]), otherwise returns `None`
-        #[inline]
-        pub fn as_break_statement(self) -> ::std::option::Option<BreakStatement<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::BreakStatement(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `case_statement` ([`CaseStatement`]), otherwise returns `None`
-        #[inline]
-        pub fn as_case_statement(self) -> ::std::option::Option<CaseStatement<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::CaseStatement(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `compound_statement` ([`CompoundStatement`]), otherwise returns `None`
-        #[inline]
-        pub fn as_compound_statement(
-            self,
-        ) -> ::std::option::Option<CompoundStatement<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::CompoundStatement(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `continue_statement` ([`ContinueStatement`]), otherwise returns `None`
-        #[inline]
-        pub fn as_continue_statement(
-            self,
-        ) -> ::std::option::Option<ContinueStatement<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::ContinueStatement(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `declaration` ([`Declaration`]), otherwise returns `None`
-        #[inline]
-        pub fn as_declaration(self) -> ::std::option::Option<Declaration<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::Declaration(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `do_statement` ([`DoStatement`]), otherwise returns `None`
-        #[inline]
-        pub fn as_do_statement(self) -> ::std::option::Option<DoStatement<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::DoStatement(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `expression_statement` ([`ExpressionStatement`]), otherwise returns `None`
-        #[inline]
-        pub fn as_expression_statement(
-            self,
-        ) -> ::std::option::Option<ExpressionStatement<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::ExpressionStatement(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `for_statement` ([`ForStatement`]), otherwise returns `None`
-        #[inline]
-        pub fn as_for_statement(self) -> ::std::option::Option<ForStatement<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::ForStatement(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `function_definition` ([`FunctionDefinition`]), otherwise returns `None`
-        #[inline]
-        pub fn as_function_definition(
-            self,
-        ) -> ::std::option::Option<FunctionDefinition<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::FunctionDefinition(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `goto_statement` ([`GotoStatement`]), otherwise returns `None`
-        #[inline]
-        pub fn as_goto_statement(self) -> ::std::option::Option<GotoStatement<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::GotoStatement(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `if_statement` ([`IfStatement`]), otherwise returns `None`
-        #[inline]
-        pub fn as_if_statement(self) -> ::std::option::Option<IfStatement<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::IfStatement(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `labeled_statement` ([`LabeledStatement`]), otherwise returns `None`
-        #[inline]
-        pub fn as_labeled_statement(
-            self,
-        ) -> ::std::option::Option<LabeledStatement<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::LabeledStatement(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `linkage_specification` ([`LinkageSpecification`]), otherwise returns `None`
-        #[inline]
-        pub fn as_linkage_specification(
-            self,
-        ) -> ::std::option::Option<LinkageSpecification<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::LinkageSpecification(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `preproc_call` ([`PreprocCall`]), otherwise returns `None`
-        #[inline]
-        pub fn as_preproc_call(self) -> ::std::option::Option<PreprocCall<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::PreprocCall(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `preproc_def` ([`PreprocDef`]), otherwise returns `None`
-        #[inline]
-        pub fn as_preproc_def(self) -> ::std::option::Option<PreprocDef<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::PreprocDef(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `preproc_function_def` ([`PreprocFunctionDef`]), otherwise returns `None`
-        #[inline]
-        pub fn as_preproc_function_def(
-            self,
-        ) -> ::std::option::Option<PreprocFunctionDef<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::PreprocFunctionDef(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `preproc_if` ([`PreprocIf`]), otherwise returns `None`
-        #[inline]
-        pub fn as_preproc_if(self) -> ::std::option::Option<PreprocIf<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::PreprocIf(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `preproc_ifdef` ([`PreprocIfdef`]), otherwise returns `None`
-        #[inline]
-        pub fn as_preproc_ifdef(self) -> ::std::option::Option<PreprocIfdef<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::PreprocIfdef(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `preproc_include` ([`PreprocInclude`]), otherwise returns `None`
-        #[inline]
-        pub fn as_preproc_include(self) -> ::std::option::Option<PreprocInclude<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::PreprocInclude(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `return_statement` ([`ReturnStatement`]), otherwise returns `None`
-        #[inline]
-        pub fn as_return_statement(
-            self,
-        ) -> ::std::option::Option<ReturnStatement<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::ReturnStatement(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `switch_statement` ([`SwitchStatement`]), otherwise returns `None`
-        #[inline]
-        pub fn as_switch_statement(
-            self,
-        ) -> ::std::option::Option<SwitchStatement<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::SwitchStatement(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `type_definition` ([`TypeDefinition`]), otherwise returns `None`
-        #[inline]
-        pub fn as_type_definition(self) -> ::std::option::Option<TypeDefinition<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::TypeDefinition(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `type_specifier` ([`TypeSpecifier`]), otherwise returns `None`
-        #[inline]
-        pub fn as_type_specifier(self) -> ::std::option::Option<TypeSpecifier<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::TypeSpecifier(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `while_statement` ([`WhileStatement`]), otherwise returns `None`
-        #[inline]
-        pub fn as_while_statement(self) -> ::std::option::Option<WhileStatement<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::WhileStatement(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        /**Returns the node if it is of type `enum_specifier` ([`EnumSpecifier`]), otherwise returns `None`.
-
-Follows the following chain:
-- `type_specifier` ([`TypeSpecifier < 'tree >`], from [`as_type_specifier`](Self::as_type_specifier))*/
-        #[inline]
-        pub fn as_enum_specifier(self) -> ::std::option::Option<EnumSpecifier<'tree>> {
-            self.as_type_specifier()?.as_enum_specifier()
-        }
-        /**Returns the node if it is of type `macro_type_specifier` ([`MacroTypeSpecifier`]), otherwise returns `None`.
-
-Follows the following chain:
-- `type_specifier` ([`TypeSpecifier < 'tree >`], from [`as_type_specifier`](Self::as_type_specifier))*/
-        #[inline]
-        pub fn as_macro_type_specifier(
-            self,
-        ) -> ::std::option::Option<MacroTypeSpecifier<'tree>> {
-            self.as_type_specifier()?.as_macro_type_specifier()
-        }
-        /**Returns the node if it is of type `primitive_type` ([`PrimitiveType`]), otherwise returns `None`.
-
-Follows the following chain:
-- `type_specifier` ([`TypeSpecifier < 'tree >`], from [`as_type_specifier`](Self::as_type_specifier))*/
-        #[inline]
-        pub fn as_primitive_type(self) -> ::std::option::Option<PrimitiveType<'tree>> {
-            self.as_type_specifier()?.as_primitive_type()
-        }
-        /**Returns the node if it is of type `sized_type_specifier` ([`SizedTypeSpecifier`]), otherwise returns `None`.
-
-Follows the following chain:
-- `type_specifier` ([`TypeSpecifier < 'tree >`], from [`as_type_specifier`](Self::as_type_specifier))*/
-        #[inline]
-        pub fn as_sized_type_specifier(
-            self,
-        ) -> ::std::option::Option<SizedTypeSpecifier<'tree>> {
-            self.as_type_specifier()?.as_sized_type_specifier()
-        }
-        /**Returns the node if it is of type `struct_specifier` ([`StructSpecifier`]), otherwise returns `None`.
-
-Follows the following chain:
-- `type_specifier` ([`TypeSpecifier < 'tree >`], from [`as_type_specifier`](Self::as_type_specifier))*/
-        #[inline]
-        pub fn as_struct_specifier(
-            self,
-        ) -> ::std::option::Option<StructSpecifier<'tree>> {
-            self.as_type_specifier()?.as_struct_specifier()
-        }
-        /**Returns the node if it is of type `type_identifier` ([`TypeIdentifier`]), otherwise returns `None`.
-
-Follows the following chain:
-- `type_specifier` ([`TypeSpecifier < 'tree >`], from [`as_type_specifier`](Self::as_type_specifier))*/
-        #[inline]
-        pub fn as_type_identifier(self) -> ::std::option::Option<TypeIdentifier<'tree>> {
-            self.as_type_specifier()?.as_type_identifier()
-        }
-        /**Returns the node if it is of type `union_specifier` ([`UnionSpecifier`]), otherwise returns `None`.
-
-Follows the following chain:
-- `type_specifier` ([`TypeSpecifier < 'tree >`], from [`as_type_specifier`](Self::as_type_specifier))*/
-        #[inline]
-        pub fn as_union_specifier(self) -> ::std::option::Option<UnionSpecifier<'tree>> {
-            self.as_type_specifier()?.as_union_specifier()
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> ::type_sitter_lib::Node<'tree>
-    for AttributedStatement_BreakStatement_CaseStatement_CompoundStatement_ContinueStatement_Declaration_DoStatement_ExpressionStatement_ForStatement_FunctionDefinition_GotoStatement_IfStatement_LabeledStatement_LinkageSpecification_PreprocCall_PreprocDef_PreprocFunctionDef_PreprocIf_PreprocIfdef_PreprocInclude_ReturnStatement_SwitchStatement_TypeDefinition_TypeSpecifier_WhileStatement<
-        'tree,
-    > {
-        type WithLifetime<'a> = AttributedStatement_BreakStatement_CaseStatement_CompoundStatement_ContinueStatement_Declaration_DoStatement_ExpressionStatement_ForStatement_FunctionDefinition_GotoStatement_IfStatement_LabeledStatement_LinkageSpecification_PreprocCall_PreprocDef_PreprocFunctionDef_PreprocIf_PreprocIfdef_PreprocInclude_ReturnStatement_SwitchStatement_TypeDefinition_TypeSpecifier_WhileStatement<
-            'a,
-        >;
-        const KIND: &'static str = "{attributed_statement | break_statement | case_statement | compound_statement | continue_statement | declaration | do_statement | expression_statement | for_statement | function_definition | goto_statement | if_statement | labeled_statement | linkage_specification | preproc_call | preproc_def | preproc_function_def | preproc_if | preproc_ifdef | preproc_include | return_statement | switch_statement | type_definition | type_specifier | while_statement}";
-        #[inline]
-        fn try_from_raw(
-            node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
-            match node.kind() {
-                "attributed_statement" => {
-                    Ok(unsafe {
-                        Self::AttributedStatement(
-                            <AttributedStatement<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "break_statement" => {
-                    Ok(unsafe {
-                        Self::BreakStatement(
-                            <BreakStatement<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "case_statement" => {
-                    Ok(unsafe {
-                        Self::CaseStatement(
-                            <CaseStatement<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "compound_statement" => {
-                    Ok(unsafe {
-                        Self::CompoundStatement(
-                            <CompoundStatement<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "continue_statement" => {
-                    Ok(unsafe {
-                        Self::ContinueStatement(
-                            <ContinueStatement<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "declaration" => {
-                    Ok(unsafe {
-                        Self::Declaration(
-                            <Declaration<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "do_statement" => {
-                    Ok(unsafe {
-                        Self::DoStatement(
-                            <DoStatement<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "expression_statement" => {
-                    Ok(unsafe {
-                        Self::ExpressionStatement(
-                            <ExpressionStatement<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "for_statement" => {
-                    Ok(unsafe {
-                        Self::ForStatement(
-                            <ForStatement<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "function_definition" => {
-                    Ok(unsafe {
-                        Self::FunctionDefinition(
-                            <FunctionDefinition<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "goto_statement" => {
-                    Ok(unsafe {
-                        Self::GotoStatement(
-                            <GotoStatement<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "if_statement" => {
-                    Ok(unsafe {
-                        Self::IfStatement(
-                            <IfStatement<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "labeled_statement" => {
-                    Ok(unsafe {
-                        Self::LabeledStatement(
-                            <LabeledStatement<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "linkage_specification" => {
-                    Ok(unsafe {
-                        Self::LinkageSpecification(
-                            <LinkageSpecification<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "preproc_call" => {
-                    Ok(unsafe {
-                        Self::PreprocCall(
-                            <PreprocCall<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "preproc_def" => {
-                    Ok(unsafe {
-                        Self::PreprocDef(
-                            <PreprocDef<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "preproc_function_def" => {
-                    Ok(unsafe {
-                        Self::PreprocFunctionDef(
-                            <PreprocFunctionDef<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "preproc_if" => {
-                    Ok(unsafe {
-                        Self::PreprocIf(
-                            <PreprocIf<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "preproc_ifdef" => {
-                    Ok(unsafe {
-                        Self::PreprocIfdef(
-                            <PreprocIfdef<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "preproc_include" => {
-                    Ok(unsafe {
-                        Self::PreprocInclude(
-                            <PreprocInclude<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "return_statement" => {
-                    Ok(unsafe {
-                        Self::ReturnStatement(
-                            <ReturnStatement<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "switch_statement" => {
-                    Ok(unsafe {
-                        Self::SwitchStatement(
-                            <SwitchStatement<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "type_definition" => {
-                    Ok(unsafe {
-                        Self::TypeDefinition(
-                            <TypeDefinition<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "type_specifier" => {
-                    Ok(unsafe {
-                        Self::TypeSpecifier(
-                            <TypeSpecifier<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "while_statement" => {
-                    Ok(unsafe {
-                        Self::WhileStatement(
-                            <WhileStatement<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                _ => Err(::type_sitter_lib::IncorrectKind::new::<Self>(node)),
-            }
-        }
-        #[inline]
-        fn raw(&self) -> &::yak_sitter::Node<'tree> {
-            match self {
-                Self::AttributedStatement(x) => ::type_sitter_lib::Node::raw(x),
-                Self::BreakStatement(x) => ::type_sitter_lib::Node::raw(x),
-                Self::CaseStatement(x) => ::type_sitter_lib::Node::raw(x),
-                Self::CompoundStatement(x) => ::type_sitter_lib::Node::raw(x),
-                Self::ContinueStatement(x) => ::type_sitter_lib::Node::raw(x),
-                Self::Declaration(x) => ::type_sitter_lib::Node::raw(x),
-                Self::DoStatement(x) => ::type_sitter_lib::Node::raw(x),
-                Self::ExpressionStatement(x) => ::type_sitter_lib::Node::raw(x),
-                Self::ForStatement(x) => ::type_sitter_lib::Node::raw(x),
-                Self::FunctionDefinition(x) => ::type_sitter_lib::Node::raw(x),
-                Self::GotoStatement(x) => ::type_sitter_lib::Node::raw(x),
-                Self::IfStatement(x) => ::type_sitter_lib::Node::raw(x),
-                Self::LabeledStatement(x) => ::type_sitter_lib::Node::raw(x),
-                Self::LinkageSpecification(x) => ::type_sitter_lib::Node::raw(x),
-                Self::PreprocCall(x) => ::type_sitter_lib::Node::raw(x),
-                Self::PreprocDef(x) => ::type_sitter_lib::Node::raw(x),
-                Self::PreprocFunctionDef(x) => ::type_sitter_lib::Node::raw(x),
-                Self::PreprocIf(x) => ::type_sitter_lib::Node::raw(x),
-                Self::PreprocIfdef(x) => ::type_sitter_lib::Node::raw(x),
-                Self::PreprocInclude(x) => ::type_sitter_lib::Node::raw(x),
-                Self::ReturnStatement(x) => ::type_sitter_lib::Node::raw(x),
-                Self::SwitchStatement(x) => ::type_sitter_lib::Node::raw(x),
-                Self::TypeDefinition(x) => ::type_sitter_lib::Node::raw(x),
-                Self::TypeSpecifier(x) => ::type_sitter_lib::Node::raw(x),
-                Self::WhileStatement(x) => ::type_sitter_lib::Node::raw(x),
-            }
-        }
-        #[inline]
-        fn raw_mut(&mut self) -> &mut ::yak_sitter::Node<'tree> {
-            match self {
-                Self::AttributedStatement(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::BreakStatement(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::CaseStatement(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::CompoundStatement(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::ContinueStatement(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::Declaration(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::DoStatement(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::ExpressionStatement(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::ForStatement(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::FunctionDefinition(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::GotoStatement(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::IfStatement(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::LabeledStatement(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::LinkageSpecification(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::PreprocCall(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::PreprocDef(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::PreprocFunctionDef(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::PreprocIf(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::PreprocIfdef(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::PreprocInclude(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::ReturnStatement(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::SwitchStatement(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::TypeDefinition(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::TypeSpecifier(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::WhileStatement(x) => ::type_sitter_lib::Node::raw_mut(x),
-            }
-        }
-        #[inline]
-        fn into_raw(self) -> ::yak_sitter::Node<'tree> {
-            match self {
-                Self::AttributedStatement(x) => x.into_raw(),
-                Self::BreakStatement(x) => x.into_raw(),
-                Self::CaseStatement(x) => x.into_raw(),
-                Self::CompoundStatement(x) => x.into_raw(),
-                Self::ContinueStatement(x) => x.into_raw(),
-                Self::Declaration(x) => x.into_raw(),
-                Self::DoStatement(x) => x.into_raw(),
-                Self::ExpressionStatement(x) => x.into_raw(),
-                Self::ForStatement(x) => x.into_raw(),
-                Self::FunctionDefinition(x) => x.into_raw(),
-                Self::GotoStatement(x) => x.into_raw(),
-                Self::IfStatement(x) => x.into_raw(),
-                Self::LabeledStatement(x) => x.into_raw(),
-                Self::LinkageSpecification(x) => x.into_raw(),
-                Self::PreprocCall(x) => x.into_raw(),
-                Self::PreprocDef(x) => x.into_raw(),
-                Self::PreprocFunctionDef(x) => x.into_raw(),
-                Self::PreprocIf(x) => x.into_raw(),
-                Self::PreprocIfdef(x) => x.into_raw(),
-                Self::PreprocInclude(x) => x.into_raw(),
-                Self::ReturnStatement(x) => x.into_raw(),
-                Self::SwitchStatement(x) => x.into_raw(),
-                Self::TypeDefinition(x) => x.into_raw(),
-                Self::TypeSpecifier(x) => x.into_raw(),
-                Self::WhileStatement(x) => x.into_raw(),
-            }
-        }
-    }
-    /**One of `{attributed_statement | break_statement | compound_statement | continue_statement | declaration | do_statement | expression_statement | for_statement | goto_statement | if_statement | labeled_statement | return_statement | seh_leave_statement | seh_try_statement | switch_statement | type_definition | while_statement}`:
-- [`AttributedStatement`]
-- [`BreakStatement`]
-- [`CompoundStatement`]
-- [`ContinueStatement`]
-- [`Declaration`]
-- [`DoStatement`]
-- [`ExpressionStatement`]
-- [`ForStatement`]
-- [`GotoStatement`]
-- [`IfStatement`]
-- [`LabeledStatement`]
-- [`ReturnStatement`]
-- [`SehLeaveStatement`]
-- [`SehTryStatement`]
-- [`SwitchStatement`]
-- [`TypeDefinition`]
-- [`WhileStatement`]*/
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[allow(non_camel_case_types)]
-    pub enum AttributedStatement_BreakStatement_CompoundStatement_ContinueStatement_Declaration_DoStatement_ExpressionStatement_ForStatement_GotoStatement_IfStatement_LabeledStatement_ReturnStatement_SehLeaveStatement_SehTryStatement_SwitchStatement_TypeDefinition_WhileStatement<
-        'tree,
-    > {
-        AttributedStatement(AttributedStatement<'tree>),
-        BreakStatement(BreakStatement<'tree>),
-        CompoundStatement(CompoundStatement<'tree>),
-        ContinueStatement(ContinueStatement<'tree>),
-        Declaration(Declaration<'tree>),
-        DoStatement(DoStatement<'tree>),
-        ExpressionStatement(ExpressionStatement<'tree>),
-        ForStatement(ForStatement<'tree>),
-        GotoStatement(GotoStatement<'tree>),
-        IfStatement(IfStatement<'tree>),
-        LabeledStatement(LabeledStatement<'tree>),
-        ReturnStatement(ReturnStatement<'tree>),
-        SehLeaveStatement(SehLeaveStatement<'tree>),
-        SehTryStatement(SehTryStatement<'tree>),
-        SwitchStatement(SwitchStatement<'tree>),
-        TypeDefinition(TypeDefinition<'tree>),
-        WhileStatement(WhileStatement<'tree>),
-    }
-    #[automatically_derived]
-    #[allow(unused)]
-    impl<
-        'tree,
-    > AttributedStatement_BreakStatement_CompoundStatement_ContinueStatement_Declaration_DoStatement_ExpressionStatement_ForStatement_GotoStatement_IfStatement_LabeledStatement_ReturnStatement_SehLeaveStatement_SehTryStatement_SwitchStatement_TypeDefinition_WhileStatement<
-        'tree,
-    > {
-        ///Returns the node if it is of type `attributed_statement` ([`AttributedStatement`]), otherwise returns `None`
-        #[inline]
-        pub fn as_attributed_statement(
-            self,
-        ) -> ::std::option::Option<AttributedStatement<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::AttributedStatement(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `break_statement` ([`BreakStatement`]), otherwise returns `None`
-        #[inline]
-        pub fn as_break_statement(self) -> ::std::option::Option<BreakStatement<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::BreakStatement(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `compound_statement` ([`CompoundStatement`]), otherwise returns `None`
-        #[inline]
-        pub fn as_compound_statement(
-            self,
-        ) -> ::std::option::Option<CompoundStatement<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::CompoundStatement(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `continue_statement` ([`ContinueStatement`]), otherwise returns `None`
-        #[inline]
-        pub fn as_continue_statement(
-            self,
-        ) -> ::std::option::Option<ContinueStatement<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::ContinueStatement(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `declaration` ([`Declaration`]), otherwise returns `None`
-        #[inline]
-        pub fn as_declaration(self) -> ::std::option::Option<Declaration<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::Declaration(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `do_statement` ([`DoStatement`]), otherwise returns `None`
-        #[inline]
-        pub fn as_do_statement(self) -> ::std::option::Option<DoStatement<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::DoStatement(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `expression_statement` ([`ExpressionStatement`]), otherwise returns `None`
-        #[inline]
-        pub fn as_expression_statement(
-            self,
-        ) -> ::std::option::Option<ExpressionStatement<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::ExpressionStatement(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `for_statement` ([`ForStatement`]), otherwise returns `None`
-        #[inline]
-        pub fn as_for_statement(self) -> ::std::option::Option<ForStatement<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::ForStatement(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `goto_statement` ([`GotoStatement`]), otherwise returns `None`
-        #[inline]
-        pub fn as_goto_statement(self) -> ::std::option::Option<GotoStatement<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::GotoStatement(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `if_statement` ([`IfStatement`]), otherwise returns `None`
-        #[inline]
-        pub fn as_if_statement(self) -> ::std::option::Option<IfStatement<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::IfStatement(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `labeled_statement` ([`LabeledStatement`]), otherwise returns `None`
-        #[inline]
-        pub fn as_labeled_statement(
-            self,
-        ) -> ::std::option::Option<LabeledStatement<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::LabeledStatement(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `return_statement` ([`ReturnStatement`]), otherwise returns `None`
-        #[inline]
-        pub fn as_return_statement(
-            self,
-        ) -> ::std::option::Option<ReturnStatement<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::ReturnStatement(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `seh_leave_statement` ([`SehLeaveStatement`]), otherwise returns `None`
-        #[inline]
-        pub fn as_seh_leave_statement(
-            self,
-        ) -> ::std::option::Option<SehLeaveStatement<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::SehLeaveStatement(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `seh_try_statement` ([`SehTryStatement`]), otherwise returns `None`
-        #[inline]
-        pub fn as_seh_try_statement(
-            self,
-        ) -> ::std::option::Option<SehTryStatement<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::SehTryStatement(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `switch_statement` ([`SwitchStatement`]), otherwise returns `None`
-        #[inline]
-        pub fn as_switch_statement(
-            self,
-        ) -> ::std::option::Option<SwitchStatement<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::SwitchStatement(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `type_definition` ([`TypeDefinition`]), otherwise returns `None`
-        #[inline]
-        pub fn as_type_definition(self) -> ::std::option::Option<TypeDefinition<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::TypeDefinition(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `while_statement` ([`WhileStatement`]), otherwise returns `None`
-        #[inline]
-        pub fn as_while_statement(self) -> ::std::option::Option<WhileStatement<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::WhileStatement(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> ::type_sitter_lib::Node<'tree>
-    for AttributedStatement_BreakStatement_CompoundStatement_ContinueStatement_Declaration_DoStatement_ExpressionStatement_ForStatement_GotoStatement_IfStatement_LabeledStatement_ReturnStatement_SehLeaveStatement_SehTryStatement_SwitchStatement_TypeDefinition_WhileStatement<
-        'tree,
-    > {
-        type WithLifetime<'a> = AttributedStatement_BreakStatement_CompoundStatement_ContinueStatement_Declaration_DoStatement_ExpressionStatement_ForStatement_GotoStatement_IfStatement_LabeledStatement_ReturnStatement_SehLeaveStatement_SehTryStatement_SwitchStatement_TypeDefinition_WhileStatement<
-            'a,
-        >;
-        const KIND: &'static str = "{attributed_statement | break_statement | compound_statement | continue_statement | declaration | do_statement | expression_statement | for_statement | goto_statement | if_statement | labeled_statement | return_statement | seh_leave_statement | seh_try_statement | switch_statement | type_definition | while_statement}";
-        #[inline]
-        fn try_from_raw(
-            node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
-            match node.kind() {
-                "attributed_statement" => {
-                    Ok(unsafe {
-                        Self::AttributedStatement(
-                            <AttributedStatement<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "break_statement" => {
-                    Ok(unsafe {
-                        Self::BreakStatement(
-                            <BreakStatement<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "compound_statement" => {
-                    Ok(unsafe {
-                        Self::CompoundStatement(
-                            <CompoundStatement<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "continue_statement" => {
-                    Ok(unsafe {
-                        Self::ContinueStatement(
-                            <ContinueStatement<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "declaration" => {
-                    Ok(unsafe {
-                        Self::Declaration(
-                            <Declaration<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "do_statement" => {
-                    Ok(unsafe {
-                        Self::DoStatement(
-                            <DoStatement<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "expression_statement" => {
-                    Ok(unsafe {
-                        Self::ExpressionStatement(
-                            <ExpressionStatement<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "for_statement" => {
-                    Ok(unsafe {
-                        Self::ForStatement(
-                            <ForStatement<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "goto_statement" => {
-                    Ok(unsafe {
-                        Self::GotoStatement(
-                            <GotoStatement<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "if_statement" => {
-                    Ok(unsafe {
-                        Self::IfStatement(
-                            <IfStatement<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "labeled_statement" => {
-                    Ok(unsafe {
-                        Self::LabeledStatement(
-                            <LabeledStatement<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "return_statement" => {
-                    Ok(unsafe {
-                        Self::ReturnStatement(
-                            <ReturnStatement<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "seh_leave_statement" => {
-                    Ok(unsafe {
-                        Self::SehLeaveStatement(
-                            <SehLeaveStatement<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "seh_try_statement" => {
-                    Ok(unsafe {
-                        Self::SehTryStatement(
-                            <SehTryStatement<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "switch_statement" => {
-                    Ok(unsafe {
-                        Self::SwitchStatement(
-                            <SwitchStatement<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "type_definition" => {
-                    Ok(unsafe {
-                        Self::TypeDefinition(
-                            <TypeDefinition<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "while_statement" => {
-                    Ok(unsafe {
-                        Self::WhileStatement(
-                            <WhileStatement<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                _ => Err(::type_sitter_lib::IncorrectKind::new::<Self>(node)),
-            }
-        }
-        #[inline]
-        fn raw(&self) -> &::yak_sitter::Node<'tree> {
-            match self {
-                Self::AttributedStatement(x) => ::type_sitter_lib::Node::raw(x),
-                Self::BreakStatement(x) => ::type_sitter_lib::Node::raw(x),
-                Self::CompoundStatement(x) => ::type_sitter_lib::Node::raw(x),
-                Self::ContinueStatement(x) => ::type_sitter_lib::Node::raw(x),
-                Self::Declaration(x) => ::type_sitter_lib::Node::raw(x),
-                Self::DoStatement(x) => ::type_sitter_lib::Node::raw(x),
-                Self::ExpressionStatement(x) => ::type_sitter_lib::Node::raw(x),
-                Self::ForStatement(x) => ::type_sitter_lib::Node::raw(x),
-                Self::GotoStatement(x) => ::type_sitter_lib::Node::raw(x),
-                Self::IfStatement(x) => ::type_sitter_lib::Node::raw(x),
-                Self::LabeledStatement(x) => ::type_sitter_lib::Node::raw(x),
-                Self::ReturnStatement(x) => ::type_sitter_lib::Node::raw(x),
-                Self::SehLeaveStatement(x) => ::type_sitter_lib::Node::raw(x),
-                Self::SehTryStatement(x) => ::type_sitter_lib::Node::raw(x),
-                Self::SwitchStatement(x) => ::type_sitter_lib::Node::raw(x),
-                Self::TypeDefinition(x) => ::type_sitter_lib::Node::raw(x),
-                Self::WhileStatement(x) => ::type_sitter_lib::Node::raw(x),
-            }
-        }
-        #[inline]
-        fn raw_mut(&mut self) -> &mut ::yak_sitter::Node<'tree> {
-            match self {
-                Self::AttributedStatement(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::BreakStatement(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::CompoundStatement(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::ContinueStatement(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::Declaration(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::DoStatement(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::ExpressionStatement(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::ForStatement(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::GotoStatement(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::IfStatement(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::LabeledStatement(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::ReturnStatement(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::SehLeaveStatement(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::SehTryStatement(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::SwitchStatement(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::TypeDefinition(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::WhileStatement(x) => ::type_sitter_lib::Node::raw_mut(x),
-            }
-        }
-        #[inline]
-        fn into_raw(self) -> ::yak_sitter::Node<'tree> {
-            match self {
-                Self::AttributedStatement(x) => x.into_raw(),
-                Self::BreakStatement(x) => x.into_raw(),
-                Self::CompoundStatement(x) => x.into_raw(),
-                Self::ContinueStatement(x) => x.into_raw(),
-                Self::Declaration(x) => x.into_raw(),
-                Self::DoStatement(x) => x.into_raw(),
-                Self::ExpressionStatement(x) => x.into_raw(),
-                Self::ForStatement(x) => x.into_raw(),
-                Self::GotoStatement(x) => x.into_raw(),
-                Self::IfStatement(x) => x.into_raw(),
-                Self::LabeledStatement(x) => x.into_raw(),
-                Self::ReturnStatement(x) => x.into_raw(),
-                Self::SehLeaveStatement(x) => x.into_raw(),
-                Self::SehTryStatement(x) => x.into_raw(),
-                Self::SwitchStatement(x) => x.into_raw(),
-                Self::TypeDefinition(x) => x.into_raw(),
-                Self::WhileStatement(x) => x.into_raw(),
-            }
-        }
-    }
-    /**One of `{binary_expression | call_expression | char_literal | identifier | number_literal | parenthesized_expression | preproc_defined | unary_expression}`:
-- [`BinaryExpression`]
-- [`CallExpression`]
-- [`CharLiteral`]
-- [`Identifier`]
-- [`NumberLiteral`]
-- [`ParenthesizedExpression`]
-- [`PreprocDefined`]
-- [`UnaryExpression`]*/
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[allow(non_camel_case_types)]
-    pub enum BinaryExpression_CallExpression_CharLiteral_Identifier_NumberLiteral_ParenthesizedExpression_PreprocDefined_UnaryExpression<
-        'tree,
-    > {
-        BinaryExpression(BinaryExpression<'tree>),
-        CallExpression(CallExpression<'tree>),
-        CharLiteral(CharLiteral<'tree>),
-        Identifier(Identifier<'tree>),
-        NumberLiteral(NumberLiteral<'tree>),
-        ParenthesizedExpression(ParenthesizedExpression<'tree>),
-        PreprocDefined(PreprocDefined<'tree>),
-        UnaryExpression(UnaryExpression<'tree>),
-    }
-    #[automatically_derived]
-    #[allow(unused)]
-    impl<
-        'tree,
-    > BinaryExpression_CallExpression_CharLiteral_Identifier_NumberLiteral_ParenthesizedExpression_PreprocDefined_UnaryExpression<
-        'tree,
-    > {
-        ///Returns the node if it is of type `binary_expression` ([`BinaryExpression`]), otherwise returns `None`
-        #[inline]
-        pub fn as_binary_expression(
-            self,
-        ) -> ::std::option::Option<BinaryExpression<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::BinaryExpression(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `call_expression` ([`CallExpression`]), otherwise returns `None`
-        #[inline]
-        pub fn as_call_expression(self) -> ::std::option::Option<CallExpression<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::CallExpression(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `char_literal` ([`CharLiteral`]), otherwise returns `None`
-        #[inline]
-        pub fn as_char_literal(self) -> ::std::option::Option<CharLiteral<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::CharLiteral(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`
-        #[inline]
-        pub fn as_identifier(self) -> ::std::option::Option<Identifier<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::Identifier(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `number_literal` ([`NumberLiteral`]), otherwise returns `None`
-        #[inline]
-        pub fn as_number_literal(self) -> ::std::option::Option<NumberLiteral<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::NumberLiteral(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `parenthesized_expression` ([`ParenthesizedExpression`]), otherwise returns `None`
-        #[inline]
-        pub fn as_parenthesized_expression(
-            self,
-        ) -> ::std::option::Option<ParenthesizedExpression<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::ParenthesizedExpression(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `preproc_defined` ([`PreprocDefined`]), otherwise returns `None`
-        #[inline]
-        pub fn as_preproc_defined(self) -> ::std::option::Option<PreprocDefined<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::PreprocDefined(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `unary_expression` ([`UnaryExpression`]), otherwise returns `None`
-        #[inline]
-        pub fn as_unary_expression(
-            self,
-        ) -> ::std::option::Option<UnaryExpression<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::UnaryExpression(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> ::type_sitter_lib::Node<'tree>
-    for BinaryExpression_CallExpression_CharLiteral_Identifier_NumberLiteral_ParenthesizedExpression_PreprocDefined_UnaryExpression<
-        'tree,
-    > {
-        type WithLifetime<'a> = BinaryExpression_CallExpression_CharLiteral_Identifier_NumberLiteral_ParenthesizedExpression_PreprocDefined_UnaryExpression<
-            'a,
-        >;
-        const KIND: &'static str = "{binary_expression | call_expression | char_literal | identifier | number_literal | parenthesized_expression | preproc_defined | unary_expression}";
-        #[inline]
-        fn try_from_raw(
-            node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
-            match node.kind() {
-                "binary_expression" => {
-                    Ok(unsafe {
-                        Self::BinaryExpression(
-                            <BinaryExpression<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "call_expression" => {
-                    Ok(unsafe {
-                        Self::CallExpression(
-                            <CallExpression<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "char_literal" => {
-                    Ok(unsafe {
-                        Self::CharLiteral(
-                            <CharLiteral<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "identifier" => {
-                    Ok(unsafe {
-                        Self::Identifier(
-                            <Identifier<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "number_literal" => {
-                    Ok(unsafe {
-                        Self::NumberLiteral(
-                            <NumberLiteral<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "parenthesized_expression" => {
-                    Ok(unsafe {
-                        Self::ParenthesizedExpression(
-                            <ParenthesizedExpression<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "preproc_defined" => {
-                    Ok(unsafe {
-                        Self::PreprocDefined(
-                            <PreprocDefined<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "unary_expression" => {
-                    Ok(unsafe {
-                        Self::UnaryExpression(
-                            <UnaryExpression<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                _ => Err(::type_sitter_lib::IncorrectKind::new::<Self>(node)),
-            }
-        }
-        #[inline]
-        fn raw(&self) -> &::yak_sitter::Node<'tree> {
-            match self {
-                Self::BinaryExpression(x) => ::type_sitter_lib::Node::raw(x),
-                Self::CallExpression(x) => ::type_sitter_lib::Node::raw(x),
-                Self::CharLiteral(x) => ::type_sitter_lib::Node::raw(x),
-                Self::Identifier(x) => ::type_sitter_lib::Node::raw(x),
-                Self::NumberLiteral(x) => ::type_sitter_lib::Node::raw(x),
-                Self::ParenthesizedExpression(x) => ::type_sitter_lib::Node::raw(x),
-                Self::PreprocDefined(x) => ::type_sitter_lib::Node::raw(x),
-                Self::UnaryExpression(x) => ::type_sitter_lib::Node::raw(x),
-            }
-        }
-        #[inline]
-        fn raw_mut(&mut self) -> &mut ::yak_sitter::Node<'tree> {
-            match self {
-                Self::BinaryExpression(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::CallExpression(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::CharLiteral(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::Identifier(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::NumberLiteral(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::ParenthesizedExpression(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::PreprocDefined(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::UnaryExpression(x) => ::type_sitter_lib::Node::raw_mut(x),
-            }
-        }
-        #[inline]
-        fn into_raw(self) -> ::yak_sitter::Node<'tree> {
-            match self {
-                Self::BinaryExpression(x) => x.into_raw(),
-                Self::CallExpression(x) => x.into_raw(),
-                Self::CharLiteral(x) => x.into_raw(),
-                Self::Identifier(x) => x.into_raw(),
-                Self::NumberLiteral(x) => x.into_raw(),
-                Self::ParenthesizedExpression(x) => x.into_raw(),
-                Self::PreprocDefined(x) => x.into_raw(),
-                Self::UnaryExpression(x) => x.into_raw(),
-            }
-        }
-    }
-    /**One of `{call_expression | field_expression | identifier | parenthesized_expression | pointer_expression | subscript_expression}`:
-- [`CallExpression`]
-- [`FieldExpression`]
-- [`Identifier`]
-- [`ParenthesizedExpression`]
-- [`PointerExpression`]
-- [`SubscriptExpression`]*/
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[allow(non_camel_case_types)]
-    pub enum CallExpression_FieldExpression_Identifier_ParenthesizedExpression_PointerExpression_SubscriptExpression<
-        'tree,
-    > {
-        CallExpression(CallExpression<'tree>),
-        FieldExpression(FieldExpression<'tree>),
-        Identifier(Identifier<'tree>),
-        ParenthesizedExpression(ParenthesizedExpression<'tree>),
-        PointerExpression(PointerExpression<'tree>),
-        SubscriptExpression(SubscriptExpression<'tree>),
-    }
-    #[automatically_derived]
-    #[allow(unused)]
-    impl<
-        'tree,
-    > CallExpression_FieldExpression_Identifier_ParenthesizedExpression_PointerExpression_SubscriptExpression<
-        'tree,
-    > {
-        ///Returns the node if it is of type `call_expression` ([`CallExpression`]), otherwise returns `None`
-        #[inline]
-        pub fn as_call_expression(self) -> ::std::option::Option<CallExpression<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::CallExpression(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `field_expression` ([`FieldExpression`]), otherwise returns `None`
-        #[inline]
-        pub fn as_field_expression(
-            self,
-        ) -> ::std::option::Option<FieldExpression<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::FieldExpression(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`
-        #[inline]
-        pub fn as_identifier(self) -> ::std::option::Option<Identifier<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::Identifier(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `parenthesized_expression` ([`ParenthesizedExpression`]), otherwise returns `None`
-        #[inline]
-        pub fn as_parenthesized_expression(
-            self,
-        ) -> ::std::option::Option<ParenthesizedExpression<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::ParenthesizedExpression(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `pointer_expression` ([`PointerExpression`]), otherwise returns `None`
-        #[inline]
-        pub fn as_pointer_expression(
-            self,
-        ) -> ::std::option::Option<PointerExpression<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::PointerExpression(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `subscript_expression` ([`SubscriptExpression`]), otherwise returns `None`
-        #[inline]
-        pub fn as_subscript_expression(
-            self,
-        ) -> ::std::option::Option<SubscriptExpression<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::SubscriptExpression(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> ::type_sitter_lib::Node<'tree>
-    for CallExpression_FieldExpression_Identifier_ParenthesizedExpression_PointerExpression_SubscriptExpression<
-        'tree,
-    > {
-        type WithLifetime<'a> = CallExpression_FieldExpression_Identifier_ParenthesizedExpression_PointerExpression_SubscriptExpression<
-            'a,
-        >;
-        const KIND: &'static str = "{call_expression | field_expression | identifier | parenthesized_expression | pointer_expression | subscript_expression}";
-        #[inline]
-        fn try_from_raw(
-            node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
-            match node.kind() {
-                "call_expression" => {
-                    Ok(unsafe {
-                        Self::CallExpression(
-                            <CallExpression<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "field_expression" => {
-                    Ok(unsafe {
-                        Self::FieldExpression(
-                            <FieldExpression<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "identifier" => {
-                    Ok(unsafe {
-                        Self::Identifier(
-                            <Identifier<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "parenthesized_expression" => {
-                    Ok(unsafe {
-                        Self::ParenthesizedExpression(
-                            <ParenthesizedExpression<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "pointer_expression" => {
-                    Ok(unsafe {
-                        Self::PointerExpression(
-                            <PointerExpression<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "subscript_expression" => {
-                    Ok(unsafe {
-                        Self::SubscriptExpression(
-                            <SubscriptExpression<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                _ => Err(::type_sitter_lib::IncorrectKind::new::<Self>(node)),
-            }
-        }
-        #[inline]
-        fn raw(&self) -> &::yak_sitter::Node<'tree> {
-            match self {
-                Self::CallExpression(x) => ::type_sitter_lib::Node::raw(x),
-                Self::FieldExpression(x) => ::type_sitter_lib::Node::raw(x),
-                Self::Identifier(x) => ::type_sitter_lib::Node::raw(x),
-                Self::ParenthesizedExpression(x) => ::type_sitter_lib::Node::raw(x),
-                Self::PointerExpression(x) => ::type_sitter_lib::Node::raw(x),
-                Self::SubscriptExpression(x) => ::type_sitter_lib::Node::raw(x),
-            }
-        }
-        #[inline]
-        fn raw_mut(&mut self) -> &mut ::yak_sitter::Node<'tree> {
-            match self {
-                Self::CallExpression(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::FieldExpression(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::Identifier(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::ParenthesizedExpression(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::PointerExpression(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::SubscriptExpression(x) => ::type_sitter_lib::Node::raw_mut(x),
-            }
-        }
-        #[inline]
-        fn into_raw(self) -> ::yak_sitter::Node<'tree> {
-            match self {
-                Self::CallExpression(x) => x.into_raw(),
-                Self::FieldExpression(x) => x.into_raw(),
-                Self::Identifier(x) => x.into_raw(),
-                Self::ParenthesizedExpression(x) => x.into_raw(),
-                Self::PointerExpression(x) => x.into_raw(),
-                Self::SubscriptExpression(x) => x.into_raw(),
             }
         }
     }
@@ -23417,1208 +24499,6 @@ Follows the following chain:
                 Self::Declaration(x) => x.into_raw(),
                 Self::DeclarationList(x) => x.into_raw(),
                 Self::FunctionDefinition(x) => x.into_raw(),
-            }
-        }
-    }
-    /**One of `{declaration | enumerator | field_declaration | function_definition | linkage_specification | preproc_call | preproc_def | preproc_function_def | preproc_if | preproc_ifdef | preproc_include | statement | type_definition | type_specifier}`:
-- [`Declaration`]
-- [`Enumerator`]
-- [`FieldDeclaration`]
-- [`FunctionDefinition`]
-- [`LinkageSpecification`]
-- [`PreprocCall`]
-- [`PreprocDef`]
-- [`PreprocFunctionDef`]
-- [`PreprocIf`]
-- [`PreprocIfdef`]
-- [`PreprocInclude`]
-- [`Statement`]
-- [`TypeDefinition`]
-- [`TypeSpecifier`]*/
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[allow(non_camel_case_types)]
-    pub enum Declaration_Enumerator_FieldDeclaration_FunctionDefinition_LinkageSpecification_PreprocCall_PreprocDef_PreprocFunctionDef_PreprocIf_PreprocIfdef_PreprocInclude_Statement_TypeDefinition_TypeSpecifier<
-        'tree,
-    > {
-        Declaration(Declaration<'tree>),
-        Enumerator(Enumerator<'tree>),
-        FieldDeclaration(FieldDeclaration<'tree>),
-        FunctionDefinition(FunctionDefinition<'tree>),
-        LinkageSpecification(LinkageSpecification<'tree>),
-        PreprocCall(PreprocCall<'tree>),
-        PreprocDef(PreprocDef<'tree>),
-        PreprocFunctionDef(PreprocFunctionDef<'tree>),
-        PreprocIf(PreprocIf<'tree>),
-        PreprocIfdef(PreprocIfdef<'tree>),
-        PreprocInclude(PreprocInclude<'tree>),
-        Statement(Statement<'tree>),
-        TypeDefinition(TypeDefinition<'tree>),
-        TypeSpecifier(TypeSpecifier<'tree>),
-    }
-    #[automatically_derived]
-    #[allow(unused)]
-    impl<
-        'tree,
-    > Declaration_Enumerator_FieldDeclaration_FunctionDefinition_LinkageSpecification_PreprocCall_PreprocDef_PreprocFunctionDef_PreprocIf_PreprocIfdef_PreprocInclude_Statement_TypeDefinition_TypeSpecifier<
-        'tree,
-    > {
-        ///Returns the node if it is of type `declaration` ([`Declaration`]), otherwise returns `None`
-        #[inline]
-        pub fn as_declaration(self) -> ::std::option::Option<Declaration<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::Declaration(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `enumerator` ([`Enumerator`]), otherwise returns `None`
-        #[inline]
-        pub fn as_enumerator(self) -> ::std::option::Option<Enumerator<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::Enumerator(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `field_declaration` ([`FieldDeclaration`]), otherwise returns `None`
-        #[inline]
-        pub fn as_field_declaration(
-            self,
-        ) -> ::std::option::Option<FieldDeclaration<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::FieldDeclaration(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `function_definition` ([`FunctionDefinition`]), otherwise returns `None`
-        #[inline]
-        pub fn as_function_definition(
-            self,
-        ) -> ::std::option::Option<FunctionDefinition<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::FunctionDefinition(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `linkage_specification` ([`LinkageSpecification`]), otherwise returns `None`
-        #[inline]
-        pub fn as_linkage_specification(
-            self,
-        ) -> ::std::option::Option<LinkageSpecification<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::LinkageSpecification(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `preproc_call` ([`PreprocCall`]), otherwise returns `None`
-        #[inline]
-        pub fn as_preproc_call(self) -> ::std::option::Option<PreprocCall<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::PreprocCall(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `preproc_def` ([`PreprocDef`]), otherwise returns `None`
-        #[inline]
-        pub fn as_preproc_def(self) -> ::std::option::Option<PreprocDef<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::PreprocDef(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `preproc_function_def` ([`PreprocFunctionDef`]), otherwise returns `None`
-        #[inline]
-        pub fn as_preproc_function_def(
-            self,
-        ) -> ::std::option::Option<PreprocFunctionDef<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::PreprocFunctionDef(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `preproc_if` ([`PreprocIf`]), otherwise returns `None`
-        #[inline]
-        pub fn as_preproc_if(self) -> ::std::option::Option<PreprocIf<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::PreprocIf(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `preproc_ifdef` ([`PreprocIfdef`]), otherwise returns `None`
-        #[inline]
-        pub fn as_preproc_ifdef(self) -> ::std::option::Option<PreprocIfdef<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::PreprocIfdef(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `preproc_include` ([`PreprocInclude`]), otherwise returns `None`
-        #[inline]
-        pub fn as_preproc_include(self) -> ::std::option::Option<PreprocInclude<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::PreprocInclude(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `statement` ([`Statement`]), otherwise returns `None`
-        #[inline]
-        pub fn as_statement(self) -> ::std::option::Option<Statement<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::Statement(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `type_definition` ([`TypeDefinition`]), otherwise returns `None`
-        #[inline]
-        pub fn as_type_definition(self) -> ::std::option::Option<TypeDefinition<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::TypeDefinition(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `type_specifier` ([`TypeSpecifier`]), otherwise returns `None`
-        #[inline]
-        pub fn as_type_specifier(self) -> ::std::option::Option<TypeSpecifier<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::TypeSpecifier(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        /**Returns the node if it is of type `attributed_statement` ([`AttributedStatement`]), otherwise returns `None`.
-
-Follows the following chain:
-- `statement` ([`Statement < 'tree >`], from [`as_statement`](Self::as_statement))*/
-        #[inline]
-        pub fn as_attributed_statement(
-            self,
-        ) -> ::std::option::Option<AttributedStatement<'tree>> {
-            self.as_statement()?.as_attributed_statement()
-        }
-        /**Returns the node if it is of type `break_statement` ([`BreakStatement`]), otherwise returns `None`.
-
-Follows the following chain:
-- `statement` ([`Statement < 'tree >`], from [`as_statement`](Self::as_statement))*/
-        #[inline]
-        pub fn as_break_statement(self) -> ::std::option::Option<BreakStatement<'tree>> {
-            self.as_statement()?.as_break_statement()
-        }
-        /**Returns the node if it is of type `case_statement` ([`CaseStatement`]), otherwise returns `None`.
-
-Follows the following chain:
-- `statement` ([`Statement < 'tree >`], from [`as_statement`](Self::as_statement))*/
-        #[inline]
-        pub fn as_case_statement(self) -> ::std::option::Option<CaseStatement<'tree>> {
-            self.as_statement()?.as_case_statement()
-        }
-        /**Returns the node if it is of type `compound_statement` ([`CompoundStatement`]), otherwise returns `None`.
-
-Follows the following chain:
-- `statement` ([`Statement < 'tree >`], from [`as_statement`](Self::as_statement))*/
-        #[inline]
-        pub fn as_compound_statement(
-            self,
-        ) -> ::std::option::Option<CompoundStatement<'tree>> {
-            self.as_statement()?.as_compound_statement()
-        }
-        /**Returns the node if it is of type `continue_statement` ([`ContinueStatement`]), otherwise returns `None`.
-
-Follows the following chain:
-- `statement` ([`Statement < 'tree >`], from [`as_statement`](Self::as_statement))*/
-        #[inline]
-        pub fn as_continue_statement(
-            self,
-        ) -> ::std::option::Option<ContinueStatement<'tree>> {
-            self.as_statement()?.as_continue_statement()
-        }
-        /**Returns the node if it is of type `do_statement` ([`DoStatement`]), otherwise returns `None`.
-
-Follows the following chain:
-- `statement` ([`Statement < 'tree >`], from [`as_statement`](Self::as_statement))*/
-        #[inline]
-        pub fn as_do_statement(self) -> ::std::option::Option<DoStatement<'tree>> {
-            self.as_statement()?.as_do_statement()
-        }
-        /**Returns the node if it is of type `expression_statement` ([`ExpressionStatement`]), otherwise returns `None`.
-
-Follows the following chain:
-- `statement` ([`Statement < 'tree >`], from [`as_statement`](Self::as_statement))*/
-        #[inline]
-        pub fn as_expression_statement(
-            self,
-        ) -> ::std::option::Option<ExpressionStatement<'tree>> {
-            self.as_statement()?.as_expression_statement()
-        }
-        /**Returns the node if it is of type `for_statement` ([`ForStatement`]), otherwise returns `None`.
-
-Follows the following chain:
-- `statement` ([`Statement < 'tree >`], from [`as_statement`](Self::as_statement))*/
-        #[inline]
-        pub fn as_for_statement(self) -> ::std::option::Option<ForStatement<'tree>> {
-            self.as_statement()?.as_for_statement()
-        }
-        /**Returns the node if it is of type `goto_statement` ([`GotoStatement`]), otherwise returns `None`.
-
-Follows the following chain:
-- `statement` ([`Statement < 'tree >`], from [`as_statement`](Self::as_statement))*/
-        #[inline]
-        pub fn as_goto_statement(self) -> ::std::option::Option<GotoStatement<'tree>> {
-            self.as_statement()?.as_goto_statement()
-        }
-        /**Returns the node if it is of type `if_statement` ([`IfStatement`]), otherwise returns `None`.
-
-Follows the following chain:
-- `statement` ([`Statement < 'tree >`], from [`as_statement`](Self::as_statement))*/
-        #[inline]
-        pub fn as_if_statement(self) -> ::std::option::Option<IfStatement<'tree>> {
-            self.as_statement()?.as_if_statement()
-        }
-        /**Returns the node if it is of type `labeled_statement` ([`LabeledStatement`]), otherwise returns `None`.
-
-Follows the following chain:
-- `statement` ([`Statement < 'tree >`], from [`as_statement`](Self::as_statement))*/
-        #[inline]
-        pub fn as_labeled_statement(
-            self,
-        ) -> ::std::option::Option<LabeledStatement<'tree>> {
-            self.as_statement()?.as_labeled_statement()
-        }
-        /**Returns the node if it is of type `return_statement` ([`ReturnStatement`]), otherwise returns `None`.
-
-Follows the following chain:
-- `statement` ([`Statement < 'tree >`], from [`as_statement`](Self::as_statement))*/
-        #[inline]
-        pub fn as_return_statement(
-            self,
-        ) -> ::std::option::Option<ReturnStatement<'tree>> {
-            self.as_statement()?.as_return_statement()
-        }
-        /**Returns the node if it is of type `seh_leave_statement` ([`SehLeaveStatement`]), otherwise returns `None`.
-
-Follows the following chain:
-- `statement` ([`Statement < 'tree >`], from [`as_statement`](Self::as_statement))*/
-        #[inline]
-        pub fn as_seh_leave_statement(
-            self,
-        ) -> ::std::option::Option<SehLeaveStatement<'tree>> {
-            self.as_statement()?.as_seh_leave_statement()
-        }
-        /**Returns the node if it is of type `seh_try_statement` ([`SehTryStatement`]), otherwise returns `None`.
-
-Follows the following chain:
-- `statement` ([`Statement < 'tree >`], from [`as_statement`](Self::as_statement))*/
-        #[inline]
-        pub fn as_seh_try_statement(
-            self,
-        ) -> ::std::option::Option<SehTryStatement<'tree>> {
-            self.as_statement()?.as_seh_try_statement()
-        }
-        /**Returns the node if it is of type `switch_statement` ([`SwitchStatement`]), otherwise returns `None`.
-
-Follows the following chain:
-- `statement` ([`Statement < 'tree >`], from [`as_statement`](Self::as_statement))*/
-        #[inline]
-        pub fn as_switch_statement(
-            self,
-        ) -> ::std::option::Option<SwitchStatement<'tree>> {
-            self.as_statement()?.as_switch_statement()
-        }
-        /**Returns the node if it is of type `while_statement` ([`WhileStatement`]), otherwise returns `None`.
-
-Follows the following chain:
-- `statement` ([`Statement < 'tree >`], from [`as_statement`](Self::as_statement))*/
-        #[inline]
-        pub fn as_while_statement(self) -> ::std::option::Option<WhileStatement<'tree>> {
-            self.as_statement()?.as_while_statement()
-        }
-        /**Returns the node if it is of type `enum_specifier` ([`EnumSpecifier`]), otherwise returns `None`.
-
-Follows the following chain:
-- `type_specifier` ([`TypeSpecifier < 'tree >`], from [`as_type_specifier`](Self::as_type_specifier))*/
-        #[inline]
-        pub fn as_enum_specifier(self) -> ::std::option::Option<EnumSpecifier<'tree>> {
-            self.as_type_specifier()?.as_enum_specifier()
-        }
-        /**Returns the node if it is of type `macro_type_specifier` ([`MacroTypeSpecifier`]), otherwise returns `None`.
-
-Follows the following chain:
-- `type_specifier` ([`TypeSpecifier < 'tree >`], from [`as_type_specifier`](Self::as_type_specifier))*/
-        #[inline]
-        pub fn as_macro_type_specifier(
-            self,
-        ) -> ::std::option::Option<MacroTypeSpecifier<'tree>> {
-            self.as_type_specifier()?.as_macro_type_specifier()
-        }
-        /**Returns the node if it is of type `primitive_type` ([`PrimitiveType`]), otherwise returns `None`.
-
-Follows the following chain:
-- `type_specifier` ([`TypeSpecifier < 'tree >`], from [`as_type_specifier`](Self::as_type_specifier))*/
-        #[inline]
-        pub fn as_primitive_type(self) -> ::std::option::Option<PrimitiveType<'tree>> {
-            self.as_type_specifier()?.as_primitive_type()
-        }
-        /**Returns the node if it is of type `sized_type_specifier` ([`SizedTypeSpecifier`]), otherwise returns `None`.
-
-Follows the following chain:
-- `type_specifier` ([`TypeSpecifier < 'tree >`], from [`as_type_specifier`](Self::as_type_specifier))*/
-        #[inline]
-        pub fn as_sized_type_specifier(
-            self,
-        ) -> ::std::option::Option<SizedTypeSpecifier<'tree>> {
-            self.as_type_specifier()?.as_sized_type_specifier()
-        }
-        /**Returns the node if it is of type `struct_specifier` ([`StructSpecifier`]), otherwise returns `None`.
-
-Follows the following chain:
-- `type_specifier` ([`TypeSpecifier < 'tree >`], from [`as_type_specifier`](Self::as_type_specifier))*/
-        #[inline]
-        pub fn as_struct_specifier(
-            self,
-        ) -> ::std::option::Option<StructSpecifier<'tree>> {
-            self.as_type_specifier()?.as_struct_specifier()
-        }
-        /**Returns the node if it is of type `type_identifier` ([`TypeIdentifier`]), otherwise returns `None`.
-
-Follows the following chain:
-- `type_specifier` ([`TypeSpecifier < 'tree >`], from [`as_type_specifier`](Self::as_type_specifier))*/
-        #[inline]
-        pub fn as_type_identifier(self) -> ::std::option::Option<TypeIdentifier<'tree>> {
-            self.as_type_specifier()?.as_type_identifier()
-        }
-        /**Returns the node if it is of type `union_specifier` ([`UnionSpecifier`]), otherwise returns `None`.
-
-Follows the following chain:
-- `type_specifier` ([`TypeSpecifier < 'tree >`], from [`as_type_specifier`](Self::as_type_specifier))*/
-        #[inline]
-        pub fn as_union_specifier(self) -> ::std::option::Option<UnionSpecifier<'tree>> {
-            self.as_type_specifier()?.as_union_specifier()
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> ::type_sitter_lib::Node<'tree>
-    for Declaration_Enumerator_FieldDeclaration_FunctionDefinition_LinkageSpecification_PreprocCall_PreprocDef_PreprocFunctionDef_PreprocIf_PreprocIfdef_PreprocInclude_Statement_TypeDefinition_TypeSpecifier<
-        'tree,
-    > {
-        type WithLifetime<'a> = Declaration_Enumerator_FieldDeclaration_FunctionDefinition_LinkageSpecification_PreprocCall_PreprocDef_PreprocFunctionDef_PreprocIf_PreprocIfdef_PreprocInclude_Statement_TypeDefinition_TypeSpecifier<
-            'a,
-        >;
-        const KIND: &'static str = "{declaration | enumerator | field_declaration | function_definition | linkage_specification | preproc_call | preproc_def | preproc_function_def | preproc_if | preproc_ifdef | preproc_include | statement | type_definition | type_specifier}";
-        #[inline]
-        fn try_from_raw(
-            node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
-            match node.kind() {
-                "declaration" => {
-                    Ok(unsafe {
-                        Self::Declaration(
-                            <Declaration<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "enumerator" => {
-                    Ok(unsafe {
-                        Self::Enumerator(
-                            <Enumerator<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "field_declaration" => {
-                    Ok(unsafe {
-                        Self::FieldDeclaration(
-                            <FieldDeclaration<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "function_definition" => {
-                    Ok(unsafe {
-                        Self::FunctionDefinition(
-                            <FunctionDefinition<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "linkage_specification" => {
-                    Ok(unsafe {
-                        Self::LinkageSpecification(
-                            <LinkageSpecification<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "preproc_call" => {
-                    Ok(unsafe {
-                        Self::PreprocCall(
-                            <PreprocCall<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "preproc_def" => {
-                    Ok(unsafe {
-                        Self::PreprocDef(
-                            <PreprocDef<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "preproc_function_def" => {
-                    Ok(unsafe {
-                        Self::PreprocFunctionDef(
-                            <PreprocFunctionDef<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "preproc_if" => {
-                    Ok(unsafe {
-                        Self::PreprocIf(
-                            <PreprocIf<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "preproc_ifdef" => {
-                    Ok(unsafe {
-                        Self::PreprocIfdef(
-                            <PreprocIfdef<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "preproc_include" => {
-                    Ok(unsafe {
-                        Self::PreprocInclude(
-                            <PreprocInclude<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "statement" => {
-                    Ok(unsafe {
-                        Self::Statement(
-                            <Statement<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "type_definition" => {
-                    Ok(unsafe {
-                        Self::TypeDefinition(
-                            <TypeDefinition<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "type_specifier" => {
-                    Ok(unsafe {
-                        Self::TypeSpecifier(
-                            <TypeSpecifier<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                _ => Err(::type_sitter_lib::IncorrectKind::new::<Self>(node)),
-            }
-        }
-        #[inline]
-        fn raw(&self) -> &::yak_sitter::Node<'tree> {
-            match self {
-                Self::Declaration(x) => ::type_sitter_lib::Node::raw(x),
-                Self::Enumerator(x) => ::type_sitter_lib::Node::raw(x),
-                Self::FieldDeclaration(x) => ::type_sitter_lib::Node::raw(x),
-                Self::FunctionDefinition(x) => ::type_sitter_lib::Node::raw(x),
-                Self::LinkageSpecification(x) => ::type_sitter_lib::Node::raw(x),
-                Self::PreprocCall(x) => ::type_sitter_lib::Node::raw(x),
-                Self::PreprocDef(x) => ::type_sitter_lib::Node::raw(x),
-                Self::PreprocFunctionDef(x) => ::type_sitter_lib::Node::raw(x),
-                Self::PreprocIf(x) => ::type_sitter_lib::Node::raw(x),
-                Self::PreprocIfdef(x) => ::type_sitter_lib::Node::raw(x),
-                Self::PreprocInclude(x) => ::type_sitter_lib::Node::raw(x),
-                Self::Statement(x) => ::type_sitter_lib::Node::raw(x),
-                Self::TypeDefinition(x) => ::type_sitter_lib::Node::raw(x),
-                Self::TypeSpecifier(x) => ::type_sitter_lib::Node::raw(x),
-            }
-        }
-        #[inline]
-        fn raw_mut(&mut self) -> &mut ::yak_sitter::Node<'tree> {
-            match self {
-                Self::Declaration(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::Enumerator(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::FieldDeclaration(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::FunctionDefinition(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::LinkageSpecification(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::PreprocCall(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::PreprocDef(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::PreprocFunctionDef(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::PreprocIf(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::PreprocIfdef(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::PreprocInclude(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::Statement(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::TypeDefinition(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::TypeSpecifier(x) => ::type_sitter_lib::Node::raw_mut(x),
-            }
-        }
-        #[inline]
-        fn into_raw(self) -> ::yak_sitter::Node<'tree> {
-            match self {
-                Self::Declaration(x) => x.into_raw(),
-                Self::Enumerator(x) => x.into_raw(),
-                Self::FieldDeclaration(x) => x.into_raw(),
-                Self::FunctionDefinition(x) => x.into_raw(),
-                Self::LinkageSpecification(x) => x.into_raw(),
-                Self::PreprocCall(x) => x.into_raw(),
-                Self::PreprocDef(x) => x.into_raw(),
-                Self::PreprocFunctionDef(x) => x.into_raw(),
-                Self::PreprocIf(x) => x.into_raw(),
-                Self::PreprocIfdef(x) => x.into_raw(),
-                Self::PreprocInclude(x) => x.into_raw(),
-                Self::Statement(x) => x.into_raw(),
-                Self::TypeDefinition(x) => x.into_raw(),
-                Self::TypeSpecifier(x) => x.into_raw(),
-            }
-        }
-    }
-    /**One of `{declaration | function_definition | linkage_specification | preproc_call | preproc_def | preproc_function_def | preproc_if | preproc_ifdef | preproc_include | statement | type_definition | type_specifier}`:
-- [`Declaration`]
-- [`FunctionDefinition`]
-- [`LinkageSpecification`]
-- [`PreprocCall`]
-- [`PreprocDef`]
-- [`PreprocFunctionDef`]
-- [`PreprocIf`]
-- [`PreprocIfdef`]
-- [`PreprocInclude`]
-- [`Statement`]
-- [`TypeDefinition`]
-- [`TypeSpecifier`]*/
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[allow(non_camel_case_types)]
-    pub enum Declaration_FunctionDefinition_LinkageSpecification_PreprocCall_PreprocDef_PreprocFunctionDef_PreprocIf_PreprocIfdef_PreprocInclude_Statement_TypeDefinition_TypeSpecifier<
-        'tree,
-    > {
-        Declaration(Declaration<'tree>),
-        FunctionDefinition(FunctionDefinition<'tree>),
-        LinkageSpecification(LinkageSpecification<'tree>),
-        PreprocCall(PreprocCall<'tree>),
-        PreprocDef(PreprocDef<'tree>),
-        PreprocFunctionDef(PreprocFunctionDef<'tree>),
-        PreprocIf(PreprocIf<'tree>),
-        PreprocIfdef(PreprocIfdef<'tree>),
-        PreprocInclude(PreprocInclude<'tree>),
-        Statement(Statement<'tree>),
-        TypeDefinition(TypeDefinition<'tree>),
-        TypeSpecifier(TypeSpecifier<'tree>),
-    }
-    #[automatically_derived]
-    #[allow(unused)]
-    impl<
-        'tree,
-    > Declaration_FunctionDefinition_LinkageSpecification_PreprocCall_PreprocDef_PreprocFunctionDef_PreprocIf_PreprocIfdef_PreprocInclude_Statement_TypeDefinition_TypeSpecifier<
-        'tree,
-    > {
-        ///Returns the node if it is of type `declaration` ([`Declaration`]), otherwise returns `None`
-        #[inline]
-        pub fn as_declaration(self) -> ::std::option::Option<Declaration<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::Declaration(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `function_definition` ([`FunctionDefinition`]), otherwise returns `None`
-        #[inline]
-        pub fn as_function_definition(
-            self,
-        ) -> ::std::option::Option<FunctionDefinition<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::FunctionDefinition(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `linkage_specification` ([`LinkageSpecification`]), otherwise returns `None`
-        #[inline]
-        pub fn as_linkage_specification(
-            self,
-        ) -> ::std::option::Option<LinkageSpecification<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::LinkageSpecification(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `preproc_call` ([`PreprocCall`]), otherwise returns `None`
-        #[inline]
-        pub fn as_preproc_call(self) -> ::std::option::Option<PreprocCall<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::PreprocCall(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `preproc_def` ([`PreprocDef`]), otherwise returns `None`
-        #[inline]
-        pub fn as_preproc_def(self) -> ::std::option::Option<PreprocDef<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::PreprocDef(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `preproc_function_def` ([`PreprocFunctionDef`]), otherwise returns `None`
-        #[inline]
-        pub fn as_preproc_function_def(
-            self,
-        ) -> ::std::option::Option<PreprocFunctionDef<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::PreprocFunctionDef(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `preproc_if` ([`PreprocIf`]), otherwise returns `None`
-        #[inline]
-        pub fn as_preproc_if(self) -> ::std::option::Option<PreprocIf<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::PreprocIf(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `preproc_ifdef` ([`PreprocIfdef`]), otherwise returns `None`
-        #[inline]
-        pub fn as_preproc_ifdef(self) -> ::std::option::Option<PreprocIfdef<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::PreprocIfdef(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `preproc_include` ([`PreprocInclude`]), otherwise returns `None`
-        #[inline]
-        pub fn as_preproc_include(self) -> ::std::option::Option<PreprocInclude<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::PreprocInclude(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `statement` ([`Statement`]), otherwise returns `None`
-        #[inline]
-        pub fn as_statement(self) -> ::std::option::Option<Statement<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::Statement(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `type_definition` ([`TypeDefinition`]), otherwise returns `None`
-        #[inline]
-        pub fn as_type_definition(self) -> ::std::option::Option<TypeDefinition<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::TypeDefinition(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        ///Returns the node if it is of type `type_specifier` ([`TypeSpecifier`]), otherwise returns `None`
-        #[inline]
-        pub fn as_type_specifier(self) -> ::std::option::Option<TypeSpecifier<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::TypeSpecifier(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        /**Returns the node if it is of type `attributed_statement` ([`AttributedStatement`]), otherwise returns `None`.
-
-Follows the following chain:
-- `statement` ([`Statement < 'tree >`], from [`as_statement`](Self::as_statement))*/
-        #[inline]
-        pub fn as_attributed_statement(
-            self,
-        ) -> ::std::option::Option<AttributedStatement<'tree>> {
-            self.as_statement()?.as_attributed_statement()
-        }
-        /**Returns the node if it is of type `break_statement` ([`BreakStatement`]), otherwise returns `None`.
-
-Follows the following chain:
-- `statement` ([`Statement < 'tree >`], from [`as_statement`](Self::as_statement))*/
-        #[inline]
-        pub fn as_break_statement(self) -> ::std::option::Option<BreakStatement<'tree>> {
-            self.as_statement()?.as_break_statement()
-        }
-        /**Returns the node if it is of type `case_statement` ([`CaseStatement`]), otherwise returns `None`.
-
-Follows the following chain:
-- `statement` ([`Statement < 'tree >`], from [`as_statement`](Self::as_statement))*/
-        #[inline]
-        pub fn as_case_statement(self) -> ::std::option::Option<CaseStatement<'tree>> {
-            self.as_statement()?.as_case_statement()
-        }
-        /**Returns the node if it is of type `compound_statement` ([`CompoundStatement`]), otherwise returns `None`.
-
-Follows the following chain:
-- `statement` ([`Statement < 'tree >`], from [`as_statement`](Self::as_statement))*/
-        #[inline]
-        pub fn as_compound_statement(
-            self,
-        ) -> ::std::option::Option<CompoundStatement<'tree>> {
-            self.as_statement()?.as_compound_statement()
-        }
-        /**Returns the node if it is of type `continue_statement` ([`ContinueStatement`]), otherwise returns `None`.
-
-Follows the following chain:
-- `statement` ([`Statement < 'tree >`], from [`as_statement`](Self::as_statement))*/
-        #[inline]
-        pub fn as_continue_statement(
-            self,
-        ) -> ::std::option::Option<ContinueStatement<'tree>> {
-            self.as_statement()?.as_continue_statement()
-        }
-        /**Returns the node if it is of type `do_statement` ([`DoStatement`]), otherwise returns `None`.
-
-Follows the following chain:
-- `statement` ([`Statement < 'tree >`], from [`as_statement`](Self::as_statement))*/
-        #[inline]
-        pub fn as_do_statement(self) -> ::std::option::Option<DoStatement<'tree>> {
-            self.as_statement()?.as_do_statement()
-        }
-        /**Returns the node if it is of type `expression_statement` ([`ExpressionStatement`]), otherwise returns `None`.
-
-Follows the following chain:
-- `statement` ([`Statement < 'tree >`], from [`as_statement`](Self::as_statement))*/
-        #[inline]
-        pub fn as_expression_statement(
-            self,
-        ) -> ::std::option::Option<ExpressionStatement<'tree>> {
-            self.as_statement()?.as_expression_statement()
-        }
-        /**Returns the node if it is of type `for_statement` ([`ForStatement`]), otherwise returns `None`.
-
-Follows the following chain:
-- `statement` ([`Statement < 'tree >`], from [`as_statement`](Self::as_statement))*/
-        #[inline]
-        pub fn as_for_statement(self) -> ::std::option::Option<ForStatement<'tree>> {
-            self.as_statement()?.as_for_statement()
-        }
-        /**Returns the node if it is of type `goto_statement` ([`GotoStatement`]), otherwise returns `None`.
-
-Follows the following chain:
-- `statement` ([`Statement < 'tree >`], from [`as_statement`](Self::as_statement))*/
-        #[inline]
-        pub fn as_goto_statement(self) -> ::std::option::Option<GotoStatement<'tree>> {
-            self.as_statement()?.as_goto_statement()
-        }
-        /**Returns the node if it is of type `if_statement` ([`IfStatement`]), otherwise returns `None`.
-
-Follows the following chain:
-- `statement` ([`Statement < 'tree >`], from [`as_statement`](Self::as_statement))*/
-        #[inline]
-        pub fn as_if_statement(self) -> ::std::option::Option<IfStatement<'tree>> {
-            self.as_statement()?.as_if_statement()
-        }
-        /**Returns the node if it is of type `labeled_statement` ([`LabeledStatement`]), otherwise returns `None`.
-
-Follows the following chain:
-- `statement` ([`Statement < 'tree >`], from [`as_statement`](Self::as_statement))*/
-        #[inline]
-        pub fn as_labeled_statement(
-            self,
-        ) -> ::std::option::Option<LabeledStatement<'tree>> {
-            self.as_statement()?.as_labeled_statement()
-        }
-        /**Returns the node if it is of type `return_statement` ([`ReturnStatement`]), otherwise returns `None`.
-
-Follows the following chain:
-- `statement` ([`Statement < 'tree >`], from [`as_statement`](Self::as_statement))*/
-        #[inline]
-        pub fn as_return_statement(
-            self,
-        ) -> ::std::option::Option<ReturnStatement<'tree>> {
-            self.as_statement()?.as_return_statement()
-        }
-        /**Returns the node if it is of type `seh_leave_statement` ([`SehLeaveStatement`]), otherwise returns `None`.
-
-Follows the following chain:
-- `statement` ([`Statement < 'tree >`], from [`as_statement`](Self::as_statement))*/
-        #[inline]
-        pub fn as_seh_leave_statement(
-            self,
-        ) -> ::std::option::Option<SehLeaveStatement<'tree>> {
-            self.as_statement()?.as_seh_leave_statement()
-        }
-        /**Returns the node if it is of type `seh_try_statement` ([`SehTryStatement`]), otherwise returns `None`.
-
-Follows the following chain:
-- `statement` ([`Statement < 'tree >`], from [`as_statement`](Self::as_statement))*/
-        #[inline]
-        pub fn as_seh_try_statement(
-            self,
-        ) -> ::std::option::Option<SehTryStatement<'tree>> {
-            self.as_statement()?.as_seh_try_statement()
-        }
-        /**Returns the node if it is of type `switch_statement` ([`SwitchStatement`]), otherwise returns `None`.
-
-Follows the following chain:
-- `statement` ([`Statement < 'tree >`], from [`as_statement`](Self::as_statement))*/
-        #[inline]
-        pub fn as_switch_statement(
-            self,
-        ) -> ::std::option::Option<SwitchStatement<'tree>> {
-            self.as_statement()?.as_switch_statement()
-        }
-        /**Returns the node if it is of type `while_statement` ([`WhileStatement`]), otherwise returns `None`.
-
-Follows the following chain:
-- `statement` ([`Statement < 'tree >`], from [`as_statement`](Self::as_statement))*/
-        #[inline]
-        pub fn as_while_statement(self) -> ::std::option::Option<WhileStatement<'tree>> {
-            self.as_statement()?.as_while_statement()
-        }
-        /**Returns the node if it is of type `enum_specifier` ([`EnumSpecifier`]), otherwise returns `None`.
-
-Follows the following chain:
-- `type_specifier` ([`TypeSpecifier < 'tree >`], from [`as_type_specifier`](Self::as_type_specifier))*/
-        #[inline]
-        pub fn as_enum_specifier(self) -> ::std::option::Option<EnumSpecifier<'tree>> {
-            self.as_type_specifier()?.as_enum_specifier()
-        }
-        /**Returns the node if it is of type `macro_type_specifier` ([`MacroTypeSpecifier`]), otherwise returns `None`.
-
-Follows the following chain:
-- `type_specifier` ([`TypeSpecifier < 'tree >`], from [`as_type_specifier`](Self::as_type_specifier))*/
-        #[inline]
-        pub fn as_macro_type_specifier(
-            self,
-        ) -> ::std::option::Option<MacroTypeSpecifier<'tree>> {
-            self.as_type_specifier()?.as_macro_type_specifier()
-        }
-        /**Returns the node if it is of type `primitive_type` ([`PrimitiveType`]), otherwise returns `None`.
-
-Follows the following chain:
-- `type_specifier` ([`TypeSpecifier < 'tree >`], from [`as_type_specifier`](Self::as_type_specifier))*/
-        #[inline]
-        pub fn as_primitive_type(self) -> ::std::option::Option<PrimitiveType<'tree>> {
-            self.as_type_specifier()?.as_primitive_type()
-        }
-        /**Returns the node if it is of type `sized_type_specifier` ([`SizedTypeSpecifier`]), otherwise returns `None`.
-
-Follows the following chain:
-- `type_specifier` ([`TypeSpecifier < 'tree >`], from [`as_type_specifier`](Self::as_type_specifier))*/
-        #[inline]
-        pub fn as_sized_type_specifier(
-            self,
-        ) -> ::std::option::Option<SizedTypeSpecifier<'tree>> {
-            self.as_type_specifier()?.as_sized_type_specifier()
-        }
-        /**Returns the node if it is of type `struct_specifier` ([`StructSpecifier`]), otherwise returns `None`.
-
-Follows the following chain:
-- `type_specifier` ([`TypeSpecifier < 'tree >`], from [`as_type_specifier`](Self::as_type_specifier))*/
-        #[inline]
-        pub fn as_struct_specifier(
-            self,
-        ) -> ::std::option::Option<StructSpecifier<'tree>> {
-            self.as_type_specifier()?.as_struct_specifier()
-        }
-        /**Returns the node if it is of type `type_identifier` ([`TypeIdentifier`]), otherwise returns `None`.
-
-Follows the following chain:
-- `type_specifier` ([`TypeSpecifier < 'tree >`], from [`as_type_specifier`](Self::as_type_specifier))*/
-        #[inline]
-        pub fn as_type_identifier(self) -> ::std::option::Option<TypeIdentifier<'tree>> {
-            self.as_type_specifier()?.as_type_identifier()
-        }
-        /**Returns the node if it is of type `union_specifier` ([`UnionSpecifier`]), otherwise returns `None`.
-
-Follows the following chain:
-- `type_specifier` ([`TypeSpecifier < 'tree >`], from [`as_type_specifier`](Self::as_type_specifier))*/
-        #[inline]
-        pub fn as_union_specifier(self) -> ::std::option::Option<UnionSpecifier<'tree>> {
-            self.as_type_specifier()?.as_union_specifier()
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> ::type_sitter_lib::Node<'tree>
-    for Declaration_FunctionDefinition_LinkageSpecification_PreprocCall_PreprocDef_PreprocFunctionDef_PreprocIf_PreprocIfdef_PreprocInclude_Statement_TypeDefinition_TypeSpecifier<
-        'tree,
-    > {
-        type WithLifetime<'a> = Declaration_FunctionDefinition_LinkageSpecification_PreprocCall_PreprocDef_PreprocFunctionDef_PreprocIf_PreprocIfdef_PreprocInclude_Statement_TypeDefinition_TypeSpecifier<
-            'a,
-        >;
-        const KIND: &'static str = "{declaration | function_definition | linkage_specification | preproc_call | preproc_def | preproc_function_def | preproc_if | preproc_ifdef | preproc_include | statement | type_definition | type_specifier}";
-        #[inline]
-        fn try_from_raw(
-            node: ::yak_sitter::Node<'tree>,
-        ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
-            match node.kind() {
-                "declaration" => {
-                    Ok(unsafe {
-                        Self::Declaration(
-                            <Declaration<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "function_definition" => {
-                    Ok(unsafe {
-                        Self::FunctionDefinition(
-                            <FunctionDefinition<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "linkage_specification" => {
-                    Ok(unsafe {
-                        Self::LinkageSpecification(
-                            <LinkageSpecification<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "preproc_call" => {
-                    Ok(unsafe {
-                        Self::PreprocCall(
-                            <PreprocCall<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "preproc_def" => {
-                    Ok(unsafe {
-                        Self::PreprocDef(
-                            <PreprocDef<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "preproc_function_def" => {
-                    Ok(unsafe {
-                        Self::PreprocFunctionDef(
-                            <PreprocFunctionDef<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "preproc_if" => {
-                    Ok(unsafe {
-                        Self::PreprocIf(
-                            <PreprocIf<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "preproc_ifdef" => {
-                    Ok(unsafe {
-                        Self::PreprocIfdef(
-                            <PreprocIfdef<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "preproc_include" => {
-                    Ok(unsafe {
-                        Self::PreprocInclude(
-                            <PreprocInclude<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "statement" => {
-                    Ok(unsafe {
-                        Self::Statement(
-                            <Statement<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "type_definition" => {
-                    Ok(unsafe {
-                        Self::TypeDefinition(
-                            <TypeDefinition<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "type_specifier" => {
-                    Ok(unsafe {
-                        Self::TypeSpecifier(
-                            <TypeSpecifier<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                _ => Err(::type_sitter_lib::IncorrectKind::new::<Self>(node)),
-            }
-        }
-        #[inline]
-        fn raw(&self) -> &::yak_sitter::Node<'tree> {
-            match self {
-                Self::Declaration(x) => ::type_sitter_lib::Node::raw(x),
-                Self::FunctionDefinition(x) => ::type_sitter_lib::Node::raw(x),
-                Self::LinkageSpecification(x) => ::type_sitter_lib::Node::raw(x),
-                Self::PreprocCall(x) => ::type_sitter_lib::Node::raw(x),
-                Self::PreprocDef(x) => ::type_sitter_lib::Node::raw(x),
-                Self::PreprocFunctionDef(x) => ::type_sitter_lib::Node::raw(x),
-                Self::PreprocIf(x) => ::type_sitter_lib::Node::raw(x),
-                Self::PreprocIfdef(x) => ::type_sitter_lib::Node::raw(x),
-                Self::PreprocInclude(x) => ::type_sitter_lib::Node::raw(x),
-                Self::Statement(x) => ::type_sitter_lib::Node::raw(x),
-                Self::TypeDefinition(x) => ::type_sitter_lib::Node::raw(x),
-                Self::TypeSpecifier(x) => ::type_sitter_lib::Node::raw(x),
-            }
-        }
-        #[inline]
-        fn raw_mut(&mut self) -> &mut ::yak_sitter::Node<'tree> {
-            match self {
-                Self::Declaration(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::FunctionDefinition(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::LinkageSpecification(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::PreprocCall(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::PreprocDef(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::PreprocFunctionDef(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::PreprocIf(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::PreprocIfdef(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::PreprocInclude(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::Statement(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::TypeDefinition(x) => ::type_sitter_lib::Node::raw_mut(x),
-                Self::TypeSpecifier(x) => ::type_sitter_lib::Node::raw_mut(x),
-            }
-        }
-        #[inline]
-        fn into_raw(self) -> ::yak_sitter::Node<'tree> {
-            match self {
-                Self::Declaration(x) => x.into_raw(),
-                Self::FunctionDefinition(x) => x.into_raw(),
-                Self::LinkageSpecification(x) => x.into_raw(),
-                Self::PreprocCall(x) => x.into_raw(),
-                Self::PreprocDef(x) => x.into_raw(),
-                Self::PreprocFunctionDef(x) => x.into_raw(),
-                Self::PreprocIf(x) => x.into_raw(),
-                Self::PreprocIfdef(x) => x.into_raw(),
-                Self::PreprocInclude(x) => x.into_raw(),
-                Self::Statement(x) => x.into_raw(),
-                Self::TypeDefinition(x) => x.into_raw(),
-                Self::TypeSpecifier(x) => x.into_raw(),
             }
         }
     }

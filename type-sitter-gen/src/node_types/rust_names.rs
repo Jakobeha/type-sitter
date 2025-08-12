@@ -3,9 +3,11 @@ use check_keyword::CheckKeyword;
 use convert_case::{Case, Casing};
 use enum_map::{Enum, EnumMap};
 use join_lazy_fmt::Join;
+use rustc_stable_hash::{FromStableHash, SipHasher128Hash, StableSipHasher128};
 use std::borrow::Cow;
 use std::collections::HashSet;
-use std::fmt::{Display, Write};
+use std::fmt::Write;
+use std::hash::Hash;
 
 /// Context to disambiguate a node's type and method accessor.
 ///
@@ -158,8 +160,22 @@ impl NodeRustNames {
 
     pub(super) fn anon_union_type_name<'a>(
         names: impl IntoIterator<Item = &'a NodeRustNames, IntoIter: 'a>,
-    ) -> impl Display + 'a {
-        "_".join(names.into_iter().map(|name| &name.type_name))
+    ) -> String {
+        let unique_name = "_"
+            .join(names.into_iter().map(|name| &name.type_name))
+            .to_string();
+
+        // If the name is too long it breaks `cargo doc`.
+        // See https://github.com/rust-lang/rust/issues/34023.
+        // Technically the limit may be up to 255, but after a certain length,
+        // the name isn't descriptive and IMO should be shortened anyways.
+        const MAX_REASONABLE_LENGTH: usize = 100;
+        if unique_name.len() > MAX_REASONABLE_LENGTH {
+            // Get a hash of the name, because it's guaranteed to be unique.
+            format!("Anon{}", stable_hash(unique_name))
+        } else {
+            unique_name
+        }
     }
 }
 
@@ -234,4 +250,20 @@ pub(crate) fn unmake_reserved(name: &mut String) {
         }
         _ => unmake_reserved_if_raw(name),
     }
+}
+
+/// Helper function to generate a stable hash of a value.
+fn stable_hash(value: impl Hash) -> u128 {
+    struct Hash128(u128);
+    impl FromStableHash for Hash128 {
+        type Hash = SipHasher128Hash;
+
+        fn from(SipHasher128Hash(hash): SipHasher128Hash) -> Hash128 {
+            Hash128((u128::from(hash[0]) << 64) | u128::from(hash[1]))
+        }
+    }
+
+    let mut hasher = StableSipHasher128::new();
+    value.hash(&mut hasher);
+    hasher.finish::<Hash128>().0
 }

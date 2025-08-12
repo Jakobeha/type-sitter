@@ -16,7 +16,7 @@ impl AnonUnionId {
     /// Create an id for the anonymous union of `names`
     pub(crate) fn new(types: &[&NodeType]) -> Self {
         Self {
-            name: NodeType::anon_union_type_name(types.iter().copied()).to_string(),
+            name: NodeType::anon_union_type_name(types.iter().copied()),
         }
     }
 
