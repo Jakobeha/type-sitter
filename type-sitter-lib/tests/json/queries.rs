@@ -692,42 +692,22 @@ pub mod anon_unions {
         fn try_from_raw(
             node: ::yak_sitter::Node<'tree>,
         ) -> ::type_sitter_lib::NodeResult<'tree, Self> {
-            match node.kind() {
-                "false" => {
-                    Ok(unsafe {
-                        Self::False(
-                            <False<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "null" => {
-                    Ok(unsafe {
-                        Self::Null(
-                            <Null<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                "true" => {
-                    Ok(unsafe {
-                        Self::True(
-                            <True<
-                                'tree,
-                            > as ::type_sitter_lib::Node<
-                                'tree,
-                            >>::from_raw_unchecked(node),
-                        )
-                    })
-                }
-                _ => Err(::type_sitter_lib::IncorrectKind::new::<Self>(node)),
+            if let Ok(this) = <False<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::False(this));
             }
+            if let Ok(this) = <Null<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::Null(this));
+            }
+            if let Ok(this) = <True<
+                'tree,
+            > as ::type_sitter_lib::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::True(this));
+            }
+            Err(::type_sitter_lib::IncorrectKind::new::<Self>(node))
         }
         #[inline]
         fn raw(&self) -> &::yak_sitter::Node<'tree> {
