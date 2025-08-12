@@ -23,5 +23,6 @@ type-sitter-proc = { workspace = true, optional = true }
 type-sitter-lib = { workspace = true }
 
 [dev-dependencies]
+tree-sitter-c = { workspace = true }
 tree-sitter-json = { workspace = true }
 tree-sitter-rust = { workspace = true }

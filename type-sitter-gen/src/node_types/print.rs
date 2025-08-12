@@ -168,6 +168,10 @@ impl NodeType {
         anon_unions: &mut AnonUnions,
     ) -> TokenStream {
         let has_implicit_subtypes = subtypes.iter().any(|subtype| subtype.name.is_implicit());
+        // Fix for https://github.com/Jakobeha/type-sitter/issues/18
+        let has_supertype_subtypes = subtypes
+            .iter()
+            .any(|subtype| matches!(subtype.kind, NodeTypeKind::Supertype { .. }));
 
         // Don't clear `prev_methods`, do clear `prev_variants` before every iteration.
         // Because the variants are in the local `match` scope but the methods are in the same type
@@ -204,7 +208,7 @@ impl NodeType {
             let error = quote! {
                 Err(#type_sitter_lib::IncorrectKind::new::<Self>(node))
             };
-            if has_implicit_subtypes {
+            if has_implicit_subtypes || has_supertype_subtypes {
                 prev_variants.clear();
                 let try_from_ifs = subtypes
                     .iter()

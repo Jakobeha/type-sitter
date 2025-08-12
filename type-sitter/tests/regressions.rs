@@ -1,22 +1,15 @@
+use crate::c::Statement;
 use type_sitter::{HasChildren, Node, OptionNodeResultExt, Parser, Tree};
-
-mod rust {
-    type_sitter::generate_nodes!("../vendor/tree-sitter-rust/src/node-types.json");
-}
-
-fn parse_rust(input: &str) -> Tree<rust::SourceFile<'static>> {
-    let mut parser = Parser::<rust::SourceFile>::new(&tree_sitter_rust::LANGUAGE.into()).unwrap();
-    parser.parse(&input, None).unwrap()
-}
+use type_sitter_lib::HasOptionalChild;
 
 #[test]
 fn test_nonfield_children_iterator() {
     let code = "fn main() { let _ = [1, 2, 3, 4, 5]; }";
 
     let tree = parse_rust(code);
-    let source_file = tree.root_node().unwrap();
+    let root = tree.root_node().unwrap();
 
-    let array = source_file
+    let array = root
         .children(&mut tree.walk())
         .next()
         .unwrap2()
@@ -54,9 +47,9 @@ fn test_nonfield_child_getter() {
     let code = "fn main() { match () { () if true => () } }";
 
     let tree = parse_rust(code);
-    let source_file = tree.root_node().unwrap();
+    let root = tree.root_node().unwrap();
 
-    let pattern_and_if = source_file
+    let pattern_and_if = root
         .children(&mut tree.walk())
         .next()
         .unwrap2()
@@ -97,4 +90,66 @@ fn test_nonfield_child_getter() {
             .unwrap(),
         "()"
     );
+}
+
+#[test]
+fn test_supertype_subtype() {
+    let code = "int main(int[] argc) { return 3; }";
+
+    let tree = parse_c(code);
+    let root = tree.root_node().unwrap();
+
+    let return_statement_as_anon_union = root
+        .children(&mut tree.walk())
+        .next()
+        .unwrap2()
+        .as_function_definition()
+        .unwrap()
+        .body()
+        .unwrap()
+        .children(&mut tree.walk())
+        .next()
+        .unwrap2();
+
+    let return_statement_as_statement = return_statement_as_anon_union.as_statement().unwrap();
+    let return_statement_as_return_statement = return_statement_as_anon_union
+        .as_return_statement()
+        .unwrap();
+
+    assert_eq!(
+        return_statement_as_anon_union
+            .utf8_text(code.as_bytes())
+            .unwrap(),
+        "return 3;",
+    );
+    assert_eq!(
+        return_statement_as_return_statement
+            .child()
+            .unwrap()
+            .utf8_text(code.as_bytes())
+            .unwrap(),
+        "3",
+    );
+    assert_eq!(
+        return_statement_as_statement,
+        Statement::ReturnStatement(return_statement_as_return_statement),
+    );
+}
+
+fn parse_c(input: &str) -> Tree<c::TranslationUnit<'static>> {
+    let mut parser = Parser::<c::TranslationUnit>::new(&tree_sitter_c::LANGUAGE.into()).unwrap();
+    parser.parse(&input, None).unwrap()
+}
+
+fn parse_rust(input: &str) -> Tree<rust::SourceFile<'static>> {
+    let mut parser = Parser::<rust::SourceFile>::new(&tree_sitter_rust::LANGUAGE.into()).unwrap();
+    parser.parse(&input, None).unwrap()
+}
+
+mod c {
+    type_sitter::generate_nodes!("../vendor/tree-sitter-c/src/node-types.json");
+}
+
+mod rust {
+    type_sitter::generate_nodes!("../vendor/tree-sitter-rust/src/node-types.json");
 }
