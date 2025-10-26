@@ -137,10 +137,10 @@ fn build_dylib(path: &Path, dylib_path: &Path) -> Result<(), Error> {
         .filter(|p| has_extension(p, "c"));
     Build::new()
         // Use the same target, optimization level, etc. as this crate was compiled with
-        .host(env!("HOST"))
-        .target(env!("TARGET"))
-        .opt_level_str(env!("OPT_LEVEL"))
-        .debug(env!("DEBUG") == "true")
+        .host(env!("TYPE_SITTER_HOST"))
+        .target(env!("TYPE_SITTER_TARGET"))
+        .opt_level_str(env!("TYPE_SITTER_OPT_LEVEL"))
+        .debug(env!("TYPE_SITTER_DEBUG") == "true")
         // Add tree-sitter flags
         .flag_if_supported("-Wno-unused-parameter")
         .flag_if_supported("-Wno-unused-but-set-variable")
@@ -173,11 +173,12 @@ fn build_dylib(path: &Path, dylib_path: &Path) -> Result<(), Error> {
             .status()
             .map_err(Error::LinkDylibCmdFailed)?
     } else if cfg!(target_family = "windows") {
-        let mut link_exe = cc::windows_registry::find(std::env::consts::ARCH, "link.exe")
-            .ok_or(Error::LinkDylibCmdFailed(std::io::Error::new(
+        let mut link_exe = cc::windows_registry::find(std::env::consts::ARCH, "link.exe").ok_or(
+            Error::LinkDylibCmdFailed(std::io::Error::new(
                 std::io::ErrorKind::NotFound,
                 "can't find `link.exe`. Are Visual Studio Build tools installed?",
-            )))?;
+            )),
+        )?;
 
         link_exe
             .arg("/DLL")
