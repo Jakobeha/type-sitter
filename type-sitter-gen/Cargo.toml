@@ -10,7 +10,8 @@ keywords.workspace = true
 edition.workspace = true
 
 [dependencies]
-convert_case = "0.8"
+bon = "3.8"
+convert_case = "0.10"
 check_keyword = "0.4.1"
 dunce = "1.0.5"
 proc-macro2 = "1.0"
@@ -25,9 +26,9 @@ tree-sitter = { workspace = true }
 tree-sitter-language = "0.1"
 libc = "0.2"
 cc = "1.2"
-libloading = "0.8"
+libloading = "0.9"
 walkdir = "2.5"
-logos = "0.15"
+logos = "0.16"
 slice-group-by = "0.3"
 prettyplease = "0.2"
 

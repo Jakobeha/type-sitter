@@ -3,6 +3,7 @@
 use crate::generate_queries_args::GenerateQueriesArgs;
 use generate_nodes_args::GenerateNodesArgs;
 use syn::parse_macro_input;
+use type_sitter_gen::GeneratedNodeTokens;
 
 mod generate_nodes_args;
 mod generate_queries_args;
@@ -30,8 +31,8 @@ mod generate_queries_args;
 pub fn generate_nodes(item: proc_macro::TokenStream) -> proc_macro::TokenStream {
     let args = parse_macro_input!(item as GenerateNodesArgs);
     type_sitter_gen::generate_nodes(args.path.as_path())
-        .map(|g| g.collapse())
-        .unwrap_or_else(|err| err.to_compile_error())
+        .map(GeneratedNodeTokens::collapse)
+        .unwrap_or_else(type_sitter_gen::Error::to_compile_error)
         .into()
 }
 
@@ -64,7 +65,7 @@ pub fn generate_queries(item: proc_macro::TokenStream) -> proc_macro::TokenStrea
         use_yak_sitter(),
     )
     .map(|g| g.collapse(&args.nodes))
-    .unwrap_or_else(|err| err.to_compile_error())
+    .unwrap_or_else(type_sitter_gen::Error::to_compile_error)
     .into()
 }
 

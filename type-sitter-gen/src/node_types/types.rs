@@ -243,7 +243,9 @@ impl NodeTypeMap {
     ) -> Result<NodeName, NodeName> {
         // Supertypes should be hidden nodes, so ensure the leading underscore.
         if !name.starts_with("_") {
-            panic!("Illegal supertype name '{name}'. Supertypes must start with an underscore, i.e. '_{name}'.");
+            panic!(
+                "Illegal supertype name '{name}'. Supertypes must start with an underscore, i.e. '_{name}'."
+            );
         }
 
         let subtypes = BTreeSet::from_iter(subtypes);
@@ -389,7 +391,7 @@ impl Index<&str> for NodeType {
     ///
     /// **Panics** if the node type doesn't have a field with the name.
     fn index(&self, name: &str) -> &Self::Output {
-        self.field(&name)
+        self.field(name)
             .expect("this node doesn't have a field with the given name")
     }
 }

@@ -1,28 +1,27 @@
-use crate::queries::{has_extension, language_name};
 use crate::Error;
+use crate::queries::{has_extension, language_name};
 use cc::Build;
 use libloading::Library;
-use std::cell::LazyCell;
-use std::collections::HashMap;
 use std::ffi::CString;
 use std::fs::create_dir_all;
 use std::panic::UnwindSafe;
 use std::path::{Path, PathBuf};
 use std::process::Command;
-use std::sync::atomic::AtomicBool;
 use std::sync::RwLock;
+use std::sync::atomic::AtomicBool;
+use std::{collections::HashMap, sync::LazyLock};
 use tree_sitter::Language;
 use tree_sitter_language::LanguageFn;
 use walkdir::WalkDir;
 
 // We don't want to load the same library multiple times, and we also need to store the Library
 //    so that it doesn't get unloaded.
-const LOADED_LANGUAGES: LazyCell<RwLock<HashMap<PathBuf, LanguageFn>>> =
-    LazyCell::new(|| RwLock::new(HashMap::new()));
+static LOADED_LANGUAGES: LazyLock<RwLock<HashMap<PathBuf, LanguageFn>>> =
+    LazyLock::new(|| RwLock::new(HashMap::new()));
 
 #[cfg(unix)]
-const REGISTERED_HANDLER: AtomicBool = AtomicBool::new(false);
-const TESTING_LOADED_LANGUAGE: AtomicBool = AtomicBool::new(false);
+static REGISTERED_HANDLER: AtomicBool = AtomicBool::new(false);
+static TESTING_LOADED_LANGUAGE: AtomicBool = AtomicBool::new(false);
 
 pub(crate) fn dyload_language(path: impl AsRef<Path>) -> Result<Language, Error> {
     // On Unixes, we can sometimes intercept loading a corrupted language and exit gracefully.
@@ -75,8 +74,8 @@ fn dyload_new_language(path: &Path) -> Result<LanguageFn, Error> {
         testing_loaded_language(|| {
             let language = Language::from(copy_language_fn(&language_fn));
             let version = language.abi_version();
-            if version < tree_sitter::MIN_COMPATIBLE_LANGUAGE_VERSION
-                || version > tree_sitter::LANGUAGE_VERSION
+            if !(tree_sitter::MIN_COMPATIBLE_LANGUAGE_VERSION..=tree_sitter::LANGUAGE_VERSION)
+                .contains(&version)
             {
                 return Err(Error::IncompatibleLanguageVersion { version });
             }
@@ -116,7 +115,6 @@ fn build_dylib_if_needed(path: &Path, dylib_path: &Path) -> Result<(), Error> {
 /// #[cfg(target_os = "linux")]
 /// assert_eq!(path, Path::new("path/to/your/language/target/c-release-so/libtree-sitter.so"));
 /// ```
-
 pub fn dylib_path(path: &Path) -> PathBuf {
     let mut path = path.join("target/c-release-so/libtree-sitter");
     path.set_extension(std::env::consts::DLL_EXTENSION);
@@ -152,7 +150,7 @@ fn build_dylib(path: &Path, dylib_path: &Path) -> Result<(), Error> {
         .shared_flag(true)
         .cargo_metadata(false)
         // Compile dylib in dylib dir
-        .out_dir(&dylib_dir)
+        .out_dir(dylib_dir)
         .try_compile("tree-sitter")?;
 
     // Even though shared-flag is true it doesn't actually do anything, so we need to manually
@@ -161,14 +159,14 @@ fn build_dylib(path: &Path, dylib_path: &Path) -> Result<(), Error> {
     let status = if cfg!(target_os = "macos") {
         Command::new("/usr/bin/clang")
             .args(["-dynamiclib", "-o"])
-            .arg(&dylib_path)
+            .arg(dylib_path)
             .args(find_object_files_in(dylib_dir))
             .status()
             .map_err(Error::LinkDylibCmdFailed)?
     } else if cfg!(target_family = "unix") {
         Command::new("/usr/bin/ld")
             .args(["-shared", "-o"])
-            .arg(&dylib_path)
+            .arg(dylib_path)
             .args(find_object_files_in(dylib_dir))
             .status()
             .map_err(Error::LinkDylibCmdFailed)?

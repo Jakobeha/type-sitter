@@ -1,9 +1,11 @@
-#[cfg(feature = "yak-sitter")]
-use crate::TreeParseError;
-use crate::{raw, IncludedRangesError, Language, LanguageError, Node, Range, Tree};
-use std::marker::PhantomData;
+use core::fmt;
+use core::marker::PhantomData;
 #[cfg(feature = "yak-sitter")]
 use std::path::Path;
+
+#[cfg(feature = "yak-sitter")]
+use crate::TreeParseError;
+use crate::{IncludedRangesError, Language, LanguageError, Node, Range, Tree, raw};
 
 /// A stateful object that this is used to produce a tree based on some source code.
 #[repr(transparent)]
@@ -120,10 +122,21 @@ impl<Root: Node<'static>> Parser<Root> {
         &mut self,
         text: impl AsRef<[u8]>,
         old_tree: Option<&Tree<Root>>,
-    ) -> Result<Tree<Root>, ()> {
+    ) -> Result<Tree<Root>, LanguageNotSetError> {
         self.0
             .parse(text, old_tree.map(|t| &t.0))
-            .ok_or(())
+            .ok_or(LanguageNotSetError)
             .map(Tree::wrap)
     }
 }
+
+#[derive(Debug)]
+pub struct LanguageNotSetError;
+
+impl fmt::Display for LanguageNotSetError {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "Language not set")
+    }
+}
+
+impl core::error::Error for LanguageNotSetError {}

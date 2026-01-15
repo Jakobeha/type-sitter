@@ -3,7 +3,7 @@ use std::collections::Bound;
 use std::error::Error;
 use std::fmt::{Debug, Display, Formatter};
 use std::hash::{Hash, Hasher};
-use std::iter::{once, FusedIterator, Once};
+use std::iter::{FusedIterator, Once, once};
 use std::ops::{BitAnd, BitOr, BitOrAssign, RangeBounds};
 #[cfg(unix)]
 use std::os::unix::io::AsRawFd;
@@ -606,7 +606,7 @@ impl<'tree> Node<'tree> {
 
     /// Get the node's child at the given index, named or unnamed. See [`tree_sitter::Node::child`]
     #[inline]
-    pub fn any_child(&self, i: usize) -> Option<Node<'tree>> {
+    pub fn any_child(&self, i: u32) -> Option<Node<'tree>> {
         // SAFETY: Same tree
         self.node
             .child(i)
@@ -615,7 +615,7 @@ impl<'tree> Node<'tree> {
 
     /// Get the node's named child at the given index. See [`tree_sitter::Node::named_child`]
     #[inline]
-    pub fn named_child(&self, i: usize) -> Option<Node<'tree>> {
+    pub fn named_child(&self, i: u32) -> Option<Node<'tree>> {
         // SAFETY: Same tree
         self.node
             .named_child(i)
@@ -628,7 +628,7 @@ impl<'tree> Node<'tree> {
         // .child is already bounds-checked so we use wrapping_sub for iff the count is 0
         // SAFETY: Same tree
         self.node
-            .child(self.any_child_count().wrapping_sub(1))
+            .child((self.any_child_count() as u32).wrapping_sub(1))
             .map(|node| unsafe { Node::new(node, self.tree) })
     }
 
@@ -638,7 +638,7 @@ impl<'tree> Node<'tree> {
         // .named_child is already bounds-checked so we use wrapping_sub for iff the count is 0
         // SAFETY: Same tree
         self.node
-            .named_child(self.named_child_count().wrapping_sub(1))
+            .named_child((self.named_child_count() as u32).wrapping_sub(1))
             .map(|node| unsafe { Node::new(node, self.tree) })
     }
 
@@ -790,10 +790,10 @@ impl NodePtr {
     /// # Safety
     /// You must ensure that the tree the node came from is alive.
     #[inline]
-    pub unsafe fn to_node<'a>(self) -> Node<'a> {
+    pub unsafe fn to_node<'tree>(self) -> Node<'tree> {
         Node {
-            node: self.node_data.to_node(),
-            tree: self.tree.as_ref(),
+            node: unsafe { self.node_data.to_node() },
+            tree: unsafe { self.tree.as_ref() },
         }
     }
 }
@@ -823,7 +823,7 @@ impl TsNodePtr {
     pub unsafe fn to_node<'tree>(self) -> tree_sitter::Node<'tree> {
         // SAFETY: tree_sitter::Node is POD (no Drop, Copy),
         // and sizes are compile_time checked to be the same
-        std::mem::transmute(self)
+        unsafe { std::mem::transmute(self) }
     }
 }
 
@@ -909,9 +909,8 @@ impl<'tree> TreeCursor<'tree> {
     /// Returns `None` if the current node has no children past that offset.
     #[inline]
     pub fn goto_first_child_for_byte(&mut self, index: usize) -> Option<usize> {
-        self.cursor.goto_first_child_for_byte(index).map(|index| {
+        self.cursor.goto_first_child_for_byte(index).inspect(|_| {
             self.child_depth += 1;
-            index
         })
     }
 
@@ -923,9 +922,8 @@ impl<'tree> TreeCursor<'tree> {
     pub fn goto_first_child_for_point(&mut self, point: Point) -> Option<usize> {
         self.cursor
             .goto_first_child_for_point(point.into())
-            .map(|index| {
+            .inspect(|_| {
                 self.child_depth += 1;
-                index
             })
     }
 
@@ -964,16 +962,14 @@ impl<'tree> TreeCursor<'tree> {
             debug_assert!(self.child_depth != 0);
             self.child_depth -= 1;
             true
+        } else if self.child_depth > 0 {
+            false
         } else {
-            if self.child_depth > 0 {
-                false
-            } else {
-                match self.node().parent() {
-                    None => false,
-                    Some(parent) => {
-                        self.reset(parent);
-                        true
-                    }
+            match self.node().parent() {
+                None => false,
+                Some(parent) => {
+                    self.reset(parent);
+                    true
                 }
             }
         }
@@ -998,6 +994,12 @@ impl<'tree> TreeCursor<'tree> {
     }
 }
 
+impl Default for QueryCursor {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 impl QueryCursor {
     /// Creates a new cursor. See [`tree_sitter::QueryCursor::new`]
     #[inline]
@@ -1016,7 +1018,7 @@ impl QueryCursor {
         node: Node<'tree>,
     ) -> QueryMatches<'query, 'tree> {
         QueryMatches {
-            query_matches: self.query_cursor.matches(&query, node.node, node.tree),
+            query_matches: self.query_cursor.matches(query, node.node, node.tree),
             current_match: None,
             tree: node.tree,
             query,
@@ -1356,7 +1358,7 @@ impl<'query, 'tree> QueryCapture<'query, 'tree> {
             Self {
                 node: Node::new(query_capture.node, tree),
                 index: query_capture.index as usize,
-                name: &query.capture_names()[query_capture.index as usize],
+                name: query.capture_names()[query_capture.index as usize],
             }
         }
     }
@@ -1542,10 +1544,10 @@ impl From<u64> for NodeId {
     }
 }
 
-impl Into<u64> for NodeId {
+impl From<NodeId> for u64 {
     #[inline]
-    fn into(self) -> u64 {
-        self.0 as u64
+    fn from(val: NodeId) -> Self {
+        val.0 as u64
     }
 }
 
@@ -1601,20 +1603,14 @@ impl Error for TreeParseError {
 impl TraversalState {
     /// Is this the up state?
     #[inline]
-    pub fn is_up(&self) -> bool {
-        match self {
-            TraversalState::Up => true,
-            _ => false,
-        }
+    pub fn is_up(self) -> bool {
+        matches!(self, TraversalState::Up)
     }
 
     /// Is this the final state (done traversing?)
     #[inline]
-    pub fn is_end(&self) -> bool {
-        match self {
-            TraversalState::End => true,
-            _ => false,
-        }
+    pub fn is_end(self) -> bool {
+        matches!(self, TraversalState::End)
     }
 }
 

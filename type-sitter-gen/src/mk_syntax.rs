@@ -1,7 +1,7 @@
 use crate::Error;
 use proc_macro2::{Span, TokenStream};
-use quote::{quote, ToTokens};
-use syn::{parse_str, Ident, LitStr};
+use quote::{ToTokens, quote};
+use syn::{Ident, LitStr, parse_str};
 
 macro_rules! modularize {
     ($module:ident) => {
@@ -36,9 +36,10 @@ macro_rules! concat_doc {
 pub(crate) use concat_doc;
 
 /// Create an identifier
+#[clippy::format_args]
 macro_rules! ident {
-    ($name:expr, $fmt:literal $(, $arg:expr)*) => {
-        $crate::mk_syntax::_ident(&$name, || format!($fmt $(, $arg)*))
+    ($name:expr, $($args:tt)+) => {
+        $crate::mk_syntax::_ident(&$name, || format!($($args)+))
     };
 }
 pub(crate) use ident;

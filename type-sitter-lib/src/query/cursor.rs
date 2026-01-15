@@ -1,4 +1,4 @@
-use crate::{raw, Node, QueryCaptures, QueryMatches};
+use crate::{Node, QueryCaptures, QueryMatches, raw};
 #[cfg(not(feature = "yak-sitter"))]
 use tree_sitter::Point;
 #[cfg(feature = "yak-sitter")]
@@ -7,6 +7,12 @@ use yak_sitter::PointRange;
 /// Wraps [tree-sitter's `QueryCursor`](raw::QueryCursor) where `matches` and `captures` are always typed.
 #[repr(transparent)]
 pub struct QueryCursor(pub raw::QueryCursor);
+
+impl Default for QueryCursor {
+    fn default() -> Self {
+        Self::new()
+    }
+}
 
 impl QueryCursor {
     /// Create a new cursor for executing a given query.

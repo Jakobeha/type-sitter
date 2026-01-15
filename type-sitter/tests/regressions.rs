@@ -138,12 +138,12 @@ fn test_supertype_subtype() {
 
 fn parse_c(input: &str) -> Tree<c::TranslationUnit<'static>> {
     let mut parser = Parser::<c::TranslationUnit>::new(&tree_sitter_c::LANGUAGE.into()).unwrap();
-    parser.parse(&input, None).unwrap()
+    parser.parse(input, None).unwrap()
 }
 
 fn parse_rust(input: &str) -> Tree<rust::SourceFile<'static>> {
     let mut parser = Parser::<rust::SourceFile>::new(&tree_sitter_rust::LANGUAGE.into()).unwrap();
-    parser.parse(&input, None).unwrap()
+    parser.parse(input, None).unwrap()
 }
 
 mod c {

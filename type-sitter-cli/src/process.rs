@@ -51,13 +51,13 @@ fn do_reprocess(
 ) -> errors::Result<()> {
     match input_type {
         InputType::NodeTypes => write(
-            &output_path,
+            output_path,
             type_sitter_gen::generate_nodes(input_path)?.collapse(),
         )?,
         InputType::Query => {
             let language_dir = language_dir.ok_or(Error::CouldntInferLanguage)?;
             write(
-                &output_path,
+                output_path,
                 type_sitter_gen::generate_queries(
                     input_path,
                     language_dir,
@@ -71,16 +71,16 @@ fn do_reprocess(
             // Remove old dir.
             // For safety, we only remove if it contains all rust files.
             if output_path.exists() {
-                if !path_utils::is_dir_of_only_rust_files(&output_path) {
+                if !path_utils::is_dir_of_only_rust_files(output_path) {
                     return Err(Error::CodegenDirNotOnlyRustFiles);
                 }
-                remove_dir_all(&output_path)
+                remove_dir_all(output_path)
                     .map_err(Error::io("removing old language codegen directory"))?;
             }
 
-            create_dir(&output_path).map_err(Error::io("creating language codegen directory"))?;
+            create_dir(output_path).map_err(Error::io("creating language codegen directory"))?;
             std::fs::write(
-                &output_path.join("mod.rs"),
+                output_path.join("mod.rs"),
                 format!(
                     r#"
 //! Generated node and query wrappers for {}

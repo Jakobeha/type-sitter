@@ -1,10 +1,10 @@
 use crate::anon_unions::{AnonUnionId, AnonUnions};
 use crate::mk_syntax::{concat_doc, ident, lit_str, modularize};
 use crate::node_types::detail_doc::{ChildrenKind, DetailDoc};
-use crate::node_types::{make_not_reserved, NodeTypeMap};
+use crate::node_types::{NodeTypeMap, make_not_reserved};
 use crate::{
-    make_valid, unmake_reserved, unmake_reserved_if_raw, Children, GeneratedNodeTokens, NodeModule,
-    NodeName, NodeRustNames, NodeType, NodeTypeKind, PrintCtx,
+    Children, GeneratedNodeTokens, NodeModule, NodeName, NodeRustNames, NodeType, NodeTypeKind,
+    PrintCtx, make_valid, unmake_reserved, unmake_reserved_if_raw,
 };
 use join_lazy_fmt::Join;
 use proc_macro2::TokenStream;
@@ -58,7 +58,10 @@ impl NodeType {
             }
             NodeTypeKind::Regular { fields, children } => {
                 if is_implicit {
-                    panic!("Node types without subtypes must not be implicit (not start with \"_\"): {}", sexp_name)
+                    panic!(
+                        "Node types without subtypes must not be implicit (not start with \"_\"): {}",
+                        sexp_name
+                    )
                 }
 
                 Self::print_product_definition(
@@ -493,7 +496,7 @@ impl NodeType {
                 NodeTypeKind::Regular {
                     fields,
                     children: _,
-                } => process(&fields),
+                } => process(fields),
             }
         }
 
@@ -571,7 +574,7 @@ impl NodeType {
                         concat_doc!("Get the node's only not-extra named child, if it has one.\n\nThis child has type ", kind_desc),
                         quote! {
                             // We don't use a cursor because usually the first child will pass.
-                            (0..#type_sitter_lib::Node::raw(self).named_child_count())
+                            (0..#type_sitter_lib::Node::raw(self).named_child_count() as u32)
                                 .map(|i| #type_sitter_lib::Node::raw(self).named_child(i).unwrap())
                                 .filter(|n| !n.is_extra())
                                 .next()
@@ -603,8 +606,8 @@ impl NodeType {
                         concat_doc!("Get the node's only non-field not-extra named child, if it has one.\n\nThis child has type ", kind_desc),
                         quote! {
                             // We don't use a cursor because usually the first child will pass.
-                            (0..#type_sitter_lib::Node::raw(self).named_child_count())
-                                .filter(|i| #type_sitter_lib::Node::raw(self).field_name_for_named_child(*i as _).is_none())
+                            (0..#type_sitter_lib::Node::raw(self).named_child_count() as u32)
+                                .filter(|i| #type_sitter_lib::Node::raw(self).field_name_for_named_child(*i).is_none())
                                 .map(|i| #type_sitter_lib::Node::raw(self).named_child(i).unwrap())
                                 .filter(|n| !n.is_extra())
                                 .next()

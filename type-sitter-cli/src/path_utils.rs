@@ -1,14 +1,16 @@
-use crate::errors;
-use crate::errors::Error;
-use rust_format::{Formatter, RustFmt};
-use std::cell::LazyCell;
 use std::ffi::OsString;
 use std::fmt::Display;
 use std::fs::File;
 use std::io::Write;
 use std::path::Path;
+use std::sync::LazyLock;
 
-const RUST_FMT: LazyCell<RustFmt> = LazyCell::new(|| RustFmt::new());
+use rust_format::{Formatter, RustFmt};
+
+use crate::errors;
+use crate::errors::Error;
+
+static RUST_FMT: LazyLock<RustFmt> = LazyLock::new(RustFmt::new);
 
 pub fn write(path: &Path, contents: impl Display) -> errors::Result<()> {
     let mut file = File::create(path).map_err(Error::io("creating file for generated code"))?;
@@ -18,10 +20,10 @@ pub fn write(path: &Path, contents: impl Display) -> errors::Result<()> {
 }
 
 pub fn is_dir_of_only_rust_files(dir: &Path) -> bool {
-    dir.read_dir().map_or(false, |mut d| {
+    dir.read_dir().is_ok_and(|mut d| {
         d.all(|f| {
-            f.map_or(false, |f| {
-                f.metadata().map_or(false, |m| {
+            f.is_ok_and(|f| {
+                f.metadata().is_ok_and(|m| {
                     let path = f.path();
                     (m.is_file() && (has_extension(&path, "rs") || path.ends_with(".DS_Store")))
                         || (m.is_dir() && is_dir_of_only_rust_files(&path))

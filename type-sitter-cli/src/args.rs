@@ -1,6 +1,6 @@
+use crate::Error;
 use crate::errors::InOutPairParseError;
 use crate::path_utils::has_extension;
-use crate::Error;
 use clap::{Parser, ValueEnum};
 use std::fs::DirEntry;
 use std::iter::successors;
@@ -96,8 +96,7 @@ impl InputType {
                 successors(input_path.parent(), |p| p.parent())
                     .find(|parent| {
                         Self::read_parent_dir(parent, Error::io("inferring language directory"))
-                            .ok()
-                            .map_or(false, |mut i| i.any(|e| e.path().ends_with("package.json")))
+                            .is_ok_and(|mut i| i.any(|e| e.path().ends_with("package.json")))
                     })
                     .map(|p| p.to_path_buf())
             }

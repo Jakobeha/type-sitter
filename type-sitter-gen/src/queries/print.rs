@@ -1,17 +1,19 @@
-use crate::anon_unions::AnonUnions;
-use crate::mk_syntax::{concat_doc, ident, lit_array, lit_str, modularize};
-use crate::queries::sexp::SExpSeq;
-use crate::queries::sexp_node_type::SExpNodeType;
-use crate::queries::GeneratedQueryTokens;
 use crate::NodeType;
 use crate::PrintCtx;
+use crate::anon_unions::AnonUnions;
+use crate::mk_syntax::{concat_doc, ident, lit_array, lit_str, modularize};
+use crate::queries::GeneratedQueryTokens;
+use crate::queries::sexp::SExpSeq;
+use crate::queries::sexp_node_type::SExpNodeType;
 use crate::{sexp_name_to_rust_names, unmake_reserved};
+
 use proc_macro2::TokenStream;
 use quote::{format_ident, quote};
 use slice_group_by::GroupBy;
 use syn::{Ident, Path};
 use tree_sitter::CaptureQuantifier;
 
+#[bon::bon]
 impl<'tree> SExpSeq<'tree> {
     /// Generate the AST for the typed wrapper of the given query.
     ///
@@ -28,29 +30,30 @@ impl<'tree> SExpSeq<'tree> {
     /// - `use_yak_sitter`: Whether to use `yak_sitter` or `tree_sitter`
     /// - `ctx.all_types`: Map of node type names to their types.
     /// - `ctx.tree_sitter`: Path to the crate with the tree-sitter API. For cli-generated sources,
-    ///    use [`crate::tree_sitter`] if `use_yak_sitter` is false or [`crate::yak_sitter`] if
-    ///    `use_yak_sitter` is true. For proc-macro generated sources, use
-    ///    [`crate::type_sitter_raw`] either way.
+    ///   use [`crate::tree_sitter`] if `use_yak_sitter` is false or [`crate::yak_sitter`] if
+    ///   `use_yak_sitter` is true. For proc-macro generated sources, use
+    ///   [`crate::type_sitter_raw`] either way.
     /// - `ctx.type_sitter_lib`: Path to the crate with the type-sitter API. For cli-generated
     ///   sources, use [`crate::type_sitter_lib`]. For proc-macro generated sources, use
     ///   [`crate::type_sitter`].
     /// - `anon_unions`: Anonymous unions for query capture type
+    #[builder]
     pub(crate) fn print(
         &self,
         query_str: &str,
         ts_query: tree_sitter::Query,
         def_ident: &Ident,
         language_ident: &syn::Ident,
-        disabled_patterns: &[&str],
-        disabled_capture_names: &[&str],
-        disabled_capture_idxs: &[usize],
+        #[builder(default)] disabled_patterns: &[&str],
+        #[builder(default)] disabled_capture_names: &[&str],
+        #[builder(default)] disabled_capture_idxs: &[usize],
         nodes: &Path,
         use_yak_sitter: bool,
         ctx @ PrintCtx {
             tree_sitter,
             type_sitter_lib,
             ..
-        }: PrintCtx,
+        }: PrintCtx<'_>,
         anon_unions: &mut AnonUnions,
     ) -> TokenStream {
         let disabled_captures = disabled_capture_idxs
@@ -161,7 +164,19 @@ impl<'tree> SExpSeq<'tree> {
         // Pattern-idx-specific matches and capture-idx-specific captures (TODO)
         // Pattern-idx-agnostic matches and capture-idx-specific captures
         // Capture-idx-agnostic captures
-        let capture_methods_and_variants = capture_idxs_and_names
+        let (
+            capture_methods,
+            capture_variant_extract_methods,
+            capture_variants,
+            capture_variant_documentations,
+            capture_node_types,
+        ): (
+            TokenStream,
+            TokenStream,
+            Vec<Ident>,
+            Vec<TokenStream>,
+            Vec<TokenStream>,
+        ) = capture_idxs_and_names
             .binary_group_by_key(|(_, capture_name)| *capture_name)
             .map(|capture_idxs_and_name| {
                 let capture_idxs = capture_idxs_and_name
@@ -169,38 +184,25 @@ impl<'tree> SExpSeq<'tree> {
                     .map(|(capture_idx, _)| *capture_idx)
                     .collect::<Vec<_>>();
                 let capture_name = capture_idxs_and_name[0].1;
-                self.print_capture_method_and_variant(
-                    capture_name,
-                    &capture_idxs,
-                    query_str,
-                    &ts_query,
-                    nodes,
-                    ctx,
-                    anon_unions,
-                )
+                self.print_capture_method_and_variant()
+                    .capture_name(capture_name)
+                    .capture_idxs(&capture_idxs)
+                    .query_str(query_str)
+                    .ts_query(&ts_query)
+                    .nodes(nodes)
+                    .ctx(ctx)
+                    .anon_unions(anon_unions)
+                    .call()
             })
-            .collect::<Vec<_>>();
-        let capture_methods = capture_methods_and_variants
-            .iter()
-            .map(|x| x.0.clone())
-            .collect::<TokenStream>();
-        let capture_variant_extract_methods = capture_methods_and_variants
-            .iter()
-            .map(|x| x.1.clone())
-            .collect::<TokenStream>();
-        let capture_variants = capture_methods_and_variants
-            .iter()
-            .map(|x| &x.2)
-            .collect::<Vec<_>>();
-        let capture_variant_documentations = capture_methods_and_variants
-            .iter()
-            .map(|x| &x.3)
-            .collect::<Vec<_>>();
-        let capture_node_types = capture_methods_and_variants
-            .iter()
-            .map(|x| &x.4)
-            .collect::<Vec<_>>();
-        let non_existent_variant = match capture_methods_and_variants.is_empty() {
+            .collect();
+
+        #[rustfmt::skip]
+        {
+            debug_assert_eq!(capture_variants.len(), capture_variant_documentations.len());
+            debug_assert_eq!(capture_variant_documentations.len(), capture_node_types.len());
+        };
+
+        let non_existent_variant = match capture_variants.is_empty() {
             false => quote! {},
             true => quote! {
                 /// This node has no captures so the enum has no instantiable variants. This variant
@@ -401,6 +403,7 @@ impl<'tree> SExpSeq<'tree> {
         }
     }
 
+    #[builder]
     fn print_capture_method_and_variant(
         &self,
         capture_name: &str,
@@ -412,7 +415,7 @@ impl<'tree> SExpSeq<'tree> {
             all_types,
             type_sitter_lib,
             ..
-        }: PrintCtx,
+        }: PrintCtx<'_>,
         anon_unions: &mut AnonUnions,
     ) -> (TokenStream, TokenStream, Ident, TokenStream, TokenStream) {
         let (capture_variant_name, capture_method_name) =
@@ -678,11 +681,7 @@ impl GeneratedQueryTokens {
     /// - `nodes`: Path to the crate with the typed node wrappers. Typically
     ///   [`type_sitter_gen::super_nodes`]
     pub fn collapse(self, nodes: &Path) -> TokenStream {
-        let nodes = match nodes
-            .segments
-            .first()
-            .map_or(false, |s| s.ident.to_string() == "super")
-        {
+        let nodes = match nodes.segments.first().is_some_and(|s| s.ident == "super") {
             false => quote! { #nodes },
             true => quote! { super::#nodes },
         };

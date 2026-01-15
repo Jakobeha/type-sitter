@@ -50,7 +50,7 @@ pub enum NodeModule {
 }
 
 /// Common punctuation, which we replace with something descriptive instead of unicode.
-const PUNCTUATION_TABLE: [(char, &'static str); 35] = [
+const PUNCTUATION_TABLE: [(char, &str); 35] = [
     ('&', "And"),
     ('|', "Or"),
     ('!', "Not"),
@@ -113,11 +113,7 @@ impl NodeRustNames {
             };
         }
 
-        let raw_sexp_name = if sexp_name.starts_with('_') {
-            &sexp_name[1..]
-        } else {
-            sexp_name
-        };
+        let raw_sexp_name = sexp_name.strip_prefix('_').unwrap_or(sexp_name);
         let (rust_type_name, rust_method_name) = sexp_name_to_rust_names(raw_sexp_name);
 
         let module = match *is_named {

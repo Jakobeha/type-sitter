@@ -16,7 +16,7 @@ mod json {
     }
 }
 
-const JSON_STR: &'static str = "\
+const JSON_STR: &str = "\
 {
     \"type\": \"array\",
     \"content\": \"value\"
@@ -24,7 +24,7 @@ const JSON_STR: &'static str = "\
 
 fn json_tree() -> Tree<json::Document<'static>> {
     let mut parser = Parser::<json::Document>::new(&tree_sitter_json::LANGUAGE.into()).unwrap();
-    parser.parse(&JSON_STR, None).unwrap()
+    parser.parse(JSON_STR, None).unwrap()
 }
 
 #[test]

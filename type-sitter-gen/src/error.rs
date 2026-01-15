@@ -63,9 +63,9 @@ impl From<QueryError> for Error {
     }
 }
 
-impl Into<syn::Error> for Error {
-    fn into(self) -> syn::Error {
-        self.into_syn()
+impl From<Error> for syn::Error {
+    fn from(val: Error) -> Self {
+        val.into_syn()
     }
 }
 
@@ -74,11 +74,23 @@ impl Display for Error {
         match self {
             Error::IO(e) => write!(f, "IO error: {}", e),
             Error::ParseNodeTypes(e) => write!(f, "Error parsing node-types: {}", e),
-            Error::BuildDylibFailed(e) => write!(f, "couldn't build tree-sitter language dylib: {}", e),
-            Error::MissingDylib => write!(f, "couldn't find tree-sitter language dylib (internal error or fs weirdness)"),
-            Error::LoadDylibFailed(e) => write!(f, "couldn't load tree-sitter language dylib: {}", e),
-            Error::LoadDylibSymbolFailed(e) => write!(f, "couldn't load tree-sitter language dylib symbol: {}", e),
-            Error::CorruptDylib => write!(f, "corrupt tree-sitter language dylib (or we read it wrong, because accessing trying to dereference the language caused a segfault)"),
+            Error::BuildDylibFailed(e) => {
+                write!(f, "couldn't build tree-sitter language dylib: {}", e)
+            }
+            Error::MissingDylib => write!(
+                f,
+                "couldn't find tree-sitter language dylib (internal error or fs weirdness)"
+            ),
+            Error::LoadDylibFailed(e) => {
+                write!(f, "couldn't load tree-sitter language dylib: {}", e)
+            }
+            Error::LoadDylibSymbolFailed(e) => {
+                write!(f, "couldn't load tree-sitter language dylib symbol: {}", e)
+            }
+            Error::CorruptDylib => write!(
+                f,
+                "corrupt tree-sitter language dylib (or we read it wrong, because accessing trying to dereference the language caused a segfault)"
+            ),
             Error::IncompatibleLanguageVersion { version } => write!(
                 f,
                 "incompatible tree-sitter language version: {} (must be within {}..={})",
@@ -86,12 +98,32 @@ impl Display for Error {
                 tree_sitter::MIN_COMPATIBLE_LANGUAGE_VERSION,
                 tree_sitter::LANGUAGE_VERSION
             ),
-            Error::LinkDylibUnsupported => write!(f, "dynamic linking isn't supported on this platform, use macOS, Unix, Windows, or file a PR"),
-            Error::LinkDylibCmdFailed(e) => write!(f, "couldn't link tree-sitter language dylib: {}", e),
-            Error::LinkDylibFailed { exit_status} => write!(f, "couldn't link tree-sitter language dylib: exit code {}", exit_status),
-            Error::IllegalTSLanguageSymbolName => write!(f, "inferred language symbol name is not a valid UTF-8 string"),
+            Error::LinkDylibUnsupported => write!(
+                f,
+                "dynamic linking isn't supported on this platform, use macOS, Unix, Windows, or file a PR"
+            ),
+            Error::LinkDylibCmdFailed(e) => {
+                write!(f, "couldn't link tree-sitter language dylib: {}", e)
+            }
+            Error::LinkDylibFailed { exit_status } => write!(
+                f,
+                "couldn't link tree-sitter language dylib: exit code {}",
+                exit_status
+            ),
+            Error::IllegalTSLanguageSymbolName => write!(
+                f,
+                "inferred language symbol name is not a valid UTF-8 string"
+            ),
             Error::ParseQuery(e) => write!(f, "Error parsing query: {}", e),
-            Error::IllegalIdentifier { type_desc, name, source } => write!(f, "illegal identifier ({}): `{}`\n{}", type_desc, name, source)
+            Error::IllegalIdentifier {
+                type_desc,
+                name,
+                source,
+            } => write!(
+                f,
+                "illegal identifier ({}): `{}`\n{}",
+                type_desc, name, source
+            ),
         }
     }
 }

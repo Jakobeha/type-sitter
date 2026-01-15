@@ -1,14 +1,16 @@
-use crate::raw;
+use core::fmt::Debug;
+use core::hash::Hash;
+#[cfg(not(feature = "yak-sitter"))]
+use std::str::Utf8Error;
+
 #[cfg(feature = "yak-sitter")]
 use crate::PointRange;
+use crate::raw;
 use crate::{InputEdit, Point, Range};
+
 pub use cursor::*;
 pub use incorrect_kind::*;
 pub use parser::*;
-use std::fmt::Debug;
-use std::hash::Hash;
-#[cfg(not(feature = "yak-sitter"))]
-use std::str::Utf8Error;
 pub use tree::*;
 pub use unwrap_and_flatten_multi::*;
 pub use wrappers::*;
@@ -266,10 +268,9 @@ pub trait HasChild<'tree>: Node<'tree> {
 fn optional_child<'tree, Child: Node<'tree>>(
     this: &impl Node<'tree>,
 ) -> Option<NodeResult<'tree, Child>> {
-    (0..this.raw().named_child_count())
+    (0..this.raw().named_child_count() as u32) // it was u32 originally, so no precision loss
         .map(|i| this.raw().named_child(i).unwrap())
-        .filter(|n| !n.is_extra())
-        .next()
+        .find(|n| !n.is_extra())
         .map(Child::try_from_raw)
 }
 

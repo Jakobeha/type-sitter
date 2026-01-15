@@ -7,7 +7,7 @@ mod print;
 mod rust_names;
 mod types;
 
-use crate::{type_sitter, type_sitter_raw, PrintCtx};
+use crate::{PrintCtx, type_sitter, type_sitter_raw};
 pub use generated_tokens::*;
 pub use names::*;
 pub use rust_names::*;
@@ -26,36 +26,30 @@ pub use types::*;
 /// use type_sitter_gen::generate_nodes;
 /// use std::path::Path;
 ///
-/// fn main() {
-///     let path = Path::new("../vendor/tree-sitter-rust/src/node-types.json");
-///     let code = generate_nodes(path).unwrap().into_string();
-///     assert!(code.contains("pub struct TraitItem"));
-/// }
+/// let path = Path::new("../vendor/tree-sitter-rust/src/node-types.json");
+/// let code = generate_nodes(path).unwrap().into_string();
+/// assert!(code.contains("pub struct TraitItem"));
 /// ```
 ///
 /// Using the contents of `node-types.json` directly:
 ///
-/// ```rust
+/// ```
 /// use type_sitter_gen::generate_nodes;
 ///
-/// fn main() {
-///     let contents: &str = tree_sitter_rust::NODE_TYPES;
-///     let code = generate_nodes(contents).unwrap().into_string();
-///     assert!(code.contains("pub struct TraitItem"));
-/// }
+/// let contents: &str = tree_sitter_rust::NODE_TYPES;
+/// let code = generate_nodes(contents).unwrap().into_string();
+/// assert!(code.contains("pub struct TraitItem"));
 /// ```
 ///
 /// Using a `NodeTypeMap`:
 ///
-/// ```rust
+/// ```
 /// use type_sitter_gen::{generate_nodes, NodeTypeMap};
 ///
-/// fn main() {
-///     let mut node_type_map = NodeTypeMap::try_from(tree_sitter_rust::NODE_TYPES).unwrap();
-///     // customize node_type_map
-///     let code = generate_nodes(node_type_map).unwrap().into_string();
-///     assert!(code.contains("pub struct TraitItem"));
-/// }
+/// let mut node_type_map = NodeTypeMap::try_from(tree_sitter_rust::NODE_TYPES).unwrap();
+/// // customize node_type_map
+/// let code = generate_nodes(node_type_map).unwrap().into_string();
+/// assert!(code.contains("pub struct TraitItem"));
 /// ```
 pub fn generate_nodes<T, E>(types: T) -> Result<GeneratedNodeTokens, E>
 where
@@ -82,14 +76,12 @@ where
 /// use type_sitter_gen::{generate_nodes_with_custom_module_paths, tree_sitter, type_sitter_lib};
 /// use std::path::Path;
 ///
-/// fn main() {
-///     let code = generate_nodes_with_custom_module_paths(
-///         Path::new("../vendor/tree-sitter-rust/src/node-types.json"),
-///         &tree_sitter(),
-///         &type_sitter_lib()
-///     ).unwrap().into_string();
-///     assert!(code.contains("pub struct TraitItem"));
-/// }
+/// let code = generate_nodes_with_custom_module_paths(
+///     Path::new("../vendor/tree-sitter-rust/src/node-types.json"),
+///     &tree_sitter(),
+///     &type_sitter_lib()
+/// ).unwrap().into_string();
+/// assert!(code.contains("pub struct TraitItem"));
 /// ```
 pub fn generate_nodes_with_custom_module_paths<T, E>(
     all_types: T,

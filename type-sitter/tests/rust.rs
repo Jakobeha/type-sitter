@@ -18,7 +18,7 @@ mod rust {
     }
 }
 
-const RUST_STR: &'static str = "\
+const RUST_STR: &str = "\
 /// Foo bar
 fn main() {
     let json = \"\
@@ -32,7 +32,7 @@ fn main() {
 
 fn rust_tree() -> Tree<rust::SourceFile<'static>> {
     let mut parser = Parser::<rust::SourceFile>::new(&tree_sitter_rust::LANGUAGE.into()).unwrap();
-    parser.parse(&RUST_STR, None).unwrap()
+    parser.parse(RUST_STR, None).unwrap()
 }
 
 #[test]
@@ -103,7 +103,10 @@ fn test_node_types() {
         .unwrap()
         .as_string_literal()
         .unwrap();
-    assert_eq!(rust_json_str.utf8_text(RUST_STR.as_bytes()).unwrap(), "\"{\n        \\\"type\\\": \\\"array\\\",\n        \\\"content\\\": \\\"value\\\"\n    }\"");
+    assert_eq!(
+        rust_json_str.utf8_text(RUST_STR.as_bytes()).unwrap(),
+        "\"{\n        \\\"type\\\": \\\"array\\\",\n        \\\"content\\\": \\\"value\\\"\n    }\""
+    );
     let rust_let_mut_parser = rust_main_fn_body_children
         .next()
         .unwrap2()

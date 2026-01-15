@@ -7,16 +7,18 @@ mod print;
 mod sexp;
 mod sexp_node_type;
 
+use std::fs::{read_dir, read_to_string};
+use std::path::Path;
+
 use crate::mk_syntax::ident;
 pub use crate::queries::dyload_language::dylib_path;
 use crate::queries::dyload_language::dyload_language;
 use crate::queries::sexp::SExpSeq;
-use crate::{make_valid, type_sitter, type_sitter_raw, Error, NodeTypeMap, PrintCtx};
+use crate::{Error, NodeTypeMap, PrintCtx, make_valid, type_sitter, type_sitter_raw};
+
 use convert_case::{Case, Casing};
 pub use generated_tokens::*;
 use quote::quote;
-use std::fs::{read_dir, read_to_string};
-use std::path::Path;
 use tree_sitter::Query;
 
 /// Generate source code (tokens) of wrappers for queries, and the generated code will refer to the
@@ -50,6 +52,7 @@ use tree_sitter::Query;
 ///     ).unwrap().into_string());
 /// }
 /// ```
+#[expect(clippy::needless_doctest_main)]
 pub fn generate_queries(
     path: impl AsRef<Path>,
     language_path: impl AsRef<Path>,
@@ -85,7 +88,12 @@ pub fn generate_queries(
 /// # Example
 ///
 /// ```no_run
-/// use type_sitter_gen::{generate_queries_with_custom_module_paths, super_nodes, tree_sitter, type_sitter_lib};
+/// use type_sitter_gen::{
+///     generate_queries_with_custom_module_paths,
+///     super_nodes,
+///     tree_sitter,
+///     type_sitter_lib,
+/// };
 ///
 /// fn main() {
 ///     println!("{}", generate_queries_with_custom_module_paths(
@@ -106,6 +114,7 @@ pub fn generate_queries(
 ///     ).unwrap().into_string());
 /// }
 /// ```
+#[expect(clippy::needless_doctest_main)]
 pub fn generate_queries_with_custom_module_paths(
     path: impl AsRef<Path>,
     language_path: impl AsRef<Path>,
@@ -142,16 +151,13 @@ fn _generate_queries(
     if path.is_dir() {
         _generate_queries_from_dir(path, language_path, nodes, use_yak_sitter, ctx)
     } else {
-        _generate_query_from_file(
-            path,
-            language_path,
-            &[],
-            &[],
-            &[],
-            nodes,
-            use_yak_sitter,
-            ctx,
-        )
+        _generate_query_from_file()
+            .path(path)
+            .language_path(language_path)
+            .nodes(nodes)
+            .use_yak_sitter(use_yak_sitter)
+            .ctx(ctx)
+            .call()
     }
 }
 
@@ -184,7 +190,7 @@ fn _generate_queries_from_dir(
                 false => queries.append(entry_code),
                 true => {
                     let entry_ident = ident!(
-                        make_valid(&*entry_name),
+                        make_valid(&entry_name),
                         "query module name (subfolder name)"
                     )?;
                     let entry_tokens = entry_code.collapse(nodes);
@@ -204,6 +210,7 @@ fn _generate_queries_from_dir(
 
 /// Same as [`generate_queries`], but `path` must point to a file and you can specify patterns and
 /// captures to skip.
+#[bon::builder]
 pub fn generate_query_from_file(
     path: impl AsRef<Path>,
     language_path: impl AsRef<Path>,
@@ -213,21 +220,22 @@ pub fn generate_query_from_file(
     nodes: &syn::Path,
     use_yak_sitter: bool,
 ) -> Result<GeneratedQueryTokens, Error> {
-    generate_query_from_file_with_custom_module_paths(
-        path,
-        language_path,
-        disabled_patterns,
-        disabled_capture_names,
-        disabled_capture_idxs,
-        nodes,
-        use_yak_sitter,
-        &type_sitter_raw(),
-        &type_sitter(),
-    )
+    generate_query_from_file_with_custom_module_paths()
+        .path(path)
+        .language_path(language_path)
+        .disabled_patterns(disabled_patterns)
+        .disabled_capture_names(disabled_capture_names)
+        .disabled_capture_idxs(disabled_capture_idxs)
+        .nodes(nodes)
+        .use_yak_sitter(use_yak_sitter)
+        .tree_sitter(&type_sitter_raw())
+        .type_sitter_lib(&type_sitter())
+        .call()
 }
 
 /// Same as [`generate_queries_with_custom_module_paths`], but `path` must point to a file and you
 /// can specify patterns and captures to skip.
+#[bon::builder]
 pub fn generate_query_from_file_with_custom_module_paths(
     path: impl AsRef<Path>,
     language_path: impl AsRef<Path>,
@@ -243,31 +251,32 @@ pub fn generate_query_from_file_with_custom_module_paths(
     let node_types_path = language_path.join("src/node-types.json");
     let all_types = NodeTypeMap::try_from(node_types_path)?;
 
-    _generate_query_from_file(
-        path,
-        language_path,
-        disabled_patterns,
-        disabled_capture_names,
-        disabled_capture_idxs,
-        nodes,
-        use_yak_sitter,
-        PrintCtx {
+    _generate_query_from_file()
+        .path(path)
+        .language_path(language_path)
+        .disabled_patterns(disabled_patterns)
+        .disabled_capture_names(disabled_capture_names)
+        .disabled_capture_idxs(disabled_capture_idxs)
+        .nodes(nodes)
+        .use_yak_sitter(use_yak_sitter)
+        .ctx(PrintCtx {
             all_types: &all_types,
             tree_sitter,
             type_sitter_lib,
-        },
-    )
+        })
+        .call()
 }
 
+#[bon::builder(builder_type = _GenerateQueryFromFileBuilder)]
 fn _generate_query_from_file(
     path: impl AsRef<Path>,
     language_path: impl AsRef<Path>,
-    disabled_patterns: &[&str],
-    disabled_capture_names: &[&str],
-    disabled_capture_idxs: &[usize],
+    #[builder(default)] disabled_patterns: &[&str],
+    #[builder(default)] disabled_capture_names: &[&str],
+    #[builder(default)] disabled_capture_idxs: &[usize],
     nodes: &syn::Path,
     use_yak_sitter: bool,
-    ctx: PrintCtx,
+    ctx: PrintCtx<'_>,
 ) -> Result<GeneratedQueryTokens, Error> {
     let path = path.as_ref();
     let language_path = language_path.as_ref();
@@ -295,19 +304,20 @@ fn _generate_query_from_file(
         )
     });
     let mut generated = GeneratedQueryTokens::new();
-    let query_tokens = query.print(
-        &query_str,
-        ts_query,
-        &def_ident,
-        &language_ident,
-        disabled_patterns,
-        disabled_capture_names,
-        disabled_capture_idxs,
-        nodes,
-        use_yak_sitter,
-        ctx,
-        &mut generated.anon_unions,
-    );
+    let query_tokens = query
+        .print()
+        .query_str(&query_str)
+        .ts_query(ts_query)
+        .def_ident(&def_ident)
+        .language_ident(&language_ident)
+        .disabled_patterns(disabled_patterns)
+        .disabled_capture_names(disabled_capture_names)
+        .disabled_capture_idxs(disabled_capture_idxs)
+        .nodes(nodes)
+        .use_yak_sitter(use_yak_sitter)
+        .ctx(ctx)
+        .anon_unions(&mut generated.anon_unions)
+        .call();
     generated.append_tokens(query_tokens);
     Ok(generated)
 }
