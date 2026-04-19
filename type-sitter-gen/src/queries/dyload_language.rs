@@ -2,7 +2,6 @@ use crate::queries::{has_extension, language_name};
 use crate::Error;
 use cc::Build;
 use libloading::Library;
-use std::cell::LazyCell;
 use std::collections::HashMap;
 use std::ffi::CString;
 use std::fs::create_dir_all;
@@ -10,19 +9,19 @@ use std::panic::UnwindSafe;
 use std::path::{Path, PathBuf};
 use std::process::Command;
 use std::sync::atomic::AtomicBool;
-use std::sync::RwLock;
+use std::sync::{LazyLock, RwLock};
 use tree_sitter::Language;
 use tree_sitter_language::LanguageFn;
 use walkdir::WalkDir;
 
 // We don't want to load the same library multiple times, and we also need to store the Library
 //    so that it doesn't get unloaded.
-const LOADED_LANGUAGES: LazyCell<RwLock<HashMap<PathBuf, LanguageFn>>> =
-    LazyCell::new(|| RwLock::new(HashMap::new()));
+static LOADED_LANGUAGES: LazyLock<RwLock<HashMap<PathBuf, LanguageFn>>> =
+    LazyLock::new(|| RwLock::new(HashMap::new()));
 
 #[cfg(unix)]
-const REGISTERED_HANDLER: AtomicBool = AtomicBool::new(false);
-const TESTING_LOADED_LANGUAGE: AtomicBool = AtomicBool::new(false);
+static REGISTERED_HANDLER: AtomicBool = AtomicBool::new(false);
+static TESTING_LOADED_LANGUAGE: AtomicBool = AtomicBool::new(false);
 
 pub(crate) fn dyload_language(path: impl AsRef<Path>) -> Result<Language, Error> {
     // On Unixes, we can sometimes intercept loading a corrupted language and exit gracefully.
@@ -225,7 +224,10 @@ fn register_crash_handler_if_necessary() {
             // `signal` function should be safe to call.
             // The function can be `unsafe` because if it is called, we already got a segfault so
             // "safety" doesn't matter anymore.
-            libc::signal(libc::SIGSEGV, loaded_language_crash_handler as libc::size_t);
+            libc::signal(
+                libc::SIGSEGV,
+                loaded_language_crash_handler as *const () as libc::sighandler_t,
+            );
         }
     }
 }
