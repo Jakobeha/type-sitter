@@ -547,9 +547,9 @@ impl<'tree> Node<'tree> {
             .map(move |node| unsafe { Node::new(node, tree) })
     }
 
-    /// Get the number of named and unnamed children
+    /// Get the number of (named and unnamed) children
     #[inline]
-    pub fn any_child_count(&self) -> usize {
+    pub fn child_count(&self) -> usize {
         self.node.child_count()
     }
 
@@ -568,16 +568,16 @@ impl<'tree> Node<'tree> {
             .map(|node| unsafe { Node::new(node, self.tree) })
     }
 
-    /// Get the node's immediate next sibling, named or unnamed
+    /// Get the node's immediate next (named or unnamed) sibling
     #[inline]
-    pub fn next_any_sibling(&self) -> Option<Node<'tree>> {
+    pub fn next_sibling(&self) -> Option<Node<'tree>> {
         // SAFETY: Same tree
         self.node
             .next_sibling()
             .map(|node| unsafe { Node::new(node, self.tree) })
     }
 
-    /// Get the node's immediate named next sibling
+    /// Get the node's immediate next named sibling
     #[inline]
     pub fn next_named_sibling(&self) -> Option<Node<'tree>> {
         // SAFETY: Same tree
@@ -586,16 +586,16 @@ impl<'tree> Node<'tree> {
             .map(|node| unsafe { Node::new(node, self.tree) })
     }
 
-    /// Get the node's immediate previous sibling, named or unnamed
+    /// Get the node's immediate previous (named or unnamed) sibling
     #[inline]
-    pub fn prev_any_sibling(&self) -> Option<Node<'tree>> {
+    pub fn prev_sibling(&self) -> Option<Node<'tree>> {
         // SAFETY: Same tree
         self.node
             .prev_sibling()
             .map(|node| unsafe { Node::new(node, self.tree) })
     }
 
-    /// Get the node's immediate named previous sibling
+    /// Get the node's immediate previous named sibling
     #[inline]
     pub fn prev_named_sibling(&self) -> Option<Node<'tree>> {
         // SAFETY: Same tree
@@ -604,9 +604,9 @@ impl<'tree> Node<'tree> {
             .map(|node| unsafe { Node::new(node, self.tree) })
     }
 
-    /// Get the node's child at the given index, named or unnamed. See [`tree_sitter::Node::child`]
+    /// Get the node's (named or unnamed) child at the given index. See [`tree_sitter::Node::child`]
     #[inline]
-    pub fn any_child(&self, i: usize) -> Option<Node<'tree>> {
+    pub fn child(&self, i: usize) -> Option<Node<'tree>> {
         // SAFETY: Same tree
         self.node
             .child(i)
@@ -622,13 +622,13 @@ impl<'tree> Node<'tree> {
             .map(|node| unsafe { Node::new(node, self.tree) })
     }
 
-    /// Get the node's last child, named or unnamed
+    /// Get the node's last (named or unnamed) child
     #[inline]
-    pub fn last_any_child(&self) -> Option<Node<'tree>> {
+    pub fn last_child(&self) -> Option<Node<'tree>> {
         // .child is already bounds-checked so we use wrapping_sub for iff the count is 0
         // SAFETY: Same tree
         self.node
-            .child(self.any_child_count().wrapping_sub(1))
+            .child(self.child_count().wrapping_sub(1))
             .map(|node| unsafe { Node::new(node, self.tree) })
     }
 

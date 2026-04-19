@@ -129,13 +129,31 @@ pub trait Node<'tree>: Debug + Clone + Copy + PartialEq + Eq + Hash {
         self.raw().parent().map(UntypedNode::from)
     }
 
-    /// Get the node's immediate named next sibling
+    /// Get the node's immediate next (named or unnamed) sibling
+    #[inline]
+    fn next_sibling(&self) -> Option<UntypedNode<'tree>> {
+        self.raw().next_sibling().map(UntypedNode::from)
+    }
+
+    /// Get the node's immediate previous (named or unnamed) sibling
+    #[inline]
+    fn prev_sibling(&self) -> Option<UntypedNode<'tree>> {
+        self.raw().prev_named_sibling().map(UntypedNode::from)
+    }
+
+    /// Get the number of (named and unnamed) children
+    #[inline]
+    fn child_count(&self) -> usize {
+        self.raw().child_count()
+    }
+
+    /// Get the node's immediate next named sibling
     #[inline]
     fn next_named_sibling(&self) -> Option<UntypedNode<'tree>> {
         self.raw().next_named_sibling().map(UntypedNode::from)
     }
 
-    /// Get the node's immediate named previous sibling
+    /// Get the node's immediate previous named sibling
     #[inline]
     fn prev_named_sibling(&self) -> Option<UntypedNode<'tree>> {
         self.raw().prev_named_sibling().map(UntypedNode::from)
