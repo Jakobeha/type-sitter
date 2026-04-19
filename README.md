@@ -8,8 +8,8 @@
 [![docs.rs | type-sitter-gen](https://img.shields.io/docsrs/type-sitter-gen?label=docs%20%7C%20type-sitter-gen)](https://docs.rs/type-sitter-gen)
 [![docs.rs | yak-sitter](https://img.shields.io/docsrs/yak-sitter?label=docs%20%7C%20yak-sitter)](https://docs.rs/yak-sitter)
 
-Type-sitter currently depends on [**tree-sitter v0.25
-**](https://github.com/tree-sitter/tree-sitter/releases/tag/v0.25.2).
+Type-sitter currently depends on [**tree-sitter v0.26
+**](https://github.com/tree-sitter/tree-sitter/releases/tag/v0.26.8).
 
 ## Overview
 
@@ -119,14 +119,14 @@ fn main() {
     // Obligatory: in this and future lines, replace `vendor/path/to/tree-sitter-foobar-lang`
     // with the path to your grammar's folder, relative to the folder containing `Cargo.toml`
     println!("cargo::rerun-if-changed=vendor/path/to/tree-sitter-foobar-lang");
-    
+
     // To generate nodes
     let path = Path::new("vendor/path/to/tree-sitter-foobar-lang/src/node-types.json");
     fs::write(
         out_dir.join("nodes.rs"),
         generate_nodes(path).unwrap().into_string()
     ).unwrap();
-  
+
     // To generate queries
     fs::write(
         out_dir.join("queries.rs"),
@@ -175,7 +175,7 @@ fn main() {
     node_type_map
         .add_custom_supertype("_all_named", named)
         .expect("this mustn't already exist");
-  
+
     // To give an explicit name to a hidden node that is not a supertype in the grammar.
     // (e.g. make `Class::members` return `ClassMember` instead of `anon_unions::...`, assuming the
     //  original `grammar.js` contains:
@@ -197,7 +197,7 @@ fn main() {
         out_dir.join("nodes.rs"),
         generate_nodes(node_type_map).unwrap().into_string()
     ).unwrap();
-  
+
     // ...
 }
 ```
@@ -229,7 +229,7 @@ fn main() {
     // Obligatory: in this and future lines, replace `vendor/path/to/tree-sitter-foobar-lang`
     // with the path to your grammar's folder, relative to the folder containing `Cargo.toml`
     println!("cargo::rerun-if-changed=vendor/path/to/tree-sitter-foobar-lang");
-    
+
     // To generate nodes
     fs::write(
         out_dir.join("nodes.rs"),

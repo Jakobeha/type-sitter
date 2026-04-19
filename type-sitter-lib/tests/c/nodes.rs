@@ -1544,10 +1544,14 @@ This child has type `argument_list?` ([`ArgumentList`])*/
         (0..::type_sitter_lib::Node::raw(self).named_child_count())
             .filter(|i| {
                 ::type_sitter_lib::Node::raw(self)
-                    .field_name_for_named_child(*i as _)
+                    .field_name_for_named_child((*i).try_into().unwrap())
                     .is_none()
             })
-            .map(|i| ::type_sitter_lib::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter_lib::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(<ArgumentList<'tree> as ::type_sitter_lib::Node<'tree>>::try_from_raw)
@@ -1670,7 +1674,11 @@ This child has type `argument_list` ([`ArgumentList`])*/
         &self,
     ) -> ::type_sitter_lib::NodeResult<'tree, ArgumentList<'tree>> {
         (0..::type_sitter_lib::Node::raw(self).named_child_count())
-            .map(|i| ::type_sitter_lib::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter_lib::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(<ArgumentList<'tree> as ::type_sitter_lib::Node<'tree>>::try_from_raw)
@@ -1979,7 +1987,11 @@ This child has type `expression` ([`Expression`])*/
     #[inline]
     pub fn expression(&self) -> ::type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
         (0..::type_sitter_lib::Node::raw(self).named_child_count())
-            .map(|i| ::type_sitter_lib::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter_lib::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(<Expression<'tree> as ::type_sitter_lib::Node<'tree>>::try_from_raw)
@@ -3180,7 +3192,11 @@ This child has type `statement` ([`Statement`])*/
     #[inline]
     pub fn statement(&self) -> ::type_sitter_lib::NodeResult<'tree, Statement<'tree>> {
         (0..::type_sitter_lib::Node::raw(self).named_child_count())
-            .map(|i| ::type_sitter_lib::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter_lib::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(<Statement<'tree> as ::type_sitter_lib::Node<'tree>>::try_from_raw)
@@ -3293,10 +3309,14 @@ This child has type `attribute_specifier?` ([`AttributeSpecifier`])*/
         (0..::type_sitter_lib::Node::raw(self).named_child_count())
             .filter(|i| {
                 ::type_sitter_lib::Node::raw(self)
-                    .field_name_for_named_child(*i as _)
+                    .field_name_for_named_child((*i).try_into().unwrap())
                     .is_none()
             })
-            .map(|i| ::type_sitter_lib::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter_lib::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(
@@ -4261,7 +4281,11 @@ This child has type `expression` ([`Expression`])*/
     #[inline]
     pub fn expression(&self) -> ::type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
         (0..::type_sitter_lib::Node::raw(self).named_child_count())
-            .map(|i| ::type_sitter_lib::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter_lib::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(<Expression<'tree> as ::type_sitter_lib::Node<'tree>>::try_from_raw)
@@ -4547,7 +4571,11 @@ This child has type `field_identifier` ([`FieldIdentifier`])*/
         &self,
     ) -> ::type_sitter_lib::NodeResult<'tree, FieldIdentifier<'tree>> {
         (0..::type_sitter_lib::Node::raw(self).named_child_count())
-            .map(|i| ::type_sitter_lib::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter_lib::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(
@@ -6316,10 +6344,14 @@ This child has type `{declaration | statement}`:
         (0..::type_sitter_lib::Node::raw(self).named_child_count())
             .filter(|i| {
                 ::type_sitter_lib::Node::raw(self)
-                    .field_name_for_named_child(*i as _)
+                    .field_name_for_named_child((*i).try_into().unwrap())
                     .is_none()
             })
-            .map(|i| ::type_sitter_lib::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter_lib::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(
@@ -6539,7 +6571,11 @@ This child has type `argument_list` ([`ArgumentList`])*/
         &self,
     ) -> ::type_sitter_lib::NodeResult<'tree, ArgumentList<'tree>> {
         (0..::type_sitter_lib::Node::raw(self).named_child_count())
-            .map(|i| ::type_sitter_lib::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter_lib::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(<ArgumentList<'tree> as ::type_sitter_lib::Node<'tree>>::try_from_raw)
@@ -6644,7 +6680,11 @@ This child has type `identifier` ([`Identifier`])*/
     #[inline]
     pub fn identifier(&self) -> ::type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
         (0..::type_sitter_lib::Node::raw(self).named_child_count())
-            .map(|i| ::type_sitter_lib::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter_lib::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(<Identifier<'tree> as ::type_sitter_lib::Node<'tree>>::try_from_raw)
@@ -7770,7 +7810,11 @@ This child has type `identifier` ([`Identifier`])*/
     #[inline]
     pub fn identifier(&self) -> ::type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
         (0..::type_sitter_lib::Node::raw(self).named_child_count())
-            .map(|i| ::type_sitter_lib::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter_lib::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(<Identifier<'tree> as ::type_sitter_lib::Node<'tree>>::try_from_raw)
@@ -9106,10 +9150,14 @@ This child has type `{seh_except_clause | seh_finally_clause}`:
         (0..::type_sitter_lib::Node::raw(self).named_child_count())
             .filter(|i| {
                 ::type_sitter_lib::Node::raw(self)
-                    .field_name_for_named_child(*i as _)
+                    .field_name_for_named_child((*i).try_into().unwrap())
                     .is_none()
             })
-            .map(|i| ::type_sitter_lib::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter_lib::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(
@@ -10067,7 +10115,11 @@ This child has type `expression` ([`Expression`])*/
     #[inline]
     pub fn expression(&self) -> ::type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
         (0..::type_sitter_lib::Node::raw(self).named_child_count())
-            .map(|i| ::type_sitter_lib::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter_lib::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(<Expression<'tree> as ::type_sitter_lib::Node<'tree>>::try_from_raw)
@@ -10776,7 +10828,11 @@ This child has type `alignas_qualifier?` ([`AlignasQualifier`])*/
         ::type_sitter_lib::NodeResult<'tree, AlignasQualifier<'tree>>,
     > {
         (0..::type_sitter_lib::Node::raw(self).named_child_count())
-            .map(|i| ::type_sitter_lib::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter_lib::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(

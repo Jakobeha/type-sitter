@@ -147,15 +147,13 @@ fn build_dylib(path: &Path, dylib_path: &Path) -> Result<(), Error> {
         // Include sources
         .include(&src_dir)
         .files(sources)
-        // Set to compile a shared object (doesn't work on macOS and Unix)
-        .shared_flag(true)
         .cargo_metadata(false)
         // Compile dylib in dylib dir
         .out_dir(&dylib_dir)
         .try_compile("tree-sitter")?;
 
-    // Even though shared-flag is true it doesn't actually do anything, so we need to manually
-    // compile the dylib on macOS and Unix
+    // `cc` only creates static libraries,
+    // so we must manually compile the dylib on macOS and Unix
     eprintln!("Dynamic linking {}...", dylib_path.display());
     let status = if cfg!(target_os = "macos") {
         Command::new("/usr/bin/clang")

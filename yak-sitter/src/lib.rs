@@ -609,7 +609,7 @@ impl<'tree> Node<'tree> {
     pub fn child(&self, i: usize) -> Option<Node<'tree>> {
         // SAFETY: Same tree
         self.node
-            .child(i)
+            .child(u32::try_from(i).ok()?)
             .map(|node| unsafe { Node::new(node, self.tree) })
     }
 
@@ -618,7 +618,7 @@ impl<'tree> Node<'tree> {
     pub fn named_child(&self, i: usize) -> Option<Node<'tree>> {
         // SAFETY: Same tree
         self.node
-            .named_child(i)
+            .named_child(i.try_into().ok()?)
             .map(|node| unsafe { Node::new(node, self.tree) })
     }
 
@@ -626,20 +626,14 @@ impl<'tree> Node<'tree> {
     #[inline]
     pub fn last_child(&self) -> Option<Node<'tree>> {
         // .child is already bounds-checked so we use wrapping_sub for iff the count is 0
-        // SAFETY: Same tree
-        self.node
-            .child(self.child_count().wrapping_sub(1))
-            .map(|node| unsafe { Node::new(node, self.tree) })
+        self.child(self.child_count().wrapping_sub(1))
     }
 
     /// Get the node's last named child
     #[inline]
     pub fn last_named_child(&self) -> Option<Node<'tree>> {
         // .named_child is already bounds-checked so we use wrapping_sub for iff the count is 0
-        // SAFETY: Same tree
-        self.node
-            .named_child(self.named_child_count().wrapping_sub(1))
-            .map(|node| unsafe { Node::new(node, self.tree) })
+        self.named_child(self.named_child_count().wrapping_sub(1))
     }
 
     /// Get the node's first child of the given kind, named or unnamed.

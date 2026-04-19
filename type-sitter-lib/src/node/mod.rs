@@ -285,7 +285,7 @@ fn optional_child<'tree, Child: Node<'tree>>(
     this: &impl Node<'tree>,
 ) -> Option<NodeResult<'tree, Child>> {
     (0..this.raw().named_child_count())
-        .map(|i| this.raw().named_child(i).unwrap())
+        .map(|i| this.raw().named_child(i.try_into().unwrap()).unwrap())
         .filter(|n| !n.is_extra())
         .next()
         .map(Child::try_from_raw)

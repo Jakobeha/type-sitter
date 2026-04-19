@@ -572,7 +572,7 @@ impl NodeType {
                         quote! {
                             // We don't use a cursor because usually the first child will pass.
                             (0..#type_sitter_lib::Node::raw(self).named_child_count())
-                                .map(|i| #type_sitter_lib::Node::raw(self).named_child(i).unwrap())
+                                .map(|i| #type_sitter_lib::Node::raw(self).named_child(i.try_into().unwrap()).unwrap())
                                 .filter(|n| !n.is_extra())
                                 .next()
                         }
@@ -604,8 +604,8 @@ impl NodeType {
                         quote! {
                             // We don't use a cursor because usually the first child will pass.
                             (0..#type_sitter_lib::Node::raw(self).named_child_count())
-                                .filter(|i| #type_sitter_lib::Node::raw(self).field_name_for_named_child(*i as _).is_none())
-                                .map(|i| #type_sitter_lib::Node::raw(self).named_child(i).unwrap())
+                                .filter(|i| #type_sitter_lib::Node::raw(self).field_name_for_named_child((*i).try_into().unwrap()).is_none())
+                                .map(|i| #type_sitter_lib::Node::raw(self).named_child(i.try_into().unwrap()).unwrap())
                                 .filter(|n| !n.is_extra())
                                 .next()
                         }

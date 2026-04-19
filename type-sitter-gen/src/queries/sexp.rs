@@ -64,7 +64,7 @@ type Lexer<'a> = logos::Lexer<'a, Token<'a>>;
 /// Tree-sitter query lex token
 #[derive(Logos)]
 #[logos(skip r"[ \t\n\f]+")]
-#[logos(skip r";[^\n]*")]
+#[logos(skip r";(?m).*?$")]
 enum Token<'a> {
     // Group types
     #[token("(")]

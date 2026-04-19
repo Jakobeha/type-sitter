@@ -1039,7 +1039,11 @@ impl<'tree> Await<'tree> {
     #[inline]
     pub fn primary_expression(&self) -> ::type_sitter::NodeResult<'tree, PrimaryExpression<'tree>> {
         (0..::type_sitter::Node::raw(self).named_child_count())
-            .map(|i| ::type_sitter::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(<PrimaryExpression<'tree> as ::type_sitter::Node<'tree>>::try_from_raw)
@@ -1535,7 +1539,11 @@ impl<'tree> Chevron<'tree> {
     #[inline]
     pub fn expression(&self) -> ::type_sitter::NodeResult<'tree, Expression<'tree>> {
         (0..::type_sitter::Node::raw(self).named_child_count())
-            .map(|i| ::type_sitter::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(<Expression<'tree> as ::type_sitter::Node<'tree>>::try_from_raw)
@@ -2165,7 +2173,11 @@ impl<'tree> Decorator<'tree> {
     #[inline]
     pub fn expression(&self) -> ::type_sitter::NodeResult<'tree, Expression<'tree>> {
         (0..::type_sitter::Node::raw(self).named_child_count())
-            .map(|i| ::type_sitter::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(<Expression<'tree> as ::type_sitter::Node<'tree>>::try_from_raw)
@@ -2524,7 +2536,11 @@ impl<'tree> DictionarySplat<'tree> {
     #[inline]
     pub fn expression(&self) -> ::type_sitter::NodeResult<'tree, Expression<'tree>> {
         (0..::type_sitter::Node::raw(self).named_child_count())
-            .map(|i| ::type_sitter::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(<Expression<'tree> as ::type_sitter::Node<'tree>>::try_from_raw)
@@ -2935,10 +2951,14 @@ impl<'tree> ExceptClause<'tree> {
         (0..::type_sitter::Node::raw(self).named_child_count())
             .filter(|i| {
                 ::type_sitter::Node::raw(self)
-                    .field_name_for_named_child(*i as _)
+                    .field_name_for_named_child((*i).try_into().unwrap())
                     .is_none()
             })
-            .map(|i| ::type_sitter::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(<Block<'tree> as ::type_sitter::Node<'tree>>::try_from_raw)
@@ -3557,7 +3577,11 @@ impl<'tree> FinallyClause<'tree> {
     #[inline]
     pub fn block(&self) -> ::type_sitter::NodeResult<'tree, Block<'tree>> {
         (0..::type_sitter::Node::raw(self).named_child_count())
-            .map(|i| ::type_sitter::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(<Block<'tree> as ::type_sitter::Node<'tree>>::try_from_raw)
@@ -4270,7 +4294,11 @@ impl<'tree> IfClause<'tree> {
     #[inline]
     pub fn expression(&self) -> ::type_sitter::NodeResult<'tree, Expression<'tree>> {
         (0..::type_sitter::Node::raw(self).named_child_count())
-            .map(|i| ::type_sitter::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(<Expression<'tree> as ::type_sitter::Node<'tree>>::try_from_raw)
@@ -4419,10 +4447,14 @@ impl<'tree> ImportFromStatement<'tree> {
         (0..::type_sitter::Node::raw(self).named_child_count())
             .filter(|i| {
                 ::type_sitter::Node::raw(self)
-                    .field_name_for_named_child(*i as _)
+                    .field_name_for_named_child((*i).try_into().unwrap())
                     .is_none()
             })
-            .map(|i| ::type_sitter::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(<WildcardImport<'tree> as ::type_sitter::Node<'tree>>::try_from_raw)
@@ -6809,10 +6841,14 @@ impl<'tree> PrintStatement<'tree> {
         (0..::type_sitter::Node::raw(self).named_child_count())
             .filter(|i| {
                 ::type_sitter::Node::raw(self)
-                    .field_name_for_named_child(*i as _)
+                    .field_name_for_named_child((*i).try_into().unwrap())
                     .is_none()
             })
-            .map(|i| ::type_sitter::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(<Chevron<'tree> as ::type_sitter::Node<'tree>>::try_from_raw)
@@ -6874,7 +6910,7 @@ impl<'tree> RaiseStatement<'tree> {
     ) -> ::std::option::Option<
         ::type_sitter::NodeResult<'tree, anon_unions::Expression_ExpressionList<'tree>>,
     > {
-        (0 .. :: type_sitter :: Node :: raw (self) . named_child_count ()) . filter (| i | :: type_sitter :: Node :: raw (self) . field_name_for_named_child (* i as _) . is_none ()) . map (| i | :: type_sitter :: Node :: raw (self) . named_child (i) . unwrap ()) . filter (| n | ! n . is_extra ()) . next () . map (< anon_unions :: Expression_ExpressionList < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw)
+        (0 .. :: type_sitter :: Node :: raw (self) . named_child_count ()) . filter (| i | :: type_sitter :: Node :: raw (self) . field_name_for_named_child ((* i) . try_into () . unwrap ()) . is_none ()) . map (| i | :: type_sitter :: Node :: raw (self) . named_child (i . try_into () . unwrap ()) . unwrap ()) . filter (| n | ! n . is_extra ()) . next () . map (< anon_unions :: Expression_ExpressionList < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw)
     }
 }
 #[automatically_derived]
@@ -7184,7 +7220,11 @@ impl<'tree> SplatPattern<'tree> {
         &self,
     ) -> ::std::option::Option<::type_sitter::NodeResult<'tree, Identifier<'tree>>> {
         (0..::type_sitter::Node::raw(self).named_child_count())
-            .map(|i| ::type_sitter::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(<Identifier<'tree> as ::type_sitter::Node<'tree>>::try_from_raw)
@@ -7238,7 +7278,11 @@ impl<'tree> SplatType<'tree> {
     #[inline]
     pub fn identifier(&self) -> ::type_sitter::NodeResult<'tree, Identifier<'tree>> {
         (0..::type_sitter::Node::raw(self).named_child_count())
-            .map(|i| ::type_sitter::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(<Identifier<'tree> as ::type_sitter::Node<'tree>>::try_from_raw)
@@ -8008,7 +8052,7 @@ impl<'tree> TypedParameter<'tree> {
         'tree,
         anon_unions::DictionarySplatPattern_Identifier_ListSplatPattern<'tree>,
     > {
-        (0 .. :: type_sitter :: Node :: raw (self) . named_child_count ()) . filter (| i | :: type_sitter :: Node :: raw (self) . field_name_for_named_child (* i as _) . is_none ()) . map (| i | :: type_sitter :: Node :: raw (self) . named_child (i) . unwrap ()) . filter (| n | ! n . is_extra ()) . next () . map (< anon_unions :: DictionarySplatPattern_Identifier_ListSplatPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw) . expect ("required child not present, there should at least be a MISSING node in its place")
+        (0 .. :: type_sitter :: Node :: raw (self) . named_child_count ()) . filter (| i | :: type_sitter :: Node :: raw (self) . field_name_for_named_child ((* i) . try_into () . unwrap ()) . is_none ()) . map (| i | :: type_sitter :: Node :: raw (self) . named_child (i . try_into () . unwrap ()) . unwrap ()) . filter (| n | ! n . is_extra ()) . next () . map (< anon_unions :: DictionarySplatPattern_Identifier_ListSplatPattern < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw) . expect ("required child not present, there should at least be a MISSING node in its place")
     }
 }
 #[automatically_derived]
@@ -8448,10 +8492,14 @@ impl<'tree> WithStatement<'tree> {
         (0..::type_sitter::Node::raw(self).named_child_count())
             .filter(|i| {
                 ::type_sitter::Node::raw(self)
-                    .field_name_for_named_child(*i as _)
+                    .field_name_for_named_child((*i).try_into().unwrap())
                     .is_none()
             })
-            .map(|i| ::type_sitter::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(<WithClause<'tree> as ::type_sitter::Node<'tree>>::try_from_raw)

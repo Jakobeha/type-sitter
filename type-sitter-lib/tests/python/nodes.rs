@@ -1383,7 +1383,11 @@ This child has type `primary_expression` ([`PrimaryExpression`])*/
         &self,
     ) -> ::type_sitter_lib::NodeResult<'tree, PrimaryExpression<'tree>> {
         (0..::type_sitter_lib::Node::raw(self).named_child_count())
-            .map(|i| ::type_sitter_lib::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter_lib::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(
@@ -2058,7 +2062,11 @@ This child has type `expression` ([`Expression`])*/
     #[inline]
     pub fn expression(&self) -> ::type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
         (0..::type_sitter_lib::Node::raw(self).named_child_count())
-            .map(|i| ::type_sitter_lib::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter_lib::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(<Expression<'tree> as ::type_sitter_lib::Node<'tree>>::try_from_raw)
@@ -2819,7 +2827,11 @@ This child has type `expression` ([`Expression`])*/
     #[inline]
     pub fn expression(&self) -> ::type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
         (0..::type_sitter_lib::Node::raw(self).named_child_count())
-            .map(|i| ::type_sitter_lib::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter_lib::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(<Expression<'tree> as ::type_sitter_lib::Node<'tree>>::try_from_raw)
@@ -3292,7 +3304,11 @@ This child has type `expression` ([`Expression`])*/
     #[inline]
     pub fn expression(&self) -> ::type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
         (0..::type_sitter_lib::Node::raw(self).named_child_count())
-            .map(|i| ::type_sitter_lib::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter_lib::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(<Expression<'tree> as ::type_sitter_lib::Node<'tree>>::try_from_raw)
@@ -3759,10 +3775,14 @@ This child has type `block` ([`Block`])*/
         (0..::type_sitter_lib::Node::raw(self).named_child_count())
             .filter(|i| {
                 ::type_sitter_lib::Node::raw(self)
-                    .field_name_for_named_child(*i as _)
+                    .field_name_for_named_child((*i).try_into().unwrap())
                     .is_none()
             })
-            .map(|i| ::type_sitter_lib::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter_lib::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(<Block<'tree> as ::type_sitter_lib::Node<'tree>>::try_from_raw)
@@ -4540,7 +4560,11 @@ This child has type `block` ([`Block`])*/
     #[inline]
     pub fn block(&self) -> ::type_sitter_lib::NodeResult<'tree, Block<'tree>> {
         (0..::type_sitter_lib::Node::raw(self).named_child_count())
-            .map(|i| ::type_sitter_lib::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter_lib::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(<Block<'tree> as ::type_sitter_lib::Node<'tree>>::try_from_raw)
@@ -5470,7 +5494,11 @@ This child has type `expression` ([`Expression`])*/
     #[inline]
     pub fn expression(&self) -> ::type_sitter_lib::NodeResult<'tree, Expression<'tree>> {
         (0..::type_sitter_lib::Node::raw(self).named_child_count())
-            .map(|i| ::type_sitter_lib::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter_lib::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(<Expression<'tree> as ::type_sitter_lib::Node<'tree>>::try_from_raw)
@@ -5690,10 +5718,14 @@ This child has type `wildcard_import?` ([`WildcardImport`])*/
         (0..::type_sitter_lib::Node::raw(self).named_child_count())
             .filter(|i| {
                 ::type_sitter_lib::Node::raw(self)
-                    .field_name_for_named_child(*i as _)
+                    .field_name_for_named_child((*i).try_into().unwrap())
                     .is_none()
             })
-            .map(|i| ::type_sitter_lib::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter_lib::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(<WildcardImport<'tree> as ::type_sitter_lib::Node<'tree>>::try_from_raw)
@@ -8613,10 +8645,14 @@ This child has type `chevron?` ([`Chevron`])*/
         (0..::type_sitter_lib::Node::raw(self).named_child_count())
             .filter(|i| {
                 ::type_sitter_lib::Node::raw(self)
-                    .field_name_for_named_child(*i as _)
+                    .field_name_for_named_child((*i).try_into().unwrap())
                     .is_none()
             })
-            .map(|i| ::type_sitter_lib::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter_lib::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(<Chevron<'tree> as ::type_sitter_lib::Node<'tree>>::try_from_raw)
@@ -8703,10 +8739,14 @@ This child has type `{expression | expression_list}?`:
         (0..::type_sitter_lib::Node::raw(self).named_child_count())
             .filter(|i| {
                 ::type_sitter_lib::Node::raw(self)
-                    .field_name_for_named_child(*i as _)
+                    .field_name_for_named_child((*i).try_into().unwrap())
                     .is_none()
             })
-            .map(|i| ::type_sitter_lib::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter_lib::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(
@@ -9085,7 +9125,11 @@ This child has type `identifier?` ([`Identifier`])*/
         &self,
     ) -> ::std::option::Option<::type_sitter_lib::NodeResult<'tree, Identifier<'tree>>> {
         (0..::type_sitter_lib::Node::raw(self).named_child_count())
-            .map(|i| ::type_sitter_lib::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter_lib::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(<Identifier<'tree> as ::type_sitter_lib::Node<'tree>>::try_from_raw)
@@ -9144,7 +9188,11 @@ This child has type `identifier` ([`Identifier`])*/
     #[inline]
     pub fn identifier(&self) -> ::type_sitter_lib::NodeResult<'tree, Identifier<'tree>> {
         (0..::type_sitter_lib::Node::raw(self).named_child_count())
-            .map(|i| ::type_sitter_lib::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter_lib::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(<Identifier<'tree> as ::type_sitter_lib::Node<'tree>>::try_from_raw)
@@ -10091,10 +10139,14 @@ This child has type `{dictionary_splat_pattern | identifier | list_splat_pattern
         (0..::type_sitter_lib::Node::raw(self).named_child_count())
             .filter(|i| {
                 ::type_sitter_lib::Node::raw(self)
-                    .field_name_for_named_child(*i as _)
+                    .field_name_for_named_child((*i).try_into().unwrap())
                     .is_none()
             })
-            .map(|i| ::type_sitter_lib::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter_lib::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(
@@ -10644,10 +10696,14 @@ This child has type `with_clause` ([`WithClause`])*/
         (0..::type_sitter_lib::Node::raw(self).named_child_count())
             .filter(|i| {
                 ::type_sitter_lib::Node::raw(self)
-                    .field_name_for_named_child(*i as _)
+                    .field_name_for_named_child((*i).try_into().unwrap())
                     .is_none()
             })
-            .map(|i| ::type_sitter_lib::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter_lib::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(<WithClause<'tree> as ::type_sitter_lib::Node<'tree>>::try_from_raw)

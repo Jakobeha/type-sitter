@@ -1552,7 +1552,7 @@ impl<'tree> ::type_sitter::Node<'tree> for LiteralPattern<'tree> {
         }
     }
 }
-#[doc = "Typed node `_pattern`\n\nThis node type has subtypes:\n\n- `_` ([`symbols::__`])\n- `_literal_pattern` ([`LiteralPattern`])\n- `captured_pattern` ([`CapturedPattern`])\n- `const_block` ([`ConstBlock`])\n- `identifier` ([`Identifier`])\n- `macro_invocation` ([`MacroInvocation`])\n- `mut_pattern` ([`MutPattern`])\n- `or_pattern` ([`OrPattern`])\n- `range_pattern` ([`RangePattern`])\n- `ref_pattern` ([`RefPattern`])\n- `reference_pattern` ([`ReferencePattern`])\n- `remaining_field_pattern` ([`RemainingFieldPattern`])\n- `scoped_identifier` ([`ScopedIdentifier`])\n- `slice_pattern` ([`SlicePattern`])\n- `struct_pattern` ([`StructPattern`])\n- `tuple_pattern` ([`TuplePattern`])\n- `tuple_struct_pattern` ([`TupleStructPattern`])\n"]
+#[doc = "Typed node `_pattern`\n\nThis node type has subtypes:\n\n- `_` ([`symbols::__`])\n- `_literal_pattern` ([`LiteralPattern`])\n- `captured_pattern` ([`CapturedPattern`])\n- `const_block` ([`ConstBlock`])\n- `generic_pattern` ([`GenericPattern`])\n- `identifier` ([`Identifier`])\n- `macro_invocation` ([`MacroInvocation`])\n- `mut_pattern` ([`MutPattern`])\n- `or_pattern` ([`OrPattern`])\n- `range_pattern` ([`RangePattern`])\n- `ref_pattern` ([`RefPattern`])\n- `reference_pattern` ([`ReferencePattern`])\n- `remaining_field_pattern` ([`RemainingFieldPattern`])\n- `scoped_identifier` ([`ScopedIdentifier`])\n- `slice_pattern` ([`SlicePattern`])\n- `struct_pattern` ([`StructPattern`])\n- `tuple_pattern` ([`TuplePattern`])\n- `tuple_struct_pattern` ([`TupleStructPattern`])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[allow(non_camel_case_types)]
 pub enum Pattern<'tree> {
@@ -1560,6 +1560,7 @@ pub enum Pattern<'tree> {
     LiteralPattern(LiteralPattern<'tree>),
     CapturedPattern(CapturedPattern<'tree>),
     ConstBlock(ConstBlock<'tree>),
+    GenericPattern(GenericPattern<'tree>),
     Identifier(Identifier<'tree>),
     MacroInvocation(MacroInvocation<'tree>),
     MutPattern(MutPattern<'tree>),
@@ -1612,6 +1613,16 @@ impl<'tree> Pattern<'tree> {
     pub fn as_const_block(self) -> ::std::option::Option<ConstBlock<'tree>> {
         #[allow(irrefutable_let_patterns)]
         if let Self::ConstBlock(x) = self {
+            ::std::option::Option::Some(x)
+        } else {
+            ::std::option::Option::None
+        }
+    }
+    #[doc = "Returns the node if it is of type `generic_pattern` ([`GenericPattern`]), otherwise returns `None`"]
+    #[inline]
+    pub fn as_generic_pattern(self) -> ::std::option::Option<GenericPattern<'tree>> {
+        #[allow(irrefutable_let_patterns)]
+        if let Self::GenericPattern(x) = self {
             ::std::option::Option::Some(x)
         } else {
             ::std::option::Option::None
@@ -1805,6 +1816,10 @@ impl<'tree> ::type_sitter::Node<'tree> for Pattern<'tree> {
         if let Ok(this) = <ConstBlock<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node) {
             return Ok(Self::ConstBlock(this));
         }
+        if let Ok(this) = <GenericPattern<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+        {
+            return Ok(Self::GenericPattern(this));
+        }
         if let Ok(this) = <Identifier<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node) {
             return Ok(Self::Identifier(this));
         }
@@ -1862,6 +1877,7 @@ impl<'tree> ::type_sitter::Node<'tree> for Pattern<'tree> {
             Self::LiteralPattern(x) => ::type_sitter::Node::raw(x),
             Self::CapturedPattern(x) => ::type_sitter::Node::raw(x),
             Self::ConstBlock(x) => ::type_sitter::Node::raw(x),
+            Self::GenericPattern(x) => ::type_sitter::Node::raw(x),
             Self::Identifier(x) => ::type_sitter::Node::raw(x),
             Self::MacroInvocation(x) => ::type_sitter::Node::raw(x),
             Self::MutPattern(x) => ::type_sitter::Node::raw(x),
@@ -1884,6 +1900,7 @@ impl<'tree> ::type_sitter::Node<'tree> for Pattern<'tree> {
             Self::LiteralPattern(x) => ::type_sitter::Node::raw_mut(x),
             Self::CapturedPattern(x) => ::type_sitter::Node::raw_mut(x),
             Self::ConstBlock(x) => ::type_sitter::Node::raw_mut(x),
+            Self::GenericPattern(x) => ::type_sitter::Node::raw_mut(x),
             Self::Identifier(x) => ::type_sitter::Node::raw_mut(x),
             Self::MacroInvocation(x) => ::type_sitter::Node::raw_mut(x),
             Self::MutPattern(x) => ::type_sitter::Node::raw_mut(x),
@@ -1906,6 +1923,7 @@ impl<'tree> ::type_sitter::Node<'tree> for Pattern<'tree> {
             Self::LiteralPattern(x) => x.into_raw(),
             Self::CapturedPattern(x) => x.into_raw(),
             Self::ConstBlock(x) => x.into_raw(),
+            Self::GenericPattern(x) => x.into_raw(),
             Self::Identifier(x) => x.into_raw(),
             Self::MacroInvocation(x) => x.into_raw(),
             Self::MutPattern(x) => x.into_raw(),
@@ -2286,7 +2304,7 @@ impl<'tree> ::type_sitter::Node<'tree> for Type<'tree> {
         }
     }
 }
-#[doc = "Typed node `abstract_type`\n\nThis node has these fields:\n\n- `trait`: `{function_type | generic_type | removed_trait_bound | scoped_type_identifier | tuple_type | type_identifier}` ([`FunctionType`] | [`GenericType`] | [`RemovedTraitBound`] | [`ScopedTypeIdentifier`] | [`TupleType`] | [`TypeIdentifier`])\n\nAnd an optional additional named child of type `type_parameters?` ([`TypeParameters`])\n"]
+#[doc = "Typed node `abstract_type`\n\nThis node has these fields:\n\n- `trait`: `{bounded_type | function_type | generic_type | removed_trait_bound | scoped_type_identifier | tuple_type | type_identifier}` ([`BoundedType`] | [`FunctionType`] | [`GenericType`] | [`RemovedTraitBound`] | [`ScopedTypeIdentifier`] | [`TupleType`] | [`TypeIdentifier`])\n\nAnd an optional additional named child of type `type_parameters?` ([`TypeParameters`])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
 #[allow(non_camel_case_types)]
@@ -2294,9 +2312,9 @@ pub struct AbstractType<'tree>(::type_sitter::raw::Node<'tree>);
 #[automatically_derived]
 #[allow(unused)]
 impl<'tree> AbstractType<'tree> {
-    #[doc = "Get the field `trait`.\n\nThis child has type `{function_type | generic_type | removed_trait_bound | scoped_type_identifier | tuple_type | type_identifier}`:\n\n- [`FunctionType`]\n- [`GenericType`]\n- [`RemovedTraitBound`]\n- [`ScopedTypeIdentifier`]\n- [`TupleType`]\n- [`TypeIdentifier`]\n"]
-    #[inline]    pub fn r#trait (& self) -> :: type_sitter :: NodeResult < 'tree , anon_unions :: FunctionType_GenericType_RemovedTraitBound_ScopedTypeIdentifier_TupleType_TypeIdentifier < 'tree > >{
-        :: type_sitter :: Node :: raw (self) . child_by_field_name ("trait") . map (< anon_unions :: FunctionType_GenericType_RemovedTraitBound_ScopedTypeIdentifier_TupleType_TypeIdentifier < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw) . expect ("required child not present, there should at least be a MISSING node in its place")
+    #[doc = "Get the field `trait`.\n\nThis child has type `{bounded_type | function_type | generic_type | removed_trait_bound | scoped_type_identifier | tuple_type | type_identifier}`:\n\n- [`BoundedType`]\n- [`FunctionType`]\n- [`GenericType`]\n- [`RemovedTraitBound`]\n- [`ScopedTypeIdentifier`]\n- [`TupleType`]\n- [`TypeIdentifier`]\n"]
+    #[inline]    pub fn r#trait (& self) -> :: type_sitter :: NodeResult < 'tree , anon_unions :: BoundedType_FunctionType_GenericType_RemovedTraitBound_ScopedTypeIdentifier_TupleType_TypeIdentifier < 'tree > >{
+        :: type_sitter :: Node :: raw (self) . child_by_field_name ("trait") . map (< anon_unions :: BoundedType_FunctionType_GenericType_RemovedTraitBound_ScopedTypeIdentifier_TupleType_TypeIdentifier < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw) . expect ("required child not present, there should at least be a MISSING node in its place")
     }
     #[doc = "Get the node's only non-field not-extra named child, if it has one.\n\nThis child has type `type_parameters?` ([`TypeParameters`])"]
     #[inline]
@@ -2306,10 +2324,14 @@ impl<'tree> AbstractType<'tree> {
         (0..::type_sitter::Node::raw(self).named_child_count())
             .filter(|i| {
                 ::type_sitter::Node::raw(self)
-                    .field_name_for_named_child(*i as _)
+                    .field_name_for_named_child((*i).try_into().unwrap())
                     .is_none()
             })
-            .map(|i| ::type_sitter::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(<TypeParameters<'tree> as ::type_sitter::Node<'tree>>::try_from_raw)
@@ -2616,10 +2638,14 @@ impl<'tree> AssociatedType<'tree> {
         (0..::type_sitter::Node::raw(self).named_child_count())
             .filter(|i| {
                 ::type_sitter::Node::raw(self)
-                    .field_name_for_named_child(*i as _)
+                    .field_name_for_named_child((*i).try_into().unwrap())
                     .is_none()
             })
-            .map(|i| ::type_sitter::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(<WhereClause<'tree> as ::type_sitter::Node<'tree>>::try_from_raw)
@@ -2669,7 +2695,11 @@ impl<'tree> AsyncBlock<'tree> {
     #[inline]
     pub fn block(&self) -> ::type_sitter::NodeResult<'tree, Block<'tree>> {
         (0..::type_sitter::Node::raw(self).named_child_count())
-            .map(|i| ::type_sitter::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(<Block<'tree> as ::type_sitter::Node<'tree>>::try_from_raw)
@@ -2748,7 +2778,7 @@ impl<'tree> Attribute<'tree> {
         'tree,
         anon_unions::Crate_Identifier_Metavariable_ScopedIdentifier_Self__Super<'tree>,
     > {
-        (0 .. :: type_sitter :: Node :: raw (self) . named_child_count ()) . filter (| i | :: type_sitter :: Node :: raw (self) . field_name_for_named_child (* i as _) . is_none ()) . map (| i | :: type_sitter :: Node :: raw (self) . named_child (i) . unwrap ()) . filter (| n | ! n . is_extra ()) . next () . map (< anon_unions :: Crate_Identifier_Metavariable_ScopedIdentifier_Self__Super < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw) . expect ("required child not present, there should at least be a MISSING node in its place")
+        (0 .. :: type_sitter :: Node :: raw (self) . named_child_count ()) . filter (| i | :: type_sitter :: Node :: raw (self) . field_name_for_named_child ((* i) . try_into () . unwrap ()) . is_none ()) . map (| i | :: type_sitter :: Node :: raw (self) . named_child (i . try_into () . unwrap ()) . unwrap ()) . filter (| n | ! n . is_extra ()) . next () . map (< anon_unions :: Crate_Identifier_Metavariable_ScopedIdentifier_Self__Super < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw) . expect ("required child not present, there should at least be a MISSING node in its place")
     }
 }
 #[automatically_derived]
@@ -2795,7 +2825,11 @@ impl<'tree> AttributeItem<'tree> {
     #[inline]
     pub fn attribute(&self) -> ::type_sitter::NodeResult<'tree, Attribute<'tree>> {
         (0..::type_sitter::Node::raw(self).named_child_count())
-            .map(|i| ::type_sitter::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(<Attribute<'tree> as ::type_sitter::Node<'tree>>::try_from_raw)
@@ -2852,7 +2886,11 @@ impl<'tree> AwaitExpression<'tree> {
     #[inline]
     pub fn expression(&self) -> ::type_sitter::NodeResult<'tree, Expression<'tree>> {
         (0..::type_sitter::Node::raw(self).named_child_count())
-            .map(|i| ::type_sitter::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(<Expression<'tree> as ::type_sitter::Node<'tree>>::try_from_raw)
@@ -2909,7 +2947,11 @@ impl<'tree> BaseFieldInitializer<'tree> {
     #[inline]
     pub fn expression(&self) -> ::type_sitter::NodeResult<'tree, Expression<'tree>> {
         (0..::type_sitter::Node::raw(self).named_child_count())
-            .map(|i| ::type_sitter::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(<Expression<'tree> as ::type_sitter::Node<'tree>>::try_from_raw)
@@ -3171,7 +3213,7 @@ impl<'tree> ::type_sitter::Node<'tree> for BooleanLiteral<'tree> {
         self.0
     }
 }
-#[doc = "Typed node `bounded_type`\n\nThis node has named children of type `{_type | lifetime}+`:\n\n- [`Type`]\n- [`Lifetime`]\n\n"]
+#[doc = "Typed node `bounded_type`\n\nThis node has named children of type `{_type | lifetime | use_bounds}+`:\n\n- [`Type`]\n- [`Lifetime`]\n- [`UseBounds`]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
 #[allow(non_camel_case_types)]
@@ -3181,7 +3223,7 @@ pub struct BoundedType<'tree>(::type_sitter::raw::Node<'tree>);
 impl<'tree> BoundedType<'tree> {}
 #[automatically_derived]
 impl<'tree> ::type_sitter::HasChildren<'tree> for BoundedType<'tree> {
-    type Child = anon_unions::Type_Lifetime<'tree>;
+    type Child = anon_unions::Type_Lifetime_UseBounds<'tree>;
 }
 #[automatically_derived]
 impl<'tree> ::type_sitter::Node<'tree> for BoundedType<'tree> {
@@ -3743,10 +3785,14 @@ impl<'tree> ConstItem<'tree> {
         (0..::type_sitter::Node::raw(self).named_child_count())
             .filter(|i| {
                 ::type_sitter::Node::raw(self)
-                    .field_name_for_named_child(*i as _)
+                    .field_name_for_named_child((*i).try_into().unwrap())
                     .is_none()
             })
-            .map(|i| ::type_sitter::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(<VisibilityModifier<'tree> as ::type_sitter::Node<'tree>>::try_from_raw)
@@ -3784,7 +3830,7 @@ impl<'tree> ::type_sitter::Node<'tree> for ConstItem<'tree> {
         self.0
     }
 }
-#[doc = "Typed node `const_parameter`\n\nThis node has these fields:\n\n- `name`: `identifier` ([`Identifier`])\n- `type`: `_type` ([`Type`])\n"]
+#[doc = "Typed node `const_parameter`\n\nThis node has these fields:\n\n- `name`: `identifier` ([`Identifier`])\n- `type`: `_type` ([`Type`])\n- `value`: `{_literal | block | identifier | negative_literal}?` ([`Literal`] | [`Block`] | [`Identifier`] | [`NegativeLiteral`])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
 #[allow(non_camel_case_types)]
@@ -3811,6 +3857,24 @@ impl<'tree> ConstParameter<'tree> {
             .expect(
                 "required child not present, there should at least be a MISSING node in its place",
             )
+    }
+    #[doc = "Get the optional field `value`.\n\nThis child has type `{_literal | block | identifier | negative_literal}?`:\n\n- [`Literal`]\n- [`Block`]\n- [`Identifier`]\n- [`NegativeLiteral`]\n"]
+    #[inline]
+    pub fn value(
+        &self,
+    ) -> ::std::option::Option<
+        ::type_sitter::NodeResult<
+            'tree,
+            anon_unions::Literal_Block_Identifier_NegativeLiteral<'tree>,
+        >,
+    > {
+        ::type_sitter::Node::raw(self)
+            .child_by_field_name("value")
+            .map(
+            <anon_unions::Literal_Block_Identifier_NegativeLiteral<'tree> as ::type_sitter::Node<
+                'tree,
+            >>::try_from_raw,
+        )
     }
 }
 #[automatically_derived]
@@ -3845,64 +3909,6 @@ impl<'tree> ::type_sitter::Node<'tree> for ConstParameter<'tree> {
         self.0
     }
 }
-#[doc = "Typed node `constrained_type_parameter`\n\nThis node has these fields:\n\n- `bounds`: `trait_bounds` ([`TraitBounds`])\n- `left`: `{lifetime | type_identifier}` ([`Lifetime`] | [`TypeIdentifier`])\n"]
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-#[repr(transparent)]
-#[allow(non_camel_case_types)]
-pub struct ConstrainedTypeParameter<'tree>(::type_sitter::raw::Node<'tree>);
-#[automatically_derived]
-#[allow(unused)]
-impl<'tree> ConstrainedTypeParameter<'tree> {
-    #[doc = "Get the field `bounds`.\n\nThis child has type `trait_bounds` ([`TraitBounds`])"]
-    #[inline]
-    pub fn bounds(&self) -> ::type_sitter::NodeResult<'tree, TraitBounds<'tree>> {
-        ::type_sitter::Node::raw(self)
-            .child_by_field_name("bounds")
-            .map(<TraitBounds<'tree> as ::type_sitter::Node<'tree>>::try_from_raw)
-            .expect(
-                "required child not present, there should at least be a MISSING node in its place",
-            )
-    }
-    #[doc = "Get the field `left`.\n\nThis child has type `{lifetime | type_identifier}`:\n\n- [`Lifetime`]\n- [`TypeIdentifier`]\n"]
-    #[inline]
-    pub fn left(
-        &self,
-    ) -> ::type_sitter::NodeResult<'tree, anon_unions::Lifetime_TypeIdentifier<'tree>> {
-        :: type_sitter :: Node :: raw (self) . child_by_field_name ("left") . map (< anon_unions :: Lifetime_TypeIdentifier < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw) . expect ("required child not present, there should at least be a MISSING node in its place")
-    }
-}
-#[automatically_derived]
-impl<'tree> ::type_sitter::Node<'tree> for ConstrainedTypeParameter<'tree> {
-    type WithLifetime<'a> = ConstrainedTypeParameter<'a>;
-    const KIND: &'static str = "constrained_type_parameter";
-    #[inline]
-    fn try_from_raw(
-        node: ::type_sitter::raw::Node<'tree>,
-    ) -> ::type_sitter::NodeResult<'tree, Self> {
-        if node.kind() == "constrained_type_parameter" {
-            Ok(Self(node))
-        } else {
-            Err(::type_sitter::IncorrectKind::new::<Self>(node))
-        }
-    }
-    #[inline]
-    unsafe fn from_raw_unchecked(node: ::type_sitter::raw::Node<'tree>) -> Self {
-        debug_assert_eq!(node.kind(), "constrained_type_parameter");
-        Self(node)
-    }
-    #[inline]
-    fn raw(&self) -> &::type_sitter::raw::Node<'tree> {
-        &self.0
-    }
-    #[inline]
-    fn raw_mut(&mut self) -> &mut ::type_sitter::raw::Node<'tree> {
-        &mut self.0
-    }
-    #[inline]
-    fn into_raw(self) -> ::type_sitter::raw::Node<'tree> {
-        self.0
-    }
-}
 #[doc = "Typed node `continue_expression`\n\nThis node has an optional named child of type `label?` ([`Label`])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -3915,7 +3921,11 @@ impl<'tree> ContinueExpression<'tree> {
     #[inline]
     pub fn label(&self) -> ::std::option::Option<::type_sitter::NodeResult<'tree, Label<'tree>>> {
         (0..::type_sitter::Node::raw(self).named_child_count())
-            .map(|i| ::type_sitter::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(<Label<'tree> as ::type_sitter::Node<'tree>>::try_from_raw)
@@ -4095,7 +4105,7 @@ impl<'tree> ::type_sitter::Node<'tree> for DocComment<'tree> {
         self.0
     }
 }
-#[doc = "Typed node `dynamic_type`\n\nThis node has these fields:\n\n- `trait`: `{function_type | generic_type | higher_ranked_trait_bound | scoped_type_identifier | type_identifier}` ([`FunctionType`] | [`GenericType`] | [`HigherRankedTraitBound`] | [`ScopedTypeIdentifier`] | [`TypeIdentifier`])\n"]
+#[doc = "Typed node `dynamic_type`\n\nThis node has these fields:\n\n- `trait`: `{function_type | generic_type | higher_ranked_trait_bound | scoped_type_identifier | tuple_type | type_identifier}` ([`FunctionType`] | [`GenericType`] | [`HigherRankedTraitBound`] | [`ScopedTypeIdentifier`] | [`TupleType`] | [`TypeIdentifier`])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
 #[allow(non_camel_case_types)]
@@ -4103,9 +4113,9 @@ pub struct DynamicType<'tree>(::type_sitter::raw::Node<'tree>);
 #[automatically_derived]
 #[allow(unused)]
 impl<'tree> DynamicType<'tree> {
-    #[doc = "Get the field `trait`.\n\nThis child has type `{function_type | generic_type | higher_ranked_trait_bound | scoped_type_identifier | type_identifier}`:\n\n- [`FunctionType`]\n- [`GenericType`]\n- [`HigherRankedTraitBound`]\n- [`ScopedTypeIdentifier`]\n- [`TypeIdentifier`]\n"]
-    #[inline]    pub fn r#trait (& self) -> :: type_sitter :: NodeResult < 'tree , anon_unions :: FunctionType_GenericType_HigherRankedTraitBound_ScopedTypeIdentifier_TypeIdentifier < 'tree > >{
-        :: type_sitter :: Node :: raw (self) . child_by_field_name ("trait") . map (< anon_unions :: FunctionType_GenericType_HigherRankedTraitBound_ScopedTypeIdentifier_TypeIdentifier < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw) . expect ("required child not present, there should at least be a MISSING node in its place")
+    #[doc = "Get the field `trait`.\n\nThis child has type `{function_type | generic_type | higher_ranked_trait_bound | scoped_type_identifier | tuple_type | type_identifier}`:\n\n- [`FunctionType`]\n- [`GenericType`]\n- [`HigherRankedTraitBound`]\n- [`ScopedTypeIdentifier`]\n- [`TupleType`]\n- [`TypeIdentifier`]\n"]
+    #[inline]    pub fn r#trait (& self) -> :: type_sitter :: NodeResult < 'tree , anon_unions :: FunctionType_GenericType_HigherRankedTraitBound_ScopedTypeIdentifier_TupleType_TypeIdentifier < 'tree > >{
+        :: type_sitter :: Node :: raw (self) . child_by_field_name ("trait") . map (< anon_unions :: FunctionType_GenericType_HigherRankedTraitBound_ScopedTypeIdentifier_TupleType_TypeIdentifier < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw) . expect ("required child not present, there should at least be a MISSING node in its place")
     }
 }
 #[automatically_derived]
@@ -4351,10 +4361,14 @@ impl<'tree> EnumVariant<'tree> {
         (0..::type_sitter::Node::raw(self).named_child_count())
             .filter(|i| {
                 ::type_sitter::Node::raw(self)
-                    .field_name_for_named_child(*i as _)
+                    .field_name_for_named_child((*i).try_into().unwrap())
                     .is_none()
             })
-            .map(|i| ::type_sitter::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(<VisibilityModifier<'tree> as ::type_sitter::Node<'tree>>::try_from_raw)
@@ -4488,7 +4502,11 @@ impl<'tree> ExpressionStatement<'tree> {
     #[inline]
     pub fn expression(&self) -> ::type_sitter::NodeResult<'tree, Expression<'tree>> {
         (0..::type_sitter::Node::raw(self).named_child_count())
-            .map(|i| ::type_sitter::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(<Expression<'tree> as ::type_sitter::Node<'tree>>::try_from_raw)
@@ -4618,7 +4636,11 @@ impl<'tree> ExternModifier<'tree> {
         &self,
     ) -> ::std::option::Option<::type_sitter::NodeResult<'tree, StringLiteral<'tree>>> {
         (0..::type_sitter::Node::raw(self).named_child_count())
-            .map(|i| ::type_sitter::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(<StringLiteral<'tree> as ::type_sitter::Node<'tree>>::try_from_raw)
@@ -4696,10 +4718,14 @@ impl<'tree> FieldDeclaration<'tree> {
         (0..::type_sitter::Node::raw(self).named_child_count())
             .filter(|i| {
                 ::type_sitter::Node::raw(self)
-                    .field_name_for_named_child(*i as _)
+                    .field_name_for_named_child((*i).try_into().unwrap())
                     .is_none()
             })
-            .map(|i| ::type_sitter::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(<VisibilityModifier<'tree> as ::type_sitter::Node<'tree>>::try_from_raw)
@@ -5054,10 +5080,14 @@ impl<'tree> FieldPattern<'tree> {
         (0..::type_sitter::Node::raw(self).named_child_count())
             .filter(|i| {
                 ::type_sitter::Node::raw(self)
-                    .field_name_for_named_child(*i as _)
+                    .field_name_for_named_child((*i).try_into().unwrap())
                     .is_none()
             })
-            .map(|i| ::type_sitter::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(<MutableSpecifier<'tree> as ::type_sitter::Node<'tree>>::try_from_raw)
@@ -5179,10 +5209,14 @@ impl<'tree> ForExpression<'tree> {
         (0..::type_sitter::Node::raw(self).named_child_count())
             .filter(|i| {
                 ::type_sitter::Node::raw(self)
-                    .field_name_for_named_child(*i as _)
+                    .field_name_for_named_child((*i).try_into().unwrap())
                     .is_none()
             })
-            .map(|i| ::type_sitter::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(<Label<'tree> as ::type_sitter::Node<'tree>>::try_from_raw)
@@ -5278,7 +5312,7 @@ impl<'tree> ::type_sitter::Node<'tree> for ForLifetimes<'tree> {
         self.0
     }
 }
-#[doc = "Typed node `foreign_mod_item`\n\nThis node has these fields:\n\n- `body`: `declaration_list?` ([`DeclarationList`])\n\nAnd additional named children of type `{extern_modifier | visibility_modifier}+`:\n\n- [`ExternModifier`]\n- [`VisibilityModifier`]\n\n"]
+#[doc = "Typed node `foreign_mod_item`\n\nThis node has these fields:\n\n- `body`: `declaration_list?` ([`DeclarationList`])\n\nAnd an additional named child of type `extern_modifier` ([`ExternModifier`])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
 #[allow(non_camel_case_types)]
@@ -5295,19 +5329,26 @@ impl<'tree> ForeignModItem<'tree> {
             .child_by_field_name("body")
             .map(<DeclarationList<'tree> as ::type_sitter::Node<'tree>>::try_from_raw)
     }
-    #[doc = "Get the node's non-field not-extra named children.\n\nThese children have type `{extern_modifier | visibility_modifier}+`:\n\n- [`ExternModifier`]\n- [`VisibilityModifier`]\n"]
-    #[doc = "\n\nThis is guaranteed to return at least one child."]
+    #[doc = "Get the node's only non-field not-extra named child.\n\nThis child has type `extern_modifier` ([`ExternModifier`])"]
     #[inline]
-    pub fn others<'a>(
-        &self,
-        c: &'a mut ::type_sitter::TreeCursor<'tree>,
-    ) -> impl ::std::iter::Iterator<
-        Item = ::type_sitter::NodeResult<
-            'tree,
-            anon_unions::ExternModifier_VisibilityModifier<'tree>,
-        >,
-    > + 'a {
-        { let me = * :: type_sitter :: Node :: raw (self) ; :: type_sitter :: Node :: raw (self) . named_children (& mut c . 0) . enumerate () . filter (move | (i , n) | ! n . is_extra () && me . field_name_for_named_child (* i as _) . is_none ()) . map (| (_ , n) | n) } . map (< anon_unions :: ExternModifier_VisibilityModifier < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw)
+    pub fn extern_modifier(&self) -> ::type_sitter::NodeResult<'tree, ExternModifier<'tree>> {
+        (0..::type_sitter::Node::raw(self).named_child_count())
+            .filter(|i| {
+                ::type_sitter::Node::raw(self)
+                    .field_name_for_named_child((*i).try_into().unwrap())
+                    .is_none()
+            })
+            .map(|i| {
+                ::type_sitter::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
+            .filter(|n| !n.is_extra())
+            .next()
+            .map(<ExternModifier<'tree> as ::type_sitter::Node<'tree>>::try_from_raw)
+            .expect(
+                "required child not present, there should at least be a MISSING node in its place",
+            )
     }
 }
 #[automatically_derived]
@@ -5724,7 +5765,11 @@ impl<'tree> GenBlock<'tree> {
     #[inline]
     pub fn block(&self) -> ::type_sitter::NodeResult<'tree, Block<'tree>> {
         (0..::type_sitter::Node::raw(self).named_child_count())
-            .map(|i| ::type_sitter::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(<Block<'tree> as ::type_sitter::Node<'tree>>::try_from_raw)
@@ -5815,6 +5860,64 @@ impl<'tree> ::type_sitter::Node<'tree> for GenericFunction<'tree> {
     #[inline]
     unsafe fn from_raw_unchecked(node: ::type_sitter::raw::Node<'tree>) -> Self {
         debug_assert_eq!(node.kind(), "generic_function");
+        Self(node)
+    }
+    #[inline]
+    fn raw(&self) -> &::type_sitter::raw::Node<'tree> {
+        &self.0
+    }
+    #[inline]
+    fn raw_mut(&mut self) -> &mut ::type_sitter::raw::Node<'tree> {
+        &mut self.0
+    }
+    #[inline]
+    fn into_raw(self) -> ::type_sitter::raw::Node<'tree> {
+        self.0
+    }
+}
+#[doc = "Typed node `generic_pattern`\n\nThis node has these fields:\n\n- `type_arguments`: `type_arguments` ([`TypeArguments`])\n\nAnd an additional named child of type `{identifier | scoped_identifier}`:\n\n- [`Identifier`]\n- [`ScopedIdentifier`]\n\n"]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[repr(transparent)]
+#[allow(non_camel_case_types)]
+pub struct GenericPattern<'tree>(::type_sitter::raw::Node<'tree>);
+#[automatically_derived]
+#[allow(unused)]
+impl<'tree> GenericPattern<'tree> {
+    #[doc = "Get the field `type_arguments`.\n\nThis child has type `type_arguments` ([`TypeArguments`])"]
+    #[inline]
+    pub fn type_arguments(&self) -> ::type_sitter::NodeResult<'tree, TypeArguments<'tree>> {
+        ::type_sitter::Node::raw(self)
+            .child_by_field_name("type_arguments")
+            .map(<TypeArguments<'tree> as ::type_sitter::Node<'tree>>::try_from_raw)
+            .expect(
+                "required child not present, there should at least be a MISSING node in its place",
+            )
+    }
+    #[doc = "Get the node's only non-field not-extra named child.\n\nThis child has type `{identifier | scoped_identifier}`:\n\n- [`Identifier`]\n- [`ScopedIdentifier`]\n"]
+    #[inline]
+    pub fn other(
+        &self,
+    ) -> ::type_sitter::NodeResult<'tree, anon_unions::Identifier_ScopedIdentifier<'tree>> {
+        (0 .. :: type_sitter :: Node :: raw (self) . named_child_count ()) . filter (| i | :: type_sitter :: Node :: raw (self) . field_name_for_named_child ((* i) . try_into () . unwrap ()) . is_none ()) . map (| i | :: type_sitter :: Node :: raw (self) . named_child (i . try_into () . unwrap ()) . unwrap ()) . filter (| n | ! n . is_extra ()) . next () . map (< anon_unions :: Identifier_ScopedIdentifier < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw) . expect ("required child not present, there should at least be a MISSING node in its place")
+    }
+}
+#[automatically_derived]
+impl<'tree> ::type_sitter::Node<'tree> for GenericPattern<'tree> {
+    type WithLifetime<'a> = GenericPattern<'a>;
+    const KIND: &'static str = "generic_pattern";
+    #[inline]
+    fn try_from_raw(
+        node: ::type_sitter::raw::Node<'tree>,
+    ) -> ::type_sitter::NodeResult<'tree, Self> {
+        if node.kind() == "generic_pattern" {
+            Ok(Self(node))
+        } else {
+            Err(::type_sitter::IncorrectKind::new::<Self>(node))
+        }
+    }
+    #[inline]
+    unsafe fn from_raw_unchecked(node: ::type_sitter::raw::Node<'tree>) -> Self {
+        debug_assert_eq!(node.kind(), "generic_pattern");
         Self(node)
     }
     #[inline]
@@ -6192,10 +6295,14 @@ impl<'tree> ImplItem<'tree> {
         (0..::type_sitter::Node::raw(self).named_child_count())
             .filter(|i| {
                 ::type_sitter::Node::raw(self)
-                    .field_name_for_named_child(*i as _)
+                    .field_name_for_named_child((*i).try_into().unwrap())
                     .is_none()
             })
-            .map(|i| ::type_sitter::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(<WhereClause<'tree> as ::type_sitter::Node<'tree>>::try_from_raw)
@@ -6303,7 +6410,11 @@ impl<'tree> InnerAttributeItem<'tree> {
     #[inline]
     pub fn attribute(&self) -> ::type_sitter::NodeResult<'tree, Attribute<'tree>> {
         (0..::type_sitter::Node::raw(self).named_child_count())
-            .map(|i| ::type_sitter::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(<Attribute<'tree> as ::type_sitter::Node<'tree>>::try_from_raw)
@@ -6440,7 +6551,11 @@ impl<'tree> Label<'tree> {
     #[inline]
     pub fn identifier(&self) -> ::type_sitter::NodeResult<'tree, Identifier<'tree>> {
         (0..::type_sitter::Node::raw(self).named_child_count())
-            .map(|i| ::type_sitter::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(<Identifier<'tree> as ::type_sitter::Node<'tree>>::try_from_raw)
@@ -6641,10 +6756,14 @@ impl<'tree> LetDeclaration<'tree> {
         (0..::type_sitter::Node::raw(self).named_child_count())
             .filter(|i| {
                 ::type_sitter::Node::raw(self)
-                    .field_name_for_named_child(*i as _)
+                    .field_name_for_named_child((*i).try_into().unwrap())
                     .is_none()
             })
-            .map(|i| ::type_sitter::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(<MutableSpecifier<'tree> as ::type_sitter::Node<'tree>>::try_from_raw)
@@ -6694,7 +6813,11 @@ impl<'tree> Lifetime<'tree> {
     #[inline]
     pub fn identifier(&self) -> ::type_sitter::NodeResult<'tree, Identifier<'tree>> {
         (0..::type_sitter::Node::raw(self).named_child_count())
-            .map(|i| ::type_sitter::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(<Identifier<'tree> as ::type_sitter::Node<'tree>>::try_from_raw)
@@ -6724,6 +6847,66 @@ impl<'tree> ::type_sitter::Node<'tree> for Lifetime<'tree> {
     #[inline]
     unsafe fn from_raw_unchecked(node: ::type_sitter::raw::Node<'tree>) -> Self {
         debug_assert_eq!(node.kind(), "lifetime");
+        Self(node)
+    }
+    #[inline]
+    fn raw(&self) -> &::type_sitter::raw::Node<'tree> {
+        &self.0
+    }
+    #[inline]
+    fn raw_mut(&mut self) -> &mut ::type_sitter::raw::Node<'tree> {
+        &mut self.0
+    }
+    #[inline]
+    fn into_raw(self) -> ::type_sitter::raw::Node<'tree> {
+        self.0
+    }
+}
+#[doc = "Typed node `lifetime_parameter`\n\nThis node has these fields:\n\n- `bounds`: `trait_bounds?` ([`TraitBounds`])\n- `name`: `lifetime` ([`Lifetime`])\n"]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[repr(transparent)]
+#[allow(non_camel_case_types)]
+pub struct LifetimeParameter<'tree>(::type_sitter::raw::Node<'tree>);
+#[automatically_derived]
+#[allow(unused)]
+impl<'tree> LifetimeParameter<'tree> {
+    #[doc = "Get the optional field `bounds`.\n\nThis child has type `trait_bounds?` ([`TraitBounds`])"]
+    #[inline]
+    pub fn bounds(
+        &self,
+    ) -> ::std::option::Option<::type_sitter::NodeResult<'tree, TraitBounds<'tree>>> {
+        ::type_sitter::Node::raw(self)
+            .child_by_field_name("bounds")
+            .map(<TraitBounds<'tree> as ::type_sitter::Node<'tree>>::try_from_raw)
+    }
+    #[doc = "Get the field `name`.\n\nThis child has type `lifetime` ([`Lifetime`])"]
+    #[inline]
+    pub fn name(&self) -> ::type_sitter::NodeResult<'tree, Lifetime<'tree>> {
+        ::type_sitter::Node::raw(self)
+            .child_by_field_name("name")
+            .map(<Lifetime<'tree> as ::type_sitter::Node<'tree>>::try_from_raw)
+            .expect(
+                "required child not present, there should at least be a MISSING node in its place",
+            )
+    }
+}
+#[automatically_derived]
+impl<'tree> ::type_sitter::Node<'tree> for LifetimeParameter<'tree> {
+    type WithLifetime<'a> = LifetimeParameter<'a>;
+    const KIND: &'static str = "lifetime_parameter";
+    #[inline]
+    fn try_from_raw(
+        node: ::type_sitter::raw::Node<'tree>,
+    ) -> ::type_sitter::NodeResult<'tree, Self> {
+        if node.kind() == "lifetime_parameter" {
+            Ok(Self(node))
+        } else {
+            Err(::type_sitter::IncorrectKind::new::<Self>(node))
+        }
+    }
+    #[inline]
+    unsafe fn from_raw_unchecked(node: ::type_sitter::raw::Node<'tree>) -> Self {
+        debug_assert_eq!(node.kind(), "lifetime_parameter");
         Self(node)
     }
     #[inline]
@@ -6831,10 +7014,14 @@ impl<'tree> LoopExpression<'tree> {
         (0..::type_sitter::Node::raw(self).named_child_count())
             .filter(|i| {
                 ::type_sitter::Node::raw(self)
-                    .field_name_for_named_child(*i as _)
+                    .field_name_for_named_child((*i).try_into().unwrap())
                     .is_none()
             })
-            .map(|i| ::type_sitter::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(<Label<'tree> as ::type_sitter::Node<'tree>>::try_from_raw)
@@ -6963,10 +7150,14 @@ impl<'tree> MacroInvocation<'tree> {
         (0..::type_sitter::Node::raw(self).named_child_count())
             .filter(|i| {
                 ::type_sitter::Node::raw(self)
-                    .field_name_for_named_child(*i as _)
+                    .field_name_for_named_child((*i).try_into().unwrap())
                     .is_none()
             })
-            .map(|i| ::type_sitter::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(<TokenTree<'tree> as ::type_sitter::Node<'tree>>::try_from_raw)
@@ -7289,10 +7480,14 @@ impl<'tree> MatchPattern<'tree> {
         (0..::type_sitter::Node::raw(self).named_child_count())
             .filter(|i| {
                 ::type_sitter::Node::raw(self)
-                    .field_name_for_named_child(*i as _)
+                    .field_name_for_named_child((*i).try_into().unwrap())
                     .is_none()
             })
-            .map(|i| ::type_sitter::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(<Pattern<'tree> as ::type_sitter::Node<'tree>>::try_from_raw)
@@ -7408,10 +7603,14 @@ impl<'tree> ModItem<'tree> {
         (0..::type_sitter::Node::raw(self).named_child_count())
             .filter(|i| {
                 ::type_sitter::Node::raw(self)
-                    .field_name_for_named_child(*i as _)
+                    .field_name_for_named_child((*i).try_into().unwrap())
                     .is_none()
             })
-            .map(|i| ::type_sitter::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(<VisibilityModifier<'tree> as ::type_sitter::Node<'tree>>::try_from_raw)
@@ -7602,65 +7801,6 @@ impl<'tree> ::type_sitter::Node<'tree> for NeverType<'tree> {
     #[inline]
     unsafe fn from_raw_unchecked(node: ::type_sitter::raw::Node<'tree>) -> Self {
         debug_assert_eq!(node.kind(), "never_type");
-        Self(node)
-    }
-    #[inline]
-    fn raw(&self) -> &::type_sitter::raw::Node<'tree> {
-        &self.0
-    }
-    #[inline]
-    fn raw_mut(&mut self) -> &mut ::type_sitter::raw::Node<'tree> {
-        &mut self.0
-    }
-    #[inline]
-    fn into_raw(self) -> ::type_sitter::raw::Node<'tree> {
-        self.0
-    }
-}
-#[doc = "Typed node `optional_type_parameter`\n\nThis node has these fields:\n\n- `default_type`: `_type` ([`Type`])\n- `name`: `{constrained_type_parameter | type_identifier}` ([`ConstrainedTypeParameter`] | [`TypeIdentifier`])\n"]
-#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-#[repr(transparent)]
-#[allow(non_camel_case_types)]
-pub struct OptionalTypeParameter<'tree>(::type_sitter::raw::Node<'tree>);
-#[automatically_derived]
-#[allow(unused)]
-impl<'tree> OptionalTypeParameter<'tree> {
-    #[doc = "Get the field `default_type`.\n\nThis child has type `_type` ([`Type`])"]
-    #[inline]
-    pub fn default_type(&self) -> ::type_sitter::NodeResult<'tree, Type<'tree>> {
-        ::type_sitter::Node::raw(self)
-            .child_by_field_name("default_type")
-            .map(<Type<'tree> as ::type_sitter::Node<'tree>>::try_from_raw)
-            .expect(
-                "required child not present, there should at least be a MISSING node in its place",
-            )
-    }
-    #[doc = "Get the field `name`.\n\nThis child has type `{constrained_type_parameter | type_identifier}`:\n\n- [`ConstrainedTypeParameter`]\n- [`TypeIdentifier`]\n"]
-    #[inline]
-    pub fn name(
-        &self,
-    ) -> ::type_sitter::NodeResult<'tree, anon_unions::ConstrainedTypeParameter_TypeIdentifier<'tree>>
-    {
-        :: type_sitter :: Node :: raw (self) . child_by_field_name ("name") . map (< anon_unions :: ConstrainedTypeParameter_TypeIdentifier < 'tree > as :: type_sitter :: Node < 'tree >> :: try_from_raw) . expect ("required child not present, there should at least be a MISSING node in its place")
-    }
-}
-#[automatically_derived]
-impl<'tree> ::type_sitter::Node<'tree> for OptionalTypeParameter<'tree> {
-    type WithLifetime<'a> = OptionalTypeParameter<'a>;
-    const KIND: &'static str = "optional_type_parameter";
-    #[inline]
-    fn try_from_raw(
-        node: ::type_sitter::raw::Node<'tree>,
-    ) -> ::type_sitter::NodeResult<'tree, Self> {
-        if node.kind() == "optional_type_parameter" {
-            Ok(Self(node))
-        } else {
-            Err(::type_sitter::IncorrectKind::new::<Self>(node))
-        }
-    }
-    #[inline]
-    unsafe fn from_raw_unchecked(node: ::type_sitter::raw::Node<'tree>) -> Self {
-        debug_assert_eq!(node.kind(), "optional_type_parameter");
         Self(node)
     }
     #[inline]
@@ -7874,10 +8014,14 @@ impl<'tree> Parameter<'tree> {
         (0..::type_sitter::Node::raw(self).named_child_count())
             .filter(|i| {
                 ::type_sitter::Node::raw(self)
-                    .field_name_for_named_child(*i as _)
+                    .field_name_for_named_child((*i).try_into().unwrap())
                     .is_none()
             })
-            .map(|i| ::type_sitter::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(<MutableSpecifier<'tree> as ::type_sitter::Node<'tree>>::try_from_raw)
@@ -7971,7 +8115,11 @@ impl<'tree> ParenthesizedExpression<'tree> {
     #[inline]
     pub fn expression(&self) -> ::type_sitter::NodeResult<'tree, Expression<'tree>> {
         (0..::type_sitter::Node::raw(self).named_child_count())
-            .map(|i| ::type_sitter::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(<Expression<'tree> as ::type_sitter::Node<'tree>>::try_from_raw)
@@ -8042,10 +8190,14 @@ impl<'tree> PointerType<'tree> {
         (0..::type_sitter::Node::raw(self).named_child_count())
             .filter(|i| {
                 ::type_sitter::Node::raw(self)
-                    .field_name_for_named_child(*i as _)
+                    .field_name_for_named_child((*i).try_into().unwrap())
                     .is_none()
             })
-            .map(|i| ::type_sitter::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(<MutableSpecifier<'tree> as ::type_sitter::Node<'tree>>::try_from_raw)
@@ -8241,20 +8393,54 @@ impl<'tree> ::type_sitter::Node<'tree> for RangeExpression<'tree> {
         self.0
     }
 }
-#[doc = "Typed node `range_pattern`\n\nThis node has named children of type `{_literal_pattern | crate | identifier | metavariable | scoped_identifier | self | super}+`:\n\n- [`LiteralPattern`]\n- [`Crate`]\n- [`Identifier`]\n- [`Metavariable`]\n- [`ScopedIdentifier`]\n- [`Self_`]\n- [`Super`]\n\n"]
+#[doc = "Typed node `range_pattern`\n\nThis node has these fields:\n\n- `left`: `{_literal_pattern | crate | identifier | metavariable | scoped_identifier | self | super}?` ([`LiteralPattern`] | [`Crate`] | [`Identifier`] | [`Metavariable`] | [`ScopedIdentifier`] | [`Self_`] | [`Super`])\n- `right`: `{_literal_pattern | crate | identifier | metavariable | scoped_identifier | self | super}?` ([`LiteralPattern`] | [`Crate`] | [`Identifier`] | [`Metavariable`] | [`ScopedIdentifier`] | [`Self_`] | [`Super`])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
 #[allow(non_camel_case_types)]
 pub struct RangePattern<'tree>(::type_sitter::raw::Node<'tree>);
 #[automatically_derived]
 #[allow(unused)]
-impl<'tree> RangePattern<'tree> {}
-#[automatically_derived]
-impl<'tree> ::type_sitter::HasChildren<'tree> for RangePattern<'tree> {
-    type Child =
-        anon_unions::LiteralPattern_Crate_Identifier_Metavariable_ScopedIdentifier_Self__Super<
+impl<'tree> RangePattern<'tree> {
+    #[doc = "Get the optional field `left`.\n\nThis child has type `{_literal_pattern | crate | identifier | metavariable | scoped_identifier | self | super}?`:\n\n- [`LiteralPattern`]\n- [`Crate`]\n- [`Identifier`]\n- [`Metavariable`]\n- [`ScopedIdentifier`]\n- [`Self_`]\n- [`Super`]\n"]
+    #[inline]
+    pub fn left(
+        &self,
+    ) -> ::std::option::Option<
+        ::type_sitter::NodeResult<
             'tree,
-        >;
+            anon_unions::LiteralPattern_Crate_Identifier_Metavariable_ScopedIdentifier_Self__Super<
+                'tree,
+            >,
+        >,
+    > {
+        ::type_sitter::Node::raw(self)
+            .child_by_field_name("left")
+            .map(
+            <anon_unions::LiteralPattern_Crate_Identifier_Metavariable_ScopedIdentifier_Self__Super<
+                'tree,
+            > as ::type_sitter::Node<'tree>>::try_from_raw,
+        )
+    }
+    #[doc = "Get the optional field `right`.\n\nThis child has type `{_literal_pattern | crate | identifier | metavariable | scoped_identifier | self | super}?`:\n\n- [`LiteralPattern`]\n- [`Crate`]\n- [`Identifier`]\n- [`Metavariable`]\n- [`ScopedIdentifier`]\n- [`Self_`]\n- [`Super`]\n"]
+    #[inline]
+    pub fn right(
+        &self,
+    ) -> ::std::option::Option<
+        ::type_sitter::NodeResult<
+            'tree,
+            anon_unions::LiteralPattern_Crate_Identifier_Metavariable_ScopedIdentifier_Self__Super<
+                'tree,
+            >,
+        >,
+    > {
+        ::type_sitter::Node::raw(self)
+            .child_by_field_name("right")
+            .map(
+            <anon_unions::LiteralPattern_Crate_Identifier_Metavariable_ScopedIdentifier_Self__Super<
+                'tree,
+            > as ::type_sitter::Node<'tree>>::try_from_raw,
+        )
+    }
 }
 #[automatically_derived]
 impl<'tree> ::type_sitter::Node<'tree> for RangePattern<'tree> {
@@ -8300,7 +8486,11 @@ impl<'tree> RawStringLiteral<'tree> {
     #[inline]
     pub fn string_content(&self) -> ::type_sitter::NodeResult<'tree, StringContent<'tree>> {
         (0..::type_sitter::Node::raw(self).named_child_count())
-            .map(|i| ::type_sitter::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(<StringContent<'tree> as ::type_sitter::Node<'tree>>::try_from_raw)
@@ -8357,7 +8547,11 @@ impl<'tree> RefPattern<'tree> {
     #[inline]
     pub fn pattern(&self) -> ::type_sitter::NodeResult<'tree, Pattern<'tree>> {
         (0..::type_sitter::Node::raw(self).named_child_count())
-            .map(|i| ::type_sitter::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(<Pattern<'tree> as ::type_sitter::Node<'tree>>::try_from_raw)
@@ -8428,10 +8622,14 @@ impl<'tree> ReferenceExpression<'tree> {
         (0..::type_sitter::Node::raw(self).named_child_count())
             .filter(|i| {
                 ::type_sitter::Node::raw(self)
-                    .field_name_for_named_child(*i as _)
+                    .field_name_for_named_child((*i).try_into().unwrap())
                     .is_none()
             })
-            .map(|i| ::type_sitter::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(<MutableSpecifier<'tree> as ::type_sitter::Node<'tree>>::try_from_raw)
@@ -8626,7 +8824,11 @@ impl<'tree> RemovedTraitBound<'tree> {
     #[inline]
     pub fn r#type(&self) -> ::type_sitter::NodeResult<'tree, Type<'tree>> {
         (0..::type_sitter::Node::raw(self).named_child_count())
-            .map(|i| ::type_sitter::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(<Type<'tree> as ::type_sitter::Node<'tree>>::try_from_raw)
@@ -8685,7 +8887,11 @@ impl<'tree> ReturnExpression<'tree> {
         &self,
     ) -> ::std::option::Option<::type_sitter::NodeResult<'tree, Expression<'tree>>> {
         (0..::type_sitter::Node::raw(self).named_child_count())
-            .map(|i| ::type_sitter::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(<Expression<'tree> as ::type_sitter::Node<'tree>>::try_from_raw)
@@ -10040,7 +10246,11 @@ impl<'tree> TryBlock<'tree> {
     #[inline]
     pub fn block(&self) -> ::type_sitter::NodeResult<'tree, Block<'tree>> {
         (0..::type_sitter::Node::raw(self).named_child_count())
-            .map(|i| ::type_sitter::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(<Block<'tree> as ::type_sitter::Node<'tree>>::try_from_raw)
@@ -10097,7 +10307,11 @@ impl<'tree> TryExpression<'tree> {
     #[inline]
     pub fn expression(&self) -> ::type_sitter::NodeResult<'tree, Expression<'tree>> {
         (0..::type_sitter::Node::raw(self).named_child_count())
-            .map(|i| ::type_sitter::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(<Expression<'tree> as ::type_sitter::Node<'tree>>::try_from_raw)
@@ -10650,7 +10864,76 @@ impl<'tree> ::type_sitter::Node<'tree> for TypeItem<'tree> {
         self.0
     }
 }
-#[doc = "Typed node `type_parameters`\n\nThis node has named children of type `{attribute_item | const_parameter | constrained_type_parameter | lifetime | metavariable | optional_type_parameter | type_identifier}+`:\n\n- [`AttributeItem`]\n- [`ConstParameter`]\n- [`ConstrainedTypeParameter`]\n- [`Lifetime`]\n- [`Metavariable`]\n- [`OptionalTypeParameter`]\n- [`TypeIdentifier`]\n\n"]
+#[doc = "Typed node `type_parameter`\n\nThis node has these fields:\n\n- `bounds`: `trait_bounds?` ([`TraitBounds`])\n- `default_type`: `_type?` ([`Type`])\n- `name`: `type_identifier` ([`TypeIdentifier`])\n"]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[repr(transparent)]
+#[allow(non_camel_case_types)]
+pub struct TypeParameter<'tree>(::type_sitter::raw::Node<'tree>);
+#[automatically_derived]
+#[allow(unused)]
+impl<'tree> TypeParameter<'tree> {
+    #[doc = "Get the optional field `bounds`.\n\nThis child has type `trait_bounds?` ([`TraitBounds`])"]
+    #[inline]
+    pub fn bounds(
+        &self,
+    ) -> ::std::option::Option<::type_sitter::NodeResult<'tree, TraitBounds<'tree>>> {
+        ::type_sitter::Node::raw(self)
+            .child_by_field_name("bounds")
+            .map(<TraitBounds<'tree> as ::type_sitter::Node<'tree>>::try_from_raw)
+    }
+    #[doc = "Get the optional field `default_type`.\n\nThis child has type `_type?` ([`Type`])"]
+    #[inline]
+    pub fn default_type(
+        &self,
+    ) -> ::std::option::Option<::type_sitter::NodeResult<'tree, Type<'tree>>> {
+        ::type_sitter::Node::raw(self)
+            .child_by_field_name("default_type")
+            .map(<Type<'tree> as ::type_sitter::Node<'tree>>::try_from_raw)
+    }
+    #[doc = "Get the field `name`.\n\nThis child has type `type_identifier` ([`TypeIdentifier`])"]
+    #[inline]
+    pub fn name(&self) -> ::type_sitter::NodeResult<'tree, TypeIdentifier<'tree>> {
+        ::type_sitter::Node::raw(self)
+            .child_by_field_name("name")
+            .map(<TypeIdentifier<'tree> as ::type_sitter::Node<'tree>>::try_from_raw)
+            .expect(
+                "required child not present, there should at least be a MISSING node in its place",
+            )
+    }
+}
+#[automatically_derived]
+impl<'tree> ::type_sitter::Node<'tree> for TypeParameter<'tree> {
+    type WithLifetime<'a> = TypeParameter<'a>;
+    const KIND: &'static str = "type_parameter";
+    #[inline]
+    fn try_from_raw(
+        node: ::type_sitter::raw::Node<'tree>,
+    ) -> ::type_sitter::NodeResult<'tree, Self> {
+        if node.kind() == "type_parameter" {
+            Ok(Self(node))
+        } else {
+            Err(::type_sitter::IncorrectKind::new::<Self>(node))
+        }
+    }
+    #[inline]
+    unsafe fn from_raw_unchecked(node: ::type_sitter::raw::Node<'tree>) -> Self {
+        debug_assert_eq!(node.kind(), "type_parameter");
+        Self(node)
+    }
+    #[inline]
+    fn raw(&self) -> &::type_sitter::raw::Node<'tree> {
+        &self.0
+    }
+    #[inline]
+    fn raw_mut(&mut self) -> &mut ::type_sitter::raw::Node<'tree> {
+        &mut self.0
+    }
+    #[inline]
+    fn into_raw(self) -> ::type_sitter::raw::Node<'tree> {
+        self.0
+    }
+}
+#[doc = "Typed node `type_parameters`\n\nThis node has named children of type `{attribute_item | const_parameter | lifetime_parameter | metavariable | type_parameter}+`:\n\n- [`AttributeItem`]\n- [`ConstParameter`]\n- [`LifetimeParameter`]\n- [`Metavariable`]\n- [`TypeParameter`]\n\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
 #[allow(non_camel_case_types)]
@@ -10660,7 +10943,10 @@ pub struct TypeParameters<'tree>(::type_sitter::raw::Node<'tree>);
 impl<'tree> TypeParameters<'tree> {}
 #[automatically_derived]
 impl<'tree> ::type_sitter::HasChildren<'tree> for TypeParameters<'tree> {
-    type Child = anon_unions::Anon336977512385230702528185677772534502706<'tree>;
+    type Child =
+        anon_unions::AttributeItem_ConstParameter_LifetimeParameter_Metavariable_TypeParameter<
+            'tree,
+        >;
 }
 #[automatically_derived]
 impl<'tree> ::type_sitter::Node<'tree> for TypeParameters<'tree> {
@@ -10706,7 +10992,11 @@ impl<'tree> UnaryExpression<'tree> {
     #[inline]
     pub fn expression(&self) -> ::type_sitter::NodeResult<'tree, Expression<'tree>> {
         (0..::type_sitter::Node::raw(self).named_child_count())
-            .map(|i| ::type_sitter::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(<Expression<'tree> as ::type_sitter::Node<'tree>>::try_from_raw)
@@ -10923,7 +11213,11 @@ impl<'tree> UnsafeBlock<'tree> {
     #[inline]
     pub fn block(&self) -> ::type_sitter::NodeResult<'tree, Block<'tree>> {
         (0..::type_sitter::Node::raw(self).named_child_count())
-            .map(|i| ::type_sitter::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(<Block<'tree> as ::type_sitter::Node<'tree>>::try_from_raw)
@@ -11029,6 +11323,50 @@ impl<'tree> ::type_sitter::Node<'tree> for UseAsClause<'tree> {
         self.0
     }
 }
+#[doc = "Typed node `use_bounds`\n\nThis node has named children of type `{lifetime | type_identifier}*`:\n\n- [`Lifetime`]\n- [`TypeIdentifier`]\n\n"]
+#[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+#[repr(transparent)]
+#[allow(non_camel_case_types)]
+pub struct UseBounds<'tree>(::type_sitter::raw::Node<'tree>);
+#[automatically_derived]
+#[allow(unused)]
+impl<'tree> UseBounds<'tree> {}
+#[automatically_derived]
+impl<'tree> ::type_sitter::HasChildren<'tree> for UseBounds<'tree> {
+    type Child = anon_unions::Lifetime_TypeIdentifier<'tree>;
+}
+#[automatically_derived]
+impl<'tree> ::type_sitter::Node<'tree> for UseBounds<'tree> {
+    type WithLifetime<'a> = UseBounds<'a>;
+    const KIND: &'static str = "use_bounds";
+    #[inline]
+    fn try_from_raw(
+        node: ::type_sitter::raw::Node<'tree>,
+    ) -> ::type_sitter::NodeResult<'tree, Self> {
+        if node.kind() == "use_bounds" {
+            Ok(Self(node))
+        } else {
+            Err(::type_sitter::IncorrectKind::new::<Self>(node))
+        }
+    }
+    #[inline]
+    unsafe fn from_raw_unchecked(node: ::type_sitter::raw::Node<'tree>) -> Self {
+        debug_assert_eq!(node.kind(), "use_bounds");
+        Self(node)
+    }
+    #[inline]
+    fn raw(&self) -> &::type_sitter::raw::Node<'tree> {
+        &self.0
+    }
+    #[inline]
+    fn raw_mut(&mut self) -> &mut ::type_sitter::raw::Node<'tree> {
+        &mut self.0
+    }
+    #[inline]
+    fn into_raw(self) -> ::type_sitter::raw::Node<'tree> {
+        self.0
+    }
+}
 #[doc = "Typed node `use_declaration`\n\nThis node has these fields:\n\n- `argument`: `{crate | identifier | metavariable | scoped_identifier | scoped_use_list | self | super | use_as_clause | use_list | use_wildcard}` ([`Crate`] | [`Identifier`] | [`Metavariable`] | [`ScopedIdentifier`] | [`ScopedUseList`] | [`Self_`] | [`Super`] | [`UseAsClause`] | [`UseList`] | [`UseWildcard`])\n\nAnd an optional additional named child of type `visibility_modifier?` ([`VisibilityModifier`])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
@@ -11055,10 +11393,14 @@ impl<'tree> UseDeclaration<'tree> {
         (0..::type_sitter::Node::raw(self).named_child_count())
             .filter(|i| {
                 ::type_sitter::Node::raw(self)
-                    .field_name_for_named_child(*i as _)
+                    .field_name_for_named_child((*i).try_into().unwrap())
                     .is_none()
             })
-            .map(|i| ::type_sitter::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(<VisibilityModifier<'tree> as ::type_sitter::Node<'tree>>::try_from_raw)
@@ -11209,10 +11551,14 @@ impl<'tree> VariadicParameter<'tree> {
         (0..::type_sitter::Node::raw(self).named_child_count())
             .filter(|i| {
                 ::type_sitter::Node::raw(self)
-                    .field_name_for_named_child(*i as _)
+                    .field_name_for_named_child((*i).try_into().unwrap())
                     .is_none()
             })
-            .map(|i| ::type_sitter::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(<MutableSpecifier<'tree> as ::type_sitter::Node<'tree>>::try_from_raw)
@@ -11294,7 +11640,7 @@ impl<'tree> ::type_sitter::Node<'tree> for VisibilityModifier<'tree> {
         self.0
     }
 }
-#[doc = "Typed node `where_clause`\n\nThis node has named children of type `where_predicate+` ([`WherePredicate`])\n"]
+#[doc = "Typed node `where_clause`\n\nThis node has named children of type `where_predicate*` ([`WherePredicate`])\n"]
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[repr(transparent)]
 #[allow(non_camel_case_types)]
@@ -11302,8 +11648,7 @@ pub struct WhereClause<'tree>(::type_sitter::raw::Node<'tree>);
 #[automatically_derived]
 #[allow(unused)]
 impl<'tree> WhereClause<'tree> {
-    #[doc = "Get the node's not-extra named children.\n\nThese children have type `where_predicate+` ([`WherePredicate`])"]
-    #[doc = "\n\nThis is guaranteed to return at least one child."]
+    #[doc = "Get the node's not-extra named children.\n\nThese children have type `where_predicate*` ([`WherePredicate`])"]
     #[inline]
     pub fn where_predicates<'a>(
         &self,
@@ -11454,10 +11799,14 @@ impl<'tree> WhileExpression<'tree> {
         (0..::type_sitter::Node::raw(self).named_child_count())
             .filter(|i| {
                 ::type_sitter::Node::raw(self)
-                    .field_name_for_named_child(*i as _)
+                    .field_name_for_named_child((*i).try_into().unwrap())
                     .is_none()
             })
-            .map(|i| ::type_sitter::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(<Label<'tree> as ::type_sitter::Node<'tree>>::try_from_raw)
@@ -11509,7 +11858,11 @@ impl<'tree> YieldExpression<'tree> {
         &self,
     ) -> ::std::option::Option<::type_sitter::NodeResult<'tree, Expression<'tree>>> {
         (0..::type_sitter::Node::raw(self).named_child_count())
-            .map(|i| ::type_sitter::Node::raw(self).named_child(i).unwrap())
+            .map(|i| {
+                ::type_sitter::Node::raw(self)
+                    .named_child(i.try_into().unwrap())
+                    .unwrap()
+            })
             .filter(|n| !n.is_extra())
             .next()
             .map(<Expression<'tree> as ::type_sitter::Node<'tree>>::try_from_raw)
@@ -12019,6 +12372,46 @@ pub mod unnamed {
         #[inline]
         unsafe fn from_raw_unchecked(node: ::type_sitter::raw::Node<'tree>) -> Self {
             debug_assert_eq!(node.kind(), "expr");
+            Self(node)
+        }
+        #[inline]
+        fn raw(&self) -> &::type_sitter::raw::Node<'tree> {
+            &self.0
+        }
+        #[inline]
+        fn raw_mut(&mut self) -> &mut ::type_sitter::raw::Node<'tree> {
+            &mut self.0
+        }
+        #[inline]
+        fn into_raw(self) -> ::type_sitter::raw::Node<'tree> {
+            self.0
+        }
+    }
+    #[doc = "Typed node `expr_2021`\n\nThis node has no named children\n"]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[repr(transparent)]
+    #[allow(non_camel_case_types)]
+    pub struct Expr2021<'tree>(::type_sitter::raw::Node<'tree>);
+    #[automatically_derived]
+    #[allow(unused)]
+    impl<'tree> Expr2021<'tree> {}
+    #[automatically_derived]
+    impl<'tree> ::type_sitter::Node<'tree> for Expr2021<'tree> {
+        type WithLifetime<'a> = Expr2021<'a>;
+        const KIND: &'static str = "expr_2021";
+        #[inline]
+        fn try_from_raw(
+            node: ::type_sitter::raw::Node<'tree>,
+        ) -> ::type_sitter::NodeResult<'tree, Self> {
+            if node.kind() == "expr_2021" {
+                Ok(Self(node))
+            } else {
+                Err(::type_sitter::IncorrectKind::new::<Self>(node))
+            }
+        }
+        #[inline]
+        unsafe fn from_raw_unchecked(node: ::type_sitter::raw::Node<'tree>) -> Self {
+            debug_assert_eq!(node.kind(), "expr_2021");
             Self(node)
         }
         #[inline]
@@ -12779,6 +13172,46 @@ pub mod unnamed {
         #[inline]
         unsafe fn from_raw_unchecked(node: ::type_sitter::raw::Node<'tree>) -> Self {
             debug_assert_eq!(node.kind(), "pat");
+            Self(node)
+        }
+        #[inline]
+        fn raw(&self) -> &::type_sitter::raw::Node<'tree> {
+            &self.0
+        }
+        #[inline]
+        fn raw_mut(&mut self) -> &mut ::type_sitter::raw::Node<'tree> {
+            &mut self.0
+        }
+        #[inline]
+        fn into_raw(self) -> ::type_sitter::raw::Node<'tree> {
+            self.0
+        }
+    }
+    #[doc = "Typed node `pat_param`\n\nThis node has no named children\n"]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[repr(transparent)]
+    #[allow(non_camel_case_types)]
+    pub struct PatParam<'tree>(::type_sitter::raw::Node<'tree>);
+    #[automatically_derived]
+    #[allow(unused)]
+    impl<'tree> PatParam<'tree> {}
+    #[automatically_derived]
+    impl<'tree> ::type_sitter::Node<'tree> for PatParam<'tree> {
+        type WithLifetime<'a> = PatParam<'a>;
+        const KIND: &'static str = "pat_param";
+        #[inline]
+        fn try_from_raw(
+            node: ::type_sitter::raw::Node<'tree>,
+        ) -> ::type_sitter::NodeResult<'tree, Self> {
+            if node.kind() == "pat_param" {
+                Ok(Self(node))
+            } else {
+                Err(::type_sitter::IncorrectKind::new::<Self>(node))
+            }
+        }
+        #[inline]
+        unsafe fn from_raw_unchecked(node: ::type_sitter::raw::Node<'tree>) -> Self {
+            debug_assert_eq!(node.kind(), "pat_param");
             Self(node)
         }
         #[inline]
@@ -17697,21 +18130,19 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "One of `{attribute_item | const_parameter | constrained_type_parameter | lifetime | metavariable | optional_type_parameter | type_identifier}`:\n- [`AttributeItem`]\n- [`ConstParameter`]\n- [`ConstrainedTypeParameter`]\n- [`Lifetime`]\n- [`Metavariable`]\n- [`OptionalTypeParameter`]\n- [`TypeIdentifier`]"]
+    #[doc = "One of `{attribute_item | const_parameter | lifetime_parameter | metavariable | type_parameter}`:\n- [`AttributeItem`]\n- [`ConstParameter`]\n- [`LifetimeParameter`]\n- [`Metavariable`]\n- [`TypeParameter`]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub enum Anon336977512385230702528185677772534502706<'tree> {
+    pub enum AttributeItem_ConstParameter_LifetimeParameter_Metavariable_TypeParameter<'tree> {
         AttributeItem(AttributeItem<'tree>),
         ConstParameter(ConstParameter<'tree>),
-        ConstrainedTypeParameter(ConstrainedTypeParameter<'tree>),
-        Lifetime(Lifetime<'tree>),
+        LifetimeParameter(LifetimeParameter<'tree>),
         Metavariable(Metavariable<'tree>),
-        OptionalTypeParameter(OptionalTypeParameter<'tree>),
-        TypeIdentifier(TypeIdentifier<'tree>),
+        TypeParameter(TypeParameter<'tree>),
     }
     #[automatically_derived]
     #[allow(unused)]
-    impl<'tree> Anon336977512385230702528185677772534502706<'tree> {
+    impl<'tree> AttributeItem_ConstParameter_LifetimeParameter_Metavariable_TypeParameter<'tree> {
         #[doc = "Returns the node if it is of type `attribute_item` ([`AttributeItem`]), otherwise returns `None`"]
         #[inline]
         pub fn as_attribute_item(self) -> ::std::option::Option<AttributeItem<'tree>> {
@@ -17732,23 +18163,11 @@ pub mod anon_unions {
                 ::std::option::Option::None
             }
         }
-        #[doc = "Returns the node if it is of type `constrained_type_parameter` ([`ConstrainedTypeParameter`]), otherwise returns `None`"]
+        #[doc = "Returns the node if it is of type `lifetime_parameter` ([`LifetimeParameter`]), otherwise returns `None`"]
         #[inline]
-        pub fn as_constrained_type_parameter(
-            self,
-        ) -> ::std::option::Option<ConstrainedTypeParameter<'tree>> {
+        pub fn as_lifetime_parameter(self) -> ::std::option::Option<LifetimeParameter<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::ConstrainedTypeParameter(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        #[doc = "Returns the node if it is of type `lifetime` ([`Lifetime`]), otherwise returns `None`"]
-        #[inline]
-        pub fn as_lifetime(self) -> ::std::option::Option<Lifetime<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::Lifetime(x) = self {
+            if let Self::LifetimeParameter(x) = self {
                 ::std::option::Option::Some(x)
             } else {
                 ::std::option::Option::None
@@ -17764,23 +18183,11 @@ pub mod anon_unions {
                 ::std::option::Option::None
             }
         }
-        #[doc = "Returns the node if it is of type `optional_type_parameter` ([`OptionalTypeParameter`]), otherwise returns `None`"]
+        #[doc = "Returns the node if it is of type `type_parameter` ([`TypeParameter`]), otherwise returns `None`"]
         #[inline]
-        pub fn as_optional_type_parameter(
-            self,
-        ) -> ::std::option::Option<OptionalTypeParameter<'tree>> {
+        pub fn as_type_parameter(self) -> ::std::option::Option<TypeParameter<'tree>> {
             #[allow(irrefutable_let_patterns)]
-            if let Self::OptionalTypeParameter(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        #[doc = "Returns the node if it is of type `type_identifier` ([`TypeIdentifier`]), otherwise returns `None`"]
-        #[inline]
-        pub fn as_type_identifier(self) -> ::std::option::Option<TypeIdentifier<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::TypeIdentifier(x) = self {
+            if let Self::TypeParameter(x) = self {
                 ::std::option::Option::Some(x)
             } else {
                 ::std::option::Option::None
@@ -17788,9 +18195,12 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> ::type_sitter::Node<'tree> for Anon336977512385230702528185677772534502706<'tree> {
-        type WithLifetime<'a> = Anon336977512385230702528185677772534502706<'a>;
-        const KIND : & 'static str = "{attribute_item | const_parameter | constrained_type_parameter | lifetime | metavariable | optional_type_parameter | type_identifier}" ;
+    impl<'tree> ::type_sitter::Node<'tree>
+        for AttributeItem_ConstParameter_LifetimeParameter_Metavariable_TypeParameter<'tree>
+    {
+        type WithLifetime<'a> =
+            AttributeItem_ConstParameter_LifetimeParameter_Metavariable_TypeParameter<'a>;
+        const KIND : & 'static str = "{attribute_item | const_parameter | lifetime_parameter | metavariable | type_parameter}" ;
         #[inline]
         fn try_from_raw(
             node: ::type_sitter::raw::Node<'tree>,
@@ -17808,13 +18218,10 @@ pub mod anon_unions {
                         >>::from_raw_unchecked(node))
                     })
                 }
-                "constrained_type_parameter" => Ok(unsafe {
-                    Self :: ConstrainedTypeParameter (< ConstrainedTypeParameter < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                }),
-                "lifetime" => Ok(unsafe {
-                    Self::Lifetime(
-                        <Lifetime<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
-                    )
+                "lifetime_parameter" => Ok(unsafe {
+                    Self::LifetimeParameter(<LifetimeParameter<'tree> as ::type_sitter::Node<
+                        'tree,
+                    >>::from_raw_unchecked(node))
                 }),
                 "metavariable" => Ok(unsafe {
                     Self::Metavariable(
@@ -17823,14 +18230,9 @@ pub mod anon_unions {
                         ),
                     )
                 }),
-                "optional_type_parameter" => Ok(unsafe {
-                    Self :: OptionalTypeParameter (< OptionalTypeParameter < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                }),
-                "type_identifier" => {
+                "type_parameter" => {
                     Ok(unsafe {
-                        Self::TypeIdentifier(<TypeIdentifier<'tree> as ::type_sitter::Node<
-                            'tree,
-                        >>::from_raw_unchecked(node))
+                        Self :: TypeParameter (< TypeParameter < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
                     })
                 }
                 _ => Err(::type_sitter::IncorrectKind::new::<Self>(node)),
@@ -17841,11 +18243,9 @@ pub mod anon_unions {
             match self {
                 Self::AttributeItem(x) => ::type_sitter::Node::raw(x),
                 Self::ConstParameter(x) => ::type_sitter::Node::raw(x),
-                Self::ConstrainedTypeParameter(x) => ::type_sitter::Node::raw(x),
-                Self::Lifetime(x) => ::type_sitter::Node::raw(x),
+                Self::LifetimeParameter(x) => ::type_sitter::Node::raw(x),
                 Self::Metavariable(x) => ::type_sitter::Node::raw(x),
-                Self::OptionalTypeParameter(x) => ::type_sitter::Node::raw(x),
-                Self::TypeIdentifier(x) => ::type_sitter::Node::raw(x),
+                Self::TypeParameter(x) => ::type_sitter::Node::raw(x),
             }
         }
         #[inline]
@@ -17853,11 +18253,9 @@ pub mod anon_unions {
             match self {
                 Self::AttributeItem(x) => ::type_sitter::Node::raw_mut(x),
                 Self::ConstParameter(x) => ::type_sitter::Node::raw_mut(x),
-                Self::ConstrainedTypeParameter(x) => ::type_sitter::Node::raw_mut(x),
-                Self::Lifetime(x) => ::type_sitter::Node::raw_mut(x),
+                Self::LifetimeParameter(x) => ::type_sitter::Node::raw_mut(x),
                 Self::Metavariable(x) => ::type_sitter::Node::raw_mut(x),
-                Self::OptionalTypeParameter(x) => ::type_sitter::Node::raw_mut(x),
-                Self::TypeIdentifier(x) => ::type_sitter::Node::raw_mut(x),
+                Self::TypeParameter(x) => ::type_sitter::Node::raw_mut(x),
             }
         }
         #[inline]
@@ -17865,11 +18263,9 @@ pub mod anon_unions {
             match self {
                 Self::AttributeItem(x) => x.into_raw(),
                 Self::ConstParameter(x) => x.into_raw(),
-                Self::ConstrainedTypeParameter(x) => x.into_raw(),
-                Self::Lifetime(x) => x.into_raw(),
+                Self::LifetimeParameter(x) => x.into_raw(),
                 Self::Metavariable(x) => x.into_raw(),
-                Self::OptionalTypeParameter(x) => x.into_raw(),
-                Self::TypeIdentifier(x) => x.into_raw(),
+                Self::TypeParameter(x) => x.into_raw(),
             }
         }
     }
@@ -18424,6 +18820,25 @@ pub mod anon_unions {
             }
         }
     }
+    #[doc = "One of `{bounded_type | function_type | generic_type | removed_trait_bound | scoped_type_identifier | tuple_type | type_identifier}`:\n- [`BoundedType`]\n- [`FunctionType`]\n- [`GenericType`]\n- [`RemovedTraitBound`]\n- [`ScopedTypeIdentifier`]\n- [`TupleType`]\n- [`TypeIdentifier`]"]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub enum BoundedType_FunctionType_GenericType_RemovedTraitBound_ScopedTypeIdentifier_TupleType_TypeIdentifier<
+        'tree,
+    > {
+        BoundedType(BoundedType<'tree>),
+        FunctionType(FunctionType<'tree>),
+        GenericType(GenericType<'tree>),
+        RemovedTraitBound(RemovedTraitBound<'tree>),
+        ScopedTypeIdentifier(ScopedTypeIdentifier<'tree>),
+        TupleType(TupleType<'tree>),
+        TypeIdentifier(TypeIdentifier<'tree>),
+    }
+    #[automatically_derived]
+    #[allow(unused)]
+    impl < 'tree > BoundedType_FunctionType_GenericType_RemovedTraitBound_ScopedTypeIdentifier_TupleType_TypeIdentifier < 'tree > { # [doc = "Returns the node if it is of type `bounded_type` ([`BoundedType`]), otherwise returns `None`"] # [inline] pub fn as_bounded_type (self) -> :: std :: option :: Option < BoundedType < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: BoundedType (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `function_type` ([`FunctionType`]), otherwise returns `None`"] # [inline] pub fn as_function_type (self) -> :: std :: option :: Option < FunctionType < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: FunctionType (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `generic_type` ([`GenericType`]), otherwise returns `None`"] # [inline] pub fn as_generic_type (self) -> :: std :: option :: Option < GenericType < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: GenericType (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `removed_trait_bound` ([`RemovedTraitBound`]), otherwise returns `None`"] # [inline] pub fn as_removed_trait_bound (self) -> :: std :: option :: Option < RemovedTraitBound < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: RemovedTraitBound (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `scoped_type_identifier` ([`ScopedTypeIdentifier`]), otherwise returns `None`"] # [inline] pub fn as_scoped_type_identifier (self) -> :: std :: option :: Option < ScopedTypeIdentifier < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ScopedTypeIdentifier (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `tuple_type` ([`TupleType`]), otherwise returns `None`"] # [inline] pub fn as_tuple_type (self) -> :: std :: option :: Option < TupleType < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: TupleType (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `type_identifier` ([`TypeIdentifier`]), otherwise returns `None`"] # [inline] pub fn as_type_identifier (self) -> :: std :: option :: Option < TypeIdentifier < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: TypeIdentifier (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } }
+    #[automatically_derived]
+    impl < 'tree > :: type_sitter :: Node < 'tree > for BoundedType_FunctionType_GenericType_RemovedTraitBound_ScopedTypeIdentifier_TupleType_TypeIdentifier < 'tree > { type WithLifetime < 'a > = BoundedType_FunctionType_GenericType_RemovedTraitBound_ScopedTypeIdentifier_TupleType_TypeIdentifier < 'a > ; const KIND : & 'static str = "{bounded_type | function_type | generic_type | removed_trait_bound | scoped_type_identifier | tuple_type | type_identifier}" ; # [inline] fn try_from_raw (node : :: type_sitter :: raw :: Node < 'tree >) -> :: type_sitter :: NodeResult < 'tree , Self > { match node . kind () { "bounded_type" => Ok (unsafe { Self :: BoundedType (< BoundedType < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "function_type" => Ok (unsafe { Self :: FunctionType (< FunctionType < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "generic_type" => Ok (unsafe { Self :: GenericType (< GenericType < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "removed_trait_bound" => Ok (unsafe { Self :: RemovedTraitBound (< RemovedTraitBound < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "scoped_type_identifier" => Ok (unsafe { Self :: ScopedTypeIdentifier (< ScopedTypeIdentifier < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "tuple_type" => Ok (unsafe { Self :: TupleType (< TupleType < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "type_identifier" => Ok (unsafe { Self :: TypeIdentifier (< TypeIdentifier < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , _ => Err (:: type_sitter :: IncorrectKind :: new :: < Self > (node)) } } # [inline] fn raw (& self) -> & :: type_sitter :: raw :: Node < 'tree > { match self { Self :: BoundedType (x) => :: type_sitter :: Node :: raw (x) , Self :: FunctionType (x) => :: type_sitter :: Node :: raw (x) , Self :: GenericType (x) => :: type_sitter :: Node :: raw (x) , Self :: RemovedTraitBound (x) => :: type_sitter :: Node :: raw (x) , Self :: ScopedTypeIdentifier (x) => :: type_sitter :: Node :: raw (x) , Self :: TupleType (x) => :: type_sitter :: Node :: raw (x) , Self :: TypeIdentifier (x) => :: type_sitter :: Node :: raw (x) , } } # [inline] fn raw_mut (& mut self) -> & mut :: type_sitter :: raw :: Node < 'tree > { match self { Self :: BoundedType (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: FunctionType (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: GenericType (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: RemovedTraitBound (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: ScopedTypeIdentifier (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: TupleType (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: TypeIdentifier (x) => :: type_sitter :: Node :: raw_mut (x) , } } # [inline] fn into_raw (self) -> :: type_sitter :: raw :: Node < 'tree > { match self { Self :: BoundedType (x) => x . into_raw () , Self :: FunctionType (x) => x . into_raw () , Self :: GenericType (x) => x . into_raw () , Self :: RemovedTraitBound (x) => x . into_raw () , Self :: ScopedTypeIdentifier (x) => x . into_raw () , Self :: TupleType (x) => x . into_raw () , Self :: TypeIdentifier (x) => x . into_raw () , } } }
     #[doc = "One of `{bracketed_type | crate | generic_type | identifier | metavariable | scoped_identifier | self | super}`:\n- [`BracketedType`]\n- [`Crate`]\n- [`GenericType`]\n- [`Identifier`]\n- [`Metavariable`]\n- [`ScopedIdentifier`]\n- [`Self_`]\n- [`Super`]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
@@ -18625,83 +19040,6 @@ pub mod anon_unions {
                 Self::ScopedIdentifier(x) => x.into_raw(),
                 Self::Self_(x) => x.into_raw(),
                 Self::Super(x) => x.into_raw(),
-            }
-        }
-    }
-    #[doc = "One of `{constrained_type_parameter | type_identifier}`:\n- [`ConstrainedTypeParameter`]\n- [`TypeIdentifier`]"]
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[allow(non_camel_case_types)]
-    pub enum ConstrainedTypeParameter_TypeIdentifier<'tree> {
-        ConstrainedTypeParameter(ConstrainedTypeParameter<'tree>),
-        TypeIdentifier(TypeIdentifier<'tree>),
-    }
-    #[automatically_derived]
-    #[allow(unused)]
-    impl<'tree> ConstrainedTypeParameter_TypeIdentifier<'tree> {
-        #[doc = "Returns the node if it is of type `constrained_type_parameter` ([`ConstrainedTypeParameter`]), otherwise returns `None`"]
-        #[inline]
-        pub fn as_constrained_type_parameter(
-            self,
-        ) -> ::std::option::Option<ConstrainedTypeParameter<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::ConstrainedTypeParameter(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        #[doc = "Returns the node if it is of type `type_identifier` ([`TypeIdentifier`]), otherwise returns `None`"]
-        #[inline]
-        pub fn as_type_identifier(self) -> ::std::option::Option<TypeIdentifier<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::TypeIdentifier(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> ::type_sitter::Node<'tree> for ConstrainedTypeParameter_TypeIdentifier<'tree> {
-        type WithLifetime<'a> = ConstrainedTypeParameter_TypeIdentifier<'a>;
-        const KIND: &'static str = "{constrained_type_parameter | type_identifier}";
-        #[inline]
-        fn try_from_raw(
-            node: ::type_sitter::raw::Node<'tree>,
-        ) -> ::type_sitter::NodeResult<'tree, Self> {
-            match node.kind() {
-                "constrained_type_parameter" => Ok(unsafe {
-                    Self :: ConstrainedTypeParameter (< ConstrainedTypeParameter < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                }),
-                "type_identifier" => {
-                    Ok(unsafe {
-                        Self::TypeIdentifier(<TypeIdentifier<'tree> as ::type_sitter::Node<
-                            'tree,
-                        >>::from_raw_unchecked(node))
-                    })
-                }
-                _ => Err(::type_sitter::IncorrectKind::new::<Self>(node)),
-            }
-        }
-        #[inline]
-        fn raw(&self) -> &::type_sitter::raw::Node<'tree> {
-            match self {
-                Self::ConstrainedTypeParameter(x) => ::type_sitter::Node::raw(x),
-                Self::TypeIdentifier(x) => ::type_sitter::Node::raw(x),
-            }
-        }
-        #[inline]
-        fn raw_mut(&mut self) -> &mut ::type_sitter::raw::Node<'tree> {
-            match self {
-                Self::ConstrainedTypeParameter(x) => ::type_sitter::Node::raw_mut(x),
-                Self::TypeIdentifier(x) => ::type_sitter::Node::raw_mut(x),
-            }
-        }
-        #[inline]
-        fn into_raw(self) -> ::type_sitter::raw::Node<'tree> {
-            match self {
-                Self::ConstrainedTypeParameter(x) => x.into_raw(),
-                Self::TypeIdentifier(x) => x.into_raw(),
             }
         }
     }
@@ -20923,83 +21261,6 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "One of `{extern_modifier | visibility_modifier}`:\n- [`ExternModifier`]\n- [`VisibilityModifier`]"]
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[allow(non_camel_case_types)]
-    pub enum ExternModifier_VisibilityModifier<'tree> {
-        ExternModifier(ExternModifier<'tree>),
-        VisibilityModifier(VisibilityModifier<'tree>),
-    }
-    #[automatically_derived]
-    #[allow(unused)]
-    impl<'tree> ExternModifier_VisibilityModifier<'tree> {
-        #[doc = "Returns the node if it is of type `extern_modifier` ([`ExternModifier`]), otherwise returns `None`"]
-        #[inline]
-        pub fn as_extern_modifier(self) -> ::std::option::Option<ExternModifier<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::ExternModifier(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        #[doc = "Returns the node if it is of type `visibility_modifier` ([`VisibilityModifier`]), otherwise returns `None`"]
-        #[inline]
-        pub fn as_visibility_modifier(self) -> ::std::option::Option<VisibilityModifier<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::VisibilityModifier(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> ::type_sitter::Node<'tree> for ExternModifier_VisibilityModifier<'tree> {
-        type WithLifetime<'a> = ExternModifier_VisibilityModifier<'a>;
-        const KIND: &'static str = "{extern_modifier | visibility_modifier}";
-        #[inline]
-        fn try_from_raw(
-            node: ::type_sitter::raw::Node<'tree>,
-        ) -> ::type_sitter::NodeResult<'tree, Self> {
-            match node.kind() {
-                "extern_modifier" => {
-                    Ok(unsafe {
-                        Self::ExternModifier(<ExternModifier<'tree> as ::type_sitter::Node<
-                            'tree,
-                        >>::from_raw_unchecked(node))
-                    })
-                }
-                "visibility_modifier" => {
-                    Ok(unsafe {
-                        Self :: VisibilityModifier (< VisibilityModifier < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                    })
-                }
-                _ => Err(::type_sitter::IncorrectKind::new::<Self>(node)),
-            }
-        }
-        #[inline]
-        fn raw(&self) -> &::type_sitter::raw::Node<'tree> {
-            match self {
-                Self::ExternModifier(x) => ::type_sitter::Node::raw(x),
-                Self::VisibilityModifier(x) => ::type_sitter::Node::raw(x),
-            }
-        }
-        #[inline]
-        fn raw_mut(&mut self) -> &mut ::type_sitter::raw::Node<'tree> {
-            match self {
-                Self::ExternModifier(x) => ::type_sitter::Node::raw_mut(x),
-                Self::VisibilityModifier(x) => ::type_sitter::Node::raw_mut(x),
-            }
-        }
-        #[inline]
-        fn into_raw(self) -> ::type_sitter::raw::Node<'tree> {
-            match self {
-                Self::ExternModifier(x) => x.into_raw(),
-                Self::VisibilityModifier(x) => x.into_raw(),
-            }
-        }
-    }
     #[doc = "One of `{field_declaration_list | ordered_field_declaration_list}`:\n- [`FieldDeclarationList`]\n- [`OrderedFieldDeclarationList`]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
@@ -21656,320 +21917,24 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "One of `{function_type | generic_type | higher_ranked_trait_bound | scoped_type_identifier | type_identifier}`:\n- [`FunctionType`]\n- [`GenericType`]\n- [`HigherRankedTraitBound`]\n- [`ScopedTypeIdentifier`]\n- [`TypeIdentifier`]"]
+    #[doc = "One of `{function_type | generic_type | higher_ranked_trait_bound | scoped_type_identifier | tuple_type | type_identifier}`:\n- [`FunctionType`]\n- [`GenericType`]\n- [`HigherRankedTraitBound`]\n- [`ScopedTypeIdentifier`]\n- [`TupleType`]\n- [`TypeIdentifier`]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub enum FunctionType_GenericType_HigherRankedTraitBound_ScopedTypeIdentifier_TypeIdentifier<
+    pub enum FunctionType_GenericType_HigherRankedTraitBound_ScopedTypeIdentifier_TupleType_TypeIdentifier<
         'tree,
     > {
         FunctionType(FunctionType<'tree>),
         GenericType(GenericType<'tree>),
         HigherRankedTraitBound(HigherRankedTraitBound<'tree>),
         ScopedTypeIdentifier(ScopedTypeIdentifier<'tree>),
-        TypeIdentifier(TypeIdentifier<'tree>),
-    }
-    #[automatically_derived]
-    #[allow(unused)]
-    impl<'tree>
-        FunctionType_GenericType_HigherRankedTraitBound_ScopedTypeIdentifier_TypeIdentifier<'tree>
-    {
-        #[doc = "Returns the node if it is of type `function_type` ([`FunctionType`]), otherwise returns `None`"]
-        #[inline]
-        pub fn as_function_type(self) -> ::std::option::Option<FunctionType<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::FunctionType(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        #[doc = "Returns the node if it is of type `generic_type` ([`GenericType`]), otherwise returns `None`"]
-        #[inline]
-        pub fn as_generic_type(self) -> ::std::option::Option<GenericType<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::GenericType(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        #[doc = "Returns the node if it is of type `higher_ranked_trait_bound` ([`HigherRankedTraitBound`]), otherwise returns `None`"]
-        #[inline]
-        pub fn as_higher_ranked_trait_bound(
-            self,
-        ) -> ::std::option::Option<HigherRankedTraitBound<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::HigherRankedTraitBound(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        #[doc = "Returns the node if it is of type `scoped_type_identifier` ([`ScopedTypeIdentifier`]), otherwise returns `None`"]
-        #[inline]
-        pub fn as_scoped_type_identifier(
-            self,
-        ) -> ::std::option::Option<ScopedTypeIdentifier<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::ScopedTypeIdentifier(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        #[doc = "Returns the node if it is of type `type_identifier` ([`TypeIdentifier`]), otherwise returns `None`"]
-        #[inline]
-        pub fn as_type_identifier(self) -> ::std::option::Option<TypeIdentifier<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::TypeIdentifier(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-    }
-    #[automatically_derived]
-    impl<'tree> ::type_sitter::Node<'tree>
-        for FunctionType_GenericType_HigherRankedTraitBound_ScopedTypeIdentifier_TypeIdentifier<
-            'tree,
-        >
-    {
-        type WithLifetime<'a> =
-            FunctionType_GenericType_HigherRankedTraitBound_ScopedTypeIdentifier_TypeIdentifier<'a>;
-        const KIND : & 'static str = "{function_type | generic_type | higher_ranked_trait_bound | scoped_type_identifier | type_identifier}" ;
-        #[inline]
-        fn try_from_raw(
-            node: ::type_sitter::raw::Node<'tree>,
-        ) -> ::type_sitter::NodeResult<'tree, Self> {
-            match node.kind() {
-                "function_type" => Ok(unsafe {
-                    Self::FunctionType(
-                        <FunctionType<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
-                            node,
-                        ),
-                    )
-                }),
-                "generic_type" => Ok(unsafe {
-                    Self::GenericType(
-                        <GenericType<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
-                            node,
-                        ),
-                    )
-                }),
-                "higher_ranked_trait_bound" => Ok(unsafe {
-                    Self :: HigherRankedTraitBound (< HigherRankedTraitBound < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                }),
-                "scoped_type_identifier" => Ok(unsafe {
-                    Self :: ScopedTypeIdentifier (< ScopedTypeIdentifier < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                }),
-                "type_identifier" => {
-                    Ok(unsafe {
-                        Self::TypeIdentifier(<TypeIdentifier<'tree> as ::type_sitter::Node<
-                            'tree,
-                        >>::from_raw_unchecked(node))
-                    })
-                }
-                _ => Err(::type_sitter::IncorrectKind::new::<Self>(node)),
-            }
-        }
-        #[inline]
-        fn raw(&self) -> &::type_sitter::raw::Node<'tree> {
-            match self {
-                Self::FunctionType(x) => ::type_sitter::Node::raw(x),
-                Self::GenericType(x) => ::type_sitter::Node::raw(x),
-                Self::HigherRankedTraitBound(x) => ::type_sitter::Node::raw(x),
-                Self::ScopedTypeIdentifier(x) => ::type_sitter::Node::raw(x),
-                Self::TypeIdentifier(x) => ::type_sitter::Node::raw(x),
-            }
-        }
-        #[inline]
-        fn raw_mut(&mut self) -> &mut ::type_sitter::raw::Node<'tree> {
-            match self {
-                Self::FunctionType(x) => ::type_sitter::Node::raw_mut(x),
-                Self::GenericType(x) => ::type_sitter::Node::raw_mut(x),
-                Self::HigherRankedTraitBound(x) => ::type_sitter::Node::raw_mut(x),
-                Self::ScopedTypeIdentifier(x) => ::type_sitter::Node::raw_mut(x),
-                Self::TypeIdentifier(x) => ::type_sitter::Node::raw_mut(x),
-            }
-        }
-        #[inline]
-        fn into_raw(self) -> ::type_sitter::raw::Node<'tree> {
-            match self {
-                Self::FunctionType(x) => x.into_raw(),
-                Self::GenericType(x) => x.into_raw(),
-                Self::HigherRankedTraitBound(x) => x.into_raw(),
-                Self::ScopedTypeIdentifier(x) => x.into_raw(),
-                Self::TypeIdentifier(x) => x.into_raw(),
-            }
-        }
-    }
-    #[doc = "One of `{function_type | generic_type | removed_trait_bound | scoped_type_identifier | tuple_type | type_identifier}`:\n- [`FunctionType`]\n- [`GenericType`]\n- [`RemovedTraitBound`]\n- [`ScopedTypeIdentifier`]\n- [`TupleType`]\n- [`TypeIdentifier`]"]
-    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
-    #[allow(non_camel_case_types)]
-    pub enum FunctionType_GenericType_RemovedTraitBound_ScopedTypeIdentifier_TupleType_TypeIdentifier<
-        'tree,
-    > {
-        FunctionType(FunctionType<'tree>),
-        GenericType(GenericType<'tree>),
-        RemovedTraitBound(RemovedTraitBound<'tree>),
-        ScopedTypeIdentifier(ScopedTypeIdentifier<'tree>),
         TupleType(TupleType<'tree>),
         TypeIdentifier(TypeIdentifier<'tree>),
     }
     #[automatically_derived]
     #[allow(unused)]
-    impl<'tree>
-        FunctionType_GenericType_RemovedTraitBound_ScopedTypeIdentifier_TupleType_TypeIdentifier<
-            'tree,
-        >
-    {
-        #[doc = "Returns the node if it is of type `function_type` ([`FunctionType`]), otherwise returns `None`"]
-        #[inline]
-        pub fn as_function_type(self) -> ::std::option::Option<FunctionType<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::FunctionType(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        #[doc = "Returns the node if it is of type `generic_type` ([`GenericType`]), otherwise returns `None`"]
-        #[inline]
-        pub fn as_generic_type(self) -> ::std::option::Option<GenericType<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::GenericType(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        #[doc = "Returns the node if it is of type `removed_trait_bound` ([`RemovedTraitBound`]), otherwise returns `None`"]
-        #[inline]
-        pub fn as_removed_trait_bound(self) -> ::std::option::Option<RemovedTraitBound<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::RemovedTraitBound(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        #[doc = "Returns the node if it is of type `scoped_type_identifier` ([`ScopedTypeIdentifier`]), otherwise returns `None`"]
-        #[inline]
-        pub fn as_scoped_type_identifier(
-            self,
-        ) -> ::std::option::Option<ScopedTypeIdentifier<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::ScopedTypeIdentifier(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        #[doc = "Returns the node if it is of type `tuple_type` ([`TupleType`]), otherwise returns `None`"]
-        #[inline]
-        pub fn as_tuple_type(self) -> ::std::option::Option<TupleType<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::TupleType(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-        #[doc = "Returns the node if it is of type `type_identifier` ([`TypeIdentifier`]), otherwise returns `None`"]
-        #[inline]
-        pub fn as_type_identifier(self) -> ::std::option::Option<TypeIdentifier<'tree>> {
-            #[allow(irrefutable_let_patterns)]
-            if let Self::TypeIdentifier(x) = self {
-                ::std::option::Option::Some(x)
-            } else {
-                ::std::option::Option::None
-            }
-        }
-    }
+    impl < 'tree > FunctionType_GenericType_HigherRankedTraitBound_ScopedTypeIdentifier_TupleType_TypeIdentifier < 'tree > { # [doc = "Returns the node if it is of type `function_type` ([`FunctionType`]), otherwise returns `None`"] # [inline] pub fn as_function_type (self) -> :: std :: option :: Option < FunctionType < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: FunctionType (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `generic_type` ([`GenericType`]), otherwise returns `None`"] # [inline] pub fn as_generic_type (self) -> :: std :: option :: Option < GenericType < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: GenericType (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `higher_ranked_trait_bound` ([`HigherRankedTraitBound`]), otherwise returns `None`"] # [inline] pub fn as_higher_ranked_trait_bound (self) -> :: std :: option :: Option < HigherRankedTraitBound < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: HigherRankedTraitBound (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `scoped_type_identifier` ([`ScopedTypeIdentifier`]), otherwise returns `None`"] # [inline] pub fn as_scoped_type_identifier (self) -> :: std :: option :: Option < ScopedTypeIdentifier < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: ScopedTypeIdentifier (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `tuple_type` ([`TupleType`]), otherwise returns `None`"] # [inline] pub fn as_tuple_type (self) -> :: std :: option :: Option < TupleType < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: TupleType (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } # [doc = "Returns the node if it is of type `type_identifier` ([`TypeIdentifier`]), otherwise returns `None`"] # [inline] pub fn as_type_identifier (self) -> :: std :: option :: Option < TypeIdentifier < 'tree > > { # [allow (irrefutable_let_patterns)] if let Self :: TypeIdentifier (x) = self { :: std :: option :: Option :: Some (x) } else { :: std :: option :: Option :: None } } }
     #[automatically_derived]
-    impl<'tree> ::type_sitter::Node<'tree>
-        for FunctionType_GenericType_RemovedTraitBound_ScopedTypeIdentifier_TupleType_TypeIdentifier<
-            'tree,
-        >
-    {
-        type WithLifetime < 'a > = FunctionType_GenericType_RemovedTraitBound_ScopedTypeIdentifier_TupleType_TypeIdentifier < 'a > ;
-        const KIND : & 'static str = "{function_type | generic_type | removed_trait_bound | scoped_type_identifier | tuple_type | type_identifier}" ;
-        #[inline]
-        fn try_from_raw(
-            node: ::type_sitter::raw::Node<'tree>,
-        ) -> ::type_sitter::NodeResult<'tree, Self> {
-            match node.kind() {
-                "function_type" => Ok(unsafe {
-                    Self::FunctionType(
-                        <FunctionType<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
-                            node,
-                        ),
-                    )
-                }),
-                "generic_type" => Ok(unsafe {
-                    Self::GenericType(
-                        <GenericType<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(
-                            node,
-                        ),
-                    )
-                }),
-                "removed_trait_bound" => Ok(unsafe {
-                    Self::RemovedTraitBound(<RemovedTraitBound<'tree> as ::type_sitter::Node<
-                        'tree,
-                    >>::from_raw_unchecked(node))
-                }),
-                "scoped_type_identifier" => Ok(unsafe {
-                    Self :: ScopedTypeIdentifier (< ScopedTypeIdentifier < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node))
-                }),
-                "tuple_type" => Ok(unsafe {
-                    Self::TupleType(
-                        <TupleType<'tree> as ::type_sitter::Node<'tree>>::from_raw_unchecked(node),
-                    )
-                }),
-                "type_identifier" => {
-                    Ok(unsafe {
-                        Self::TypeIdentifier(<TypeIdentifier<'tree> as ::type_sitter::Node<
-                            'tree,
-                        >>::from_raw_unchecked(node))
-                    })
-                }
-                _ => Err(::type_sitter::IncorrectKind::new::<Self>(node)),
-            }
-        }
-        #[inline]
-        fn raw(&self) -> &::type_sitter::raw::Node<'tree> {
-            match self {
-                Self::FunctionType(x) => ::type_sitter::Node::raw(x),
-                Self::GenericType(x) => ::type_sitter::Node::raw(x),
-                Self::RemovedTraitBound(x) => ::type_sitter::Node::raw(x),
-                Self::ScopedTypeIdentifier(x) => ::type_sitter::Node::raw(x),
-                Self::TupleType(x) => ::type_sitter::Node::raw(x),
-                Self::TypeIdentifier(x) => ::type_sitter::Node::raw(x),
-            }
-        }
-        #[inline]
-        fn raw_mut(&mut self) -> &mut ::type_sitter::raw::Node<'tree> {
-            match self {
-                Self::FunctionType(x) => ::type_sitter::Node::raw_mut(x),
-                Self::GenericType(x) => ::type_sitter::Node::raw_mut(x),
-                Self::RemovedTraitBound(x) => ::type_sitter::Node::raw_mut(x),
-                Self::ScopedTypeIdentifier(x) => ::type_sitter::Node::raw_mut(x),
-                Self::TupleType(x) => ::type_sitter::Node::raw_mut(x),
-                Self::TypeIdentifier(x) => ::type_sitter::Node::raw_mut(x),
-            }
-        }
-        #[inline]
-        fn into_raw(self) -> ::type_sitter::raw::Node<'tree> {
-            match self {
-                Self::FunctionType(x) => x.into_raw(),
-                Self::GenericType(x) => x.into_raw(),
-                Self::RemovedTraitBound(x) => x.into_raw(),
-                Self::ScopedTypeIdentifier(x) => x.into_raw(),
-                Self::TupleType(x) => x.into_raw(),
-                Self::TypeIdentifier(x) => x.into_raw(),
-            }
-        }
-    }
+    impl < 'tree > :: type_sitter :: Node < 'tree > for FunctionType_GenericType_HigherRankedTraitBound_ScopedTypeIdentifier_TupleType_TypeIdentifier < 'tree > { type WithLifetime < 'a > = FunctionType_GenericType_HigherRankedTraitBound_ScopedTypeIdentifier_TupleType_TypeIdentifier < 'a > ; const KIND : & 'static str = "{function_type | generic_type | higher_ranked_trait_bound | scoped_type_identifier | tuple_type | type_identifier}" ; # [inline] fn try_from_raw (node : :: type_sitter :: raw :: Node < 'tree >) -> :: type_sitter :: NodeResult < 'tree , Self > { match node . kind () { "function_type" => Ok (unsafe { Self :: FunctionType (< FunctionType < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "generic_type" => Ok (unsafe { Self :: GenericType (< GenericType < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "higher_ranked_trait_bound" => Ok (unsafe { Self :: HigherRankedTraitBound (< HigherRankedTraitBound < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "scoped_type_identifier" => Ok (unsafe { Self :: ScopedTypeIdentifier (< ScopedTypeIdentifier < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "tuple_type" => Ok (unsafe { Self :: TupleType (< TupleType < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , "type_identifier" => Ok (unsafe { Self :: TypeIdentifier (< TypeIdentifier < 'tree > as :: type_sitter :: Node < 'tree >> :: from_raw_unchecked (node)) }) , _ => Err (:: type_sitter :: IncorrectKind :: new :: < Self > (node)) } } # [inline] fn raw (& self) -> & :: type_sitter :: raw :: Node < 'tree > { match self { Self :: FunctionType (x) => :: type_sitter :: Node :: raw (x) , Self :: GenericType (x) => :: type_sitter :: Node :: raw (x) , Self :: HigherRankedTraitBound (x) => :: type_sitter :: Node :: raw (x) , Self :: ScopedTypeIdentifier (x) => :: type_sitter :: Node :: raw (x) , Self :: TupleType (x) => :: type_sitter :: Node :: raw (x) , Self :: TypeIdentifier (x) => :: type_sitter :: Node :: raw (x) , } } # [inline] fn raw_mut (& mut self) -> & mut :: type_sitter :: raw :: Node < 'tree > { match self { Self :: FunctionType (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: GenericType (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: HigherRankedTraitBound (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: ScopedTypeIdentifier (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: TupleType (x) => :: type_sitter :: Node :: raw_mut (x) , Self :: TypeIdentifier (x) => :: type_sitter :: Node :: raw_mut (x) , } } # [inline] fn into_raw (self) -> :: type_sitter :: raw :: Node < 'tree > { match self { Self :: FunctionType (x) => x . into_raw () , Self :: GenericType (x) => x . into_raw () , Self :: HigherRankedTraitBound (x) => x . into_raw () , Self :: ScopedTypeIdentifier (x) => x . into_raw () , Self :: TupleType (x) => x . into_raw () , Self :: TypeIdentifier (x) => x . into_raw () , } } }
     #[doc = "One of `{generic_type_with_turbofish | scoped_type_identifier | type_identifier}`:\n- [`GenericTypeWithTurbofish`]\n- [`ScopedTypeIdentifier`]\n- [`TypeIdentifier`]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
@@ -23053,6 +23018,142 @@ pub mod anon_unions {
             }
         }
     }
+    #[doc = "One of `{_literal | block | identifier | negative_literal}`:\n- [`Literal`]\n- [`Block`]\n- [`Identifier`]\n- [`NegativeLiteral`]"]
+    #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
+    #[allow(non_camel_case_types)]
+    pub enum Literal_Block_Identifier_NegativeLiteral<'tree> {
+        Literal(Literal<'tree>),
+        Block(Block<'tree>),
+        Identifier(Identifier<'tree>),
+        NegativeLiteral(NegativeLiteral<'tree>),
+    }
+    #[automatically_derived]
+    #[allow(unused)]
+    impl<'tree> Literal_Block_Identifier_NegativeLiteral<'tree> {
+        #[doc = "Returns the node if it is of type `_literal` ([`Literal`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_literal(self) -> ::std::option::Option<Literal<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Literal(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        #[doc = "Returns the node if it is of type `block` ([`Block`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_block(self) -> ::std::option::Option<Block<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Block(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        #[doc = "Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_identifier(self) -> ::std::option::Option<Identifier<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::Identifier(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        #[doc = "Returns the node if it is of type `negative_literal` ([`NegativeLiteral`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_negative_literal(self) -> ::std::option::Option<NegativeLiteral<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::NegativeLiteral(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        #[doc = "Returns the node if it is of type `boolean_literal` ([`BooleanLiteral`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_literal` ([`Literal < 'tree >`], from [`as_literal`](Self::as_literal))"]
+        #[inline]
+        pub fn as_boolean_literal(self) -> ::std::option::Option<BooleanLiteral<'tree>> {
+            self.as_literal()?.as_boolean_literal()
+        }
+        #[doc = "Returns the node if it is of type `char_literal` ([`CharLiteral`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_literal` ([`Literal < 'tree >`], from [`as_literal`](Self::as_literal))"]
+        #[inline]
+        pub fn as_char_literal(self) -> ::std::option::Option<CharLiteral<'tree>> {
+            self.as_literal()?.as_char_literal()
+        }
+        #[doc = "Returns the node if it is of type `float_literal` ([`FloatLiteral`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_literal` ([`Literal < 'tree >`], from [`as_literal`](Self::as_literal))"]
+        #[inline]
+        pub fn as_float_literal(self) -> ::std::option::Option<FloatLiteral<'tree>> {
+            self.as_literal()?.as_float_literal()
+        }
+        #[doc = "Returns the node if it is of type `integer_literal` ([`IntegerLiteral`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_literal` ([`Literal < 'tree >`], from [`as_literal`](Self::as_literal))"]
+        #[inline]
+        pub fn as_integer_literal(self) -> ::std::option::Option<IntegerLiteral<'tree>> {
+            self.as_literal()?.as_integer_literal()
+        }
+        #[doc = "Returns the node if it is of type `raw_string_literal` ([`RawStringLiteral`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_literal` ([`Literal < 'tree >`], from [`as_literal`](Self::as_literal))"]
+        #[inline]
+        pub fn as_raw_string_literal(self) -> ::std::option::Option<RawStringLiteral<'tree>> {
+            self.as_literal()?.as_raw_string_literal()
+        }
+        #[doc = "Returns the node if it is of type `string_literal` ([`StringLiteral`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_literal` ([`Literal < 'tree >`], from [`as_literal`](Self::as_literal))"]
+        #[inline]
+        pub fn as_string_literal(self) -> ::std::option::Option<StringLiteral<'tree>> {
+            self.as_literal()?.as_string_literal()
+        }
+    }
+    #[automatically_derived]
+    impl<'tree> ::type_sitter::Node<'tree> for Literal_Block_Identifier_NegativeLiteral<'tree> {
+        type WithLifetime<'a> = Literal_Block_Identifier_NegativeLiteral<'a>;
+        const KIND: &'static str = "{_literal | block | identifier | negative_literal}";
+        #[inline]
+        fn try_from_raw(
+            node: ::type_sitter::raw::Node<'tree>,
+        ) -> ::type_sitter::NodeResult<'tree, Self> {
+            if let Ok(this) = <Literal<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::Literal(this));
+            }
+            if let Ok(this) = <Block<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::Block(this));
+            }
+            if let Ok(this) = <Identifier<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::Identifier(this));
+            }
+            if let Ok(this) =
+                <NegativeLiteral<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node)
+            {
+                return Ok(Self::NegativeLiteral(this));
+            }
+            Err(::type_sitter::IncorrectKind::new::<Self>(node))
+        }
+        #[inline]
+        fn raw(&self) -> &::type_sitter::raw::Node<'tree> {
+            match self {
+                Self::Literal(x) => ::type_sitter::Node::raw(x),
+                Self::Block(x) => ::type_sitter::Node::raw(x),
+                Self::Identifier(x) => ::type_sitter::Node::raw(x),
+                Self::NegativeLiteral(x) => ::type_sitter::Node::raw(x),
+            }
+        }
+        #[inline]
+        fn raw_mut(&mut self) -> &mut ::type_sitter::raw::Node<'tree> {
+            match self {
+                Self::Literal(x) => ::type_sitter::Node::raw_mut(x),
+                Self::Block(x) => ::type_sitter::Node::raw_mut(x),
+                Self::Identifier(x) => ::type_sitter::Node::raw_mut(x),
+                Self::NegativeLiteral(x) => ::type_sitter::Node::raw_mut(x),
+            }
+        }
+        #[inline]
+        fn into_raw(self) -> ::type_sitter::raw::Node<'tree> {
+            match self {
+                Self::Literal(x) => x.into_raw(),
+                Self::Block(x) => x.into_raw(),
+                Self::Identifier(x) => x.into_raw(),
+                Self::NegativeLiteral(x) => x.into_raw(),
+            }
+        }
+    }
     #[doc = "One of `{_literal | _type | block | lifetime | trait_bounds | type_binding}`:\n- [`Literal`]\n- [`Type`]\n- [`Block`]\n- [`Lifetime`]\n- [`TraitBounds`]\n- [`TypeBinding`]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
@@ -24071,6 +24172,11 @@ pub mod anon_unions {
         pub fn as_const_block(self) -> ::std::option::Option<ConstBlock<'tree>> {
             self.as_pattern()?.as_const_block()
         }
+        #[doc = "Returns the node if it is of type `generic_pattern` ([`GenericPattern`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_pattern` ([`Pattern < 'tree >`], from [`as_pattern`](Self::as_pattern))"]
+        #[inline]
+        pub fn as_generic_pattern(self) -> ::std::option::Option<GenericPattern<'tree>> {
+            self.as_pattern()?.as_generic_pattern()
+        }
         #[doc = "Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_pattern` ([`Pattern < 'tree >`], from [`as_pattern`](Self::as_pattern))"]
         #[inline]
         pub fn as_identifier(self) -> ::std::option::Option<Identifier<'tree>> {
@@ -24271,6 +24377,11 @@ pub mod anon_unions {
         #[inline]
         pub fn as_const_block(self) -> ::std::option::Option<ConstBlock<'tree>> {
             self.as_pattern()?.as_const_block()
+        }
+        #[doc = "Returns the node if it is of type `generic_pattern` ([`GenericPattern`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_pattern` ([`Pattern < 'tree >`], from [`as_pattern`](Self::as_pattern))"]
+        #[inline]
+        pub fn as_generic_pattern(self) -> ::std::option::Option<GenericPattern<'tree>> {
+            self.as_pattern()?.as_generic_pattern()
         }
         #[doc = "Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_pattern` ([`Pattern < 'tree >`], from [`as_pattern`](Self::as_pattern))"]
         #[inline]
@@ -24473,6 +24584,11 @@ pub mod anon_unions {
         pub fn as_const_block(self) -> ::std::option::Option<ConstBlock<'tree>> {
             self.as_pattern()?.as_const_block()
         }
+        #[doc = "Returns the node if it is of type `generic_pattern` ([`GenericPattern`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_pattern` ([`Pattern < 'tree >`], from [`as_pattern`](Self::as_pattern))"]
+        #[inline]
+        pub fn as_generic_pattern(self) -> ::std::option::Option<GenericPattern<'tree>> {
+            self.as_pattern()?.as_generic_pattern()
+        }
         #[doc = "Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_pattern` ([`Pattern < 'tree >`], from [`as_pattern`](Self::as_pattern))"]
         #[inline]
         pub fn as_identifier(self) -> ::std::option::Option<Identifier<'tree>> {
@@ -24671,6 +24787,11 @@ pub mod anon_unions {
         #[inline]
         pub fn as_const_block(self) -> ::std::option::Option<ConstBlock<'tree>> {
             self.as_pattern()?.as_const_block()
+        }
+        #[doc = "Returns the node if it is of type `generic_pattern` ([`GenericPattern`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_pattern` ([`Pattern < 'tree >`], from [`as_pattern`](Self::as_pattern))"]
+        #[inline]
+        pub fn as_generic_pattern(self) -> ::std::option::Option<GenericPattern<'tree>> {
+            self.as_pattern()?.as_generic_pattern()
         }
         #[doc = "Returns the node if it is of type `identifier` ([`Identifier`]), otherwise returns `None`.\n\nFollows the following chain:\n- `_pattern` ([`Pattern < 'tree >`], from [`as_pattern`](Self::as_pattern))"]
         #[inline]
@@ -25368,16 +25489,17 @@ pub mod anon_unions {
             }
         }
     }
-    #[doc = "One of `{_type | lifetime}`:\n- [`Type`]\n- [`Lifetime`]"]
+    #[doc = "One of `{_type | lifetime | use_bounds}`:\n- [`Type`]\n- [`Lifetime`]\n- [`UseBounds`]"]
     #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
     #[allow(non_camel_case_types)]
-    pub enum Type_Lifetime<'tree> {
+    pub enum Type_Lifetime_UseBounds<'tree> {
         Type(Type<'tree>),
         Lifetime(Lifetime<'tree>),
+        UseBounds(UseBounds<'tree>),
     }
     #[automatically_derived]
     #[allow(unused)]
-    impl<'tree> Type_Lifetime<'tree> {
+    impl<'tree> Type_Lifetime_UseBounds<'tree> {
         #[doc = "Returns the node if it is of type `_type` ([`Type`]), otherwise returns `None`"]
         #[inline]
         pub fn as_type(self) -> ::std::option::Option<Type<'tree>> {
@@ -25393,6 +25515,16 @@ pub mod anon_unions {
         pub fn as_lifetime(self) -> ::std::option::Option<Lifetime<'tree>> {
             #[allow(irrefutable_let_patterns)]
             if let Self::Lifetime(x) = self {
+                ::std::option::Option::Some(x)
+            } else {
+                ::std::option::Option::None
+            }
+        }
+        #[doc = "Returns the node if it is of type `use_bounds` ([`UseBounds`]), otherwise returns `None`"]
+        #[inline]
+        pub fn as_use_bounds(self) -> ::std::option::Option<UseBounds<'tree>> {
+            #[allow(irrefutable_let_patterns)]
+            if let Self::UseBounds(x) = self {
                 ::std::option::Option::Some(x)
             } else {
                 ::std::option::Option::None
@@ -25487,9 +25619,9 @@ pub mod anon_unions {
         }
     }
     #[automatically_derived]
-    impl<'tree> ::type_sitter::Node<'tree> for Type_Lifetime<'tree> {
-        type WithLifetime<'a> = Type_Lifetime<'a>;
-        const KIND: &'static str = "{_type | lifetime}";
+    impl<'tree> ::type_sitter::Node<'tree> for Type_Lifetime_UseBounds<'tree> {
+        type WithLifetime<'a> = Type_Lifetime_UseBounds<'a>;
+        const KIND: &'static str = "{_type | lifetime | use_bounds}";
         #[inline]
         fn try_from_raw(
             node: ::type_sitter::raw::Node<'tree>,
@@ -25500,6 +25632,9 @@ pub mod anon_unions {
             if let Ok(this) = <Lifetime<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node) {
                 return Ok(Self::Lifetime(this));
             }
+            if let Ok(this) = <UseBounds<'tree> as ::type_sitter::Node<'tree>>::try_from_raw(node) {
+                return Ok(Self::UseBounds(this));
+            }
             Err(::type_sitter::IncorrectKind::new::<Self>(node))
         }
         #[inline]
@@ -25507,6 +25642,7 @@ pub mod anon_unions {
             match self {
                 Self::Type(x) => ::type_sitter::Node::raw(x),
                 Self::Lifetime(x) => ::type_sitter::Node::raw(x),
+                Self::UseBounds(x) => ::type_sitter::Node::raw(x),
             }
         }
         #[inline]
@@ -25514,6 +25650,7 @@ pub mod anon_unions {
             match self {
                 Self::Type(x) => ::type_sitter::Node::raw_mut(x),
                 Self::Lifetime(x) => ::type_sitter::Node::raw_mut(x),
+                Self::UseBounds(x) => ::type_sitter::Node::raw_mut(x),
             }
         }
         #[inline]
@@ -25521,6 +25658,7 @@ pub mod anon_unions {
             match self {
                 Self::Type(x) => x.into_raw(),
                 Self::Lifetime(x) => x.into_raw(),
+                Self::UseBounds(x) => x.into_raw(),
             }
         }
     }
