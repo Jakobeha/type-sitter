@@ -131,6 +131,11 @@ impl<'tree> UntypedNode<'tree> {
     pub fn downcast<Type: Node<'tree>>(&self) -> NodeResult<'_, Type> {
         Type::try_from_raw(self.0)
     }
+
+    #[inline]
+    pub fn is<Type: Node<'tree>>(&self) -> bool {
+        self.downcast::<Type>().is_ok()
+    }
 }
 
 impl<'tree> From<raw::Node<'tree>> for UntypedNode<'tree> {
