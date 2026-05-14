@@ -132,6 +132,9 @@ impl<'tree> UntypedNode<'tree> {
         Type::try_from_raw(self.0)
     }
 
+    /// Is this downcastable to `Type`?
+    ///
+    /// See [`Node::try_from_raw`]
     #[inline]
     pub fn is<Type: Node<'tree>>(&self) -> bool {
         self.downcast::<Type>().is_ok()
